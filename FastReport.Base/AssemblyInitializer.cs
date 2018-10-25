@@ -13,12 +13,6 @@ using FastReport.Gauge.Radial;
 using FastReport.Gauge.Simple.Progress;
 using System.Runtime.CompilerServices;
 
-[assembly:InternalsVisibleTo("FastReport.Tests.OpenSource,PublicKey=0024000004800000" +
-    "94000000060200000024000052534131000400000100010061eadea16fd024" +
-"c88592a545708e3c3a3124b967eb990eccbe7689ed737d4e890f9b4b545b1a066b2489c710459c" +
-"a1f1750bf002ff9bf0a0fd7b43d4a7082c6f424790985d17376244ff2e17244f5c5a2293144417" +
-"fd8db3b648b9a54e0a3f2b009447f83c677cde31d139040d0be7b375115166ba46dc1153834bf1" +
-"8d0cd9eb")]
 namespace FastReport
 {
     /// <summary>
