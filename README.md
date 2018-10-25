@@ -50,7 +50,7 @@ You can make a report template in several ways:
 
 - Developing report template as XML file.
 
-- Using the FastReport Designer Community Edition. It can be downloaded from [Fast Reports home site](https://www.fast-report.com/).
+- Using the FastReport Designer Community Edition. It can be downloaded from [Fast Report releases page](https://github.com/FastReports/FastReport/releases).
 
 [![Image of FastReport](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3-small.png)](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3.png)
 
