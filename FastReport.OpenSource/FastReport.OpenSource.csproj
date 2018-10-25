@@ -14,10 +14,6 @@
     <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
     <Authors>Fast Reports Inc.</Authors>
     <Product>FastReport</Product>
-    <Description>FastReport.Net is a full-featured reporting solution for .Net Core 2.0. 
-Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, diagram, maps, shapes, line, PolyLine, Polygon and many more. 
-FastReport.Net supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.
-</Description>
     <PackageId>FastReport.OpenSource</PackageId>
     <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
     <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
@@ -25,11 +21,9 @@ FastReport.Net supports export to various popular formats, such as PDF/A, Excel,
     <Configurations>Debug;Release;Academic;Demo;WinForms</Configurations>
     <AssemblyName>FastReport</AssemblyName>
     <RootNamespace>FastReport</RootNamespace>
-    <Description>FastReport.Net is a full-featured reporting solution for .Net Core 2.0. 
-Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, diagram, maps, shapes, line, PolyLine, Polygon and many more. 
-FastReport.Net supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.
-The full version of the package is available in FastReport.Net Professional at https://www.fast-report.com/en/fast-report-net-editions-compare/
-</Description>
+    <Description>FastReport Open Source is an open source reporting solution for .Net Core 2.x and .Net Framework 4.x. 
+Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, shapes, line, PolyLine, Polygon and many more.</Description>
+    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;DOTNET_4;</DefineConstants>
@@ -46,8 +40,8 @@ The full version of the package is available in FastReport.Net Professional at h
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-    <Compile Remove="DotNetClasses\**\*.cs"/>
-    <Compile Include="DotNetClasses\Color.Full.cs"/>
+    <Compile Remove="DotNetClasses\**\*.cs" />
+    <Compile Include="DotNetClasses\Color.Full.cs" />
   </ItemGroup>
 
   <Import Project="..\FastReport.Base\FastReport.Base.csproj" />
@@ -64,7 +58,7 @@ The full version of the package is available in FastReport.Net Professional at h
 
 
   <ItemGroup>
-    <EmbeddedResource Include="..\FastReport\Resources\**\*.*" >
+    <EmbeddedResource Include="..\FastReport\Resources\**\*.*">
       <Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>    
     </EmbeddedResource>
   </ItemGroup>
