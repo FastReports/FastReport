@@ -78,4 +78,4 @@ Once you have completed your contribution feel free to submit a pull request. We
 
 ## Resources
 
-[FastReport OpenSource](https://github.com/FastReports/FastReport "Click for visiting the FastReport Open Source GitHub")
+[FastReport Open Source](https://github.com/FastReports/FastReport "Click for visiting the FastReport Open Source GitHub")
