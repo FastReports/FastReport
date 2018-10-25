@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="06/20/2009 23:03:47" ReportInfo.Modified="06/20/2009 23:07:55" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="Categories" ReferenceName="Categories" DataType="System.Collections.Generic.List`1[[DataFromBusinessObject.Category, DataFromBusinessObject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <BusinessObjectDataSource Name="Products" DataType="System.Collections.Generic.List`1[[DataFromBusinessObject.Product, DataFromBusinessObject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="UnitPrice" DataType="System.Decimal"/>
+      </BusinessObjectDataSource>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text2" Width="718.2" Height="28.35" Text="PRODUCTS BY CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="718.2" Height="103.95" DataSource="Categories">
+      <TextObject Name="Text1" Top="18.9" Width="387.45" Height="37.8" Fill.Color="SandyBrown" Text="[Categories.Name]" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Top="56.7" Width="387.45" Height="18.9" Fill.Color="SandyBrown" Text="[Categories.Description]" Font="Arial, 9pt"/>
+      <TextObject Name="Text6" Top="85.05" Width="245.7" Height="18.9" Text="Product name" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="292.95" Top="85.05" Width="94.5" Height="18.9" Text="Unit price" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data2" Top="149.75" Width="718.2" Height="18.9" DataSource="Products">
+        <TextObject Name="Text4" Width="245.7" Height="18.9" Text="[Categories.Products.Name]"/>
+        <TextObject Name="Text5" Left="292.95" Width="94.5" Height="18.9" Text="[Categories.Products.UnitPrice]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" WordWrap="false" Trimming="EllipsisCharacter"/>
+      </DataBand>
+    </DataBand>
+  </ReportPage>
+</Report>

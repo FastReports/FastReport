@@ -1,0 +1,35 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+
+# Diff behavior for common document formats
+*.doc    diff=astextplain
+*.DOC    diff=astextplain
+*.docx   diff=astextplain
+*.DOCX   diff=astextplain
+*.dot    diff=astextplain
+*.DOT    diff=astextplain
+*.pdf    diff=astextplain
+*.PDF    diff=astextplain
+*.rtf    diff=astextplain
+*.RTF    diff=astextplain
+
+# Behavior for image files
+*.ico    binary
+*.ICO    binary
+*.bmp    binary
+*.BMP    binary
+*.tif    binary
+*.TIF    binary
+*.tiff   binary
+*.TIFF   binary
+*.jpg    binary
+*.JPG    binary
+*.jpeg   binary
+*.JPEG   binary
+*.png    binary
+*.PNG    binary
+*.gif    binary
+*.GIF    binary

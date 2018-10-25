@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="01/15/2008 13:48:43" ReportInfo.Modified="01/16/2008 03:37:50">
+  <Styles>
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="Gainsboro" Font="Arial, 9.75pt, style=Bold"/>
+    <Style Name="Data"/>
+    <Style Name="Footer" Fill.Color="Gainsboro"/>
+    <Style Name="Group" Font="Arial, 9.75pt, style=Bold"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke"/>
+  </Styles>
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperWidth="105" PaperHeight="126" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5">
+    <ReportTitleBand Name="ReportTitle1" Width="359.1" Height="434.7001">
+      <TextObject Name="Text1" Width="359.0999" Height="28.35" Text="CUSTOMERS" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold" Style="Title"/>
+      <TextObject Name="Text2" Left="66.15" Top="75.6" Width="292.95" Height="18.9" Text="Alfreds Futterkiste" Style="Data"/>
+      <TextObject Name="Text4" Top="75.6" Width="66.15" Height="18.9" Text="ALFKI" Style="Data"/>
+      <TextObject Name="Text1" Top="94.5" Width="359.1" Height="18.9" Fill.Color="WhiteSmoke" Style="EvenRows"/>
+      <TextObject Name="Text2" Left="66.15" Top="94.5" Width="292.95" Height="18.9" Text="Ana Trujillo Emparedados y helados" Style="Data"/>
+      <TextObject Name="Text4" Top="94.5" Width="66.15" Height="18.9" Text="ANATR" Style="Data"/>
+      <TextObject Name="Text2" Left="66.15" Top="113.4" Width="292.95" Height="18.9" Text="Antonio Moreno Taquería" Style="Data"/>
+      <TextObject Name="Text4" Top="113.4" Width="66.15" Height="18.9" Text="ANTON" Style="Data"/>
+      <TextObject Name="Text2" Top="132.3" Width="359.1" Height="18.9" Fill.Color="WhiteSmoke" Style="EvenRows"/>
+      <TextObject Name="Text3" Left="66.15" Top="132.3" Width="292.95" Height="18.9" Text="Around the Horn" Style="Data"/>
+      <TextObject Name="Text4" Top="132.3" Width="66.15" Height="18.9" Text="AROUT" Style="Data"/>
+      <TextObject Name="Text4" Left="66.15" Top="179.55" Width="292.95" Height="18.9" Text="Berglunds snabbköp" Style="Data"/>
+      <TextObject Name="Text5" Top="179.55" Width="66.15" Height="18.9" Text="BERGS" Style="Data"/>
+      <TextObject Name="Text6" Top="198.45" Width="359.1" Height="18.9" Fill.Color="WhiteSmoke" Style="EvenRows"/>
+      <TextObject Name="Text7" Left="66.15" Top="198.45" Width="292.95" Height="18.9" Text="Blauer See Delikatessen" Style="Data"/>
+      <TextObject Name="Text8" Top="198.45" Width="66.15" Height="18.9" Text="BLAUS" Style="Data"/>
+      <TextObject Name="Text9" Left="66.15" Top="217.35" Width="292.95" Height="18.9" Text="Blondesddsl père et fils" Style="Data"/>
+      <TextObject Name="Text10" Top="217.35" Width="66.15" Height="18.9" Text="BLONP" Style="Data"/>
+      <TextObject Name="Text11" Top="236.25" Width="359.1" Height="18.9" Fill.Color="WhiteSmoke" Style="EvenRows"/>
+      <TextObject Name="Text12" Left="66.15" Top="236.25" Width="292.95" Height="18.9" Text="Bólido Comidas preparadas" Style="Data"/>
+      <TextObject Name="Text13" Top="236.25" Width="66.15" Height="18.9" Text="BOLID" Style="Data"/>
+      <TextObject Name="Text14" Left="66.15" Top="255.15" Width="292.95" Height="18.9" Text="Bon app'" Style="Data"/>
+      <TextObject Name="Text15" Top="255.15" Width="66.15" Height="18.9" Text="BONAP" Style="Data"/>
+      <TextObject Name="Text16" Top="274.05" Width="359.1" Height="18.9" Fill.Color="WhiteSmoke" Style="EvenRows"/>
+      <TextObject Name="Text17" Left="66.15" Top="274.05" Width="292.95" Height="18.9" Text="Bottom-Dollar Markets" Style="Data"/>
+      <TextObject Name="Text18" Top="274.05" Width="66.15" Height="18.9" Text="BOTTM" Style="Data"/>
+      <TextObject Name="Text19" Left="66.15" Top="292.95" Width="292.95" Height="18.9" Text="B's Beverages" Style="Data"/>
+      <TextObject Name="Text20" Top="292.95" Width="66.15" Height="18.9" Text="BSBEV" Style="Data"/>
+      <TextObject Name="Text21" Top="340.2" Width="359.1" Height="18.9" Fill.Color="WhiteSmoke" Style="EvenRows"/>
+      <TextObject Name="Text22" Left="66.15" Top="340.2" Width="292.95" Height="18.9" Text="Cactus Comidas para llevar" Style="Data"/>
+      <TextObject Name="Text23" Top="340.2" Width="66.15" Height="18.9" Text="CACTU" Style="Data"/>
+      <TextObject Name="Text24" Left="66.15" Top="359.1" Width="292.95" Height="18.9" Text="Centro comercial Moctezuma" Style="Data"/>
+      <TextObject Name="Text25" Top="359.1" Width="66.15" Height="18.9" Text="CENTC" Style="Data"/>
+      <TextObject Name="Text26" Top="378" Width="359.1" Height="18.9" Fill.Color="WhiteSmoke" Style="EvenRows"/>
+      <TextObject Name="Text27" Left="66.15" Top="378" Width="292.95" Height="18.9" Text="Chop-suey Chinese" Style="Data"/>
+      <TextObject Name="Text28" Top="378" Width="66.15" Height="18.9" Text="CHOPS" Style="Data"/>
+      <TextObject Name="Text29" Left="66.15" Top="396.9" Width="292.95" Height="18.9" Text="Comércio Mineiro" Style="Data"/>
+      <TextObject Name="Text30" Top="396.9" Width="66.15" Height="18.9" Text="COMMI" Style="Data"/>
+      <TextObject Name="Text31" Top="415.8" Width="359.0999" Height="18.9" Fill.Color="Gainsboro" Text="Page [Page]" HorzAlign="Right" Style="Footer"/>
+      <TextObject Name="Text3" Left="66.15" Top="28.35" Width="292.95" Height="18.9" Fill.Color="Gainsboro" Text="Company Name" Font="Arial, 9.75pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text5" Top="28.35" Width="66.15" Height="18.9" Fill.Color="Gainsboro" Text="ID" Font="Arial, 9.75pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text32" Top="56.7" Width="359.1001" Height="18.9" Text="A" Font="Arial, 9.75pt, style=Bold" Style="Group"/>
+      <TextObject Name="Text33" Top="160.65" Width="359.1001" Height="18.9" Text="B" Font="Arial, 9.75pt, style=Bold" Style="Group"/>
+      <TextObject Name="Text34" Top="321.3" Width="359.1001" Height="18.9" Text="C" Font="Arial, 9.75pt, style=Bold" Style="Group"/>
+    </ReportTitleBand>
+  </ReportPage>
+</Report>

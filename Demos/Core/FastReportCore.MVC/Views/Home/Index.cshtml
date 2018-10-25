@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@if (ViewData.ContainsKey("Report"))
+{
+    @Html.Raw(ViewData["Report"])
+}
+else
+{
+    <h1>Fast Report .Net Core</h1>
+    <h2>&larr; Choose a report!</h2>
+    <p>Your awesome description!</p>
+}

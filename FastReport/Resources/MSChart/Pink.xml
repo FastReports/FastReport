@@ -1,0 +1,25 @@
+<Chart Palette="SemiTransparent" BackColor="250, 230, 230" BackGradientStyle="DiagonalLeft" BackSecondaryColor="255, 240, 240" BorderlineColor="LightSlateGray" BorderlineDashStyle="Solid">
+  <Legends>
+    <Legend Name="Default" BackColor="100, 255, 255, 255" BorderColor="100, 0, 0, 0" BackSecondaryColor="245, 224, 224" Font="Tahoma, 8pt">
+    </Legend>
+  </Legends>
+  <ChartAreas>
+    <ChartArea BackColor="100, 255, 255, 255" BackSecondaryColor="245, 224, 224" BorderColor="100, 0, 0, 0" BorderDashStyle="Solid" Name="Default">
+      <AxisY>
+        <MajorGrid LineColor="50, 0, 0, 0" />
+        <MinorGrid LineColor="20, 0, 0, 0" />
+        <MajorTickMark LineColor="150, 0, 0, 0" LineWidth="2" />
+        <MinorTickMark LineColor="75, 0, 0, 0" />
+        <LabelStyle ForeColor="180, 0, 0, 0" Font="Tahoma, 8pt" />
+      </AxisY>
+      <AxisX>
+        <MajorGrid LineColor="50, 0, 0, 0" />
+        <MinorGrid LineColor="20, 0, 0, 0" />
+        <MajorTickMark LineColor="150, 0, 0, 0" LineWidth="2" />
+        <MinorTickMark LineColor="75, 0, 0, 0" />
+        <LabelStyle ForeColor="180, 0, 0, 0" Font="Tahoma, 8pt" />
+      </AxisX>
+    </ChartArea>
+  </ChartAreas>
+  <BorderSkin SkinStyle="Emboss"/>
+</Chart>

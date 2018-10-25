@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeDoc>
+  <Topics>
+    <EnvironmentSettings>
+      <CustomOpenDialog>
+        <summary>
+        Occurs when the report designer is about to show the "Open" dialog.
+        </summary>
+        <remarks>
+        Use this event to attach own "Open" dialog to the designer. In the event handler, you must 
+        display a dialog window to allow user to choose a report file.
+        If dialog was executed successfully, you must return <b>e.Cancel</b> = <b>false</b> and set the 
+        <b>e.FileName</b> to the selected file name.
+        <para/>You also need to use <see cref="CustomOpenReport"/> event to provide code that
+        will open the report.
+        </remarks>
+      </CustomOpenDialog>
+      <CustomSaveDialog>
+        <summary>
+        Occurs when the report designer is about to show the "Save" dialog.
+        </summary>
+        <remarks>
+        Use this event to attach own "Save" dialog to the designer. In the event handler, you must 
+        display a dialog window to allow user to choose a report file.
+        If dialog was executed successfully, you must return <b>e.Cancel</b> = <b>false</b> and set the 
+        <b>e.FileName</b> to the selected file name.
+        <para/>You also need to use <see cref="CustomSaveReport"/> event to provide code that
+        will save the report.
+        </remarks>
+      </CustomSaveDialog>
+      <CustomOpenReport>
+        <summary>
+        Occurs when the report designer is about to load the report.
+        </summary>
+        <remarks>
+        <para/>This event is used together with the <see cref="CustomOpenDialog"/> event.
+        <para/>Use this event to attach own "Open" dialog to the designer. In the event handler, you must 
+        load the <b>e.Report</b> from the location specified in the <b>e.FileName</b> property.
+        For example, if you work with files: <c>e.Report.Load(e.FileName);</c>
+        </remarks>
+      </CustomOpenReport>
+      <CustomSaveReport>
+        <summary>
+        Occurs when the report designer is about to save the report.
+        </summary>
+        <remarks>
+        <para/>This event is used together with the <see cref="CustomSaveDialog"/> event.
+        <para/>Use this event to attach own "Save" dialog to the designer. In the event handler, you must 
+        save the <b>e.Report</b> to the location specified in the <b>e.FileName</b> property.
+        For example, if you work with files: <c>e.Report.Save(e.FileName);</c>
+        </remarks>
+      </CustomSaveReport>
+      <DatabaseLogin>
+        <summary>
+        Occurs when database connection is about to open.
+        </summary>
+        <remarks>
+        Use this event to provide own connection string or user name/password to the connection
+        object that is about to open.
+        <para/>To provide own connection string, set the <b>e.ConnectionString</b> property.
+        In this case the new connection string will be used.
+        <para/>To provide own user name/password, set the <b>e.UserName</b> and <b>e.Password</b> properties.
+        You may ask these values in own login dialog.
+        </remarks>
+        <example>This example shows how to provide username/password using own login dialog.
+        <code>
+        private void report1_DatabaseLogin(object sender, DatabaseLoginEventArgs e)
+        {
+          using (MyLoginDialog dialog = new MyLoginDialog())
+          {
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+              e.UserName = dialog.UserName;
+              e.Password = dialog.Password;
+            }
+          }
+        }
+        </code>
+        </example>
+        <example>This example shows how to provide own connection string.
+        <code>
+        private void report1_DatabaseLogin(object sender, DatabaseLoginEventArgs e)
+        {
+          e.ConnectionString = my_connection_string;
+        }
+        </code>
+        </example>
+      </DatabaseLogin>
+    </EnvironmentSettings>
+  </Topics>
+  <Examples>
+    <EnvironmentSettings>
+      <example>
+        This example shows how to attach own "Open" and "Save" dialogs to the designer. 
+        It uses the following events: <see cref="CustomOpenDialog"/>, <see cref="CustomSaveDialog"/>, 
+        <see cref="CustomOpenReport"/>, <see cref="CustomSaveReport"/>.
+        <code>
+        private void CustomOpenDialog_Handler(object sender, OpenSaveDialogEventArgs e)
+        {
+          using (OpenFileDialog dialog = new OpenFileDialog())
+          {
+            dialog.Filter = "Report files (*.frx)|*.frx";
+
+            // set e.Cancel to false if dialog was succesfully executed
+            e.Cancel = dialog.ShowDialog() != DialogResult.OK;
+            // set e.FileName to the selected file name
+            e.FileName = dialog.FileName;
+          }
+        }
+
+        private void CustomSaveDialog_Handler(object sender, OpenSaveDialogEventArgs e)
+        {
+          using (SaveFileDialog dialog = new SaveFileDialog())
+          {
+            dialog.Filter = "Report files (*.frx)|*.frx";
+            // get default file name from e.FileName
+            dialog.FileName = e.FileName;
+
+            // set e.Cancel to false if dialog was succesfully executed
+            e.Cancel = dialog.ShowDialog() != DialogResult.OK;
+            // set e.FileName to the selected file name
+            e.FileName = dialog.FileName;
+          }
+        }
+
+        private void CustomOpenReport_Handler(object sender, OpenSaveReportEventArgs e)
+        {
+          // load the report from the given e.FileName
+          e.Report.Load(e.FileName);
+        }
+
+        private void CustomSaveReport_Handler(object sender, OpenSaveReportEventArgs e)
+        {
+          // save the report to the given e.FileName
+          e.Report.Save(e.FileName);
+        }
+        </code>
+      </example>
+    </EnvironmentSettings>
+  </Examples>
+</CodeDoc>

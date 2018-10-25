@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  fastreportcore.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000"
+    expose:
+      - "5000"
+networks:
+  default:
+    driver: bridge

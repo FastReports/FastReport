@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates the TableObject features." ReportInfo.Created="06/03/2009 02:45:18" ReportInfo.Modified="08/27/2015 16:54:01" ReportInfo.CreatorVersion="1.0.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Table2_ManualBuild(object sender, EventArgs e)
+    {
+      // initialize the data
+      DataSourceBase data = Report.GetDataSource(&quot;Categories&quot;);
+      data.Init();
+      
+      // print table header
+      Table2.PrintRow(0);
+      Table2.PrintColumns();
+      
+      data.First();
+      while (data.HasMoreRows)
+      {
+        // print table body
+        Table2.PrintRow(1);
+        Table2.PrintColumns();
+        
+        // go next data row
+        data.Next();
+      }
+    }
+
+    private void Table3_ManualBuild(object sender, EventArgs e)
+    {
+      // get the data source by its name
+      DataSourceBase columnData = Report.GetDataSource(&quot;Employees&quot;);
+      // init the data source
+      columnData.Init();
+      
+      // print the first table column - it is a header
+      Table3.PrintColumn(0);
+      // each PrintColumn call must be followed by either PrintRow or PrintRows call
+      // to print cells on the column
+      Table3.PrintRows();
+      
+      // now enumerate the data source and print the table body
+      while (columnData.HasMoreRows)
+      {
+        // print the table body  
+        Table3.PrintColumn(1);
+        Table3.PrintRows();
+
+        // go next data source row
+        columnData.Next();
+      }
+
+      // print the last table column - it is a footer
+      Table3.PrintColumn(2);
+      Table3.PrintRows();
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="LastName" DataType="System.String"/>
+      <Column Name="FirstName" DataType="System.String"/>
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="TitleOfCourtesy" DataType="System.String"/>
+      <Column Name="BirthDate" DataType="System.DateTime"/>
+      <Column Name="HireDate" DataType="System.DateTime"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="HomePhone" DataType="System.String"/>
+      <Column Name="Extension" DataType="System.String"/>
+      <Column Name="Photo" DataType="System.Byte[]" BindableControl="Picture"/>
+      <Column Name="Notes" DataType="System.String"/>
+      <Column Name="ReportsTo" DataType="System.Int32"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="85.05" CanGrow="true">
+      <TextObject Name="Text29" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" Text="[Report.ReportInfo.Description]" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text30" Top="47.25" Width="718.2" Height="37.8" Text="TableObject" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="89.05" Width="718.2" Height="179.55" CanGrow="true" DataSource="">
+      <TextObject Name="Text12" Left="9.45" Top="9.45" Width="652.05" Height="37.8" Fill.Color="Orange" Text="STATIC TABLE" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TableObject Name="Table1" Left="9.45" Top="56.7" Width="302.4" Height="113.4">
+        <TableColumn Name="Column1" Width="75.6"/>
+        <TableColumn Name="Column2" Width="75.6" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="75.6"/>
+        <TableColumn Name="Column4" Width="75.6"/>
+        <TableRow Name="Row1">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="Silver" Text="Cell with horizontal span" HorzAlign="Center" ColSpan="3"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="Silver"/>
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="Silver"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="Silver" Text="Cell with vertical span" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+        </TableRow>
+        <TableRow Name="Row2" AutoSize="true">
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="Silver" Text="Row with auto-height"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="Silver"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="Silver"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="Silver" HorzAlign="Center" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="75.6">
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="Silver"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="Silver" Text="Column with auto-width"/>
+          <TableCell Name="Cell13" Border.Lines="All" Border.Color="Silver" Text="Cell with embedded object">
+            <CheckBoxObject Name="CheckBox1" Left="47.25" Top="37.8" Width="18.9" Height="18.9" Border.Lines="All" Border.Color="Silver"/>
+          </TableCell>
+          <TableCell Name="Cell14" Border.Lines="All" Border.Color="Silver" HorzAlign="Center" VertAlign="Center"/>
+        </TableRow>
+      </TableObject>
+      <ChildBand Name="Child1" Top="272.6" Width="718.2" Height="151.2">
+        <TextObject Name="Text13" Left="9.45" Width="652.05" Height="37.8" Fill.Color="Orange" Text="DYNAMIC TABLE (ROWS)" VertAlign="Center" Font="Tahoma, 16pt"/>
+        <TableObject Name="Table2" Left="9.45" Top="47.25" Width="538.65" Height="94.5" ManualBuildEvent="Table2_ManualBuild">
+          <TableColumn Name="Column5" Width="151.2"/>
+          <TableColumn Name="Column6" Width="264.6"/>
+          <TableColumn Name="Column7" Width="122.85"/>
+          <TableRow Name="Row4">
+            <TableCell Name="Cell15" Border.Lines="All" Border.Color="Silver" Fill.Color="Gainsboro" Text="Category Name" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell16" Border.Lines="All" Border.Color="Silver" Fill.Color="Gainsboro" Text="Description" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell17" Border.Lines="All" Border.Color="Silver" Fill.Color="Gainsboro" Text="Picture" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          </TableRow>
+          <TableRow Name="Row5" Height="75.6">
+            <TableCell Name="Cell20" Border.Lines="All" Border.Color="Silver" Text="[Categories.CategoryName]"/>
+            <TableCell Name="Cell21" Border.Lines="All" Border.Color="Silver" Text="[Categories.Description]"/>
+            <TableCell Name="Cell22" Border.Lines="All" Border.Color="Silver">
+              <PictureObject Name="Picture1" Left="2" Top="2" Width="117.85" Height="71.6" SizeMode="StretchImage" DataColumn="Categories.Picture"/>
+            </TableCell>
+          </TableRow>
+        </TableObject>
+        <ChildBand Name="Child2" Top="427.8" Width="718.2" Height="302.4">
+          <TextObject Name="Text14" Left="9.45" Top="18.9" Width="652.05" Height="37.8" Fill.Color="Orange" Text="DYNAMIC TABLE (COLUMNS)" VertAlign="Center" Font="Tahoma, 16pt"/>
+          <TableObject Name="Table3" Left="9.45" Top="75.6" Width="292.95" Height="198.45" Border.Lines="All" Border.Color="LightGray" Border.Width="2" FixedColumns="1" ManualBuildEvent="Table3_ManualBuild">
+            <TableColumn Name="Column8" Width="85.05"/>
+            <TableColumn Name="Column9" MinWidth="141.75" Width="141.75" AutoSize="true"/>
+            <TableColumn Name="Column10"/>
+            <TableRow Name="Row6">
+              <TableCell Name="Cell27" Border.Lines="All" Border.Color="LightGray" Text="Name" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+              <TableCell Name="Cell28" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" Text="[Employees.FirstName] [Employees.LastName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
+              <TableCell Name="Cell23" Text="Total:&#13;&#10;[Count(Cell28)]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" RowSpan="4"/>
+            </TableRow>
+            <TableRow Name="Row7">
+              <TableCell Name="Cell29" Border.Lines="All" Border.Color="LightGray" Text="Title" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+              <TableCell Name="Cell30" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" Text="[Employees.Title]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
+              <TableCell Name="Cell24"/>
+            </TableRow>
+            <TableRow Name="Row8">
+              <TableCell Name="Cell31" Border.Lines="All" Border.Color="LightGray" Text="Phone" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+              <TableCell Name="Cell32" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" Text="[Employees.HomePhone]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
+              <TableCell Name="Cell25"/>
+            </TableRow>
+            <TableRow Name="Row9" Height="141.75">
+              <TableCell Name="Cell33" Border.Lines="All" Border.Color="LightGray" Text="Photo" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+              <TableCell Name="Cell34" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" VertAlign="Center" Font="Tahoma, 8pt">
+                <PictureObject Name="Picture2" Left="9.45" Top="9.45" Width="122.85" Height="122.85" DataColumn="Employees.Photo"/>
+              </TableCell>
+              <TableCell Name="Cell26"/>
+            </TableRow>
+          </TableObject>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="734.2" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+      <TextObject Name="Text10" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

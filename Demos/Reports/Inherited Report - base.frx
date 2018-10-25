@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="10/28/2008 02:40:54" ReportInfo.Modified="10/28/2008 02:48:23" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary/>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="18.9">
+      <TextObject Name="Text3" Left="604.8" Width="113.4" Height="18.9" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text4" Width="255.15" Height="18.9" Text="Northwind traders" VertAlign="Center" Font="Tahoma, 8pt"/>
+    </PageHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="22.9" Width="718.2" Height="18.9">
+      <TextObject Name="Text2" Left="604.8" Width="113.4" Height="18.9" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text1" Width="255.15" Height="18.9" Text="Printed on [Date]" VertAlign="Center" Font="Tahoma, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

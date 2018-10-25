@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Reports>
+  <Folder Name="General" >
+    <Report File="Simple List.frx"/>
+    <Report File="Groups.frx"/>
+    <Report File="Master-Detail.frx"/>
+    <Report File="Labels.frx" Basic="false"/>
+    <Report File="Subreport.frx"/>
+    <Report File="Side-by-Side Subreports.frx"/>
+    <Report File="Mail Merge.frx"  WebDemo="false" Basic="false"/>
+    <Report File="Complex (Master-detail + Group).frx"/>
+    <Report File="Report With Cover Page.frx"  WebDemo="false"/>
+    <Report File="Hierarchic List.frx"/>
+    <Report File="Watermark.frx"/>
+    <Report File="Inherited Report.frx"  WebDemo="false"/>
+    <Report File="Badges.frx" WebDemo="false"/>
+  </Folder>
+  <Folder Name="Report Objects">
+    <Report File="Text.frx"/>
+    <Report File="Image.frx"/>
+    <Report File="Lines and Shapes.frx"  WebDemo="false"/>
+    <Report File="Polygon.frx" WebDemo="false"/>
+    <Report File="Barcode.frx" Basic="false"/>
+    <Report File="QR-Codes.frx" Basic="false"/>
+    <Report File="Pharmacode.frx" Basic="false"/>
+    <Report File="RichText.frx" Basic="false" WebDemo="false"/>
+    <Report File="Table.frx" Basic="false"/>
+    <Report File="Matrix.frx" Core="false" Basic="false"/>
+    <Report File="Chart.frx" Core="false" Basic="false"/>
+    <Report File="Sparkline.frx" Core="false" Basic="false"/>
+    <Report File="CellularText.frx" Basic="false"/>
+    <Report File="CheckBox.frx" Basic="false"/>
+    <Report File="ZipCode.frx" Basic="false"/>
+    <Report File="Map.frx" Core="false" Basic="false"/>
+    <Report File="Gauge.frx" Basic="false"/>
+    <Report File="SVG.frx" Basic="false"/>
+  </Folder>
+  <Folder Name="Interactive Reports">
+    <Report File="Interactive Report.frx"/>
+    <Report File="Interactive Report, 2-in-1.frx"/>
+    <Report File="Interactive Matrix.frx" Basic="false"/>
+    <Report File="Interactive Matrix With Chart.frx" Basic="false"/>
+    <Report File="Hyperlinks, Bookmarks.frx"/>
+    <Report File="Outline.frx" WebDemo="false"/>
+    <Report File="Drill-Down Groups.frx" Basic="false"/>
+    <Report File="Complex (Hyperlinks, Outline, TOC).frx"/>
+    <Report File="Handle Preview Clicks.frx" Basic="false" WebDemo="false"/>
+    <Report File="Interactive Forms.frx"/>
+  </Folder>
+  <Folder Name="Table" Basic="false">
+    <Report File="Labels.frx"  WebDemo="false"/>
+    <Report File="Row Datasource.frx"/>
+    <Report File="Column Datasource.frx"  WebDemo="false"/>
+    <Report File="Column Datasource, Wrapped.frx"/>
+    <Report File="Handle Page Breaks.frx"  WebDemo="false"/>
+    <Report File="Multiplication Table.frx"/>
+    <Report File="Complex Column Headers.frx"  WebDemo="false"/>
+    <Report File="Print DataTable.frx"  WebDemo="false"/>
+    <Report File="Row Datasource, Detail Rows.frx"  WebDemo="false"/>
+    <Report File="Row Datasource, Master-Detail.frx"  WebDemo="false"/>
+    <Report File="Fit Dynamic Table To Page.frx"  WebDemo="false"/>
+  </Folder>
+  <Folder Name="Matrix" Basic="false">
+    <Report File="Simple Matrix.frx"  WebDemo="false"/>
+    <Report File="Matrix With Rows Only.frx"  WebDemo="false"/>
+    <Report File="Matrix With Columns Only.frx"  WebDemo="false"/>
+    <Report File="Two Column Dimensions.frx"/>
+    <Report File="Two Row Dimensions.frx"/>
+    <Report File="Two Cell Dimensions.frx"/>
+    <Report File="Two Cell Dimensions, Side-by-Side.frx"/>
+    <Report File="Highlight.frx" WebDemo="false"/>
+    <Report File="Highlight Based on Row-Column.frx"/>
+    <Report File="Alternate Color Each Row.frx"/>
+    <Report File="Using Expressions.frx"/>
+    <Report File="Print Month Names.frx"  WebDemo="false"/>
+    <Report File="Objects Inside The Matrix.frx"  WebDemo="false"/>
+    <Report File="Pictures Inside The Matrix.frx"/>
+    <Report File="Two Matrices.frx"  WebDemo="false"/>
+  </Folder>
+  <Folder Name="Dialogs" Core="false" Basic="false">
+    <Report File="Hello, FastReport!.frx"/>
+    <Report File="Print Entered Value.frx"/>
+    <Report File="Filtering with CheckedListBox.frx"  WebDemo="false"/>
+    <Report File="Filtering with DataSelector.frx"  WebDemo="false"/>
+    <Report File="Filtering with Ranges.frx"/>
+    <Report File="Filtering with Date Ranges.frx"  WebDemo="false"/>
+    <Report File="Cascaded Data Filtering.frx"/>
+    <Report File="Labels With Dialog.frx"  WebDemo="false"/>
+  </Folder>
+  <Folder Name="Script" WebDemo="false" Basic="false">
+    <Report File="Print Total in The Group Header.frx"/>
+    <Report File="Sort Group By Total.frx"/>
+    <Report File="Shift Object Position.frx"/>
+    <Report File="Dialog Events.frx"/>
+    <Report File="Handle Dialog Forms.frx"/>
+  </Folder>
+  <Folder Name="Charts" Core="false" Basic="false">
+    <Report File="About Microsoft Chart.frx" WebDemo="false"/>
+    <Report File="Microsoft Chart Sample.frx"/>
+    <Report File="Interactive Chart.frx"  WebDemo="false"/>
+    <Report File="Sparkline.frx" />
+  </Folder>
+  <Folder Name="Maps" Core="false" Basic="false">
+    <Report File="World Map.frx"/>
+    <Report File="USA Map.frx"/>
+    <Report File="World Sales.frx"/>
+    <Report File="Sales in USA.frx"/>
+    <Report File="Sales in Germany.frx"/>
+    <Report File="World Sales, Interactive.frx"/>
+    <Report File="World Sales by City.frx"/>
+  </Folder>
+  <Folder Name="Features">
+    <Report File="Double Pass, Total Pages.frx"  WebDemo="false"/>
+    <Report File="Odd-Even Rows.frx"/>
+    <Report File="Odd-Even Pages, Mirror Margins.frx"  WebDemo="false"/>
+    <Report File="Repeat Headers.frx"/>
+    <Report File="Start New Page, Reset Page Numbers.frx"/>
+    <Report File="Databand Columns, Row Numbers.frx"/>
+    <Report File="Duplicate Values.frx"/>
+    <Report File="Keep Together.frx"/>
+    <Report File="Highlight.frx" Basic="false"  WebDemo="false"/>
+    <Report File="Print on Previous Page.frx"  WebDemo="false"/>
+    <Report File="Guidelines.frx" WebDemo="false"/>
+    <Report File="Business Objects.frx" Core="false"/>
+    <Report File="Complete upto N Rows.frx"/>
+    <Report File="Print Copy Names.frx"  WebDemo="false"/>
+    <Report File="Box.frx" Basic="false" WebDemo="false"/>
+    <Report File="Unicode.frx" />
+  </Folder>
+</Reports>

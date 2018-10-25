@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the &quot;Outline&quot; feature. To use it:&#13;&#10;- select group header;&#13;&#10;- set its &quot;OutlineExpression&quot; property to any valid expression (e.g. group condition value);&#13;&#10;- you may set the data band's OutlineExpresssion property as well.&#13;&#10;This will create the hierarhic outline (also known as document map, table of contents) and display it in the preview window. When you click outline items, FastReport navigates to the item's page and location on a page." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="09/13/2015 18:57:53" ReportInfo.CreatorVersion="1.0.0.0">
+  <Styles>
+    <Style Name="EvenRows" Fill.Color="191, 223, 255"/>
+  </Styles>
+  <Dictionary>
+    <TableDataSource Name="Customers" ReferenceName="NorthWind.Customers" DataType="System.Int32" Enabled="true">
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Orders" ReferenceName="NorthWind.Orders" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="OrderDate" DataType="System.DateTime"/>
+      <Column Name="RequiredDate" DataType="System.DateTime"/>
+      <Column Name="ShippedDate" DataType="System.DateTime"/>
+      <Column Name="ShipVia" DataType="System.Int32"/>
+      <Column Name="Freight" DataType="System.Decimal"/>
+      <Column Name="ShipName" DataType="System.String"/>
+      <Column Name="ShipAddress" DataType="System.String"/>
+      <Column Name="ShipCity" DataType="System.String"/>
+      <Column Name="ShipRegion" DataType="System.String"/>
+      <Column Name="ShipPostalCode" DataType="System.String"/>
+      <Column Name="ShipCountry" DataType="System.String"/>
+      <Column Name="Latitude" DataType="System.Double"/>
+      <Column Name="Longitude" DataType="System.Double"/>
+    </TableDataSource>
+    <Relation Name="CustomersOrders" ReferenceName="NorthWind.CustomersOrders" ParentDataSource="Customers" ChildDataSource="Orders" ParentColumns="CustomerID" ChildColumns="CustomerID" Enabled="true"/>
+    <Total Name="TotalOrders" TotalType="Count" Evaluator="Data2" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="56.7" CanGrow="true">
+      <TextObject Name="Text6" Top="28.35" Width="718.2" Height="28.35" Text="CUSTOMERS ORDERS" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="60.7" Width="718.2" Height="47.25" Fill="Glass" Fill.Color="RoyalBlue" Fill.Blend="0.19" Fill.Hatch="true" OutlineExpression="[Orders.Customers.CompanyName]" Condition="[Orders.CustomerID]">
+      <TextObject Name="Text1" Width="349.65" Height="28.35" Text="[Orders.Customers.CompanyName]" VertAlign="Center" Font="Tahoma, 12pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text5" Top="28.35" Width="94.5" Height="18.9" Text="OrderID" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text3" Left="122.85" Top="28.35" Width="94.5" Height="18.9" Text="OrderDate" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text8" Left="255.15" Top="28.35" Width="94.5" Height="18.9" Text="ShippedDate" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+      <DataBand Name="Data2" Top="111.95" Width="718.2" Height="18.9" EvenStyle="EvenRows" OutlineExpression="[Orders.OrderID]" DataSource="Orders">
+        <TextObject Name="Text4" Width="94.5" Height="18.9" Text="[Orders.OrderID]" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <TextObject Name="Text2" Left="122.85" Width="94.5" Height="18.9" Text="[Orders.OrderDate]" Format="Date" Format.Format="d" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <TextObject Name="Text7" Left="255.15" Width="94.5" Height="18.9" Text="[Orders.ShippedDate]" Format="Date" Format.Format="d" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <Sort>
+          <Sort Expression="[Orders.OrderID]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="134.85" Width="718.2" Height="37.8">
+        <TextObject Name="Text9" Width="349.65" Height="18.9" Text="Total orders: [TotalOrders]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="176.65" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text10" Left="623.7" Top="9.45" Width="94.5" Height="18.9" Text="[PageN]" HorzAlign="Right" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

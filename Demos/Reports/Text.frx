@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates TextObject features." ReportInfo.Created="06/02/2009 00:44:01" ReportInfo.Modified="08/27/2015 15:53:43" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary/>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="85.05" CanGrow="true">
+      <TextObject Name="Text29" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" Text="[Report.ReportInfo.Description]" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text1" Top="47.25" Width="718.2" Height="28.35" Text="TextObject" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="89.05" Width="718.2" Height="888.3" DataSource="">
+      <TextObject Name="Text3" Left="132.3" Top="359.1" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="Text rotation - 45 degrees" HorzAlign="Center" VertAlign="Center" Angle="45"/>
+      <TextObject Name="Text4" Left="236.25" Top="359.1" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="Text rotation - 90 degrees" Angle="90"/>
+      <TextObject Name="Text5" Left="340.2" Top="359.1" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="Text rotation - 180 degrees" Angle="180"/>
+      <TextObject Name="Text6" Left="444.15" Top="359.1" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="Text rotation - 270 degrees" Angle="270"/>
+      <TextObject Name="Text8" Left="9.45" Top="311.85" Width="652.05" Height="37.8" Fill.Color="Orange" Text="ROTATION" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text9" Left="9.45" Top="585.9" Width="652.05" Height="37.8" Fill.Color="Orange" Text="HTML TAGS" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text7" Left="132.3" Top="633.15" Width="406.35" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="&lt;b&gt;Andrew&lt;/b&gt; received his BTS commercial in &lt;b&gt;1974&lt;/b&gt; and a Ph.D. in international marketing from the &lt;font color=&quot;red&quot;&gt;University of Dallas&lt;/font&gt; in 1981. He is fluent in &lt;i&gt;French&lt;/i&gt; and &lt;i&gt;Italian&lt;/i&gt; and reads &lt;i&gt;German&lt;/i&gt;. He joined the company as a sales representative, was promoted to &lt;u&gt;sales manager&lt;/u&gt; in January 1992 and to vice president of sales in March 1993." HorzAlign="Justify" HtmlTags="true"/>
+      <TextObject Name="Text10" Left="9.45" Top="463.05" Width="652.05" Height="37.8" Fill.Color="Orange" Text="EMBEDDED EXPRESSIONS" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text11" Left="132.3" Top="510.3" Width="406.35" Height="66.15" Border.Lines="All" Border.Color="Silver" Text="Today is [Date]&#13;&#10;Current page number is [Page]&#13;&#10;2 + 2 = [2 + 2]"/>
+      <TextObject Name="Text12" Left="9.45" Top="9.45" Width="652.05" Height="37.8" Fill.Color="Orange" Text="TEXT, BORDER, FILL" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text14" Left="236.25" Top="56.7" Width="94.5" Height="94.5" Border.Lines="All" Border.LeftLine.Color="Lime" Border.LeftLine.Style="DashDot" Border.LeftLine.Width="2" Border.TopLine.Style="Dot" Border.TopLine.Width="2" Border.RightLine.Color="Red" Border.RightLine.Style="DashDot" Border.RightLine.Width="2" Border.BottomLine.Color="Blue" Border.BottomLine.Style="DashDot" Border.BottomLine.Width="2" Text="Different styles of border lines" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text15" Left="340.2" Top="56.7" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Gray" Fill="LinearGradient" Fill.StartColor="DarkOrange" Fill.EndColor="White" Fill.Angle="270" Fill.Focus="1" Fill.Contrast="1" Text="Gradient fill" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text16" Left="132.3" Top="56.7" Width="94.5" Height="94.5" Border.Shadow="true" Border.ShadowColor="Gray" Border.Lines="All" Border.Color="Gray" Text="Text with shadow" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Left="236.25" Top="207.9" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="This text is right-aligned" HorzAlign="Right"/>
+      <TextObject Name="Text18" Left="444.15" Top="207.9" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="This text is bottom-aligned" VertAlign="Bottom"/>
+      <TextObject Name="Text19" Left="340.2" Top="207.9" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="This very, very, very long text is justified" HorzAlign="Justify"/>
+      <TextObject Name="Text20" Left="9.45" Top="160.65" Width="652.05" Height="37.8" Fill.Color="Orange" Text="ALIGNMENT" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text21" Left="132.3" Top="207.9" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="This text is centered both vertically and horizontally" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text22" Left="28.35" Top="56.7" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Gray" Text="Text with border" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text23" Left="444.15" Top="56.7" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Gray" Fill="Glass" Fill.Color="Sienna" Fill.Blend="0.2" Fill.Hatch="false" Text="Glass fill" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text24" Left="548.1" Top="56.7" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Gray" Text="Text fill" HorzAlign="Center" VertAlign="Center" Font="Arial, 24pt, style=Bold" TextFill="LinearGradient" TextFill.StartColor="Black" TextFill.EndColor="DarkOrange" TextFill.Angle="90" TextFill.Focus="1" TextFill.Contrast="1"/>
+      <TextObject Name="Text25" Left="28.35" Top="207.9" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="Normal alignment"/>
+      <TextObject Name="Text26" Left="548.1" Top="207.9" Width="94.5" Height="94.5" Border.Lines="All" Border.Color="Silver" Text="This text is aligned to right bottom" HorzAlign="Right" VertAlign="Bottom"/>
+      <TextObject Name="Text27" Left="9.45" Top="737.1" Width="652.05" Height="37.8" Fill.Color="Orange" Text="UNDERLINES" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text28" Left="236.25" Top="784.35" Width="179.55" Height="92.5" Border.Lines="All" Border.Color="Silver" Text="This text object has Underlines property set to true." Underlines="true"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="981.35" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text30" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="06/20/2009 22:42:56" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="Employees" ReferenceName="Data.Employees" DataType="System.Int32" Enabled="true">
+      <Column Name="ID" DataType="System.Int32"/>
+      <Column Name="Name" DataType="System.String"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text5" Width="718.2" Height="28.35" Text="EMPLOYEES" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="28.35">
+      <TextObject Name="Text2" Width="94.5" Height="18.9" Text="ID" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text4" Left="103.95" Width="94.5" Height="18.9" Text="Name" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="74.15" Width="718.2" Height="18.9" DataSource="Employees">
+      <TextObject Name="Text1" Width="94.5" Height="18.9" Text="[Employees.ID]"/>
+      <TextObject Name="Text3" Left="103.95" Width="198.45" Height="18.9" Text="[Employees.Name]"/>
+    </DataBand>
+  </ReportPage>
+</Report>

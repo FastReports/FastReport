@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+<Choose>  
+      <When Condition="'$(SolutionFileName)' == 'FastReport.OpenSource.sln'">
+        <PropertyGroup >
+          <DefineConstants>OPENSOURCE;</DefineConstants>
+        </PropertyGroup>
+        <ItemGroup>
+          <ProjectReference Include="$(SolutionDir)FastReport.Core.Web\FastReport.Web.csproj" />
+        </ItemGroup>
+      </When>  
+      <When Condition="'$(SolutionFileName)' == 'FastReport.Core.sln'">
+        <ItemGroup>
+          <ProjectReference Include="$(SolutionDir)FastReport.Core.Web\FastReport.Web.csproj" />
+        </ItemGroup>
+      </When>  
+      <Otherwise>
+        <ItemGroup>
+          <PackageReference Include="FastReport.Web" Version="2017.4.0" />
+        </ItemGroup>
+      </Otherwise>  
+  </Choose>
+
+</Project>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to highlight some values in the matrix. To do this:&#13;&#10;- select the cell that you need to highlight;&#13;&#10;- click the &quot;Highlight&quot; button on the &quot;Text&quot; toolbar;&#13;&#10;- add a new highlight condition. Use the &quot;Value&quot; member to refer to the cell value." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="09/17/2015 18:16:52" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="Year" DataType="System.Int32"/>
+      <Column Name="Month" DataType="System.Int32"/>
+      <Column Name="ItemsSold" DataType="System.Int32"/>
+      <Column Name="Revenue" DataType="System.Decimal"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="103.95" CanGrow="true">
+      <TextObject Name="Text1" Top="75.6" Width="718.2" Height="18.9" Text="Highlight values &gt; 3000" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 10pt, style=Bold"/>
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text13" Top="47.25" Width="718.2" Height="28.35" Text="REVENUE BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="107.95" Width="718.2" Height="92.87">
+      <MatrixObject Name="Matrix1" Left="55.71" Top="5.13" Width="285.48" Height="78.29" FixedRows="1" FixedColumns="2" AutoSize="false" DataSource="MatrixDemo" Style="Orange">
+        <MatrixColumns>
+          <Header Expression="[MatrixDemo.Name]"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[MatrixDemo.Year]"/>
+          <Header Expression="[MatrixDemo.Month]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[MatrixDemo.Revenue]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="48.26"/>
+        <TableColumn Name="Column2" Width="56.78"/>
+        <TableColumn Name="Column3" Width="96.66"/>
+        <TableColumn Name="Column4" Width="83.78"/>
+        <TableRow Name="Row1" Height="26.66">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="DimGray" Fill="Glass" Fill.Color="Maroon" Fill.Blend="0.21" Fill.Hatch="false" Text="Year" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="DimGray" Fill="Glass" Fill.Color="Maroon" Fill.Blend="0.21" Fill.Hatch="false" Text="Month" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="DimGray" Fill="Glass" Fill.Color="Maroon" Fill.Blend="0.21" Fill.Hatch="false" Text="[Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell10" Border.Lines="All" Border.Color="DimGray" Fill="Glass" Fill.Color="Maroon" Fill.Blend="0.21" Fill.Hatch="false" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="17.21">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="DimGray" Fill.Color="Maroon" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White" RowSpan="2"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="DimGray" Fill.Color="Maroon" Text="[Month]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="DimGray" Fill.Color="166, 0, 0" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White">
+            <Highlight>
+              <Condition Expression="Value &gt; 3000" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.53" Fill.Hatch="false" TextFill.Color="Black" ApplyFill="true"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="DimGray" Fill.Color="166, 0, 0" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="17.21">
+          <TableCell Name="Cell5"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="DimGray" Fill.Color="Maroon" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="DimGray" Fill.Color="166, 0, 0" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="DimGray" Fill.Color="166, 0, 0" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="17.21">
+          <TableCell Name="Cell13" Border.Lines="All" Border.Color="DimGray" Fill.Color="Maroon" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White" ColSpan="2"/>
+          <TableCell Name="Cell14"/>
+          <TableCell Name="Cell15" Border.Lines="All" Border.Color="DimGray" Fill.Color="166, 0, 0" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell16" Border.Lines="All" Border.Color="DimGray" Fill.Color="166, 0, 0" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="204.82" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

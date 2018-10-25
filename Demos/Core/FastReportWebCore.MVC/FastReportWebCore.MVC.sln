@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReportWebCore.MVC", "FastReportWebCore.MVC\FastReportWebCore.MVC.csproj", "{8CBA93FF-682E-437F-8363-BFBA8A0544FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CBA93FF-682E-437F-8363-BFBA8A0544FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CBA93FF-682E-437F-8363-BFBA8A0544FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CBA93FF-682E-437F-8363-BFBA8A0544FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CBA93FF-682E-437F-8363-BFBA8A0544FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90C1B8EB-4803-4C8C-B922-6855C89A0D7E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+<Chart Palette="Chocolate" BackColor="243, 223, 193" Size="412, 296" BackGradientStyle="TopBottom" BorderlineColor="181, 64, 1" BorderlineWidth="2" BorderlineDashStyle="Solid">
+  <Legends>
+    <Legend Name="Default" BackColor="Transparent" Font="Tahoma, 8pt">
+    </Legend>
+  </Legends>
+  <ChartAreas>
+    <ChartArea BackColor="OldLace" BackGradientStyle="TopBottom" BackSecondaryColor="White" ShadowColor="Transparent" BorderColor="64, 64, 64, 64" Name="Default">
+      <AxisY LabelAutoFitMaxFontSize="8" LineColor="64, 64, 64, 64">
+        <MajorGrid LineColor="64, 64, 64, 64" />
+        <LabelStyle Font="Tahoma, 8pt" />
+      </AxisY>
+      <AxisX LabelAutoFitMaxFontSize="8" LineColor="64, 64, 64, 64">
+        <MajorGrid LineColor="64, 64, 64, 64" />
+        <LabelStyle Font="Tahoma, 8pt" />
+      </AxisX>
+      <Area3DStyle WallWidth="0" />
+    </ChartArea>
+  </ChartAreas>
+  <BorderSkin SkinStyle="Emboss" />
+</Chart>

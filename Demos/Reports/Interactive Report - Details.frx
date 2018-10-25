@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report TextQuality="Regular" ReportInfo.Created="05/30/2008 01:37:02" ReportInfo.Modified="05/30/2008 03:56:42">
+  <Dictionary>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID"/>
+    <Parameter Name="CategoryName" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="47.25">
+      <TextObject Name="Text8" Width="718.2" Height="37.8" Dock="Top" Text="Product category: [CategoryName]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="51.25" Width="718.2" Height="28.35">
+      <TextObject Name="Text2" Width="226.8" Height="18.9" Text="ProductName" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text4" Left="236.25" Width="94.5" Height="18.9" Text="UnitPrice" HorzAlign="Right" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="340.2" Width="94.5" Height="18.9" Text="UnitsInStock" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="453.6" Width="94.5" Height="18.9" Text="Discontinued" Font="Tahoma, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="83.6" Width="718.2" Height="18.9" DataSource="Products" Filter="[Products.Categories.CategoryName] == [CategoryName]">
+      <TextObject Name="Text1" Width="226.8" Height="18.9" Text="[Products.ProductName]" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text3" Left="236.25" Width="94.5" Height="18.9" Text="[Products.UnitPrice]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" Format="Currency" Format.UseLocale="true"/>
+      <TextObject Name="Text5" Left="340.2" Width="94.5" Height="18.9" Text="[Products.UnitsInStock]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <CheckBoxObject Name="CheckBox1" Left="491.4" Width="18.9" Height="18.9" DataColumn="Products.Discontinued"/>
+      <Sort>
+        <Sort Expression="[Products.ProductName]"/>
+      </Sort>
+    </DataBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataFromBusinessObject", "DataFromBusinessObject\DataFromBusinessObject.csproj", "{26476E89-B860-4C07-AB90-9B7C989F9E8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource", "..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj", "{19224334-9B29-42BA-85BD-DA99504BC992}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Academic|Any CPU = Academic|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Demo|Any CPU = Demo|Any CPU
+		Release|Any CPU = Release|Any CPU
+		WinForms|Any CPU = WinForms|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Academic|Any CPU.ActiveCfg = Release|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Academic|Any CPU.Build.0 = Release|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Demo|Any CPU.Build.0 = Debug|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.WinForms|Any CPU.ActiveCfg = Release|Any CPU
+		{26476E89-B860-4C07-AB90-9B7C989F9E8D}.WinForms|Any CPU.Build.0 = Release|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Academic|Any CPU.ActiveCfg = Academic|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Academic|Any CPU.Build.0 = Academic|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.WinForms|Any CPU.ActiveCfg = WinForms|Any CPU
+		{19224334-9B29-42BA-85BD-DA99504BC992}.WinForms|Any CPU.Build.0 = WinForms|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC4A4E9D-0F1A-4E4C-8E77-A95795812AEA}
+	EndGlobalSection
+EndGlobal

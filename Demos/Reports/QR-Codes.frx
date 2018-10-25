@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates different QR-Code and Aztec types developed in FastReport Designer: Text, vCard, URI, GEolocation, E-Mail address, E-Mail message, SMS, Call, Event, Wi-Fi. You can create it with double-click on BarcodeObject (Barcode Type should be set to &quot;QR Code or Aztec&quot;)." ReportInfo.Created="02/21/2008 20:44:59" ReportInfo.Modified="08/27/2015 16:39:01" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary/>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="94.5" CanGrow="true">
+      <TextObject Name="Text29" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" Text="[Report.ReportInfo.Description]" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text30" Top="47.25" Width="718.2" Height="37.8" Text="BarcodeObject - QR Code, Aztec" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="98.5" Width="718.2" Height="907.2">
+      <TextObject Name="Text36" Left="510.3" Top="406.35" Width="189" Height="170.1" Text="E-Mail message" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text49" Left="264.6" Top="406.35" Width="189" Height="170.1" Text="Call" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text37" Left="18.9" Top="406.35" Width="189" Height="170.1" Text="SMS" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text35" Left="18.9" Top="226.8" Width="189" Height="170.1" Text="E-Mail address" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text50" Left="264.6" Top="226.8" Width="189" Height="170.1" Text="Geolocation" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text38" Left="510.3" Top="226.8" Width="189" Height="170.1" Text="Event" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="510.3" Top="47.25" Width="189" Height="170.1" Text="Wi-Fi hotspot" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text34" Left="18.9" Top="47.25" Width="189" Height="170.1" Text="URI" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="264.6" Top="47.25" Width="189" Height="170.1" Text="vCard" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <BarcodeObject Name="Barcode38" Left="283.5" Top="66.15" Width="151.2" Height="147.42" AutoSize="false" Text="BEGIN:VCARD&#10;VERSION:2.1&#10;FN:Anne Dodsworth&#10;N:Dodsworth;Anne&#10;TITLE:Manager&#10;TEL;WORK;VOICE:(71) 555-4444&#10;ADR:;;7 Houndstooth Rd.;;;;&#10;END:VCARD" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <BarcodeObject Name="Barcode40" Left="37.8" Top="245.7" Width="151.2" Height="147.42" AutoSize="false" Text="support@fast-report.com" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <BarcodeObject Name="Barcode41" Left="529.2" Top="434.7" Width="151.2" Height="147.42" AutoSize="false" Text="MATMSG:TO:support@fast-report.com;SUB:FastReport.Net question;BODY:Hello,&#13;&#10;&#13;&#10;I have a question about FastReport.Net.;;" ShowText="false" AllowExpressions="true" Barcode="Aztec" Barcode.ErrorCorrection="33"/>
+      <BarcodeObject Name="Barcode44" Left="283.5" Top="434.7" Width="151.2" Height="147.42" AutoSize="false" Text="tel:(71) 555-4444" ShowText="false" AllowExpressions="true" Barcode="Aztec" Barcode.ErrorCorrection="33"/>
+      <BarcodeObject Name="Barcode43" Left="37.8" Top="434.7" Width="151.2" Height="147.42" AutoSize="false" Text="SMSTO:(71) 555-4444:Hello Dolly! I'm fine!" ShowText="false" AllowExpressions="true" Barcode="Aztec" Barcode.ErrorCorrection="33"/>
+      <BarcodeObject Name="Barcode45" Left="529.2" Top="245.7" Width="151.2" Height="147.42" AutoSize="false" Text="BEGIN:VEVENT&#10;SUMMARY:Back to the Future Day!&#10;DTSTART:20151021T121141Z&#10;DTEND:20151021T121141Z&#10;END:VEVENT" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <BarcodeObject Name="Barcode46" Left="529.2" Top="66.15" Width="151.2" Height="147.42" AutoSize="false" Text="WIFI:T:WPA;S:Honeypot;P:youarewelcome;H:true;" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <BarcodeObject Name="Barcode42" Left="283.5" Top="245.7" Width="151.2" Height="147.42" AutoSize="false" Text="geo:-50.737563,-79.490016,120" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <BarcodeObject Name="Barcode39" Left="37.8" Top="66.15" Width="151.2" Height="147.42" AutoSize="false" Text="http://www.fast-report.com/en/product/fast-report-net/" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <TextObject Name="Text32" Left="189" Top="595.35" Width="340.2" Height="311.85" Text="Text" Padding="2, 7, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <BarcodeObject Name="Barcode19" Left="207.9" Top="614.25" Width="302.4" Height="291.06" AutoSize="false" Text="With FastReport.Net, you can create application-independent .Net reports. In other words, FastReport.Net can be used as a standalone reporting tool." ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="H" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <TextObject Name="Text2" Left="302.4" Top="718.2" Width="122.85" Height="94.5" Fill.Color="White" Text="With &#13;&#10;Error &#13;&#10;Correction" Padding="15, 0, 2, 0" VertAlign="Center" Font="Arial, 14pt"/>
+      <TextObject Name="Text1" Left="18.9" Width="680.4" Height="37.8" Fill.Color="Orange" Text="QR-Codes" VertAlign="Center" Font="Tahoma, 16pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="1009.7" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+     <FastReportBaseDir>..\FastReport.Base</FastReportBaseDir>
+     <FastReportBaseIncludePattern>$(FastReportBaseDir)\**\*.cs</FastReportBaseIncludePattern>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(FastReportBaseIncludePattern)">
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+</Project>

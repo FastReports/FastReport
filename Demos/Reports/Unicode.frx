@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates Unicode samples." ReportInfo.Created="12/12/2008 01:29:01" ReportInfo.Modified="09/17/2015 16:23:04" ReportInfo.CreatorVersion="1.0.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Data1_BeforePrint(object sender, EventArgs e)
+    {
+      Text4.RightToLeft = ((Boolean)Report.GetColumnValue(&quot;Unicode.Rtl&quot;)) == true;
+      Text6.RightToLeft = Text4.RightToLeft;
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="Unicode" ReferenceName="NorthWind.Unicode" DataType="System.Int32" Enabled="true" SelectCommand="select * from unicode order by UnicodeName">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="UnicodeName" DataType="System.String"/>
+      <Column Name="Text" DataType="System.String"/>
+      <Column Name="Rtl" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="Active" DataType="System.Boolean" BindableControl="CheckBox"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="113.4" CanGrow="true">
+      <TextObject Name="Text1" Top="28.35" Width="718.2" Height="37.8" Fill="Glass" Fill.Color="LightSeaGreen" Fill.Blend="0.2" Fill.Hatch="true" Text="UNICODE" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 14pt, style=Bold"/>
+      <TextObject Name="Text9" Left="94.5" Top="75.6" Width="623.7" Height="31.22" Border.Lines="All" Border.Color="Gainsboro" Text="You need &quot;Arial Unicode MS&quot; TrueType font installed to properly view all Unicode content in this report sample." HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 8pt"/>
+      <PictureObject Name="Picture1" Top="75.6" Width="88" Height="31" Border.Lines="All" Border.Color="Gainsboro" Hyperlink.Value="http://www.unicode.org/" SizeMode="AutoSize" Image="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"/>
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Arial Unicode MS, 8pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="117.4" Width="718.2" Height="28.35">
+      <TextObject Name="Text3" Width="94.5" Height="28.35" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="LightSeaGreen" Fill.Blend="0.2" Fill.Hatch="true" Text="Name" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+      <TextObject Name="Text5" Left="94.5" Width="94.5" Height="28.35" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="LightSeaGreen" Fill.Blend="0.2" Fill.Hatch="true" Text="Self name" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="189" Width="529.2" Height="28.35" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="LightSeaGreen" Fill.Blend="0.2" Fill.Hatch="true" Text="Text" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="149.75" Width="718.2" Height="37.8" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Unicode">
+      <TextObject Name="Text2" Top="9.45" Width="94.5" Height="28.35" Border.Lines="Left, Right, Bottom" Border.Color="White" Fill="Glass" Fill.Color="LightSeaGreen" Fill.Blend="0.2" Fill.Hatch="true" Text="[Unicode.Name]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text4" Left="94.5" Top="9.45" Width="94.5" Height="28.35" Border.Lines="Left, Right, Bottom" Border.Color="White" Fill="Glass" Fill.Color="LightSeaGreen" Fill.Blend="0.2" Fill.Hatch="true" Text="[Unicode.UnicodeName]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text6" Left="189" Top="9.45" Width="529.2" Height="28.35" CanGrow="true" Text="[Unicode.Text]" Font="Arial Unicode MS, 9pt"/>
+      <Sort>
+        <Sort Expression="[Unicode.UnicodeName]"/>
+      </Sort>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="191.55" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text8" Left="576.45" Top="9.45" Width="132.3" Height="18.9" Text="[PageN]" HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

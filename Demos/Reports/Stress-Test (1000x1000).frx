@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report TextQuality="Regular" ReportInfo.Description="This report builds the big matrix that contains 1000 rows and columns (and 1 million cells, respectively). It takes about 30 seconds and consumes about 115 Megabytes of memory.&#13;&#10;&#13;&#10;In this report, the matrix is filled in the script. To do this:&#13;&#10;&#13;&#10;- create the matrix structure that you need. You may drag any data in the matrix;&#13;&#10;&#13;&#10;- select the Matrix object and go to the Properties window; clear the &quot;DataSource&quot; property;&#13;&#10;&#13;&#10;- in the same window, click the &quot;Events&quot; button and create the &quot;ManualBuild&quot; event handler. See this example code for more details." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="07/31/2009 18:44:45" ReportInfo.CreatorVersion="1.0.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Matrix1_ManualBuild(object sender, EventArgs e)
+    {
+      // our matrix has 1 column, one row and one cell dimension.
+      // Create 3 arrays, each with one element.
+      object[] columnValues = new object[1];
+      object[] rowValues = new object[1];
+      object[] cellValues = new object[1];
+      
+      // we going to print 1000x1000 matrix of the following kind:
+      //     1  2  3 ...
+      //  1  1
+      //  2     2
+      //  3        3
+      // ...         ...
+      for (int i = 1; i &lt;= 1000; i++)
+      {
+        // set array values
+        columnValues[0] = i;
+        rowValues[0] = i;
+        cellValues[0] = i;
+        
+        // add the data
+        Matrix1.AddValue(columnValues, rowValues, cellValues);
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="Year" DataType="System.Int32"/>
+      <Column Name="Month" DataType="System.Int32"/>
+      <Column Name="ItemsSold" DataType="System.Int32"/>
+      <Column Name="Revenue" DataType="System.Decimal"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="122.85">
+      <MatrixObject Name="Matrix1" Left="9.45" Top="47.25" Width="96.03" Height="51.63" FixedRows="1" FixedColumns="1" Style="Orange" ManualBuildEvent="Matrix1_ManualBuild">
+        <MatrixColumns>
+          <Header Expression="0"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="0"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="0"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="36.53" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="22.97" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="36.53" AutoSize="true"/>
+        <TableRow Name="Row1" Height="17.21" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[0]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="17.21" AutoSize="true">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[0]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[0]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="17.21" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+      <TextObject Name="Text1" Left="9.45" Top="9.45" Width="406.35" Height="18.9" Text="Stress-test (1000 rows x 1000 columns, 1 million cells)" Font="Tahoma, 10pt, style=Bold"/>
+    </ReportTitleBand>
+  </ReportPage>
+</Report>

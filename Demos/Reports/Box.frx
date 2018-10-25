@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/11/2017 19:10:23" ReportInfo.Modified="03/24/2017 17:14:31" ReportInfo.CreatorVersion="1.0.0.0">
+  <Styles>
+    <Style Name="Style1" Border.Shadow="true" Fill.Color="OrangeRed" Font="Arial Narrow, 36pt, style=Bold, Italic" ApplyBorder="false" ApplyFill="false"/>
+    <Style Name="Style2" TextFill.Color="White" Font="Arial, 26pt, style=Bold" ApplyBorder="false" ApplyFill="false"/>
+    <Style Name="Style3" Font="Georgia, 24pt" ApplyBorder="false" ApplyFill="false"/>
+  </Styles>
+  <Dictionary/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" FirstPageSource="15" OtherPagesSource="15" UnlimitedHeight="true">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="66.15">
+      <TextObject Name="Text12" Top="18.9" Width="1048.95" Height="28.35" Text="Box Package with Pharmacode and EAN" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="71.86" Width="1047.06" Height="793.8">
+      <PolygonObject Name="Polygon11" Left="519.75" Top="141.75" Width="378" Height="491.4" PolyPoints="0\0\0|378\0\1|378\491.4\1|0\491.4\1" CenterX="0" CenterY="0"/>
+      <PolygonObject Name="Polygon1" Left="28.35" Top="141.75" Width="37.48" Height="491.4" PolyPoints="0\0\0|-18.9\0\1|-37.47802\9.45\1|-37.47802\481.95\1|-18.9\491.4\1|0\491.4\1|0\472.5\1" CenterX="37.47802" CenterY="0"/>
+      <PolygonObject Name="Polygon2" Left="519.75" Top="28.35" Width="378" Height="37.8" PolyPoints="0\0\0|0\-18.9\1|9.45\-37.8\1|368.55\-37.8\1|378\-18.9\1|378\0\1" CenterX="0" CenterY="37.8"/>
+      <PolygonObject Name="Polygon4" Left="444.15" Top="85.05" Width="75.6" Height="56.7" PolyPoints="0\0\0|-9.45\-9.45\1|-9.45\-56.7\1|-47.25\-56.7\1|-75.6\-28.35\1|-75.6\0\1" CenterX="75.6" CenterY="56.7"/>
+      <PolygonObject Name="Polygon5" Left="444.15" Top="633.15" Width="75.6" Height="56.7" PolyPoints="0\0\0|0\0\1|9.45\9.45\1|9.45\56.7\1|47.25\56.7\1|75.6\28.35\1|75.6\0\1" CenterX="0" CenterY="0"/>
+      <PolygonObject Name="Polygon6" Left="897.75" Top="85.05" Width="75.6" Height="56.7" PolyPoints="0\0\0|9.45\-9.45\1|9.45\-56.7\1|47.25\-56.7\1|75.6\-28.35\1|75.6\0\1" CenterX="0" CenterY="56.7"/>
+      <PolygonObject Name="Polygon7" Left="897.75" Top="633.15" Width="75.6" Height="56.7" PolyPoints="0\0\0|0\28.35\1|28.35\56.7\1|66.15\56.7\1|66.15\9.45\1|75.6\0\1" CenterX="0" CenterY="0"/>
+      <BarcodeObject Name="Barcode2" Left="642.6" Top="37.8" Width="148.75" Height="28.35" Angle="180" ShowText="false" Barcode="Pharmacode" Barcode.QuietZone="true"/>
+      <PolygonObject Name="Polygon8" Left="66.15" Top="633.15" Width="378" Height="75.6" Fill.Color="Orange" PolyPoints="0\0\0|0\-75.6\1|378\-75.6\1|378\0\1" CenterX="0" CenterY="75.6"/>
+      <PolygonObject Name="Polygon10" Left="444.15" Top="141.75" Width="75.6" Height="491.4" PolyPoints="0\0\0|75.6\0\1|75.6\491.4\1|0\491.4\1" CenterX="0" CenterY="0"/>
+      <PolygonObject Name="Polygon12" Left="897.75" Top="141.75" Width="75.6" Height="491.4" PolyPoints="0\0\0|0\-491.4\1|75.6\-491.4\1|75.6\0\1" CenterX="0" CenterY="491.4"/>
+      <PolygonObject Name="Polygon9" Left="66.15" Top="141.75" Width="378" Height="491.4" Fill.Color="Orange" PolyPoints="0\0\0|0\-491.4\1|378\-491.4\1|378\0\1" CenterX="0" CenterY="491.4"/>
+      <TextObject Name="Text1" Left="94.5" Top="321.3" Width="66.15" Height="274.05" Text="Lorem Ipsum" Angle="270" Font="Arial Narrow, 36pt, style=Bold, Italic" Style="Style1"/>
+      <PolygonObject Name="Polygon13" Left="519.75" Top="66.15" Width="378" Height="75.6" Fill.Color="Orange" PolyPoints="0\0\0|0\-75.6\1|378\-75.6\1|378\0\1" CenterX="0" CenterY="75.6"/>
+      <TextObject Name="Text3" Left="85.05" Top="642.6" Width="217.35" Height="56.7" Text="Lorem Ipsum" Font="Arial Narrow, 28pt, style=Bold, Italic"/>
+      <TextObject Name="Text4" Left="661.5" Top="75.6" Width="217.35" Height="56.7" Text="Lorem Ipsum" Angle="180" Font="Arial Narrow, 28pt, style=Bold, Italic"/>
+      <TextObject Name="Text5" Left="378" Top="179.55" Width="47.25" Height="160.65" Fill.Color="Orange" Text="20 caps" Angle="270" Font="Arial, 26pt, style=Bold" TextFill.Color="White" Style="Style2"/>
+      <TextObject Name="Text6" Left="548.1" Top="198.45" Width="321.3" Height="189" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." Angle="90" Font="Arial Narrow, 12pt"/>
+      <TextObject Name="Text2" Left="160.65" Top="500.85" Width="56.7" Height="94.5" Fill.Color="Orange" Text="50mg" HorzAlign="Justify" Angle="270" Font="Georgia, 24pt" Style="Style3"/>
+      <TextObject Name="Text7" Left="321.3" Top="642.6" Width="75.6" Height="28.35" Fill.Color="Orange" Text="50mg" HorzAlign="Justify" Font="Georgia, 16pt"/>
+      <TextObject Name="Text8" Left="567" Top="103.95" Width="75.6" Height="28.35" Fill.Color="Orange" Text="50mg" HorzAlign="Justify" Angle="180" Font="Georgia, 16pt"/>
+      <TextObject Name="Text9" Left="321.3" Top="670.95" Width="94.5" Height="28.35" Fill.Color="Orange" Text="20 caps" Font="Arial, 16pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text10" Left="548.1" Top="75.6" Width="94.5" Height="28.35" Fill.Color="Orange" Text="20 caps" Angle="180" Font="Arial, 16pt, style=Bold" TextFill.Color="White"/>
+      <BarcodeObject Name="Barcode3" Left="576.45" Top="453.6" Width="119.3" Height="128.75" Fill.Color="White" Angle="90" Barcode="EAN13"/>
+      <ShapeObject Name="Shape1" Left="519.75" Top="160.65" Width="378" Height="9.45" Border.Color="Transparent" Fill.Color="Orange"/>
+      <ShapeObject Name="Shape2" Left="66.15" Top="160.65" Width="378" Height="9.45" Border.Color="Transparent" Fill.Color="White"/>
+      <TextObject Name="Text11" Left="718.2" Top="453.6" Width="75.6" Height="132.3" Text="Nunc quis quam ut mauris molestie elementum a vel lorem. " Angle="90" Font="Arial Narrow, 12pt"/>
+      <ShapeObject Name="Shape5" Left="103.95" Top="207.9" Width="56.7" Height="56.7" Border.Color="White" Border.Width="2" Fill.Color="MediumSeaGreen" Shape="Diamond"/>
+      <ShapeObject Name="Shape6" Left="812.7" Top="529.2" Width="56.7" Height="56.7" Border.Color="White" Border.Width="2" Fill.Color="MediumSeaGreen" Shape="Diamond"/>
+      <PolygonObject Name="Polygon3" Left="66.15" Top="708.75" Width="378" Height="37.8" PolyPoints="0\0\0|0\18.9\1|9.450001\37.8\1|368.55\37.8\1|378\18.9\1|378\0\1" CenterX="0" CenterY="0"/>
+      <BarcodeObject Name="Barcode1" Left="179.55" Top="708.75" Width="148.75" Height="28.35" ShowText="false" Barcode="Pharmacode" Barcode.QuietZone="true"/>
+    </DataBand>
+  </ReportPage>
+</Report>

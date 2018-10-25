@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates different barcode types:&#13;&#10;2/5 barcodes (Interleaved, Industrial, Matrix), Codabar, Code39 (Regular, Extended), Code93 (Regular, Extended), Code128 (A, B, C charsets with autoencoding feature), EAN8, EAN13, UPC-A, UPC-E (E0, E1 codes), MSI, PostNet, 2 or 5 digit supplement code for EAN/UPC barcodes, PDF417, Datamatrix, QR Code, Aztec, Plessey, GS1-128 (UCC/EAN-128), Pharmacode, Intelligent Mail (USPS), MaxiCode." ReportInfo.Created="02/21/2008 20:44:59" ReportInfo.Modified="04/28/2017 09:47:10" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" RawPaperSize="9" UnlimitedHeight="true">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="85.05" CanGrow="true">
+      <TextObject Name="Text29" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" Text="[Report.ReportInfo.Description]" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text30" Top="47.25" Width="718.2" Height="37.8" Text="BarcodeObject" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="89.05" Width="718.2" Height="1341.9">
+      <TextObject Name="Text61" Left="236.25" Top="1105.65" Width="226.8" Height="226.8" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="MaxiCode" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text32" Left="9.45" Top="37.8" Width="170.1" Height="132.3" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="2/5 Interleaved" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text33" Left="179.55" Top="37.8" Width="170.1" Height="132.3" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="2/5 Industrial" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text34" Left="349.65" Top="37.8" Width="170.1" Height="132.3" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="2/5 Matrix" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text35" Left="519.75" Top="37.8" Width="170.1" Height="132.3" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="Codabar" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text36" Left="9.45" Top="170.1" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Code39" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text37" Left="349.65" Top="170.1" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Code93" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text38" Left="9.45" Top="302.4" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Code128 (A, B, C), autoencode" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text39" Left="179.55" Top="302.4" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="EAN8" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text40" Left="349.65" Top="302.4" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="EAN13" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text41" Left="519.75" Top="302.4" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="UPC-A" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text42" Left="9.45" Top="434.7" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="UPC-E (E0, E1)" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text43" Left="179.55" Top="434.7" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Supplement code (2 or 5 digits)" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text44" Left="349.65" Top="434.7" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="MSI" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text45" Left="519.75" Top="434.7" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="PostNet" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <BarcodeObject Name="Barcode19" Left="47.25" Top="75.6" Width="80" Height="85.05" Barcode="2/5 Interleaved" Barcode.CalcCheckSum="false"/>
+      <BarcodeObject Name="Barcode20" Left="198.45" Top="75.6" Width="140" Height="85.05" Fill.Color="White" Barcode="2/5 Industrial" Barcode.CalcCheckSum="false"/>
+      <BarcodeObject Name="Barcode21" Left="387.45" Top="75.6" Width="104.69" Height="85.05" Fill.Color="White" Barcode="2/5 Matrix" Barcode.WideBarRatio="2.25" Barcode.CalcCheckSum="false"/>
+      <BarcodeObject Name="Barcode22" Left="538.65" Top="75.6" Width="126.25" Height="85.05" Fill.Color="White" Barcode="Codabar"/>
+      <BarcodeObject Name="Barcode23" Left="18.9" Top="207.9" Width="145" Height="85.05" Fill.Color="White" Text="123456"/>
+      <BarcodeObject Name="Barcode24" Left="368.55" Top="207.9" Width="136.25" Height="85.05" Fill.Color="White" Barcode="Code93"/>
+      <BarcodeObject Name="Barcode25" Left="47.25" Top="339.2" Width="98.75" Height="85.05" Fill.Color="White" Barcode="Code128" Barcode.AutoEncode="true"/>
+      <BarcodeObject Name="Barcode26" Left="226.8" Top="339.2" Width="83.75" Height="85.05" Fill.Color="White" Barcode="EAN8"/>
+      <BarcodeObject Name="Barcode27" Left="368.55" Top="339.2" Width="128.75" Height="85.05" Fill.Color="White" Text="1234567890123" Barcode="EAN13"/>
+      <BarcodeObject Name="Barcode28" Left="538.65" Top="340.2" Width="138.75" Height="85.05" Fill.Color="White" Text="123456789012" Barcode="UPC-A"/>
+      <TextObject Name="Text49" Left="519.75" Top="170.1" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Code93 Extended" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <BarcodeObject Name="Barcode36" Left="538.65" Top="207.9" Width="136.25" Height="85.05" Fill.Color="White" Barcode="Code93 Extended"/>
+      <TextObject Name="Text50" Left="179.55" Top="170.1" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Code39 Extended" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <BarcodeObject Name="Barcode37" Left="189" Top="207.9" Width="145" Height="85.05" Fill.Color="White" Text="123456" Barcode="Code39 Extended"/>
+      <BarcodeObject Name="Barcode29" Left="56.7" Top="472.5" Width="83.75" Height="85.05" Fill.Color="White" Text="1234567" Barcode="UPC-E0"/>
+      <BarcodeObject Name="Barcode30" Left="207.9" Top="472.5" Width="25" Height="56.7" Fill.Color="White" Barcode="Supplement 2"/>
+      <BarcodeObject Name="Barcode31" Left="264.6" Top="472.5" Width="58.75" Height="56.7" Fill.Color="White" Barcode="Supplement 5"/>
+      <BarcodeObject Name="Barcode32" Left="359.1" Top="472.5" Width="143.75" Height="85.05" Fill.Color="White" Barcode="MSI"/>
+      <BarcodeObject Name="Barcode33" Left="529.2" Top="472.5" Width="155" Height="85.05" Fill.Color="White" Barcode="PostNet"/>
+      <TextObject Name="Text53" Left="9.45" Top="567" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Plessey" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text54" Left="179.55" Top="567" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="GS1-128 (UCC/EAN-128)" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text1" Left="9.45" Width="680.4" Height="37.8" Fill.Color="Orange" Text="LINEAR BARCODES" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <BarcodeObject Name="Barcode40" Left="18.9" Top="604.8" Width="153.75" Height="85.05" Fill.Color="White" Text="123456" AllowExpressions="true" Barcode="Plessey"/>
+      <BarcodeObject Name="Barcode1" Left="198.45" Top="604.8" Width="126.25" Height="85.05" Text="(10)123456" AllowExpressions="true" Barcode="GS1-128 (UCC/EAN-128)" Barcode.AutoEncode="true"/>
+      <TextObject Name="Text48" Left="9.45" Top="841.05" Width="680.4" Height="37.8" Fill.Color="Orange" Text="2D BARCODES" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text55" Left="349.65" Top="567" Width="170.1" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Pharmacode" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <BarcodeObject Name="Barcode2" Left="387.45" Top="604.8" Width="98.75" Height="85.05" Text="123456" AllowExpressions="true" Barcode="Pharmacode" Barcode.QuietZone="true"/>
+      <TextObject Name="Text56" Left="9.45" Top="699.3" Width="510.3" Height="132.3" Border.Lines="All" Border.Color="Silver" Text="Intelligent Mail (USPS)" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <BarcodeObject Name="Barcode3" Left="66.15" Top="746.55" Width="402.5" Height="56.7" Text="12345678901234567890" AllowExpressions="true" Barcode="Intelligent Mail (USPS)" Barcode.QuietZone="false"/>
+      <TextObject Name="Text57" Left="9.45" Top="1105.65" Width="226.8" Height="226.8" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="PDF417 (text/numeric/binary)" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text58" Left="463.05" Top="878.85" Width="226.8" Height="226.8" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="Datamatrix" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text59" Left="9.45" Top="878.85" Width="226.8" Height="226.8" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="QR Code" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text60" Left="236.25" Top="878.85" Width="226.8" Height="226.8" Border.Lines="Left, Right, Bottom" Border.Color="Silver" Text="Aztec Code" Padding="2, 10, 2, 0" HorzAlign="Center" Font="Tahoma, 8pt"/>
+      <BarcodeObject Name="Barcode42" Left="274.05" Top="1152.9" Width="154.5" Height="154.5" AutoSize="false" Text="http://fast-report.com" ShowText="false" AllowExpressions="true" Barcode="MaxiCode" Barcode.Mode="4"/>
+      <BarcodeObject Name="Barcode43" Left="37.8" Top="1171.8" Width="171.05" Height="111.35" AutoSize="false" ShowText="false" Barcode="PDF417" Barcode.AspectRatio="0.5" Barcode.Columns="0" Barcode.Rows="0" Barcode.CodePage="437" Barcode.CompactionMode="Auto" Barcode.ErrorCorrection="Auto" Barcode.PixelSize="1, 5"/>
+      <BarcodeObject Name="Barcode44" Left="510.3" Top="926.1" Width="128.7" Height="128.7" AutoSize="false" ShowText="false" AllowExpressions="true" Barcode="Datamatrix" Barcode.SymbolSize="Size24x24" Barcode.Encoding="Auto" Barcode.CodePage="1252" Barcode.PixelSize="3"/>
+      <BarcodeObject Name="Barcode45" Left="56.7" Top="926.1" Width="132.3" Height="132.3" AutoSize="false" Text="http://fast-report.com" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="false"/>
+      <BarcodeObject Name="Barcode46" Left="283.5" Top="926.1" Width="135.6" Height="135.6" AutoSize="false" Text="http://fast-report.com" ShowText="false" AllowExpressions="true" Barcode="Aztec" Barcode.ErrorCorrection="33"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="1434.95" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

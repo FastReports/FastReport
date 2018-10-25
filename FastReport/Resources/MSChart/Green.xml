@@ -1,0 +1,21 @@
+<Chart Palette="SeaGreen" BackColor="200, 215, 200" Size="412, 296" BorderlineColor="LightSlateGray" BorderlineDashStyle="Solid">
+  <Legends>
+    <Legend Name="Default" BackColor="237, 244, 247" BorderColor="LightSlateGray" ShadowOffset="1" Font="Tahoma, 8pt">
+    </Legend>
+  </Legends>
+  <ChartAreas>
+    <ChartArea BackColor="220, 235, 220" BackSecondaryColor="237, 237, 247" ShadowOffset="1" BorderColor="LightSlateGray" BorderDashStyle="Solid" Name="Default">
+      <AxisY>
+        <MajorGrid LineColor="100, 0, 0, 0" LineDashStyle="Dash" />
+        <MinorGrid LineColor="25, 0, 0, 0" />
+        <LabelStyle Font="Tahoma, 8pt" />
+      </AxisY>
+      <AxisX>
+        <MajorGrid LineColor="100, 0, 0, 0" LineDashStyle="Dash" />
+        <MinorGrid LineColor="25, 0, 0, 0" />
+        <LabelStyle Font="Tahoma, 8pt" />
+      </AxisX>
+    </ChartArea>
+  </ChartAreas>
+  <BorderSkin SkinStyle="Emboss" />
+</Chart>

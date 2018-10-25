@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="01/15/2008 13:38:37" ReportInfo.Modified="01/16/2008 23:30:35">
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperWidth="95" PaperHeight="100" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5">
+    <ReportTitleBand Name="ReportTitle1" Width="321.3" Height="340.2">
+      <TextObject Name="Text1" Width="321.3" Height="28.35" Text="CUSTOMERS" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="122.85" Top="56.7" Width="198.45" Height="18.9" Text="Alfreds Futterkiste"/>
+      <TextObject Name="Text4" Left="122.85" Top="37.8" Width="56.7" Height="18.9" Text="ALFKI"/>
+      <TextObject Name="Text6" Left="122.85" Top="75.6" Width="198.45" Height="18.9" Text="Obere Str. 57"/>
+      <TextObject Name="Text5" Top="37.8" Width="56.7" Height="18.9" Text="ID:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text3" Top="56.7" Width="113.4" Height="18.9" Text="CompanyName:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Top="75.6" Width="94.5" Height="18.9" Text="Address:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text1" Top="103.95" Width="321.2995" Height="66.15" Fill.Color="WhiteSmoke"/>
+      <TextObject Name="Text2" Left="122.85" Top="122.85" Width="198.45" Height="18.9" Text="Ana Trujillo Emparedados"/>
+      <TextObject Name="Text4" Left="122.85" Top="103.95" Width="56.7" Height="18.9" Text="ANATR"/>
+      <TextObject Name="Text6" Left="122.85" Top="141.75" Width="198.45" Height="18.9" Text="Avda. de la Constitución 2222"/>
+      <TextObject Name="Text5" Top="103.95" Width="56.7" Height="18.9" Text="ID:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text3" Top="122.85" Width="113.4" Height="18.9" Text="CompanyName:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Top="141.75" Width="94.5" Height="18.9" Text="Address:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Left="122.85" Top="189" Width="198.45" Height="18.9" Text="Antonio Moreno Taquería"/>
+      <TextObject Name="Text4" Left="122.85" Top="170.1" Width="56.7" Height="18.9" Text="ANTON"/>
+      <TextObject Name="Text6" Left="122.85" Top="207.9" Width="198.45" Height="18.9" Text="Mataderos  2312"/>
+      <TextObject Name="Text5" Top="170.1" Width="56.7" Height="18.9" Text="ID:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text3" Top="189" Width="113.4" Height="18.9" Text="CompanyName:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Top="207.9" Width="94.5" Height="18.9" Text="Address:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Top="236.25" Width="321.2995" Height="66.15" Fill.Color="WhiteSmoke"/>
+      <TextObject Name="Text3" Left="122.85" Top="255.15" Width="198.45" Height="18.9" Text="Around the Horn"/>
+      <TextObject Name="Text4" Left="122.85" Top="236.25" Width="56.7" Height="18.9" Text="AROUT"/>
+      <TextObject Name="Text6" Left="122.85" Top="274.05" Width="198.45" Height="18.9" Text="120 Hanover Sq."/>
+      <TextObject Name="Text5" Top="236.25" Width="56.7" Height="18.9" Text="ID:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text4" Top="255.15" Width="113.4" Height="18.9" Text="CompanyName:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Top="274.05" Width="94.5" Height="18.9" Text="Address:" Font="Arial, 10pt, style=Bold"/>
+    </ReportTitleBand>
+  </ReportPage>
+</Report>

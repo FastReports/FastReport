@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates CheckBoxObject features." ReportInfo.Created="06/21/2009 02:07:29" ReportInfo.Modified="09/14/2015 13:59:38" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary/>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6" CanGrow="true">
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text1" Top="37.8" Width="718.2" Height="37.8" Text="CheckBoxObject" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="79.6" Width="718.2" Height="519.75">
+      <CheckBoxObject Name="CheckBox1" Left="28.35" Top="56.7" Width="18.9" Height="18.9" Border.Lines="All"/>
+      <CheckBoxObject Name="CheckBox2" Left="28.35" Top="85.05" Width="37.8" Height="37.8" Border.Lines="All" Border.Width="2" Fill.Color="Gainsboro" CheckColor="Chocolate"/>
+      <CheckBoxObject Name="CheckBox3" Left="28.35" Top="132.3" Width="75.6" Height="75.6" Border.Lines="All" Border.Width="4" CheckColor="DarkOrange"/>
+      <CheckBoxObject Name="CheckBox4" Left="170.1" Top="56.7" Width="18.9" Height="18.9" Border.Lines="All" CheckedSymbol="Cross"/>
+      <CheckBoxObject Name="CheckBox5" Left="170.1" Top="85.05" Width="37.8" Height="37.8" Border.Lines="All" Border.Width="2" Fill.Color="Gainsboro" CheckedSymbol="Cross" CheckColor="Chocolate"/>
+      <CheckBoxObject Name="CheckBox6" Left="170.1" Top="132.3" Width="75.6" Height="75.6" Border.Lines="All" Border.Width="4" CheckedSymbol="Cross" CheckColor="DarkOrange"/>
+      <CheckBoxObject Name="CheckBox7" Left="311.85" Top="56.7" Width="18.9" Height="18.9" Border.Lines="All" CheckedSymbol="Plus"/>
+      <CheckBoxObject Name="CheckBox8" Left="311.85" Top="85.05" Width="37.8" Height="37.8" Border.Lines="All" Border.Width="2" Fill.Color="Gainsboro" CheckedSymbol="Plus" CheckColor="Chocolate"/>
+      <CheckBoxObject Name="CheckBox9" Left="311.85" Top="132.3" Width="75.6" Height="75.6" Border.Lines="All" Border.Width="4" CheckedSymbol="Plus" CheckColor="DarkOrange"/>
+      <CheckBoxObject Name="CheckBox10" Left="453.6" Top="56.7" Width="18.9" Height="18.9" Border.Lines="All" CheckedSymbol="Fill"/>
+      <CheckBoxObject Name="CheckBox11" Left="453.6" Top="85.05" Width="37.8" Height="37.8" Border.Lines="All" Border.Width="2" Fill.Color="Gainsboro" CheckedSymbol="Fill" CheckColor="Chocolate"/>
+      <CheckBoxObject Name="CheckBox12" Left="453.6" Top="132.3" Width="75.6" Height="75.6" Border.Lines="All" Border.Width="4" CheckedSymbol="Fill" CheckColor="DarkOrange"/>
+      <CheckBoxObject Name="CheckBox13" Left="28.35" Top="311.85" Width="18.9" Height="18.9" Border.Lines="All" Checked="false"/>
+      <CheckBoxObject Name="CheckBox14" Left="28.35" Top="340.2" Width="37.8" Height="37.8" Border.Lines="All" Border.Width="2" Fill.Color="Gainsboro" Checked="false" CheckColor="Chocolate"/>
+      <CheckBoxObject Name="CheckBox15" Left="28.35" Top="387.45" Width="75.6" Height="75.6" Border.Lines="All" Border.Width="4" Checked="false" CheckColor="DarkOrange"/>
+      <CheckBoxObject Name="CheckBox16" Left="170.1" Top="311.85" Width="18.9" Height="18.9" Border.Lines="All" Checked="false" CheckedSymbol="Cross" UncheckedSymbol="Cross"/>
+      <CheckBoxObject Name="CheckBox17" Left="170.1" Top="340.2" Width="37.8" Height="37.8" Border.Lines="All" Border.Width="2" Fill.Color="Gainsboro" Checked="false" CheckedSymbol="Cross" UncheckedSymbol="Cross" CheckColor="Chocolate"/>
+      <CheckBoxObject Name="CheckBox18" Left="170.1" Top="387.45" Width="75.6" Height="75.6" Border.Lines="All" Border.Width="4" Checked="false" CheckedSymbol="Cross" UncheckedSymbol="Cross" CheckColor="DarkOrange"/>
+      <CheckBoxObject Name="CheckBox19" Left="311.85" Top="311.85" Width="18.9" Height="18.9" Border.Lines="All" Checked="false" CheckedSymbol="Plus" UncheckedSymbol="Minus"/>
+      <CheckBoxObject Name="CheckBox20" Left="311.85" Top="340.2" Width="37.8" Height="37.8" Border.Lines="All" Border.Width="2" Fill.Color="Gainsboro" Checked="false" CheckedSymbol="Plus" UncheckedSymbol="Minus" CheckColor="Chocolate"/>
+      <CheckBoxObject Name="CheckBox21" Left="311.85" Top="387.45" Width="75.6" Height="75.6" Border.Lines="All" Border.Width="4" Checked="false" CheckedSymbol="Plus" UncheckedSymbol="Minus" CheckColor="DarkOrange"/>
+      <TextObject Name="Text12" Left="9.45" Width="652.05" Height="37.8" Fill.Color="Orange" Text="CHECKED STATE" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text13" Left="9.45" Top="255.15" Width="652.05" Height="37.8" Fill.Color="Orange" Text="UNCHECKED STATE" VertAlign="Center" Font="Tahoma, 16pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="603.35" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text14" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

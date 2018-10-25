@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StyleSheet>
+  <Styles Name="White">
+    <Style Name="Header" Border.Lines="All"/>
+    <Style Name="Body" Border.Lines="All"/>
+  </Styles>
+  <Styles Name="Gray">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke"/>
+  </Styles>
+  <Styles Name="Orange">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155"/>
+  </Styles>
+  <Styles Name="Green">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="123, 164, 0"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="158, 210, 0"/>
+  </Styles>
+  <Styles Name="GreenOrange">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="152, 204, 0"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="255, 204, 0"/>
+  </Styles>
+  <Styles Name="Blue">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254"/>
+  </Styles>
+  <Styles Name="BlueWhite">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="White"/>
+  </Styles>
+  <Styles Name="GrayOrange">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="Gray"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="255, 204, 0"/>
+  </Styles>
+  <Styles Name="BlueOrange">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="255, 207, 106"/>
+  </Styles>
+  <Styles Name="OrangeWhite">
+    <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="255, 207, 106"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="White" Fill.Color="White"/>
+  </Styles>
+</StyleSheet>

@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  fastreportcore.mvc:
+    image: fastreportcore.mvc:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastreport

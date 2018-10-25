@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Tests.OpenSource", "FastReport.Tests.OpenSource.csproj", "{BC06386E-44C0-4D18-94CB-9D0D6890824C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource", "..\..\FastReport.OpenSource\FastReport.OpenSource.csproj", "{1C709AFD-E519-44DC-A7B8-79AE468A48C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Academic|Any CPU = Academic|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Demo|Any CPU = Demo|Any CPU
+		Release|Any CPU = Release|Any CPU
+		WinForms|Any CPU = WinForms|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Academic|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Academic|Any CPU.Build.0 = Debug|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Demo|Any CPU.Build.0 = Debug|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.WinForms|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC06386E-44C0-4D18-94CB-9D0D6890824C}.WinForms|Any CPU.Build.0 = Debug|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Academic|Any CPU.ActiveCfg = Academic|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Academic|Any CPU.Build.0 = Academic|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.WinForms|Any CPU.ActiveCfg = WinForms|Any CPU
+		{1C709AFD-E519-44DC-A7B8-79AE468A48C3}.WinForms|Any CPU.Build.0 = WinForms|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C195FBEC-6F7D-4AEA-9B5D-EEB7127EBCDA}
+	EndGlobalSection
+EndGlobal

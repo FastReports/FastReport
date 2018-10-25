@@ -1,0 +1,104 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.0</Version>
+
+    <Authors>Fast Reports Inc.</Authors>
+    <Company>Fast Reports Inc.</Company>
+    <Description>FastReport.Net is a full-featured reporting solution for .Net Core 2.0. 
+Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, diagram, maps, shapes, line, PolyLine, Polygon and many more. 
+FastReport.Net supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.
+</Description>
+    <Copyright>Fast Reports Inc.</Copyright>
+    <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <Configurations>Debug;Release;Demo</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo|AnyCPU'">
+    <Description>FastReport.Net is a full-featured reporting solution for .Net Core 2.0. 
+Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, diagram, maps, shapes, line, PolyLine, Polygon and many more. 
+FastReport.Net supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.
+The full version of the package is available in FastReport.Net Professional at https://www.fast-report.com/en/fast-report-net-editions-compare/
+</Description>
+  </PropertyGroup>
+
+  <Choose>  
+      <When Condition="'$(SolutionFileName)' == 'FastReport.OpenSource.sln'">
+        <PropertyGroup>
+          <DefineConstants>OPENSOURCE;</DefineConstants>
+          <PackageId>FastReport.OpenSource.Web</PackageId>
+          <AssemblyOriginatorKeyFile>../FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
+        </PropertyGroup>
+        <ItemGroup>
+          <ProjectReference Include="$(SolutionDir)FastReport.OpenSource\FastReport.OpenSource.csproj" />
+        </ItemGroup>
+
+      </When>  
+      <When Condition="'$(SolutionFileName)' == 'FastReport.Core.sln'">
+        <PropertyGroup>
+          <PackageId>FastReport.Web</PackageId>
+          <AssemblyOriginatorKeyFile>../FastReport.Net.snk</AssemblyOriginatorKeyFile>
+        </PropertyGroup>
+        <ItemGroup>
+          <ProjectReference Include="$(SolutionDir)FastReport.Core\FastReport.Core.csproj" />
+        </ItemGroup>
+      </When>  
+      <Otherwise>
+        <PropertyGroup>
+          <PackageId>FastReport.Web</PackageId>
+          <AssemblyOriginatorKeyFile>../FastReport.Net.snk</AssemblyOriginatorKeyFile>
+        </PropertyGroup>
+        <ItemGroup>
+          <PackageReference Include="FastReport.Core" Version="2017.4.0" />
+        </ItemGroup>
+      </Otherwise>  
+  </Choose>
+
+  <ItemGroup>
+    <None Remove="Resources\angle-double-left.svg" />
+    <None Remove="Resources\angle-double-right.svg" />
+    <None Remove="Resources\angle-left.svg" />
+    <None Remove="Resources\angle-right.svg" />
+    <None Remove="Resources\caret-down.svg" />
+    <None Remove="Resources\caret-right.svg" />
+    <None Remove="Resources\close.svg" />
+    <None Remove="Resources\file.svg" />
+    <None Remove="Resources\magnifier.svg" />
+    <None Remove="Resources\print.svg" />
+    <None Remove="Resources\reload.svg" />
+    <None Remove="Resources\save.svg" />
+    <None Remove="Resources\slash.svg" />
+    <None Remove="Resources\spinner.svg" />
+    <None Remove="Resources\split.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\angle-double-left.svg" />
+    <EmbeddedResource Include="Resources\angle-double-right.svg" />
+    <EmbeddedResource Include="Resources\angle-left.svg" />
+    <EmbeddedResource Include="Resources\angle-right.svg" />
+    <EmbeddedResource Include="Resources\caret-down.svg" />
+    <EmbeddedResource Include="Resources\caret-right.svg" />
+    <EmbeddedResource Include="Resources\close.svg" />
+    <EmbeddedResource Include="Resources\file.svg" />
+    <EmbeddedResource Include="Resources\magnifier.svg" />
+    <EmbeddedResource Include="Resources\print.svg" />
+    <EmbeddedResource Include="Resources\reload.svg" />
+    <EmbeddedResource Include="Resources\save.svg" />
+    <EmbeddedResource Include="Resources\slash.svg" />
+    <EmbeddedResource Include="Resources\spinner.svg" />
+    <EmbeddedResource Include="Resources\split.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.2" />
+  </ItemGroup>
+  
+</Project>

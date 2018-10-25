@@ -1,0 +1,20 @@
+<Chart Palette="Grayscale" BackColor="WhiteSmoke" Size="412, 296" BackGradientStyle="TopBottom" BackSecondaryColor="White" BorderlineColor="26, 59, 105" BorderlineWidth="2" BorderlineDashStyle="Solid">
+  <Legends>
+    <Legend Name="Default" BackColor="Transparent" Font="Tahoma, 8pt">
+    </Legend>
+  </Legends>
+  <ChartAreas>
+    <ChartArea BackColor="Gainsboro" BackGradientStyle="TopBottom" BackSecondaryColor="White" ShadowColor="Transparent" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid" Name="Default">
+      <AxisY LineColor="64, 64, 64, 64">
+        <MajorGrid LineColor="64, 64, 64, 64" />
+        <LabelStyle Font="Tahoma, 8pt" />
+      </AxisY>
+      <AxisX LineColor="64, 64, 64, 64">
+        <MajorGrid LineColor="64, 64, 64, 64" />
+        <LabelStyle Font="Tahoma, 8pt" />
+      </AxisX>
+      <Area3DStyle WallWidth="0" />
+    </ChartArea>
+  </ChartAreas>
+  <BorderSkin SkinStyle="Emboss" />
+</Chart>
