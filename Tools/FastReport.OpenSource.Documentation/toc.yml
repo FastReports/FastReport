@@ -1,0 +1,5 @@
+# - name: Articles
+#   href: articles/
+- name: FastReport Open Source Class Reference
+  href: api/
+  homepage: api/FastReport.html
