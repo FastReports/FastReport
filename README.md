@@ -61,12 +61,20 @@ FastReport can be compiled from sources or installed from [NuGet packages](https
 ### Compilation
 
 1. Install latest .Net Core SDK for your OS from https://www.microsoft.com/net/download
-2. Follow the commands for windows users
+2. Follow the commands
 
-```
+```sh
+# for windows users
 git clone https://github.com/FastReports/FastReport.git
 cd FastReport
 Tools\pack.bat
+```
+
+```sh
+# for linux users
+git clone https://github.com/FastReports/FastReport.git
+cd FastReport
+chmod 777 Tools/pack.sh && ./Tools/pack.sh
 ```
 
 The package is located at `fr_nuget` directory.
