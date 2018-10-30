@@ -38,7 +38,7 @@ FastReport is written in C# and it is compatible with .NET Standard 2.0 and high
 
 - Thus you can not only use application-defined datasets but also connect to any database and use tables and queries directly within the report.
 
-### Internal Scriping
+### Internal Scripting
 
 FastReport has a built-in script engine that supports two .NET languages, C# and VB.NET. You can use all of the .NET power in your reports to perform complex data handling and much more.
 
@@ -50,7 +50,7 @@ You can make a report template in several ways:
 
 - Developing report template as XML file.
 
-- Using the FastReport Designer Community Edition. It can be downloaded from [Fast Reports home site](https://www.fast-report.com/).
+- Using the FastReport Designer Community Edition. It can be downloaded from [Fast Report releases page](https://github.com/FastReports/FastReport/releases).
 
 [![Image of FastReport](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3-small.png)](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3.png)
 
@@ -61,12 +61,20 @@ FastReport can be compiled from sources or installed from [NuGet packages](https
 ### Compilation
 
 1. Install latest .Net Core SDK for your OS from https://www.microsoft.com/net/download
-2. Follow the commands for windows users
+2. Follow the commands
 
-```
+```sh
+# for windows users
 git clone https://github.com/FastReports/FastReport.git
 cd FastReport
 Tools\pack.bat
+```
+
+```sh
+# for linux users
+git clone https://github.com/FastReports/FastReport.git
+cd FastReport
+chmod 777 Tools/pack.sh && ./Tools/pack.sh
 ```
 
 The package is located at `fr_nuget` directory.
