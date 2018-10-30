@@ -38,7 +38,7 @@ FastReport is written in C# and it is compatible with .NET Standard 2.0 and high
 
 - Thus you can not only use application-defined datasets but also connect to any database and use tables and queries directly within the report.
 
-### Internal Scriping
+### Internal Scripting
 
 FastReport has a built-in script engine that supports two .NET languages, C# and VB.NET. You can use all of the .NET power in your reports to perform complex data handling and much more.
 
