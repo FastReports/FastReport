@@ -56,6 +56,10 @@ You can make a report template in several ways:
 
 [![Image of FastReport](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3-small.png)](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3.png)
 
+## Exporting
+
+FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF.
+
 ## Installation
 
 FastReport can be compiled from sources or installed from [NuGet packages](https://www.nuget.org/profiles/FastReports).
