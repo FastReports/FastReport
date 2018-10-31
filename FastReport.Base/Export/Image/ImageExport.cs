@@ -87,7 +87,7 @@ namespace FastReport.Export.Image
         /// for each exported page.
         /// </summary>
         /// <remarks>
-        /// If this property is set to <b>true</b>, the export filter will produce one big image
+        /// If this property is set to <b>false</b>, the export filter will produce one big image
         /// containing all exported pages. Be careful using this property with a big report
         /// because it may produce out of memory error.
         /// </remarks>
