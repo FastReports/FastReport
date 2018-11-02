@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.MsSql", "FastReport.Data.MsSql\FastReport.Data.MsSql.csproj", "{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.MySql", "FastReport.Data.MySql\FastReport.Data.MySql.csproj", "{2F557F54-6836-44D8-B279-2CEAD6834D74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.SQLite", "FastReport.Data.SQLite\FastReport.Data.SQLite.csproj", "{163D31BF-E81B-4CF8-BC19-F41F3B77FE83}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Postgres", "FastReport.Data.Postgres\FastReport.Data.Postgres.csproj", "{3BB02EC3-A96F-42DC-803A-948066D43B69}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Json", "FastReport.Data.Json\FastReport.Data.Json.csproj", "{C58DD653-F4F4-47A5-A52F-4F151A31F190}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReport.Data.MongoDB", "FastReport.Data.MongoDB\FastReport.Data.MongoDB.csproj", "{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F557F54-6836-44D8-B279-2CEAD6834D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F557F54-6836-44D8-B279-2CEAD6834D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F557F54-6836-44D8-B279-2CEAD6834D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F557F54-6836-44D8-B279-2CEAD6834D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{163D31BF-E81B-4CF8-BC19-F41F3B77FE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163D31BF-E81B-4CF8-BC19-F41F3B77FE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163D31BF-E81B-4CF8-BC19-F41F3B77FE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163D31BF-E81B-4CF8-BC19-F41F3B77FE83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BB02EC3-A96F-42DC-803A-948066D43B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BB02EC3-A96F-42DC-803A-948066D43B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BB02EC3-A96F-42DC-803A-948066D43B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BB02EC3-A96F-42DC-803A-948066D43B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C58DD653-F4F4-47A5-A52F-4F151A31F190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C58DD653-F4F4-47A5-A52F-4F151A31F190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C58DD653-F4F4-47A5-A52F-4F151A31F190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C58DD653-F4F4-47A5-A52F-4F151A31F190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3B2B0A0-D152-4CF3-AD41-1B32D582011F}
+	EndGlobalSection
+EndGlobal
