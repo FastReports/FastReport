@@ -557,7 +557,9 @@ namespace FastReport.Utils
             charsFit = MeasureString(text);
             string textFit = text.Substring(0, charsFit).TrimEnd(new char[] { ' ' });
             lines.Add(new Line(textFit, this, originalCharIndex));
-            text = text.Substring(charsFit);
+            text = text.Substring(charsFit)
+                            // Fix for linux system
+                            .TrimStart(' ');
             originalCharIndex += charsFit;
           }
         }

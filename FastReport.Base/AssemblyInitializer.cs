@@ -72,10 +72,10 @@ namespace FastReport
             RegisteredObjects.Add(typeof(OverlayBand), "", 166, "Objects,Bands,Overlay");
 
             // report objects
-            RegisteredObjects.Add(typeof(TextObject), "ReportPage", 102);
-            RegisteredObjects.Add(typeof(PictureObject), "ReportPage", 103);
+            RegisteredObjects.Add(typeof(TextObject), "ReportPage", 102, 1);
+            RegisteredObjects.Add(typeof(PictureObject), "ReportPage", 103, 2);
 
-            RegisteredObjects.AddCategory("ReportPage,Shapes", 106, "Objects,Shapes");
+            RegisteredObjects.AddCategory("ReportPage,Shapes", 106, 4, "Objects,Shapes");
             RegisteredObjects.Add(typeof(LineObject), "ReportPage,Shapes", 105, "Objects,Shapes,Line", 0, true);
             RegisteredObjects.Add(typeof(LineObject), "ReportPage,Shapes", 107, "Objects,Shapes,DiagonalLine", 1, true);
             RegisteredObjects.Add(typeof(LineObject), "ReportPage,Shapes", 150, "Objects,Shapes,DiagonalLine", 2, true);
@@ -93,25 +93,25 @@ namespace FastReport
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 243, "Objects,Shapes,Hexagon", 0x60);
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 244, "Objects,Shapes,Heptagon", 0x70);
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 245, "Objects,Shapes,Octagon", 0x80);
-            RegisteredObjects.Add(typeof(SubreportObject), "ReportPage", 104);
+            RegisteredObjects.Add(typeof(SubreportObject), "ReportPage", 104, 5);
 
-            RegisteredObjects.Add(typeof(TableObject), "ReportPage", 127);
+            RegisteredObjects.Add(typeof(TableObject), "ReportPage", 127, 6);
             RegisteredObjects.Add(typeof(TableColumn), "", 215);
             RegisteredObjects.Add(typeof(TableRow), "", 216);
             RegisteredObjects.Add(typeof(TableCell), "", 214);
-            RegisteredObjects.Add(typeof(MatrixObject), "ReportPage", 142);
-            RegisteredObjects.Add(typeof(CrossViewObject), "ReportPage", 247);
+            RegisteredObjects.Add(typeof(MatrixObject), "ReportPage", 142, 7);
+            RegisteredObjects.Add(typeof(CrossViewObject), "ReportPage", 247, 8);
 
-            RegisteredObjects.AddCategory("ReportPage,Barcodes", 123, "Objects,BarcodeObject");
+            RegisteredObjects.AddCategory("ReportPage,Barcodes", 123, 9, "Objects,BarcodeObject");
             for (int i = 0; i <= Barcodes.Items.Length - 1; i++)
                 RegisteredObjects.Add(typeof(BarcodeObject), "ReportPage,Barcodes", -1, "ComponentMenu,Barcode,Barcodes,Barcode" + i, i);
 
-            RegisteredObjects.Add(typeof(CheckBoxObject), "ReportPage", 124);
+            RegisteredObjects.Add(typeof(CheckBoxObject), "ReportPage", 124, 10);
 
-            RegisteredObjects.Add(typeof(ZipCodeObject), "ReportPage", 129);
-            RegisteredObjects.Add(typeof(CellularTextObject), "ReportPage", 121);
+            RegisteredObjects.Add(typeof(ZipCodeObject), "ReportPage", 129, 14);
+            RegisteredObjects.Add(typeof(CellularTextObject), "ReportPage", 121, 15);
 
-            RegisteredObjects.AddCategory("ReportPage,Gauge", 140, "Objects,Gauge");
+            RegisteredObjects.AddCategory("ReportPage,Gauge", 140, 17, "Objects,Gauge");
             RegisteredObjects.Add(typeof(LinearGauge), "ReportPage,Gauge", -1, "Objects,Gauge,Linear", 0, false);
             RegisteredObjects.Add(typeof(SimpleGauge), "ReportPage,Gauge", -1, "Objects,Gauge,Simple", 0, false);
             RegisteredObjects.Add(typeof(RadialGauge), "ReportPage,Gauge", -1, "Objects,Gauge,Radial", 0, false);
@@ -120,7 +120,7 @@ namespace FastReport
             //      RegisteredObjects.Add(typeof(CrossBandObject), "ReportPage", 11, "Cross-band line", 0);
             //      RegisteredObjects.Add(typeof(CrossBandObject), "ReportPage", 11, "Cross-band rectangle", 1);
 
-            RegisteredObjects.Add(typeof(HtmlObject), "ReportPage", 246);
+            RegisteredObjects.Add(typeof(HtmlObject), "ReportPage", 246, 18);
 
 
             // exports

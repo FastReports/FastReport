@@ -157,6 +157,16 @@ namespace FastReport.Utils
             MultiInsert = multiInsert;
         }
 
+        internal void Update(Object obj, Bitmap image, int imageIndex, int buttonIndex, string text, int flags,
+            bool multiInsert)
+        {
+            fObject = obj;
+            UpdateDesign(obj, image, imageIndex, buttonIndex, text, flags, multiInsert);
+            Text = text;
+            Flags = flags;
+            MultiInsert = multiInsert;
+        }
+
         #endregion
 
         internal ObjectInfo()
@@ -211,19 +221,30 @@ namespace FastReport.Utils
         #endregion
 
         #region Private Methods
+
         private static void RegisterType(Type type)
         {
             FTypes[type.Name] = type;
         }
 
-        private static void InternalAdd(Object obj, string category, Bitmap image, int imageIndex, string text,
-          int flags, bool multiInsert)
+        private static void InternalAdd(Object obj, string category, Bitmap image, int imageIndex, string text, int flags,
+            bool multiInsert)
         {
             ObjectInfo item = FObjects.FindOrCreate(category);
             item.Update(obj, image, imageIndex, text, flags, multiInsert);
             if (obj is Type)
                 RegisterType(obj as Type);
         }
+
+        private static void InternalAdd(Object obj, string category, Bitmap image, int imageIndex, int buttonIndex,
+            string text, int flags, bool multiInsert)
+        {
+            ObjectInfo item = FObjects.FindOrCreate(category);
+            item.Update(obj, image, imageIndex, buttonIndex, text, flags, multiInsert);
+            if (obj is Type)
+                RegisterType(obj as Type);
+        }
+
         #endregion
 
         #region Public Methods
@@ -250,6 +271,11 @@ namespace FastReport.Utils
         internal static void AddCategory(string category, int imageIndex, string text)
         {
             InternalAdd(null, category, null, imageIndex, text, 0, false);
+        }
+
+        internal static void AddCategory(string category, int imageIndex, int buttonIndex, string text)
+        {
+            InternalAdd(null, category, null, imageIndex, buttonIndex, text, 0, false);
         }
 
         /// <summary>
@@ -381,6 +407,18 @@ namespace FastReport.Utils
         public static void Add(Type obj, string category, int imageIndex)
         {
             InternalAdd(obj, category + ",", null, imageIndex, "", 0, false);
+        }
+
+        /// <summary>
+        /// Registers an object in the specified category.
+        /// </summary>
+        /// <param name="obj">Type of object to register.</param>
+        /// <param name="category">Name of category to register in.</param>
+        /// <param name="imageIndex">Index of image for object's button.</param>
+        /// <param name="buttonIndex">Index of object's button in toolbar.</param>
+        public static void Add(Type obj, string category, int imageIndex, int buttonIndex)
+        {
+            InternalAdd(obj, category + ",", null, imageIndex, buttonIndex, "", 0, false);
         }
 
         internal static void Add(Type obj, string category, int imageIndex, string text)
