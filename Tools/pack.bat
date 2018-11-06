@@ -15,24 +15,36 @@ for %%x in (%*) do (
   IF [%%x] == [--version] ( SET "VERSION=0.0.0" ) 
 )
 
+rem Directories:
 SET "PROP=/p:SolutionDir=%~dp0..\;SolutionFileName=FastReport.OpenSource.sln;Version=!VERSION!"
 SET "FR=FastReport.OpenSource\FastReport.OpenSource.csproj"
 SET "WEB=FastReport.Core.Web\FastReport.Web.csproj"
+SET "DATA=Extras\Core\FastReport.Data"
+
+rem Connections
+SET "POSTGRES=FastReport.Data.Postgres\FastReport.OpenSource.Data.Postgres.csproj"
+
+SET "OUTPUT=%~dp0..\..\fr_nuget"
+
 
 pushd %~dp0..
 
 IF "!WITH_OUT_DEBUG!"=="false" (
-dotnet clean !FR!     -c Debug    "!PROP!-debug" 
-dotnet clean !WEB!    -c Debug    "!PROP!-debug"
+dotnet clean !FR!                      -c Debug    "!PROP!-debug" 
+dotnet clean !WEB!                     -c Debug    "!PROP!-debug"
+dotnet clean !DATA!\!POSTGRES!         -c Debug    "!PROP!-debug" 
 
-dotnet pack  !FR!     -c Debug    "!PROP!-debug"  -o ../../fr_nuget    --include-symbols --include-source
-dotnet pack  !WEB!    -c Debug    "!PROP!-debug"  -o ../../fr_nuget --include-symbols --include-source
+dotnet pack  !FR!                      -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
+dotnet pack  !WEB!                     -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
+dotnet pack  !DATA!\!POSTGRES!         -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
 )
 
-dotnet clean !FR!     -c Release  "!PROP!"
-dotnet clean !WEB!    -c Release  "!PROP!"
-
-dotnet pack  !FR!     -c Release  "!PROP!"  -o ../../fr_nuget
-dotnet pack  !WEB!    -c Release  "!PROP!"  -o ../../fr_nuget
+dotnet clean !FR!                      -c Release  "!PROP!"
+dotnet clean !WEB!                     -c Release  "!PROP!"
+dotnet clean !DATA!\!POSTGRES!         -c Release  "!PROP!"
+                                     
+dotnet pack  !FR!                      -c Release  "!PROP!"  -o "!OUTPUT!"
+dotnet pack  !WEB!                     -c Release  "!PROP!"  -o "!OUTPUT!"
+dotnet pack  !DATA!\!POSTGRES!         -c Release  "!PROP!"  -o "!OUTPUT!"
 
 popd

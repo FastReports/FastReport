@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.OracleODPCore", "FastReport.Data.OracleODPCore.csproj", "{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReportWebCore.MVC", "..\..\..\..\Demos\Core\FastReportWebCore.MVC\FastReportWebCore.MVC\FastReportWebCore.MVC.csproj", "{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReportCore", "..\..\..\..\FastReport.Core\FastReport.Core.csproj", "{B3C8DAE9-396E-4A5F-A987-92197EAC1068}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Academic|Any CPU = Academic|Any CPU
+		Basic|Any CPU = Basic|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Demo|Any CPU = Demo|Any CPU
+		Release|Any CPU = Release|Any CPU
+		WinForms|Any CPU = WinForms|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Academic|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Academic|Any CPU.Build.0 = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Basic|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Basic|Any CPU.Build.0 = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Demo|Any CPU.Build.0 = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.WinForms|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B86832D-F0BB-4B7B-9AB8-844EC5477DCE}.WinForms|Any CPU.Build.0 = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Academic|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Academic|Any CPU.Build.0 = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Basic|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Basic|Any CPU.Build.0 = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Demo|Any CPU.Build.0 = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.WinForms|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD10CEE-3D6F-4FEE-A5AF-E445F2474E53}.WinForms|Any CPU.Build.0 = Debug|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Academic|Any CPU.ActiveCfg = Academic|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Academic|Any CPU.Build.0 = Academic|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Basic|Any CPU.ActiveCfg = Basic|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Basic|Any CPU.Build.0 = Basic|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.WinForms|Any CPU.ActiveCfg = WinForms|Any CPU
+		{B3C8DAE9-396E-4A5F-A987-92197EAC1068}.WinForms|Any CPU.Build.0 = WinForms|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16A578B6-6410-482B-9A91-F5B248FBBF99}
+	EndGlobalSection
+EndGlobal
