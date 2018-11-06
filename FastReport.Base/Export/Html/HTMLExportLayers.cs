@@ -693,7 +693,7 @@ namespace FastReport.Export.Html
             }
         }
 
-        private void ExportHTMLPageLayeredBegin(HTMLThreadData d)
+        private void ExportHTMLPageLayeredBegin(HTMLData d)
         {
             if (!singlePage && !WebMode)
                 cssStyles.Clear();
@@ -754,7 +754,7 @@ namespace FastReport.Export.Html
             }
         }
 
-        private void ExportHTMLPageLayeredEnd(HTMLThreadData d)
+        private void ExportHTMLPageLayeredEnd(HTMLData d)
         {
             // to do
             if (d.page.Watermark.Enabled && d.page.Watermark.ShowImageOnTop)
@@ -767,13 +767,9 @@ namespace FastReport.Export.Html
 
             if (singlePage)
             {
-                //if (!WebMode)
-                //    FHPos += MaxHeight;
-                //else
                 hPos = 0;
                 prevStyleListIndex = cssStyles.Count;
             }
-
             htmlPage.Append("</div>");
 
             ExportHTMLPageFinal(css, htmlPage, d, maxWidth, maxHeight);
