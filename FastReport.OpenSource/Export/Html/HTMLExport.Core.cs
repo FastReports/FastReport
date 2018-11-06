@@ -12,13 +12,13 @@ namespace FastReport.Export.Html
     {
         private void ExportHTMLPageBegin(object data)
         {
-            HTMLThreadData d = (HTMLThreadData)data;
+            HTMLData d = (HTMLData)data;
             ExportHTMLPageLayeredBegin(d);
         }
 
         private void ExportHTMLPageEnd(object data)
         {
-            HTMLThreadData d = (HTMLThreadData)data;
+            HTMLData d = (HTMLData)data;
             ExportHTMLPageLayeredEnd(d);
         }
 
