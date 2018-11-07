@@ -1,4 +1,4 @@
-# FastReport Open Source
+[![FastReport Open Source](https://fastreports.github.io/FastReport.Documentation/images/fros-youtube-title.jpg)](https://youtu.be/Js78gl_xAOU)
 
 ## What is FastReport?
 
@@ -52,7 +52,7 @@ You can make a report template in several ways:
 
 - Using the FastReport Online Designer.
 
-- Using the FastReport Designer Community Edition (freeware). It can be downloaded from [Fast Report releases page](https://github.com/FastReports/FastReport/releases).
+- Using the FastReport Designer Community Edition (freeware). It can be downloaded from [FastReport releases page](https://github.com/FastReports/FastReport/releases).
 
 [![Image of FastReport](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3-small.png)](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3.png)
 
