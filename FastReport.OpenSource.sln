@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connections", "Connections"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource.Data.Postgres", "Extras\Core\FastReport.Data\FastReport.Data.Postgres\FastReport.OpenSource.Data.Postgres.csproj", "{DADF1C79-7C33-4059-B71F-C3D91EA90436}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource.Data.MsSql", "Extras\Core\FastReport.Data\FastReport.Data.MsSql\FastReport.OpenSource.Data.MsSql.csproj", "{EC7F2FF6-BE78-494B-A867-119C653AD528}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Academic|Any CPU = Academic|Any CPU
@@ -90,6 +92,16 @@ Global
 		{DADF1C79-7C33-4059-B71F-C3D91EA90436}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DADF1C79-7C33-4059-B71F-C3D91EA90436}.WinForms|Any CPU.ActiveCfg = Debug|Any CPU
 		{DADF1C79-7C33-4059-B71F-C3D91EA90436}.WinForms|Any CPU.Build.0 = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Academic|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Academic|Any CPU.Build.0 = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Demo|Any CPU.Build.0 = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.WinForms|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7F2FF6-BE78-494B-A867-119C653AD528}.WinForms|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +111,7 @@ Global
 		{FC7C0236-7420-4881-9808-5AFD08310B76} = {8E9E75EB-2ABC-4CC1-8AA0-C11DEE54A152}
 		{898AF8DC-11C3-4640-B60C-5D8CBF2F29CF} = {CCF32DAC-85D9-43D4-A4A7-72626A13D806}
 		{DADF1C79-7C33-4059-B71F-C3D91EA90436} = {898AF8DC-11C3-4640-B60C-5D8CBF2F29CF}
+		{EC7F2FF6-BE78-494B-A867-119C653AD528} = {898AF8DC-11C3-4640-B60C-5D8CBF2F29CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFBB1F5B-F03E-4BCB-AFEE-A45A2C4D5BB8}

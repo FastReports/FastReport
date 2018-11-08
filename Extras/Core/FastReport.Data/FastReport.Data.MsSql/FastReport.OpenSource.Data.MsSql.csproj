@@ -1,43 +1,37 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Copyright>Fast Reports Inc.</Copyright>
 		<Company>Fast Reports Inc.</Company>
-		<PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+		<PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
 		<PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
 		<Authors>Fast Reports Inc.</Authors>
 		<Product>FastReport.Data.MsSql</Product>
 		<Description>Represents a connection to MS SQL database for FastReport.Net</Description>
-		<PackageId>FastReport.Data.MsSql</PackageId>
+		<PackageId>FastReport.OpenSource.Data.MsSql</PackageId>
 		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
 		<PackageTags>reporting, mssql, connection, reports, core</PackageTags>
-		<Version>2018.2.3$(VersionSuffix)</Version>
-		<AssemblyVersion>2018.2.4.0</AssemblyVersion>
-		<FileVersion>2018.2.0.0</FileVersion>
+		<Version>1.0.0</Version>
 		<Configurations>Debug;Release;</Configurations>
 		<AssemblyName>FastReport.Data.MsSql</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
 		<PackageReleaseNotes></PackageReleaseNotes>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<DefineConstants>FRCORE;</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="System.Data.SqlClient" Version="4.4.3" />
 	</ItemGroup>
 
-	<Choose>
-		<When Condition="'$(Configuration)' == 'Debug'">
-			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-				<ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
-			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-				<PackageReference Include="FastReport.Core" Version="[2018.2.2-ci-*,)" />
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
+        <ItemGroup>
+		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+	</ItemGroup>
+
 
 </Project>
