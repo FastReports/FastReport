@@ -1,5 +1,3 @@
-[![Gitter](https://badges.gitter.im/FastReports/FreeReport.svg)](https://gitter.im/FastReports/FreeReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 [![FastReport Open Source](https://fastreports.github.io/FastReport.Documentation/images/fros-youtube-title.jpg)](https://youtu.be/Js78gl_xAOU)
 
 ## What is FastReport?
