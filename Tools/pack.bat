@@ -45,11 +45,11 @@ dotnet pack  !DATA!\!MSSQL!            -c Debug    "!PROP!-debug"  -o "!OUTPUT!"
 dotnet clean !FR!                      -c Release  "!PROP!"
 dotnet clean !WEB!                     -c Release  "!PROP!"
 dotnet clean !DATA!\!POSTGRES!         -c Release  "!PROP!"
-dotnet clean !DATA!\!MSSQL!            -c Debug    "!PROP!-debug"
+dotnet clean !DATA!\!MSSQL!            -c Release  "!PROP!"
                                      
 dotnet pack  !FR!                      -c Release  "!PROP!"  -o "!OUTPUT!"
 dotnet pack  !WEB!                     -c Release  "!PROP!"  -o "!OUTPUT!"
 dotnet pack  !DATA!\!POSTGRES!         -c Release  "!PROP!"  -o "!OUTPUT!"
-dotnet pack  !DATA!\!MSSQL!            -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
+dotnet pack  !DATA!\!MSSQL!            -c Release  "!PROP!"  -o "!OUTPUT!"
 
 popd
