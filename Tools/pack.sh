@@ -25,11 +25,11 @@ do
 done
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-PROP="/p:SolutionDir=$SCRIPTPATH/../;SolutionFileName=FastReport.OpenSource.sln;TargetFrameworks=\"netstandard2.0\";Version=$VERSION"
+PROP="/p:SolutionDir=$SCRIPTPATH/../;SolutionFileName=FastReport.OpenSource.sln;TargetFrameworks=/"netstandard2.0/";Version=$VERSION"
 FR="FastReport.OpenSource/FastReport.OpenSource.csproj"
 WEB="FastReport.Core.Web/FastReport.Web.csproj"
-MSSQL="Extras\Core\FastReport.Data\FastReport.Data.MsSql\FastReport.OpenSource.Data.MsSql.csproj"
-MYSQL="Extras\Core\FastReport.Data\FastReport.Data.MySql\FastReport.OpenSource.Data.MySql.csproj"
+MSSQL="Extras/Core/FastReport.Data/FastReport.Data.MsSql/FastReport.OpenSource.Data.MsSql.csproj"
+MYSQL="Extras/Core/FastReport.Data/FastReport.Data.MySql/FastReport.OpenSource.Data.MySql.csproj"
 
 if [ $WITH_OUT_DEBUG = false ];
 then
