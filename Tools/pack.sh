@@ -25,26 +25,31 @@ do
 done
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-PROP="/p:SolutionDir=$SCRIPTPATH/../;SolutionFileName=FastReport.OpenSource.sln;TargetFrameworks=\"netstandard2.0\";Version=$VERSION"
+PROP="/p:SolutionDir=$SCRIPTPATH/../;SolutionFileName=FastReport.OpenSource.sln;TargetFrameworks=/"netstandard2.0/";Version=$VERSION"
 FR="FastReport.OpenSource/FastReport.OpenSource.csproj"
 WEB="FastReport.Core.Web/FastReport.Web.csproj"
-MSSQL="Extras\Core\FastReport.Data\FastReport.Data.MsSql"
+MSSQL="Extras/Core/FastReport.Data/FastReport.Data.MsSql/FastReport.OpenSource.Data.MsSql.csproj"
+MYSQL="Extras/Core/FastReport.Data/FastReport.Data.MySql/FastReport.OpenSource.Data.MySql.csproj"
 
 if [ $WITH_OUT_DEBUG = false ];
 then
   dotnet clean $SCRIPTPATH/../$FR     -c Debug    "$PROP-debug" 
   dotnet clean $SCRIPTPATH/../$WEB    -c Debug    "$PROP-debug"
   dotnet clean $SCRIPTPATH/../$MSSQL  -c Debug    "$PROP-debug"
+  dotnet clean $SCRIPTPATH/../$MYSQL  -c Debug    "$PROP-debug"
 
   dotnet pack  $SCRIPTPATH/../$FR     -c Debug    "$PROP-debug"  -o ../../fr_nuget --include-symbols --include-source
   dotnet pack  $SCRIPTPATH/../$WEB    -c Debug    "$PROP-debug"  -o ../../fr_nuget --include-symbols --include-source
   dotnet pack  $SCRIPTPATH/../$MSSQL  -c Debug    "$PROP-debug"  -o ../../fr_nuget --include-symbols --include-source
+  dotnet pack  $SCRIPTPATH/../$MYSQL  -c Debug    "$PROP-debug"  -o ../../fr_nuget --include-symbols --include-source
 fi
 
 dotnet clean $SCRIPTPATH/../$FR     -c Release  "$PROP"
 dotnet clean $SCRIPTPATH/../$WEB    -c Release  "$PROP"
 dotnet clean $SCRIPTPATH/../$MSSQL  -c Release  "$PROP"
+dotnet clean $SCRIPTPATH/../$MYSQL  -c Release  "$PROP"
 
 dotnet pack  $SCRIPTPATH/../$FR     -c Release  "$PROP"  -o ../../fr_nuget
 dotnet pack  $SCRIPTPATH/../$WEB    -c Release  "$PROP"  -o ../../fr_nuget
 dotnet pack  $SCRIPTPATH/../$MSSQL  -c Release  "$PROP"  -o ../../fr_nuget
+dotnet pack  $SCRIPTPATH/../$MYSQL  -c Release  "$PROP"  -o ../../fr_nuget
