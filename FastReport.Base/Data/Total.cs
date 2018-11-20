@@ -334,8 +334,9 @@ namespace FastReport.Data
     /// <inheritdoc/>
     public override void Clear()
     {
-      value = null;
-      count = 0;
+        base.Clear();
+        value = null;
+        count = 0;
     }
     
     internal void AddValue()

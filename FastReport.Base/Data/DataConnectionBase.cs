@@ -429,6 +429,8 @@ namespace FastReport.Data
 
                     if (Report.Dictionary.Relations.FindEqual(rel) == null)
                         Report.Dictionary.Relations.Add(rel);
+                    else
+                        rel.Dispose();
                 }
             }
         }

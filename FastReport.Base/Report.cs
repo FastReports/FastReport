@@ -1456,8 +1456,11 @@ namespace FastReport
             Parameter par = GetParameter(complexName);
             if (par == null)
                 par = DataHelper.CreateParameter(Dictionary, complexName);
-            par.Value = value;
-            par.Expression = "";
+            if (par != null)
+            {
+                par.Value = value;
+                par.Expression = "";
+            }
         }
 
         /// <summary>
@@ -1926,7 +1929,9 @@ namespace FastReport
             Dictionary.RegisterDataSet(data, "Data", false);
             foreach (DataTable table in data.Tables)
             {
-                Report.GetDataSource(table.TableName).Enabled = true;
+                DataSourceBase ds = Report.GetDataSource(table.TableName);
+                if (ds != null)
+                    ds.Enabled = true;
             }
         }
 
@@ -1986,7 +1991,9 @@ namespace FastReport
                 Dictionary.RegisterDataSet(data, name, false);
                 foreach (DataTable table in data.Tables)
                 {
-                    Report.GetDataSource(table.TableName).Enabled = true;
+                    DataSourceBase ds = Report.GetDataSource(table.TableName);
+                    if (ds != null)
+                        ds.Enabled = true;
                 }
             }
         }

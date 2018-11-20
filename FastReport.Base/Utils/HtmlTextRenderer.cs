@@ -125,7 +125,7 @@ namespace FastReport.Utils
             this.font = font;
             displayRect = rect;
             rightToLeft = (format.FormatFlags & StringFormatFlags.DirectionRightToLeft) == StringFormatFlags.DirectionRightToLeft;
-            this.format = StringFormat.GenericTypographic.Clone() as StringFormat;
+            this.format = StringFormat.GenericTypographic;
             if (RightToLeft)
                 this.format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
             float firstTab;

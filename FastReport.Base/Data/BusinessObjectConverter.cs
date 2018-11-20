@@ -171,6 +171,7 @@ namespace FastReport.Data
         childColumn.Name = "Value";
         childColumn.Enabled = IsSimpleType(childColumn.Name, itemType);
         childColumn.SetBindableControlType(itemType);
+        column.Columns.Add(childColumn);
       }
 
       childColumn.DataType = itemType;
