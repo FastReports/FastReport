@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+
+<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net4;net4.5</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -9,47 +10,49 @@
 		<PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
 		<PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
 		<Authors>Fast Reports Inc.</Authors>
-		<Product>FastReport.Data.MySql</Product>
-		<Description>Represents a connection to My SQL database for FastReport.Net.</Description>
-		<PackageId>FastReport.OpenSource.Data.MySql</PackageId>
+		<Product>FastReport.Data.Json</Product>
+		<Description>Represents a connection to Json data for FastReport.Net.</Description>
+		<PackageId>FastReport.OpenSource.Data.Json</PackageId>
 		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
-		<PackageTags>reporting, mysql, connection, reports</PackageTags>
+		<PackageTags>reporting, Json, connection, reports</PackageTags>
 		<Version>1.0.0</Version>
 		<Configurations>Debug;Release;</Configurations>
-		<AssemblyName>FastReport.Data.MySql</AssemblyName>
+		<AssemblyName>FastReport.Data.Json</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
-		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageReleaseNotes>Fixed bug with Newtonsoft.Json.dll location</PackageReleaseNotes>
                 <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="MySql.Data" Version="[6.10.6,)" />
-	</ItemGroup>
 	<PropertyGroup>
 		<DefineConstants>FRCORE;</DefineConstants>
 	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="[11.0.2,)" />
+	</ItemGroup>
 
         <ItemGroup>
 		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
-		<Compile Remove="MySqlConnectionEditor.cs" />
-		<Compile Remove="MySqlConnectionEditor.Designer.cs" />
-		<Compile Remove="MySqlConnectionEditor.resx" />
-		<Compile Remove="MySqlDataConnection.DesignExt.cs" />
+		<Compile Remove="JsonConnectionEditor.cs" />
+		<Compile Remove="JsonConnectionEditor.Designer.cs" />
+		<Compile Remove="JsonConnectionEditor.resx" />
+		<Compile Remove="JsonDataConnection.DesignExt.cs" />
 	</ItemGroup>
 	<ItemGroup>
-		<EmbeddedResource Remove="MySqlConnectionEditor.resx" />
+		<EmbeddedResource Remove="JsonConnectionEditor.resx" />
 	</ItemGroup>
+	
 
 	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
 		<Reference Include="System" />
 		<Reference Include="System.Data" />
+		<Reference Include="System.Data.Entity.Design" />
 		<Reference Include="System.Design" />
 		<Reference Include="System.Drawing" />
-		<Reference Include="System.Web" />
 		<Reference Include="System.Windows.Forms" />
 		<Reference Include="System.Xml" />
 	</ItemGroup>
+
 </Project>
