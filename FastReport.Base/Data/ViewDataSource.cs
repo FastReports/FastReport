@@ -58,7 +58,10 @@ namespace FastReport.Data
     /// <inheritdoc/>
     protected override object GetValue(Column column)
     {
-      if (column.Tag == null)
+        if (column == null)
+            return null;
+
+        if (column.Tag == null)
         column.Tag = View.Table.Columns.IndexOf(column.Name);
 
       return CurrentRow == null ? null : ((DataRowView)CurrentRow)[(int)column.Tag];

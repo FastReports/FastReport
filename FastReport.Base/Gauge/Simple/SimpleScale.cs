@@ -114,6 +114,7 @@ namespace FastReport.Gauge.Simple
                     x += step;
                 }
             }
+            brush.Dispose();
         }
 
         private void DrawMinorTicksHorz(FRPaintEventArgs e)
@@ -201,6 +202,7 @@ namespace FastReport.Gauge.Simple
                     y -= step;
                 }
             }
+            brush.Dispose();
         }
 
         private void DrawMinorTicksVert(FRPaintEventArgs e)

@@ -152,41 +152,46 @@ namespace FastReport.Engine
             BandBase saveCurBand = curBand;
             curBand = band;
 
-            // do we need to keep child?
-            ChildBand child = band.Child;
-            bool showChild = child != null && !(band is DataBand && child.CompleteToNRows > 0) && !child.FillUnusedSpace &&
-                !(band is DataBand && child.PrintIfDatabandEmpty);
-            if (showChild && band.KeepChild)
+            try
             {
-                StartKeep(band);
-            }
-
-            if (outputBand != null)
-            {
-                AddToOutputBand(band, getData);
-            }
-            else
-            {
-                ShowBandToPreparedPages(band, getData);
-            }
-
-            ProcessTotals(band);
-            if (band.Visible)
-            {
-                RenderOuterSubreports(band);
-            }
-
-            // show child band. Skip if child is used to fill empty space: it was processed already
-            if (showChild)
-            {
-                ShowBand(child);
-                if (band.KeepChild)
+                // do we need to keep child?
+                ChildBand child = band.Child;
+                bool showChild = child != null && !(band is DataBand && child.CompleteToNRows > 0) && !child.FillUnusedSpace &&
+                    !(band is DataBand && child.PrintIfDatabandEmpty);
+                if (showChild && band.KeepChild)
                 {
-                    EndKeep();
+                    StartKeep(band);
+                }
+
+                if (outputBand != null)
+                {
+                    AddToOutputBand(band, getData);
+                }
+                else
+                {
+                    ShowBandToPreparedPages(band, getData);
+                }
+
+                ProcessTotals(band);
+                if (band.Visible)
+                {
+                    RenderOuterSubreports(band);
+                }
+
+                // show child band. Skip if child is used to fill empty space: it was processed already
+                if (showChild)
+                {
+                    ShowBand(child);
+                    if (band.KeepChild)
+                    {
+                        EndKeep();
+                    }
                 }
             }
-
-            curBand = saveCurBand;
+            finally
+            {
+                curBand = saveCurBand;
+            }
         }
 
         private void ProcessTotals(BandBase band)

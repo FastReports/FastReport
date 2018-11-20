@@ -838,10 +838,12 @@ namespace FastReport.Utils
 
         private void ReadHeader()
         {
-            XmlItem item = new XmlItem();
-            ReadItem(item);
-            if (item.Name.IndexOf("?xml") != 0)
-                RaiseException();
+            using (XmlItem item = new XmlItem())
+            {
+                ReadItem(item);
+                if (item.Name.IndexOf("?xml") != 0)
+                    RaiseException();
+            }
         }
 
         public void Read(XmlItem item)

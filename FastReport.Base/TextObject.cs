@@ -786,9 +786,19 @@ namespace FastReport
         {
             bool saveWordWrap = WordWrap;
             WordWrap = false;
-            SizeF size = CalcSize();
-            WordWrap = saveWordWrap;
-            return size.Width;
+            float result = 0;
+
+            try
+            {
+                SizeF size = CalcSize();
+                result = size.Width;
+            }
+            finally
+            {
+                WordWrap = saveWordWrap;
+            }
+
+            return result;
         }
 
         private float InternalCalcHeight()
@@ -1458,7 +1468,8 @@ namespace FastReport
             {
                 try
                 {
-                    if ((bool)Report.Calc(condition.Expression, varValue) == true)
+                    object val = Report.Calc(condition.Expression, varValue);
+                    if (val != null && (bool)val == true)
                     {
                         ApplyCondition(condition);
                         break;

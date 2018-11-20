@@ -865,19 +865,25 @@ namespace FastReport
         {
             bool saveAncestor = source.IsAncestor;
             source.SetAncestor(false);
-
-            using (XmlItem xml = new XmlItem())
-            using (FRWriter writer = new FRWriter(xml))
-            using (FRReader reader = new FRReader(Report, xml))
+            
+            try
             {
-                writer.SaveChildren = false;
-                writer.Write(source, this);
-                reader.Read(this);
-            }
+                using (XmlItem xml = new XmlItem())
+                using (FRWriter writer = new FRWriter(xml))
+                using (FRReader reader = new FRReader(Report, xml))
+                {
+                    writer.SaveChildren = false;
+                    writer.Write(source, this);
+                    reader.Read(this);
+                }
 
-            Alias = source.Alias;
-            OriginalComponent = source.OriginalComponent;
-            source.SetAncestor(saveAncestor);
+                Alias = source.Alias;
+                OriginalComponent = source.OriginalComponent;
+            }
+            finally
+            {
+                source.SetAncestor(saveAncestor);
+            }
         }
 
         /// <summary>Copies the contents of another, similar object.</summary>

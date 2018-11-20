@@ -127,12 +127,23 @@ namespace FastReport.Utils
     }
 
     /// <summary>
-    /// The exception that is thrown if an error occurs in the <b>MatrixObject.ManualBuild</b> event.
+    /// The exception that is thrown if a report object's Name property is set to wrong value.
     /// </summary>
     public class NotValidIdentifierException : Exception
     {
         internal NotValidIdentifierException(string value)
           : base(String.Format("'{0}' is not valid identifier name", value))
+        {
+        }
+    }
+
+    /// <summary>
+    /// The exception that is thrown if an unknown value is supplied to some methods dealing with totals, variables etc.
+    /// </summary>
+    public class UnknownNameException : Exception
+    {
+        internal UnknownNameException(string value)
+          : base(String.Format("Unknown name '{0}'", value))
         {
         }
     }
