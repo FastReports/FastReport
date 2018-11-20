@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net4</TargetFrameworks>
+		<TargetFrameworks>net4;netstandard2.0</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -46,7 +46,7 @@
 				</ProjectReference>
 				<Reference Include="FastReport">
 					<SpecificVersion>False</SpecificVersion>
-					<HintPath>..\..\..\..\FastReport\bin\Release\FastReport.dll</HintPath>
+					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>
 				</Reference>
 			</ItemGroup>
 		</Otherwise>

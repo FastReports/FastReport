@@ -24,6 +24,7 @@ SET "DATA=Extras\Core\FastReport.Data"
 rem Connections
 SET "POSTGRES=FastReport.Data.Postgres\FastReport.OpenSource.Data.Postgres.csproj"
 SET "MSSQL=FastReport.Data.MsSql\FastReport.OpenSource.Data.MsSql.csproj"
+SET "MYSQL=FastReport.Data.MySql\FastReport.OpenSource.Data.MySql.csproj"
 
 SET "OUTPUT=%~dp0..\..\fr_nuget"
 
@@ -35,21 +36,25 @@ dotnet clean !FR!                      -c Debug    "!PROP!-debug"
 dotnet clean !WEB!                     -c Debug    "!PROP!-debug"
 dotnet clean !DATA!\!POSTGRES!         -c Debug    "!PROP!-debug" 
 dotnet clean !DATA!\!MSSQL!            -c Debug    "!PROP!-debug" 
+dotnet clean !DATA!\!MYSQL!            -c Debug    "!PROP!-debug" 
 
 dotnet pack  !FR!                      -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
 dotnet pack  !WEB!                     -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
 dotnet pack  !DATA!\!POSTGRES!         -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
 dotnet pack  !DATA!\!MSSQL!            -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
+dotnet pack  !DATA!\!MYSQL!            -c Debug    "!PROP!-debug"  -o "!OUTPUT!" --include-symbols --include-source
 )
 
 dotnet clean !FR!                      -c Release  "!PROP!"
 dotnet clean !WEB!                     -c Release  "!PROP!"
 dotnet clean !DATA!\!POSTGRES!         -c Release  "!PROP!"
 dotnet clean !DATA!\!MSSQL!            -c Release  "!PROP!"
+dotnet clean !DATA!\!MYSQL!            -c Release  "!PROP!" 
                                      
 dotnet pack  !FR!                      -c Release  "!PROP!"  -o "!OUTPUT!"
 dotnet pack  !WEB!                     -c Release  "!PROP!"  -o "!OUTPUT!"
 dotnet pack  !DATA!\!POSTGRES!         -c Release  "!PROP!"  -o "!OUTPUT!"
 dotnet pack  !DATA!\!MSSQL!            -c Release  "!PROP!"  -o "!OUTPUT!"
+dotnet pack  !DATA!\!MYSQL!            -c Release  "!PROP!"  -o "!OUTPUT!"
 
 popd
