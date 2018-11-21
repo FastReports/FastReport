@@ -991,6 +991,8 @@ namespace FastReport.Barcode
             PixelSize * kx, PixelSize * ky);
         }
       }
+
+      dark.Dispose();
     }
     #endregion
 
@@ -1346,6 +1348,8 @@ namespace FastReport.Barcode
         byte[] buf = new byte[256];
         byte[] ecc = new byte[256];
         int[] c = GetPoly(nc);
+        if (c == null)
+            return;
         for (b = 0; b < blocks; b++)
         {
           int n, p = 0;

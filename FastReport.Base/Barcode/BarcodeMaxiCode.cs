@@ -104,6 +104,9 @@ namespace FastReport.Barcode
                     FieldSizeFactor * kx * ((float)circle.w - (float)circle.x),
                     FieldSizeFactor * ky * ((float)circle.h - (float)circle.y));
             }
+
+            b.Dispose();
+            p.Dispose();
         }
 
         /// <inheritdoc/>

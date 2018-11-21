@@ -64,6 +64,7 @@ namespace FastReport.Barcode
                                                PIXEL_SIZE * kx,     PIXEL_SIZE * ky);
                 }
             }
+            dark.Dispose();
         }
 
         /// <inheritdoc/>
