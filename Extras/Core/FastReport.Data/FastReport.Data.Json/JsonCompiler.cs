@@ -45,8 +45,7 @@ namespace FastReport.Json
             string nPath = Path.Combine(nLocation, "Newtonsoft.Json.dll");
 
             Type type = Utils.CompileHelper.GenerateAssemblyInMemory(source, nPath).GetType("__JSON__.__JSON__");
-            return type;
-            
+            return type;       
         }
     }
 }
