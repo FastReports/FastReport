@@ -40,25 +40,13 @@ namespace FastReport.Json
                 sw.Flush();
                 source = sw.ToString();
             }
-            
-            using (CSharpCodeProvider compiler = new CSharpCodeProvider())
-            {
-                CompilerParameters parameters = new CompilerParameters()
-                {
-                    GenerateInMemory = true
-                };
-                string nLocation = Path.GetDirectoryName(Assembly.GetCallingAssembly().Location);
-                string nPath = Path.Combine(nLocation, "Newtonsoft.Json.dll");
-                parameters.ReferencedAssemblies.Add(nPath);
-#if FRCORE
-                var mscorPath = compiler.GetReference("System.Private.CoreLib.dll").Display;
-                parameters.ReferencedAssemblies.Add(mscorPath);
-#endif
 
-                CompilerResults results = compiler.CompileAssemblyFromSource(parameters, source);
-                Type type = results.CompiledAssembly.GetType("__JSON__.__JSON__");
-                return type;
-            }
+            string nLocation = Path.GetDirectoryName(Assembly.GetCallingAssembly().Location);
+            string nPath = Path.Combine(nLocation, "Newtonsoft.Json.dll");
+
+            Type type = FastReport.Utils.CompileHelper.GenerateAssemblyInMemory(source, nPath).GetType("__JSON__.__JSON__");
+            return type;
+            
         }
     }
 }
