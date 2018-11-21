@@ -405,7 +405,7 @@ namespace FastReport.Preview
 
             // delete objects on the FFirstPassPage
             if (firstPassPage >= 0 && firstPassPage < Count)
-                preparedPages[firstPassPage].CutObjects(firstPassPosition);
+                preparedPages[firstPassPage].CutObjects(firstPassPosition).Dispose();
 
             CurPage = firstPassPage;
         }

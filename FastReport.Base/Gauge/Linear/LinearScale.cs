@@ -69,6 +69,7 @@ namespace FastReport.Gauge.Linear
                 text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                 x += step;
             }
+            brush.Dispose();
         }
 
         private void DrawMinorTicksHorz(FRPaintEventArgs e)
@@ -116,6 +117,7 @@ namespace FastReport.Gauge.Linear
                 text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                 y -= step;
             }
+            brush.Dispose();
         }
 
         private void DrawMinorTicksVert(FRPaintEventArgs e)

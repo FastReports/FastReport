@@ -1,4 +1,4 @@
-[![Gitter](https://badges.gitter.im/FastReports/FastReport.svg)](https://gitter.im/FastReports/FastReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/FastReports/FastReport.svg)](https://gitter.im/FastReports/FastReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Percentage of issues still open") [![Coverity Scan Build Status](https://scan.coverity.com/projects/17221/badge.svg)](https://scan.coverity.com/projects/fastreport)
 
 [![FastReport Open Source](https://fastreports.github.io/FastReport.Documentation/images/fros-youtube-title.jpg)](https://youtu.be/Js78gl_xAOU)
 

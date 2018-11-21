@@ -56,7 +56,10 @@ namespace FastReport.Data
 
     internal object GetValue(string name)
     {
-      return FindByName(name).Value;
+        Total t = FindByName(name);
+        if (t == null)
+            throw new UnknownNameException(name);
+        return t.Value;
     }
 
     internal void ProcessBand(BandBase band)

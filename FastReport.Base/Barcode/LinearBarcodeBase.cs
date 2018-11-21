@@ -415,8 +415,8 @@ namespace FastReport.Barcode
             {
                 float txtWidth = 0;
                 using (Bitmap bmp = new Bitmap(1, 1))
+                using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    Graphics g = Graphics.FromImage(bmp);
                     txtWidth = g.MeasureString(text, FFont, 100000).Width;
                 }
 

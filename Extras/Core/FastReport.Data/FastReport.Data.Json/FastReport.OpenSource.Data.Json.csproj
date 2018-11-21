@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net4;net4.5</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
@@ -20,7 +19,7 @@
 		<AssemblyName>FastReport.Data.Json</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
 		<PackageReleaseNotes>Fixed bug with Newtonsoft.Json.dll location</PackageReleaseNotes>
-        <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 	</PropertyGroup>
 	<PropertyGroup>
 		<DefineConstants>FRCORE;</DefineConstants>

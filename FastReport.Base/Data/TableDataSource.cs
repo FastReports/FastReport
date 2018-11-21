@@ -235,6 +235,9 @@ namespace FastReport.Data
         /// <inheritdoc/>
         protected override object GetValue(Column column)
         {
+            if (column == null)
+                return null;
+
             if (column.Tag == null)
                 column.Tag = Table.Columns.IndexOf(column.Name);
 

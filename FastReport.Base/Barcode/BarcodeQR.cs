@@ -214,6 +214,9 @@ namespace FastReport.Barcode
       }
       if (path.PointCount > 0)
         g.FillPath(dark, path);
+
+      dark.Dispose();
+      path.Dispose();
     }
     #endregion
 
