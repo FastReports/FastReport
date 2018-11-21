@@ -6,7 +6,7 @@ rem --with-out-debug for build without debug configuration
 rem created by Detrav
 
 SET "WITH_OUT_DEBUG=false"
-SET "VERSION=1.0.0"
+SET "VERSION=2018.4.13"
 
 
 for %%x in (%*) do (
@@ -26,10 +26,15 @@ SET "POSTGRES=FastReport.Data.Postgres\FastReport.OpenSource.Data.Postgres.cspro
 SET "MSSQL=FastReport.Data.MsSql\FastReport.OpenSource.Data.MsSql.csproj"
 SET "MYSQL=FastReport.Data.MySql\FastReport.OpenSource.Data.MySql.csproj"
 SET "JSON=FastReport.Data.Json\FastReport.OpenSource.Data.Json.csproj"
+SET "COUCH=FastReport.Data.Couchbase\FastReport.OpenSource.Data.Couchbase.csproj"
+SET "MONGO=FastReport.Data.MongoDB\FastReport.OpenSource.Data.MongoDB.csproj"
+SET "ORA=FastReport.Data.OracleODPCore\FastReport.OpenSource.Data.OracleODPCore.csproj"
+SET "RAVEN=FastReport.Data.RavenDB\FastReport.OpenSource.Data.RavenDB.csproj"
+SET "SQLITE=FastReport.Data.SQLite\FastReport.OpenSource.Data.SQLite.csproj"
 
 SET "OUTPUT=%~dp0..\..\fr_nuget"
 
-SET "PROJECTS=!FR! !WEB! !DATA!\!POSTGRES! !DATA!\!MSSQL! !DATA!\!MYSQL! !DATA!\!JSON!"
+SET "PROJECTS=!FR! !WEB! !DATA!\!POSTGRES! !DATA!\!MSSQL! !DATA!\!MYSQL! !DATA!\!JSON! !DATA!\!COUCH! !DATA!\!MONGO! !DATA!\!ORA! !DATA!\!RAVEN! !DATA!\!SQLITE!"
 
 
 pushd %~dp0..
