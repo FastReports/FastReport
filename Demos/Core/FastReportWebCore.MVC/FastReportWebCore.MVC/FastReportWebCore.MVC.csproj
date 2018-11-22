@@ -14,7 +14,7 @@
 
 <Choose>  
       <When Condition="'$(SolutionFileName)' == 'FastReport.OpenSource.sln'">
-        <PropertyGroup>
+        <PropertyGroup >
           <DefineConstants>OPENSOURCE;</DefineConstants>
         </PropertyGroup>
         <ItemGroup>

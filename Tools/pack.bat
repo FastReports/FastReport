@@ -6,7 +6,7 @@ rem --with-out-debug for build without debug configuration
 rem created by Detrav
 
 SET "WITH_OUT_DEBUG=false"
-SET "VERSION=2018.4.13"
+SET "VERSION=1.0.0"
 
 
 for %%x in (%*) do (
