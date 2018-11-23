@@ -26,6 +26,7 @@
     <DelegateError Text="{0} delegate must have two arguments: 'sender' and 'e'"/>
     <DeleteAncestor Text="Could not delete {0}, it was introduced in the ancestor report"/>
     <DuplicateName Text="Object with name {0} already exists"/>
+    <GroupHeaderHasNoGroupCondition Text="{0} has no group condition"/>
     <DuplicateStyle Text="Style witch such name already exists"/>
     <Error Text="Error"/>
     <EventError Text="Could not create event handler due to errors in source code"/>

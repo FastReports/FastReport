@@ -158,4 +158,15 @@ namespace FastReport.Utils
         {
         }
     }
+
+    /// <summary>
+    /// The exception that is thrown when the Group Header has no group condition.
+    /// </summary>
+    public class GroupHeaderHasNoGroupCondition : Exception
+    {
+        internal GroupHeaderHasNoGroupCondition(string name)
+          : base(String.Format(Res.Get("Messages,GroupHeaderHasNoGroupCondition"), name))
+        {
+        }       
+    }
 }

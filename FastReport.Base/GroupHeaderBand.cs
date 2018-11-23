@@ -414,12 +414,27 @@ namespace FastReport
     
     internal void ResetGroupValue()
     {
-      groupValue = Report.Calc(Condition);
+      if (!string.IsNullOrEmpty(Condition))
+      {
+        groupValue = Report.Calc(Condition);
+      }
+      else
+      {
+        throw new GroupHeaderHasNoGroupCondition(Name);
+      }
     }
 
     internal bool GroupValueChanged()
     {
-      object value = Report.Calc(Condition);
+      object value = null;
+      if (!string.IsNullOrEmpty(Condition))
+      { 
+        value = Report.Calc(Condition);
+      }
+      else
+      {
+        throw new GroupHeaderHasNoGroupCondition(Name);
+      }
       if (groupValue == null)
       {
         if (value == null)
