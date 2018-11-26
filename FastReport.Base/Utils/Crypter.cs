@@ -38,7 +38,11 @@ namespace FastReport.Utils
     public static Stream Encrypt(Stream dest, string password)
     {
       ICryptoTransform encryptor = null;
+#if DOTNET_4
       using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
+#else
+      PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt"));
+#endif
       {
         RijndaelManaged rm = new RijndaelManaged();
         rm.Padding = PaddingMode.ISO10126;
@@ -61,7 +65,11 @@ namespace FastReport.Utils
     public static Stream Decrypt(Stream source, string password)
     {
       ICryptoTransform decryptor = null;
+#if DOTNET_4
       using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
+#else
+      PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt"));
+#endif
       {
         RijndaelManaged rm = new RijndaelManaged();
         rm.Padding = PaddingMode.ISO10126;
