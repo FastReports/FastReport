@@ -37,11 +37,17 @@ namespace FastReport.Utils
     /// </remarks>
     public static Stream Encrypt(Stream dest, string password)
     {
+      ICryptoTransform encryptor = null;
+#if DOTNET_4
+      using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
+#else
       PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt"));
-      RijndaelManaged rm = new RijndaelManaged();
-      rm.Padding = PaddingMode.ISO10126;
-      ICryptoTransform encryptor = rm.CreateEncryptor(pdb.GetBytes(16), pdb.GetBytes(16));
-
+#endif
+      {
+        RijndaelManaged rm = new RijndaelManaged();
+        rm.Padding = PaddingMode.ISO10126;
+        encryptor = rm.CreateEncryptor(pdb.GetBytes(16), pdb.GetBytes(16));
+      }
       // write "rij" signature
       dest.Write(new byte[] { 114, 105, 106 }, 0, 3);
       return new CryptoStream(dest, encryptor, CryptoStreamMode.Write);
@@ -58,11 +64,17 @@ namespace FastReport.Utils
     /// </remarks>
     public static Stream Decrypt(Stream source, string password)
     {
+      ICryptoTransform decryptor = null;
+#if DOTNET_4
+      using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
+#else
       PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt"));
-      RijndaelManaged rm = new RijndaelManaged();
-      rm.Padding = PaddingMode.ISO10126;
-      ICryptoTransform decryptor = rm.CreateDecryptor(pdb.GetBytes(16), pdb.GetBytes(16));
-
+#endif
+      {
+        RijndaelManaged rm = new RijndaelManaged();
+        rm.Padding = PaddingMode.ISO10126;
+        decryptor = rm.CreateDecryptor(pdb.GetBytes(16), pdb.GetBytes(16));
+      }
       // check "rij" signature
       int byte1 = source.ReadByte();
       int byte2 = source.ReadByte();

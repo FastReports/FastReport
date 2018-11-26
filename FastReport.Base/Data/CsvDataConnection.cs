@@ -294,9 +294,12 @@ namespace FastReport.Data
 
             if (!String.IsNullOrEmpty(CsvFile) && !String.IsNullOrEmpty(Separator))
             {
-                StreamReader reader = new StreamReader(CsvFile, Encoding.GetEncoding(Codepage));
+                string allText = "";
+                using (StreamReader reader = new StreamReader(CsvFile, Encoding.GetEncoding(Codepage)))
+                {
+                    allText = reader.ReadToEnd();
+                }
                 List<string> lines = new List<string>();
-                string allText = reader.ReadToEnd();
                 lines.AddRange(allText.Split(Environment.NewLine.ToCharArray()));
 
                 // get table name from file name

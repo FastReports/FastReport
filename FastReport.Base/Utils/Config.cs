@@ -158,13 +158,15 @@ namespace FastReport.Utils
 
         internal static void Init()
         {
+#if !NETSTANDARD2_0
             string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             WebMode = String.Compare(processName, "iisexpress") == 0 ||
                       String.Compare(processName, "w3wp") == 0;
-
             if (!WebMode)
                 LoadConfig();
-
+#else
+            WebMode = true;
+#endif
             LoadPlugins();
 
             // init TextRenderingHint.SystemDefault

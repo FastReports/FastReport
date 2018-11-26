@@ -52,7 +52,7 @@
 				</ProjectReference>
 				<Reference Include="FastReport">
 					<SpecificVersion>False</SpecificVersion>
-					<HintPath>..\..\..\..\FastReport\bin\Release\FastReport.dll</HintPath>
+					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>
 				</Reference>
 			</ItemGroup>
 		</Otherwise>
