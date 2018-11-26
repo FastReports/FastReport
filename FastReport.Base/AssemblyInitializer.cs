@@ -100,7 +100,10 @@ namespace FastReport
             RegisteredObjects.Add(typeof(TableRow), "", 216);
             RegisteredObjects.Add(typeof(TableCell), "", 214);
             RegisteredObjects.Add(typeof(MatrixObject), "ReportPage", 142, 7);
+
+#if !COMMUNITY
             RegisteredObjects.Add(typeof(CrossViewObject), "ReportPage", 247, 8);
+#endif
 
             RegisteredObjects.AddCategory("ReportPage,Barcodes", 123, 9, "Objects,BarcodeObject");
             for (int i = 0; i <= Barcodes.Items.Length - 1; i++)

@@ -399,7 +399,12 @@ namespace FastReport.Code
             foreach (string a in cp.ReferencedAssemblies)
                 assemblyHashSB.Append(a);
             assemblyHashSB.Append(scriptText.ToString());
-            string assemblyHash = Convert.ToBase64String(new HMACSHA1(Encoding.ASCII.GetBytes(shaKey)).ComputeHash(Encoding.Unicode.GetBytes(assemblyHashSB.ToString())));
+            byte[] hash = null;
+            using (HMACSHA1 hMACSHA1 = new HMACSHA1(Encoding.ASCII.GetBytes(shaKey)))
+            {
+                hash = hMACSHA1.ComputeHash(Encoding.Unicode.GetBytes(assemblyHashSB.ToString()));
+            }
+            string assemblyHash = Convert.ToBase64String(hash);
             Assembly cachedAssembly = null;
             if (FAssemblyCache.TryGetValue(assemblyHash, out cachedAssembly))
             {
@@ -478,7 +483,11 @@ namespace FastReport.Code
 
         public object CalcExpression(string expr, Variant value)
         {
-            return (expressions[expr] as FastReport.Code.ExpressionDescriptor).Invoke(new object[] { expr, value });
+            FastReport.Code.ExpressionDescriptor expressionDescriptor = expressions[expr] as FastReport.Code.ExpressionDescriptor;
+            if (expressionDescriptor != null)
+                return expressionDescriptor.Invoke(new object[] { expr, value });
+            else
+                return null;
         }
 
         public void InvokeEvent(string name, object[] parms)

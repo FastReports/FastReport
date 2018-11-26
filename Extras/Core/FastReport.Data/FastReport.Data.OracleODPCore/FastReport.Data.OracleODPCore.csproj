@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -23,21 +23,80 @@
 		<PackageReleaseNotes></PackageReleaseNotes>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+		<DefineConstants>FRCORE;</DefineConstants>
+	</PropertyGroup>
+
 	<Choose>
 		<When Condition="'$(Configuration)' == 'Debug'">
-			<ItemGroup>
+			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 				<ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
+			</ItemGroup>
+			<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
+					<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+				</ProjectReference>
+				<Reference Include="FastReport">
+					<SpecificVersion>False</SpecificVersion>
+					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>
+				</Reference>
 			</ItemGroup>
 		</When>
 		<Otherwise>
-			<ItemGroup>
-				<PackageReference Include="FastReport.Core" Version="[2018.2.3-*,)" />
+			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+				<PackageReference Include="FastReport.Core" Version="[2018.2.2-*,)" />
+			</ItemGroup>
+			<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
+					<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+				</ProjectReference>
+				<Reference Include="FastReport">
+					<SpecificVersion>False</SpecificVersion>
+					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>
+				</Reference>
 			</ItemGroup>
 		</Otherwise>
 	</Choose>
+
+	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+		<Reference Include="System" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Design" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="	Oracle.ManagedDataAccess.Core" Version="[2.12.0-*,)" />
+		<PackageReference Include="Oracle.ManagedDataAccess.Core" Version="[2.12.0-*,)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+		<Compile Remove="OracleConnectionEditor.cs" />
+		<Compile Remove="OracleConnectionEditor.Designer.cs" />
+		<Compile Remove="OracleConnectionEditor.resx" />
+		<Compile Remove="OracleConnectionEditor.DesignExt.cs" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+		<EmbeddedResource Remove="OracleConnectionEditor.resx" />
+	</ItemGroup>
+
+
+	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+		<Compile Update="OracleConnectionEditor.Designer.cs">
+			<DependentUpon>OracleConnectionEditor.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+		<EmbeddedResource Update="OracleConnectionEditor.resx">
+			<DependentUpon>OracleConnectionEditor.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="OracleConnectionEditor.cs">
+	    <SubType>UserControl</SubType>
+	  </Compile>
 	</ItemGroup>
   
 </Project>

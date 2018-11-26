@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -25,11 +25,25 @@
         <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<DefineConstants>FRCORE;</DefineConstants>
+	</PropertyGroup>
+
     <ItemGroup>
 		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="	Oracle.ManagedDataAccess.Core" Version="[2.12.0-*,)" />
+		<PackageReference Include="Oracle.ManagedDataAccess.Core" Version="[2.12.0-*,)" />
+	</ItemGroup>
+
+	<ItemGroup >
+		<Compile Remove="OracleConnectionEditor.cs" />
+		<Compile Remove="OracleConnectionEditor.Designer.cs" />
+		<Compile Remove="OracleConnectionEditor.resx" />
+		<Compile Remove="OracleConnectionEditor.DesignExt.cs" />
+	</ItemGroup>
+	<ItemGroup >
+		<EmbeddedResource Remove="OracleConnectionEditor.resx" />
 	</ItemGroup>
 </Project>
