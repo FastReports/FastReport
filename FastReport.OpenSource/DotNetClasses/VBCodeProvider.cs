@@ -60,13 +60,16 @@ namespace Microsoft.VisualBasic
                     CompilerResults result = new CompilerResults();
                     foreach (Diagnostic d in results.Diagnostics)
                     {
-                        result.Errors.Add(new CompilerError()
+                        if (d.Severity == DiagnosticSeverity.Error)
                         {
-                            ErrorText = d.GetMessage(),
-                            ErrorNumber = d.Id,
-                            Line = d.Location.GetLineSpan().StartLinePosition.Line,
-                            Column = d.Location.GetLineSpan().StartLinePosition.Character
-                        });
+                            result.Errors.Add(new CompilerError()
+                            {
+                                ErrorText = d.GetMessage(),
+                                ErrorNumber = d.Id,
+                                Line = d.Location.GetLineSpan().StartLinePosition.Line,
+                                Column = d.Location.GetLineSpan().StartLinePosition.Character
+                            });
+                        }
                     }
                     return result;
                 }
