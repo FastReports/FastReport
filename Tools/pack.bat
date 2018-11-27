@@ -42,6 +42,10 @@ pushd %~dp0..
 IF "!WITH_OUT_DEBUG!"=="false" (
 
   for %%x in (%PROJECTS%) do (
+    dotnet restore %%x "!PROP!-debug"
+  )
+
+  for %%x in (%PROJECTS%) do (
     dotnet clean %%x -c Debug    "!PROP!-debug"
   )
 
@@ -50,6 +54,10 @@ IF "!WITH_OUT_DEBUG!"=="false" (
   )
 
 )
+
+  for %%x in (!PROJECTS!) do (
+    dotnet restore %%x "!PROP!"
+  )
 
   for %%x in (!PROJECTS!) do (
     dotnet clean %%x -c Release  "!PROP!"

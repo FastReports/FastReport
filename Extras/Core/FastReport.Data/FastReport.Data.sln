@@ -13,7 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Postgres", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Json", "FastReport.Data.Json\FastReport.Data.Json.csproj", "{C58DD653-F4F4-47A5-A52F-4F151A31F190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReport.Data.MongoDB", "FastReport.Data.MongoDB\FastReport.Data.MongoDB.csproj", "{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.MongoDB", "FastReport.Data.MongoDB\FastReport.Data.MongoDB.csproj", "{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.OracleODPCore", "FastReport.Data.OracleODPCore\FastReport.Data.OracleODPCore.csproj", "{62E59CEB-C587-4642-8126-44B47D8C7FAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Couchbase", "FastReport.Data.Couchbase\FastReport.Data.Couchbase.csproj", "{7FC77FBC-B25A-4BD2-ADDA-7F6935710A5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.RavenDB", "FastReport.Data.RavenDB\FastReport.Data.RavenDB.csproj", "{BB143926-05EB-4569-A474-EA21225EB6CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,18 @@ Global
 		{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BA8F49F-6BD7-42EA-9914-8BFF239A0C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E59CEB-C587-4642-8126-44B47D8C7FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E59CEB-C587-4642-8126-44B47D8C7FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E59CEB-C587-4642-8126-44B47D8C7FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E59CEB-C587-4642-8126-44B47D8C7FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC77FBC-B25A-4BD2-ADDA-7F6935710A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC77FBC-B25A-4BD2-ADDA-7F6935710A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC77FBC-B25A-4BD2-ADDA-7F6935710A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC77FBC-B25A-4BD2-ADDA-7F6935710A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB143926-05EB-4569-A474-EA21225EB6CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB143926-05EB-4569-A474-EA21225EB6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB143926-05EB-4569-A474-EA21225EB6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB143926-05EB-4569-A474-EA21225EB6CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

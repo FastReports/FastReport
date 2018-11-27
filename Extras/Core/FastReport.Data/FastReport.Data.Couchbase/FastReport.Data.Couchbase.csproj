@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net4.5</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
 		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>		
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Copyright>Fast Reports Inc.</Copyright>
@@ -34,7 +34,9 @@
 			</ItemGroup>
 			<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
 				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj" />
-				<ProjectReference Include="..\FastReport.Data.Json\FastReport.Data.Json.csproj" />
+				<ProjectReference Include="..\FastReport.Data.Json\FastReport.Data.Json.csproj" >
+
+				</ProjectReference>
 			</ItemGroup>
 		</When>
 		<Otherwise>
@@ -48,12 +50,25 @@
 				</ProjectReference>
 				<Reference Include="FastReport">
 					<SpecificVersion>False</SpecificVersion>
-					<HintPath>..\..\..\..\FastReport\bin\Release\FastReport.dll</HintPath>
+					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>
 				</Reference>
-				<PackageReference Include="FastReport.Data.Json" Version="2018.2.3-*" />
+
+
 			</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)'=='Community'">
+		<Reference Include="FastReport.Data.Json">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\FastReport.Data.Json\bin\Community\net47\FastReport.Data.Json.dll</HintPath>
+        	</Reference>
+        </ItemGroup>
+<ItemGroup Condition="'$(Configuration)'!='Community'">
+				<PackageReference Include="FastReport.Data.Json" Version="2018.2.3-*" />
+        </ItemGroup>
 		</Otherwise>
 	</Choose>
+
+        
+
 
 	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 		<Compile Remove="CouchbaseConnectionEditor.cs" />
