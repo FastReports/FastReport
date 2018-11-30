@@ -62,16 +62,28 @@ namespace FastReport.Barcode
 
     internal override string GetPattern()
     {
-      string result = tabelle_cb[FindBarItem("A")].data + "0";
+        string result = "";
+        int index = FindBarItem("A");
+        if (index >= 0)
+        {
+            result = tabelle_cb[index].data + "0";
+        }
 
-      foreach (char c in text)
-      {
-        int idx = FindBarItem(c.ToString());
-        result += tabelle_cb[idx].data + "0";
-      }
-      
-      result += tabelle_cb[FindBarItem("B")].data;
-      return result;
+        foreach (char c in text)
+        {
+            index = FindBarItem(c.ToString());
+            if (index >= 0)
+            {
+                result += tabelle_cb[index].data + "0";
+            }
+        }
+
+        index = FindBarItem("B");
+        if (index >= 0)
+        {
+            result += tabelle_cb[index].data;
+        }
+        return result;
     }
 
     /// <summary>

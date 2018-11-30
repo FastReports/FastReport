@@ -125,7 +125,7 @@ namespace FastReport.Utils
             this.font = font;
             displayRect = rect;
             rightToLeft = (format.FormatFlags & StringFormatFlags.DirectionRightToLeft) == StringFormatFlags.DirectionRightToLeft;
-            this.format = StringFormat.GenericTypographic;
+            this.format = StringFormat.GenericTypographic.Clone() as StringFormat;
             if (RightToLeft)
                 this.format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
             float firstTab;
@@ -2089,31 +2089,15 @@ namespace FastReport.Utils
                 }
                 else
                 {
-                    if (r.Width > availableWidth)
-                    {
-                        List<CharWithIndex> list = new List<CharWithIndex>();
-                        for (int i = point; i < size; i++)
-                            list.Add(chars[i]);
-                        secondPart = new RunText(renderer, word, style, list, left + r.Width, charIndex);
-                        list.Clear();
-                        for (int i = 0; i < point; i++)
-                            list.Add(chars[i]);
-                        r = new RunText(renderer, word, style, list, left, charIndex);
-
-                        return r;
-                    }
-                    else
-                    {
-                        List<CharWithIndex> list = new List<CharWithIndex>();
-                        for (int i = point; i < size; i++)
-                            list.Add(chars[i]);
-                        secondPart = new RunText(renderer, word, style, list, left + r.Width, charIndex);
-                        list.Clear();
-                        for (int i = 0; i < point; i++)
-                            list.Add(chars[i]);
-                        r = new RunText(renderer, word, style, list, left, charIndex);
-                        return r;
-                    }
+                    List<CharWithIndex> list = new List<CharWithIndex>();
+                    for (int i = point; i < size; i++)
+                        list.Add(chars[i]);
+                    secondPart = new RunText(renderer, word, style, list, left + r.Width, charIndex);
+                    list.Clear();
+                    for (int i = 0; i < point; i++)
+                        list.Add(chars[i]);
+                    r = new RunText(renderer, word, style, list, left, charIndex);
+                    return r;
                 }
             }
 

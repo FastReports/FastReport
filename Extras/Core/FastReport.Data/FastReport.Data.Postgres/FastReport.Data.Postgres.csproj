@@ -45,9 +45,6 @@
 				<PackageReference Include="FastReport.Core" Version="[2018.2.2-*,)" />
 			</ItemGroup>
 			<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
-					<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-				</ProjectReference>
 				<Reference Include="FastReport">
 					<SpecificVersion>False</SpecificVersion>
 					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>

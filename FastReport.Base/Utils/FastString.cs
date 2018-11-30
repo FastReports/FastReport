@@ -10,8 +10,14 @@ namespace FastReport.Utils
     /// </summary>
     public class FastString
     {
-        #region private fields
-        private const int initCapacity = 32;
+        #region Constants
+
+        private const int INIT_CAPACITY = 32;
+
+        #endregion Constants
+
+        #region Fields
+
         /*        private char[] chars = null;
                 private int count = 0;
                 private int capacity = 0;
@@ -20,9 +26,11 @@ namespace FastReport.Utils
         private string result = "";
         StringBuilder sb;
         private bool done = false;
-        #endregion
 
-        #region Public properties
+        #endregion Fields
+
+        #region Properties
+
         /// <summary>
         /// Gets the Length of string.
         /// </summary>
@@ -67,9 +75,11 @@ namespace FastReport.Utils
         {
             get { return sb;  }
         }
-        #endregion
 
-        #region Private methods
+        #endregion Properties
+
+        #region Private Methods
+
 /*        /// <summary>
         /// Reallocate internal array.
         /// </summary>
@@ -97,9 +107,10 @@ namespace FastReport.Utils
             //capacity = iniCapacity;
         }
 
-        #endregion
+        #endregion Private Methods
 
-        #region Public methods
+        #region Public Methods
+
         /// <summary>
         /// Checks the empty array.
         /// </summary>
@@ -424,14 +435,16 @@ namespace FastReport.Utils
             else
                 return new string(chars, startIndex, length);*/
         }
-        #endregion
+
+        #endregion Public Methods
 
         #region Constructors
+
         /// <summary>
         /// Creates the new FastString object with initial capacity.
         /// </summary>
-        /// <param name="iniCapacity">Initial capacity.</param>
-        public FastString(int iniCapacity)
+        /// <param name="initCapacity">Initial capacity.</param>
+        public FastString(int initCapacity)
         {
             Init(initCapacity);
         }
@@ -441,7 +454,7 @@ namespace FastReport.Utils
         /// </summary>
         public FastString()
         {
-            Init(initCapacity);
+            Init(INIT_CAPACITY);
         }
 
         /// <summary>
@@ -458,7 +471,8 @@ namespace FastReport.Utils
             else
                 Init(0);
         }
-        #endregion
+
+        #endregion Constructors
     }
 
     public class FastStringWithPool : FastString

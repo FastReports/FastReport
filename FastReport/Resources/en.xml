@@ -2118,6 +2118,9 @@
     </Image>
     <RichText Text="Export to Rich Text">
       <File Text="Rich Text file"/>
+      <RTFObjectAs Text="RTF object as" />
+      <Picture Text="Picture" />
+      <EmbeddedRTF Text="Embedded RTF" />
     </RichText>
     <Text Text="Export to Text/Matrix Printer">
       <File Text="Text File/Matrix Printer"/>

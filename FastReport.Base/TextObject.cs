@@ -278,7 +278,7 @@ namespace FastReport
         public ParagraphFormat ParagraphFormat
         {
             get { return paragraphFormat; }
-            set { ParagraphFormat = value; }
+            set { paragraphFormat = value; }
         }
 
         /// <summary>

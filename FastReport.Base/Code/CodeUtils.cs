@@ -255,11 +255,10 @@ namespace FastReport.Code
         /// <returns>The expression if found; otherwise, returns an empty string.</returns>
         public static string GetExpression(FindTextArgs args, bool skipStrings)
         {
-            while (args.StartIndex < args.Text.Length)
+            if (args.StartIndex < args.Text.Length)
             {
-                if (!FindMatchingBrackets(args, skipStrings))
-                    break;
-                return args.FoundText;
+                if (FindMatchingBrackets(args, skipStrings))
+                    return args.FoundText;
             }
             return "";
         }

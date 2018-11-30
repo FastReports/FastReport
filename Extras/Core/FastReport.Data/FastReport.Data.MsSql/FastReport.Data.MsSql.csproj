@@ -15,8 +15,6 @@
 		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
 		<PackageTags>reporting, mssql, connection, reports, core</PackageTags>
 		<Version>2018.2.3$(VersionSuffix)</Version>
-		<AssemblyVersion>2018.2.4.0</AssemblyVersion>
-		<FileVersion>2018.2.0.0</FileVersion>
 		<Configurations>Debug;Release;</Configurations>
 		<AssemblyName>FastReport.Data.MsSql</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>

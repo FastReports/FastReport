@@ -11,7 +11,7 @@ namespace FastReport
     /// </summary>
     public abstract partial class ComponentBase : Base
     {
-        #region Private Fields
+        #region Fields
 
         private AnchorStyles anchor;
         private DockStyle dock;
@@ -21,11 +21,12 @@ namespace FastReport
         private string tag;
         private float top;
         private bool visible;
+        private bool printable;
         private float width;
 
-        #endregion Private Fields
+        #endregion Fields
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// Gets the absolute bottom coordinate of the object.
@@ -333,6 +334,21 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Gets or sets a value that determines if the object can be printed on the printer.
+        /// </summary>
+        /// <remarks>
+        /// Object with Printable = <b>false</b> is still visible in the preview window, but not on the printout.
+        /// If you want to hide an object in the preview, set the <see cref="ComponentBase.Visible"/> property to <b>false</b>.
+        /// </remarks>
+        [DefaultValue(true)]
+        [Category("Behavior")]
+        public bool Printable
+        {
+            get { return printable; }
+            set { printable = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the width of the object.
         /// </summary>
         /// <remarks>
@@ -367,9 +383,9 @@ namespace FastReport
             }
         }
 
-        #endregion Public Properties
+        #endregion Properties
 
-        #region Public Constructors
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ComponentBase"/> class with default settings.
@@ -378,11 +394,12 @@ namespace FastReport
         {
             anchor = AnchorStyles.Left | AnchorStyles.Top;
             visible = true;
+            printable = true;
             SetFlags(Flags.CanWriteBounds | Flags.HasGlobalName, true);
             tag = "";
         }
 
-        #endregion Public Constructors
+        #endregion Constructors
 
         #region Public Methods
 
@@ -399,6 +416,7 @@ namespace FastReport
             Dock = src.Dock;
             Anchor = src.Anchor;
             Visible = src.Visible;
+            Printable = src.Printable;
             Tag = src.Tag;
         }
 
@@ -408,6 +426,8 @@ namespace FastReport
             ComponentBase c = writer.DiffObject as ComponentBase;
             base.Serialize(writer);
 
+            if (Printable != c.Printable)
+                writer.WriteBool("Printable", Printable);
             if (HasFlag(Flags.CanWriteBounds))
             {
                 if (FloatDiff(Left, c.Left))
