@@ -1515,9 +1515,10 @@ namespace FastReport
     /// is null. If the value on the right is null, returns "".
     /// </summary>
     /// <returns></returns>
-    public override string ToString() {
-      if (_value == null) return null;
-      return this.String;
+    public override string ToString()
+    {
+        if (_value == null) return "";
+        return this.String;
     }
     /// <summary>
     /// Converts the value of this instance to an equivalent <see cref="String"/>

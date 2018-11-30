@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
         <PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net4</TargetFrameworks>
+		<TargetFrameworks>net4;netstandard2.0;net47</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -20,6 +20,9 @@
 		<AssemblyName>FastReport.Data.SQLite</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
 		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageTargetFallback Condition="'$(TargetFramework)'=='net47'">
+		    $(PackageTargetFallback);net46
+		</PackageTargetFallback >
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 		<DefineConstants>FRCORE;;DEBUG;NETSTANDARD2_0</DefineConstants>
@@ -41,9 +44,6 @@
 				<PackageReference Include="FastReport.Core" Version="[2018.2.2-*,)" />
 			</ItemGroup>
 			<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
-					<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-				</ProjectReference>
 				<Reference Include="FastReport">
 					<SpecificVersion>False</SpecificVersion>
 					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>
@@ -63,7 +63,7 @@
 	</ItemGroup>
 	
 	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-		<PackageReference Include="System.Data.SQLite.Core" Version="[1.0.108,)" />
+		<PackageReference Include="System.Data.SQLite.Core" Version="[1.0.109.1,)" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
 		<Reference Include="System" />

@@ -846,19 +846,18 @@ namespace FastReport.Export.Html
                     {
                         if (singlePage)
                         {
-                            if (saveStreams)
+                            //if (saveStreams) // Commented because saveStreams is always false!!
+                            //{
+                            //    int fileIndex = GeneratedFiles.IndexOf(singlePageFileName);
+                            //    DoPageEnd(generatedStreams[fileIndex]);
+                            //}
+                            //else
+                            //{
+                            using (Stream pageStream = new FileStream(singlePageFileName, FileMode.Append))
                             {
-                                int fileIndex = GeneratedFiles.IndexOf(singlePageFileName);
-                                DoPageEnd(generatedStreams[fileIndex]);
+                                DoPageEnd(pageStream);
                             }
-                            else
-                            {
-                                using (Stream pageStream = new FileStream(singlePageFileName,
-                                    FileMode.Append))
-                                {
-                                    DoPageEnd(pageStream);
-                                }
-                            }
+                            //} // Commented because saveStreams is always false!!
                         }
                         ExportHTMLIndex(Stream);
                         GeneratedFiles.Add(targetIndexPath + navFileName);
