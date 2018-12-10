@@ -651,5 +651,10 @@ namespace FastReport.Export
             return cellReference.ToString();
         }
 
+        private static CultureInfo INVARIANT_CULTURE = CultureInfo.InvariantCulture;
+        internal static string StringFormat(string formatString, params object[] objects)
+        {
+            return String.Format(INVARIANT_CULTURE, formatString, objects);
+        }
     }
 }

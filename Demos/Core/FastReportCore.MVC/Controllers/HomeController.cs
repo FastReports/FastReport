@@ -127,7 +127,9 @@ namespace FastReportCore.MVC.Controllers
                     export.Export(r, ms);
                     ms.Flush();
                     ViewData["Report"] = Encoding.UTF8.GetString(ms.ToArray());
-                    ViewData["ReportName"] = strReport;
+#if !OPENSOURCE
+                    ViewData["ReportName"] = report;
+#endif
                 }
             }
             return View();

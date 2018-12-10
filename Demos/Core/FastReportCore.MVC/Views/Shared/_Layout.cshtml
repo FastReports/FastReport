@@ -44,11 +44,9 @@
                     
                     @if (ViewData.ContainsKey("ReportName"))
                     {
-#if !OPENSOURCE
                         <li><a class="btn btn-danger" asp-controller="Home" asp-action="Pdf" asp-route-report="@ViewData["ReportName"]">Download PDF</a></li>
-#endif
                     }
-                  
+
                     @foreach (KeyValuePair<string, Dictionary<string, int>> category in FastReportCore.MVC.Controllers.HomeController.Reports)
                     {
                         <li>@category.Key</li>

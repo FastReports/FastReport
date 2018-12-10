@@ -124,7 +124,9 @@ namespace FastReport
         result.Trimming = trimming;
         result.FormatFlags = flags;
         float[] tabStops = new float[64];
-        for (int i = 0; i < 64; i++)
+        // fixed issue 2823
+        tabStops[0] = firstTab;
+        for (int i = 1; i < 64; i++)
         {
           tabStops[i] = tabWidth;
         }

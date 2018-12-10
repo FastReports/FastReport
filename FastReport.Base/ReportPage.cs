@@ -968,6 +968,8 @@ namespace FastReport
             {
               if (!obj.Printable)
                 continue;
+              else if (obj.Parent is BandBase && !(obj.Parent as BandBase).Printable)
+                continue;
             }
             obj.SetDesigning(false);
             obj.SetPrinting(IsPrinting);

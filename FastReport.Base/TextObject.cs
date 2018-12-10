@@ -644,7 +644,7 @@ namespace FastReport
 
 
         /// <summary>
-        /// Gets or sets the paragraph offset, in pixels.
+        /// Gets or sets the paragraph offset, in pixels. For HtmlParagraph use ParagraphFormat.FirstLineIndent.
         /// </summary>
         [DefaultValue(0f)]
         [Category("Appearance")]
@@ -957,6 +957,7 @@ namespace FastReport
 
         private string MakeParagraphOffset(string text)
         {
+            // fixed issue 2823
             FirstTabOffset = ParagraphOffset;
             string[] lines = text.Split(new char[] { '\n' });
             for (int i = 0; i < lines.Length; i++)
