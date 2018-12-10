@@ -161,10 +161,11 @@ namespace FastReport.Utils
     {
       get
       {
+        // re fix tab offset #2823 sorry linux users, on linux firstTab is firstTab not tabSizes[0]
         float firstTab = 0;
         float[] tabSizes = Format.GetTabStops(out firstTab);
-        if (tabSizes.Length > 0)
-          return tabSizes[0];
+        if (tabSizes.Length > 1)
+          return tabSizes[1];
         return 0;
       }
     }
@@ -173,9 +174,12 @@ namespace FastReport.Utils
     {
       get
       {
+        // re fix tab offset #2823 sorry linux users, on linux firstTab is firstTab not tabSizes[0]
         float firstTab = 0;
         float[] tabSizes = Format.GetTabStops(out firstTab);
-        return firstTab;
+        if (tabSizes.Length > 0)
+          return tabSizes[0];
+        return 0;
       }
     }
 
