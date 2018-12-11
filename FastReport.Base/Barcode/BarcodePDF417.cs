@@ -1529,6 +1529,7 @@ namespace FastReport.Barcode
             PixelSize.Width * kx, PixelSize.Height * ky);
         }
       }
+      dark.Dispose();
     }
     #endregion
 
