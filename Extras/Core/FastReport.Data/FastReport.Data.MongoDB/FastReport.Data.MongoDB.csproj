@@ -15,7 +15,7 @@
 		<PackageId>FastReport.Data.MongoDB</PackageId>
 		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
 		<PackageTags>reporting, MongoDB, connection, reports</PackageTags>
-		<Version>2018.2.2$(VersionSuffix)</Version>
+		<Version>1.0.0</Version>
 		<Configurations>Debug;Release;</Configurations>
 		<AssemblyName>FastReport.Data.MongoDB</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
@@ -31,27 +31,13 @@
 		<PackageReference Include="MongoDB.Driver.Core" Version="[2.5.0,)" />
 	</ItemGroup>
 	
-	<Choose>
-		<When Condition="'$(Configuration)' == 'Debug'">
 			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 				<ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
 			</ItemGroup>
 			<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj" />
+				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj"><PrivateAssets>all</PrivateAssets></ProjectReference>
 			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-				<PackageReference Include="FastReport.Core" Version="2018.2.2-*" />
-			</ItemGroup>
-			<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-				<Reference Include="FastReport">
-					<SpecificVersion>False</SpecificVersion>
-					<HintPath>..\..\..\..\FastReport\bin\$(Configuration)\FastReport.dll</HintPath>
-				</Reference>
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
+
 	
 	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 		<Compile Remove="MongoDBConnectionEditor.cs" />

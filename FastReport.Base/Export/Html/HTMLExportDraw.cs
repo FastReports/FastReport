@@ -317,7 +317,7 @@ namespace FastReport.Export.Html
                         if (!saveStreams)
                             GeneratedFiles.Add(targetPath + ImageFileName);
                     }
-                    if (EmbedPictures)
+                    if (EmbedPictures && PictureStream != null)
                     {
                         return embedPreffix + Convert.ToBase64String(PictureStream.ToArray());
                     }

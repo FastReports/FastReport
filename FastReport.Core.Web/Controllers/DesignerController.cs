@@ -181,42 +181,44 @@ namespace FastReport.Web.Controllers
 
         IActionResult GetFunctions()
         {
-            var xml = new XmlDocument();
-            xml.AutoIndent = true;
-            var list = new List<ObjectInfo>();
-            RegisteredObjects.Objects.EnumItems(list);
-            ObjectInfo rootFunctions = null;
-
-            foreach (ObjectInfo item in list)
+            using (var xml = new XmlDocument())
             {
-                if (item.Name == "Functions")
+                xml.AutoIndent = true;
+                var list = new List<ObjectInfo>();
+                RegisteredObjects.Objects.EnumItems(list);
+                ObjectInfo rootFunctions = null;
+
+                foreach (ObjectInfo item in list)
                 {
-                    rootFunctions = item;
-                    break;
+                    if (item.Name == "Functions")
+                    {
+                        rootFunctions = item;
+                        break;
+                    }
                 }
-            }
 
-            xml.Root.Name = "ReportFunctions";
+                xml.Root.Name = "ReportFunctions";
 
-// TODO
-//#if !FRCORE
-//            if (rootFunctions != null)
-//                RegisteredObjects.CreateFunctionsTree(Report, rootFunctions, xml.Root);
-//#endif
+                // TODO
+                //#if !FRCORE
+                //            if (rootFunctions != null)
+                //                RegisteredObjects.CreateFunctionsTree(Report, rootFunctions, xml.Root);
+                //#endif
 
-            using (var stream = new MemoryStream())
-            {
-                xml.Save(stream);
-                stream.Position = 0;
-                byte[] buff = new byte[stream.Length];
-                stream.Read(buff, 0, buff.Length);
-
-                return new ContentResult()
+                using (var stream = new MemoryStream())
                 {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    ContentType = "application/xml",
-                    Content = Encoding.UTF8.GetString(buff),
-                };
+                    xml.Save(stream);
+                    stream.Position = 0;
+                    byte[] buff = new byte[stream.Length];
+                    stream.Read(buff, 0, buff.Length);
+
+                    return new ContentResult()
+                    {
+                        StatusCode = (int)HttpStatusCode.OK,
+                        ContentType = "application/xml",
+                        Content = Encoding.UTF8.GetString(buff),
+                    };
+                }
             }
         }
 

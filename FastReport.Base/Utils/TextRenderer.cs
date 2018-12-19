@@ -523,12 +523,16 @@ namespace FastReport.Utils
                     // BEGIN: The fix for linux and core app a264aae5-193b-4e5c-955c-0818de3ca01b
                     float left = 0;
                     int tabFit = 0;
-                    while (text[0] == '\t')
+                    while (text.Length > 0 && text[0] == '\t')
                     {
                         left = Renderer.GetTabPosition(left);
                         text = text.Substring(1);
+                        if (Renderer.DisplayRect.Width < left)
+                            return tabFit;
                         tabFit++;
                     }
+                    if (tabFit > 0 && Renderer.DisplayRect.Width < left)
+                        return tabFit;
                     int charsFit = 0;
                     int linesFit = 0;
                     // END: The fix for linux and core app a264aae5-193b-4e5c-955c-0818de3ca01b

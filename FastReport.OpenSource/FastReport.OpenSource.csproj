@@ -18,7 +18,7 @@
     <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
     <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
     <Version>1.0.0</Version>
-    <Configurations>Debug;Release;Academic;Demo;WinForms</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <AssemblyName>FastReport</AssemblyName>
     <RootNamespace>FastReport</RootNamespace>
     <Description>FastReport Open Source is an open source reporting solution for .Net Core 2.x and .Net Framework 4.x. 

@@ -1526,6 +1526,7 @@
       <PagesOnSheet8 Text="8 pages"/>
       <Print Text="Print"/>
       <Error Text="Invalid page range."/>
+      <CmdCommand Text="Command" />
     </PrinterSetup>
     <QueryBuilder Text="Query Builder">
       <Designer Text="Designer"/>

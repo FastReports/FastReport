@@ -52,8 +52,12 @@ namespace FastReport
             get { return reportPage; }
             set
             {
-                if (reportPage != null)
-                    reportPage.Subreport = null;
+                if (value == Page)
+                    return;
+                if (reportPage != null && value != reportPage)
+                {
+                    RemoveSubReport(false);
+                }
                 if (value != null)
                 {
                     value.Subreport = this;
@@ -77,6 +81,44 @@ namespace FastReport
             set { printOnParent = value; }
         }
         #endregion
+
+        private void RemoveSubReport(bool delete)
+        {
+            if (reportPage != null)
+            {
+                if (Report != null)
+                {
+                    foreach (Base obj in Report.AllObjects)
+                    {
+                        if (obj is SubreportObject && obj != this)
+                        {
+                            SubreportObject subReport = obj as SubreportObject;
+                            if (subReport.ReportPage == reportPage)
+                            {
+
+                                reportPage.Subreport = subReport;
+                                reportPage.PageName = subReport.Name;
+                                reportPage = null;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (reportPage != null)
+                {
+                    if (delete && Report != null)
+                    {
+                        reportPage.Dispose();
+                    }
+                    else
+                    {
+                        reportPage.Subreport = null;
+                        reportPage.PageName = reportPage.Name;
+                    }
+                    reportPage = null;
+                }
+            }
+        }
 
         #region Public Methods
         /// <inheritdoc/>

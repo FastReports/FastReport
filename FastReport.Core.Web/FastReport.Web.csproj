@@ -39,9 +39,8 @@ Various report objects will allow your report to look exactly how you want it to
         <ItemGroup>
           <ProjectReference Include="$(SolutionDir)FastReport.OpenSource\FastReport.OpenSource.csproj" />
         </ItemGroup>
-
       </When>  
-      <When Condition="'$(SolutionFileName)' == 'FastReport.Core.sln'">
+      <When Condition="'$(SolutionFileName)' == 'FastReport.Net.sln'">
         <PropertyGroup>
           <PackageId>FastReport.Web</PackageId>
           <AssemblyOriginatorKeyFile>../FastReport.Net.snk</AssemblyOriginatorKeyFile>

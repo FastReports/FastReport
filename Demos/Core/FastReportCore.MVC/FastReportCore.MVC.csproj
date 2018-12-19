@@ -32,14 +32,9 @@
           <ProjectReference Include="$(SolutionDir)FastReport.OpenSource\FastReport.OpenSource.csproj" />
         </ItemGroup>
       </When>  
-      <When Condition="'$(SolutionFileName)' == 'FastReport.Core.sln'">
-        <ItemGroup>
-          <ProjectReference Include="$(SolutionDir)FastReport.Core\FastReport.Core.csproj" />
-        </ItemGroup>
-      </When>  
       <Otherwise>
         <ItemGroup>
-          <PackageReference Include="FastReport.Core" Version="2017.4.0" />
+          <PackageReference Include="FastReport.Core" Version="2018.4.0" />
         </ItemGroup>
       </Otherwise>  
   </Choose>
