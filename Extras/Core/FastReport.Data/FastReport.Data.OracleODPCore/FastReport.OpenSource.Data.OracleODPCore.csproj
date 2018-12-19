@@ -15,7 +15,7 @@
 		<PackageId>FastReport.OpenSource.Data.OracleODPCore</PackageId>
 		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
 		<PackageTags>reporting, oracle, core, connection, reports</PackageTags>
-		<Version>2018.4.13$(VersionSuffix)</Version>
+		<Version>1.0.0</Version>
 		<Configurations>Debug;Release;</Configurations>
 		<AssemblyName>FastReport.Data.OracleODPCore</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>

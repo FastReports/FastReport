@@ -14,7 +14,7 @@
 		<PackageId>FastReport.Data.MsSql</PackageId>
 		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
 		<PackageTags>reporting, mssql, connection, reports, core</PackageTags>
-		<Version>2018.2.3$(VersionSuffix)</Version>
+		<Version>1.0.0</Version>
 		<Configurations>Debug;Release;</Configurations>
 		<AssemblyName>FastReport.Data.MsSql</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
@@ -25,17 +25,8 @@
 		<PackageReference Include="System.Data.SqlClient" Version="4.4.3" />
 	</ItemGroup>
 
-	<Choose>
-		<When Condition="'$(Configuration)' == 'Debug'">
 			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 				<ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
 			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-				<PackageReference Include="FastReport.Core" Version="[2018.2.2-ci-*,)" />
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
 
 </Project>

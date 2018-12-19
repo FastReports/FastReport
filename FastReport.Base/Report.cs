@@ -957,7 +957,14 @@ namespace FastReport
         {
             ReportInfo.Clear();
             Dictionary.Clear();
-            ScriptLanguage = Config.ReportSettings.DefaultLanguage;
+            if (IsDesigning)
+            {
+                ScriptLanguage = Config.ReportSettings.DefaultLanguage;
+            }
+            else
+            {
+                ScriptLanguage = Language.CSharp;
+            }
             ScriptText = codeHelper.EmptyScript();
             BaseReport = "";
             DoublePass = false;

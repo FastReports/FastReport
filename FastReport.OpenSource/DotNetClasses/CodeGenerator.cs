@@ -10,7 +10,6 @@ namespace System.CodeDom.Compiler
         {
             //TODO o_0 what????
             return true;
-            throw new NotImplementedException();
         }
     }
 }

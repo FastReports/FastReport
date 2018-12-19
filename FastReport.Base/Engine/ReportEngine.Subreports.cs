@@ -8,7 +8,8 @@ namespace FastReport.Engine
 
         private void RenderSubreport(SubreportObject subreport)
         {
-            RunBands(subreport.ReportPage.Bands);
+            if (subreport.ReportPage != null)
+                RunBands(subreport.ReportPage.Bands);
         }
 
         private void RenderInnerSubreport(BandBase parentBand, SubreportObject subreport)

@@ -1069,9 +1069,15 @@ namespace FastReport
 
         internal HtmlTextRenderer GetHtmlTextRenderer(Graphics g, float scale, float fontScale, RectangleF textRect, StringFormat format)
         {
+            return GetHtmlTextRenderer(g, fontScale, scale, fontScale, textRect, format);
+        }
+
+
+        internal HtmlTextRenderer GetHtmlTextRenderer(Graphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format)
+        {
             return new HtmlTextRenderer(Text, g, font.Name, font.Size, font.Style, TextColor,
                       textOutline.Color, textRect, Underlines,
-                      format, horzAlign, vertAlign, ParagraphFormat.MultipleScale(fontScale), ForceJustify,
+                      format, horzAlign, vertAlign, ParagraphFormat.MultipleScale(formatScale), ForceJustify,
                       scale * 96f / DrawUtils.ScreenDpi, fontScale * 96f / DrawUtils.ScreenDpi, InlineImageCache
                       );
         }
@@ -1119,21 +1125,28 @@ namespace FastReport
                     switch (TextRenderType)
                     {
                         case TextRenderType.HtmlParagraph:
+                            try
                             {
-                                HtmlTextRenderer renderer = GetHtmlTextRenderer(e.Graphics, e.ScaleX, IsPrinting ? 1 : e.ScaleX, textRect, format);
-
-                                renderer.Draw();
+                                HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(e.Graphics, e.ScaleX,
+                                    IsPrinting ? 1 : e.ScaleX, IsPrinting ? 1 : e.ScaleX, textRect, format);
+                                htmlRenderer.Draw();
+                            }
+                            catch
+                            {
+                                textBrush.Dispose();
+                                textBrush = null;
                             }
                             break;
                         default:
                             if (IsAdvancedRendererNeeded)
                             {
                                 // use advanced rendering
-                                AdvancedTextRenderer renderer = new AdvancedTextRenderer(text, g, font, textBrush, outlinePen,
-                                  textRect, format, HorzAlign, VertAlign, LineHeight * e.ScaleY, Angle, FontWidthRatio,
-                                  ForceJustify, Wysiwyg, HasHtmlTags, false, e.ScaleX * 96f / DrawUtils.ScreenDpi, IsPrinting ? 1 : e.ScaleX * 96f / DrawUtils.ScreenDpi,
-                                  InlineImageCache);
-                                renderer.Draw();
+                                AdvancedTextRenderer advancedRenderer = new AdvancedTextRenderer(text, g, font, textBrush,
+                                    outlinePen, textRect, format, HorzAlign, VertAlign, LineHeight * e.ScaleY, Angle,
+                                    FontWidthRatio, ForceJustify, Wysiwyg, HasHtmlTags, false,
+                                    e.ScaleX * 96f / DrawUtils.ScreenDpi,
+                                    IsPrinting ? 1 : e.ScaleX * 96f / DrawUtils.ScreenDpi, InlineImageCache);
+                                advancedRenderer.Draw();
                             }
                             else
                             {
@@ -1147,7 +1160,8 @@ namespace FastReport
                                     else
                                     {
                                         GraphicsPath path = new GraphicsPath();
-                                        path.AddString(text, font.FontFamily, Convert.ToInt32(font.Style), g.DpiY * font.Size / 72, textRect, format);
+                                        path.AddString(text, font.FontFamily, Convert.ToInt32(font.Style),
+                                            g.DpiY * font.Size / 72, textRect, format);
 
                                         GraphicsState state = g.Save();
                                         g.SetClip(textRect);
@@ -1170,7 +1184,8 @@ namespace FastReport
                                     }
                                 }
                                 else
-                                    StandardTextRenderer.Draw(text, g, font, textBrush, outlinePen, textRect, format, Angle, FontWidthRatio);
+                                    StandardTextRenderer.Draw(text, g, font, textBrush, outlinePen, textRect, format, Angle,
+                                        FontWidthRatio);
 
                             }
                             DrawUnderlines(e);
@@ -1565,13 +1580,7 @@ namespace FastReport
                                       );
 
 
-                                    if (left < 0
-                                      ||
-                                      top < 0
-                                      ||
-                                      width < runImage.Width
-                                      ||
-                                      height < runImage.Height)
+                                    if (left < 0 || top < 0 || width < runImage.Width || height < runImage.Height)
                                     {
                                         Bitmap bmp = new Bitmap((int)width, (int)height);
                                         using (Graphics g = Graphics.FromImage(bmp))
