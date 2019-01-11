@@ -248,7 +248,7 @@ namespace FastReport.Barcode
 
       for (int i = 0; i <= 4; i++)
       {
-        if (tabelle_UPC_E0[CharToInt(c), i] == "E")
+        if (tabelle_UPC_E0[CharToInt(c), 1 + i] == "E")
         {
           for (int j = 0; j <= 3; j++)
             result += tabelle_EAN_C[CharToInt(tmp[i])][3 - j];

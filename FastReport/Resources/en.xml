@@ -1527,6 +1527,7 @@
       <Print Text="Print"/>
       <Error Text="Invalid page range."/>
       <CmdCommand Text="Command" />
+      <CmdDescription Text="Replace 'report1.fpx report2.fpx ... reportN.fpx' with your own reports and copy the following command:" />
     </PrinterSetup>
     <QueryBuilder Text="Query Builder">
       <Designer Text="Designer"/>

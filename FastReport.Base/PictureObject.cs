@@ -421,7 +421,11 @@ namespace FastReport
                                     bytes = stream.ToArray();
                                 }
                             }
-                            imageIndex = writer.BlobStore.Add(bytes);
+                            if (bytes != null)
+                            {
+                                string imgHash = BitConverter.ToString(new Murmur3().ComputeHash(bytes));
+                                imageIndex = writer.BlobStore.AddOrUpdate(bytes, imgHash);
+                            }
                         }
                     }
                     else

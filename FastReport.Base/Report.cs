@@ -1256,7 +1256,8 @@ namespace FastReport
                 DataSourceBase data = cachedItem.dataSource;
                 Column column = cachedItem.column;
 
-                object val = column.Value;
+                object val = Convert.ChangeType(column.Value, column.DataType);                
+                
                 if (ConvertNulls && (val == null || val is DBNull))
                     val = Converter.ConvertNull(column.DataType);
 
