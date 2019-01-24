@@ -1,0 +1,170 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <RootNamespace>SPAOnlineDesigner</RootNamespace>
+    <PackageId>SPAOnlineDesigner</PackageId>
+    <Authors>SPAOnlineDesigner</Authors>
+    <Company>SPAOnlineDesigner</Company>
+    <Product>SPAOnlineDesigner</Product>
+    <AssemblyName>SPAOnlineDesigner</AssemblyName>
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastReport.OpenSource" Version="2019.1.0" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="2019.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Net.Compilers" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\http.service.ts" />
+    <None Remove="ClientApp\src\app\safeHtml.pipe.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\Master-Detail.frx" />
+    <Content Include="App_Data\nwind.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.0.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.1.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.10.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.11.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.12.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.13.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.2.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.3.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.4.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.5.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.6.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.7.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.8.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.9.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.config-data.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.main.js" />
+    <None Include="wwwroot\WebReportDesigner\c5b5efa0.vendors.js" />
+    <None Include="wwwroot\WebReportDesigner\fonts\fontawesome-webfont.af7ae505a9eed503f8b8e6982036873e.woff2" />
+    <None Include="wwwroot\WebReportDesigner\license.designer_19.10.2017.pdf" />
+    <None Include="wwwroot\WebReportDesigner\svg\fontawesome-webfont.912ec66d7572ff821749319396470bde.svg" />
+    <None Include="wwwroot\WebReportDesigner\web.config" />
+    <None Include="wwwroot\WebReportDesigner\__offline_serviceworker" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ActiveQueryBuilder.EventMetadataProvider">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.EventMetadataProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.FirebirdMetadataProvider">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.FirebirdMetadataProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.InformixMetadataProvider">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.InformixMetadataProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.OracleNativeMetadataProvider">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.OracleNativeMetadataProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.SQLiteMetadataProvider">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.SQLiteMetadataProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.SybaseMetadataProvider">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.SybaseMetadataProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.View">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.View.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.View.WinForms">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.View.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.View.WinForms.DevExpress">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.View.WinForms.DevExpress.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveQueryBuilder.View.WPF">
+      <HintPath>J:\Program Files\ActiveDBSoft\Active Query Builder 3 .NET Trial Edition\assemblies\ActiveQueryBuilder.View.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport">
+      <HintPath>J:\Git\fastcube-net-master-816bb05cc7d64074cbbbaaef658fee66fa4a5bfa\FastReport.Olap\bin\Release\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Mono">
+      <HintPath>D:\Downloads\frmono_demo\FastReport.Mono.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Web">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\Framework 4.0\FastReport.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\Demos\C#\Web\MvcOnlineDesigner\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\Demos\C#\Web\MvcOnlineDesigner\bin\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\Demos\C#\Web\MvcOnlineDesigner\bin\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\Demos\C#\Web\MvcOnlineDesigner\bin\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\Demos\C#\Web\MvcOnlineDesigner\bin\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>J:\Program Files (x86)\FastReports\FastReport.Net\Demos\C#\Web\MvcOnlineDesigner\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\http.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\safeHtml.pipe.ts" />
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>
