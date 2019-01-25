@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates master-detail report. To create it:&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu;&#13;&#10;- select the existing data band;&#13;&#10;- press the &quot;Add&quot; button and select the &quot;Data&quot; band - this will add a data band to existing one;&#13;&#10;- return to the report page, doubleclick each data band and set its datasource.&#13;&#10;Note: if you have defined the relation between master and detail tables, FastReport will use it automatically." ReportInfo.Created="01/17/2008 03:55:42" ReportInfo.Modified="08/24/2015 12:40:37" ReportInfo.CreatorVersion="1.0.0.0">
+  <Styles>
+    <Style Name="EvenRows"/>
+  </Styles>
+  <Dictionary>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID" Enabled="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6" CanGrow="true">
+      <TextObject Name="Text3" Top="37.8" Width="718.2" Height="37.8" Text="PRODUCT CATALOG" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="79.6" Width="718.2" Height="103.95" Fill="Glass" Fill.Color="64, 64, 64" Fill.Blend="0.08" Fill.Hatch="true" DataSource="Categories" KeepDetail="true">
+      <TextObject Name="Text1" Left="160.65" Top="9.45" Width="302.4" Height="37.8" Text="[Categories.CategoryName]" Font="Tahoma, 18pt" TextFill.Color="White"/>
+      <PictureObject Name="Picture1" Left="9.45" Top="9.45" Width="141.75" Height="85.05" Border.Lines="All" Border.Color="Gray" Border.Width="2" SizeMode="StretchImage" DataColumn="Categories.Picture"/>
+      <TextObject Name="Text2" Left="160.65" Top="56.7" Width="302.4" Height="37.8" Text="[Categories.Description]" Font="Tahoma, 8pt" TextFill.Color="White"/>
+      <DataBand Name="Data2" Top="219.9" Width="718.2" Height="18.9" Fill.Color="WhiteSmoke" EvenStyle="EvenRows" DataSource="Products">
+        <TextObject Name="Text5" Width="292.95" Height="18.9" Text="[Products.ProductName]" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <TextObject Name="Text7" Left="321.3" Width="122.85" Height="18.9" Text="[Products.UnitPrice]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <TextObject Name="Text9" Left="472.5" Width="122.85" Height="18.9" Text="[Products.UnitsInStock]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <CheckBoxObject Name="CheckBox1" Left="661.5" Width="18.9" Height="18.9" DataColumn="Products.Discontinued"/>
+        <DataHeaderBand Name="DataHeader1" Top="187.55" Width="718.2" Height="28.35">
+          <TextObject Name="Text6" Width="292.95" Height="28.35" Text="Product name" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TextObject Name="Text8" Left="321.3" Width="122.85" Height="28.35" Text="Unit price" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TextObject Name="Text10" Left="472.5" Width="122.85" Height="28.35" Text="Units in stock" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TextObject Name="Text12" Left="623.7" Width="94.5" Height="28.35" Text="Discontinued" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        </DataHeaderBand>
+        <DataFooterBand Name="DataFooter1" Top="242.8" Width="718.2" Height="16"/>
+        <Sort>
+          <Sort Expression="[Products.ProductName]"/>
+        </Sort>
+      </DataBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="262.8" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text4" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text13" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
