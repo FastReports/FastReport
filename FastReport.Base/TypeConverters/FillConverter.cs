@@ -49,6 +49,9 @@ namespace FastReport.TypeConverters
                     case "Glass":
                         result = new GlassFill();
                         break;
+                    case "Texture":
+                        result = new TextureFill();
+                        break;
                 }
                 return result;
             }

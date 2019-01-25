@@ -405,8 +405,6 @@ namespace FastReport.Export
 
                 try
                 {
-                    
-
                     for (int i = 0; i < GetPagesCount(pages); i++)
                     {
                         if (ShowProgress)
@@ -418,7 +416,6 @@ namespace FastReport.Export
                             ExportPageNew(pages[i]);
                         else
                             break;
-
                     }
                 }
                 finally

@@ -126,5 +126,6 @@
     <Report File="Print Copy Names.frx"  WebDemo="false"/>
     <Report File="Box.frx" Basic="false" WebDemo="false"/>
     <Report File="Unicode.frx" />
+	<Report File="TextureFill.frx" />
   </Folder>
 </Reports>

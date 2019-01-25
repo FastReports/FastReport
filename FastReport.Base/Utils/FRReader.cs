@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace FastReport.Utils
 {
+    
     /// <summary>
     /// The reader used to deserialize object's properties from a report file.
     /// </summary>
@@ -22,6 +23,7 @@ namespace FastReport.Utils
         private Report report;
         private BlobStore blobStore;
         private bool readChildren;
+        private SerializeTo deserializeFrom;
         #endregion
 
         #region Properties
@@ -54,6 +56,36 @@ namespace FastReport.Utils
         {
             get { return readChildren; }
             set { readChildren = value; }
+        }
+
+        /// <summary>
+        /// Returns Root element for this reader
+        /// </summary>
+        public XmlItem Root
+        {
+            get
+            {
+                if (curItem != null)
+                    return GetRoot(curItem, 11);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets target of serialization.
+        /// </summary>
+        public SerializeTo DeserializeFrom
+        {
+            get { return deserializeFrom; }
+            set { deserializeFrom = value; }
+        }
+
+        private XmlItem GetRoot(XmlItem item, int count)
+        {
+            if (count < 0 || item.Parent==null)
+                return item;
+            return GetRoot(item.Parent, count - 1);
+
         }
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -24,8 +25,8 @@ namespace FastReport.Web
 
         #endregion
 
-        Dictionary<string, string> cache1 = new Dictionary<string, string>();
-        Dictionary<string, byte[]> cache2 = new Dictionary<string, byte[]>();
+        ConcurrentDictionary<string, string> cache1 = new ConcurrentDictionary<string, string>();
+        ConcurrentDictionary<string, byte[]> cache2 = new ConcurrentDictionary<string, byte[]>();
 
         public async Task<string> GetContent(string name)
         {

@@ -156,7 +156,7 @@ namespace FastReport
             Border.Serialize(writer, "Border", c.Border);
             Fill.Serialize(writer, "Fill", c.Fill);
             TextFill.Serialize(writer, "TextFill", c.TextFill);
-            if (!Font.Equals(c.Font))
+            if (writer.SerializeTo != SerializeTo.Preview || !Font.Equals(c.Font))
                 writer.WriteValue("Font", Font);
             if (ApplyBorder != c.ApplyBorder)
                 writer.WriteBool("ApplyBorder", ApplyBorder);

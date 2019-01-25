@@ -198,7 +198,7 @@ namespace FastReport.Gauge.Radial
             Graphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
-    Parent.Width * e.ScaleX, Parent.Height * e.ScaleY));
+    Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
             sideTicksCount = (MajorTicks.Count - 1) / 2;
             MajorTicks.Length = width / 12;
 

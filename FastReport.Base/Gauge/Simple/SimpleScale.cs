@@ -72,7 +72,7 @@ namespace FastReport.Gauge.Simple
         {
             Graphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
-            Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft, Parent.AbsTop, Parent.Width, Parent.Height));
+            Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft, Parent.AbsTop, Parent.Width, Parent.Height), e.ScaleX, e.ScaleY);
             pointerHeightOffset = (Parent.Pointer as SimplePointer).Height / 2 + Parent.Pointer.BorderWidth * 2 * e.ScaleY;
             float x = left;
             float y1 = top;
@@ -160,7 +160,7 @@ namespace FastReport.Gauge.Simple
             Graphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleY, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
-    Parent.Width * e.ScaleX, Parent.Height * e.ScaleY));
+    Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
             pointerWidthOffset = (Parent.Pointer as SimplePointer).Width / 2 + Parent.Pointer.BorderWidth * 2 * e.ScaleX;
             float y = top + height;
             float x1 = left;

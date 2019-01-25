@@ -48,7 +48,7 @@ namespace FastReport.Gauge.Linear
             Graphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
-                Parent.Width * e.ScaleX, Parent.Height * e.ScaleY));
+                Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
             float x = left;
             float y1 = top;
             float y2 = top + height;
@@ -96,7 +96,7 @@ namespace FastReport.Gauge.Linear
             Graphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
-     Parent.Width * e.ScaleX, Parent.Height * e.ScaleY));
+     Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
             float y = top + height;
             float x1 = left;
             float x2 = left + width;

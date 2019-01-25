@@ -4,6 +4,8 @@ using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using FastReport.Utils;
 using System.Drawing.Design;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace FastReport
 {
@@ -37,6 +39,18 @@ namespace FastReport
     public abstract Brush CreateBrush(RectangleF rect);
 
     /// <summary>
+    /// Creates the GDI+ Brush object with scaling.
+    /// </summary>
+    /// <param name="rect">Drawing rectangle.</param>
+    /// <param name="scaleX">X scaling coefficient.</param>
+    /// <param name="scaleY">Y scaling coefficient.</param>
+    /// <returns>Brush object.</returns>
+    public virtual Brush CreateBrush(RectangleF rect, float scaleX, float scaleY)
+    {
+        return CreateBrush(rect);
+    }
+
+    /// <summary>
     /// Serializes the fill.
     /// </summary>
     /// <param name="writer">Writer object.</param>
@@ -51,6 +65,18 @@ namespace FastReport
         writer.WriteStr(prefix, Name);
     }
 
+    public virtual void Deserialize(FRReader reader, string prefix)
+    {
+    }
+
+    public virtual void FinalizeComponent()
+    {
+    }
+
+    public virtual void InitializeComponent()
+    {
+    }
+
     /// <summary>
     /// Fills the specified rectangle.
     /// </summary>
@@ -59,7 +85,7 @@ namespace FastReport
     public virtual void Draw(FRPaintEventArgs e, RectangleF rect)
     {
       rect = new RectangleF(rect.Left * e.ScaleX, rect.Top * e.ScaleY, rect.Width * e.ScaleX, rect.Height * e.ScaleY);
-      using (Brush brush = CreateBrush(rect))
+      using (Brush brush = CreateBrush(rect, e.ScaleX, e.ScaleY))
       {
         e.Graphics.FillRectangle(brush, rect.Left, rect.Top, rect.Width, rect.Height);
       }
@@ -676,4 +702,421 @@ namespace FastReport
       Hatch = hatch;
     }
   }
+
+    /// <summary>
+    /// Class represents the Texture fill.
+    /// </summary>
+    public class TextureFill : FillBase
+    {
+        #region Fields
+
+        private Image image;
+        private int imageWidth;
+        private int imageHeight;
+        private bool preserveAspectRatio;
+        private WrapMode wrapMode;
+        private int imageIndex;
+        private byte[] imageData;
+        private int imageOffsetX;
+        private int imageOffsetY;
+        private static string dummyImageHash;
+
+        #endregion // Fields
+
+        #region  Properties
+
+        /// <summary>
+        /// Gets or sets value, indicating that image should preserve aspect ratio
+        /// </summary>
+        public bool PreserveAspectRatio
+        {
+            get { return preserveAspectRatio; }
+            set { preserveAspectRatio = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the image width
+        /// </summary>
+        public int ImageWidth
+        {
+            get
+            {
+                if (imageWidth <= 0)
+                    ForceLoadImage();
+                return imageWidth;
+            }
+            set
+            {
+                if (value != imageWidth && value > 0)
+                {
+                    if (PreserveAspectRatio && imageHeight > 0 && imageWidth > 0)
+                    {
+                        imageHeight = (int)(imageHeight * (float)value / imageWidth);
+                    }
+                    imageWidth = value;
+                    ResizeImage(imageWidth, ImageHeight);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the image height
+        /// </summary>
+        public int ImageHeight
+        {
+            get
+            {
+                if (imageHeight <= 0)
+                    ForceLoadImage();
+                return imageHeight;
+            }
+            set
+            {
+                if (value != imageHeight && value > 0)
+                {
+                    if (PreserveAspectRatio && imageWidth > 0 && imageHeight > 0)
+                    {
+                        imageWidth = (int)(imageWidth * (float)value / imageHeight);
+                    }
+                    imageHeight = value;
+                    ResizeImage(imageWidth, ImageHeight);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the texture wrap mode
+        /// </summary>
+        public WrapMode WrapMode
+        {
+            get { return wrapMode; }
+            set { wrapMode = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the image index
+        /// </summary>
+        public int ImageIndex
+        {
+            get { return imageIndex; }
+            set { imageIndex = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the image data
+        /// </summary>
+        public byte[] ImageData
+        {
+            get { return imageData; }
+            set
+            {
+                SetImageData(value);
+            }
+        }
+
+        /// <summary>
+        /// Image left offset
+        /// </summary>
+        public int ImageOffsetX
+        {
+            get { return imageOffsetX; }
+            set { imageOffsetX = value; }
+        }
+
+        /// <summary>
+        /// Image top offset
+        /// </summary>
+        public int ImageOffsetY
+        {
+            get { return imageOffsetY; }
+            set { imageOffsetY = value; }
+        }
+
+        #endregion // Properties
+
+        #region Private Methods
+
+        private void Clear()
+        {
+            if (image != null)
+                image.Dispose();
+            image = null;
+            imageData = null;
+        }
+
+        private void ResizeImage(int width, int height)
+        {
+            if (imageData == null || width <= 0 || height <= 0)
+                return;
+            else
+            {
+                image = ImageHelper.Load(imageData);
+                image = new Bitmap(image, width, height);
+            }
+                
+        }
+        private void ResetImageIndex()
+        {
+            imageIndex = -1;
+        }
+        private void ForceLoadImage()
+        {
+            byte[] data = imageData;
+            if (data == null)
+                return;
+            byte[] saveImageData = data;
+            // imageData will be reset after this line, keep it
+            image = ImageHelper.Load(data);
+            if (imageWidth <= 0 && imageHeight <= 0)
+            {
+                imageWidth = image.Width;
+                imageHeight = image.Height;
+            }
+            else if (imageWidth != image.Width || imageHeight != image.Height)
+            {
+                ResizeImage(imageWidth, imageHeight);
+            }
+            data = saveImageData;
+        }
+
+        #endregion // Private Methods
+
+        #region Public Methods
+
+        /// <summary>
+        /// Sets image data to imageData
+        /// </summary>
+        /// <param name="data">input image data</param>
+        public void SetImageData(byte[] data)
+        {
+            ResetImageIndex();
+            image = null;
+            imageData = data;
+            ResizeImage(imageWidth, imageHeight);
+        }
+
+        /// <summary>
+        /// Set image
+        /// </summary>
+        /// <param name="image">input image</param>
+        public void SetImage(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat);
+                SetImageData(ms.ToArray());
+            }
+        }
+
+        /// <inheritdoc/>
+        public override FillBase Clone()
+        {
+            TextureFill f = new TextureFill(imageData.Clone() as byte[], ImageWidth, ImageHeight, PreserveAspectRatio, WrapMode, ImageOffsetX, ImageOffsetY);
+            //f.ImageIndex = ImageIndex;
+            return f;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return ImageData.GetHashCode() ^ (ImageWidth.GetHashCode() << 1) ^
+                ((ImageHeight.GetHashCode() + 1) << 2) ^
+                ((PreserveAspectRatio.GetHashCode() + 1) << 10) ^
+                ((WrapMode.GetHashCode() + 1) << 20) ^
+                ((ImageOffsetX.GetHashCode() + 1) << 40) ^
+                ((ImageOffsetY.GetHashCode() + 1) << 60);
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            TextureFill f = obj as TextureFill;
+            return f != null && ImageData == f.ImageData && 
+                ImageWidth == f.ImageWidth && 
+                ImageHeight == f.ImageHeight &&
+                PreserveAspectRatio == f.PreserveAspectRatio &&
+                WrapMode == f.WrapMode &&
+                ImageOffsetX == f.ImageOffsetX &&
+                ImageOffsetY == f.ImageOffsetY;
+        }
+
+        /// <inheritdoc/>
+        public override Brush CreateBrush(RectangleF rect)
+        {
+            if (image == null)
+                ForceLoadImage();          
+            TextureBrush brush = new TextureBrush(image, WrapMode);
+            brush.TranslateTransform(rect.Left + ImageOffsetX, rect.Top + ImageOffsetY);
+            return brush;
+        }
+
+        /// <inheritdoc/>
+        public override Brush CreateBrush(RectangleF rect, float scaleX, float scaleY)
+        {
+            if (image == null)
+                ForceLoadImage();
+            TextureBrush brush = new TextureBrush(image, WrapMode);
+            brush.TranslateTransform(rect.Left + ImageOffsetX * scaleX, rect.Top + ImageOffsetY * scaleY);
+            brush.ScaleTransform(scaleX, scaleY);
+            return brush;
+        }
+
+        /// <inheritdoc/>
+        public override void Serialize(FRWriter writer, string prefix, FillBase fill)
+        {
+            base.Serialize(writer, prefix, fill);
+            TextureFill c = fill as TextureFill;
+            if (c == null || c.ImageWidth != ImageWidth)
+                writer.WriteValue(prefix + ".ImageWidth", ImageWidth);
+            if (c == null || c.ImageHeight != ImageHeight)
+                writer.WriteValue(prefix + ".ImageHeight", ImageHeight);
+            if (c == null || c.PreserveAspectRatio != PreserveAspectRatio)
+                writer.WriteBool(prefix + ".PreserveAspectRatio", PreserveAspectRatio);
+            if (c == null || c.WrapMode != WrapMode)
+                writer.WriteValue(prefix + ".WrapMode", WrapMode);
+            if (c == null || c.ImageOffsetX != ImageOffsetX)
+                writer.WriteValue(prefix + ".ImageOffsetX", ImageOffsetX);
+            if (c == null || c.ImageOffsetY != ImageOffsetY)
+                writer.WriteValue(prefix + ".ImageOffsetY", ImageOffsetY);
+
+            // store image data
+            if (writer.SerializeTo != SerializeTo.SourcePages)
+            {
+                if (writer.BlobStore != null)
+                {
+                    // check FImageIndex >= writer.BlobStore.Count is needed when we close the designer
+                    // and run it again, the BlobStore is empty, but FImageIndex is pointing to
+                    // previous BlobStore item and is not -1.
+                    if (imageIndex == -1 || imageIndex >= writer.BlobStore.Count)
+                    {
+                        byte[] bytes = imageData;
+                        if (bytes == null)
+                        {
+                            using (MemoryStream stream = new MemoryStream())
+                            {
+                                ImageHelper.Save(image, stream, ImageFormat.Png);
+                                bytes = stream.ToArray();
+                            }
+                        }
+                        if (bytes != null)
+                        {
+                            string imgHash = BitConverter.ToString(new Murmur3().ComputeHash(bytes));
+                            if (imgHash != dummyImageHash)
+                                imageIndex = writer.BlobStore.AddOrUpdate(bytes, imgHash.Replace("-", String.Empty));
+                        }
+                    }
+                }
+                else
+                {
+                    if (imageData != null)
+                    {
+                        string hash = BitConverter.ToString(new Murmur3().ComputeHash(imageData));
+                        if (hash != dummyImageHash)
+                        {
+                            if (c == null || !writer.AreEqual(ImageData, c.ImageData))
+                                writer.WriteStr(prefix + ".ImageData", Convert.ToBase64String(ImageData));
+                        }
+                    }
+                }
+
+                if (writer.BlobStore != null || writer.SerializeTo == SerializeTo.Undo)
+                    writer.WriteInt(prefix + ".ImageIndex", imageIndex);
+            }
+        }
+
+        /// <inheritdoc/>
+        public override void Deserialize(FRReader reader, string prefix)
+        {
+            base.Deserialize(reader, prefix);
+            if (reader.HasProperty(prefix + ".ImageIndex"))
+            {
+                imageIndex = reader.ReadInt(prefix + ".ImageIndex");
+            }
+            if (reader.BlobStore != null && imageIndex != -1)
+            {
+                SetImageData(reader.BlobStore.Get(imageIndex));
+            }
+        }
+
+        /// <inheritdoc/>
+        public override void FinalizeComponent()
+        {
+            base.FinalizeComponent();
+            Clear();
+            ResetImageIndex();
+            
+        }
+
+        /// <inheritdoc/>
+        public override void InitializeComponent()
+        {
+            base.InitializeComponent();
+            ResetImageIndex();
+        }
+
+        /// <inheritdoc/>
+        public override void Draw(FRPaintEventArgs e, RectangleF rect)
+        {
+            if (image == null)
+                ForceLoadImage();
+            if (image == null)
+                return;
+            else
+                base.Draw(e, rect);
+        }
+
+        #endregion //Public Methods
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes the <see cref="TextureFill"/> class with default texture.
+        /// </summary>
+        public TextureFill()
+        {
+            ResetImageIndex();
+            SetImageData(null);
+            Stream dummy = ResourceLoader.GetStream("FastReport", "icon16.ico");
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Res.CopyTo(dummy, ms);
+                SetImageData(ms.ToArray());
+            }
+            WrapMode = WrapMode.Tile;
+            PreserveAspectRatio = true;
+        }
+
+        /// <summary>
+        /// Initializes the <see cref="TextureFill"/> class with specified image.
+        /// </summary>
+        /// <param name="imageBytes"></param>
+        public TextureFill(byte[] imageBytes)
+        {
+            ResetImageIndex();
+            SetImageData(imageBytes);
+            WrapMode = WrapMode.Tile;
+            PreserveAspectRatio = true;
+        }
+
+        /// <summary>
+        /// Initializes the <see cref="TextureFill"/> class with specified image.
+        /// </summary>
+        /// <param name="image"></param>
+        public TextureFill(byte[] imageBytes, int width, int height, bool preserveAspectRatio, WrapMode wrapMode, int imageOffsetX, int imageOffsetY) : this(imageBytes)
+        {
+            PreserveAspectRatio = preserveAspectRatio;
+            WrapMode = wrapMode;
+            imageWidth = width;
+            imageHeight = height;
+            ImageOffsetX = imageOffsetX;
+            ImageOffsetY = imageOffsetY;
+        }
+
+        static TextureFill()
+        {
+            dummyImageHash = "62-57-78-BF-92-9F-81-12-C0-43-6B-5D-B1-D8-04-DD";
+        }
+
+        #endregion //Constructors
+    }
 }

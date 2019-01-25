@@ -138,7 +138,7 @@ namespace FastReport.Gauge
             {
                 writer.WriteStr(prefix + ".Text", Text);
             }
-            if (!Font.Equals(diff.Font))
+            if (writer.SerializeTo != SerializeTo.Preview || !Font.Equals(diff.Font))
             {
                 writer.WriteValue(prefix + ".Font", Font);
             }

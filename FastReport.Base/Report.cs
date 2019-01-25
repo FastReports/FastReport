@@ -1,21 +1,19 @@
+using FastReport.Code;
+using FastReport.CrossView;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Engine;
+using FastReport.Export;
+using FastReport.Utils;
 using System;
 using System.Collections;
-using System.Drawing;
 using System.Collections.Generic;
-using System.IO;
 using System.ComponentModel;
 using System.Data;
-using System.Text;
+using System.Drawing;
+using System.IO;
 using System.Security;
-using FastReport.Utils;
-using FastReport.Code;
-using FastReport.Data;
-using FastReport.Engine;
-using FastReport.Dialog;
-using FastReport.Export;
-using FastReport.CrossView;
-using System.ComponentModel.Design.Serialization;
-using System.Windows.Forms;
+using System.Text;
 
 namespace FastReport
 {
@@ -60,7 +58,6 @@ namespace FastReport
         /// </summary>
         AntiAlias
     }
-
 
     /// <summary>
     /// Specifies the report operation.
@@ -113,7 +110,7 @@ namespace FastReport
     /// Represents a report object.
     /// </summary>
     /// <remarks>
-    /// <para>The instance of this class contains a report. Here are some common 
+    /// <para>The instance of this class contains a report. Here are some common
     /// actions that can be performed with this object:</para>
     /// <list type="bullet">
     ///   <item>
@@ -135,13 +132,13 @@ namespace FastReport
     ///     <description>To design a report, call the <see cref="Design()"/> method.</description>
     ///   </item>
     ///   <item>
-    ///     <description>To run a report and preview it, call the <see cref="Show()"/> method. 
-    ///     Another way is to call the <see cref="Prepare()"/> method, then call the 
+    ///     <description>To run a report and preview it, call the <see cref="Show()"/> method.
+    ///     Another way is to call the <see cref="Prepare()"/> method, then call the
     ///     <see cref="ShowPrepared()"/> method.</description>
     ///   </item>
     ///   <item>
     ///     <description>To run a report and print it, call the <see cref="Print"/> method.
-    ///     Another way is to call the <see cref="Prepare()"/> method, then call the 
+    ///     Another way is to call the <see cref="Prepare()"/> method, then call the
     ///     <see cref="PrintPrepared()"/> method.</description>
     ///   </item>
     ///   <item>
@@ -154,12 +151,12 @@ namespace FastReport
     ///     </description>
     ///   </item>
     /// </list>
-    /// <para/>The report consists of one or several report pages (pages of the 
-    /// <see cref="ReportPage"/> type) and/or dialog forms (pages of the <see cref="DialogPage"/> type). 
+    /// <para/>The report consists of one or several report pages (pages of the
+    /// <see cref="ReportPage"/> type) and/or dialog forms (pages of the <see cref="DialogPage"/> type).
     /// They are stored in the <see cref="Pages"/> collection. In turn, each page may contain report
     /// objects. See the example below how to create a simple report in code.
     /// </remarks>
-    /// <example>This example shows how to create a report instance, load it from a file, 
+    /// <example>This example shows how to create a report instance, load it from a file,
     /// register the application data, run and preview.
     /// <code>
     /// Report report = new Report();
@@ -199,6 +196,7 @@ namespace FastReport
     public partial class Report : Base, IParent, ISupportInitialize
     {
         #region Fields
+
         private PageCollection pages;
         private Dictionary dictionary;
         private ReportInfo reportInfo;
@@ -240,10 +238,10 @@ namespace FastReport
         private bool initializing;
         private object initializeData;
         private string initializeDataName;
-        #endregion
+
+        #endregion Fields
 
         #region Properties
-
 
         /// <summary>
         /// Occurs when calc execution is started.
@@ -290,7 +288,7 @@ namespace FastReport
         /// Gets the report's data.
         /// </summary>
         /// <remarks>
-        /// The dictionary contains all data items such as connections, data sources, parameters, 
+        /// The dictionary contains all data items such as connections, data sources, parameters,
         /// system variables.
         /// </remarks>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -311,11 +309,11 @@ namespace FastReport
         /// <para>Parameters are displayed in the "Data" window under the "Parameters" node.</para>
         /// <para>Typical use of parameters is to pass some static data from the application to the report.
         /// You can print such data, use it in the data row filter, script etc. </para>
-        /// <para>Another way to use parameters is to define some reusable piece of code, for example, 
-        /// to define an expression that will return the concatenation of first and second employee name. 
-        /// In this case, you set the parameter's <b>Expression</b> property to something like this: 
+        /// <para>Another way to use parameters is to define some reusable piece of code, for example,
+        /// to define an expression that will return the concatenation of first and second employee name.
+        /// In this case, you set the parameter's <b>Expression</b> property to something like this:
         /// [Employees.FirstName] + " " + [Employees.LastName]. Now this parameter may be used in the report
-        /// to print full employee name. Each time you access such parameter, it will calculate the expression 
+        /// to print full employee name. Each time you access such parameter, it will calculate the expression
         /// and return its value. </para>
         /// <para>You can create nested parameters. To do this, add the new <b>Parameter</b> to the
         /// <b>Parameters</b> collection of the root parameter. To access the nested parameter, you may use the
@@ -347,7 +345,7 @@ namespace FastReport
         /// </summary>
         /// <remarks>
         /// This property contains the name of a report file this report is inherited from.
-        /// <b>Note:</b> setting this property to non-empty value will clear the report and 
+        /// <b>Note:</b> setting this property to non-empty value will clear the report and
         /// load the base file into it.
         /// </remarks>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -361,7 +359,7 @@ namespace FastReport
         /// Gets or sets the name of a file the report was loaded from.
         /// </summary>
         /// <remarks>
-        /// This property is used to support the FastReport.Net infrastructure; 
+        /// This property is used to support the FastReport.Net infrastructure;
         /// typically you don't need to use it.
         /// </remarks>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -376,18 +374,18 @@ namespace FastReport
         /// </summary>
         /// <remarks>
         /// <para>The script contains the <b>ReportScript</b> class that contains all report objects'
-        /// event handlers and own items such as private fields, properties, methods etc. The script 
-        /// contains only items written by you. Unlike other report generators, the script does not 
-        /// contain report objects declarations, initialization code. It is added automatically when 
+        /// event handlers and own items such as private fields, properties, methods etc. The script
+        /// contains only items written by you. Unlike other report generators, the script does not
+        /// contain report objects declarations, initialization code. It is added automatically when
         /// you run the report.</para>
-        /// <para>By default this property contains an empty script text. You may see it in the designer 
+        /// <para>By default this property contains an empty script text. You may see it in the designer
         /// when you switch to the Code window.</para>
-        /// <para>If you set this property programmatically, you have to declare the <b>FastReport</b> 
-        /// namespace and the <b>ReportScript</b> class in it. Do not declare report items (such as bands, 
-        /// objects, etc) in the <b>ReportScript</b> class: the report engine does this automatically when 
+        /// <para>If you set this property programmatically, you have to declare the <b>FastReport</b>
+        /// namespace and the <b>ReportScript</b> class in it. Do not declare report items (such as bands,
+        /// objects, etc) in the <b>ReportScript</b> class: the report engine does this automatically when
         /// you run the report.</para>
-        /// <para><b>Security note:</b> since the report script is compiled into .NET assembly, it allows 
-        /// you to do ANYTHING. For example, you may create a script that will read/write files from/to a disk. 
+        /// <para><b>Security note:</b> since the report script is compiled into .NET assembly, it allows
+        /// you to do ANYTHING. For example, you may create a script that will read/write files from/to a disk.
         /// To restrict such operations, use the <see cref="ScriptRestrictions"/> property.</para>
         /// </remarks>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -423,7 +421,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the null DB value must be converted to zero, false or  
+        /// Gets or sets a value indicating whether the null DB value must be converted to zero, false or
         /// empty string depending on the data column type.
         /// </summary>
         /// <remarks>
@@ -441,11 +439,11 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets or sets a value that specifies whether the report engine should perform the second pass. 
+        /// Gets or sets a value that specifies whether the report engine should perform the second pass.
         /// </summary>
         /// <remarks>
-        /// <para>Typically the second pass is necessary to print the number of total pages. It also 
-        /// may be used to perform some calculations on the first pass and print its results on the 
+        /// <para>Typically the second pass is necessary to print the number of total pages. It also
+        /// may be used to perform some calculations on the first pass and print its results on the
         /// second pass.</para>
         /// <para>Use the <b>Engine.FirstPass</b>, <b>Engine.FinalPass</b> properties to determine which
         /// pass the engine is performing now.</para>
@@ -463,7 +461,7 @@ namespace FastReport
         /// Gets or sets a value that specifies whether to compress the report file.
         /// </summary>
         /// <remarks>
-        /// The report file is compressed using the Gzip algorithm. So you can open the 
+        /// The report file is compressed using the Gzip algorithm. So you can open the
         /// compressed report in any zip-compatible archiver.
         /// </remarks>
         [DefaultValue(false)]
@@ -476,7 +474,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets or sets a value that specifies whether to use the file cache rather than memory 
+        /// Gets or sets a value that specifies whether to use the file cache rather than memory
         /// to store the prepared report pages.
         /// </summary>
         [DefaultValue(false)]
@@ -505,7 +503,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets or sets a value that specifies if the graphic objects such as bitmaps 
+        /// Gets or sets a value that specifies if the graphic objects such as bitmaps
         /// and shapes should be displayed smoothly.
         /// </summary>
         [DefaultValue(false)]
@@ -524,7 +522,7 @@ namespace FastReport
         /// <para>When you try to load the password-protected report, you will be asked
         /// for a password. You also may specify the password in this property before loading
         /// the report. In this case the report will load silently.</para>
-        /// <para>Password-protected report file is crypted using Rijndael algorithm. 
+        /// <para>Password-protected report file is crypted using Rijndael algorithm.
         /// Do not forget your password! It will be hard or even impossible to open
         /// the protected file in this case.</para>
         /// </remarks>
@@ -540,8 +538,8 @@ namespace FastReport
         /// DataSet registered with <b>RegisterData</b> call.
         /// </summary>
         /// <remarks>
-        /// If this property is <b>true</b> (by default), FastReport will automatically fill 
-        /// the DataSet with data when you trying to run a report. Set it to <b>false</b> if 
+        /// If this property is <b>true</b> (by default), FastReport will automatically fill
+        /// the DataSet with data when you trying to run a report. Set it to <b>false</b> if
         /// you want to fill the DataSet by yourself.
         /// </remarks>
         [DefaultValue(true)]
@@ -581,8 +579,8 @@ namespace FastReport
         /// Gets or sets an array of assembly names that will be used to compile the report script.
         /// </summary>
         /// <remarks>
-        /// By default this property contains the following assemblies: "System.dll", "System.Drawing.dll", 
-        /// "System.Windows.Forms.dll", "System.Data.dll", "System.Xml.dll". If your script uses some types 
+        /// By default this property contains the following assemblies: "System.dll", "System.Drawing.dll",
+        /// "System.Windows.Forms.dll", "System.Data.dll", "System.Xml.dll". If your script uses some types
         /// from another assemblies, you have to add them to this property.
         /// </remarks>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -848,9 +846,11 @@ namespace FastReport
                 return allObjects;
             }
         }
-        #endregion
+
+        #endregion Properties
 
         #region Private Methods
+
         private bool ShouldSerializeReferencedAssemblies()
         {
             return Converter.ToString(ReferencedAssemblies) != Converter.ToString(DefaultAssemblies);
@@ -983,9 +983,11 @@ namespace FastReport
             FinishReportEvent = "";
             needCompile = true;
         }
-        #endregion
+
+        #endregion Private Methods
 
         #region Protected Methods
+
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
@@ -1007,8 +1009,6 @@ namespace FastReport
             base.Dispose(disposing);
         }
 
-        
-
         /// <inheritdoc/>
         protected override void DeserializeSubItems(FRReader reader)
         {
@@ -1021,9 +1021,11 @@ namespace FastReport
             else
                 base.DeserializeSubItems(reader);
         }
-        #endregion
+
+        #endregion Protected Methods
 
         #region IParent
+
         /// <inheritdoc/>
         public bool CanContain(Base child)
         {
@@ -1088,9 +1090,11 @@ namespace FastReport
         {
             // do nothing
         }
-        #endregion
+
+        #endregion IParent
 
         #region ISupportInitialize Members
+
         /// <inheritdoc/>
         public void BeginInit()
         {
@@ -1103,9 +1107,11 @@ namespace FastReport
             initializing = false;
             Dictionary.RegisterData(initializeData, initializeDataName, false);
         }
-        #endregion
+
+        #endregion ISupportInitialize Members
 
         #region Script related
+
         private void FillDataSourceCache()
         {
             cachedDataItems.Clear();
@@ -1215,10 +1221,10 @@ namespace FastReport
         /// Calculates an expression and returns the result.
         /// </summary>
         /// <param name="expression">The expression to calculate.</param>
-        /// <returns>If report is running, returns the result of calculation. 
+        /// <returns>If report is running, returns the result of calculation.
         /// Otherwise returns <b>null</b>.</returns>
         /// <remarks>
-        /// <para>The expression may be any valid expression such as "1 + 2". The expression 
+        /// <para>The expression may be any valid expression such as "1 + 2". The expression
         /// is calculated in the report script's <b>ReportScript</b> class instance context,
         /// so you may refer to any objects available in this context: private fields,
         /// methods, report objects.</para>
@@ -1233,7 +1239,7 @@ namespace FastReport
         /// </summary>
         /// <param name="expression">The expression to calculate.</param>
         /// <param name="value">The value of currently printing object.</param>
-        /// <returns>If report is running, returns the result of calculation. 
+        /// <returns>If report is running, returns the result of calculation.
         /// Otherwise returns <b>null</b>.</returns>
         /// <remarks>
         /// Do not call this method directly. Use the <b>Calc(string expression)</b> method instead.
@@ -1256,10 +1262,18 @@ namespace FastReport
                 DataSourceBase data = cachedItem.dataSource;
                 Column column = cachedItem.column;
 
-                object val = Convert.ChangeType(column.Value, column.DataType);                
-                
-                if (ConvertNulls && (val == null || val is DBNull))
-                    val = Converter.ConvertNull(column.DataType);
+                object val = column.Value;
+
+                if (val == null || val is DBNull)
+                {
+                    if (ConvertNulls)
+                        val = Converter.ConvertNull(column.DataType);
+                }
+                else
+                {
+                    Type t = Nullable.GetUnderlyingType(column.DataType);
+                    val = Convert.ChangeType(val, t != null ? t : column.DataType);
+                }
 
                 if (CustomCalc != null)
                 {
@@ -1389,7 +1403,7 @@ namespace FastReport
         /// Gets the data column's value. This method does not convert null values.
         /// </summary>
         /// <param name="complexName">The name of the data column including the datasource name.</param>
-        /// <returns>If report is running, returns the column value. 
+        /// <returns>If report is running, returns the column value.
         /// Otherwise returns <b>null</b>.</returns>
         public object GetColumnValueNullable(string complexName)
         {
@@ -1486,7 +1500,7 @@ namespace FastReport
         /// </summary>
         /// <param name="name">Name of total.</param>
         /// <returns>The total's value if found, otherwise <b>0</b>.</returns>
-        /// <remarks>This method converts null values to 0 if the <see cref="ConvertNulls"/> property is set to true. 
+        /// <remarks>This method converts null values to 0 if the <see cref="ConvertNulls"/> property is set to true.
         /// Use the <see cref="GetTotalValueNullable"/> method if you don't want the null conversion.
         /// </remarks>
         public Variant GetTotalValue(string name)
@@ -1513,9 +1527,11 @@ namespace FastReport
         {
             return Dictionary.FindByAlias(alias) as DataSourceBase;
         }
-        #endregion
+
+        #endregion Script related
 
         #region Public Methods
+
         /// <inheritdoc/>
         public override void Assign(Base source)
         {
@@ -1566,7 +1582,7 @@ namespace FastReport
         /// <summary>
         /// Sets prepared pages.
         /// </summary>
-        /// <param name="pages"></param>            
+        /// <param name="pages"></param>
         public void SetPreparedPages(Preview.PreparedPages pages)
         {
             preparedPages = pages;
@@ -1585,7 +1601,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// This method fires the <b>StartReport</b> event and the script code connected 
+        /// This method fires the <b>StartReport</b> event and the script code connected
         /// to the <b>StartReportEvent</b>.
         /// </summary>
         public void OnStartReport(EventArgs e)
@@ -1597,7 +1613,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// This method fires the <b>FinishReport</b> event and the script code connected 
+        /// This method fires the <b>FinishReport</b> event and the script code connected
         /// to the <b>FinishReportEvent</b>.
         /// </summary>
         public void OnFinishReport(EventArgs e)
@@ -1661,8 +1677,6 @@ namespace FastReport
                 }
             }
         }
-
-        
 
         /// <inheritdoc/>
         public override void Deserialize(FRReader reader)
@@ -1950,7 +1964,7 @@ namespace FastReport
         /// <param name="name">The name of the data.</param>
         /// <remarks>
         /// Use this method if you register more than one dataset. You may specify any value
-        /// for the <b>name</b> parameter: it is not displayed anywhere in the designer and used only 
+        /// for the <b>name</b> parameter: it is not displayed anywhere in the designer and used only
         /// to load/save a report. The name must be persistent and unique for each registered dataset.
         /// </remarks>
         /// <example>
@@ -1978,7 +1992,7 @@ namespace FastReport
         /// <param name="enableAllTables">The boolean value indicating whether all tables should be enabled.</param>
         /// <remarks>
         /// Use this method if you register more than one dataset. You may specify any value
-        /// for the <b>name</b> parameter: it is not displayed anywhere in the designer and used only 
+        /// for the <b>name</b> parameter: it is not displayed anywhere in the designer and used only
         /// to load/save a report. The name must be persistent and unique for each registered dataset.
         /// </remarks>
         /// <example>
@@ -2044,8 +2058,8 @@ namespace FastReport
         /// <param name="data">The application data.</param>
         /// <param name="name">The name of the data.</param>
         /// <remarks>
-        /// You may specify any value for the <b>name</b> parameter: it is not displayed anywhere 
-        /// in the designer and used only to load/save a report. The name must be persistent 
+        /// You may specify any value for the <b>name</b> parameter: it is not displayed anywhere
+        /// in the designer and used only to load/save a report. The name must be persistent
         /// and unique for each registered relation.
         /// </remarks>
         /// <example>
@@ -2060,7 +2074,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// <b>Obsolete</b>. Registers the application business object to use it in the report. 
+        /// <b>Obsolete</b>. Registers the application business object to use it in the report.
         /// </summary>
         /// <param name="data">Application data.</param>
         /// <param name="name">Name of the data.</param>
@@ -2189,7 +2203,6 @@ namespace FastReport
             }
         }
 
-
         /// <summary>
         /// For internal use only.
         /// </summary>
@@ -2219,7 +2232,7 @@ namespace FastReport
         /// Refresh the current report.
         /// </summary>
         /// <remarks>
-        /// Call this method in the Click or MouseUp event handler of a report object to refresh 
+        /// Call this method in the Click or MouseUp event handler of a report object to refresh
         /// the currently previewed report. Report will be generated again, but without dialog forms.
         /// </remarks>
         public void Refresh()
@@ -2327,7 +2340,8 @@ namespace FastReport
                 SetPreparedPages(new FastReport.Preview.PreparedPages(this));
             PreparedPages.Load(stream);
         }
-        #endregion
+
+        #endregion Public Methods
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Report"/> class with default settings.
