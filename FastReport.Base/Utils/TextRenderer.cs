@@ -258,7 +258,7 @@ namespace FastReport.Utils
       // skip empty paragraphs at the end
       for (int i = paragraphs.Count - 1; i >= 0; i--)
       {
-        if (paragraphs[i].IsEmpty)
+        if (paragraphs[i].IsEmpty && paragraphs.Count != 1)
           paragraphs.RemoveAt(i);
         else
           break;

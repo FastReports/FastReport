@@ -202,10 +202,10 @@ namespace FastReport
         #endregion
 
         #region Private Methods
-        private bool ShouldSerializeFont()
-        {
-            return Font.Name != DrawUtils.DefaultReportFont.Name || Font.Size != 60 || Font.Style != FontStyle.Regular;
-        }
+        //private bool ShouldSerializeFont()
+        //{
+        //    return Font.Name != DrawUtils.DefaultReportFont.Name || Font.Size != 60 || Font.Style != FontStyle.Regular;
+        //}
 
         private bool ShouldSerializeTextFill()
         {
@@ -289,7 +289,7 @@ namespace FastReport
                 writer.WriteFloat(prefix + ".ImageTransparency", ImageTransparency);
             if (Text != c.Text)
                 writer.WriteStr(prefix + ".Text", Text);
-            if (!writer.AreEqual(Font, c.Font))
+            if (writer.SerializeTo != SerializeTo.Preview || !writer.AreEqual(Font, c.Font))
                 writer.WriteValue(prefix + ".Font", Font);
             TextFill.Serialize(writer, prefix + ".TextFill", c.TextFill);
             if (TextRotation != c.TextRotation)

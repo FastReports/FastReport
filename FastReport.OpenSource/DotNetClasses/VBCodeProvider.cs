@@ -20,7 +20,7 @@ namespace Microsoft.VisualBasic
                 OutputKind.DynamicallyLinkedLibrary,
                 true,
                 optimizationLevel: OptimizationLevel.Release,
-                generalDiagnosticOption: ReportDiagnostic.Error);
+                generalDiagnosticOption: ReportDiagnostic.Default);
 
             List<MetadataReference> references = new List<MetadataReference>();
 

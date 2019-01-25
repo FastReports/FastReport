@@ -71,7 +71,7 @@ namespace FastReport.Gauge.Linear
 
             float dx = width / 2;
             float dy = height * 0.3f;
-            Brush brush = Fill.CreateBrush(new RectangleF(left - dx, top, width, height));
+            Brush brush = Fill.CreateBrush(new RectangleF(left - dx, top, width, height), e.ScaleX, e.ScaleY);
             PointF[] p = new PointF[]
             {
                 new PointF(left, top),
@@ -109,7 +109,7 @@ namespace FastReport.Gauge.Linear
 
             float dx = width * 0.3f;
             float dy = height / 2;
-            Brush brush = Fill.CreateBrush(new RectangleF(left, top - dy, width, height));
+            Brush brush = Fill.CreateBrush(new RectangleF(left, top - dy, width, height), e.ScaleX, e.ScaleY);
             PointF[] p = new PointF[]
             {
                 new PointF(left, top),

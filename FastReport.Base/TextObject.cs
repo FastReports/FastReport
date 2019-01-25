@@ -1110,7 +1110,7 @@ namespace FastReport
                 if (TextFill is SolidFill)
                     textBrush = e.Cache.GetBrush((TextFill as SolidFill).Color);
                 else
-                    textBrush = TextFill.CreateBrush(textRect);
+                    textBrush = TextFill.CreateBrush(textRect, e.ScaleX, e.ScaleY);
 
                 Pen outlinePen = null;
                 if (textOutline.Enabled)
@@ -1275,7 +1275,7 @@ namespace FastReport
                 writer.WriteBool("WordWrap", WordWrap);
             if (Underlines != c.Underlines)
                 writer.WriteBool("Underlines", Underlines);
-            if (!Font.Equals(c.Font))
+            if (writer.SerializeTo != SerializeTo.Preview || !Font.Equals(c.Font))
                 writer.WriteValue("Font", Font);
             TextFill.Serialize(writer, "TextFill", c.TextFill);
             if (TextOutline != null)
@@ -1341,7 +1341,7 @@ namespace FastReport
         public override void Deserialize(FRReader reader)
         {
             base.Deserialize(reader);
-
+            TextFill.Deserialize(reader, "TextFill");
             if (reader.BlobStore != null)
             {
                 string indexes = reader.ReadStr("InlineImageCacheIndexes");
@@ -1363,6 +1363,51 @@ namespace FastReport
                     }
                 }
             }
+            switch (reader.DeserializeFrom)
+            {
+                case SerializeTo.Undo:
+                case SerializeTo.Preview:
+                case SerializeTo.Clipboard:
+                    // skip
+                    break;
+                default:
+                    if (!reader.HasProperty("Font"))
+                    {
+                        string creatorVersion = reader.Root.GetProp("ReportInfo.CreatorVersion");
+                        if (!String.IsNullOrEmpty(creatorVersion))
+                        {
+                            try
+                            {
+                                string[] versions = creatorVersion.Split('.');
+                                int major = 0;
+                                if (Int32.TryParse(versions[0], out major))
+                                {
+                                    if (major < 2016)
+                                    {
+                                        Font = new Font("Arial", 10);
+                                    }
+                                }
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                    }
+                    break;
+            }
+            
+        }
+        public override void InitializeComponent()
+        {
+            base.InitializeComponent();
+            TextFill.InitializeComponent();
+        }
+
+        public override void FinalizeComponent()
+        {
+            base.FinalizeComponent();
+            TextFill.FinalizeComponent();
         }
 
         internal void ApplyCondition(HighlightCondition c)

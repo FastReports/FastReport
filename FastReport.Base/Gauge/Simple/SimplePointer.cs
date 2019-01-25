@@ -112,7 +112,7 @@ namespace FastReport.Gauge.Simple
             height = ((Parent.Height - Parent.Border.Width) * ptrRatio) * e.ScaleY;
             width = (float)((Parent.Width - Parent.Border.Width - horizontalOffset * 2) * (Parent.Value - Parent.Minimum) / (Parent.Maximum - Parent.Minimum) * e.ScaleX);
 
-            Brush brush = Fill.CreateBrush(new RectangleF(left, top, width, height));
+            Brush brush = Fill.CreateBrush(new RectangleF(left, top, width, height), e.ScaleX, e.ScaleY);
             g.FillRectangle(brush, left, top, width, height);
             g.DrawRectangle(pen, left, top, width, height);
         }
@@ -127,7 +127,7 @@ namespace FastReport.Gauge.Simple
             left = (Parent.AbsLeft + Parent.Border.Width / 2 + (Parent.Width - Parent.Border.Width) / 2 - (Parent.Width - Parent.Border.Width) * ptrRatio / 2) * e.ScaleX;
             top = (Parent.AbsTop + Parent.Border.Width / 2 + Parent.Height - Parent.Border.Width - horizontalOffset) * e.ScaleY - height;
 
-            Brush brush = Fill.CreateBrush(new RectangleF(left, top, width, height));
+            Brush brush = Fill.CreateBrush(new RectangleF(left, top, width, height), e.ScaleX, e.ScaleY);
             g.FillRectangle(brush, left, top, width, height);
             g.DrawRectangle(pen, left, top, width, height);
         }

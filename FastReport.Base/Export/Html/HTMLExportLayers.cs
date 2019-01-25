@@ -851,7 +851,9 @@ namespace FastReport.Export.Html
                         {
                             LayerPicture(htmlPage, obj, null);
                         }
-                        else if (obj is ShapeObject && ((obj as ShapeObject).Shape == ShapeKind.Rectangle || (obj as ShapeObject).Shape == ShapeKind.RoundRectangle))
+                        else if (obj is ShapeObject && ((obj as ShapeObject).Shape == ShapeKind.Rectangle ||
+                             (obj as ShapeObject).Shape == ShapeKind.RoundRectangle) &&
+                            !((obj as ShapeObject).Fill is TextureFill))
                         {
                             LayerShape(htmlPage, obj as ShapeObject, null);
                         }

@@ -771,7 +771,8 @@ namespace FastReport
             if (Exportable != c.Exportable)
                 writer.WriteBool("Exportable", Exportable);
             Border.Serialize(writer, "Border", c.Border);
-            Fill.Serialize(writer, "Fill", c.Fill);
+            //if(Fill != c.Fill)
+                Fill.Serialize(writer, "Fill", c.Fill);
             if (Cursor != c.Cursor && !Config.WebMode)
                 writer.WriteValue("Cursor", Cursor);
             Hyperlink.Serialize(writer, c.Hyperlink);
@@ -819,6 +820,16 @@ namespace FastReport
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reader"></param>
+        public override void Deserialize(FRReader reader)
+        {
+            base.Deserialize(reader);
+            Fill.Deserialize(reader, "Fill");
+        }
+
+        /// <summary>
         /// This method fires the <b>Click</b> event and the script code connected to the <b>ClickEvent</b>.
         /// </summary>
         /// <param name="e">Event data.</param>
@@ -856,6 +867,7 @@ namespace FastReport
         {
             // update the component's style
             Style = Style;
+            Fill.InitializeComponent();
         }
 
         /// <summary>
@@ -866,6 +878,7 @@ namespace FastReport
         /// </remarks>
         public virtual void FinalizeComponent()
         {
+            Fill.FinalizeComponent();
         }
 
         /// <summary>

@@ -147,7 +147,7 @@ namespace FastReport.Gauge.Radial
             {
                 (Fill as LinearGradientFill).Angle = (int)(startAngle / RadialGauge.Radians + angle / RadialGauge.Radians) + 90;
             }
-            Brush brush = Fill.CreateBrush(brushRect);
+            Brush brush = Fill.CreateBrush(brushRect, e.ScaleX, e.ScaleY);
 
             PointF[] p = new PointF[]
             {

@@ -180,6 +180,7 @@ namespace FastReport.Preview
             ReportPage page;
             using (FRReader reader = new FRReader(null))
             {
+                reader.DeserializeFrom = SerializeTo.Preview;
                 reader.ReadChildren = false;
                 reader.BlobStore = preparedPages.BlobStore;
                 page = ReadPage(null, xmlItem, false, reader);
@@ -241,6 +242,7 @@ namespace FastReport.Preview
 
                 using (FRReader reader = new FRReader(null))
                 {
+                    reader.DeserializeFrom = SerializeTo.Preview;
                     reader.ReadChildren = false;
                     reader.BlobStore = preparedPages.BlobStore;
                     for (int i = 0; i < xmlItem.Count; i++)
@@ -261,6 +263,7 @@ namespace FastReport.Preview
         {
             using (FRReader reader = new FRReader(null))
             {
+                reader.DeserializeFrom = SerializeTo.Preview;
                 reader.ReadChildren = false;
                 reader.BlobStore = preparedPages.BlobStore;
                 ReportPage page = ReadObject(null, xmlItem, false, reader) as ReportPage;
@@ -273,6 +276,7 @@ namespace FastReport.Preview
             XmlItem item = xmlItem;
             using (FRReader reader = new FRReader(null, item))
             {
+                reader.DeserializeFrom = SerializeTo.Preview;
                 reader.BlobStore = preparedPages.BlobStore;
                 reader.ReadChildren = false;
                 ReportPage page;
@@ -358,6 +362,7 @@ namespace FastReport.Preview
             ReportPage page;
             using (FRReader reader = new FRReader(null))
             {
+                reader.DeserializeFrom = SerializeTo.Preview;
                 reader.ReadChildren = false;
                 reader.BlobStore = preparedPages.BlobStore;
                 page = ReadPage(null, xmlItem, true, reader);

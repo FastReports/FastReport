@@ -1034,6 +1034,15 @@
       <PathGradient Text="Path gradient"/>
       <Hatch Text="Hatch"/>
       <Glass Text="Glass"/>
+      <Texture Text="Texture"/>
+      
+      <ChooseImage Text="Choose image" />
+      <PreserveAspectRatio Text="PreserveAspectRatio" />
+      <ImageSize Text="Image size" />
+      <ImageWidth Text="Width" />
+      <ImageHeight Text="Height" />
+      <WrapMode Text="Wrap Mode" />
+      <ImageOffset Text="Image offset" />
       <Colors Text="Colors"/>
       <Color Text="Color"/>
       <StartColor Text="Start"/>
@@ -1945,6 +1954,7 @@
       <AutoWidth Text="Auto Width"/>
       <WordWrap Text="Word Wrap"/>
       <AllowExpressions Text="Allow Expressions"/>
+      <HideZeros Text="Hide Zeros"/>
     </TextObject>
     <SubreportObject>
       <PrintOnParent Text="Print on Parent"/>

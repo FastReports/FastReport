@@ -122,7 +122,7 @@ namespace FastReport.Gauge
         public virtual void Serialize(FRWriter writer, string prefix, GaugeScale diff)
         {
             TextFill.Serialize(writer, prefix + ".TextFill", diff.TextFill);
-            if (!Font.Equals(diff.Font))
+            if (writer.SerializeTo != SerializeTo.Preview || !Font.Equals(diff.Font))
             {
                 writer.WriteValue(prefix + ".Font", Font);
             }

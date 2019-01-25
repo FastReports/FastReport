@@ -683,7 +683,7 @@ namespace FastReport
       if (Fill is SolidFill)
         brush = e.Cache.GetBrush((Fill as SolidFill).Color);
       else
-        brush = Fill.CreateBrush(rect);
+        brush = Fill.CreateBrush(rect, e.ScaleX, e.ScaleY);
 
       e.Graphics.FillRectangle(brush, rect.Left, rect.Top, rect.Width, rect.Height);
       if (!(Fill is SolidFill))

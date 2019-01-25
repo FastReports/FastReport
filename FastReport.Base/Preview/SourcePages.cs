@@ -41,6 +41,7 @@ namespace FastReport.Preview
       using (FRWriter writer = new FRWriter(xml))
       using (FRReader reader = new FRReader(null, xml))
       {
+        reader.DeserializeFrom = SerializeTo.SourcePages;
         writer.SaveChildren = false;
         writer.SerializeTo = SerializeTo.SourcePages;
         writer.Write(source, clone);

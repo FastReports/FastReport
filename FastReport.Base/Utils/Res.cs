@@ -88,11 +88,22 @@ namespace FastReport.Utils
       FLocaleLoaded = true;
     }
 
-    /// <summary>
-    /// Loads the locale from a file.
-    /// </summary>
-    /// <param name="fileName">The name of the file that contains localized strings.</param>
-    public static void LoadLocale(string fileName)
+    public static void CopyTo(Stream input, Stream output)
+    {
+        byte[] buffer = new byte[4 * 1024];
+        int bytesRead;
+
+        while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+        {
+            output.Write(buffer, 0, bytesRead);
+        }
+    }
+
+        /// <summary>
+        /// Loads the locale from a file.
+        /// </summary>
+        /// <param name="fileName">The name of the file that contains localized strings.</param>
+        public static void LoadLocale(string fileName)
     {
       Report.EnsureInit();
       if (!FLocaleLoaded)

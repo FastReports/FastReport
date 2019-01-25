@@ -79,7 +79,7 @@ namespace FastReport.Gauge.Simple.Progress
                     Left += prntWidth - widthSml;
                 Width = widthSml;
             }
-            Brush brush = Fill.CreateBrush(new RectangleF(Left, Top, Width, Height));
+            Brush brush = Fill.CreateBrush(new RectangleF(Left, Top, Width, Height), e.ScaleX, e.ScaleY);
             g.FillRectangle(brush, Left, Top, Width, Height);
             g.DrawRectangle(pen, Left, Top, Width, Height);
         }
@@ -109,7 +109,7 @@ namespace FastReport.Gauge.Simple.Progress
                     Top = topSml;
                 Height = heightSml;
             }
-            Brush brush = Fill.CreateBrush(new RectangleF(Left, Top, Width, Height));
+            Brush brush = Fill.CreateBrush(new RectangleF(Left, Top, Width, Height), e.ScaleX, e.ScaleY);
             g.FillRectangle(brush, Left, Top, Width, Height);
             g.DrawRectangle(pen, Left, Top, Width, Height);
         }

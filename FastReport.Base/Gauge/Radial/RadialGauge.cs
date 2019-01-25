@@ -267,7 +267,7 @@ namespace FastReport.Gauge.Radial
             if (Fill is SolidFill)
                 brush = e.Cache.GetBrush((Fill as SolidFill).Color);
             else
-                brush = Fill.CreateBrush(new RectangleF(x, y, dx, dy));
+                brush = Fill.CreateBrush(new RectangleF(x, y, dx, dy), e.ScaleX, e.ScaleY);
 
             center = new PointF(x + dx / 2, y + dy / 2);
 

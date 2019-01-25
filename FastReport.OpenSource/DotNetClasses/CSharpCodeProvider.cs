@@ -21,7 +21,7 @@ namespace Microsoft.CSharp
             CodeAnalysis.SyntaxTree codeTree = Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(code);
             CSharpCompilationOptions options = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary,
                 optimizationLevel: OptimizationLevel.Release,
-                generalDiagnosticOption: ReportDiagnostic.Error,
+                generalDiagnosticOption: ReportDiagnostic.Default,
                 reportSuppressedDiagnostics: true);
 
             List<MetadataReference> references = new List<MetadataReference>();
