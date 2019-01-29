@@ -10,15 +10,16 @@ import { SafeUrlPipe } from "./safeUrl.pipe";
 @NgModule({
   declarations: [
     AppComponent,
-      SafeHtmlPipe,
-      SafeUrlPipe
+    SafeHtmlPipe,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-      FormsModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
