@@ -337,6 +337,26 @@ namespace FastReport
             writer.WriteFloat("CenterY", center.Y);
         }
 
+        public void SetPolyLine(PointF[] newPoints)
+        {
+            if(newPoints == null || newPoints.Length == 1)
+            {
+                this.points = new List<PointF>();
+                this.pointTypes = new List<byte>();
+            }
+            else
+            {
+                this.points = new List<PointF>(newPoints);
+                byte[] pointTypes = new byte[newPoints.Length];
+                if (pointTypes.Length > 0)
+                    pointTypes[0] = 0;
+                for (int i = 1; i < pointTypes.Length; i++)
+                    pointTypes[i] = 1;
+                this.pointTypes = new List<byte>(pointTypes);
+            }
+            recalculateBounds();
+        }
+
         #endregion Public Methods
 
         #region Public Constructors

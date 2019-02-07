@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create interactive report using the Matrix and Chart objects. When you click employee or category, you will see chart report which elements are also clickable. &#13;&#10;This report uses the same technique as the &quot;Interactive Matrix&quot; report." ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="09/18/2015 13:47:37" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create an interactive report using the Matrix and Chart objects. When you click employee or category, you will see a chart report that also has clickable elements. &#13;&#10;This report uses the same technique as the &quot;Interactive Matrix&quot; report." ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="01/18/2019 17:07:27" ReportInfo.CreatorVersion="2019.1.9.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;

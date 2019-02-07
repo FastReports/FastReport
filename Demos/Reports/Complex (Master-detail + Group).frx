@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the master-detail report with groups. To create this report:&#13;&#10;- go &quot;Report|Configure Bands...&quot; menu and create the report structure.&#13;&#10;The page can contain service bands such as page header, report title, and one or several data bands or groups.&#13;&#10;Each data band can contain one or several data bands or groups.&#13;&#10;Each group can contain either nested group or data band. " ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="09/17/2015 17:12:49" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the master-detail report with groups. To create a report like this one:&#13;&#10;- go &quot;Report|Configure Bands...&quot; menu and create the report structure.&#13;&#10;The page can contain service bands such as page header, report title, and one or several data bands or groups.&#13;&#10;Each data band can contain one or several data bands or groups.&#13;&#10;Each group can contain either nested group or a data band." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="01/18/2019 12:55:21" ReportInfo.CreatorVersion="2019.1.9.0">
   <Styles>
     <Style Name="EvenRows" Fill.Color="Linen"/>
   </Styles>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to create interactive report using MSChartObject. This report uses same technique described in the &quot;Interactive Reports&quot; section. Just set up the chart's Hyperlink to view another page in this report. Chart will automatically set the hyperlink's Value property when you click data point." ReportInfo.Created="03/06/2009 03:34:28" ReportInfo.Modified="09/17/2015 15:54:36" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to create an interactive report using MSChartObject. This report uses same technique described in the &quot;Interactive Reports&quot; section. Just set up the chart's Hyperlink to view another page in this report. Chart will automatically set the hyperlink's Value property when you click a data point." ReportInfo.Created="03/06/2009 03:34:28" ReportInfo.Modified="01/24/2019 11:18:14" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary>
     <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
       <Column Name="Name" DataType="System.String"/>

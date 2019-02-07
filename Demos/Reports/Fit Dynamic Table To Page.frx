@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This example demonstrates how to fit dynamically generated TableObject to page width. To do this:&#13;&#10;- use Table1.ResultTable property to access generated table;&#13;&#10;- use the AfterCalcBounds event to fix table columns, just before printing the result table.&#13;&#10;See more details in the report script." ReportInfo.Created="08/01/2008 14:01:38" ReportInfo.Modified="09/13/2015 20:20:14" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This example demonstrates how to fit a dynamically generated TableObject to page's width. To do this:&#13;&#10;- use Table1.ResultTable property to access a generated table;&#13;&#10;- use the AfterCalcBounds event to fix table columns, just before printing the result table.&#13;&#10;See more details in the report's script." ReportInfo.Created="08/01/2008 14:01:38" ReportInfo.Modified="01/21/2019 12:29:13" ReportInfo.CreatorVersion="2019.1.9.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;

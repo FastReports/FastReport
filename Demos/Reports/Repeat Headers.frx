@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the &quot;Repeat Headers&quot; feature. To use it:&#13;&#10;- right-click the group header band and select &quot;Repeat on Every Page&quot;. This will repeat the header on all new pages while group prints.&#13;&#10;- add the &quot;Text&quot; object on a header;&#13;&#10;- set its &quot;PrintOn&quot; property to &quot;RepeatedBand&quot;. This will print the object on a subsequent pages only." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="09/17/2015 16:00:50" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the &quot;Repeat Headers&quot; feature. To use it:&#13;&#10;- right-click the group header band and select &quot;Repeat on Every Page&quot;. This will repeat the header on all of the new pages where the group is printed.&#13;&#10;- add the &quot;Text&quot; object on a header;&#13;&#10;- set its &quot;PrintOn&quot; property to &quot;RepeatedBand&quot;. This will print the object on a subsequent pages only." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="01/24/2019 16:41:39" ReportInfo.CreatorVersion="2019.1.9.0">
   <Styles>
     <Style Name="EvenRows" Fill.Color="Linen"/>
   </Styles>

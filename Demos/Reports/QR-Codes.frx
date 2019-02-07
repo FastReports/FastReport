@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates different QR-Code and Aztec types developed in FastReport Designer: Text, vCard, URI, GEolocation, E-Mail address, E-Mail message, SMS, Call, Event, Wi-Fi. You can create it with double-click on BarcodeObject (Barcode Type should be set to &quot;QR Code or Aztec&quot;)." ReportInfo.Created="02/21/2008 20:44:59" ReportInfo.Modified="08/27/2015 16:39:01" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates different QR-Code and Aztec types developed in FastReport Designer: Text, vCard, URI, GEolocation, E-Mail address, E-Mail message, SMS, Call, Event, Wi-Fi. You can create it with a double-click on BarcodeObject (Barcode Type should be set to &quot;QR Code or Aztec&quot;)." ReportInfo.Created="02/21/2008 20:44:59" ReportInfo.Modified="01/18/2019 15:50:42" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary/>
   <ReportPage Name="Page1">
     <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="94.5" CanGrow="true">

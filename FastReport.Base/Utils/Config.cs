@@ -27,6 +27,7 @@ namespace FastReport.Utils
         private static ReportSettings FReportSettings = new ReportSettings();
         private static bool FRightToLeft = false;
         private static string FTempFolder = null;
+        private static string systemTempFolder = null;
         private static bool FStringOptimization = false;
         private static bool preparedCompressed = true;
         private static bool disableHotkeys = false;
@@ -131,6 +132,14 @@ namespace FastReport.Utils
         }
 
         /// <summary>
+        /// Gets the path to the system temporary folder used to store temporary files.
+        /// </summary>
+        public static string SystemTempFolder
+        {
+            get { return systemTempFolder == null ? GetTempPath() : systemTempFolder; }
+        }
+
+        /// <summary>
         /// Gets FastReport version.
         /// </summary>
         public static string Version
@@ -138,22 +147,20 @@ namespace FastReport.Utils
             get { return typeof(Report).Assembly.GetName().Version.ToString(3); }
         }
 
-#endregion Public Properties
+        #endregion Public Properties
 
         #region Internal Methods
 
         internal static string CreateTempFile(string dir)
         {
             if (String.IsNullOrEmpty(dir))
-                return Path.GetTempFileName();
-            if (dir[dir.Length - 1] != '\\')
-                dir += '\\';
-            return dir + Path.GetRandomFileName();
+                return GetTempFileName();
+            return Path.Combine(dir, Path.GetRandomFileName());
         }
 
         internal static string GetTempFolder()
         {
-            return TempFolder == null ? Path.GetTempPath() : TempFolder;
+            return TempFolder == null ? GetTempPath() : TempFolder;
         }
 
         internal static void Init()
@@ -195,9 +202,30 @@ namespace FastReport.Utils
             FLogs += s + "\r\n";
         }
 
-#endregion Internal Methods
+        #endregion Internal Methods
 
-#region Private Methods
+        #region Private Methods
+
+        private static string GetTempFileName()
+        {
+            return Path.Combine(GetTempFolder(), DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss-") + Path.GetRandomFileName());
+        }
+
+        private static string GetTempPath()
+        {
+            if (!string.IsNullOrEmpty(systemTempFolder))
+                return systemTempFolder;
+
+            systemTempFolder = Environment.GetEnvironmentVariable("TMP");
+            if (string.IsNullOrEmpty(systemTempFolder))
+                systemTempFolder = Environment.GetEnvironmentVariable("TEMP");
+            if (string.IsNullOrEmpty(systemTempFolder))
+                systemTempFolder = Environment.GetEnvironmentVariable("TMPDIR");
+            if (string.IsNullOrEmpty(systemTempFolder))
+                systemTempFolder = Path.GetTempPath();
+
+            return systemTempFolder;
+        }
 
         private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
         {

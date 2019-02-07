@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print two lists side-by-side using subreports. To create such report:&#13;&#10;- use two Subreport objects and put it on the same band side-by-side." ReportInfo.Created="05/19/2008 19:57:27" ReportInfo.Modified="09/18/2015 10:03:21" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print two lists side-by-side using subreports. To create such a report:&#13;&#10;- use two Subreport objects and put them on the same band side-by-side." ReportInfo.Created="05/19/2008 19:57:27" ReportInfo.Modified="01/18/2019 12:52:57" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary>
     <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
       <Column Name="ProductID" DataType="System.Int32"/>

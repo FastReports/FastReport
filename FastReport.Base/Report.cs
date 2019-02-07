@@ -1271,8 +1271,18 @@ namespace FastReport
                 }
                 else
                 {
-                    Type t = Nullable.GetUnderlyingType(column.DataType);
-                    val = Convert.ChangeType(val, t != null ? t : column.DataType);
+                    if (val is IConvertible)
+                    {
+                        Type t = Nullable.GetUnderlyingType(column.DataType);
+                        try
+                        {
+                            val = Convert.ChangeType(val, t != null ? t : column.DataType);
+                        }
+                        catch (InvalidCastException)
+                        {
+                            // do nothing
+                        }
+                    }
                 }
 
                 if (CustomCalc != null)

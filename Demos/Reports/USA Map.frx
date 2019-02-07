@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates the simple Map object that is not bound to a data. To create a map:&#13;&#10;- put the Map object on the report page;&#13;&#10;- doubleclick the object to invoke its editor;&#13;&#10;- click the &quot;Add&quot; button to add a map layer;&#13;&#10;- select ESRI shapefile (.shp/.dbf files).&#13;&#10;Note: do not use shapefiles with large number of polygons (more than 10000). This will slow down the report." ReportInfo.Created="04/28/2012 01:31:18" ReportInfo.Modified="09/13/2015 19:18:24" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates a simple Map object that is not bound to data. To create a map:&#13;&#10;- put the Map object on the report page;&#13;&#10;- doubleclick the object to invoke its editor;&#13;&#10;- click the &quot;Add&quot; button to add a map layer;&#13;&#10;- select ESRI shapefile (.shp/.dbf files).&#13;&#10;Note: do not use shapefiles with large number of polygons (more than 10000). This will slow down the report." ReportInfo.Created="04/28/2012 01:31:18" ReportInfo.Modified="01/24/2019 12:00:03" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary/>
   <ReportPage Name="Page1">
     <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="633.15" CanGrow="true">

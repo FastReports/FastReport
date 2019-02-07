@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This example shows how to insert a page break before the employee &quot;Janet Leverling&quot; so it will print on a new page.&#13;&#10;This example does not differ materially from the &quot;Column Datasource&quot; example. It demonstrates how to handle page breaks from a script. To do this:&#13;&#10;- use Table object's &quot;PageBreak&quot; method to insert a page break before row or column that you intend to print using the PrintRow(s) or PrintColumn(s) methods." ReportInfo.Created="01/17/2008 20:54:09" ReportInfo.Modified="09/13/2015 19:11:20" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This example shows how to insert a page break before the employee &quot;Janet Leverling&quot; so it will be printed on a new page.&#13;&#10;This example does not differ materially from the &quot;Column Datasource&quot; example. It demonstrates how to handle page breaks from a script. To do this:&#13;&#10;- use Table object's &quot;PageBreak&quot; method to insert a page break before row or column that you intend to print using the PrintRow(s) or PrintColumn(s) methods." ReportInfo.Created="01/17/2008 20:54:09" ReportInfo.Modified="01/21/2019 11:36:09" ReportInfo.CreatorVersion="2019.1.9.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -82,7 +82,7 @@ namespace FastReport
       <TextObject Name="Text1" Top="37.8" Width="718.2" Height="28.35" Text="EMPLOYEES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
       <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="77.82" Width="718.2" Height="215.57" DataSource="">
+    <DataBand Name="Data1" Top="77.82" Width="718.2" Height="215.57">
       <TableObject Name="Table1" Left="9.45" Top="7.67" Width="292.95" Height="198.45" Border.Lines="All" Border.Color="LightGray" Border.Width="2" FixedColumns="1" ManualBuildEvent="Table1_ManualBuild">
         <TableColumn Name="Column1" Width="85.05"/>
         <TableColumn Name="Column2" MinWidth="141.75" Width="141.75" AutoSize="true"/>

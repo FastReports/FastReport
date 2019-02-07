@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to print charts using the MSChartObject. This report uses the following features:&#13;&#10;- grouping data by X axis;&#13;&#10;- sorting data by Y values;&#13;&#10;- creating auto-series." ReportInfo.Created="03/06/2009 03:34:28" ReportInfo.Modified="09/17/2015 15:45:09" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to print charts using the MSChartObject. This report uses the following features:&#13;&#10;- grouping data by X axis;&#13;&#10;- sorting data by Y values;&#13;&#10;- creating auto-series." ReportInfo.Created="03/06/2009 03:34:28" ReportInfo.Modified="01/23/2019 09:45:36" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary>
     <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
       <Column Name="Name" DataType="System.String"/>
@@ -25,7 +25,7 @@
         <MSChartSeries Name="Series1" GroupBy="XValue" XValue="[MatrixDemo.Name]" YValue1="[MatrixDemo.ItemsSold]"/>
         <MSChartSeries Name="Series6" GroupBy="XValue" XValue="[MatrixDemo.Name]" YValue1="[MatrixDemo.ItemsSold]"/>
       </MSChartObject>
-      <TextObject Name="Text14" Left="434.7" Top="548.1" Width="283.5" Height="207.9" Text="This chart demonstrates auto-created series. To do this:&#13;&#10;&#13;&#10;- create one series and set up its data;&#13;&#10;- select the &quot;Chart&quot; item and switch to the &quot;Data&quot; tab;&#13;&#10;- set up the &quot;Data column&quot; for auto-created series;&#13;&#10;- check the &quot;Align X values&quot; checkbox to align the data of different series." Padding="16, 16, 16, 16" VertAlign="Center" Font="Tahoma, 10pt"/>
+      <TextObject Name="Text14" Left="434.7" Top="548.1" Width="283.5" Height="207.9" Text="This chart demonstrates the auto-created series. To do this:&#13;&#10;&#13;&#10;- create one series and set up its data;&#13;&#10;- select the &quot;Chart&quot; item and switch to the &quot;Data&quot; tab;&#13;&#10;- set up the &quot;Data column&quot; for auto-created series;&#13;&#10;- check the &quot;Align X values&quot; checkbox to align the data of different series." Padding="16, 16, 16, 16" VertAlign="Center" Font="Tahoma, 10pt"/>
       <TextObject Name="Text15" Top="28.35" Width="718.2" Height="37.8" Text="Microsoft Chart demo" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 16pt, style=Bold"/>
       <TextObject Name="Text17" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
     </ReportTitleBand>

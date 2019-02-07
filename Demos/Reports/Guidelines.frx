@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the use of guidelines. &#13;&#10;- to create a guideline, click on white area of the horizontal or vertical ruler;&#13;&#10;- to delete a guideline, drag it outside the ruler;&#13;&#10;- you can delete all vertical/horizontal guidelines in the &quot;View&quot; menu." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="09/13/2015 20:39:46" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the use of guidelines. &#13;&#10;- to create a guideline, click on the white area of the horizontal or vertical ruler;&#13;&#10;- to delete a guideline, drag it outside the ruler;&#13;&#10;- you can delete all the vertical/horizontal guidelines in the &quot;View&quot; menu." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="01/25/2019 12:42:06" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary>
     <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
       <Column Name="EmployeeID" DataType="System.Int32"/>
@@ -28,7 +28,7 @@
     </ReportTitleBand>
     <DataBand Name="Data1" Top="89.05" Width="718.2" Height="212" CanGrow="true" CanShrink="true" Guides="18.9,28.35,47.25,66.15,85.05,94.5,113.4" DataSource="Employees">
       <TextObject Name="Text2" Left="189" Width="321.3" Height="18.9" Fill.Color="WhiteSmoke" Text="[Employees.FirstName] [Employees.LastName]" Font="Tahoma, 12pt, style=Bold"/>
-      <PictureObject Name="Picture1" Width="170" Height="212" Border.Lines="All" Border.Color="Gainsboro" Border.Width="2" CanGrow="true" CanShrink="true" SizeMode="AutoSize" DataColumn="Employees.Photo"/>
+      <PictureObject Name="Picture1" Width="170" Height="212" Border.Lines="All" Border.Color="Gainsboro" Border.Width="2" CanGrow="true" CanShrink="true" DataColumn="Employees.Photo" SizeMode="AutoSize"/>
       <TextObject Name="Text3" Left="189" Top="28.35" Width="85.05" Height="18.9" Text="Birth date:" Font="Tahoma, 8pt, style=Bold"/>
       <TextObject Name="Text4" Left="283.5" Top="28.35" Width="226.8" Height="18.9" Text="[Employees.BirthDate]" Format="Date" Format.Format="D" Font="Tahoma, 8pt"/>
       <TextObject Name="Text5" Left="189" Top="47.25" Width="85.05" Height="18.9" Text="Address:" Font="Tahoma, 8pt, style=Bold"/>

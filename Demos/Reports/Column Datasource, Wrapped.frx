@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print multiple Table columns wrapped. To do this:&#13;&#10;- select the Table object;&#13;&#10;- go to &quot;Properties&quot; window and set the &quot;Layout&quot; property to Wrapped;&#13;&#10;- set the &quot;WrappedGap&quot; if needed." ReportInfo.Created="01/17/2008 20:54:09" ReportInfo.Modified="09/13/2015 19:11:07" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print multiple Table columns wrapped. To do this:&#13;&#10;- select the Table object;&#13;&#10;- go to the &quot;Properties&quot; window and set the &quot;Layout&quot; property to Wrapped;&#13;&#10;- set the &quot;WrappedGap&quot; if needed." ReportInfo.Created="01/17/2008 20:54:09" ReportInfo.Modified="01/21/2019 10:37:03" ReportInfo.CreatorVersion="2019.1.9.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -76,7 +76,7 @@ namespace FastReport
       <TextObject Name="Text1" Top="37.8" Width="718.2" Height="28.35" Text="EMPLOYEES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
       <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="75.28" Width="718.2" Height="213.03" DataSource="">
+    <DataBand Name="Data1" Top="75.28" Width="718.2" Height="213.03">
       <TableObject Name="Table1" Left="9.45" Top="5.13" Width="388.23" Height="198.45" Border.Lines="All" Border.Color="LightGray" Border.Width="2" FixedColumns="1" Layout="Wrapped" WrappedGap="18.9" ManualBuildEvent="Table1_ManualBuild">
         <TableColumn Name="Column1" Width="85.05"/>
         <TableColumn Name="Column2" MinWidth="141.75" Width="237.03" AutoSize="true"/>

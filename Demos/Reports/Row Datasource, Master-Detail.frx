@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print Master-detail report using the Table object. In this example the Table object is used to print both master and detail rows. It does not differ much from the &quot;Row Datasource&quot; example.&#13;&#10;See the &quot;ManualBuild&quot; event handler for more details." ReportInfo.Created="01/17/2008 20:40:24" ReportInfo.Modified="09/13/2015 19:12:23" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print a Master-detail report using the Table object. In this example the Table object is used to print both master and detail rows. It does not differ much from the &quot;Row Datasource&quot; example.&#13;&#10;See the &quot;ManualBuild&quot; event handler for more details." ReportInfo.Created="01/17/2008 20:40:24" ReportInfo.Modified="01/21/2019 12:27:49" ReportInfo.CreatorVersion="2019.1.9.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -97,7 +97,7 @@ namespace FastReport
       <TextObject Name="Text2" Top="37.8" Width="718.2" Height="28.35" Text="PRODUCTS BY CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
       <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="70.15" Width="718.2" Height="145.17" DataSource="">
+    <DataBand Name="Data1" Top="70.15" Width="718.2" Height="145.17">
       <TableObject Name="Table1" Left="9.45" Top="3.42" Width="699.3" Height="141.75" ManualBuildEvent="Table1_ManualBuild">
         <TableColumn Name="Column1" Width="321.3"/>
         <TableColumn Name="Column2" Width="189"/>
