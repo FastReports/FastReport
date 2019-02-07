@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the &quot;Reset Page Numbers&quot; feature. To use it:&#13;&#10;- right-click the group header and select &quot;Reset Page Numbers&quot; menu item;&#13;&#10;- also select the &quot;Start New Page&quot; item. Each new group will start on a new page, and will have own page numbers." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="09/13/2015 19:02:14" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the &quot;Reset Page Numbers&quot; feature. To use it:&#13;&#10;- right-click the group header and select the &quot;Reset Page Numbers&quot; menu item;&#13;&#10;- also select the &quot;Start New Page&quot; item. Each new group will start on a new page, and each one will have its own page numbers." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="01/25/2019 12:26:29" ReportInfo.CreatorVersion="2019.1.9.0">
   <Styles>
     <Style Name="EvenRows" Fill.Color="Linen"/>
   </Styles>

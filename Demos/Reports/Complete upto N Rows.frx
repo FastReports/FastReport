@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates how to complete data band upto specified number of rows. If data band has less number of rows, the empty row will be printed. To do this:&#13;&#10;- add the Child band to a Data Band;&#13;&#10;- set its &quot;CompleteToNRows&quot; property to 15. You can do this in the context menu." ReportInfo.Created="10/17/2008 18:02:27" ReportInfo.Modified="09/17/2015 16:17:14" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates how to complete a data band upto a specified number of rows. If the data band has less rows than you specified, it will keep printing empty rows until their amount reaches the necessary number. To do this:&#13;&#10;- add the Child band to a Data Band;&#13;&#10;- set its &quot;CompleteToNRows&quot; property to 15. You can do this in the context menu." ReportInfo.Created="10/17/2008 18:02:27" ReportInfo.Modified="01/25/2019 13:06:37" ReportInfo.CreatorVersion="2019.1.9.0">
   <Styles>
     <Style Name="Even" Fill.Color="MistyRose"/>
   </Styles>

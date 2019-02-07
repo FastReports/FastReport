@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create matrix with no columns. To do this:&#13;&#10;- drag the data from the Data Dictionary window to create row and cell;&#13;&#10;- we are not going to print the first row that contains column headers (they are empty). To do this, doubleclick the left-top cell and clear the text;&#13;&#10;- instead we would print the title. To turn it on, right-click the left-top corner of the matrix (where you see the &quot;move&quot; indicator) to show the matrix context menu, and click &quot;Show Title&quot; item to turn on the matrix title;&#13;&#10;- put the necessary text in the title." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="09/16/2015 12:35:08" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create a matrix with no columns. To do this:&#13;&#10;- drag the data from the Data Dictionary window to create a row and a cell;&#13;&#10;- we are not going to print the first row that contains column headers (they are empty). To do this, doubleclick the left-top cell and clear the text;&#13;&#10;- instead we are going to print the title. To enable it: right-click the left-top corner of the matrix (where you see the &quot;move&quot; indicator) to show the matrix context menu, and click &quot;Show Title&quot; item to enable the matrix title;&#13;&#10;- put the necessary text in the title." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="01/21/2019 12:59:45" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary>
     <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
       <Column Name="Name" DataType="System.String"/>
@@ -31,7 +31,7 @@
         </TableRow>
         <TableRow Name="Row2" Visible="false">
           <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="YellowGreen" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell4" Text="Drag data here to&#13;&#10;create a new column" HorzAlign="Center" VertAlign="Center" TextFill.Color="Gray"/>
+          <TableCell Name="Cell4" Text="Drag data here to&#13;&#10; create a new column" HorzAlign="Center" VertAlign="Center" TextFill.Color="Gray"/>
         </TableRow>
         <TableRow Name="Row4">
           <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="YellowGreen" Text="[Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>

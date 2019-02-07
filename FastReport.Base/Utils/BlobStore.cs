@@ -123,7 +123,8 @@ namespace FastReport.Utils
       if (useFileCache)
       {
         tempFileName = Config.CreateTempFile("");
-        tempFile = new FileStream(tempFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        // delete temp file, when it will be disposed
+        tempFile = new FileStream(tempFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, 4096, FileOptions.DeleteOnClose);
       }
     }
 

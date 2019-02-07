@@ -16,7 +16,7 @@ namespace FastReport.Web
             var selectedZoom2 = $@"<div class=""{template_FR}-zoom-selected""></div>";
             var isFirstPage = CurrentPageIndex == 0;
             var isLastPage = CurrentPageIndex >= TotalPages - 1;
-
+            
             string templateToolbar = $@"
 <div class=""{template_FR}-toolbar"">
 
@@ -26,23 +26,21 @@ namespace FastReport.Web
 
     <div class=""{template_FR}-toolbar-item"">
         <img src=""{template_resource_url("save.svg", "image/svg+xml")}"" title=""Save"" style=""transform:translateY(1px)"">
-        <div class=""{template_FR}-toolbar-dropdown-content"">
-            <a target=""_blank"" href=""{template_export_url("fpx")}"">Prepared report</a>
-            " +
+        <div class=""{template_FR}-toolbar-dropdown-content"">" +
+            (ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">Prepared report</a>" : "") +
 #if  !OPENSOURCE
-            $@"<a target=""_blank"" href=""{template_export_url("pdf")}"">Adobe PDF</a>
-            <a target=""_blank"" href=""{template_export_url("xlsx")}"">Microsoft Excel 2007</a>
-            <!-- <a target=""_blank"" href=""{template_export_url("docx")}"">Microsoft Word 2007</a> -->
-            <!-- <a target=""_blank"" href=""{template_export_url("pptx")}"">Microsoft PowerPoint 2007</a> -->
-            <a target=""_blank"" href=""{template_export_url("txt")}"">Text File/Matrix Printer</a>
-            <a target=""_blank"" href=""{template_export_url("rtf")}"">Rich Text</a>
-            <a target=""_blank"" href=""{template_export_url("xps")}"">Microsoft XPS</a>
-            <a target=""_blank"" href=""{template_export_url("ods")}"">OpenOffice Calc</a>
-            <a target=""_blank"" href=""{template_export_url("odt")}"">OpenOffice Writer</a>
-            <a target=""_blank"" href=""{template_export_url("xml")}"">XML (Excel) table</a>
-            <!-- <a target=""_blank"" href=""{template_export_url("dbf")}"">DBF table</a> -->
-            <a target=""_blank"" href=""{template_export_url("csv")}"">CSV file</a>
-        " +
+            (ShowPdfExport ? $@"<a target=""_blank"" href=""{template_export_url("pdf")}"">Adobe PDF</a>": "") +
+            (ShowExcel2007Export ? $@"<a target=""_blank"" href=""{template_export_url("xlsx")}"">Microsoft Excel 2007</a>": "") +
+            (ShowWord2007Export ? $@"<a target=""_blank"" href=""{template_export_url("docx")}"">Microsoft Word 2007</a>": "") +
+            (ShowPowerPoint2007Export ? $@"<a target=""_blank"" href=""{template_export_url("pptx")}"">Microsoft PowerPoint 2007</a>": "") +
+            (ShowTextExport ? $@"<a target=""_blank"" href=""{template_export_url("txt")}"">Text File/Matrix Printer</a>": "") +
+            (ShowRtfExport ? $@"<a target=""_blank"" href=""{template_export_url("rtf")}"">Rich Text</a>": "") +
+            (ShowXpsExport ? $@"<a target=""_blank"" href=""{template_export_url("xps")}"">Microsoft XPS</a>": "") +
+            (ShowOdsExport ? $@"<a target=""_blank"" href=""{template_export_url("ods")}"">OpenOffice Calc</a>": "") +
+            (ShowOdtExport ? $@"<a target=""_blank"" href=""{template_export_url("odt")}"">OpenOffice Writer</a>": "") +
+            (ShowXmlExcelExport ? $@"<a target=""_blank"" href=""{template_export_url("xml")}"">XML (Excel) table</a>": "") +
+            //(ShowDbfExport ? $@"<!-- <a target=""_blank"" href=""{template_export_url("dbf")}"">DBF table</a> -->": "") +
+            (ShowCsvExport ? $@"<a target=""_blank"" href=""{template_export_url("csv")}"">CSV file</a>": "") + 
 #endif
         $@"</div>
     </div>

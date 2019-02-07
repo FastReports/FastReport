@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates how to use application business objects.&#13;&#10;- register the list of business objects using the Report.RegisterData method. The list must be of IEnumerable type." ReportInfo.Created="07/01/2008 16:56:58" ReportInfo.Modified="09/17/2015 16:06:59" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates how to use the application business objects.&#13;&#10;- register the list of business objects using the Report.RegisterData method. The list must be of IEnumerable type." ReportInfo.Created="07/01/2008 16:56:58" ReportInfo.Modified="01/25/2019 12:44:52" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary>
-    <BusinessObjectDataSource Name="Categories BusinessObject" ReferenceName="Categories BusinessObject" DataType="System.Collections.Generic.List`1[[Demo.Form1+Category, Demo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+    <BusinessObjectDataSource Name="Categories BusinessObject" ReferenceName="Categories BusinessObject" DataType="System.Collections.Generic.List`1[[Demo.Form1+Category, Demo, Version=2019.1.9.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
       <Column Name="Name" DataType="System.String"/>
       <Column Name="Description" DataType="System.String"/>
-      <BusinessObjectDataSource Name="Products1" Alias="Products" DataType="System.Collections.Generic.List`1[[Demo.Form1+Product, Demo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="Products" Enabled="true">
+      <BusinessObjectDataSource Name="Products1" Alias="Products" DataType="System.Collections.Generic.List`1[[Demo.Form1+Product, Demo, Version=2019.1.9.0, Culture=neutral, PublicKeyToken=null]]" PropName="Products" Enabled="true">
         <Column Name="Name" DataType="System.String"/>
         <Column Name="UnitPrice" DataType="System.Decimal"/>
       </BusinessObjectDataSource>

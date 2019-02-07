@@ -1035,7 +1035,6 @@
       <Hatch Text="Hatch"/>
       <Glass Text="Glass"/>
       <Texture Text="Texture"/>
-      
       <ChooseImage Text="Choose image" />
       <PreserveAspectRatio Text="PreserveAspectRatio" />
       <ImageSize Text="Image size" />
@@ -1668,7 +1667,7 @@
       <Subscript Text="Subscript"/>
       <Superscript Text="Superscript"/>
       <Bullets Text="Bullets"/>
-      <Confirm Text="Text has been modified. Save changes?"/>
+      <ConfirmChanges Text="Text has been modified. Save changes?"/>
     </RichTextEditor>
     <SearchReplace Text="Find and Replace">
       <Find Text="Find what:"/>
@@ -1739,6 +1738,7 @@
     </Style>
     <TextEditor Text="Edit Text">
       <WordWrap Text="Word wrap"/>
+      <ConfirmChanges Text="Text has been modified. Save changes?"/>
     </TextEditor>
     <TotalEditor Text="Edit Total">
       <TotalName Text="Total name:"/>
@@ -1914,6 +1914,7 @@
       <CanShrink Text="Can Shrink"/>
       <GrowToBottom Text="Grow to Bottom"/>
       <Hyperlink Text="Hyperlink..."/>
+      <Style Text="Style"/>
     </ReportComponent>
     <BreakableComponent>
       <CanBreak Text="Can Break"/>

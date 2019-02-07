@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to offset starting position when printing labels. See the report script for more details." ReportInfo.Created="01/17/2008 17:08:04" ReportInfo.Modified="09/17/2015 18:24:48" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to offset starting position when printing labels. See the report's script for more details." ReportInfo.Created="01/17/2008 17:08:04" ReportInfo.Modified="01/22/2019 12:28:45" ReportInfo.CreatorVersion="2019.1.9.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;

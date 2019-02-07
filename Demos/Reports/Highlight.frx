@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to highlight some values in the matrix. To do this:&#13;&#10;- select the cell that you need to highlight;&#13;&#10;- click the &quot;Highlight&quot; button on the &quot;Text&quot; toolbar;&#13;&#10;- add a new highlight condition. Use the &quot;Value&quot; member to refer to the cell value." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="09/17/2015 18:16:52" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to highlight some values in the matrix. To do this:&#13;&#10;- select the cell that you need to highlight;&#13;&#10;- click the &quot;Highlight&quot; button on the &quot;Text&quot; toolbar;&#13;&#10;- add a new highlight condition. Use the &quot;Value&quot; property to refer to the cell's value." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="01/25/2019 12:39:21" ReportInfo.CreatorVersion="2019.1.9.0">
   <Dictionary>
     <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
       <Column Name="Name" DataType="System.String"/>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the &quot;Print on Previous Page&quot; feature. To use it:&#13;&#10;- open the &quot;Report Tree&quot; toolwindow (you can do this in the &quot;View&quot; menu);&#13;&#10;- select the page object;&#13;&#10;- go &quot;Properties&quot; window and set the &quot;PrintOnPreviousPage&quot; to true." ReportInfo.Created="01/17/2008 03:55:42" ReportInfo.Modified="09/13/2015 19:03:31" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the &quot;Print on Previous Page&quot; feature. To use it:&#13;&#10;- open the &quot;Report Tree&quot; toolwindow (you can do this in the &quot;View&quot; menu);&#13;&#10;- select the page object;&#13;&#10;- go to the &quot;Properties&quot; window and set the &quot;PrintOnPreviousPage&quot; to true." ReportInfo.Created="01/17/2008 03:55:42" ReportInfo.Modified="01/25/2019 12:40:00" ReportInfo.CreatorVersion="2019.1.9.0">
   <Styles>
     <Style Name="EvenRows" Fill.Color="OldLace"/>
   </Styles>

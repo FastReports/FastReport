@@ -147,9 +147,6 @@ namespace FastReport
             set { skipFirstLineIndent = value; }
         }
 
-
-
-
         /// <summary>
         /// clone with new scale;
         /// </summary>
