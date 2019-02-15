@@ -1282,6 +1282,10 @@ namespace FastReport
                         {
                             // do nothing
                         }
+                        catch (FormatException)
+                        {
+                            // do nothing
+                        }
                     }
                 }
 

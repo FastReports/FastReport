@@ -143,7 +143,10 @@ namespace FastReport.Web.Controllers
                             webReport.Report.FindClickedObject<TextObject>(@params[0], pageN, left, top,
                                 (textObject, reportPage, _pageN) =>
                                 {
-                                    result = Template_textedit_form(textObject.Text);
+                                    webReport.Res.Root("Buttons");
+                                    string okText = webReport.Res.Get("Ok");
+                                    string cancelText = webReport.Res.Get("Cancel");
+                                    result = Template_textedit_form(textObject.Text, okText, cancelText);
                                 });
 
                             if (result != null)
@@ -263,7 +266,7 @@ namespace FastReport.Web.Controllers
             return export;
         }
 
-        string Template_textedit_form(string text) => $@"
+        string Template_textedit_form(string text, string okText, string cancelText) => $@"
 <!DOCTYPE html>
 <html>
 <head>
@@ -291,8 +294,8 @@ button {{
 <body>
     <textarea autofocus>{HttpUtility.HtmlEncode(text)}</textarea>
     <br>
-    <button onclick=""window.close();"">Cancel</button>
-    <button onclick=""window.postMessage('submit', '*');"">Submit</button>
+    <button onclick=""window.close();"">{HttpUtility.HtmlEncode(cancelText)}</button>
+    <button onclick=""window.postMessage('submit', '*');"">{HttpUtility.HtmlEncode(okText)}</button>
 </body>
 </html>
 ";
