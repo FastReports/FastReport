@@ -6,7 +6,15 @@ namespace FastReport.Web
 {
     partial class WebReport
     {
-        string template_toolbar()
+        string template_toolbar(string saveTxt = "Save", string reloadTxt = "Reload", string preparedTxt = "Prepared report",
+            string printTxt = "Print", string printFromBrowserTxt = "Print from browser",
+            string printFromPdf = "Print from PDF viewer", string zoomTxt = "Zoom", string firstPageTxt = "First page",
+            string previousPageTxt = "Previous page", string currentPageTxt = "Current page",
+            string nextPageTxt = "Next page", string lastPageTxt = "Last page", string totalPagesTxt = "Total Pages",
+            string pdfTxt = "Adobe PDF", string excel2007Txt = "Microsoft Excel 2007", string word2007Txt = "Microsoft Word 2007",
+            string pptxTxt = "Microsoft PowerPoint 2007", string txtTxt = "Text File/Matrix Printer", string rtfTxt = "Rich Text",
+            string xpsTxt = "Microsoft XPS", string odsTxt = "OpenOffice Calc", string odtTxt = "OpenOffice Writer",
+            string xmlTxt = "XML (Excel) table", string csvTxt = "CSV file")
         {
             if (!ShowToolbar)
                 return "";
@@ -20,45 +28,45 @@ namespace FastReport.Web
             string templateToolbar = $@"
 <div class=""{template_FR}-toolbar"">
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-pointer"" onclick=""{template_FR}.refresh();"" title=""Reload"">
+    <div class=""{template_FR}-toolbar-item {template_FR}-pointer"" onclick=""{template_FR}.refresh();"" title=""{reloadTxt}"">
         <img src=""{template_resource_url("reload.svg", "image/svg+xml")}"">
     </div>
 
     <div class=""{template_FR}-toolbar-item"">
-        <img src=""{template_resource_url("save.svg", "image/svg+xml")}"" title=""Save"" style=""transform:translateY(1px)"">
+        <img src=""{template_resource_url("save.svg", "image/svg+xml")}"" title=""{saveTxt}"" style=""transform:translateY(1px)"">
         <div class=""{template_FR}-toolbar-dropdown-content"">" +
-            (ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">Prepared report</a>" : "") +
+            (ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">{preparedTxt}</a>" : "") +
 #if  !OPENSOURCE
-            (ShowPdfExport ? $@"<a target=""_blank"" href=""{template_export_url("pdf")}"">Adobe PDF</a>": "") +
-            (ShowExcel2007Export ? $@"<a target=""_blank"" href=""{template_export_url("xlsx")}"">Microsoft Excel 2007</a>": "") +
-            (ShowWord2007Export ? $@"<a target=""_blank"" href=""{template_export_url("docx")}"">Microsoft Word 2007</a>": "") +
-            (ShowPowerPoint2007Export ? $@"<a target=""_blank"" href=""{template_export_url("pptx")}"">Microsoft PowerPoint 2007</a>": "") +
-            (ShowTextExport ? $@"<a target=""_blank"" href=""{template_export_url("txt")}"">Text File/Matrix Printer</a>": "") +
-            (ShowRtfExport ? $@"<a target=""_blank"" href=""{template_export_url("rtf")}"">Rich Text</a>": "") +
-            (ShowXpsExport ? $@"<a target=""_blank"" href=""{template_export_url("xps")}"">Microsoft XPS</a>": "") +
-            (ShowOdsExport ? $@"<a target=""_blank"" href=""{template_export_url("ods")}"">OpenOffice Calc</a>": "") +
-            (ShowOdtExport ? $@"<a target=""_blank"" href=""{template_export_url("odt")}"">OpenOffice Writer</a>": "") +
-            (ShowXmlExcelExport ? $@"<a target=""_blank"" href=""{template_export_url("xml")}"">XML (Excel) table</a>": "") +
+            (ShowPdfExport ? $@"<a target=""_blank"" href=""{template_export_url("pdf")}"">{pdfTxt}</a>": "") +
+            (ShowExcel2007Export ? $@"<a target=""_blank"" href=""{template_export_url("xlsx")}"">{excel2007Txt}</a>": "") +
+            (ShowWord2007Export ? $@"<a target=""_blank"" href=""{template_export_url("docx")}"">{word2007Txt}</a>": "") +
+            (ShowPowerPoint2007Export ? $@"<a target=""_blank"" href=""{template_export_url("pptx")}"">{pptxTxt}</a>": "") +
+            (ShowTextExport ? $@"<a target=""_blank"" href=""{template_export_url("txt")}"">{txtTxt}</a>": "") +
+            (ShowRtfExport ? $@"<a target=""_blank"" href=""{template_export_url("rtf")}"">{rtfTxt}</a>": "") +
+            (ShowXpsExport ? $@"<a target=""_blank"" href=""{template_export_url("xps")}"">{xpsTxt}</a>": "") +
+            (ShowOdsExport ? $@"<a target=""_blank"" href=""{template_export_url("ods")}"">{odsTxt}</a>": "") +
+            (ShowOdtExport ? $@"<a target=""_blank"" href=""{template_export_url("odt")}"">{odtTxt}</a>": "") +
+            (ShowXmlExcelExport ? $@"<a target=""_blank"" href=""{template_export_url("xml")}"">{xmlTxt}</a>": "") +
             //(ShowDbfExport ? $@"<!-- <a target=""_blank"" href=""{template_export_url("dbf")}"">DBF table</a> -->": "") +
-            (ShowCsvExport ? $@"<a target=""_blank"" href=""{template_export_url("csv")}"">CSV file</a>": "") + 
+            (ShowCsvExport ? $@"<a target=""_blank"" href=""{template_export_url("csv")}"">{csvTxt}</a>": "") + 
 #endif
         $@"</div>
     </div>
 
     <div class=""{template_FR}-toolbar-item"">
-        <img src=""{template_resource_url("print.svg", "image/svg+xml")}"" title=""Print"">
+        <img src=""{template_resource_url("print.svg", "image/svg+xml")}"" title=""{printTxt}"">
         <div class=""{template_FR}-toolbar-dropdown-content"">
-            <a target=""_blank"" href=""{template_print_url("html")}"">Print from browser</a>
+            <a target=""_blank"" href=""{template_print_url("html")}"">{printFromBrowserTxt}</a>
             " +
 #if  !OPENSOURCE
-            $@"<a target=""_blank"" href=""{template_print_url("pdf")}"">Print from PDF viewer</a>
+            $@"<a target=""_blank"" href=""{template_print_url("pdf")}"">{printFromPdf}</a>
         " +
 #endif
         $@"</div>
     </div>
 
     <div class=""{template_FR}-toolbar-item"">
-        <img src=""{template_resource_url("magnifier.svg", "image/svg+xml")}"" title=""Zoom"" style=""transform:translateY(-1px)"">
+        <img src=""{template_resource_url("magnifier.svg", "image/svg+xml")}"" title=""{zoomTxt}"" style=""transform:translateY(-1px)"">
         <div class=""{template_FR}-toolbar-dropdown-content"">
             <a onclick=""{template_FR}.zoom(300);"">{(currentZoom == 300 ? selectedZoom1 : selectedZoom2)}300%</a>
             <a onclick=""{template_FR}.zoom(200);"">{(currentZoom == 200 ? selectedZoom1 : selectedZoom2)}200%</a>
@@ -73,16 +81,16 @@ namespace FastReport.Web
 
 {((SinglePage || TotalPages < 2) ? "" : $@"
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('first');""")} title=""First page"">
+    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('first');""")} title=""{firstPageTxt}"">
         <img src=""{template_resource_url("angle-double-left.svg", "image/svg+xml")}"">
     </div>
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('prev');""")} title=""Previous page"">
+    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('prev');""")} title=""{previousPageTxt}"">
         <img src=""{template_resource_url("angle-left.svg", "image/svg+xml")}"">
     </div>
 
     <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""Current page"">
+        <input class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{currentPageTxt}"">
     </div>
 
     <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"">
@@ -90,14 +98,14 @@ namespace FastReport.Web
     </div>
 
     <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""Total pages"">
+        <input type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{totalPagesTxt}"">
     </div>
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('next');""")} title=""Next page"">
+    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('next');""")} title=""{nextPageTxt}"">
         <img src=""{template_resource_url("angle-right.svg", "image/svg+xml")}"">
     </div>
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('last');""")} title=""Last page"">
+    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('last');""")} title=""{lastPageTxt}"">
         <img src=""{template_resource_url("angle-double-right.svg", "image/svg+xml")}"">
     </div>
 ")}

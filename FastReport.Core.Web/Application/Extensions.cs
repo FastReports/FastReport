@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FastReport.Table;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace FastReport.Web
@@ -29,13 +31,46 @@ namespace FastReport.Web
                     var point = new System.Drawing.PointF(left + 1, top + 1);
                     foreach (Base obj in allObjects)
                     {
-                        if (obj is T c &&
-                            c.Name == objectName &&
-                            c.AbsBounds.Contains(point))
+                        if (obj is ReportComponentBase)
                         {
-                            action(c, page, pageN);
-                            found = true;
-                            break;
+                            ReportComponentBase c = obj as ReportComponentBase;
+                            if (c is TableBase)
+                            {
+                                TableBase table = c as TableBase;
+                                for (int i = 0; i < table.RowCount; i++)
+                                {
+                                    for (int j = 0; j < table.ColumnCount; j++)
+                                    {
+                                        TableCell textcell = table[j, i];
+                                        if (textcell.Name == objectName)
+                                        {
+                                            RectangleF rect = new RectangleF(table.Columns[j].AbsLeft,
+                                                table.Rows[i].AbsTop,
+                                                textcell.Width,
+                                                textcell.Height);
+                                            if (rect.Contains(point))
+                                            {
+                                                action(textcell as T, page, pageN);
+                                                found = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (found)
+                                        break;
+                                }
+                            }
+                            else if (c is T)
+                            {
+                                if (c.Name == objectName && c.AbsBounds.Contains(point))
+                                {
+                                    action(c as T, page, pageN);
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (found)
+                                break;
                         }
                     }
                     page.Dispose();

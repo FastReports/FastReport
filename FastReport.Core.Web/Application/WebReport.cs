@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Html;
 using System.Threading.Tasks;
 using System.Linq;
 using FastReport.Web.Controllers;
+using FastReport.Web.Application;
 
 namespace FastReport.Web
 {
@@ -17,6 +18,8 @@ namespace FastReport.Web
     
     public partial class WebReport
     {
+        private string localizationFile;
+
         #region Public Properties
 
         /// <summary>
@@ -39,6 +42,23 @@ namespace FastReport.Web
             get => Tabs[CurrentTabIndex].Report;
             set => Tabs[CurrentTabIndex].Report = value;
         }
+
+        /// <summary>
+        /// Gets or sets the WebReport's locale
+        /// </summary>
+        public string LocalizationFile
+        {
+            get => localizationFile;
+            set
+            {
+                localizationFile = value;
+                string path = WebUtils.MapPath(localizationFile);
+                Res.LoadLocale(path);
+            }
+        }
+
+        internal WebRes Res { get; set; } = new WebRes();
+
 
         /// <summary>
         /// Active report tab
@@ -151,6 +171,8 @@ namespace FastReport.Web
 
         public WebReport()
         {
+            string path = WebUtils.MapPath(LocalizationFile);
+            Res.LoadLocale(path);
             WebReportCache.Instance.Add(this);
         }
 

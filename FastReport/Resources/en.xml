@@ -2166,6 +2166,7 @@
       <Unicode Text="Unicode"/>
       <OEM Text="OEM"/>
       <DataOnly Text="Data only"/>
+      <EscapeQuotes Text="Escape quotation marks"/>
     </Csv>
     <Dbf Text="Export to DBF">
       <File Text="DBF table"/>
