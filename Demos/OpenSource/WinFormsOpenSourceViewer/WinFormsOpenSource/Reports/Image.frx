@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates PictureObject features." ReportInfo.Created="06/16/2009 21:04:52" ReportInfo.Modified="08/27/2015 15:54:44" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="LastName" DataType="System.String"/>
+      <Column Name="FirstName" DataType="System.String"/>
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="TitleOfCourtesy" DataType="System.String"/>
+      <Column Name="BirthDate" DataType="System.DateTime"/>
+      <Column Name="HireDate" DataType="System.DateTime"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="HomePhone" DataType="System.String"/>
+      <Column Name="Extension" DataType="System.String"/>
+      <Column Name="Photo" DataType="System.Byte[]" BindableControl="Picture"/>
+      <Column Name="Notes" DataType="System.String"/>
+      <Column Name="ReportsTo" DataType="System.Int32"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="94.5" CanGrow="true">
+      <TextObject Name="Text29" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" Text="[Report.ReportInfo.Description]" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text30" Top="47.25" Width="718.2" Height="28.35" Text="PictureObject" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="98.5" Width="718.2" Height="756" DataSource="">
+      <TextObject Name="Text2" Top="510.3" Width="708.75" Height="207.9" Fill.Color="Orange" HorzAlign="Center"/>
+      <PictureObject Name="Picture1" Left="179.55" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture"/>
+      <PictureObject Name="Picture2" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" SizeMode="Normal" DataColumn="Categories.Picture"/>
+      <PictureObject Name="Picture3" Left="359.1" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" SizeMode="StretchImage" DataColumn="Categories.Picture"/>
+      <PictureObject Name="Picture4" Left="538.65" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" SizeMode="CenterImage" DataColumn="Categories.Picture"/>
+      <PictureObject Name="Picture5" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture"/>
+      <PictureObject Name="Picture6" Left="179.55" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" Angle="90"/>
+      <PictureObject Name="Picture7" Left="359.1" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" Angle="180"/>
+      <PictureObject Name="Picture8" Left="538.65" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" Angle="270"/>
+      <PictureObject Name="Picture9" Left="179.55" Top="529.2" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Employees.Photo" Transparency="0.5"/>
+      <TextObject Name="Text12" Width="708.75" Height="37.8" Fill.Color="Orange" Text="SIZE MODES" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text1" Left="179.55" Top="198.45" Width="170.1" Height="18.9" Text="Zoom" HorzAlign="Center"/>
+      <TextObject Name="Text13" Top="198.45" Width="170.1" Height="18.9" Text="Normal" HorzAlign="Center"/>
+      <TextObject Name="Text14" Left="359.1" Top="198.45" Width="170.1" Height="18.9" Text="Stretch" HorzAlign="Center"/>
+      <TextObject Name="Text15" Left="538.65" Top="198.45" Width="170.1" Height="18.9" Text="Center" HorzAlign="Center"/>
+      <TextObject Name="Text16" Top="245.7" Width="708.75" Height="37.8" Fill.Color="Orange" Text="ROTATION" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <TextObject Name="Text17" Top="472.5" Width="708.75" Height="37.8" Fill.Color="Orange" Text="TRANSPARENCY" VertAlign="Center" Font="Tahoma, 16pt"/>
+      <PictureObject Name="Picture10" Left="359.1" Top="529.2" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Employees.Photo" TransparentColor="White"/>
+      <TextObject Name="Text18" Left="179.55" Top="680.4" Width="170.1" Height="18.9" Text="Transparency = 0,5" HorzAlign="Center"/>
+      <TextObject Name="Text19" Left="359.1" Top="680.4" Width="170.1" Height="18.9" Text="TransparentColor = White" HorzAlign="Center"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="858.5" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

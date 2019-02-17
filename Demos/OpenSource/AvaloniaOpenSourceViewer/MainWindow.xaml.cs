@@ -1,0 +1,207 @@
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+using System;
+using FastReport;
+using System.Collections.Generic;
+using FastReport.Export.Image;
+using System.IO;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+
+namespace Viewer
+{
+    public class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            imHeight = img.Height;
+            imWidth = img.Width;
+        }
+
+        private Button OpenBtn;
+        private Image img;
+        private TextBox PageNumber;
+
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
+            OpenBtn = this.FindControl<Button>("Open");
+            OpenBtn.Click += OpenFile;
+
+            this.img = this.FindControl<Image>("img");
+            this.PageNumber = this.FindControl<TextBox>("PageNumber");
+        }
+
+        public List<Avalonia.Media.Imaging.Bitmap> pages = new List<Avalonia.Media.Imaging.Bitmap>();
+        public Report Report
+        {
+            get { return report; }
+            set
+            {
+                ex = new FastReport.Export.Image.ImageExport();
+                ex.HasMultipleFiles = true;
+                report = value;
+                SetContent(report);
+                SetImage();
+            }
+        }
+
+        public int CurrentPage
+        {
+            get { return currentPage; }
+            set
+            {
+                if (value >= 0 && value < pages.Count)
+                    currentPage = value;
+            }
+        }
+
+        private void SetContent(Report report)
+        {
+            DeleteTempFiles();
+            ex.ImageFormat = ImageExportFormat.Png;
+            ex.Resolution = 96;
+            Random rnd = new Random();
+            ex.Export(report, Directory.GetCurrentDirectory() + "/test." + rnd.Next(100) + ".png");
+            foreach (string file in ex.GeneratedFiles)
+            {
+                //Avalonia.Media.Imaging.Bitmap image = new Avalonia.Media.Imaging.Bitmap();
+                //image.BeginInit();
+                //image.CacheOption = BitmapCacheOption.OnLoad;
+                //image.UriSource = new Uri(file);
+                //image.EndInit();
+                pages.Add(new Avalonia.Media.Imaging.Bitmap(file));
+            }
+            CurrentPage = 0;
+        }
+
+        public void DeleteTempFiles()
+        {
+            FileInfo[] path = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("*test*", SearchOption.AllDirectories);
+            pages.Clear();
+            foreach (FileInfo file in path)
+            {
+                File.Delete(file.FullName);
+            }
+        }
+
+        public void SetImage()
+        {
+            //if (CurrentPage >= 0 && CurrentPage < pages.Count())
+            //{
+            //    im.Source = null;
+            img.Source = pages[CurrentPage];
+            //}
+            img.Height = imHeight;
+            img.Width = imWidth;
+            PageNumber.Text = (CurrentPage + 1).ToString();
+        }
+
+        private void First_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            CurrentPage = 0;
+            SetImage();
+        }
+
+        private void Prev_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            CurrentPage--;
+            SetImage();
+        }
+
+        private void Next_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            CurrentPage++;
+            SetImage();
+        }
+
+        private void Last_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            CurrentPage = pages.Count - 1;
+            SetImage();
+        }
+
+        private void PageNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.Enter)
+            {
+                if (int.Parse(PageNumber.Text) > 0)
+                {
+                    CurrentPage = int.Parse(PageNumber.Text) - 1;
+                    SetImage();
+                }
+            }
+        }
+
+        private async void OpenFile(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.Filters.Add(new FileDialogFilter() { Name = "Подготовленные отчёты(*.FPX)", Extensions = new List<string> { "fpx" } });
+            myDialog.AllowMultiple = false;
+
+            var result = await myDialog.ShowAsync(this);
+            LoadReport(result[0]);
+        }
+
+        void LoadReport(string report_name)
+        {
+            Report rep = new Report();
+            rep.LoadPrepared(report_name);
+            Report = rep;
+        }
+
+
+        private void Zoom_in_Click(object sender, RoutedEventArgs e)
+        {
+            if (ex != null)
+            {
+                ex.ImageFormat = ImageExportFormat.Png;
+                ex.Resolution += 25;
+                ex.PageNumbers = (CurrentPage + 1).ToString();
+                //ex.Zoom += 0.25f;
+                ex.Export(Report, Directory.GetCurrentDirectory() + "/testZoom.png");
+                //Report.Export(ex, stream);
+
+                if (CurrentPage >= 0 && CurrentPage < pages.Count)
+                    img.Source = LoadImage(Directory.GetCurrentDirectory() + "/testZoom.png");
+                //new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "/testZoom.png"));
+                PageNumber.Text = (CurrentPage + 1).ToString();
+            }
+            img.Width += 50;
+            img.Height += 50;
+        }
+
+        private static Avalonia.Media.Imaging.Bitmap LoadImage(string file)
+        {
+            return new Avalonia.Media.Imaging.Bitmap(file);
+        }
+        private void Zoom_out_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (ex != null)
+            {
+                ex.ImageFormat = ImageExportFormat.Png;
+                ex.Resolution -= 25;
+                ex.PageNumbers = (CurrentPage + 1).ToString();
+                //ex.Zoom += 0.25f;
+                ex.Export(Report, Directory.GetCurrentDirectory() + "/testZoom.png");
+                //Report.Export(ex, stream);
+
+                if (CurrentPage >= 0 && CurrentPage < pages.Count)
+                    img.Source = LoadImage(Directory.GetCurrentDirectory() + "/testZoom.png");
+                //new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "/testZoom.png"));
+                PageNumber.Text = (CurrentPage + 1).ToString();
+            }
+            img.Width -= 50;
+            img.Height -= 50;
+        }
+
+        private Report report;
+        private FastReport.Export.Image.ImageExport ex;
+        private int currentPage = 0;
+        private double imHeight;
+        private double imWidth;
+    }
+}
