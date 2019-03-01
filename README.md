@@ -60,7 +60,7 @@ You can make a report template in several ways:
 
 ## Exporting
 
-FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF.
+FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. PDF Export is available as a plugin.
 
 ## Installation
 
