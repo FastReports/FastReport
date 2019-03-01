@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource.Web.Vue", "FastReport.OpenSource.Web.Vue.csproj", "{4701717F-A9A9-4633-A51F-76C90D05EF21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4701717F-A9A9-4633-A51F-76C90D05EF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4701717F-A9A9-4633-A51F-76C90D05EF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4701717F-A9A9-4633-A51F-76C90D05EF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4701717F-A9A9-4633-A51F-76C90D05EF21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2A4B0BE-1149-4F48-9C7B-4F3CE195B3A0}
+	EndGlobalSection
+EndGlobal

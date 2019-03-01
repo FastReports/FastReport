@@ -243,7 +243,14 @@ namespace FastReport
             pictureObject.DrawImage(e);
         }
 
-        internal void DrawText(FRPaintEventArgs e, RectangleF displayRect, Report report, bool isPrinting)
+        /// <summary>
+        /// Draws watermark text.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="displayRect"></param>
+        /// <param name="report"></param>
+        /// <param name="isPrinting"></param>
+        public void DrawText(FRPaintEventArgs e, RectangleF displayRect, Report report, bool isPrinting)
         {
             textObject.SetReport(report);
             textObject.Bounds = displayRect;

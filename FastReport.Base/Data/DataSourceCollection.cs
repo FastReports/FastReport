@@ -53,6 +53,14 @@ namespace FastReport.Data
     }
 
     /// <summary>
+    /// Sorts data sources by theirs names.
+    /// </summary>
+    public void Sort()
+    {
+        InnerList.Sort(new DataSourceComparer());
+    }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="DataSourceCollection"/> class with default settings.
     /// </summary>
     /// <param name="owner">The owner of this collection.</param>
@@ -60,4 +68,19 @@ namespace FastReport.Data
     {
     }
   }
+
+    /// <summary>
+    /// Represents the comparer class that used for sorting the collection of data sources.
+    /// </summary>
+    public class DataSourceComparer : IComparer
+    {
+        /// <inheritdoc/>
+        public int Compare(object x, object y)
+        {
+            object xValue = x.GetType().GetProperty("Name").GetValue(x, null);
+            object yValue = y.GetType().GetProperty("Name").GetValue(y, null);
+            IComparable comp = xValue as IComparable;
+            return comp.CompareTo(yValue);
+        }
+    }
 }

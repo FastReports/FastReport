@@ -32,9 +32,11 @@ SET "ORA=FastReport.Data.OracleODPCore\FastReport.OpenSource.Data.OracleODPCore.
 SET "RAVEN=FastReport.Data.RavenDB\FastReport.OpenSource.Data.RavenDB.csproj"
 SET "SQLITE=FastReport.Data.SQLite\FastReport.OpenSource.Data.SQLite.csproj"
 
+SET "FR_SIMPLE_PDF=Extras\OpenSource\FastReport.OpenSource.Export.PdfSimple\FastReport.OpenSource.Export.PdfSimple\FastReport.OpenSource.Export.PdfSimple.csproj"
+
 SET "OUTPUT=%~dp0..\..\fr_nuget"
 
-SET "PROJECTS=!FR! !WEB! !DATA!\!POSTGRES! !DATA!\!MSSQL! !DATA!\!MYSQL! !DATA!\!JSON! !DATA!\!COUCH! !DATA!\!MONGO! !DATA!\!ORA! !DATA!\!RAVEN! !DATA!\!SQLITE!"
+SET "PROJECTS=!FR! !WEB! !DATA!\!POSTGRES! !DATA!\!MSSQL! !DATA!\!MYSQL! !DATA!\!JSON! !DATA!\!COUCH! !DATA!\!MONGO! !DATA!\!ORA! !DATA!\!RAVEN! !DATA!\!SQLITE! !FR_SIMPLE_PDF!" 
 
 
 pushd %~dp0..

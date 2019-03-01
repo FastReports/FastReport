@@ -87,6 +87,14 @@ namespace FastReport.Data
     }
 
     /// <summary>
+    /// Sorts the collection of columns.
+    /// </summary>
+    public void Sort()
+    {
+        InnerList.Sort(new ColumnComparer());
+    }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="ColumnCollection"/> class with default settings.
     /// </summary>
     /// <param name="owner">The owner of this collection.</param>
@@ -94,4 +102,19 @@ namespace FastReport.Data
     {
     }
   }
+
+    /// <summary>
+    /// Represents the comparer class that used for sorting the collection of columns.
+    /// </summary>
+    public class ColumnComparer : IComparer
+    {
+        /// <inheritdoc/>
+        public int Compare(object x, object y)
+        {
+            object xValue = x.GetType().GetProperty("Name").GetValue(x, null);
+            object yValue = y.GetType().GetProperty("Name").GetValue(y, null);
+            IComparable comp = xValue as IComparable;
+            return comp.CompareTo(yValue);
+        }
+    }
 }

@@ -407,7 +407,7 @@ namespace FastReport.Web
                     }
 
                     // cut connection strings
-                    using (var dictionary = xml.Root.FindItem("Dictionary"))
+                    var dictionary = xml.Root.FindItem("Dictionary");
                     {
                         if (dictionary != null)
                         {
@@ -472,8 +472,8 @@ namespace FastReport.Web
                 }
 
                 // paste saved connection strings
-                using (var dictionary1 = xml1.Root.FindItem("Dictionary"))
-                using (var dictionary2 = xml2.Root.FindItem("Dictionary"))
+                var dictionary1 = xml1.Root.FindItem("Dictionary");
+                var dictionary2 = xml2.Root.FindItem("Dictionary");
                 {
                     if (dictionary1 != null && dictionary2 != null)
                     {
