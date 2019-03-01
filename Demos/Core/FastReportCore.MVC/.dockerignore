@@ -1,6 +1,0 @@
-*
-!obj/Docker/publish/*
-!obj/Docker/empty/
-!xvfb_init
-!xvfb_daemon_run
-
