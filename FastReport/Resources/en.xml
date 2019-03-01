@@ -413,6 +413,8 @@
         <Save Text="Save Dictionary..."/>
         <Merge Text="Merge Dictionary..."/>
         <NewDataSource Text="New Data Source..."/>
+        <SortDataSources Text="Sort Data Sources"/>
+        <SortDataFields Text="Sort Data Fields"/>
         <NewRelation Text="New Relation..."/>
         <NewParameter Text="New Parameter"/>
         <NewTotal Text="New Total..."/>
@@ -2289,6 +2291,20 @@
         <Disabled Text="Disabled" />
         <SvgAsPicture Text="Svg as Picture" />
       </VectorGraphics>
+      <!-- Digital signature tab -->
+      <DigitalSignature Text="Digital signature">
+        <SignInformation Text="Sign Information"/>
+        <SignDocument Text="Sign document"/>
+        <Location Text="Location"/>
+        <Reason Text="Reason"/>
+        <ContactInfo Text="Contact info"/>
+        <CertificateInformation Text="Certificate Information"/>
+        <CertificatePath Text="Certificate path"/>
+        <CertificatePassword Text="Certificate password"/>
+        <CertificateSavePassword Text="Save password"/>
+        <CertificateSavePasswordWarning Text="Attention!!! Saving a password may be insecure!"/>
+        <ClickToChangeThePassword Text="Click to change password"/>
+      </DigitalSignature>
     </Pdf>
     <Html Text="Export to HTML">
       <File Text="HTML file"/>

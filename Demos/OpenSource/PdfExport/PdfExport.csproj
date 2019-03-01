@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastReport.OpenSource" Version="2019.2.0" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2019.2.0" />
+  </ItemGroup>
+
+</Project>

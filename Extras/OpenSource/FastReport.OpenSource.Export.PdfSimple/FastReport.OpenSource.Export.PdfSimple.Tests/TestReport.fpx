@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preparedreport ReportInfo.Name="" ReportInfo.Author="" ReportInfo.Description="Demonstrates group report. To create it:&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu;&#13;&#10;- press &quot;Add&quot; button and add a group header (this will add a data band and group footer as well);&#13;&#10;- return to the report page, doubleclick the group header to show its editor." ReportInfo.Created="2/14/2019 1:07:59 PM" ReportInfo.Modified="2/14/2019 1:07:59 PM" ReportInfo.CreatorVersion="1.0.0.0">
+  <pages>
+    <page1>
+      <b1 h="109.08">
+        <t1 t="61.83"/>
+        <t2 h="61.83" x="Demonstrates group report. To create it:&#13;&#10;- go to &quot;Report|Configure Bands...&quot; menu;&#13;&#10;- press &quot;Add&quot; button and add a group header (this will add a data band and group footer as well);&#13;&#10;- return to the report page, doubleclick the group header to show its editor.&#13;&#10;"/>
+      </b1>
+      <b2 t="109.08">
+        <t3 x="A"/>
+      </b2>
+      <b3 t="146.88">
+        <t4 x="Alice Mutton"/>
+        <t5 x="$39.00"/>
+      </b3>
+      <b3 t="165.78">
+        <t4 Fill.Color="AliceBlue" x="Aniseed Syrup"/>
+        <t5 Fill.Color="AliceBlue" x="$10.00"/>
+      </b3>
+      <b4 t="184.68">
+        <t6 x="Total products: 2"/>
+      </b4>
+      <b2 t="231.93">
+        <t3 x="B"/>
+      </b2>
+      <b3 t="269.73">
+        <t4 x="Boston Crab Meat"/>
+        <t5 x="$18.40"/>
+      </b3>
+      <b4 t="288.63">
+        <t6 x="Total products: 1"/>
+      </b4>
+      <b2 t="335.88">
+        <t3 x="C"/>
+      </b2>
+      <b3 t="373.68">
+        <t4 x="Camembert Pierrot"/>
+        <t5 x="$34.00"/>
+      </b3>
+      <b3 t="392.58">
+        <t4 Fill.Color="AliceBlue" x="Carnarvon Tigers"/>
+        <t5 Fill.Color="AliceBlue" x="$62.50"/>
+      </b3>
+      <b3 t="411.48">
+        <t4 x="Chai"/>
+        <t5 x="$18.00"/>
+      </b3>
+      <b3 t="430.38">
+        <t4 Fill.Color="AliceBlue" x="Chang"/>
+        <t5 Fill.Color="AliceBlue" x="$19.00"/>
+      </b3>
+      <b3 t="449.28">
+        <t4 x="Chartreuse verte"/>
+        <t5 x="$18.00"/>
+      </b3>
+      <b3 t="468.18">
+        <t4 Fill.Color="AliceBlue" x="Chef Anton's Cajun Seasoning"/>
+        <t5 Fill.Color="AliceBlue" x="$22.00"/>
+      </b3>
+      <b3 t="487.08">
+        <t4 x="Chef Anton's Gumbo Mix"/>
+        <t5 x="$21.35"/>
+      </b3>
+      <b3 t="505.98">
+        <t4 Fill.Color="AliceBlue" x="Chocolade"/>
+        <t5 Fill.Color="AliceBlue" x="$12.75"/>
+      </b3>
+      <b3 t="524.88">
+        <t4 x="Côte de Blaye"/>
+        <t5 x="$263.50"/>
+      </b3>
+      <b4 t="543.78">
+        <t6 x="Total products: 9"/>
+      </b4>
+      <b2 t="591.03">
+        <t3 x="E"/>
+      </b2>
+      <b3 t="628.83">
+        <t4 x="Escargots de Bourgogne"/>
+        <t5 x="$13.25"/>
+      </b3>
+      <b4 t="647.73">
+        <t6 x="Total products: 1"/>
+      </b4>
+      <b2 t="694.98">
+        <t3 x="F"/>
+      </b2>
+      <b3 t="732.78">
+        <t4 x="Filo Mix"/>
+        <t5 x="$7.00"/>
+      </b3>
+      <b3 t="751.68">
+        <t4 Fill.Color="AliceBlue" x="Fløtemysost"/>
+        <t5 Fill.Color="AliceBlue" x="$21.50"/>
+      </b3>
+      <b4 t="770.58">
+        <t6 x="Total products: 2"/>
+      </b4>
+      <b2 t="817.83">
+        <t3 x="G"/>
+      </b2>
+      <b3 t="855.63">
+        <t4 x="Geitost"/>
+        <t5 x="$2.50"/>
+      </b3>
+      <b3 t="874.53">
+        <t4 Fill.Color="AliceBlue" x="Genen Shouyu"/>
+        <t5 Fill.Color="AliceBlue" x="$15.50"/>
+      </b3>
+      <b3 t="893.43">
+        <t4 x="Gnocchi di nonna Alice"/>
+        <t5 x="$38.00"/>
+      </b3>
+      <b3 t="912.33">
+        <t4 Fill.Color="AliceBlue" x="Gorgonzola Telino"/>
+        <t5 Fill.Color="AliceBlue" x="$12.50"/>
+      </b3>
+      <b3 t="931.23">
+        <t4 x="Grandma's Boysenberry Spread"/>
+        <t5 x="$25.00"/>
+      </b3>
+      <b3 t="950.13">
+        <t4 Fill.Color="AliceBlue" x="Gravad lax"/>
+        <t5 Fill.Color="AliceBlue" x="$26.00"/>
+      </b3>
+      <b3 t="969.03">
+        <t4 x="Guaraná Fantástica"/>
+        <t5 x="$4.50"/>
+      </b3>
+      <b3 t="987.93">
+        <t4 Fill.Color="AliceBlue" x="Gudbrandsdalsost"/>
+        <t5 Fill.Color="AliceBlue" x="$36.00"/>
+      </b3>
+      <b5 t="1018.71">
+        <t7 x="Page 1"/>
+        <t8/>
+      </b5>
+    </page1>
+    <page1>
+      <b3 t="0">
+        <t4 x="Gula Malacca"/>
+        <t5 x="$19.45"/>
+      </b3>
+      <b3 t="18.9">
+        <t4 Fill.Color="AliceBlue" x="Gumbär Gummibärchen"/>
+        <t5 Fill.Color="AliceBlue" x="$31.23"/>
+      </b3>
+      <b3 t="37.8">
+        <t4 x="Gustaf's Knäckebröd"/>
+        <t5 x="$21.00"/>
+      </b3>
+      <b4 t="56.7">
+        <t6 x="Total products: 11"/>
+      </b4>
+      <b2 t="103.95">
+        <t3 x="I"/>
+      </b2>
+      <b3 t="141.75">
+        <t4 x="Ikura"/>
+        <t5 x="$31.00"/>
+      </b3>
+      <b3 t="160.65">
+        <t4 Fill.Color="AliceBlue" x="Inlagd Sill"/>
+        <t5 Fill.Color="AliceBlue" x="$19.00"/>
+      </b3>
+      <b3 t="179.55">
+        <t4 x="Ipoh Coffee"/>
+        <t5 x="$46.00"/>
+      </b3>
+      <b4 t="198.45">
+        <t6 x="Total products: 3"/>
+      </b4>
+      <b2 t="245.7">
+        <t3 x="J"/>
+      </b2>
+      <b3 t="283.5">
+        <t4 x="Jack's New England Clam Chowder"/>
+        <t5 x="$9.65"/>
+      </b3>
+      <b4 t="302.4">
+        <t6 x="Total products: 1"/>
+      </b4>
+      <b2 t="349.65">
+        <t3 x="K"/>
+      </b2>
+      <b3 t="387.45">
+        <t4 x="Konbu"/>
+        <t5 x="$6.00"/>
+      </b3>
+      <b4 t="406.35">
+        <t6 x="Total products: 1"/>
+      </b4>
+      <b2 t="453.6">
+        <t3 x="L"/>
+      </b2>
+      <b3 t="491.4">
+        <t4 x="Lakkalikööri"/>
+        <t5 x="$18.00"/>
+      </b3>
+      <b3 t="510.3">
+        <t4 Fill.Color="AliceBlue" x="Laughing Lumberjack Lager"/>
+        <t5 Fill.Color="AliceBlue" x="$14.00"/>
+      </b3>
+      <b3 t="529.2">
+        <t4 x="Longlife Tofu"/>
+        <t5 x="$10.00"/>
+      </b3>
+      <b3 t="548.1">
+        <t4 Fill.Color="AliceBlue" x="Louisiana Fiery Hot Pepper Sauce"/>
+        <t5 Fill.Color="AliceBlue" x="$21.05"/>
+      </b3>
+      <b3 t="567">
+        <t4 x="Louisiana Hot Spiced Okra"/>
+        <t5 x="$17.00"/>
+      </b3>
+      <b4 t="585.9">
+        <t6 x="Total products: 5"/>
+      </b4>
+      <b2 t="633.15">
+        <t3 x="M"/>
+      </b2>
+      <b3 t="670.95">
+        <t4 x="Manjimup Dried Apples"/>
+        <t5 x="$53.00"/>
+      </b3>
+      <b3 t="689.85">
+        <t4 Fill.Color="AliceBlue" x="Mascarpone Fabioli"/>
+        <t5 Fill.Color="AliceBlue" x="$32.00"/>
+      </b3>
+      <b3 t="708.75">
+        <t4 x="Maxilaku"/>
+        <t5 x="$20.00"/>
+      </b3>
+      <b3 t="727.65">
+        <t4 Fill.Color="AliceBlue" x="Mishi Kobe Niku"/>
+        <t5 Fill.Color="AliceBlue" x="$97.00"/>
+      </b3>
+      <b3 t="746.55">
+        <t4 x="Mozzarella di Giovanni"/>
+        <t5 x="$34.80"/>
+      </b3>
+      <b4 t="765.45">
+        <t6 x="Total products: 5"/>
+      </b4>
+      <b2 t="812.7">
+        <t3 x="N"/>
+      </b2>
+      <b3 t="850.5">
+        <t4 x="Nord-Ost Matjeshering"/>
+        <t5 x="$25.89"/>
+      </b3>
+      <b3 t="869.4">
+        <t4 Fill.Color="AliceBlue" x="Northwoods Cranberry Sauce"/>
+        <t5 Fill.Color="AliceBlue" x="$40.00"/>
+      </b3>
+      <b3 t="888.3">
+        <t4 x="NuNuCa Nuß-Nougat-Creme"/>
+        <t5 x="$14.00"/>
+      </b3>
+      <b4 t="907.2">
+        <t6 x="Total products: 3"/>
+      </b4>
+      <b2 t="954.45">
+        <t3 x="O"/>
+      </b2>
+      <b3 t="992.25">
+        <t4 x="Original Frankfurter grüne Soße"/>
+        <t5 x="$13.00"/>
+      </b3>
+      <b5 t="1018.71">
+        <t7 x="Page 2"/>
+        <t8/>
+      </b5>
+    </page1>
+    <page1>
+      <b3 t="0">
+        <t4 Fill.Color="AliceBlue" x="Outback Lager"/>
+        <t5 Fill.Color="AliceBlue" x="$15.00"/>
+      </b3>
+      <b4 t="18.9">
+        <t6 x="Total products: 2"/>
+      </b4>
+      <b2 t="66.15">
+        <t3 x="P"/>
+      </b2>
+      <b3 t="103.95">
+        <t4 x="Pâté chinois"/>
+        <t5 x="$24.00"/>
+      </b3>
+      <b3 t="122.85">
+        <t4 Fill.Color="AliceBlue" x="Pavlova"/>
+        <t5 Fill.Color="AliceBlue" x="$17.45"/>
+      </b3>
+      <b3 t="141.75">
+        <t4 x="Perth Pasties"/>
+        <t5 x="$32.80"/>
+      </b3>
+      <b4 t="160.65">
+        <t6 x="Total products: 3"/>
+      </b4>
+      <b2 t="207.9">
+        <t3 x="Q"/>
+      </b2>
+      <b3 t="245.7">
+        <t4 x="Queso Cabrales"/>
+        <t5 x="$21.00"/>
+      </b3>
+      <b3 t="264.6">
+        <t4 Fill.Color="AliceBlue" x="Queso Manchego La Pastora"/>
+        <t5 Fill.Color="AliceBlue" x="$38.00"/>
+      </b3>
+      <b4 t="283.5">
+        <t6 x="Total products: 2"/>
+      </b4>
+      <b2 t="330.75">
+        <t3 x="R"/>
+      </b2>
+      <b3 t="368.55">
+        <t4 x="Raclette Courdavault"/>
+        <t5 x="$55.00"/>
+      </b3>
+      <b3 t="387.45">
+        <t4 Fill.Color="AliceBlue" x="Ravioli Angelo"/>
+        <t5 Fill.Color="AliceBlue" x="$19.50"/>
+      </b3>
+      <b3 t="406.35">
+        <t4 x="Rhönbräu Klosterbier"/>
+        <t5 x="$7.75"/>
+      </b3>
+      <b3 t="425.25">
+        <t4 Fill.Color="AliceBlue" x="Röd Kaviar"/>
+        <t5 Fill.Color="AliceBlue" x="$15.00"/>
+      </b3>
+      <b3 t="444.15">
+        <t4 x="Røgede sild"/>
+        <t5 x="$9.50"/>
+      </b3>
+      <b3 t="463.05">
+        <t4 Fill.Color="AliceBlue" x="Rössle Sauerkraut"/>
+        <t5 Fill.Color="AliceBlue" x="$45.60"/>
+      </b3>
+      <b4 t="481.95">
+        <t6 x="Total products: 6"/>
+      </b4>
+      <b2 t="529.2">
+        <t3 x="S"/>
+      </b2>
+      <b3 t="567">
+        <t4 x="Sasquatch Ale"/>
+        <t5 x="$14.00"/>
+      </b3>
+      <b3 t="585.9">
+        <t4 Fill.Color="AliceBlue" x="Schoggi Schokolade"/>
+        <t5 Fill.Color="AliceBlue" x="$43.90"/>
+      </b3>
+      <b3 t="604.8">
+        <t4 x="Scottish Longbreads"/>
+        <t5 x="$12.50"/>
+      </b3>
+      <b3 t="623.7">
+        <t4 Fill.Color="AliceBlue" x="Singaporean Hokkien Fried Mee"/>
+        <t5 Fill.Color="AliceBlue" x="$14.00"/>
+      </b3>
+      <b3 t="642.6">
+        <t4 x="Sir Rodney's Marmalade"/>
+        <t5 x="$81.00"/>
+      </b3>
+      <b3 t="661.5">
+        <t4 Fill.Color="AliceBlue" x="Sir Rodney's Scones"/>
+        <t5 Fill.Color="AliceBlue" x="$10.00"/>
+      </b3>
+      <b3 t="680.4">
+        <t4 x="Sirop d'érable"/>
+        <t5 x="$28.50"/>
+      </b3>
+      <b3 t="699.3">
+        <t4 Fill.Color="AliceBlue" x="Spegesild"/>
+        <t5 Fill.Color="AliceBlue" x="$12.00"/>
+      </b3>
+      <b3 t="718.2">
+        <t4 x="Steeleye Stout"/>
+        <t5 x="$18.00"/>
+      </b3>
+      <b4 t="737.1">
+        <t6 x="Total products: 9"/>
+      </b4>
+      <b2 t="784.35">
+        <t3 x="T"/>
+      </b2>
+      <b3 t="822.15">
+        <t4 x="Tarte au sucre"/>
+        <t5 x="$49.30"/>
+      </b3>
+      <b3 t="841.05">
+        <t4 Fill.Color="AliceBlue" x="Teatime Chocolate Biscuits"/>
+        <t5 Fill.Color="AliceBlue" x="$9.20"/>
+      </b3>
+      <b3 t="859.95">
+        <t4 x="Thüringer Rostbratwurst"/>
+        <t5 x="$123.79"/>
+      </b3>
+      <b3 t="878.85">
+        <t4 Fill.Color="AliceBlue" x="Tofu"/>
+        <t5 Fill.Color="AliceBlue" x="$23.25"/>
+      </b3>
+      <b3 t="897.75">
+        <t4 x="Tourtière"/>
+        <t5 x="$7.45"/>
+      </b3>
+      <b3 t="916.65">
+        <t4 Fill.Color="AliceBlue" x="Tunnbröd"/>
+        <t5 Fill.Color="AliceBlue" x="$9.00"/>
+      </b3>
+      <b4 t="935.55">
+        <t6 x="Total products: 6"/>
+      </b4>
+      <b5 t="1018.71">
+        <t7 x="Page 3"/>
+        <t8/>
+      </b5>
+    </page1>
+    <page1>
+      <b2 t="0">
+        <t3 x="U"/>
+      </b2>
+      <b3 t="37.8">
+        <t4 x="Uncle Bob's Organic Dried Pears"/>
+        <t5 x="$30.00"/>
+      </b3>
+      <b4 t="56.7">
+        <t6 x="Total products: 1"/>
+      </b4>
+      <b2 t="103.95">
+        <t3 x="V"/>
+      </b2>
+      <b3 t="141.75">
+        <t4 x="Valkoinen suklaa"/>
+        <t5 x="$16.25"/>
+      </b3>
+      <b3 t="160.65">
+        <t4 Fill.Color="AliceBlue" x="Vegie-spread"/>
+        <t5 Fill.Color="AliceBlue" x="$43.90"/>
+      </b3>
+      <b4 t="179.55">
+        <t6 x="Total products: 2"/>
+      </b4>
+      <b2 t="226.8">
+        <t3 x="W"/>
+      </b2>
+      <b3 t="264.6">
+        <t4 x="Wimmers gute Semmelknödel"/>
+        <t5 x="$33.25"/>
+      </b3>
+      <b4 t="283.5">
+        <t6 x="Total products: 1"/>
+      </b4>
+      <b2 t="330.75">
+        <t3 x="Z"/>
+      </b2>
+      <b3 t="368.55">
+        <t4 x="Zaanse koeken"/>
+        <t5 x="$9.50"/>
+      </b3>
+      <b4 t="387.45">
+        <t6 x="Total products: 1"/>
+      </b4>
+      <b5 t="1018.71">
+        <t7 x="Page 4"/>
+        <t8/>
+      </b5>
+    </page1>
+  </pages>
+  <sourcepages>
+    <ReportPage Name="Page1">
+      <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6" CanGrow="true">
+        <TextObject Name="Text1" Top="28.35" Width="718.2" Height="47.25" Text="ALPHABETICAL PRODUCT LIST" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+        <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      </ReportTitleBand>
+      <GroupHeaderBand Name="GroupHeader1" Top="79.6" Width="718.2" Height="37.8" KeepWithData="true" Condition="[Products.ProductName].Substring(0,1)" SortOrder="None">
+        <TextObject Name="Text7" Left="9.45" Width="699.3" Height="37.8" Border.Lines="All" Border.Color="LightSkyBlue" Fill="LinearGradient" Fill.StartColor="LightSkyBlue" Fill.EndColor="AliceBlue" Fill.Angle="90" Fill.Focus="0.42" Fill.Contrast="1" Text="[[Products.ProductName].Substring(0,1)]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 12pt, style=Bold"/>
+        <DataBand Name="Data1" Top="121.4" Width="718.2" Height="18.9" KeepTogether="true">
+          <TextObject Name="Text2" Left="9.45" Width="604.8" Height="18.9" Border.Lines="Left" Border.Color="LightSkyBlue" Text="[Products.ProductName]" VertAlign="Center" Font="Tahoma, 8pt">
+            <Highlight>
+              <Condition Expression="[Row#] % 2 == 0" Fill.Color="AliceBlue" TextFill.Color="Black" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TextObject>
+          <TextObject Name="Text4" Left="614.25" Width="94.5" Height="18.9" Border.Lines="Right" Border.Color="LightSkyBlue" Text="[Products.UnitPrice]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt">
+            <Highlight>
+              <Condition Expression="[Row#] % 2 == 0" Fill.Color="AliceBlue" TextFill.Color="Black" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TextObject>
+          <Sort>
+            <Sort Expression="[Products.ProductName]"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter1" Top="144.3" Width="718.2" Height="47.25" KeepWithData="true">
+          <TextObject Name="Text8" Left="9.45" Width="699.3" Height="18.9" Border.Lines="Left, Right, Bottom" Border.Color="LightSkyBlue" Text="Total products: [TotalProducts]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <PageFooterBand Name="PageFooter1" Top="195.55" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+        <TextObject Name="Text9" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+      </PageFooterBand>
+    </ReportPage>
+  </sourcepages>
+  <dictionary>
+    <b1 name="Page0.ReportTitle1"/>
+    <b2 name="Page0.GroupHeader1"/>
+    <b3 name="Page0.Data1"/>
+    <b4 name="Page0.GroupFooter1"/>
+    <b5 name="Page0.PageFooter1"/>
+    <page1 name="Page0"/>
+    <t1 name="Page0.Text1"/>
+    <t2 name="Page0.Text11"/>
+    <t3 name="Page0.Text7"/>
+    <t4 name="Page0.Text2"/>
+    <t5 name="Page0.Text4"/>
+    <t6 name="Page0.Text8"/>
+    <t7 name="Page0.Text9"/>
+    <t8 name="Page0.Text12"/>
+  </dictionary>
+  <bookmarks/>
+  <outline/>
+  <blobstore/>
+</preparedreport>
