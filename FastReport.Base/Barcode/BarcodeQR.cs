@@ -195,7 +195,6 @@ namespace FastReport.Barcode
       Brush light = Brushes.White;
       Brush dark = new SolidBrush(Color);
       GraphicsPath path = new GraphicsPath();
-      g.FillRectangle(light, 0, 0, matrix.Width * PixelSize * kx, matrix.Height * PixelSize * kx);
 
       for (int y = 0; y < matrix.Height; y++)
       {
@@ -203,7 +202,7 @@ namespace FastReport.Barcode
         {
           if (matrix.get_Renamed(x, y) == 0)
           {
-            path.AddRectangle(new RectangleF(
+            g.PathAddRectangle(path, new RectangleF(
             x * PixelSize * kx,
             y * PixelSize * ky,
             PixelSize * kx,

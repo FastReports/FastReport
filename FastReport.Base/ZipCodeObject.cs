@@ -37,7 +37,7 @@ namespace FastReport
     /// Gets or sets the width of a single zipcode segment, in pixels.
     /// </summary>
     [Category("Layout")]
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public float SegmentWidth
     {
       get { return segmentWidth; }
@@ -48,7 +48,7 @@ namespace FastReport
     /// Gets or sets the height of a single zipcode segment, in pixels.
     /// </summary>
     [Category("Layout")]
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public float SegmentHeight
     {
       get { return segmentHeight; }
@@ -59,7 +59,7 @@ namespace FastReport
     /// Gets or sets the spacing between origins of segments, in pixels.
     /// </summary>
     [Category("Layout")]
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public float Spacing
     {
       get { return spacing; }

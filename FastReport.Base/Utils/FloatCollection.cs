@@ -7,7 +7,7 @@ namespace FastReport.Utils
   /// <summary>
   /// Represents a collection of float values.
   /// </summary>
-  [TypeConverter("FastReport.TypeConverters.FloatCollectionConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FloatCollectionConverter))]
   public class FloatCollection : CollectionBase
   {
     /// <summary>

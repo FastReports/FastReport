@@ -11,7 +11,7 @@ namespace Microsoft.VisualBasic
 {
     internal class VBCodeProvider : CodeDomProvider
     {
-        static Dictionary<string, string> cache = new Dictionary<string, string>();
+        
 
         public override CompilerResults CompileAssemblyFromSource(CompilerParameters cp, string code)
         {
@@ -28,14 +28,9 @@ namespace Microsoft.VisualBasic
             foreach (string reference in cp.ReferencedAssemblies)
                 references.Add(GetReference(reference));
 
-            if (!cp.ReferencedAssemblies.Contains("netstandard"))
-                references.Add(GetReference("netstandard"));
+            AddExtraAssemblies(cp.ReferencedAssemblies, references);
 
-            if (!cp.ReferencedAssemblies.Contains("System.Runtime"))
-                references.Add(GetReference("System.Runtime"));
-
-            if (!cp.ReferencedAssemblies.Contains("System.ComponentModel.Primitives"))
-                references.Add(GetReference("System.ComponentModel.Primitives"));
+            
 
 
             Compilation compilation = VisualBasicCompilation.Create(
@@ -82,40 +77,6 @@ namespace Microsoft.VisualBasic
 
         }
 
-        private MetadataReference GetReference(string refDll)
-        {
-            string reference = refDll;
-            try
-            {
-                if (cache.ContainsKey(refDll))
-                    return MetadataReference.CreateFromFile(cache[refDll]);
-                MetadataReference result;
-                foreach (AssemblyName name in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
-                {
-                    if (name.Name == reference
-                        || reference.ToLower().EndsWith(".dll")
-                        && name.Name == reference.Substring(0, reference.Length - 4))
-                    {
-                        result = MetadataReference.CreateFromFile(
-                            Assembly.Load(name).Location);
-                        cache[refDll] = reference;
-                        return result;
-                    }
-                }
-
-                result = MetadataReference.CreateFromFile(reference);
-                cache[refDll] = reference;
-                return result;
-            }
-            catch
-            {
-                string ass = reference;
-                if (reference.ToLower().EndsWith(".dll"))
-                    ass = reference.Substring(0, reference.Length - 4);
-                cache[refDll] = Assembly.Load(new AssemblyName(ass)).Location;
-                return MetadataReference.CreateFromFile(cache[refDll]);
-            }
-
-        }
+       
     }
 }

@@ -23,7 +23,7 @@ namespace FastReport
   /// <summary>
   /// This class holds the band columns settings. It is used in the <see cref="DataBand.Columns"/> property.
   /// </summary>
-  [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
   public class BandColumns
   {
     private int count;
@@ -54,7 +54,7 @@ namespace FastReport
     /// The column width, in pixels.
     /// </summary>
     [DefaultValue(0f)]
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public float Width
     {
       get { return width; }

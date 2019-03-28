@@ -46,7 +46,7 @@ namespace FastReport
         /// </summary>
         //[Browsable(false)]
         [Editor("FastReport.TypeEditors.SubreportPageEditor, FastReport", typeof(UITypeEditor))]
-        [TypeConverter("FastReport.TypeConverters.ComponentRefConverter, FastReport")]
+        [TypeConverter(typeof(FastReport.TypeConverters.ComponentRefConverter))]
         public ReportPage ReportPage
         {
             get { return reportPage; }

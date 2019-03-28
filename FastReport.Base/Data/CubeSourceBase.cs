@@ -9,8 +9,8 @@ namespace FastReport.Data
   /// <summary>
   /// Base class for all CubeSources such as <see cref="SliceCubeSource"/>.
   /// </summary>
-  [TypeConverter("FastReport.TypeConverters.CubeSourceConverter, FastReport")]
-  [EditorAttribute("FastReport.TypeEditors.CubeSourceEditor, FastReport", typeof(UITypeEditor))]
+  [TypeConverter(typeof(FastReport.TypeConverters.CubeSourceConverter))]
+  [Editor("FastReport.TypeEditors.CubeSourceEditor, FastReport", typeof(UITypeEditor))]
   public abstract class CubeSourceBase : DataComponentBase
   {
     #region Fields

@@ -23,7 +23,7 @@ namespace FastReport
   /// <summary>
   /// This class contains settings that will be applied to the Report component.
   /// </summary>
-  [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
   public partial class ReportSettings
   {
     private Language defaultLanguage;

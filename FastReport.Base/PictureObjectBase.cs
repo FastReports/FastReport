@@ -154,7 +154,7 @@ namespace FastReport
         /// </remarks>
         [DefaultValue(0f)]
         [Category("Layout")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float MaxHeight
         {
             get { return maxHeight; }
@@ -170,7 +170,7 @@ namespace FastReport
         /// </remarks>
         [DefaultValue(0f)]
         [Category("Layout")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float MaxWidth
         {
             get { return maxWidth; }

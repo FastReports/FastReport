@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Name="Fast M1nesweeper" ReportInfo.Author="Detrav" ReportInfo.Version="4/1/2019" ReportInfo.Created="04/01/2019 00:00:02" ReportInfo.Modified="04/01/2019 00:00:02" ReportInfo.CreatorVersion="2019.2.42.25769">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Matrix;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    const string BOMB = &quot;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA9QD1APUHT9P6AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAB3RJTUUH4wMaCBo1zI1h5wAABDFJREFUSMe1lltsVFUUhr+158ylFGgRKZcgBLEKJBRCXwhPQjQ+gQQYifFB1CkxNcCUBjtUZCIkdQq9AS/QGY0amkAo0WcTX9GYQKAKMUUw0jQCLQpF2rnu5cO0Y1s62GlwJyfZ5/x7r/+s+xIKXarUtX62CqCx5r0riBR03eQDQqdOTAyIgNFqjFbnIzvc8mXhhAz5NoXaosvWqRIOh3PaAQiyXpD1o7+Fw2FeVeXDltiyRya5KZ/YvPbYe7R9psdtHqi1bzTu3XkOINQWq7Qqa4xoO4BV2WlEL0WCgYsAdS3t28WYM2lNlzTVvD9QEGGWINoPMhvlC0XfcrlcbrfjQkQQYCiRHDmaUvS0IO8AfZFgoCyfTOeJHhb5GiVgjOx4acliZhYXYYwZtqTy/ZVrSNaP7mEyBL4pKGjCp04BUNcW26FWA4vml7Fu9QpS6RRXb/zOjz/9woXLV7lwOUc2NoihKtQWfRugpvnsxCYNNUdn4og7sidwD2D/8dhKtXTNmVXK4gVlXLtxi78HB3PaTSp7MCsbg+/+DBA6FptNWlOR2qoBCTVHwYgb4S5QimofInOG/xZUJ9Rkkjk7Ius+ShlWUzlJH0RPF814FO8GFvJ0Vw+WFyN7A/F/fajK/Dv9cYVKgIy1udOj9wVjqhiTWYOQGBs0Ihw4EFSsXeTzuKlcXo61irVK5YpyfB4PAD6PpzDM6yWdMYsiNQGdOC2MWRVPpui6fhNjstbu6r6Jtdnz8WSyYEyE1cClCQkrypdUJZKpp+pAr8ddBXyeLw+V/3mN0bDr+m8xgbXGSM5Uo/fj3yeDqdVo3kqjqpd9Hg8V5Utzzq8oXzomMArBbCbN3T/7+x8v3qq0fNQof8x9do5LuZOxFtdwVRm9H//+JCyRTNLT28sMb9GCh/HB253HG3RMWvz6/EKfS7kIjBHiGlfO/gsTIJVKcaunB1R5GB/8AfDkNBxf2hS9Lci8qQbFgwcD9N3rz04GqndQnYvIX2opE7dNm0htFVgtsujSSDAgjcGq+VZdK7OKT66GGmMYHBqip7eXu/19iAjPlM54ufN4w7zOE59KJiMviNtO62yNPN6Aa5rP0lq7nTdrD+6fVjStobi4GLfj4DgORgxIthdmMhnS6TTxeJz7AwMkEgmMMRgRfEW+uq8iHx+pPXqU5n37Jt/x/Xvq21WpUtU8/VkmmrGi54417Cx8iALUsgnA5/V95zhOjmTkGen8jsvB6/N+m51zdOOUxsTN1QenI8xVq9s6msKvnG09LCWlJX6vxxsaVbbqZpWWbDvTekg6joRfU6vbBJm3ufrg9IIJXU56g5JZrpWvn/f7/QA8Z4Y6O5rCjUA30N3R9MmR2OHQeQC/30967cbzGJa5nPSGgsN7Y/BQXmzrrvqTW3fVn5zK3SmtLbv3r9qyu75iKnf/AUwGAJZD/bErAAAAAElFTkSuQmCC\&quot;/&gt;&quot;; 
+    const string FLAG = &quot;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAB3RJTUUH4wMWDhQIRD3DcgAAALVJREFUSMftlb0NwkAMhT+bCiZhAJKGhI4lkOioqBiFnYDmwhqsQIGUmJYiiu4XUfAaS6fT+/xOlg++re3uIJ+1iNr90QBsXQjwWGK2wQ0NVSpIxw6fMwAqEZy1OJN4kHrcSQJpQDNRII141iCQJsyCF0gzDN1KBDc0nOVWBnA3o9Yrp9wJOjNquVCL0QHkSuBlHAMIMg4BRBlPAhZ9uvGkmozbdDTBvH+Rq2OlsP6AH/30c+oNWNZbLqWMv1wAAAAASUVORK5CYII=\&quot;/&gt;&quot;;
+    
+                   
+    private FastM1nesweeper fastM1nesweeper = new FastM1nesweeper();
+    private TableObject table = null;
+    private bool IsUpdated = false;
+    private FillBase backUpFill;
+    
+    private int clickCount;
+    private DateTime startTime;
+    private int bombCount;
+    
+    private void RefreshPreview(Base obj)
+    {
+      if(obj!=null)
+      {
+        Report.PreparedPages.ModifyPage(0, obj.Page as ReportPage);
+        foreach(System.Reflection.PropertyInfo info in Report.GetType().GetProperties())
+        {
+          if(info.Name == &quot;Preview&quot;)
+          {
+            object preview =  info.GetValue(Report, null);
+            if(preview !=null)
+              foreach(System.Reflection.MethodInfo method in preview.GetType().GetMethods())
+              {
+                if(method.Name == &quot;Refresh&quot;)
+                {
+                  try{
+                    method.Invoke(preview, null);
+                  }
+                  catch{
+                  
+                  }
+                }
+              }
+          }
+        }
+      }
+      table = null;
+    }    
+    
+    private bool IsRightClick(EventArgs e)
+    {
+      foreach(System.Reflection.PropertyInfo info in e.GetType().GetProperties())
+      {    
+        if(info.Name == &quot;Button&quot;)
+        {
+          try{
+            return  2097152 == (int)info.GetValue(e, null);
+          }
+          catch{
+            return false;
+          }
+        }
+      }
+      return false;
+    }
+      
+    private void TableCell_Click(object sender, EventArgs e)
+    {
+      if(clickCount == 0)
+        startTime = DateTime.Now;
+      clickCount++;
+      IsUpdated = false;
+      TextObjectBase cell = sender as TextObjectBase;
+      
+      if(table == null)
+      {
+        table = cell.Parent.Parent as TableObject;
+      }
+      
+      
+      if(!fastM1nesweeper.IsGameOver)
+      {
+        if(table!=null )
+        {
+          
+          
+
+          for(int i =0; i&lt; fastM1nesweeper.Width; i ++)
+            for(int j = 0; j &lt; fastM1nesweeper.Height; j++)
+            {
+              if(sender == table[i,j])
+              {
+              
+                if(IsRightClick(e))
+                  fastM1nesweeper.FlagClick(i,j);
+                else
+                  fastM1nesweeper.OpenClick(i,j);
+              }
+            }
+          
+          if(bombCount != fastM1nesweeper.BombCount)
+          {
+            bombCount = fastM1nesweeper.BombCount;
+            
+            TextObject tBombsBox = table.Page.FindObject(&quot;tBombs&quot;) as TextObject;
+            if(tBombsBox!=null)
+            {
+              tBombsBox.Text = fastM1nesweeper.BombCount.ToString();
+              IsUpdated = true;
+            }
+          }
+          
+          if(fastM1nesweeper.IsGameOver)
+          {
+            TextObject labelGameOver = table.Page.FindObject(&quot;LabelGameOver&quot;) as TextObject;
+            TextObject labelClicks = table.Page.FindObject(&quot;LabelClicks&quot;) as TextObject;
+            TextObject labelTime = table.Page.FindObject(&quot;LabelTime&quot;) as TextObject;
+            TextObject labelScore = table.Page.FindObject(&quot;LabelScore&quot;) as TextObject;
+          
+            TextObject tClicksBox = table.Page.FindObject(&quot;tClicks&quot;) as TextObject;
+            TextObject tTimeBox = table.Page.FindObject(&quot;tTime&quot;) as TextObject;
+            TextObject tScoreBox = table.Page.FindObject(&quot;tScore&quot;) as TextObject;
+                                 
+            if(labelGameOver!=null)
+            {
+              if(fastM1nesweeper.IsVictory)
+              {
+                labelGameOver.Text=&quot;Victory!&quot;;
+                labelGameOver.TextFill = new SolidFill(Color.Green);
+              }
+              else
+              {
+                labelGameOver.Text=&quot;GAME OVER&quot;;
+                labelGameOver.TextFill = new SolidFill(Color.Red);
+              }
+              IsUpdated = true;
+            }
+            if(labelClicks!=null)
+            {
+              labelClicks.Text = &quot;Clicks:&quot;;
+              IsUpdated = true;
+            }
+          
+            if(labelTime!=null)
+            {
+              labelTime.Text = &quot;Time:&quot;;
+              IsUpdated = true;
+            }
+          
+            if(labelScore!=null)
+            {
+              labelScore.Text = &quot;Score:&quot;;
+              IsUpdated = true;
+            }
+          
+            if(tClicksBox !=null)
+            {
+              tClicksBox.Text = clickCount.ToString();
+              IsUpdated = true;
+            }
+          
+            if(tTimeBox !=null)
+            {
+              TimeSpan span = DateTime.Now - startTime;
+              tTimeBox.Text = span.ToString();
+              IsUpdated = true;
+            }
+          
+            if(tScoreBox != null)
+            {
+              tScoreBox.Text = fastM1nesweeper.Score.ToString();
+              IsUpdated = true;
+            }
+          }
+          if(IsUpdated)
+            RefreshPreview(table);
+        }
+      }
+    }
+    
+
+    private void TableMap_ManualBuild(object sender, EventArgs e)
+    {
+      
+      
+      for(int i =0; i&lt; fastM1nesweeper.Height; i ++)
+      {
+        TableMap.PrintRow(0);
+        for(int j =0; j&lt; fastM1nesweeper.Width; j ++)
+        {
+          TableMap.PrintColumn(0);
+        }
+      }
+
+    }
+
+    private void _StartReport(object sender, EventArgs e)
+    {
+      fastM1nesweeper.CellUpdated += CellUpdated;
+      clickCount = 0;
+    }
+      
+    private void CellUpdated(object sender, FastM1nesweeperCellUpdateEventArgs e)
+    {
+      ReDraw(e.X,e.Y,e.Cell);
+    }
+    
+    private void ReDraw(int x, int y, FastM1nesweeperCell cell)
+    {
+      
+      if(cell != null)
+      {
+        IsUpdated = true;
+        
+        if(cell.IsFlag)
+        {
+          table[x,y].Text = FLAG;
+        }
+        else if(!cell.IsOpened)
+        {
+          table[x,y].Text = &quot;&quot;;
+        }
+        else if(cell.IsBomb)
+        {
+          
+          table[x,y].Font = new Font(table[x,y].Font.FontFamily, 0.1f);
+          table[x,y].Text = BOMB;
+          
+        }
+        else if(cell.Number &gt; 0)
+        {
+          table[x,y].Text = cell.Number.ToString();
+        }
+        else table[x,y].Text = &quot;&quot;;
+      
+        
+        
+        if(cell.IsDefused)
+        {
+          table[x,y].Fill = new SolidFill(Color.LightGreen); 
+          table[x,y].Border.Color = Color.Green;
+          table[x,y].Border.Lines = BorderLines.All;
+          table[x,y].Border.Width = 1;
+        }
+        else if (cell.IsOpened)
+        {
+          if(cell.IsBomb)
+          {
+            table[x,y].Fill = new SolidFill(Color.MistyRose); 
+            table[x,y].Border.Color = Color.Red;
+            table[x,y].Border.Lines = BorderLines.All;
+            table[x,y].Border.Width = 1;
+          }
+          else
+          {
+            table[x,y].Fill = new SolidFill(Color.WhiteSmoke);
+          }  
+        }
+        else
+        {
+          table[x,y].Fill = backUpFill.Clone();
+        }
+        
+        //table[x,y].Border.Style = LineStyle.Solid;
+        //table[x,y].Border.Color = Color.Gainsboro;
+      }
+    }
+
+    private void Page1_StartPage(object sender, EventArgs e)
+    {
+      int width;
+      int height;
+      bombCount = 0;
+      Int32.TryParse(tRows.Text, out height);
+      if(height &lt; 5) height = 5; else if (height &gt; 25) height = 25;
+      Int32.TryParse(tColumns.Text, out width);
+      if(width &lt; 5) width = 5; else if (width &gt; 25) width = 25;
+      Int32.TryParse(tBombs.Text, out bombCount);
+      if(bombCount &lt; 1) bombCount = 1; else if (bombCount &gt; height * width ) bombCount = height * width ;
+      TableMap[0,0].Width = 28;
+      TableMap[0,0].Height = 28;
+      TableMap.Left = (Data1.Width - (TableMap[0,0].Width * width))/2;
+      fastM1nesweeper.ReStart(width,height,bombCount);
+      backUpFill = TableMap[0,0].Fill.Clone();
+    }
+  }
+  
+  
+
+
+  public class FastM1nesweeper
+  {
+    private bool isGameOver = true;
+
+    public event EventHandler&lt;FastM1nesweeperCellUpdateEventArgs&gt; CellUpdated;
+
+    public int Score
+    {
+      get
+      {
+        try
+        {
+          int result = 0;
+          if(map!=null &amp;&amp; isStarted)
+          {
+            for(int i =0; i&lt; Width; i++)
+              for(int j = 0; j&lt; Height; j++)
+              {
+                if (map[i, j].IsOpened || IsVictory)
+                  result += GetScore(map[i, j].Number);
+              }
+          }
+          return result;
+        }
+        catch
+        {
+          
+        }
+        return 0;
+      }
+    }
+    
+    private int GetScore(int number)
+    {
+      switch(number)
+      {
+        case 1: return 1;
+        case 2: return 3;
+        case 3: return 6;
+        case 4: return 10;
+        case 5: return 15;
+        case 6: return 21;
+        case 7: return 28;
+        case 8: return 36;
+        default: return 0;
+      }
+    }
+
+    public FastM1nesweeperCell GetCell(int x, int y)
+    {
+      if (IsAllRight(x, y))
+      {
+        return map[x, y];
+      }
+      return null;
+    }
+
+    public bool IsGameOver
+    {
+      get { return isGameOver; }
+    }
+
+    public bool IsVictory
+    {
+      get { return isVictory; }
+    }
+
+    public int Width
+    {
+      get { return width; }
+    }
+
+    public int Height
+    {
+      get { return height; }
+    }
+
+    public int BombCount
+    {
+      get { return bombCount; }
+    }
+
+    private FastM1nesweeperCell[,] map;
+    private int width;
+    private int height;
+    private int bombCount;
+    private bool isStarted;
+    private bool isVictory;
+    public void ReStart(int width, int height, int bombCount)
+    {
+      isStarted = false;
+      isGameOver = false;
+      this.width = width;
+      this.height = height;
+      this.bombCount = bombCount;
+      isVictory = false;
+      map = new FastM1nesweeperCell[width, height];
+      for(int i =0; i&lt; width; i++)
+        for(int j =0; j&lt; height; j++)
+        {
+          map[i, j] = new FastM1nesweeperCell();
+        }
+    }
+
+    private bool IsAllRight(int x, int y)
+    {
+      return map!=null &amp;&amp; !IsGameOver &amp;&amp; x &gt;= 0 &amp;&amp; x &lt; width &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; height;
+    }
+
+    public void FlagClick(int x, int y)
+    {
+      if (isStarted &amp;&amp; IsAllRight(x,y))
+      {
+        if (!map[x, y].IsOpened)
+        {
+          map[x, y].IsFlag = !map[x, y].IsFlag;
+          if (CellUpdated != null)
+          {
+            CellUpdated.Invoke(this, new FastM1nesweeperCellUpdateEventArgs(x, y, map[x, y]));
+          }
+        }
+      }
+    }
+
+    private void GenerateMap(int x, int y)
+    {
+      if (!isStarted)
+      {
+        Random r = new Random();
+        int bombs = 0;
+        if(bombCount &gt; width * height / 2)
+        {
+          bombCount = width * height / 2;
+        }
+
+        for(int i = 0; i&lt; bombCount; i++)
+        {
+          int tryes = 256;
+          while(tryes &gt; 0)
+          {
+            int left = r.Next(0, width);
+            int top = r.Next(0, height);
+            if (left == x &amp;&amp; top == y || map[left, top].IsBomb)
+              tryes--;
+            else
+            {
+              map[left, top].IsBomb = true;
+              bombs++;
+              break;
+            }
+          }
+        }
+
+        for(int i =0; i&lt; width; i++)
+        {
+          for(int j = 0; j&lt; height; j++)
+          {
+            if (!map[i, j].IsBomb)
+            {
+              for (int i1 = -1; i1 &lt;= 1; i1++)
+                for (int j1 = -1; j1 &lt;= 1; j1++)
+                {
+                  FastM1nesweeperCell cell = GetCell(i + i1, j + j1);
+                  if (cell != null &amp;&amp; cell.IsBomb)
+                  {
+                    map[i, j].Number++;
+                  }
+                }
+            }
+          }
+        }
+
+        bombCount = bombs;
+        isStarted = true;
+      }
+    }
+
+    public void OpenClick(int x, int y)
+    {
+      GenerateMap(x, y);
+      if (IsAllRight(x, y))
+      {
+        if (!map[x, y].IsOpened &amp;&amp; !map[x,y].IsFlag)
+        {
+          if(map[x,y].IsBomb)
+          {
+            GameOverBomb();
+          }
+          else
+          {
+            OpenRecursive(x, y);
+          }
+
+          CheckGameOverDefused();
+        }
+      }
+    }
+
+    private void CheckGameOverDefused()
+    {
+      for (int i = 0; i &lt; width; i++)
+      {
+        for (int j = 0; j &lt; height; j++)
+        {
+          if (!map[i, j].IsOpened &amp;&amp; !map[i, j].IsBomb)
+          {
+            return;
+          }
+        }
+      }
+
+        
+
+      for (int i = 0; i &lt; width; i++)
+      {
+        for (int j = 0; j &lt; height; j++)
+        {
+          if (map[i, j].IsBomb)
+          {
+            map[i, j].IsOpened = true;
+            map[i, j].IsDefused = true;
+            if (CellUpdated != null)
+            {
+              CellUpdated.Invoke(this, new FastM1nesweeperCellUpdateEventArgs(i, j, map[i, j]));
+            }
+          }
+        }
+      }
+
+      isVictory = true;
+
+      isGameOver = true;
+    }
+
+    private void OpenRecursive(int x, int y)
+    {
+      if (IsAllRight(x, y))
+      {
+        if(!map[x,y].IsOpened &amp;&amp; !map[x,y].IsFlag )
+        {
+          map[x, y].IsOpened = true;
+          if (map[x, y].Number == 0)
+          {
+            for (int i = -1; i &lt;= 1; i++)
+              for (int j = -1; j &lt;= 1; j++)
+                if (!(i == 0 &amp;&amp; j == 0))
+                  OpenRecursive(x + i, y + j);
+          }
+          if (CellUpdated != null)
+          {
+            CellUpdated.Invoke(this, new FastM1nesweeperCellUpdateEventArgs(x, y, map[x, y]));
+          }
+        }
+      }
+    }
+
+    private void GameOverBomb()
+    {
+      for(int i =0; i&lt; width; i++)
+      {
+        for(int j =0; j&lt; height; j++)
+        {
+          if(map[i,j].IsBomb)
+          {
+            map[i, j].IsOpened = true;
+            if (CellUpdated != null)
+            {
+              CellUpdated.Invoke(this, new FastM1nesweeperCellUpdateEventArgs(i, j, map[i, j]));
+            }
+          }
+        }
+      }
+      isGameOver = true;
+    }
+  }
+
+  public class FastM1nesweeperCell
+  {
+    private bool isFlag;
+    private bool isBomb;
+    private int number;
+    private bool isOpened;
+    private bool isDefused;
+    public bool IsFlag
+    {
+      get { return isFlag; }
+      set { isFlag = value; }
+    }
+    public bool IsBomb
+    {
+      get { return isBomb; }
+      set { isBomb = value; }
+    }
+    public bool IsOpened
+    {
+      get { return isOpened; }
+      set { isOpened = value; }
+    }
+
+    public int Number
+    {
+      get { return number; }
+      set { number = value; }
+    }
+
+    public bool IsDefused
+    {
+      get { return isDefused; }
+      set { isDefused = value; }
+    }
+  }
+
+  public class FastM1nesweeperCellUpdateEventArgs : EventArgs
+  {
+    private int x;
+    private int y;
+    FastM1nesweeperCell cell;
+
+    public int X
+    {
+      get { return x; }
+    }
+
+    public int Y
+    {
+      get { return y; }
+    }
+
+    public FastM1nesweeperCell Cell
+    {
+      get { return cell; }
+    }
+
+    public FastM1nesweeperCellUpdateEventArgs(int x, int y, FastM1nesweeperCell cell)
+    {
+      this.x = x;
+      this.y = y;
+      this.cell = cell;
+    }
+  }
+}</ScriptText>
+  <Styles>
+    <Style Name="Hover" Border.Lines="All" Fill="Texture" Fill.ImageWidth="28" Fill.ImageHeight="28" Fill.PreserveAspectRatio="true" Fill.WrapMode="Clamp" Fill.ImageOffsetX="0" Fill.ImageOffsetY="0" Fill.ImageData="iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA9QD1APUHT9P6AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wMaBzYgkz2pnwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAw0lEQVRIx+3WsYqFMBCF4T8mGUSjiAYLsRN9Cp/SV7US0Wx1l132lvGyRaYaTvMlYSCjtm0Lx3FwnidPlPeedV1ZlgWtNaaua8Zx5L5vruuKipVlyTRNDMPwnRmAoijw3gMQQoiCGWNomoa2bX/nr0ZEqKoq2u1EBOfc34O8GqUUWZZhrY0Caq3f5hkfrgQmMIEJTGACE/jjx9daY61FRJ4HnXN0XUee588/ad/3zPP8EQxA7fse3m1Xj4Eh1iL6X6f0Cy2XHz7MkhXUAAAAAElFTkSuQmCC" Font="Arial, 10pt" ApplyBorder="false" ApplyTextFill="false" ApplyFont="false"/>
+  </Styles>
+  <Dictionary/>
+  <ReportPage Name="MainPage" Watermark.Font="Arial, 60pt" StartPageEvent="Page1_StartPage">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="47.25">
+      <TextObject Name="GameTitle" Left="47.25" Width="670.95" Height="37.8" Text="Fast M1nesweeper" VertAlign="Center" Font="Comic Sans MS, 20pt" TextRenderType="HtmlParagraph"/>
+      <PictureObject Name="GameIcon" Width="37.8" Height="37.8" SizeMode="StretchImage" Image="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvAAADrwBlbxySQAABT9JREFUaEPVWU1sG0UUNj9CFC7lT5wRLfQAt0ogcQUkJBACOxFNS5OG0qRN4+AktnfXSTZO4jSNf9bOr+Ox65Q0LWkFoWqrpjQprUgQB1BRW1AL7YWCOCBAFQq3Mry3ef7NJl7Drp180ifPvJl973uzM7Oza4uZcAUPPY+k6vqDoDAfkqrrDJzf4w6zW0gsk7W8EEZGHqFiQQhK4gUhHOcqoUzmgpCV5EYqGg8hzNqB1VRdFTDySioBLJN5VbiVeA3GoKrxcIfYG0uC4hFZlu8n83LAlBGU+O3MHYjfXm0aoS9YKwNL/WOvk9l4OILsUQj0j5qEwi4Ig4cfoyaLM3xoM9j3QXJHYSRvpMUT0YZt2Kc1En2aLrM0B8YeB18X1X7gG2NQkzmAW3w9I4rdEkMJF0yRL1M2vcRrXGHmgvLNLPv3FMY8QBCWFTBNKZLgfYmPePTEaT5x6jw/dvZz/vHsPJ+em+fjJ88t669FSCpGYcyDOxKvzQ7aMTTOR4+fUsV+emFBk5Nn5nKErkQJFjGFMQdimD0JC/IKBhNhxIePneSfpIXP8yNnZvkQ2HrZUe4d/ZB7BhJqPzFP6IpU4t9C/yconLFAx7AI1cXZPjyuTpOU8MT0We6NTmiLKprsuuFJyGNjD8HofI0BPINJfuLcJVX88ZlLvCc2qSHi/xHWwleO4NQGCq8PQpBtgn1+txCJvyoOjG3JdgBO0wsXE5iauciT0zO8bSi5LLiBjFJ42L6nNqAm1KZqBK3UlAsY5VCOE4X9Cr/f5dhKSSVxjTRk2eIhkqsNfOznXLCWWEi8iqVT5NpLQpf4LMBu0K/pqCxkfSRLP+hso+GsxFQYPE9iT5Es/XCHYg3oYOL0eXXPz3dcSrtLYXUkSz/o5AhOZlVmOy+1HdbkEZKlH5DA5Xyn5SIk8A3J0g+48Pd8R2XkbyRLH+B8s5A6Sa4VwrF8nuQVBnbWclJWzi18QfL0AW7b+p1CiLW0iPEkTLL0Ay6axItLud9r2uFBtrdLmSVZ+gEPj72qIx37tJn2em+Q17b3MZKlH/jpI99pqWnvHeC2Jg9vkENbSZZOLH2YCmg5LRXtBwZ55QcebrNLSD8p0wFVPAtrOS0Vm3LFF5dEud8FcM7jtMkTn+LqSeBLQ7YzSOZnd4RdzbaZRWcwxmtEX0YsJFHZ5LlmtUu/WBvFuym7tVEKkNxc4IuyGE685wqzV4RA7Bk5mXyQmvCr8ZhWUEMI2+S+bgWmTFtGPLBG8qX3/gpZfsDmEDa9vd/zMiRQi2Vq0gf8KtDsH7kMDzdtEf+FILyhJ8yrWjtzhCOrnN47LX7/wxTeGOyRA1t2uLyLe2Q/d/SPaIvSQcfBYf5+Rz/f1tKxTDhyu7Pz77q2g5sprLGo71Ke3d7a+RcGeqe5g9d6DqiLDvfrFv+oOo/dMLLuEOPOQFS14XZY1xnguyTfiqJT3NHqvbO721/862MxqHR4dmkFN4Lom8KYB9gVolrBjSD6pjDmwdYoXc0EFG9WC74ErI0/s4UUJGyR7zq7/qiRemPoI2WH8hUKYw7ebJI3pvZk2M4+sznk9N9Bdd7+l2o8vRM7xZ4ftrV0LqbFEqtaOharxZ4btZ7ew/Vy34t0mQV9qL5Un+JdjEFNxsO6X3pNFdQohSoqKu4j8zLIsnwviPkpJR7LYF7xTz70BaMfVPtCDDIbD5ij7Va7oOtvVnxiZhJY4emZB1uTtBNjUNV4FHN7rQ3S1nQCUCZzQZg6hYoFjPyPSKquP8C87oEp0U3V9Ye37OJzSKqaAIvlXycriBTjO0FlAAAAAElFTkSuQmCC"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="51.25" Width="718.2" Height="75.6">
+      <TextObject Name="LabelRow" Width="122.85" Height="18.9" Text="Desk rows:" Font="Comic Sans MS, 11.25pt, style=Bold"/>
+      <TextObject Name="LabelCount" Top="37.8" Width="122.85" Height="18.9" Text="Bombs count:" Font="Comic Sans MS, 11.25pt, style=Bold"/>
+      <TextObject Name="tBombs" Left="122.85" Top="37.8" Width="75.6" Height="18.9" Text="500" Font="Comic Sans MS, 11.25pt"/>
+      <TextObject Name="tRows" Left="122.85" Width="75.6" Height="18.9" Text="25" Font="Comic Sans MS, 11.25pt"/>
+      <TextObject Name="tColumns" Left="122.85" Top="18.9" Width="75.6" Height="18.9" Text="25" Font="Comic Sans MS, 11.25pt"/>
+      <TextObject Name="LabelColumn" Top="18.9" Width="122.85" Height="18.9" Text="Desk columns:" Font="Comic Sans MS, 11.25pt, style=Bold"/>
+      <TextObject Name="tScore" Left="557.55" Top="37.8" Width="151.2" Height="18.9" Font="Comic Sans MS, 11.25pt"/>
+      <TextObject Name="tClicks" Left="557.55" Width="151.2" Height="18.9" Font="Comic Sans MS, 11.25pt"/>
+      <TextObject Name="tTime" Left="557.55" Top="18.9" Width="151.2" Height="18.9" Font="Comic Sans MS, 11.25pt"/>
+      <TextObject Name="LabelGameOver" Left="198.45" Width="283.5" Height="56.7" HorzAlign="Center" VertAlign="Center" Font="Comic Sans MS, 27.75pt, style=Bold"/>
+      <TextObject Name="LabelClicks" Left="491.4" Width="66.15" Height="18.9" Font="Comic Sans MS, 11.25pt, style=Bold"/>
+      <TextObject Name="LabelTime" Left="491.4" Top="18.9" Width="66.15" Height="18.9" Font="Comic Sans MS, 11.25pt, style=Bold"/>
+      <TextObject Name="LabelScore" Left="491.4" Top="37.8" Width="66.15" Height="18.9" Font="Comic Sans MS, 11.25pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="130.85" Width="718.2" Height="765.45">
+      <TableObject Name="TableMap" Width="27.97" Height="27.97" Border.Lines="All" ManualBuildEvent="TableMap_ManualBuild">
+        <TableColumn Name="Column1" Width="27.97"/>
+        <TableRow Name="Row1" Height="27.97">
+          <TableCell Name="GameCell" Border.Lines="Right, Bottom" Border.Color="Gainsboro" Fill="Texture" Fill.ImageWidth="28" Fill.ImageHeight="28" Fill.PreserveAspectRatio="true" Fill.WrapMode="Clamp" Fill.ImageOffsetX="0" Fill.ImageOffsetY="0" Fill.ImageData="iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA9QD1APUHT9P6AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wMaBzUguBD6XAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAqklEQVRIx+3WzQrDIAwH8L920vd/pvoULV57KEVyiCBqcMdtrLs5GcOcgz/yAVHVWis6hkbn6Aoycz8wxohlWfqAMUZs24bjOHC7Ssg5N8NSSiAiMDMAXIMiAhFpAuacX9767y0d4AAHOMABDvBHwcuLX0pBSqkZ8vz1fQO99yAilFKaYEqpzxXu+w7nHEIITds4TRO01g9QRLCuK6y1OM/zK7MzxmCeZ9wBKmxQRfNekYUAAAAASUVORK5CYII=" Cursor="Hand" HoverStyle="Hover" ClickEvent="TableCell_Click" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="Comic Sans MS, 11.25pt" TextRenderType="HtmlParagraph" ParagraphFormat.LineSpacingType="Exactly"/>
+        </TableRow>
+      </TableObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="900.3" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="LabelCopy" Width="718.2" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Comic Sans MS, 8.25pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -48,7 +48,7 @@ namespace FastReport
     /// <summary>
     /// This class contains a hyperlink settings.
     /// </summary>
-    [TypeConverter("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+    [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
     public class Hyperlink
     {
         #region Fields

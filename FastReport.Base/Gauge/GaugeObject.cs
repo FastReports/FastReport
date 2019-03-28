@@ -86,8 +86,8 @@ namespace FastReport.Gauge
         /// Gets or sets scale of gauge.
         /// </summary>
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
-        [EditorAttribute("FastReport.TypeEditors.ScaleEditor, FastReport", typeof(UITypeEditor))]
+        [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
+        [Editor("FastReport.TypeEditors.ScaleEditor, FastReport", typeof(UITypeEditor))]
         public GaugeScale Scale
         {
             get { return scale; }
@@ -98,8 +98,8 @@ namespace FastReport.Gauge
         /// Gets or sets pointer of gauge.
         /// </summary>
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
-        [EditorAttribute("FastReport.TypeEditors.PointerEditor, FastReport", typeof(UITypeEditor))]
+        [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
+        [Editor("FastReport.TypeEditors.PointerEditor, FastReport", typeof(UITypeEditor))]
         public GaugePointer Pointer
         {
             get { return pointer; }
@@ -110,8 +110,8 @@ namespace FastReport.Gauge
         /// Gets or sets gauge label.
         /// </summary>
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
-        [EditorAttribute("FastReport.TypeEditors.LabelEditor, FastReport", typeof(UITypeEditor))]
+        [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
+        [Editor("FastReport.TypeEditors.LabelEditor, FastReport", typeof(UITypeEditor))]
         public virtual GaugeLabel Label
         {
             get { return label; }

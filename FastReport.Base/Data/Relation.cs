@@ -29,7 +29,7 @@ namespace FastReport.Data
   /// </code>
   /// </example>
   /// </remarks>
-  [TypeConverter("FastReport.TypeConverters.RelationConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.RelationConverter))]
   public partial class Relation : DataComponentBase
   {
     #region Fields

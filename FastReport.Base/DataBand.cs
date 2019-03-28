@@ -271,7 +271,7 @@ namespace FastReport
     /// </remarks>
     [DefaultValue(37.8f)]
     [Category("Hierarchy")]
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public float Indent
     {
       get { return indent; }

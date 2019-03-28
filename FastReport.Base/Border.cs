@@ -83,7 +83,7 @@ namespace FastReport
   /// <summary>
   /// Represents a single border line.
   /// </summary>
-  [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
   public class BorderLine
   {
     #region Fields
@@ -259,8 +259,8 @@ namespace FastReport
     /// To turn on and off the lines, use the <see cref="Lines"/> property. To set the same color, style or width
     /// for each line, use <see cref="Color"/>, <see cref="Style"/>, <see cref="Width"/> properties of the <b>Border</b>.
     /// </remarks>
-    [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
-    [EditorAttribute("FastReport.TypeEditors.BorderEditor, FastReport", typeof(UITypeEditor))]
+    [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
+    [Editor("FastReport.TypeEditors.BorderEditor, FastReport", typeof(UITypeEditor))]
   public class Border
   {
     #region Fields

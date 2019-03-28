@@ -40,7 +40,7 @@ namespace FastReport
   /// <summary>
   /// Specifies a start and end line caps.
   /// </summary>
-  [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
   public class CapSettings
   {
     private float width;

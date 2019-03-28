@@ -438,7 +438,7 @@ namespace FastReport.Barcode
             return new SizeF(drawArea.Width * 1.25f, 0);
         }
 
-        internal override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+        public override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
         {
             float originalWidth = CalcBounds().Width / 1.25f;
             float width = angle == 90 || angle == 270 ? displayRect.Height : displayRect.Width;

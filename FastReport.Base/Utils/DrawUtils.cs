@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace FastReport.Utils
 {
-    internal static partial class DrawUtils
+    public static partial class DrawUtils
     {
         private static Font FDefaultFont;
         private static Font FDefault96Font;

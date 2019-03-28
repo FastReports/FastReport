@@ -40,7 +40,7 @@ namespace FastReport.Barcode
     {
     }
     
-    internal override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+    public override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
     {
       float width = angle == 90 || angle == 270 ? displayRect.Height : displayRect.Width;
       float height = angle == 90 || angle == 270 ? displayRect.Width : displayRect.Height;

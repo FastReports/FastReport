@@ -8,7 +8,7 @@ namespace FastReport
   /// This class contains the page columns settings. 
   /// It is used in the <see cref="ReportPage.Columns"/> property.
   /// </summary>
-  [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
   public class PageColumns
   {
     private int count;
@@ -44,7 +44,7 @@ namespace FastReport
     /// <summary>
     /// Gets or sets the column width.
     /// </summary>
-    [TypeConverterAttribute("FastReport.TypeConverters.PaperConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.PaperConverter, FastReport")]
     public float Width
     {
       get { return width; }

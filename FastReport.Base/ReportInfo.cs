@@ -45,7 +45,7 @@ namespace FastReport
   /// <summary>
   /// This class represents the report information such as name, author, description etc.
   /// </summary>
-  [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
   public class ReportInfo
   {
     #region Fields

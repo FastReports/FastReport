@@ -282,6 +282,8 @@
     <JsonFile Text="JSON file (*.json,*.txt)|*.json;*.txt"/>
     <LaTeXFile Text="TeX file (*.tex)|*.tex"/>
     <ZplFile Text="ZPL file (*.zpl)|*.zpl"/>
+    <DxfFile Text="DXF file (*.dxf)|*.dxf"/>
+    <HpglFile Text="Hpgl(plt) file (*.plt)|*.plt"/>
     <AllFiles Text="All files (*.*)|*.*"/>
   </FileFilters>
   <Formats>
@@ -635,6 +637,7 @@
       <Add Text="Add"/>
       <Reports Text="Report templates:"/>
       <ReportItems Text="Report items:"/>
+      <Games Text="Games:"/>
     </AddNewItem>
     <AdvancedConnectionProperties Text="Advanced Properties"/>
     <AskPassword Text="Password">
@@ -1084,6 +1087,19 @@
       <FalseText Text="False value text:"/>
       <TrueText Text="True value text:"/>
     </FormatEditor>
+    <FontsPageOptions Text="Fonts setup">
+      <FormName Text="Fonts setup"/>
+      <Fonts Text="Fonts"/>
+      <Font Text="Font"/>
+      <SettingsFor Text="Show settings for"/>
+      <FormElement Text="Display items"/>
+      <DefaultButton Text="Use defaults"/>
+      <Size Text="Size"/>
+      <Italic Text="Italic"/>
+      <Bold Text="Bold"/>
+      <Sample Text="Sample"/>
+      <CancelButton Text="Cancel"/>
+    </FontsPageOptions>
     <GridControlColumnsEditor Text="Edit Columns">
       <Columns Text="Columns"/>
       <Properties Text="Properties"/>
@@ -1495,6 +1511,7 @@
       <Add Text="Add"/>
       <Remove Text="Remove"/>
       <Note Text="Note: changes made will take effect on FastReport restart."/>
+      <Fonts Text="Fonts"/>
     </PluginsOptions>
     <PreviewPageSetup>
       <Apply Text="Apply to all pages and rebuild report"/>
@@ -1846,6 +1863,19 @@
       <Message Text="FastReport detected incorrect program shutdown, do you want to recover unsaved report?"/>
       <Restore Text="Restore"/>
     </LoadAutoSave>
+    <FastM1nesweeper Text="Fast M1nesweeper">
+      <Welcome Text="Create a new Fast M1nesweeper report game"/>
+      <Settings Text="Settings"/>
+      <Difficulty Text="Difficulty"/>
+      <Custom Text="Custom"/>
+      <Easy Text="Easy"/>
+      <Medium Text="Medium"/>
+      <Hard Text="Hard"/>
+      <Master Text="Master"/>
+      <Bombs Text="Bombs"/>
+      <Columns Text="Columns"/>
+      <Rows Text="Rows"/>
+    </FastM1nesweeper>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -2083,6 +2113,7 @@
     <NewDataSource Text="New Data Source"/>
     <NewPage Text="New Report Page"/>
     <NewDialog Text="New Dialog Form"/>
+    <FastM1nesweeper Text="Fast M1nesweeper"/>
   </Wizards>
   <Export>
     <Misc>
@@ -2357,6 +2388,12 @@
       <SendingEmail Text="Sending email - {0} Kb"/>
       <EnableSSL Text="Enable SSL"/>
     </Email>
+    <Dxf Text="Export to DXF">
+      <File Text="DXF file"/>
+    </Dxf>
+    <Hpgl Text="Export to Hpgl(plt)">
+      <File Text="Hpgl file"/>
+    </Hpgl>
   </Export>
   <Cloud>
     <CloudStorage Text="Save to Cloud">

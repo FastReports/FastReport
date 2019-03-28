@@ -12,7 +12,7 @@ namespace FastReport.Format
   /// <remarks>
   /// The format is used to format expression value in a <see cref="TextObject"/> object. 
   /// </remarks>
-  [TypeConverter("FastReport.TypeConverters.FormatConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FormatConverter))]
   public abstract class FormatBase : IFRSerializable
   {
     #region Properties

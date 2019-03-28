@@ -1517,6 +1517,7 @@ namespace FastReport.Barcode
       Brush light = Brushes.White;
       Brush dark = new SolidBrush(Color);
       int stride = (bitColumns + 7) / 8;
+
       for (int k = 0; k < codeRows; ++k)
       {
         int p = k * stride;
@@ -1524,8 +1525,9 @@ namespace FastReport.Barcode
         {
           int b = outBits[p + (j / 8)] & 0xff;
           b <<= j % 8;
-          Brush brush = (b & 0x80) == 0 ? light : dark;
-          g.FillRectangle(brush, j * PixelSize.Width * kx, k * PixelSize.Height * ky,
+          Brush brush = /*(b & 0x80) == 0 ? light :*/ dark;
+          if ((b & 0x80) != 0)
+            g.FillRectangle(brush, j * PixelSize.Width * kx, k * PixelSize.Height * ky,
             PixelSize.Width * kx, PixelSize.Height * ky);
         }
       }

@@ -338,7 +338,11 @@ namespace FastReport.Barcode
             }
         }
 
-        private void UpdateAutoSize()
+        #endregion
+
+        #region Public Methods
+
+        public void UpdateAutoSize()
         {
             SetBarcodeProperties();
             SizeF size = Barcode.CalcBounds();
@@ -360,9 +364,7 @@ namespace FastReport.Barcode
                 }
             }
         }
-        #endregion
 
-        #region Public Methods
         /// <inheritdoc/>
         public override void Assign(Base source)
         {

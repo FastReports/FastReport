@@ -71,7 +71,7 @@ namespace FastReport
     /// Watermark can draw text and/or image behind the page objects on in front of them. To enable
     /// watermark, set its <b>Enabled</b> property to <b>true</b>.
     /// </remarks>
-    [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+    [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
     [EditorAttribute("FastReport.TypeEditors.WatermarkEditor, FastReport", typeof(UITypeEditor))]
     public class Watermark : IDisposable
     {
