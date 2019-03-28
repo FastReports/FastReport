@@ -1,0 +1,59 @@
+﻿<Window x:Class="OpenSourceCustomViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenSourceCustomViewer"
+        mc:Ignorable="d"
+        Title="Report Viewer" Height="865" Width="765" ResizeMode="CanResizeWithGrip" SizeToContent="Width">
+    <Grid HorizontalAlignment="Center" Width="760">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto">
+                <ColumnDefinition.BindingGroup>
+                    <BindingGroup/>
+                </ColumnDefinition.BindingGroup>
+            </ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <ToolBar Height="25" VerticalAlignment="Top" Grid.ColumnSpan="5" Margin="0,0,10,0">
+            <Button x:Name="Open" Click="Open_Click">
+                <Image Source="Resources/001.ico"></Image>
+            </Button>
+            <Button x:Name="First" Click="First_Click">
+                <Image Source="Resources/frst.png"></Image>
+            </Button>
+            <Button x:Name="Previous" Click="Previous_Click">
+                <Image Source="Resources/prr.png"></Image>
+            </Button>
+            <TextBox x:Name="PageNumber" Height="20" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" KeyDown="PageNumber_KeyDown"/>
+            <Button x:Name="Next" Click="Next_Click">
+                <Image Source="Resources/nxt.png"></Image>
+            </Button>
+            <Button x:Name="Last" Width="43" Click="Last_Click">
+                <Image Source="Resources/lst.png"></Image>
+            </Button>
+            <Button x:Name="Zoom_in" Width="36" VerticalAlignment="Stretch" Click="Zoom_in_Click">+</Button>
+            <Button x:Name="Zoom_out" Width="35" VerticalAlignment="Stretch" Click="Zoom_out_Click">-</Button>
+        </ToolBar>
+        <ScrollViewer VerticalScrollBarVisibility="Visible"
+                   HorizontalScrollBarVisibility="Visible" Margin="0,25,-475,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="760">
+            <ScrollViewer.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-1.99"/>
+                </TransformGroup>
+            </ScrollViewer.RenderTransform>
+            <Image x:Name="im" Margin="0,0,382,0" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5" Stretch="UniformToFill" Height="903" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.011"/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </ScrollViewer>
+    </Grid>
+</Window>
