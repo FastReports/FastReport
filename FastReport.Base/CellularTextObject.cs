@@ -36,7 +36,7 @@ namespace FastReport
         /// automatically based on its font.
         /// </remarks>
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float CellWidth
         {
             get { return cellWidth; }
@@ -51,7 +51,7 @@ namespace FastReport
         /// automatically based on its font.
         /// </remarks>
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float CellHeight
         {
             get { return cellHeight; }
@@ -62,7 +62,7 @@ namespace FastReport
         /// Gets or sets the horizontal spacing between cells, in pixels.
         /// </summary>
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float HorzSpacing
         {
             get { return horzSpacing; }
@@ -73,7 +73,7 @@ namespace FastReport
         /// Gets or sets the vertical spacing between cells, in pixels.
         /// </summary>
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float VertSpacing
         {
             get { return vertSpacing; }
@@ -264,7 +264,7 @@ namespace FastReport
             }
         }
 
-        internal TableObject GetTable()
+        public TableObject GetTable()
         {
             return GetTable(false);
         }

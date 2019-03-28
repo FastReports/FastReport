@@ -12,7 +12,7 @@ namespace FastReport
   /// <summary>
   /// Base class for all fills.
   /// </summary>
-  [TypeConverter("FastReport.TypeConverters.FillConverter, FastReport")]
+  [TypeConverter(typeof(FastReport.TypeConverters.FillConverter))]
   public abstract class FillBase
   {
     internal string Name
@@ -911,6 +911,7 @@ namespace FastReport
         /// <inheritdoc/>
         public override FillBase Clone()
         {
+            
             TextureFill f = new TextureFill(imageData.Clone() as byte[], ImageWidth, ImageHeight, PreserveAspectRatio, WrapMode, ImageOffsetX, ImageOffsetY);
             //f.ImageIndex = ImageIndex;
             return f;

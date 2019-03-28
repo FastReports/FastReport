@@ -41,7 +41,7 @@ namespace FastReport.Table
     /// <note>To convert between pixels and report units, use the constants defined 
     /// in the <see cref="Units"/> class.</note>
     /// </remarks>
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public override float Width
     {
       get { return base.Width; }
@@ -65,7 +65,7 @@ namespace FastReport.Table
     /// </summary>
     [DefaultValue(0f)]
     [Category("Layout")]
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public float MinWidth
     {
       get { return minWidth; }
@@ -77,7 +77,7 @@ namespace FastReport.Table
     /// </summary>
     [DefaultValue(5000f)]
     [Category("Layout")]
-    [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
     public float MaxWidth
     {
       get { return maxWidth; }

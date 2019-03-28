@@ -128,7 +128,7 @@ namespace FastReport.Data
     /// <summary>
     /// Gets or sets the type of data supplied by this column.
     /// </summary>
-    [TypeConverter("FastReport.TypeConverters.DataTypeConverter, FastReport")]
+    [TypeConverter(typeof(FastReport.TypeConverters.DataTypeConverter))]
     [Category("Data")]
     [Editor("FastReport.TypeEditors.DataTypeEditor, FastReport", typeof(UITypeEditor))]
     public Type DataType

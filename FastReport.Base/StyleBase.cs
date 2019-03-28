@@ -140,6 +140,8 @@ namespace FastReport
         public void Deserialize(FRReader reader)
         {
             reader.ReadProperties(this);
+            Fill.Deserialize(reader, "Fill");
+            TextFill.Deserialize(reader, "TextFill");
         }
 
         /// <summary>

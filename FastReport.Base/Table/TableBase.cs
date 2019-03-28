@@ -185,7 +185,7 @@ namespace FastReport.Table
         /// </remarks>
         [DefaultValue(0f)]
         [Category("Behavior")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float WrappedGap
         {
             get { return wrappedGap; }
@@ -539,18 +539,6 @@ namespace FastReport.Table
             spanList = null;
         }
 
-        internal bool IsInsideSpan(TableCell cell)
-        {
-            Point address = cell.Address;
-            List<Rectangle> spans = GetSpanList();
-            foreach (Rectangle span in spans)
-            {
-                if (span.Contains(address) && span.Location != address)
-                    return true;
-            }
-            return false;
-        }
-
         internal void CorrectSpansOnRowChange(int rowIndex, int correct)
         {
             if (lockCorrectSpans || (correct == 1 && rowIndex >= Rows.Count))
@@ -588,6 +576,17 @@ namespace FastReport.Table
             }
 
             ResetSpanList();
+        }
+        public bool IsInsideSpan(TableCell cell)
+        {
+            Point address = cell.Address;
+            List<Rectangle> spans = GetSpanList();
+            foreach (Rectangle span in spans)
+            {
+                if (span.Contains(address) && span.Location != address)
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>

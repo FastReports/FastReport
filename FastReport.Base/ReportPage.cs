@@ -115,7 +115,7 @@ namespace FastReport
     /// Gets or sets a width of the paper, in millimeters.
     /// </summary>
     [Category("Paper")]
-    [TypeConverterAttribute("FastReport.TypeConverters.PaperConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.PaperConverter, FastReport")]
     public float PaperWidth
     {
       get { return paperWidth; }
@@ -126,7 +126,7 @@ namespace FastReport
     /// Gets or sets a height of the paper, in millimeters.
     /// </summary>
     [Category("Paper")]
-    [TypeConverterAttribute("FastReport.TypeConverters.PaperConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.PaperConverter, FastReport")]
     public float PaperHeight
     {
       get { return paperHeight; }
@@ -297,7 +297,7 @@ namespace FastReport
     /// Gets or sets the left page margin, in millimeters.
     /// </summary>
     [Category("Paper")]
-    [TypeConverterAttribute("FastReport.TypeConverters.PaperConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.PaperConverter, FastReport")]
     public float LeftMargin
     {
       get { return leftMargin; }
@@ -308,7 +308,7 @@ namespace FastReport
     /// Gets or sets the top page margin, in millimeters.
     /// </summary>
     [Category("Paper")]
-    [TypeConverterAttribute("FastReport.TypeConverters.PaperConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.PaperConverter, FastReport")]
     public float TopMargin
     {
       get { return topMargin; }
@@ -319,7 +319,7 @@ namespace FastReport
     /// Gets or sets the right page margin, in millimeters.
     /// </summary>
     [Category("Paper")]
-    [TypeConverterAttribute("FastReport.TypeConverters.PaperConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.PaperConverter, FastReport")]
     public float RightMargin
     {
       get { return rightMargin; }
@@ -330,7 +330,7 @@ namespace FastReport
     /// Gets or sets the bottom page margin, in millimeters.
     /// </summary>
     [Category("Paper")]
-    [TypeConverterAttribute("FastReport.TypeConverters.PaperConverter, FastReport")]
+    [TypeConverter("FastReport.TypeConverters.PaperConverter, FastReport")]
     public float BottomMargin
     {
       get { return bottomMargin; }

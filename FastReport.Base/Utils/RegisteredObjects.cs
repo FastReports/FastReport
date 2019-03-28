@@ -358,6 +358,11 @@ namespace FastReport.Utils
             InternalAdd(obj, "ExportGroups," + category + ",", null, imageIndex, text, 0, false);
         }
 
+        public static void AddExport(Type obj, string category, string text, Bitmap image)
+        {
+            InternalAdd(obj, "ExportGroups," + category + ",", image, -1, text, 0, false);
+        }
+
         /// <summary>
         /// Registers data connection.
         /// </summary>

@@ -11,7 +11,7 @@ namespace FastReport.Utils
     /// <summary>
     /// The interface for unifying methods for drawing objects into different graphics
     /// </summary>
-    internal interface IGraphicsRenderer : IDisposable
+    public interface IGraphicsRenderer : IDisposable
     {
         void TranslateTransform(float left, float top);
         void RotateTransform(float angle);
@@ -34,13 +34,18 @@ namespace FastReport.Utils
         /// <param name="brush"></param>
         /// <param name="path"></param>
         void FillPath(Brush brush, GraphicsPath path);
-
+        /// <summary>
+        /// Add rectangle to the graphics path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="rect"></param>
+        void PathAddRectangle(GraphicsPath path, RectangleF rect);
     }
 
     /// <summary>
     /// the interface for saving and restoring state
     /// </summary>
-    internal interface IGraphicsRendererState
+    public interface IGraphicsRendererState
     {
 
     }
@@ -181,6 +186,11 @@ namespace FastReport.Utils
             this.graphics.DrawEllipse(pen, left, top, width, height);
         }
         #endregion
+
+        public void PathAddRectangle(GraphicsPath path, RectangleF rect)
+        {
+            path.AddRectangle(rect);
+        }
 
         public class ImageGraphicsRendererState : IGraphicsRendererState
         {

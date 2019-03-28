@@ -95,7 +95,7 @@ namespace FastReport
         /// </summary>
         [Browsable(true)]
         [DefaultValue(0f)]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float FirstLineIndent
         {
             get { return firstLineIndent; }
@@ -107,7 +107,7 @@ namespace FastReport
         /// </summary>
         [Browsable(true)]
         [DefaultValue(0f)]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float LineSpacing
         {
             get { return lineSpacing; }
@@ -502,7 +502,7 @@ namespace FastReport
         /// </summary>
         [DefaultValue(0f)]
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float FirstTabOffset
         {
             get { return firstTabOffset; }
@@ -645,7 +645,7 @@ namespace FastReport
         /// </summary>
         [DefaultValue(0f)]
         [Category("Appearance")]
-        [TypeConverterAttribute("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float ParagraphOffset
         {
             get { return paragraphOffset; }
@@ -980,7 +980,7 @@ namespace FastReport
         #endregion
 
         #region Public Methods
-        internal StringFormat GetStringFormat(GraphicCache cache, StringFormatFlags flags)
+        public StringFormat GetStringFormat(GraphicCache cache, StringFormatFlags flags)
         {
             return GetStringFormat(cache, flags, 1);
         }

@@ -25,7 +25,7 @@ namespace FastReport.Data
     /// <summary>
     /// Gets or sets the parameter's data type.
     /// </summary>
-    [TypeConverter("FastReport.TypeConverters.ParameterDataTypeConverter, FastReport")]
+    [TypeConverter(typeof(FastReport.TypeConverters.ParameterDataTypeConverter))]
     [Category("Data")]
     [Editor("FastReport.TypeEditors.ParameterDataTypeEditor, FastReport", typeof(UITypeEditor))]
     public int DataType

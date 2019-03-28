@@ -467,14 +467,12 @@ namespace FastReport.Web
                         {
                             xml2.Root.AddItem(scriptItem1);
                         }
-                        scriptItem1.Dispose();
                     }
                 }
 
                 // paste saved connection strings
                 var dictionary1 = xml1.Root.FindItem("Dictionary");
                 var dictionary2 = xml2.Root.FindItem("Dictionary");
-                {
                     if (dictionary1 != null && dictionary2 != null)
                     {
                         for (int i = 0; i < dictionary1.Items.Count; i++)
@@ -487,12 +485,10 @@ namespace FastReport.Web
                                 if (item2 != null)
                                 {
                                     item2.SetProp("ConnectionString", connectionString);
-                                    item2.Dispose();
                                 }
                             }
                         }
                     }
-                }
 
                 // save prepared xml
                 using (MemoryStream secondXmlStream = new MemoryStream())

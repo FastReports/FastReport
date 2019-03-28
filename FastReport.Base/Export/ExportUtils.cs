@@ -53,7 +53,7 @@ namespace FastReport.Export
                 return page.PaperHeight;
         }
 
-        internal static string FloatToString(double value)
+        public static string FloatToString(double value)
         {
             NumberFormatInfo provider = new NumberFormatInfo();
             provider.NumberGroupSeparator = String.Empty;

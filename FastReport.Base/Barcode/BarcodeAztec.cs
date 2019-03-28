@@ -51,7 +51,7 @@ namespace FastReport.Barcode
         internal override void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)
         {
             Brush light = Brushes.White;
-            Brush dark = new SolidBrush(Color);
+            Brush dark = new SolidBrush(Color);     
 
             for (int y = 0; y < matrix.Height; y++)
             {
@@ -59,8 +59,9 @@ namespace FastReport.Barcode
                 {
                     bool b = matrix.getRow(y, null)[x];
 
-                    Brush brush = b == true ? dark : light;
-                    g.FillRectangle(brush, x * PIXEL_SIZE * kx, y * PIXEL_SIZE * ky,
+                    Brush brush = /*b == true ?*/ dark /*: light*/;
+                    if (b == true)
+                        g.FillRectangle(brush, x * PIXEL_SIZE * kx, y * PIXEL_SIZE * ky,
                                                PIXEL_SIZE * kx,     PIXEL_SIZE * ky);
                 }
             }

@@ -8,7 +8,7 @@ namespace FastReport.Barcode
     /// <summary>
     /// The base class for all barcodes.
     /// </summary>
-    [TypeConverter("FastReport.TypeConverters.BarcodeConverter, FastReport")]
+    [TypeConverter(typeof(FastReport.TypeConverters.BarcodeConverter))]
     public abstract class BarcodeBase
     {
         #region Fields
@@ -86,7 +86,7 @@ namespace FastReport.Barcode
             return data;
         }
 
-        internal virtual void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+        public virtual void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
         {
         }
         #endregion

@@ -33,8 +33,8 @@ namespace FastReport
     /// text that not fit in this object.
     /// </summary>
     [Category("Behavior")]
-    [TypeConverterAttribute("FastReport.TypeConverters.ComponentRefConverter, FastReport")]
-    [EditorAttribute("FastReport.TypeEditors.BandComponentRefEditor, FastReport", typeof(UITypeEditor))]
+    [TypeConverter(typeof(FastReport.TypeConverters.ComponentRefConverter))]
+    [Editor("FastReport.TypeEditors.BandComponentRefEditor, FastReport", typeof(UITypeEditor))]
     public BreakableComponent BreakTo
     {
       get { return breakTo; }

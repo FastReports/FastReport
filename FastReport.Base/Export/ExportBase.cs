@@ -449,8 +449,8 @@ namespace FastReport.Export
             try
             {
                 page = ppage.StartGetPage(pageNo);
-        page.Width = ppage.PageSize.Width;
-        page.Height = ppage.PageSize.Height;
+                page.Width = ppage.PageSize.Width;
+                page.Height = ppage.PageSize.Height;
                 ExportPageBegin(page);
                 float topShift = 0;
                 foreach (Base obj in ppage.GetPageItems(page, false))

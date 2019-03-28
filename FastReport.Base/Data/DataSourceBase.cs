@@ -11,8 +11,8 @@ namespace FastReport.Data
   /// <summary>
   /// Base class for all datasources such as <see cref="TableDataSource"/>.
   /// </summary>
-  [TypeConverter("FastReport.TypeConverters.DataSourceConverter, FastReport")]
-  [EditorAttribute("FastReport.TypeEditors.DataSourceEditor, FastReport", typeof(UITypeEditor))]
+  [TypeConverter(typeof(FastReport.TypeConverters.DataSourceConverter))]
+  [Editor("FastReport.TypeEditors.DataSourceEditor, FastReport", typeof(UITypeEditor))]
   public abstract class DataSourceBase : Column
   {
     #region Fields

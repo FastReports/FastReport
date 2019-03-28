@@ -10,7 +10,7 @@ namespace FastReport
     /// Represents text outline.
     /// </summary>
     [ToolboxItem(false)]
-    [TypeConverterAttribute("FastReport.TypeConverters.FRExpandableObjectConverter, FastReport")]
+    [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
     public class TextOutline// : Component
     {
         #region Fields
