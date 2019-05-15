@@ -277,7 +277,7 @@ namespace FastReport.Web
                             string baseReportFile = xml.Root.GetProp("BaseReport");
                             //string fileName = context.Request.MapPath(baseReportFile, webReport.Prop.ReportPath, true);
                             if (!Path.IsPathRooted(baseReportFile))
-                                baseReportFile = Path.GetFullPath(Path.GetDirectoryName(ReportPath) + Path.DirectorySeparatorChar + baseReportFile);
+                                baseReportFile = Path.GetFullPath(Path.GetDirectoryName(Report.FileName) + Path.DirectorySeparatorChar + baseReportFile); //was ReportPath before(ToDo)
 
                             if (File.Exists(baseReportFile))
                             {

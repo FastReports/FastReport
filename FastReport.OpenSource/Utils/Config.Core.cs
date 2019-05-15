@@ -53,5 +53,10 @@
         }
 
         #endregion Private Methods
+
+        internal static void DoEvent()
+        {
+            // do nothing
+        }
     }
 }

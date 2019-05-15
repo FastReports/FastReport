@@ -218,6 +218,7 @@
 	  </GaugeForms>
     </Gauge>
     <CrossViewObject Text="CrossView"/>
+    <DigitalSignatureObject Text="Digital signature"/>
   </Objects>
   <Functions>
     <Math Text="Mathematical"/>
@@ -2199,6 +2200,7 @@
       <Unicode Text="Unicode"/>
       <OEM Text="OEM"/>
       <DataOnly Text="Data only"/>
+      <NoQuotes Text="Disable quotation marks"/>
       <EscapeQuotes Text="Escape quotation marks"/>
     </Csv>
     <Dbf Text="Export to DBF">

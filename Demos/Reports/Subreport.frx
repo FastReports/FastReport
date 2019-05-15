@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to use the subreport object. To create a subreport:&#13;&#10;- add the &quot;Subreport&quot; object to the desired location;&#13;&#10;- this will create a separate page where you can configure bands and put the objects you need;&#13;&#10;- if you need to print all the subreport's output on its parent band, select the &quot;Subreport&quot; object, right-click it and select &quot;Print on Parent&quot; option in the context menu." ReportInfo.Created="01/17/2008 05:23:50" ReportInfo.Modified="01/18/2019 12:47:42" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to use the subreport object. To create a subreport:&#13;&#10;- add the &quot;Subreport&quot; object to the desired location;&#13;&#10;- this will create a separate page where you can configure bands and put the objects you need;&#13;&#10;- if you need to print all the subreport's output on its parent band, select the &quot;Subreport&quot; object, right-click it and select &quot;Print on Parent&quot; option in the context menu." ReportInfo.Created="01/17/2008 05:23:50" ReportInfo.Modified="05/14/2019 12:22:58" ReportInfo.CreatorVersion="1.0.0.0">
   <Dictionary>
     <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
       <Column Name="ProductID" DataType="System.Int32"/>
@@ -31,12 +31,14 @@
     <Relation Name="SuppliersProducts" ReferenceName="NorthWind.SuppliersProducts" ParentDataSource="Suppliers" ChildDataSource="Products" ParentColumns="SupplierID" ChildColumns="SupplierID" Enabled="true"/>
     <Total Name="TotalProducts" TotalType="Count" Evaluator="Data2" PrintOn="DataFooter1"/>
   </Dictionary>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6" CanGrow="true">
-      <TextObject Name="Text6" Top="47.25" Width="718.2" Height="28.35" Text="PRODUCTS BY SUPPLIERS" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text25" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="85.05" CanGrow="true">
+      <TextObject Name="Text6" Top="56.7" Width="718.2" Height="28.35" Text="PRODUCTS BY SUPPLIERS" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text25" Top="28.35" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text27" Left="-9450" Top="-9450" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Hyperlink.Value="http://fast.report/3f546" Hyperlink.OpenLinkInNewTab="true" Text="Learn how to build this report on the Fast Reports Academy channel" VertAlign="Center" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
+      <TextObject Name="Text28" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/9089a" Hyperlink.OpenLinkInNewTab="true" Text="Learn how to build this report on the Fast Reports Academy channel" VertAlign="Center" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="79.6" Width="718.2" Height="217.35" CanGrow="true" DataSource="Suppliers">
+    <DataBand Name="Data1" Top="88.77" Width="718.2" Height="217.35" CanGrow="true" DataSource="Suppliers">
       <SubreportObject Name="Subreport1" Left="255.15" Top="47.25" Width="444.15" Height="103.95" ReportPage="Page2" PrintOnParent="true"/>
       <TextObject Name="Text8" Top="9.45" Width="708.75" Height="28.35" Border.Lines="Bottom" Border.LeftLine.Color="White" Border.TopLine.Color="White" Border.RightLine.Color="YellowGreen" Border.BottomLine.Color="White" Fill="Glass" Fill.Color="104, 140, 196" Fill.Blend="0.2" Fill.Hatch="false" Text="[Suppliers.CompanyName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 14pt, style=Bold" TextFill.Color="White"/>
       <TextObject Name="Text13" Top="37.8" Width="94.5" Height="18.9" Border.Lines="Top" Border.Color="White" Fill.Color="LightSteelBlue" Text="Country" Padding="5, 2, 5, 0" Font="Tahoma, 8pt, style=Bold"/>
@@ -58,21 +60,21 @@
       <LineObject Name="Line1" Left="708.75" Top="37.8" Height="160.65" Border.Color="LightSteelBlue"/>
       <LineObject Name="Line2" Left="245.7" Top="198.45" Width="463.05" Border.Color="LightSteelBlue"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="300.95" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+    <PageFooterBand Name="PageFooter1" Top="309.84" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
       <TextObject Name="Text7" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
       <TextObject Name="Text26" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
-  <ReportPage Name="Page2">
+  <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
     <DataBand Name="Data2" Top="22.9" Width="718.2" Height="18.9" DataSource="Products">
       <TextObject Name="Text1" Left="9.45" Width="311.85" Height="18.9" Text="[Products.ProductName]" VertAlign="Center" Font="Tahoma, 8pt">
         <Highlight>
-          <Condition Expression="[Row#] % 2 == 0" Fill.Color="AliceBlue" TextFill.Color="Black" ApplyFill="true" ApplyTextFill="false"/>
+          <Condition Expression="[Row#] % 2 == 0" Fill.Color="AliceBlue" TextFill.Color="Black" Font="Arial, 10pt" ApplyFill="true" ApplyTextFill="false"/>
         </Highlight>
       </TextObject>
       <TextObject Name="Text2" Left="321.3" Width="94.5" Height="18.9" Text="[Products.UnitPrice]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt">
         <Highlight>
-          <Condition Expression="[Row#] % 2 == 0" Fill.Color="AliceBlue" TextFill.Color="Black" ApplyFill="true" ApplyTextFill="false"/>
+          <Condition Expression="[Row#] % 2 == 0" Fill.Color="AliceBlue" TextFill.Color="Black" Font="Arial, 10pt" ApplyFill="true" ApplyTextFill="false"/>
         </Highlight>
       </TextObject>
       <DataHeaderBand Name="DataHeader1" Width="718.2" Height="18.9">
