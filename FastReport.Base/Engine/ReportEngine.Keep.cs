@@ -15,6 +15,23 @@ namespace FastReport.Engine
 
         #endregion Fields
 
+        #region Properties
+        /// <summary>
+        /// Returns true of keeping is enabled
+        /// </summary>
+        public bool IsKeeping
+        {
+            get { return keeping; }
+        }
+        /// <summary>
+        /// Returns keeping position
+        /// </summary>
+        public float KeepCurY
+        {
+            get { return keepCurY; }
+        }
+        #endregion Properties
+
         #region Private Methods
 
         private void StartKeep(BandBase band)

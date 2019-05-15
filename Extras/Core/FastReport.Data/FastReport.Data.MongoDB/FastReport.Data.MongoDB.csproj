@@ -19,7 +19,7 @@
 		<Configurations>Debug;Release;</Configurations>
 		<AssemblyName>FastReport.Data.MongoDB</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
-		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageReleaseNotes>fixed a bug with wrong database name</PackageReleaseNotes>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 		<DefineConstants>FRCORE;</DefineConstants>

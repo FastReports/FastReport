@@ -9,6 +9,65 @@ using System.Windows.Forms;
 
 namespace FastReport
 {
+
+    /// <summary>
+    /// Specifies the alignment of a image in the border.
+    /// </summary>
+    public enum ImageAlign
+    {
+        /// <summary>
+        /// Specifies that image is not aligned in the layout rectangle.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Specifies that image is aligned in the top-left of the layout rectangle.
+        /// </summary>
+        Top_Left,
+
+        /// <summary>
+        /// Specifies that image is aligned in the top-center of the layout rectangle.
+        /// </summary>
+        Top_Center,
+
+        /// <summary>
+        /// Specifies that image is aligned in the top-right of the layout rectangle.
+        /// </summary>
+        Top_Right,
+
+        /// <summary>
+        /// Specifies that image is aligned in the center-left of the layout rectangle.
+        /// </summary>
+        Center_Left,
+
+        /// <summary>
+        /// Specifies that image is aligned in the center-center of the layout rectangle.
+        /// </summary>
+        Center_Center,
+
+        /// <summary>
+        /// Specifies that image is aligned in the center-right of the layout rectangle.
+        /// </summary>
+        Center_Right,
+
+        /// <summary>
+        /// Specifies that image is aligned in the center-left of the layout rectangle.
+        /// </summary>
+        Bottom_Left,
+
+        /// <summary>
+        /// Specifies that image is aligned in the center-center of the layout rectangle.
+        /// </summary>
+        Bottom_Center,
+
+        /// <summary>
+        /// Specifies that image is aligned in the center-right of the layout rectangle.
+        /// </summary>
+        Bottom_Right,
+    }
+
+ 
+
     /// <summary>
     /// the base class for all picture objects
     /// </summary>
@@ -32,6 +91,7 @@ namespace FastReport
         private PictureBoxSizeMode saveSizeMode;
         private bool showErrorImage;
         private PictureBoxSizeMode sizeModeInternal;
+        private ImageAlign imageAlign;
 
         #endregion Private Fields
 
@@ -226,6 +286,18 @@ namespace FastReport
             }
         }
 
+        /// <summary>
+        /// Gets or sets the alignment of a image in the border.
+        /// </summary>
+        [DefaultValue(ImageAlign.None)]
+        [Category("Appearance")]
+        public ImageAlign ImageAlign
+        {
+            get { return imageAlign; }
+            set { imageAlign = value; }
+        }
+
+
         #endregion Public Properties
 
         #region Protected Properties
@@ -276,6 +348,7 @@ namespace FastReport
                 Angle = src.Angle;
                 Grayscale = src.Grayscale;
                 ShowErrorImage = src.ShowErrorImage;
+                ImageAlign = src.ImageAlign;
             }
         }
 
@@ -457,6 +530,9 @@ namespace FastReport
                     break;
             }
 
+            if (ImageAlign != ImageAlign.None)
+                UpdateAlign(drawRect, ref upperLeft, ref upperRight, ref lowerLeft);
+
             /*switch (Angle)
           {
               case 90:
@@ -496,6 +572,65 @@ namespace FastReport
                          break;
                  }*/
         }
+
+        private void UpdateAlign(RectangleF drawRect, ref PointF upperLeft, ref PointF upperRight, ref PointF lowerLeft)
+        {
+            PointF lowerRight = new PointF(upperRight.X + lowerLeft.X - upperLeft.X,
+                upperRight.Y + lowerLeft.Y - upperLeft.Y);
+            float top = Math.Min(Math.Min(upperLeft.Y, Math.Min(upperRight.Y, lowerLeft.Y)), lowerRight.Y);
+            float botom = Math.Max( Math.Max(upperLeft.Y, Math.Max(upperRight.Y, lowerLeft.Y)), lowerRight.Y);
+            float height = botom - top;
+            float offsetY = drawRect.Y - top;
+
+            float left = Math.Min(Math.Min(upperLeft.X, Math.Min(upperRight.X, lowerLeft.X)), lowerRight.X);
+            float right = Math.Max(Math.Max(upperLeft.X, Math.Max(upperRight.X, lowerLeft.X)), lowerRight.X);
+            float width = right - left;
+            float offsetX = drawRect.X - left;
+
+            switch (ImageAlign)
+            {
+                case ImageAlign.Top_Left:
+                    break;
+                case ImageAlign.Top_Center:
+                    offsetX += (drawRect.Width - width) / 2;
+                    break;
+                case ImageAlign.Top_Right:
+                    offsetX += drawRect.Width - width;
+                    break;
+                case ImageAlign.Center_Left:
+                    offsetY += (drawRect.Height - height) / 2;
+                    break;
+                case ImageAlign.Center_Center:
+                    offsetX += (drawRect.Width - width) / 2;
+                    offsetY += (drawRect.Height - height) / 2;
+                    break;
+                case ImageAlign.Center_Right:
+                    offsetX += drawRect.Width - width;
+                    offsetY += (drawRect.Height - height) / 2;
+                    break;
+                case ImageAlign.Bottom_Left:
+                    offsetY += drawRect.Height - height;
+                    break;
+                case ImageAlign.Bottom_Center:
+                    offsetX += (drawRect.Width - width) / 2;
+                    offsetY += drawRect.Height - height;
+                    break;
+                case ImageAlign.Bottom_Right:
+                    offsetX += drawRect.Width - width;
+                    offsetY += drawRect.Height - height;
+                    break;
+
+            }
+
+            upperLeft.X += offsetX;
+            upperRight.X += offsetX;
+            lowerLeft.X += offsetX;
+            upperLeft.Y += offsetY;
+            upperRight.Y += offsetY;
+            lowerLeft.Y += offsetY;
+        }
+
+        
 
         /// <summary>
         /// Loads image
@@ -598,6 +733,8 @@ namespace FastReport
                 writer.WriteBool("Grayscale", Grayscale);
             if (ShowErrorImage != c.ShowErrorImage)
                 writer.WriteBool("ShowErrorImage", ShowErrorImage);
+            if (ImageAlign != ImageAlign.None)
+                writer.WriteValue("ImageAlign", ImageAlign);
         }
 
         #endregion Public Methods

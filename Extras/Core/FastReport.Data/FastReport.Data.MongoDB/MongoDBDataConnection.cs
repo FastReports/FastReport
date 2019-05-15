@@ -49,7 +49,7 @@ namespace FastReport.Data
         protected DataTable CreateDataTable(DataTable table, bool allRows)
         {
             MongoClient client = new MongoClient(ConnectionString);
-            IMongoDatabase db = client.GetDatabase(table.TableName);
+            IMongoDatabase db = client.GetDatabase(dbName);
             
             var collection = db.GetCollection<BsonDocument>(table.TableName);
             if (!allRows)

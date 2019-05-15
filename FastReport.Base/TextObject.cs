@@ -734,14 +734,16 @@ namespace FastReport
                     if (width == 0)
                         width = 100000;
 
-                    HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(g, new RectangleF(0, 0, width, 100000), 1, 1);
-                    float height = htmlRenderer.CalcHeight();
-                    width = htmlRenderer.CalcWidth();
+                    using (HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(g, new RectangleF(0, 0, width, 100000), 1, 1))
+                    {
+                        float height = htmlRenderer.CalcHeight();
+                        width = htmlRenderer.CalcWidth();
 
-                    width += Padding.Horizontal + 1;
-                    if (LineHeight == 0)
-                        height += Padding.Vertical + 1;
-                    return new SizeF(width, height);
+                        width += Padding.Horizontal + 1;
+                        if (LineHeight == 0)
+                            height += Padding.Vertical + 1;
+                        return new SizeF(width, height);
+                    }
                 }
 #if !NETSTANDARD2_0
                 if (IsAdvancedRendererNeeded)
@@ -827,18 +829,20 @@ namespace FastReport
 
             try
             {
-                HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(g, 1, 1, textRect, format);
-                htmlRenderer.CalcHeight(out charactersFitted);
-                if (charactersFitted == 0)
-                    return null;
-
-                Text = HtmlTextRenderer.BreakHtml(Text, charactersFitted, out result, out endOnEnter);
-
-                if (HorzAlign == HorzAlign.Justify && !endOnEnter && result != "")
+                using (HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(g, 1, 1, textRect, format))
                 {
-                    if (Text.EndsWith(" "))
-                        Text = Text.TrimEnd(' ');
-                    ForceJustify = true;
+                    htmlRenderer.CalcHeight(out charactersFitted);
+                    if (charactersFitted == 0)
+                        return null;
+
+                    Text = HtmlTextRenderer.BreakHtml(Text, charactersFitted, out result, out endOnEnter);
+
+                    if (HorzAlign == HorzAlign.Justify && !endOnEnter && result != "")
+                    {
+                        if (Text.EndsWith(" "))
+                            Text = Text.TrimEnd(' ');
+                        ForceJustify = true;
+                    }
                 }
             }
             finally
@@ -1124,9 +1128,11 @@ namespace FastReport
                         case TextRenderType.HtmlParagraph:
                             try
                             {
-                                HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(e.Graphics, e.ScaleX,
-                                    IsPrinting ? 1 : e.ScaleX, IsPrinting ? 1 : e.ScaleX, textRect, format);
-                                htmlRenderer.Draw();
+                                using (HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(e.Graphics, e.ScaleX,
+                                    IsPrinting ? 1 : e.ScaleX, IsPrinting ? 1 : e.ScaleX, textRect, format))
+                                {
+                                    htmlRenderer.Draw();
+                                }
                             }
                             catch
                             {

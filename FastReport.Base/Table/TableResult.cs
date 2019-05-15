@@ -19,6 +19,7 @@ namespace FastReport.Table
     private bool skip;
     private List<TableRow> rowsToSerialize;
     private List<TableColumn> columnsToSerialize;
+    private bool isFirstRow;
     
     /// <summary>
     /// Occurs after calculation of table bounds.
@@ -162,17 +163,21 @@ namespace FastReport.Table
 
     internal void GeneratePages(object sender, EventArgs e)
     {
+      isFirstRow = false;
       if (Skip)
       {
         Skip = false;
         return;
       }
+            
       
       // check if band contains several tables
       if (sender is BandBase)
       {
+        BandBase senderBand = sender as BandBase;
+        isFirstRow = senderBand.IsFirstRow;
         SortedList<float, TableBase> tables = new SortedList<float,TableBase>();
-        foreach (Base obj in (sender as BandBase).Objects)
+        foreach (Base obj in senderBand.Objects)
         {
           TableBase table = obj as TableBase;
           if (table != null && table.ResultTable != null)
@@ -294,6 +299,12 @@ namespace FastReport.Table
 
         int startColumn = 0;
         int rowsFit = GetRowsFit(startRow, freeSpace);
+                if(startRow == 0 && engine.IsKeeping && rowsFit < RowCount && isFirstRow && engine.KeepCurY > 0)
+                {
+                    engine.EndColumn();
+                    freeSpace = engine.FreeSpace;
+                    rowsFit = GetRowsFit(startRow, freeSpace);
+                }
         // avoid the infinite loop if there is not enough space for one row
         if (startRow > 0 && rowsFit == 0)
           rowsFit = 1;
@@ -382,6 +393,12 @@ namespace FastReport.Table
           while (startRow < Rows.Count)
           {
             int rowsFit = GetRowsFit(startRow, engine.FreeSpace);
+                if(startRow == 0 && engine.IsKeeping && rowsFit < RowCount && isFirstRow && engine.KeepCurY > 0)
+                {
+                    engine.EndColumn();
+                    
+                    rowsFit = GetRowsFit(startRow, engine.FreeSpace);
+                }
             // avoid the infinite loop if there is not enough space for one row
             if (startRow > 0 && rowsFit == 0)
               rowsFit = 1;
@@ -449,6 +466,12 @@ namespace FastReport.Table
         while (startRow < Rows.Count)
         {
           int rowsFit = GetRowsFit(startRow, engine.FreeSpace);
+                if(startRow == 0 && engine.IsKeeping && rowsFit < RowCount && isFirstRow && engine.KeepCurY > 0)
+                {
+                    engine.EndColumn();
+                    
+                    rowsFit = GetRowsFit(startRow, engine.FreeSpace);
+                }
           if (rowsFit == 0)
           {
             engine.StartNewPage();

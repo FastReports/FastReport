@@ -250,7 +250,7 @@ namespace FastReport.Engine
             page.FinalizeComponents();
         }
 
-        private void EndColumn()
+        internal void EndColumn()
         {
             EndColumn(true);
         }

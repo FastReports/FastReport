@@ -619,7 +619,11 @@ namespace FastReport
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Aborted
         {
-            get { return aborted; }
+            get
+            {
+                Config.DoEvent();
+                return aborted;
+            }
         }
 
         /// <summary>

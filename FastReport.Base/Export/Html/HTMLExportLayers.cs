@@ -299,24 +299,24 @@ namespace FastReport.Export.Html
                 case TextRenderType.HtmlParagraph:
 
 
-                    HtmlTextRenderer htmlTextRenderer = obj.GetHtmlTextRenderer(Zoom, Zoom);
-
-
-                    if (obj.VertAlign == VertAlign.Center)
+                    using (HtmlTextRenderer htmlTextRenderer = obj.GetHtmlTextRenderer(Zoom, Zoom))
                     {
-                        top = (obj.Height - htmlTextRenderer.CalcHeight()) / 2;
-                    }
-                    else if(obj.VertAlign == VertAlign.Bottom)
-                    {
-                        top = obj.Height - htmlTextRenderer.CalcHeight();
-                    }
-                    FastString sb = GetHtmlParagraph(htmlTextRenderer);
+                        if (obj.VertAlign == VertAlign.Center)
+                        {
+                            top = (obj.Height - htmlTextRenderer.CalcHeight()) / 2;
+                        }
+                        else if (obj.VertAlign == VertAlign.Bottom)
+                        {
+                            top = obj.Height - htmlTextRenderer.CalcHeight();
+                        }
+                        FastString sb = GetHtmlParagraph(htmlTextRenderer);
 
-                    LayerBack(Page, obj,
-                    GetSpanText(obj, sb,
-                    top + obj.Padding.Top,
-                    obj.Width - obj.Padding.Horizontal,
-                    obj.ParagraphOffset));
+                        LayerBack(Page, obj,
+                        GetSpanText(obj, sb,
+                        top + obj.Padding.Top,
+                        obj.Width - obj.Padding.Horizontal,
+                        obj.ParagraphOffset));
+                    }
                     break;
                 default:
                     if (obj.VertAlign != VertAlign.Top)

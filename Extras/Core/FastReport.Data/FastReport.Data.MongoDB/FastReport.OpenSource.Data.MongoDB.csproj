@@ -18,7 +18,7 @@
 		<Configurations>Debug;Release;</Configurations>
 		<AssemblyName>FastReport.Data.MongoDB</AssemblyName>
 		<RootNamespace>FastReport.Data</RootNamespace>
-		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageReleaseNotes>fixed a bug with wrong database name</PackageReleaseNotes>
         <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 	</PropertyGroup>
 

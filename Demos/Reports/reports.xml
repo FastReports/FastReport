@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Reports>
   <Folder Name="General" >
     <Report File="Simple List.frx"/>
@@ -127,5 +127,6 @@
     <Report File="Box.frx" Basic="false" WebDemo="false"/>
     <Report File="Unicode.frx" />
 	<Report File="TextureFill.frx" />
+    <Report File="Purchase Order.frx" Basic="false"  WebDemo="false"/>
   </Folder>
 </Reports>

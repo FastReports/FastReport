@@ -6,14 +6,8 @@ using System.Text;
 
 namespace FastReport.Utils
 {
-    internal class HtmlTextRenderer
+    internal class HtmlTextRenderer : IDisposable
     {
-        #region Public Fields
-
-        public FastString cacheString = new FastString(100);
-
-        #endregion Public Fields
-
         #region Internal Fields
 
         internal static readonly System.Globalization.CultureInfo CultureInfo = System.Globalization.CultureInfo.InvariantCulture;
@@ -23,7 +17,6 @@ namespace FastReport.Utils
         #region Private Fields
 
         private const char SOFT_ENTER = '\u2028';
-
         private List<RectangleFColor> backgrounds;
         private InlineImageCache cache;
         private RectangleF displayRect;
@@ -46,6 +39,8 @@ namespace FastReport.Utils
         private VertAlign vertAlign;
         private StyleDescriptor initalStyle;
         private float fontScale;
+        private FastString cacheString = new FastString(100);
+
         #endregion Private Fields
 
         #region Public Properties
@@ -64,7 +59,6 @@ namespace FastReport.Utils
         }
 
         public IEnumerable<LineFColor> Stikeouts { get { return strikeouts; } }
-
 
         public float[] TabPositions
         {
@@ -127,6 +121,7 @@ namespace FastReport.Utils
             this.font = font;
             displayRect = rect;
             rightToLeft = (format.FormatFlags & StringFormatFlags.DirectionRightToLeft) == StringFormatFlags.DirectionRightToLeft;
+            // Dispose it
             this.format = StringFormat.GenericTypographic.Clone() as StringFormat;
             if (RightToLeft)
                 this.format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
@@ -2813,6 +2808,7 @@ namespace FastReport.Utils
             private object FHashSetObject;
             public int Count { get { return internalDictionary.Count; } }
 #endif
+
             public OwnHashSet()
             {
 #if DOTNET_4
@@ -2851,5 +2847,30 @@ namespace FastReport.Utils
             }
         }
         #endregion Internal Classes
+
+        #region IDisposable Support
+
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    format.Dispose();
+                    format = null;
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        #endregion IDisposable Support
     }
 }
