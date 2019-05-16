@@ -178,7 +178,7 @@ namespace FastReport.Export.PdfSimple
         {
             if (pageGraphics != null)
             {
-                page.Watermark.DrawImage(new FRPaintEventArgs(pageGraphics, 1, 1, Report.GraphicCache),
+                page.Watermark.DrawImage(new FRPaintEventArgs(pageGraphics, scaleFactor, scaleFactor, Report.GraphicCache),
                     new RectangleF(-page.LeftMargin * Units.Millimeters, -page.TopMargin * Units.Millimeters, ExportUtils.GetPageWidth(page) * Units.Millimeters, ExportUtils.GetPageHeight(page) * Units.Millimeters),
                     page.Report, false);
             }
@@ -191,7 +191,7 @@ namespace FastReport.Export.PdfSimple
                 if (string.IsNullOrEmpty(page.Watermark.Text))
                     return;
                 
-                page.Watermark.DrawText(new FRPaintEventArgs(pageGraphics, 1, 1, Report.GraphicCache),
+                page.Watermark.DrawText(new FRPaintEventArgs(pageGraphics, scaleFactor, scaleFactor, Report.GraphicCache),
                     new RectangleF(-page.LeftMargin * Units.Millimeters, -page.TopMargin * Units.Millimeters, ExportUtils.GetPageWidth(page) * Units.Millimeters, ExportUtils.GetPageHeight(page) * Units.Millimeters),
                     page.Report, false);
             }
