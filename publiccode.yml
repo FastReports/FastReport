@@ -8,7 +8,6 @@ name: FastReport
 releaseDate: '2019-05-15'
 url: 'https://github.com/FastReports/FastReport.git'
 applicationSuite: Report generator
-isBasedOn: 'https://www.fast-report.com/en/product/fast-report-net'
 landingURL: 'https://github.com/FastReports/FastReport'
 softwareVersion: 2019.3.0
 roadmap: 'https://github.com/FastReports/FastReport/issues/79'

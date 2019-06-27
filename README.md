@@ -117,6 +117,8 @@ Licensed under the MIT license. See [LICENSE.md](LICENSE.md) for details.
 
 [FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/)
 
+[FastReport Open Source Articles and How-Tos](https://fropensource.blogspot.com/)
+
 [The Feature Comparison Table for FastReport Open Source, FastReport Core, FastReport .NET](https://fastreports.github.io/FastReport.Documentation/COMPARISON.html "FastReport Open Source vs FastReport Core vs FastReport .NET")
 
 [FastReport Core Online Demo](https://www.fast-report.com:2018 "Click to view FastReport Online Demo")
