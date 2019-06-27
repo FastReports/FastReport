@@ -1,0 +1,181 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+publiccode-yaml-version: '0.1'
+name: FastReport
+releaseDate: '2019-05-15'
+url: 'https://github.com/FastReports/FastReport.git'
+applicationSuite: Report generator
+isBasedOn: 'https://www.fast-report.com/en/product/fast-report-net'
+landingURL: 'https://github.com/FastReports/FastReport'
+softwareVersion: 2019.3.0
+roadmap: 'https://github.com/FastReports/FastReport/issues/79'
+developmentStatus: stable
+softwareType: library
+platforms:
+  - web
+  - windows
+  - mac
+  - linux
+  - ios
+outputTypes:
+  - application/pdf
+  - text/html
+  - image/jpg
+  - image/png
+tags:
+  - accounting
+  - backend
+  - database
+  - documentation
+  - finance
+  - library
+  - printing
+  - viewer
+  - word-processor
+inputTypes:
+  - application/frx
+  - application/fpx
+  - application/json
+  - text/csv
+  - text/xml
+monochromeLogo: >-
+  https://github.com/FastReports/FastReport/blob/master/assets/images/FR-open-source-bw.svg
+logo: >-
+  https://github.com/FastReports/FastReport/blob/master/assets/images/FR-open-source.svg
+usedBy:
+  - Fast Reports Inc.
+categories:
+  - application-development
+  - business-intelligence
+  - data-visualization
+  - accounting
+  - financial-reporting
+maintenance:
+  contacts:
+    - name: Anatoly Kukuyuk
+      email: anatoly.kukuyuk@fast-report.com
+      phone: 800-985-8986
+      affiliation: Fast Reports Inc.
+  type: community
+legal:
+  repoOwner: 'https://github.com/FastReports'
+  license: MIT
+  mainCopyrightOwner: Fast Reports Inc.
+intendedAudience:
+  scope:
+    - agriculture
+    - culture
+    - defence
+    - education
+    - emergency-services
+    - employment
+    - energy
+    - finance-and-economic-development
+    - environment
+    - foreign-affairs
+    - infrastructures
+    - justice
+    - local-authorities
+    - healthcare
+    - manufacturing
+    - research
+    - government
+    - science-and-technology
+    - society
+    - sport
+    - tourism
+    - transportation
+    - welfare
+    - security
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - en
+description:
+  it:
+    shortDescription: FastReport Open Source - generatore di report per .NET CORE
+    documentation: 'https://github.com/FastReports/FastReport.Documentation'
+    freeTags:
+      - fastreport
+      - reporting
+      - report
+      - report-engine
+    featureList:
+      - generate report
+      - 'export to PDF, html, image, etc.'
+    longDescription: |2
+       L'architettura estensibile di FastReport Open Source permette di creare oggetti personalizzati, esportare filtri, procedure guidate e motori DB. Se le funzioni esistenti non ti bastano, estendile!
+      Estremamente compatto e veloce! 
+
+       FASTREPORT Open Source è un programma per la creazione di report con specifica gestione di sezioni visualmente distinte. Queste comprendono: titolo del report, riassunto, titolo principale, sottotitolo, testata della colonna, nota in calce della colonna, testata dei dati, dati, nota in calce dei dati, testata di gruppo, nota in calce del gruppo, figli, overlay. Inoltre è possibile l’uso di sottoreport, che sono totalmente gestiti dal programma. L’ampia gamma di campi permette la creazione di qualsiasi tipo di report: liste, master-detail, gruppi, colonne multiple, master-detail-detail e molti altri. 
+    screenshots:
+      - >-
+        https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2.png
+      - >-
+        https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot1.png
+      - >-
+        https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3.png
+    localisedName: FastReport
+    videos:
+      - 'https://youtu.be/Js78gl_xAOU'
+    features:
+      - 13 types of bands available
+      - 'text, picture, line, shape, barcode, matrix, table, checkbox'
+      - Reports can consist of several design pages
+      - Aggregate functions are also available
+      - Matrix object that can be used to print pivot tables
+      - Report inheritance
+      - >-
+        Data from XML, CSV, Json, MS SQL, MySql, Oracle, Postgres, MongoDB,
+        Couchbase, RavenDB, SQLite
+      - Data from business objects of IEnumerable type
+      - 'Built-in script engine that supports two .NET languages, C# and VB.NET'
+      - >-
+        Export in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. PDF Export is available
+        as a plugin.
+    genericName: Generatore di report
+    
+  en:
+    shortDescription: FastReport provides open source report generator for .NET Core 2.x/.NET Framework 4.x. You can use the FastReport in MVC, Web API applications.
+    documentation: 'https://github.com/FastReports/FastReport.Documentation'
+    freeTags:
+      - fastreport
+      - reporting
+      - report
+      - report-engine
+    featureList:
+      - generate report
+      - 'export to PDF, html, image, etc.'
+    longDescription: |2
+       FastReport provides open source report generator for .NET Core 2.x/.NET Framework 4.x. You can use the FastReport in MVC, Web API applications.
+       FastReport is written in C# and it is compatible with .NET Standard 2.0 and higher. Extendable FastReport architecture allows creating your own objects, export filters, wizards and DB engines.
+
+    screenshots:
+      - >-
+        https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2.png
+      - >-
+        https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot1.png
+      - >-
+        https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot3.png
+    localisedName: FastReport
+    videos:
+      - 'https://youtu.be/Js78gl_xAOU'
+    features:
+      - 13 types of bands available
+      - 'text, picture, line, shape, barcode, matrix, table, checkbox'
+      - Reports can consist of several design pages
+      - Aggregate functions are also available
+      - Matrix object that can be used to print pivot tables
+      - Report inheritance
+      - >-
+        Data from XML, CSV, Json, MS SQL, MySql, Oracle, Postgres, MongoDB,
+        Couchbase, RavenDB, SQLite
+      - Data from business objects of IEnumerable type
+      - 'Built-in script engine that supports two .NET languages, C# and VB.NET'
+      - >-
+        Export in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. PDF Export is available
+        as a plugin.
+    genericName: Report generator
