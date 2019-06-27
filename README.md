@@ -1,10 +1,10 @@
-[![Gitter](https://badges.gitter.im/FastReports/FastReport.svg)](https://gitter.im/FastReports/FastReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Percentage of issues still open") [![Coverity Scan Build Status](https://scan.coverity.com/projects/17221/badge.svg)](https://scan.coverity.com/projects/fastreport)
+[![Gitter](https://badges.gitter.im/FastReports/FastReport.svg)](https://gitter.im/FastReports/FastReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Percentage of issues still open")
 
 [![FastReport Open Source](https://fastreports.github.io/FastReport.Documentation/images/fros-youtube-title.jpg)](https://youtu.be/Js78gl_xAOU)
 
 ## What is FastReport?
 
-FastReport provides open source report generator for .NET Core 2.x/.Net Framework 4.x. You can use the FastReport in MVC, Web API applications.
+FastReport provides open source report generator for .NET Core 2.x/.NET Framework 4.x. You can use the FastReport in MVC, Web API applications.
 
 [![Image of FastReport](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2-small.png)](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2.png)
 
@@ -68,7 +68,7 @@ FastReport can be compiled from sources or installed from [NuGet packages](https
 
 ### Compilation
 
-1. Install latest .Net Core SDK for your OS from https://www.microsoft.com/net/download
+1. Install latest .NET Core SDK for your OS from https://www.microsoft.com/net/download
 2. Follow the commands
 
 ```sh
@@ -117,7 +117,7 @@ Licensed under the MIT license. See [LICENSE.md](LICENSE.md) for details.
 
 [FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/)
 
-[The Feature Comparison Table for FastReport Open Source, FastReport Core, FastReport .Net](https://fastreports.github.io/FastReport.Documentation/COMPARISON.html "FastReport Open Source vs FastReport Core vs FastReport .Net")
+[The Feature Comparison Table for FastReport Open Source, FastReport Core, FastReport .NET](https://fastreports.github.io/FastReport.Documentation/COMPARISON.html "FastReport Open Source vs FastReport Core vs FastReport .NET")
 
 [FastReport Core Online Demo](https://www.fast-report.com:2018 "Click to view FastReport Online Demo")
 
