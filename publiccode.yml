@@ -19,7 +19,6 @@ platforms:
   - windows
   - mac
   - linux
-  - ios
 outputTypes:
   - application/pdf
   - text/html
