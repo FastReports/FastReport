@@ -64,9 +64,6 @@ namespace FastReport.Export.Html
         Percent
     }
 
-    /// <summary>
-    /// Represents the HTML export filter.
-    /// </summary>
     public partial class HTMLExport : ExportBase
     {
         private string Px(double pixel)

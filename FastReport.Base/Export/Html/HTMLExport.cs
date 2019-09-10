@@ -135,9 +135,22 @@ namespace FastReport.Export.Html
         private ExportType exportMode;
         private bool enableVectorObjects = true;
 
+        /// <summary>
+        /// hash:base64Image
+        /// </summary>
+        private Dictionary<string, string> embeddedImages;
         #endregion Private fields
 
         #region Public properties
+
+        /// <summary>
+        /// Gets or sets images, embedded in html (hash:base64Image)
+        /// </summary>
+        public Dictionary<string, string> EmbeddedImages
+        {
+            get { return embeddedImages; }
+            set { embeddedImages = value; }
+        }
 
         /// <summary>
         /// Sets a ID of report
@@ -972,6 +985,7 @@ namespace FastReport.Export.Html
             numberFormat.NumberDecimalSeparator = ".";
             exportMode = ExportType.Export;
             res = new MyRes("Export,Html");
+            embeddedImages = new Dictionary<string, string>();
         }
     }
 

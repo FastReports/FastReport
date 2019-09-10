@@ -13,6 +13,8 @@ namespace FastReport.Utils
   /// </summary>
   public static class Converter
   {
+
+        
     /// <summary>
     /// Converts an object to a string.
     /// </summary>
@@ -71,7 +73,13 @@ namespace FastReport.Utils
           return type.FullName;
         return type.AssemblyQualifiedName;
       }
-      return TypeDescriptor.GetConverter(value).ConvertToInvariantString(value);
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+            if (value is Font)
+            {
+                return FastReport.TypeConverters.FontConverter.Instance.ConvertToInvariantString(value);
+            }
+#endif
+            return TypeDescriptor.GetConverter(value).ConvertToInvariantString(value);
     }
 
     /// <summary>
@@ -118,6 +126,12 @@ namespace FastReport.Utils
         value = value.Replace("\r\n", "\r");
         return value.Split(new char[] { '\r' });
       }
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+            if (type == typeof(Font))
+            {
+                return FastReport.TypeConverters.FontConverter.Instance.ConvertFromInvariantString(value);
+            }
+#endif
       if (type == typeof(Color))
         return new ColorConverter().ConvertFromInvariantString(value);
       return TypeDescriptor.GetConverter(type).ConvertFromInvariantString(value);

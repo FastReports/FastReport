@@ -7,9 +7,6 @@ using System.Windows.Forms;
 
 namespace FastReport.Export.Html
 {
-    /// <summary>
-    /// Represents the HTML export filter.
-    /// </summary>
     public partial class HTMLExport : ExportBase
     {
         private bool doPageBreak;
@@ -189,7 +186,7 @@ namespace FastReport.Export.Html
 
         private string EncodeURL(string value)
         {
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
             return System.Net.WebUtility.UrlEncode(value);
 #else
             return ExportUtils.HtmlURL(value);
@@ -516,6 +513,7 @@ namespace FastReport.Export.Html
                             obj.Border.Lines = BorderLines.None;
                             obj.Draw(new FRPaintEventArgs(g, Zoom, Zoom, Report.GraphicCache));
                             obj.Border.Lines = oldLines;
+                     
                         }
 
                         if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
@@ -524,7 +522,38 @@ namespace FastReport.Export.Html
                             image.Save(PictureStream, FPictureFormat);
                     }
                     PictureStream.Position = 0;
-                    result = HTMLGetImage(0, 0, 0, Crypter.ComputeHash(PictureStream), true, null, PictureStream, false);
+
+                    string hash = String.Empty;
+                    if (obj is PictureObject)
+                    {
+                        PictureObject pic = (obj as PictureObject);
+                       if (pic.Image == null)
+                        {
+
+                        }
+                       else
+                        {
+                            using (MemoryStream picStr = new MemoryStream())
+                            {
+                                
+                                ImageHelper.Save(pic.Image, picStr);
+                                using(StreamWriter picWriter = new StreamWriter(picStr))
+                                {
+                                    picWriter.Write(pic.Width);
+                                    picWriter.Write(pic.Height);
+                                    picWriter.Write(pic.Angle);
+                                    picWriter.Write(pic.Transparency);
+                                    picWriter.Write(pic.TransparentColor.ToArgb());
+                                    picWriter.Write(pic.CanShrink);
+                                    picWriter.Write(pic.CanGrow);
+                                    hash = Crypter.ComputeHash(picStr);
+                                }        
+                            }   
+                        }
+                    }
+                    else
+                        hash = Crypter.ComputeHash(PictureStream);
+                    result = HTMLGetImage(0, 0, 0, hash, true, null, PictureStream, false);
                 }
             }
             return result;
@@ -535,7 +564,6 @@ namespace FastReport.Export.Html
             if (pictures)
             {
                 int styleindex = UpdateCSSTable(obj);
-                string style = GetStyleTag(styleindex);
                 string old_text = String.Empty;
 
                 if (IsMemo(obj))
@@ -550,8 +578,18 @@ namespace FastReport.Export.Html
                 if (IsMemo(obj))
                     (obj as TextObject).Text = old_text;
 
-                FastString addstyle = new FastString(128);
-                addstyle.Append(" background: url('").Append(pic).Append("') no-repeat !important;-webkit-print-color-adjust:exact;");
+                FastString picStyleBuilder = new FastString("background: url('")
+                    .Append(pic).Append("') no-repeat !important;-webkit-print-color-adjust:exact;");
+
+                int picStyleIndex = UpdateCSSTable(picStyleBuilder.ToString());
+
+
+                string style = String.Format("class=\"{0}s{1} {0}s{2}\"",
+                stylePrefix,
+                styleindex.ToString(), picStyleIndex.ToString());
+
+                //FastString addstyle = new FastString(128);
+                //addstyle.Append(" background: url('").Append(pic).Append("') no-repeat !important;-webkit-print-color-adjust:exact;");
 
                 //if (String.IsNullOrEmpty(text))
                 //    text = NBSP;
@@ -559,11 +597,9 @@ namespace FastReport.Export.Html
                 float x = Width > 0 ? obj.AbsLeft : (obj.AbsLeft + Width);
                 float y = Height > 0 ? hPos + obj.AbsTop : (hPos + obj.AbsTop + Height);
 
-                Layer(Page, obj, x, y, Width, Height, text, style, addstyle);
+                Layer(Page, obj, x, y, Width, Height, text, style, null);
             }
         }
-
-
 
         private void LayerShape(FastString Page, ShapeObject obj, FastString text)
         {
@@ -614,10 +650,13 @@ namespace FastReport.Export.Html
                 }
             }
 
-            if (obj.Fill is SolidFill)
-                Layer(Page, obj, obj.AbsLeft, hPos + obj.AbsTop, obj.Width, obj.Height, text, GetStyleTag(UpdateCSSTable(obj)), null);
-            else
-                LayerPicture(Page, obj, text);
+            if (!(obj is PolyLineObject))
+            {
+                if (obj.Fill is SolidFill)
+                    Layer(Page, obj, obj.AbsLeft, hPos + obj.AbsTop, obj.Width, obj.Height, text, GetStyleTag(UpdateCSSTable(obj)), null);
+                else
+                    LayerPicture(Page, obj, text);
+            }
         }
 
         private void LayerTable(FastString Page, FastString CSS, TableBase table)
@@ -723,6 +762,7 @@ namespace FastReport.Export.Html
                 maxWidth = ExportUtils.GetPageWidth(reportPage) * Units.Millimeters;
                 maxHeight = ExportUtils.GetPageHeight(reportPage) * Units.Millimeters;
 
+
                 if (enableMargins)
                 {
                     leftMargin = reportPage.LeftMargin * Units.Millimeters;
@@ -745,8 +785,21 @@ namespace FastReport.Export.Html
                 htmlPage.Append(HTMLGetAncor((d.PageNumber).ToString()));
 
                 htmlPage.Append("<div ").Append(doPageBreak ? "class=\"frpage\"" : String.Empty).
-                    Append(" style=\"position:relative;width:").Append(Px(maxWidth * Zoom + 3)).
+                    Append(" style=\"position:relative;width:");
+
+                //Landscape to portrait orientation for web-print
+                if (exportMode == ExportType.WebPrint && reportPage.Landscape)
+                {
+                    htmlPage.Append(Px(maxHeight * Zoom + 3)).
+                    Append("height:").Append(Px(maxWidth * Zoom)).
+                    Append("transform: rotate(90deg); -webkit-transform: rotate(90deg)");
+                }
+                else
+                {
+                    htmlPage.Append(Px(maxWidth * Zoom + 3)).
                     Append("height:").Append(Px(maxHeight * Zoom));
+                }
+
 
                 if (reportPage.Fill is SolidFill)
                 {

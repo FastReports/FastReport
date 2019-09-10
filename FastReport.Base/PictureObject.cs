@@ -482,9 +482,9 @@ namespace FastReport
                 {
                     Uri uri = CalculateUri();
                     if (uri.IsFile)
-                        imageData = ImageHelper.Load(uri.LocalPath);
+                        SetImageData(ImageHelper.Load(uri.LocalPath));
                     else
-                        imageData = ImageHelper.LoadURL(uri.ToString());
+                        SetImageData(ImageHelper.LoadURL(uri.ToString()));
                 }
                 catch
                 {

@@ -762,7 +762,7 @@ namespace FastReport
             // TODO translate tranform matrix, WTF mono or coreCompat or both
             // cant work with negative transforms so need to fix it
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
 
             System.Drawing.Drawing2D.Matrix matrixBack = e.Graphics.Transform;
 
@@ -789,7 +789,7 @@ namespace FastReport
 
             DrawImageInternal2(e.Graphics, upperLeft, upperRight, lowerLeft);
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
             e.Graphics.Transform = matrixBack;
 #endif
         }

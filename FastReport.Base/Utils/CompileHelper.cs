@@ -31,7 +31,7 @@ namespace FastReport.Utils
                     parameters.ReferencedAssemblies.Add(asm);
                 }
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
 
                 var mscorPath = compiler.GetReference("System.Private.CoreLib.dll").Display;
                 parameters.ReferencedAssemblies.Add(mscorPath);

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FastReport.Engine
 {
@@ -10,10 +10,15 @@ namespace FastReport.Engine
         {
             #region Fields
 
-            public int pageNo;
+            public readonly int pageNo;
             public int totalPages;
 
             #endregion Fields
+
+            public PageNumberInfo(int pageNo)
+            {
+                this.pageNo = pageNo;
+            }
         }
 
         #endregion Private Classes
@@ -74,9 +79,25 @@ namespace FastReport.Engine
             int index = CurPage - firstReportPage;
             if (FirstPass || index >= pageNumbers.Count)
             {
-                PageNumberInfo info = new PageNumberInfo();
+                PageNumberInfo info = new PageNumberInfo(logicalPageNo);
                 pageNumbers.Add(info);
-                info.pageNo = logicalPageNo;
+            }
+        }
+
+
+        /// <summary>
+        /// Called when the number of pages increased during DoublePass
+        /// </summary>
+        internal void ShiftLastPage()
+        {
+            PageNumberInfo info = new PageNumberInfo(pageNumbers.Count + 1);
+            pageNumbers.Add(info);
+
+
+            for (int i = pageNumbers.Count - 1; i >= 0; i--)
+            {
+                info = pageNumbers[i];
+                info.totalPages = pageNumbers.Count;
             }
         }
 

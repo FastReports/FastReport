@@ -100,9 +100,17 @@ namespace FastReport.Engine
             ShowBand(page.PageHeader);
         }
 
-        private void ShowPageFooter()
+        private void ShowPageFooter(bool startPage)
         {
-            ShowBand(page.PageFooter);
+            if (!FirstPass &&
+                (page.PageFooter.PrintOn & PrintOn.LastPage) > 0 &&
+                CurPage == TotalPages - 1 &&
+                startPage)
+            {
+                ShiftLastPage();
+            }
+            else
+                ShowBand(page.PageFooter);
         }
 
         private bool StartFirstPage()
@@ -245,7 +253,7 @@ namespace FastReport.Engine
                 ShowBand(page.ColumnFooter);
             }
 
-            ShowPageFooter();
+            ShowPageFooter(false);
             OutlineRoot();
             page.FinalizeComponents();
         }
@@ -351,7 +359,7 @@ namespace FastReport.Engine
         internal void EndPage(bool startPage)
         {
             OnStateChanged(page, EngineState.PageFinished);
-            ShowPageFooter();
+            ShowPageFooter(startPage);
 
             if (Report.MaxPages > 0 && PreparedPages.Count >= Report.MaxPages)
                 Report.Abort();

@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿#if NETSTANDARD2_0 || NETSTANDARD2_1
+using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -19,7 +20,7 @@ namespace System.CodeDom.Compiler
                 "netstandard",
                 "System.Runtime",
                 "System.ComponentModel.Primitives",
-                "CoreCompat.System.Drawing"
+                "System.Drawing.Common"
             };
 
             foreach(string assembly in assemblies)
@@ -67,3 +68,4 @@ namespace System.CodeDom.Compiler
         }
     }
 }
+#endif

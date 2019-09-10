@@ -804,7 +804,7 @@ namespace FastReport
             {
                 if (measureGraphics == null)
                 {
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
                     measureBitmap = new Bitmap(1, 1);
                     measureGraphics = Graphics.FromImage(measureBitmap);
 #else
@@ -1266,32 +1266,9 @@ namespace FastReport
                 DataSourceBase data = cachedItem.dataSource;
                 Column column = cachedItem.column;
 
-                object val = column.Value;
+                object val = ConvertToColumnDataType(column.Value, column.DataType);
 
-                if (val == null || val is DBNull)
-                {
-                    if (ConvertNulls)
-                        val = Converter.ConvertNull(column.DataType);
-                }
-                else
-                {
-                    if (val is IConvertible)
-                    {
-                        Type t = Nullable.GetUnderlyingType(column.DataType);
-                        try
-                        {
-                            val = Convert.ChangeType(val, t != null ? t : column.DataType);
-                        }
-                        catch (InvalidCastException)
-                        {
-                            // do nothing
-                        }
-                        catch (FormatException)
-                        {
-                            // do nothing
-                        }
-                    }
-                }
+                
 
                 if (CustomCalc != null)
                 {
@@ -1317,6 +1294,35 @@ namespace FastReport
 
             // calculate the expression
             return CalcExpression(expression, value);
+        }
+
+        private object ConvertToColumnDataType( object val, Type dataType)
+        {
+            if (val == null || val is DBNull)
+            {
+                if (ConvertNulls)
+                    val = Converter.ConvertNull(dataType);
+            }
+            else
+            {
+                if (val is IConvertible)
+                {
+                    Type t = Nullable.GetUnderlyingType(dataType);
+                    try
+                    {
+                        val = Convert.ChangeType(val, t != null ? t : dataType);
+                    }
+                    catch (InvalidCastException)
+                    {
+                        // do nothing
+                    }
+                    catch (FormatException)
+                    {
+                        // do nothing
+                    }
+                }
+            }
+            return val;
         }
 
         /// <summary>
@@ -1381,12 +1387,7 @@ namespace FastReport
             if (column == null)
                 return null;
 
-            object value = column.Value;
-
-            if (convertNull && (value == null || value is DBNull))
-                value = Converter.ConvertNull(column.DataType);
-
-            return value;
+            return ConvertToColumnDataType(column.Value, column.DataType);
         }
 
         private Variant GetTotalValue(string name, bool convertNull)

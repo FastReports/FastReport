@@ -88,6 +88,7 @@
     <SharePointDataConnection Text="SharePoint connection"/>
     <GoogleBigQueryDataConnection Text="Google Big Query connection"/>
     <JsonDataConnection Text="JSON database"/>
+    <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)" />
 	<CouchbaseDataConnection Text="Couchbase server"/>
     <MongoDBDataConnection Text="MongoDB connection"/>
     <NosDbDataConnection Text="NosDb connection"/>
@@ -299,6 +300,7 @@
     <Time2 Text="T"/>
     <Time3 Text="hh:mm tt"/>
     <Time4 Text="HH:mm"/>
+    <Time5 Text="mm:ss"/>
     <BooleanF1 Text="False"/>
     <BooleanF2 Text="No"/>
     <BooleanF3 Text="Off"/>
@@ -427,6 +429,7 @@
         <Delete Text="Delete"/>
         <DeleteAlias Text="Delete Alias"/>
         <View Text="View Data..."/>
+        <ViewJson Text="View Json..."/>
         <DuplicateName Text="Item with such name already exists"/>
         <NRows Text="{0} row(s)"/>
         <RowMofNRows Text="Row {0} of {1}"/>
@@ -535,10 +538,12 @@
         <WholePage Text="Whole page"/>
       </Zoom>
       <Polygon Text="Polygon">
-        <Pointer Text="Pointer"/>
+        <MoveScale Text="Move and scale"/>
+        <Pointer Text="Pointer"/>        
         <AddPointToStart Text="Add new line to start"/>
         <AddPointToEnd Text="Add new line to end"/>
         <AddPoint Text="Add point to line"/>
+        <Bezier Text="Add point to line"/>
         <RemovePoint Text="Remove point"/>
       </Polygon>
     </Toolbar>
@@ -1586,6 +1591,8 @@
         <Like Text="Like"/>
         <NotLike Text="Not like"/>
       </Where>
+      <QueryIsCorrupted Text="SQL query cannot be edited using Query Builder. With further processing SQL query may be partially or completely lost.&#13;&#10;Do you want to continue?"/>
+      <QueryIsCorruptedTitle Text="Warning!"/>
     </QueryBuilder>
     <QueryWizard Text="Query Wizard">
       <Page1 Text="Set the name"/>
@@ -1760,6 +1767,13 @@
       <WordWrap Text="Word wrap"/>
       <ConfirmChanges Text="Text has been modified. Save changes?"/>
     </TextEditor>
+    <JsonEditor Text="Json Editor"> 
+      <Readonly Text="(readonly)"/>
+      <Open Text="Open file"/>
+      <Save Text="Save file"/>
+      <FormatJson Text="Format JSON"/>
+      <Filter Text="json files (*.json)|*.json|txt files (*.txt)|*.txt|All files (*.*)|*.*"/>	
+    </JsonEditor>
     <TotalEditor Text="Edit Total">
       <TotalName Text="Total name:"/>
       <Total Text="Total"/>
@@ -1936,6 +1950,11 @@
     </Csv>
     <Json>
       <Path Text="Path to file or URL:"/>
+      <Settings Text="Connection settings"/>
+      <Encoding Text="Encoding"/>
+      <Input Text="Json or URL"/>
+      <Schema Text="Json Schema"/>
+      <ConfirmChanges Text="Json has been modified. Generate a new schema?" />
     </Json>
   </ConnectionEditors>
   <ComponentMenu>
@@ -2136,6 +2155,7 @@
       <Seamless Text="Seamless table"/>
       <ToMultipleFiles Text="Export to multiple files"/>
       <PrintOptimized Text="Print Optimized"/>
+	  <SplitPages Text="Split Pages"/>
     </Misc>
     <ExportGroups>
       <Office Text="Office"/>

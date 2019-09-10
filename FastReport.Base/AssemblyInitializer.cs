@@ -45,6 +45,12 @@ namespace FastReport
             RegisteredObjects.AddConnection(typeof(XmlDataConnection));
             RegisteredObjects.AddConnection(typeof(CsvDataConnection));
 
+            // json
+            RegisteredObjects.Add(typeof(Data.JsonConnection.JsonTableDataSource), "", 0);
+            //RegisteredObjects.Add(typeof(Data.JsonConnection.JsonObjectDataSource), "", 0);
+            //RegisteredObjects.Add(typeof(Data.JsonConnection.JsonArrayDataSource), "", 0);
+            RegisteredObjects.AddConnection(typeof(Data.JsonConnection.JsonDataSourceConnection));
+
             // formats
             RegisteredObjects.Add(typeof(BooleanFormat), "", 0);
             RegisteredObjects.Add(typeof(CurrencyFormat), "", 0);
