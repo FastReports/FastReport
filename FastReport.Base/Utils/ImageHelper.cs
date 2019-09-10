@@ -74,7 +74,13 @@ namespace FastReport.Utils
             {
                 try
                 {
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+                    // TODO memory leaks image converter
+                    return Image.FromStream(new MemoryStream(bytes));
+#else
                     return new ImageConverter().ConvertFrom(bytes) as Image;
+#endif
+
                 }
                 catch
                 {

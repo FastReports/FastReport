@@ -6,8 +6,7 @@ using System.Collections.Generic;
 namespace FastReport.Utils
 {
     /// <summary>
-    /// Represents a xml property.
-    /// </summary>
+    /// Represents a xml property./// </summary>
     public struct XmlProperty
     {
         private readonly string key;

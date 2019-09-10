@@ -102,7 +102,9 @@ namespace FastReport.Web
                 if (!DesignerSaveCallBack.IsNullOrWhiteSpace())
                 {
                     string report = Report.SaveToString();
-                    string reportFileName = $"{ID}.frx";
+                    var reportName = (!String.IsNullOrEmpty(Report.ReportInfo.Name) ?
+                        Report.ReportInfo.Name : Path.GetFileNameWithoutExtension(Report.FileName));
+                    string reportFileName = $"{reportName}.frx";
 
                     UriBuilder uri = new UriBuilder
                     {

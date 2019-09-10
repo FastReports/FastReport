@@ -139,15 +139,15 @@ namespace FastReport.Engine
         /// </remarks>
         public void ShowBand(BandBase band)
         {
-            ShowBand(band, true);
+            if (band != null)
+                for (int i = 0; i < band.RepeatBandNTimes; i++)
+                    ShowBand(band, true);
         }
 
         private void ShowBand(BandBase band, bool getData)
         {
             if (band == null)
-            {
                 return;
-            }
 
             BandBase saveCurBand = curBand;
             curBand = band;

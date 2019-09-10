@@ -1,3 +1,4 @@
+#if NETSTANDARD2_0 || NETSTANDARD2_1
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -871,3 +872,4 @@ namespace System.Windows.Forms
 
 #pragma warning restore FR0000 // Field must be texted in lowerCamelCase.
 #pragma warning restore 1591
+#endif

@@ -101,7 +101,7 @@ namespace FastReport.Table
       
       while (startRow + rowsFit < Rows.Count && 
         (rowsFit == 0 || !Rows[startRow + rowsFit].PageBreak) && 
-        GetRowsHeight(startRow, rowsFit + 1) <= freeSpace + 0.1f)
+        (!this.CanBreak | GetRowsHeight(startRow, rowsFit + 1) <= freeSpace + 0.1f))
       {
         if (keeping)
         {
@@ -264,7 +264,7 @@ namespace FastReport.Table
       OnAfterData();
       
       // calculate cells' bounds
-      CalcHeight();
+      Height = CalcHeight();
 
       // fire AfterCalcBounds event
       OnAfterCalcBounds();
@@ -325,7 +325,7 @@ namespace FastReport.Table
 
             engine.CurY = saveCurY;
             curY = GeneratePage(startColumn, startRow, columnsFit, rowsFit,
-              new RectangleF(0, 0, engine.PageWidth, freeSpace), spans) + saveCurY;
+                new RectangleF(0, 0, engine.PageWidth, CanBreak ? freeSpace : Height), spans) + saveCurY;
 
             Left = 0;
             startColumn += columnsFit;

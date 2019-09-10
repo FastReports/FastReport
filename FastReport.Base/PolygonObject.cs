@@ -41,14 +41,22 @@ namespace FastReport
             float dx = (Width - Border.Width) * e.ScaleX - 1;
             float dy = (Height - Border.Width) * e.ScaleY - 1;
 
-            Pen pen = e.Cache.GetPen(Border.Color, Border.Width * e.ScaleX, Border.DashStyle);
+            Pen pen;
+            if (polygonSelectionMode == PolygonSelectionMode.MoveAndScale)
+            {
+                pen = e.Cache.GetPen(Border.Color, Border.Width * e.ScaleX, Border.DashStyle);
+            }
+            else pen = e.Cache.GetPen(Border.Color, 1, DashStyle.Solid);
+
             Brush brush = null;
             if (Fill is SolidFill)
                 brush = e.Cache.GetBrush((Fill as SolidFill).Color);
             else
                 brush = Fill.CreateBrush(new RectangleF(x, y, dx, dy), e.ScaleX, e.ScaleY);
+
             using (GraphicsPath path = getPolygonPath(pen, e.ScaleX, e.ScaleY))
             {
+                if(polygonSelectionMode == PolygonSelectionMode.MoveAndScale)
                 e.Graphics.FillPath(brush, path);
                 e.Graphics.DrawPath(pen, path);
             }

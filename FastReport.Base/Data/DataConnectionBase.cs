@@ -328,7 +328,7 @@ namespace FastReport.Data
         /// Fills the <see cref="Tables"/> collection with all tables available in the database.
         /// </summary>
         /// <param name="initSchema">Set to <b>true</b> to initialize each table's schema.</param>
-        public void CreateAllTables(bool initSchema)
+        public virtual void CreateAllTables(bool initSchema)
         {
             List<string> tableNames = new List<string>();
             tableNames.AddRange(GetTableNames());
@@ -404,7 +404,7 @@ namespace FastReport.Data
         /// <summary>
         /// Creates the relations between tables. Applies to XmlDataConnection only.
         /// </summary>
-        public void CreateRelations()
+        public virtual void CreateRelations()
         {
             if (Report != null)
             {

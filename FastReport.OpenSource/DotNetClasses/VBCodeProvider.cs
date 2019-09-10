@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿#if NETSTANDARD2_0 || NETSTANDARD2_1
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 using System;
 using System.CodeDom.Compiler;
@@ -29,6 +30,8 @@ namespace Microsoft.VisualBasic
                 references.Add(GetReference(reference));
 
             AddExtraAssemblies(cp.ReferencedAssemblies, references);
+
+
 
 
             Compilation compilation = VisualBasicCompilation.Create(
@@ -78,3 +81,4 @@ namespace Microsoft.VisualBasic
        
     }
 }
+#endif

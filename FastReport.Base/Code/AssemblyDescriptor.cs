@@ -181,7 +181,7 @@ namespace FastReport.Code
             foreach (string s in Report.ReferencedAssemblies)
             {
                 //TODO thid core directive only for .net standard mode replace with checking the standard
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
                 
                     if (s == "System.Windows.Forms.dll")
                         continue;

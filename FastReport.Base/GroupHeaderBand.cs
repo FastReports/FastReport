@@ -287,7 +287,7 @@ namespace FastReport
     {
       return base.CanContain(child) || 
         (child is DataBand && nestedGroup == null && data == null) || 
-        (child is GroupHeaderBand && nestedGroup == null && data == null) || 
+        (child is GroupHeaderBand && (nestedGroup == null || nestedGroup is GroupHeaderBand) && data == null) || 
         child is GroupFooterBand || child is DataHeaderBand || child is DataFooterBand;
     }
 
