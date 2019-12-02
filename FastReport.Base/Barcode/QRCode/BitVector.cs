@@ -84,16 +84,20 @@ namespace FastReport.Barcode.QRCode
       {
         throw new System.ArgumentException("Bad bit");
       }
-      int numBitsInLastByte = sizeInBits & 0x7;
-      // We'll expand array if we don't have bits in the last byte.
-      if (numBitsInLastByte == 0)
-      {
-        appendByte(0);
-        sizeInBits -= 8;
-      }
-      // Modify the last byte.
-      array[sizeInBits >> 3] |= (sbyte) ((bit << (7 - numBitsInLastByte)));
-      ++sizeInBits;
+
+      unchecked
+            {
+                int numBitsInLastByte = sizeInBits & 0x7;
+                // We'll expand array if we don't have bits in the last byte.
+                if (numBitsInLastByte == 0)
+                {
+                    appendByte(0);
+                    sizeInBits -= 8;
+                }
+                // Modify the last byte.
+                array[sizeInBits >> 3] |= (sbyte)((bit << (7 - numBitsInLastByte)));
+                ++sizeInBits;
+            }
     }
     
     // Append "numBits" bits in "value" to the bit vector.
@@ -158,17 +162,20 @@ namespace FastReport.Barcode.QRCode
     // run out of room.
     private void  appendByte(int value_Renamed)
     {
-      if ((sizeInBits >> 3) == array.Length)
-      {
-        sbyte[] newArray = new sbyte[(array.Length << 1)];
+        unchecked
+        {
+            if ((sizeInBits >> 3) == array.Length)
+            {
+                sbyte[] newArray = new sbyte[(array.Length << 1)];
                 // Redivivus.in Java to c# Porting update
                 // 30/01/2010 
                 // added namespace system
-        System.Array.Copy(array, 0, newArray, 0, array.Length);
-        array = newArray;
-      }
-      array[sizeInBits >> 3] = (sbyte) value_Renamed;
-      sizeInBits += 8;
+                System.Array.Copy(array, 0, newArray, 0, array.Length);
+                array = newArray;
+            }
+            array[sizeInBits >> 3] = (sbyte)value_Renamed;
+            sizeInBits += 8;
+        }
     }
   }
 }

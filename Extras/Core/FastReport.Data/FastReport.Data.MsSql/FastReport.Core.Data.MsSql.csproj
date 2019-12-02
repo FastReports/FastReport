@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.MsSql</Product>
+        <Description>Represents a connection to MS SQL database for FastReport.Net</Description>
+        <PackageId>FastReport.Core.Data.MsSql</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, mssql, connection, reports, core</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.MsSql</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes></PackageReleaseNotes>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Data.SqlClient" Version="4.4.3" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
+    </ItemGroup>
+</Project>

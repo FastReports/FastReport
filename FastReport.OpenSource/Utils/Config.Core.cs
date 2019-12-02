@@ -52,6 +52,16 @@
         {
         }
 
+        private static void SaveExportOptions()
+        {
+        }
+
+        private static void RestoreExportOptions()
+        {
+            ExportsOptions options = ExportsOptions.GetInstance();
+            options.RestoreExportOptions();
+        }
+
         #endregion Private Methods
 
         internal static void DoEvent()

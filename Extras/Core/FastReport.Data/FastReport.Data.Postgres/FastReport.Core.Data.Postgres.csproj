@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.Postgres</Product>
+        <Description>Represents a connection to PostgreSQL database for FastReport.Net.</Description>
+        <PackageId>FastReport.Core.Data.Postgres</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, postgres, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.Postgres</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes>added system schemas filter</PackageReleaseNotes>
+    </PropertyGroup>
+    <PropertyGroup>
+        <DefineConstants>FRCORE;</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Npgsql" Version="[3.2.7,)" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="PostgresConnectionEditor.cs" />
+        <Compile Remove="PostgresConnectionEditor.Designer.cs" />
+        <Compile Remove="PostgresConnectionEditor.resx" />
+        <Compile Remove="PostgresDataConnection.DesignExt.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Remove="PostgresConnectionEditor.resx" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+        <Reference Include="System" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Design" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
+    </ItemGroup>
+</Project>

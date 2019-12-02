@@ -4,6 +4,7 @@ using System.Text;
 using FastReport.Engine;
 using FastReport.Preview;
 using System.Drawing;
+using FastReport.Utils;
 
 namespace FastReport.Table
 {
@@ -181,7 +182,14 @@ namespace FastReport.Table
         {
           TableBase table = obj as TableBase;
           if (table != null && table.ResultTable != null)
+          try
+          {
             tables.Add(table.Left, table);
+          }
+          catch (ArgumentException)
+          {
+            throw new ArgumentException(Res.Get("Messages,MatrixLayoutError"));
+          }
         }
 
         // render tables side-by-side

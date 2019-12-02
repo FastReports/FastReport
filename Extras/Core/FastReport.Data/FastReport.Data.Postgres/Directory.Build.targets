@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<Target Name="CleanObjAndBin">
+    <!-- Remove obj folder -->
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\$(BaseIntermediateOutputPath)" />
+    <!-- Remove bin folder -->
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\$(BaseOutputPath)" />
+</Target>
+
+</Project>

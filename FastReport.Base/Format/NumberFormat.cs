@@ -117,23 +117,30 @@ namespace FastReport.Format
     {
       if (value is Variant)
         value = ((Variant)value).Value;
-      if (UseLocale)
-        return String.Format("{0:n}", value);
-      else
-        return String.Format(GetNumberFormatInfo(), "{0:n}", new object[] { value });
+
+      return String.Format(GetNumberFormatInfo(), "{0:n}", new object[] { value });
     }
 
     internal NumberFormatInfo GetNumberFormatInfo()
     {
-      if (UseLocale)
-        return NumberFormatInfo.CurrentInfo;
-      NumberFormatInfo info = new NumberFormatInfo();
-      info.NumberDecimalDigits = DecimalDigits;
-      info.NumberDecimalSeparator = DecimalSeparator;
-      info.NumberGroupSizes = new int[] { 3 };
-      info.NumberGroupSeparator = GroupSeparator;
-      info.NumberNegativePattern = NegativePattern;
-      return info;
+        NumberFormatInfo info = new NumberFormatInfo();
+        if (UseLocale)
+        {
+            info.NumberDecimalDigits = DecimalDigits;
+            info.NumberDecimalSeparator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
+            info.NumberGroupSizes = NumberFormatInfo.CurrentInfo.NumberGroupSizes;
+            info.NumberGroupSeparator = NumberFormatInfo.CurrentInfo.NumberGroupSeparator;
+            info.NumberNegativePattern = NumberFormatInfo.CurrentInfo.NumberNegativePattern;
+        }
+        else
+        {
+            info.NumberDecimalDigits = DecimalDigits;
+            info.NumberDecimalSeparator = DecimalSeparator;
+            info.NumberGroupSizes = new int[] { 3 };
+            info.NumberGroupSeparator = GroupSeparator;
+            info.NumberNegativePattern = NegativePattern;
+        }
+        return info;
     }
 
     internal override string GetSampleValue()
@@ -148,10 +155,11 @@ namespace FastReport.Format
 
       if (c == null || UseLocale != c.UseLocale)
         writer.WriteBool(prefix + "UseLocale", UseLocale);
+      if (c == null || DecimalDigits != c.DecimalDigits)
+        writer.WriteInt(prefix + "DecimalDigits", DecimalDigits);
+
       if (!UseLocale)
-      {  
-        if (c == null || DecimalDigits != c.DecimalDigits)
-          writer.WriteInt(prefix + "DecimalDigits", DecimalDigits);
+      { 
         if (c == null || DecimalSeparator != c.DecimalSeparator)
           writer.WriteStr(prefix + "DecimalSeparator", DecimalSeparator);
         if (c == null || GroupSeparator != c.GroupSeparator)

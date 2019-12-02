@@ -267,6 +267,11 @@ namespace FastReport
         public event EventHandler FinishReport;
 
         /// <summary>
+        /// Occurs before export to set custom export parameters.
+        /// </summary>
+        public event EventHandler<ExportParametersEventArgs> ExportParameters;
+
+        /// <summary>
         /// Gets the pages contained in this report.
         /// </summary>
         /// <remarks>
@@ -1266,7 +1271,7 @@ namespace FastReport
                 DataSourceBase data = cachedItem.dataSource;
                 Column column = cachedItem.column;
 
-                object val = ConvertToColumnDataType(column.Value, column.DataType);
+                object val = ConvertToColumnDataType(column.Value, column.DataType, false);
 
                 
 
@@ -1296,11 +1301,11 @@ namespace FastReport
             return CalcExpression(expression, value);
         }
 
-        private object ConvertToColumnDataType( object val, Type dataType)
+        private object ConvertToColumnDataType( object val, Type dataType, bool convertNulls)
         {
             if (val == null || val is DBNull)
             {
-                if (ConvertNulls)
+                if (ConvertNulls || convertNulls)
                     val = Converter.ConvertNull(dataType);
             }
             else
@@ -1387,7 +1392,7 @@ namespace FastReport
             if (column == null)
                 return null;
 
-            return ConvertToColumnDataType(column.Value, column.DataType);
+            return ConvertToColumnDataType(column.Value, column.DataType, convertNull);
         }
 
         private Variant GetTotalValue(string name, bool convertNull)
@@ -1642,6 +1647,19 @@ namespace FastReport
                 FinishReport(this, e);
             InvokeEvent(FinishReportEvent, new object[] { this, e });
         }
+
+        /// <summary>
+        /// Runs the Export event.
+        /// </summary>
+        /// <param name="e">ExportReportEventArgs object.</param>
+        public void OnExportParameters(ExportParametersEventArgs e)
+        {
+            if (ExportParameters != null)
+            {
+                ExportParameters(this, e);
+            }
+        }
+
 
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)

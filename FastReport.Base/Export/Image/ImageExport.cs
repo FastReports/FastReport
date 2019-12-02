@@ -438,6 +438,8 @@ namespace FastReport.Export.Image
         /// <inheritdoc/>
         protected override void Start()
         {
+            base.Start();
+
             //init
             pageNumber = 0;
             height = 0;

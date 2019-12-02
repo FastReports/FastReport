@@ -1,71 +1,54 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks>net4;netstandard2.0</TargetFrameworks>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Copyright>Fast Reports Inc.</Copyright>
-		<Company>Fast Reports Inc.</Company>
-		<PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
-		<PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-		<Authors>Fast Reports Inc.</Authors>
-		<Product>FastReport.Data.MySql</Product>
-		<Description>Represents a connection to My SQL database for FastReport.Net.</Description>
-		<PackageId>FastReport.Data.MySql</PackageId>
-		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
-		<PackageTags>reporting, mysql, connection, reports</PackageTags>
-		<Version>1.0.0</Version>
-		<Configurations>Debug;Release;</Configurations>
-		<AssemblyName>FastReport.Data.MySql</AssemblyName>
-		<RootNamespace>FastReport.Data</RootNamespace>
-		<PackageReleaseNotes></PackageReleaseNotes>
-	</PropertyGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<PackageReference Include="MySql.Data" Version="[6.10.6,)" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-				<ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj"><PrivateAssets>all</PrivateAssets></ProjectReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<Compile Remove="MySqlConnectionEditor.cs" />
-		<Compile Remove="MySqlConnectionEditor.Designer.cs" />
-		<Compile Remove="MySqlConnectionEditor.resx" />
-		<Compile Remove="MySqlDataConnection.DesignExt.cs" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<EmbeddedResource Remove="MySqlConnectionEditor.resx" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-		<PackageReference Include="MySql.Data" Version="[6.7.9,)" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-		<Reference Include="System" />
-		<Reference Include="System.Data" />
-		<Reference Include="System.Design" />
-		<Reference Include="System.Drawing" />
-		<Reference Include="System.Web" />
-		<Reference Include="System.Windows.Forms" />
-		<Reference Include="System.Xml" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-		<Compile Update="MySqlConnectionEditor.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="MySqlConnectionEditor.Designer.cs">
-			<DependentUpon>MySqlConnectionEditor.cs</DependentUpon>
-		</Compile>
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-		<EmbeddedResource Update="MySqlConnectionEditor.resx">
-			<DependentUpon>MySqlConnectionEditor.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-	</ItemGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net4</TargetFrameworks>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.MySql</Product>
+        <Description>Represents a connection to My SQL database for FastReport.Net.</Description>
+        <PackageId>FastReport.Data.MySql</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, mysql, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.MySql</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes></PackageReleaseNotes>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
+            <PrivateAssets>all</PrivateAssets>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup >
+        <PackageReference Include="MySql.Data" Version="[6.7.9,)" />
+    </ItemGroup>
+    <ItemGroup >
+        <Reference Include="System" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Design" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Web" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="MySqlConnectionEditor.cs">
+            <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Update="MySqlConnectionEditor.Designer.cs">
+            <DependentUpon>MySqlConnectionEditor.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup >
+        <EmbeddedResource Update="MySqlConnectionEditor.resx">
+            <DependentUpon>MySqlConnectionEditor.cs</DependentUpon>
+            <SubType>Designer</SubType>
+        </EmbeddedResource>
+    </ItemGroup>
 </Project>

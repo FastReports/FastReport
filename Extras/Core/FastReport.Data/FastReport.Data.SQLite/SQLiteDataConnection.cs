@@ -97,7 +97,7 @@ namespace FastReport.Data
         {
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                yield return new DataColumn(reader.GetName(i), reader.GetFieldType(i));
+                yield return new DataColumn(reader.GetName(i), typeof(String));
             }
         }
 
@@ -152,7 +152,7 @@ namespace FastReport.Data
                         var newRow = table.Rows.Add();
                         foreach (DataColumn col in table.Columns)
                         {
-                            newRow[col.ColumnName] = reader[col.ColumnName];
+                            newRow[col.ColumnName] = reader[col.ColumnName].ToString();
                         }
                     }
                 }

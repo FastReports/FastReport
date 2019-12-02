@@ -36,6 +36,7 @@
     <Information Text="Information"/>
     <MatrixError Text="{0}: Matrix object must have at least one column or row and one cell dimensions."/>
     <MatrixValueError Text="Number of values differs from MatrixData.Cells.Count (must be {0})"/>
+    <MatrixLayoutError Text="Unable to layout matrcies that has been placed on the same band with the same Layout.Left value."/>
     <ParentError Text="Object of type {0} cannot contain objects of type {1}"/>
     <ParentError1 Text="Object of type {0} cannot contain objects"/>
     <Performance Text="Prepared in {0} ms"/>
@@ -1518,6 +1519,7 @@
       <Remove Text="Remove"/>
       <Note Text="Note: changes made will take effect on FastReport restart."/>
       <Fonts Text="Fonts"/>
+      <ExportsEditor Text="Exports Menu"/>
     </PluginsOptions>
     <PreviewPageSetup>
       <Apply Text="Apply to all pages and rebuild report"/>
@@ -1901,6 +1903,7 @@
       <Database Text="Connect to a database"/>
       <DatabaseName Text="Database name:"/>
       <DatabaseFile Text="Database file:"/>
+      <DataSource Text="Data source"/>
     </Common>
     <MsSql>
       <UseWindows Text="Use Windows Authentication"/>
@@ -2157,6 +2160,10 @@
       <PrintOptimized Text="Print Optimized"/>
 	  <SplitPages Text="Split Pages"/>
     </Misc>
+    <Editor Text="Exports Menu Editor">
+        <ExportsMenu Text="Exports Menu"/>
+        <DefaultMenu Text="Default Menu"/>
+    </Editor>
     <ExportGroups>
       <Office Text="Office"/>
       <XML Text="XML"/>

@@ -238,40 +238,52 @@ namespace FastReport.Utils
 
         private void MixBody(ulong k1, ulong k2)
         {
-            h1 ^= MixKey1(k1);
-            h1 = (h1 << 27) | (h1 >> 37);
-            h1 += h2;
-            h1 = h1 * 5 + 0x52dce729;
-            h2 ^= MixKey2(k2);
-            h2 = (h2 << 31) | (h2 >> 33);
-            h2 += h1;
-            h2 = h2 * 5 + 0x38495ab5;
+			unchecked 
+			{ 
+	            h1 ^= MixKey1(k1);
+				h1 = (h1 << 27) | (h1 >> 37);
+	            h1 += h2;
+	            h1 = h1* 5 + 0x52dce729;
+	            h2 ^= MixKey2(k2);
+				h2 = (h2 << 31) | (h2 >> 33);
+	            h2 += h1;
+	            h2 = h2* 5 + 0x38495ab5;
+			}
         }
 
         private static ulong MixKey1(ulong k1)
         {
-            k1 *= C1;
-            k1 = (k1 << 31) | (k1 >> 33);
-            k1 *= C2;
+			unchecked 
+			{ 
+	            k1 *= C1;
+	            k1 = (k1 << 31) | (k1 >> 33);
+	            k1 *= C2;
+			}
             return k1;
         }
 
         private static ulong MixKey2(ulong k2)
         {
-            k2 *= C2;
-            k2 = (k2 << 33) | (k2 >> 31);
-            k2 *= C1;
+			unchecked 
+			{ 
+	            k2 *= C2;
+	            k2 = (k2 << 33) | (k2 >> 31);
+	            k2 *= C1;
+			}
             return k2;
         }
 
         private static ulong MixFinal(ulong k)
         {
-            // avalanche bits
-            k ^= k >> 33;
-            k *= 0xff51afd7ed558ccdL;
-            k ^= k >> 33;
-            k *= 0xc4ceb9fe1a85ec53L;
-            k ^= k >> 33;
+			unchecked 
+			{ 
+	            // avalanche bits
+	            k ^= k >> 33;
+	            k *= 0xff51afd7ed558ccdL;
+	            k ^= k >> 33;
+	            k *= 0xc4ceb9fe1a85ec53L;
+	            k ^= k >> 33;
+			}
             return k;
         }
 
@@ -294,7 +306,7 @@ namespace FastReport.Utils
             int npos = 0;
             ulong remaining = (ulong)bb.Length;
             // read 128 bits, 16 bytes, 2 longs in eacy cycle
-            while (remaining >= READ_SIZE)
+			while (remaining >= READ_SIZE) unchecked
             {
                 npos = pos;
                 ulong k1 = (uint)(bb[npos++] | bb[npos++] << 8 | bb[npos++] << 16 | bb[npos++] << 24);
@@ -317,59 +329,62 @@ namespace FastReport.Utils
             ulong k2 = 0;
             length += remaining;
             // little endian (x86) processing
-            switch (remaining)
+            unchecked
             {
-                case 15:
-                    k2 ^= (ulong)bb[pos + 14] << 48; // fall through
-                    goto case 14;
-                case 14:
-                    k2 ^= (ulong)bb[pos + 13] << 40; // fall through
-                    goto case 13;
-                case 13:
-                    k2 ^= (ulong)bb[pos + 12] << 32; // fall through
-                    goto case 12;
-                case 12:
-                    k2 ^= (ulong)bb[pos + 11] << 24; // fall through
-                    goto case 11;
-                case 11:
-                    k2 ^= (ulong)bb[pos + 10] << 16; // fall through
-                    goto case 10;
-                case 10:
-                    k2 ^= (ulong)bb[pos + 9] << 8; // fall through
-                    goto case 9;
-                case 9:
-                    k2 ^= (ulong)bb[pos + 8]; // fall through
-                    goto case 8;
-                case 8:
-                    int npos = pos;
-                    k1 ^= (uint)(bb[npos++] | bb[npos++] << 8 | bb[npos++] << 16 | bb[npos++] << 24);
-                    break;
-                case 7:
-                    k1 ^= (ulong)bb[pos + 6] << 48; // fall through
-                    goto case 6;
-                case 6:
-                    k1 ^= (ulong)bb[pos + 5] << 40; // fall through
-                    goto case 5;
-                case 5:
-                    k1 ^= (ulong)bb[pos + 4] << 32; // fall through
-                    goto case 4;
-                case 4:
-                    k1 ^= (ulong)bb[pos + 3] << 24; // fall through
-                    goto case 3;
-                case 3:
-                    k1 ^= (ulong)bb[pos + 2] << 16; // fall through
-                    goto case 2;
-                case 2:
-                    k1 ^= (ulong)bb[pos + 1] << 8; // fall through
-                    goto case 1;
-                case 1:
-                    k1 ^= (ulong)bb[pos]; // fall through
-                    break;
-                default:
-                    throw new Exception("Something went wrong with remaining bytes calculation.");
+                switch (remaining)
+                {
+                    case 15:
+                        k2 ^= (ulong)bb[pos + 14] << 48; // fall through
+                        goto case 14;
+                    case 14:
+                        k2 ^= (ulong)bb[pos + 13] << 40; // fall through
+                        goto case 13;
+                    case 13:
+                        k2 ^= (ulong)bb[pos + 12] << 32; // fall through
+                        goto case 12;
+                    case 12:
+                        k2 ^= (ulong)bb[pos + 11] << 24; // fall through
+                        goto case 11;
+                    case 11:
+                        k2 ^= (ulong)bb[pos + 10] << 16; // fall through
+                        goto case 10;
+                    case 10:
+                        k2 ^= (ulong)bb[pos + 9] << 8; // fall through
+                        goto case 9;
+                    case 9:
+                        k2 ^= (ulong)bb[pos + 8]; // fall through
+                        goto case 8;
+                    case 8:
+                        int npos = pos;
+                        k1 ^= (uint)(bb[npos++] | bb[npos++] << 8 | bb[npos++] << 16 | bb[npos++] << 24);
+                        break;
+                    case 7:
+                        k1 ^= (ulong)bb[pos + 6] << 48; // fall through
+                        goto case 6;
+                    case 6:
+                        k1 ^= (ulong)bb[pos + 5] << 40; // fall through
+                        goto case 5;
+                    case 5:
+                        k1 ^= (ulong)bb[pos + 4] << 32; // fall through
+                        goto case 4;
+                    case 4:
+                        k1 ^= (ulong)bb[pos + 3] << 24; // fall through
+                        goto case 3;
+                    case 3:
+                        k1 ^= (ulong)bb[pos + 2] << 16; // fall through
+                        goto case 2;
+                    case 2:
+                        k1 ^= (ulong)bb[pos + 1] << 8; // fall through
+                        goto case 1;
+                    case 1:
+                        k1 ^= (ulong)bb[pos]; // fall through
+                        break;
+                    default:
+                        throw new Exception("Something went wrong with remaining bytes calculation.");
+                }
+                h1 ^= MixKey1(k1);
+                h2 ^= MixKey2(k2);
             }
-            h1 ^= MixKey1(k1);
-            h2 ^= MixKey2(k2);
         }
 
         /// <summary>
@@ -379,14 +394,17 @@ namespace FastReport.Utils
         {
             get
             {
-                h1 ^= length;
-                h2 ^= length;
-                h1 += h2;
-                h2 += h1;
-                h1 = Murmur3.MixFinal(h1);
-                h2 = Murmur3.MixFinal(h2);
-                h1 += h2;
-                h2 += h1;
+				unchecked
+				{
+					h1 ^= length;
+					h2 ^= length;
+					h1 += h2;
+					h2 += h1;
+					h1 = Murmur3.MixFinal(h1);
+					h2 = Murmur3.MixFinal(h2);
+					h1 += h2;
+					h2 += h1;
+				}
                 byte[] hash = new byte[Murmur3.READ_SIZE];
                 Array.Copy(BitConverter.GetBytes(h1), 0, hash, 0, 8);
                 Array.Copy(BitConverter.GetBytes(h2), 0, hash, 8, 8);

@@ -797,6 +797,11 @@ namespace FastReport
                 return Convert.ToString(Math.Round(value, 4), invariant);
             }
 
+            internal PolyPoint Clone()
+            {
+                return new PolyPoint(x, y);
+            }
+
             #endregion Private Methods
         }
 
@@ -870,7 +875,12 @@ namespace FastReport
             public PolyPointCollection Clone()
             {
                 PolyPointCollection result = new PolyPointCollection();
-                result.points = new List<PolyPoint>(points);
+
+                result.points = new List<PolyPoint>();
+                foreach(PolyPoint point in points)
+                {
+                    result.points.Add(point.Clone());
+                }
                 return result;
             }
 

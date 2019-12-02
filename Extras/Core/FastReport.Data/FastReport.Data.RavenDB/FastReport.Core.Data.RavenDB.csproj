@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net4.7;netstandard2.0</TargetFrameworks>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.RavenDB</Product>
+        <Description>Represents a connection to RavenDB database for FastReport.Net.</Description>
+        <PackageId>FastReport.Core.Data.RavenDB</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, RavenDB, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.RavenDB</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes></PackageReleaseNotes>
+    </PropertyGroup>
+    <PropertyGroup>
+        <DefineConstants>FRCORE;</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="RavenDB.Client" Version="4.0.2" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="RavenDBConnectionEditor.cs" />
+        <Compile Remove="RavenDBConnectionEditor.Designer.cs" />
+        <Compile Remove="RavenDBConnectionEditor.resx" />
+        <Compile Remove="RavenDBDataConnection.DesignExt.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Remove="RavenDBConnectionEditor.resx" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Deployment" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Net.Http" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
+    </ItemGroup>
+</Project>

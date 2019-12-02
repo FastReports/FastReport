@@ -1,4 +1,5 @@
 ﻿using FastReport.Data.JsonConnection;
+using FastReport.Data.JsonConnection.JsonParser;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -58,8 +59,8 @@ namespace FastReport.Tests.OpenSource.Data
 
             Assert.IsType<JsonArray>(obj);
             Assert.Single(obj as JsonArray);
-            Assert.IsType<JsonNumber>((obj as JsonArray)[0]);
-            Assert.Equal(number, ((obj as JsonArray)[0] as JsonNumber).Value, 1);
+            Assert.IsType<double>((obj as JsonArray)[0]);
+            Assert.Equal(number, (double)(obj as JsonArray)[0], 1);
         }
 
         [Theory]
@@ -96,8 +97,8 @@ namespace FastReport.Tests.OpenSource.Data
             Assert.IsType<JsonObject>(obj);
             Assert.Single(obj as JsonObject);
             Assert.Contains(key, (obj as JsonObject).Keys);
-            Assert.IsType<JsonBoolean>((obj as JsonObject)[key]);
-            Assert.Equal(value, ((obj as JsonObject)[key] as JsonBoolean).Value);
+            Assert.IsType<bool>((obj as JsonObject)[key]);
+            Assert.Equal(value, (bool)(obj as JsonObject)[key]);
         }
 
         [Theory]
@@ -153,9 +154,9 @@ namespace FastReport.Tests.OpenSource.Data
 
             Assert.Equal(2, obj.Count);
 
-            Assert.IsType<JsonString>(obj["title"]);
+            Assert.IsType<string>(obj["title"]);
 
-            Assert.Equal("example glossary", (obj["title"] as JsonString).Value);
+            Assert.Equal("example glossary", obj["title"] as string);
 
             Assert.IsType<JsonObject>(obj["GlossDiv"]);
             obj = obj["GlossDiv"] as JsonObject;

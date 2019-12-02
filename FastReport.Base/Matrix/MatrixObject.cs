@@ -113,6 +113,7 @@ namespace FastReport.Matrix
         private int columnIndex;
         private int rowIndex;
         private MatrixEvenStylePriority matrixEvenStylePriority;
+        private bool splitRows;
         #endregion
 
         #region Properties
@@ -309,6 +310,17 @@ namespace FastReport.Matrix
         {
             get { return matrixEvenStylePriority; }
             set { matrixEvenStylePriority = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets need split rows.
+        /// </summary>
+        [Category("Behavior")]
+        [DefaultValue(false)]
+        public bool SplitRows 
+        {
+            get { return splitRows; }
+            set { splitRows = value; }
         }
 
         /// <summary>
@@ -623,6 +635,7 @@ namespace FastReport.Matrix
             ShowTitle = src.ShowTitle;
             Style = src.Style;
             MatrixEvenStylePriority = src.MatrixEvenStylePriority;
+            SplitRows = src.SplitRows;
         }
 
         /// <inheritdoc/>
@@ -656,6 +669,8 @@ namespace FastReport.Matrix
                 writer.WriteStr("Style", Style);
             if (MatrixEvenStylePriority != c.MatrixEvenStylePriority)
                 writer.WriteValue("MatrixEvenStylePriority", MatrixEvenStylePriority);
+            if (SplitRows != c.SplitRows)
+                writer.WriteValue("SplitRows", SplitRows);
             if (ManualBuildEvent != c.ManualBuildEvent)
                 writer.WriteStr("ManualBuildEvent", ManualBuildEvent);
             if (ModifyResultEvent != c.ModifyResultEvent)
@@ -847,7 +862,7 @@ namespace FastReport.Matrix
         public MatrixObject()
         {
             autoSize = true;
-            data = new MatrixData();
+            data = new MatrixData(this);
             manualBuildEvent = "";
             afterTotalsEvent = "";
             helper = new MatrixHelper(this);
@@ -856,6 +871,7 @@ namespace FastReport.Matrix
             styleSheet.Load(ResourceLoader.GetStream("cross.frss"));
             style = "";
             filter = "";
+            splitRows = false;
         }
     }
 }
