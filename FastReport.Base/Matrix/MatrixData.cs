@@ -159,11 +159,11 @@ namespace FastReport.Matrix
     }
     #endregion
 
-    internal MatrixData()
+    internal MatrixData(MatrixObject matrix)
     {
-      columns = new MatrixHeader();
+      columns = new MatrixHeader(matrix);
       columns.Name = "MatrixColumns";
-      rows = new MatrixHeader();
+      rows = new MatrixHeader(matrix);
       rows.Name = "MatrixRows";
       cells = new MatrixCells();
       cells.Name = "MatrixCells";

@@ -943,13 +943,22 @@ namespace FastReport.Table
                         float rowsHeight = 0;
                         for (int i = 0; i < cell.RowSpan; i++)
                         {
-                            rowsHeight += Rows[y + i].Height;
+                            if (y + i < Rows.Count)
+                                rowsHeight += Rows[y + i].Height;
+                            else
+                            {
+                                // Error, we don't have row, rowSpan has incorrect
+                                cell.RowSpan--;
+                            }
                         }
 
                         // if cell is bigger than sum of row heights, increase the last row height
-                        TableRow lastRow = Rows[y + cell.RowSpan - 1];
-                        if (rowsHeight < cellHeight && lastRow.AutoSize)
-                            lastRow.Height += cellHeight - rowsHeight;
+                        if (y + cell.RowSpan - 1 < Rows.Count)
+                        {
+                            TableRow lastRow = Rows[y + cell.RowSpan - 1];
+                            if (rowsHeight < cellHeight && lastRow.AutoSize)
+                                lastRow.Height += cellHeight - rowsHeight;
+                        }
                     }
                 }
             }

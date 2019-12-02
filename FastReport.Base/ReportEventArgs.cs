@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using FastReport.Data;
+using FastReport.Export;
 using System.Data.Common;
 using System.ComponentModel;
 
@@ -383,4 +384,20 @@ namespace FastReport
   /// <param name="sender">The source of the event.</param>
   /// <param name="e">The event data.</param>
   public delegate void GetTypeInstanceEventHandler(object sender, GetTypeInstanceEventArgs e);
+
+    /// <summary>
+    /// Event arguments for custom Export parameters
+    /// </summary>
+    public class ExportParametersEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Used to set custom export parameters
+        /// </summary>
+        public readonly ExportBase Export;
+
+        public ExportParametersEventArgs(ExportBase export)
+        {
+            this.Export = export;
+        }
+    }
 }

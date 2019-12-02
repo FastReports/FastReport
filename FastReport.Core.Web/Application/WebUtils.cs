@@ -6,6 +6,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using FastReport.Export;
 
 namespace FastReport.Web
 {

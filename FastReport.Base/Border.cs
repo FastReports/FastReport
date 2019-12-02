@@ -465,6 +465,29 @@ namespace FastReport
     }
     #endregion
 
+        #region Internal Methods
+
+        internal void ZoomBorder(float zoom)
+        {
+            LeftLine.Width *= zoom;
+            if (leftLine.Width > 0 && leftLine.Width < 1)
+                LeftLine.Width = 1;
+
+            RightLine.Width *= zoom;
+            if (rightLine.Width > 0 && rightLine.Width < 1)
+                RightLine.Width = 1;
+
+            TopLine.Width *= zoom;
+            if (topLine.Width > 0 && topLine.Width < 1)
+                TopLine.Width = 1;
+
+            BottomLine.Width *= zoom;
+            if (bottomLine.Width > 0 && bottomLine.Width < 1)
+                BottomLine.Width = 1;
+        }
+
+        #endregion
+
     #region Public Methods
     /// <summary>
     /// Creates the exact copy of this <b>Border</b>.

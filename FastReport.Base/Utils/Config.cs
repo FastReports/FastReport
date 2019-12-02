@@ -188,6 +188,10 @@ namespace FastReport.Utils
 #else
             WebMode = true;
 #endif
+            if (WebMode)
+            {
+                RestoreExportOptions();
+            }
             LoadPlugins();
 
             // init TextRenderingHint.SystemDefault
@@ -247,6 +251,7 @@ namespace FastReport.Utils
             FDoc.AutoIndent = true;
             SaveUIStyle();
             SaveUIOptions();
+            SaveExportOptions();
             if (!WebMode)
             {
                 try
@@ -303,6 +308,7 @@ namespace FastReport.Utils
                 RestoreUIStyle();
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
+                RestoreExportOptions();
                 Res.LoadDefaultLocale();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }
@@ -406,6 +412,8 @@ namespace FastReport.Utils
                 disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
             }
         }
+
+        
 
 #endregion Private Methods
     }

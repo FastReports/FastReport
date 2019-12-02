@@ -163,25 +163,35 @@ namespace FastReport.Format
     {
       if (value is Variant)
         value = ((Variant)value).Value;
-      if (UseLocale)
-        return String.Format("{0:c}", value);
-      else
-        return String.Format(GetNumberFormatInfo(), "{0:c}", new object[] { value });
+
+      return String.Format(GetNumberFormatInfo(), "{0:c}", new object[] { value });
     }
 
     internal NumberFormatInfo GetNumberFormatInfo()
     {
-      if (UseLocale)
-        return NumberFormatInfo.CurrentInfo;
-      NumberFormatInfo info = new NumberFormatInfo();
-      info.CurrencyDecimalDigits = DecimalDigits;
-      info.CurrencyDecimalSeparator = DecimalSeparator;
-      info.CurrencyGroupSizes = new int[] { 3 };
-      info.CurrencyGroupSeparator = GroupSeparator;
-      info.CurrencySymbol = CurrencySymbol;
-      info.CurrencyPositivePattern = PositivePattern;
-      info.CurrencyNegativePattern = NegativePattern;
-      return info;
+    
+        NumberFormatInfo info = new NumberFormatInfo();
+        if (UseLocale)
+        {
+            info.CurrencyDecimalDigits = DecimalDigits;
+            info.CurrencyDecimalSeparator = NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator;
+            info.CurrencyGroupSizes = NumberFormatInfo.CurrentInfo.CurrencyGroupSizes;
+            info.CurrencyGroupSeparator = NumberFormatInfo.CurrentInfo.CurrencyGroupSeparator;
+            info.CurrencySymbol = NumberFormatInfo.CurrentInfo.CurrencySymbol;
+            info.CurrencyPositivePattern = NumberFormatInfo.CurrentInfo.CurrencyPositivePattern;
+            info.CurrencyNegativePattern = NumberFormatInfo.CurrentInfo.CurrencyNegativePattern;
+        }
+        else
+        {
+            info.CurrencyDecimalDigits = DecimalDigits;
+            info.CurrencyDecimalSeparator = DecimalSeparator;
+            info.CurrencyGroupSizes = new int[] { 3 };
+            info.CurrencyGroupSeparator = GroupSeparator;
+            info.CurrencySymbol = CurrencySymbol;
+            info.CurrencyPositivePattern = PositivePattern;
+            info.CurrencyNegativePattern = NegativePattern;
+        }
+        return info;
     }
 
     internal override string GetSampleValue()
@@ -196,10 +206,11 @@ namespace FastReport.Format
       
       if (c == null || UseLocale != c.UseLocale)
         writer.WriteBool(prefix + "UseLocale", UseLocale);
+      if (c == null || DecimalDigits != c.DecimalDigits)
+        writer.WriteInt(prefix + "DecimalDigits", DecimalDigits);
+
       if (!UseLocale)
-      {  
-        if (c == null || DecimalDigits != c.DecimalDigits)
-          writer.WriteInt(prefix + "DecimalDigits", DecimalDigits);
+      {
         if (c == null || DecimalSeparator != c.DecimalSeparator)
           writer.WriteStr(prefix + "DecimalSeparator", DecimalSeparator);
         if (c == null || GroupSeparator != c.GroupSeparator)

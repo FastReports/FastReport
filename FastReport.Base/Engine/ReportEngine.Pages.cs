@@ -103,8 +103,10 @@ namespace FastReport.Engine
         private void ShowPageFooter(bool startPage)
         {
             if (!FirstPass &&
-                (page.PageFooter.PrintOn & PrintOn.LastPage) > 0 &&
                 CurPage == TotalPages - 1 &&
+                page.PageFooter != null &&
+                (page.PageFooter.PrintOn & PrintOn.LastPage) > 0 &&
+                (page.PageFooter.PrintOn & PrintOn.FirstPage) == 0 &&
                 startPage)
             {
                 ShiftLastPage();

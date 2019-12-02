@@ -114,7 +114,6 @@ namespace FastReport.Export.Html
         private float hPos;
         private NumberFormatInfo numberFormat;
 
-        private List<Stream> generatedStreams;
         private bool saveStreams;
 
         private string onClickTemplate = String.Empty;
@@ -365,13 +364,7 @@ namespace FastReport.Export.Html
             get { return printPageData; }
         }
 
-        /// <summary>
-        /// Gets list of generated streams.
-        /// </summary>
-        public List<Stream> GeneratedStreams
-        {
-            get { return generatedStreams; }
-        }
+        
 
         /// <summary>
         /// Enable or disable saving streams in GeneratedStreams collection.
@@ -410,11 +403,11 @@ namespace FastReport.Export.Html
             if (i == -1)
             {
                 GeneratedFiles.Add(filename);
-                generatedStreams.Add(stream);
+                GeneratedStreams.Add(stream);
             }
             else
             {
-                generatedStreams[i] = stream;
+                GeneratedStreams[i] = stream;
             }
         }
 
@@ -449,7 +442,7 @@ namespace FastReport.Export.Html
                     {
                         string fileName = singlePage ? singlePageFileName : pageFileName;
                         int i = GeneratedFiles.IndexOf(fileName);
-                        Stream outStream = (i == -1) ? new MemoryStream() : generatedStreams[i];
+                        Stream outStream = (i == -1) ? new MemoryStream() : GeneratedStreams[i];
                         DoPage(outStream, documentTitle, CSS, Page);
                         GeneratedUpdate(fileName, outStream);
                     }
@@ -581,7 +574,7 @@ namespace FastReport.Export.Html
             prevStyleList = null;
             prevStyleListIndex = 0;
             picsArchive = new List<PicsArchiveItem>();
-            generatedStreams = new List<Stream>();
+            GeneratedStreams = new List<Stream>();
         }
 
         private void StartMHT()
@@ -626,7 +619,7 @@ namespace FastReport.Export.Html
         {
             // do append in memory stream
             int fileIndex = GeneratedFiles.IndexOf(singlePageFileName);
-            ExportHTMLIndex(generatedStreams[fileIndex]);
+            ExportHTMLIndex(GeneratedStreams[fileIndex]);
             MemoryStream outStream = new MemoryStream();
             ExportHTMLNavigator(outStream);
             GeneratedUpdate(targetIndexPath + navFileName, outStream);
@@ -648,6 +641,8 @@ namespace FastReport.Export.Html
         /// <inheritdoc/>
         protected override void Start()
         {
+            base.Start();
+
             Init();
 
             if (saveStreams)
@@ -895,7 +890,7 @@ namespace FastReport.Export.Html
                         if (!String.IsNullOrEmpty(singlePageFileName))
                         {
                             int fileIndex = GeneratedFiles.IndexOf(singlePageFileName);
-                            DoPageEnd(generatedStreams[fileIndex]);
+                            DoPageEnd(GeneratedStreams[fileIndex]);
                         }
                     }
                     else

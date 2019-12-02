@@ -20,10 +20,19 @@ namespace FastReport
       get { return GetType().Name.Replace("Fill", ""); }
     }
 
+    /// <summary>
+    /// Returned true if Color = Transparent
+    /// </summary>
+    internal abstract bool IsTransparent
+    {
+        get;
+    }
+
     internal bool FloatDiff(float f1, float f2)
     {
       return Math.Abs(f1 - f2) > 1e-4;
     }
+
 
     /// <summary>
     /// Creates exact copy of this fill.
@@ -107,6 +116,11 @@ namespace FastReport
     {
       get { return color; }
       set { color = value; }
+    }
+
+    internal override bool IsTransparent 
+    {
+        get { return color.A == 0; }
     }
 
     /// <inheritdoc/>
@@ -199,6 +213,11 @@ namespace FastReport
     {
       get { return endColor; }
       set { endColor = value; }
+    }
+
+    internal override bool IsTransparent 
+    {
+        get { return startColor.A == 0 && endColor.A == 0; }
     }
 
     /// <summary>
@@ -400,6 +419,11 @@ namespace FastReport
       set { style = value; }
     }
 
+    internal override bool IsTransparent 
+    {
+        get { return centerColor.A == 0 && edgeColor.A == 0; }
+    }
+
     /// <inheritdoc/>
     public override FillBase Clone()
     {
@@ -512,6 +536,11 @@ namespace FastReport
       set { style = value; }
     }
 
+    internal override bool IsTransparent 
+    {
+        get { return foreColor.A == 0 && backColor.A == 0; }
+    }
+
     /// <inheritdoc/>
     public override FillBase Clone()
     {
@@ -613,6 +642,11 @@ namespace FastReport
     {
       get { return hatch; }
       set { hatch = value; }
+    }
+
+    internal override bool IsTransparent 
+    {
+        get { return color.A == 0; }
     }
 
     /// <inheritdoc/>
@@ -830,6 +864,11 @@ namespace FastReport
         {
             get { return imageOffsetY; }
             set { imageOffsetY = value; }
+        }
+
+        internal override bool IsTransparent 
+        {
+            get { return false; }
         }
 
         #endregion // Properties

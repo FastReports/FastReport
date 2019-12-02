@@ -65,13 +65,19 @@ namespace FastReport.Barcode.QRCode
     /// </returns>*/
     public int at(int index)
     {
-      return bytes[index] & 0xff;
+        unchecked
+        {
+            return bytes[index] & 0xff;
+        }
     }
-    
-    public void  set_Renamed(int index, int value_Renamed)
-    {
-      bytes[index] = (sbyte) value_Renamed;
-    }
+
+        public void set_Renamed(int index, int value_Renamed)
+        {
+            unchecked
+            {
+                bytes[index] = (sbyte)value_Renamed;
+            }
+        }
     
     public int size()
     {

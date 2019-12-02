@@ -11,6 +11,11 @@ namespace FastReport.Export.Html
     {
         private bool doPageBreak;
 
+        private string GetStyle()
+        {
+            return "position:absolute;";
+        }
+
         private string GetStyle(Font Font, Color TextColor, Color FillColor,
             bool RTL, HorzAlign HAlign, Border Border, bool WordWrap, float LineHeight, float Width, float Height, bool Clip)
         {
@@ -294,7 +299,6 @@ namespace FastReport.Export.Html
             switch (obj.TextRenderType)
             {
                 case TextRenderType.HtmlParagraph:
-
 
                     using (HtmlTextRenderer htmlTextRenderer = obj.GetHtmlTextRenderer(Zoom, Zoom))
                     {
@@ -603,29 +607,16 @@ namespace FastReport.Export.Html
 
         private void LayerShape(FastString Page, ShapeObject obj, FastString text)
         {
-            int styleindex = UpdateCSSTable(obj);
-            string style = GetStyleTag(styleindex);
-            string old_text = String.Empty;
-
             float Width, Height;
-            string pic = GetLayerPicture(obj, out Width, out Height);
             FastString addstyle = new FastString(64);
-            if (obj.Shape == ShapeKind.Rectangle || obj.Shape == ShapeKind.RoundRectangle)
-            {
-                if (obj.FillColor.A != 0)
-                    addstyle.Append("background:").Append(System.Drawing.ColorTranslator.ToHtml(obj.FillColor)).Append(";");
-                addstyle.Append("border-style:solid;");
-                if (obj.Border.Width != 3)
-                    addstyle.Append("border-width:").Append(ExportUtils.FloatToString(obj.Border.Width)).Append("px;");
-                addstyle.Append("border-color:").Append(System.Drawing.ColorTranslator.ToHtml(obj.Border.Color)).Append(";");
-                if (obj.Shape == ShapeKind.RoundRectangle)
-                    addstyle.Append("border-radius:15px;");
-            }
+
+            addstyle.Append(GetStyle());
+
+            addstyle.Append("background: url('" + GetLayerPicture(obj, out Width, out Height) + "');");
 
             float x = obj.Width > 0 ? obj.AbsLeft : (obj.AbsLeft + obj.Width);
             float y = obj.Height > 0 ? hPos + obj.AbsTop : (hPos + obj.AbsTop + obj.Height);
-            Layer(Page, obj, x, y, obj.Width, obj.Height, text, style, addstyle);
-            addstyle.Clear();
+            Layer(Page, obj, x, y, obj.Width, obj.Height, text, null, addstyle);
         }
 
         private void LayerBack(FastString Page, ReportComponentBase obj, FastString text)
@@ -805,7 +796,7 @@ namespace FastReport.Export.Html
                 {
                     SolidFill fill = reportPage.Fill as SolidFill;
                     htmlPage.Append("; background-color:").
-                        Append(fill.Color.A == 0 ? "transparent" : ExportUtils.HTMLColor(fill.Color));
+                        Append(fill.IsTransparent ? "transparent" : ExportUtils.HTMLColor(fill.Color));
                 }
                 htmlPage.Append("\">");
 
@@ -919,9 +910,7 @@ namespace FastReport.Export.Html
                         {
                             LayerPicture(htmlPage, obj, null);
                         }
-                        else if (obj is ShapeObject && ((obj as ShapeObject).Shape == ShapeKind.Rectangle ||
-                             (obj as ShapeObject).Shape == ShapeKind.RoundRectangle) &&
-                            !((obj as ShapeObject).Fill is TextureFill))
+                        else if (obj is ShapeObject)
                         {
                             LayerShape(htmlPage, obj as ShapeObject, null);
                         }

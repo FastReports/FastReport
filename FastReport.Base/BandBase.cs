@@ -305,7 +305,7 @@ namespace FastReport
 
         internal bool HasFill
         {
-            get { return !(Fill is SolidFill) || (Fill as SolidFill).Color != Color.Transparent; }
+            get { return !Fill.IsTransparent; }
         }
 
         internal DataBand ParentDataBand

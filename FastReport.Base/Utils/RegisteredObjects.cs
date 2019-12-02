@@ -653,9 +653,7 @@ namespace FastReport.Utils
         {
             if (typeName != null && typeName != "")
             {
-                Type type = FTypes[typeName] as Type;
-                if (type != null)
-                    return type;
+                return FTypes[typeName] as Type;
             }
             return null;
         }

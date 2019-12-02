@@ -698,8 +698,15 @@ namespace FastReport
     {
         if (disposing)
         {
-            Watermark.Dispose();
-            Watermark = null;
+                if (Subreport != null)
+                {
+                    Subreport.ReportPage = null;
+                }
+                if (Watermark != null)
+                {
+                    Watermark.Dispose();
+                    Watermark = null;
+                }
         }
         base.Dispose(disposing);
     }
