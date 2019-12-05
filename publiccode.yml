@@ -103,7 +103,7 @@ description:
     longDescription: FastReport fornisce un generatore di report open source per .NET Core 2.x / .NET Framework 4.x. È possibile utilizzare FastReport in MVC, applicazioni API Web. FastReport è scritto in C# ed è compatibile con .NET Standard 2.0 e versioni successive. L'architettura FastReport estendibile consente di creare oggetti, filtri di esportazione, procedure guidate e motori DB personalizzati. È possibile ottenere dati da XML, CSV, Json, MS SQL, MySql, Oracle, Postgres, MongoDB, Couchbase, RavenDB, SQLite. FastReport ha un motore di script integrato che supporta due lingue .NET, C# e VB.NET. È possibile utilizzare tutta la potenza di .NET nei report per eseguire complesse operazioni di gestione dei dati e molto altro. È possibile creare un modello di report in diversi modi:creazione di report da codice, sviluppo di template di report come file XML, utilizzando FastReport Online Designer, utilizzando FastReport Designer Community Edition (freeware). FastReport Open Source può salvare documenti in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. L'esportazione PDF è disponibile come plug-in. FASTREPORT Open Source è un programma per la creazione di report con specifica gestione di sezioni visualmente distinte. Queste comprendono:titolo del report, riassunto, titolo principale, sottotitolo, testata della colonna, nota in calce della colonna, testata dei dati, dati, nota in calce dei dati, testata di gruppo, nota in calce del gruppo, figli, overlay. Inoltre è possibile l’uso di sottoreport, che sono totalmente gestiti dal programma. L’ampia gamma di campi permette la creazione di qualsiasi tipo di report:liste, master-detail, gruppi, colonne multiple, master-detail-detail e molti altri. 
     screenshots:
       - assets/images/FastReport-screenshot2.png
-      - assets/images/images/FastReport-screenshot1.png
+      - assets/images/FastReport-screenshot1.png
       - assets/images/FastReport-screenshot3.png
     localisedName: FastReport
     videos:
@@ -149,7 +149,7 @@ description:
 
     screenshots:
       - assets/images/FastReport-screenshot2.png
-      - assets/images/images/FastReport-screenshot1.png
+      - assets/images/FastReport-screenshot1.png
       - assets/images/FastReport-screenshot3.png
     localisedName: FastReport
     videos:
