@@ -33,8 +33,8 @@ Various report objects will allow your report to look exactly how you want it to
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.1' OR '$(TargetFramework)'=='netstandard2.0'">
-    <PackageReference Include="System.Security.Permissions" Version="[4.4.0-preview1-25305-02,)" />
-    <PackageReference Include="System.Drawing.Common" Version="[4.6.0-preview8.19405.3,)" />
+    <PackageReference Include="System.Security.Permissions" Version="[4.4.0,)" />
+    <PackageReference Include="System.Drawing.Common" Version="[4.6.1,)" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="[2.0.0,)" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="[2.0.0,)" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="4.5.2" />
