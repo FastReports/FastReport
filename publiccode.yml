@@ -8,7 +8,7 @@ releaseDate: '2019-12-02'
 url: 'https://github.com/FastReports/FastReport.git'
 applicationSuite: Report generator
 landingURL: 'https://github.com/FastReports/FastReport'
-softwareVersion: 2019.3.0
+softwareVersion: 2020.1.0
 roadmap: 'https://github.com/FastReports/FastReport/issues/79'
 developmentStatus: stable
 softwareType: library
