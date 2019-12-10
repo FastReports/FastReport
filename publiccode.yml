@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.2'
 name: FastReport
-releaseDate: '2019-05-15'
+releaseDate: '2019-12-02'
 url: 'https://github.com/FastReports/FastReport.git'
 applicationSuite: Report generator
 landingURL: 'https://github.com/FastReports/FastReport'
