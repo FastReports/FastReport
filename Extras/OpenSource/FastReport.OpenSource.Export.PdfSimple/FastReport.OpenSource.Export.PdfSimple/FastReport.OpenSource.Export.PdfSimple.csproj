@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastReport.OpenSource" Version="2019.1.20" />
+    <PackageReference Include="FastReport.OpenSource" Version="2020.1.0" />
   </ItemGroup>
 
 </Project>
