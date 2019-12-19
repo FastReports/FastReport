@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NETSTANDARD2_0 || NETSTANDARD2_1
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -11,3 +12,5 @@ namespace System.CodeDom.Compiler
         public Assembly CompiledAssembly { get; internal set; } = null;
     }
 }
+
+#endif

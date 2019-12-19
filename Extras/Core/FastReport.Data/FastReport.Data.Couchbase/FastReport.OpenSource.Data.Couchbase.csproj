@@ -1,58 +1,52 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net4.5</TargetFrameworks>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>		
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Copyright>Fast Reports Inc.</Copyright>
-		<Company>Fast Reports Inc.</Company>
-		<PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-		<PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-		<Authors>Fast Reports Inc.</Authors>
-		<Product>FastReport.Data.Couchbase</Product>
-		<Description>Represents a connection to Couchbase server for FastReport.Net.</Description>
-		<PackageId>FastReport.OpenSource.Data.Couchbase</PackageId>
-		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
-		<PackageTags>reporting, Couchbase, connection, reports</PackageTags>
-		<Version>1.0.0</Version>
-		<Configurations>Debug;Release;</Configurations>
-		<AssemblyName>FastReport.Data.Couchbase</AssemblyName>
-		<RootNamespace>FastReport.Data</RootNamespace>
-		<PackageReleaseNotes></PackageReleaseNotes>
-		<RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
-	</PropertyGroup>
-	
-	<PropertyGroup>
-		<DefineConstants>FRCORE;</DefineConstants>
-	</PropertyGroup>
-
-        <ItemGroup>
-		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
-		<ProjectReference Include="..\FastReport.Data.Json\FastReport.OpenSource.Data.Json.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Remove="CouchbaseConnectionEditor.cs" />
-		<Compile Remove="CouchbaseConnectionEditor.Designer.cs" />
-		<Compile Remove="CouchbaseConnectionEditor.resx" />
-		<Compile Remove="CouchbaseDataConnection.DesignExt.cs" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Remove="CouchbaseConnectionEditor.resx" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <PackageReference Include="CouchbaseNetClient" Version="2.5.9" />
-	</ItemGroup>
-	
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
-		<Reference Include="System" />
-		<Reference Include="System.Data" />
-		<Reference Include="System.Data.Entity.Design" />
-		<Reference Include="System.Design" />
-		<Reference Include="System.Drawing" />
-		<Reference Include="System.Windows.Forms" />
-		<Reference Include="System.Xml" />
-	</ItemGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net4.5</TargetFrameworks>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.Couchbase</Product>
+        <Description>Represents a connection to Couchbase server for FastReport.Net.</Description>
+        <PackageId>FastReport.OpenSource.Data.Couchbase</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, Couchbase, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.Couchbase</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes></PackageReleaseNotes>
+        <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+    </PropertyGroup>
+    <PropertyGroup>
+        <DefineConstants>FRCORE;</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+        <ProjectReference Include="..\FastReport.Data.Json\FastReport.OpenSource.Data.Json.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="CouchbaseConnectionEditor.cs" />
+        <Compile Remove="CouchbaseConnectionEditor.Designer.cs" />
+        <Compile Remove="CouchbaseConnectionEditor.resx" />
+        <Compile Remove="CouchbaseDataConnection.DesignExt.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Remove="CouchbaseConnectionEditor.resx" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="CouchbaseNetClient" Version="2.5.9" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+        <Reference Include="System" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Data.Entity.Design" />
+        <Reference Include="System.Design" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
 </Project>

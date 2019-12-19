@@ -266,10 +266,10 @@ namespace FastReport.Utils
                     }
                     else
                     {
-                            if (!Config.WebMode)
-                                MessageBox.Show(Res.Get("Messages,CantFindObject") + " " + curItem.Name);
-                            else
-                                throw new ClassException(curItem.Name);
+                        if (!Config.WebMode)
+                            MessageBox.Show(Res.Get("Messages,CantFindObject") + " " + curItem.Name);
+                        else
+                            throw new ClassException(curItem.Name);
                     }
                 }
                 if (result != null)

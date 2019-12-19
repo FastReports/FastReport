@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net4.5</TargetFrameworks>
+        <SignAssembly>false</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.MongoDB</Product>
+        <Description>Represents a connection to MongoDB database for FastReport.Net.</Description>
+        <PackageId>FastReport.Core.Data.MongoDB</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, MongoDB, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.MongoDB</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes>fixed a bug with wrong database name</PackageReleaseNotes>
+    </PropertyGroup>
+    <PropertyGroup>
+        <DefineConstants>FRCORE;</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Bson" Version="[2.5.0,)" />
+        <PackageReference Include="MongoDB.Driver" Version="[2.5.0,)" />
+        <PackageReference Include="MongoDB.Driver.Core" Version="[2.5.0,)" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="MongoDBConnectionEditor.cs" />
+        <Compile Remove="MongoDBConnectionEditor.Designer.cs" />
+        <Compile Remove="MongoDBConnectionEditor.resx" />
+        <Compile Remove="MongoDBDataConnection.DesignExt.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Remove="MongoDBConnectionEditor.resx" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+        <Reference Include="System" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Design" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\FastReport.Core\FastReport.Core.csproj" />
+    </ItemGroup>
+</Project>

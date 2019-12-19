@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿#if NETSTANDARD2_0 || NETSTANDARD2_1
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 using System;
 using System.CodeDom.Compiler;
@@ -30,12 +31,12 @@ namespace Microsoft.VisualBasic
 
             AddExtraAssemblies(cp.ReferencedAssemblies, references);
 
-            
+
 
 
             Compilation compilation = VisualBasicCompilation.Create(
                 "_" + Guid.NewGuid().ToString("D"), new SyntaxTree[] { codeTree },
-                references: references, options: options
+                references: references, options: options.WithEmbedVbCoreRuntime(true)
                 );
 
 
@@ -80,3 +81,4 @@ namespace Microsoft.VisualBasic
        
     }
 }
+#endif

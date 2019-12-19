@@ -23,6 +23,7 @@ namespace FastReport.Utils
         private static XmlDocument FDoc = new XmlDocument();
 
         private static string FFolder = null;
+        private static string FFontListFolder = null;
         private static string FLogs = "";
         private static ReportSettings FReportSettings = new ReportSettings();
         private static bool FRightToLeft = false;
@@ -82,6 +83,19 @@ namespace FastReport.Utils
         {
             get { return FFolder; }
             set { FFolder = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the path used to font.list file.
+        /// </summary>
+        /// <remarks>
+        /// By default, the font.list file is saved to the FastReport.config folder
+        /// If WebMode enabled (or config file path is null), then file is saved in the application folder.
+        /// </remarks>
+        public static string FontListFolder
+        {
+            get { return FFontListFolder; }
+            set { FFontListFolder = value; }
         }
 
         /// <summary>
@@ -165,7 +179,7 @@ namespace FastReport.Utils
 
         internal static void Init()
         {
-#if !NETSTANDARD2_0
+#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
             string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             WebMode = String.Compare(processName, "iisexpress") == 0 ||
                       String.Compare(processName, "w3wp") == 0;
@@ -174,6 +188,10 @@ namespace FastReport.Utils
 #else
             WebMode = true;
 #endif
+            if (WebMode)
+            {
+                RestoreExportOptions();
+            }
             LoadPlugins();
 
             // init TextRenderingHint.SystemDefault
@@ -233,6 +251,7 @@ namespace FastReport.Utils
             FDoc.AutoIndent = true;
             SaveUIStyle();
             SaveUIOptions();
+            SaveExportOptions();
             if (!WebMode)
             {
                 try
@@ -289,6 +308,7 @@ namespace FastReport.Utils
                 RestoreUIStyle();
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
+                RestoreExportOptions();
                 Res.LoadDefaultLocale();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }
@@ -392,6 +412,8 @@ namespace FastReport.Utils
                 disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
             }
         }
+
+        
 
 #endregion Private Methods
     }

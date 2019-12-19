@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NETSTANDARD2_0 || NETSTANDARD2_1
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -476,3 +477,4 @@ namespace System.Drawing
     //    return (Color)TypeDescriptor.GetConverter(typeof(Color)).ConvertFromInvariantString(value);
     //}
 }
+#endif

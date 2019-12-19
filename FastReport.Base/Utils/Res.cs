@@ -35,7 +35,7 @@ namespace FastReport.Utils
         Report.EnsureInit();
         string folder = Config.Root.FindItem("Language").GetProp("Folder");
                 // check the registry
-#if !NETSTANDARD2_0
+#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
         if (String.IsNullOrEmpty(folder) && !Config.WebMode)
         {
           RegistryKey key = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("FastReports");
@@ -47,8 +47,8 @@ namespace FastReport.Utils
           }
         }
 #endif
-        // get application folder
-        if (String.IsNullOrEmpty(folder))
+                // get application folder
+                if (String.IsNullOrEmpty(folder))
           folder = Config.ApplicationFolder;
 
         if (!folder.EndsWith("\\"))

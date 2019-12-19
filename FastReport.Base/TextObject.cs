@@ -82,7 +82,7 @@ namespace FastReport
     /// <summary>
     /// The format of paragraph
     /// </summary>
-    [TypeConverterAttribute(typeof(ExpandableObjectConverter))]
+    [TypeConverterAttribute(typeof(TypeConverters.FRExpandableObjectConverter))]
     public class ParagraphFormat
     {
         private float firstLineIndent;
@@ -171,6 +171,26 @@ namespace FastReport
             lineSpacing = p.lineSpacing;
             firstLineIndent = p.firstLineIndent;
             skipFirstLineIndent = p.skipFirstLineIndent;
+        }
+
+        public override bool Equals(object obj)
+        {
+            ParagraphFormat format = obj as ParagraphFormat;
+            return format != null &&
+                   firstLineIndent == format.firstLineIndent &&
+                   lineSpacing == format.lineSpacing &&
+                   lineSpacingType == format.lineSpacingType &&
+                   skipFirstLineIndent == format.skipFirstLineIndent;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1051315095;
+            hashCode = hashCode * -1521134295 + firstLineIndent.GetHashCode();
+            hashCode = hashCode * -1521134295 + lineSpacing.GetHashCode();
+            hashCode = hashCode * -1521134295 + lineSpacingType.GetHashCode();
+            hashCode = hashCode * -1521134295 + skipFirstLineIndent.GetHashCode();
+            return hashCode;
         }
     }
 
@@ -745,7 +765,7 @@ namespace FastReport
                         return new SizeF(width, height);
                     }
                 }
-#if !NETSTANDARD2_0
+#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
                 if (IsAdvancedRendererNeeded)
 #endif
                 {
@@ -763,7 +783,7 @@ namespace FastReport
                         height += Padding.Vertical + 1;
                     return new SizeF(width, height);
                 }
-#if !NETSTANDARD2_0
+#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
                 else
                 {
                     if (FontWidthRatio != 1)
@@ -1278,7 +1298,7 @@ namespace FastReport
                 writer.WriteBool("WordWrap", WordWrap);
             if (Underlines != c.Underlines)
                 writer.WriteBool("Underlines", Underlines);
-            if (writer.SerializeTo != SerializeTo.Preview || !Font.Equals(c.Font))
+            if ((writer.SerializeTo != SerializeTo.Preview || !Font.Equals(c.Font)) && writer.ItemName != "inherited")
                 writer.WriteValue("Font", Font);
             TextFill.Serialize(writer, "TextFill", c.TextFill);
             if (TextOutline != null)
@@ -1374,7 +1394,7 @@ namespace FastReport
                     // skip
                     break;
                 default:
-                    if (!reader.HasProperty("Font"))
+                    if (!reader.HasProperty("Font") && reader.ItemName != "inherited")
                     {
                         string creatorVersion = reader.Root.GetProp("ReportInfo.CreatorVersion");
                         if (!String.IsNullOrEmpty(creatorVersion))
@@ -1399,8 +1419,8 @@ namespace FastReport
                     }
                     break;
             }
-            
         }
+
         public override void InitializeComponent()
         {
             base.InitializeComponent();

@@ -37,6 +37,7 @@ namespace FastReport
         private float reprintOffset;
         private string beforeLayoutEvent;
         private string afterLayoutEvent;
+        private int repeatBandNTimes = 1;
 
         #endregion
 
@@ -65,6 +66,17 @@ namespace FastReport
         {
             get { return startNewPage; }
             set { startNewPage = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that determines the number of repetitions of the same band.
+        /// </summary>
+        [Category("Behavior")]
+        [DefaultValue(1)]
+        public int RepeatBandNTimes
+        {
+            get { return repeatBandNTimes; }
+            set { repeatBandNTimes = value; }
         }
 
         /// <summary>
@@ -293,7 +305,7 @@ namespace FastReport
 
         internal bool HasFill
         {
-            get { return !(Fill is SolidFill) || (Fill as SolidFill).Color != Color.Transparent; }
+            get { return !Fill.IsTransparent; }
         }
 
         internal DataBand ParentDataBand
@@ -512,6 +524,7 @@ namespace FastReport
             OutlineExpression = src.OutlineExpression;
             BeforeLayoutEvent = src.BeforeLayoutEvent;
             AfterLayoutEvent = src.AfterLayoutEvent;
+            RepeatBandNTimes = src.RepeatBandNTimes;
         }
 
         internal virtual void UpdateWidth()
@@ -631,6 +644,8 @@ namespace FastReport
                 writer.WriteStr("BeforeLayoutEvent", BeforeLayoutEvent);
             if (AfterLayoutEvent != c.AfterLayoutEvent)
                 writer.WriteStr("AfterLayoutEvent", AfterLayoutEvent);
+            if (RepeatBandNTimes != c.RepeatBandNTimes)
+                writer.WriteInt("RepeatBandNTimes", RepeatBandNTimes);
         }
 
         internal bool IsColumnDependentBand

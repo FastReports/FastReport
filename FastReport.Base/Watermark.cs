@@ -296,7 +296,7 @@ namespace FastReport
                 writer.WriteFloat(prefix + ".ImageTransparency", ImageTransparency);
             if (Text != c.Text)
                 writer.WriteStr(prefix + ".Text", Text);
-            if (writer.SerializeTo != SerializeTo.Preview || !writer.AreEqual(Font, c.Font))
+            if ((writer.SerializeTo != SerializeTo.Preview || !writer.AreEqual(Font, c.Font)) && writer.ItemName != "inherited")
                 writer.WriteValue(prefix + ".Font", Font);
             TextFill.Serialize(writer, prefix + ".TextFill", c.TextFill);
             if (TextRotation != c.TextRotation)

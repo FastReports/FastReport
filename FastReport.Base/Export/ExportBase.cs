@@ -29,8 +29,19 @@ namespace FastReport.Export
         private bool hasMultipleFiles;
         private bool shiftNonExportable;
         private string saveInitialDirectory;
+        private List<Stream> generatedStreams;
 
         #region Properties
+
+
+        /// <summary>
+        /// Gets list of generated streams.
+        /// </summary>
+        public List<Stream> GeneratedStreams
+        {
+            get { return generatedStreams; }
+            protected set { generatedStreams = value; }
+        }
 
         /// <summary>
         /// Zoom factor for output file
@@ -297,6 +308,7 @@ namespace FastReport.Export
         /// </summary>
         protected virtual void Start()
         {
+            this.Report.OnExportParameters(new ExportParametersEventArgs(this));
         }
 
         /*

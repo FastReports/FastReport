@@ -6,9 +6,6 @@ using System.Windows.Forms;
 
 namespace FastReport.Export.Html
 {
-    /// <summary>
-    /// Represents the HTML export filter.
-    /// </summary>
     public partial class HTMLExport : ExportBase
     {
         private void HTMLFontStyle(FastString FFontDesc, Font font, float LineHeight)
@@ -319,7 +316,7 @@ namespace FastReport.Export.Html
                     }
                     if (EmbedPictures && PictureStream != null)
                     {
-                        return embedPreffix + Convert.ToBase64String(PictureStream.ToArray());
+                        return embedPreffix + GetBase64Image(PictureStream, hash);
                     }
                     else if (subFolder && singlePage && !navigator)
                         return ExportUtils.HtmlURL(subFolderPath + ImageFileName);
@@ -330,7 +327,7 @@ namespace FastReport.Export.Html
                 {
                     if (EmbedPictures)
                     {
-                        return embedPreffix + Convert.ToBase64String(PictureStream.ToArray());
+                        return embedPreffix + GetBase64Image(PictureStream, hash); 
                     }
                     else
                     {
@@ -350,6 +347,17 @@ namespace FastReport.Export.Html
             }
             else
                 return String.Empty;
+        }
+
+        private string GetBase64Image(MemoryStream PictureStream, string hash)
+        {
+            string base64Image = String.Empty;
+            if (!EmbeddedImages.TryGetValue(hash, out base64Image))
+            {
+                base64Image = Convert.ToBase64String(PictureStream.ToArray());
+                EmbeddedImages.Add(hash, base64Image);
+            }
+            return base64Image;
         }
     }
 }

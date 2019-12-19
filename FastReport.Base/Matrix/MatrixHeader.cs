@@ -14,6 +14,7 @@ namespace FastReport.Matrix
     private MatrixHeaderItem rootItem;
     private int nextIndex;
     private string name;
+    private readonly MatrixObject matrix;
 
     /// <summary>
     /// Gets or sets the element at the specified index.
@@ -183,44 +184,48 @@ namespace FastReport.Matrix
 
     internal MatrixHeaderItem Find(object[] address, bool create, int dataRowNo)
     {
-      // Note that the top header itself does not contain a value. 
-      // It is used as a list of first-level headers only.
-      MatrixHeaderItem rootItem = RootItem;
-
-      for (int i = 0; i < address.Length; i++)
-      {
-        int index = rootItem.Find(address[i], this[i].Sort);
-        if (index >= 0)
-          rootItem = rootItem.Items[index];
-        else if (create)
+        // Note that the top header itself does not contain a value. 
+        // It is used as a list of first-level headers only.
+        MatrixHeaderItem rootItem = RootItem;
+            
+        for (int i = 0; i < address.Length; i++)
         {
-          // create new item if necessary.
-          MatrixHeaderItem newItem = new MatrixHeaderItem(rootItem);
-          newItem.Value = address[i];
-          newItem.TemplateColumn = this[i].TemplateColumn;
-          newItem.TemplateRow = this[i].TemplateRow;
-          newItem.TemplateCell = this[i].TemplateCell;
-          newItem.DataRowNo = dataRowNo;
-          newItem.PageBreak = this[i].PageBreak;
+            int index = rootItem.Find(address[i], this[i].Sort);
+                
+            if (matrix.SplitRows && address.Length == 1 && index >= 0)
+                rootItem = rootItem.Items[index];
+            else if (!matrix.SplitRows && index >= 0)
+                rootItem = rootItem.Items[index];
+            else if (create)
+            {
+                // create new item if necessary.
+                MatrixHeaderItem newItem = new MatrixHeaderItem(rootItem);
+                newItem.Value = address[i];
+                newItem.TemplateColumn = this[i].TemplateColumn;
+                newItem.TemplateRow = this[i].TemplateRow;
+                newItem.TemplateCell = this[i].TemplateCell;
+                newItem.DataRowNo = dataRowNo;
+                newItem.PageBreak = this[i].PageBreak;
 
-          // index is used as a cell address in a matrix
-          if (i == address.Length - 1)
-          {
-            // create index for bottom-level header
-            newItem.Index = nextIndex;
-            nextIndex++;
-          }
+                // index is used as a cell address in a matrix
+                if (i == address.Length - 1)
+                {
+                    // create index for bottom-level header
+                    newItem.Index = nextIndex;
+                    nextIndex++;
+                }
 
-          rootItem.Items.Insert(~index, newItem);
-          rootItem = newItem;
+                rootItem.Items.Insert(index >= 0 ? index : ~index, newItem);
+                rootItem = newItem;
+            }
+            else
+                return null;
         }
-        else
-          return null;
-      }
 
-      return rootItem;
+        return rootItem;
     }
-    
+
+
     private void AddTotalItems(MatrixHeaderItem rootItem, int descriptorIndex, bool isTemplate)
     {
       if (descriptorIndex >= Count)
@@ -284,9 +289,10 @@ namespace FastReport.Matrix
       }
     }
 
-    internal MatrixHeader()
+    internal MatrixHeader(MatrixObject matrix)
     {
-      rootItem = new MatrixHeaderItem(null);
+        rootItem = new MatrixHeaderItem(null);
+        this.matrix = matrix;
     }
   }
 }

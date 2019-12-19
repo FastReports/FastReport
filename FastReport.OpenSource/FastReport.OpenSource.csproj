@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
  
     <PropertyGroup>
-        <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net40;netstandard2.0;netstandard2.1</TargetFrameworks>
     </PropertyGroup>
 	
   <PropertyGroup>
@@ -32,21 +32,23 @@ Various report objects will allow your report to look exactly how you want it to
     <DefineConstants>TRACE;DOTNET_4;</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-    <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.1' OR '$(TargetFramework)'=='netstandard2.0'">
+    <PackageReference Include="System.Security.Permissions" Version="[4.4.0,)" />
+    <PackageReference Include="System.Drawing.Common" Version="[4.6.1,)" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="[2.0.0,)" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="[2.0.0,)" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="4.5.2" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+  <!--<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
     <Compile Remove="DotNetClasses\**\*.cs" />
     <Compile Include="DotNetClasses\Color.Full.cs" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <Import Project="..\FastReport.Base\FastReport.Base.csproj" />
 
-  <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+  <ItemGroup Condition="'$(TargetFramework)'=='net40'">
     <Reference Include="Accessibility" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -54,6 +56,7 @@ Various report objects will allow your report to look exactly how you want it to
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Security" />
   </ItemGroup>
 
 
@@ -62,4 +65,5 @@ Various report objects will allow your report to look exactly how you want it to
       <Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>    
     </EmbeddedResource>
   </ItemGroup>
+
 </Project>

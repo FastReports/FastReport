@@ -159,20 +159,34 @@ namespace FastReport.Format
     {
       if (value is Variant)
         value = ((Variant)value).Value;
-      if (UseLocale)
-        return String.Format("{0:p}", value);
-      else
-      {
+
+      return String.Format(GetNumberFormatInfo(), "{0:p}", new object[] { value });
+    }
+
+    internal NumberFormatInfo GetNumberFormatInfo()
+    {
         NumberFormatInfo info = new NumberFormatInfo();
-        info.PercentDecimalDigits = DecimalDigits;
-        info.PercentDecimalSeparator = DecimalSeparator;
-        info.PercentGroupSizes = new int[] { 3 };
-        info.PercentGroupSeparator = GroupSeparator;
-        info.PercentSymbol = PercentSymbol;
-        info.PercentPositivePattern = PositivePattern;
-        info.PercentNegativePattern = NegativePattern;
-        return String.Format(info, "{0:p}", new object[] { value });
-      }
+        if (UseLocale)
+        {
+            info.PercentDecimalDigits = DecimalDigits;
+            info.PercentDecimalSeparator = NumberFormatInfo.CurrentInfo.PercentDecimalSeparator;
+            info.PercentGroupSizes = NumberFormatInfo.CurrentInfo.PercentGroupSizes;
+            info.PercentGroupSeparator = NumberFormatInfo.CurrentInfo.PercentGroupSeparator;
+            info.PercentSymbol = NumberFormatInfo.CurrentInfo.PercentSymbol;
+            info.PercentPositivePattern = NumberFormatInfo.CurrentInfo.PercentPositivePattern;
+            info.PercentNegativePattern = NumberFormatInfo.CurrentInfo.PercentNegativePattern;
+        }
+        else
+        {
+            info.PercentDecimalDigits = DecimalDigits;
+            info.PercentDecimalSeparator = DecimalSeparator;
+            info.PercentGroupSizes = new int[] { 3 };
+            info.PercentGroupSeparator = GroupSeparator;
+            info.PercentSymbol = PercentSymbol;
+            info.PercentPositivePattern = PositivePattern;
+            info.PercentNegativePattern = NegativePattern;
+        }
+        return info;
     }
 
     internal override string GetSampleValue()
@@ -187,10 +201,11 @@ namespace FastReport.Format
       
       if (c == null || UseLocale != c.UseLocale)
         writer.WriteBool(prefix + "UseLocale", UseLocale);
+      if (c == null || DecimalDigits != c.DecimalDigits)
+        writer.WriteInt(prefix + "DecimalDigits", DecimalDigits);
+
       if (!UseLocale)
-      {  
-        if (c == null || DecimalDigits != c.DecimalDigits)
-          writer.WriteInt(prefix + "DecimalDigits", DecimalDigits);
+      {
         if (c == null || DecimalSeparator != c.DecimalSeparator)
           writer.WriteStr(prefix + "DecimalSeparator", DecimalSeparator);
         if (c == null || GroupSeparator != c.GroupSeparator)

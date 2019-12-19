@@ -81,6 +81,16 @@ namespace FastReport.Tests.OpenSource.Export.PdfSimple
         }
 
         [Fact]
+        public void TestExportWatermark()
+        {
+            Report r = new Report();
+            r.LoadPrepared("Watermark.fpx");
+
+            PDFSimpleExport export = new PDFSimpleExport();
+            r.Export(export, "Watermark.pdf");
+        }
+
+        [Fact]
         public void TestExportPdfImages()
         {
             
