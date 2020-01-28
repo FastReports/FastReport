@@ -57,7 +57,10 @@ namespace FastReport.Web.Controllers
 
             RegisterHandler("/designer.getFunctions", () =>
             {
-                return GetFunctions();
+                if (!FindWebReport(out WebReport webReport))
+                    return new NotFoundResult();
+
+                return GetFunctions(webReport.Report);
             });
 
             RegisterHandler("/designer.getConnectionTypes", () =>
@@ -179,7 +182,7 @@ namespace FastReport.Web.Controllers
             }
         }
 
-        IActionResult GetFunctions()
+        IActionResult GetFunctions(Report report)
         {
             using (var xml = new XmlDocument())
             {
@@ -198,12 +201,8 @@ namespace FastReport.Web.Controllers
                 }
 
                 xml.Root.Name = "ReportFunctions";
-
-                // TODO
-                //#if !FRCORE
-                //            if (rootFunctions != null)
-                //                RegisteredObjects.CreateFunctionsTree(Report, rootFunctions, xml.Root);
-                //#endif
+                if (rootFunctions != null)
+                    RegisteredObjects.CreateFunctionsTree(report, rootFunctions, xml.Root);
 
                 using (var stream = new MemoryStream())
                 {

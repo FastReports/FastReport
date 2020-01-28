@@ -493,11 +493,27 @@ namespace FastReport.Matrix
         width--;
       }
 
-      foreach (MatrixHeaderItem item in root.Items)
-      {
+    for (int index = 0; index < root.Items.Count; index++)
+    {
+        MatrixHeaderItem item = root.Items[index];
         Matrix.RowValues = item.Values;
         TableCellData resultCell = ResultTable.GetCellData(left, top);
         int span = item.Span * dataHeight;
+                if (Matrix.SplitRows)
+                {
+                    MatrixHeaderItem duplicate = new MatrixHeaderItem(root);
+                    duplicate.IsSplitted = true;
+                    duplicate.Value = item.Value;
+                    duplicate.TemplateRow = item.TemplateRow;
+                    duplicate.TemplateCell = item.TemplateCell;
+                    duplicate.TemplateColumn = item.TemplateColumn;
+
+                    for (int i = 1; i < span; i++)
+                    {
+                        root.Items.Insert(index + 1, duplicate);
+                    }
+                    span = 1;
+                }
         resultCell.RowSpan = span;
         if (item.IsTotal)
         {

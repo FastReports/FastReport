@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "FastReport.Data.SQLite": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -176,14 +176,22 @@ namespace FastReport.Export.Html
                 sb.Append("direction:rtl;");
         }
 
-        private string HTMLGetStylesHeader(int PageNumber)
+        private string HTMLGetStylesHeader()
         {
             FastString header = new FastString();
             if (singlePage && pageBreaks)
             {
                 header.AppendLine("<style type=\"text/css\" media=\"print\"><!--");
-                header.AppendLine("div.frpage { page-break-after: always; page-break-inside: avoid; }");
-                header.AppendLine("--></style>");
+                header.Append("div." + pageStyleName + 
+                    " { page-break-after: always; page-break-inside: avoid; ");
+                if (d.page.Landscape)
+                {
+                    header.Append("width:").Append(Px(maxHeight * Zoom).Replace(";", " !important;"))
+                          .Append("transform: rotate(90deg); -webkit-transform: rotate(90deg)");
+                }
+
+                header.AppendLine("}")
+                      .AppendLine("--></style>");
             }
             header.AppendLine("<style type=\"text/css\"><!-- ");
             return header.ToString();

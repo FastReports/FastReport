@@ -862,7 +862,7 @@ namespace FastReport.Matrix
         public MatrixObject()
         {
             autoSize = true;
-            data = new MatrixData(this);
+            data = new MatrixData();
             manualBuildEvent = "";
             afterTotalsEvent = "";
             helper = new MatrixHelper(this);

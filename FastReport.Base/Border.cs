@@ -241,7 +241,7 @@ namespace FastReport
         writer.WriteFloat(prefix + ".Width", Width);
     }
 
-    internal BorderLine()
+    public BorderLine()
     {
       color = Color.Black;
       width = 1;

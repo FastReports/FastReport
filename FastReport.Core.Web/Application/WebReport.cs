@@ -186,15 +186,15 @@ namespace FastReport.Web
             if (Report == null)
                 throw new Exception("Report is null");
 
-            return await Render(false);
+            return Render(false);
         }
 
-        internal async Task<HtmlString> Render(bool renderBody)
+        internal HtmlString Render(bool renderBody)
         {
             switch (Mode)
             {
                 case WebReportMode.Preview:
-                    return new HtmlString(await Task.Run(() => template_render(renderBody)));
+                    return new HtmlString(template_render(renderBody));
                 case WebReportMode.Designer:
                     return RenderDesigner();
                 default:

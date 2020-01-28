@@ -190,7 +190,9 @@ namespace FastReport.Utils
 #endif
             if (WebMode)
             {
+#if !COMMUNITY
                 RestoreExportOptions();
+#endif
             }
             LoadPlugins();
 
@@ -220,9 +222,9 @@ namespace FastReport.Utils
             FLogs += s + "\r\n";
         }
 
-        #endregion Internal Methods
+#endregion Internal Methods
 
-        #region Private Methods
+#region Private Methods
 
         private static string GetTempFileName()
         {
@@ -251,7 +253,10 @@ namespace FastReport.Utils
             FDoc.AutoIndent = true;
             SaveUIStyle();
             SaveUIOptions();
-            SaveExportOptions();
+#if !COMMUNITY
+                SaveExportOptions();
+#endif
+
             if (!WebMode)
             {
                 try
@@ -308,7 +313,9 @@ namespace FastReport.Utils
                 RestoreUIStyle();
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
+#if !COMMUNITY
                 RestoreExportOptions();
+#endif
                 Res.LoadDefaultLocale();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }
@@ -325,7 +332,7 @@ namespace FastReport.Utils
         private static void LoadPlugins()
         {
             // main assembly initializer
-            ProcessAssembly(typeof(Config).Assembly);
+            ProcessMainAssembly();
 
             XmlItem pluginsItem = Root.FindItem("Plugins");
             for (int i = 0; i < pluginsItem.Count; i++)
@@ -343,19 +350,20 @@ namespace FastReport.Utils
             }
         }
 
-        private static void ProcessAssemblies()
-        {
-            foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                ProcessAssembly(a);
-            }
-        }
+        //private static void ProcessAssemblies()
+        //{
+        //    foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+        //    {
+        //        ProcessAssembly(a);
+        //    }
+        //}
+
 
         private static void ProcessAssembly(Assembly a)
         {
             foreach (Type t in a.GetTypes())
             {
-                if (t != typeof(AssemblyInitializerBase) && t.IsSubclassOf(typeof(AssemblyInitializerBase)))
+                if (t.IsSubclassOf(typeof(AssemblyInitializerBase)))
                     Activator.CreateInstance(t);
             }
         }

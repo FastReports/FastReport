@@ -387,6 +387,9 @@ namespace FastReport.Code
             // configure compiler options
             CompilerParameters cp = new CompilerParameters();
             AddFastReportAssemblies(cp.ReferencedAssemblies);
+#if NETCOREAPP
+            cp.ReferencedAssemblies.Add("System.Drawing.Primitives");
+#endif
             AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);
             ReviewReferencedAssemblies(cp.ReferencedAssemblies);
             cp.GenerateInMemory = true;

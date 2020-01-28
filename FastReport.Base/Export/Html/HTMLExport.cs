@@ -113,6 +113,7 @@ namespace FastReport.Export.Html
         private List<string> cssStyles;
         private float hPos;
         private NumberFormatInfo numberFormat;
+        private string pageStyleName;
 
         private bool saveStreams;
 

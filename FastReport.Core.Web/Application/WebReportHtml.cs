@@ -19,7 +19,7 @@ namespace FastReport.Web
 #region Internal Methods
 
 #if  !OPENSOURCE
-        internal IActionResult PrintPdf()
+        public IActionResult PrintPdf()
         {
             using (var pdfExport = new PDFExport())
             {
@@ -61,7 +61,7 @@ namespace FastReport.Web
         }
 #endif
 
-        internal IActionResult PrintHtml(BaseController controller)
+        public IActionResult PrintHtml()
         {
             PictureCache.Clear();
 

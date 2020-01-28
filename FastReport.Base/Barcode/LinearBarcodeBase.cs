@@ -105,6 +105,11 @@ namespace FastReport.Barcode
             {
                 MakeModules();
                 pattern = GetPattern();
+                if(pattern == null)
+                {
+                    MyRes res = new MyRes("Messages");
+                    throw new FormatException(res.Get("BarcodeManyError"));
+                }
                 return pattern;
             }
         }

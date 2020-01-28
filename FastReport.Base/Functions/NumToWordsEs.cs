@@ -53,26 +53,26 @@ namespace FastReport.Functions
       else
       {
         if (value % 1000 != 0)
-          result.Append(Str1000(value, senior).Replace("veintiún", "veintiun"));
+          result.Append(Str1000(value, senior, 1).Replace("veintiún", "veintiun"));
         else
           result.Append(senior.many + " ");
 
         value /= 1000;
-        result.Insert(0, Str1000(value, GetThousands()));
+        result.Insert(0, Str1000(value, GetThousands(), 2));
 
         value /= 1000;
-        result.Insert(0, Str1000(value, GetMillions()));
+        result.Insert(0, Str1000(value, GetMillions(), 3));
 
         // in spanish, the "milliard" is not used. They use "thousand of million" instead
         bool hasMillions = value % 1000 > 0;
         value /= 1000;
-        string thousandsOfMillions = Str1000(value, GetThousands());
+        string thousandsOfMillions = Str1000(value, GetThousands(), 4);
         if (value > 0 && !hasMillions)
           thousandsOfMillions += "millones ";
         result.Insert(0, thousandsOfMillions);
 
         value /= 1000;
-        result.Insert(0, Str1000(value, GetTrillions()));
+        result.Insert(0, Str1000(value, GetTrillions(), 5));
       }
     }
 

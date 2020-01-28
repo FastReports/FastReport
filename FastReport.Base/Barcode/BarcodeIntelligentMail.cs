@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastReport.Utils;
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -89,8 +90,11 @@ namespace FastReport.Barcode
                 return null;
             source = TrimOff(source, " -.");
             if (!Regex.IsMatch(source, "^[0-9][0-4]([0-9]{18})|([0-9]{23})|([0-9]{27})|([0-9]{29})$"))
-                //return string.Empty;
-                throw new FormatException();
+            //return string.Empty;
+            {
+                MyRes res = new MyRes("Messages");
+                throw new FormatException(res.Get("BarcodeFewError"));
+            }
             int fcs = 0;
             long l = 0;
             decimal v = 0;

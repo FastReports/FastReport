@@ -14,6 +14,7 @@ namespace FastReport.Matrix
     private bool isTotal;
     private int dataRowNo;
     private bool pageBreak;
+    private bool isSplitted;
 
     public MatrixHeaderItem Parent
     {
@@ -93,6 +94,12 @@ namespace FastReport.Matrix
       set { pageBreak = value; }
     }
 
+    internal bool IsSplitted 
+    {
+        get { return isSplitted; }
+        set { isSplitted = value; }
+    }
+
     public int Find(object value, SortOrder sort)
     {
       if (Items.Count == 0)
@@ -130,7 +137,7 @@ namespace FastReport.Matrix
     
     private void GetTerminalItems(List<MatrixHeaderItem> list)
     {
-      if (Items.Count == 0)
+      if (Items.Count == 0 && !IsSplitted)
         list.Add(this);
       else
       {
@@ -152,6 +159,7 @@ namespace FastReport.Matrix
     {
             this.parent = parent;
       items = new List<MatrixHeaderItem>();
+            isSplitted = false;
     }
 
 

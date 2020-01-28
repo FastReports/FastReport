@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Language Name="en">
+  <Fonts>
+    <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} font must not be modified, embedded, or exchanged in any manner without first obtaining permission of the legal owner."/>
+    <FontMayNotBeSubsettedPriorToEmbedding Text="{0} font may not be subsetted prior to embedding."/>
+  </Fonts>
   <Buttons>
     <Ok Text="OK"/>
     <Cancel Text="Cancel"/>
@@ -15,6 +19,8 @@
   <Messages>
     <AccessingData Text="Accessing data..."/>
     <Attention Text="Attention"/>
+	<BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
+	<BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
     <CantFindObject Text="Can't find object"/>
     <CantLoadReport Text="Can't load the report {0}"/>
     <CantSaveReport Text="Can't save the report. The file may be write-protected."/>
@@ -57,6 +63,7 @@
     <ErrorInHighlightCondition Text="Error in highlight condition"/>
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
+    <ChangePicture Text="Would you like to change current image?"/>
   </Messages>
   <Misc>
     <ShortUnitsMm Text="mm"/>
@@ -657,6 +664,7 @@
     <BaseReportWizard>
       <SelectDataSourcePage Text="Select datasource"/>
       <SelectDataSource Text="Select one of the available datasources or create new one:"/>
+      <OpenDataDictionary Text="Open data dictionary file..."/>
       <CreateNewDatasource Text="Create new datasource..."/>
       <SelectColumnsPage Text="Select data columns"/>
       <SelectColumns Text="Select data columns that you want to show in a report."/>
@@ -2282,6 +2290,8 @@
     </Ppml>
     <PS Text="Export to PostScript">
       <File Text="PostScript file"/>
+	  <PagesInDiffFiles Text="Pages in different files"/>
+	  <SaveImagesSeparately Text="Save images separately"/>
     </PS>
     <Xps Text="Export to XPS">
       <File Text="Microsoft XPS file"/>

@@ -56,7 +56,7 @@ namespace FastReport.Export.Html
 
             Border newBorder = Border;
             HTMLBorder(style, newBorder);
-            style.Append("width:").Append(Px(Width * Zoom)).Append("height:").Append(Px(Height * Zoom));
+            style.Append("width:").Append(Px(Math.Abs(Width) * Zoom)).Append("height:").Append(Px(Math.Abs(Height) * Zoom));
             return style.ToString();
         }
 
@@ -96,7 +96,7 @@ namespace FastReport.Export.Html
         {
             if (prevStyleListIndex < cssStyles.Count)
             {
-                styles.Append(HTMLGetStylesHeader(PageNumber));
+                styles.Append(HTMLGetStylesHeader());
                 for (int i = prevStyleListIndex; i < cssStyles.Count; i++)
                     styles.Append(HTMLGetStyleHeader(i, PageNumber)).Append(cssStyles[i]).AppendLine("}");
                 styles.AppendLine(HTMLGetStylesFooter());
@@ -775,35 +775,23 @@ namespace FastReport.Export.Html
 
                 htmlPage.Append(HTMLGetAncor((d.PageNumber).ToString()));
 
-                htmlPage.Append("<div ").Append(doPageBreak ? "class=\"frpage\"" : String.Empty).
-                    Append(" style=\"position:relative;width:");
-
-                //Landscape to portrait orientation for web-print
-                if (exportMode == ExportType.WebPrint && reportPage.Landscape)
-                {
-                    htmlPage.Append(Px(maxHeight * Zoom + 3)).
-                    Append("height:").Append(Px(maxWidth * Zoom)).
-                    Append("transform: rotate(90deg); -webkit-transform: rotate(90deg)");
-                }
-                else
-                {
-                    htmlPage.Append(Px(maxWidth * Zoom + 3)).
-                    Append("height:").Append(Px(maxHeight * Zoom));
-                }
-
+                pageStyleName = "frpage" + currentPage;
+                htmlPage.Append("<div ").Append(doPageBreak ? "class=\"" + pageStyleName + "\"" : String.Empty)
+                    .Append(" style=\"position:relative;")
+                    .Append(" width:").Append(Px(maxWidth * Zoom + 3))
+                    .Append(" height:").Append(Px(maxHeight * Zoom));
 
                 if (reportPage.Fill is SolidFill)
                 {
                     SolidFill fill = reportPage.Fill as SolidFill;
-                    htmlPage.Append("; background-color:").
+                    htmlPage.Append(" background-color:").
                         Append(fill.IsTransparent ? "transparent" : ExportUtils.HTMLColor(fill.Color));
                 }
-                htmlPage.Append("\">");
-
-                if (!(reportPage.Fill is SolidFill))
+                else
                 {
                     // to-do for picture background
                 }
+                htmlPage.Append("\">");
 
                 if (reportPage.Watermark.Enabled && !reportPage.Watermark.ShowImageOnTop)
                     Watermark(htmlPage, reportPage, false);

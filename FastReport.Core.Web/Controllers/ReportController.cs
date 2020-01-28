@@ -48,7 +48,7 @@ namespace FastReport.Web.Controllers
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     ContentType = "text/html",
-                    Content = (await webReport.Render(renderBody)).ToString(),
+                    Content = (webReport.Render(renderBody)).ToString(),
                 };
             });
 
@@ -83,7 +83,7 @@ namespace FastReport.Web.Controllers
                 switch (printMode)
                 {
                     case "html":
-                        return webReport.PrintHtml(this);
+                        return webReport.PrintHtml();
 #if  !OPENSOURCE
                     case "pdf":
                         return webReport.PrintPdf();
