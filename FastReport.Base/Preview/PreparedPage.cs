@@ -419,12 +419,10 @@ namespace FastReport.Preview
             if (objects.Count > 0)
             {
                 // get the top object's location
-                float pastedX = (objects[0].GetProp("l") != "") ?
-                  Converter.StringToFloat(objects[0].GetProp("l")) : 0;
                 float pastedY = (objects[0].GetProp("t") != "") ?
                   Converter.StringToFloat(objects[0].GetProp("t")) : 0;
 
-                float deltaX = x - pastedX;
+                float deltaX = x;
                 float deltaY = y - pastedY;
 
                 while (objects.Count > 0)

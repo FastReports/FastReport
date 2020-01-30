@@ -233,7 +233,7 @@ namespace FastReport.Barcode
   /// <summary>
   /// Generates the 2D Data Matrix barcode.
   /// </summary>
-  public class BarcodeDatamatrix : Barcode2DBase
+  public sealed class BarcodeDatamatrix : Barcode2DBase
   {
     #region Fields
     private static readonly DmParams[] dmSizes = {
@@ -277,6 +277,7 @@ namespace FastReport.Barcode
     private DatamatrixEncoding encoding;
     private int codePage;
     private int pixelSize;
+        private bool autoEncode;
     #endregion
 
     #region Properties
@@ -323,6 +324,12 @@ namespace FastReport.Barcode
       get { return pixelSize; }
       set { pixelSize = value; }
     }
+
+        [DefaultValue(true)]
+        public bool AutoEncode {
+            get { return autoEncode; }
+            set { autoEncode = value; }
+        }
     #endregion
 
     #region Private Methods
@@ -833,10 +840,13 @@ namespace FastReport.Barcode
 
     private string ReplaceControlCodes(string text)
     {
-      if (text.StartsWith("&1;"))
-        text = ((char)232).ToString() + text.Remove(0, 3);
-      text = text.Replace("&1;", ((char)0x1d).ToString());
-      return text;
+            if(AutoEncode)
+            {
+                if (text.StartsWith("&1;"))
+                    text = ((char)232).ToString() + text.Remove(0, 3);
+                text = text.Replace("&1;", ((char)0x1d).ToString());
+            }
+            return text;
     }
     
     private void Generate(String text)
@@ -919,6 +929,7 @@ namespace FastReport.Barcode
       Encoding = src.Encoding;
       CodePage = src.CodePage;
       PixelSize = src.PixelSize;
+            AutoEncode = src.AutoEncode;
     }
 
     internal override void Serialize(FastReport.Utils.FRWriter writer, string prefix, BarcodeBase diff)
@@ -926,14 +937,16 @@ namespace FastReport.Barcode
       base.Serialize(writer, prefix, diff);
       BarcodeDatamatrix c = diff as BarcodeDatamatrix;
 
-      if (c == null || SymbolSize != c.SymbolSize)
-        writer.WriteValue(prefix + "SymbolSize", SymbolSize);
-      if (c == null || Encoding != c.Encoding)
-        writer.WriteValue(prefix + "Encoding", Encoding);
-      if (c == null || CodePage != c.CodePage)
-        writer.WriteInt(prefix + "CodePage", CodePage);
-      if (c == null || PixelSize != c.PixelSize)
-        writer.WriteInt(prefix + "PixelSize", PixelSize);
+            if (c == null || SymbolSize != c.SymbolSize)
+                writer.WriteValue(prefix + "SymbolSize", SymbolSize);
+            if (c == null || Encoding != c.Encoding)
+                writer.WriteValue(prefix + "Encoding", Encoding);
+            if (c == null || CodePage != c.CodePage)
+                writer.WriteInt(prefix + "CodePage", CodePage);
+            if (c == null || PixelSize != c.PixelSize)
+                writer.WriteInt(prefix + "PixelSize", PixelSize);
+            if (c == null || AutoEncode != c.AutoEncode)
+                writer.WriteBool(prefix + "AutoEncode", AutoEncode);
     }
 
     internal override void Initialize(string text, bool showText, int angle, float zoom)
@@ -963,10 +976,13 @@ namespace FastReport.Barcode
 
     internal override string StripControlCodes(string data)
     {
-      if (data.StartsWith("&1;"))
-        data = data.Remove(0, 3);
-      data = data.Replace("&1;", " ");
-      return data;
+            if(AutoEncode)
+            {
+                if (data.StartsWith("&1;"))
+                    data = data.Remove(0, 3);
+                data = data.Replace("&1;", " ");
+            }
+            return data;
     }
 
     internal override void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)
@@ -1004,6 +1020,10 @@ namespace FastReport.Barcode
     {
       CodePage = 1252;
       PixelSize = 3;
+            AutoEncode = true;
+#if NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP
+            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#endif
     }
 
 

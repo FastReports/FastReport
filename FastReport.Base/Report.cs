@@ -238,6 +238,7 @@ namespace FastReport
         private bool initializing;
         private object initializeData;
         private string initializeDataName;
+        private object tag;
 
         #endregion Fields
 
@@ -787,6 +788,16 @@ namespace FastReport
         public ReportOperation Operation
         {
             get { return operation; }
+        }
+
+        /// <summary>
+        /// Gets or sets the Tag object of the report.
+        /// </summary>
+        [Browsable(false)]
+        public object Tag
+        {
+            get { return tag; }
+            set { tag = value; }
         }
 
         private string[] DefaultAssemblies
@@ -2396,6 +2407,7 @@ namespace FastReport
             storeInResources = true;
             fileName = "";
             autoFillDataSet = true;
+            tag = null;
             ClearReportProperties();
             SetFlags(Flags.CanMove | Flags.CanResize | Flags.CanDelete | Flags.CanEdit | Flags.CanChangeOrder |
               Flags.CanChangeParent | Flags.CanCopy, false);

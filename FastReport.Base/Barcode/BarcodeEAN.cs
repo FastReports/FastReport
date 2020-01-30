@@ -204,7 +204,7 @@ namespace FastReport.Barcode
         internal override string GetPattern()
         {
             string snapshot = text;
-            text = text.Replace("(", "&1;").Replace(")", "");
+            text = "&C;&1;" + text.Replace("(", "&A;").Replace(")", "").Replace(" ", "").Substring(3);
             string result = base.GetPattern();
             text = snapshot;
             return result;

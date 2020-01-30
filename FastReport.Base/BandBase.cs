@@ -816,6 +816,70 @@ namespace FastReport
         }
 
         /// <inheritdoc/>
+
+        public void AddLastToFooter(BreakableComponent breakTo)
+        {
+            float maxTop = (AllObjects[0] as ComponentBase).Top;
+            foreach (ComponentBase obj in AllObjects)
+                if (obj.Top > maxTop && !(obj is DataFooterBand))
+                    maxTop = obj.Top;
+
+            float breakLine = maxTop;
+
+            List<ReportComponentBase> pasteList = new List<ReportComponentBase>();
+            foreach (ReportComponentBase obj in Objects)
+                if (obj.Bottom > breakLine)
+                    pasteList.Add(obj);
+
+
+
+            int itemsBefore = breakTo.AllObjects.Count;
+
+
+            foreach (ReportComponentBase obj in pasteList)
+            {
+                if (obj.Top < breakLine)
+                {
+                    BreakableComponent breakComp = Activator.CreateInstance(obj.GetType()) as BreakableComponent;
+                    breakComp.AssignAll(obj);
+                    breakComp.Parent = breakTo;
+
+                    breakComp.CanGrow = true;
+                    breakComp.CanShrink = false;
+                    breakComp.Height -= breakLine - obj.Top;
+                    breakComp.Top = 0;
+                    obj.Height = breakLine - obj.Top;
+                    (obj as BreakableComponent).Break(breakComp);
+                }
+                else
+                {
+                    obj.Top -= breakLine;
+                    obj.Parent = breakTo;
+                    continue;
+                }
+            }
+
+
+            float minTop = (breakTo.AllObjects[0] as ComponentBase).Top;
+            float maxBottom = 0;
+
+            for (int i = itemsBefore; i < breakTo.AllObjects.Count; i++)
+                if ((breakTo.AllObjects[i] as ComponentBase).Top < minTop && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
+                    minTop = (breakTo.AllObjects[i] as ComponentBase).Top;
+
+            for (int i = itemsBefore; i < breakTo.AllObjects.Count; i++)
+                if ((breakTo.AllObjects[i] as ComponentBase).Bottom > maxBottom && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
+                    maxBottom = (breakTo.AllObjects[i] as ComponentBase).Bottom;
+
+            for (int i = 0; i < itemsBefore; i++)
+                (breakTo.AllObjects[i] as ComponentBase).Top += maxBottom - minTop;
+
+            breakTo.Height += maxBottom - minTop;
+
+            Height -= maxBottom - minTop;
+        }
+
+
         public override bool Break(BreakableComponent breakTo)
         {
             // first we find the break line. It's a minimum Top coordinate of the object that cannot break.

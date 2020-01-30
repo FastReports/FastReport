@@ -14,7 +14,6 @@ namespace FastReport.Matrix
     private MatrixHeaderItem rootItem;
     private int nextIndex;
     private string name;
-    private readonly MatrixObject matrix;
 
     /// <summary>
     /// Gets or sets the element at the specified index.
@@ -192,9 +191,7 @@ namespace FastReport.Matrix
         {
             int index = rootItem.Find(address[i], this[i].Sort);
                 
-            if (matrix.SplitRows && address.Length == 1 && index >= 0)
-                rootItem = rootItem.Items[index];
-            else if (!matrix.SplitRows && index >= 0)
+            if (index >= 0)
                 rootItem = rootItem.Items[index];
             else if (create)
             {
@@ -215,7 +212,7 @@ namespace FastReport.Matrix
                     nextIndex++;
                 }
 
-                rootItem.Items.Insert(index >= 0 ? index : ~index, newItem);
+                rootItem.Items.Insert(~index, newItem);
                 rootItem = newItem;
             }
             else
@@ -289,10 +286,9 @@ namespace FastReport.Matrix
       }
     }
 
-    internal MatrixHeader(MatrixObject matrix)
+    internal MatrixHeader()
     {
         rootItem = new MatrixHeaderItem(null);
-        this.matrix = matrix;
     }
   }
 }

@@ -809,6 +809,109 @@ namespace FastReport.Functions
     {
       return new NumToWordsRu().ConvertNumber(Convert.ToDecimal(value), male, one, two, many);
     }
+
+    /// <summary>
+    /// Converts a currency value to a german string representation of that value.
+    /// </summary>
+    /// <param name="value">The currency value to convert.</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsDe(object value)
+    {
+        return ToWordsDe(value, "EUR");
+    }
+
+    /// <summary>
+    /// Converts a currency value to a german string representation of that value, 
+    /// using the specified currency.
+    /// </summary>
+    /// <param name="value">The currency value to convert.</param>
+    /// <param name="currencyName">The 3-digit ISO name of the currency, for example "EUR".</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsDe(object value, string currencyName)
+    {
+        return new NumToWordsDe().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+    }
+
+    /// <summary>
+    /// Converts a numeric value to a german string representation of that value.
+    /// </summary>
+    /// <param name="value">The numeric value to convert.</param>
+    /// <param name="one">The name in singular form, for example "page".</param>
+    /// <param name="many">The name in plural form, for example "pages".</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsDe(object value, string one, string many)
+    {
+        return new NumToWordsDe().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
+    }
+
+    /// <summary>
+    /// Converts a currency value to a french string representation of that value.
+    /// </summary>
+    /// <param name="value">The currency value to convert.</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsFr(object value)
+    {
+        return ToWordsFr(value, "EUR");
+    }
+
+    /// <summary>
+    /// Converts a currency value to a french string representation of that value, 
+    /// using the specified currency.
+    /// </summary>
+    /// <param name="value">The currency value to convert.</param>
+    /// <param name="currencyName">The 3-digit ISO name of the currency, for example "EUR".</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsFr(object value, string currencyName)
+    {
+        return new NumToWordsFr().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+    }
+
+    /// <summary>
+    /// Converts a numeric value to a french string representation of that value.
+    /// </summary>
+    /// <param name="value">The numeric value to convert.</param>
+    /// <param name="one">The name in singular form, for example "page".</param>
+    /// <param name="many">The name in plural form, for example "pages".</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsFr(object value, string one, string many)
+    {
+        return new NumToWordsFr().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
+    }
+
+    /// <summary>
+    /// Converts a currency value to a dutch string representation of that value.
+    /// </summary>
+    /// <param name="value">The currency value to convert.</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsNl(object value)
+    {
+        return ToWordsNl(value, "EUR");
+    }
+
+    /// <summary>
+    /// Converts a currency value to a dutch string representation of that value, 
+    /// using the specified currency.
+    /// </summary>
+    /// <param name="value">The currency value to convert.</param>
+    /// <param name="currencyName">The 3-digit ISO name of the currency, for example "EUR".</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsNl(object value, string currencyName)
+    {
+        return new NumToWordsNl().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+    }
+
+    /// <summary>
+    /// Converts a numeric value to a dutch string representation of that value.
+    /// </summary>
+    /// <param name="value">The numeric value to convert.</param>
+    /// <param name="one">The name in singular form, for example "page".</param>
+    /// <param name="many">The name in plural form, for example "pages".</param>
+    /// <returns>The string representation of the specified value.</returns>
+    public static string ToWordsNl(object value, string one, string many)
+    {
+        return new NumToWordsNl().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
+    }
+
     #endregion
 
     #region Program Flow
@@ -1000,12 +1103,21 @@ namespace FastReport.Functions
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object) }), "Conversion,ToWords");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWords");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWords");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object) }), "Conversion,ToWordsDe");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsDe");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsDe");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEnGb", new Type[] { typeof(object) }), "Conversion,ToWordsEnGb");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEnGb", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsEnGb");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEnGb", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsEnGb");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEs", new Type[] { typeof(object) }), "Conversion,ToWordsEs");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEs", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsEs");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEs", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsEs");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsFr", new Type[] { typeof(object) }), "Conversion,ToWordsFr");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsFr", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsFr");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsFr", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsFr");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsNl", new Type[] { typeof(object) }), "Conversion,ToWordsNl");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsNl", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsNl");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsNl", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsNl");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsRu", new Type[] { typeof(object) }), "Conversion,ToWordsRu");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsRu", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsRu");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsRu", new Type[] { typeof(object), typeof(bool), typeof(string), typeof(string), typeof(string) }), "Conversion,ToWordsRu");
