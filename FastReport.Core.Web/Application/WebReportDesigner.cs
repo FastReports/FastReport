@@ -564,7 +564,7 @@ namespace FastReport.Web
         {
             string requestString = "";
             using (TextReader textReader = new StreamReader(context.Request.Body))
-                requestString = textReader.ReadToEnd();
+                requestString = textReader.ReadToEndAsync().Result;
 
             string xmlHeader = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
             StringBuilder result = new StringBuilder(xmlHeader.Length + requestString.Length + 100);

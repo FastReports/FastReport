@@ -75,7 +75,6 @@ namespace FastReport
     {
         #region Internal Fields
 
-        internal bool dragAccept;
 
         #endregion Internal Fields
 

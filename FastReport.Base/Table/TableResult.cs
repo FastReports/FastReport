@@ -314,7 +314,7 @@ namespace FastReport.Table
                     rowsFit = GetRowsFit(startRow, freeSpace);
                 }
         // avoid the infinite loop if there is not enough space for one row
-        if (startRow > 0 && rowsFit == 0)
+        if (startRow >= 0 && rowsFit == 0)
           rowsFit = 1;
 
         int saveCurPage = engine.CurPage;
@@ -332,8 +332,12 @@ namespace FastReport.Table
               columnsFit = 1;
 
             engine.CurY = saveCurY;
-            curY = GeneratePage(startColumn, startRow, columnsFit, rowsFit,
-                new RectangleF(0, 0, engine.PageWidth, CanBreak ? freeSpace : Height), spans) + saveCurY;
+                        curY = (float)Math.Round(GeneratePage(startColumn, startRow, columnsFit, rowsFit,
+                            new RectangleF(0, 0, engine.PageWidth, CanBreak ? freeSpace : Height), spans), 2);
+                        if (engine.CurY > saveCurY)
+                            curY += saveCurY;
+                        else if (engine.CurY != curY)
+                            curY += engine.CurY;
 
             Left = 0;
             startColumn += columnsFit;
@@ -355,8 +359,13 @@ namespace FastReport.Table
 
         startRow += rowsFit;
         Left = saveLeft;
-        engine.CurPage = saveCurPage;
-        engine.CurY = curY;
+                if (engine.CurY >= (float)Math.Round(curY,2))
+                {
+                    engine.CurY = curY;
+                    //engine.CurPage = saveCurPage;
+                }
+                else
+                    engine.CurY += curY;
         preparedPages.AddPageAction = AddPageAction.Add;
         addNewPage = true;
 

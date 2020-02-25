@@ -416,9 +416,12 @@ namespace FastReport.Code
                 return;
             }
 
-            // compile report script
+            // compile report scripts
             using (CodeDomProvider provider = Report.CodeHelper.GetCodeProvider())
-            {
+            {   
+                ScriptSecurityEventArgs ssea = new ScriptSecurityEventArgs(Report, scriptText.ToString(), Report.ReferencedAssemblies);
+                Config.OnScriptCompile(ssea);
+
                 CompilerResults cr = provider.CompileAssemblyFromSource(cp, scriptText.ToString());
                 assembly = null;
                 instance = null;

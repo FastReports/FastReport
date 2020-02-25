@@ -57,6 +57,7 @@ namespace FastReport.Data
     private bool keeping;
     private Total keepTotal;
     private TotalCollection subTotals;
+        private TotalCollection parentTotal;
     private const string subPrefix = "_sub";
     #endregion
     
@@ -238,7 +239,7 @@ namespace FastReport.Data
         {
           case TotalType.Sum:
           case TotalType.Avg:
-                        this.value = ((Variant)(new Variant(this.value) + new Variant(value))).Value;
+                        this.value = (new Variant(this.value) + new Variant(value)).Value;
             break;
 
           case TotalType.Min:
@@ -361,6 +362,17 @@ namespace FastReport.Data
         return;
       }
 
+        // if Total refers to another total
+        Total total = IsRefersToTotal();
+        if (total != null)
+        {
+            if (!total.parentTotal.Contains(this))
+            {
+                total.parentTotal.Add(this);
+            }
+            return;
+        }
+
       object value = TotalType == TotalType.Count ? null : Report.Calc(Expression);
       AddValue(value);
       if (TotalType != TotalType.Avg || (value != null && !(value is DBNull)))
@@ -378,6 +390,28 @@ namespace FastReport.Data
 
       Clear();
     }
+
+        internal void ExecuteTotal(object val)
+        {
+            foreach (Total total in parentTotal)
+                total.Execute(val);
+        }
+
+        private void Execute(object val)
+        {
+            AddValue(val);
+            if (value != null && !(value is DBNull))
+                count++;
+        }
+
+        private Total IsRefersToTotal()
+        {
+            string expr = Expression;
+            if (expr.StartsWith("[") && expr.EndsWith("]"))
+                expr = expr.Substring(1, expr.Length - 2);
+
+            return Report.Dictionary.Totals.FindByName(expr);
+        }
 
     internal void StartKeep()
     {
@@ -408,6 +442,7 @@ namespace FastReport.Data
       evaluateCondition = "";
       resetAfterPrint = true;
       subTotals = new TotalCollection(null);
+            parentTotal = new TotalCollection(null);
       SetFlags(Flags.CanCopy, false);
     }
   }

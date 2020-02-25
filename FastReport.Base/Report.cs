@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Security;
 using System.Text;
@@ -56,7 +57,18 @@ namespace FastReport
         /// <summary>
         /// The AntiAlias quality. This mode may be used to produce the WYSIWYG text.
         /// </summary>
-        AntiAlias
+        AntiAlias,
+
+        /// <summary>
+        /// The "SingleBitPerPixel" quality.
+        /// </summary>
+        SingleBPP,
+
+
+        /// <summary>
+        /// The "SingleBitPerPixelGridFit" quality.
+        /// </summary>
+        SingleBPPGridFit
     }
 
     /// <summary>
@@ -1305,6 +1317,8 @@ namespace FastReport
                 if (ConvertNulls && (val == null || val is DBNull))
                     val = 0;
 
+                (cachedObject as Total).ExecuteTotal(val);
+
                 return val;
             }
 
@@ -2309,6 +2323,31 @@ namespace FastReport
                 SetRunning(false);
             }
         }
+
+
+        internal TextRenderingHint GetTextQuality()
+        {
+            switch (this.TextQuality)
+            {
+                case TextQuality.Regular:
+                    return TextRenderingHint.AntiAliasGridFit;
+
+                case TextQuality.ClearType:
+                    return TextRenderingHint.ClearTypeGridFit;
+
+                case TextQuality.AntiAlias:
+                    return TextRenderingHint.AntiAlias;
+
+                case TextQuality.SingleBPP:
+                    return TextRenderingHint.SingleBitPerPixel;
+
+                case TextQuality.SingleBPPGridFit:
+                    return TextRenderingHint.SingleBitPerPixelGridFit;
+            }
+
+            return TextRenderingHint.SystemDefault;
+        }
+
 
         /// <summary>
         /// Prepare page
