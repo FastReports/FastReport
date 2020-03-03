@@ -32,6 +32,7 @@ namespace FastReport.Utils
         private static bool FStringOptimization = false;
         private static bool preparedCompressed = true;
         private static bool disableHotkeys = false;
+        private static bool disableBacklight = false;
 
 #endregion Private Fields
 
@@ -126,6 +127,15 @@ namespace FastReport.Utils
         }
 
         /// <summary>
+        /// Gets or sets a value that indicates whether the object that the selected item will sit on should be backlighted.
+        /// </summary>
+        public static bool DisableBacklight
+        {
+            get { return disableBacklight; }
+            set { disableBacklight = value; }
+        }
+
+        /// <summary>
         /// Gets the root item of config xml.
         /// </summary>
         public static XmlItem Root
@@ -160,6 +170,11 @@ namespace FastReport.Utils
         {
             get { return typeof(Report).Assembly.GetName().Version.ToString(3); }
         }
+
+        /// <summary>
+        /// Called on script compile
+        /// </summary>
+        public static event EventHandler<ScriptSecurityEventArgs> ScriptCompile;
 
         #endregion Public Properties
 
@@ -222,9 +237,23 @@ namespace FastReport.Utils
             FLogs += s + "\r\n";
         }
 
-#endregion Internal Methods
 
-#region Private Methods
+        internal static void OnScriptCompile(ScriptSecurityEventArgs e)
+        {
+            if (ScriptCompile != null)
+            {
+                ScriptCompile.Invoke(null, e);
+            }
+
+            if (!e.IsValid)
+            {
+                throw new CompilerException(Res.Get("Messages,CompilerError"));
+            }
+        }
+
+        #endregion Internal Methods
+
+        #region Private Methods
 
         private static string GetTempFileName()
         {
@@ -407,6 +436,7 @@ namespace FastReport.Utils
         {
             XmlItem xi = Root.FindItem("UIOptions");
             xi.SetProp("DisableHotkeys", Converter.ToString(DisableHotkeys));
+            xi.SetProp("DisableBacklight", Converter.ToString(DisableBacklight));
         }
 
         private static void RestoreUIOptions()
@@ -418,6 +448,11 @@ namespace FastReport.Utils
             if (!String.IsNullOrEmpty(disableHotkeysStringValue))
             {
                 disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
+            }
+            string disableBacklightStringValue = xi.GetProp("DisableBacklight");
+            if (!String.IsNullOrEmpty(disableBacklightStringValue))
+            {
+                disableBacklight = disableBacklightStringValue.ToLower() != "false";
             }
         }
 

@@ -133,6 +133,7 @@ namespace FastReport
         private string mouseDownEvent;
         private string mouseEnterEvent;
         private string mouseLeaveEvent;
+        private bool backlight;
         #endregion
 
         #region Properties
@@ -155,6 +156,16 @@ namespace FastReport
         /// This event occurs when the user clicks the object in the preview window.
         /// </summary>
         public event EventHandler Click;
+
+        /// <summary>
+        /// This property specifies whether the object will be highlighted on the form.
+        /// </summary>
+        [Browsable(false)]
+        public bool Backlight 
+        { 
+            get { return backlight; } 
+            set { backlight = value; } 
+        }
 
         /// <summary>
         /// Gets or sets a value that determines if the object can be exported.
@@ -200,7 +211,7 @@ namespace FastReport
         [EditorAttribute("FastReport.TypeEditors.FillEditor, FastReport",typeof(UITypeEditor))]
         public virtual FillBase Fill
         {
-            get 
+            get
             {
                 return fill; 
             }
@@ -1029,6 +1040,7 @@ namespace FastReport
             mouseDownEvent = "";
             mouseEnterEvent = "";
             mouseLeaveEvent = "";
+            backlight = false;
             SetFlags(Flags.CanGroup, true);
             if (BaseName.EndsWith("Object"))
                 BaseName = ClassName.Substring(0, ClassName.Length - 6);

@@ -291,23 +291,6 @@ namespace FastReport.Barcode
             barcode.Initialize(Text, ShowText, Angle, Zoom);
         }
 
-        private TextRenderingHint GetTextQuality(TextQuality quality)
-        {
-            switch (quality)
-            {
-                case TextQuality.Regular:
-                    return TextRenderingHint.AntiAliasGridFit;
-
-                case TextQuality.ClearType:
-                    return TextRenderingHint.ClearTypeGridFit;
-
-                case TextQuality.AntiAlias:
-                    return TextRenderingHint.AntiAlias;
-            }
-
-            return TextRenderingHint.SystemDefault;
-        }
-
         private void DrawBarcode(FRPaintEventArgs e)
         {
             RectangleF displayRect = new RectangleF(
@@ -328,7 +311,7 @@ namespace FastReport.Barcode
                         g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                     }
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                    g.TextRenderingHint = report.GetTextQuality();
                 }
                 barcode.DrawBarcode(new ImageGraphicsRenderer(g, false), displayRect);
             }

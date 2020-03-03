@@ -710,23 +710,6 @@ namespace FastReport
             }
         }
 
-        private TextRenderingHint GetTextQuality(TextQuality quality)
-        {
-            switch (quality)
-            {
-                case TextQuality.Regular:
-                    return TextRenderingHint.AntiAliasGridFit;
-
-                case TextQuality.ClearType:
-                    return TextRenderingHint.ClearTypeGridFit;
-
-                case TextQuality.AntiAlias:
-                    return TextRenderingHint.AntiAlias;
-            }
-
-            return TextRenderingHint.SystemDefault;
-        }
-
         private SizeF CalcSize()
         {
             Report report = Report;
@@ -748,7 +731,7 @@ namespace FastReport
             try
             {
                 if (report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                    g.TextRenderingHint = report.GetTextQuality();
                 if (TextRenderType == TextRenderType.HtmlParagraph)
                 {
                     if (width == 0)
@@ -845,7 +828,7 @@ namespace FastReport
             GraphicsState state = g.Save();
 
             if (report.TextQuality != TextQuality.Default)
-                g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                g.TextRenderingHint = report.GetTextQuality();
 
             try
             {
@@ -896,7 +879,7 @@ namespace FastReport
             try
             {
                 if (report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                    g.TextRenderingHint = report.GetTextQuality();
 
                 AdvancedTextRenderer.StyleDescriptor htmlStyle = null;
 
@@ -1139,7 +1122,7 @@ namespace FastReport
 
                 Report report = Report;
                 if (report != null && report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                    g.TextRenderingHint = report.GetTextQuality();
 
                 if (textRect.Width > 0 && textRect.Height > 0)
                 {
@@ -1219,10 +1202,7 @@ namespace FastReport
                 if (!(TextFill is SolidFill))
                 {
                     textBrush.Dispose();
-                    textBrush = null;
                 }
-                if (report != null && report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = TextRenderingHint.SystemDefault;
             }
         }
 

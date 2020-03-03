@@ -395,6 +395,34 @@ namespace System.Windows.Forms
         ApplicationExitCall
     }
 
+    public enum BorderStyle
+    {
+        Fixed3D,
+        FixedSingle,
+        None
+    }
+
+    public enum ControlStyles
+    {
+        ContainerControl = 0x00000001,
+        UserPaint = 0x00000002,
+        Opaque = 0x00000004,
+        ResizeRedraw = 0x00000010,
+        FixedWidth = 0x00000020,
+        FixedHeight = 0x00000040,
+        StandardClick = 0x00000100,
+        Selectable = 0x00000200,
+        UserMouse = 0x00000400,
+        SupportsTransparentBackColor = 0x00000800,
+        StandardDoubleClick = 0x00001000,
+        AllPaintingInWmPaint = 0x00002000,
+        CacheText = 0x00004000,
+        EnableNotifyMessage = 0x00008000,
+        DoubleBuffer = 0x00010000,
+        OptimizedDoubleBuffer = 0x00020000,
+        UseTextForAccessibility = 0x00040000,
+    }
+
     [TypeConverter(typeof(PaddingConverter))]
     public struct Padding
     {
@@ -509,6 +537,7 @@ namespace System.Windows.Forms
 
     public class KeyEventArgs : EventArgs
     {
+        public Keys KeyCode;
     }
 
     public class KeyPressEventArgs : EventArgs
@@ -517,10 +546,22 @@ namespace System.Windows.Forms
 
     public class MouseEventArgs : EventArgs
     {
+        public int X, Y;
+        public MouseButtons Button;
+        public int Clicks;
+        public int Delta;
+        public MouseEventArgs(MouseButtons b, int a, int x, int y, int i) { }
     }
 
     public class PaintEventArgs : EventArgs
     {
+        public Graphics Graphics;
+    }
+
+    public class InvalidateEventArgs : EventArgs
+    {
+        public Rectangle Rect;
+        public InvalidateEventArgs(Rectangle r) { }
     }
 
     public class DateRangeEventArgs : EventArgs
@@ -620,12 +661,11 @@ namespace System.Windows.Forms
     public class Control : Component
     {
         public Control Parent;                                                              //
+        public List<Control> Controls = new List<Control>();
 
-        public Color BackColor;
         public Cursor Cursor;
         public bool Enabled = true;                                                         //
-        public Font Font = DrawUtils.DefaultFont;                                           //
-        public Color ForeColor;
+        public Font Font;                                           //
         public RightToLeft RightToLeft;
         public int TabIndex;
         public bool TabStop;
@@ -637,6 +677,11 @@ namespace System.Windows.Forms
         public int Top;                                                                     //
         public int Width;                                                                   //
         public int Height;                                                                  //
+        public static Keys ModifierKeys;
+        public Control ActiveControl;
+        public Rectangle ClientRectangle;
+        public Point Location;
+        public Size Size;
 
         public IntPtr Handle = IntPtr.Zero;
 
@@ -655,11 +700,53 @@ namespace System.Windows.Forms
         public event EventHandler Resize;
         public event EventHandler TextChanged;                                              //
         public event PaintEventHandler Paint;
+        public event EventHandler LostFocus;
 
         public void BringToFront() { }
         public void Focus() { }
         public void Hide() { }
         public void Show() { }
+        public virtual void Refresh() { }
+        public void Update() { }
+        public virtual void Invalidate(bool b) { }
+        public void Invalidate(Rectangle r) { }
+        public void Invalidate() { }
+        public void SetStyle(ControlStyles style, bool fl) { }
+        public Form FindForm() { return null; }
+
+        protected virtual System.Drawing.Size DefaultSize { get; set; }
+        public virtual Image BackgroundImage { get; set; }
+        public virtual Color BackColor { get; set; }
+        public virtual Color ForeColor { get; set; }
+
+
+        protected virtual void OnPaint(PaintEventArgs e) { }
+        protected virtual void OnPaintBackground(PaintEventArgs pevent) { }
+        protected virtual void OnSystemColorsChanged(EventArgs e) { }
+        protected virtual void OnLocationChanged(EventArgs e) { }
+        protected virtual void OnRightToLeftChanged(EventArgs e) { }
+        protected virtual void OnResize(EventArgs e) { }
+        protected virtual void OnGotFocus(EventArgs e) { }
+        protected virtual void OnLostFocus(EventArgs e) { }
+        protected virtual void OnCursorChanged(EventArgs e) { }
+        protected virtual void OnMouseDown(MouseEventArgs e) { }
+        protected virtual void OnMouseUp(MouseEventArgs e) { }
+        protected virtual void OnMouseMove(MouseEventArgs e) { }
+        protected virtual void OnDoubleClick(EventArgs e) { }
+        protected virtual void OnInvalidated(InvalidateEventArgs e) { }
+        protected virtual void OnBackColorChanged(EventArgs eventArgs) { }
+    }
+
+    public class ToolTip : Control
+    {
+        public bool Active;
+        public int AutoPopDelay;
+        public int InitialDelay;
+        public int ReshowDelay;
+        public bool ShowAlways;
+
+        internal void SetToolTip(Control c, string newToolTipText) { }
+        internal string GetToolTip(Control c) { return ""; }
     }
 
     public class ButtonBase : Control
@@ -683,6 +770,7 @@ namespace System.Windows.Forms
         public bool Checked = false;                                                        //
         public CheckState CheckState;
         public bool ThreeState;
+        public object Tag;
 
         public event EventHandler CheckedChanged;
     }
@@ -723,6 +811,7 @@ namespace System.Windows.Forms
         public int DropDownWidth;
         public int DropDownHeight;
         public int MaxDropDownItems;
+        public object Tag;
     }
 
     public class CheckedListBox : ListBox
@@ -815,6 +904,9 @@ namespace System.Windows.Forms
         public HorizontalAlignment TextAlign = HorizontalAlignment.Left;                    //
         public bool UseSystemPasswordChar;
         public bool WordWrap;
+        public BorderStyle BorderStyle;
+
+        internal void SelectAll() { }
     }
 
     public class Form : Control
@@ -845,6 +937,7 @@ namespace System.Windows.Forms
     {
         public event EventHandler Tick;
         public int Interval;
+        public bool Enabled;
 
         public void Start() { if (Tick != null) Tick(this, EventArgs.Empty); }
         public void Stop() { }
@@ -866,6 +959,17 @@ namespace System.Windows.Forms
 
         }
     }
+
+    internal class SystemInformation
+    {
+        public static bool HighContrast;
+    }
+
+    internal class ControlPaint
+    {
+        public static void DrawFocusRectangle(Graphics g, Rectangle r) { }
+    }
+
 }
 
 

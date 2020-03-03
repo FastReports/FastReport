@@ -129,6 +129,15 @@ namespace FastReport.Functions
       currencyList.Add("USD", new CurrencyInfo(
         new WordInfo(true, "доллар", "доллара", "долларов"),
         new WordInfo(true, "цент", "цента", "центов")));
-    }
+            currencyList.Add("RUB", new CurrencyInfo(
+        new WordInfo(true, "рубль", "рубля", "рублей"),
+        new WordInfo(false, "копейка", "копейки", "копеек")));
+            currencyList.Add("BYN", new CurrencyInfo(
+        new WordInfo(true, "рубль", "рубля", "рублей"),
+        new WordInfo(false, "копейка", "копейки", "копеек")));
+            currencyList.Add("BBYN", new CurrencyInfo(
+        new WordInfo(true, "белорусский рубль", "белорусских рубля", "белорусских рублей"),
+        new WordInfo(false, "белорусская копейка", "белорусских копейки", "белорусских копеек")));
+        }
   }
 }

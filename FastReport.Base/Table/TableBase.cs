@@ -973,16 +973,82 @@ namespace FastReport.Table
             return height;
         }
 
+        private bool BreakRow(int rowIndex, float height)
+        {
+            float freeSpace = Height - height;
+            //if (freeSpace - Rows[rowIndex].Height < 0)
+            //{
+                // Сreating a new row with all the properties of the previous one
+                TableRow newRow = new TableRow();
+                newRow.Parent = this;
+                newRow.SetReport(Report);
+                newRow.AssignAll(Rows[rowIndex]);
+                for (int j = 0; j < newRow.ChildObjects.Count; j++)
+                {
+                    newRow[j].Border = (Rows[rowIndex].ChildObjects[j] as TableCell).Border;
+                    (newRow[j] as TableCell).TextRenderType = (Rows[rowIndex].ChildObjects[j] as TableCell).TextRenderType;
+                    (newRow[j] as TableCell).ParagraphFormat = (Rows[rowIndex].ChildObjects[j] as TableCell).ParagraphFormat;
+                }
+
+                int cellIndex = 0;
+
+                // Breaking a row that doesn't fit on the page 
+                Rows[rowIndex].Height = freeSpace;
+                foreach (TableCell cell in Rows[rowIndex].ChildObjects)
+                {
+                    cell.Break(newRow.ChildObjects[cellIndex] as TableCell);
+                    cellIndex++;
+                }
+                newRow.Height -= freeSpace;
+                Rows[rowIndex].Height = freeSpace - 1;
+
+                // Restoring the correct index order
+                List<TableRow> copyRows = new List<TableRow>();
+                for (int j = rowIndex + 1; j < Rows.Count - 1; j++)
+                {
+                    copyRows.Add(Rows[j]);
+                    this.RemoveChild(Rows[j]);
+                }
+                foreach (TableRow row in copyRows)
+                {
+                    row.Parent = this;
+                }
+                for (int j = 0; j < Rows.Count; j++)
+                {
+                    Rows[j].SetIndex(j);
+                }
+                return true;
+           // }
+            //return false;
+        }
+
         /// <inheritdoc/>
         public override bool Break(BreakableComponent breakTo)
         {
             if (Rows.Count == 0)
                 return true;
-            if (Height < Rows[0].Height)
+            if (Rows[0].CanBreak && breakTo == null)
+                return true;
+            if (Height < Rows[0].Height && !Rows[0].CanBreak)
                 return false;
             TableBase tableTo = breakTo as TableBase;
             if (tableTo == null)
                 return true;
+
+            float height = 0;
+            for (int i = 0; i < Rows.Count; i++)
+            {
+                if (Rows[i].Bottom > Height)
+                    if (Rows[i].CanBreak)
+                    {
+                        BreakRow(i, height);
+                        tableTo.Clear();
+                        tableTo.AssignAll(this);
+
+                        break;
+                    }
+                height += Rows[i].Height;
+            }
 
             // get the span list
             List<Rectangle> spans = GetSpanList();

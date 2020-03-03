@@ -5,7 +5,7 @@ namespace FastReport.Utils
 {
 #if !COMMUNITY
     /// <summary>
-    /// Class for handling Exports visibility in the Preview control
+    /// Class for handling Exports visibility in the Preview control.
     /// </summary>
     public partial class ExportsOptions
     {
@@ -24,7 +24,7 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// 
+        /// Gets an instance of ExportOptions.
         /// </summary>
         /// <returns></returns>
         public static ExportsOptions GetInstance()
@@ -104,7 +104,7 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Saving current visible exports in config file
+        /// Saves current visible exports in config file.
         /// </summary>
         public void SaveExportOptions()
         {
@@ -112,7 +112,7 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Restoring visible exports from config file
+        /// Restores visible exports from config file.
         /// </summary>
         public void RestoreExportOptions()
         {
@@ -167,20 +167,20 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Sets Export category visibility
+        /// Sets Export category visibility.
         /// </summary>
-        /// <param name="name">Export category name</param>
-        /// <param name="enabled">Visibility state</param>
+        /// <param name="name">Export category name.</param>
+        /// <param name="enabled">Visibility state.</param>
         public void SetExportCategoryEnabled(string name, bool enabled)
         {
             FindItem(name, null).Enabled = enabled;
         }
 
         /// <summary>
-        /// Sets Export visibility
+        /// Sets Export visibility.
         /// </summary>
-        /// <param name="exportType">Export type</param>
-        /// <param name="enabled">Visibility state</param>
+        /// <param name="exportType">Export type.</param>
+        /// <param name="enabled">Visibility state.</param>
         public void SetExportEnabled(Type exportType, bool enabled)
         {
             ExportsTreeNode node = FindItem(null, exportType);

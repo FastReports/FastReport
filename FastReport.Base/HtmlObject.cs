@@ -44,22 +44,6 @@ namespace FastReport
         #endregion
 
         #region Private Methods
-        private TextRenderingHint GetTextQuality(TextQuality quality)
-        {
-            switch (quality)
-            {
-                case TextQuality.Regular:
-                    return TextRenderingHint.AntiAliasGridFit;
-
-                case TextQuality.ClearType:
-                    return TextRenderingHint.ClearTypeGridFit;
-
-                case TextQuality.AntiAlias:
-                    return TextRenderingHint.AntiAlias;
-            }
-
-            return TextRenderingHint.SystemDefault;
-        }
 
         private float InternalCalcWidth()
         {
@@ -124,17 +108,14 @@ namespace FastReport
                 Brush textBrush = e.Cache.GetBrush(Color.Black);
 
                 Report report = Report;
-                if (report != null && report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                if (report != null)
+                    g.TextRenderingHint = report.GetTextQuality();
 
                 if (textRect.Width > 0 && textRect.Height > 0)
                 {
                         // use simple rendering
                         g.DrawString(text, font, textBrush, textRect, format);
                 }
-
-                if (report != null && report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = TextRenderingHint.SystemDefault;
             }
         }
 

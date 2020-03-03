@@ -24,12 +24,14 @@
     <CantFindObject Text="Can't find object"/>
     <CantLoadReport Text="Can't load the report {0}"/>
     <CantSaveReport Text="Can't save the report. The file may be write-protected."/>
+    <ChangePicture Text="Would you like to replace current image?"/>
     <ClassError Text="Could not find the main report class, ReportScript"/>
     <Confirmation Text="Confirmation"/>
     <DataNotInitialized Text="Datasource is not initialized yet."/>
     <DecompressError Text="Cannot decompress the file"/>
     <DecryptError Text="Decrypt error: wrong password"/>
     <DelegateError Text="{0} delegate must have two arguments: 'sender' and 'e'"/>
+    <CompilerError Text="Report script is invalid"/>
     <DeleteAncestor Text="Could not delete {0}, it was introduced in the ancestor report"/>
     <DuplicateName Text="Object with name {0} already exists"/>
     <GroupHeaderHasNoGroupCondition Text="{0} has no group condition"/>
@@ -63,7 +65,7 @@
     <ErrorInHighlightCondition Text="Error in highlight condition"/>
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
-    <ChangePicture Text="Would you like to change current image?"/>
+    
   </Messages>
   <Misc>
     <ShortUnitsMm Text="mm"/>
@@ -1671,6 +1673,8 @@
       <QualityRegular Text="Regular"/>
       <QualityClearType Text="ClearType"/>
       <QualityAntiAlias Text="AntiAlias"/>
+	  <QualitySingleBPP Text="SingleBPP"/>
+	  <QualitySingleBPPGridFit Text="SingleBPPGridFit"/>
       <PasswordError Text="Password does not match. Please retype again."/>
       <Recipients Text="Recipient(s) (for example, john@url.com):"/>
       <Subject Text="Subject:"/>
@@ -1813,6 +1817,7 @@
         <Yes Text="Yes"/>
       </RightToLeft>
       <DisableHotkeys Text="Disable hotkeys"/>
+	  <DisableBacklight Text="Disable bands backlighting"/>
     </UIOptions>
     <WatermarkEditor Text="Watermark">
       <Enabled Text="Enabled"/>
@@ -2429,6 +2434,10 @@
     </Email>
     <Dxf Text="Export to DXF">
       <File Text="DXF file"/>
+      <FillMode Text="Fill mode:"/>
+      <FillModeBorder Text="Border"/>
+      <FillModeSolid Text="Solid"/>
+      <BarcodesGap Text="Barcodes gap (mm):"/>
     </Dxf>
     <Hpgl Text="Export to Hpgl(plt)">
       <File Text="Hpgl file"/>

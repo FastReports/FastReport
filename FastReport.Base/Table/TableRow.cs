@@ -24,7 +24,8 @@ namespace FastReport.Table
     private float minHeight;
     private float maxHeight;
     private bool autoSize;
-    private bool pageBreak;
+        private bool canBreak;
+        private bool pageBreak;
     private int keepRows;
     private int index;
     private float saveHeight;
@@ -49,7 +50,7 @@ namespace FastReport.Table
       set
       {
         value = Converter.DecreasePrecision(value, 2);
-        if (value > MaxHeight)
+        if (value > MaxHeight && !canBreak)
           value = MaxHeight;
         if (value < MinHeight)
           value = MinHeight;
@@ -99,6 +100,17 @@ namespace FastReport.Table
       get { return autoSize; }
       set { autoSize = value; }
     }
+
+        /// <summary>
+        /// Gets or sets a value that determines if the component can break its contents across pages.
+        /// </summary>
+        [DefaultValue(false)]
+        [Category("Behavior")]
+        public bool CanBreak
+        {
+            get { return canBreak; }
+            set { canBreak = value; }
+        }
 
     /// <summary>
     /// Gets the index of this row.
@@ -287,6 +299,7 @@ namespace FastReport.Table
       MaxHeight = src.MaxHeight;
       AutoSize = src.AutoSize;
       KeepRows = src.KeepRows;
+            CanBreak = src.CanBreak;
 
       base.Assign(source);
     }
@@ -332,6 +345,8 @@ namespace FastReport.Table
         writer.WriteFloat("Height", Height);
       if (AutoSize != c.AutoSize)
         writer.WriteBool("AutoSize", AutoSize);
+            if (CanBreak != c.CanBreak)
+                writer.WriteBool("CanBreak", CanBreak);
 
       if (Parent is TableResult)
       {

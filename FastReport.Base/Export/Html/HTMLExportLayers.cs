@@ -139,10 +139,10 @@ namespace FastReport.Export.Html
                 }
 
                 // we need to adjust left, top, width and height values because borders take up space in html elements
-                float borderLeft = 0;
-                float borderRight = 0;
-                float borderTop = 0;
-                float borderBottom = 0;
+                float borderLeft;
+                float borderRight;
+                float borderTop;
+                float borderBottom;
                 HTMLBorderWidthValues(obj, out borderLeft, out borderTop, out borderRight, out borderBottom);
 
                 string href = GetHref(obj);
@@ -271,10 +271,10 @@ namespace FastReport.Export.Html
                 style.Append("margin-top:").Append(Px(top * Zoom));
 
             // we need to apply border width in order to position our div perfectly
-            float borderLeft = 0;
-            float borderRight = 0;
-            float borderTop = 0;
-            float borderBottom = 0;
+            float borderLeft;
+            float borderRight;
+            float borderTop;
+            float borderBottom;
             if (HTMLBorderWidthValues(obj, out borderLeft, out borderTop, out borderRight, out borderBottom))
             {
                 style.Append("position:absolute;")
@@ -282,13 +282,10 @@ namespace FastReport.Export.Html
                     .Append("top:").Append(Px(-1 * borderTop / 2f));
             }
 
-            string href = GetHref(obj);
-
             FastString result = new FastString(128);
             result.Append("<div ").
                 Append(GetStyleTag(UpdateCSSTable(style.ToString()))).Append(">").
-                Append(href).Append(text).Append(href != String.Empty ? "</a>" : String.Empty).
-                Append("</div>");
+                Append(text).Append("</div>");
 
             return result;
         }
