@@ -12,7 +12,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     partial class WebReport
     {

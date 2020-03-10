@@ -1,4 +1,4 @@
-﻿namespace FastReport.Web
+﻿namespace FastReport.OpenSource.Web
 {
     partial class WebReport
     {

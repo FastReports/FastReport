@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     public static class Extensions
     {

@@ -1,4 +1,4 @@
-﻿using FastReport.Web.Controllers;
+﻿using FastReport.OpenSource.Web.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Routing;
 using System;
 using System.Threading.Tasks;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     class FastReportMiddleware
     {

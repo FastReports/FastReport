@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     partial class WebReport
     {

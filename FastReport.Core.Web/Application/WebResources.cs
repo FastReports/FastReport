@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace FastReport.Web.Application
+namespace FastReport.OpenSource.Web.Application
 {
     internal class WebRes
     {

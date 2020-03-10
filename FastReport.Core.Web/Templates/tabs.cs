@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     partial class WebReport
     {

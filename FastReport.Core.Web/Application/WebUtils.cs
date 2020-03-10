@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using FastReport.Export;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     static class WebUtils
     {

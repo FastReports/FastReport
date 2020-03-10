@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Http;
 
-namespace FastReport.Web.Controllers
+namespace FastReport.OpenSource.Web.Controllers
 {
     class ResourceController : BaseController
     {

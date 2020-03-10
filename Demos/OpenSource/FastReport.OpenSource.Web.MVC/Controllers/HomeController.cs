@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FastReport.Web;
+using FastReport.OpenSource.Web;
 using FastReport.OpenSource.Web.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;

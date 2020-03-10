@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using System;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     class FastReportGlobal
     {

@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Encodings.Web;
 
-namespace FastReport.Web.Controllers
+namespace FastReport.OpenSource.Web.Controllers
 {
     class DesignerController : BaseController
     {

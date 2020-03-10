@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     class WebReportCache
     {

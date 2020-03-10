@@ -1,7 +1,7 @@
 ﻿using FastReport.Export.Html;
 using FastReport.Preview;
 using FastReport.Table;
-using FastReport.Web.Controllers;
+using FastReport.OpenSource.Web.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,7 +12,7 @@ using System.Text;
 using FastReport.Export.Pdf;
 #endif
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     public partial class WebReport
     {

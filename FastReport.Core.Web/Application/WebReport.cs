@@ -5,10 +5,10 @@ using System.Text;
 using Microsoft.AspNetCore.Html;
 using System.Threading.Tasks;
 using System.Linq;
-using FastReport.Web.Controllers;
-using FastReport.Web.Application;
+using FastReport.OpenSource.Web.Controllers;
+using FastReport.OpenSource.Web.Application;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     public enum WebReportMode
     {

@@ -22,7 +22,7 @@ using FastReport.Export.XAML;
 using FastReport.Export.Xml;
 #endif
 
-namespace FastReport.Web.Controllers
+namespace FastReport.OpenSource.Web.Controllers
 {
     class ReportController : BaseController
     {

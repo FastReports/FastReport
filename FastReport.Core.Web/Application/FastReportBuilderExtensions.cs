@@ -1,5 +1,5 @@
 ﻿using System;
-using FastReport.Web;
+using FastReport.OpenSource.Web;
 using Microsoft.AspNetCore.Routing;
 using System.Net.Http;
 using Microsoft.AspNetCore.Hosting;

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     class Resources
     {

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace FastReport.Web.Controllers
+namespace FastReport.OpenSource.Web.Controllers
 {
     abstract class BaseController
     {

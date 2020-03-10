@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FastReport.Web
+namespace FastReport.OpenSource.Web
 {
     partial class WebReport
     {
