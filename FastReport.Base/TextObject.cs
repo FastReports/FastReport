@@ -1423,8 +1423,8 @@ namespace FastReport
                 TextFill = c.TextFill.Clone();
             if (c.ApplyFont)
                 Font = c.Font;
-            if (!c.Visible)
-                Visible = false;
+
+            Visible = c.Visible;
         }
 
         #endregion

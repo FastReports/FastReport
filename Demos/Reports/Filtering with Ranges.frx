@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to use the range filtering. To do this:&#13;&#10;- put two TextBox controls on a dialog form;&#13;&#10;- connect each one to the same data column (using the &quot;DataColumn&quot; property);&#13;&#10;- select the first textbox and set its &quot;FilterOperation&quot; property to &quot;GreaterThanOrEqual&quot;;&#13;&#10;- select the second textbox and set its &quot;FilterOperation&quot; property to &quot;LessThanOrEqual&quot;;&#13;&#10;- run a report." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="01/22/2019 12:05:43" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to use the range filtering. To do this:&#13;&#10;- put two TextBox controls on a dialog form;&#13;&#10;- connect each one to the same data column (using the &quot;DataColumn&quot; property);&#13;&#10;- select the first textbox and set its &quot;FilterOperation&quot; property to &quot;GreaterThanOrEqual&quot;;&#13;&#10;- select the second textbox and set its &quot;FilterOperation&quot; property to &quot;LessThanOrEqual&quot;;&#13;&#10;- run a report." ReportInfo.Created="01/18/2008 00:04:46" ReportInfo.Modified="02/25/2020 15:14:28" ReportInfo.CreatorVersion="2020.1.22.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace FastReport
 }
 </ScriptText>
   <Styles>
-    <Style Name="EvenRows" Fill.Color="Linen"/>
+    <Style Name="EvenRows" Fill.Color="Linen" Font="Arial, 10pt"/>
   </Styles>
   <Dictionary>
     <TableDataSource Name="Customers" ReferenceName="NorthWind.Customers" DataType="System.Int32" Enabled="true">
@@ -63,28 +63,29 @@ namespace FastReport
     </TableDataSource>
     <Relation Name="CustomersOrders" ReferenceName="NorthWind.CustomersOrders" ParentDataSource="Customers" ChildDataSource="Orders" ParentColumns="CustomerID" ChildColumns="CustomerID" Enabled="true"/>
   </Dictionary>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="85.05" CanGrow="true">
-      <TextObject Name="Text6" Top="37.8" Width="718.2" Height="28.35" Text="CUSTOMERS ORDERS" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text8" Top="66.15" Width="718.2" Height="18.9" Text="between [TextBox1.Text] and [TextBox2.Text]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="113.4" CanGrow="true">
+      <TextObject Name="Text6" Top="66.15" Width="718.2" Height="28.35" Text="CUSTOMERS ORDERS" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text8" Top="94.5" Width="718.2" Height="18.9" Text="between [TextBox1.Text] and [TextBox2.Text]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Top="28.35" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text13" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/afd51" CanGrow="true" CanShrink="true" Text="Learn about various report objects on the Fast Reports Academy channel" Padding="4, 4, 4, 4" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
     </ReportTitleBand>
-    <PageHeaderBand Name="PageHeader1" Top="89.05" Width="718.2" Height="37.8" Fill.Color="SandyBrown">
+    <PageHeaderBand Name="PageHeader1" Top="117.4" Width="718.2" Height="37.8" Fill.Color="SandyBrown">
       <TextObject Name="Text5" Top="9.45" Width="94.5" Height="18.9" Text="OrderID" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
       <TextObject Name="Text3" Left="103.95" Top="9.45" Width="94.5" Height="18.9" Text="OrderDate" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
       <TextObject Name="Text7" Left="207.9" Top="9.45" Width="302.4" Height="18.9" Text="CompanyName" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
     </PageHeaderBand>
-    <DataBand Name="Data2" Top="130.85" Width="718.2" Height="18.9" EvenStyle="EvenRows" DataSource="Orders">
+    <DataBand Name="Data2" Top="159.2" Width="718.2" Height="18.9" EvenStyle="EvenRows" DataSource="Orders">
       <TextObject Name="Text4" Width="94.5" Height="18.9" Text="[Orders.OrderID]" VertAlign="Center" Font="Tahoma, 8pt"/>
       <TextObject Name="Text2" Left="103.95" Width="94.5" Height="18.9" Text="[Orders.OrderDate]" Format="Date" Format.Format="d" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
       <TextObject Name="Text1" Left="207.9" Width="302.4" Height="18.9" Text="[Orders.Customers.CompanyName]" VertAlign="Center" Font="Tahoma, 8pt"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="153.75" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+    <PageFooterBand Name="PageFooter1" Top="182.1" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
       <TextObject Name="Text10" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
       <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
-  <DialogPage Name="Form1" Width="362" Height="376" AcceptButton="btnOk" CancelButton="btnCancel" LoadEvent="Form1_Load">
+  <DialogPage Name="Form1" Width="362" Height="376" AcceptButton="btnOk" CancelButton="btnCancel" Font="Tahoma, 8pt" LoadEvent="Form1_Load">
     <ButtonControl Name="btnCancel" Left="179" Top="305" Font="Tahoma, 8pt" TabIndex="0" Text="Cancel" DialogResult="Cancel"/>
     <ButtonControl Name="btnOk" Left="96" Top="305" Font="Tahoma, 8pt" TabIndex="1" Text="OK" ClickEvent="" DialogResult="OK"/>
     <LabelControl Name="Label1" Left="80" Top="160" Width="103" Height="13" Font="Tahoma, 8pt" TabIndex="4" Text="Order number from:"/>

@@ -31,7 +31,36 @@ namespace FastReport.Web.Controllers
                 if (!FindWebReport(out WebReport webReport))
                     return new NotFoundResult();
 
-                return webReport.DesignerSaveReport(Context);
+                if (webReport.DesignerSaveMethod == null)
+                {
+                    // old saving way by self-request
+                    return webReport.DesignerSaveReport(Context);
+                }
+                else
+                {
+                    // save by using a Func
+
+                    string report = webReport.Report.SaveToString();
+                    string msg = string.Empty;
+                    int code = 200;
+                    try
+                    {
+                        msg = webReport.DesignerSaveMethod(webReport.ID, webReport.ReportFileName, report);
+                    }
+                    catch(Exception ex)
+                    {
+                        code = 500;
+                        msg = ex.Message;
+                    }
+
+                    var result = new ContentResult()
+                    {
+                        StatusCode = code,
+                        ContentType = "text/html",
+                        Content = msg
+                    };
+                    return result;
+                }
             });
 
             RegisterHandler("/designer.previewReport", async () =>

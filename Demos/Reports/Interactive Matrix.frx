@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create an interactive report using the Matrix object. Its cells are clickable and can be used to display the detailed report about the cell's value. To create such a report:&#13;&#10;- select the matrix cell, go to &quot;Properties&quot; window and setup the &quot;Hyperlink&quot; property:&#13;&#10;- set the &quot;Kind&quot; to &quot;DetailReport&quot;;&#13;&#10;- set the &quot;DetailReportName&quot; to detail report's file;&#13;&#10;- set the &quot;ReportParameter&quot; to the detailed report's parameter name.&#13;&#10;When you click a cell in the preview window, the detailed report will be loaded and opened with a parameter that describes the cell's address. The address contains all column and row values separated by semicolon. In the detailed report, you have to use the parameter to filter the data. See how to do it in the &quot;Interactive Matrix - Details.frx&quot; report." ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="01/18/2019 17:02:48" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create an interactive report using the Matrix object. Its cells are clickable and can be used to display the detailed report about the cell's value. To create such a report:&#13;&#10;- select the matrix cell, go to &quot;Properties&quot; window and setup the &quot;Hyperlink&quot; property:&#13;&#10;- set the &quot;Kind&quot; to &quot;DetailReport&quot;;&#13;&#10;- set the &quot;DetailReportName&quot; to detail report's file;&#13;&#10;- set the &quot;ReportParameter&quot; to the detailed report's parameter name.&#13;&#10;When you click a cell in the preview window, the detailed report will be loaded and opened with a parameter that describes the cell's address. The address contains all column and row values separated by semicolon. In the detailed report, you have to use the parameter to filter the data. See how to do it in the &quot;Interactive Matrix - Details.frx&quot; report." ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="02/25/2020 12:11:43" ReportInfo.CreatorVersion="2020.1.22.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -139,12 +139,13 @@ namespace FastReport
     <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="Orders" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
     <Relation Name="ProductsOrderDetails" ReferenceName="NorthWind.ProductsOrderDetails" ParentDataSource="Products" ChildDataSource="Order Details" ParentColumns="ProductID" ChildColumns="ProductID" Enabled="true"/>
   </Dictionary>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
-      <TextObject Name="Text1" Left="9.45" Top="47.25" Width="444.15" Height="18.9" Text="Products by Employees (click the value to view order details)" Font="Tahoma, 10pt, style=Bold"/>
-      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="94.5" CanGrow="true">
+      <TextObject Name="Text1" Left="9.45" Top="75.6" Width="444.15" Height="18.9" Text="Products by Employees (click the value to view order details)" Font="Tahoma, 10pt, style=Bold"/>
+      <TextObject Name="Text11" Top="28.35" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text5" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/f1e6d" Hyperlink.OpenLinkInNewTab="true" Text="Learn how to build this report on the Fast Reports Academy channel" VertAlign="Center" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="70.15" Width="718.2" Height="434.7">
+    <DataBand Name="Data1" Top="98.5" Width="718.2" Height="434.7">
       <MatrixObject Name="Matrix1" Left="18.9" Top="9.45" Width="396.9" Height="415.8" FixedRows="1" FixedColumns="1" AutoSize="false" DataSource="Order Details" Style="Green">
         <MatrixColumns>
           <Header Expression="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName]"/>
@@ -179,7 +180,7 @@ namespace FastReport
         </TableRow>
       </MatrixObject>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="508.85" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+    <PageFooterBand Name="PageFooter1" Top="537.2" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
       <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>

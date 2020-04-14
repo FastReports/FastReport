@@ -366,6 +366,7 @@ namespace FastReport.Code
             }    
         }
 
+#if MONO
         private void InternalCompile()
         {
             // set the current folder
@@ -387,7 +388,116 @@ namespace FastReport.Code
             // configure compiler options
             CompilerParameters cp = new CompilerParameters();
             AddFastReportAssemblies(cp.ReferencedAssemblies);
-#if NETCOREAPP
+            AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);
+            ReviewReferencedAssemblies(cp.ReferencedAssemblies);
+            cp.TreatWarningsAsErrors = true;
+            cp.GenerateInMemory = true;
+            // sometimes the system temp folder is not accessible...
+            if (Config.TempFolder != null)
+                cp.TempFiles = new TempFileCollection(Config.TempFolder, false);
+
+            // find assembly in cache
+            StringBuilder assemblyHashSB = new StringBuilder();
+            foreach (string a in cp.ReferencedAssemblies)
+                assemblyHashSB.Append(a);
+            assemblyHashSB.Append(scriptText.ToString());
+            byte[] hash = null;
+            using (HMACSHA1 hMACSHA1 = new HMACSHA1(Encoding.ASCII.GetBytes(shaKey)))
+            {
+                hash = hMACSHA1.ComputeHash(Encoding.Unicode.GetBytes(assemblyHashSB.ToString()));
+            }
+            string assemblyHash = Convert.ToBase64String(hash);
+            Assembly cachedAssembly = null;
+            if (FAssemblyCache.TryGetValue(assemblyHash, out cachedAssembly))
+            {
+                assembly = cachedAssembly;
+                InitInstance(assembly.CreateInstance("FastReport.ReportScript"));
+                return;
+            }
+
+            // compile report script
+            using (CodeDomProvider provider = Report.CodeHelper.GetCodeProvider())
+            {
+                CompilerResults cr = provider.CompileAssemblyFromSource(cp, scriptText.ToString());
+                assembly = null;
+                instance = null;
+                int needException = cr.Errors.Count; // shows need to throw exception or errors can be handled without exception
+                if (cr.Errors.Count > 0)
+                {
+                    string errors = "";
+                    foreach (CompilerError ce in cr.Errors)
+                    {
+                        int line = GetScriptLine(ce.Line);
+                        if( ce.ErrorText.StartsWith("Warning as Error:"))
+                        {
+                            needException--;
+                        }
+                        // error is inside own items
+                        if (line == -1)
+                        {
+                            string errObjName = GetErrorObjectName(ce.Line);
+
+                            // handle division by zero errors
+                            if (ce.ErrorNumber == "CS0020")
+                            {
+                                TextObjectBase text = Report.FindObject(errObjName) as TextObjectBase;
+                                text.CanGrow = true;
+                                text.FillColor = Color.Red;
+                                text.Text = "DIVISION BY ZERO!";
+                                if (cr.Errors.Count == 1) // there are only division by zero errors, exception does't needed
+                                    needException--;
+                            }
+                            else
+                            {
+                                errors += String.Format("({0}): " + Res.Get("Messages,Error") + " {1}: {2}", new object[] { errObjName, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
+                                ErrorMsg(errObjName, ce);
+                            }
+                        }
+                        else
+                        {
+                            errors += String.Format("({0},{1}): " + Res.Get("Messages,Error") + " {2}: {3}", new object[] { line, ce.Column, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
+                            ErrorMsg(ce, line);
+                            
+                        }
+                    }
+                    if (needException != 0) // throw exception if errors were not handled
+                        throw new CompilerException(errors);
+                }
+                else
+                {
+#if DOTNET_4
+                    FAssemblyCache.TryAdd(assemblyHash, cr.CompiledAssembly);
+#else
+                    FAssemblyCache.Add(assemblyHash, cr.CompiledAssembly);
+#endif
+                    assembly = cr.CompiledAssembly;
+                    InitInstance(assembly.CreateInstance("FastReport.ReportScript"));
+                }
+            }
+        }
+#else
+        private void InternalCompile()
+        {
+            // set the current folder
+            string currentFolder = Config.ApplicationFolder;
+            if (Config.WebMode)
+            {
+                try
+                {
+                    if (Directory.Exists(currentFolder + @"Bin\"))
+                        currentFolder += @"Bin\";
+                }
+                catch
+                {
+                }
+            }
+            // Commented by Samuray
+            //Directory.SetCurrentDirectory(currentFolder);
+
+            // configure compiler options
+            CompilerParameters cp = new CompilerParameters();
+            AddFastReportAssemblies(cp.ReferencedAssemblies);
+#if NETSTANDARD || NETCOREAPP
             cp.ReferencedAssemblies.Add("System.Drawing.Primitives");
 #endif
             AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);
@@ -475,6 +585,7 @@ namespace FastReport.Code
                 }
             }
         }
+#endif
 
         public void InitInstance(object instance)
         {

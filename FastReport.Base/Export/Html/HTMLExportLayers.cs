@@ -528,12 +528,9 @@ namespace FastReport.Export.Html
                     if (obj is PictureObject)
                     {
                         PictureObject pic = (obj as PictureObject);
-                       if (pic.Image == null)
+                        if (pic.Image != null)
                         {
-
-                        }
-                       else
-                        {
+#if MONO
                             using (MemoryStream picStr = new MemoryStream())
                             {
                                 
@@ -550,6 +547,10 @@ namespace FastReport.Export.Html
                                     hash = Crypter.ComputeHash(picStr);
                                 }        
                             }   
+#else
+                            hash = Crypter.ComputeHash(PictureStream);
+                            PictureStream.Position = 0;
+#endif
                         }
                     }
                     else

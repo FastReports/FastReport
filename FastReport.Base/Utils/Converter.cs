@@ -233,9 +233,19 @@ namespace FastReport.Utils
           if (i + 3 < s.Length && s[i + 1] == '#')
           {
             int j = i + 3;
-            while (s[j] != ';')
-              j++;
-            result.Append((char)int.Parse(s.Substring(i + 2, j - i - 2)));
+            j = s.IndexOf(";", j, s.Length - j);
+            if (j == -1)
+                throw new FormatException();
+            if (s[i + 2] == 'x')
+            {
+                char hexChar = (char)int.Parse(s.Substring(i + 3, j - i - 3), NumberStyles.AllowHexSpecifier);
+                result.Append(hexChar);
+            }
+            else
+            {
+                result.Append((char)int.Parse(s.Substring(i + 2, j - i - 2)));
+            }
+            
             i = j;
           }
           else if (i + 5 < s.Length && s.Substring(i + 1, 5) == "quot;")

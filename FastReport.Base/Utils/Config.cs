@@ -36,7 +36,7 @@ namespace FastReport.Utils
 
 #endregion Private Fields
 
-#region Public Properties
+        #region Public Properties
 
         /// <summary>
         /// Gets or sets the optimization of strings. Is experimental feature.
@@ -282,6 +282,7 @@ namespace FastReport.Utils
             FDoc.AutoIndent = true;
             SaveUIStyle();
             SaveUIOptions();
+            SavePreviewSettings();
 #if !COMMUNITY
                 SaveExportOptions();
 #endif
@@ -342,6 +343,7 @@ namespace FastReport.Utils
                 RestoreUIStyle();
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
+                RestorePreviewSettings();
 #if !COMMUNITY
                 RestoreExportOptions();
 #endif
