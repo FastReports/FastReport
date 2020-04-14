@@ -2,6 +2,7 @@ using FastReport.Utils;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace FastReport
@@ -21,7 +22,9 @@ namespace FastReport
         private string tag;
         private float top;
         private bool visible;
+        private string visibleExpression;
         private bool printable;
+        private string printableExpression;
         private float width;
 
         #endregion Fields
@@ -334,6 +337,18 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Gets or sets a string containing expression that determines should be object displayed in the preview window.
+        /// </summary>
+        [DefaultValue("")]
+        [Category("Behavior")]
+        [Editor("FastReport.TypeEditors.ExpressionEditor, FastReport", typeof(UITypeEditor))]
+        public virtual string VisibleExpression
+        {
+            get { return visibleExpression; }
+            set { visibleExpression = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a value that determines if the object can be printed on the printer.
         /// </summary>
         /// <remarks>
@@ -346,6 +361,18 @@ namespace FastReport
         {
             get { return printable; }
             set { printable = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a string containing expression that determines should be object printed on the printer.
+        /// </summary>
+        [DefaultValue("")]
+        [Category("Behavior")]
+        [Editor("FastReport.TypeEditors.ExpressionEditor, FastReport", typeof(UITypeEditor))]
+        public string PrintableExpression
+        {
+            get { return printableExpression; }
+            set { printableExpression = value; }
         }
 
         /// <summary>
@@ -394,7 +421,9 @@ namespace FastReport
         {
             anchor = AnchorStyles.Left | AnchorStyles.Top;
             visible = true;
+            visibleExpression = "";
             printable = true;
+            printableExpression = "";
             SetFlags(Flags.CanWriteBounds | Flags.HasGlobalName, true);
             tag = "";
         }
@@ -416,7 +445,9 @@ namespace FastReport
             Dock = src.Dock;
             Anchor = src.Anchor;
             Visible = src.Visible;
+            VisibleExpression = src.VisibleExpression;
             Printable = src.Printable;
+            PrintableExpression = src.PrintableExpression;
             Tag = src.Tag;
         }
 
@@ -428,6 +459,8 @@ namespace FastReport
 
             if (Printable != c.Printable)
                 writer.WriteBool("Printable", Printable);
+            if (PrintableExpression != c.PrintableExpression)
+                writer.WriteStr("PrintableExpression", PrintableExpression);
             if (HasFlag(Flags.CanWriteBounds))
             {
                 if (FloatDiff(Left, c.Left))
@@ -447,6 +480,8 @@ namespace FastReport
                     writer.WriteValue("Anchor", Anchor);
                 if (Visible != c.Visible)
                     writer.WriteBool("Visible", Visible);
+                if (VisibleExpression != c.VisibleExpression)
+                    writer.WriteStr("VisibleExpression", VisibleExpression);
                 if (GroupIndex != c.GroupIndex)
                     writer.WriteInt("GroupIndex", GroupIndex);
             }

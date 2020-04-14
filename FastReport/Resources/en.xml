@@ -289,7 +289,8 @@
     <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>
     <OsmFile Text="OpenStreetMap file(*.osm)|*.osm"/>
     <Fr3File Text="FastReport VCL report (*.fr3)|*.fr3"/>
-    <ListAndLabelFiles Text="List and Label files|*.rpt;*.crd;*.srt;*.inv;*.lab;*.let"/>
+    <RtfFile Text="RTF files (*.rtf)|*.rtf"/>
+   <ListAndLabelFiles Text="List and Label files|*.rpt;*.crd;*.srt;*.inv;*.lab;*.let"/>
     <DevExpressFiles Text="DevExpress files (*.repx)|*.repx"/>
     <JsonFile Text="JSON file (*.json,*.txt)|*.json;*.txt"/>
     <LaTeXFile Text="TeX file (*.tex)|*.tex"/>
@@ -368,6 +369,7 @@
         <Copy Text="Copy"/>
         <Paste Text="Paste"/>
         <Delete Text="Delete"/>
+        <NewPage Text="New Page"/>
         <CopyPage Text="Copy Page"/>
         <DeletePage Text="Delete Page"/>
         <SelectAll Text="Select All"/>

@@ -16,7 +16,10 @@ namespace FastReport.Utils
         /// <summary>
         /// All exports available in the Preview control.
         /// </summary>
-        public List<ExportsTreeNode> ExportsMenu { get { return menuNodes; } }
+        public List<ExportsTreeNode> ExportsMenu
+        {
+            get { return menuNodes; }
+        }
 
         private ExportsOptions()
         {
@@ -40,7 +43,7 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Exports menu node
+        /// Exports menu node.
         /// </summary>
         public partial class ExportsTreeNode
         {
@@ -57,13 +60,63 @@ namespace FastReport.Utils
             private bool enabled = true;
             private bool isExport;
 
-            public string Name { get { return name; } }
-            public List<ExportsTreeNode> Nodes { get { return nodes; } }
-            public Type ExportType { get { return exportType; } }
-            public int ImageIndex { get { return imageIndex; } }
-            public ObjectInfo Tag { get { return tag; } set { tag = value; } }
-            public bool Enabled { get { return enabled; } set { enabled = value; } }
-            public bool IsExport { get { return isExport; } }
+            /// <summary>
+            /// Gets the name.
+            /// </summary>
+            public string Name
+            {
+                get { return name; }
+            }
+
+            /// <summary>
+            /// Gets nodes.
+            /// </summary>
+            public List<ExportsTreeNode> Nodes
+            {
+                get { return nodes; }
+            }
+            
+            /// <summary>
+            /// Gets type of the export.
+            /// </summary>
+            public Type ExportType
+            {
+                get { return exportType; }
+            }
+            
+            /// <summary>
+            /// Gets index of the image.
+            /// </summary>
+            public int ImageIndex
+            {
+                get { return imageIndex; }
+            }
+            
+            /// <summary>
+            /// Gets or sets the tag.
+            /// </summary>
+            public ObjectInfo Tag
+            {
+                get { return tag; }
+                set { tag = value; }
+            }
+
+            /// <summary>
+            /// Gets or sets a value that indicates is node enabled.
+            /// </summary>
+            public bool Enabled
+            {
+                get { return enabled; }
+                set { enabled = value; }
+            }
+            
+            /// <summary>
+            /// Gets true if node is export, otherwise false.
+            /// </summary>
+            public bool IsExport
+            {
+                get { return isExport; }
+            }
 
             public ExportsTreeNode(string name, bool isExport)
             {

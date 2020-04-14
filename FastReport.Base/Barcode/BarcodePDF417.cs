@@ -703,26 +703,32 @@ namespace FastReport.Barcode
 
     private void OutCodeword17(int codeword)
     {
-      int bytePtr = bitPtr / 8;
-      int bit = bitPtr - bytePtr * 8;
-      outBits[bytePtr++] |= (byte)(codeword >> (9 + bit));
-      outBits[bytePtr++] |= (byte)(codeword >> (1 + bit));
-      codeword <<= 8;
-      outBits[bytePtr] |= (byte)(codeword >> (1 + bit));
-      bitPtr += 17;
+            unchecked
+            {
+                int bytePtr = bitPtr / 8;
+                int bit = bitPtr - bytePtr * 8;
+                outBits[bytePtr++] |= (byte)(codeword >> (9 + bit));
+                outBits[bytePtr++] |= (byte)(codeword >> (1 + bit));
+                codeword <<= 8;
+                outBits[bytePtr] |= (byte)(codeword >> (1 + bit));
+                bitPtr += 17;
+            }
     }
 
     private void OutCodeword18(int codeword)
     {
-      int bytePtr = bitPtr / 8;
-      int bit = bitPtr - bytePtr * 8;
-      outBits[bytePtr++] |= (byte)(codeword >> (10 + bit));
-      outBits[bytePtr++] |= (byte)(codeword >> (2 + bit));
-      codeword <<= 8;
-      outBits[bytePtr] |= (byte)(codeword >> (2 + bit));
-      if (bit == 7)
-        outBits[++bytePtr] |= 0x80;
-      bitPtr += 18;
+            unchecked
+            {
+                int bytePtr = bitPtr / 8;
+                int bit = bitPtr - bytePtr * 8;
+                outBits[bytePtr++] |= (byte)(codeword >> (10 + bit));
+                outBits[bytePtr++] |= (byte)(codeword >> (2 + bit));
+                codeword <<= 8;
+                outBits[bytePtr] |= (byte)(codeword >> (2 + bit));
+                if (bit == 7)
+                    outBits[++bytePtr] |= 0x80;
+                bitPtr += 18;
+            }
     }
 
     private void OutCodeword(int codeword)

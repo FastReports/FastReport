@@ -6,6 +6,7 @@
         <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
         <Authors>Fast Reports Inc.</Authors>
         <Company>Fast Reports Inc.</Company>
+        <RootNamespace>FastReport.Web</RootNamespace>
         <Description>FastReport.Net is a full-featured reporting solution for .Net Core 2.0. 
 Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, diagram, maps, shapes, line, PolyLine, Polygon and many more. 
 FastReport.Net supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.

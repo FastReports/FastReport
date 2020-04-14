@@ -265,7 +265,14 @@ namespace FastReport.Export
             {
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
                 proc.EnableRaisingEvents = false;
+
+#if NETCOREAPP
+                proc.StartInfo.FileName = "cmd";
+                proc.StartInfo.Arguments = $"/c \"{fileName}\"";
+                proc.StartInfo.CreateNoWindow = true;
+#else
                 proc.StartInfo.FileName = fileName;
+#endif
                 proc.Start();
             }
             catch
@@ -366,7 +373,7 @@ namespace FastReport.Export
         /// <returns>The prepared report page.</returns>
         protected ReportPage GetPage(int index)
         {
-            ReportPage page = Report.PreparedPages.GetPage(index);           
+            ReportPage page = Report.PreparedPages.GetPage(index);
             return GetOverlayPage(page);
         }
         #endregion
@@ -467,7 +474,7 @@ namespace FastReport.Export
                 float topShift = 0;
                 foreach (Base obj in ppage.GetPageItems(page, false))
                 {
-                    if(shiftNonExportable && topShift != 0 && obj is BandBase &&
+                    if (shiftNonExportable && topShift != 0 && obj is BandBase &&
                       !(obj is PageFooterBand) && !(obj as BandBase).PrintOnBottom)
                     {
                         (obj as BandBase).Top -= topShift;
@@ -480,7 +487,7 @@ namespace FastReport.Export
                             topShift += (obj as BandBase).Height;
                         obj.Dispose();
                     }
-                                   
+
                 }
                 ExportPageEnd(page);
             }
@@ -535,7 +542,7 @@ namespace FastReport.Export
                 Directory.Delete(tempFolder, true);
             }
         }
-#endregion
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExportBase"/> class.

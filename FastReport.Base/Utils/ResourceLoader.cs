@@ -21,12 +21,15 @@ namespace FastReport.Utils
     /// <returns>Stream object.</returns>
     public static Stream GetStream(string assembly, string resource)
     {
+      string assembly_full_name = assembly;
+#if MONO
+	  assembly_full_name += ".Mono";
+#endif	   
       foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
       {
         AssemblyName name = new AssemblyName(a.FullName);
-        if (name.Name == assembly)
+        if (name.Name == assembly_full_name)
         {
-                    //string[] names = a.GetManifestResourceNames();
           return a.GetManifestResourceStream(assembly + ".Resources." + resource);
         }
       }

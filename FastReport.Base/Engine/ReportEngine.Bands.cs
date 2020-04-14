@@ -199,12 +199,39 @@ namespace FastReport.Engine
             Report.Dictionary.Totals.ProcessBand(band);
         }
 
+        private bool CalcVisibleOrExportableExpression(bool currentValue, string expression)
+        {
+            string[] expressions = Code.CodeUtils.GetExpressions(expression, "[", "]");
+            foreach (string str in expressions)
+            {
+                object calculatedExpression = Report.Calc(str);
+                if (calculatedExpression is bool)
+                {
+                    return (bool)calculatedExpression;
+                }
+            }
+
+            return currentValue;
+        }
+
         #endregion Private Methods
 
         #region Internal Methods
 
         internal bool CanPrint(ReportComponentBase obj)
         {
+            // Apply visible expression if needed.
+            if (!String.IsNullOrEmpty(obj.VisibleExpression))
+            {
+                obj.Visible = CalcVisibleOrExportableExpression(obj.Visible, obj.VisibleExpression);
+            }
+
+            // Apply exportable expression if needed.
+            if (!String.IsNullOrEmpty(obj.ExportableExpression))
+            {
+                obj.Exportable = CalcVisibleOrExportableExpression(obj.Exportable, obj.ExportableExpression);
+            }
+
             if (!obj.Visible || !obj.FlagPreviewVisible)
             {
                 return false;

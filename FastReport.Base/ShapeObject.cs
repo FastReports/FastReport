@@ -80,7 +80,24 @@ namespace FastReport
     #endregion
 
     #region Private Methods
-    
+#if MONO
+    private GraphicsPath GetRoundRectPath(float x, float y, float x1, float y1, float radius)
+    {
+      GraphicsPath gp = new GraphicsPath();
+      if (radius < 1)
+        radius = 1;
+      gp.AddLine(x + radius, y, x1 - radius, y);
+      gp.AddArc(x1 - radius - 1, y, radius + 1, radius + 1, 270, 90);
+      gp.AddLine(x1, y + radius, x1, y1 - radius);
+      gp.AddArc(x1 - radius - 1, y1 - radius - 1, radius + 1, radius + 1, 0, 90);
+      gp.AddLine(x1 - radius, y1, x + radius, y1);
+      gp.AddArc(x, y1 - radius - 1, radius + 1, radius + 1, 90, 90);
+      gp.AddLine(x, y1 - radius, x, y + radius);
+      gp.AddArc(x, y, radius, radius, 180, 90);
+      gp.CloseFigure();
+      return gp;
+    }
+#else    
     private GraphicsPath GetRoundRectPath(float x, float y, float x1, float y1, float radius)
     {
         GraphicsPath gp = new GraphicsPath();
@@ -93,7 +110,7 @@ namespace FastReport
         gp.CloseFigure();
         return gp;
     }
-
+#endif
     #endregion
 
     #region Public Methods
