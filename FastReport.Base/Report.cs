@@ -832,7 +832,7 @@ namespace FastReport
             {
                 if (measureGraphics == null)
                 {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1 || MONO
                     measureBitmap = new Bitmap(1, 1);
                     measureGraphics = Graphics.FromImage(measureBitmap);
 #else

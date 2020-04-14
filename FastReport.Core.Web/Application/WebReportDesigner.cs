@@ -26,6 +26,7 @@ namespace FastReport.Web
         /// <summary>
         /// Gets or sets path to the Report Designer
         /// </summary>
+        
         public string DesignerPath { get; set; } = "/WebReportDesigner/index.html";
 
         /// <summary>
@@ -37,7 +38,32 @@ namespace FastReport.Web
         /// <summary>
         /// Gets or sets path to callback page after Save from Designer
         /// </summary>
+        [Obsolete("DesignerSaveCallBack is obsolete, please use DesignerSaveMethod instead.")]
         public string DesignerSaveCallBack { get; set; } = "";
+
+        /// <summary>
+        /// Callback method for saving an edited report by Online Designer
+        /// Params: reportID, report file name, report, out - message
+        /// </summary>
+        public Func<string, string, string, string> DesignerSaveMethod { get; set; }
+
+        /// <summary>
+        /// Report name without extension
+        /// </summary>
+        public string ReportName
+        {
+            get
+            {
+                return (!string.IsNullOrEmpty(Report.ReportInfo.Name) ?
+                     Report.ReportInfo.Name : Path.GetFileNameWithoutExtension(Report.FileName));
+            }
+        }
+
+        /// <summary>
+        /// Report file name with extension (*.frx)
+        /// </summary>
+        public string ReportFileName => $"{ReportName}.frx";
+
 
         /// <summary>
         /// Gets or sets the locale of Designer
@@ -581,7 +607,6 @@ namespace FastReport.Web
                     Replace("&amp;gt;", "&gt;")).
                     Replace("&amp;#xD;", "&#xD;").
                     Replace("&amp;#xA;", "&#xA;");
-
             return result.ToString();
         }
 

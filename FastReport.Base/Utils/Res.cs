@@ -51,8 +51,8 @@ namespace FastReport.Utils
                 if (String.IsNullOrEmpty(folder))
           folder = Config.ApplicationFolder;
 
-        if (!folder.EndsWith("\\"))
-          folder += "\\";
+        if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString()))
+          folder += Path.DirectorySeparatorChar;
         return folder;  
       }
       set { Config.Root.FindItem("Language").SetProp("Folder", value); }
