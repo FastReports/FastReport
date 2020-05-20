@@ -19,8 +19,8 @@
   <Messages>
     <AccessingData Text="Accessing data..."/>
     <Attention Text="Attention"/>
-	<BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
-	<BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
+	  <BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
+	  <BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
     <CantFindObject Text="Can't find object"/>
     <CantLoadReport Text="Can't load the report {0}"/>
     <CantSaveReport Text="Can't save the report. The file may be write-protected."/>
@@ -65,7 +65,31 @@
     <ErrorInHighlightCondition Text="Error in highlight condition"/>
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
-    
+    <Swiss>
+      <SwissNullIban Text="Iban must not be null"/>
+      <SwissNullCreditor Text="Creditor must not be null"/>
+      <SwissNullReference Text="Reference must not be null"/>
+      <SwissNullCurrency Text="Currency must not be null"/>
+      <SwissAmountLength Text="Amount (including decimals) must be shorter than 13 places"/>
+      <SwissQRIban Text="If QR-IBAN is used, you have to choose QRR as reference type!"/>
+      <SwissNonQRIban Text="If non QR-IBAN is used, you have to choose either SCOR or NON as reference type!"/>
+      <SwissAltProcedureLength Text="Alternative procedure information block 1 must be shorter than 101 chars"/>
+      <SwissUnstructBillLength Text="Unstructured message and bill information must be shorter than 141 chars in total/combined."/>
+      <SwissRefTypeNon Text="Reference is only allowed when referenceType not equals NON"/>
+      <SwissRefTextTypeNon Text="You have to set an ReferenceTextType when using the reference text"/>
+      <SwissRefQRLength Text="QR-references have to be shorter than 28 chars"/>
+      <SwissRefQRNotOnlyDigits Text="QR-reference must exist out of digits only"/>
+      <SwissRefQRCheckSum Text="QR-references is invalid. Checksum error"/>
+      <SwissRefISOLength Text="Creditor references (ISO 11649) have to be shorter than 26 chars"/>
+      <SwissEmptyProperty Text="{0} must not be empty"/>
+      <SwissLengthMore Text="{0}} must be shorter than {0} chars"/>
+      <SwissPatternError Text="{0} must match the following pattern:"/>
+      <SwissAddressLine2Error Text="Address line 2 must be provided for combined addresses (address line-based addresses)."/>
+      <SwissCountryTwoLetters Text="Country must be a valid two letter country code as defined by  ISO 3166-1, but it isn't."/>
+      <SwissIbanNotValid Text="The IBAN entered isn't valid."/>
+      <SwissQRIbanNotValid Text="The QR-IBAN entered isn't valid."/>
+      <SwissQRStartNotValid Text="The IBAN must start with CH or LI"/>
+    </Swiss>
   </Messages>
   <Misc>
     <ShortUnitsMm Text="mm"/>
@@ -290,7 +314,7 @@
     <OsmFile Text="OpenStreetMap file(*.osm)|*.osm"/>
     <Fr3File Text="FastReport VCL report (*.fr3)|*.fr3"/>
     <RtfFile Text="RTF files (*.rtf)|*.rtf"/>
-   <ListAndLabelFiles Text="List and Label files|*.rpt;*.crd;*.srt;*.inv;*.lab;*.let"/>
+    <ListAndLabelFiles Text="List and Label files|*.rpt;*.crd;*.srt;*.inv;*.lab;*.let"/>
     <DevExpressFiles Text="DevExpress files (*.repx)|*.repx"/>
     <JsonFile Text="JSON file (*.json,*.txt)|*.json;*.txt"/>
     <LaTeXFile Text="TeX file (*.tex)|*.tex"/>
@@ -352,6 +376,7 @@
       <File Text="File">
         <New Text="New..."/>
         <Open Text="Open..."/>
+        <Import Text="Import..."/>
         <Close Text="Close"/>
         <Save Text="Save"/>
         <SaveAs Text="Save As..."/>
@@ -1481,6 +1506,7 @@
       <Source Text="Source"/>
       <FirstPage Text="First page:"/>
       <OtherPages Text="Other pages:"/>
+      <LastPage Text="Last page:"/>
       <Columns Text="Columns"/>
       <Count Text="Count:"/>
       <ColumnWidth Text="Width:"/>
@@ -1703,6 +1729,7 @@
       <EventBandIndicator Text="Show indicator on bands with events" />
       <EventObjectIndicator Text="Show indicator on objects with events" />
       <ObjectsAppearance Text="Objects appearance"/>
+	  <EnableBacklight Text="Backlight active band"/>
     </ReportPageOptions>
     <RichTextEditor Text="RichText Editor">
       <Open Text="Open"/>
@@ -1819,7 +1846,6 @@
         <Yes Text="Yes"/>
       </RightToLeft>
       <DisableHotkeys Text="Disable hotkeys"/>
-	  <DisableBacklight Text="Disable bands backlighting"/>
     </UIOptions>
     <WatermarkEditor Text="Watermark">
       <Enabled Text="Enabled"/>
@@ -1887,6 +1913,24 @@
       <WifiHidden Text="Wi-Fi network is hidden"/>
       <Save Text="Save"/>
       <Cancel Text="Cancel"/>
+      <Swiss>
+        <Iban Text="Iban"/>
+        <IbanType Text="Iban type"/>
+        <Name Text="Name"/>
+        <HouseNumber Text="House number"/>
+        <Reference Text="Reference"/>
+        <Creditor Text="Creditor"/>
+        <Type Text="Type"/>
+        <TextType Text="Text type"/>
+        <Debitor Text="Debitor"/>
+        <AdditionalInformation Text="Additional Information"/>
+        <UnstructuredMessage Text="Unstructured Message"/>
+        <BillInformation Text="Bill Information"/>
+        <Currency Text="Currency"/>
+        <AlternativeProcedure1 Text="Alternative procedure 1"/>
+        <AlternativeProcedure2 Text="Alternative procedure 2"/>
+        <Amount Text="Amount"/>
+      </Swiss>
     </BarcodeEditor>
     <SavingPageOptions Text="Saving">
       <EnableAutoSave Text="Enable auto save every (minutes)"/>

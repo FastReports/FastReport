@@ -1,5 +1,6 @@
 using FastReport.Utils;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
@@ -490,5 +491,32 @@ namespace FastReport
         }
 
         #endregion Public Methods
+
+        #region Report Engine
+
+        /// <inheritdoc/>
+        public override string[] GetExpressions()
+        {
+            List<string> expressions = new List<string>();
+
+            string[] baseExpressions = base.GetExpressions();
+            if (baseExpressions != null)
+            {
+                expressions.AddRange(baseExpressions);
+            }
+
+            if (!String.IsNullOrEmpty(VisibleExpression))
+            {
+                expressions.Add(VisibleExpression);
+            }
+            if (!String.IsNullOrEmpty(PrintableExpression))
+            {
+                expressions.Add(PrintableExpression);
+            }
+
+            return expressions.ToArray();
+        }
+
+        #endregion Report Engine
     }
 }

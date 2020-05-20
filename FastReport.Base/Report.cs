@@ -1280,6 +1280,8 @@ namespace FastReport
         {
             if (!IsRunning)
                 return null;
+            if (String.IsNullOrEmpty(expression) || String.IsNullOrEmpty(expression.Trim()))
+                return null;
 
             string expr = expression;
             if (expr.StartsWith("[") && expr.EndsWith("]"))

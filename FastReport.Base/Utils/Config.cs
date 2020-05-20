@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -15,7 +16,11 @@ namespace FastReport.Utils
 #if COMMUNITY
         const string CONFIG_NAME = "FastReport.Community.config";
 #else
+#if MONO
+        const string CONFIG_NAME = "FastReport.Mono.config";
+#else
         const string CONFIG_NAME = "FastReport.config";
+#endif
 #endif
         #region Private Fields
 
@@ -25,6 +30,7 @@ namespace FastReport.Utils
         private static string FFolder = null;
         private static string FFontListFolder = null;
         private static string FLogs = "";
+        private static bool FIsRunningOnMono;
         private static ReportSettings FReportSettings = new ReportSettings();
         private static bool FRightToLeft = false;
         private static string FTempFolder = null;
@@ -34,9 +40,16 @@ namespace FastReport.Utils
         private static bool disableHotkeys = false;
         private static bool disableBacklight = false;
 
-#endregion Private Fields
+        #endregion Private Fields
 
         #region Public Properties
+        /// <summary>
+        /// Gets a value indicating that the Mono runtime is used.
+        /// </summary>
+        public static bool IsRunningOnMono
+        {
+            get { return FIsRunningOnMono; }
+        }
 
         /// <summary>
         /// Gets or sets the optimization of strings. Is experimental feature.
@@ -127,15 +140,6 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether the object that the selected item will sit on should be backlighted.
-        /// </summary>
-        public static bool DisableBacklight
-        {
-            get { return disableBacklight; }
-            set { disableBacklight = value; }
-        }
-
-        /// <summary>
         /// Gets the root item of config xml.
         /// </summary>
         public static XmlItem Root
@@ -176,6 +180,13 @@ namespace FastReport.Utils
         /// </summary>
         public static event EventHandler<ScriptSecurityEventArgs> ScriptCompile;
 
+        /// <summary>
+        /// Gets a PrivateFontCollection instance.
+        /// </summary>
+        public static PrivateFontCollection PrivateFontCollection
+        {
+            get { return FastReport.TypeConverters.FontConverter.PrivateFontCollection; }
+        }
         #endregion Public Properties
 
         #region Internal Methods
@@ -194,6 +205,8 @@ namespace FastReport.Utils
 
         internal static void Init()
         {
+            FIsRunningOnMono = Type.GetType("Mono.Runtime") != null;
+
 #if !(NETSTANDARD2_0 || NETSTANDARD2_1)
             string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             WebMode = String.Compare(processName, "iisexpress") == 0 ||
@@ -381,15 +394,6 @@ namespace FastReport.Utils
             }
         }
 
-        //private static void ProcessAssemblies()
-        //{
-        //    foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
-        //    {
-        //        ProcessAssembly(a);
-        //    }
-        //}
-
-
         private static void ProcessAssembly(Assembly a)
         {
             foreach (Type t in a.GetTypes())
@@ -438,7 +442,6 @@ namespace FastReport.Utils
         {
             XmlItem xi = Root.FindItem("UIOptions");
             xi.SetProp("DisableHotkeys", Converter.ToString(DisableHotkeys));
-            xi.SetProp("DisableBacklight", Converter.ToString(DisableBacklight));
         }
 
         private static void RestoreUIOptions()
@@ -450,11 +453,6 @@ namespace FastReport.Utils
             if (!String.IsNullOrEmpty(disableHotkeysStringValue))
             {
                 disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
-            }
-            string disableBacklightStringValue = xi.GetProp("DisableBacklight");
-            if (!String.IsNullOrEmpty(disableBacklightStringValue))
-            {
-                disableBacklight = disableBacklightStringValue.ToLower() != "false";
             }
         }
 

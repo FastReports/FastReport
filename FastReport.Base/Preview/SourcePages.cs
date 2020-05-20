@@ -34,11 +34,7 @@ namespace FastReport.Preview
       string baseName = "";
       string objName;
 #if MONO
-      if (source is RichObject
-#if !FRCORE
-        && (source as RichObject).ConvertRichText == true
-#endif
-        )
+      if (source is RichObject && (source as RichObject).ConvertRichText == true)
       {
         RichObject rich = source as RichObject;
         float h;

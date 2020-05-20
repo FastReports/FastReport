@@ -1137,6 +1137,15 @@ namespace FastReport.Matrix
       Matrix.Data.AddValue(columnValues, rowValues, cellValues, Matrix.DataSource.CurrentRowNo);
     }
 
+    public void AddEmptyDataRow()
+    {
+        object[] columnValues = new object[Matrix.Data.Columns.Count];
+        object[] rowValues = new object[Matrix.Data.Rows.Count];
+        object[] cellValues = new object[Matrix.Data.Cells.Count];
+
+        Matrix.Data.AddValue(columnValues, rowValues, cellValues, 0);
+    }
+
     public void AddDataRows()
     {
       if (Matrix.DataSource != null)
@@ -1152,13 +1161,20 @@ namespace FastReport.Matrix
     
     public void FinishPrint()
     {
-      UpdateDescriptors();
-      ResultTable.FixedColumns = HeaderWidth;
-      ResultTable.FixedRows = HeaderHeight;
+        if (!Matrix.Data.IsEmpty || Matrix.PrintIfEmpty)
+        {
+            if (Matrix.Data.IsEmpty)
+              AddEmptyDataRow();
 
-      InitResultTable(false);
-      PrintHeaders();
-      PrintData();
+            UpdateDescriptors();
+            ResultTable.FixedColumns = HeaderWidth;
+            ResultTable.FixedRows = HeaderHeight;
+
+            InitResultTable(false);
+            PrintHeaders();
+            PrintData();
+
+        }
 
       // clear temporary descriptors
       if (noColumns)
