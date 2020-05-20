@@ -975,19 +975,6 @@ namespace FastReport
             }
             else
             {
-              // Apply printable expression if needed.
-              if (!String.IsNullOrEmpty(obj.PrintableExpression))
-              {
-                  string[] expressions = Code.CodeUtils.GetExpressions(obj.PrintableExpression, "[", "]");
-                  foreach (string str in expressions)
-                  {
-                      object expression = Report.Calc(str);
-                      if (expression is bool)
-                      {
-                          obj.Printable = (bool)expression;
-                      }
-                  }
-              }
               if (!obj.Printable)
                 continue;
               else if (obj.Parent is BandBase && !(obj.Parent as BandBase).Printable)

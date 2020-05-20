@@ -1,5 +1,9 @@
 ﻿using System.Collections.Specialized;
+#if !NETFRAMEWORK
+using FastReport.Code.CodeDom.Compiler;
+#else
 using System.CodeDom.Compiler;
+#endif
 
 namespace FastReport.Code
 {

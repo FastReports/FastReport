@@ -114,6 +114,7 @@ namespace FastReport.Matrix
         private int rowIndex;
         private MatrixEvenStylePriority matrixEvenStylePriority;
         private bool splitRows;
+        private bool printIfEmpty;
         #endregion
 
         #region Properties
@@ -321,6 +322,17 @@ namespace FastReport.Matrix
         {
             get { return splitRows; }
             set { splitRows = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating that empty matrix should be printed.
+        /// </summary>
+        [Category("Behavior")]
+        [DefaultValue(true)]
+        public bool PrintIfEmpty
+        {
+            get { return printIfEmpty; }
+            set { printIfEmpty = value; }
         }
 
         /// <summary>
@@ -636,6 +648,7 @@ namespace FastReport.Matrix
             Style = src.Style;
             MatrixEvenStylePriority = src.MatrixEvenStylePriority;
             SplitRows = src.SplitRows;
+            PrintIfEmpty = src.PrintIfEmpty;
         }
 
         /// <inheritdoc/>
@@ -670,7 +683,9 @@ namespace FastReport.Matrix
             if (MatrixEvenStylePriority != c.MatrixEvenStylePriority)
                 writer.WriteValue("MatrixEvenStylePriority", MatrixEvenStylePriority);
             if (SplitRows != c.SplitRows)
-                writer.WriteValue("SplitRows", SplitRows);
+                writer.WriteBool("SplitRows", SplitRows);
+            if (PrintIfEmpty != c.PrintIfEmpty)
+                writer.WriteBool("PrintIfEmpty", PrintIfEmpty);
             if (ManualBuildEvent != c.ManualBuildEvent)
                 writer.WriteStr("ManualBuildEvent", ManualBuildEvent);
             if (ModifyResultEvent != c.ModifyResultEvent)
@@ -872,6 +887,7 @@ namespace FastReport.Matrix
             style = "";
             filter = "";
             splitRows = false;
+            printIfEmpty = true;
         }
     }
 }

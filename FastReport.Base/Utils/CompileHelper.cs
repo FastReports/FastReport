@@ -1,6 +1,11 @@
-﻿using Microsoft.CSharp;
-using System;
+﻿using System;
+#if NETSTANDARD || NETCOREAPP
+using FastReport.Code.CodeDom.Compiler;
+using FastReport.Code.CSharp;
+#else
 using System.CodeDom.Compiler;
+using Microsoft.CSharp;
+#endif
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;

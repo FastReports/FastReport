@@ -199,21 +199,6 @@ namespace FastReport.Engine
             Report.Dictionary.Totals.ProcessBand(band);
         }
 
-        private bool CalcVisibleOrExportableExpression(bool currentValue, string expression)
-        {
-            string[] expressions = Code.CodeUtils.GetExpressions(expression, "[", "]");
-            foreach (string str in expressions)
-            {
-                object calculatedExpression = Report.Calc(str);
-                if (calculatedExpression is bool)
-                {
-                    return (bool)calculatedExpression;
-                }
-            }
-
-            return currentValue;
-        }
-
         #endregion Private Methods
 
         #region Internal Methods
@@ -223,13 +208,31 @@ namespace FastReport.Engine
             // Apply visible expression if needed.
             if (!String.IsNullOrEmpty(obj.VisibleExpression))
             {
-                obj.Visible = CalcVisibleOrExportableExpression(obj.Visible, obj.VisibleExpression);
+                object expression = Report.Calc(obj.VisibleExpression);
+                if (expression is bool)
+                {
+                    obj.Visible = (bool)expression;
+                }
             }
 
             // Apply exportable expression if needed.
             if (!String.IsNullOrEmpty(obj.ExportableExpression))
             {
-                obj.Exportable = CalcVisibleOrExportableExpression(obj.Exportable, obj.ExportableExpression);
+                object expression = Report.Calc(obj.ExportableExpression);
+                if (expression is bool)
+                {
+                    obj.Exportable = (bool)expression;
+                }
+            }
+
+            // Apply printable expression if needed.
+            if (!String.IsNullOrEmpty(obj.PrintableExpression))
+            {
+                object expression = Report.Calc(obj.PrintableExpression);
+                if (expression is bool)
+                {
+                    obj.Printable = (bool)expression;
+                }
             }
 
             if (!obj.Visible || !obj.FlagPreviewVisible)

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Collections.Specialized;
+using System.Text;
 
 namespace FastReport.Utils
 {
@@ -73,7 +74,7 @@ namespace FastReport.Utils
           return type.FullName;
         return type.AssemblyQualifiedName;
       }
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if true// | NETSTANDARD2_0 || NETSTANDARD2_1
             if (value is Font)
             {
                 return FastReport.TypeConverters.FontConverter.Instance.ConvertToInvariantString(value);
@@ -126,7 +127,7 @@ namespace FastReport.Utils
         value = value.Replace("\r\n", "\r");
         return value.Split(new char[] { '\r' });
       }
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if true //NETSTANDARD2_0 || NETSTANDARD2_1
             if (type == typeof(Font))
             {
                 return FastReport.TypeConverters.FontConverter.Instance.ConvertFromInvariantString(value);
@@ -505,7 +506,7 @@ namespace FastReport.Utils
     /// <returns>True if successful</returns>
     public static bool FromHtmlEntities(string text, ref int position, out string result)
     {
-      FastString fastString = new FastString(2);
+        StringBuilder fastString = new StringBuilder(2);
       if (FromHtmlEntities(text, ref position, fastString))
       {
         result = fastString.ToString();
@@ -525,7 +526,7 @@ namespace FastReport.Utils
     /// <param name="position">Position for processing</param>
     /// <param name="result">Append result of processing to FastString</param>
     /// <returns>True if successful</returns>
-    public static bool FromHtmlEntities(string text, ref int position, FastString result)
+    public static bool FromHtmlEntities(string text, ref int position, StringBuilder result)
     {
       if (text[position] != '&') return false;
       int end = text.IndexOf(';', position);
@@ -534,8 +535,8 @@ namespace FastReport.Utils
       {
         if (text[position + 2] == 'x')
         {
-          //hex
-          FastString fastString = new FastString(end - position);
+            //hex
+            StringBuilder fastString = new StringBuilder(end - position);
           for (int i = position + 3; i < end; i++)
           {
             if (!Uri.IsHexDigit(text[i]))

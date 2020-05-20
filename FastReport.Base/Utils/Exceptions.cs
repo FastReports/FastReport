@@ -25,6 +25,26 @@ namespace FastReport.Utils
     }
 
     /// <summary>
+    /// The exception that is thrown when the user tried to rename an object that is introduced in the ancestor report.
+    /// </summary>
+    public class SwissQrCodeException : Exception
+    {
+        internal SwissQrCodeException()
+        {
+        }
+
+        internal SwissQrCodeException(string message)
+            : base(message)
+        {
+        }
+
+        internal SwissQrCodeException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+
+    /// <summary>
     /// The exception that is thrown when loading bad formed xml report file.
     /// </summary>
     public class FileFormatException : Exception

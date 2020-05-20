@@ -348,6 +348,26 @@ namespace FastReport.Preview
         {
             preparedPages[index].Dispose();
             preparedPages.RemoveAt(index);
+            pageCache.Clear();
+        }
+
+
+        /// <summary>
+        /// Creates a copy of a page with specified index and inserts it after original one.
+        /// </summary>
+        /// <param name="index">The zero-based index of original page.</param>
+        public void CopyPage(int index)
+        {
+            // insert a new empty page at specified index
+            PreparedPage newPage = new PreparedPage(null, this);
+            if (index == preparedPages.Count - 1)
+                preparedPages.Add(newPage);
+            else
+                preparedPages.Insert(index + 1, newPage);
+
+            // and copy source page into it
+            ModifyPage(index + 1, GetPage(index));
+            pageCache.Clear();
         }
 
         internal void InterleaveWithBackPage(int backPageIndex)

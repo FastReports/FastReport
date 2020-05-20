@@ -22,7 +22,16 @@ namespace FastReport.Barcode
 
       Draw2DBarcode(g, kx, ky);
 
-      // draw the text.
+            //If swiss qr, draw the swiss cross
+            if (text.StartsWith("SPC"))
+            {
+                float top = showText ? height - 21 : height;
+                g.FillRectangle(Brushes.White, width / 2 - width / 100f * 7, top / 2 - top / 100 * 7, width / 100f * 14, top / 100 * 14);
+                g.FillRectangle(Brushes.Black, width / 2 - width / 100f * 6, top / 2 - top / 100 * 6, width / 100f * 12, top / 100 * 12);
+                g.FillRectangle(Brushes.White, width / 2 - width / 100f * 4, top / 2 - top / 100 * 1.5f, width / 100f * 8, top / 100 * 3);
+                g.FillRectangle(Brushes.White, width / 2 - width / 100f * 1.5f, top / 2 - top / 100 * 4, width / 100f * 3, top / 100 * 8);
+            }
+            // draw the text.
       if (showText)
       {
         string data = StripControlCodes(text);
@@ -33,7 +42,7 @@ namespace FastReport.Barcode
         {
           g.DrawString(data, drawFont, Brushes.Black, new RectangleF(0, height - 18 * ky, width, 18 * ky));
         }
-      }
+      }            
     }
     
     internal virtual void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)

@@ -60,6 +60,11 @@ namespace FastReport.Matrix
     {
       get { return cells; }
     }
+
+    internal bool IsEmpty
+    {
+        get { return Cells.IsEmpty; }
+    }
     #endregion
     
     #region Public Methods

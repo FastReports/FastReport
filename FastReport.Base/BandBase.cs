@@ -815,8 +815,6 @@ namespace FastReport
             return Height;
         }
 
-        /// <inheritdoc/>
-
         public void AddLastToFooter(BreakableComponent breakTo)
         {
             float maxTop = (AllObjects[0] as ComponentBase).Top;
@@ -879,7 +877,7 @@ namespace FastReport
             Height -= maxBottom - minTop;
         }
 
-
+        /// <inheritdoc/>
         public override bool Break(BreakableComponent breakTo)
         {
             // first we find the break line. It's a minimum Top coordinate of the object that cannot break.

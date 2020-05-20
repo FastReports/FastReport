@@ -185,12 +185,15 @@ namespace FastReport
 
         public override int GetHashCode()
         {
-            int hashCode = -1051315095;
-            hashCode = hashCode * -1521134295 + firstLineIndent.GetHashCode();
-            hashCode = hashCode * -1521134295 + lineSpacing.GetHashCode();
-            hashCode = hashCode * -1521134295 + lineSpacingType.GetHashCode();
-            hashCode = hashCode * -1521134295 + skipFirstLineIndent.GetHashCode();
-            return hashCode;
+            unchecked
+            {
+                int hashCode = -1051315095;
+                hashCode = hashCode * -1521134295 + firstLineIndent.GetHashCode();
+                hashCode = hashCode * -1521134295 + lineSpacing.GetHashCode();
+                hashCode = hashCode * -1521134295 + lineSpacingType.GetHashCode();
+                hashCode = hashCode * -1521134295 + skipFirstLineIndent.GetHashCode();
+                return hashCode;
+            }
         }
     }
 
@@ -870,6 +873,8 @@ namespace FastReport
             Font font = report.GraphicCache.GetFont(Font.Name, Font.Size * 96f / DrawUtils.ScreenDpi, Font.Style);
             StringFormat format = GetStringFormat(report.GraphicCache, StringFormatFlags.LineLimit);
             RectangleF textRect = new RectangleF(0, 0, Width - Padding.Horizontal, Height - Padding.Vertical);
+            if (textRect.Height < 0)
+                return null;
 
             int charactersFitted;
             int linesFilled;
