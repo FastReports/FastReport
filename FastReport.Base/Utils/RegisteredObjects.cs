@@ -732,6 +732,71 @@ namespace FastReport.Utils
             return null;
         }
 
+        public static void CreateFunctionsTree(Report report, ObjectInfo rootItem, XmlItem rootNode)
+        {
+            foreach (ObjectInfo item in rootItem.Items)
+            {
+                string text = String.Empty;
+                string desc = String.Empty;
+                MethodInfo func = item.Function;
+                if (func != null)
+                {
+                    text = func.Name;
+                    // if this is an overridden function, show its parameters
+                    if (rootItem.Name == text)
+                        text = report.CodeHelper.GetMethodSignature(func, false);
+                    desc = GetFunctionDescription(report, func);
+                }
+                else
+                {
+                    // it's a category
+                    text = Res.TryGet(item.Text);
+                }
+                XmlItem node = rootNode.Add();
+                node.SetProp("Name", text);
+                if (!String.IsNullOrEmpty(desc))
+                {
+                    node.SetProp("Description", desc);
+                }
+
+                if (item.Items.Count > 0)
+                {
+                    node.Name = "Functions";
+                    CreateFunctionsTree(report, item, node);
+                }
+                else
+                    node.Name = "Function";
+            }
+        }
+
+        internal static string GetFunctionDescription(Report report, object info)
+        {
+            FastString descr = new FastString();
+
+            if (info is SystemVariable)
+            {
+                descr.Append("<b>").Append((info as SystemVariable).Name).Append("</b>")
+                    .Append("<br/><br/>").Append(Editor.Syntax.Parsers.ReflectionRepository.DescriptionHelper.GetDescription(info.GetType()));
+            }
+            else if (info is MethodInfo)
+            {
+                descr.Append(report.CodeHelper.GetMethodSignature(info as MethodInfo, true))
+                    .Append("<br/><br/>").Append(Editor.Syntax.Parsers.ReflectionRepository.DescriptionHelper.GetDescription(info as MethodInfo));
+
+                foreach (ParameterInfo parInfo in (info as MethodInfo).GetParameters())
+                {
+                    // special case - skip "thisReport" parameter
+                    if (parInfo.Name == "thisReport")
+                        continue;
+                    descr.Append("<br/><br/>").Append(Editor.Syntax.Parsers.ReflectionRepository.DescriptionHelper.GetDescription(parInfo));
+                }
+            }
+
+            return descr.Replace("\"", "&quot;").Replace(" & ", "&amp;")
+                .Replace("<", "&lt;").Replace(">", "&gt;").Replace("\t", "<br/>").ToString();
+        }
+
+
         #endregion
     }
 

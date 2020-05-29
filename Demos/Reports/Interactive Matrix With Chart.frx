@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create an interactive report using the Matrix and Chart objects. When you click employee or category, you will see a chart report that also has clickable elements. &#13;&#10;This report uses the same technique as the &quot;Interactive Matrix&quot; report." ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="01/18/2019 17:07:27" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create an interactive report using the Matrix and Chart objects. When you click employee or category, you will see a chart report that also has clickable elements. &#13;&#10;This report uses the same technique as the &quot;Interactive Matrix&quot; report." ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="03/12/2020 16:38:37" ReportInfo.CreatorVersion="2020.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace FastReport
 }
 </ScriptText>
   <Styles>
-    <Style Name="EvenStyle" Fill.Color="WhiteSmoke"/>
+    <Style Name="EvenStyle" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
   </Styles>
   <Dictionary>
     <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
@@ -161,9 +161,9 @@ namespace FastReport
     </Parameter>
     <Total Name="Total" Expression="[Order Details.UnitPrice] * [Order Details.Quantity] * (1 - (decimal)[Order Details.Discount])" Evaluator="Data3" PrintOn="DataFooter1"/>
   </Dictionary>
-  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="1" OtherPagesSource="1">
-    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="266.31" CanGrow="true">
-      <MatrixObject Name="Matrix1" Top="103.94" Width="283.5" Height="170.1" FixedRows="1" FixedColumns="1" AutoSize="false" DataSource="Order Details" Style="Green">
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="1" OtherPagesSource="1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="292.94" CanGrow="true">
+      <MatrixObject Name="Matrix1" Top="122.84" Width="283.5" Height="170.1" FixedRows="1" FixedColumns="1" AutoSize="false" DataSource="Order Details" Style="Green">
         <MatrixColumns>
           <Header Expression="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName]"/>
         </MatrixColumns>
@@ -183,24 +183,25 @@ namespace FastReport
         </TableRow>
         <TableRow Name="Row2" Height="56.7">
           <TableCell Name="Cell3" Border.Lines="All" Border.Color="DarkGray" Fill.Color="64, 64, 64" Cursor="Hand" Hyperlink.Kind="DetailPage" Hyperlink.Expression="[Order Details.Products.Categories.CategoryName]" Hyperlink.DetailPageName="Page3" Hyperlink.ReportParameter="SelectedCell.Category" MouseEnterEvent="Cell1_MouseEnter" MouseLeaveEvent="Cell3_MouseLeave" Text="Seafood" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
-          <TableCell Name="Cell4" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Cursor="Hand" Hyperlink.Kind="DetailPage" Hyperlink.DetailReportName="FR.NET\Demos\Reports\Interactive Matrix - Details.frx" Hyperlink.DetailPageName="Page4" Hyperlink.ReportParameter="SelectedCell" MouseEnterEvent="Cell1_MouseEnter" MouseLeaveEvent="Cell1_MouseLeave" Text="5 744,25р." AllowExpressions="false" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
-          <TableCell Name="Cell8" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Text="131 261,74р." Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Cursor="Hand" Hyperlink.Kind="DetailPage" Hyperlink.DetailReportName="FR.NET\Demos\Reports\Interactive Matrix - Details.frx" Hyperlink.DetailPageName="Page4" Hyperlink.ReportParameter="SelectedCell" MouseEnterEvent="Cell1_MouseEnter" MouseLeaveEvent="Cell1_MouseLeave" Text="5 744,25р." AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Text="131 261,74р." Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row3" Height="56.7">
           <TableCell Name="Cell5" Border.Lines="All" Border.Color="DarkGray" Fill.Color="64, 64, 64" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Text="68 624,28р." Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
-          <TableCell Name="Cell9" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Text="1 265 793,04р." Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Text="68 624,28р." Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="DarkGray" Fill.Color="77, 77, 77" Text="1 265 793,04р." Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
         </TableRow>
       </MatrixObject>
-      <TextObject Name="Text1" Top="28.35" Width="1039.5" Height="28.35" Text="Products by employees" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt"/>
-      <TextObject Name="Text6" Left="330.75" Top="56.7" Width="378" Height="18.9" Text="click employee, category or value to view details" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text20" Width="1048.95" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text1" Top="56.7" Width="1039.5" Height="28.35" Text="Products by employees" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt"/>
+      <TextObject Name="Text6" Left="330.75" Top="85.05" Width="378" Height="18.9" Text="click employee, category or value to view details" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text20" Top="28.35" Width="1048.95" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text22" Width="1048.95" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/021d2" Hyperlink.OpenLinkInNewTab="true" Text="Learn how to build this report on the Fast Reports Academy channel" VertAlign="Center" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
     </ReportTitleBand>
-    <PageFooterBand Name="PageFooter1" Top="270.31" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
+    <PageFooterBand Name="PageFooter1" Top="296.94" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
       <TextObject Name="Text21" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
-  <ReportPage Name="Page2" Visible="false">
+  <ReportPage Name="Page2" Visible="false" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="56.7">
       <TextObject Name="Text2" Width="718.2" Height="28.35" Text="[SelectedCell.Employee] sales" HorzAlign="Center" Font="Tahoma, 14pt"/>
       <TextObject Name="Text5" Left="245.7" Top="28.35" Width="226.8" Height="18.9" Text="click value to view details" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
@@ -211,7 +212,7 @@ namespace FastReport
       </MSChartObject>
     </DataBand>
   </ReportPage>
-  <ReportPage Name="Page3" Visible="false">
+  <ReportPage Name="Page3" Visible="false" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle3" Width="718.2" Height="56.7">
       <TextObject Name="Text3" Width="718.2" Height="28.35" Text="Sales by employee in the &quot;[SelectedCell.Category]&quot; category" HorzAlign="Center" Font="Tahoma, 14pt"/>
       <TextObject Name="Text4" Left="207.9" Top="28.35" Width="226.8" Height="18.9" Text="click value to view details" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
@@ -222,15 +223,15 @@ namespace FastReport
       </MSChartObject>
     </DataBand>
   </ReportPage>
-  <ReportPage Name="Page4" Visible="false">
+  <ReportPage Name="Page4" Visible="false" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle4" Width="718.2" Height="47.25">
       <TextObject Name="Text7" Width="718.2" Height="28.35" Text="Sales by [SelectedCell.Employee] in the &quot;[SelectedCell.Category]&quot; category" Font="Tahoma, 14pt"/>
     </ReportTitleBand>
     <DataBand Name="Data3" Top="93.05" Width="718.2" Height="18.9" DataSource="Order Details" Filter="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName] == [SelectedCell.Employee] &amp;&amp; [Order Details.Products.Categories.CategoryName] == [SelectedCell.Category]">
       <TextObject Name="Text8" Left="94.5" Width="189" Height="18.9" EvenStyle="EvenStyle" Text="[Order Details.Products.ProductName]" VertAlign="Center" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text10" Left="283.5" Width="75.6" Height="18.9" EvenStyle="EvenStyle" Text="[Order Details.UnitPrice]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text10" Left="283.5" Width="75.6" Height="18.9" EvenStyle="EvenStyle" Text="[Order Details.UnitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
       <TextObject Name="Text12" Left="359.1" Width="75.6" Height="18.9" EvenStyle="EvenStyle" Text="[Order Details.Quantity]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text14" Left="434.7" Width="75.6" Height="18.9" EvenStyle="EvenStyle" Text="[Order Details.Discount]" Format="Percent" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text14" Left="434.7" Width="75.6" Height="18.9" EvenStyle="EvenStyle" Text="[Order Details.Discount]" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
       <TextObject Name="Text18" Width="94.5" Height="18.9" EvenStyle="EvenStyle" Text="[Order Details.Orders.OrderDate]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Tahoma, 8pt"/>
       <DataHeaderBand Name="DataHeader1" Top="51.25" Width="718.2" Height="37.8">
         <TextObject Name="Text9" Left="94.5" Width="189" Height="18.9" Text="Product" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
@@ -241,7 +242,7 @@ namespace FastReport
         <LineObject Name="Line2" Top="28.35" Width="510.3" Border.Color="DarkGray"/>
       </DataHeaderBand>
       <DataFooterBand Name="DataFooter1" Top="115.95" Width="718.2" Height="37.8">
-        <TextObject Name="Text16" Left="434.7" Top="18.9" Width="75.6" Height="18.9" Text="[Total]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        <TextObject Name="Text16" Left="434.7" Top="18.9" Width="75.6" Height="18.9" Text="[Total]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
         <TextObject Name="Text17" Left="359.1" Top="18.9" Width="75.6" Height="18.9" Text="Total:" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
         <LineObject Name="Line1" Top="9.45" Width="510.3" Border.Color="DarkGray"/>
       </DataFooterBand>

@@ -56,7 +56,7 @@ namespace FastReport.Export.Html
 
             Border newBorder = Border;
             HTMLBorder(style, newBorder);
-            style.Append("width:").Append(Px(Width * Zoom)).Append("height:").Append(Px(Height * Zoom));
+            style.Append("width:").Append(Px(Math.Abs(Width) * Zoom)).Append("height:").Append(Px(Math.Abs(Height) * Zoom));
             return style.ToString();
         }
 
@@ -96,7 +96,7 @@ namespace FastReport.Export.Html
         {
             if (prevStyleListIndex < cssStyles.Count)
             {
-                styles.Append(HTMLGetStylesHeader(PageNumber));
+                styles.Append(HTMLGetStylesHeader());
                 for (int i = prevStyleListIndex; i < cssStyles.Count; i++)
                     styles.Append(HTMLGetStyleHeader(i, PageNumber)).Append(cssStyles[i]).AppendLine("}");
                 styles.AppendLine(HTMLGetStylesFooter());
@@ -139,10 +139,10 @@ namespace FastReport.Export.Html
                 }
 
                 // we need to adjust left, top, width and height values because borders take up space in html elements
-                float borderLeft = 0;
-                float borderRight = 0;
-                float borderTop = 0;
-                float borderBottom = 0;
+                float borderLeft;
+                float borderRight;
+                float borderTop;
+                float borderBottom;
                 HTMLBorderWidthValues(obj, out borderLeft, out borderTop, out borderRight, out borderBottom);
 
                 string href = GetHref(obj);
@@ -271,10 +271,10 @@ namespace FastReport.Export.Html
                 style.Append("margin-top:").Append(Px(top * Zoom));
 
             // we need to apply border width in order to position our div perfectly
-            float borderLeft = 0;
-            float borderRight = 0;
-            float borderTop = 0;
-            float borderBottom = 0;
+            float borderLeft;
+            float borderRight;
+            float borderTop;
+            float borderBottom;
             if (HTMLBorderWidthValues(obj, out borderLeft, out borderTop, out borderRight, out borderBottom))
             {
                 style.Append("position:absolute;")
@@ -282,13 +282,10 @@ namespace FastReport.Export.Html
                     .Append("top:").Append(Px(-1 * borderTop / 2f));
             }
 
-            string href = GetHref(obj);
-
             FastString result = new FastString(128);
             result.Append("<div ").
                 Append(GetStyleTag(UpdateCSSTable(style.ToString()))).Append(">").
-                Append(href).Append(text).Append(href != String.Empty ? "</a>" : String.Empty).
-                Append("</div>");
+                Append(text).Append("</div>");
 
             return result;
         }
@@ -531,12 +528,9 @@ namespace FastReport.Export.Html
                     if (obj is PictureObject)
                     {
                         PictureObject pic = (obj as PictureObject);
-                       if (pic.Image == null)
+                        if (pic.Image != null)
                         {
-
-                        }
-                       else
-                        {
+#if MONO
                             using (MemoryStream picStr = new MemoryStream())
                             {
                                 
@@ -553,6 +547,10 @@ namespace FastReport.Export.Html
                                     hash = Crypter.ComputeHash(picStr);
                                 }        
                             }   
+#else
+                            hash = Crypter.ComputeHash(PictureStream);
+                            PictureStream.Position = 0;
+#endif
                         }
                     }
                     else
@@ -775,35 +773,23 @@ namespace FastReport.Export.Html
 
                 htmlPage.Append(HTMLGetAncor((d.PageNumber).ToString()));
 
-                htmlPage.Append("<div ").Append(doPageBreak ? "class=\"frpage\"" : String.Empty).
-                    Append(" style=\"position:relative;width:");
-
-                //Landscape to portrait orientation for web-print
-                if (exportMode == ExportType.WebPrint && reportPage.Landscape)
-                {
-                    htmlPage.Append(Px(maxHeight * Zoom + 3)).
-                    Append("height:").Append(Px(maxWidth * Zoom)).
-                    Append("transform: rotate(90deg); -webkit-transform: rotate(90deg)");
-                }
-                else
-                {
-                    htmlPage.Append(Px(maxWidth * Zoom + 3)).
-                    Append("height:").Append(Px(maxHeight * Zoom));
-                }
-
+                pageStyleName = "frpage" + currentPage;
+                htmlPage.Append("<div ").Append(doPageBreak ? "class=\"" + pageStyleName + "\"" : String.Empty)
+                    .Append(" style=\"position:relative;")
+                    .Append(" width:").Append(Px(maxWidth * Zoom + 3))
+                    .Append(" height:").Append(Px(maxHeight * Zoom));
 
                 if (reportPage.Fill is SolidFill)
                 {
                     SolidFill fill = reportPage.Fill as SolidFill;
-                    htmlPage.Append("; background-color:").
+                    htmlPage.Append(" background-color:").
                         Append(fill.IsTransparent ? "transparent" : ExportUtils.HTMLColor(fill.Color));
                 }
-                htmlPage.Append("\">");
-
-                if (!(reportPage.Fill is SolidFill))
+                else
                 {
                     // to-do for picture background
                 }
+                htmlPage.Append("\">");
 
                 if (reportPage.Watermark.Enabled && !reportPage.Watermark.ShowImageOnTop)
                     Watermark(htmlPage, reportPage, false);

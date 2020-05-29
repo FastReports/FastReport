@@ -973,56 +973,121 @@ namespace FastReport.Table
             return height;
         }
 
+        private bool CanBreakRow(int rowIndex, float rowHeight)
+        {
+            if (!Rows[rowIndex].CanBreak)
+                return false;
+
+            // check each cell in the row
+            for (int i = 0; i < ColumnCount; i++)
+            {
+                TableCell breakable = this[i, rowIndex];
+                // use clone object because Break method will modify the Text property
+                using (TableCell clone = new TableCell())
+                {
+                    clone.AssignAll(breakable);
+                    clone.Height = rowHeight;
+                    clone.SetReport(Report);
+                    if (!clone.Break(null))
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void BreakRow(TableBase breakTo, int rowIndex, float rowHeight, float newRowHeight)
+        {
+            // set rows height
+            TableRow rowTo = breakTo.Rows[rowIndex];
+            Rows[rowIndex].Height = rowHeight;
+            rowTo.Height = newRowHeight;
+
+            // break each cell in the row
+            for (int i = 0; i < ColumnCount; i++)
+            {
+                TableCell cell = this[i, rowIndex];
+                TableCell cellTo = breakTo[i, rowIndex];
+                cell.Height = rowHeight;
+                cell.Break(cellTo);
+                
+                // fix height if row is not autosized
+                if (!rowTo.AutoSize)
+                {
+                    float h = cellTo.CalcHeight();
+                    if (h > rowTo.Height)
+                        rowTo.Height = h;
+                }
+            }
+        }
+
         /// <inheritdoc/>
         public override bool Break(BreakableComponent breakTo)
         {
             if (Rows.Count == 0)
                 return true;
-            if (Height < Rows[0].Height)
+            if (Height < Rows[0].Height && !Rows[0].CanBreak)
                 return false;
             TableBase tableTo = breakTo as TableBase;
             if (tableTo == null)
                 return true;
 
-            // get the span list
-            List<Rectangle> spans = GetSpanList();
-
             // find the break row index
             int breakRowIndex = 0;
+            int breakRowIndexAdd = 0;
+            bool rowBroken = false;
             float rowsHeight = 0;
-            while (breakRowIndex < Rows.Count && rowsHeight + Rows[breakRowIndex].Height < Height)
+
+            while (breakRowIndex < Rows.Count)
             {
                 rowsHeight += Rows[breakRowIndex].Height;
+                if (rowsHeight > Height)
+                {
+                    float breakRowHeight = Rows[breakRowIndex].Height - (rowsHeight - Height);
+                    if (CanBreakRow(breakRowIndex, breakRowHeight))
+                    {
+                        BreakRow(tableTo, breakRowIndex, breakRowHeight, rowsHeight - Height);
+                        breakRowIndexAdd = 1;
+                        rowBroken = true;
+                    }
+                    break;
+                }
+
                 breakRowIndex++;
             }
+
+            // get the span list
+            List<Rectangle> spans = GetSpanList();
 
             // break the spans
             foreach (Rectangle span in spans)
             {
-                if (span.Top < breakRowIndex && span.Bottom > breakRowIndex)
+                if (span.Top < breakRowIndex + breakRowIndexAdd && span.Bottom > breakRowIndex)
                 {
                     TableCell cell = this[span.Left, span.Top];
                     TableCell cellTo = tableTo[span.Left, span.Top];
 
                     // update cell spans
-                    cell.RowSpan = breakRowIndex - span.Top;
+                    cell.RowSpan = breakRowIndex + breakRowIndexAdd - span.Top;
                     cellTo.RowSpan = span.Bottom - breakRowIndex;
 
                     // break the cell
-                    if (!cell.Break(cellTo))
+                    if (!rowBroken && !cell.Break(cellTo))
                         cell.Text = "";
+
+                    // set the top span cell to the correct place
                     tableTo[span.Left, span.Top] = new TableCell();
                     tableTo[span.Left, breakRowIndex] = cellTo;
                 }
             }
 
-            // delete last rows until all rows fit
-            while (breakRowIndex < Rows.Count)
+            // remove unused rows from source (this table)
+            while (breakRowIndex + breakRowIndexAdd < Rows.Count)
             {
-                Rows.RemoveAt(Rows.Count - 1);
+                this.Rows.RemoveAt(Rows.Count - 1);
             }
 
-            // delete first rows of the breakTo
+            // remove unused rows from copy (tableTo)
             for (int i = 0; i < breakRowIndex; i++)
             {
                 tableTo.Rows.RemoveAt(0);

@@ -493,11 +493,27 @@ namespace FastReport.Matrix
         width--;
       }
 
-      foreach (MatrixHeaderItem item in root.Items)
-      {
+    for (int index = 0; index < root.Items.Count; index++)
+    {
+        MatrixHeaderItem item = root.Items[index];
         Matrix.RowValues = item.Values;
         TableCellData resultCell = ResultTable.GetCellData(left, top);
         int span = item.Span * dataHeight;
+                if (Matrix.SplitRows)
+                {
+                    MatrixHeaderItem duplicate = new MatrixHeaderItem(root);
+                    duplicate.IsSplitted = true;
+                    duplicate.Value = item.Value;
+                    duplicate.TemplateRow = item.TemplateRow;
+                    duplicate.TemplateCell = item.TemplateCell;
+                    duplicate.TemplateColumn = item.TemplateColumn;
+
+                    for (int i = 1; i < span; i++)
+                    {
+                        root.Items.Insert(index + 1, duplicate);
+                    }
+                    span = 1;
+                }
         resultCell.RowSpan = span;
         if (item.IsTotal)
         {
@@ -1121,6 +1137,15 @@ namespace FastReport.Matrix
       Matrix.Data.AddValue(columnValues, rowValues, cellValues, Matrix.DataSource.CurrentRowNo);
     }
 
+    public void AddEmptyDataRow()
+    {
+        object[] columnValues = new object[Matrix.Data.Columns.Count];
+        object[] rowValues = new object[Matrix.Data.Rows.Count];
+        object[] cellValues = new object[Matrix.Data.Cells.Count];
+
+        Matrix.Data.AddValue(columnValues, rowValues, cellValues, 0);
+    }
+
     public void AddDataRows()
     {
       if (Matrix.DataSource != null)
@@ -1136,13 +1161,20 @@ namespace FastReport.Matrix
     
     public void FinishPrint()
     {
-      UpdateDescriptors();
-      ResultTable.FixedColumns = HeaderWidth;
-      ResultTable.FixedRows = HeaderHeight;
+        if (!Matrix.Data.IsEmpty || Matrix.PrintIfEmpty)
+        {
+            if (Matrix.Data.IsEmpty)
+              AddEmptyDataRow();
 
-      InitResultTable(false);
-      PrintHeaders();
-      PrintData();
+            UpdateDescriptors();
+            ResultTable.FixedColumns = HeaderWidth;
+            ResultTable.FixedRows = HeaderHeight;
+
+            InitResultTable(false);
+            PrintHeaders();
+            PrintData();
+
+        }
 
       // clear temporary descriptors
       if (noColumns)

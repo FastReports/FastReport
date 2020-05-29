@@ -31,7 +31,36 @@ namespace FastReport.Web.Controllers
                 if (!FindWebReport(out WebReport webReport))
                     return new NotFoundResult();
 
-                return webReport.DesignerSaveReport(Context);
+                if (webReport.DesignerSaveMethod == null)
+                {
+                    // old saving way by self-request
+                    return webReport.DesignerSaveReport(Context);
+                }
+                else
+                {
+                    // save by using a Func
+
+                    string report = webReport.Report.SaveToString();
+                    string msg = string.Empty;
+                    int code = 200;
+                    try
+                    {
+                        msg = webReport.DesignerSaveMethod(webReport.ID, webReport.ReportFileName, report);
+                    }
+                    catch(Exception ex)
+                    {
+                        code = 500;
+                        msg = ex.Message;
+                    }
+
+                    var result = new ContentResult()
+                    {
+                        StatusCode = code,
+                        ContentType = "text/html",
+                        Content = msg
+                    };
+                    return result;
+                }
             });
 
             RegisterHandler("/designer.previewReport", async () =>
@@ -57,7 +86,10 @@ namespace FastReport.Web.Controllers
 
             RegisterHandler("/designer.getFunctions", () =>
             {
-                return GetFunctions();
+                if (!FindWebReport(out WebReport webReport))
+                    return new NotFoundResult();
+
+                return GetFunctions(webReport.Report);
             });
 
             RegisterHandler("/designer.getConnectionTypes", () =>
@@ -179,7 +211,7 @@ namespace FastReport.Web.Controllers
             }
         }
 
-        IActionResult GetFunctions()
+        IActionResult GetFunctions(Report report)
         {
             using (var xml = new XmlDocument())
             {
@@ -198,12 +230,8 @@ namespace FastReport.Web.Controllers
                 }
 
                 xml.Root.Name = "ReportFunctions";
-
-                // TODO
-                //#if !FRCORE
-                //            if (rootFunctions != null)
-                //                RegisteredObjects.CreateFunctionsTree(Report, rootFunctions, xml.Root);
-                //#endif
+                if (rootFunctions != null)
+                    RegisteredObjects.CreateFunctionsTree(report, rootFunctions, xml.Root);
 
                 using (var stream = new MemoryStream())
                 {

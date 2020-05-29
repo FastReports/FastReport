@@ -639,7 +639,7 @@ namespace FastReport.Utils
         //RunImage img = null;
         //end     img
         string text = this.text;
-        FastString currentWord = new FastString(100);
+        StringBuilder currentWord = new StringBuilder(100);
         float width = 0;
         bool skipSpace = true;
         int originalCharIndex = this.originalCharIndex;
@@ -671,7 +671,11 @@ namespace FastReport.Utils
                     lines.Add(line);
                   }
                 }
-                currentWord.Clear();
+#if DOTNET_4
+                currentWord.Clear();    // .NET 2.0 doesn't have Clear()
+#else
+                currentWord.Length = 0;
+#endif
                 lastChar = ' ';
               }
               else
@@ -780,7 +784,11 @@ namespace FastReport.Utils
                     // finish the word
                     word.Runs.Add(new Run(currentWord.ToString(), style, word));
                   }
-                  currentWord.Clear();
+#if DOTNET_4
+                  currentWord.Clear();    // .NET 2.0 doesn't have Clear()
+#else
+                  currentWord.Length = 0;
+#endif
                   //end
                   word.Runs.Add(new RunImage(src, alt, style, word));
                   skipSpace = false;
@@ -961,7 +969,11 @@ namespace FastReport.Utils
                 word.Runs.Add(new Run(currentWord.ToString(), style, word));
               }
 
-              currentWord.Clear();
+#if DOTNET_4
+              currentWord.Clear();    // .NET 2.0 doesn't have Clear()
+#else
+              currentWord.Length = 0;
+#endif
               style = newStyle;
               i--;
 
@@ -1051,7 +1063,11 @@ namespace FastReport.Utils
               {
                 word = new Word("", line);
                 line.Words.Add(word);
-                currentWord.Clear();
+#if DOTNET_4
+                currentWord.Clear();    // .NET 2.0 doesn't have Clear()
+#else
+                currentWord.Length = 0;
+#endif
                 originalCharIndex = this.originalCharIndex + i + 1;
                 skipSpace = true;
               }
@@ -1086,7 +1102,7 @@ namespace FastReport.Utils
           line.Draw();
         }
       }
-      #endregion
+#endregion
 
       public Paragraph(string text, AdvancedTextRenderer renderer, int originalCharIndex)
       {
@@ -1105,7 +1121,7 @@ namespace FastReport.Utils
     /// </summary>
     public class Line
     {
-      #region Fields
+#region Fields
       private List<Word> words;
       private string text;
       private bool hasTabs;
@@ -1115,9 +1131,9 @@ namespace FastReport.Utils
       private int originalCharIndex;
       private List<RectangleF> underlines;
       private List<RectangleF> strikeouts;
-      #endregion
+#endregion
 
-      #region Properties
+#region Properties
       public List<Word> Words
       {
         get { return words; }
@@ -1184,9 +1200,9 @@ namespace FastReport.Utils
       {
         get { return strikeouts; }
       }
-      #endregion
+#endregion
       
-      #region Private Methods
+#region Private Methods
       private void PrepareUnderlines(List<RectangleF> list, FontStyle style)
       {
         list.Clear();
@@ -1235,9 +1251,9 @@ namespace FastReport.Utils
           list.Add(new RectangleF(Left, Top, lineWidth, 1));
         }
       }
-      #endregion
+#endregion
 
-      #region Public Methods
+#region Public Methods
       public void AlignWords(HorzAlign align)
       {
         width = 0;
@@ -1361,7 +1377,7 @@ namespace FastReport.Utils
           height = Renderer.LineHeight;
         return height;
       }
-      #endregion
+#endregion
 
       public Line(string text, Paragraph paragraph, int originalCharIndex)
       {
@@ -1436,15 +1452,15 @@ namespace FastReport.Utils
     /// </summary>
     public class Word
     {
-      #region Fields
+#region Fields
       private List<Run> runs;
       protected string text;
       private float left;
       private float width;
       internal Line line;
-      #endregion
+#endregion
 
-      #region Properties
+#region Properties
       public string Text
       {
         get { return text; }
@@ -1503,9 +1519,9 @@ namespace FastReport.Utils
           return Runs[Runs.Count - 1].SpaceWidth;
         }
       }
-      #endregion
+#endregion
 
-      #region Public Methods
+#region Public Methods
       public void AdjustRuns()
       {
         float left = Left;
@@ -1621,7 +1637,7 @@ namespace FastReport.Utils
           return 0;
         }
       }
-      #endregion
+#endregion
 
       public Word(string text, Line line)
       {
@@ -1651,15 +1667,15 @@ namespace FastReport.Utils
     /// </summary>
     public class StyleDescriptor
     {
-      #region Fields
+#region Fields
       private FontStyle fontStyle;
       private Color color;
       private BaseLine baseLine;
       private string font;
       private float size;
-      #endregion
+#endregion
 
-      #region Properties
+#region Properties
       public FontStyle FontStyle
       {
         get { return fontStyle; }
@@ -1688,9 +1704,9 @@ namespace FastReport.Utils
         get { return baseLine; }
         set { baseLine = value; }
       }
-      #endregion
+#endregion
 
-      #region Public Methods
+#region Public Methods
       public override string ToString()
       {
         string result = "";
@@ -2492,7 +2508,7 @@ namespace FastReport.Utils
         stream = arr;
       }
 
-      #region IDisposable Support
+#region IDisposable Support
       private bool disposedValue = false; // To detect redundant calls
 
       /// <summary>
@@ -2534,9 +2550,9 @@ namespace FastReport.Utils
         // TODO: uncomment the following line if the finalizer is overridden above.
         // GC.SuppressFinalize(this);
       }
-      #endregion
+#endregion
 
-      #endregion Public Methods
+#endregion Public Methods
     }
 
     /// <summary>
@@ -2583,7 +2599,7 @@ namespace FastReport.Utils
 #endregion Internal Constructors
     }
 
-    #region IDisposable Support
+#region IDisposable Support
     private bool disposedValue = false; // To detect redundant calls
 
     /// <summary>
@@ -2628,8 +2644,8 @@ namespace FastReport.Utils
       // TODO: uncomment the following line if the finalizer is overridden above.
       // GC.SuppressFinalize(this);
     }
-    #endregion
+#endregion
 
-    #endregion Public Classes
+#endregion Public Classes
   }
 }

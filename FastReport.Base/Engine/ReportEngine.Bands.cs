@@ -205,6 +205,36 @@ namespace FastReport.Engine
 
         internal bool CanPrint(ReportComponentBase obj)
         {
+            // Apply visible expression if needed.
+            if (!String.IsNullOrEmpty(obj.VisibleExpression))
+            {
+                object expression = Report.Calc(obj.VisibleExpression);
+                if (expression is bool)
+                {
+                    obj.Visible = (bool)expression;
+                }
+            }
+
+            // Apply exportable expression if needed.
+            if (!String.IsNullOrEmpty(obj.ExportableExpression))
+            {
+                object expression = Report.Calc(obj.ExportableExpression);
+                if (expression is bool)
+                {
+                    obj.Exportable = (bool)expression;
+                }
+            }
+
+            // Apply printable expression if needed.
+            if (!String.IsNullOrEmpty(obj.PrintableExpression))
+            {
+                object expression = Report.Calc(obj.PrintableExpression);
+                if (expression is bool)
+                {
+                    obj.Printable = (bool)expression;
+                }
+            }
+
             if (!obj.Visible || !obj.FlagPreviewVisible)
             {
                 return false;

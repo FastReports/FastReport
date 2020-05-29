@@ -52,6 +52,14 @@
         {
         }
 
+        private static void RestorePreviewSettings()
+        {
+        }
+
+        private static void SavePreviewSettings()
+        {
+        }
+
         private static void SaveExportOptions()
         {
         }

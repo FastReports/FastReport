@@ -61,25 +61,26 @@ namespace FastReport.Functions
             else
             {
                 if (value % 1000 != 0)
-                    result.Append(Str1000(value, senior));
+                    result.Append(Str1000(value, senior, 1));
                 else
-                    result.Append(senior.many + " ");
+                    result.Append(" " + senior.many + " ");
 
                 value /= 1000;
-                result.Insert(0, Str1000(value, GetThousands()));
+                result.Insert(0, Str1000(value, GetThousands(), 2));
 
                 value /= 1000;
-                result.Insert(0, Str1000(value, GetMillions()));
+                result.Insert(0, Str1000(value, GetMillions(), 3));
 
                 value /= 1000;
-                result.Insert(0, Str1000(value, GetMilliards()));
+                result.Insert(0, Str1000(value, GetMilliards(), 4));
 
                 value /= 1000;
-                result.Insert(0, Str1000(value, GetTrillions()));
+                result.Insert(0, Str1000(value, GetTrillions(), 5));
+                result.Replace("  ", " ");
             }
         }
 
-        protected virtual string Str1000(long value, WordInfo info)
+        protected virtual string Str1000(long value, WordInfo info, int counter)
         {
             long val = value % 1000;
             if (val == 0)

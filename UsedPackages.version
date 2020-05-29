@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<!-- This file sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
+    <PropertyGroup>
+
+        <FRCompatVersion>2020.3.2</FRCompatVersion>
+
+        <FRDataVisualizationVersion>2020.3.1</FRDataVisualizationVersion>
+        
+    </PropertyGroup>
+</Project>

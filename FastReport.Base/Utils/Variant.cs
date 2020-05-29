@@ -72,7 +72,7 @@ namespace FastReport
   /// restoration of the utility and positive merits of the Variant
   /// where it can be used responsibly.</para>
   /// </remarks>
-  public struct Variant : System.IConvertible {
+  public struct Variant : System.IConvertible, IComparable {
     /// <summary>
     /// Creates a strongly typed object that readily casts a primitive
     /// object to the other primitive types when possible.
@@ -1621,8 +1621,15 @@ namespace FastReport
       }
       return true;
     }
-// AlexTZ
 
+        public int CompareTo(object other)
+        {
+            if (this > other) return 1;
+            else if (this == other) return 0;
+            else return -1;
+        }
+
+// AlexTZ
     ///
     public static implicit operator string(Variant v) {
       return v.ToString();

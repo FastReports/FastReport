@@ -383,7 +383,7 @@ namespace FastReport
             if (SizeMode == PictureBoxSizeMode.AutoSize)
                 ForceLoadImage();
         }
-
+        
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
         {

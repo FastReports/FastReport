@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Security;
 using System.Text;
@@ -56,7 +57,18 @@ namespace FastReport
         /// <summary>
         /// The AntiAlias quality. This mode may be used to produce the WYSIWYG text.
         /// </summary>
-        AntiAlias
+        AntiAlias,
+
+        /// <summary>
+        /// The "SingleBitPerPixel" quality.
+        /// </summary>
+        SingleBPP,
+
+
+        /// <summary>
+        /// The "SingleBitPerPixelGridFit" quality.
+        /// </summary>
+        SingleBPPGridFit
     }
 
     /// <summary>
@@ -238,6 +250,7 @@ namespace FastReport
         private bool initializing;
         private object initializeData;
         private string initializeDataName;
+        private object tag;
 
         #endregion Fields
 
@@ -789,6 +802,16 @@ namespace FastReport
             get { return operation; }
         }
 
+        /// <summary>
+        /// Gets or sets the Tag object of the report.
+        /// </summary>
+        [Browsable(false)]
+        public object Tag
+        {
+            get { return tag; }
+            set { tag = value; }
+        }
+
         private string[] DefaultAssemblies
         {
             get
@@ -809,7 +832,7 @@ namespace FastReport
             {
                 if (measureGraphics == null)
                 {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1 || MONO
                     measureBitmap = new Bitmap(1, 1);
                     measureGraphics = Graphics.FromImage(measureBitmap);
 #else
@@ -1257,6 +1280,8 @@ namespace FastReport
         {
             if (!IsRunning)
                 return null;
+            if (String.IsNullOrEmpty(expression) || String.IsNullOrEmpty(expression.Trim()))
+                return null;
 
             string expr = expression;
             if (expr.StartsWith("[") && expr.EndsWith("]"))
@@ -1293,6 +1318,8 @@ namespace FastReport
                 object val = (cachedObject as Total).Value;
                 if (ConvertNulls && (val == null || val is DBNull))
                     val = 0;
+
+                (cachedObject as Total).ExecuteTotal(val);
 
                 return val;
             }
@@ -2299,6 +2326,31 @@ namespace FastReport
             }
         }
 
+
+        internal TextRenderingHint GetTextQuality()
+        {
+            switch (this.TextQuality)
+            {
+                case TextQuality.Regular:
+                    return TextRenderingHint.AntiAliasGridFit;
+
+                case TextQuality.ClearType:
+                    return TextRenderingHint.ClearTypeGridFit;
+
+                case TextQuality.AntiAlias:
+                    return TextRenderingHint.AntiAlias;
+
+                case TextQuality.SingleBPP:
+                    return TextRenderingHint.SingleBitPerPixel;
+
+                case TextQuality.SingleBPPGridFit:
+                    return TextRenderingHint.SingleBitPerPixelGridFit;
+            }
+
+            return TextRenderingHint.SystemDefault;
+        }
+
+
         /// <summary>
         /// Prepare page
         /// </summary>
@@ -2396,6 +2448,7 @@ namespace FastReport
             storeInResources = true;
             fileName = "";
             autoFillDataSet = true;
+            tag = null;
             ClearReportProperties();
             SetFlags(Flags.CanMove | Flags.CanResize | Flags.CanDelete | Flags.CanEdit | Flags.CanChangeOrder |
               Flags.CanChangeParent | Flags.CanCopy, false);

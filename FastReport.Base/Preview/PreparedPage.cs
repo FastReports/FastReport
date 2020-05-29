@@ -414,19 +414,10 @@ namespace FastReport.Preview
             return result;
         }
 
-        public void PasteObjects(XmlItem objects, float x, float y)
+        public void PasteObjects(XmlItem objects, float deltaX, float deltaY)
         {
             if (objects.Count > 0)
             {
-                // get the top object's location
-                float pastedX = (objects[0].GetProp("l") != "") ?
-                  Converter.StringToFloat(objects[0].GetProp("l")) : 0;
-                float pastedY = (objects[0].GetProp("t") != "") ?
-                  Converter.StringToFloat(objects[0].GetProp("t")) : 0;
-
-                float deltaX = x - pastedX;
-                float deltaY = y - pastedY;
-
                 while (objects.Count > 0)
                 {
                     XmlItem obj = objects[0];

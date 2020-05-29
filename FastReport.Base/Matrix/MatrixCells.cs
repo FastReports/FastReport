@@ -31,6 +31,11 @@ namespace FastReport.Matrix
       set { name = value; }
     }
 
+    internal bool IsEmpty
+    {
+        get { return rows == null; }
+    }
+
     /// <summary>
     /// Adds the specified descriptors to the end of this collection.
     /// </summary>

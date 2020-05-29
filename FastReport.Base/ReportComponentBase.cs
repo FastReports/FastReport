@@ -99,6 +99,7 @@ namespace FastReport
     {
         #region Fields
         private bool exportable;
+        private string exportableExpression;
         private Border border;
         private FillBase fill;
         private string bookmark;
@@ -168,6 +169,18 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Gets or sets a string containing expression that determines should be object exported.
+        /// </summary>
+        [DefaultValue("")]
+        [Category("Behavior")]
+        [Editor("FastReport.TypeEditors.ExpressionEditor, FastReport", typeof(UITypeEditor))]
+        public virtual string ExportableExpression
+        {
+            get { return exportableExpression; }
+            set { exportableExpression = value; }
+        }
+
+        /// <summary>
         /// Gets or sets an object's border.
         /// </summary>
         [Category("Appearance")]
@@ -200,7 +213,7 @@ namespace FastReport
         [EditorAttribute("FastReport.TypeEditors.FillEditor, FastReport",typeof(UITypeEditor))]
         public virtual FillBase Fill
         {
-            get 
+            get
             {
                 return fill; 
             }
@@ -650,6 +663,7 @@ namespace FastReport
 
             ReportComponentBase src = source as ReportComponentBase;
             Exportable = src.Exportable;
+            ExportableExpression = src.ExportableExpression;
             Border = src.Border.Clone();
             Fill = src.Fill.Clone();
             Bookmark = src.Bookmark;
@@ -770,6 +784,8 @@ namespace FastReport
 
             if (Exportable != c.Exportable)
                 writer.WriteBool("Exportable", Exportable);
+            if (ExportableExpression != c.ExportableExpression)
+                writer.WriteStr("ExportableExpression", ExportableExpression);
             Border.Serialize(writer, "Border", c.Border);
             //if(Fill != c.Fill)
                 Fill.Serialize(writer, "Fill", c.Fill);
@@ -958,6 +974,8 @@ namespace FastReport
                 expressions.Add(Hyperlink.Expression);
             if (!String.IsNullOrEmpty(Bookmark))
                 expressions.Add(Bookmark);
+            if (!String.IsNullOrEmpty(ExportableExpression))
+                expressions.Add(ExportableExpression);
             return expressions.ToArray();
         }
 
@@ -1010,6 +1028,7 @@ namespace FastReport
             hyperlink = new Hyperlink(this);
             bookmark = "";
             exportable = true;
+            exportableExpression = "";
             flagUseFill = true;
             flagUseBorder = true;
             flagPreviewVisible = true;

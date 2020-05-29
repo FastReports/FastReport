@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -15,7 +16,11 @@ namespace FastReport.Utils
 #if COMMUNITY
         const string CONFIG_NAME = "FastReport.Community.config";
 #else
+#if MONO
+        const string CONFIG_NAME = "FastReport.Mono.config";
+#else
         const string CONFIG_NAME = "FastReport.config";
+#endif
 #endif
         #region Private Fields
 
@@ -25,6 +30,7 @@ namespace FastReport.Utils
         private static string FFolder = null;
         private static string FFontListFolder = null;
         private static string FLogs = "";
+        private static bool FIsRunningOnMono;
         private static ReportSettings FReportSettings = new ReportSettings();
         private static bool FRightToLeft = false;
         private static string FTempFolder = null;
@@ -32,10 +38,18 @@ namespace FastReport.Utils
         private static bool FStringOptimization = false;
         private static bool preparedCompressed = true;
         private static bool disableHotkeys = false;
+        private static bool disableBacklight = false;
 
-#endregion Private Fields
+        #endregion Private Fields
 
-#region Public Properties
+        #region Public Properties
+        /// <summary>
+        /// Gets a value indicating that the Mono runtime is used.
+        /// </summary>
+        public static bool IsRunningOnMono
+        {
+            get { return FIsRunningOnMono; }
+        }
 
         /// <summary>
         /// Gets or sets the optimization of strings. Is experimental feature.
@@ -161,6 +175,18 @@ namespace FastReport.Utils
             get { return typeof(Report).Assembly.GetName().Version.ToString(3); }
         }
 
+        /// <summary>
+        /// Called on script compile
+        /// </summary>
+        public static event EventHandler<ScriptSecurityEventArgs> ScriptCompile;
+
+        /// <summary>
+        /// Gets a PrivateFontCollection instance.
+        /// </summary>
+        public static PrivateFontCollection PrivateFontCollection
+        {
+            get { return FastReport.TypeConverters.FontConverter.PrivateFontCollection; }
+        }
         #endregion Public Properties
 
         #region Internal Methods
@@ -179,6 +205,8 @@ namespace FastReport.Utils
 
         internal static void Init()
         {
+            FIsRunningOnMono = Type.GetType("Mono.Runtime") != null;
+
 #if !(NETSTANDARD2_0 || NETSTANDARD2_1)
             string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             WebMode = String.Compare(processName, "iisexpress") == 0 ||
@@ -190,7 +218,9 @@ namespace FastReport.Utils
 #endif
             if (WebMode)
             {
+#if !COMMUNITY
                 RestoreExportOptions();
+#endif
             }
             LoadPlugins();
 
@@ -218,6 +248,20 @@ namespace FastReport.Utils
                     return;
             }
             FLogs += s + "\r\n";
+        }
+
+
+        internal static void OnScriptCompile(ScriptSecurityEventArgs e)
+        {
+            if (ScriptCompile != null)
+            {
+                ScriptCompile.Invoke(null, e);
+            }
+
+            if (!e.IsValid)
+            {
+                throw new CompilerException(Res.Get("Messages,CompilerError"));
+            }
         }
 
         #endregion Internal Methods
@@ -251,7 +295,11 @@ namespace FastReport.Utils
             FDoc.AutoIndent = true;
             SaveUIStyle();
             SaveUIOptions();
-            SaveExportOptions();
+            SavePreviewSettings();
+#if !COMMUNITY
+                SaveExportOptions();
+#endif
+
             if (!WebMode)
             {
                 try
@@ -308,7 +356,10 @@ namespace FastReport.Utils
                 RestoreUIStyle();
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
+                RestorePreviewSettings();
+#if !COMMUNITY
                 RestoreExportOptions();
+#endif
                 Res.LoadDefaultLocale();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }
@@ -325,7 +376,7 @@ namespace FastReport.Utils
         private static void LoadPlugins()
         {
             // main assembly initializer
-            ProcessAssembly(typeof(Config).Assembly);
+            ProcessMainAssembly();
 
             XmlItem pluginsItem = Root.FindItem("Plugins");
             for (int i = 0; i < pluginsItem.Count; i++)
@@ -343,19 +394,11 @@ namespace FastReport.Utils
             }
         }
 
-        private static void ProcessAssemblies()
-        {
-            foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                ProcessAssembly(a);
-            }
-        }
-
         private static void ProcessAssembly(Assembly a)
         {
             foreach (Type t in a.GetTypes())
             {
-                if (t != typeof(AssemblyInitializerBase) && t.IsSubclassOf(typeof(AssemblyInitializerBase)))
+                if (t.IsSubclassOf(typeof(AssemblyInitializerBase)))
                     Activator.CreateInstance(t);
             }
         }

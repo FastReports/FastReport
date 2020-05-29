@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Language Name="en">
+  <Fonts>
+    <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} font must not be modified, embedded, or exchanged in any manner without first obtaining permission of the legal owner."/>
+    <FontMayNotBeSubsettedPriorToEmbedding Text="{0} font may not be subsetted prior to embedding."/>
+  </Fonts>
   <Buttons>
     <Ok Text="OK"/>
     <Cancel Text="Cancel"/>
@@ -15,15 +19,19 @@
   <Messages>
     <AccessingData Text="Accessing data..."/>
     <Attention Text="Attention"/>
+	  <BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
+	  <BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
     <CantFindObject Text="Can't find object"/>
     <CantLoadReport Text="Can't load the report {0}"/>
     <CantSaveReport Text="Can't save the report. The file may be write-protected."/>
+    <ChangePicture Text="Would you like to replace current image?"/>
     <ClassError Text="Could not find the main report class, ReportScript"/>
     <Confirmation Text="Confirmation"/>
     <DataNotInitialized Text="Datasource is not initialized yet."/>
     <DecompressError Text="Cannot decompress the file"/>
     <DecryptError Text="Decrypt error: wrong password"/>
     <DelegateError Text="{0} delegate must have two arguments: 'sender' and 'e'"/>
+    <CompilerError Text="Report script is invalid"/>
     <DeleteAncestor Text="Could not delete {0}, it was introduced in the ancestor report"/>
     <DuplicateName Text="Object with name {0} already exists"/>
     <GroupHeaderHasNoGroupCondition Text="{0} has no group condition"/>
@@ -57,6 +65,31 @@
     <ErrorInHighlightCondition Text="Error in highlight condition"/>
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
+    <Swiss>
+      <SwissNullIban Text="Iban must not be null"/>
+      <SwissNullCreditor Text="Creditor must not be null"/>
+      <SwissNullReference Text="Reference must not be null"/>
+      <SwissNullCurrency Text="Currency must not be null"/>
+      <SwissAmountLength Text="Amount (including decimals) must be shorter than 13 places"/>
+      <SwissQRIban Text="If QR-IBAN is used, you have to choose QRR as reference type!"/>
+      <SwissNonQRIban Text="If non QR-IBAN is used, you have to choose either SCOR or NON as reference type!"/>
+      <SwissAltProcedureLength Text="Alternative procedure information block 1 must be shorter than 101 chars"/>
+      <SwissUnstructBillLength Text="Unstructured message and bill information must be shorter than 141 chars in total/combined."/>
+      <SwissRefTypeNon Text="Reference is only allowed when referenceType not equals NON"/>
+      <SwissRefTextTypeNon Text="You have to set an ReferenceTextType when using the reference text"/>
+      <SwissRefQRLength Text="QR-references have to be shorter than 28 chars"/>
+      <SwissRefQRNotOnlyDigits Text="QR-reference must exist out of digits only"/>
+      <SwissRefQRCheckSum Text="QR-references is invalid. Checksum error"/>
+      <SwissRefISOLength Text="Creditor references (ISO 11649) have to be shorter than 26 chars"/>
+      <SwissEmptyProperty Text="{0} must not be empty"/>
+      <SwissLengthMore Text="{0}} must be shorter than {0} chars"/>
+      <SwissPatternError Text="{0} must match the following pattern:"/>
+      <SwissAddressLine2Error Text="Address line 2 must be provided for combined addresses (address line-based addresses)."/>
+      <SwissCountryTwoLetters Text="Country must be a valid two letter country code as defined by  ISO 3166-1, but it isn't."/>
+      <SwissIbanNotValid Text="The IBAN entered isn't valid."/>
+      <SwissQRIbanNotValid Text="The QR-IBAN entered isn't valid."/>
+      <SwissQRStartNotValid Text="The IBAN must start with CH or LI"/>
+    </Swiss>
   </Messages>
   <Misc>
     <ShortUnitsMm Text="mm"/>
@@ -280,6 +313,7 @@
     <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>
     <OsmFile Text="OpenStreetMap file(*.osm)|*.osm"/>
     <Fr3File Text="FastReport VCL report (*.fr3)|*.fr3"/>
+    <RtfFile Text="RTF files (*.rtf)|*.rtf"/>
     <ListAndLabelFiles Text="List and Label files|*.rpt;*.crd;*.srt;*.inv;*.lab;*.let"/>
     <DevExpressFiles Text="DevExpress files (*.repx)|*.repx"/>
     <JsonFile Text="JSON file (*.json,*.txt)|*.json;*.txt"/>
@@ -342,6 +376,7 @@
       <File Text="File">
         <New Text="New..."/>
         <Open Text="Open..."/>
+        <Import Text="Import..."/>
         <Close Text="Close"/>
         <Save Text="Save"/>
         <SaveAs Text="Save As..."/>
@@ -359,6 +394,7 @@
         <Copy Text="Copy"/>
         <Paste Text="Paste"/>
         <Delete Text="Delete"/>
+        <NewPage Text="New Page"/>
         <CopyPage Text="Copy Page"/>
         <DeletePage Text="Delete Page"/>
         <SelectAll Text="Select All"/>
@@ -657,6 +693,7 @@
     <BaseReportWizard>
       <SelectDataSourcePage Text="Select datasource"/>
       <SelectDataSource Text="Select one of the available datasources or create new one:"/>
+      <OpenDataDictionary Text="Open data dictionary file..."/>
       <CreateNewDatasource Text="Create new datasource..."/>
       <SelectColumnsPage Text="Select data columns"/>
       <SelectColumns Text="Select data columns that you want to show in a report."/>
@@ -1469,6 +1506,7 @@
       <Source Text="Source"/>
       <FirstPage Text="First page:"/>
       <OtherPages Text="Other pages:"/>
+      <LastPage Text="Last page:"/>
       <Columns Text="Columns"/>
       <Count Text="Count:"/>
       <ColumnWidth Text="Width:"/>
@@ -1663,6 +1701,8 @@
       <QualityRegular Text="Regular"/>
       <QualityClearType Text="ClearType"/>
       <QualityAntiAlias Text="AntiAlias"/>
+	  <QualitySingleBPP Text="SingleBPP"/>
+	  <QualitySingleBPPGridFit Text="SingleBPPGridFit"/>
       <PasswordError Text="Password does not match. Please retype again."/>
       <Recipients Text="Recipient(s) (for example, john@url.com):"/>
       <Subject Text="Subject:"/>
@@ -1689,6 +1729,7 @@
       <EventBandIndicator Text="Show indicator on bands with events" />
       <EventObjectIndicator Text="Show indicator on objects with events" />
       <ObjectsAppearance Text="Objects appearance"/>
+	  <EnableBacklight Text="Backlight active band"/>
     </ReportPageOptions>
     <RichTextEditor Text="RichText Editor">
       <Open Text="Open"/>
@@ -1872,6 +1913,24 @@
       <WifiHidden Text="Wi-Fi network is hidden"/>
       <Save Text="Save"/>
       <Cancel Text="Cancel"/>
+      <Swiss>
+        <Iban Text="Iban"/>
+        <IbanType Text="Iban type"/>
+        <Name Text="Name"/>
+        <HouseNumber Text="House number"/>
+        <Reference Text="Reference"/>
+        <Creditor Text="Creditor"/>
+        <Type Text="Type"/>
+        <TextType Text="Text type"/>
+        <Debitor Text="Debitor"/>
+        <AdditionalInformation Text="Additional Information"/>
+        <UnstructuredMessage Text="Unstructured Message"/>
+        <BillInformation Text="Bill Information"/>
+        <Currency Text="Currency"/>
+        <AlternativeProcedure1 Text="Alternative procedure 1"/>
+        <AlternativeProcedure2 Text="Alternative procedure 2"/>
+        <Amount Text="Amount"/>
+      </Swiss>
     </BarcodeEditor>
     <SavingPageOptions Text="Saving">
       <EnableAutoSave Text="Enable auto save every (minutes)"/>
@@ -2282,6 +2341,8 @@
     </Ppml>
     <PS Text="Export to PostScript">
       <File Text="PostScript file"/>
+	  <PagesInDiffFiles Text="Pages in different files"/>
+	  <SaveImagesSeparately Text="Save images separately"/>
     </PS>
     <Xps Text="Export to XPS">
       <File Text="Microsoft XPS file"/>
@@ -2419,6 +2480,10 @@
     </Email>
     <Dxf Text="Export to DXF">
       <File Text="DXF file"/>
+      <FillMode Text="Fill mode:"/>
+      <FillModeBorder Text="Border"/>
+      <FillModeSolid Text="Solid"/>
+      <BarcodesGap Text="Barcodes gap (mm):"/>
     </Dxf>
     <Hpgl Text="Export to Hpgl(plt)">
       <File Text="Hpgl file"/>

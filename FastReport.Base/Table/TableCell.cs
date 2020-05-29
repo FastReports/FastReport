@@ -106,7 +106,7 @@ namespace FastReport.Table
       }
     }
     
-    internal TableCellData CellData
+    public TableCellData CellData
     {
       get { return cellData; }
       set { cellData = value; }

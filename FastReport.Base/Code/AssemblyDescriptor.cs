@@ -1,5 +1,9 @@
 using System;
+#if NETSTANDARD || NETCOREAPP
+using FastReport.Code.CodeDom.Compiler;
+#else
 using System.CodeDom.Compiler;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -8,6 +12,7 @@ using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 #if DOTNET_4
 using System.Collections.Concurrent;
 #endif
@@ -35,6 +40,8 @@ namespace FastReport.Code
         private bool needCompile;
         private string shaKey = "FastReportCode";
         private static object compileLocker;
+
+        private const int RECOMPILE_COUNT = 1;
 
         public Assembly Assembly
         {
@@ -178,15 +185,21 @@ namespace FastReport.Code
 
         private void AddReferencedAssemblies(StringCollection assemblies, string defaultPath)
         {
+            string location;
             foreach (string s in Report.ReferencedAssemblies)
             {
                 //TODO thid core directive only for .net standard mode replace with checking the standard
 #if NETSTANDARD2_0 || NETSTANDARD2_1
                 
                     if (s == "System.Windows.Forms.dll")
+                    {
+                        location = GetFullAssemblyReference("FastReport.Compat", defaultPath);
+                        if (location != "" && !ContansAssembly(assemblies, location))
+                            assemblies.Add(location);
                         continue;
+                    }
 #endif
-                string location = GetFullAssemblyReference(s, defaultPath);
+                location = GetFullAssemblyReference(s, defaultPath);
                 if (location != "" && !ContansAssembly(assemblies, location))
                     assemblies.Add(location);
             }
@@ -383,10 +396,13 @@ namespace FastReport.Code
             }
             // Commented by Samuray
             //Directory.SetCurrentDirectory(currentFolder);
-
+            
             // configure compiler options
             CompilerParameters cp = new CompilerParameters();
             AddFastReportAssemblies(cp.ReferencedAssemblies);
+#if NETSTANDARD || NETCOREAPP
+            cp.ReferencedAssemblies.Add("System.Drawing.Primitives");
+#endif
             AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);
             ReviewReferencedAssemblies(cp.ReferencedAssemblies);
             cp.GenerateInMemory = true;
@@ -394,7 +410,20 @@ namespace FastReport.Code
             if (Config.TempFolder != null)
                 cp.TempFiles = new TempFileCollection(Config.TempFolder, false);
 
-            // find assembly in cache
+            string errors = string.Empty;
+            CompilerResults cr;
+            bool exception = !InternalCompile(cp, out cr);
+            for (int i = 0; exception && i < RECOMPILE_COUNT ; i++)
+            {
+                exception = !HandleCompileErrors(cp, cr, out errors);
+            }
+
+            if (exception)
+                throw new CompilerException(errors);
+        }
+
+        private string GetAssemblyHash(CompilerParameters cp)
+        {
             StringBuilder assemblyHashSB = new StringBuilder();
             foreach (string a in cp.ReferencedAssemblies)
                 assemblyHashSB.Append(a);
@@ -404,70 +433,119 @@ namespace FastReport.Code
             {
                 hash = hMACSHA1.ComputeHash(Encoding.Unicode.GetBytes(assemblyHashSB.ToString()));
             }
-            string assemblyHash = Convert.ToBase64String(hash);
+
+            return Convert.ToBase64String(hash);
+        }
+
+        /// <summary>
+        /// Returns true, if compilation is successful
+        /// </summary>
+        private bool InternalCompile(CompilerParameters cp, out CompilerResults cr)
+        {
+
+            // find assembly in cache
+            string assemblyHash = GetAssemblyHash(cp);
             Assembly cachedAssembly = null;
             if (FAssemblyCache.TryGetValue(assemblyHash, out cachedAssembly))
             {
                 assembly = cachedAssembly;
                 InitInstance(assembly.CreateInstance("FastReport.ReportScript"));
-                return;
+                cr = null;
+                return true;
             }
 
-            // compile report script
+            // compile report scripts
             using (CodeDomProvider provider = Report.CodeHelper.GetCodeProvider())
             {
-                CompilerResults cr = provider.CompileAssemblyFromSource(cp, scriptText.ToString());
+                ScriptSecurityEventArgs ssea = new ScriptSecurityEventArgs(Report, scriptText.ToString(), Report.ReferencedAssemblies);
+                Config.OnScriptCompile(ssea);
+
+                cr = provider.CompileAssemblyFromSource(cp, scriptText.ToString());
                 assembly = null;
                 instance = null;
-                bool needException = true; // shows need to throw exception or errors can be handled without exception
-                if (cr.Errors.Count > 0)
-                {
-                    string errors = "";
-                    foreach (CompilerError ce in cr.Errors)
-                    {
-                        int line = GetScriptLine(ce.Line);
-                        // error is inside own items
-                        if (line == -1)
-                        {
-                            string errObjName = GetErrorObjectName(ce.Line);
 
-                            // handle division by zero errors
-                            if (ce.ErrorNumber == "CS0020")
-                            {
-                                TextObjectBase text = Report.FindObject(errObjName) as TextObjectBase;
-                                text.CanGrow = true;
-                                text.FillColor = Color.Red;
-                                text.Text = "DIVISION BY ZERO!";
-                                if (cr.Errors.Count == 1) // there are only division by zero errors, exception does't needed
-                                    needException = false;
-                            }
-                            else
-                            {
-                                errors += String.Format("({0}): " + Res.Get("Messages,Error") + " {1}: {2}", new object[] { errObjName, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
-                                ErrorMsg(errObjName, ce);
-                            }
-                        }
-                        else
-                        {
-                            errors += String.Format("({0},{1}): " + Res.Get("Messages,Error") + " {2}: {3}", new object[] { line, ce.Column, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
-                            ErrorMsg(ce, line);
-                            
-                        }
+                if (cr.Errors.Count != 0)   // Compile errors
+                    return false;
+
+#if DOTNET_4
+                FAssemblyCache.TryAdd(assemblyHash, cr.CompiledAssembly);
+#else
+                FAssemblyCache.Add(assemblyHash, cr.CompiledAssembly);
+#endif
+                assembly = cr.CompiledAssembly;
+                InitInstance(assembly.CreateInstance("FastReport.ReportScript"));
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Handle compile errors
+        /// </summary>
+        /// <returns>Returns <"true"> if all errors were handled</returns>
+        private bool HandleCompileErrors(CompilerParameters cp, CompilerResults cr, out string errors)
+        {
+            errors = string.Empty;
+            List<string> assemblyList = new List<string>(4);
+
+            foreach (CompilerError ce in cr.Errors)
+            {
+                if (ce.ErrorNumber == "CS0012") // missing reference on assembly
+                {
+                    // try to add reference
+                    const string pattern = @"'(\S{1,}),";
+                    Regex regex = new Regex(pattern);
+                    string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without ' and , symbols
+                    if (!assemblyList.Contains(assemblyName))
+                        assemblyList.Add(assemblyName);
+                    continue;
+                }
+
+                int line = GetScriptLine(ce.Line);
+                // error is inside own items
+                if (line == -1)
+                { 
+                    string errObjName = GetErrorObjectName(ce.Line);
+
+                    // handle division by zero errors
+                    if (ce.ErrorNumber == "CS0020")
+                    {
+                        TextObjectBase text = Report.FindObject(errObjName) as TextObjectBase;
+                        text.CanGrow = true;
+                        text.FillColor = Color.Red;
+                        text.Text = "DIVISION BY ZERO!";
+                        if (cr.Errors.Count == 1) // there are only division by zero errors, exception does't needed
+                            return true;
                     }
-                    if (needException) // throw exception if errors were not handled
-                        throw new CompilerException(errors);
+                    else
+                    {
+                        errors += String.Format("({0}): " + Res.Get("Messages,Error") + " {1}: {2}", new object[] { errObjName, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
+                        ErrorMsg(errObjName, ce);
+                    }
                 }
                 else
                 {
-#if DOTNET_4
-                    FAssemblyCache.TryAdd(assemblyHash, cr.CompiledAssembly);
-#else
-                    FAssemblyCache.Add(assemblyHash, cr.CompiledAssembly);
-#endif
-                    assembly = cr.CompiledAssembly;
-                    InitInstance(assembly.CreateInstance("FastReport.ReportScript"));
+                    errors += String.Format("({0},{1}): " + Res.Get("Messages,Error") + " {2}: {3}", new object[] { line, ce.Column, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
+                    ErrorMsg(ce, line);
                 }
             }
+
+            if(assemblyList.Count > 0)  // need recompile
+                return ReCompile(cp, cr, assemblyList);
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true, if recompilation is successful
+        /// </summary>
+        private bool ReCompile(CompilerParameters cp, CompilerResults cr, List<string> assemblyList)
+        {
+            // try to load missing assemblies
+            foreach (string assemblyName in assemblyList)
+            {
+                cp.ReferencedAssemblies.Add(assemblyName);
+            }
+            return InternalCompile(cp, out cr);
         }
 
         public void InitInstance(object instance)

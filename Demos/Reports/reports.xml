@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Reports>
-  <Folder Name="General" >
+  <Folder Name="General">
     <Report File="Simple List.frx"/>
     <Report File="Groups.frx"/>
     <Report File="Master-Detail.frx"/>
@@ -104,7 +104,7 @@
     <Report File="World Map.frx"/>
     <Report File="USA Map.frx"/>
     <Report File="World Sales.frx"/>
-    <Report File="Sales in USA.frx"/>
+    <Report File="Sales in the USA.frx"/>
     <Report File="Sales in Germany.frx"/>
     <Report File="World Sales, Interactive.frx"/>
     <Report File="World Sales by City.frx"/>

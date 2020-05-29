@@ -67,6 +67,7 @@ namespace FastReport.Export.Image
         private Graphics g;
         private int height;
         private int width;
+        private int widthK;
         private string fileSuffix;
         private float zoomX;
         private float zoomY;
@@ -210,6 +211,7 @@ namespace FastReport.Export.Image
         #region Private Methods
         private System.Drawing.Image CreateImage(int width, int height, string suffix)
         {
+            widthK = width;
             if (ImageFormat == ImageExportFormat.Metafile)
                 return CreateMetafile(suffix);
             return new Bitmap(width, height);
@@ -486,7 +488,7 @@ namespace FastReport.Export.Image
             width = (int)(ExportUtils.GetPageWidth(page) * Units.Millimeters * zoomX);
             height = (int)(ExportUtils.GetPageHeight(page) * Units.Millimeters * zoomY);
             int suffixDigits = Pages[Pages.Length - 1].ToString().Length;
-            fileSuffix = firstPage ? "" : (pageNumber + 1).ToString("".PadLeft(suffixDigits, '0'));            
+            fileSuffix = firstPage ? "" : (pageNumber + 1).ToString("".PadLeft(suffixDigits, '0'));
             if (SeparateFiles || IsMultiFrameTiff)
             {
                 image = CreateImage(width, height, fileSuffix);
@@ -505,8 +507,15 @@ namespace FastReport.Export.Image
             g.FillRegion(Brushes.White, new Region(new RectangleF(0, curOriginY, width, height)));
 
             if (image == bigImage)
-                g.TranslateTransform(image.Width / 2 - width / 2 + page.LeftMargin * Units.Millimeters * zoomX, 
+            {
+                if (ImageFormat != ImageExportFormat.Metafile)
+                    g.TranslateTransform(image.Width / 2 - width / 2 + page.LeftMargin * Units.Millimeters * zoomX,
                     curOriginY + paddingNonSeparatePages + page.TopMargin * Units.Millimeters * zoomY);
+                else
+                    g.TranslateTransform(widthK / 2 - width / 2 + page.LeftMargin * Units.Millimeters * zoomX,
+                    curOriginY + paddingNonSeparatePages + page.TopMargin * Units.Millimeters * zoomY);
+
+            }
             else
                 g.TranslateTransform(page.LeftMargin * Units.Millimeters * zoomX, page.TopMargin * Units.Millimeters * zoomY);
 
@@ -526,7 +535,7 @@ namespace FastReport.Export.Image
             ExportObj(band);
             foreach (Base c in band.ForEachAllConvectedObjects(this))
             {
-                if(!(c is Table.TableColumn || c is Table.TableCell || c is Table.TableRow))
+                if (!(c is Table.TableColumn || c is Table.TableCell || c is Table.TableRow))
                     ExportObj(c);
             }
         }
@@ -534,7 +543,7 @@ namespace FastReport.Export.Image
         private void ExportObj(Base obj)
         {
             if (obj is ReportComponentBase && (obj as ReportComponentBase).Exportable)
-                (obj as ReportComponentBase).Draw(new FRPaintEventArgs(g, zoomX, zoomX, Report.GraphicCache));            
+                (obj as ReportComponentBase).Draw(new FRPaintEventArgs(g, zoomX, zoomX, Report.GraphicCache));
         }
 
         /// <inheritdoc/>
@@ -559,8 +568,8 @@ namespace FastReport.Export.Image
 
         private void AddImageWatermark(ReportPage page)
         {
-            page.Watermark.DrawImage(new FRPaintEventArgs(g, zoomX, zoomX, Report.GraphicCache), 
-                new RectangleF(-page.LeftMargin * Units.Millimeters, -page.TopMargin * Units.Millimeters, width / zoomX, height / zoomY), 
+            page.Watermark.DrawImage(new FRPaintEventArgs(g, zoomX, zoomX, Report.GraphicCache),
+                new RectangleF(-page.LeftMargin * Units.Millimeters, -page.TopMargin * Units.Millimeters, width / zoomX, height / zoomY),
                 page.Report, false);
         }
 
@@ -568,8 +577,8 @@ namespace FastReport.Export.Image
         {
             if (string.IsNullOrEmpty(page.Watermark.Text))
                 return;
-            page.Watermark.DrawText(new FRPaintEventArgs(g, zoomX, zoomX, Report.GraphicCache), 
-                new RectangleF(-page.LeftMargin * Units.Millimeters, -page.TopMargin * Units.Millimeters, width / zoomX, height / zoomY), 
+            page.Watermark.DrawText(new FRPaintEventArgs(g, zoomX, zoomX, Report.GraphicCache),
+                new RectangleF(-page.LeftMargin * Units.Millimeters, -page.TopMargin * Units.Millimeters, width / zoomX, height / zoomY),
                 page.Report, false);
         }
 
@@ -589,7 +598,7 @@ namespace FastReport.Export.Image
                 bigGraphics = null;
                 SaveImage(bigImage, "");
             }
-            if(masterTiffImage != null)
+            if (masterTiffImage != null)
             {
                 masterTiffImage.Dispose();
                 masterTiffImage = null;

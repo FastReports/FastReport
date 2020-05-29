@@ -968,8 +968,10 @@ namespace FastReport
             ReportComponentBase obj = c as ReportComponentBase;
             if (!IsPrinting)
             {
+#if !MONO
               if (!obj.IsVisible(e))
                 continue;
+#endif
             }
             else
             {

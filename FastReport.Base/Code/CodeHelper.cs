@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
+#if NETSTANDARD || NETCOREAPP
+using FastReport.Code.CodeDom.Compiler;
+#else
 using System.CodeDom.Compiler;
+#endif
 using FastReport.Data;
 using FastReport.Engine;
 using FastReport.Utils;

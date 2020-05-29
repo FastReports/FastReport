@@ -10,6 +10,7 @@ namespace FastReport.Engine
         private int keepPosition;
         private XmlItem keepOutline;
         private int keepBookmarks;
+        private float keepCurX;
         private float keepCurY;
         private float keepDeltaY;
 
@@ -51,6 +52,7 @@ namespace FastReport.Engine
 
         private void CutObjects()
         {
+            keepCurX = CurX;
             keepDeltaY = CurY - keepCurY;
             PreparedPages.CutObjects(keepPosition);
             CurY = keepCurY;
@@ -58,7 +60,7 @@ namespace FastReport.Engine
 
         private void PasteObjects()
         {
-            PreparedPages.PasteObjects(CurX, CurY);
+            PreparedPages.PasteObjects(CurX - keepCurX, CurY - keepCurY);
             PreparedPages.Outline.Shift(keepOutline, CurY);
             PreparedPages.Bookmarks.Shift(keepBookmarks, CurY);
             EndKeep();

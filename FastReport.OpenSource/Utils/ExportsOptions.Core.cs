@@ -8,13 +8,8 @@ namespace FastReport.Utils
 {
     partial class ExportsOptions
     {
-        private List<ExportsTreeNode> DefaultExports()
-        {
-            List<ExportsTreeNode> defaultMenu = new List<ExportsTreeNode>();
+        private void SaveOptions() { }
 
-            defaultMenu.Add(new ExportsTreeNode("Image", typeof(ImageExport), 103));
-
-            return defaultMenu;
-        }
+        private void RestoreOptions() { }
     }
 }

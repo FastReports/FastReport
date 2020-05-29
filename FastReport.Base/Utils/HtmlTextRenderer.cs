@@ -943,7 +943,7 @@ namespace FastReport.Utils
                 foreach (Run run in word.Runs)
                 {
                     width += run.Width;
-                    if (width <= availableWidth)
+                    if (width <= availableWidth || availableWidth < 0)
                     {
                         newWord.Runs.Add(run);
                         run.Word = newWord;
@@ -2749,10 +2749,13 @@ namespace FastReport.Utils
             public override int GetHashCode()
             {
                 int hashCode = -1631016721;
-                hashCode = hashCode * -1521134295 + baseLine.GetHashCode();
-                hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(font);
-                hashCode = hashCode * -1521134295 + fontStyle.GetHashCode();
-                hashCode = hashCode * -1521134295 + size.GetHashCode();
+                unchecked
+                {
+                    hashCode = hashCode * -1521134295 + baseLine.GetHashCode();
+                    hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(font);
+                    hashCode = hashCode * -1521134295 + fontStyle.GetHashCode();
+                    hashCode = hashCode * -1521134295 + size.GetHashCode();
+                }
                 return hashCode;
             }
 

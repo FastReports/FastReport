@@ -200,6 +200,11 @@ namespace FastReport.Engine
             {
                 if (dataBand.ResetPageNumber && (dataBand.FirstRowStartsNewPage || dataBand.RowNo > 1))
                     ResetLogicalPageNumber();
+                if (dataBand.Footer != null && dataBand.CanBreak)
+                    if (dataBand.Footer.KeepWithData && dataBand.Footer.Height + dataBand.Height > FreeSpace)
+                    {
+                        dataBand.AddLastToFooter(dataBand.Footer);
+                    }
                 ShowBand(dataBand);
             }
         }

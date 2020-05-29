@@ -185,12 +185,15 @@ namespace FastReport
 
         public override int GetHashCode()
         {
-            int hashCode = -1051315095;
-            hashCode = hashCode * -1521134295 + firstLineIndent.GetHashCode();
-            hashCode = hashCode * -1521134295 + lineSpacing.GetHashCode();
-            hashCode = hashCode * -1521134295 + lineSpacingType.GetHashCode();
-            hashCode = hashCode * -1521134295 + skipFirstLineIndent.GetHashCode();
-            return hashCode;
+            unchecked
+            {
+                int hashCode = -1051315095;
+                hashCode = hashCode * -1521134295 + firstLineIndent.GetHashCode();
+                hashCode = hashCode * -1521134295 + lineSpacing.GetHashCode();
+                hashCode = hashCode * -1521134295 + lineSpacingType.GetHashCode();
+                hashCode = hashCode * -1521134295 + skipFirstLineIndent.GetHashCode();
+                return hashCode;
+            }
         }
     }
 
@@ -710,23 +713,6 @@ namespace FastReport
             }
         }
 
-        private TextRenderingHint GetTextQuality(TextQuality quality)
-        {
-            switch (quality)
-            {
-                case TextQuality.Regular:
-                    return TextRenderingHint.AntiAliasGridFit;
-
-                case TextQuality.ClearType:
-                    return TextRenderingHint.ClearTypeGridFit;
-
-                case TextQuality.AntiAlias:
-                    return TextRenderingHint.AntiAlias;
-            }
-
-            return TextRenderingHint.SystemDefault;
-        }
-
         private SizeF CalcSize()
         {
             Report report = Report;
@@ -748,7 +734,7 @@ namespace FastReport
             try
             {
                 if (report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                    g.TextRenderingHint = report.GetTextQuality();
                 if (TextRenderType == TextRenderType.HtmlParagraph)
                 {
                     if (width == 0)
@@ -845,7 +831,7 @@ namespace FastReport
             GraphicsState state = g.Save();
 
             if (report.TextQuality != TextQuality.Default)
-                g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                g.TextRenderingHint = report.GetTextQuality();
 
             try
             {
@@ -887,6 +873,8 @@ namespace FastReport
             Font font = report.GraphicCache.GetFont(Font.Name, Font.Size * 96f / DrawUtils.ScreenDpi, Font.Style);
             StringFormat format = GetStringFormat(report.GraphicCache, StringFormatFlags.LineLimit);
             RectangleF textRect = new RectangleF(0, 0, Width - Padding.Horizontal, Height - Padding.Vertical);
+            if (textRect.Height < 0)
+                return null;
 
             int charactersFitted;
             int linesFilled;
@@ -896,7 +884,7 @@ namespace FastReport
             try
             {
                 if (report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                    g.TextRenderingHint = report.GetTextQuality();
 
                 AdvancedTextRenderer.StyleDescriptor htmlStyle = null;
 
@@ -1139,7 +1127,7 @@ namespace FastReport
 
                 Report report = Report;
                 if (report != null && report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = GetTextQuality(report.TextQuality);
+                    g.TextRenderingHint = report.GetTextQuality();
 
                 if (textRect.Width > 0 && textRect.Height > 0)
                 {
@@ -1219,10 +1207,7 @@ namespace FastReport
                 if (!(TextFill is SolidFill))
                 {
                     textBrush.Dispose();
-                    textBrush = null;
                 }
-                if (report != null && report.TextQuality != TextQuality.Default)
-                    g.TextRenderingHint = TextRenderingHint.SystemDefault;
             }
         }
 
@@ -1443,8 +1428,8 @@ namespace FastReport
                 TextFill = c.TextFill.Clone();
             if (c.ApplyFont)
                 Font = c.Font;
-            if (!c.Visible)
-                Visible = false;
+
+            Visible = c.Visible;
         }
 
         #endregion
