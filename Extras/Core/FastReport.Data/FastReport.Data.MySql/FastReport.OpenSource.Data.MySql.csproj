@@ -20,7 +20,16 @@
 		<RootNamespace>FastReport.Data</RootNamespace>
 		<PackageReleaseNotes></PackageReleaseNotes>
                 <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
-	</PropertyGroup>
+	
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="MySql.Data" Version="[6.10.6,)" />
