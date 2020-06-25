@@ -19,7 +19,16 @@
         <AssemblyName>FastReport.Data.Firebird</AssemblyName>
         <RootNamespace>FastReport.Data</RootNamespace>
         <PackageReleaseNotes>Initial release</PackageReleaseNotes>
-    </PropertyGroup>
+    
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
             <PrivateAssets>all</PrivateAssets>
