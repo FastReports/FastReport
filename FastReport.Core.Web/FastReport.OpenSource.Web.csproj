@@ -17,7 +17,16 @@ FastReport.Net supports export to various popular formats, such as PDF/A, Excel,
         <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
         <SignAssembly>true</SignAssembly>
         <Configurations>Debug;Release;Demo</Configurations>
-    </PropertyGroup>
+    
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo|AnyCPU'">
         <DemoDescription>The full version of the package is available in FastReport.Net Professional at https://www.fast-report.com/en/fast-report-net-editions-compare/</DemoDescription>
     </PropertyGroup>
