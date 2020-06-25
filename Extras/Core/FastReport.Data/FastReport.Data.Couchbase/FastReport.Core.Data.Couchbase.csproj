@@ -19,7 +19,16 @@
         <AssemblyName>FastReport.Data.Couchbase</AssemblyName>
         <RootNamespace>FastReport.Data</RootNamespace>
         <PackageReleaseNotes></PackageReleaseNotes>
-    </PropertyGroup>
+    
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
     <PropertyGroup>
         <DefineConstants>FRCORE;</DefineConstants>
     </PropertyGroup>
