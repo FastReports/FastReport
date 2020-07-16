@@ -118,11 +118,4 @@
     <Resource Include="Resources\001.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\FastReport.Compat.2020.3.2\build\FastReport.Compat.targets" Condition="Exists('..\packages\FastReport.Compat.2020.3.2\build\FastReport.Compat.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\FastReport.Compat.2020.3.2\build\FastReport.Compat.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FastReport.Compat.2020.3.2\build\FastReport.Compat.targets'))" />
-  </Target>
 </Project>
