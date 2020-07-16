@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;System.Net.Http.dll" ReportInfo.Created="06/08/2020 10:48:38" ReportInfo.Modified="06/09/2020 08:31:34" ReportInfo.CreatorVersion="1.0.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    private static readonly HttpClient client = new HttpClient();
+    private const string DateTimePickerFormat = &quot;yyyy-MM-dd&quot;;
+    private const string URL = @&quot;http://fastreportworker.azurewebsites.net/weatherforecast&quot;;
+
+    private async Task&lt;string&gt; Post()
+    {
+      string date1 = DateTimePicker1.Value.ToString(DateTimePickerFormat);
+      string date2 = DateTimePicker2.Value.ToString(DateTimePickerFormat);
+
+      var values = new Dictionary&lt;string, string&gt;
+      {
+      { &quot;date1&quot;, date1 },
+      { &quot;date2&quot;, date2 }
+      };
+
+      var content = new FormUrlEncodedContent(values);
+
+      var response = await client.PostAsync(URL, content);
+
+      return await response.Content.ReadAsStringAsync();
+    }
+
+
+    private void UpdateComboBox()
+    {
+      string response = Post().Result;
+      ComboBox1.Items.Clear();
+      
+      if(!string.IsNullOrEmpty(response))
+      {
+        String[] array = response.Split(',');
+        foreach(var element in array)
+        {
+          ComboBox1.Items.Add(element);
+        }
+      }
+    }
+
+    private void DateTimePicker_ValueChanged(object sender, EventArgs e)
+    {
+      UpdateComboBox();
+    }
+
+    private void Form2_Load(object sender, EventArgs e)
+    {
+      Label15.Text = TextBox1.Text;
+      Label16.Text = TextBox2.Text;
+      Label17.Text = DateTimePicker1.Value.ToString();
+      Label18.Text = DateTimePicker2.Value.ToString();
+      Label19.Text = ComboBox1.Text;
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      UpdateComboBox();
+    }
+  }
+}
+</ScriptText>
+  <Dictionary/>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="151.2">
+      <TextObject Name="Text1" Left="47.25" Top="18.9" Width="585.9" Height="113.4" Text="Dear [TextBox1.Text], thanks for your order! On dates from [DateTimePicker1.Value.ToString()] to [DateTimePicker2.Value.ToString()] you have reserved room number [ComboBox1.Text]. Have a nice day!" Font="Arial, 10pt"/>
+    </PageHeaderBand>
+  </ReportPage>
+  <DialogPage Name="Form1" Width="504" Height="604" AcceptButton="btnOk" CancelButton="btnCancel" Font="Tahoma, 8pt" LoadEvent="Form1_Load">
+    <ButtonControl Name="btnOk" Left="322" Top="534" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="0" Text="OK" DialogResult="OK"/>
+    <ButtonControl Name="btnCancel" Left="405" Top="534" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="1" Text="Cancel" DialogResult="Cancel"/>
+    <LabelControl Name="Label1" Left="20" Top="94" Width="102" Font="Tahoma, 14.25pt" TabIndex="2" Text="Your name"/>
+    <TextBoxControl Name="TextBox1" Left="124" Top="92" Width="112" Height="27" Font="Tahoma, 12pt" TabIndex="3" Text="Robert Martin"/>
+    <LabelControl Name="Label2" Left="68" Top="8" Width="343" Height="25" Font="Georgia, 15.75pt" TabIndex="4" Text="Hello! Welcome to Hotel California!"/>
+    <LabelControl Name="Label3" Left="136" Top="56" Height="19" Font="Tahoma, 12pt" TabIndex="5" Text="Book a room"/>
+    <LabelControl Name="Label4" Left="260" Top="96" Width="37" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="Age"/>
+    <DateTimePickerControl Name="DateTimePicker1" Left="156" Top="180" Font="Tahoma, 9.75pt" TabIndex="7" Text="Monday, June 8, 2020" Value="06/08/2020 12:20:19" ValueChangedEvent="DateTimePicker_ValueChanged"/>
+    <LabelControl Name="Label5" Left="28" Top="184" Width="83" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="Start date:"/>
+    <LabelControl Name="Label6" Left="28" Top="236" Width="77" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="End date:"/>
+    <DateTimePickerControl Name="DateTimePicker2" Left="156" Top="232" Font="Tahoma, 9.75pt" TabIndex="7" Text="Monday, June 15, 2020" Value="2020-06-15" ValueChangedEvent="DateTimePicker_ValueChanged"/>
+    <TextBoxControl Name="TextBox2" Left="304" Top="92" Width="112" Height="27" Font="Tahoma, 12pt" TabIndex="3" Text="30"/>
+    <LabelControl Name="Label7" Left="16" Top="372" Width="207" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="Choose your room number:"/>
+    <LabelControl Name="Label8" Left="260" Top="352" Width="230" Height="13" Font="Tahoma, 8pt" ForeColor="DarkGray" TabIndex="9" Text="These items are received in the POST request."/>
+    <ComboBoxControl Name="ComboBox1" Left="268" Top="376" Height="21" Font="Tahoma, 8pt" TabIndex="10" Text="ComboBox" ItemHeight="13"/>
+  </DialogPage>
+  <DialogPage Name="Form2" Width="388" Height="464" AcceptButton="btnOk1" CancelButton="btnCancel1" Font="Tahoma, 8pt" LoadEvent="Form2_Load">
+    <ButtonControl Name="btnOk1" Left="206" Top="394" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="0" Text="Apply" DialogResult="OK"/>
+    <ButtonControl Name="btnCancel1" Left="289" Top="394" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="1" Text="Cancel" DialogResult="Cancel"/>
+    <LabelControl Name="Label9" Left="52" Top="44" Width="248" Height="21" Font="Segoe UI, 12pt" TabIndex="2" Text="Check general information, please:"/>
+    <LabelControl Name="Label10" Left="12" Top="90" Width="102" Font="Tahoma, 14.25pt" TabIndex="2" Text="Your name"/>
+    <LabelControl Name="Label11" Left="16" Top="128" Width="37" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="Age"/>
+    <LabelControl Name="Label12" Left="24" Top="184" Width="83" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="Start date:"/>
+    <LabelControl Name="Label13" Left="24" Top="224" Width="77" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="End date:"/>
+    <LabelControl Name="Label14" Left="16" Top="308" Width="117" Height="19" Font="Tahoma, 12pt" TabIndex="6" Text="Room number:"/>
+    <LabelControl Name="Label15" Left="156" Top="92" Width="109" Height="21" Font="Segoe UI, 12pt" TabIndex="7" Text="[TextBox1.Text]" ClickEvent=""/>
+    <LabelControl Name="Label16" Left="88" Top="128" Width="109" Height="21" Font="Segoe UI, 12pt" TabIndex="7" Text="[TextBox2.Text]" ClickEvent=""/>
+    <LabelControl Name="Label17" Left="136" Top="184" Width="178" Height="21" Font="Segoe UI, 12pt" TabIndex="7" Text="[DateTimePicker1.Value]" ClickEvent=""/>
+    <LabelControl Name="Label18" Left="136" Top="224" Width="178" Height="21" Font="Segoe UI, 12pt" TabIndex="7" Text="[DateTimePicker2.Value]" ClickEvent=""/>
+    <LabelControl Name="Label19" Left="160" Top="308" Width="134" Height="21" Font="Segoe UI, 12pt" TabIndex="7" Text="[ComboBox1.Text]" ClickEvent=""/>
+  </DialogPage>
+</Report>

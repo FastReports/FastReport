@@ -19,13 +19,14 @@
     <StartupObject></StartupObject>
   </PropertyGroup>
 
+  <Import Project="..\..\..\UsedPackages.version" />
   <ItemGroup>
-    <PackageReference Include="FastReport.OpenSource" Version="2020.1.20" />
-    <PackageReference Include="FastReport.OpenSource.Web" Version="2020.1.20" />
+    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSWebVersion)" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Net.Compilers" Version="3.5.0-beta3-final">
+    <PackageReference Include="Microsoft.Net.Compilers" Version="3.5.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

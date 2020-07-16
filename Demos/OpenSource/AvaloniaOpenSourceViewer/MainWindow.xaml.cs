@@ -74,6 +74,8 @@ namespace Viewer
                 pages.Add(new Avalonia.Media.Imaging.Bitmap(file));
             }
             CurrentPage = 0;
+
+
         }
 
         public void DeleteTempFiles()
@@ -98,31 +100,31 @@ namespace Viewer
             PageNumber.Text = (CurrentPage + 1).ToString();
         }
 
-        private void First_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        public void FirstClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             CurrentPage = 0;
             SetImage();
         }
 
-        private void Prev_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        public void Prev_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             CurrentPage--;
             SetImage();
         }
 
-        private void Next_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        public void Next_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             CurrentPage++;
             SetImage();
         }
 
-        private void Last_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        public void Last_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             CurrentPage = pages.Count - 1;
             SetImage();
         }
 
-        private void PageNumber_KeyDown(object sender, KeyEventArgs e)
+        public void PageNumber_KeyDown(object sender, KeyEventArgs e)
         {
 
             if (e.Key == Key.Enter)
@@ -142,7 +144,8 @@ namespace Viewer
             myDialog.AllowMultiple = false;
 
             var result = await myDialog.ShowAsync(this);
-            LoadReport(result[0]);
+            if(result.Length > 0)
+                LoadReport(result[0]);
         }
 
         void LoadReport(string report_name)
@@ -153,7 +156,7 @@ namespace Viewer
         }
 
 
-        private void Zoom_in_Click(object sender, RoutedEventArgs e)
+        public void Zoom_in_Click(object sender, RoutedEventArgs e)
         {
             if (ex != null)
             {
@@ -177,7 +180,7 @@ namespace Viewer
         {
             return new Avalonia.Media.Imaging.Bitmap(file);
         }
-        private void Zoom_out_Click(object sender, RoutedEventArgs e)
+        public void Zoom_out_Click(object sender, RoutedEventArgs e)
         {
 
             if (ex != null)

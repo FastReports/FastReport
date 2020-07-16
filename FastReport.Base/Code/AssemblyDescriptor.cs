@@ -188,17 +188,6 @@ namespace FastReport.Code
             string location;
             foreach (string s in Report.ReferencedAssemblies)
             {
-                //TODO thid core directive only for .net standard mode replace with checking the standard
-#if NETSTANDARD2_0 || NETSTANDARD2_1
-                
-                    if (s == "System.Windows.Forms.dll")
-                    {
-                        location = GetFullAssemblyReference("FastReport.Compat", defaultPath);
-                        if (location != "" && !ContansAssembly(assemblies, location))
-                            assemblies.Add(location);
-                        continue;
-                    }
-#endif
                 location = GetFullAssemblyReference(s, defaultPath);
                 if (location != "" && !ContansAssembly(assemblies, location))
                     assemblies.Add(location);
@@ -400,9 +389,6 @@ namespace FastReport.Code
             // configure compiler options
             CompilerParameters cp = new CompilerParameters();
             AddFastReportAssemblies(cp.ReferencedAssemblies);
-#if NETSTANDARD || NETCOREAPP
-            cp.ReferencedAssemblies.Add("System.Drawing.Primitives");
-#endif
             AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);
             ReviewReferencedAssemblies(cp.ReferencedAssemblies);
             cp.GenerateInMemory = true;
@@ -492,12 +478,16 @@ namespace FastReport.Code
                 if (ce.ErrorNumber == "CS0012") // missing reference on assembly
                 {
                     // try to add reference
-                    const string pattern = @"'(\S{1,}),";
-                    Regex regex = new Regex(pattern);
-                    string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without ' and , symbols
-                    if (!assemblyList.Contains(assemblyName))
-                        assemblyList.Add(assemblyName);
-                    continue;
+                    try
+                    {
+                        const string pattern = @"'(\S{1,}),";
+                        Regex regex = new Regex(pattern);
+                        string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without ' and , symbols
+                        if (!assemblyList.Contains(assemblyName))
+                            assemblyList.Add(assemblyName);
+                        continue;
+                    }
+                    catch { }
                 }
 
                 int line = GetScriptLine(ce.Line);

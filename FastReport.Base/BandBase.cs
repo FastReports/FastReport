@@ -671,6 +671,10 @@ namespace FastReport
         #endregion
 
         #region Report Engine
+        internal void SetUpdatingLayout(bool value)
+        {
+            updatingLayout = value;
+        }
 
         /// <inheritdoc/>
         public override string[] GetExpressions()
@@ -939,7 +943,10 @@ namespace FastReport
                     }
                     else
                     {
-                        obj.Top -= breakLine;
+                        // (case: object with Anchor = bottom on a breakable band)
+                        // in case of bottom anchor, do not move the object. It will be moved automatically when we decrease the band height
+                        if ((obj.Anchor & AnchorStyles.Bottom) == 0)
+                            obj.Top -= breakLine;
                         obj.Parent = breakTo;
                         continue;
                     }

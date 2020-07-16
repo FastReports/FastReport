@@ -75,7 +75,12 @@ namespace FastReport.Engine
 
             try
             {
+                // (case: object with Anchor = bottom on a breakable band)
+                // disable re-layout
+                cloneBand.SetUpdatingLayout(true);
                 cloneBand.Height = FreeSpace;
+                cloneBand.SetUpdatingLayout(false);
+
                 if (cloneBand.Break(breakTo))
                 {
                     AddToPreparedPages(cloneBand);

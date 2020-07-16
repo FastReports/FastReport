@@ -12,9 +12,10 @@
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
   </PropertyGroup>
 
+  <Import Project="..\..\..\UsedPackages.version" />
   <ItemGroup>
-    <PackageReference Include="FastReport.OpenSource" Version="2019.1.0" />
-    <PackageReference Include="FastReport.OpenSource.Web" Version="2019.1.0" />
+    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSWebVersion)" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />

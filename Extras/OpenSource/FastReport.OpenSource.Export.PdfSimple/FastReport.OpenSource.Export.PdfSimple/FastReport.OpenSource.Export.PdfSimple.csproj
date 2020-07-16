@@ -1,7 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <TargetFrameworks>$(TargetFrameworks);net40</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -23,8 +27,9 @@
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
   </PropertyGroup>
 
+  <Import Project="..\..\..\..\UsedPackages.version" />
   <ItemGroup>
-    <PackageReference Include="FastReport.OpenSource" Version="2020.1.0" />
+    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
   </ItemGroup>
 
 </Project>

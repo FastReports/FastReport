@@ -14,13 +14,20 @@ namespace FastReport.Web
     {
         Preview,
         Designer,
+        Dialog
     }
     
     public partial class WebReport
     {
         private string localizationFile;
 
-        #region Public Properties
+#if DIALOGS
+        internal Dialog Dialog {
+            get;
+        }
+#endif
+
+#region Public Properties
 
         /// <summary>
         /// Unique ID of this instance.
@@ -143,6 +150,7 @@ namespace FastReport.Web
         public bool ShowToolbar { get; set; } = true;
         public float Zoom { get; set; } = 1.0f;
         public bool Debug { get; set; } = false;
+        internal bool Canceled { get; set; } = false;
 
         /// <summary>
         /// Shows sidebar with outline.
@@ -150,9 +158,9 @@ namespace FastReport.Web
         /// </summary>
         public bool Outline { get; set; } = true;
 
-        #endregion
+#endregion
 
-        #region Non-public
+#region Non-public
 
         // TODO
         private string ReportFile { get; set; } = null;
@@ -167,13 +175,16 @@ namespace FastReport.Web
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
         int currentTabIndex;
 
-        #endregion
+#endregion
 
         public WebReport()
         {
             string path = WebUtils.MapPath(LocalizationFile);
             Res.LoadLocale(path);
             WebReportCache.Instance.Add(this);
+#if DIALOGS
+            Dialog = new Dialog(this);
+#endif
         }
 
         public HtmlString RenderSync()
@@ -194,6 +205,7 @@ namespace FastReport.Web
             switch (Mode)
             {
                 case WebReportMode.Preview:
+                case WebReportMode.Dialog:
                     return new HtmlString(template_render(renderBody));
                 case WebReportMode.Designer:
                     return RenderDesigner();
@@ -214,7 +226,7 @@ namespace FastReport.Web
         // void ReportLoad()
         // void RegisterData()
 
-        #region Navigation
+#region Navigation
 
         /// <summary>
         /// Force go to next report page
@@ -259,6 +271,6 @@ namespace FastReport.Web
                 CurrentPageIndex = value;
         }
 
-        #endregion
+#endregion
     }
 }

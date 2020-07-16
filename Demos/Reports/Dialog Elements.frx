@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" StartReportEvent="_StartReport" ReportInfo.Description="Demonstrates how to add simple dialog form to the report. To do this:&#13;&#10;&#13;&#10;- press the &quot;New Dialog&quot; button on a toolbar;&#13;&#10;&#13;&#10;- this will create an empty dialog form with two default buttons. Put some controls on it and set its properties as you want.&#13;&#10;&#13;&#10;When you run a report, you will see the dialog. If you close it by &quot;OK&quot; button, the report will be generated.&#13;&#10;&#13;&#10;Note: you may add several dialogs." ReportInfo.Created="01/18/2008 03:08:14" ReportInfo.Modified="06/04/2020 14:00:46" ReportInfo.CreatorVersion="1.0.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {    
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      DateTimePicker1.Value = DateTime.Now;
+    }
+
+    private void _StartReport(object sender, EventArgs e)
+    {
+      Report.SetParameterValue(&quot;Parameter&quot;, &quot;This value from Start_Report event&quot;);
+    }
+
+    private void Page1_StartPage(object sender, EventArgs e)
+    {
+       Report.SetParameterValue(&quot;Parameter&quot;, &quot;This value from StartPage event&quot;);
+    }
+
+    private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+    {
+      Report.SetParameterValue(&quot;Parameter&quot;, &quot;This value from FormClosed event&quot;);      
+    }   
+
+
+    private void Text13_BeforePrint(object sender, EventArgs e)
+    {            
+      for(int i = 0; i &lt; CheckedListBox1.CheckedItems.Count; i++)
+        Text13.Text += CheckedListBox1.CheckedItems[i].ToString() + &quot;,&quot;;
+    }
+
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <Parameter Name="Parameter" DataType="System.String" Expression="&quot;Default value from designer&quot;"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt" StartPageEvent="Page1_StartPage">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="453.6">
+      <TextObject Name="Text1" Top="9.45" Width="463.05" Height="18.9" Text="You have entered text: [TextBox1.Text]" Font="Arial, 10pt"/>
+      <TextObject Name="Text2" Top="189" Width="463.05" Height="37.8" Text="Selected date from DateTimePicker1: [DateTimePicker1.Value]&#13;&#10;Selected date from DateTimePicker2: [DateTimePicker2.Value]" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Top="283.5" Width="292.95" Height="18.9" Text="Parameter value: [Parameter]" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Top="28.35" Width="463.05" Height="18.9" Text="ComboBox selection: [ComboBox1.Text]" Font="Arial, 10pt"/>
+      <TextObject Name="Text6" Top="56.7" Width="463.05" Height="18.9" Text="CheckBox1 selection: [CheckBox1.Checked]" Font="Arial, 10pt"/>
+      <TextObject Name="Text7" Top="75.6" Width="463.05" Height="18.9" Text="CheckBox2 selection: [CheckBox2.Checked]" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Top="94.5" Width="463.05" Height="18.9" Text="CheckBox3 selection: [CheckBox3.Checked]" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Top="122.85" Width="463.05" Height="18.9" Text="RadioButton1 selection: [RadioButton1.Checked]" Font="Arial, 10pt"/>
+      <TextObject Name="Text10" Top="141.75" Width="463.05" Height="18.9" Text="RadioButton2 selection: [RadioButton2.Checked]" Font="Arial, 10pt"/>
+      <TextObject Name="Text11" Top="160.65" Width="463.05" Height="18.9" Text="RadioButton3 selection: [RadioButton3.Checked]" Font="Arial, 10pt"/>
+      <TextObject Name="Text12" Top="264.6" Width="463.05" Height="18.9" Text="ListBox selection: [ListBox1.SelectedItem]" Font="Arial, 10pt"/>
+      <TextObject Name="Text13" Top="245.7" Width="463.05" Height="18.9" CanGrow="true" BeforePrintEvent="Text13_BeforePrint" Text="CheckedListBox selection:" Font="Arial, 10pt"/>
+      <TextObject Name="Text14" Top="311.85" Width="463.05" Height="66.15" CanGrow="true" Text="You have entered text in multiline TextBox: [TextBox2.Text]" Font="Arial, 10pt"/>
+    </ReportTitleBand>
+  </ReportPage>
+  <DialogPage Name="Form1" Width="460" Height="604" Font="Tahoma, 8pt" LoadEvent="Form1_Load" FormClosedEvent="Form1_FormClosed">
+    <ButtonControl Name="Button1" Left="280" Top="532" Font="Tahoma, 8pt" TabIndex="1" Text="OK" DialogResult="OK"/>
+    <ButtonControl Name="Button2" Left="360" Top="532" Font="Tahoma, 8pt" TabIndex="2" Text="Cancel" DialogResult="Cancel"/>
+    <LabelControl Name="Label1" Left="8" Top="12" Width="79" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="Enter the text:"/>
+    <TextBoxControl Name="TextBox1" Left="8" Top="32" Width="188" Font="Tahoma, 8pt" TabIndex="0" Text="Hello!"/>
+    <CheckBoxControl Name="CheckBox1" Left="8" Top="72" Width="79" Height="17" Font="Tahoma, 8pt" TabIndex="4" Text="CheckBox1" Checked="true" CheckState="Checked"/>
+    <CheckBoxControl Name="CheckBox2" Left="8" Top="96" Width="79" Height="17" Font="Tahoma, 8pt" TabIndex="5" Text="CheckBox2"/>
+    <CheckBoxControl Name="CheckBox3" Left="8" Top="120" Width="79" Height="17" Font="Tahoma, 8pt" TabIndex="6" Text="CheckBox3"/>
+    <RadioButtonControl Name="RadioButton1" Left="108" Top="72" Width="90" Height="17" Font="Tahoma, 8pt" TabIndex="7" Text="RadioButton1" Checked="true"/>
+    <RadioButtonControl Name="RadioButton2" Left="108" Top="96" Width="90" Height="17" Font="Tahoma, 8pt" TabIndex="8" TabStop="false" Text="RadioButton2"/>
+    <RadioButtonControl Name="RadioButton3" Left="108" Top="120" Width="90" Height="17" Font="Tahoma, 8pt" TabIndex="9" TabStop="false" Text="RadioButton3"/>
+    <ComboBoxControl Name="ComboBox1" Left="216" Top="32" Font="Tahoma, 8pt" TabIndex="10" Text="ComboBox" ItemHeight="13" ItemsText="Item 1&#13;&#10;Item 2&#13;&#10;Item 3&#13;&#10;Item 4&#13;&#10;Item 5&#13;&#10;Item 6&#13;&#10;Item 7&#13;&#10;Item 8"/>
+    <DateTimePickerControl Name="DateTimePicker1" Left="8" Top="176" Width="176" Font="Tahoma, 8pt" TabIndex="12" Checked="false" Value="03/11/2013 02:00:10"/>
+    <LabelControl Name="Label2" Left="8" Top="156" Width="86" Height="13" Font="Tahoma, 8pt" TabIndex="16" Text="DateTimePicker1"/>
+    <DateTimePickerControl Name="DateTimePicker2" Left="8" Top="232" Width="176" Font="Tahoma, 8pt" TabIndex="12" Checked="false" Value="03/11/2013 02:00:10"/>
+    <LabelControl Name="Label3" Left="8" Top="212" Width="86" Height="13" Font="Tahoma, 8pt" TabIndex="16" Text="DateTimePicker2"/>
+    <LabelControl Name="Label5" Left="216" Top="12" Width="58" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="ComboBox"/>
+    <CheckedListBoxControl Name="CheckedListBox1" Left="8" Top="316" Width="176" Height="104" Font="Tahoma, 8pt" TabIndex="17" Text="CheckedListBox" ClickEvent="" ItemsText="CheckListBox Value1&#13;&#10;CheckListBox Value2&#13;&#10;CheckListBox Value3&#13;&#10;CheckListBox Value4&#13;&#10;CheckListBox Value5&#13;&#10;CheckListBox Value6&#13;&#10;CheckListBox Value7&#13;&#10;CheckListBox Value8&#13;&#10;CheckListBox Value9&#13;&#10;CheckListBox Value10" CheckOnClick="true"/>
+    <ListBoxControl Name="ListBox1" Left="216" Top="316" Width="164" Height="104" Font="Tahoma, 8pt" TabIndex="18" Text="ListBox" ItemsText="ListBox Value1&#13;&#10;ListBox Value2&#13;&#10;ListBox Value3&#13;&#10;ListBox Value4&#13;&#10;ListBox Value5&#13;&#10;ListBox Value6&#13;&#10;ListBox Value7&#13;&#10;ListBox Value8"/>
+    <LabelControl Name="Label6" Left="8" Top="432" Width="120" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="Enter the multiline text:"/>
+    <TextBoxControl Name="TextBox2" Left="8" Top="452" Width="440" Height="68" Font="Tahoma, 8pt" TabIndex="0" Text="FastReport.Net is a full-featured reporting solution for Windows Forms, ASP.NET and MVC. It can be used in Microsoft Visual Studio 2005, 2008, Microsoft Visual Studio 2010-2015 and Delphi Prism." ClickEvent="" Multiline="true"/>
+  </DialogPage>
+</Report>
