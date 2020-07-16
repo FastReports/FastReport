@@ -816,8 +816,29 @@ namespace FastReport
         {
             get
             {
-                return new string[] { "System.dll", "System.Drawing.dll", "System.Windows.Forms.dll",
-          "System.Data.dll", "System.Xml.dll" };
+                return new string[] {
+                    "System.dll",
+
+                    "System.Drawing.dll",
+
+                    "System.Data.dll",
+
+                    "System.Xml.dll",
+
+#if NETSTANDARD
+                    "FastReport.Compat.dll",
+#else
+                    "System.Windows.Forms.dll",
+#endif
+
+#if NETSTANDARD || NETCOREAPP
+                    "System.Drawing.Primitives",
+#endif
+
+#if MSCHART
+                    "FastReport.DataVisualization.dll"
+#endif
+                };
             }
         }
 
@@ -879,9 +900,9 @@ namespace FastReport
             }
         }
 
-        #endregion Properties
+#endregion Properties
 
-        #region Private Methods
+#region Private Methods
 
         private bool ShouldSerializeReferencedAssemblies()
         {
@@ -1016,9 +1037,9 @@ namespace FastReport
             needCompile = true;
         }
 
-        #endregion Private Methods
+#endregion Private Methods
 
-        #region Protected Methods
+#region Protected Methods
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -1054,9 +1075,9 @@ namespace FastReport
                 base.DeserializeSubItems(reader);
         }
 
-        #endregion Protected Methods
+#endregion Protected Methods
 
-        #region IParent
+#region IParent
 
         /// <inheritdoc/>
         public bool CanContain(Base child)
@@ -1123,9 +1144,9 @@ namespace FastReport
             // do nothing
         }
 
-        #endregion IParent
+#endregion IParent
 
-        #region ISupportInitialize Members
+#region ISupportInitialize Members
 
         /// <inheritdoc/>
         public void BeginInit()
@@ -1140,9 +1161,9 @@ namespace FastReport
             Dictionary.RegisterData(initializeData, initializeDataName, false);
         }
 
-        #endregion ISupportInitialize Members
+#endregion ISupportInitialize Members
 
-        #region Script related
+#region Script related
 
         private void FillDataSourceCache()
         {
@@ -1579,9 +1600,9 @@ namespace FastReport
             return Dictionary.FindByAlias(alias) as DataSourceBase;
         }
 
-        #endregion Script related
+#endregion Script related
 
-        #region Public Methods
+#region Public Methods
 
         /// <inheritdoc/>
         public override void Assign(Base source)
@@ -1687,6 +1708,34 @@ namespace FastReport
             }
         }
 
+        /// <summary>
+        /// Add the name of the assembly (in addition to the default) that will be used to compile the report script
+        /// </summary>
+        /// <param name="assembly_name">Assembly name</param>
+        /// <remarks>
+        /// For example: <code>report.AddReferencedAssembly("Newtonsoft.Json.dll")</code>
+        /// </remarks>
+        public void AddReferencedAssembly(string assembly_name)
+        {
+            string[] assemblies = ReferencedAssemblies;
+            Array.Resize(ref assemblies, assemblies.Length + 1);
+            assemblies[assemblies.Length - 1] = assembly_name;
+        }
+
+        /// <summary>
+        /// Add the names of the assembly (in addition to the default) that will be used to compile the report script
+        /// </summary>
+        /// <param name="assembly_names">Assembly's names</param>
+        public void AddReferencedAssembly(IList<string> assembly_names)
+        {
+            string[] assemblies = ReferencedAssemblies;
+            int oldLength = assemblies.Length;
+            Array.Resize(ref assemblies, oldLength + assembly_names.Count);
+            for (int i = 0; i < assembly_names.Count; i++)
+            {
+                assemblies[oldLength + i] = assembly_names[i];
+            }
+        }
 
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
@@ -2430,7 +2479,7 @@ namespace FastReport
             PreparedPages.Load(stream);
         }
 
-        #endregion Public Methods
+#endregion Public Methods
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Report"/> class with default settings.

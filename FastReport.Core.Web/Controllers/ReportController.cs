@@ -35,8 +35,18 @@ namespace FastReport.Web.Controllers
                 if (!FindWebReport(out WebReport webReport))
                     return new NotFoundResult();
 
-                if (!webReport.ReportPrepared && Request.Query["skipPrepare"].ToString() != "yes")
-                    webReport.Report.Prepare();
+                webReport.Dialogs(Request);
+
+                if (webReport.Canceled)
+                    return new OkResult();
+
+                if (webReport.Mode != WebReportMode.Dialog)
+                {
+                    if (!webReport.ReportPrepared && Request.Query["skipPrepare"].ToString() != "yes")
+                        webReport.Report.Prepare();
+                }
+                else
+                    webReport.Report.PreparePhase1();
 
                 webReport.SetReportTab(Request);
                 webReport.SetReportPage(Request);
@@ -121,6 +131,16 @@ namespace FastReport.Web.Controllers
                         FileDownloadName = $"{filename}.{exportFormat}"
                     };
                 }
+            });
+
+            RegisterHandler("/dialog", () =>
+            {
+                if (!FindWebReport(out WebReport webReport))
+                    return new NotFoundResult();
+
+                webReport.Dialogs(Request);
+
+                return new OkResult();
             });
 
             RegisterHandler("/preview.textEditForm", () =>

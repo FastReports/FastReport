@@ -384,7 +384,7 @@ namespace FastReport.Engine
             while (band != null)
             {
                 if (CanPrint(band))
-                    result += band.Height;
+                    result += (band.CanGrow || band.CanShrink) ? band.CalcHeight() : band.Height;
                 band = band.Child;
                 if (band != null && ((band as ChildBand).FillUnusedSpace || (band as ChildBand).CompleteToNRows != 0))
                     break;

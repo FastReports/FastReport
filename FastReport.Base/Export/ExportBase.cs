@@ -512,6 +512,7 @@ namespace FastReport.Export
             using (FileStream stream = new FileStream(fileName, FileMode.Create))
             {
                 Export(report, stream);
+                stream.Close();
             }
         }
 

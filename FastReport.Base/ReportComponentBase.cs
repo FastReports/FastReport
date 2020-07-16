@@ -974,8 +974,19 @@ namespace FastReport
                 expressions.Add(Hyperlink.Expression);
             if (!String.IsNullOrEmpty(Bookmark))
                 expressions.Add(Bookmark);
+
             if (!String.IsNullOrEmpty(ExportableExpression))
-                expressions.Add(ExportableExpression);
+            {
+                if (ExportableExpression.StartsWith("[") && ExportableExpression.EndsWith("]"))
+                {
+                    expressions.Add(ExportableExpression.Substring(1, ExportableExpression.Length - 2));
+                }
+                else
+                {
+                    expressions.Add(ExportableExpression);
+                }
+            }
+
             return expressions.ToArray();
         }
 

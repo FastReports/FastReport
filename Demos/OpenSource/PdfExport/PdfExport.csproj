@@ -5,9 +5,10 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <Import Project="..\..\..\UsedPackages.version" />
   <ItemGroup>
-    <PackageReference Include="FastReport.OpenSource" Version="2019.2.0" />
-    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2019.2.0" />
+    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.3.4" />
   </ItemGroup>
 
 </Project>

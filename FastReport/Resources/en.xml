@@ -123,11 +123,11 @@
     <GoogleBigQueryDataConnection Text="Google Big Query connection"/>
     <JsonDataConnection Text="JSON database"/>
     <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)" />
-	<CouchbaseDataConnection Text="Couchbase server"/>
+	  <CouchbaseDataConnection Text="Couchbase server"/>
     <MongoDBDataConnection Text="MongoDB connection"/>
     <NosDbDataConnection Text="NosDb connection"/>
     <RavenDBDataConnection Text="RavenDB connection"/>
-	<SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
+	  <SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
     <Bands Text="Bands">
       <ReportTitle Text="Report Title"/>
       <ReportSummary Text="Report Summary"/>
@@ -166,6 +166,7 @@
     <TableObject Text="Table"/>
     <MatrixObject Text="Matrix"/>
     <SubreportObject Text="Subreport"/>
+    <ContainerObject Text="Container"/>
     <BarcodeObject Text="Barcode"/>
     <RichObject Text="Rich Text"/>
     <MSChartObject Text="MS Chart"/>
@@ -642,11 +643,13 @@
     <Design Text="Design Report"/>
     <PrintText Text="Print"/>
     <Print Text="Print (Ctrl+P)"/>
+    <OpenText Text="Open"/>
     <Open Text="Open File"/>
     <Save Text="Save File"/>
     <SaveText Text="Save"/>
     <SaveToCloud Text="Save to Cloud"/>
     <SaveToCloudText Text="Save to Cloud"/>
+    <Search Text="Search"/>
     <Email Text="Send by E-mail"/>
     <Find Text="Find Text"/>
     <Outline Text="Outline"/>

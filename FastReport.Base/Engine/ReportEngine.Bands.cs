@@ -208,7 +208,15 @@ namespace FastReport.Engine
             // Apply visible expression if needed.
             if (!String.IsNullOrEmpty(obj.VisibleExpression))
             {
-                object expression = Report.Calc(obj.VisibleExpression);
+                object expression = null;
+                if (obj.VisibleExpression.StartsWith("[") && obj.VisibleExpression.EndsWith("]"))
+                {
+                    expression = Report.Calc(obj.VisibleExpression.Substring(1, obj.VisibleExpression.Length - 2));
+                }
+                else
+                {
+                    expression = Report.Calc(obj.VisibleExpression);
+                }
                 if (expression is bool)
                 {
                     obj.Visible = (bool)expression;
@@ -218,7 +226,15 @@ namespace FastReport.Engine
             // Apply exportable expression if needed.
             if (!String.IsNullOrEmpty(obj.ExportableExpression))
             {
-                object expression = Report.Calc(obj.ExportableExpression);
+                object expression = null;
+                if (obj.ExportableExpression.StartsWith("[") && obj.ExportableExpression.EndsWith("]"))
+                {
+                    expression = Report.Calc(obj.ExportableExpression.Substring(1, obj.ExportableExpression.Length - 2));
+                }
+                else
+                {
+                    expression = Report.Calc(obj.ExportableExpression);
+                }
                 if (expression is bool)
                 {
                     obj.Exportable = (bool)expression;
@@ -228,7 +244,15 @@ namespace FastReport.Engine
             // Apply printable expression if needed.
             if (!String.IsNullOrEmpty(obj.PrintableExpression))
             {
-                object expression = Report.Calc(obj.PrintableExpression);
+                object expression = null;
+                if (obj.PrintableExpression.StartsWith("[") && obj.PrintableExpression.EndsWith("]"))
+                {
+                    expression = Report.Calc(obj.PrintableExpression.Substring(1, obj.PrintableExpression.Length - 2));
+                }
+                else
+                {
+                    expression = Report.Calc(obj.PrintableExpression);
+                }
                 if (expression is bool)
                 {
                     obj.Printable = (bool)expression;

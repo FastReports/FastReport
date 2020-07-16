@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to add a simple dialog form to the report. To do this:&#13;&#10;- press the &quot;New Dialog&quot; button on a toolbar;&#13;&#10;- this will create an empty dialog form with two default buttons. Put some controls on it and set its properties as you want.&#13;&#10;When you run a report, you will see the dialog. If you close it by the &quot;OK&quot; button, a report will be generated.&#13;&#10;Note: you may add several dialogs." ReportInfo.Created="01/18/2008 03:08:14" ReportInfo.Modified="02/25/2020 15:08:00" ReportInfo.CreatorVersion="2020.1.22.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to add a simple dialog form to the report. To do this:&#13;&#10;- press the &quot;New Dialog&quot; button on a toolbar;&#13;&#10;- this will create an empty dialog form with two default buttons. Put some controls on it and set its properties as you want.&#13;&#10;When you run a report, you will see the dialog. If you close it by the &quot;OK&quot; button, a report will be generated.&#13;&#10;Note: you may add several dialogs." ReportInfo.Created="01/18/2008 03:08:14" ReportInfo.Modified="05/27/2020 19:46:36" ReportInfo.CreatorVersion="2020.3.3.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,10 +37,10 @@ namespace FastReport
     </PageFooterBand>
   </ReportPage>
   <DialogPage Name="Form1" Width="368" Height="276" Font="Tahoma, 8pt" LoadEvent="Form1_Load">
-    <ButtonControl Name="Button1" Left="96" Top="200" Font="Tahoma, 8pt" TabIndex="1" Text="OK" DialogResult="OK"/>
-    <ButtonControl Name="Button2" Left="176" Top="200" Font="Tahoma, 8pt" TabIndex="2" Text="Cancel" DialogResult="Cancel"/>
+    <ButtonControl Name="Button1" Left="96" Top="200" Width="75" Height="23" Font="Tahoma, 8pt" TabIndex="1" Text="OK" DialogResult="OK"/>
+    <ButtonControl Name="Button2" Left="176" Top="200" Width="75" Height="23" Font="Tahoma, 8pt" TabIndex="2" Text="Cancel" DialogResult="Cancel"/>
     <LabelControl Name="Label1" Left="84" Top="132" Width="79" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="Enter the text:"/>
-    <TextBoxControl Name="TextBox1" Left="84" Top="152" Width="188" Font="Tahoma, 8pt" TabIndex="0" Text="Hello!"/>
+    <TextBoxControl Name="TextBox1" Left="84" Top="152" Width="188" Height="20" Font="Tahoma, 8pt" TabIndex="0" Text="Hello!"/>
     <LabelControl Name="Label2" Left="12" Top="8" Width="332" Height="127" Font="Tahoma, 8pt" TabIndex="4" Text="Label" ClickEvent="" AutoSize="false"/>
   </DialogPage>
 </Report>

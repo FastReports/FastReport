@@ -269,6 +269,23 @@ namespace FastReport.Export
                         Result.Append("<br />");
                     i++;
                 }
+                else if (text[i] == '\t' && crlf == CRLF.odt)
+                    Result.Append("<text:tab/>");
+                else if (text[i] == ' ' && crlf == CRLF.odt)
+                {
+                    int spaces = 1;
+                    while (i < text.Length - 1)
+                    {
+                        if (text[i + 1] == ' ')
+                        {
+                            i++;
+                            spaces++;
+                        }
+                        else
+                            break;
+                    }
+                    Result.Append("<text:s text:c=\"" + spaces + "\"/>");
+                }
                 else if (text[i] == '\\')
                     Result.Append("&#92;");
                 else if (text[i] == '~' && !excel2007)
