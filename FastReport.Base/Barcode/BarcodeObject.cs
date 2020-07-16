@@ -8,6 +8,7 @@ using FastReport.Utils;
 using FastReport.Code;
 using System.Windows.Forms;
 using System.Drawing.Design;
+using FastReport.Barcode.QRCode;
 
 namespace FastReport.Barcode
 {
@@ -324,6 +325,19 @@ namespace FastReport.Barcode
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Initialize current BarcodeObject as Swiss QR.
+        /// </summary>
+        /// <param name="parameters">Parameters of swiss qr.</param>
+        public void CreateSwissQR(QRSwissParameters parameters)
+        {
+            QRSwiss swiss = new QRSwiss(parameters);
+            this.Barcode = new BarcodeQR();
+            Barcode.text = swiss.Pack();
+            this.Text = swiss.Pack();
+            this.ShowText = false;
+        }
 
         public void UpdateAutoSize()
         {

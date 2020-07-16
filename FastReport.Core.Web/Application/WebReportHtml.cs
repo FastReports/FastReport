@@ -120,6 +120,35 @@ namespace FastReport.Web
             }
         }
 
+        internal void Dialogs(HttpRequest request)
+        {
+            string dialogN = request.Query["dialog"];
+            string controlName = request.Query["control"];
+            string eventName = request.Query["event"];
+            string data = request.Query["data"];
+
+#if DIALOGS
+            Dialog.SetDialogs(dialogN, controlName, eventName, data);
+#endif
+        }
+
+
+        internal StringBuilder ReportBody()
+        {
+#if DIALOGS
+            if (Mode == WebReportMode.Dialog)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                Dialog.ProcessDialogs(sb);
+
+                return sb;
+            }
+            else
+#endif
+                return ReportInHtml();
+        }
+
         internal StringBuilder ReportInHtml()
         {
             PictureCache.Clear();
@@ -194,7 +223,7 @@ namespace FastReport.Web
                 // important container, it cuts off elements that are outside of the report page bounds
                 int pageWidth = (int)Math.Ceiling(GetReportPageWidthInPixels() * html.Zoom);
                 int pageHeight = (int)Math.Ceiling(GetReportPageHeightInPixels() * html.Zoom);
-                sb.Insert(0, $@"<div style=""width:{pageWidth}px;height:{(SinglePage ? pageHeight * html.Count : pageHeight)}px;overflow:hidden;display:inline-block;"">");
+                sb.Insert(0, $@"<div style=""width:{pageWidth}px;height:{pageHeight}px;overflow:hidden;display:inline-block;"">");
                 sb.Append("</div>");
             }
 
@@ -679,16 +708,43 @@ namespace FastReport.Web
 
         float GetReportPageWidthInPixels()
         {
-            ReportPage page = Report.PreparedPages.GetPage(0);
-            return page?.WidthInPixels ?? 0;
+            float _pageWidth = 0;
+
+            if (SinglePage)
+            {
+                foreach (ReportPage page in Report.Pages)
+                {
+                    // find maxWidth
+                    if (page.WidthInPixels > _pageWidth)
+                        _pageWidth = page.WidthInPixels;
+                }
+            }
+            else
+            {
+                _pageWidth = Report.PreparedPages.GetPageSize(CurrentPageIndex).Width;
+            }
+
+            return _pageWidth;
         }
 
         float GetReportPageHeightInPixels()
         {
-            ReportPage page = Report.PreparedPages.GetPage(0);
-            return page?.HeightInPixels ?? 0;
+            float _pageHeight = 0;
+            if (SinglePage)
+            {
+                for (int i = 0; i < Report.PreparedPages.Count; i++)
+                {
+                    _pageHeight += Report.PreparedPages.GetPageSize(i).Height;
+                }
+            }
+            else
+            {
+                _pageHeight = Report.PreparedPages.GetPageSize(CurrentPageIndex).Height;
+            }
+
+            return _pageHeight;
         }
 
-#endregion
+        #endregion
     }
 }
