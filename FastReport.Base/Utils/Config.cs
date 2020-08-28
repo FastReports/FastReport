@@ -257,7 +257,6 @@ namespace FastReport.Utils
                 scriptSecurityProps = new ScriptSecurityProperties();
 #endif
             }
-            //RestoreScriptSecurity();
             LoadPlugins();
 
             // init TextRenderingHint.SystemDefault
@@ -479,7 +478,7 @@ namespace FastReport.Utils
         /// </summary>
         public class ScriptSecurityProperties
         {
-            private readonly string[] defaultBlackList = new[]
+            private readonly string[] defaultStopList = new[]
                 {
                     "GetType",
                     "typeof", 
@@ -489,7 +488,7 @@ namespace FastReport.Utils
                     "GetProcAddress",
                 };
 
-            private string[] blackList;
+            private string[] stopList;
 
             /// <summary>
             /// Add stubs for the most dangerous classes (in System.IO, System.Reflection etc) 
@@ -499,40 +498,40 @@ namespace FastReport.Utils
             /// <summary>
             /// List of keywords that shouldn't be declared in the report script
             /// </summary>
-            public string[] BlackList 
+            public string[] StopList 
             { 
-                get { return (string[])blackList.Clone(); }
+                get { return (string[])stopList.Clone(); }
                 set
                 {
                     if(value != null)
                     {
-                        OnBlackListChanged?.Invoke(this, null);
-                        blackList = value;
+                        OnStopListChanged?.Invoke(this, null);
+                        stopList = value;
                     }
                 }
             }
 
             /// <summary>
-            /// Throws when <see cref="BlackList"/> has changed
+            /// Throws when <see cref="StopList"/> has changed
             /// </summary>
-            public event EventHandler OnBlackListChanged;
+            public event EventHandler OnStopListChanged;
 
             internal ScriptSecurityProperties()
             {
-                SetDefaultBlackList();
+                SetDefaultStopList();
             }
 
-            internal ScriptSecurityProperties(string[] blackList)
+            internal ScriptSecurityProperties(string[] stopList)
             {
-                this.blackList = blackList;
+                this.stopList = stopList;
             }
 
             /// <summary>
-            /// Sets default value for <see cref="BlackList"/>
+            /// Sets default value for <see cref="StopList"/>
             /// </summary>
-            public void SetDefaultBlackList()
+            public void SetDefaultStopList()
             {
-                BlackList = defaultBlackList;
+                StopList = defaultStopList;
             }
 
         }
