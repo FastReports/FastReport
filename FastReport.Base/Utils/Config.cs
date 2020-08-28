@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
@@ -39,6 +39,8 @@ namespace FastReport.Utils
         private static bool preparedCompressed = true;
         private static bool disableHotkeys = false;
         private static bool disableBacklight = false;
+        private static bool enableScriptSecurity = false;
+        private static ScriptSecurityProperties scriptSecurityProps = null;
 
         #endregion Private Fields
 
@@ -187,6 +189,37 @@ namespace FastReport.Utils
         {
             get { return FastReport.TypeConverters.FontConverter.PrivateFontCollection; }
         }
+
+        /// <summary>
+        /// Enable report script validation. For WebMode only
+        /// </summary>
+        public static bool EnableScriptSecurity
+        {
+            get
+            {
+                return enableScriptSecurity;
+            }
+            set
+            {
+                if (OnEnableScriptSecurityChanged != null)
+                    OnEnableScriptSecurityChanged.Invoke(null, null);
+                enableScriptSecurity = value;
+            }
+        }
+
+        /// <summary>
+        /// Throws when property EnableScriptSecurity has been changed
+        /// </summary>
+        public static event EventHandler OnEnableScriptSecurityChanged;
+
+        /// <summary>
+        /// Properties of report script validation
+        /// </summary>
+        public static ScriptSecurityProperties ScriptSecurityProps
+        {
+            get { return scriptSecurityProps; }
+        }
+
         #endregion Public Properties
 
         #region Internal Methods
@@ -220,8 +253,11 @@ namespace FastReport.Utils
             {
 #if !COMMUNITY
                 RestoreExportOptions();
+                enableScriptSecurity = true;    // don't throw event
+                scriptSecurityProps = new ScriptSecurityProperties();
 #endif
             }
+            //RestoreScriptSecurity();
             LoadPlugins();
 
             // init TextRenderingHint.SystemDefault
@@ -436,6 +472,69 @@ namespace FastReport.Utils
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Properties of ScriptSecurity
+        /// </summary>
+        public class ScriptSecurityProperties
+        {
+            private readonly string[] defaultBlackList = new[]
+                {
+                    "GetType",
+                    "typeof", 
+                    "TypeOf",   // VB
+                    "DllImport",
+                    "LoadLibrary",
+                    "GetProcAddress",
+                };
+
+            private string[] blackList;
+
+            /// <summary>
+            /// Add stubs for the most dangerous classes (in System.IO, System.Reflection etc) 
+            /// </summary>
+            public bool AddStubClasses { get; set; } = true;
+
+            /// <summary>
+            /// List of keywords that shouldn't be declared in the report script
+            /// </summary>
+            public string[] BlackList 
+            { 
+                get { return (string[])blackList.Clone(); }
+                set
+                {
+                    if(value != null)
+                    {
+                        OnBlackListChanged?.Invoke(this, null);
+                        blackList = value;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Throws when <see cref="BlackList"/> has changed
+            /// </summary>
+            public event EventHandler OnBlackListChanged;
+
+            internal ScriptSecurityProperties()
+            {
+                SetDefaultBlackList();
+            }
+
+            internal ScriptSecurityProperties(string[] blackList)
+            {
+                this.blackList = blackList;
+            }
+
+            /// <summary>
+            /// Sets default value for <see cref="BlackList"/>
+            /// </summary>
+            public void SetDefaultBlackList()
+            {
+                BlackList = defaultBlackList;
+            }
+
         }
 
         private static void SaveUIOptions()

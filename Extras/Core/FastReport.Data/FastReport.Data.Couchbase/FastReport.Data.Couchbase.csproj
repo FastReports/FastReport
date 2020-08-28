@@ -27,7 +27,7 @@
         </ProjectReference>
         <ProjectReference Include="..\FastReport.Data.Json\FastReport.Data.Json.csproj" />
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <Reference Include="System" />
         <Reference Include="System.Data" />
         <Reference Include="System.Data.Entity.Design" />
@@ -36,15 +36,13 @@
         <Reference Include="System.Windows.Forms" />
         <Reference Include="System.Xml" />
     </ItemGroup>
-    <ItemGroup >
-        <Compile Update="CouchbaseConnectionEditor.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
+    <ItemGroup>
+        <Compile Update="CouchbaseConnectionEditor.cs" />
         <Compile Update="CouchbaseConnectionEditor.Designer.cs">
             <DependentUpon>CouchbaseConnectionEditor.cs</DependentUpon>
         </Compile>
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <EmbeddedResource Update="CouchbaseConnectionEditor.resx">
             <DependentUpon>CouchbaseConnectionEditor.cs</DependentUpon>
             <SubType>Designer</SubType>

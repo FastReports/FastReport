@@ -983,6 +983,16 @@ namespace FastReport.Export.Html
             res = new MyRes("Export,Html");
             embeddedImages = new Dictionary<string, string>();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HTMLExport"/> class for WebPreview mode.
+        /// </summary>
+        public HTMLExport(bool webPreview) : this()
+        {
+            this.webPreview = webPreview;
+            if (webPreview)
+                exportMode = ExportType.WebPreview;
+        }
     }
 
     /// <summary>

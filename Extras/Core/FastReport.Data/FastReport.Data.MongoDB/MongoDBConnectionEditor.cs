@@ -12,6 +12,7 @@ using FastReport.Forms;
 using MongoDB.Driver;
 using FastReport.Utils;
 using FastReport.Data;
+using MongoDB.Driver.Core.Configuration;
 
 namespace FastReport.Data
 {
@@ -30,23 +31,34 @@ namespace FastReport.Data
             }
         }
 
+        private void comboBoxScheme_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((ConnectionStringScheme)comboBoxScheme.SelectedItem == ConnectionStringScheme.MongoDBPlusSrv)
+                tbPort.Enabled = false;
+            else tbPort.Enabled = true;
+        }
+
         private void Localize()
         {
             MyRes res = new MyRes("ConnectionEditors,Common");
 
             gbServer.Text = res.Get("ServerLogon");
-            //lblHost.Text = res.Get("Server");
+            lblHost.Text = Res.Get("ConnectionEditors,MongoDB,Host");
+            lblPort.Text = Res.Get("ConnectionEditors,MongoDB,Port");
             lblUserName.Text = res.Get("UserName");
             lblPassword.Text = res.Get("Password");
+            lblScheme.Text = Res.Get("ConnectionEditors,MongoDB,Scheme");
 
             gbDatabase.Text = res.Get("Database");
             lblDatabase.Text = res.Get("DatabaseName");
             btnAdvanced.Text = Res.Get("Buttons,Advanced");
+            cbUseSsl.Text = Res.Get("ConnectionEditors,MongoDB,UseSsl");
         }
 
         protected override string GetConnectionString()
         {
             MongoUrlBuilder builder = new MongoUrlBuilder();
+            builder.Scheme = (ConnectionStringScheme)comboBoxScheme.SelectedItem;
             if (!string.IsNullOrEmpty(FConnectionString))
                 builder = new MongoUrlBuilder(FConnectionString);
             builder.Server = new MongoServerAddress(tbHost.Text, int.Parse(tbPort.Text));
@@ -57,7 +69,17 @@ namespace FastReport.Data
                 builder.UseSsl = cbUseSsl.Checked;
             }
             MongoDBDataConnection.dbName = builder.DatabaseName = tbDatabase.Text;
+#if NET45
+            string url = builder.ToString();
+            if(builder.Scheme == ConnectionStringScheme.MongoDBPlusSrv && builder.Server.Port != 27017)
+            {
+                string portString = builder.Server.Port.ToString();
+                url = url.Remove(url.IndexOf(portString) - 1, 1).Replace(portString, "");
+            }
+            return url;
+#else
             return builder.ToMongoUrl().Url;
+#endif
         }
 
         protected override void SetConnectionString(string value)
@@ -77,6 +99,7 @@ namespace FastReport.Data
         public MongoDBConnectionEditor()
         {
             InitializeComponent();
+            comboBoxScheme.DataSource = Enum.GetValues(typeof(ConnectionStringScheme));
             Localize();
         }
     }

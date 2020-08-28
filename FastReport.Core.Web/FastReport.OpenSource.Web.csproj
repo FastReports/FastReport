@@ -33,6 +33,11 @@ Various report objects will allow your report to look exactly how you want it to
     <ItemGroup>
         <ProjectReference Include="$(SolutionDir)FastReport.OpenSource\FastReport.OpenSource.csproj" />
     </ItemGroup>
+      <ItemGroup>
+        <Compile Include="..\FastReport.Web.Base\*.cs">
+            <Link>Application\%(Filename)%(Extension)</Link>
+        </Compile>
+    </ItemGroup>
     <ItemGroup>
         <None Remove="Resources\angle-double-left.svg" />
         <None Remove="Resources\angle-double-right.svg" />
