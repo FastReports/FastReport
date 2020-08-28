@@ -78,7 +78,7 @@ namespace FastReport.Web
                     return false;
             }
 
-            foreach (string pattern in Config.ScriptSecurityProps.BlackList)
+            foreach (string pattern in Config.ScriptSecurityProps.StopList)
             {
                 if (reportScript.IndexOf(pattern) != -1)
                     return false;
