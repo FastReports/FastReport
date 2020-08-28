@@ -53,6 +53,7 @@ namespace FastReport
     #endregion // Constants
     
     #region Fields
+    private string exportAlias;
     private float paperWidth;
     private float paperHeight;
     private int rawPaperSize;
@@ -120,6 +121,16 @@ namespace FastReport
     {
       get { return paperWidth; }
       set { paperWidth = value; }
+    }
+
+    /// <summary>
+    /// Gets or sets the page name on export
+    /// </summary>
+    [Category("Paper")]
+    public string ExportAlias
+    {
+      get { return exportAlias; }
+      set { exportAlias = value; }
     }
 
     /// <summary>
@@ -835,6 +846,7 @@ namespace FastReport
       base.Assign(source);
       
       ReportPage src = source as ReportPage;
+      ExportAlias = src.ExportAlias;
       Landscape = src.Landscape;
       PaperWidth = src.PaperWidth;
       PaperHeight = src.PaperHeight;
@@ -872,7 +884,8 @@ namespace FastReport
     {
       ReportPage c = writer.DiffObject as ReportPage;
       base.Serialize(writer);
-
+      if (ExportAlias != c.ExportAlias)
+        writer.WriteStr("ExportAlias", ExportAlias);
       if (Landscape != c.Landscape)
         writer.WriteBool("Landscape", Landscape);
       if (FloatDiff(PaperWidth, c.PaperWidth))

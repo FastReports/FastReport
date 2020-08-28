@@ -396,6 +396,11 @@ namespace FastReport.Code
             if (Config.TempFolder != null)
                 cp.TempFiles = new TempFileCollection(Config.TempFolder, false);
 
+            if (Config.WebMode &&
+                Config.EnableScriptSecurity &&
+                Config.ScriptSecurityProps.AddStubClasses)
+                AddStubClasses();
+
             string errors = string.Empty;
             CompilerResults cr;
             bool exception = !InternalCompile(cp, out cr);
@@ -407,7 +412,7 @@ namespace FastReport.Code
             if (exception)
                 throw new CompilerException(errors);
         }
-
+        
         private string GetAssemblyHash(CompilerParameters cp)
         {
             StringBuilder assemblyHashSB = new StringBuilder();

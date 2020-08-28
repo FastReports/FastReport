@@ -1988,7 +1988,7 @@
     </Xml>
     <Csv>
       <ConfigureDatabase Text="Configure database"/>
-      <SelectFile Text="Select .csv file:"/>
+      <SelectFile Text="Select .csv file (path or url):"/>
       <Codepage Text="Codepage:"/>
       <Separator Text="Separator:"/>
       <FieldNames Text="Field names in first string"/>
@@ -2019,8 +2019,17 @@
       <Encoding Text="Encoding"/>
       <Input Text="Json or URL"/>
       <Schema Text="Json Schema"/>
+      <RequestHeaders Text="Request Headers"/>
+      <HeaderKey Text="Header"/>
+      <HeaderVal Text="Value"/>
       <ConfirmChanges Text="Json has been modified. Generate a new schema?" />
     </Json>
+    <MongoDB>
+      <Scheme Text="Scheme:"/>
+      <Host Text="Host:"/>
+      <Port Text="Port:"/>
+      <UseSsl Text="Use SSL"/>
+    </MongoDB>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2121,30 +2130,31 @@
         <Barcode0 Text="2/5 Interleaved"/>
         <Barcode1 Text="2/5 Industrial"/>
         <Barcode2 Text="2/5 Matrix"/>
-        <Barcode3 Text="Codabar"/>
-        <Barcode4 Text="Code128"/>
-        <Barcode5 Text="Code39"/>
-        <Barcode6 Text="Code39 Extended"/>
-        <Barcode7 Text="Code93"/>
-        <Barcode8 Text="Code93 Extended"/>
-        <Barcode9 Text="EAN8"/>
-        <Barcode10 Text="EAN13"/>
-        <Barcode11 Text="MSI"/>
-        <Barcode12 Text="PostNet"/>
-        <Barcode13 Text="UPC-A"/>
-        <Barcode14 Text="UPC-E0"/>
-        <Barcode15 Text="UPC-E1"/>
-        <Barcode16 Text="Supplement 2"/>
-        <Barcode17 Text="Supplement 5"/>
-        <Barcode18 Text="PDF417"/>
-        <Barcode19 Text="Datamatrix"/>
-        <Barcode20 Text="QR Code"/>
-        <Barcode21 Text="Aztec"/>
-        <Barcode22 Text="Plessey"/>
-        <Barcode23 Text="GS1-128 (UCC/EAN-128)"/>
-        <Barcode24 Text="Pharmacode"/>
-        <Barcode25 Text="Intelligent Mail (USPS)"/>
-        <Barcode26 Text="MaxiCode"/>
+        <Barcode3 Text="ITF-14"/>
+        <Barcode4 Text="Codabar"/>
+        <Barcode5 Text="Code128"/>
+        <Barcode6 Text="Code39"/>
+        <Barcode7 Text="Code39 Extended"/>
+        <Barcode8 Text="Code93"/>
+        <Barcode9 Text="Code93 Extended"/>
+        <Barcode10 Text="EAN8"/>
+        <Barcode11 Text="EAN13"/>
+        <Barcode12 Text="MSI"/>
+        <Barcode13 Text="PostNet"/>
+        <Barcode14 Text="UPC-A"/>
+        <Barcode15 Text="UPC-E0"/>
+        <Barcode16 Text="UPC-E1"/>
+        <Barcode17 Text="Supplement 2"/>
+        <Barcode18 Text="Supplement 5"/>
+        <Barcode19 Text="PDF417"/>
+        <Barcode20 Text="Datamatrix"/>
+        <Barcode21 Text="QR Code"/>
+        <Barcode22 Text="Aztec"/>
+        <Barcode23 Text="Plessey"/>
+        <Barcode24 Text="GS1-128 (UCC/EAN-128)"/>
+        <Barcode25 Text="Pharmacode"/>
+        <Barcode26 Text="Intelligent Mail (USPS)"/>
+        <Barcode27 Text="MaxiCode"/>
       </Barcodes>
     </Barcode>
     <ZipCodeObject>

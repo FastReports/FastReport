@@ -35,6 +35,11 @@ $(DemoDescription)
         <ProjectReference Include="$(SolutionDir)FastReport.Core\FastReport.Core.csproj" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="..\FastReport.Web.Base\*.cs">
+            <Link>Application\%(Filename)%(Extension)</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
         <None Remove="Resources\angle-double-left.svg" />
         <None Remove="Resources\angle-double-right.svg" />
         <None Remove="Resources\angle-left.svg" />

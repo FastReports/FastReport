@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using System.IO;
+using System.Net;
 
 namespace FastReport.Data
 {
@@ -295,7 +296,39 @@ namespace FastReport.Data
             if (!String.IsNullOrEmpty(CsvFile) && !String.IsNullOrEmpty(Separator))
             {
                 string allText = "";
-                using (StreamReader reader = new StreamReader(CsvFile, Encoding.GetEncoding(Codepage)))
+
+                WebRequest request;
+                WebResponse response = null;
+                try
+                {
+                    Uri uri = new Uri(CsvFile);
+
+                    if (uri.IsFile)
+                    {
+                        request = (FileWebRequest)WebRequest.Create(uri);
+                        request.Timeout = 5000;
+                        response = (FileWebResponse)request.GetResponse();
+                    }
+                    else if (uri.OriginalString.StartsWith("http"))
+                    {
+                        request = (HttpWebRequest)WebRequest.Create(uri);
+                        request.Timeout = 5000;
+                        response = (HttpWebResponse)request.GetResponse();
+                    }
+                    else if (uri.OriginalString.StartsWith("ftp"))
+                    {
+                        request = (FtpWebRequest)WebRequest.Create(uri);
+                        request.Timeout = 5000;
+                        response = (FtpWebResponse)request.GetResponse();
+                    }
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+                if (response == null) return dataset;
+
+                using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(Codepage)))
                 {
                     allText = reader.ReadToEnd();
                 }

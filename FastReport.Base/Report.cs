@@ -214,6 +214,7 @@ namespace FastReport
         private ReportInfo reportInfo;
         private string baseReport;
         private Report baseReportObject;
+        private string baseReportAbsolutePath;
         private string fileName;
         private string scriptText;
         private Language scriptLanguage;
@@ -371,6 +372,19 @@ namespace FastReport
         {
             get { return baseReport; }
             set { SetBaseReport(value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the absolute path to the parent report.
+        /// </summary>
+        /// <remarks>
+        /// This property contains the absolute path to the parent report.
+        /// </remarks>
+        [Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string BaseReportAbsolutePath
+        {
+            get { return baseReportAbsolutePath; }
+            set { baseReportAbsolutePath = value; }
         }
 
         /// <summary>
@@ -606,7 +620,14 @@ namespace FastReport
         public string[] ReferencedAssemblies
         {
             get { return referencedAssemblies; }
-            set { referencedAssemblies = value; }
+            set {
+                // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
+                for (int i = 0; i < value.Length;i++)
+                {
+                    value[i] = value[i].Replace("System.Windows.Forms.DataVisualization", "FastReport.DataVisualization");
+                }
+                referencedAssemblies = value; 
+            }
         }
 
         /// <summary>
@@ -966,7 +987,13 @@ namespace FastReport
             {
                 // convert the relative path to absolute path (based on the main report path).
                 if (!Path.IsPathRooted(value))
+                {
                     value = Path.GetFullPath(Path.GetDirectoryName(FileName) + Path.DirectorySeparatorChar + value);
+                }
+                if (!File.Exists(value) && File.Exists(BaseReportAbsolutePath))
+                {
+                    value = BaseReportAbsolutePath;
+                }
                 Load(value);
             }
 
@@ -1020,6 +1047,7 @@ namespace FastReport
             }
             ScriptText = codeHelper.EmptyScript();
             BaseReport = "";
+            BaseReportAbsolutePath = "";
             DoublePass = false;
             ConvertNulls = true;
             Compressed = false;
@@ -1748,6 +1776,9 @@ namespace FastReport
                 // (based on the main report path). Do not convert when saving to the clipboard.
                 string value = writer.SerializeTo != SerializeTo.Undo ? GetRelativePathToBaseReport() : BaseReport;
                 writer.WriteStr("BaseReport", value);
+                // Fix bug with moving child report to another folder without parent report.
+                if (writer.SerializeTo == SerializeTo.Report)
+                    writer.WriteStr("BaseReportAbsolutePath", BaseReport);
             }
             // always serialize ScriptLanguage because its default value depends on Config.ReportSettings.DefaultLanguage
             writer.WriteValue("ScriptLanguage", ScriptLanguage);
@@ -1794,6 +1825,11 @@ namespace FastReport
         /// <inheritdoc/>
         public override void Deserialize(FRReader reader)
         {
+            if (reader.HasProperty("BaseReportAbsolutePath"))
+            {
+                BaseReportAbsolutePath = reader.ReadStr("BaseReportAbsolutePath");
+            }
+
             base.Deserialize(reader);
 
             // call OnAfterLoad method of each report object

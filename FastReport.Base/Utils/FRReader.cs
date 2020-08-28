@@ -351,10 +351,6 @@ namespace FastReport.Utils
                     {
                         if (pi.PropertyType == typeof(string))
                         {
-#if true // Annoying mesage remover
-                            if (value == "")
-                                return;
-#endif
                             pi.SetValue(obj1, value, null);
                         }
                         else if (pi.PropertyType.IsClass && pi.PropertyType.IsSubclassOf(typeof(Base)))

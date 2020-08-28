@@ -84,6 +84,7 @@ namespace FastReport
         private string dataColumn;
         private bool grayscale;
         private string imageLocation;
+        private string imageSourceExpression;
         private float maxHeight;
         private float maxWidth;
         private Padding padding;
@@ -162,6 +163,42 @@ namespace FastReport
                     imageLocation = value;
                 LoadImage();
                 ResetImageIndex();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the expression that determines the source for the image to display in the PictureObject.
+        /// </summary>
+        /// <remarks>
+        /// The result of the expression should be data column name or path to the image file.
+        /// The data column name will be saved to the <see cref="DataColumn"/> property.
+        /// The path will be savetd to the <see cref="ImageLocation"/> property.
+        /// </remarks>
+        [Category("Data")]
+        [Editor("FastReport.TypeEditors.ExpressionEditor, FastReport", typeof(UITypeEditor))]
+        public string ImageSourceExpression
+        {
+            get { return imageSourceExpression; }
+            set
+            {
+                imageSourceExpression = value;
+
+                if (!String.IsNullOrEmpty(ImageSourceExpression) && Report != null)
+                {
+                    string expression = ImageSourceExpression;
+                    if (ImageSourceExpression.StartsWith("[") && ImageSourceExpression.EndsWith("]"))
+                    {
+                        expression = ImageSourceExpression.Substring(1, ImageSourceExpression.Length - 2);
+                    }
+                    if (Data.DataHelper.IsValidColumn(Report.Dictionary, expression))
+                    {
+                        DataColumn = expression;
+                    }
+                    if (Data.DataHelper.IsValidParameter(Report.Dictionary, expression))
+                    {
+                        ImageLocation = Report.GetParameterValue(expression).ToString();
+                    }
+                }
             }
         }
 
@@ -324,6 +361,7 @@ namespace FastReport
             padding = new Padding();
             imageLocation = "";
             dataColumn = "";
+            imageSourceExpression = "";
         }
 
         #endregion Public Constructors
@@ -340,6 +378,7 @@ namespace FastReport
             {
                 ImageLocation = src.ImageLocation;
                 DataColumn = src.DataColumn;
+                ImageSourceExpression = src.ImageSourceExpression;
                 Padding = src.Padding;
                 SizeMode = src.SizeMode;
                 MaxWidth = src.MaxWidth;
@@ -718,6 +757,9 @@ namespace FastReport
             if (DataColumn != c.DataColumn)
                 writer.WriteStr("DataColumn", DataColumn);
 
+            if (ImageSourceExpression != c.ImageSourceExpression)
+                writer.WriteStr("ImageSourceExpression", ImageSourceExpression);
+
             if (Padding != c.Padding)
                 writer.WriteValue("Padding", Padding);
             if (SizeMode != c.SizeMode)
@@ -917,6 +959,19 @@ namespace FastReport
             expressions.AddRange(base.GetExpressions());
             if (!String.IsNullOrEmpty(DataColumn))
                 expressions.Add(DataColumn);
+
+            if (!String.IsNullOrEmpty(ImageSourceExpression))
+            {
+                if (ImageSourceExpression.StartsWith("[") && ImageSourceExpression.EndsWith("]"))
+                {
+                    expressions.Add(ImageSourceExpression.Substring(1, ImageSourceExpression.Length - 2));
+                }
+                else
+                {
+                    expressions.Add(ImageSourceExpression);
+                }
+            }
+
             return expressions.ToArray();
         }
     }

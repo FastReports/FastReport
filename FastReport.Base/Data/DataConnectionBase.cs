@@ -113,7 +113,10 @@ namespace FastReport.Data
         [Editor("FastReport.TypeEditors.ExpressionEditor, FastReport", typeof(UITypeEditor))]
         public string ConnectionStringExpression
         {
-            get { return connectionStringExpression; }
+            get
+            {
+                return connectionStringExpression;
+            }
             set { connectionStringExpression = value; }
         }
 
@@ -495,7 +498,7 @@ namespace FastReport.Data
             return null;
         }
 
-       
+
 
         /// <summary>
         /// Opens a specified connection object.
@@ -565,9 +568,9 @@ namespace FastReport.Data
 
             if (ShouldNotDispose(connection))
                 return;
-            
-                if (connection != null)
-                    connection.Dispose();
+
+            if (connection != null)
+                connection.Dispose();
         }
 
         /// <summary>

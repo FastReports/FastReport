@@ -610,7 +610,7 @@ namespace FastReport.Export.Html
 
             addstyle.Append(GetStyle());
 
-            addstyle.Append("background: url('" + GetLayerPicture(obj, out Width, out Height) + "');");
+            addstyle.Append("background: url('" + GetLayerPicture(obj, out Width, out Height) + "');no-repeat !important;-webkit-print-color-adjust:exact;");
 
             float x = obj.Width > 0 ? obj.AbsLeft : (obj.AbsLeft + obj.Width);
             float y = obj.Height > 0 ? hPos + obj.AbsTop : (hPos + obj.AbsTop + obj.Height);

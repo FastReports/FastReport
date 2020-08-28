@@ -119,7 +119,7 @@ namespace FastReport.Web
                     tab.ReportPrepared = value;
             }
         }
-        
+
         /// <summary>
         /// Total prepared pages of current report
         /// </summary>
@@ -186,6 +186,12 @@ namespace FastReport.Web
             Dialog = new Dialog(this);
 #endif
         }
+
+        static WebReport()
+        {
+            ScriptSecurity = new ScriptSecurity(new ScriptChecker());
+        }
+
 
         public HtmlString RenderSync()
         {
@@ -270,6 +276,12 @@ namespace FastReport.Web
             if (value >= 0 && value < TotalPages)
                 CurrentPageIndex = value;
         }
+
+#endregion
+
+#region Script Security
+
+        private static ScriptSecurity ScriptSecurity = null;
 
 #endregion
     }
