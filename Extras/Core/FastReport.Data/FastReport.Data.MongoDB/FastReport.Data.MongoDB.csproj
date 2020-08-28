@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net4.5</TargetFrameworks>
+        <TargetFrameworks>net4.5;net4.5.2</TargetFrameworks>
         <SignAssembly>false</SignAssembly>
         <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -20,12 +20,12 @@
         <RootNamespace>FastReport.Data</RootNamespace>
         <PackageReleaseNotes>fixed a bug with wrong database name</PackageReleaseNotes>
     </PropertyGroup>
-    <ItemGroup >
+    <ItemGroup>
         <ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <Reference Include="System" />
         <Reference Include="System.Data" />
         <Reference Include="System.Design" />
@@ -33,7 +33,7 @@
         <Reference Include="System.Windows.Forms" />
         <Reference Include="System.Xml" />
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <Compile Update="MongoDBConnectionEditor.cs">
             <SubType>UserControl</SubType>
         </Compile>
@@ -41,15 +41,20 @@
             <DependentUpon>MongoDBConnectionEditor.cs</DependentUpon>
         </Compile>
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <EmbeddedResource Update="MongoDBConnectionEditor.resx">
             <DependentUpon>MongoDBConnectionEditor.cs</DependentUpon>
             <SubType>Designer</SubType>
         </EmbeddedResource>
     </ItemGroup>
-    <ItemGroup >
-        <PackageReference Include="MongoDB.Bson" Version="[2.3.0,)" />
-        <PackageReference Include="MongoDB.Driver" Version="[2.3.0,)" />
-        <PackageReference Include="MongoDB.Driver.Core" Version="[2.3.0,)" />
+    <ItemGroup Condition="'$(TargetFramework)'=='net4.5'">
+        <PackageReference Include="MongoDB.Bson" Version="2.7.3" />
+        <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
+        <PackageReference Include="MongoDB.Driver.Core" Version="2.7.3" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net4.5.2'">
+        <PackageReference Include="MongoDB.Bson" Version="[2.11.0,)" />
+        <PackageReference Include="MongoDB.Driver" Version="[2.11.0,)" />
+        <PackageReference Include="MongoDB.Driver.Core" Version="[2.11.0,)" />
     </ItemGroup>
 </Project>

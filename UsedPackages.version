@@ -5,20 +5,20 @@
 
         <FRCompatVersion>2020.3.7</FRCompatVersion>
 
-        <FRDataVisualizationVersion>2020.3.1</FRDataVisualizationVersion>
+        <FRDataVisualizationVersion>2020.3.8</FRDataVisualizationVersion>
 		
     </PropertyGroup>
 	
 <!-- This group sets version used packages in Demos -->
 	<PropertyGroup>
         
-		<FRCoreVersion>2020.3.4</FRCoreVersion>
+		<FRCoreVersion>2020.3.17</FRCoreVersion>
 		
-		<FRCoreWebVersion>2020.3.4</FRCoreWebVersion>
+		<FRCoreWebVersion>2020.3.17</FRCoreWebVersion>
 		
-		<FROSVersion>2020.3.4</FROSVersion>
+		<FROSVersion>2020.3.17</FROSVersion>
 		
-		<FROSWebVersion>2020.3.4</FROSWebVersion>
+		<FROSWebVersion>2020.3.17</FROSWebVersion>
 		
     </PropertyGroup>
 

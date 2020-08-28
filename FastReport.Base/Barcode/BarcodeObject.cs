@@ -54,6 +54,28 @@ namespace FastReport.Barcode
     /// </example>
     public partial class BarcodeObject : ReportComponentBase
     {
+        /// <summary>
+        /// Specifies the horizontal alignment of a Barcode object. Works only when autosize is on.
+        /// </summary>
+        public enum Alignment
+        {
+            /// <summary>
+            /// Specifies that the barcode is aligned to the left of the original layout.
+            /// </summary>
+            Left,
+
+            /// <summary>
+            /// Specifies that the barcode is aligned to the center of the original layout.
+            /// </summary>
+            Center,
+
+            /// <summary>
+            /// Specifies that the barcode is aligned to the right of the original layout.
+            /// </summary>
+            Right
+        }
+
+
         #region Fields
         private int angle;
         private bool autoSize;
@@ -70,6 +92,8 @@ namespace FastReport.Barcode
         private bool allowExpressions;
         private string savedText;
         private bool asBitmap;
+        private Alignment horzAlign;
+        private RectangleF origRect;
         #endregion
 
         #region Properties
@@ -87,6 +111,17 @@ namespace FastReport.Barcode
                     value = new Barcode39();
                 barcode = value;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the horizontal alignment of a Barcode object.
+        /// </summary>
+        [DefaultValue(Alignment.Left)]
+        [Category("Appearance")]
+        public Alignment HorzAlign
+        {
+            get { return horzAlign; }
+            set { horzAlign = value; }
         }
 
         /// <summary>
@@ -359,7 +394,31 @@ namespace FastReport.Barcode
                     if (size.Height > 0)
                         Width = size.Height + Padding.Horizontal;
                 }
+                RelocateAlign();
             }
+        }
+
+        /// <summary>
+        /// Relocate BarcodeObject based on alignment
+        /// </summary>
+        public void RelocateAlign()
+        {
+            if (HorzAlign == Alignment.Left || origRect == RectangleF.Empty)
+                return;
+            switch( HorzAlign)
+            {
+                case Alignment.Center:
+                    {
+                        this.Left = origRect.Left + (origRect.Width / 2) - this.Width / 2;
+                        break;
+                    }
+                case Alignment.Right:
+                    {
+                        this.Left = origRect.Right - this.Width;
+                        break;
+                    }
+            }
+            origRect = RectangleF.Empty;
         }
 
         /// <inheritdoc/>
@@ -382,6 +441,7 @@ namespace FastReport.Barcode
             Brackets = src.Brackets;
             AllowExpressions = src.AllowExpressions;
             AsBitmap = src.AsBitmap;
+            HorzAlign = src.HorzAlign;
         }
 
         /// <inheritdoc/>
@@ -454,6 +514,8 @@ namespace FastReport.Barcode
                 writer.WriteStr("Brackets", Brackets);
             if (AsBitmap != c.AsBitmap)
                 writer.WriteBool("AsBitmap", AsBitmap);
+            if (HorzAlign != c.HorzAlign)
+                writer.WriteValue("HorzAlign", HorzAlign);
             Barcode.Serialize(writer, "Barcode.", c.Barcode);
         }
 
@@ -543,6 +605,7 @@ namespace FastReport.Barcode
             {
                 try
                 {
+                    origRect = this.Bounds;
                     UpdateAutoSize();
                 }
                 catch
@@ -593,6 +656,7 @@ namespace FastReport.Barcode
             new BarcodeItem(typeof(Barcode2of5Interleaved), "2/5 Interleaved"),
             new BarcodeItem(typeof(Barcode2of5Industrial), "2/5 Industrial"),
             new BarcodeItem(typeof(Barcode2of5Matrix), "2/5 Matrix"),
+            new BarcodeItem(typeof(BarcodeITF14), "ITF-14"),
             new BarcodeItem(typeof(BarcodeCodabar), "Codabar"),
             new BarcodeItem(typeof(Barcode128), "Code128"),
             new BarcodeItem(typeof(Barcode39), "Code39"),

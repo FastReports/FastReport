@@ -1,5 +1,7 @@
+using FastReport.Utils;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace FastReport.Barcode
@@ -72,10 +74,148 @@ namespace FastReport.Barcode
     }
   }
 
-  /// <summary>
-  /// Generates the "2/5 Industrial" barcode.
-  /// </summary>
-  public class Barcode2of5Industrial : Barcode2of5Interleaved
+    /// <summary>
+    /// Generates the "ITF-14" barcode.
+    /// </summary>
+    public class BarcodeITF14 : Barcode2of5Interleaved
+    {
+        #region Fields
+        private bool drawVerticalBearerBars = true;
+
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Gets or sets the value indicating that vertical bearer bars are needed to draw.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.Category("Appearance")]
+        public bool DrawVerticalBearerBars
+        {
+            get
+            {
+                return this.drawVerticalBearerBars;
+            }
+            set
+            {
+                this.drawVerticalBearerBars = value;
+            }
+        }
+
+        #endregion
+
+        #region Internal Methods
+        internal override string GetPattern()
+        {
+            string result = "";   // Startcode
+            for(int i = 0; i < 14; i++)//10 for light margin and 4 for vertical bearer bar
+            {
+                result += "0";
+            }
+            result += "5050";
+            string c;
+
+            if (CalcCheckSum)
+            {
+                base.text = DoCheckSumming(base.text, 14);
+            }
+            else base.text = SetLen(14);
+
+            for (int i = 0; i < (base.text.Length / 2); i++)
+            {
+                for (int j = 0; j <= 4; j++)
+                {
+                    if (tabelle_2_5[CharToInt(base.text[i * 2]), j] == 1)
+                        c = "6";
+                    else
+                        c = "5";
+                    result += c;
+
+                    if (tabelle_2_5[CharToInt(base.text[i * 2 + 1]), j] == 1)
+                        c = "1";
+                    else
+                        c = "0";
+                    result += c;
+                }
+            }
+
+            result += "605";   //Stopcode 
+            for (int i = 0; i < 14; i++)//10 for light margin and 4 for vertical bearer bar
+            {
+                result += "0";
+            }
+            return result;
+        }
+
+        internal override void DrawText(IGraphicsRenderer g, string data)
+        {
+            data = StripControlCodes(data);
+            DrawString(g, 0, drawArea.Width, data.Insert(1, " ").Insert(4, " ").Insert(10, " ").Insert(16, " "));
+        }
+
+        internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
+        {
+            base.Serialize(writer, prefix, diff);
+            BarcodeITF14 c = diff as BarcodeITF14;
+
+            if (c == null || DrawVerticalBearerBars != c.DrawVerticalBearerBars)
+                writer.WriteValue(prefix + "DrawVerticalBearerBars", DrawVerticalBearerBars);
+        }
+
+        #endregion
+
+        #region Public Methods
+        /// <inheritdoc/>
+        public override void Assign(BarcodeBase source)
+        {
+            base.Assign(source);
+
+            BarcodeITF14 src = source as BarcodeITF14;
+            DrawVerticalBearerBars = src.DrawVerticalBearerBars;
+        }
+
+        public override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+        {          
+            base.DrawBarcode(g, displayRect);
+            float bearerWidth = WideBarRatio * 2 * zoom;
+            using (Pen pen = new Pen(Color, bearerWidth))
+            {
+                float x0 = displayRect.Left;
+                float x01 = displayRect.Left + bearerWidth / 2;
+                float y0 = displayRect.Top;
+                float y01 = displayRect.Top + bearerWidth / 2;
+                float x1 = displayRect.Left + displayRect.Width;
+                float x11 = displayRect.Left + displayRect.Width - bearerWidth / 2;
+                float y1 = displayRect.Top + barArea.Bottom * zoom;
+                float y11 = displayRect.Top + barArea.Bottom * zoom - bearerWidth / 2;
+
+                g.DrawLine(pen, x0, y01 - 0.5F, x1, y01 - 0.5F);
+                g.DrawLine(pen, x0, y11, x1, y11);
+                if (this.drawVerticalBearerBars)
+                {
+                    g.DrawLine(pen, x01 - 0.5F, y0, x01 - 0.5F, y1);
+                    g.DrawLine(pen, x11, y0, x11, y1);
+                }
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodeITF14"/> class with default settings.
+        /// </summary>
+        public BarcodeITF14()
+        {
+            ratioMin = 2.25F;
+            ratioMax = 3.0F;
+            WideBarRatio = 2.25F;
+        }
+    }
+
+    /// <summary>
+    /// Generates the "2/5 Industrial" barcode.
+    /// </summary>
+    public class Barcode2of5Industrial : Barcode2of5Interleaved
   {
     internal override string GetPattern()
     {

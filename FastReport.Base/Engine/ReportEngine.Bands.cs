@@ -87,7 +87,7 @@ namespace FastReport.Engine
         private void ShowBandToPreparedPages(BandBase band, bool getData)
         {
             // handle "StartNewPage". Skip if it's the first row, avoid empty first page.
-            if (band.StartNewPage && band.FlagUseStartNewPage && (band.RowNo != 1 || band.FirstRowStartsNewPage) &&
+            if ((band.StartNewPage && !(band.Parent is PageHeaderBand)) && band.FlagUseStartNewPage && (band.RowNo != 1 || band.FirstRowStartsNewPage) &&
                 !band.Repeated)
             {
                 EndColumn();

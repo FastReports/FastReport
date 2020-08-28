@@ -35,12 +35,15 @@ namespace FastReport.Barcode
       if (showText)
       {
         string data = StripControlCodes(text);
-        // When we print, .Net automatically scales the font. However, we need to handle this process.
-        // Downscale the font to the screen resolution, then scale by required value (ky).
-        float fontZoom = 18f / (int)g.MeasureString(data, FFont).Height * ky;
-        using (Font drawFont = new Font(FFont.Name, FFont.Size * fontZoom, FFont.Style))
+        if (data.Length > 0)
         {
-          g.DrawString(data, drawFont, Brushes.Black, new RectangleF(0, height - 18 * ky, width, 18 * ky));
+            // When we print, .Net automatically scales the font. However, we need to handle this process.
+            // Downscale the font to the screen resolution, then scale by required value (ky).
+            float fontZoom = 18f / (int)g.MeasureString(data, FFont).Height * ky;
+            using (Font drawFont = new Font(FFont.Name, FFont.Size * fontZoom, FFont.Style))
+            {
+                g.DrawString(data, drawFont, Brushes.Black, new RectangleF(0, height - 18 * ky, width, 18 * ky));
+            }
         }
       }            
     }
