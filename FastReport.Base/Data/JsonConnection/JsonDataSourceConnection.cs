@@ -208,11 +208,13 @@ namespace FastReport.Data.JsonConnection
                         req.Headers.Add(header.Key, header.Value);
                     }
 
-                    using (var response = req.GetResponse())
+                    using (var response = req.GetResponse() as HttpWebResponse)
                     {
-                        byte[] data = new byte[2048];
-                        response.GetResponseStream().Read(data, 0, data.Length);
-                        jsonText = Encoding.UTF8.GetString(data);
+                        var encoding = Encoding.GetEncoding(response.CharacterSet);
+
+                        using (var responseStream = response.GetResponseStream())
+                        using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                            jsonText = reader.ReadToEnd();
                     }
 
                 }

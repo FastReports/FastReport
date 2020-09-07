@@ -48,8 +48,6 @@
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <Compile Update="OracleConnectionEditor.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
+        <Compile Update="OracleConnectionEditor.cs" />
     </ItemGroup>
 </Project>

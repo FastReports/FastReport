@@ -3,7 +3,7 @@
 <!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
     <PropertyGroup>
 
-        <FRCompatVersion>2020.3.7</FRCompatVersion>
+        <FRCompatVersion>2020.3.8</FRCompatVersion>
 
         <FRDataVisualizationVersion>2020.3.8</FRDataVisualizationVersion>
 		
