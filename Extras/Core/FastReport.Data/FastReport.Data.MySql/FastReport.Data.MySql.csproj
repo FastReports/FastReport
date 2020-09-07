@@ -25,10 +25,10 @@
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <PackageReference Include="MySql.Data" Version="[6.7.9,)" />
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <Reference Include="System" />
         <Reference Include="System.Data" />
         <Reference Include="System.Design" />
@@ -38,14 +38,12 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Update="MySqlConnectionEditor.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
+        <Compile Update="MySqlConnectionEditor.cs" />
         <Compile Update="MySqlConnectionEditor.Designer.cs">
             <DependentUpon>MySqlConnectionEditor.cs</DependentUpon>
         </Compile>
     </ItemGroup>
-    <ItemGroup >
+    <ItemGroup>
         <EmbeddedResource Update="MySqlConnectionEditor.resx">
             <DependentUpon>MySqlConnectionEditor.cs</DependentUpon>
             <SubType>Designer</SubType>

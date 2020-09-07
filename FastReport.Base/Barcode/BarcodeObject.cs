@@ -656,6 +656,7 @@ namespace FastReport.Barcode
             new BarcodeItem(typeof(Barcode2of5Interleaved), "2/5 Interleaved"),
             new BarcodeItem(typeof(Barcode2of5Industrial), "2/5 Industrial"),
             new BarcodeItem(typeof(Barcode2of5Matrix), "2/5 Matrix"),
+            new BarcodeItem(typeof(BarcodeDeutscheIdentcode), "Deutsche Identcode"),
             new BarcodeItem(typeof(BarcodeITF14), "ITF-14"),
             new BarcodeItem(typeof(BarcodeCodabar), "Codabar"),
             new BarcodeItem(typeof(Barcode128), "Code128"),

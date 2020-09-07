@@ -21,6 +21,7 @@
     <Attention Text="Attention"/>
 	  <BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
 	  <BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
+	  <BarcodeLengthMismatch Text="Number of characters mismatch."/>
     <CantFindObject Text="Can't find object"/>
     <CantLoadReport Text="Can't load the report {0}"/>
     <CantSaveReport Text="Can't save the report. The file may be write-protected."/>
@@ -2130,31 +2131,32 @@
         <Barcode0 Text="2/5 Interleaved"/>
         <Barcode1 Text="2/5 Industrial"/>
         <Barcode2 Text="2/5 Matrix"/>
-        <Barcode3 Text="ITF-14"/>
-        <Barcode4 Text="Codabar"/>
-        <Barcode5 Text="Code128"/>
-        <Barcode6 Text="Code39"/>
-        <Barcode7 Text="Code39 Extended"/>
-        <Barcode8 Text="Code93"/>
-        <Barcode9 Text="Code93 Extended"/>
-        <Barcode10 Text="EAN8"/>
-        <Barcode11 Text="EAN13"/>
-        <Barcode12 Text="MSI"/>
-        <Barcode13 Text="PostNet"/>
-        <Barcode14 Text="UPC-A"/>
-        <Barcode15 Text="UPC-E0"/>
-        <Barcode16 Text="UPC-E1"/>
-        <Barcode17 Text="Supplement 2"/>
-        <Barcode18 Text="Supplement 5"/>
-        <Barcode19 Text="PDF417"/>
-        <Barcode20 Text="Datamatrix"/>
-        <Barcode21 Text="QR Code"/>
-        <Barcode22 Text="Aztec"/>
-        <Barcode23 Text="Plessey"/>
-        <Barcode24 Text="GS1-128 (UCC/EAN-128)"/>
-        <Barcode25 Text="Pharmacode"/>
-        <Barcode26 Text="Intelligent Mail (USPS)"/>
-        <Barcode27 Text="MaxiCode"/>
+        <Barcode3 Text="Deutsche Identcode"/>
+        <Barcode4 Text="ITF-14"/>
+        <Barcode5 Text="Codabar"/>
+        <Barcode6 Text="Code128"/>
+        <Barcode7 Text="Code39"/>
+        <Barcode8 Text="Code39 Extended"/>
+        <Barcode9 Text="Code93"/>
+        <Barcode10 Text="Code93 Extended"/>
+        <Barcode11 Text="EAN8"/>
+        <Barcode12 Text="EAN13"/>
+        <Barcode13 Text="MSI"/>
+        <Barcode14 Text="PostNet"/>
+        <Barcode15 Text="UPC-A"/>
+        <Barcode16 Text="UPC-E0"/>
+        <Barcode17 Text="UPC-E1"/>
+        <Barcode18 Text="Supplement 2"/>
+        <Barcode19 Text="Supplement 5"/>
+        <Barcode20 Text="PDF417"/>
+        <Barcode21 Text="Datamatrix"/>
+        <Barcode22 Text="QR Code"/>
+        <Barcode23 Text="Aztec"/>
+        <Barcode24 Text="Plessey"/>
+        <Barcode25 Text="GS1-128 (UCC/EAN-128)"/>
+        <Barcode26 Text="Pharmacode"/>
+        <Barcode27 Text="Intelligent Mail (USPS)"/>
+        <Barcode28 Text="MaxiCode"/>
       </Barcodes>
     </Barcode>
     <ZipCodeObject>
@@ -2250,6 +2252,7 @@
     <Image Text="Export to Image">
       <File Text="Image file"/>
       <ImageFormat Text="Format:"/>
+      <ImageParceFormatException Text="The bitmap cannot be converted to the selected format."/>
       <Resolution Text="Resolution:"/>
       <Quality Text="Jpeg quality:"/>
       <SeparateFiles Text="Separate file for each page"/>
@@ -2621,6 +2624,10 @@
     <EnterPage Text="Enter the page number to jump"/>
     <TotalPages Text="Total pages (read only)"/>
     <Back Text="Back"/>
+	<ScriptSecurity>
+	    <ForbiddenType Text="Please, don't use the type {typeName}"/>
+		<ForbiddenMethod Text="Please, don't use the method {methodName}"/>
+	</ScriptSecurity>
   </Web>
   <Properties>
     <Categories>
