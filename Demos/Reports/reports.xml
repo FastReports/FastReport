@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Reports>
-  <Folder Name="General">
+  <Folder Name="General" Description="Reports containing simple objects and demonstrating primitive work with data connection and display.">
     <Report File="Simple List.frx"/>
     <Report File="Groups.frx"/>
     <Report File="Master-Detail.frx"/>
@@ -15,7 +15,7 @@
     <Report File="Inherited Report.frx"  WebDemo="false"/>
     <Report File="Badges.frx" WebDemo="false"/>
   </Folder>
-  <Folder Name="Report Objects">
+  <Folder Name="Report Objects" Description="Reports that superficially show complex objects.">
     <Report File="Text.frx"/>
     <Report File="Image.frx"/>
     <Report File="Lines and Shapes.frx"  WebDemo="false"/>
@@ -35,7 +35,7 @@
     <Report File="Gauge.frx" Basic="false"/>
     <Report File="SVG.frx" Basic="false"/>
   </Folder>
-  <Folder Name="Interactive Reports">
+  <Folder Name="Interactive Reports" Description="Reports showing interactivity capabilities.">
     <Report File="Interactive Report.frx"/>
     <Report File="Interactive Report, 2-in-1.frx"/>
     <Report File="Interactive Matrix.frx" Basic="false"/>
@@ -47,7 +47,7 @@
     <Report File="Handle Preview Clicks.frx" Basic="false" WebDemo="false"/>
     <Report File="Interactive Forms.frx"/>
   </Folder>
-  <Folder Name="Table" Basic="false">
+  <Folder Name="Table" Basic="false" Description="Reports that demonstrate various scenarios for working with a table object.">
     <Report File="Labels.frx"  WebDemo="false"/>
     <Report File="Row Datasource.frx"/>
     <Report File="Column Datasource.frx"  WebDemo="false"/>
@@ -60,7 +60,7 @@
     <Report File="Row Datasource, Master-Detail.frx"  WebDemo="false"/>
     <Report File="Fit Dynamic Table To Page.frx"  WebDemo="false"/>
   </Folder>
-  <Folder Name="Matrix" Basic="false">
+  <Folder Name="Matrix" Basic="false" Description="Reports showing the various capabilities of the matrix.">
     <Report File="Simple Matrix.frx"  WebDemo="false"/>
     <Report File="Matrix With Rows Only.frx"  WebDemo="false"/>
     <Report File="Matrix With Columns Only.frx"  WebDemo="false"/>
@@ -77,7 +77,7 @@
     <Report File="Pictures Inside The Matrix.frx"/>
     <Report File="Two Matrices.frx"  WebDemo="false"/>
   </Folder>
-  <Folder Name="Dialogs" Core="false" Basic="false">
+  <Folder Name="Dialogs" Core="false" Basic="false" Description="Reports that demonstrate how dialog boxes work.">
     <Report File="Hello, FastReport!.frx"/>
     <Report File="Print Entered Value.frx"/>
     <Report File="Filtering with CheckedListBox.frx"  WebDemo="false"/>
@@ -87,20 +87,20 @@
     <Report File="Cascaded Data Filtering.frx"/>
     <Report File="Labels With Dialog.frx"  WebDemo="false"/>
   </Folder>
-  <Folder Name="Script" WebDemo="false" Basic="false">
+  <Folder Name="Script" WebDemo="false" Basic="false" Description="Reports showing how scripts work.">
     <Report File="Print Total in The Group Header.frx"/>
     <Report File="Sort Group By Total.frx"/>
     <Report File="Shift Object Position.frx"/>
     <Report File="Dialog Events.frx"/>
     <Report File="Handle Dialog Forms.frx"/>
   </Folder>
-  <Folder Name="Charts" Core="false" Basic="false">
+  <Folder Name="Charts" Core="false" Basic="false" Description="Reports with sample charts, and their combination with other features.">
     <Report File="About Microsoft Chart.frx" WebDemo="false"/>
     <Report File="Microsoft Chart Sample.frx"/>
     <Report File="Interactive Chart.frx"  WebDemo="false"/>
     <Report File="Sparkline.frx" />
   </Folder>
-  <Folder Name="Maps" Core="false" Basic="false">
+  <Folder Name="Maps" Core="false" Basic="false" Description="Reports with sample maps, and their combination with other features.">
     <Report File="World Map.frx"/>
     <Report File="USA Map.frx"/>
     <Report File="World Sales.frx"/>
@@ -109,7 +109,7 @@
     <Report File="World Sales, Interactive.frx"/>
     <Report File="World Sales by City.frx"/>
   </Folder>
-  <Folder Name="Features">
+  <Folder Name="Features" Description="Reports that demonstrate interesting and unusual features.">
     <Report File="Double Pass, Total Pages.frx"  WebDemo="false"/>
     <Report File="Odd-Even Rows.frx"/>
     <Report File="Odd-Even Pages, Mirror Margins.frx"  WebDemo="false"/>
@@ -126,7 +126,7 @@
     <Report File="Print Copy Names.frx"  WebDemo="false"/>
     <Report File="Box.frx" Basic="false" WebDemo="false"/>
     <Report File="Unicode.frx" />
-	<Report File="TextureFill.frx" />
+	  <Report File="TextureFill.frx" />
     <Report File="Purchase Order.frx" Basic="false"  WebDemo="false"/>
   </Folder>
 </Reports>
