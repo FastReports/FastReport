@@ -52,7 +52,17 @@ namespace FastReport
         /// <summary>
         /// Specifies a minus symbol.
         /// </summary>
-        Minus
+        Minus,
+
+        /// <summary>
+        /// Specifies a slash symbol.
+        /// </summary>
+        Slash,
+
+        /// <summary>
+        /// Specifies a balck slash symbol.
+        /// </summary>
+        BackSlash
     }
 
     /// <summary>
@@ -239,9 +249,14 @@ namespace FastReport
                         g.DrawLine(pen, drawRect.Left, drawRect.Top, drawRect.Right, drawRect.Bottom);
                         g.DrawLine(pen, drawRect.Left, drawRect.Bottom, drawRect.Right, drawRect.Top);
                         break;
-
                     case UncheckedSymbol.Minus:
                         g.DrawLine(pen, drawRect.Left, drawRect.Top + drawRect.Height / 2, drawRect.Right, drawRect.Top + drawRect.Height / 2);
+                        break;
+                    case UncheckedSymbol.Slash:
+                        g.DrawLine(pen, drawRect.Left, drawRect.Bottom, drawRect.Right, drawRect.Top);
+                        break;
+                    case UncheckedSymbol.BackSlash:
+                        g.DrawLine(pen, drawRect.Left, drawRect.Top, drawRect.Right, drawRect.Bottom);
                         break;
                 }
             }
