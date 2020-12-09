@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
     <UserSecretsId>aspnet-FastReport.OpenSource.MVC-A0035279-FE70-4D27-A6A9-1F1B33906C98</UserSecretsId>
     <DockerComposeProjectPath>docker-compose.dcproj</DockerComposeProjectPath>
@@ -16,7 +16,7 @@
     <None Remove="Reports\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.All" />
   </ItemGroup>
 
   <Import Project="..\..\..\UsedPackages.version" />

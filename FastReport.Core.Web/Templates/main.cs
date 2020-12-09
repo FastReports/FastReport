@@ -41,6 +41,8 @@ namespace FastReport.Web
             string odtTxt = Res.Get("Odt");
             string xmlTxt = Res.Get("Xml");
             string csvTxt = Res.Get("Csv");
+            string dbfTxt = Res.Get("Dbf");
+            string mhtTxt = Res.Get("Mht");
 
             return $@"
 <div class=""{template_FR}-container"">
@@ -57,12 +59,22 @@ namespace FastReport.Web
         <img src=""{template_resource_url("spinner.svg", "image/svg+xml")}"">
     </div>
 
-    {template_toolbar(saveTxt, reloadTxt, preparedTxt, printTxt, printFromBrowserTxt, 
-    printFromPdf,     zoomTxt, firstPageTxt, previousPageTxt, currentPageTxt, nextPageTxt, 
+  {(ShowBottomToolbar?$@"
+{template_body(renderBody)}
+{template_toolbar(saveTxt, reloadTxt, preparedTxt, printTxt, printFromBrowserTxt,
+    printFromPdf, zoomTxt, firstPageTxt, previousPageTxt, currentPageTxt, nextPageTxt,
     lastPageTxt, totalPagesTxt, pdfTxt, excel2007Txt, word2007Txt, pptxTxt, txtTxt, rtfTxt, xpsTxt, odsTxt,
-    odtTxt, xmlTxt, csvTxt)}
+    odtTxt, xmlTxt, csvTxt, dbfTxt, mhtTxt)}"
+    :$@" 
+{template_toolbar(saveTxt, reloadTxt, preparedTxt, printTxt, printFromBrowserTxt,
+    printFromPdf, zoomTxt, firstPageTxt, previousPageTxt, currentPageTxt, nextPageTxt,
+    lastPageTxt, totalPagesTxt, pdfTxt, excel2007Txt, word2007Txt, pptxTxt, txtTxt, rtfTxt, xpsTxt, odsTxt,
+    odtTxt, xmlTxt, csvTxt, dbfTxt, mhtTxt)}
+{template_body(renderBody)}")}
 
-    {template_body(renderBody)}
+    
+
+ 
 
 </div>";
         }

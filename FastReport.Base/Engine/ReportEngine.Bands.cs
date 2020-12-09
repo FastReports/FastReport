@@ -211,7 +211,21 @@ namespace FastReport.Engine
                 object expression = null;
                 if (obj.VisibleExpression.StartsWith("[") && obj.VisibleExpression.EndsWith("]"))
                 {
-                    expression = Report.Calc(obj.VisibleExpression.Substring(1, obj.VisibleExpression.Length - 2));
+                    string tempExpression = obj.VisibleExpression.Substring(1, obj.VisibleExpression.Length - 2);
+                    int firstOpen = tempExpression.IndexOf("[");
+                    int firstClose = tempExpression.IndexOf("]");
+                    int lastOpen = tempExpression.LastIndexOf("[");
+                    int lastClose = tempExpression.LastIndexOf("]");
+                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
+                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
+                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                    {
+                        expression = Report.Calc(obj.VisibleExpression);
+                    }
+                    else
+                    {
+                        expression = Report.Calc(tempExpression);
+                    }
                 }
                 else
                 {
@@ -229,7 +243,21 @@ namespace FastReport.Engine
                 object expression = null;
                 if (obj.ExportableExpression.StartsWith("[") && obj.ExportableExpression.EndsWith("]"))
                 {
-                    expression = Report.Calc(obj.ExportableExpression.Substring(1, obj.ExportableExpression.Length - 2));
+                    string tempExpression = obj.ExportableExpression.Substring(1, obj.ExportableExpression.Length - 2);
+                    int firstOpen = tempExpression.IndexOf("[");
+                    int firstClose = tempExpression.IndexOf("]");
+                    int lastOpen = tempExpression.LastIndexOf("[");
+                    int lastClose = tempExpression.LastIndexOf("]");
+                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
+                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
+                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                    {
+                        expression = Report.Calc(obj.ExportableExpression);
+                    }
+                    else
+                    {
+                        expression = Report.Calc(tempExpression);
+                    }
                 }
                 else
                 {
@@ -247,7 +275,21 @@ namespace FastReport.Engine
                 object expression = null;
                 if (obj.PrintableExpression.StartsWith("[") && obj.PrintableExpression.EndsWith("]"))
                 {
-                    expression = Report.Calc(obj.PrintableExpression.Substring(1, obj.PrintableExpression.Length - 2));
+                    string tempExpression = obj.PrintableExpression.Substring(1, obj.PrintableExpression.Length - 2);
+                    int firstOpen = tempExpression.IndexOf("[");
+                    int firstClose = tempExpression.IndexOf("]");
+                    int lastOpen = tempExpression.LastIndexOf("[");
+                    int lastClose = tempExpression.LastIndexOf("]");
+                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
+                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
+                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                    {
+                        expression = Report.Calc(obj.PrintableExpression);
+                    }
+                    else
+                    {
+                        expression = Report.Calc(tempExpression);
+                    }
                 }
                 else
                 {

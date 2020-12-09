@@ -33,31 +33,14 @@ namespace FastReport.Preview
       // create clone object and assign all properties from source
       string baseName = "";
       string objName;
-#if MONO
-      if (source is RichObject && (source as RichObject).ConvertRichText == true)
-      {
-        RichObject rich = source as RichObject;
-        float h;
-        List<ComponentBase> clone_list = rich.Convert2ReportObjects(out h);
-
-        int i = 1;
-        foreach(Base clone_item in clone_list)
-        {
-          baseName = clone_item.BaseName[0].ToString().ToLower();
-          clone_item.Name = rich.Name + "_" + i;
-          objName = "Page" + pages.Count.ToString() + "." + clone_item.Name;
-          clone_item.Alias = preparedPages.Dictionary.AddUnique(baseName, objName, clone_item);
-          source.Alias = clone_item.Alias;
-          clone_item.Parent = parent;
-          i++;
-        }
-        return null;
-      }
-#endif
       Base clone = Activator.CreateInstance(source.GetType()) as Base;
       using (XmlItem xml = new XmlItem())
       using (FRWriter writer = new FRWriter(xml))
+#if MONO
+      using (FRReader reader = new FRReader(source.Report, xml))
+#else
       using (FRReader reader = new FRReader(null, xml))
+#endif
       {
         reader.DeserializeFrom = SerializeTo.SourcePages;
         writer.SaveChildren = false;
@@ -91,6 +74,9 @@ namespace FastReport.Preview
         CloneObjects(c, clone);
       }
       clone.Parent = parent;
+#if MONO
+            clone.SetReport(source.Report);
+#endif
       return clone;
     }
 #endregion

@@ -509,7 +509,21 @@ namespace FastReport
             {
                 if (VisibleExpression.StartsWith("[") && VisibleExpression.EndsWith("]"))
                 {
-                    expressions.Add(VisibleExpression.Substring(1, VisibleExpression.Length - 2));
+                    string tempExpression = VisibleExpression.Substring(1, VisibleExpression.Length - 2);
+                    int firstOpen = tempExpression.IndexOf("[");
+                    int firstClose = tempExpression.IndexOf("]");
+                    int lastOpen = tempExpression.LastIndexOf("[");
+                    int lastClose = tempExpression.LastIndexOf("]");
+                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
+                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
+                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                    {
+                        expressions.Add(VisibleExpression);
+                    }
+                    else
+                    {
+                        expressions.Add(tempExpression);
+                    }
                 }
                 else
                 {
@@ -521,7 +535,21 @@ namespace FastReport
             {
                 if (PrintableExpression.StartsWith("[") && PrintableExpression.EndsWith("]"))
                 {
-                    expressions.Add(PrintableExpression.Substring(1, PrintableExpression.Length - 2));
+                    string tempExpression = PrintableExpression.Substring(1, PrintableExpression.Length - 2);
+                    int firstOpen = tempExpression.IndexOf("[");
+                    int firstClose = tempExpression.IndexOf("]");
+                    int lastOpen = tempExpression.LastIndexOf("[");
+                    int lastClose = tempExpression.LastIndexOf("]");
+                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
+                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
+                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                    {
+                        expressions.Add(PrintableExpression);
+                    }
+                    else
+                    {
+                        expressions.Add(tempExpression);
+                    }
                 }
                 else
                 {

@@ -1,5 +1,6 @@
 // Based on RSDN RusCurrency class
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace FastReport.Functions
@@ -166,9 +167,18 @@ namespace FastReport.Functions
                 CurrencyInfo currency = GetCurrency(currencyName);
                 return Str(value, currency.senior, currency.junior);
             }
-            catch
+            catch (KeyNotFoundException e)
             {
-                throw new Exception("Currency \"" + currencyName + "\" is not defined in the \"" + GetType().Name + "\" converter.");
+                throw new Exception("Currency \"" + currencyName + "\" is not defined in the \"" + GetType().Name +
+                                    "\" converter.");
+            }
+            catch (NotImplementedException e)
+            {
+                throw new Exception("Method " + e.TargetSite.ToString() + " wasn't implemented");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("There is an exception - "+e.ToString());
             }
         }
 

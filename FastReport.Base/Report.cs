@@ -846,9 +846,8 @@ namespace FastReport
 
                     "System.Xml.dll",
 
-#if NETSTANDARD
                     "FastReport.Compat.dll",
-#else
+#if !NETSTANDARD
                     "System.Windows.Forms.dll",
 #endif
 
@@ -1426,7 +1425,7 @@ namespace FastReport
 
             // expression not found. Probably it was added after the start of the report.
             // Compile new assembly containing this expression.
-            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, CodeHelper.EmptyScript());
+            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
             assemblies.Add(descriptor);
             descriptor.AddObjects();
             descriptor.AddSingleExpression(expression);
@@ -2339,6 +2338,40 @@ namespace FastReport
                 {
                     Compile();
                     return Engine.Run(true, append, true);
+                }
+                finally
+                {
+                    if (!Config.WebMode)
+                        StopPerformanceCounter();
+                }
+            }
+            finally
+            {
+                SetRunning(false);
+            }
+        }
+
+        /// <summary>
+        /// Prepares the report with pages limit.
+        /// </summary>
+        /// <param name="pagesLimit">Pages limit. The number of pages equal or less will be prepared.</param>
+        /// <returns><b>true</b> if report was prepared succesfully.</returns>
+        public bool Prepare(int pagesLimit)
+        {
+            SetRunning(true);
+            try
+            {
+                ClearPreparedPages();
+                SetPreparedPages(new Preview.PreparedPages(this));
+                engine = new ReportEngine(this);
+
+                if (!Config.WebMode)
+                    StartPerformanceCounter();
+
+                try
+                {
+                    Compile();
+                    return Engine.Run(true, false, true, pagesLimit);
                 }
                 finally
                 {

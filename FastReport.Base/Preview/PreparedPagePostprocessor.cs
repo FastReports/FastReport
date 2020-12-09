@@ -120,6 +120,8 @@ namespace FastReport.Preview
       for (int i = 0; i < allObjects.Count; i++)
       {
         Base c = allObjects[i];
+                if (c.Report == null)
+                    c.SetReport(page.Report);
         c.ExtractMacros();
         
         if (c is BandBase)

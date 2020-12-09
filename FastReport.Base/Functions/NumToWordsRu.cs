@@ -138,6 +138,6 @@ namespace FastReport.Functions
             currencyList.Add("BBYN", new CurrencyInfo(
         new WordInfo(true, "белорусский рубль", "белорусских рубля", "белорусских рублей"),
         new WordInfo(false, "белорусская копейка", "белорусских копейки", "белорусских копеек")));
-        }
+    }
   }
 }

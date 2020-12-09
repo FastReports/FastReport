@@ -13,9 +13,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-#if DOTNET_4
 using System.Collections.Concurrent;
-#endif
 using FastReport.Data;
 using FastReport.Engine;
 using FastReport.Utils;
@@ -24,44 +22,25 @@ namespace FastReport.Code
 {
     internal partial class AssemblyDescriptor
     {
-#if DOTNET_4
-        private static ConcurrentDictionary<string, Assembly> FAssemblyCache;
-#else
-        private static Dictionary<string, Assembly> FAssemblyCache;
-#endif
-        private Assembly assembly;
-        private object instance;
-        private Report report;
-        private FastString scriptText;
-        private Hashtable expressions;
-        private List<SourcePosition> sourcePositions;
+        private static readonly ConcurrentDictionary<string, Assembly> FAssemblyCache;
+        private readonly FastString scriptText;
+        private readonly List<SourcePosition> sourcePositions;
         private int insertLine;
         private int insertPos;
         private bool needCompile;
-        private string shaKey = "FastReportCode";
-        private static object compileLocker;
+        private const string shaKey = "FastReportCode";
+        private readonly static object compileLocker;
+        private readonly string currentFolder;
 
         private const int RECOMPILE_COUNT = 1;
 
-        public Assembly Assembly
-        {
-            get { return assembly; }
-        }
+        public Assembly Assembly { get; private set; }
 
-        public object Instance
-        {
-            get { return instance; }
-        }
+        public object Instance { get; private set; }
 
-        public Report Report
-        {
-            get { return report; }
-        }
+        public Report Report { get; }
 
-        public Hashtable Expressions
-        {
-            get { return expressions; }
-        }
+        public Hashtable Expressions { get; }
 
         private void InsertItem(string text, string objName)
         {
@@ -153,7 +132,7 @@ namespace FastReport.Code
             return args.Text.ToString();
         }
 
-        private bool ContansAssembly(StringCollection assemblies, string assembly)
+        private bool ContansAssembly(IList assemblies, string assembly)
         {
             string asmName = Path.GetFileName(assembly);
             foreach (string a in assemblies)
@@ -165,7 +144,7 @@ namespace FastReport.Code
             return false;
         }
 
-        private void AddFastReportAssemblies(StringCollection assemblies)
+        private void AddFastReportAssemblies(IList assemblies)
         {
             List<ObjectInfo> list = new List<ObjectInfo>();
             RegisteredObjects.Objects.EnumItems(list);
@@ -183,15 +162,34 @@ namespace FastReport.Code
             }
         }
 
-        private void AddReferencedAssemblies(StringCollection assemblies, string defaultPath)
+        private void AddReferencedAssemblies(IList assemblies, string defaultPath)
         {
-            string location;
             foreach (string s in Report.ReferencedAssemblies)
             {
-                location = GetFullAssemblyReference(s, defaultPath);
-                if (location != "" && !ContansAssembly(assemblies, location))
-                    assemblies.Add(location);
+#if NETSTANDARD
+                // replace 
+                if (s == "System.Windows.Forms.dll")
+                {
+                    AddReferencedAssembly(assemblies, defaultPath, "FastReport.Compat");
+                    continue;
+                }
+#endif
+                // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
+                if (s.IndexOf("System.Windows.Forms.DataVisualization") != -1)
+                {
+                    AddReferencedAssembly(assemblies, defaultPath, "FastReport.DataVisualization");
+                    continue;
+                }
+
+                AddReferencedAssembly(assemblies, defaultPath, s);
             }
+        }
+
+        private void AddReferencedAssembly(IList assemblies, string defaultPath, string assemblyName)
+        {
+            string location = GetFullAssemblyReference(assemblyName, defaultPath);
+            if (location != "" && !ContansAssembly(assemblies, location))
+                assemblies.Add(location);
         }
 
         private string GetFullAssemblyReference(string relativeReference, string defaultPath)
@@ -239,7 +237,7 @@ namespace FastReport.Code
 
         private void AddExpression(string expression, Base source, bool forceSimpleItems)
         {
-            if (expression.Trim() == "" || expressions.ContainsKey(expression))
+            if (expression.Trim() == "" || Expressions.ContainsKey(expression))
                 return;
 
             string expr = expression;
@@ -257,7 +255,7 @@ namespace FastReport.Code
 
             // handle complex expressions, relations
             ExpressionDescriptor descriptor = new ExpressionDescriptor(this);
-            expressions.Add(expression, descriptor);
+            Expressions.Add(expression, descriptor);
             descriptor.MethodName = "CalcExpression";
 
             if (DataHelper.IsValidColumn(Report.Dictionary, expr))
@@ -369,23 +367,7 @@ namespace FastReport.Code
         }
 
         private void InternalCompile()
-        {
-            // set the current folder
-            string currentFolder = Config.ApplicationFolder;
-            if (Config.WebMode)
-            {
-                try
-                {
-                    if (Directory.Exists(currentFolder + @"Bin\"))
-                        currentFolder += @"Bin\";
-                }
-                catch
-                {
-                }
-            }
-            // Commented by Samuray
-            //Directory.SetCurrentDirectory(currentFolder);
-            
+        {          
             // configure compiler options
             CompilerParameters cp = new CompilerParameters();
             AddFastReportAssemblies(cp.ReferencedAssemblies);
@@ -439,8 +421,8 @@ namespace FastReport.Code
             Assembly cachedAssembly = null;
             if (FAssemblyCache.TryGetValue(assemblyHash, out cachedAssembly))
             {
-                assembly = cachedAssembly;
-                InitInstance(assembly.CreateInstance("FastReport.ReportScript"));
+                Assembly = cachedAssembly;
+                InitInstance(Assembly.CreateInstance("FastReport.ReportScript"));
                 cr = null;
                 return true;
             }
@@ -452,19 +434,16 @@ namespace FastReport.Code
                 Config.OnScriptCompile(ssea);
 
                 cr = provider.CompileAssemblyFromSource(cp, scriptText.ToString());
-                assembly = null;
-                instance = null;
+                Assembly = null;
+                Instance = null;
 
                 if (cr.Errors.Count != 0)   // Compile errors
                     return false;
 
-#if DOTNET_4
                 FAssemblyCache.TryAdd(assemblyHash, cr.CompiledAssembly);
-#else
-                FAssemblyCache.Add(assemblyHash, cr.CompiledAssembly);
-#endif
-                assembly = cr.CompiledAssembly;
-                InitInstance(assembly.CreateInstance("FastReport.ReportScript"));
+
+                Assembly = cr.CompiledAssembly;
+                InitInstance(Assembly.CreateInstance("FastReport.ReportScript"));
                 return true;
             }
         }
@@ -476,7 +455,7 @@ namespace FastReport.Code
         private bool HandleCompileErrors(CompilerParameters cp, CompilerResults cr, out string errors)
         {
             errors = string.Empty;
-            List<string> assemblyList = new List<string>(4);
+            List<string> additionalAssemblies = new List<string>(4);
             Regex regex;
             
             if (Config.WebMode && Config.EnableScriptSecurity)
@@ -536,11 +515,17 @@ namespace FastReport.Code
                     // try to add reference
                     try
                     {
-                        const string pattern = @"'(\S{1,}),";
+                        // in .Net Core compiler will return other quotes
+#if NETSTANDARD || NETCOREAPP
+                        const string quotes = "\'";
+#else
+                        const string quotes = "\"";
+#endif
+                        const string pattern = quotes + @"(\S{1,}),";
                         regex = new Regex(pattern, RegexOptions.Compiled);
-                        string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without ' and , symbols
-                        if (!assemblyList.Contains(assemblyName))
-                            assemblyList.Add(assemblyName);
+                        string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without quotes and , symbols
+                        if (!additionalAssemblies.Contains(assemblyName))
+                            additionalAssemblies.Add(assemblyName);
                         continue;
                     }
                     catch { }
@@ -575,8 +560,8 @@ namespace FastReport.Code
                 }
             }
 
-            if(assemblyList.Count > 0)  // need recompile
-                return ReCompile(cp, cr, assemblyList);
+            if(additionalAssemblies.Count > 0)  // need recompile
+                return ReCompile(cp, cr, additionalAssemblies);
 
             return false;
         }
@@ -584,30 +569,31 @@ namespace FastReport.Code
         /// <summary>
         /// Returns true, if recompilation is successful
         /// </summary>
-        private bool ReCompile(CompilerParameters cp, CompilerResults cr, List<string> assemblyList)
+        private bool ReCompile(CompilerParameters cp, CompilerResults cr, IList additionalAssemblies)
         {
             // try to load missing assemblies
-            foreach (string assemblyName in assemblyList)
+            foreach (string assemblyName in additionalAssemblies)
             {
-                cp.ReferencedAssemblies.Add(assemblyName);
+                AddReferencedAssembly(cp.ReferencedAssemblies, currentFolder, assemblyName);
             }
+
             return InternalCompile(cp, out cr);
         }
 
         public void InitInstance(object instance)
         {
-            this.instance = instance;
+            this.Instance = instance;
             InitFields();
         }
 
         public bool ContainsExpression(string expr)
         {
-            return expressions.ContainsKey(expr);
+            return Expressions.ContainsKey(expr);
         }
 
         public object CalcExpression(string expr, Variant value)
         {
-            FastReport.Code.ExpressionDescriptor expressionDescriptor = expressions[expr] as FastReport.Code.ExpressionDescriptor;
+            FastReport.Code.ExpressionDescriptor expressionDescriptor = Expressions[expr] as FastReport.Code.ExpressionDescriptor;
             if (expressionDescriptor != null)
                 return expressionDescriptor.Invoke(new object[] { expr, value });
             else
@@ -623,12 +609,12 @@ namespace FastReport.Code
             if (!ContainsExpression(exprName))
             {
                 ExpressionDescriptor descriptor = new ExpressionDescriptor(this);
-                expressions.Add(exprName, descriptor);
+                Expressions.Add(exprName, descriptor);
                 descriptor.MethodName = name;
             }
             try
             {
-                (expressions[exprName] as ExpressionDescriptor).Invoke(parms);
+                (Expressions[exprName] as ExpressionDescriptor).Invoke(parms);
             }
             catch (TargetInvocationException ex)
             {
@@ -638,9 +624,9 @@ namespace FastReport.Code
 
         public AssemblyDescriptor(Report report, string scriptText)
         {
-            this.report = report;
+            this.Report = report;
             this.scriptText = new FastString(scriptText);
-            expressions = new Hashtable();
+            Expressions = new Hashtable();
             sourcePositions = new List<SourcePosition>();
             insertPos = Report.CodeHelper.GetPositionToInsertOwnItems(scriptText);
             if (insertPos == -1)
@@ -656,15 +642,29 @@ namespace FastReport.Code
                 if (scriptText != Report.CodeHelper.EmptyScript())
                     needCompile = true;
             }
+
+            // set the current folder
+            currentFolder = Config.ApplicationFolder;
+            if (Config.WebMode)
+            {
+                try
+                {
+                    string bin_directory = Path.Combine(currentFolder, "Bin");
+                    if (Directory.Exists(bin_directory))
+                        currentFolder = bin_directory;
+                }
+                catch
+                {
+                }
+            }
+            // Commented by Samuray
+            //Directory.SetCurrentDirectory(currentFolder);
         }
 
         static AssemblyDescriptor()
         {
-#if DOTNET_4
             FAssemblyCache = new ConcurrentDictionary<string, Assembly>();
-#else
-            FAssemblyCache = new Dictionary<string, Assembly>();
-#endif
+
             compileLocker = new object();
         }
 

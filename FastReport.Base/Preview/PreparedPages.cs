@@ -458,8 +458,8 @@ namespace FastReport.Preview
                 doc.Root.SetProp("ReportInfo.Name", Report.ReportInfo.Name);
                 doc.Root.SetProp("ReportInfo.Author", Report.ReportInfo.Author);
                 doc.Root.SetProp("ReportInfo.Description", Report.ReportInfo.Description);                
-                doc.Root.SetProp("ReportInfo.Created", DateTime.Now.ToString());
-                doc.Root.SetProp("ReportInfo.Modified", DateTime.Now.ToString());
+                doc.Root.SetProp("ReportInfo.Created", SystemFake.DateTime.Now.ToString());
+                doc.Root.SetProp("ReportInfo.Modified", SystemFake.DateTime.Now.ToString());
                 doc.Root.SetProp("ReportInfo.CreatorVersion", Report.ReportInfo.CreatorVersion);                
 
                 XmlItem pages = doc.Root.Add();

@@ -122,12 +122,12 @@ namespace FastReport.Web
 
         internal void Dialogs(HttpRequest request)
         {
+#if DIALOGS
             string dialogN = request.Query["dialog"];
             string controlName = request.Query["control"];
             string eventName = request.Query["event"];
             string data = request.Query["data"];
 
-#if DIALOGS
             Dialog.SetDialogs(dialogN, controlName, eventName, data);
 #endif
         }

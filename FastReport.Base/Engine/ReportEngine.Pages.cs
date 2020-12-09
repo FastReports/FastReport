@@ -67,7 +67,7 @@ namespace FastReport.Engine
         private void RunReportPages()
         {
 #if TIMETRIAL
-      if (new DateTime($YEAR, $MONTH, $DAY) < DateTime.Now)
+      if (new DateTime($YEAR, $MONTH, $DAY) < SystemFake.DateTime.Now)
         throw new Exception("The trial version is now expired!");
 #endif
 
@@ -363,6 +363,8 @@ namespace FastReport.Engine
             OnStateChanged(page, EngineState.PageFinished);
             ShowPageFooter(startPage);
 
+            if (pagesLimit > 0 && PreparedPages.Count >= pagesLimit)
+                Report.Abort();
             if (Report.MaxPages > 0 && PreparedPages.Count >= Report.MaxPages)
                 Report.Abort();
             if (startPage)

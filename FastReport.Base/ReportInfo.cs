@@ -208,8 +208,8 @@ namespace FastReport
       if (picture != null)
         picture.Dispose();
       picture = null;
-      created = DateTime.Now;
-      modified = DateTime.Now;
+      created = SystemFake.DateTime.Now;
+      modified = SystemFake.DateTime.Now;
       savePreviewPicture = false;
       previewPictureRatio = 0.1f;
       creatorVersion = CurrentVersion;
@@ -231,7 +231,7 @@ namespace FastReport
       if (!writer.AreEqual(Picture, c.Picture))
         writer.WriteValue("ReportInfo.Picture", Picture);
       writer.WriteValue("ReportInfo.Created", Created);
-      modified = DateTime.Now;
+      modified = SystemFake.DateTime.Now;
       writer.WriteValue("ReportInfo.Modified", Modified);
       if (SavePreviewPicture != c.SavePreviewPicture)
         writer.WriteBool("ReportInfo.SavePreviewPicture", SavePreviewPicture);
