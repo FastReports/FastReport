@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using System.Data;
 using MongoDB.Bson;
 using FastReport.Data;
+using MongoDB.Driver.Core.Configuration;
 
 namespace FastReport.Data
 {
@@ -44,12 +45,21 @@ namespace FastReport.Data
         #endregion
 
         #region Protected Methods
-         
+
         /// <inheritdoc/>
         protected DataTable CreateDataTable(DataTable table, bool allRows)
         {
             MongoClient client = new MongoClient(ConnectionString);
-            IMongoDatabase db = client.GetDatabase(dbName);
+            IMongoDatabase db = null;
+            if (dbName != string.Empty)
+            {
+                db = client.GetDatabase(dbName);
+            }
+            else
+            {
+                MongoUrlBuilder builder = new MongoUrlBuilder(ConnectionString);
+                db = client.GetDatabase(builder.DatabaseName);
+            }
             
             var collection = db.GetCollection<BsonDocument>(table.TableName);
             if (!allRows)
@@ -76,7 +86,17 @@ namespace FastReport.Data
             MongoUrlBuilder builder = new MongoUrlBuilder(ConnectionString);
             builder.Username = userName;
             builder.Password = password;
-            return builder.ToString();
+#if NET45
+            string url = builder.ToString();
+            if(builder.Scheme == ConnectionStringScheme.MongoDBPlusSrv && builder.Server.Port != 27017)
+            {
+                string portString = builder.Server.Port.ToString();
+                url = url.Remove(url.IndexOf(portString) - 1, 1).Replace(portString, "");
+            }
+            return url;
+#else
+            return builder.ToMongoUrl().Url;
+#endif
         }
         #endregion
 

@@ -970,6 +970,13 @@ namespace FastReport
         public override string[] GetExpressions()
         {
             List<string> expressions = new List<string>();
+
+            string[] baseExpressions = base.GetExpressions();
+            if (baseExpressions != null)
+            {
+                expressions.AddRange(baseExpressions);
+            }
+
             if (!String.IsNullOrEmpty(Hyperlink.Expression))
                 expressions.Add(Hyperlink.Expression);
             if (!String.IsNullOrEmpty(Bookmark))
@@ -979,7 +986,21 @@ namespace FastReport
             {
                 if (ExportableExpression.StartsWith("[") && ExportableExpression.EndsWith("]"))
                 {
-                    expressions.Add(ExportableExpression.Substring(1, ExportableExpression.Length - 2));
+                    string tempExpression = ExportableExpression.Substring(1, ExportableExpression.Length - 2);
+                    int firstOpen = tempExpression.IndexOf("[");
+                    int firstClose = tempExpression.IndexOf("]");
+                    int lastOpen = tempExpression.LastIndexOf("[");
+                    int lastClose = tempExpression.LastIndexOf("]");
+                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
+                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
+                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                    {
+                        expressions.Add(ExportableExpression);
+                    }
+                    else
+                    {
+                        expressions.Add(tempExpression);
+                    }
                 }
                 else
                 {

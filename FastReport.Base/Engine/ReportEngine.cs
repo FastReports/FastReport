@@ -26,6 +26,7 @@ namespace FastReport.Engine
         private bool finalPass;
         private int firstReportPage;
         private bool isFirstReportPage;
+        private int pagesLimit = 0;
 
         #endregion Fields
 
@@ -414,9 +415,15 @@ namespace FastReport.Engine
             return Run(runDialogs, append, resetDataState, null);
         }
 
+        internal bool Run(bool runDialogs, bool append, bool resetDataState, int pagesLimit)
+        {
+            this.pagesLimit = pagesLimit;
+            return Run(runDialogs, append, resetDataState, null);
+        }
+
         internal bool Run(bool runDialogs, bool append, bool resetDataState, ReportPage page)
         {
-            date = DateTime.Now;
+            date = SystemFake.DateTime.Now;
             Report.SetOperation(ReportOperation.Running);
             ResetDesigningFlag();
 
@@ -457,13 +464,22 @@ namespace FastReport.Engine
                         PreparedPages.RemovePage(PreparedPages.Count - 1);
                     }
                 }
+
+                // Limit the prepared pages again because pagesLimit has better priority than Report.MaxPages.
+                if (pagesLimit > 0)
+                {
+                    while (PreparedPages.Count > pagesLimit)
+                    {
+                        PreparedPages.RemovePage(PreparedPages.Count - 1);
+                    }
+                }
             }
             return true;
         }
 
         internal void RunPhase1()
         {
-            date = DateTime.Now;
+            date = SystemFake.DateTime.Now;
             Report.SetOperation(ReportOperation.Running);
             ResetDesigningFlag();
             InitializeData();
@@ -496,6 +512,15 @@ namespace FastReport.Engine
                 if (Report.MaxPages > 0)
                 {
                     while (PreparedPages.Count > Report.MaxPages)
+                    {
+                        PreparedPages.RemovePage(PreparedPages.Count - 1);
+                    }
+                }
+
+                // Limit the prepared pages again because pagesLimit has better priority than Report.MaxPages.
+                if (pagesLimit > 0)
+                {
+                    while (PreparedPages.Count > pagesLimit)
                     {
                         PreparedPages.RemovePage(PreparedPages.Count - 1);
                     }

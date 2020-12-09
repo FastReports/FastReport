@@ -86,7 +86,26 @@ namespace FastReport.Barcode
         [System.ComponentModel.Category("Appearance")]
         public bool PrintCheckSum { get; set; }
 
-        #endregion 
+        #endregion
+
+        private string CheckSumModulo10(string data)
+        {
+            int sum = 0;
+            int fak = data.Length;
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                if ((fak % 2) == 0)
+                    sum += int.Parse(data[i].ToString()) * 9;
+                else
+                    sum += int.Parse(data[i].ToString()) * 4;
+                fak--;
+            }
+
+            if ((sum % 10) == 0)
+                return data + "0";
+            return data + (10 - (sum % 10)).ToString();
+        }
 
         internal override string GetPattern()
         {
@@ -97,7 +116,7 @@ namespace FastReport.Barcode
             if(CalcCheckSum)
             {
                 if (text.Length == 11)
-                    text = DoCheckSumming(text);
+                    text = CheckSumModulo10(text);
                 else if (text.Length != 12)
                     throw new Exception(Res.Get("Messages,BarcodeLengthMismatch"));
 
@@ -170,7 +189,122 @@ namespace FastReport.Barcode
         }
     }
 
+    /// <summary>
+    /// Generates the "Deutsche Leitcode" barcode.
+    /// </summary>
+    public class BarcodeDeutscheLeitcode : Barcode2of5Interleaved
+    {
+        #region Properties
+        /// <summary>
+        /// Gets or sets a value that indicates that CheckSum should be printed.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.Category("Appearance")]
+        public bool PrintCheckSum { get; set; }
 
+        private string CheckSumModulo10(string data)
+        {
+            int sum = 0;
+            int fak = data.Length;
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                if ((fak % 2) == 0)
+                    sum += int.Parse(data[i].ToString()) * 9;
+                else
+                    sum += int.Parse(data[i].ToString()) * 4;
+                fak--;
+            }
+
+            if ((sum % 10) == 0)
+                return data + "0";
+            return data + (10 - (sum % 10)).ToString();
+        }
+		
+
+        #endregion 
+        internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
+        {
+            base.Serialize(writer, prefix, diff);
+            BarcodeDeutscheLeitcode c = diff as BarcodeDeutscheLeitcode;
+
+            if (c == null || PrintCheckSum != c.PrintCheckSum)
+                writer.WriteValue(prefix + "DrawVerticalBearerBars", PrintCheckSum);
+        }
+        /// <inheritdoc/>
+        public override void Assign(BarcodeBase source)
+        {
+            base.Assign(source);
+
+            BarcodeDeutscheLeitcode src = source as BarcodeDeutscheLeitcode;
+            PrintCheckSum = src.PrintCheckSum;
+        }
+
+        internal override string GetPattern()
+        {
+            string result = "5050";   //Startcode
+            string c;
+            string text = base.text.Replace(".", "").Replace(" ", "");
+
+            if (CalcCheckSum)
+            {
+                if (text.Length == 13)
+                    text = CheckSumModulo10(text);
+                else if (text.Length != 14)
+                    throw new Exception(Res.Get("Messages,BarcodeLengthMismatch"));
+
+            }
+            else
+            {
+                if (text.Length != 14)
+                    throw new Exception(Res.Get("Messages,BarcodeLengthMismatch"));
+            }
+
+            for (int i = 0; i < (text.Length / 2); i++)
+            {
+                for (int j = 0; j <= 4; j++)
+                {
+                    if (tabelle_2_5[CharToInt(text[i * 2]), j] == 1)
+                        c = "6";
+                    else
+                        c = "5";
+                    result += c;
+
+                    if (tabelle_2_5[CharToInt(text[i * 2 + 1]), j] == 1)
+                        c = "1";
+                    else
+                        c = "0";
+                    result += c;
+                }
+            }
+
+            result += "605";    // Stopcode
+
+            base.text = text
+                .Insert(5, ".")
+                .Insert(6, " ")
+                .Insert(10, ".")
+                .Insert(11, " ")
+                .Insert(15, ".")
+                .Insert(16, " ")
+                .Insert(19, " ");
+
+       
+
+
+            return result;
+        }
+
+        public BarcodeDeutscheLeitcode()
+        {
+            ratioMin = 2.25F;
+            ratioMax = 3.5F;
+            WideBarRatio = 3F;
+            CalcCheckSum = true;
+        }
+
+
+    }
     /// <summary>
     /// Generates the "ITF-14" barcode.
     /// </summary>

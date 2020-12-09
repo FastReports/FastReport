@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <Import Project="..\..\..\UsedPackages.version" />
   <ItemGroup>
     <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
-    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.3.4" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2021.1.0" />
   </ItemGroup>
 
 </Project>

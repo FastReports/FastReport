@@ -963,7 +963,10 @@ namespace FastReport
         public override void GetData()
         {
             base.GetData();
-            foreach (ReportComponentBase obj in Objects)
+
+            FRCollectionBase list = new FRCollectionBase();
+            Objects.CopyTo(list);
+            foreach (ReportComponentBase obj in list)
             {
                 obj.GetData();
                 obj.OnAfterData();
@@ -1025,7 +1028,7 @@ namespace FastReport
             InvokeEvent(AfterLayoutEvent, e);
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BandBase"/> class with default settings.

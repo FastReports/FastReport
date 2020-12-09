@@ -51,14 +51,18 @@ namespace FastReport.Web
         /// Switches a visibility of XML (Excel) export in toolbar.
         /// </summary>
         public bool ShowXmlExcelExport { get; set; } = true;
-        ///// <summary>
-        ///// Switches a visibility of DBF export in toolbar.
-        ///// </summary>
-        //public bool ShowDbfExport { get; set; } = false;
         /// <summary>
-        /// Switch visibility the CSV (comma separated values) export in toolbar.
+        /// Switches a visibility of DBF export in toolbar.
+        /// </summary>
+        public bool ShowDbfExport { get; set; } = false;
+        /// <summary>
+        /// Switches visibility the CSV (comma separated values) export in toolbar.
         /// </summary>
         public bool ShowCsvExport { get; set; } = true;
+        /// <summary>
+        /// Switches visibility the MHT export in toolbar.
+        /// </summary>
+        public bool ShowMhtExport { get; set; } = false;
 #endif
     }
 }
