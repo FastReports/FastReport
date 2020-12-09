@@ -4,6 +4,7 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace FastReport.Utils
 {
@@ -36,11 +37,16 @@ namespace FastReport.Utils
         private static string FTempFolder = null;
         private static string systemTempFolder = null;
         private static bool FStringOptimization = false;
+        private static bool FWebMode;
         private static bool preparedCompressed = true;
         private static bool disableHotkeys = false;
         private static bool disableBacklight = false;
         private static bool enableScriptSecurity = false;
         private static ScriptSecurityProperties scriptSecurityProps = null;
+
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+        private static readonly bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+#endif
 
         #endregion Private Fields
 
@@ -52,6 +58,14 @@ namespace FastReport.Utils
         {
             get { return FIsRunningOnMono; }
         }
+
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+        public static bool IsWindows
+        {
+            get { return isWindows; }
+        }
+#endif
+
 
         /// <summary>
         /// Gets or sets the optimization of strings. Is experimental feature.
@@ -100,7 +114,7 @@ namespace FastReport.Utils
             get { return FFolder; }
             set { FFolder = value; }
         }
-
+        
         /// <summary>
         /// Gets or sets the path used to font.list file.
         /// </summary>
@@ -240,23 +254,20 @@ namespace FastReport.Utils
         {
             FIsRunningOnMono = Type.GetType("Mono.Runtime") != null;
 
-#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
-            string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            WebMode = String.Compare(processName, "iisexpress") == 0 ||
-                      String.Compare(processName, "w3wp") == 0;
+            InitWebMode();
+#if !NETSTANDARD
             if (!WebMode)
                 LoadConfig();
-#else
-            WebMode = true;
 #endif
             if (WebMode)
             {
-#if !COMMUNITY
-                RestoreExportOptions();
                 enableScriptSecurity = true;    // don't throw event
                 scriptSecurityProps = new ScriptSecurityProperties();
-#endif
             }
+
+#if !COMMUNITY
+            RestoreExportOptions();
+#endif
             LoadPlugins();
 
             // init TextRenderingHint.SystemDefault
@@ -268,6 +279,25 @@ namespace FastReport.Utils
                 g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
                 g.DrawString(" ", SystemFonts.DefaultFont, Brushes.Black, 0, 0);
             }
+        }
+
+        private static void InitWebMode()
+        {
+            string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+
+#if NETSTANDARD
+            ConfigSetsWebMode(String.Compare(processName, "dotnet") == 0);
+#else
+            ConfigSetsWebMode(String.Compare(processName, "iisexpress") == 0 ||
+                              String.Compare(processName, "w3wp") == 0);
+#endif
+        }
+
+        // If we/user sets 'WebMode = true' before checks in Config.cs - Config shouln't change it (because check may be incorrect)
+        private static void ConfigSetsWebMode(bool value)
+        {
+            if (!FWebMode)
+                WebMode = value;
         }
 
         internal static void WriteLogString(string s)
@@ -299,13 +329,13 @@ namespace FastReport.Utils
             }
         }
 
-        #endregion Internal Methods
+#endregion Internal Methods
 
-        #region Private Methods
+#region Private Methods
 
         private static string GetTempFileName()
         {
-            return Path.Combine(GetTempFolder(), DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss-") + Path.GetRandomFileName());
+            return Path.Combine(GetTempFolder(), SystemFake.DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss-") + Path.GetRandomFileName());
         }
 
         private static string GetTempPath()
@@ -392,9 +422,6 @@ namespace FastReport.Utils
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
                 RestorePreviewSettings();
-#if !COMMUNITY
-                RestoreExportOptions();
-#endif
                 Res.LoadDefaultLocale();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }

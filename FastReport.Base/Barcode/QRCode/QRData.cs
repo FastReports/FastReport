@@ -1,6 +1,7 @@
 ﻿using FastReport.Utils;
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -49,6 +50,8 @@ namespace FastReport.Barcode.QRCode
                 return new QREmailAddress(data);
             else if (data.StartsWith("SPC"))
                 return new QRSwiss(data);
+            else if (data.StartsWith("ST"))
+                return new QRSberBank(data);
             else
                 return new QRText(data);
         }
@@ -215,6 +218,320 @@ namespace FastReport.Barcode.QRCode
         }
     }
 
+    class QRSberBank : QRData
+    {
+        char Separator = '|';
+
+        private string FormatIdentifier="ST";
+        public string VersionStandart = "0001";
+        public string Encoding="2";
+
+        #region necessary payment details 
+        public string Name;
+        public string PersonalAcc;
+        public string BankName;
+        public string BIC;
+        public string CorrespAcc;
+        #endregion
+
+        #region Additional payment info
+        public string Sum;
+        public string Purpose;
+        public string PayeeINNB;
+        public string PayerINN;
+        public string DrawerStatus;
+        public string KPP;
+        public string CBC;
+        public string OKTMO;
+        public string PaytReason;
+        public string TaxPeriod;
+        public string DocNo;
+        public DateTime DocDate;
+        public string TaxPaytKind;
+        #endregion
+
+        #region Another additional payment info
+        public string LastName;
+        public string FirstName;
+        public string MiddleName;
+        public string PayerAddress;
+        public string PersonalAccount;
+        public string DocIdx;
+        public string PensAcc;
+        public string Contract;
+        public string PersAccp;
+        public string Flat;
+        public string Phone;
+        public string PayerIdType;
+        public string PayerIdNum;
+        public string ChildFio;
+        public DateTime BirthDate;
+        public DateTime PaymTerm;
+        public string PaymPeriod;
+        public string Category;
+        public string ServiceName;
+        public string CounterId;
+        public string CounterVal;
+        public string QuittId;
+        public DateTime QuittDate;
+        public string InstNum;
+        public string ClassNum;
+        public string SpecFio;
+        public string AddAmount;
+        public string RuleId;
+        public string ExecId;
+        public string RegType;
+        public string UIN;
+        public string TechCode; //specify numbers somewhere
+        #endregion
+
+        public QRSberBank() : base() { }
+        public QRSberBank(string data) : base(data) { }
+        public override string Pack()
+        {
+            string result = FormatIdentifier;
+            result += VersionStandart;
+            result += Encoding;
+            result += Separator + "Name=" + Name;
+            result += Separator + "PersonalAcc=" + PersonalAcc;
+            result += Separator + "BankName=" + BankName;
+            result += Separator + "BIC=" + BIC;
+            result += Separator + "CorrespAcc=" + CorrespAcc;
+            if (!String.IsNullOrWhiteSpace(Sum))  result += Separator + "Sum=" + Sum;
+            if (!String.IsNullOrWhiteSpace(Purpose)) result += Separator + "Purpose=" + Purpose;
+            if (!String.IsNullOrWhiteSpace(PayeeINNB)) result += Separator + "PayeeINN=" + PayeeINNB;
+            if (!String.IsNullOrWhiteSpace(PayerINN)) result += Separator + "PayerINN=" + PayerINN;
+            if (!String.IsNullOrWhiteSpace(DrawerStatus)) result += Separator + "DrawerStatus=" + DrawerStatus;
+            if (!String.IsNullOrWhiteSpace(KPP)) result += Separator+ "KPP=" + KPP;
+            if(!String.IsNullOrWhiteSpace(CBC)) result += Separator+"CBC="+CBC;
+            if (!String.IsNullOrWhiteSpace(OKTMO)) result += Separator + "OKTMO=" + OKTMO;
+            if (!String.IsNullOrWhiteSpace(PaytReason)) result += Separator + "PaytReason="+PaytReason;
+            if (!String.IsNullOrWhiteSpace(TaxPeriod)) result += Separator +"TaxPeriod="+TaxPeriod;
+            if (!String.IsNullOrWhiteSpace(DocNo)) result += Separator +"DocNo="+DocNo;
+            if (DocDate != DateTime.MinValue)
+            {
+                result += Separator + "DocDate=" + DocDate.ToString("MM.dd.yyyy");
+            }
+            if (!String.IsNullOrWhiteSpace(TaxPaytKind)) result += Separator + "TaxPaytKind=" + TaxPaytKind;
+            if (!String.IsNullOrWhiteSpace(LastName)) result += Separator + "LastName=" + LastName;
+            if (!String.IsNullOrWhiteSpace(FirstName)) result += Separator +"FirstName="+FirstName;
+            if (!String.IsNullOrWhiteSpace(MiddleName)) result += Separator +"MiddleName="+MiddleName;
+            if (!String.IsNullOrWhiteSpace(PayerAddress)) result += Separator +"PayerAddress="+PayerAddress;
+            if (!String.IsNullOrWhiteSpace(PersonalAccount)) result += Separator +"PersonalAccount="+PersonalAccount;
+            if (!String.IsNullOrWhiteSpace(DocIdx)) result += Separator + "DocIdx="+DocIdx;
+            if (!String.IsNullOrWhiteSpace(PensAcc)) result += Separator +"PensAcc="+PensAcc;
+            if (!String.IsNullOrWhiteSpace(Contract)) result += Separator +"Contract="+Contract;
+            if (!String.IsNullOrWhiteSpace(PersAccp)) result += Separator +"PersAcc="+PersAccp;
+            if (!String.IsNullOrWhiteSpace(Flat)) result += Separator +"Flat="+Flat;
+            if (!String.IsNullOrWhiteSpace(Phone)) result += Separator + "Phone=" + Phone; 
+            if (!String.IsNullOrWhiteSpace(PayerIdType)) result += Separator +"PayerIdType="+PayerIdType;
+            if (!String.IsNullOrWhiteSpace(PayerIdNum)) result += Separator +"PayerIdNum="+PayerIdNum;
+            if (!String.IsNullOrWhiteSpace(ChildFio)) result += Separator +"ChildFio="+ChildFio;
+            if (BirthDate != DateTime.MinValue)
+            {
+                result+=Separator+"BirthDate="+BirthDate.ToString("MM.dd.yyyy");
+            }
+            if (PaymTerm!=DateTime.MinValue)
+            {
+                result+=Separator+"PaymTerm="+PaymTerm.ToString("MM.dd.yyyy");
+            }
+            if (!String.IsNullOrWhiteSpace(PaymPeriod)) result += Separator +"PaymPeriod="+PaymPeriod;
+            if (!String.IsNullOrWhiteSpace(Category)) result += Separator + "Category=" + Category;
+            if (!String.IsNullOrWhiteSpace(ServiceName)) result += Separator + "ServiceName=" + ServiceName;
+            if (!String.IsNullOrWhiteSpace(CounterId)) result += Separator + "CounterId=" + CounterId;
+            if (!String.IsNullOrWhiteSpace(CounterVal)) result += Separator + "CounterVal=" + CounterVal;
+            if (!String.IsNullOrWhiteSpace(QuittId)) result += Separator + "QuittId=" + QuittId;
+            if (QuittDate != DateTime.MinValue)
+            {
+                result+=Separator+"QuittDate="+QuittDate.ToString("MM.dd.yyyy");
+            }
+            if (!String.IsNullOrWhiteSpace(InstNum)) result += Separator + "InstNum=" + InstNum;
+            if (!String.IsNullOrWhiteSpace(ClassNum)) result += Separator + "ClassNum=" + ClassNum;
+            if (!String.IsNullOrWhiteSpace(SpecFio)) result += Separator + "SpecFio=" + SpecFio;
+            if (!String.IsNullOrWhiteSpace(AddAmount)) result += Separator + "AddAmount=" + AddAmount;
+            if (!String.IsNullOrWhiteSpace(RuleId)) result += Separator + "RuleId=" + RuleId;
+            if (!String.IsNullOrWhiteSpace(ExecId)) result += Separator + "ExecId=" + ExecId;
+            if (!String.IsNullOrWhiteSpace(RegType)) result += Separator + "RegType=" + RegType;
+            if (!String.IsNullOrWhiteSpace(UIN)) result += Separator + "UIN=" + UIN;
+            if (!String.IsNullOrWhiteSpace(TechCode)) result += Separator + "TechCode=" + TechCode;
+                return result;
+        }
+        public override void Unpack(string data)
+        {
+            data = RetrieveServiceData(data);
+            string[] splitedString = data.Split(Separator);
+            foreach(string str in splitedString)
+            {
+                string[] splitedStr = str.Split(new string[] { "=" }, 2,StringSplitOptions.RemoveEmptyEntries);
+                switch (splitedStr[0])
+                {
+                    case "Name":
+                        Name = splitedStr[1];
+                        break;
+                    case "PersonalAcc":
+                        PersonalAcc = splitedStr[1];
+                        break;
+                    case "BankName":
+                        BankName = splitedStr[1];
+                        break;
+                    case "BIC":
+                        BIC = splitedStr[1];
+                        break;
+                    case "CorrespAcc":
+                        CorrespAcc = splitedStr[1];
+                        break;
+                    case "Sum":
+                        Sum = splitedStr[1];
+                        break;
+                    case "Purpose":
+                        Purpose = splitedStr[1];
+                        break;
+                    case "PayeeINN":
+                        PayeeINNB = splitedStr[1];
+                        break;
+                    case "PayerINN":
+                        PayerINN = splitedStr[1];
+                        break;
+                    case "DrawerStatus":
+                        DrawerStatus = splitedStr[1];
+                        break;
+                    case "KPP":
+                        KPP = splitedStr[1];
+                        break;
+                    case "CBC":
+                        CBC = splitedStr[1];
+                        break;
+                    case "OKTMO":
+                        OKTMO = splitedStr[1];
+                        break;
+                    case "PaytReason":
+                        PaytReason = splitedStr[1];
+                        break;
+                    case "TaxPeriod":
+                        TaxPeriod = splitedStr[1];
+                        break;
+                    case "DocNo":
+                        DocNo = splitedStr[1];
+                        break;
+                    case "DocDate":
+                        DocDate = DateTime.Parse(splitedStr[1]);
+                        break;
+                    case "TaxPaytKind":
+                        TaxPaytKind = splitedStr[1];
+                        break;
+                    case "LastName":
+                        LastName = splitedStr[1];
+                        break;
+                    case "FirstName":
+                        FirstName = splitedStr[1];
+                        break;
+                    case "MiddleName":
+                        MiddleName = splitedStr[1];
+                        break;
+                    case "PayerAddress":
+                        PayerAddress = splitedStr[1];
+                        break;
+                    case "PersonalAccount":
+                        PersonalAccount = splitedStr[1];
+                        break;
+                    case "DocIdx":
+                        DocIdx = splitedStr[1];
+                        break;
+                    case "PensAcc":
+                        PensAcc = splitedStr[1];
+                        break;
+                    case "PersAcc":
+                        PersAccp = splitedStr[1];
+                        break;
+                    case "Contract":
+                        Contract = splitedStr[1];
+                        break;
+                    case "Flat":
+                        Flat = splitedStr[1];
+                        break;
+                    case "Phone":
+                        Phone = splitedStr[1];
+                        break;
+                    case "PayerIdType":
+                        PayerIdType = splitedStr[1];
+                        break;
+                    case "PayerIdNum":
+                        PayerIdNum = splitedStr[1];
+                        break;
+                    case "ChildFio":
+                        ChildFio = splitedStr[1];
+                        break;
+                    case "BirthDate":
+                        BirthDate = DateTime.Parse(splitedStr[1]);
+                        break;
+                    case "PaymTerm":
+                        PaymTerm = DateTime.Parse(splitedStr[1]);
+                        break;
+                    case "PaymPeriod":
+                        PaymPeriod = splitedStr[1];
+                        break;
+                    case "Category":
+                        Category = splitedStr[1];
+                        break;
+                    case "ServiceName":
+                        ServiceName = splitedStr[1];
+                        break;
+                    case "CounterId":
+                        CounterId = splitedStr[1];
+                        break;
+                    case "CounterVal":
+                        CounterVal = splitedStr[1];
+                        break;
+                    case "QuittId":
+                        QuittId = splitedStr[1];
+                        break;
+                    case "QuittDate":
+                        QuittDate = DateTime.Parse(splitedStr[1]);
+                        break;
+                    case "InstNum":
+                        InstNum = splitedStr[1];
+                        break;
+                    case "ClassNum":
+                        ClassNum = splitedStr[1];
+                        break;
+                    case "SpecFio":
+                        SpecFio = splitedStr[1];
+                        break;
+                    case "AddAmount":
+                        AddAmount = splitedStr[1];
+                        break;
+                    case "RuleId":
+                        RuleId = splitedStr[1];
+                        break;
+                    case "ExecId":
+                        ExecId = splitedStr[1];
+                        break;
+                    case "RegType":
+                        RegType = splitedStr[1];
+                        break;
+                    case "UIN":
+                        UIN = splitedStr[1];
+                        break;
+                    case "TechCode":
+                        TechCode = splitedStr[1];
+                        break;
+                }
+            }
+
+        }
+        private string RetrieveServiceData(string data)
+        {
+            int firstSeparatorIndex = data.IndexOf(Separator);
+
+            string retrievedData = data.Substring(0, firstSeparatorIndex);
+            data = data.Substring(firstSeparatorIndex + 1);
+            FormatIdentifier = retrievedData.Substring(0, 2);
+            VersionStandart = retrievedData.Substring(2, 4);
+            Encoding = retrievedData.Substring(6, 1);
+
+            return data;
+        }
+    }
     class QRGeo : QRData
     {
         public string latitude;

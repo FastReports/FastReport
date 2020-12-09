@@ -32,7 +32,7 @@ $(DemoDescription)
 </Description>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="$(SolutionDir)FastReport.Core\FastReport.Core.csproj" />
+        <ProjectReference Include="..\FastReport.Core\FastReport.Core.csproj" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\FastReport.Web.Base\*.cs">

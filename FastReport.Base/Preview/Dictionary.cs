@@ -58,7 +58,14 @@ namespace FastReport.Preview
     {
         DictionaryItem item;
         if (names.TryGetValue(name, out item))
-            return item.CloneObject(name);
+        {
+                //                return item.CloneObject(name);
+                if(item.OriginalComponent != null)
+                    item.OriginalComponent.SetReport(this.preparedPages.Report);
+                Base result = item.CloneObject(name);
+                //result.SetReport(this);
+                return result;
+        }
         else
             return null;
 

@@ -120,7 +120,7 @@ namespace FastReport.Export.Html
             string s = "=?utf-8?B?" + System.Convert.ToBase64String(Encoding.UTF8.GetBytes(FileName)) + "?=";
             sb.Append("From: ").AppendLine(s);
             sb.Append("Subject: ").AppendLine(s);
-            sb.Append("Date: ").AppendLine(ExportUtils.GetRFCDate(DateTime.Now));
+            sb.Append("Date: ").AppendLine(ExportUtils.GetRFCDate(SystemFake.DateTime.Now));
             sb.AppendLine("MIME-Version: 1.0");
             sb.Append("Content-Type: multipart/related; type=\"text/html\"; boundary=\"").Append(boundary).AppendLine("\"");
             sb.AppendLine();

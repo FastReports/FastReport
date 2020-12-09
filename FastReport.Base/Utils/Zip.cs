@@ -303,7 +303,7 @@ namespace FastReport.Utils
         public ZipFileItem()
         {
             stream = new MemoryStream();
-            fileDateTime = GetDosDateTime(DateTime.Now);
+            fileDateTime = GetDosDateTime(SystemFake.DateTime.Now);
             disk = false;
         }
 
@@ -311,7 +311,7 @@ namespace FastReport.Utils
         {
             this.stream = stream;
             name = fileName;
-            fileDateTime = GetDosDateTime(DateTime.Now);
+            fileDateTime = GetDosDateTime(SystemFake.DateTime.Now);
             disk = false;
         }
 

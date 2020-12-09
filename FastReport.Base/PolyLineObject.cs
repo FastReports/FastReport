@@ -799,7 +799,12 @@ namespace FastReport
 
             internal PolyPoint Clone()
             {
-                return new PolyPoint(x, y);
+                PolyPoint result = new PolyPoint(x, y);
+                if (LeftCurve != null)
+                    result.LeftCurve = LeftCurve.Clone();
+                if (RightCurve != null)
+                    result.RightCurve = RightCurve.Clone();
+                return result;
             }
 
             #endregion Private Methods
