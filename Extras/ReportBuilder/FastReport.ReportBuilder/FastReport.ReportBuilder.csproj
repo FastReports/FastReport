@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Fast Reports Inc.</Company>
+    <Authors>Emrah KONDUR</Authors>
+    <Description>Building a FastReport without designer easy way!</Description>
+    <Copyright>Fast Reports Inc.</Copyright>
+    <PackageProjectUrl>https://www.fast-report.com/en/</PackageProjectUrl>
+    <PackageTags>reporting, builder, reports, fluent, helper</PackageTags>
+    <PackageReleaseNotes>Big Bang!</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>2020.1.0</Version>
+    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastReport.OpenSource" Version="2020.1.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
+  </ItemGroup>
+
+</Project>
