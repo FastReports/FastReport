@@ -56,7 +56,7 @@ namespace FastReport
         private bool shouldDisposeImage;
         private Bitmap grayscaleBitmap;
         private int grayscaleHash;
-
+        private ImageFormat imageFormat;
         #endregion
 
         #region Properties
@@ -84,7 +84,32 @@ namespace FastReport
                 UpdateAutoSize();
                 UpdateTransparentImage();
                 ResetImageIndex();
+                imageFormat = CheckImageFormat();
                 ShouldDisposeImage = false;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the expansion of image.
+        /// </summary>
+        [Category("Data")]
+        public virtual ImageFormat ImageFormat
+        {
+            get { return imageFormat; }
+            set
+            {
+                if (image == null)
+                    return;
+                bool wasC = false;
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wasC = ImageHelper.SaveAndConvert(Image, stream, value);
+                    imageData = stream.ToArray();
+                }
+                if (!wasC)
+                    return;
+                ForceLoadImage();
+                imageFormat = CheckImageFormat();
             }
         }
 
@@ -229,7 +254,47 @@ namespace FastReport
         #endregion
 
         #region Private Methods
-
+        private ImageFormat CheckImageFormat()
+        {
+            if (Image == null || Image.RawFormat == null)
+                return null;
+            ImageFormat format = null;
+            if (ImageFormat.Jpeg.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Jpeg;
+            }
+            else if (ImageFormat.Gif.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Gif;
+            }
+            else if (ImageFormat.Png.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Png;
+            }
+            else if (ImageFormat.Emf.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Emf;
+            }
+            else if (ImageFormat.Icon.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Icon;
+            }
+            else if (ImageFormat.Tiff.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Tiff;
+            }
+            else if (ImageFormat.Bmp.Equals(image.RawFormat) || ImageFormat.MemoryBmp.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Bmp;
+            }
+            else if (ImageFormat.Wmf.Equals(image.RawFormat))
+            {
+                format = ImageFormat.Wmf;
+            }
+            if (format != null)
+                return format;
+            return ImageFormat.Bmp;
+        }
 
         private void UpdateTransparentImage()
         {
@@ -277,6 +342,7 @@ namespace FastReport
                 if (src.Image == null && src.imageData != null)
                     imageData = src.imageData;
                 ShouldDisposeImage = true;
+                ImageFormat = src.ImageFormat;
             }
         }
 
@@ -399,6 +465,8 @@ namespace FastReport
                 writer.WriteFloat("Transparency", Transparency);
             if (Tile != c.Tile)
                 writer.WriteBool("Tile", Tile);
+            if (ImageFormat != c.ImageFormat)
+                writer.WriteValue("ImageFormat", ImageFormat);
             // store image data
             if (writer.SerializeTo != SerializeTo.SourcePages)
             {
@@ -417,7 +485,7 @@ namespace FastReport
                             {
                                 using (MemoryStream stream = new MemoryStream())
                                 {
-                                    ImageHelper.Save(Image, stream, ImageFormat.Png);
+                                    ImageHelper.Save(Image, stream, imageFormat);
                                     bytes = stream.ToArray();
                                 }
                             }
@@ -589,5 +657,6 @@ namespace FastReport
             SetFlags(Flags.HasSmartTag, true);
             ResetImageIndex();
         }
+        
     }
 }

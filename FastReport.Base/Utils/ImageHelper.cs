@@ -27,7 +27,7 @@ namespace FastReport.Utils
 
         public static void Save(Image image, Stream stream)
         {
-            Save(image, stream, ImageFormat.Png);
+            Save(image, stream, image.GetImageFormat());
         }
 
         public static void Save(Image image, string fileName, ImageFormat format)
@@ -43,7 +43,12 @@ namespace FastReport.Utils
             if (image == null)
                 return;
             if (image is Bitmap)
-                image.Save(stream, format);
+            {
+                if (format == ImageFormat.Icon)
+                    SaveAsIcon(image, stream, true);
+                else
+                    image.Save(stream, format);
+            }
             else if (image is Metafile)
             {
                 Metafile emf = null;
@@ -59,6 +64,65 @@ namespace FastReport.Utils
                     g.DrawImage(image, 0, 0);
                 }
             }
+        }
+
+        public static bool SaveAndConvert(Image image, Stream stream, ImageFormat format)
+        {
+            if (image == null)
+                return false;
+            if(format == ImageFormat.Jpeg || format == ImageFormat.Gif 
+                || format == ImageFormat.Tiff || format == ImageFormat.Bmp 
+                || format == ImageFormat.Png 
+                || format == ImageFormat.MemoryBmp)
+            {
+                if(image is Bitmap)
+                {
+                    if (format == ImageFormat.MemoryBmp)
+                        throw new Exception(Res.Get("Export,Image,ImageParceFormatException")); 
+                    image.Save(stream, format);
+                    return true;
+                }
+                //from mf to bitmap
+                using (Metafile metafile = image as Metafile)
+                using (Bitmap bitmap = new Bitmap(image.Width, image.Height))
+                {
+                    bitmap.SetResolution(96F, 96F);
+                    using (Graphics g = Graphics.FromImage(bitmap))
+                    {
+                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        g.DrawImage(metafile, 0, 0, (float)image.Width, (float)image.Height);
+                        g.Dispose();
+                    }
+                    bitmap.Save(stream, format);
+                }
+                return true;
+
+            }   
+            else if(format == ImageFormat.Icon)
+            {
+                return SaveAsIcon(image, stream, true);
+            }
+            else if(format == ImageFormat.Wmf || format == ImageFormat.Emf)
+            {
+                if (image is Metafile)
+                {
+                    Metafile emf = null;
+                    using (Bitmap bmp = new Bitmap(1, 1))
+                    using (Graphics g = Graphics.FromImage(bmp))
+                    {
+                        IntPtr hdc = g.GetHdc();
+                        emf = new Metafile(stream, hdc);
+                        g.ReleaseHdc(hdc);
+                    }
+                    using (Graphics g = Graphics.FromImage(emf))
+                    {
+                        g.DrawImage(image, 0, 0);
+                    }
+                    return true;
+                 }
+            }
+            //throw new Exception(Res.Get("Export,Image,ImageParceFormatException")); // we cant convert image to exif or from bitmap to mf 
+            return false;
         }
 
         public static byte[] Load(string fileName)
@@ -168,6 +232,132 @@ namespace FastReport.Utils
             }
 
             return grayscaleBitmap;
+        }
+
+        /// <summary>
+        /// Converts a PNG image to a icon (ico)
+        /// </summary>
+        /// <param name="image">The input image</param>
+        /// <param name="output">The output stream</param>
+        /// <param name="preserveAspectRatio">Preserve the aspect ratio</param>
+        /// <returns>Wether or not the icon was succesfully generated</returns>
+        public static bool SaveAsIcon(Image image, Stream output, bool preserveAspectRatio = false)
+        {
+            int size = 256;
+            float width = size, height = size;
+            if (preserveAspectRatio)
+            {
+                if (image.Width > image.Height)
+                    height = ((float)image.Height / image.Width) * size;
+                else
+                    width = ((float)image.Width / image.Height) * size;
+            }
+
+            var newBitmap = new Bitmap(image, new Size((int)width, (int)height));
+            if (newBitmap == null)
+                return false;
+
+            // save the resized png into a memory stream for future use
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                newBitmap.Save(memoryStream, ImageFormat.Png);
+
+                var iconWriter = new BinaryWriter(output);
+                if (output == null || iconWriter == null)
+                    return false;
+
+                // 0-1 reserved, 0
+                iconWriter.Write((byte)0);
+                iconWriter.Write((byte)0);
+
+                // 2-3 image type, 1 = icon, 2 = cursor
+                iconWriter.Write((short)1);
+
+                // 4-5 number of images
+                iconWriter.Write((short)1);
+
+                // image entry 1
+                // 0 image width
+                iconWriter.Write((byte)width);
+                // 1 image height
+                iconWriter.Write((byte)height);
+
+                // 2 number of colors
+                iconWriter.Write((byte)0);
+
+                // 3 reserved
+                iconWriter.Write((byte)0);
+
+                // 4-5 color planes
+                iconWriter.Write((short)0);
+
+                // 6-7 bits per pixel
+                iconWriter.Write((short)32);
+
+                // 8-11 size of image data
+                iconWriter.Write((int)memoryStream.Length);
+
+                // 12-15 offset of image data
+                iconWriter.Write((int)(6 + 16));
+
+                // write image data
+                // png data must contain the whole png data file
+                iconWriter.Write(memoryStream.ToArray());
+
+                iconWriter.Flush();
+            }
+
+            return true;
+        }
+
+
+    }
+
+    public static class ImageExtension
+    {
+        /// <summary>
+        /// Returns an Image format.
+        /// </summary>
+        public static ImageFormat GetImageFormat(this Image bitmap)
+        {
+            if (bitmap == null || bitmap.RawFormat == null)
+                return null;
+            ImageFormat format = null;
+            if (ImageFormat.Jpeg.Equals(bitmap.RawFormat))
+            {
+                format = ImageFormat.Jpeg;
+            }
+            else if (ImageFormat.Gif.Equals(bitmap.RawFormat))
+            {
+                format = ImageFormat.Gif;
+            }
+            else if (ImageFormat.Png.Equals(bitmap.RawFormat))
+            {
+                format = ImageFormat.Png;
+            }
+            else if (ImageFormat.Emf.Equals(bitmap.RawFormat))
+            {
+                format = ImageFormat.Emf;
+            }
+            else if (ImageFormat.Icon.Equals(bitmap.RawFormat))
+            {
+                format = ImageFormat.Icon;
+            }
+            else if (ImageFormat.Tiff.Equals(bitmap.RawFormat))
+            {
+                format = ImageFormat.Tiff;
+            }
+            else if (ImageFormat.Bmp.Equals(bitmap.RawFormat) || ImageFormat.MemoryBmp.Equals(bitmap.RawFormat)) // MemoryBmp format raises a GDI exception
+            {
+                format = ImageFormat.Bmp;
+            }
+            else if (ImageFormat.Wmf.Equals(bitmap.RawFormat)) 
+            {
+                format = ImageFormat.Wmf;
+            }
+            if (format != null)
+                return format;
+            return ImageFormat.Bmp;
         }
     }
 }

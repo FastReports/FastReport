@@ -80,6 +80,11 @@ namespace FastReport.Utils
             set { deserializeFrom = value; }
         }
 
+        public Report Report
+        {
+            get { return report; }
+        }
+
         private XmlItem GetRoot(XmlItem item, int count)
         {
             if (count < 0 || item.Parent==null)

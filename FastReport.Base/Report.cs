@@ -214,6 +214,7 @@ namespace FastReport
         private ReportInfo reportInfo;
         private string baseReport;
         private Report baseReportObject;
+        private string baseReportAbsolutePath;
         private string fileName;
         private string scriptText;
         private Language scriptLanguage;
@@ -371,6 +372,19 @@ namespace FastReport
         {
             get { return baseReport; }
             set { SetBaseReport(value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the absolute path to the parent report.
+        /// </summary>
+        /// <remarks>
+        /// This property contains the absolute path to the parent report.
+        /// </remarks>
+        [Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string BaseReportAbsolutePath
+        {
+            get { return baseReportAbsolutePath; }
+            set { baseReportAbsolutePath = value; }
         }
 
         /// <summary>
@@ -606,7 +620,14 @@ namespace FastReport
         public string[] ReferencedAssemblies
         {
             get { return referencedAssemblies; }
-            set { referencedAssemblies = value; }
+            set {
+                // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
+                for (int i = 0; i < value.Length;i++)
+                {
+                    value[i] = value[i].Replace("System.Windows.Forms.DataVisualization", "FastReport.DataVisualization");
+                }
+                referencedAssemblies = value; 
+            }
         }
 
         /// <summary>
@@ -816,8 +837,28 @@ namespace FastReport
         {
             get
             {
-                return new string[] { "System.dll", "System.Drawing.dll", "System.Windows.Forms.dll",
-          "System.Data.dll", "System.Xml.dll" };
+                return new string[] {
+                    "System.dll",
+
+                    "System.Drawing.dll",
+
+                    "System.Data.dll",
+
+                    "System.Xml.dll",
+
+                    "FastReport.Compat.dll",
+#if !NETSTANDARD
+                    "System.Windows.Forms.dll",
+#endif
+
+#if NETSTANDARD || NETCOREAPP
+                    "System.Drawing.Primitives",
+#endif
+
+#if MSCHART
+                    "FastReport.DataVisualization.dll"
+#endif
+                };
             }
         }
 
@@ -879,9 +920,9 @@ namespace FastReport
             }
         }
 
-        #endregion Properties
+#endregion Properties
 
-        #region Private Methods
+#region Private Methods
 
         private bool ShouldSerializeReferencedAssemblies()
         {
@@ -945,7 +986,13 @@ namespace FastReport
             {
                 // convert the relative path to absolute path (based on the main report path).
                 if (!Path.IsPathRooted(value))
+                {
                     value = Path.GetFullPath(Path.GetDirectoryName(FileName) + Path.DirectorySeparatorChar + value);
+                }
+                if (!File.Exists(value) && File.Exists(BaseReportAbsolutePath))
+                {
+                    value = BaseReportAbsolutePath;
+                }
                 Load(value);
             }
 
@@ -999,6 +1046,7 @@ namespace FastReport
             }
             ScriptText = codeHelper.EmptyScript();
             BaseReport = "";
+            BaseReportAbsolutePath = "";
             DoublePass = false;
             ConvertNulls = true;
             Compressed = false;
@@ -1016,9 +1064,9 @@ namespace FastReport
             needCompile = true;
         }
 
-        #endregion Private Methods
+#endregion Private Methods
 
-        #region Protected Methods
+#region Protected Methods
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -1054,9 +1102,9 @@ namespace FastReport
                 base.DeserializeSubItems(reader);
         }
 
-        #endregion Protected Methods
+#endregion Protected Methods
 
-        #region IParent
+#region IParent
 
         /// <inheritdoc/>
         public bool CanContain(Base child)
@@ -1123,9 +1171,9 @@ namespace FastReport
             // do nothing
         }
 
-        #endregion IParent
+#endregion IParent
 
-        #region ISupportInitialize Members
+#region ISupportInitialize Members
 
         /// <inheritdoc/>
         public void BeginInit()
@@ -1140,9 +1188,9 @@ namespace FastReport
             Dictionary.RegisterData(initializeData, initializeDataName, false);
         }
 
-        #endregion ISupportInitialize Members
+#endregion ISupportInitialize Members
 
-        #region Script related
+#region Script related
 
         private void FillDataSourceCache()
         {
@@ -1377,7 +1425,7 @@ namespace FastReport
 
             // expression not found. Probably it was added after the start of the report.
             // Compile new assembly containing this expression.
-            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, CodeHelper.EmptyScript());
+            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
             assemblies.Add(descriptor);
             descriptor.AddObjects();
             descriptor.AddSingleExpression(expression);
@@ -1579,9 +1627,9 @@ namespace FastReport
             return Dictionary.FindByAlias(alias) as DataSourceBase;
         }
 
-        #endregion Script related
+#endregion Script related
 
-        #region Public Methods
+#region Public Methods
 
         /// <inheritdoc/>
         public override void Assign(Base source)
@@ -1687,6 +1735,34 @@ namespace FastReport
             }
         }
 
+        /// <summary>
+        /// Add the name of the assembly (in addition to the default) that will be used to compile the report script
+        /// </summary>
+        /// <param name="assembly_name">Assembly name</param>
+        /// <remarks>
+        /// For example: <code>report.AddReferencedAssembly("Newtonsoft.Json.dll")</code>
+        /// </remarks>
+        public void AddReferencedAssembly(string assembly_name)
+        {
+            string[] assemblies = ReferencedAssemblies;
+            Array.Resize(ref assemblies, assemblies.Length + 1);
+            assemblies[assemblies.Length - 1] = assembly_name;
+        }
+
+        /// <summary>
+        /// Add the names of the assembly (in addition to the default) that will be used to compile the report script
+        /// </summary>
+        /// <param name="assembly_names">Assembly's names</param>
+        public void AddReferencedAssembly(IList<string> assembly_names)
+        {
+            string[] assemblies = ReferencedAssemblies;
+            int oldLength = assemblies.Length;
+            Array.Resize(ref assemblies, oldLength + assembly_names.Count);
+            for (int i = 0; i < assembly_names.Count; i++)
+            {
+                assemblies[oldLength + i] = assembly_names[i];
+            }
+        }
 
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
@@ -1699,6 +1775,9 @@ namespace FastReport
                 // (based on the main report path). Do not convert when saving to the clipboard.
                 string value = writer.SerializeTo != SerializeTo.Undo ? GetRelativePathToBaseReport() : BaseReport;
                 writer.WriteStr("BaseReport", value);
+                // Fix bug with moving child report to another folder without parent report.
+                if (writer.SerializeTo == SerializeTo.Report)
+                    writer.WriteStr("BaseReportAbsolutePath", BaseReport);
             }
             // always serialize ScriptLanguage because its default value depends on Config.ReportSettings.DefaultLanguage
             writer.WriteValue("ScriptLanguage", ScriptLanguage);
@@ -1745,6 +1824,11 @@ namespace FastReport
         /// <inheritdoc/>
         public override void Deserialize(FRReader reader)
         {
+            if (reader.HasProperty("BaseReportAbsolutePath"))
+            {
+                BaseReportAbsolutePath = reader.ReadStr("BaseReportAbsolutePath");
+            }
+
             base.Deserialize(reader);
 
             // call OnAfterLoad method of each report object
@@ -2268,6 +2352,40 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Prepares the report with pages limit.
+        /// </summary>
+        /// <param name="pagesLimit">Pages limit. The number of pages equal or less will be prepared.</param>
+        /// <returns><b>true</b> if report was prepared succesfully.</returns>
+        public bool Prepare(int pagesLimit)
+        {
+            SetRunning(true);
+            try
+            {
+                ClearPreparedPages();
+                SetPreparedPages(new Preview.PreparedPages(this));
+                engine = new ReportEngine(this);
+
+                if (!Config.WebMode)
+                    StartPerformanceCounter();
+
+                try
+                {
+                    Compile();
+                    return Engine.Run(true, false, true, pagesLimit);
+                }
+                finally
+                {
+                    if (!Config.WebMode)
+                        StopPerformanceCounter();
+                }
+            }
+            finally
+            {
+                SetRunning(false);
+            }
+        }
+
+        /// <summary>
         /// For internal use only.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2430,7 +2548,7 @@ namespace FastReport
             PreparedPages.Load(stream);
         }
 
-        #endregion Public Methods
+#endregion Public Methods
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Report"/> class with default settings.

@@ -21,6 +21,7 @@
     <Attention Text="Attention"/>
 	  <BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
 	  <BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
+	  <BarcodeLengthMismatch Text="Number of characters mismatch."/>
     <CantFindObject Text="Can't find object"/>
     <CantLoadReport Text="Can't load the report {0}"/>
     <CantSaveReport Text="Can't save the report. The file may be write-protected."/>
@@ -123,11 +124,11 @@
     <GoogleBigQueryDataConnection Text="Google Big Query connection"/>
     <JsonDataConnection Text="JSON database"/>
     <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)" />
-	<CouchbaseDataConnection Text="Couchbase server"/>
+	  <CouchbaseDataConnection Text="Couchbase server"/>
     <MongoDBDataConnection Text="MongoDB connection"/>
     <NosDbDataConnection Text="NosDb connection"/>
     <RavenDBDataConnection Text="RavenDB connection"/>
-	<SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
+	  <SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
     <Bands Text="Bands">
       <ReportTitle Text="Report Title"/>
       <ReportSummary Text="Report Summary"/>
@@ -166,6 +167,7 @@
     <TableObject Text="Table"/>
     <MatrixObject Text="Matrix"/>
     <SubreportObject Text="Subreport"/>
+    <ContainerObject Text="Container"/>
     <BarcodeObject Text="Barcode"/>
     <RichObject Text="Rich Text"/>
     <MSChartObject Text="MS Chart"/>
@@ -320,7 +322,7 @@
     <LaTeXFile Text="TeX file (*.tex)|*.tex"/>
     <ZplFile Text="ZPL file (*.zpl)|*.zpl"/>
     <DxfFile Text="DXF file (*.dxf)|*.dxf"/>
-    <HpglFile Text="Hpgl(plt) file (*.plt)|*.plt"/>
+    <HpglFile Text="Hpgl (plt) file (*.plt)|*.plt"/>
     <AllFiles Text="All files (*.*)|*.*"/>
   </FileFilters>
   <Formats>
@@ -642,11 +644,13 @@
     <Design Text="Design Report"/>
     <PrintText Text="Print"/>
     <Print Text="Print (Ctrl+P)"/>
+    <OpenText Text="Open"/>
     <Open Text="Open File"/>
     <Save Text="Save File"/>
     <SaveText Text="Save"/>
     <SaveToCloud Text="Save to Cloud"/>
     <SaveToCloudText Text="Save to Cloud"/>
+    <Search Text="Search"/>
     <Email Text="Send by E-mail"/>
     <Find Text="Find Text"/>
     <Outline Text="Outline"/>
@@ -1931,6 +1935,70 @@
         <AlternativeProcedure2 Text="Alternative procedure 2"/>
         <Amount Text="Amount"/>
       </Swiss>
+	  <SberbankQr>
+	    <Name Text="Beneficiary's name"/>
+		<PersonalAcc Text="Beneficiary account number"/>
+		<BankName Text="Beneficiary bank name"/>
+		<BIC Text="BIC"/>
+		<CorrespAcc Text="Correspondent account"/>
+		<Sum Text="Payment Amount"/>
+		<Purpose Text="Payment purpose"/>
+		<PayeeINN Text="Payee INN"/>
+		<PayerINN Text="Payer INN"/>
+		<DrawerStatus Text="Drafter status"/>
+		<KPP Text="Payee KPP"/>
+		<CBC Text="CBC"/>
+		<OKTMO Text="OKTMO"/>
+		<PayReason Text="Tax basis for payment"/>
+		<TaxPeriod Text="Tax period"/>
+		<DocNo Text="Document №"/>
+		<DocDate Text="Document date"/>
+		<TaxPaytKind Text="Payment type"/>
+		<LastName Text="Payer's last name"/>
+		<FirstName Text="Payer's first name"/>
+		<MiddleName Text="Payer's middle name"/>
+		<PayerAdress Text="Payer's address"/>
+		<PersonalAccount Text="Payee's personal account"/>
+		<DocIdx Text="Index of payment document"/>
+		<PensAcc Text="Account number in the 
+		PFR [Pension Fund of the Russian Federation] - 
+		SNILS [Personal insurance policy number] system"/>
+		<Contract Text="Contract number"/>
+		<PersAcc Text="Account number in the organization 
+		(metering device accounting system)"/>
+		<Flat Text="Apartment number"/>
+		<Phone Text="Phone numbmer"/>
+		<PayerIdType Text="Payee's identifying document type"/>
+		<PayerIdNum Text="Payee's identifying document number"/>
+		<ChildFio Text="Child's full name"/>
+		<BirthDate Text="Birth date"/>
+		<PaymTerm Text="The billing date/Instalment due"/>
+		<PaymPeriod Text="Payment period"/>
+		<Category Text="Payment type"/>
+		<ServiceName Text="Service name / Metering device name"/>
+		<CounterId Text="Metering device ID"/>
+		<CounterVal Text="Metering device reading"/>
+		<QuittId Text="Notice, accrual, invoice ID"/>
+		<QuittDate Text="Notice/accrual/invoice/act date 
+		(for GIBDD [The State Traffic Safety Inspectorate])"/>
+		<InstNum Text="Facility (medical, educational) number"/>
+		<ClassNum Text="Kindergarten group / school grade"/>
+		<SpecFio Text="Full name of the service providing specialist (teacher)"/>
+		<AddAmount Text="Insurance sum/additional service/fine"/>
+		<RuleId Text="Act number 
+		(for GIBDD)"/>
+		<ExecId Text="Enforcement proceeding ID"/>
+		<RegType Text="Payment type code 
+		(for example, for Rosreestr
+		[The Federal Service for State Registration, Cadastre and Cartography] payments)"/>
+		<UIN Text="Money transfer ID"/>
+		<TechCode Text="Technical code, recommended to be filled by the service provider. 
+		Can be used by the receiving organization in a data processing system."/>
+		<ObligatoryProps Text="Obligatory details"/>
+		<AdditionalProps Text="Additional details"/>
+		<AnotherProps Text="Other details"/>
+		<NotEnterDate Text="Don't enter date"/>
+	  </SberbankQr>
     </BarcodeEditor>
     <SavingPageOptions Text="Saving">
       <EnableAutoSave Text="Enable auto save every (minutes)"/>
@@ -1985,7 +2053,7 @@
     </Xml>
     <Csv>
       <ConfigureDatabase Text="Configure database"/>
-      <SelectFile Text="Select .csv file:"/>
+      <SelectFile Text="Select .csv file (path or url):"/>
       <Codepage Text="Codepage:"/>
       <Separator Text="Separator:"/>
       <FieldNames Text="Field names in first string"/>
@@ -2016,8 +2084,17 @@
       <Encoding Text="Encoding"/>
       <Input Text="Json or URL"/>
       <Schema Text="Json Schema"/>
+      <RequestHeaders Text="Request Headers"/>
+      <HeaderKey Text="Header"/>
+      <HeaderVal Text="Value"/>
       <ConfirmChanges Text="Json has been modified. Generate a new schema?" />
     </Json>
+    <MongoDB>
+      <Scheme Text="Scheme:"/>
+      <Host Text="Host:"/>
+      <Port Text="Port:"/>
+      <UseSsl Text="Use SSL"/>
+    </MongoDB>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2118,30 +2195,33 @@
         <Barcode0 Text="2/5 Interleaved"/>
         <Barcode1 Text="2/5 Industrial"/>
         <Barcode2 Text="2/5 Matrix"/>
-        <Barcode3 Text="Codabar"/>
-        <Barcode4 Text="Code128"/>
-        <Barcode5 Text="Code39"/>
-        <Barcode6 Text="Code39 Extended"/>
-        <Barcode7 Text="Code93"/>
-        <Barcode8 Text="Code93 Extended"/>
-        <Barcode9 Text="EAN8"/>
-        <Barcode10 Text="EAN13"/>
-        <Barcode11 Text="MSI"/>
-        <Barcode12 Text="PostNet"/>
-        <Barcode13 Text="UPC-A"/>
-        <Barcode14 Text="UPC-E0"/>
-        <Barcode15 Text="UPC-E1"/>
-        <Barcode16 Text="Supplement 2"/>
-        <Barcode17 Text="Supplement 5"/>
-        <Barcode18 Text="PDF417"/>
-        <Barcode19 Text="Datamatrix"/>
-        <Barcode20 Text="QR Code"/>
-        <Barcode21 Text="Aztec"/>
-        <Barcode22 Text="Plessey"/>
-        <Barcode23 Text="GS1-128 (UCC/EAN-128)"/>
-        <Barcode24 Text="Pharmacode"/>
-        <Barcode25 Text="Intelligent Mail (USPS)"/>
-        <Barcode26 Text="MaxiCode"/>
+        <Barcode3 Text="Deutsche Identcode"/>
+        <Barcode4 Text="Deutsche Leitcode"/>
+        <Barcode5 Text="ITF-14"/>
+        <Barcode6 Text="Codabar"/>
+        <Barcode7 Text="Code128"/>
+        <Barcode8 Text="Code39"/>
+        <Barcode9 Text="Code39 Extended"/>
+        <Barcode10 Text="Code93"/>
+        <Barcode11 Text="Code93 Extended"/>
+        <Barcode12 Text="EAN8"/>
+        <Barcode13 Text="EAN13"/>
+        <Barcode14 Text="MSI"/>
+        <Barcode15 Text="PostNet"/>
+        <Barcode16 Text="UPC-A"/>
+        <Barcode17 Text="UPC-E0"/>
+        <Barcode18 Text="UPC-E1"/>
+        <Barcode19 Text="Supplement 2"/>
+        <Barcode20 Text="Supplement 5"/>
+        <Barcode21 Text="PDF417"/>
+        <Barcode22 Text="Datamatrix"/>
+        <Barcode23 Text="QR Code"/>
+        <Barcode24 Text="Aztec"/>
+        <Barcode25 Text="Plessey"/>
+        <Barcode26 Text="GS1-128 (UCC/EAN-128)"/>
+        <Barcode27 Text="Pharmacode"/>
+        <Barcode28 Text="Intelligent Mail (USPS)"/>
+        <Barcode29 Text="MaxiCode"/>
       </Barcodes>
     </Barcode>
     <ZipCodeObject>
@@ -2237,6 +2317,7 @@
     <Image Text="Export to Image">
       <File Text="Image file"/>
       <ImageFormat Text="Format:"/>
+      <ImageParceFormatException Text="The bitmap cannot be converted to the selected format."/>
       <Resolution Text="Resolution:"/>
       <Quality Text="Jpeg quality:"/>
       <SeparateFiles Text="Separate file for each page"/>
@@ -2485,8 +2566,11 @@
       <FillModeSolid Text="Solid"/>
       <BarcodesGap Text="Barcodes gap (mm):"/>
     </Dxf>
-    <Hpgl Text="Export to Hpgl(plt)">
-      <File Text="Hpgl file"/>
+    <Hpgl Text="Export to Hpgl (plt)">
+      <File Text="Hpgl (plt) file"/>
+      <FillMode Text="Fill mode:"/>
+      <FillModeSolid Text="Solid"/>
+      <FillModeBorder Text="Border"/>
     </Hpgl>
   </Export>
   <Cloud>
@@ -2608,6 +2692,10 @@
     <EnterPage Text="Enter the page number to jump"/>
     <TotalPages Text="Total pages (read only)"/>
     <Back Text="Back"/>
+	<ScriptSecurity>
+	    <ForbiddenType Text="Please, don't use the type {typeName}"/>
+		<ForbiddenMethod Text="Please, don't use the method {methodName}"/>
+	</ScriptSecurity>
   </Web>
   <Properties>
     <Categories>

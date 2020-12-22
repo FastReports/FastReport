@@ -25,7 +25,7 @@ namespace FastReport.Web
     {template_outline()}
 
     <div class=""{template_FR}-report"">
-        {ReportInHtml().ToString()}
+        { ReportBody()}
     </div>
 
 </div>

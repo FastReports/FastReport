@@ -38,9 +38,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Update="JsonConnectionEditor.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
+        <Compile Update="JsonConnectionEditor.cs" />
         <Compile Update="JsonConnectionEditor.Designer.cs">
             <DependentUpon>JsonConnectionEditor.cs</DependentUpon>
         </Compile>

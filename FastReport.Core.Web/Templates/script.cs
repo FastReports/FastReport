@@ -1,4 +1,6 @@
-﻿namespace FastReport.Web
+﻿using static FastReport.Web.Constants;
+
+namespace FastReport.Web
 {
     partial class WebReport
     {
@@ -104,7 +106,8 @@ var {template_FR} = {{
     }},
 
     goto: function (page) {{
-        this._reload('&skipPrepare=yes&goto=' + page);
+        this._reload('&skipPrepare=yes&goto=' + page);"+
+        (ShowBottomToolbar? $@"document.getElementsByClassName('{template_FR}-body')[0].scrollIntoView({{behavior:""smooth""}});" : "")+$@"
     }},
 
     click: function (el, kind, value) {{
@@ -162,6 +165,34 @@ var {template_FR} = {{
             onFinally: function () {{
                 //that._unlockToolbar();
             }}
+        }});
+    }},
+
+    {SILENT_RELOAD}: function (params, form) {{
+        var that = this;
+        var body = this._findBody();
+        var container = this._findContainer();
+
+        this._fetch({{
+            method: 'POST',
+            url: '{template_ROUTE_BASE_PATH}/preview.getReport?reportId={ID}&renderBody=yes' + (params || ''),
+            form: form,
+            onSuccess: function (xhr) {{
+                container.outerHTML = xhr.responseText;
+                that._execScripts();
+            }},
+            onError: function (xhr) {{
+                that._placeError(xhr, body);
+            }},
+        }});
+    }},
+
+
+    {DIALOG}: function (params, form) {{
+        this._fetch({{
+            method: 'POST',
+            url: '{template_ROUTE_BASE_PATH}/dialog?reportId={ID}' + (params || ''),
+            form: form
         }});
     }},
 

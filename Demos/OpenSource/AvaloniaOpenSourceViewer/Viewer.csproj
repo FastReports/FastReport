@@ -7,21 +7,20 @@
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="**\*.xaml">
+    <AvaloniaResource Include="**\*.xaml">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Resources\**" />
   </ItemGroup>
+  
+  <Import Project="..\..\..\UsedPackages.version" />
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.7.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.7.0" />
-    <PackageReference Include="FastReport.OpenSource" Version="2019.1.0" />
+    <PackageReference Include="Avalonia" Version="0.9.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.9.10" />
+    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="CoreCompat.System.Drawing">
-      <HintPath>CoreCompat.System.Drawing</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+  
+  <!--<ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -33,5 +32,5 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

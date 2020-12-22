@@ -912,16 +912,198 @@ namespace FastReport.Functions
         return new NumToWordsNl().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
     }
 
-    #endregion
+        /// <summary>
+        /// Converts a numeric value to a indian numbering system string representation of that value.
+        /// </summary>
+        /// <param name="value">the currency value to convert</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsIn(object value)
+        {
+            return ToWordsIn(value, "INR");
+        }
+        /// <summary>
+        /// Converts a numeric value to a indian numbering system string representation of that value.
+        /// </summary>
+        /// <param name="value">he numeric value to convert.</param>
+        /// <param name="currencyName">The 3-digit ISO name of the currency, for example "INR".</param>
+        /// <returns></returns>
+        public static string ToWordsIn(object value,string currencyName)
+        {
+            return new NumToWordsIn().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+        }
 
-    #region Program Flow
-    /// <summary>
-    /// Selects and returns a value from a list of arguments.
-    /// </summary>
-    /// <param name="index">A value between 1 and the number of elements passed in the "choice" argument.</param>
-    /// <param name="choice">Object parameter array.</param>
-    /// <returns>One of the values in the "choice" argument.</returns>
-    public static object Choose(double index, params object[] choice)
+        /// <summary>
+        /// Converts a numeric value to a indian numbering system string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <param name="one">The name in singular form, for example "page".</param>
+        /// <param name="many">The name in plural form, for example "pages".</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsIn(object value, string one, string many)
+        {
+            return new NumToWordsIn().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a ukrainian string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsUkr(object value)
+        {
+            return ToWordsUkr(value,"UAH");
+        }
+
+
+        /// <summary>
+        /// Converts a currency value to a ukrainian string representation of that value, 
+        /// using the specified currency.
+        /// </summary>
+        /// <param name="value">The currency value to convert.</param>
+        /// <param name="currencyName">The 3-digit ISO name of the currency, for example "UAH".</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsUkr(object value, string currencyName)
+        {
+            return new NumToWordsUkr().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a ukrainian string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <param name="male">True if the name is of male gender.</param>
+        /// <param name="one">The name in singular form, for example "сторінка".</param>
+        /// <param name="two">The name in plural form, for example "сторінки".</param>
+        /// <param name="many">The name in plural form, for example "сторінок".</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsUkr(object value, bool male, string one, string two, string many)
+        {
+            return new NumToWordsUkr().ConvertNumber(Convert.ToDecimal(value), male, one, two, many);
+        }
+
+
+        /// <summary>
+        /// Converts a numeric value to a spanish string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsSp(object value)
+        {
+            return ToWordsSp(value, "EUR");
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a spanish representation of that value.
+        /// </summary>
+        /// <param name="value">he numeric value to convert.</param>
+        /// <param name="currencyName">The 3-digit ISO name of the currency, for example "EUR".</param>
+        /// <returns></returns>
+        public static string ToWordsSp(object value, string currencyName)
+        {
+            return new NumToWordsSp().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a spanish string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <param name="male">True if the name is of male gender.</param>
+        /// <param name="one">The name in singular form, for example "silla".</param>
+        /// <param name="two">The name in plural form, for example "Sillas".</param>
+        /// <param name="many">The name in plural form, for example "Sillas".</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsSp(object value, string one, string many)
+        {
+            return new NumToWordsSp().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
+        }
+
+		/// <summary>
+        /// Converts a numeric value to a persian string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsPersian(object value)
+        {
+            return ToWordsPersian(value, "EUR");
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a persian representation of that value.
+        /// </summary>
+        /// <param name="value">he numeric value to convert.</param>
+        /// <param name="currencyName">The 3-digit ISO name of the currency, for example "EUR".</param>
+        /// <returns></returns>
+        public static string ToWordsPersian(object value, string currencyName)
+        {
+            return new NumToWordsPersian().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a persian string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <param name="male">True if the name is of male gender.</param>
+        /// <param name="one">The name in singular form, for example "silla".</param>
+        /// <param name="two">The name in plural form, for example "Sillas".</param>
+        /// <param name="many">The name in plural form, for example "Sillas".</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsPersian(object value, string one, string many)
+        {
+            return new NumToWordsPersian().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
+        }
+
+        /// <summary>
+        /// Converts a value to an english (US) alphabet string representation of that value.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <returns>The alphabet string representation of the specified value.</returns>
+        public static string ToLetters(object value)
+        {
+            return ToLetters(value, false);
+        }
+
+        /// <summary>
+        /// Converts a value to an english (US) alphabet string representation of that value.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="isUpper">Bool indicating that letters should be in upper registry.</param>
+        /// <returns>The alphabet string representation of the specified value.</returns>
+        public static string ToLetters(object value, bool isUpper)
+        {
+            return new NumToLettersEn().ConvertNumber(Convert.ToInt32(value), isUpper);
+        }
+
+        /// <summary>
+        /// Converts a value to a russian alphabet string representation of that value.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <returns>The alphabet string representation of the specified value.</returns>
+        public static string ToLettersRu(object value)
+        {
+            return ToLettersRu(value, false);
+        }
+
+        /// <summary>
+        /// Converts a value to a russian alphabet string representation of that value.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="isUpper">Bool indicating that letters should be in upper registry.</param>
+        /// <returns>The alphabet string representation of the specified value.</returns>
+        public static string ToLettersRu(object value, bool isUpper)
+        {
+            return new NumToLettersRu().ConvertNumber(Convert.ToInt32(value), isUpper);
+        }
+
+        #endregion
+
+        #region Program Flow
+        /// <summary>
+        /// Selects and returns a value from a list of arguments.
+        /// </summary>
+        /// <param name="index">A value between 1 and the number of elements passed in the "choice" argument.</param>
+        /// <param name="choice">Object parameter array.</param>
+        /// <returns>One of the values in the "choice" argument.</returns>
+        public static object Choose(double index, params object[] choice)
     {
       int ind = (int)index - 1;
       if (ind < 0 || ind >= choice.Length)
@@ -1103,7 +1285,10 @@ namespace FastReport.Functions
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object) }), "Conversion,ToWords");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWords");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWords");
-      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object) }), "Conversion,ToWordsDe");
+            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object) }), "Conversion,ToWordsIn");
+            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object),typeof(string) }), "Conversion,ToWordsIn");
+            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object), typeof(string),typeof(string) }), "Conversion,ToWordsIn");
+            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object) }), "Conversion,ToWordsDe");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsDe");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsDe");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEnGb", new Type[] { typeof(object) }), "Conversion,ToWordsEnGb");
@@ -1121,10 +1306,23 @@ namespace FastReport.Functions
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsRu", new Type[] { typeof(object) }), "Conversion,ToWordsRu");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsRu", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsRu");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsRu", new Type[] { typeof(object), typeof(bool), typeof(string), typeof(string), typeof(string) }), "Conversion,ToWordsRu");
-      #endregion
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsUkr",new Type[]{typeof(object)}),"Conversion,ToWordsUkr");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsUkr", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsUkr");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsUkr", new Type[] { typeof(object), typeof(bool), typeof(string), typeof(string), typeof(string) }), "Conversion,ToWordsUkr");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsSp", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsSp");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsSp", new Type[] { typeof(object) }), "Conversion,ToWordsSp");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsSp", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsSp");
+	  RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPersian", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsPersian");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPersian", new Type[] { typeof(object) }), "Conversion,ToWordsPersian");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPersian", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsPersian");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToLetters", new Type[] { typeof(object) }), "Conversion,ToLetters");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToLetters", new Type[] { typeof(object), typeof(bool) }), "Conversion,ToLetters");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToLettersRu", new Type[] { typeof(object) }), "Conversion,ToLettersRu");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToLettersRu", new Type[] { typeof(object), typeof(bool) }), "Conversion,ToLettersRu");
+            #endregion
 
-      #region Program Flow
-      RegisteredObjects.AddFunctionCategory("ProgramFlow", "Functions,ProgramFlow");
+            #region Program Flow
+            RegisteredObjects.AddFunctionCategory("ProgramFlow", "Functions,ProgramFlow");
       Type misc = typeof(StdFunctions);
       RegisteredObjects.AddFunction(misc.GetMethod("Choose"), "ProgramFlow");
       RegisteredObjects.AddFunction(misc.GetMethod("IIf"), "ProgramFlow");

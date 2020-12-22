@@ -1,4 +1,9 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FastReport.Data.JsonConnection
 {
@@ -21,7 +26,14 @@ namespace FastReport.Data.JsonConnection
             {
                 object result;
                 if (TryGetValue("Json", out result) && result != null)
+                {
+                    if (Regex.IsMatch((string)result, @"^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)?$"))
+                    {
+                        var base64str = (Convert.FromBase64String(result.ToString()));
+                        return System.Text.Encoding.UTF8.GetString(base64str);
+                    }
                     return (string)result;
+                }
                 return "";
             }
             set
@@ -39,7 +51,14 @@ namespace FastReport.Data.JsonConnection
             {
                 object result;
                 if (TryGetValue("JsonSchema", out result) && result != null)
+                {
+                    if (Regex.IsMatch((string)result, @"^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)?$"))
+                    {
+                        var base64str = (Convert.FromBase64String(result.ToString()));
+                        return System.Text.Encoding.UTF8.GetString(base64str);
+                    }
                     return (string)result;
+                }
                 return "";
             }
             set
@@ -66,7 +85,9 @@ namespace FastReport.Data.JsonConnection
             }
         }
 
-    
+        public Dictionary<string, string> Headers { get; set; }
+
+
 
         #endregion Public Properties
 
@@ -78,6 +99,7 @@ namespace FastReport.Data.JsonConnection
         public JsonDataSourceConnectionStringBuilder()
         {
             ConnectionString = "";
+            Headers = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -89,8 +111,76 @@ namespace FastReport.Data.JsonConnection
             : base()
         {
             ConnectionString = connectionString;
+            Headers = new Dictionary<string, string>();
+            //while (ConnectionString.Contains("Header="))
+            //{
+            object result;
+            string header = string.Empty;
+            string[] splittedHeader;
+            int headerIteration = 0;
+            while (TryGetValue("Header" + headerIteration.ToString(CultureInfo.InvariantCulture.NumberFormat), out result) && result != null)
+            {
+                header = (string)result;
+
+                if (!string.IsNullOrWhiteSpace(header))
+                {
+                    splittedHeader = header.Split(':');
+
+                    string headerKey = splittedHeader[0], headerVal = splittedHeader[1];
+
+                    if (Regex.IsMatch(headerKey, @"^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)?$"))
+                    {
+                        var base64str = Convert.FromBase64String(headerKey);
+                        headerKey = System.Text.Encoding.UTF8.GetString(base64str);
+                    }
+
+                    if (Regex.IsMatch(headerVal, @"^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)?$"))
+                    {
+                        var base64str = Convert.FromBase64String(headerVal);
+                        headerVal = System.Text.Encoding.UTF8.GetString(base64str);
+                    }
+
+                    Headers.Add(headerKey, headerVal);
+                    //ConnectionString = ConnectionString.Replace(header, string.Empty);
+                }
+
+                headerIteration++;
+            }
+            //}
         }
 
         #endregion Public Constructors
+
+        // escape / ; " :
+        public override string ToString()
+        {
+            //TODO: do via stringbuilder
+            //string connString = $"Json={Json};JsonSchema={JsonSchema};Encoding={Encoding}";
+            StringBuilder builder = new StringBuilder();
+            builder.Append("Json=").Append(Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(Json)))
+                .Append(";JsonSchema=").Append(Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonSchema)))
+                .Append(";Encoding=").Append(Encoding);
+            //string connString = "Json=" + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(Json))
+            //    + ";JsonSchema=" + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonSchema)) + ";Encoding=" + Encoding;
+            int headerIteration = 0;
+            foreach (var header in Headers)
+            {
+                var headerKey = header.Key;
+                var headerVal = header.Value;
+                if (headerKey.Contains(";") || headerKey.Contains(":") || headerKey.Contains("\"") || headerKey.Contains("\'"))
+                {
+                    headerKey = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(headerKey));
+                }
+
+                if (headerVal.Contains(";") || headerVal.Contains(":") || headerVal.Contains("\"") || headerVal.Contains("\'"))
+                {
+                    headerVal = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(headerVal));
+                }
+
+                builder.Append(";Header").Append(headerIteration.ToString(CultureInfo.InvariantCulture.NumberFormat)).Append("=").Append(headerKey).Append(":").Append(headerVal);
+                //connString += ";Header" + headerIteration + "=" + headerKey + ":" + headerVal;
+            }
+            return builder.ToString();
+        }
     }
 }

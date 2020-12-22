@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace FastReport
@@ -84,6 +85,7 @@ namespace FastReport
         private string dataColumn;
         private bool grayscale;
         private string imageLocation;
+        private string imageSourceExpression;
         private float maxHeight;
         private float maxWidth;
         private Padding padding;
@@ -162,6 +164,42 @@ namespace FastReport
                     imageLocation = value;
                 LoadImage();
                 ResetImageIndex();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the expression that determines the source for the image to display in the PictureObject.
+        /// </summary>
+        /// <remarks>
+        /// The result of the expression should be data column name or path to the image file.
+        /// The data column name will be saved to the <see cref="DataColumn"/> property.
+        /// The path will be savetd to the <see cref="ImageLocation"/> property.
+        /// </remarks>
+        [Category("Data")]
+        [Editor("FastReport.TypeEditors.ExpressionEditor, FastReport", typeof(UITypeEditor))]
+        public string ImageSourceExpression
+        {
+            get { return imageSourceExpression; }
+            set
+            {
+                imageSourceExpression = value;
+
+                if (!String.IsNullOrEmpty(ImageSourceExpression) && Report != null)
+                {
+                    string expression = ImageSourceExpression;
+                    if (ImageSourceExpression.StartsWith("[") && ImageSourceExpression.EndsWith("]"))
+                    {
+                        expression = ImageSourceExpression.Substring(1, ImageSourceExpression.Length - 2);
+                    }
+                    if (Data.DataHelper.IsValidColumn(Report.Dictionary, expression))
+                    {
+                        DataColumn = expression;
+                    }
+                    if (Data.DataHelper.IsValidParameter(Report.Dictionary, expression))
+                    {
+                        ImageLocation = Report.GetParameterValue(expression).ToString();
+                    }
+                }
             }
         }
 
@@ -324,6 +362,7 @@ namespace FastReport
             padding = new Padding();
             imageLocation = "";
             dataColumn = "";
+            imageSourceExpression = "";
         }
 
         #endregion Public Constructors
@@ -340,6 +379,7 @@ namespace FastReport
             {
                 ImageLocation = src.ImageLocation;
                 DataColumn = src.DataColumn;
+                ImageSourceExpression = src.ImageSourceExpression;
                 Padding = src.Padding;
                 SizeMode = src.SizeMode;
                 MaxWidth = src.MaxWidth;
@@ -718,6 +758,9 @@ namespace FastReport
             if (DataColumn != c.DataColumn)
                 writer.WriteStr("DataColumn", DataColumn);
 
+            if (ImageSourceExpression != c.ImageSourceExpression)
+                writer.WriteStr("ImageSourceExpression", ImageSourceExpression);
+
             if (Padding != c.Padding)
                 writer.WriteValue("Padding", Padding);
             if (SizeMode != c.SizeMode)
@@ -804,7 +847,7 @@ namespace FastReport
             bool rotate = Angle == 90 || Angle == 270;
             float imageWidth = ImageWidth;//rotate ? Image.Height : Image.Width;
             float imageHeight = ImageHeight;//rotate ? Image.Width : Image.Height;
-
+           
             PointF upperLeft;
             PointF upperRight;
             PointF lowerLeft;
@@ -815,35 +858,44 @@ namespace FastReport
             // cant work with negative transforms so need to fix it
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
-
+            
             System.Drawing.Drawing2D.Matrix matrixBack = e.Graphics.Transform;
+            /*
+             Временное решение (т.к. не удалось найти универсального), которое устраняет проблемы с экспортом картинок в Excel2007 на Windows, но на Linux не работает. 
+             */
+            if (!Config.IsWindows)
+            {
+                System.Drawing.Drawing2D.Matrix matrixTemp = new System.Drawing.Drawing2D.Matrix(
+                    matrixBack.Elements[0],
+                    matrixBack.Elements[1],
+                    matrixBack.Elements[2],
+                    matrixBack.Elements[3],
+                    0,
+                    0
+                    );
 
-            System.Drawing.Drawing2D.Matrix matrixTemp = new System.Drawing.Drawing2D.Matrix(
-                matrixBack.Elements[0],
-                matrixBack.Elements[1],
-                matrixBack.Elements[2],
-                matrixBack.Elements[3],
-                0,
-                0
-                );
+                upperLeft.X += matrixBack.OffsetX;
+                upperLeft.Y += matrixBack.OffsetY;
 
-            upperLeft.X += matrixBack.OffsetX;
-            upperLeft.Y += matrixBack.OffsetY;
+                upperRight.X += matrixBack.OffsetX;
+                upperRight.Y += matrixBack.OffsetY;
 
-            upperRight.X += matrixBack.OffsetX;
-            upperRight.Y += matrixBack.OffsetY;
+                lowerLeft.X += matrixBack.OffsetX;
+                lowerLeft.Y += matrixBack.OffsetY;
 
-            lowerLeft.X += matrixBack.OffsetX;
-            lowerLeft.Y += matrixBack.OffsetY;
-
-            e.Graphics.Transform = matrixTemp;
+                e.Graphics.Transform = matrixTemp;
+            }
 #endif
 
             DrawImageInternal2(e.Graphics, upperLeft, upperRight, lowerLeft);
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
-            e.Graphics.Transform = matrixBack;
+            if (!Config.IsWindows)
+            {
+                e.Graphics.Transform = matrixBack;
+            }
 #endif
+
         }
 #endif
 
@@ -917,6 +969,19 @@ namespace FastReport
             expressions.AddRange(base.GetExpressions());
             if (!String.IsNullOrEmpty(DataColumn))
                 expressions.Add(DataColumn);
+
+            if (!String.IsNullOrEmpty(ImageSourceExpression))
+            {
+                if (ImageSourceExpression.StartsWith("[") && ImageSourceExpression.EndsWith("]"))
+                {
+                    expressions.Add(ImageSourceExpression.Substring(1, ImageSourceExpression.Length - 2));
+                }
+                else
+                {
+                    expressions.Add(ImageSourceExpression);
+                }
+            }
+
             return expressions.ToArray();
         }
     }

@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <Dialogs>true</Dialogs>
+
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Version>1.0.0</Version>
@@ -30,7 +32,12 @@ $(DemoDescription)
 </Description>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="$(SolutionDir)FastReport.Core\FastReport.Core.csproj" />
+        <ProjectReference Include="..\FastReport.Core\FastReport.Core.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\FastReport.Web.Base\*.cs">
+            <Link>Application\%(Filename)%(Extension)</Link>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
         <None Remove="Resources\angle-double-left.svg" />
@@ -70,4 +77,7 @@ $(DemoDescription)
         <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.2" />
     </ItemGroup>
+  <PropertyGroup Condition="$(Dialogs)">
+    <DefineConstants>$(DefineConstants);DIALOGS</DefineConstants>
+  </PropertyGroup>
 </Project>

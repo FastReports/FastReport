@@ -671,6 +671,10 @@ namespace FastReport
         #endregion
 
         #region Report Engine
+        internal void SetUpdatingLayout(bool value)
+        {
+            updatingLayout = value;
+        }
 
         /// <inheritdoc/>
         public override string[] GetExpressions()
@@ -939,7 +943,10 @@ namespace FastReport
                     }
                     else
                     {
-                        obj.Top -= breakLine;
+                        // (case: object with Anchor = bottom on a breakable band)
+                        // in case of bottom anchor, do not move the object. It will be moved automatically when we decrease the band height
+                        if ((obj.Anchor & AnchorStyles.Bottom) == 0)
+                            obj.Top -= breakLine;
                         obj.Parent = breakTo;
                         continue;
                     }
@@ -956,7 +963,10 @@ namespace FastReport
         public override void GetData()
         {
             base.GetData();
-            foreach (ReportComponentBase obj in Objects)
+
+            FRCollectionBase list = new FRCollectionBase();
+            Objects.CopyTo(list);
+            foreach (ReportComponentBase obj in list)
             {
                 obj.GetData();
                 obj.OnAfterData();
@@ -1018,7 +1028,7 @@ namespace FastReport
             InvokeEvent(AfterLayoutEvent, e);
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BandBase"/> class with default settings.

@@ -1,11 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<!-- This file sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
+<!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
     <PropertyGroup>
 
-        <FRCompatVersion>2020.3.2</FRCompatVersion>
+        <FRCompatVersion>2020.4.2</FRCompatVersion>
 
-        <FRDataVisualizationVersion>2020.3.1</FRDataVisualizationVersion>
+        <FRDataVisualizationVersion>2020.4.2</FRDataVisualizationVersion>
+		
+        <!-- Not available in Core3 -->
+        <SystemDrawingCommonVersion>[4.6.1,)</SystemDrawingCommonVersion>
+
+        <!-- Not available in Core3 -->
+        <SystemSecurityPermissionsVersion>[4.4.0,)</SystemSecurityPermissionsVersion>
         
+        <!-- Not available in Core3 -->
+        <SystemSecurityCryptographyPkcsVersion>4.5.2</SystemSecurityCryptographyPkcsVersion>
+
+        <!-- Not available in Core3 -->
+        <SystemTextEncodingCodePagesVersion>4.5.1</SystemTextEncodingCodePagesVersion>
+
     </PropertyGroup>
+	
+<!-- This group sets version used packages in Demos -->
+	<PropertyGroup>
+        
+		<FRCoreVersion>2021.1.0</FRCoreVersion>
+		
+		<FRCoreWebVersion>2021.1.0</FRCoreWebVersion>
+		
+		<FROSVersion>2021.1.0</FROSVersion>
+		
+		<FROSWebVersion>2021.1.0</FROSWebVersion>
+		
+    </PropertyGroup>
+
 </Project>

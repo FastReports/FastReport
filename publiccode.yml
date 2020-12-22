@@ -4,11 +4,11 @@
 
 publiccodeYmlVersion: '0.2'
 name: FastReport
-releaseDate: '2020-05-20'
+releaseDate: '2020-09-07'
 url: 'https://github.com/FastReports/FastReport.git'
 applicationSuite: Report generator
 landingURL: 'https://github.com/FastReports/FastReport'
-softwareVersion: 2020.3.0
+softwareVersion: 2020.4.0
 roadmap: 'https://github.com/FastReports/FastReport/issues/79'
 developmentStatus: stable
 softwareType: library

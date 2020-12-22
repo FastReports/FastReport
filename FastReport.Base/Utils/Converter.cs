@@ -80,6 +80,11 @@ namespace FastReport.Utils
                 return FastReport.TypeConverters.FontConverter.Instance.ConvertToInvariantString(value);
             }
 #endif
+            if(value is System.Drawing.Imaging.ImageFormat)
+            {
+                var imageFormat = value as System.Drawing.Imaging.ImageFormat;
+                return imageFormat.ToString();
+            }
             return TypeDescriptor.GetConverter(value).ConvertToInvariantString(value);
     }
 

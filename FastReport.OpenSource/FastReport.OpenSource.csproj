@@ -1,11 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
  
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
     </PropertyGroup>
 
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <TargetFrameworks>$(TargetFrameworks);net40</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(VisualStudioVersion)' >= '16'">
+    <TargetFrameworks>$(TargetFrameworks);netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -29,23 +33,24 @@
 Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, shapes, line, PolyLine, Polygon and many more.</Description>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;DOTNET_4;</DefineConstants>
+
+  <PropertyGroup>
+    <DefineConstants>TRACE;DOTNET_4</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>TRACE;DOTNET_4;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>$(DefineConstants);DEBUG;</DefineConstants>
   </PropertyGroup>
 
+  <!--Import version-info of referenced packages-->
+  <Import Project="..\UsedPackages.version" />
+  
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.1' OR '$(TargetFramework)'=='netstandard2.0'">
-    <PackageReference Include="System.Security.Permissions" Version="[4.4.0,)" />
-    <PackageReference Include="System.Drawing.Common" Version="[4.6.1,)" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="[2.0.0,)" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="[2.0.0,)" />
-    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="4.5.2" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
+    <PackageReference Include="System.Security.Permissions" Version="$(SystemSecurityPermissionsVersion)" />
+    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="$(SystemSecurityCryptographyPkcsVersion)" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="$(SystemTextEncodingCodePagesVersion)" />
   </ItemGroup>
 
-  <Import Project="..\UsedPackages.version" />
   <ItemGroup>
     <PackageReference Include="FastReport.Compat" Version="$(FRCompatVersion)" />
   </ItemGroup>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using FastReport.Web.Controllers;
 using FastReport.Web.Application;
+using System.Drawing;
 
 namespace FastReport.Web
 {
@@ -14,13 +15,20 @@ namespace FastReport.Web
     {
         Preview,
         Designer,
+        Dialog
     }
     
     public partial class WebReport
     {
         private string localizationFile;
 
-        #region Public Properties
+#if DIALOGS
+        internal Dialog Dialog {
+            get;
+        }
+#endif
+
+#region Public Properties
 
         /// <summary>
         /// Unique ID of this instance.
@@ -112,7 +120,7 @@ namespace FastReport.Web
                     tab.ReportPrepared = value;
             }
         }
-        
+
         /// <summary>
         /// Total prepared pages of current report
         /// </summary>
@@ -140,9 +148,32 @@ namespace FastReport.Web
         public string Height { get; set; } = "";
         public bool Pictures { get; set; } = true;
         public bool EmbedPictures { get; set; } = false;
+
+
+        #region ToolbarSettings
         public bool ShowToolbar { get; set; } = true;
+        public bool ShowPrevButton { get; set; } = true;
+        public bool ShowNextButton { get; set; } = true;
+        public bool ShowFirstButton { get; set; } = true;
+        public bool ShowLastButton { get; set; } = true;
+        public bool ShowExports { get; set; } = true;
+        public bool ShowRefreshButton { get; set; } = true;
+        public bool ShowZoomButton { get; set; } = true;
+
+        public bool ShowPrint { get; set; } = true;
+        public bool PrintInHtml { get; set; } = true;
+#if !OPENSOURCE
+        public bool PrintInPdf { get; set; } = true;
+#endif
+
+        public bool ShowBottomToolbar { get; set; } = false;
+
+        public Color ToolbarColor { get; set; } = Color.LightGray;
+
+        #endregion
         public float Zoom { get; set; } = 1.0f;
         public bool Debug { get; set; } = false;
+        internal bool Canceled { get; set; } = false;
 
         /// <summary>
         /// Shows sidebar with outline.
@@ -150,9 +181,9 @@ namespace FastReport.Web
         /// </summary>
         public bool Outline { get; set; } = true;
 
-        #endregion
+#endregion
 
-        #region Non-public
+#region Non-public
 
         // TODO
         private string ReportFile { get; set; } = null;
@@ -167,14 +198,23 @@ namespace FastReport.Web
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
         int currentTabIndex;
 
-        #endregion
+#endregion
 
         public WebReport()
         {
             string path = WebUtils.MapPath(LocalizationFile);
             Res.LoadLocale(path);
             WebReportCache.Instance.Add(this);
+#if DIALOGS
+            Dialog = new Dialog(this);
+#endif
         }
+
+        static WebReport()
+        {
+            ScriptSecurity = new ScriptSecurity(new ScriptChecker());
+        }
+
 
         public HtmlString RenderSync()
         {
@@ -189,11 +229,24 @@ namespace FastReport.Web
             return Render(false);
         }
 
+        public void LoadPrepared(string filename)
+        {
+            Report.LoadPrepared(filename);
+            ReportPrepared = true;
+        }
+
+        public void LoadPrepared(Stream stream)
+        {
+            Report.LoadPrepared(stream);
+            ReportPrepared = true;
+        }
+
         internal HtmlString Render(bool renderBody)
         {
             switch (Mode)
             {
                 case WebReportMode.Preview:
+                case WebReportMode.Dialog:
                     return new HtmlString(template_render(renderBody));
                 case WebReportMode.Designer:
                     return RenderDesigner();
@@ -214,7 +267,7 @@ namespace FastReport.Web
         // void ReportLoad()
         // void RegisterData()
 
-        #region Navigation
+#region Navigation
 
         /// <summary>
         /// Force go to next report page
@@ -259,6 +312,12 @@ namespace FastReport.Web
                 CurrentPageIndex = value;
         }
 
-        #endregion
+#endregion
+
+#region Script Security
+
+        private static ScriptSecurity ScriptSecurity = null;
+
+#endregion
     }
 }

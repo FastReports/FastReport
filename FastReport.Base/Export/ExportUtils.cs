@@ -266,8 +266,27 @@ namespace FastReport.Export
                     else if (crlf == CRLF.odt)
                         Result.Append("<text:line-break />");
                     else
-                        Result.Append("<br />");
+                    {
+                     Result.Append("<p style=\"margin-top:0px;margin-bottom:0px;\">");
+                    }
                     i++;
+                }
+                else if (text[i] == '\t' && crlf == CRLF.odt)
+                    Result.Append("<text:tab/>");
+                else if (text[i] == ' ' && crlf == CRLF.odt)
+                {
+                    int spaces = 1;
+                    while (i < text.Length - 1)
+                    {
+                        if (text[i + 1] == ' ')
+                        {
+                            i++;
+                            spaces++;
+                        }
+                        else
+                            break;
+                    }
+                    Result.Append("<text:s text:c=\"" + spaces + "\"/>");
                 }
                 else if (text[i] == '\\')
                     Result.Append("&#92;");
@@ -517,7 +536,7 @@ namespace FastReport.Export
 
         internal static string GetID()
         {
-            return Guid.NewGuid().ToString();
+            return SystemFake.Guid.NewGuid().ToString();
         }
 
         internal static void CopyStream(Stream source, Stream target)

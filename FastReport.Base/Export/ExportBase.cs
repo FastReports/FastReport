@@ -30,6 +30,7 @@ namespace FastReport.Export
         private bool shiftNonExportable;
         private string saveInitialDirectory;
         private List<Stream> generatedStreams;
+        protected bool webPreview;
 
         #region Properties
 
@@ -479,7 +480,8 @@ namespace FastReport.Export
                     {
                         (obj as BandBase).Top -= topShift;
                     }
-                    if ((obj as BandBase).Exportable)
+                    if ((obj as BandBase).Exportable 
+                        || webPreview)
                         ExportBand(obj);
                     else if (obj != null)
                     {
@@ -512,6 +514,7 @@ namespace FastReport.Export
             using (FileStream stream = new FileStream(fileName, FileMode.Create))
             {
                 Export(report, stream);
+                stream.Close();
             }
         }
 

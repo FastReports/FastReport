@@ -2,8 +2,10 @@
 using System;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using System.Net;
 using System.Text;
+using System.Windows.Forms;
 
 namespace FastReport.Data.JsonConnection
 {
@@ -182,22 +184,39 @@ namespace FastReport.Data.JsonConnection
             JsonDataSourceConnectionStringBuilder builder = new JsonDataSourceConnectionStringBuilder(ConnectionString);
             JsonBase obj = null;
             string jsonText = builder.Json.Trim();
-            if(jsonText.Length >0)
+            if (jsonText.Length > 0)
             {
-                if(!(jsonText[0] == '{' || jsonText[0] == '['))
+                if (!(jsonText[0] == '{' || jsonText[0] == '['))
                 {
-                    using (WebClient client = new WebClient())
+                    //using (WebClient client = new WebClient())
+                    //{
+                    //    try
+                    //    {
+                    //        client.Encoding = Encoding.GetEncoding(builder.Encoding);
+                    //    }
+                    //    catch
+                    //    {
+                    //        client.Encoding = Encoding.UTF8;
+                    //    }
+                    //    jsonText = client.DownloadString(jsonText);
+                    //}
+
+                    HttpWebRequest req = (HttpWebRequest)WebRequest.Create(jsonText);
+
+                    foreach (var header in builder.Headers)
                     {
-                        try
-                        {
-                            client.Encoding = Encoding.GetEncoding(builder.Encoding);
-                        }
-                        catch
-                        {
-                            client.Encoding = Encoding.UTF8;
-                        }
-                        jsonText = client.DownloadString(jsonText);
+                        req.Headers.Add(header.Key, header.Value);
                     }
+
+                    using (var response = req.GetResponse() as HttpWebResponse)
+                    {
+                        var encoding = Encoding.GetEncoding(response.CharacterSet);
+
+                        using (var responseStream = response.GetResponseStream())
+                        using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                            jsonText = reader.ReadToEnd();
+                    }
+
                 }
                 obj = JsonBase.FromString(jsonText) as JsonBase;
             }

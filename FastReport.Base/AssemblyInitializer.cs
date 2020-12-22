@@ -100,6 +100,7 @@ namespace FastReport
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 244, "Objects,Shapes,Heptagon", 0x70);
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 245, "Objects,Shapes,Octagon", 0x80);
             RegisteredObjects.Add(typeof(SubreportObject), "ReportPage", 104, 5);
+            RegisteredObjects.Add(typeof(ContainerObject), "ReportPage", 144, 5);
 
             RegisteredObjects.Add(typeof(TableObject), "ReportPage", 127, 6);
             RegisteredObjects.Add(typeof(TableColumn), "", 215);
