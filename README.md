@@ -1,10 +1,10 @@
-[![Gitter](https://badges.gitter.im/FastReports/FastReport.svg)](https://gitter.im/FastReports/FastReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/FastReports/FastReport.svg)](http://isitmaintained.com/project/FastReports/FastReport "Percentage of issues still open")
+[![Visits Badge](https://badges.pufler.dev/visits/FastReports/FastReport)](https://github.com/FastReports/FastReport) [![Created Badge](https://badges.pufler.dev/created/FastReports/FastReport)](https://github.com/FastReports/FastReport) [![Gitter](https://badges.gitter.im/FastReports/FastReport.svg)](https://gitter.im/FastReports/FastReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 [![FastReport Open Source](https://fastreports.github.io/FastReport.Documentation/images/fros-youtube-title.jpg)](https://youtu.be/Js78gl_xAOU)
 
 ## What is FastReport?
 
-FastReport provides free open source report generator for .NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API applications.
+FastReport provides free open source report generator for .NET 5/.NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
 
 [![Image of FastReport](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2-small.png)](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2.png)
 
@@ -52,7 +52,7 @@ You can make a report template in several ways:
 
 - Developing report template as XML file.
 
-- Using the FastReport Online Designer.
+- Using the [FastReport Online Designer](https://fast-report.com/en/product/fast-report-online-designer/).
 
 - Using the FastReport Designer Community Edition (freeware). It can be downloaded from [FastReport releases page](https://github.com/FastReports/FastReport/releases).
 
@@ -60,7 +60,9 @@ You can make a report template in several ways:
 
 ## Exporting
 
-FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. PDF Export is available as a plugin.
+FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. 
+
+**PDF** export is available as a [plugin](https://github.com/FastReports/FastReport/tree/master/Extras/OpenSource/FastReport.OpenSource.Export.PdfSimple). You can see an example of its use [here](https://github.com/FastReports/FastReport/tree/master/Demos/OpenSource/PdfExport).  If this export is not enough for you and you need a full-featured PDF export with encryption, digital signing and fonts embedding - take a look at [FastReport .NET Core](https://fast-report.com/en/product/fast-report-net/).
 
 ## Installation
 
@@ -95,13 +97,30 @@ Install-Package FastReport.OpenSource
 Install-Package FastReport.OpenSource.Web
 ```
 
+## Extras
+
+The Extras folder contains additional modules that extend FastReport functionality:
+
+- [Core/FastReport.Data](https://github.com/FastReports/FastReport/tree/master/Extras/Core/FastReport.Data) - connectors to various databases;
+- [OpenSource/FastReport.OpenSource.Export.PdfSimple](https://github.com/FastReports/FastReport/tree/master/Extras/OpenSource/FastReport.OpenSource.Export.PdfSimple)  - simple export in PDF format;
+- [ReportBuilder](https://github.com/FastReports/FastReport/tree/master/Extras/ReportBuilder) - a simple report builder from code without using templates.
+
 ## Examples
 
 In the [Demos](https://github.com/FastReports/FastReport/tree/master/Demos) folder you can see examples of using FastReport.
 
-## Bug Report
+## Bug Reports
 
-See the [Issues](https://github.com/FastReports/FastReport/issues) section of website.
+See the [Issues](https://github.com/FastReports/FastReport/issues) section of website. When describing the issue, please attach screenshots or examples to help reproduce the problem.
+
+## Contributors
+
+This project exists because of all the people who have contributed and continue to work on the project:
+
+[@ATZ-FR](https://github.com/ATZ-FR), [@Detrav](https://github.com/Detrav), [@fediachov](https://github.com/fediachov), [@8VAid8](https://github.com/8VAid8), 
+ [@KirillKornienko](https://github.com/KirillKornienko), [@mandrookin](https://github.com/mandrookin), [@ekondur](https://github.com/ekondur), [@Gromozekaster](https://github.com/Gromozekaster), 
+[@daviddesmet](https://github.com/daviddesmet), [@mjftechnology](https://github.com/mjftechnology), [@jonny-xhl](https://github.com/jonny-xhl), [@radiodeer](https://github.com/radiodeer), [@Des1re7](https://github.com/Des1re7).
+
 
 ## Contributing
 
@@ -113,17 +132,13 @@ Licensed under the MIT license. See [LICENSE.md](LICENSE.md) for details.
 
 ## Resources
 
-[FastReport Open Source Home](https://github.com/FastReports/FastReport "Click for visiting the FastReport Open Source GitHub")
+- [FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/)
+- [FastReport Open Source Blog with Articles and How-Tos](https://opensource.fast-report.com/)
+- [The Feature Comparison Table for FastReport Open Source, FastReport Core, FastReport .NET](https://opensource.fast-report.com/p/the-feature-comparison-table-for.html "FastReport Open Source vs FastReport Core vs FastReport .NET")
+- [FastReport Core Online Demo](https://www.fast-report.com:2018 "Click to view FastReport Online Demo")
+- [FastReport Online Designer](https://www.fast-report.com/en/product/fast-report-online-designer/ "Click to view FastReport Online Designer Home Page")
+- [Fast Reports Home Page](https://www.fast-report.com "Click for visiting the Fast Reports Home Page")
 
-[FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/)
 
-[FastReport Open Source Blog with Articles and How-Tos](https://opensource.fast-report.com/)
-
-[The Feature Comparison Table for FastReport Open Source, FastReport Core, FastReport .NET](https://opensource.fast-report.com/p/the-feature-comparison-table-for.html "FastReport Open Source vs FastReport Core vs FastReport .NET")
-
-[FastReport Core Online Demo](https://www.fast-report.com:2018 "Click to view FastReport Online Demo")
-
-[FastReport Online Designer](https://www.fast-report.com/en/product/fast-report-online-designer/ "Click to view FastReport Online Designer Home Page")
-
-[Fast Reports Home Page](https://www.fast-report.com "Click for visiting the Fast Reports Home Page")
+![Twitter Follow](https://img.shields.io/twitter/follow/fastreports?style=social)
 
