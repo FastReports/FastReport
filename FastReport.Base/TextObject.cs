@@ -950,7 +950,7 @@ namespace FastReport
 
             if (AutoShrink == AutoShrinkMode.FontSize)
             {
-                while (CalcWidth() > Width - 1 && Font.Size > AutoShrinkMinSize)
+                while (CalcWidth() > Width - 1 && Font.Size > AutoShrinkMinSize && Font.Size>1)
                 {
                     Font = new Font(Font.Name, Font.Size - 1, Font.Style);
                 }

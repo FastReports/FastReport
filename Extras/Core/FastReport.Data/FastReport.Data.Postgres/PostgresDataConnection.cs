@@ -91,11 +91,8 @@ namespace FastReport.Data
         protected override string GetConnectionStringWithLoginInfo(string userName, string password)
         {
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(ConnectionString);
-#if FRCORE
+
             builder.Username = userName;
-#else
-            builder.UserName = userName;
-#endif
             builder.Password = password;
 
             return builder.ToString();

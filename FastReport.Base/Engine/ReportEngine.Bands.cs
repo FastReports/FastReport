@@ -209,31 +209,25 @@ namespace FastReport.Engine
             if (!String.IsNullOrEmpty(obj.VisibleExpression))
             {
                 object expression = null;
-                if (obj.VisibleExpression.StartsWith("[") && obj.VisibleExpression.EndsWith("]"))
+                // Calculate expressions with TotalPages only on FinalPass.
+                if (!obj.VisibleExpression.Contains("TotalPages") || FinalPass)
                 {
-                    string tempExpression = obj.VisibleExpression.Substring(1, obj.VisibleExpression.Length - 2);
-                    int firstOpen = tempExpression.IndexOf("[");
-                    int firstClose = tempExpression.IndexOf("]");
-                    int lastOpen = tempExpression.LastIndexOf("[");
-                    int lastClose = tempExpression.LastIndexOf("]");
-                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
-                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
-                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                    expression = Report.Calc(Code.CodeUtils.FixExpressionWithBrackets(obj.VisibleExpression));
+                }
+                if (expression != null && expression is bool)
+                {
+                    if (!obj.VisibleExpression.Contains("TotalPages"))
                     {
-                        expression = Report.Calc(obj.VisibleExpression);
+                        obj.Visible = (bool)expression;
+                    }
+                    else if (FirstPass)
+                    {
+                        obj.Visible = true;
                     }
                     else
                     {
-                        expression = Report.Calc(tempExpression);
+                        obj.Visible = (bool)expression;
                     }
-                }
-                else
-                {
-                    expression = Report.Calc(obj.VisibleExpression);
-                }
-                if (expression is bool)
-                {
-                    obj.Visible = (bool)expression;
                 }
             }
 
@@ -241,28 +235,7 @@ namespace FastReport.Engine
             if (!String.IsNullOrEmpty(obj.ExportableExpression))
             {
                 object expression = null;
-                if (obj.ExportableExpression.StartsWith("[") && obj.ExportableExpression.EndsWith("]"))
-                {
-                    string tempExpression = obj.ExportableExpression.Substring(1, obj.ExportableExpression.Length - 2);
-                    int firstOpen = tempExpression.IndexOf("[");
-                    int firstClose = tempExpression.IndexOf("]");
-                    int lastOpen = tempExpression.LastIndexOf("[");
-                    int lastClose = tempExpression.LastIndexOf("]");
-                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
-                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
-                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
-                    {
-                        expression = Report.Calc(obj.ExportableExpression);
-                    }
-                    else
-                    {
-                        expression = Report.Calc(tempExpression);
-                    }
-                }
-                else
-                {
-                    expression = Report.Calc(obj.ExportableExpression);
-                }
+                expression = Report.Calc(Code.CodeUtils.FixExpressionWithBrackets(obj.ExportableExpression));
                 if (expression is bool)
                 {
                     obj.Exportable = (bool)expression;
@@ -273,28 +246,7 @@ namespace FastReport.Engine
             if (!String.IsNullOrEmpty(obj.PrintableExpression))
             {
                 object expression = null;
-                if (obj.PrintableExpression.StartsWith("[") && obj.PrintableExpression.EndsWith("]"))
-                {
-                    string tempExpression = obj.PrintableExpression.Substring(1, obj.PrintableExpression.Length - 2);
-                    int firstOpen = tempExpression.IndexOf("[");
-                    int firstClose = tempExpression.IndexOf("]");
-                    int lastOpen = tempExpression.LastIndexOf("[");
-                    int lastClose = tempExpression.LastIndexOf("]");
-                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
-                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
-                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
-                    {
-                        expression = Report.Calc(obj.PrintableExpression);
-                    }
-                    else
-                    {
-                        expression = Report.Calc(tempExpression);
-                    }
-                }
-                else
-                {
-                    expression = Report.Calc(obj.PrintableExpression);
-                }
+                expression = Report.Calc(Code.CodeUtils.FixExpressionWithBrackets(obj.PrintableExpression));
                 if (expression is bool)
                 {
                     obj.Printable = (bool)expression;
