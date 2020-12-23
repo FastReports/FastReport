@@ -219,6 +219,35 @@ namespace FastReport.Code
                 optionalParamString += GetTypeSuffix(par.ParameterType, lang);
             return optionalParamString;
         }
+
+        internal static string FixExpressionWithBrackets(string expression)
+        {
+            string result = expression;
+            if (expression.StartsWith("[") && expression.EndsWith("]"))
+            {
+                string tempExpression = expression.Substring(1, expression.Length - 2);
+                int firstOpen = tempExpression.IndexOf("[");
+                int firstClose = tempExpression.IndexOf("]");
+                int lastOpen = tempExpression.LastIndexOf("[");
+                int lastClose = tempExpression.LastIndexOf("]");
+                if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
+                    || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
+                    || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
+                {
+                    result = expression;
+                }
+                else
+                {
+                    result = tempExpression;
+                }
+            }
+            else
+            {
+                result = expression;
+            }
+            return result;
+        }
+
         #endregion
 
         /// <summary>

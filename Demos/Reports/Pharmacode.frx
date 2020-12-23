@@ -41,8 +41,8 @@
         </TableRow>
       </TableObject>
       <TableObject Name="Table2" Left="160.65" Top="529.2" Width="378.04" Height="444.15">
-        <TableColumn Name="Column3" Width="188.56"/>
-        <TableColumn Name="Column4" Width="189.48"/>
+        <TableColumn Name="Column3" Width="189"/>
+        <TableColumn Name="Column4" Width="189"/>
         <TableRow Name="Row4" Height="151.2">
           <TableCell Name="Cell13">
             <BarcodeObject Name="Barcode7" Left="47.25" Top="37.8" Width="98.75" Height="94.5" Text="123456" AllowExpressions="true" Barcode="Pharmacode" Barcode.Color="Orange" Barcode.QuietZone="true"/>

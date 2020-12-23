@@ -386,6 +386,8 @@ namespace FastReport.Engine
             {
                 if (CanPrint(band))
                     result += (band.CanGrow || band.CanShrink) ? band.CalcHeight() : band.Height;
+                else if (FinalPass && !String.IsNullOrEmpty(band.VisibleExpression) && band.VisibleExpression.Contains("TotalPages"))
+                    result += (band.CanGrow || band.CanShrink) ? band.CalcHeight() : band.Height;
                 band = band.Child;
                 if (band != null && ((band as ChildBand).FillUnusedSpace || (band as ChildBand).CompleteToNRows != 0))
                     break;

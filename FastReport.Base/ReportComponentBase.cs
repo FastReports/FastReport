@@ -984,28 +984,7 @@ namespace FastReport
 
             if (!String.IsNullOrEmpty(ExportableExpression))
             {
-                if (ExportableExpression.StartsWith("[") && ExportableExpression.EndsWith("]"))
-                {
-                    string tempExpression = ExportableExpression.Substring(1, ExportableExpression.Length - 2);
-                    int firstOpen = tempExpression.IndexOf("[");
-                    int firstClose = tempExpression.IndexOf("]");
-                    int lastOpen = tempExpression.LastIndexOf("[");
-                    int lastClose = tempExpression.LastIndexOf("]");
-                    if ((firstOpen < 0 && firstClose >= 0) || (lastOpen >= 0 && lastClose < 0)
-                        || (firstOpen >= 0 && firstClose >= 0 && firstClose < firstOpen)
-                        || (lastOpen >= 0 && lastClose >= 0 && lastOpen > lastClose))
-                    {
-                        expressions.Add(ExportableExpression);
-                    }
-                    else
-                    {
-                        expressions.Add(tempExpression);
-                    }
-                }
-                else
-                {
-                    expressions.Add(ExportableExpression);
-                }
+                expressions.Add(Code.CodeUtils.FixExpressionWithBrackets(ExportableExpression));
             }
 
             return expressions.ToArray();

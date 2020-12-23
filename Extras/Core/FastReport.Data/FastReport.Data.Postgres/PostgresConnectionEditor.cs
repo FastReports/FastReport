@@ -69,7 +69,7 @@ namespace FastReport.Data
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(FConnectionString);
 
             builder.Host = tbServer.Text;
-            builder.UserName = tbUserName.Text;
+            builder.Username = tbUserName.Text;
             builder.Password = tbPassword.Text;
             builder.Database = cbxDatabase.Text;
             PostgresDataConnection.EnableSystemSchemas = enableSystemSchemasCb.Checked;
@@ -83,7 +83,7 @@ namespace FastReport.Data
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(value);
 
             tbServer.Text = builder.Host;
-            tbUserName.Text = builder.UserName;
+            tbUserName.Text = builder.Username;
             tbPassword.Text = builder.Password;
             cbxDatabase.Text = builder.Database;
         }
