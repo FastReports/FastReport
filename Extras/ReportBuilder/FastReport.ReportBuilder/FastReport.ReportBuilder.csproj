@@ -20,9 +20,8 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
-  <Import Project="..\..\..\UsedPackages.version"/>
   <ItemGroup>
-    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
+    <PackageReference Include="FastReport.OpenSource" Version="2020.1.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
   </ItemGroup>
 
