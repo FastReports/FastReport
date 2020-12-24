@@ -7,23 +7,26 @@
     <Authors>Emrah KONDUR</Authors>
     <Description>Building a FastReport without designer easy way!</Description>
     <Copyright>Fast Reports Inc.</Copyright>
-    <PackageProjectUrl>https://www.fast-report.com/en/</PackageProjectUrl>
+    <PackageId>FastReport.ReportBuilder</PackageId>
+    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
     <PackageTags>reporting, builder, reports, fluent, helper</PackageTags>
     <PackageReleaseNotes>Big Bang!</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Version>2020.1.0</Version>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
-
-  <Import Project="..\..\..\UsedPackages.version"/>
+  
+  <Import Project="..\..\..\UsedPackages.version" />
   <ItemGroup>
     <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />   
   </ItemGroup>
 
 </Project>
