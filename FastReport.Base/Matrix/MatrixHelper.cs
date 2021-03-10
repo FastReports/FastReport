@@ -911,6 +911,16 @@ namespace FastReport.Matrix
       if (function == MatrixAggregateFunction.Count)
         return list.Count;
 
+      if (function == MatrixAggregateFunction.CountDistinct)
+            {
+                Hashtable distinctValues = new Hashtable();
+                foreach (object value in list)
+                {
+                    distinctValues[value] = 1;
+                }
+                return distinctValues.Keys.Count;
+            }
+
       // aggregated value
       Variant aggrValue = new Variant();
 

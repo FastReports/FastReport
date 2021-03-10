@@ -1119,7 +1119,8 @@ namespace FastReport
             Stream dummy = ResourceLoader.GetStream("FastReport", "icon16.ico");
             using (MemoryStream ms = new MemoryStream())
             {
-                Res.CopyTo(dummy, ms);
+                const int BUFFER_SIZE = 4 * 1024;
+                dummy.CopyTo(ms, BUFFER_SIZE);
                 SetImageData(ms.ToArray());
             }
             WrapMode = WrapMode.Tile;

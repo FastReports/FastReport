@@ -7,9 +7,7 @@
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void ResetFormBitmap()
-        {
-        }
+        partial void ResetFormBitmap();
 
         #endregion Private Methods
     }

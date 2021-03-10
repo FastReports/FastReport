@@ -1,0 +1,1 @@
+Want to create localization for your language? Please drop an email to tz@fast-report.com.

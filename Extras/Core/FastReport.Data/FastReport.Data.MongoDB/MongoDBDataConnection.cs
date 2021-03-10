@@ -64,9 +64,12 @@ namespace FastReport.Data
             var collection = db.GetCollection<BsonDocument>(table.TableName);
             if (!allRows)
             {
-                var documents = collection.Find(new BsonDocument()).First();
-                DataRow dr = table.NewRow();
-                ExecuteFillDataTable(documents, table, dr, string.Empty);
+                var documents = collection.Find(new BsonDocument()).FirstOrDefault();
+                if (documents != null)
+                {
+                    DataRow dr = table.NewRow();
+                    ExecuteFillDataTable(documents, table, dr, string.Empty);
+                }
             }
             else
             {

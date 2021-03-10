@@ -6,7 +6,7 @@ namespace FastReport.Code
     {
         private string methodName;
         private MethodInfo methodInfo;
-        private AssemblyDescriptor assembly;
+        private readonly AssemblyDescriptor assembly;
 
         public string MethodName
         {

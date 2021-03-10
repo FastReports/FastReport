@@ -27,10 +27,7 @@ namespace FastReport.Export.Html
             return false;
         }
 
-        private void ExtendExport(FastString Page, ReportComponentBase obj, FastString text)
-        {
-
-        }
+        partial void ExtendExport(FastString Page, ReportComponentBase obj, FastString text);
 
         private class ExportIEMStyle
         {

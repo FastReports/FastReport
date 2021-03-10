@@ -30,7 +30,7 @@ namespace FastReport
         /// <param name="report"></param>
         internal void OnProgress(Report report, string str, int int1, int int2)
         {
-            
+
         }
 
         /// <summary>

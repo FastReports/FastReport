@@ -1,9 +1,15 @@
 using System;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace FastReport.Utils
 {
+    internal enum MonoRendering 
+    { 
+        Undefined, 
+        Pango, 
+        Cairo 
+    }
+
     public static partial class DrawUtils
     {
         private static Font FDefaultFont;
@@ -13,6 +19,7 @@ namespace FastReport.Utils
         private static Font FFixedFont;
         private static int FScreenDpi;
         private static float FDpiFX;
+        private static MonoRendering FMonoRendering = MonoRendering.Undefined;
 
         public static int ScreenDpi
         {
@@ -195,6 +202,22 @@ namespace FastReport.Utils
             FloodFill(bmp, x + 1, y, color, replacementColor);
             FloodFill(bmp, x, y - 1, color, replacementColor);
             FloodFill(bmp, x, y + 1, color, replacementColor);
+        }
+
+        internal static MonoRendering GetMonoRendering(Graphics printerGraphics)
+        {
+            if (FMonoRendering == MonoRendering.Undefined)
+            {
+                GraphicsUnit savedUnit = printerGraphics.PageUnit;
+                printerGraphics.PageUnit = GraphicsUnit.Point;
+
+                string s = "test string test string test string test string";
+                float f1 = printerGraphics.MeasureString(s, DefaultReportFont).Width;
+                FMonoRendering = f1 > 200 ? MonoRendering.Pango : MonoRendering.Cairo;
+
+                printerGraphics.PageUnit = savedUnit;
+            }
+            return FMonoRendering;
         }
 
         

@@ -11,9 +11,7 @@ namespace FastReport.Data
         /// Does nothing
         /// </summary>
         /// <param name="tableNames"></param>
-        private void FilterTables(List<string> tableNames)
-        {
-        }
+        partial void FilterTables(List<string> tableNames);
 
         /// <summary>
         /// Does nothing
@@ -36,9 +34,7 @@ namespace FastReport.Data
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void ShowLoginForm(string lastConnectionString)
-        {
-        }
+        partial void ShowLoginForm(string lastConnectionString);
 
         #endregion Private Methods
     }

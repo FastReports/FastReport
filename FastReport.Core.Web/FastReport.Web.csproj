@@ -14,7 +14,8 @@ FastReport.Net supports export to various popular formats, such as PDF/A, Excel,
 </Description>
         <Copyright>Fast Reports Inc.</Copyright>
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageIconUrl></PackageIconUrl>
+        <PackageIcon>frlogo-big.png</PackageIcon>
         <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
         <SignAssembly>true</SignAssembly>
         <Configurations>Debug;Release;Demo</Configurations>
@@ -25,9 +26,9 @@ FastReport.Net supports export to various popular formats, such as PDF/A, Excel,
     <PropertyGroup>
         <PackageId>FastReport.Web</PackageId>
         <AssemblyOriginatorKeyFile>../FastReport.Net.snk</AssemblyOriginatorKeyFile>
-        <Description>FastReport.Net is a full-featured reporting solution for .Net Core. 
+        <Description>FastReport.Core is a full-featured reporting solution for .Net Core. 
 Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, diagram, maps, shapes, line, PolyLine, Polygon and many more. 
-FastReport.Net supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.
+FastReport.Core supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.
 $(DemoDescription)
 </Description>
     </PropertyGroup>
@@ -55,6 +56,10 @@ $(DemoDescription)
         <None Remove="Resources\slash.svg" />
         <None Remove="Resources\spinner.svg" />
         <None Remove="Resources\split.min.js" />
+        <None Include="..\PackageNet\frlogo-big.png">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Resources\angle-double-left.svg" />

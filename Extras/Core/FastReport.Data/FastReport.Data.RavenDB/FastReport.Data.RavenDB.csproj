@@ -19,7 +19,7 @@
         <RootNamespace>FastReport.Data</RootNamespace>
         <PackageReleaseNotes></PackageReleaseNotes>
     </PropertyGroup>
-    <ItemGroup >
+    <ItemGroup>
         <ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
@@ -41,9 +41,7 @@
         <PackageReference Include="RavenDB.Client" Version="4.0.2" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Update="RavenDBConnectionEditor.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
+        <Compile Update="RavenDBConnectionEditor.cs" />
         <Compile Update="RavenDBConnectionEditor.Designer.cs">
             <DependentUpon>RavenDBConnectionEditor.cs</DependentUpon>
         </Compile>

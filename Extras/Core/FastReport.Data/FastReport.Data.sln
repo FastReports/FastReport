@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Couchbase",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.RavenDB", "FastReport.Data.RavenDB\FastReport.Data.RavenDB.csproj", "{BB143926-05EB-4569-A474-EA21225EB6CC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.ClickHouse", "FastReport.ClickHouse\FastReport.ClickHouse\FastReport.ClickHouse.csproj", "{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{BB143926-05EB-4569-A474-EA21225EB6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB143926-05EB-4569-A474-EA21225EB6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB143926-05EB-4569-A474-EA21225EB6CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

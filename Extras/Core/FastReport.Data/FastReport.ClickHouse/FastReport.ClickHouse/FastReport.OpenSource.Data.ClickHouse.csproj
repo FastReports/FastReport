@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;netstandard2.1;netcoreapp2.2</TargetFrameworks>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>Fast Reports Inc.</Copyright>
+    <Company>Fast Reports Inc.</Company>
+    <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <Authors>Fast Reports Inc.</Authors>
+    <Product>FastReport.Data.ClickHouse</Product>
+    <Description>Represents a connection to ClickHouse database for FastReport .NET</Description>
+    <PackageId>FastReport.Core.Data.ClickHouse</PackageId>
+    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageTags>reporting, ClickHouse, connection, reports</PackageTags>
+    <Version>1.0.0</Version>
+    <Configurations>Debug;Release;</Configurations>
+    <AssemblyName>FastReport.Data.ClickHouse</AssemblyName>
+    <RootNamespace>FastReport.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClickHouse.Client" Version="2.3.0.326" />
+    <!--<ProjectReference Include="..\ClickHouse.Client\ClickHouse.Client.csproj">
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>-->
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)'=='net472'">
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  
+ <ItemGroup>
+    <Compile Remove="ClickHouseConnection.DesignExt.cs" />
+    <Compile Remove="ClickHouseConnectionEditor.cs" />
+    <Compile Remove="ClickHouseConnectionEditor.Designer.cs" />
+    <EmbeddedResource Remove="*.resx" />  
+  </ItemGroup>
+</Project>

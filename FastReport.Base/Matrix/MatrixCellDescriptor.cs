@@ -41,11 +41,16 @@ namespace FastReport.Matrix
     /// </summary>
     Count,
 
-    /// <summary>
-    /// Specifies the custom function.
-    /// </summary>
-    Custom
-  }
+        /// <summary>
+        /// Specifies the count of distinct values.
+        /// </summary>
+        CountDistinct,
+
+        /// <summary>
+        /// Specifies the custom function.
+        /// </summary>
+        Custom
+    }
 
   /// <summary>
   /// Determines how matrix percents are calculated.

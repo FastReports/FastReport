@@ -1,0 +1,1509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="zh-CHT" Author="Black Jack  &lt;jackie57lo@gmail.com&gt;">
+  <Buttons>
+    <Ok Text="確定"/>
+    <Cancel Text="取消"/>
+    <Close Text="關閉"/>
+    <MoreOptions Text="更多選項"/>
+    <LessOptions Text="普通選項"/>
+    <Actions Text="動作"/>
+    <Previous Text="&lt;上一個"/>
+    <Next Text="下一個&gt;"/>
+    <Finish Text="完成"/>
+    <Advanced Text="高級..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="讀取數據..."/>
+    <CantFindObject Text="沒有找到物件"/>
+    <CantLoadReport Text="載入報表{0}失敗"/>
+    <ClassError Text="沒有找到報表腳本主類"/>
+    <Confirmation Text="確定"/>
+    <DataNotInitialized Text="資料來源沒有初始化"/>
+    <DecompressError Text="解壓檔失敗"/>
+    <DecryptError Text="解密失敗:錯誤的密碼"/>
+    <DelegateError Text="{0}方法必須包含兩個參數:'sender' 和 'e'"/>
+    <DeleteAncestor Text="不能刪除{0}, 因為它是父報表中的物件"/>
+    <DuplicateName Text="名稱為{0}的物件已經存在"/>
+    <DuplicateStyle Text="該樣式名稱已經存在"/>
+    <Error Text="錯誤"/>
+    <EventError Text="由於代碼中有錯誤,不能創建事件處理常式"/>
+    <ExportingPage Text="正在輸出第{0}頁,共{1}頁"/>
+    <GeneratingPage Text="正在生成頁{0}"/>
+    <GeneratingPageFirstPass Text="第一步:正在生成頁{0}"/>
+    <Information Text="消息"/>
+    <MatrixError Text="{0}:矩陣物件至少要一行和一列,並且有一個儲存格"/>
+    <MatrixValueError Text="值數量與矩陣資料單元個數量不同(必須是{0}個)"/>
+    <ParentError Text="{0}類型的物件不能包含{1}類型的物件"/>
+    <ParentError1 Text="{0}類型的物件不能包含物件"/>
+    <Performance Text="耗時{0}ms"/>
+    <PreparingData Text="準備資料..."/>
+    <PrintingPage Text="正在列印第{0}頁"/>
+    <RenameAncestor Text="不能重命名{0},它是父 報表物件"/>
+    <SaveChanges Text="是否保存{0}?"/>
+    <SaveChangesToPreviewPage Text="是否保存到上一頁?"/>
+    <TableIsNull Text="表格沒有和資料關聯,使用Report.RegisterData方法註冊資料"/>
+    <TableManualBuildError Text="在手工構建過程中,你只能使用TableObject.PrintRow, PrintColumn方法"/>
+    <Warning Text="警告"/>
+    <WrongFileFormat Text="不能載入檔,未知的檔案格式"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="示例"/>
+    <None Text="空"/>
+    <PageN Text="第{0}頁"/>
+    <PageNofM Text="第{0}頁共{1}頁"/>
+    <ofM Text="共{0}頁"/>
+  </Misc>
+  <Objects>
+    <Report Text="報表"/>
+    <ReportPage Text="頁面"/>
+    <DialogPage Text="表單"/>
+    <XmlDataConnection Text="XML資料來源"/>
+    <OleDbDataConnection Text="OLE DB 資料來源"/>
+    <MsAccessDataConnection Text="MS Access 資料來源"/>
+    <MsSqlDataConnection Text="MS SQL 資料來源"/>
+    <FirebirdDataConnection Text="Firebird資料來源"/>
+    <VistaDBDataConnection Text="VistaDB資料來源"/>
+    <PostgresDataConnection Text="Postgres資料來源"/>
+    <MySqlDataConnection Text="MySQL 資料來源"/>
+    <OracleDataConnection Text="Oracle資料來源"/>
+    <Bands Text="欄">
+      <ReportTitle Text="報表標題區"/>
+      <ReportSummary Text="報表合計區"/>
+      <PageHeader Text="頁眉"/>
+      <PageFooter Text="頁腳"/>
+      <ColumnHeader Text="欄首"/>
+      <ColumnFooter Text="欄尾"/>
+      <DataHeader Text="數據首"/>
+      <DataFooter Text="數據尾"/>
+      <Data Text="數據區"/>
+      <GroupHeader Text="分組頁眉"/>
+      <GroupFooter Text="分組頁腳"/>
+      <Child Text="子報表"/>
+      <Overlay Text="覆蓋"/>
+    </Bands>
+    <TextObject Text="文本"/>
+    <Shapes Text="圖形">
+      <Line Text="線"/>
+      <DiagonalLine Text="對角線"/>
+      <Rectangle Text="矩形"/>
+      <RoundRectangle Text="圓角矩形"/>
+      <Ellipse Text="橢圓形"/>
+      <Triangle Text="三角形"/>
+      <Diamond Text="菱形"/>
+    </Shapes>
+    <PictureObject Text="圖片"/>
+    <TableObject Text="表格"/>
+    <MatrixObject Text="交叉表"/>
+    <SubreportObject Text="子報表"/>
+    <BarcodeObject Text="條碼"/>
+    <RichObject Text="Rich Text"/>
+    <MSChartObject Text="圖表"/>
+    <CheckBoxObject Text="核取方塊"/>
+    <ButtonControl Text="Button"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="NumericUpDown"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+  </Objects>
+  <FileFilters>
+    <Report Text="報表檔 (*.frx)|*.frx"/>
+    <PreparedReport Text="報表檔 (*.fpx)|*.fpx"/>
+    <Style Text="報表樣式 (*.frs)|*.frs"/>
+    <Dictionary Text="字典 (*.frd)|*.frd"/>
+    <Localization Text="當地語系化文件 (*.frl)|*.frl"/>
+    <XsdFile Text="XML schema 定義檔 (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML 文件 (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text 文件 (*.rtf)|*.rtf"/>
+    <Images Text="圖片檔|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Printer 文件 (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap image (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG image (*.png)|*.png"/>
+    <JpegFile Text="JPG image (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF image (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF image (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML file (*.html)|*.html"/>
+    <OdtFile Text="Open Office Writer 文件 (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc 文件 (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat 文件 (*.pdf)|*.pdf"/>
+    <TxtFile Text="Text 文件 (*.txt)|*.txt"/>
+    <CsvFile Text="Comma Separated Values (*.csv)|*.csv"/>
+    <XlsFile Text="MS Excel 文件 (*.xls)|*.xls"/>
+    <CsFile Text="C# 文件 (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net 文件 (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird database (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB database (*.vdb*)|*.vdb*"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MM/dd/yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="False"/>
+    <BooleanF2 Text="No"/>
+    <BooleanF3 Text="Off"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="True"/>
+    <BooleanT2 Text="Yes"/>
+    <BooleanT3 Text="On"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="電話;(000) 000-0000"/>
+    <Custom2 Text="電話;+0(000) 000-0000"/>
+    <Custom3 Text="Social security;000-00-0000"/>
+    <Custom4 Text="郵遞區號:00000"/>
+    <Custom5 Text="郵遞區號:00000-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="文件(&amp;F)">
+        <New Text="新建"/>
+        <Open Text="打開..."/>
+        <Close Text="關閉"/>
+        <Save Text="保存"/>
+        <SaveAs Text="保存為"/>
+        <SaveAll Text="保存全部"/>
+        <PageSetup Text="頁面設置"/>
+        <PrinterSetup Text="列印設置..."/>
+        <Preview Text="預覽..."/>
+        <SelectLanguage Text="選擇語言..."/>
+        <Exit Text="退出"/>
+      </File>
+      <Edit Text="編輯(&amp;E)">
+        <Undo Text="撤銷"/>
+        <Redo Text="重複"/>
+        <Cut Text="剪切"/>
+        <Copy Text="複製"/>
+        <Paste Text="粘貼"/>
+        <Delete Text="刪除"/>
+        <DeletePage Text="刪除頁面"/>
+        <SelectAll Text="選擇全部"/>
+        <Group Text="組合"/>
+        <Ungroup Text="取消組合"/>
+        <Find Text="查找"/>
+        <Replace Text="替換"/>
+      </Edit>
+      <View Text="視圖(&amp;V)">
+        <StartPage Text="起始頁"/>
+        <Toolbars Text="工具列"/>
+        <Options Text="選項"/>
+        <Grid Text="網格"/>
+        <Guides Text="輔助線"/>
+        <AutoGuides Text="對齊到網格"/>
+        <DeleteHGuides Text="刪除水準輔助線"/>
+        <DeleteVGuides Text="刪除垂直輔助線"/>
+        <Units Text="計量單位"/>
+      </View>
+      <Insert Text="插入(&amp;I)"/>
+      <Report Text="報表(&amp;R)">
+        <Bands Text="設置報表欄..."/>
+        <Styles Text="樣式..."/>
+        <GroupExpert Text="分組專家..."/>
+        <Options Text="選項..."/>
+      </Report>
+      <Data Text="數據(&amp;D)">
+        <ShowData Text="顯示資料來源"/>
+        <Add Text="添加資料來源..."/>
+        <Choose Text="選擇資料來源"/>
+      </Data>
+      <Window Text="窗口(&amp;W)">
+        <CloseAll Text="關閉所有視窗"/>
+      </Window>
+      <Help Text="幫助(&amp;H)">
+        <Contents Text="目錄..."/>
+        <About Text="關於..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="屬性">
+        <PropertiesTab Text="屬性頁"/>
+        <EventsTab Text="事件"/>
+        <NObjectsSelected Text="選中 {0} 個對象"/>
+      </Properties>
+      <ReportTree Text="報表樹"/>
+      <Dictionary Text="數據">
+        <DataSources Text="資料來源"/>
+        <Parameters Text="參數"/>
+        <SystemVariables Text="系統變數"/>
+        <Totals Text="合計"/>
+        <New Text="新建字典..."/>
+        <Open Text="打開字典..."/>
+        <Save Text="保存字典..."/>
+        <Merge Text="合併字典..."/>
+        <NewDataSource Text="新建資料來源..."/>
+        <NewRelation Text="新建關係..."/>
+        <NewParameter Text="新建參數"/>
+        <NewTotal Text="新建合計"/>
+        <NewCalculatedColumn Text="新建計算列"/>
+        <Rename Text="重命名"/>
+        <Edit Text="編輯..."/>
+        <Delete Text="刪除"/>
+        <DeleteAlias Text="刪除別名"/>
+        <View Text="查看數據..."/>
+        <DuplicateName Text="已經存在相同名稱的物件"/>
+        <NRows Text="{0}行"/>
+      </Dictionary>
+      <Messages Text="消息">
+        <Description Text="描述"/>
+        <Line Text="行"/>
+        <Column Text="列"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="添加/刪除"/>
+      <Reset Text="重置工具列"/>
+      <Standard Text="標準">
+        <New Text="新建報表"/>
+        <Open Text="打開報表 (Ctrl+O)"/>
+        <Save Text="保存報表 (Ctrl+S)"/>
+        <SaveAll Text="保存全部 (Ctrl+Shift+S)"/>
+        <Preview Text="預覽 (Ctrl+P)"/>
+        <NewPage Text="新建報表頁"/>
+        <NewDialog Text="新建對話方塊"/>
+        <DeletePage Text="刪除頁"/>
+        <PageSetup Text="頁面設置"/>
+        <Cut Text="剪切 (Ctrl+X)"/>
+        <Copy Text="複製 (Ctrl+C)"/>
+        <Paste Text="粘貼 (Ctrl+V)"/>
+        <Undo Text="撤銷 (Ctrl+Z)"/>
+        <Redo Text="重複"/>
+        <Group Text="組合"/>
+        <Ungroup Text="取消組合"/>
+      </Standard>
+      <Text Text="格式">
+        <Name Text="字體"/>
+        <Size Text="大小"/>
+        <Bold Text="粗體"/>
+        <Italic Text="斜體"/>
+        <Underline Text="底線"/>
+        <Left Text="靠左"/>
+        <Center Text="水準居中"/>
+        <Right Text="靠右"/>
+        <Justify Text="兩端對齊"/>
+        <Top Text="靠上"/>
+        <Middle Text="垂直居中"/>
+        <Bottom Text="居下"/>
+        <Color Text="顏色"/>
+        <Highlight Text="突出顯示"/>
+        <Angle Text="文字角度"/>
+      </Text>
+      <Border Text="邊框和填充">
+        <Top Text="上框線"/>
+        <Bottom Text="下框線"/>
+        <Left Text="左框線"/>
+        <Right Text="右框線"/>
+        <All Text="所有框線"/>
+        <None Text="沒有框線"/>
+        <FillColor Text="填充顏色"/>
+        <FillStyle Text="填充樣式"/>
+        <LineColor Text="線條顏色"/>
+        <Width Text="框線寬度"/>
+        <Style Text="框線樣式"/>
+        <Props Text="邊框屬性..."/>
+      </Border>
+      <Style Text="樣式">
+        <Styles Text="樣式"/>
+        <SelectStyle Text="選擇樣式"/>
+        <NoStyle Text="沒有樣式"/>
+      </Style>
+      <Layout Text="佈局">
+        <AlignToGrid Text="對齊到網格"/>
+        <Left Text="左端對齊"/>
+        <Center Text="水準中間對齊"/>
+        <Right Text="右端對齊"/>
+        <Top Text="上端對齊"/>
+        <Middle Text="垂直中間對齊"/>
+        <Bottom Text="下端對齊"/>
+        <SameWidth Text="等寬"/>
+        <SameHeight Text="等高"/>
+        <SameSize Text="大小相同"/>
+        <SizeToGrid Text="根據網格調整大小"/>
+        <SpaceHorizontally Text="水準等距"/>
+        <IncreaseHorizontalSpacing Text="擴大水準間隔"/>
+        <DecreaseHorizontalSpacing Text="減少水準間隔"/>
+        <RemoveHorizontalSpacing Text="移除水準間隔"/>
+        <SpaceVertically Text="垂直等距"/>
+        <IncreaseVerticalSpacing Text="增加垂直間隔"/>
+        <DecreaseVerticalSpacing Text="減少垂直間隔"/>
+        <RemoveVerticalSpacing Text="移除垂直間隔"/>
+        <CenterHorizontally Text="水準居中"/>
+        <CenterVertically Text="垂直居中"/>
+        <BringToFront Text="置於頂層"/>
+        <SendToBack Text="置於底層"/>
+      </Layout>
+      <Objects Text="對象">
+        <Select Text="選擇"/>
+      </Objects>
+      <Zoom Text="縮放">
+        <ZoomOut Text="縮小"/>
+        <ZoomIn Text="放大"/>
+        <Zoom Text="縮放"/>
+        <PageWidth Text="也寬"/>
+        <WholePage Text="整頁"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="代碼"/>
+      <Report>
+        <ConfigureBands Text="設置報表欄..."/>
+      </Report>
+    </Workspace>
+    <Options Text="選項"/>
+    <UndoRedo>
+      <Delete Text="刪除 {0}"/>
+      <Move Text="移動 {0}"/>
+      <Size Text="改變{0}大小"/>
+      <Change Text="修改 {0}"/>
+      <AddGuide Text="添加輔助線"/>
+      <MoveGuide Text="移動輔助線"/>
+      <DeleteHGuides Text="刪除水準輔助線"/>
+      <DeleteVGuides Text="刪除垂直輔助線"/>
+      <ResizeBand Text="調整欄"/>
+      <ChangeParent Text="改變{0}的父物件"/>
+      <Load Text="載入報表"/>
+      <Paste Text="粘貼{0}"/>
+      <Insert Text="插入{0}"/>
+      <AddPage Text="增加頁{0}"/>
+      <DeletePage Text="刪除頁"/>
+      <Script Text="修改腳本"/>
+      <NObjects Text="{0}個對象"/>
+      <UndoN Text="撤銷{0}個動作"/>
+      <RedoN Text="回復{0}個動作"/>
+      <ChangeReport Text="修改報表"/>
+      <ChangePagesOrder Text="修改頁面順序"/>
+      <EditPage Text="編輯頁面"/>
+      <EditPrinter Text="編輯印表機設置"/>
+      <EditReport Text="編輯報表設置"/>
+      <SelectData Text="選擇資料"/>
+      <EditData Text="編輯資料"/>
+    </UndoRedo>
+    <StartPage Text="起始頁"/>
+    <Untitled Text="未命名.frx"/>
+    <ColorSelector>
+      <CustomColors Text="自訂"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="系統"/>
+      <Other Text="其他顏色"/>
+      <Transparency Text="透明度:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="預覽">
+    <PrintText Text="列印"/>
+    <Print Text="列印 (Ctrl+P)"/>
+    <Open Text="打開文件"/>
+    <Save Text="保存檔"/>
+    <SaveText Text="保存"/>
+    <Email Text="發送電子郵件"/>
+    <Find Text="查找"/>
+    <Outline Text="大綱"/>
+    <PageSetup Text="頁面設置"/>
+    <Edit Text="編輯頁面"/>
+    <Watermark Text="浮水印"/>
+    <First Text="第一頁"/>
+    <Prior Text="上一頁"/>
+    <Next Text="下一頁"/>
+    <Last Text="最後頁"/>
+    <SaveNative Text="保存報表"/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="新建對象">
+      <Add Text="新建"/>
+      <Reports Text="報表範本"/>
+      <ReportItems Text="報表物件"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="高級屬性"/>
+    <AskPassword Text="密碼">
+      <Password Text="這張報表設置了密碼.&#13;&#10;&#13;&#10;請輸入密碼:"/>
+    </AskPassword>
+    <AskLoginPassword Text="資料庫登錄">
+      <Login Text="用戶名:"/>
+      <Password Text="密碼:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="選擇資料來源"/>
+      <SelectDataSource Text="選擇一個已有的資料來源或創建一個新的資料來源"/>
+      <CreateNewDatasource Text="創建新的資料來源"/>
+      <SelectColumnsPage Text="選擇列"/>
+      <SelectColumns Text="選擇要顯示在報表上的列"/>
+      <AvailableColumns Text="可用的列"/>
+      <SelectedColumns Text="選擇的列"/>
+    </BaseReportWizard>
+    <Border Text="邊框編輯器">
+      <Border Text="邊框"/>
+      <Line Text="線"/>
+      <Shadow Text="陰影"/>
+      <Style Text="樣式:"/>
+      <Width Text="寬度:"/>
+      <Color Text="顏色:"/>
+      <Hint Text="選擇線類型和邊框."/>
+    </Border>
+    <ChartEditor Text="圖表編輯器">
+      <Chart Text="圖"/>
+      <Add Text="新建..."/>
+      <Delete Text="刪除"/>
+      <Hint Text="點擊物件修改屬性"/>
+      <Common>
+        <BackColor Text="背景色:"/>
+        <SecondaryColor Text="漸變色:"/>
+        <Gradient Text="漸變方式:"/>
+        <HatchStyle Text="陰影線樣式:"/>
+        <BorderColor Text="邊框顏色:"/>
+        <BorderStyle Text="邊框樣式:"/>
+        <BorderWidth Text="邊框寬度:"/>
+        <ShadowColor Text="陰影顏色:"/>
+        <ShadowOffset Text="陰影偏移:"/>
+        <LineColor Text="線顏色:"/>
+        <LineStyle Text="線型:"/>
+        <LineWidth Text="線寬度"/>
+        <Text Text="文本:"/>
+        <Font Text="字體:"/>
+        <ForeColor Text="前景色:"/>
+        <Dock Text="停靠:"/>
+        <InsideChartArea Text="圖表區域內"/>
+        <Format Text="格式:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="數據">
+          <DataSource Text="資料來源:"/>
+          <Filter Text="過濾:"/>
+          <AutoSeries Text="自動創建的系列"/>
+          <DataColumn Text="數據列:"/>
+          <ColorColumn Text="顏色列:"/>
+          <SeriesSort Text="排序方式:"/>
+          <AlignXValues Text="根據X軸值調整"/>
+        </Data>
+        <Appearance Text="外觀">
+          <Template Text="範本"/>
+          <Load Text="載入"/>
+          <Save Text="保存"/>
+          <SeriesPalette Text="系列顏色"/>
+          <BorderSkin Text="邊框類型"/>
+        </Appearance>
+        <ChartArea Text="繪圖區域">
+          <Area Text="區域"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="使用3D"/>
+          <XRotation Text="X角度"/>
+          <YRotation Text="Y角度"/>
+          <Perspective Text="透明度"/>
+          <WallWidth Text="寬度"/>
+          <AxisDepth Text="軸深度"/>
+          <LightStyle Text="光線樣式"/>
+          <ClusteredSeries Text="聚集序列"/>
+        </ThreeD>
+        <Axes Text="軸">
+          <Axis Text="軸"/>
+          <CopyFromX Text="從X軸複製外觀"/>
+          <CopyFromPrimary Text="從主要軸複製外觀"/>
+          <Minor Text="次要"/>
+          <Major Text="主要"/>
+          <General Text="一般">
+            <Enabled Text="可用"/>
+            <MarginVisible Text="邊界可見"/>
+            <Logarithmic Text="對數的"/>
+            <Reversed Text="相反的"/>
+            <Interval Text="間隔"/>
+            <Interlaced Text="交錯的"/>
+            <InterlacedColor Text="交錯顏色"/>
+          </General>
+          <Labels Text="標籤">
+            <Enabled Text="可用"/>
+            <Angle Text="角度"/>
+          </Labels>
+          <Title Text="標題"/>
+          <CustomLabels Text="自訂標籤">
+            <Label Text="標籤"/>
+            <Start Text="起始"/>
+            <End Text="結束"/>
+            <Row Text="行"/>
+            <MarkColor Text="標記顏色"/>
+            <MarkStyle Text="標記樣式"/>
+          </CustomLabels>
+          <Grid Text="網格">
+            <GridLine Text="格線"/>
+            <Enabled Text="可用"/>
+          </Grid>
+          <Ticks Text="計數">
+            <Ticks Text="計數"/>
+            <Enabled Text="可用"/>
+            <TickStyle Text="計數類型"/>
+            <TickSize Text="計數大小"/>
+          </Ticks>
+          <Strips Text="條">
+            <Strip Text="條"/>
+            <Interval Text="間隔">
+              <Start Text="開始"/>
+              <Width Text="寬度"/>
+              <Interval Text="間隔"/>
+            </Interval>
+            <Appearance Text="外觀"/>
+            <Text Text="文本">
+              <HorizontalAlign Text="水準對齊"/>
+              <VerticalAlign Text="垂直對齊"/>
+              <TextOrientation Text="文本方向"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="圖例">
+          <Enabled Text="可用"/>
+          <StyleColumn Text="列"/>
+          <StyleRow Text="行"/>
+          <StyleTable Text="表"/>
+          <General Text="一般">
+            <LegendStyle Text="圖例類型"/>
+          </General>
+          <Appearance Text="外觀"/>
+        </Legend>
+        <Title Text="標題">
+          <Visible Text="可見"/>
+          <General Text="一般">
+            <TextOrientation Text="文本方向"/>
+            <TextStyle Text="文本類型"/>
+          </General>
+          <Appearance Text="外觀"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="數據">
+          <Name Text="名稱"/>
+          <XValue Text="X值"/>
+          <Color Text="顏色"/>
+          <Filter Text="過濾"/>
+          <XValueType Text="X數值型別"/>
+          <YValueType Text="Y數值型別"/>
+          <XAxisType Text="X軸類型"/>
+          <YAxisType Text="Y軸類型"/>
+          <PrimaryAxis Text="主要的"/>
+          <SecondaryAxis Text="次要的"/>
+          <SeriesValues>
+            <YValue Text="Y值"/>
+            <High Text="最大"/>
+            <Low Text="最小"/>
+            <Open Text="打開"/>
+            <Close Text="關閉"/>
+            <RangeBegin Text="開始值"/>
+            <RangeEnd Text="結束值"/>
+            <Size Text="大小"/>
+            <YValue1 Text="Y值1"/>
+            <YValue2 Text="Y值2"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="值"/>
+        <DataProcessing Text="資料處理">
+          <SortBy Text="排序"/>
+          <SortByX Text="按X值排序"/>
+          <SortByY Text="按Y值排序"/>
+          <SortOrder Text="排序方式"/>
+          <GroupBy Text="分組方式">
+            <None Text="無"/>
+            <XValue Text="X值"/>
+            <Number Text="數字"/>
+            <Years Text="年"/>
+            <Months Text="月"/>
+            <Weeks Text="星期"/>
+            <Days Text="日"/>
+            <Hours Text="小時"/>
+            <Minutes Text="分鐘"/>
+            <Seconds Text="秒"/>
+            <Milliseconds Text="毫秒"/>
+          </GroupBy>
+          <GroupInterval Text="分組間隔"/>
+          <GroupFunction Text="分組功能"/>
+          <CollectData Text="收集資料">
+            <None Text="無"/>
+            <TopN Text="前N項"/>
+            <BottomN Text="後N項"/>
+            <LessThan Text="小於"/>
+            <LessThanPercent Text="小於百分比"/>
+            <GreaterThan Text="大於"/>
+            <GreaterThanPercent Text="大於百分比"/>
+          </CollectData>
+          <Value Text="值"/>
+          <CollectedText Text="收集文本"/>
+          <CollectedColor Text="收集顏色"/>
+          <Explode Text="擴散">
+            <None Text="無"/>
+            <Biggest Text="最大值"/>
+            <Lowest Text="最小值"/>
+            <Specific Text="指定值"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="外觀">
+          <Default Text="默認"/>
+          <DrawingStyle Text="填充樣式"/>
+          <PointWidth Text="線寬度"/>
+          <LabelsStyle Text="變遷類型"/>
+          <DrawSideBySide Text="緊密填充"/>
+          <ShowMarkerLines Text="顯示標記線"/>
+          <DoughnutRadius Text="圓環 半徑"/>
+          <AreaDrawingStyle Text="圖形填充方式"/>
+          <Markers Text="標記"/>
+          <PriceUpColor Text="價格上升顏色"/>
+          <ReversalAmount Text="逆轉數量"/>
+          <BoxSize Text="大小"/>
+          <NumberOfLinesInBreak Text="線打斷類型"/>
+          <LabelsPlacement Text="標籤位置"/>
+          <PointsGap Text="點間隔"/>
+          <MinPointHeight Text="最小點高度"/>
+          <ValueType Text="數值型別"/>
+          <ThreeDDrawingStyle Text="3D填充樣式"/>
+          <ThreeDRotation Text="3D角度"/>
+          <FunnelStyle Text="漏斗類型"/>
+          <LineTension Text="線張力"/>
+          <NoSettings Text="這種類型沒有空用設置"/>
+        </Appearance>
+        <FillBorder Text="填充和邊框">
+          <Palette Text="顏色"/>
+        </FillBorder>
+        <Labels Text="標籤">
+          <LabelView Text="標籤樣式"/>
+          <Pattern Text="模式"/>
+        </Labels>
+        <Markers Text="標記">
+          <Style Text="樣式"/>
+          <Size Text="大小"/>
+          <Step Text="間隔"/>
+          <Color Text="顏色"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="圖表類型">
+      <NewArea Text="為這個序列添加新的圖表區域"/>
+      <Categories>
+        <BarColumn Text="柱狀圖和橫條圖"/>
+        <Area Text="面積圖"/>
+        <Line Text="折線圖"/>
+        <PointBubble Text="散點圖和氣泡圖"/>
+        <Pie Text="餅狀圖"/>
+        <Circular Text="雷達圖"/>
+        <Financial Text="金融圖表"/>
+        <PyramidFunnel Text="錐形圖"/>
+        <Range Text="範圍圖"/>
+      </Categories>
+      <Series>
+        <Bar Text="簇狀橫條圖"/>
+        <StackedBar Text="堆積橫條圖"/>
+        <StackedBar100 Text="百分比堆積橫條圖"/>
+        <Column Text="簇狀柱狀圖"/>
+        <StackedColumn Text="堆積柱狀圖"/>
+        <StackedColumn100 Text="百分比柱狀橫條圖"/>
+        <Area Text="面積圖"/>
+        <SplineArea Text="平滑面積圖"/>
+        <StackedArea Text="堆積面積圖"/>
+        <StackedArea100 Text="百分比堆積面積圖"/>
+        <Line Text="折線圖"/>
+        <FastLine Text="快線圖"/>
+        <StepLine Text="階梯折線圖"/>
+        <Spline Text="平滑折線圖"/>
+        <Bubble Text="氣泡圖"/>
+        <Point Text="散點圖"/>
+        <FastPoint Text="快點圖"/>
+        <Pie Text="餅狀圖"/>
+        <Doughnut Text="圓環圖"/>
+        <Polar Text="極限圖"/>
+        <Radar Text="雷達圖"/>
+        <Stock Text="股價圖"/>
+        <Candlestick Text="K線圖"/>
+        <Kagi Text="Kagi 折線圖"/>
+        <Renko Text="磚塊圖"/>
+        <PointAndFigure Text="點數圖"/>
+        <ThreeLineBreak Text="三折線圖"/>
+        <Pyramid Text="金字塔圖"/>
+        <Funnel Text="漏斗圖"/>
+        <Range Text="範圍圖"/>
+        <SplineRange Text="平滑範圍圖"/>
+        <RangeColumn Text="柱狀範圍圖"/>
+        <RangeBar Text="條狀範圍圖"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="內碼表">
+      <EnableVirtualSpace Text="允許虛擬空格"/>
+      <UseSpaces Text="使用空格代替Tab"/>
+      <AllowOutlining Text="允許大綱顯示"/>
+      <TabSize Text="Tab大小"/>
+    </CodePageOptions>
+    <ConfigureBands Text="段編輯器">
+      <Add Text="添加"/>
+      <Delete Text="刪除"/>
+    </ConfigureBands>
+    <Connection Text="資料連接">
+      <Select Text="選擇連接類型"/>
+      <AlwaysUse Text="總是使用這個連接"/>
+      <LoginPrompt Text="提示登錄"/>
+      <Test Text="測試連接"/>
+      <TestSuccesful Text="測試成功"/>
+    </Connection>
+    <CustomLabel Text="自訂標籤">
+      <Paper Text="頁面"/>
+      <Landscape Text="橫向"/>
+      <PaperWidth Text="頁面寬度"/>
+      <PaperHeight Text="頁面高度"/>
+      <LeftMargin Text="左邊距"/>
+      <TopMargin Text="上邊距"/>
+      <Label Text="標籤參數"/>
+      <LabelWidth Text="標籤寬度"/>
+      <LabelHeight Text="標籤高度"/>
+      <RowGap Text="行間距"/>
+      <ColumnGap Text="列間距"/>
+      <Warning Text="標籤與頁面不匹配"/>
+    </CustomLabel>
+    <DataBandEditor Text="編輯資料段">
+      <DataSource Text="資料來源"/>
+      <NoData Text="沒有任何資料來源。 &#13;&#13;&#10;&#13;&#13;&#10;進入“資料|選擇報表資料... ”功能表選擇資料來源，或使用“資料|添加資料來源... ”功能表建立新的資料來源。"/>
+      <Sort Text="排序"/>
+      <SortBy Text="第一排序條件"/>
+      <ThenBy Text="第二排序條件"/>
+      <Ascending Text="昇冪"/>
+      <Descending Text="降冪"/>
+      <Filter Text="過濾"/>
+      <Expression Text="過濾運算式:"/>
+    </DataBandEditor>
+    <DataWizard Text="數據嚮導">
+      <Page1 Text="選擇資料來源"/>
+      <WhichData Text="選擇報表中連接到資料庫的資料連接"/>
+      <Hint Text="選擇上次使用的連接，或按“新建連接... ”按鈕創建新的連接。"/>
+      <NewConnection Text="新建連接..."/>
+      <EditConnection Text="編輯連接..."/>
+      <ConnectionName Text="輸入連接名:"/>
+      <ConnectionString Text="連接字串"/>
+      <Page2 Text="選擇表"/>
+      <WhichTables Text="你的報表要使用哪些表？"/>
+      <Wait Text="正在讀取資料"/>
+      <AddQuery Text="添加SQL查詢..."/>
+    </DataWizard>
+    <DialogPageOptions Text="表單"/>
+    <Exception Text="錯誤提示">
+      <Hint Text="你的報表出現下面的錯誤:"/>
+      <Stack Text="堆疊:"/>
+      <Copy Text="拷貝到剪貼板"/>
+    </Exception>
+    <ExpressionEditor Text="編輯運算式"/>
+    <Fill Text="填充編輯器">
+      <Solid Text="填充"/>
+      <LinearGradient Text="線性漸變"/>
+      <PathGradient Text="路徑漸變"/>
+      <Hatch Text="陰影"/>
+      <Glass Text="鏡面"/>
+      <Colors Text="顏色"/>
+      <Color Text="顏色"/>
+      <StartColor Text="開始顏色"/>
+      <EndColor Text="結束顏色"/>
+      <Options Text="選項"/>
+      <Focus Text="焦點"/>
+      <Contrast Text="對比度"/>
+      <Angle Text="角度"/>
+      <CenterColor Text="中間顏色"/>
+      <EdgeColor Text="兩邊顏色"/>
+      <Shape Text="形狀"/>
+      <Ellipse Text="橢圓"/>
+      <Rectangle Text="矩形"/>
+      <ForeColor Text="前景色"/>
+      <BackColor Text="背景色"/>
+      <Style Text="樣式"/>
+      <Blend Text="混合度"/>
+      <GlassHatch Text="顯示陰影"/>
+    </Fill>
+    <FormatEditor Text="選擇格式">
+      <Expression Text="運算式"/>
+      <General Text="一般"/>
+      <Number Text="數字"/>
+      <Currency Text="金額"/>
+      <Date Text="日期"/>
+      <Time Text="時間"/>
+      <Percent Text="百分比"/>
+      <Boolean Text="布林值"/>
+      <Custom Text="自訂"/>
+      <UseLocale Text="使用本地設置"/>
+      <DecimalDigits Text="小數位數"/>
+      <DecimalSeparator Text="小數點"/>
+      <GroupSeparator Text="千分分隔符號"/>
+      <PositivePattern Text="正數樣式"/>
+      <NegativePattern Text="複數樣式"/>
+      <CurrencySymbol Text="金額標示"/>
+      <PercentSymbol Text="百分數標示"/>
+      <FalseText Text="假值文本"/>
+      <TrueText Text="真值文本"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="編輯列">
+      <Columns Text="列"/>
+      <Properties Text="屬性"/>
+      <Add Text="添加"/>
+      <Remove Text="移除"/>
+      <AddAll Text="添加所有"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="編輯分組">
+      <Condition Text="分組條件"/>
+      <Hint Text="選擇資料列或輸入一個運算式:"/>
+      <Settings Text="設置"/>
+      <Sort Text="排序"/>
+      <NoSort Text="不排序"/>
+      <Ascending Text="順序"/>
+      <Descending Text="逆序"/>
+    </GroupBandEditor>
+    <GroupExpert Text="分組專家">
+      <Condition Text="分組條件"/>
+      <Hint Text="選擇一個資料列或輸入一個運算式，然後按“添加”按鈕添加一個新的分組選項。"/>
+      <Add Text="添加"/>
+      <Groups Text="分組"/>
+      <Edit Text="編輯"/>
+      <Delete Text="刪除"/>
+    </GroupExpert>
+    <HighlightEditor Text="高亮顯示條件">
+      <Conditions Text="條件"/>
+      <Add Text="添加"/>
+      <Delete Text="刪除"/>
+      <Edit Text="編輯"/>
+      <Style Text="樣式"/>
+      <Fill Text="填充"/>
+      <TextColor Text="文本顏色"/>
+      <Font Text="字體"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="超連結編輯器">
+      <Url Text="URL"/>
+      <PageNumber Text="頁碼"/>
+      <Bookmark Text="書簽"/>
+      <Report Text="報表"/>
+      <ReportPage Text="報表頁"/>
+      <Custom Text="自訂"/>
+      <UrlValue Text="指定一個網址(例如: http://www.url.com)"/>
+      <UrlExpression Text="輸入運算式返回一個URL"/>
+      <PageNumberValue Text="指定頁碼"/>
+      <PageNumberExpression Text="輸入運算式返回頁碼"/>
+      <BookmarkValue Text="指定一個書簽名稱"/>
+      <BookmarkExpression Text="或者輸入運算式返回書簽名稱"/>
+      <ReportName Text="報表名稱"/>
+      <ParameterName Text="報表參數"/>
+      <ParameterValue Text="指定一個參數值"/>
+      <ParameterExpression Text="輸入運算式返回參數值"/>
+      <PageName Text="報表頁"/>
+      <CustomValue Text="指定一個超連結值"/>
+      <CustomExpression Text="輸入運算式返回值"/>
+      <Hint Text="在預覽視窗點擊這個物件會執行以下動作:"/>
+      <HintUrl Text="指定的URL會被打開"/>
+      <HintPageNumber Text="你將跳轉到指定頁."/>
+      <HintBookmark Text="你將到包含指定書簽的物件."/>
+      <HintReport Text="指定報表將在單據的預覽頁打開"/>
+      <HintReportPage Text="指定頁將構建並在單據的預覽頁打開"/>
+      <HintCustom Text="你應該創建&quot;Click&quot;事件處理函數以處理自訂事件."/>
+      <ModifyAppearance Text="修改物件外觀以使它看起來象一個可以點擊的連接"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="標籤嚮導">
+      <Hint Text="選擇一個預定義的標籤類型，或按“自訂標籤... ”按鈕來定義自己的標籤尺寸。"/>
+      <Label Text="標籤"/>
+      <Manufacturer Text="製造商"/>
+      <Product Text="產品"/>
+      <Parameters Text="參數"/>
+      <Size Text="大小:"/>
+      <PaperSize Text="紙張大小:"/>
+      <Rows Text="行:"/>
+      <Columns Text="列:"/>
+      <CustomLabel Text="自訂標籤..."/>
+      <Custom Text="自訂"/>
+    </LabelWizard>
+    <PageSetup Text="頁面設置">
+      <Paper Text="紙張"/>
+      <Custom Text="自訂"/>
+      <Width Text="寬度:"/>
+      <Height Text="高度:"/>
+      <Orientation Text="紙張方向:"/>
+      <Portrait Text="縱向"/>
+      <Landscape Text="橫向"/>
+      <Margins Text="頁邊距"/>
+      <Left Text="左邊距"/>
+      <Top Text="上邊距"/>
+      <Right Text="右邊距"/>
+      <Bottom Text="下邊距"/>
+      <MirrorMargins Text="偶數頁鏡像邊距"/>
+      <Source Text="默認紙盒"/>
+      <FirstPage Text="第一頁:"/>
+      <OtherPages Text="其它頁:"/>
+      <Columns Text="列"/>
+      <Count Text="數量"/>
+      <ColumnWidth Text="寬度"/>
+      <Positions Text="位置"/>
+      <Other Text="其它"/>
+      <Duplex Text="雙面"/>
+      <DupDefault Text="默認"/>
+      <DupSimplex Text="簡單"/>
+      <DupVertical Text="垂直"/>
+      <DupHorizontal Text="水準"/>
+      <EditWatermark Text="編輯浮水印"/>
+      <ExtraWidth Text="擴展設計寬度"/>
+    </PageSetup>
+    <PictureEditor Text="圖片編輯器">
+      <Picture Text="圖片"/>
+      <Load Text="載入"/>
+      <Paste Text="粘貼"/>
+      <Clear Text="清除"/>
+      <DataColumn Text="數據列"/>
+      <FileName Text="檔案名稱"/>
+      <Url Text="URL"/>
+      <FileHint1 Text="檔案名:"/>
+      <FileHint2 Text="提示:你必須與你的報表一起發佈這個檔"/>
+      <UrlHint Text="超連結:"/>
+    </PictureEditor>
+    <PluginsOptions Text="外掛程式">
+      <Hint Text="已經安裝的外掛程式"/>
+      <Add Text="添加"/>
+      <Remove Text="移除"/>
+      <Note Text="提示:改變外掛程式可能需要重新開機 FastReport"/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="應用到所有頁"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="查找"/>
+    <PrinterSetup Text="列印">
+      <PrinterSetup Text="列印設置"/>
+      <Printer Text="印表機"/>
+      <SavePrinter Text="在報表檔中保存印表機"/>
+      <Settings Text="設置"/>
+      <PrintToFile Text="列印到檔"/>
+      <PageRange Text="頁面範圍"/>
+      <All Text="全部"/>
+      <Current Text="當前頁"/>
+      <Numbers Text="頁碼範圍:"/>
+      <Hint Text="輸入頁碼或者頁碼範圍,用逗號隔開.例如:1,3,5-12"/>
+      <Copies Text="副本"/>
+      <Count Text="份數:"/>
+      <Collate Text="逐份列印"/>
+      <Other Text="其他"/>
+      <OddEven Text="列印:"/>
+      <AllPages Text="所有頁"/>
+      <OddPages Text="奇數頁"/>
+      <EvenPages Text="偶數頁"/>
+      <Order Text="順序"/>
+      <OrderDirect Text="順序(1-9)"/>
+      <OrderReverse Text="逆序(9-1)"/>
+      <Duplex Text="雙面:"/>
+      <Source Text="默認紙盒:"/>
+      <PrintMode Text="列印模式"/>
+      <PrintModeDefault Text="默認"/>
+      <PrintModeSplit Text="分割大頁面"/>
+      <PrintModeScale Text="縮小頁面"/>
+      <PrintOnSheet Text="紙張類型"/>
+      <PagesOnSheet Text="每頁版數"/>
+      <PagesOnSheet1 Text="1頁"/>
+      <PagesOnSheet2 Text="2頁"/>
+      <PagesOnSheet4 Text="4頁"/>
+      <PagesOnSheet8 Text="8頁"/>
+      <Print Text="列印"/>
+      <Error Text="頁面範圍錯誤"/>
+    </PrinterSetup>
+    <QueryWizard Text="查詢嚮導">
+      <Page1 Text="設置名稱"/>
+      <SetName Text="設置查詢結果的名稱"/>
+      <NameHint Text="這個名稱將被顯示在&quot;數據&quot;窗口"/>
+      <Page2 Text="輸入SQL語句"/>
+      <WhatData Text="該查詢會返回哪些資料?"/>
+      <TypeSql Text="輸入SQL語句或者使用查詢分析器構建"/>
+      <QueryBuilder Text="查詢分析器"/>
+      <Page3 Text="定義參數"/>
+      <Page4 Text="定義列"/>
+      <Refresh Text="刷新列"/>
+      <AddColumn Text="增加計算列"/>
+      <AddParameter Text="增加參數"/>
+      <Delete Text="刪除"/>
+    </QueryWizard>
+    <RelationEditor Text="編輯關係">
+      <ParentTable Text="父表:"/>
+      <ChildTable Text="子表:"/>
+      <Parent Text="父"/>
+      <Child Text="子"/>
+      <Columns Text="欄位"/>
+      <Error Text="父和子的列數目不一致 "/>
+    </RelationEditor>
+    <ReportData Text="選擇報表資料">
+      <Hint Text="選擇報表中要使用的資料來源和欄位."/>
+      <Aliases Text="顯示別名"/>
+    </ReportData>
+    <ReportOptions Text="報表選項">
+      <General Text="一般"/>
+      <Description Text="描述"/>
+      <Script Text="腳本"/>
+      <Security Text="安全"/>
+      <Inheritance Text="集成"/>
+      <Name Text="名稱"/>
+      <Author Text="作者"/>
+      <Version Text="版本"/>
+      <Description1 Text="描述"/>
+      <Picture Text="圖片"/>
+      <SavePreviewPicture Text="保存預覽圖片"/>
+      <Load Text="載入"/>
+      <Clear Text="清除"/>
+      <Created Text="創建時間"/>
+      <Modified Text="修改時間"/>
+      <Language Text="指令碼語言"/>
+      <Note Text="說明:如果變更語言,所有腳本將被刪除!"/>
+      <RefAssemblies Text="引用程式集"/>
+      <Add Text="添加..."/>
+      <Password Text="密碼:"/>
+      <RetypePassword Text="重複密碼:"/>
+      <Inherited Text="這張報表是從其他報表繼承的."/>
+      <NotInherited Text="這張報表沒有繼承自其他報表"/>
+      <Choose Text="可選項:"/>
+      <DontChange Text="不改變"/>
+      <Detach Text="從繼承報表分離"/>
+      <Inherit Text="從報表繼承:"/>
+      <Browse Text="選擇..."/>
+      <DoublePass Text="雙通道"/>
+      <Compress Text="壓縮報表檔"/>
+      <UseFileCache Text="使用檔緩存"/>
+      <ConvertNulls Text="轉換空值"/>
+      <TextQuality Text="文本品質"/>
+      <SmoothGraphics Text="平滑圖片"/>
+      <QualityDefault Text="默認"/>
+      <QualityRegular Text="正常"/>
+      <QualityClearType Text="清晰"/>
+      <QualityAntiAlias Text="消除走樣"/>
+      <PasswordError Text="密碼不匹配.請重新輸入."/>
+    </ReportOptions>
+    <ReportPageOptions Text="報表頁面">
+      <Units Text="頁面單位"/>
+      <Millimeters Text="毫米"/>
+      <Centimeters Text="釐米"/>
+      <Inches Text="英寸"/>
+      <HundrethsOfInch Text="1%英寸"/>
+      <Grid Text="網格"/>
+      <ShowGrid Text="顯示網格"/>
+      <SnapToGrid Text="對齊到網格"/>
+      <DottedGrid Text="點網格"/>
+      <Size Text="網格大小"/>
+      <Markers Text="物件標記"/>
+      <Rectangle Text="矩形"/>
+      <Corners Text="圓角"/>
+      <BandView Text="段視圖"/>
+      <Structure Text="結構"/>
+      <Classic Text="經典"/>
+      <EditAfterInsert Text="插入後編輯"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="文字編輯器">
+      <Open Text="打開"/>
+      <Save Text="保存"/>
+      <Subscript Text="下標"/>
+      <Superscript Text="上標"/>
+      <Bullets Text="專案符號"/>
+      <Confirm Text="文本已經被改變.是否保存?"/>
+    </RichTextEditor>
+    <SearchReplace Text="查找和替換">
+      <Find Text="查找內容:"/>
+      <Replace Text="替換為:"/>
+      <Options Text="選項"/>
+      <MatchCase Text="大小寫匹配"/>
+      <MatchWholeWord Text="全字匹配"/>
+      <FindNext Text="查找下一個"/>
+      <ReplaceBtn Text="替換"/>
+      <ReplaceAll Text="全部替換"/>
+      <NotFound Text="未找到指定文本."/>
+      <NoMoreFound Text="查詢到達搜索的起點"/>
+    </SearchReplace>
+    <SelectDataSource Text="選擇資料來源">
+      <Hint Text="選擇一個或多個資料來源用於當前報表"/>
+      <AvailableDs Text="可用資料來源"/>
+      <SelectedDs Text="已選擇資料來源"/>
+    </SelectDataSource>
+    <SelectLanguage Text="選擇語言">
+      <SelectLanguage Text="可用語言清單"/>
+      <Auto Text="自動"/>
+      <Folder Text="當地語系化檔目錄"/>
+      <SelectFolder Text="選擇包含當地語系化檔的目錄"/>
+    </SelectLanguage>
+    <StandardReportWizard Text="標準報表嚮導">
+      <GroupsPage Text="創建組"/>
+      <CreateGroups Text="創建組(可選)"/>
+      <Groups Text="組"/>
+      <LayoutPage Text="定義佈局"/>
+      <DefineLayout Text="定義紙張方向和資料佈局"/>
+      <Orientation Text="紙張方向"/>
+      <Portrait Text="縱向"/>
+      <Landscape Text="橫向"/>
+      <Layout Text="佈局"/>
+      <Tabular Text="表格"/>
+      <Columnar Text="柱狀圖"/>
+      <StylePage Text="選擇樣式"/>
+      <Styles Text="選擇報表樣式"/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="文本集合編輯器"/>
+    <Style Text="格式編輯器">
+      <Styles Text="格式"/>
+      <Add Text="添加"/>
+      <Delete Text="刪除"/>
+      <Edit Text="編輯"/>
+      <Load Text="載入"/>
+      <Save Text="保存"/>
+      <Settings Text="設置"/>
+      <Border Text="邊框"/>
+      <Fill Text="填充"/>
+      <Font Text="字體"/>
+      <TextColor Text="文本顏色"/>
+      <StyleName Text="格式"/>
+    </Style>
+    <TextEditor Text="文字編輯器">
+      <WordWrap Text="自動換行"/>
+    </TextEditor>
+    <TotalEditor Text="匯總項編輯器">
+      <TotalName Text="匯總名稱"/>
+      <Total Text="匯總"/>
+      <Function Text="公式"/>
+      <DataColumnOrExpression Text="資料列或公式"/>
+      <DataBand Text="計算段中每一列"/>
+      <EvaluateCondition Text="計算滿足下面條件的行"/>
+      <PrintOn Text="在段上列印"/>
+      <Options Text="選項"/>
+      <ResetAfterPrint Text="列印後重置"/>
+      <ResetRepeated Text="段重複時重置"/>
+      <InvisibleRows Text="包含不可見行"/>
+      <Sum Text="合計"/>
+      <Min Text="最小值"/>
+      <Max Text="最大值"/>
+      <Avg Text="平均值"/>
+      <Count Text="計數"/>
+    </TotalEditor>
+    <WatermarkEditor Text="浮水印">
+      <Enabled Text="可用"/>
+      <Text Text="文本"/>
+      <TextItems Text="機密，影本，原始件，示例，緊急"/>
+      <Rotation Text="角度"/>
+      <Horizontal Text="水準"/>
+      <Vertical Text="垂直"/>
+      <ForwardDiagonal Text="對角線"/>
+      <BackwardDiagonal Text="逆對角線"/>
+      <Font Text="字體"/>
+      <Color Text="顏色"/>
+      <Picture Text="圖片"/>
+      <Load Text="載入"/>
+      <Clear Text="清除"/>
+      <Size Text="大小"/>
+      <Normal Text="正常"/>
+      <Stretch Text="拉伸"/>
+      <Zoom Text="放大"/>
+      <Tile Text="平鋪"/>
+      <Transparency Text="透明度"/>
+      <Zorder Text="疊放順序"/>
+      <TextOnTop Text="文本置頂"/>
+      <PictureOnTop Text="圖片置頂"/>
+      <ApplyToAll Text="應用到所有頁"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="伺服器"/>
+      <ServerLogon Text="登錄"/>
+      <UserName Text="用戶名"/>
+      <Password Text="密碼"/>
+      <Database Text="資料庫"/>
+      <DatabaseName Text="資料庫名稱"/>
+      <DatabaseFile Text="資料庫檔"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Windows認證"/>
+      <UseSql Text="SQL Server認證"/>
+      <SavePassword Text="保存密碼"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="連接字串:"/>
+      <Build Text="構建"/>
+    </OleDb>
+    <Xml>
+      <Xsd Text="XML架構文件"/>
+      <Xml Text="XML資料檔案"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="編輯"/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="自動擴大"/>
+      <CanShrink Text="自動縮小"/>
+      <GrowToBottom Text="填充至底部"/>
+      <Hyperlink Text="超連結..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="允許跨頁斷行"/>
+    </BreakableComponent>
+    <Band>
+      <StartNewPage Text="從新頁開始"/>
+      <PrintOnBottom Text="列印至頁底部"/>
+    </Band>
+    <DataBand>
+      <KeepTogether Text="緊跟"/>
+      <KeepDetail Text="緊跟明細"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="每頁重複"/>
+      <KeepWithData Text="緊跟數據"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="重置頁碼"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="填充未試用空間"/>
+      <CompleteToNRows Text="最少數據行"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="大小模式"/>
+      <AutoSize Text="自動大小"/>
+      <CenterImage Text="居中"/>
+      <Normal Text="正常"/>
+      <StretchImage Text="拉伸"/>
+      <Zoom Text="放大"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="格式"/>
+      <Clear Text="清除"/>
+      <AutoWidth Text="自動寬度"/>
+      <WordWrap Text="自動換行"/>
+      <AllowExpressions Text="允許使用公式"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="在父物件上列印"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="重複表頭"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="之前插入行"/>
+      <InsertBelow Text="之後插入行"/>
+      <AutoSize Text="自動大小"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="左邊插入列"/>
+      <InsertToRight Text="右邊插入列"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="合併儲存格"/>
+      <Split Text="分割儲存格"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="儲存格自動排列"/>
+      <ShowTitle Text="顯示標題列"/>
+      <Style Text="樣式"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="合計"/>
+      <Function Text="公式"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="編輯列..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="條碼類型"/>
+      <AutoSize Text="自動縮放"/>
+      <AutoEncode Text="自動編碼"/>
+      <CalcChecksum Text="計算校驗碼"/>
+      <ShowText Text="顯示文本"/>
+    </Barcode>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="計算便捷...."/>
+    </Table>
+    <Matrix>
+      <FillData Text="填充交叉表..."/>
+      <NewColumn Text="拖拽資料到這裡&#13;&#10;創建新列"/>
+      <NewRow Text="拖拽資料到這裡&#13;&#10;創建新行"/>
+      <NewCell Text="拖拽資料到這裡&#13;&#10;創建新儲存格"/>
+      <Total Text="合計"/>
+      <Title Text="標題"/>
+      <White Text="白色"/>
+      <Gray Text="灰色"/>
+      <Orange Text="橘紅色"/>
+      <Green Text="綠色"/>
+      <GreenOrange Text="綠色和橘紅色"/>
+      <Blue Text="藍色"/>
+      <BlueWhite Text="藍色和白色"/>
+      <GrayOrange Text="灰色和橘紅色"/>
+      <BlueOrange Text="藍色和橘紅色"/>
+      <OrangeWhite Text="橘紅色和白色"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="空報表"/>
+    <StandardReport Text="標準報表嚮導"/>
+    <InheritedReport Text="繼承的報表"/>
+    <Label Text="標籤嚮導"/>
+    <NewDataSource Text="新建資料來源"/>
+    <NewPage Text="新建報表頁"/>
+    <NewDialog Text="新建對話方塊"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="匯出耗時 {0} ms"/>
+      <OrderByCells Text="根據儲存格排序"/>
+      <AnalyzeObjects Text="分析物件"/>
+      <SavePage Text="保存頁"/>
+      <Wysiwyg Text="所見即所得"/>
+      <PageBreaks Text="頁間隔"/>
+      <OpenAfterExport Text="輸出後打開"/>
+      <Pictures Text="圖片"/>
+      <Options Text="選項"/>
+    </Misc>
+    <Image Text="輸出成圖片">
+      <File Text="圖形檔"/>
+      <ImageFormat Text="格式:"/>
+      <Resolution Text="解析度:"/>
+      <Quality Text="品質:"/>
+      <SeparateFiles Text="每頁單獨的檔"/>
+      <Bmp Text="Bitmap"/>
+      <Png Text="PNG"/>
+      <Jpeg Text="JPG"/>
+      <Gif Text="GIF"/>
+      <Tiff Text="TIFF"/>
+      <Metafile Text="Windows metafile"/>
+    </Image>
+    <RichText Text="輸出為 Rich Text文檔">
+      <File Text="Rich Text 文件"/>
+    </RichText>
+    <Text Text="輸出為Text/Matrix">
+      <File Text="文字檔輸出"/>
+      <EmptyLines Text="空行"/>
+      <DataOnly Text="只包含數據"/>
+      <Frames Text="邊框"/>
+      <FramesNone Text="無邊框"/>
+      <FramesText Text="文本"/>
+      <FramesGraphic Text="圖片"/>
+      <Codepage Text="編碼"/>
+      <Default Text="默認"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="X軸縮放:"/>
+      <ScaleY Text="Y軸縮放:"/>
+      <AutoScale Text="自動縮放"/>
+      <Printer Text="印表機"/>
+      <CopiesCount Text="頁數"/>
+      <PrinterType Text="列印類型"/>
+      <Commands Text="命令"/>
+      <PageWidth Text="頁寬:"/>
+      <PageHeight Text="頁高:"/>
+      <DataLoss Text="資料可能丟失,請增加X,Y大小"/>
+      <ScaleMessage Text="計算罪加大小"/>
+      <Scale Text="大小"/>
+    </Text>
+    <Csv Text="輸出為 CSV">
+      <File Text="CSV文件"/>
+      <Separator Text="分隔符號"/>
+      <Codepage Text="編碼"/>
+      <Default Text="默認"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="只包含數據"/>
+    </Csv>
+    <Xml Text="輸出為XML">
+      <File Text="XML (Excel) 文件"/>
+    </Xml>
+    <Odt Text="輸出為Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="輸出為Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Pdf Text="輸出為PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="輸出"/>
+      <Compressed Text="壓縮"/>
+      <EmbeddedFonts Text="包含字體檔"/>
+      <Background Text="後臺"/>
+      <PrintOptimized Text="列印選項"/>
+      <Information Text="信息"/>
+      <DocumentInformation Text="文檔信息"/>
+      <Title Text="標題"/>
+      <Author Text="作者"/>
+      <Subject Text="主體"/>
+      <Keywords Text="關鍵字"/>
+      <Creator Text="作者"/>
+      <Producer Text="公司"/>
+      <Security Text="安全"/>
+      <Authentification Text="認證"/>
+      <OwnerPassword Text="所有者密碼"/>
+      <UserPassword Text="使用者密碼"/>
+      <Permissions Text="許可權"/>
+      <PrintTheDocument Text="列印文檔"/>
+      <ModifyTheDocument Text="修改文檔"/>
+      <CopyOfTextAndGraphics Text="複製文本和圖形"/>
+      <AddOrModifyTextAnnotations Text="添加或修改注釋"/>
+      <Viewer Text="流覽器"/>
+      <ViewerPreferences Text="流覽器外觀"/>
+      <HideToolbar Text="隱藏工具列"/>
+      <HideMenubar Text="隱藏菜單"/>
+      <HideWindowUserInterface Text="隱藏視窗使用者介面"/>
+      <FitWindow Text="全屏"/>
+      <CenterWindow Text="窗口居中"/>
+      <PrintScaling Text="列印縮放"/>
+      <PrintAfterOpenOfDocument Text="打開文檔後列印"/>
+      <Outline Text="大綱"/>
+    </Pdf>
+    <Html Text="輸出為HTML">
+      <File Text="HTML文件"/>
+      <SinglePage Text="單頁"/>
+      <SubFolder Text="子資料夾"/>
+      <Navigator Text="導航"/>
+      <Total Text="共"/>
+      <First Text="第一頁"/>
+      <Last Text="最後一頁"/>
+      <Prev Text="上一頁"/>
+      <Next Text="下一頁"/>
+    </Html>
+    <Email Text="發送郵件">
+      <Email Text="郵件"/>
+      <Account Text="帳號"/>
+      <Address Text="地址:"/>
+      <Subject Text="主題"/>
+      <Message Text="內容"/>
+      <Attachment Text="附件"/>
+      <Settings Text="設置"/>
+      <Name Text="姓名:"/>
+      <Template Text="範本:"/>
+      <Host Text="主機位址:"/>
+      <Port Text="埠:"/>
+      <UserName Text="用戶名:"/>
+      <Password Text="密碼:"/>
+      <AddressError Text="位址不能為空."/>
+      <HostError Text="主機位址不能為空"/>
+      <SendingEmail Text="發送郵件-{0}Kb"/>
+    </Email>
+  </Export>
+  <Properties>
+    <Categories>
+      <Appearance Text="外觀"/>
+      <Behavior Text="行為"/>
+      <Build Text="構建"/>
+      <Data Text="數據"/>
+      <Design Text="設計"/>
+      <Events Text="事件"/>
+      <Hierarchy Text="繼承"/>
+      <Layout Text="佈局"/>
+      <Misc Text="其他"/>
+      <Navigation Text="導航"/>
+      <Preview Text="預覽"/>
+    </Categories>
+  </Properties>
+</Language>

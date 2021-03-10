@@ -1,0 +1,1593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="nl" Author="Teo Super &lt;teo@teowin-software.nl&gt;">
+  <Buttons>
+    <Ok Text="OK"/>
+    <Cancel Text="Annuleer"/>
+    <Close Text="Sluiten"/>
+    <MoreOptions Text="Meer opties"/>
+    <LessOptions Text="Minder opties"/>
+    <Actions Text="Acties"/>
+    <Previous Text="&lt; Vorige"/>
+    <Next Text="Volgende &gt;"/>
+    <Finish Text="Voltooien"/>
+    <Advanced Text="Meer..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Data ophalen..."/>
+    <CantFindObject Text="Kan object niet vinden:"/>
+    <CantLoadReport Text="Kan rapport niet laden: "/>
+    <CantSaveReport Text="Kan rapport niet opslaan. Controleer schrijfbeveleiliging"/>
+    <ClassError Text="Kan de hoofdklasse van het rapport, ReportScript, niet vinden"/>
+    <Confirmation Text="Bevestiging"/>
+    <DataNotInitialized Text="Datasource is niet geinitialiseerd"/>
+    <DecompressError Text="Kan bestand niet uitpakken"/>
+    <DecryptError Text="Decrypt fout: onjuist wachtwoord"/>
+    <DelegateError Text="{0} delegate vereist twee argumenten: 'sender' en 'e'"/>
+    <DeleteAncestor Text="Kan {0} niet verwijderen, het is onderdeel van een anchestor rapport"/>
+    <DuplicateName Text="Object met naam {0} bestaat al"/>
+    <DuplicateStyle Text="Stijl met deze naam bestaat al"/>
+    <Error Text="Fout"/>
+    <EventError Text="Can eventhandler niet maken vanwege fout in broncode"/>
+    <ExportingPage Text="Exporteren pagina {0} van {1}"/>
+    <GeneratingPage Text="Genereren pagina {0}"/>
+    <GeneratingPageFirstPass Text="Voorbereiden: genereren pagina {0}"/>
+    <Information Text="Informatie"/>
+    <MatrixError Text="{0}: Matrix object moet uit tenminste één kolom of rij en één cell dimensie bestaan"/>
+    <MatrixValueError Text="Aantal waarden verschilt van MatrixData.Cells.Count (moet zijn {0})"/>
+    <ParentError Text="Object van type {0} kan geen objecten van type {1} bevatten"/>
+    <ParentError1 Text="Object van type {0} kan geen objecten bevatten"/>
+    <Performance Text="Gegenereerd in {0} ms"/>
+    <PreparingData Text="Voorbereiden gegevens..."/>
+    <PrintingPage Text="Afdrukken pagina {0}"/>
+    <RenameAncestor Text="Kan {0} niet hernoemen, geintroduceerd in het anchestor rapport"/>
+    <SaveChanges Text="Wijzigingen in {0} opslaan?"/>
+    <SaveChangesToPreviewPage Text="Wijzigingen in afdrukvoorbeeld opslaan?"/>
+    <TableIsNull Text="Table is niet verbonden met databron. Stel databron in met de Report.RegisterData methode."/>
+    <TableManualBuildError Text="U kunt TableObject.PrintRow en PrintColumn methodes alleen binnen het ManualBuild event gebruiken."/>
+    <Warning Text="Waarschuwing"/>
+    <WrongFileFormat Text="Kan bestand niet laden. Onbekend bestandsformaat"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Voorbeeld"/>
+    <None Text="Geen"/>
+    <PageN Text="Pagina {0}"/>
+    <PageNofM Text="Pagina {0} van {1}"/>
+    <ofM Text="van {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Rapport"/>
+    <ReportPage Text="Pagina"/>
+    <DialogPage Text="Dialoog"/>
+    <XmlDataConnection Text="XML database"/>
+    <OleDbDataConnection Text="OLE DB connectie"/>
+    <MsAccessDataConnection Text="MS Access connectie"/>
+    <MsSqlDataConnection Text="MS SQL connectie"/>
+    <OdbcDataConnection Text="ODBC connectie"/>
+    <FirebirdDataConnection Text="Firebird connectie"/>
+    <VistaDBDataConnection Text="VistaDB connectie"/>
+    <PostgresDataConnection Text="Postgres connectie"/>
+    <MySqlDataConnection Text="MySQL connectie"/>
+    <OracleDataConnection Text="Oracle connectie"/>
+    <SQLiteDataConnection Text="SQLite connectie"/>
+    <SqlCeDataConnection Text="SQL CE connectie"/>
+    <Bands Text="Bands">
+      <ReportTitle Text="Rapport Titel"/>
+      <ReportSummary Text="Rapport samenvatting"/>
+      <PageHeader Text="Paginakop"/>
+      <PageFooter Text="Pagina voettekst"/>
+      <ColumnHeader Text="Kolomkop"/>
+      <ColumnFooter Text="Kolomvoettekst"/>
+      <DataHeader Text="Kop"/>
+      <DataFooter Text="Voettekst"/>
+      <Data Text="Data"/>
+      <GroupHeader Text="Groepskop"/>
+      <GroupFooter Text="Groepvoettekst"/>
+      <Child Text="Sub"/>
+      <Overlay Text="Overlay"/>
+    </Bands>
+    <TextObject Text="Tekst"/>
+    <Shapes Text="Vormen">
+      <Line Text="Lijn"/>
+      <DiagonalLine Text="Diagonale Lijn"/>
+      <Rectangle Text="Rechthoek"/>
+      <RoundRectangle Text="Rechthoek met ronde hoeken"/>
+      <Ellipse Text="Ellips"/>
+      <Triangle Text="Driehoek"/>
+      <Diamond Text="Ruit"/>
+    </Shapes>
+    <PictureObject Text="Afbeelding"/>
+    <TableObject Text="Tabel"/>
+    <MatrixObject Text="Matrix"/>
+    <SubreportObject Text="Subrapport"/>
+    <BarcodeObject Text="Barcode"/>
+    <RichObject Text="Rich Tekst"/>
+    <MSChartObject Text="MS Grafiek"/>
+    <ZipCodeObject Text="Postcode"/>
+    <CellularTextObject Text="Celtekst"/>
+    <CheckBoxObject Text="Checkbox"/>
+    <ButtonControl Text="Knop"/>
+    <CheckBoxControl Text="Checkbox"/>
+    <CheckedListBoxControl Text="Checked Listbox"/>
+    <ComboBoxControl Text="Selectie"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DatumTijdKiezer"/>
+    <GroupBoxControl Text="GroepBox"/>
+    <LabelControl Text="Tekst"/>
+    <ListBoxControl Text="Lijst"/>
+    <ListViewControl Text="Listview"/>
+    <MaskedTextBoxControl Text="Tekstbox met invoermasker"/>
+    <MonthCalendarControl Text="Maandkalender"/>
+    <NumericUpDownControl Text="Numeriek"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="Afbeelding"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextEdit"/>
+    <TextBoxControl Text="Edit"/>
+    <TreeViewControl Text="TreeView"/>
+  </Objects>
+  <Functions>
+    <Math Text="Wiskundig"/>
+    <Text Text="Tekst"/>
+    <DateTime Text="Datum &amp; Tijd"/>
+    <Formatting Text="Opmaak"/>
+    <Conversion Text="Conversie"/>
+    <ProgramFlow Text="Programma Stroom"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Rapport bestand (*.frx)|*.frx"/>
+    <PreparedReport Text="Gegenereerd rapport (*.fxp)|*.fxp"/>
+    <Style Text="Rapport stijlen (*.frs)|*.frs"/>
+    <Dictionary Text="Bibliotheek (*.frd)|*.frd"/>
+    <Localization Text="Taalbestand (*.frl)|*.frl"/>
+    <XsdFile Text="XML schema definitie (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML bestand (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text bestand (*.rtf)|*.rtf"/>
+    <Images Text="Afbeeldingen|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Printer bestand (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap afbeelding (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG afbeelding (*.png)|*.png"/>
+    <JpegFile Text="JPG afbeelding (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF afbeelding (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF afbeelding (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML bestand (*.html)|*.html"/>
+    <MhtFile Text="Web-archive bestand (*.mht)|*.mht"/>
+    <OdtFile Text="Open Office Writer bestand (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc bestand (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat bestand (*.pdf)|*.pdf"/>
+    <TxtFile Text="Tekstbestand  (*.txt)|*.txt"/>
+    <CsvFile Text="Komma gescheiden waarden (*.csv)|*.csv"/>
+    <DbfFile Text="dBase database (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel bestand (*.xml)|*.xml"/>
+    <CsFile Text="C# bestand (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net bestand (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird database (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB database (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="MS Excel boek (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint presentatie (*.pptx)|*.pptx"/>
+    <SdfFile Text="SQL CE database (*.sdf)|*.sdf"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MMMM dd, yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Onwaar"/>
+    <BooleanF2 Text="Nee"/>
+    <BooleanF3 Text="Uit"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Waar"/>
+    <BooleanT2 Text="Ja"/>
+    <BooleanT3 Text="Aan"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefoon;(0000) 000000"/>
+    <Custom2 Text="Telefoon internationaal; +(0000) 000000000"/>
+    <Custom3 Text="Burgerservicenummer; 00 00 00 000"/>
+    <Custom4 Text="Postcode: 0000 AA"/>
+    <Custom5 Text="Postcode internationaal; 00 000000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Bestand">
+        <New Text="Nieuw"/>
+        <Open Text="Open"/>
+        <Close Text="Sluiten"/>
+        <Save Text="Opslaan"/>
+        <SaveAs Text="Opslaan als"/>
+        <SaveAll Text="Alles opslaan"/>
+        <PageSetup Text="Pagina instellingen"/>
+        <PrinterSetup Text="Printer instellingen"/>
+        <Preview Text="Afdrukvoorbeeld"/>
+        <SelectLanguage Text="Kies Taal..."/>
+        <Exit Text="Afsluiten"/>
+      </File>
+      <Edit Text="Wijzig">
+        <Undo Text="Herstel"/>
+        <Redo Text="Herhaal"/>
+        <Cut Text="Knippen"/>
+        <Copy Text="Kopieeren"/>
+        <Paste Text="Plakken"/>
+        <Delete Text="Verwijderen"/>
+        <DeletePage Text="Verwijder Pagina"/>
+        <SelectAll Text="Selecteer Alles"/>
+        <Group Text="Groeperen"/>
+        <Ungroup Text="De-Groeperen"/>
+        <Find Text="Zoeken..."/>
+        <Replace Text="Vervangen..."/>
+      </Edit>
+      <View Text="Scherm">
+        <StartPage Text="Begin Pagina"/>
+        <Toolbars Text="Knoppenbalken"/>
+        <Options Text="Opties..."/>
+        <Grid Text="Raster"/>
+        <Guides Text="Guides"/>
+        <AutoGuides Text="Automatische Guides"/>
+        <DeleteHGuides Text="Wis horizontale Guides"/>
+        <DeleteVGuides Text="Wis verticale Guides"/>
+        <Units Text="Maateenheden"/>
+      </View>
+      <Insert Text="Invoegen"/>
+      <Report Text="Rapport">
+        <Bands Text="Bands Instellen"/>
+        <Styles Text="Stijlen..."/>
+        <GroupExpert Text="Groep Expert..."/>
+        <Options Text="Opties..."/>
+      </Report>
+      <Data Text="Gegevens">
+        <ShowData Text="Toon Gegevens Venster"/>
+        <Add Text="Databron toevoegen..."/>
+        <Choose Text="Rapport data kiezen..."/>
+      </Data>
+      <Window Text="Venster">
+        <CloseAll Text="Sluit alle vensters"/>
+      </Window>
+      <Help Text="Help">
+        <Contents Text="Help Inhoud..."/>
+        <About Text="Over..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="Eigenschappen">
+        <PropertiesTab Text="Eigenschappen"/>
+        <EventsTab Text="Gebeurtenissen"/>
+        <NObjectsSelected Text="{0} objecten geselecteerd"/>
+      </Properties>
+      <ReportTree Text="Rapport Structuur"/>
+      <Dictionary Text="Gegevens">
+        <DataSources Text="Databronnen"/>
+        <Parameters Text="Parameters"/>
+        <SystemVariables Text="Systeemvariabelen"/>
+        <Totals Text="Totalen"/>
+        <Functions Text="Functies"/>
+        <DialogControls Text="Dialoog controls"/>
+        <New Text="Nieuwe Gegevensbibliotheek"/>
+        <Open Text="Open Gegevensbibliotheek"/>
+        <Save Text="Gevensbibliotheek Opslaan"/>
+        <Merge Text="Bibliotheken samenvoegen..."/>
+        <NewDataSource Text="Nieuwe Databron..."/>
+        <NewRelation Text="Nieuwe Relatie..."/>
+        <NewParameter Text="Nieuwe Parameter"/>
+        <NewTotal Text="Nieuw Totaal..."/>
+        <NewCalculatedColumn Text="Nieuwe berekende kolom..."/>
+        <Rename Text="Hernoem"/>
+        <Edit Text="Wijzig..."/>
+        <Delete Text="Verwijder"/>
+        <DeleteAlias Text="Verwijder Alias"/>
+        <View Text="Toon Gegevens..."/>
+        <DuplicateName Text="Item met die naam bestaat reeds"/>
+        <NRows Text="{0} rij(en)"/>
+      </Dictionary>
+      <Messages Text="Berichten">
+        <Description Text="Beschrijving"/>
+        <Line Text="Regel"/>
+        <Column Text="Kolom"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Knoppen Toevoegen of Verwijderen"/>
+      <Reset Text="Knoppenbalk resetten"/>
+      <Standard Text="Standaard">
+        <New Text="Nieuw Item Toevoegen"/>
+        <Open Text="Rapport Openen (CTRL+O)"/>
+        <Save Text="Rapport Opslaan (CTRL + S)"/>
+        <SaveAll Text="Alles Opslaan (CTRL+SHIFT+S)"/>
+        <Preview Text="Afdrukvoorbeeld (CTRL+P)"/>
+        <NewPage Text="Nieuwe Rapport Pagina"/>
+        <NewDialog Text="Nieuwe Dialoog"/>
+        <DeletePage Text="Verwijder Pagina"/>
+        <PageSetup Text="Pagina Instellingen"/>
+        <Cut Text="Knippen (CTRL+X)"/>
+        <Copy Text="Kopieer (CTRL+C)"/>
+        <Paste Text="Plakken (CTRL+V)"/>
+        <FormatPainter Text="Opmaak"/>
+        <Undo Text="Herstel (CTRL+Z)"/>
+        <Redo Text="Herhaal"/>
+        <Group Text="Groepeer"/>
+        <Ungroup Text="De-Groupeer"/>
+      </Standard>
+      <Text Text="Tekst">
+        <Name Text="Lettertype"/>
+        <Size Text="Lettergrootte"/>
+        <Bold Text="Vet"/>
+        <Italic Text="Cursief"/>
+        <Underline Text="Onderstreept"/>
+        <Left Text="Links uitlijnen"/>
+        <Center Text="Centreren"/>
+        <Right Text="Rechts uitlijnen"/>
+        <Justify Text="Uitvullen"/>
+        <Top Text="Boven uitlijnen"/>
+        <Middle Text="Midden uitlijnen"/>
+        <Bottom Text="Onder uitlijnen"/>
+        <Color Text="Tekstkleur"/>
+        <Highlight Text="Markeren"/>
+        <Angle Text="Teksthoek"/>
+      </Text>
+      <Border Text="Kader en opvulling">
+        <Top Text="Lijn boven"/>
+        <Bottom Text="Lijn onder"/>
+        <Left Text="Lijn links"/>
+        <Right Text="Lijn rechts"/>
+        <All Text="Kader rondom"/>
+        <None Text="Geen kader"/>
+        <FillColor Text="Opvulkleur"/>
+        <FillStyle Text="Opvulstijl"/>
+        <LineColor Text="Randkleur"/>
+        <Width Text="Randdikte"/>
+        <Style Text="Rand stijl"/>
+        <Props Text="Rand eigenschappen..."/>
+      </Border>
+      <Style Text="Stijl">
+        <Styles Text="Stijlen"/>
+        <SelectStyle Text="Selecteer Stijl"/>
+        <NoStyle Text="Geen stijl"/>
+      </Style>
+      <Layout Text="Opmaak">
+        <AlignToGrid Text="Uitlijnen op Raster"/>
+        <Left Text="Links Uitlijnen"/>
+        <Center Text="Centreren"/>
+        <Right Text="Rechts Uitlijnen"/>
+        <Top Text="Boven Uitlijnen"/>
+        <Middle Text="Midden Uitlijnen"/>
+        <Bottom Text="Onder Uitlijnen"/>
+        <SameWidth Text="Zelfde Breedte"/>
+        <SameHeight Text="Zelfde Hoogte"/>
+        <SameSize Text="Zelfde Grootte"/>
+        <SizeToGrid Text="Afmeting aan Raster aanpassen"/>
+        <SpaceHorizontally Text="Horizontale ruimte"/>
+        <IncreaseHorizontalSpacing Text="Horizontale Ruimte vergroten"/>
+        <DecreaseHorizontalSpacing Text="Horizontale Ruimte Verkleinen"/>
+        <RemoveHorizontalSpacing Text="Horizontale Ruimte Verwijderen"/>
+        <SpaceVertically Text="Verticale Ruimte"/>
+        <IncreaseVerticalSpacing Text="Verticale Ruimte Vergroten"/>
+        <DecreaseVerticalSpacing Text="Verticale Ruimte Verkleinen"/>
+        <RemoveVerticalSpacing Text="Verticale Ruimte Verwijderen"/>
+        <CenterHorizontally Text="Horizontaal Centreren"/>
+        <CenterVertically Text="Verticaal Centreren"/>
+        <BringToFront Text="Naar Voren"/>
+        <SendToBack Text="Naar Achtergrond"/>
+      </Layout>
+      <Objects Text="Objecten">
+        <Select Text="Selecteer"/>
+      </Objects>
+      <Zoom Text="Zoom">
+        <ZoomOut Text="Uitzoomen"/>
+        <ZoomIn Text="Inzoomen"/>
+        <Zoom Text="Zoom"/>
+        <PageWidth Text="Pagina breedte"/>
+        <WholePage Text="Hele Pagina"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Code"/>
+      <Report>
+        <ConfigureBands Text="Bands Instellen..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Opties"/>
+    <UndoRedo>
+      <Delete Text="Verwijder {0}"/>
+      <Move Text="Verplaats {0}"/>
+      <Size Text="Pas formaat {0} aan"/>
+      <Change Text="Wijzig {0}"/>
+      <AddGuide Text="Guide toevoegen"/>
+      <MoveGuide Text="Guide verplaatsen"/>
+      <DeleteHGuides Text="Horzontale Guides wissen"/>
+      <DeleteVGuides Text="Verticale Guides wissen"/>
+      <ResizeBand Text="Afmetingen band aanpassen"/>
+      <ChangeParent Text="Ouderobject van {0} aanpassen"/>
+      <Load Text="Rapport laden"/>
+      <Paste Text="Plakken"/>
+      <Insert Text="Invoegen {0}"/>
+      <AddPage Text="Pagina toevoegen {0}"/>
+      <DeletePage Text="Pagina verwijderen"/>
+      <Script Text="Script gewijzigd"/>
+      <NObjects Text="{0} objecten"/>
+      <UndoN Text="Herstel {0} actie(s)"/>
+      <RedoN Text="Herhaal {0} actie(s)"/>
+      <ChangeReport Text="Wijzig rapport"/>
+      <ChangePagesOrder Text="Paginavolgorde aanpassen"/>
+      <EditPage Text="Pagina wijzigen"/>
+      <EditPrinter Text="Printer instellingen aanpassen"/>
+      <EditReport Text="Rapportinstellingen aanpassen"/>
+      <SelectData Text="Selecteer gegevens"/>
+      <EditData Text="Wijzig gegevens"/>
+    </UndoRedo>
+    <StartPage Text="Startpagina"/>
+    <Untitled Text="Onbekend.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Eigen"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="Systeem"/>
+      <Other Text="Overige kleuren..."/>
+      <Transparency Text="Doorzichtigheid:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Voorbeeld">
+    <PrintText Text="Afdrukken"/>
+    <Print Text="Afdrukken (CTRL+P)"/>
+    <Open Text="Open"/>
+    <Save Text="Opslaan"/>
+    <SaveText Text="Opslaan"/>
+    <Email Text="Verstuur per E-mail"/>
+    <Find Text="Zoek Tekst"/>
+    <Outline Text="Outline"/>
+    <PageSetup Text="Pagina Instellingen"/>
+    <Edit Text="Wijzig Pagina"/>
+    <Watermark Text="Watermerk"/>
+    <First Text="Eerste Pagina"/>
+    <Prior Text="Vorige Pagina"/>
+    <Next Text="Volgende Pagina"/>
+    <Last Text="Laatste Pagina"/>
+    <SaveNative Text="Gegenereerd Rapport"/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="Nieuw Item Toevoegen">
+      <Add Text="Toevoegen"/>
+      <Reports Text="Rapport definities"/>
+      <ReportItems Text="Rapport Items:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Uitgebreide Eigenschappen"/>
+    <AskPassword Text="Wachtwoord">
+      <Password Text="Dit rapport is beveiligd met een wachtwoord.&#13;&#10;&#13;&#10;Voer het wachtwoord in:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Database Login">
+      <Login Text="Login:"/>
+      <Password Text="Wachtwoord:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Selecteer databron"/>
+      <SelectDataSource Text="Selecteer een databron of maak een nieuwe:"/>
+      <CreateNewDatasource Text="Nieuwe databron aanmaken..."/>
+      <SelectColumnsPage Text="Selecteer gegevenskolommen"/>
+      <SelectColumns Text="Selecteer gegevenskolommen die u in het rapport wilt weergeven."/>
+      <AvailableColumns Text="Beschikbare kolommen:"/>
+      <SelectedColumns Text="Geselecteerde kolommen:"/>
+    </BaseReportWizard>
+    <Border Text="Randen Aanpassen">
+      <Border Text="Rand"/>
+      <Line Text="Lijn"/>
+      <Shadow Text="Schaduw"/>
+      <Style Text="Stijl:"/>
+      <Width Text="Dikte:"/>
+      <Color Text="Kleur:"/>
+      <Hint Text="Kies de lijnstijl en selecteer een lijn om de stijl op toe te passen."/>
+    </Border>
+    <ChartEditor Text="Grafiek Editor">
+      <Chart Text="Grafiek"/>
+      <Add Text="Toevoegen..."/>
+      <Delete Text="Verwijder"/>
+      <Hint Text="Selecteer een item om de eigenschappen in te stellen:"/>
+      <Common>
+        <Color Text="Kleur:"/>
+        <BackColor Text="Achtergrond:"/>
+        <SecondaryColor Text="Tweede kleur:"/>
+        <Gradient Text="Verloop:"/>
+        <HatchStyle Text="Patroon:"/>
+        <BorderColor Text="Randkleur:"/>
+        <BorderStyle Text="Randstijl:"/>
+        <BorderWidth Text="Randdikte:"/>
+        <ShadowColor Text="Schaduwkleur:"/>
+        <ShadowOffset Text="Schaduw offset:"/>
+        <LineColor Text="Lijnkleur:"/>
+        <LineStyle Text="Lijnstijl:"/>
+        <LineWidth Text="Lijndikte:"/>
+        <Text Text="Tekst:"/>
+        <Font Text="Lettertype:"/>
+        <ForeColor Text="Tekstkleur:"/>
+        <Dock Text="Dock:"/>
+        <InsideChartArea Text="Binnen grafiek"/>
+        <Format Text="Formattering:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Gegevens">
+          <DataSource Text="Databron:"/>
+          <Filter Text="Filter:"/>
+          <AutoSeries Text="Automatisch gegenereerde series"/>
+          <DataColumn Text="Gegevenskolom:"/>
+          <ColorColumn Text="Kleurkolom:"/>
+          <SeriesSort Text="Sortering:"/>
+          <AlignXValues Text="X Waarden uitlijnen"/>
+        </Data>
+        <Appearance Text="Weergave">
+          <Template Text="Sjabloon"/>
+          <Load Text="Laden.."/>
+          <Save Text="Opslaan..."/>
+          <SeriesPalette Text="Serie palet:"/>
+          <BorderSkin Text="Rand:"/>
+        </Appearance>
+        <ChartArea Text="Grafiek">
+          <Area Text="Bereik:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="3D Aanzetten"/>
+          <XRotation Text="X rotatie:"/>
+          <YRotation Text="Y rotatie:"/>
+          <Perspective Text="Perspectief:"/>
+          <WallWidth Text="Wand breedte:"/>
+          <AxisDepth Text="As Diepte:"/>
+          <LightStyle Text="Licht:"/>
+          <ClusteredSeries Text="Geclusterde series"/>
+        </ThreeD>
+        <Axes Text="Assen">
+          <Axis Text="As:"/>
+          <CopyFromX Text="Kopieer weergave van X-as"/>
+          <CopyFromPrimary Text="Kopieer weergave instellingen van primaire Y-as"/>
+          <Minor Text="Minor"/>
+          <Major Text="Major"/>
+          <General Text="Algemeen">
+            <Enabled Text="Ingeschakeld"/>
+            <MarginVisible Text="Marge zichtbaar"/>
+            <Logarithmic Text="Logaritmisch"/>
+            <Reversed Text="Tegengesteld"/>
+            <Interval Text="Interval"/>
+            <Interlaced Text="Interlaced"/>
+            <InterlacedColor Text="Interlace kleur:"/>
+          </General>
+          <Labels Text="Teksten">
+            <Enabled Text="Ingeschakeld"/>
+            <Angle Text="Rotatie:"/>
+          </Labels>
+          <Title Text="Titel"/>
+          <CustomLabels Text="Eigen labels">
+            <Label Text="Label"/>
+            <Start Text="Start:"/>
+            <End Text="Eind:"/>
+            <Row Text="Rij:"/>
+            <MarkColor Text="Markeerkleur:"/>
+            <MarkStyle Text="Markeerstijl:"/>
+          </CustomLabels>
+          <Grid Text="Raster">
+            <GridLine Text="Rasterlijn:"/>
+            <Enabled Text="Ingeschakeld"/>
+          </Grid>
+          <Ticks Text="Tekens">
+            <Ticks Text="Tekens:"/>
+            <Enabled Text="Ingeschakeld"/>
+            <TickStyle Text="Stijl:"/>
+            <TickSize Text="Grootte:"/>
+          </Ticks>
+          <Strips Text="Strips">
+            <Strip Text="Strip"/>
+            <Interval Text="Interval">
+              <Start Text="Start:"/>
+              <Width Text="Breedte:"/>
+              <Interval Text="Interval:"/>
+            </Interval>
+            <Appearance Text="Weergave"/>
+            <Text Text="Tekst">
+              <HorizontalAlign Text="Horizontale uitlijning:"/>
+              <VerticalAlign Text="Verticale uitlijning:"/>
+              <TextOrientation Text="Tekst oriëntatie:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Legenda">
+          <Enabled Text="Ingeschakeld"/>
+          <StyleColumn Text="Kolom"/>
+          <StyleRow Text="Rij"/>
+          <StyleTable Text="Tabel"/>
+          <General Text="Algemeen">
+            <LegendStyle Text="Legenda Stijl:"/>
+          </General>
+          <Appearance Text="Weergave"/>
+        </Legend>
+        <Title Text="Titel">
+          <Visible Text="Zichtbaar"/>
+          <General Text="Algemeen">
+            <TextOrientation Text="Tekst oriëntatie:"/>
+            <TextStyle Text="Tekst stijl:"/>
+          </General>
+          <Appearance Text="Weergave"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Gegevens">
+          <Name Text="Naam:"/>
+          <XValue Text="X-Waarde:"/>
+          <Color Text="Kleur:"/>
+          <Filter Text="Filter:"/>
+          <XValueType Text="X-Waarde type:"/>
+          <YValueType Text="Y-Waarde type:"/>
+          <XAxisType Text="X-As:"/>
+          <YAxisType Text="Y-As:"/>
+          <PrimaryAxis Text="Primair"/>
+          <SecondaryAxis Text="Secundair"/>
+          <SeriesValues>
+            <YValue Text="Y-Waarde:"/>
+            <High Text="Hoog:"/>
+            <Low Text="Laag:"/>
+            <Open Text="Open:"/>
+            <Close Text="Sluiten:"/>
+            <RangeBegin Text="Bereik start:"/>
+            <RangeEnd Text="Bereik einde:"/>
+            <Size Text="Afmeting:"/>
+            <YValue1 Text="Y-Waarde 1:"/>
+            <YValue2 Text="Y-Waarde 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Waarden"/>
+        <DataProcessing Text="Gegevensverwerking">
+          <SortBy Text="Sorteer op:"/>
+          <SortByX Text="X-Waarde"/>
+          <SortByY Text="Y-Waarde"/>
+          <SortOrder Text="Sorteervolgorde:"/>
+          <GroupBy Text="Groupeer op:">
+            <None Text="Geen"/>
+            <XValue Text="X-Waarde"/>
+            <Number Text="Nummer"/>
+            <Years Text="Jaren"/>
+            <Months Text="Maanden"/>
+            <Weeks Text="Weken"/>
+            <Days Text="Dagen"/>
+            <Hours Text="Uren"/>
+            <Minutes Text="Minuten"/>
+            <Seconds Text="Seconden"/>
+            <Milliseconds Text="Milliseconden"/>
+          </GroupBy>
+          <GroupInterval Text="Groep interval:"/>
+          <GroupFunction Text="Groep functie:"/>
+          <CollectData Text="Gegevens verzamelen:">
+            <None Text="Geen"/>
+            <TopN Text="EersteN"/>
+            <BottomN Text="LaatsteN"/>
+            <LessThan Text="Minder dan waarde"/>
+            <LessThanPercent Text="Minder dan percentage"/>
+            <GreaterThan Text="Groter dan waarde"/>
+            <GreaterThanPercent Text="Groter dan percentage"/>
+          </CollectData>
+          <Value Text="Waarde:"/>
+          <CollectedText Text="Verzamelde gegevens tekst:"/>
+          <CollectedColor Text="Verzamelde gegevens kleur:"/>
+          <Explode Text="Toon:">
+            <None Text="Geen"/>
+            <Biggest Text="Grootste waarde"/>
+            <Lowest Text="Kleinste waarde"/>
+            <Specific Text="Specifieke waarde"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Weergave">
+          <Default Text="Standaard"/>
+          <DrawingStyle Text="Teken stijl:"/>
+          <PointWidth Text="Punt breedte:"/>
+          <LabelsStyle Text="Tekst stijl:"/>
+          <DrawSideBySide Text="Teken naast elkaar"/>
+          <ShowMarkerLines Text="Toon marker lijnen"/>
+          <DoughnutRadius Text="Doughnut radius (%):"/>
+          <AreaDrawingStyle Text="Tekenstijl bereik:"/>
+          <Markers Text="Markers:"/>
+          <PriceUpColor Text="Kleur:"/>
+          <ReversalAmount Text="Waarde:"/>
+          <BoxSize Text="Kader grootte:"/>
+          <NumberOfLinesInBreak Text="Aantal regels:"/>
+          <LabelsPlacement Text="Tekst plaatsing:"/>
+          <PointsGap Text="Ruimte tussen punten:"/>
+          <MinPointHeight Text="Minimale punt grootte:"/>
+          <ValueType Text="Gegevens type:"/>
+          <ThreeDDrawingStyle Text="3D tekenstijl:"/>
+          <ThreeDRotation Text="3D rotatie:"/>
+          <FunnelStyle Text="Funnel stijl:"/>
+          <LineTension Text="lijn sterkte:"/>
+          <NoSettings Text="Geen specifieke instellingen voor dit type."/>
+        </Appearance>
+        <FillBorder Text="Rand &amp;&amp; Vulling">
+          <Palette Text="Palette:"/>
+        </FillBorder>
+        <Labels Text="Teksten">
+          <LabelView Text="Tekst weergave:"/>
+          <Pattern Text="Patroon:"/>
+        </Labels>
+        <Markers Text="Markers">
+          <Style Text="Stijl:"/>
+          <Size Text="Grootte:"/>
+          <Step Text="Stap:"/>
+          <Color Text="Kleur:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Gallerij">
+      <NewArea Text="Voeg nieuwe grafiek toe voor deze serie"/>
+      <Categories>
+        <BarColumn Text="Staaf en Kolom"/>
+        <Area Text="Area"/>
+        <Line Text="Lijn"/>
+        <PointBubble Text="Punt &amp; Bubble"/>
+        <Pie Text="Taart"/>
+        <Circular Text="Cirkel"/>
+        <Financial Text="Financieel"/>
+        <PyramidFunnel Text="Pyramide &amp; Funnel"/>
+        <Range Text="Bereik"/>
+      </Categories>
+      <Series>
+        <Bar Text="Staaf"/>
+        <StackedBar Text="Meervoudige Staafgrafiek"/>
+        <StackedBar100 Text="100% Meervoudige Staafgrafiek"/>
+        <Column Text="Kolom"/>
+        <StackedColumn Text="Gecombineerde Kolom"/>
+        <StackedColumn100 Text="100% gecombineerde Kolom"/>
+        <Area Text="Area"/>
+        <SplineArea Text="Spline Area"/>
+        <StackedArea Text="Gecombineerde Area"/>
+        <StackedArea100 Text="100% Gecombineerde Area"/>
+        <Line Text="Lijn"/>
+        <FastLine Text="Korte lijnen"/>
+        <StepLine Text="Stap Lijnen"/>
+        <Spline Text="Spline"/>
+        <Bubble Text="Bubble"/>
+        <Point Text="Punten"/>
+        <FastPoint Text="Veel Punten"/>
+        <Pie Text="Taart"/>
+        <Doughnut Text="Doughnut"/>
+        <Polar Text="Polar"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Stock"/>
+        <Candlestick Text="Candlestick"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Point &amp; Figure"/>
+        <ThreeLineBreak Text="Three Line Break"/>
+        <Pyramid Text="Pyramide"/>
+        <Funnel Text="Funnel"/>
+        <Range Text="Range"/>
+        <SplineRange Text="Spline Range"/>
+        <RangeColumn Text="Range Kolommen"/>
+        <RangeBar Text="Range Staaf"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Code pagina">
+      <EnableVirtualSpace Text="Virtuele ruimte inschakelen"/>
+      <UseSpaces Text="Spaties als tab gebruiken"/>
+      <AllowOutlining Text="Outlining toestaan"/>
+      <TabSize Text="Tab grootte:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Bands Configuratie">
+      <Add Text="Nieuw"/>
+      <Delete Text="Verwijder"/>
+    </ConfigureBands>
+    <Connection Text="Data Connectie">
+      <Select Text="Selecteer type connectie"/>
+      <AlwaysUse Text="Instellen als standaard"/>
+      <LoginPrompt Text="Login weergeven"/>
+      <Test Text="Verbinding testen"/>
+      <TestSuccesful Text="Verbindingstest geslaagd"/>
+    </Connection>
+    <CustomLabel Text="Eigen etiket instellingen">
+      <Name Text="Naam:"/>
+      <Paper Text="Papier"/>
+      <Landscape Text="Liggend"/>
+      <PaperWidth Text="Papierbreedte:"/>
+      <PaperHeight Text="Papierhoogte:"/>
+      <LeftMargin Text="Linker marge:"/>
+      <TopMargin Text="Bovenmarge:"/>
+      <Label Text="Etiket instellingen"/>
+      <LabelWidth Text="Etiket breedte:"/>
+      <LabelHeight Text="Etiket hoogte:"/>
+      <RowGap Text="Ruimte tussen rijen:"/>
+      <ColumnGap Text="Ruimte tussen kolommen:"/>
+      <Warning Text="Etiketten passen niet op de pagina!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Data band instellingen">
+      <DataSource Text="Gegevensbron"/>
+      <NoData Text="Geen databronnen beschikbaar.&#13;&#10;&#13;&#10;Kies &quot;Gegevens|Selecteer Rapport gegevens&quot; om uit beschikbare gegevensbronnen te kiezen of maak een nieuwe gegevensbron via &quot;Gegevens|Databron toevoegen...&quot;"/>
+      <Sort Text="Sortering"/>
+      <SortBy Text="Sorteer op"/>
+      <ThenBy Text="Vervolgens op"/>
+      <Ascending Text="Oplopend"/>
+      <Descending Text="Aflopend"/>
+      <Filter Text="Filter"/>
+      <Expression Text="Filter expressie:"/>
+    </DataBandEditor>
+    <DataWizard Text="Gegevens Wizard">
+      <Page1 Text="Selecteer een database"/>
+      <WhichData Text="Welke data connectie moet het rapport gebruiken om toegang tot de database te krijgen?"/>
+      <Hint Text="Selecteer uit de lijst van bekende connecties of klik &quot;Nieuwe connectie...&quot; om een nieuwe connectie in te stellen."/>
+      <NewConnection Text="Nieuwe connectie..."/>
+      <EditConnection Text="Wijzig connectie..."/>
+      <ConnectionName Text="Voer een naam voor de connectie in:"/>
+      <ConnectionString Text="Connectie string"/>
+      <Page2 Text="Selecteer tabellen"/>
+      <WhichTables Text="Welke tabellen wilt u in het rapport gebruiken?"/>
+      <Wait Text="Ophalen database informatie"/>
+      <SortTables Text="Sorteer tabellen"/>
+      <AddQuery Text="SQL Query invoeren..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Dialoog scherm"/>
+    <Exception Text="Uitzonderingsfout">
+      <Hint Text="Uw rapport heeft de volgende uitzonderingsfout veroorzaakt:"/>
+      <Stack Text="Stack:"/>
+      <Copy Text="Kopieer naar klembord"/>
+    </Exception>
+    <ExpressionEditor Text="Expressie wijzigen"/>
+    <Fill Text="Vulling instellen">
+      <Solid Text="Vulling"/>
+      <LinearGradient Text="Lijn verloop"/>
+      <PathGradient Text="Cirkel verloop"/>
+      <Hatch Text="Hatch"/>
+      <Glass Text="Glaseffect"/>
+      <Colors Text="Kleuren"/>
+      <Color Text="Kleur"/>
+      <StartColor Text="Begin"/>
+      <EndColor Text="Eind"/>
+      <Options Text="Opties"/>
+      <Focus Text="Focus"/>
+      <Contrast Text="Contrast"/>
+      <Angle Text="Hoek"/>
+      <CenterColor Text="Middelpunt"/>
+      <EdgeColor Text="Rand"/>
+      <Shape Text="Vorm"/>
+      <Ellipse Text="Ellips"/>
+      <Rectangle Text="Rechthoek"/>
+      <ForeColor Text="Voorgrond"/>
+      <BackColor Text="Achtergrond"/>
+      <Style Text="Stijl"/>
+      <Blend Text="Blend"/>
+      <GlassHatch Text="Toon hatch"/>
+    </Fill>
+    <FormatEditor Text="Gegevensweergave Instellen">
+      <Expression Text="Expressie:"/>
+      <General Text="Algemeen"/>
+      <Number Text="Numeriek"/>
+      <Currency Text="Valuta"/>
+      <Date Text="Datum"/>
+      <Time Text="Tijd"/>
+      <Percent Text="Percentage"/>
+      <Boolean Text="Logisch"/>
+      <Custom Text="Eigen"/>
+      <UseLocale Text="Gebruik Windows instellingen"/>
+      <DecimalDigits Text="Decimalen:"/>
+      <DecimalSeparator Text="Decimaal scheidingsteken:"/>
+      <GroupSeparator Text="Duizendtal scheidingsteken:"/>
+      <PositivePattern Text="Weergave positieve waarden:"/>
+      <NegativePattern Text="Weergave negatieve waarden:"/>
+      <CurrencySymbol Text="Valuta:"/>
+      <PercentSymbol Text="Percentage teken:"/>
+      <FalseText Text="Tekst voor Onwaar"/>
+      <TrueText Text="Tekst voor waar:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Kolom instellingen">
+      <Columns Text="Kolommen"/>
+      <Properties Text="Eigenschappen"/>
+      <Add Text="Toevoegen"/>
+      <Remove Text="Verwijderen"/>
+      <AddAll Text="Alle toevoegen"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Groep Instellingen">
+      <Condition Text="Conditie voor groeperen"/>
+      <Hint Text="Selecteer een gegevenskolom of type een expressie:"/>
+      <Settings Text="Instellingen"/>
+      <Sort Text="Sortering:"/>
+      <NoSort Text="Niet sorteren"/>
+      <Ascending Text="Oplopend"/>
+      <Descending Text="Aflopend"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Groep Expert">
+      <Condition Text="Groep conditie"/>
+      <Hint Text="Selecteer een gegevenskolom of typ een expressie en klik &quot;Toevoegen&quot; om een groep toe te voegen."/>
+      <Add Text="Toevoegen"/>
+      <Groups Text="Groepen"/>
+      <Edit Text="Wijzigen..."/>
+      <Delete Text="Verwijderen"/>
+    </GroupExpert>
+    <HighlightEditor Text="Voorwaarden voor markeren">
+      <Conditions Text="Voorwaarden"/>
+      <Add Text="Nieuw"/>
+      <Delete Text="Verwijder"/>
+      <Edit Text="Wijzig"/>
+      <Style Text="Stijl"/>
+      <Fill Text="Vulkleur"/>
+      <TextColor Text="Tekstkleur"/>
+      <Font Text="Lettertype"/>
+      <Visible Text="Zichtbaar"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Hyperlink instellingen">
+      <Url Text="URL"/>
+      <PageNumber Text="Pagina nummer"/>
+      <Bookmark Text="Bladwijzer"/>
+      <Report Text="Rapport"/>
+      <ReportPage Text="Rapport pagina"/>
+      <Custom Text="Eigen"/>
+      <UrlValue Text="Geef een URL op (voorbeeld: http://www.url.com):"/>
+      <UrlExpression Text="of voer de expressie in waarmee een URL gegenereerd wordt:"/>
+      <PageNumberValue Text="Geef pagina nummer:"/>
+      <PageNumberExpression Text="of voer de expressie in die een pagina nummer genereert:"/>
+      <BookmarkValue Text="geef een bladwijzer naam:"/>
+      <BookmarkExpression Text="of voer de expressie in die een bladwijzer naam genereert:"/>
+      <ReportName Text="Rapport naam:"/>
+      <ParameterName Text="Rapport parameter:"/>
+      <ParameterValue Text="Waarde van de parameter:"/>
+      <ParameterExpression Text="of voer de expressie in die een parameterwaarde genereerd:"/>
+      <PageName Text="Rapport pagina:"/>
+      <CustomValue Text="Geef een hyperlink:"/>
+      <CustomExpression Text="of voer de expressie in die de waarde teruggeeft:"/>
+      <Hint Text="Welke gebeurtenis wordt uitgevoerd als u op dit object klikt in het afdrukvoorbeeld:"/>
+      <HintUrl Text="Specifieke URL wordt geopend"/>
+      <HintPageNumber Text="Opgegeven pagina wordt getoond."/>
+      <HintBookmark Text="Object dat de bladwijzer bevat wordt getoond."/>
+      <HintReport Text="Opgegeven rapport wordt getoond in een eigen afdrukvoorbeeld-tab."/>
+      <HintReportPage Text="Opgegeven pagina wordt gegenereerd en weergegeven in een eigen afdrukvoorbeeld tab."/>
+      <HintCustom Text="U dient een &quot;Click&quot; event hander in te stellen voor definitie van de eigen action."/>
+      <ModifyAppearance Text="Eigenschappen van ojbect aanpassen zodat het als een klikbare link getoond wordt."/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Etiketten Wizard">
+      <Hint Text="Selecteer een standaard etiket of klik op &quot;Eigen etiketten...&quot; om eigen etiketafmetingen op te geven."/>
+      <Label Text="Etiket"/>
+      <Manufacturer Text="Fabrikant:"/>
+      <Product Text="Product:"/>
+      <Parameters Text="Parameters"/>
+      <Size Text="Formaat:"/>
+      <PaperSize Text="Papierformaat:"/>
+      <Rows Text="Rijen:"/>
+      <Columns Text="Kolommen:"/>
+      <CustomLabel Text="Eigen etiketten..."/>
+      <Custom Text="Eigen"/>
+      <Delete Text="Verwijder"/>
+    </LabelWizard>
+    <PageSetup Text="Pagina Instellingen">
+      <Paper Text="Papier"/>
+      <Custom Text="Eigen"/>
+      <Width Text="Breedte:"/>
+      <Height Text="Hoogte: "/>
+      <Orientation Text="Orientatie:"/>
+      <Portrait Text="Staand"/>
+      <Landscape Text="Liggend"/>
+      <Margins Text="Marges"/>
+      <Left Text="Links:"/>
+      <Top Text="Boven:"/>
+      <Right Text="Rechts:"/>
+      <Bottom Text="Onder:"/>
+      <MirrorMargins Text="Marges spiegelen op even pagina's"/>
+      <Source Text="Bron"/>
+      <FirstPage Text="Eerste pagina:"/>
+      <OtherPages Text="Volgende pagina's:"/>
+      <Columns Text="Kolommen"/>
+      <Count Text="Aantal:"/>
+      <ColumnWidth Text="Breedte:"/>
+      <Positions Text="Positie:"/>
+      <Other Text="Overige"/>
+      <Duplex Text="Dubbelzijdig:"/>
+      <DupDefault Text="Standaard"/>
+      <DupSimplex Text="Simplex"/>
+      <DupVertical Text="Verticaal"/>
+      <DupHorizontal Text="Horizontaal"/>
+      <EditWatermark Text="Watermerk.."/>
+      <ExtraWidth Text="Extra ontwerp breedte"/>
+    </PageSetup>
+    <PictureEditor Text="Afbeelding Instellen">
+      <Picture Text="Afbeelding"/>
+      <Load Text="Laden"/>
+      <Paste Text="Plakken"/>
+      <Clear Text="Wissen"/>
+      <DataColumn Text="Gegevenskolom"/>
+      <FileName Text="Bestandsnaam"/>
+      <Url Text="URL"/>
+      <FileHint1 Text="Bestandsnaam:"/>
+      <FileHint2 Text="Note: U dient het bestand bij het rapport te verspreiden."/>
+      <UrlHint Text="URL:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Plugins">
+      <Hint Text="Lijst van geïnstalleerde FastReport plugins:"/>
+      <Add Text="Toevoegen"/>
+      <Remove Text="Verwijderen"/>
+      <Note Text="Note: Wijzigen worden pas actief bij herstart van FastReport."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Doorvoeren op alle pagina's en rapport opnieuw genereren"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Zoek"/>
+    <PrinterSetup Text="Afdrukken">
+      <PrinterSetup Text="Printer Instellingen"/>
+      <Printer Text="Printer"/>
+      <SavePrinter Text="Selectie in het rapport opslaan"/>
+      <Settings Text="Instellingen..."/>
+      <PrintToFile Text="Print naar bestand"/>
+      <PageRange Text="Paginabereik"/>
+      <All Text="Alles"/>
+      <Current Text="Huidige pagina"/>
+      <Numbers Text="Pagina's:"/>
+      <Hint Text="Voer pagina nummers of bereik in, gescheiden door komma's. Bijvoorbeeld: 1,3,5-12"/>
+      <Copies Text="Aantal"/>
+      <Count Text="Aantal"/>
+      <Collate Text="Vergaren"/>
+      <Other Text="Overige"/>
+      <OddEven Text="Afdrukken:"/>
+      <AllPages Text="Alle pagina's"/>
+      <OddPages Text="Oneven pagina's"/>
+      <EvenPages Text="Even pagina's"/>
+      <Order Text="Volgorde:"/>
+      <OrderDirect Text="Direct (1-9)"/>
+      <OrderReverse Text="Omgekeerd (9-1)"/>
+      <Duplex Text="Dubbelzijdig:"/>
+      <Source Text="Bron:"/>
+      <PrintMode Text="Print mode"/>
+      <PrintModeDefault Text="Standaard"/>
+      <PrintModeSplit Text="Pagina's splitsen"/>
+      <PrintModeScale Text="Schalen"/>
+      <PrintOnSheet Text="Papierformaat:"/>
+      <PagesOnSheet Text="Pagina's per vel:"/>
+      <PagesOnSheet1 Text="1 pagina"/>
+      <PagesOnSheet2 Text="2 pagina's"/>
+      <PagesOnSheet4 Text="4 pagina's"/>
+      <PagesOnSheet8 Text="8 pagina's"/>
+      <Print Text="Afdrukken"/>
+      <Error Text="Ongeldig pagina bereik"/>
+    </PrinterSetup>
+    <QueryWizard Text="Query Wizard">
+      <Page1 Text="Naam opgeven"/>
+      <SetName Text="Voer de naam van het query object in."/>
+      <NameHint Text="Deze naam wordt weergegeven in het &quot;Gegevens&quot; scherm."/>
+      <Page2 Text="Voer een SQL commando in"/>
+      <WhatData Text="Welke gegevens moeten door de Query worden opgevraagd?"/>
+      <TypeSql Text="Type uw SQL commando of gebruik de Query Builder om het op te bouwen."/>
+      <QueryBuilder Text="Query Builder..."/>
+      <Page3 Text="Parameters definiëren"/>
+      <Page4 Text="Kolommen instellen"/>
+      <Refresh Text="Kolommen verversen"/>
+      <AddColumn Text="Gecaculeerde kolom toevoegen"/>
+      <AddParameter Text="Parameter toevoegen"/>
+      <Delete Text="Verwijderen"/>
+    </QueryWizard>
+    <RelationEditor Text="Relaties opgeven">
+      <ParentTable Text="Hoofd tabel:"/>
+      <ChildTable Text="Subtabel:"/>
+      <Parent Text="Hoofd"/>
+      <Child Text="Sub"/>
+      <Columns Text="Kolommen:"/>
+      <Error Text="Ongeldig aantal hoofd en sub kolommen"/>
+    </RelationEditor>
+    <ReportData Text="Selecteer rapport data">
+      <Hint Text="Selecteer tabellen en velden die u in het rapport wilt gebruiken:"/>
+      <Aliases Text="Toon aliassen"/>
+    </ReportData>
+    <ReportOptions Text="Rapport Opties">
+      <General Text="Algemeen"/>
+      <Description Text="Omschrijving"/>
+      <Script Text="Script"/>
+      <Security Text="Beveiliging"/>
+      <Inheritance Text="Overerving"/>
+      <Name Text="Naam:"/>
+      <Author Text="Auteur:"/>
+      <Version Text="Versie:"/>
+      <Description1 Text="Beschrijving:"/>
+      <Picture Text="Afbeellding:"/>
+      <SavePreviewPicture Text="Afbeelding van Afdrukvoorbeeld invoegen"/>
+      <Load Text="Laden..."/>
+      <Clear Text="Wissen"/>
+      <Created Text="Aangemaakt:"/>
+      <Modified Text="Gewijzigd:"/>
+      <Language Text="Script taal:"/>
+      <Note Text="NOTE: als u de scripttaal wijzigt, wordt het script leeggemaakt!"/>
+      <RefAssemblies Text="Gebruikte assemblies:"/>
+      <Add Text="Toevoegen..."/>
+      <Password Text="Wachtwoord:"/>
+      <RetypePassword Text="Wachtwoord herhalen:"/>
+      <Inherited Text="Dit rapport is afgeleid van basis rapport:"/>
+      <NotInherited Text="Dit rappot is niet afgeleid van een ander rapport."/>
+      <Choose Text="Selecteer een optie:"/>
+      <DontChange Text="Niet wijzigen"/>
+      <Detach Text="Loskoppelen van basis rapport"/>
+      <Inherit Text="Rapport afleiden van:"/>
+      <Browse Text="Bladeren..."/>
+      <DoublePass Text="Rapport voorbereiden"/>
+      <Compress Text="Rapportbestand comprimeren"/>
+      <UseFileCache Text="Bestandscache gebruiken"/>
+      <ConvertNulls Text="Lege waarden converteren"/>
+      <TextQuality Text="Tekst kwaliteit:"/>
+      <SmoothGraphics Text="Vloeiende afbeeldingen"/>
+      <QualityDefault Text="Standaard"/>
+      <QualityRegular Text="Gemiddeld"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Opgegeven wachtwoorden komen niet overeen. Probeer opnieuw."/>
+      <Recipients Text="Ontvanger(s) (bijvoorbeeld: john@url.com):"/>
+      <Subject Text="Onderwerp:"/>
+      <Message Text="Bericht:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Rapport pagina">
+      <Units Text="Maateenheden op pagina"/>
+      <Millimeters Text="Millimeters"/>
+      <Centimeters Text="Centimeters"/>
+      <Inches Text="Inches"/>
+      <HundrethsOfInch Text="Honderste van inch"/>
+      <Grid Text="Raster"/>
+      <ShowGrid Text="Toon raster"/>
+      <SnapToGrid Text="Magnetisch raster"/>
+      <DottedGrid Text="Puntenraster"/>
+      <Size Text="Afstand:"/>
+      <Markers Text="Object markers:"/>
+      <Rectangle Text="Rechthoek"/>
+      <Corners Text="Hoeken"/>
+      <BandView Text="Band weergave"/>
+      <Structure Text="Structuur"/>
+      <Classic Text="Klassiek"/>
+      <EditAfterInsert Text="Wijzig object na toevoegen aan opmaak"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="RichtText Editor">
+      <Open Text="Open"/>
+      <Save Text="Opslaan"/>
+      <Subscript Text="Subscript"/>
+      <Superscript Text="Superscript"/>
+      <Bullets Text="Opsommingstekens"/>
+      <Confirm Text="Tekst is gewijzigd. Wijzigingen opslaan?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Zoeken en vervangen">
+      <Find Text="Zoek naar:"/>
+      <Replace Text="Vervang door:"/>
+      <Options Text="Zoekopties"/>
+      <MatchCase Text="Hooflettergevoelig"/>
+      <MatchWholeWord Text="Alleen hele woorden"/>
+      <FindNext Text="Zoek volgende"/>
+      <ReplaceBtn Text="Vervang"/>
+      <ReplaceAll Text="Vervang alle"/>
+      <NotFound Text="Zoektekst niet gevonden"/>
+      <NoMoreFound Text="Geen verdere overeenkomsten gevonden"/>
+    </SearchReplace>
+    <SelectDataSource Text="Selecteer gegevensbron">
+      <Hint Text="Kies een of meer gegevensbronnen om in het rapport te gebruiken"/>
+      <AvailableDs Text="Beschikbare databronnen:"/>
+      <SelectedDs Text="Geselecteerde databronnen:"/>
+      <ProjectDs Text="Project datasets"/>
+      <OtherDs Text="Overige databronnen"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Selecteer Taal">
+      <SelectLanguage Text="Selecteer een taal uit onderstaande lijst:"/>
+      <Auto Text="Auto"/>
+      <Folder Text="Map met taalbestanden:"/>
+      <SelectFolder Text="Selecteer de map die de taalbestanden bevat (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Standaard Rapport Wizard">
+      <GroupsPage Text="Groepen instellen"/>
+      <CreateGroups Text="Groepen instellen (optioneel)"/>
+      <Groups Text="Groepen:"/>
+      <LayoutPage Text="Layout definitie"/>
+      <DefineLayout Text="Definieer de orientatie en de data layout."/>
+      <Orientation Text="Papier orientatie"/>
+      <Portrait Text="Staand"/>
+      <Landscape Text="Liggend"/>
+      <Layout Text="Layout"/>
+      <Tabular Text="Tabulair"/>
+      <Columnar Text="Kolommen"/>
+      <StylePage Text="Selecteer een stijl"/>
+      <Styles Text="Selecteer een rapport stijl."/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Teksten aanpassen"/>
+    <Style Text="Stijlen Instellen">
+      <Styles Text="Stijlen"/>
+      <Add Text="Toevoegen"/>
+      <Delete Text="Verwijder"/>
+      <Edit Text="Wijzig"/>
+      <Load Text="Laden.."/>
+      <Save Text="Opslaan..."/>
+      <Settings Text="Stijl instellingen"/>
+      <Border Text="Rand"/>
+      <Fill Text="Vulkleur"/>
+      <Font Text="Lettertype"/>
+      <TextColor Text="Tekstkleur"/>
+      <StyleName Text="Stijl"/>
+    </Style>
+    <TextEditor Text="Tekst wijzigen">
+      <WordWrap Text="Terugloop"/>
+    </TextEditor>
+    <TotalEditor Text="Totaal instellen">
+      <TotalName Text="Totaal naam:"/>
+      <Total Text="Totaal"/>
+      <Function Text="Functie:"/>
+      <DataColumnOrExpression Text="Gegevenskolom of expressie:"/>
+      <DataBand Text="Evalueren op elke rij in band:"/>
+      <EvaluateCondition Text="Evalueer bij de volgende conditie:"/>
+      <PrintOn Text="Afdrukken op band:"/>
+      <Options Text="Opties"/>
+      <ResetAfterPrint Text="Resetten na afdrukken"/>
+      <ResetRepeated Text="Reset bij herhaling van band"/>
+      <InvisibleRows Text="Inclusief onzichtbare rijen"/>
+      <Sum Text="Som"/>
+      <Min Text="Min"/>
+      <Max Text="Max"/>
+      <Avg Text="Gemiddeld"/>
+      <Count Text="Tellen"/>
+    </TotalEditor>
+    <UIOptions Text="Gebruikers Interface">
+      <Appearance Text="Weergave:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (blue),Office 2007 (silver),Office 2007 (black),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Watermerk">
+      <Enabled Text="Ingesteld"/>
+      <Text Text="Tekst"/>
+      <TextItems Text="VERTROUWELIJK, KOPIE, ORGINEEL, VOORBEELD, URGENT"/>
+      <Rotation Text="Rotatite"/>
+      <Horizontal Text="Horizontaal"/>
+      <Vertical Text="Verticaal"/>
+      <ForwardDiagonal Text="Diagonaal voorwaarts"/>
+      <BackwardDiagonal Text="Diagonaal terug"/>
+      <Font Text="Lettertype"/>
+      <Color Text="Kleur"/>
+      <Picture Text="Afbeelding"/>
+      <Load Text="Laden"/>
+      <Clear Text="Wissen"/>
+      <Size Text="Afmetingen"/>
+      <Normal Text="Normaal"/>
+      <Center Text="Centreren"/>
+      <Stretch Text="Uitrekken"/>
+      <Zoom Text="Zoom"/>
+      <Tile Text="Patroon"/>
+      <Transparency Text="Tranparantheid"/>
+      <Zorder Text="Z-Order"/>
+      <TextOnTop Text="Tekst op voorgrond"/>
+      <PictureOnTop Text="Afbeelding op voorgrond"/>
+      <ApplyToAll Text="Toepassen op alle pagina's"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Servernaam:"/>
+      <ServerLogon Text="Aanmelden bij de server"/>
+      <UserName Text="Gebruikersnaam:"/>
+      <Password Text="Wachtwoord:"/>
+      <Database Text="Verbinding met een database"/>
+      <DatabaseName Text="Database naam:"/>
+      <DatabaseFile Text="Database bestand:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Gebruiks Windows aanmelding"/>
+      <UseSql Text="Gebruik SQL Server Authenticatie"/>
+      <SavePassword Text="Wachtwoord opslaan"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Connectie string:"/>
+      <Build Text="Bouwen..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Databron"/>
+      <DsName Text="Gebruik gebruikers of systeem databronnen:"/>
+      <ConnString Text="Gebruik connectie string:"/>
+      <Login Text="Login"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Schema bestand:"/>
+      <Xml Text="Data bestand:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Wijzig..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Kan rekken"/>
+      <CanShrink Text="Kan krimpen"/>
+      <GrowToBottom Text="Uitrekken naar onderkant"/>
+      <Hyperlink Text="Hyperlink..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Can onderbroken worden"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Sub band toevoegen"/>
+      <StartNewPage Text="Start nieuwe pagina"/>
+      <PrintOnBottom Text="Print onderaan"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Detail Data Band toevoegen"/>
+      <KeepTogether Text="Bij elkaar houden"/>
+      <KeepDetail Text="Detail behouden"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Op elke pagina herhalen"/>
+      <KeepWithData Text="Bij data houden"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Reset Pagina Nummer"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Niet gebruikte ruimte opvullen"/>
+      <CompleteToNRows Text="Aanvullen tot N rijen:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Uitrekken"/>
+      <AutoSize Text="Auto formaat"/>
+      <CenterImage Text="Centreren"/>
+      <Normal Text="Normaal"/>
+      <StretchImage Text="Uitrekken"/>
+      <Zoom Text="Inzoomen"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Opmaak..."/>
+      <Clear Text="Leegmaken"/>
+      <AutoWidth Text="Auto breedte"/>
+      <WordWrap Text="Terugloop"/>
+      <AllowExpressions Text="Expressie toestaan"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Afdrukken op hoofdrapport"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Headers herhalen"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Rij boven invoegen"/>
+      <InsertBelow Text="Rij onder invoegen"/>
+      <AutoSize Text="Auto afmetingen"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Kolom links invoegen"/>
+      <InsertToRight Text="Kolom rechts invoegen"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Cellen samenvoegen"/>
+      <Split Text="Cel splitsen"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Cellen naast elkaar"/>
+      <ShowTitle Text="Titel tonen"/>
+      <Style Text="Stijl"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Totalen"/>
+      <Function Text="Functie"/>
+      <SuppressTotals Text="Totalen onderdrukken"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Kolommen wijzigen..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Barcode Type"/>
+      <AutoSize Text="Auto Formaat"/>
+      <AutoEncode Text="Auto Encodering"/>
+      <CalcChecksum Text="Controlegetal"/>
+      <ShowText Text="Tekst tonen"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Markers tonen"/>
+      <ShowGrid Text="Toon raster"/>
+    </ZipCodeObject>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Berekenen.."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Matrix invullen..."/>
+      <NewColumn Text="Sleep hier data om &#13;&#10;nieuwe kolom te maken"/>
+      <NewRow Text="Sleep data hier om&#13;&#10;een nieuwe rij te maken"/>
+      <NewCell Text="Sleep data hier om &#13;&#10;nieuwe cel te maken"/>
+      <Total Text="Totaal"/>
+      <Title Text="Titel"/>
+      <White Text="Wit"/>
+      <Gray Text="Grijs"/>
+      <Orange Text="Oranje"/>
+      <Green Text="Groen"/>
+      <GreenOrange Text="Goen en Oranje"/>
+      <Blue Text="Blauw"/>
+      <BlueWhite Text="Blauw en Wit"/>
+      <GrayOrange Text="Grijs en Oranje"/>
+      <BlueOrange Text="Blauw en Oranje"/>
+      <OrangeWhite Text="Oranje en Wit"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Leeg rapport"/>
+    <StandardReport Text="Standaard Rapport Wizard"/>
+    <InheritedReport Text="Afgeleid Rapport"/>
+    <Label Text="Etiketten Wizard"/>
+    <NewDataSource Text="Nieuwe Gegevensbron"/>
+    <NewPage Text="Nieuwe Rapport Pagina"/>
+    <NewDialog Text="Nieuwe Dialoog"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Export voltooid in {0} ms"/>
+      <OrderByCells Text="Sorteer op cellen"/>
+      <AnalyzeObjects Text="Objecten analyseren"/>
+      <SavePage Text="Pagina opslaan"/>
+      <Wysiwyg Text="WYSIWYG"/>
+      <PageBreaks Text="Pagina-einden"/>
+      <OpenAfterExport Text="Open na export"/>
+      <Pictures Text="Afbeeldingen"/>
+      <Options Text="Opties"/>
+      <None Text="Geen"/>
+      <Metafile Text="Metafile"/>
+      <SaveFile Text="Bestand opslaan"/>
+    </Misc>
+    <Image Text="Exporteer naar Afbeelding">
+      <File Text="Afbeeldingbestand"/>
+      <ImageFormat Text="Soort:"/>
+      <Resolution Text="Resolutie:"/>
+      <Quality Text="JPEG kwaliteit:"/>
+      <SeparateFiles Text="Elke pagina in eigen bestand"/>
+      <MultiFrame Text="Multi-frame TIFF"/>
+      <Monochrome Text="Monchrome TIFF"/>
+      <Bmp Text="Bitmapafbeelding"/>
+      <Png Text="PNG afbeelding"/>
+      <Jpeg Text="JPG afbeelding"/>
+      <Gif Text="GIF afbeelding"/>
+      <Tiff Text="TIFF afbeelding"/>
+      <Metafile Text="Windows Metafile"/>
+    </Image>
+    <RichText Text="Exporteer naar Rich Text">
+      <File Text="Rich Text bestand"/>
+    </RichText>
+    <Text Text="Export naar Tekst/Matrix printer">
+      <File Text="Text bestand/Matrix Printer"/>
+      <EmptyLines Text="Lege Regels"/>
+      <DataOnly Text="Alleen gegevens"/>
+      <Frames Text="Randen"/>
+      <FramesNone Text="Geen"/>
+      <FramesText Text="Tekst"/>
+      <FramesGraphic Text="Afbeelding"/>
+      <Codepage Text="Codepagina"/>
+      <Default Text="Standaard"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Schaal X:"/>
+      <ScaleY Text="Schaal Y:"/>
+      <AutoScale Text="Auto schalen"/>
+      <PrinterType Text="Soort printer"/>
+      <Commands Text="Commando's"/>
+      <PageWidth Text="Pagina breedte:"/>
+      <PageHeight Text="Pagina hoogte:"/>
+      <DataLoss Text="MOGELIJK VERLIES VAN DATA&#13;&#10;pas X en Y schaal aan"/>
+      <ScaleMessage Text="Bereken optimale schaling"/>
+      <Scale Text="Schaal"/>
+    </Text>
+    <Csv Text="Exporteer naar CSV">
+      <File Text="CSV bestand"/>
+      <Separator Text="Scheidingsteken"/>
+      <Codepage Text="Codepagina"/>
+      <Default Text="Standaard"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Alleen gegevens"/>
+    </Csv>
+    <Dbf Text="Export naar DBF">
+      <File Text="DBF database"/>
+      <Codepage Text="Codepagina"/>
+      <Default Text="Standaard"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Alleen gegevens"/>
+      <Load Text="Laad veldnamen uit bestand:"/>
+    </Dbf>
+    <Xml Text="Exporteer naar XML">
+      <File Text="XML (Excel) tabel"/>
+    </Xml>
+    <Odt Text="Exporteer naar Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Exporteer naar Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Exporteer naar Excel 2007">
+      <File Text="Excel 2007 bestand"/>
+    </Xlsx>
+    <Pptx Text="Exporteer naar PowerPoint 2007">
+      <File Text="PowerPoint 2007 bestand"/>
+    </Pptx>
+    <Pdf Text="Exporteer naar PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Exporteer"/>
+      <Compressed Text="Gecomprimeerd"/>
+      <EmbeddedFonts Text="Ingesloten Lettertypen"/>
+      <Background Text="Achtergrond"/>
+      <PrintOptimized Text="Print Geoptimaliseerd"/>
+      <Information Text="Informatie"/>
+      <DocumentInformation Text="Document Informatie"/>
+      <Title Text="Titel"/>
+      <Author Text="Auteur"/>
+      <Subject Text="Onderwerp"/>
+      <Keywords Text="Sleutelwoorden"/>
+      <Creator Text="Maker"/>
+      <Producer Text="Producent"/>
+      <Security Text="Beveiliging"/>
+      <Authentification Text="Authenticatie"/>
+      <OwnerPassword Text="Wachtwoord eigenaar"/>
+      <UserPassword Text="Gebruikerswachtwoord"/>
+      <Permissions Text="Rechten"/>
+      <PrintTheDocument Text="Document afdrukken"/>
+      <ModifyTheDocument Text="Document wijzigen"/>
+      <CopyOfTextAndGraphics Text="Tekst en afbeeldingen kopiëren"/>
+      <AddOrModifyTextAnnotations Text="Annotaties toevoegen of wijzigen"/>
+      <Viewer Text="Weergave"/>
+      <ViewerPreferences Text="Weergave voorkeuren"/>
+      <HideToolbar Text="Knoppenbalk verbergen"/>
+      <HideMenubar Text="Menu verbergen"/>
+      <HideWindowUserInterface Text="Gebruikers interface scherm verbergen"/>
+      <FitWindow Text="Passend maken"/>
+      <CenterWindow Text="Centreren"/>
+      <PrintScaling Text="Schaling printen"/>
+      <PrintAfterOpenOfDocument Text="Na openen afdrukken"/>
+      <Outline Text="Outline"/>
+    </Pdf>
+    <Html Text="Exporteer naar HTML">
+      <File Text="HTML bestand"/>
+      <MHTFile Text="MHT bestand"/>
+      <Format Text="Formaat"/>
+      <SinglePage Text="Enkele pagina"/>
+      <SubFolder Text="Submap"/>
+      <Navigator Text="Navigator"/>
+      <Total Text="Totaal"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Exporteer naar MHT (webarchief)">
+      <File Text="MHT bestand (webarchief)"/>
+    </Mht>
+    <Email Text="Verstuur per email">
+      <Email Text="E-Mail"/>
+      <Account Text="Email account"/>
+      <Address Text="Email adres:"/>
+      <Subject Text="Onderwerp:"/>
+      <Message Text="Bericht:"/>
+      <Attachment Text="Bijlage:"/>
+      <Settings Text="Instellingen..."/>
+      <Name Text="Naam:"/>
+      <Template Text="Sjabloon:"/>
+      <Host Text="Host:"/>
+      <Port Text="Poort:"/>
+      <UserName Text="Accountnaam:"/>
+      <Password Text="Wachtwoord:"/>
+      <AddressError Text="Adres mag niet leeg zijn."/>
+      <HostError Text="Host mag niet leeg zijn."/>
+      <SendingEmail Text="Verstuur email - {0} Kb"/>
+      <EnableSSL Text="SSL gebruiken"/>
+    </Email>
+  </Export>
+  <Web>
+    <Print Text="Afdrukken"/>
+    <Export Text="Exporteren"/>
+    <Zoom Text="Inzoomen"/>
+    <Refresh Text="Verversen"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Weergave"/>
+      <Behavior Text="Gedrag"/>
+      <Build Text="Bouwen"/>
+      <Data Text="Gegevens"/>
+      <Design Text="Ontwerp"/>
+      <Email Text="Email"/>
+      <Engine Text="Engine"/>
+      <Events Text="Gebeurtenissen"/>
+      <Hierarchy Text="Hierarchie"/>
+      <Layout Text="Layout"/>
+      <Misc Text="Overige"/>
+      <Navigation Text="Navigatie"/>
+      <Paper Text="Papier"/>
+      <Preview Text="Afdrukvoorbeeld"/>
+      <Print Text="Afdrukken"/>
+      <Script Text="Script"/>
+    </Categories>
+  </Properties>
+</Language>

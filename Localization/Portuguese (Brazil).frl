@@ -1,0 +1,1479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="pt" Author="Isaque Pinheiro &lt;isaquesp@gmail.com&gt;">
+  <Buttons>
+    <Ok Text="OK"/>
+    <Cancel Text="Cancelar"/>
+    <Close Text="Fechar"/>
+    <MoreOptions Text="Mais opções"/>
+    <LessOptions Text="Menos opções"/>
+    <Actions Text="Ações"/>
+    <Previous Text="&lt; Anterior"/>
+    <Next Text="Seguinte &gt;"/>
+    <Finish Text="Terminar"/>
+    <Advanced Text="Avançado..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Acessando aos dados..."/>
+    <CantFindObject Text="Objeto não encontrado: "/>
+    <CantLoadReport Text="Não é possível carregar o relatório "/>
+    <ClassError Text="Não foi possível encontrar a classe principal, ReportScript"/>
+    <Confirmation Text="Confirmação"/>
+    <DataNotInitialized Text="A fonte de dados ainda não foi inicializada"/>
+    <DecompressError Text="Não é possível descompactar o arquivo"/>
+    <DecryptError Text="Erro ao descriptografar: palavra chave errada"/>
+    <DelegateError Text="{0} &quot;delegate&quot; tem de ter dois argumentos: 'sender' e 'e'"/>
+    <DeleteAncestor Text="Não pode apagar {0}, foi introduzido no relatório ascendente "/>
+    <DuplicateName Text="Já existe um objeto com esse nome {0}"/>
+    <DuplicateStyle Text="Já existe um estilo com esse nome"/>
+    <Error Text="Erro"/>
+    <EventError Text="Não é possível criar o manipulador de eventos devido erro(s) no código fonte"/>
+    <ExportingPage Text="Exportando página {0} de {1}"/>
+    <GeneratingPage Text="Gerando página {0}"/>
+    <GeneratingPageFirstPass Text="Primeiro passo: gerando página {0}"/>
+    <Information Text="Informação"/>
+    <MatrixError Text="{0}: Objecto matricial tem de ter pelo menos as dimensões de uma coluna ou linha e uma célula."/>
+    <MatrixValueError Text="O número de valores difere de MatrixData.Cells.Count (tem de ser {0})"/>
+    <ParentError Text="Um objecto do tipo {0} não pode conter objetos do tipo {1}"/>
+    <ParentError1 Text="Um objecto do tipo {0} não pode conter objetos"/>
+    <Performance Text="Preparado em {0} ms"/>
+    <PreparingData Text="Preparando os dados..."/>
+    <PrintingPage Text="Imprimindo página {0}"/>
+    <RenameAncestor Text="Não foi possível renomear {0}, foi introduzido no relatório ascendente"/>
+    <SaveChanges Text="Salvar alterações para {0}?"/>
+    <SaveChangesToPreviewPage Text="Salvar alterações para a página de pré-visualização?"/>
+    <TableIsNull Text="Tabela não está ligada aos dados. Registe os dados utilizando o método Report.RegisterData."/>
+    <TableManualBuildError Text="Pode usar TableObject.PrintRow, os métodos PrintColumn estão apenas no evento ManualBuild."/>
+    <Warning Text="Aviso"/>
+    <WrongFileFormat Text="Não é possível ler o arquivo. Formato desconhecido"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="pol"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Exemplo"/>
+    <None Text="Nenhum"/>
+    <PageN Text="Página {0}"/>
+    <PageNofM Text="Página {0} de {1}"/>
+    <ofM Text="de {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Relatório"/>
+    <ReportPage Text="Página"/>
+    <DialogPage Text="Diálogo"/>
+    <XmlDataConnection Text="Base de dados XML"/>
+    <OleDbDataConnection Text="Ligação OLE DB"/>
+    <MsAccessDataConnection Text="Ligação MS Access"/>
+    <MsSqlDataConnection Text="Ligação MS SQL"/>
+    <FirebirdDataConnection Text="Ligação Firebird"/>
+    <VistaDBDataConnection Text="Ligação VistaDB"/>
+    <PostgresDataConnection Text="Ligação Postgres"/>
+    <MySqlDataConnection Text="Ligação MySQL"/>
+    <OracleDataConnection Text="Ligação Oracle"/>
+    <Bands Text="Bandas">
+      <ReportTitle Text="Título do Relatório"/>
+      <ReportSummary Text="Sumário do Relatório"/>
+      <PageHeader Text="Cabeçalho de Página"/>
+      <PageFooter Text="Rodapé de Página"/>
+      <ColumnHeader Text="Cabeçalho de Coluna"/>
+      <ColumnFooter Text="Rodapé de Coluna"/>
+      <DataHeader Text="Cabeçalho"/>
+      <DataFooter Text="Rodapé"/>
+      <Data Text="Dados"/>
+      <GroupHeader Text="Cabeçalho de Grupo"/>
+      <GroupFooter Text="Rodapé de Grupo"/>
+      <Child Text="Filha"/>
+      <Overlay Text="Deslocamento"/>
+    </Bands>
+    <TextObject Text="Texto"/>
+    <Shapes Text="Formas">
+      <Line Text="Linha"/>
+      <DiagonalLine Text="Linha Diagonal"/>
+      <Rectangle Text="Rectângulo"/>
+      <RoundRectangle Text="Rectângulo Arredondado"/>
+      <Ellipse Text="Elipse"/>
+      <Triangle Text="Triângulo"/>
+      <Diamond Text="Losango"/>
+    </Shapes>
+    <PictureObject Text="Figura"/>
+    <TableObject Text="Tabela"/>
+    <MatrixObject Text="Matriz"/>
+    <SubreportObject Text="Sub-relatório"/>
+    <BarcodeObject Text="Código de Barras"/>
+    <RichObject Text="Texto Formatado"/>
+    <MSChartObject Text="MS Grafico"/>
+    <ZipCodeObject Text="Código Postal"/>
+    <CheckBoxObject Text="Caixa de verificação"/>
+    <ButtonControl Text="Button"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="NumericUpDown"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+  </Objects>
+  <FileFilters>
+    <Report Text="Relatório (*.frx)|*.frx"/>
+    <PreparedReport Text="Relatório preparado (*.fpx)|*.fpx"/>
+    <Style Text="Estilos de Relatório (*.frs)|*.frs"/>
+    <Dictionary Text="Dicionário (*.frd)|*.frd"/>
+    <Localization Text="Localização de arquivo  (*.frl)|*.frl"/>
+    <XsdFile Text="Definição de esquema XML (*.xsd)|*.xsd"/>
+    <XmlFile Text="Arquivo XML (*.xml)|*.xml"/>
+    <MdbFile Text="Base de dados MS Access (*.mdb)|*.mdb"/>
+    <MdfFile Text="Base de dados Microsoft SQL Server (*.mdf)|*.mdf"/>
+    <RtfFile Text="Texto formatado (*.rtf)|*.rtf"/>
+    <Images Text="Imagens|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Impressão de arquivo (*.prn)|*.prn"/>
+    <BmpFile Text="Imagem BMP (*.bmp)|*.bmp"/>
+    <PngFile Text="Imagem PNG  (*.png)|*.png"/>
+    <JpegFile Text="Imagem JPG (*.jpg)|*.jpg"/>
+    <GifFile Text="Imagem GIF (*.gif)|*.gif"/>
+    <TiffFile Text="Imagem TIFF (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="Arquivo HTML (*.html)|*.html"/>
+    <OdtFile Text="Documento Open Office (*.odt)|*.odt"/>
+    <OdsFile Text="Folha de cálculo Open Office (*.ods)|*.ods"/>
+    <PdfFile Text="Arquivo PDF (*.pdf)|*.pdf"/>
+    <TxtFile Text="Arquivo Texto  (*.txt)|*.txt"/>
+    <CsvFile Text="Valores separados por vírgulas (*.csv)|*.csv"/>
+    <XlsFile Text="Arquivo MS Excel (*.xls)|*.xls"/>
+    <CsFile Text="Arquivo C# (*.cs)|*.cs"/>
+    <VbFile Text="Arquivo VB.Net (*.vb)|*.vb"/>
+    <FdbFile Text="Base de dados Firebird (*.fdb)|*.fdb"/>
+    <Vdb3File Text="Base de dados VistaDB (*.vdb*)|*.vdb*"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="dd/MM/yy"/>
+    <Date6 Text="dd/MM/yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Falso"/>
+    <BooleanF2 Text="Não"/>
+    <BooleanF3 Text="Off"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Verdadeiro"/>
+    <BooleanT2 Text="Sim"/>
+    <BooleanT3 Text="On"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefone; 000-000-000"/>
+    <Custom2 Text="Telefone Int;+000 000-000-000"/>
+    <Custom3 Text="Seg.Social;0000000000000"/>
+    <Custom4 Text="C.Postal;0000-000"/>
+    <Custom5 Text="C.Postal completo;0000-000 aaaaaaaaaaaaaaaaaaaa"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Arquivo">
+        <New Text="Novo..."/>
+        <Open Text="Abrir..."/>
+        <Close Text="Fechar"/>
+        <Save Text="Salvar"/>
+        <SaveAs Text="Salvar como..."/>
+        <SaveAll Text="Salvar tudo"/>
+        <PageSetup Text="Configuração da Página..."/>
+        <PrinterSetup Text="Configuração da Impressora..."/>
+        <Preview Text="Pré-Visualizar..."/>
+        <SelectLanguage Text="Selecionar língua..."/>
+        <Exit Text="Sair"/>
+      </File>
+      <Edit Text="Editar">
+        <Undo Text="Desfazer"/>
+        <Redo Text="Refazer"/>
+        <Cut Text="Recortar"/>
+        <Copy Text="Copiar"/>
+        <Paste Text="Colar"/>
+        <Delete Text="Apagar"/>
+        <DeletePage Text="Apagar Página"/>
+        <SelectAll Text="Selecionar tudo"/>
+        <Group Text="Agrupar"/>
+        <Ungroup Text="Desagrupar"/>
+        <Find Text="Localizar..."/>
+        <Replace Text="Substituir..."/>
+      </Edit>
+      <View Text="Visualizar">
+        <StartPage Text="Página Inicial"/>
+        <Toolbars Text="Barras de ferramentas"/>
+        <Options Text="Opções..."/>
+        <Grid Text="Grade"/>
+        <Guides Text="Guias"/>
+        <AutoGuides Text="Guias Automáticas"/>
+        <DeleteHGuides Text="Apagar Guias Horizontais"/>
+        <DeleteVGuides Text="Apagar Guias Verticais"/>
+        <Units Text="Unidades"/>
+      </View>
+      <Insert Text="Inserir"/>
+      <Report Text="Relatório">
+        <Bands Text="Configurar Bandas..."/>
+        <Styles Text="Estilos..."/>
+        <GroupExpert Text="Assistente de Grupos..."/>
+        <Options Text="Opções..."/>
+      </Report>
+      <Data Text="Dados">
+        <ShowData Text="Mostrar janela de dados"/>
+        <Add Text="Adicionar fonte de dados"/>
+        <Choose Text="Escolher Dados do Relatório"/>
+      </Data>
+      <Window Text="Janela">
+        <CloseAll Text="Fechar Tudo"/>
+      </Window>
+      <Help Text="Ajuda">
+        <Contents Text="Conteúdo da Ajuda..."/>
+        <About Text="Sobre..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="Propriedades">
+        <PropertiesTab Text="Propriedades"/>
+        <EventsTab Text="Eventos"/>
+        <NObjectsSelected Text="{0} objectos seleccionados"/>
+      </Properties>
+      <ReportTree Text="Árvore do Relatório"/>
+      <Dictionary Text="Dados">
+        <DataSources Text="Fontes de Dados"/>
+        <Parameters Text="Parâmetros"/>
+        <SystemVariables Text="Variáveis do Sistema"/>
+        <Totals Text="Totais"/>
+        <New Text="Novo Dicionário..."/>
+        <Open Text="Abrir Dicionário..."/>
+        <Save Text="Salvar Dicionário..."/>
+        <Merge Text="Migrar Dicionário..."/>
+        <NewDataSource Text="Nova Fonte de Dados..."/>
+        <NewRelation Text="Nova Relação..."/>
+        <NewParameter Text="Novo Parâmetro"/>
+        <NewTotal Text="Novo Total..."/>
+        <NewCalculatedColumn Text="Nova Coluna Calculada..."/>
+        <Rename Text="Renomear"/>
+        <Edit Text="Editar..."/>
+        <Delete Text="Apagar"/>
+        <DeleteAlias Text="Apagar Alias"/>
+        <View Text="Visualizar Dados..."/>
+        <DuplicateName Text="Já existe um item com esse nome"/>
+        <NRows Text="{0} linha(s)"/>
+      </Dictionary>
+      <Messages Text="Mensagens">
+        <Description Text="Descrição"/>
+        <Line Text="Linha"/>
+        <Column Text="Coluna"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Adicionar ou Remover Botões"/>
+      <Reset Text="Inicializar Barra de Ferramentas"/>
+      <Standard Text="Padrão">
+        <New Text="Adicionar novo item"/>
+        <Open Text="Abrir Relatório (Ctrl+O)"/>
+        <Save Text="Salvar Relatório (Ctrl+S) "/>
+        <SaveAll Text="Salvar Tudo (Ctrl+Shift+S)"/>
+        <Preview Text="Pré-Visualizar (Ctrl+P)"/>
+        <NewPage Text="Nova Página de Relatório"/>
+        <NewDialog Text="Novo Diálogo"/>
+        <DeletePage Text="Apagar Página"/>
+        <PageSetup Text="Configurar Página"/>
+        <Cut Text="Recortar (Ctrl+X)"/>
+        <Copy Text="Copiar (Ctrl+C)"/>
+        <Paste Text="Colar (Ctrl+V)"/>
+        <FormatPainter Text="Formato Pincel"/>
+        <Undo Text="Desfazer (Ctrl+Z)"/>
+        <Redo Text="Refazer"/>
+        <Group Text="Agrupar"/>
+        <Ungroup Text="Desagrupar"/>
+      </Standard>
+      <Text Text="Texto">
+        <Name Text="Tipo de Letra"/>
+        <Size Text="Tamanho de Letra"/>
+        <Bold Text="Negrito"/>
+        <Italic Text="Itálico"/>
+        <Underline Text="Sublinhado"/>
+        <Left Text="Alinhar à Esquerda"/>
+        <Center Text="Centralizar"/>
+        <Right Text="Alinhar à Direita"/>
+        <Justify Text="Justificar"/>
+        <Top Text="Alinhar pelo topo"/>
+        <Middle Text="Centralizar Verticalmente"/>
+        <Bottom Text="Alinhar pela base"/>
+        <Color Text="Cor do Texto"/>
+        <Highlight Text="Destacar"/>
+        <Angle Text="Ângulo do Texto"/>
+      </Text>
+      <Border Text="Moldura e Preenchimento">
+        <Top Text="Linha Superior"/>
+        <Bottom Text="Linha Inferior"/>
+        <Left Text="Linha Esquerda"/>
+        <Right Text="Linha Direita"/>
+        <All Text="Todas as Linhas"/>
+        <None Text="Sem moldura"/>
+        <FillColor Text="Cor do Preenchimento"/>
+        <FillStyle Text="Estilo de Preenchimento..."/>
+        <LineColor Text="Cor da Moldura"/>
+        <Width Text="Espessura da Moldura"/>
+        <Style Text="Estilo de Moldura"/>
+        <Props Text="Propriedades da Moldura..."/>
+      </Border>
+      <Style Text="Estilo">
+        <Styles Text="Estilos"/>
+        <SelectStyle Text="Seleccionar Estilo"/>
+        <NoStyle Text="Sem estilo"/>
+      </Style>
+      <Layout Text="Aspecto">
+        <AlignToGrid Text="Alinhar à Grade"/>
+        <Left Text="Alinhar pela esquerda"/>
+        <Center Text="Alinhar ao centro"/>
+        <Right Text="Alinhar pela direita"/>
+        <Top Text="Alinhar pelo topo"/>
+        <Middle Text="Alinhar pelo meio"/>
+        <Bottom Text="Alinhar por baixo"/>
+        <SameWidth Text="Mesma Largura"/>
+        <SameHeight Text="Mesma Altura"/>
+        <SameSize Text="Mesmo Tamanho"/>
+        <SizeToGrid Text="Dimensionar pela Grade"/>
+        <SpaceHorizontally Text="Espaçar Horizontal"/>
+        <IncreaseHorizontalSpacing Text="Aumentar Espaço Horizontal"/>
+        <DecreaseHorizontalSpacing Text="Diminuir Espaço Horizontal"/>
+        <RemoveHorizontalSpacing Text="Remover Espaço Horizontal"/>
+        <SpaceVertically Text="Espaçar Verticalmente"/>
+        <IncreaseVerticalSpacing Text="Aumentar Espaço Vertical"/>
+        <DecreaseVerticalSpacing Text="Diminuir Espaço Vertical"/>
+        <RemoveVerticalSpacing Text="Remover Espaço Vertical"/>
+        <CenterHorizontally Text="Centralizar Horizontalmente"/>
+        <CenterVertically Text="Centralizar Verticalmente"/>
+        <BringToFront Text="Trazer para a Frente"/>
+        <SendToBack Text="Enviar para Trás"/>
+      </Layout>
+      <Objects Text="Objetos">
+        <Select Text="Selecionar"/>
+      </Objects>
+      <Zoom Text="Zoom">
+        <ZoomOut Text="Reduzir"/>
+        <ZoomIn Text="Aumentar"/>
+        <Zoom Text="Zoom"/>
+        <PageWidth Text="Largura da Página"/>
+        <WholePage Text="Toda a Página"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Código"/>
+      <Report>
+        <ConfigureBands Text="Configurar bandas..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Opções"/>
+    <UndoRedo>
+      <Delete Text="Apagar {0}"/>
+      <Move Text="Mover {0}"/>
+      <Size Text="Alterar tamanho de {0}"/>
+      <Change Text="Alterar {0}"/>
+      <AddGuide Text="Adicionar guia"/>
+      <MoveGuide Text="Mover guia"/>
+      <DeleteHGuides Text="Apagar guias horizontais"/>
+      <DeleteVGuides Text="Apagar guias verticais"/>
+      <ResizeBand Text="Redimencionar banda"/>
+      <ChangeParent Text="Alterar pai de {0}"/>
+      <Load Text="Carregar relatório"/>
+      <Paste Text="Colar {0}"/>
+      <Insert Text="Inserir {0}"/>
+      <AddPage Text="Adicionar página {0}"/>
+      <DeletePage Text="Apagar página"/>
+      <Script Text="Script alterado"/>
+      <NObjects Text="{0} objetos"/>
+      <UndoN Text="Desfazer {0} ações"/>
+      <RedoN Text="Refazer {0} ações"/>
+      <ChangeReport Text="Alterar relatório"/>
+      <ChangePagesOrder Text="Alterar ordem das páginas"/>
+      <EditPage Text="Editar página"/>
+      <EditPrinter Text="Editar configuração da impressora"/>
+      <EditReport Text="Editar configuração do relatório"/>
+      <SelectData Text="Selecionar dados"/>
+      <EditData Text="Editar dados"/>
+    </UndoRedo>
+    <StartPage Text="Página Inicial"/>
+    <Untitled Text="Semnome.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Personalizadas"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="Sistema"/>
+      <Other Text="Outras cores..."/>
+      <Transparency Text="Transparência:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Pré-Visualizar">
+    <PrintText Text="Imprimir"/>
+    <Print Text="Imprimir (Ctrl+P)"/>
+    <Open Text="Abrir Arquivo"/>
+    <Save Text="Salvar Arquivo"/>
+    <SaveText Text="Salvar"/>
+    <Email Text="Enviar por E-mail"/>
+    <Find Text="Localizar Texto"/>
+    <Outline Text="Resumo"/>
+    <PageSetup Text="Configuração da Página"/>
+    <Edit Text="Editar Página"/>
+    <Watermark Text="Marca D'Água"/>
+    <First Text="Primeira Página"/>
+    <Prior Text="Página Anterior"/>
+    <Next Text="Próxima Página"/>
+    <Last Text="Última Página"/>
+    <SaveNative Text="Relatório preparado..."/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="Adicionar novo Item">
+      <Add Text="Adicionar"/>
+      <Reports Text="Modelos de relatório:"/>
+      <ReportItems Text="Itens do relatório:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Propriedades Avançadas"/>
+    <AskPassword Text="Senha">
+      <Password Text="Este relatório está protegido por uma senha.&#13;&#10;&#13;&#10;Por favor digite a senha:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Ligação a Base de Dados">
+      <Login Text="Usuário:"/>
+      <Password Text="Senha:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Selecionar origem de dados"/>
+      <SelectDataSource Text="Selecione uma das origens de dados ou criar uma nova:"/>
+      <CreateNewDatasource Text="Criar nova origem de dados..."/>
+      <SelectColumnsPage Text="Selecionar colunas de dados"/>
+      <SelectColumns Text="Selecione as colunas de dados que pretende mostrar no relatório."/>
+      <AvailableColumns Text="Colunas disponíveis:"/>
+      <SelectedColumns Text="Colunas selecionadas:"/>
+    </BaseReportWizard>
+    <Border Text="Editor de Molduras">
+      <Border Text="Moldura"/>
+      <Line Text="Linha"/>
+      <Shadow Text="Sombra"/>
+      <Style Text="Estilo:"/>
+      <Width Text="Largura:"/>
+      <Color Text="Cor:"/>
+      <Hint Text="Escolha o estilo de linha e escolha a linha para aplicar o estilo."/>
+    </Border>
+    <ChartEditor Text="Editor de Gráfico">
+      <Chart Text="Gráfico"/>
+      <Add Text="Adicionar"/>
+      <Delete Text="Apagar"/>
+      <Hint Text="Clique em um item para configurar suas propriedades"/>
+      <Common>
+        <BackColor Text="Cor do fundo:"/>
+        <SecondaryColor Text="Segunda cor:"/>
+        <Gradient Text="Gradiente:"/>
+        <HatchStyle Text="Hatch estilo:"/>
+        <BorderColor Text="Cor da borda:"/>
+        <BorderStyle Text="Estilo da borda:"/>
+        <BorderWidth Text="Largura da borda:"/>
+        <ShadowColor Text="Cor da sombra:"/>
+        <ShadowOffset Text="Deslocar sombra:"/>
+        <LineColor Text="Cor da linha:"/>
+        <LineStyle Text="Stilo da linha:"/>
+        <LineWidth Text="Largura da linha:"/>
+        <Text Text="Texto:"/>
+        <Font Text="Fonte:"/>
+        <ForeColor Text="Cor da fonte:"/>
+        <Dock Text="Posição:"/>
+        <InsideChartArea Text="Dentro da area do gráfico"/>
+        <Format Text="Formato:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Dado">
+          <DataSource Text="Fonte de dado:"/>
+          <Filter Text="Filtro:"/>
+          <AutoSeries Text="Auto-criar série"/>
+          <DataColumn Text="Dado da coluna:"/>
+          <ColorColumn Text="Cor da coluna:"/>
+          <SeriesSort Text="Ordenar série:"/>
+          <AlignXValues Text="Alinhar X valores"/>
+        </Data>
+        <Appearance Text="Aparência">
+          <Template Text="Modelo:"/>
+          <Load Text="Abrir..."/>
+          <Save Text="Salvar..."/>
+          <SeriesPalette Text="Paleta de séries"/>
+          <BorderSkin Text="Borda skin:"/>
+        </Appearance>
+        <ChartArea Text="Area do gráfico">
+          <Area Text="Area:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Ativar 3D"/>
+          <XRotation Text="X rotação:"/>
+          <YRotation Text="Y rotação:"/>
+          <Perspective Text="Perspectiva:"/>
+          <WallWidth Text="Largura da barra"/>
+          <AxisDepth Text="Eixo profundidade:"/>
+          <LightStyle Text="Estilo "/>
+          <ClusteredSeries Text="Clustered séries"/>
+        </ThreeD>
+        <Axes Text="Eixos">
+          <Axis Text="Eixo:"/>
+          <CopyFromX Text="Copiar aparência do eixo X"/>
+          <CopyFromPrimary Text="Copiar aparência do primeiro eixo"/>
+          <Minor Text="Menor"/>
+          <Major Text="Maior"/>
+          <General Text="Geral">
+            <Enabled Text="Ativar"/>
+            <MarginVisible Text="Mostra margem"/>
+            <Logarithmic Text="Logarítmica"/>
+            <Reversed Text="Reservado"/>
+            <Interval Text="Intervalo"/>
+            <Interlaced Text="Entrelaçado"/>
+            <InterlacedColor Text="Cor do entrelaçado:"/>
+          </General>
+          <Labels Text="Etiquetas">
+            <Enabled Text="Ativar"/>
+            <Angle Text="Angulo:"/>
+          </Labels>
+          <Title Text="Título"/>
+          <CustomLabels Text="Personalizar etiqueta">
+            <Label Text="Etiqueta"/>
+            <Start Text="Começar:"/>
+            <End Text="Terminar:"/>
+            <Row Text="Linha:"/>
+            <MarkColor Text="Cor da marca:"/>
+            <MarkStyle Text="Stilo da marca:"/>
+          </CustomLabels>
+          <Grid Text="Garde">
+            <GridLine Text="Linha da grade:"/>
+            <Enabled Text="Ativar"/>
+          </Grid>
+          <Ticks Text="Ticks">
+            <Ticks Text="Ticks:"/>
+            <Enabled Text="Ativar"/>
+            <TickStyle Text="Stilo do tick:"/>
+            <TickSize Text="Tamanho do tick:"/>
+          </Ticks>
+          <Strips Text="Strips">
+            <Strip Text="Strip"/>
+            <Interval Text="Intervalo">
+              <Start Text="Iniciar:"/>
+              <Width Text="Largura:"/>
+              <Interval Text="Intervalo:"/>
+            </Interval>
+            <Appearance Text="Aparência"/>
+            <Text Text="Texto">
+              <HorizontalAlign Text="Alinhamento horizontal:"/>
+              <VerticalAlign Text="Alinhamento vertical:"/>
+              <TextOrientation Text="Orientação do texto:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Legenda">
+          <Enabled Text="Ativar"/>
+          <StyleColumn Text="Coluna"/>
+          <StyleRow Text="Linha"/>
+          <StyleTable Text="Tabela"/>
+          <General Text="Geral">
+            <LegendStyle Text="Estilo da Legenda:"/>
+          </General>
+          <Appearance Text="Aparência"/>
+        </Legend>
+        <Title Text="Título">
+          <Visible Text="Ativar"/>
+          <General Text="Geral">
+            <TextOrientation Text="Orientação do texto:"/>
+            <TextStyle Text="Stilo do text:"/>
+          </General>
+          <Appearance Text="Aparência"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Dado">
+          <Name Text="Nome:"/>
+          <XValue Text="Valor de X:"/>
+          <Color Text="Cor:"/>
+          <Filter Text="Filtro:"/>
+          <XValueType Text="Tipo de valor de X:"/>
+          <YValueType Text="Tipo de valor de Y:"/>
+          <XAxisType Text="Eixo X:"/>
+          <YAxisType Text="Eixo Y:"/>
+          <PrimaryAxis Text="Primário"/>
+          <SecondaryAxis Text="Secundário"/>
+          <SeriesValues>
+            <YValue Text="Valor de Y:"/>
+            <High Text="Altura:"/>
+            <Low Text="Baixo:"/>
+            <Open Text="Abrir:"/>
+            <Close Text="Fechar:"/>
+            <RangeBegin Text="Faixa inicial::"/>
+            <RangeEnd Text="Faixa final:"/>
+            <Size Text="Tamanho:"/>
+            <YValue1 Text="Valor de Y 1:"/>
+            <YValue2 Text="Valor de Y 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Valores"/>
+        <DataProcessing Text="Dados processados">
+          <SortBy Text="Ordernar por:"/>
+          <SortByX Text="Valor de X"/>
+          <SortByY Text="Valor de Y"/>
+          <SortOrder Text="Ordenar:"/>
+          <GroupBy Text="Agrupar por:">
+            <None Text="Nenhum"/>
+            <XValue Text="Valor de X"/>
+            <Number Text="Número"/>
+            <Years Text="Anos"/>
+            <Months Text="Meses"/>
+            <Weeks Text="Semanas"/>
+            <Days Text="Dias"/>
+            <Hours Text="Horas"/>
+            <Minutes Text="Minutos"/>
+            <Seconds Text="Segundos"/>
+            <Milliseconds Text="Milesimo de segundos"/>
+          </GroupBy>
+          <GroupInterval Text="Intervalo de agrupamento:"/>
+          <GroupFunction Text="Funções de agrupamento:"/>
+          <CollectData Text="Coleção de dados:">
+            <None Text="Nenhum"/>
+            <TopN Text="TopN"/>
+            <BottomN Text="BottomN"/>
+            <LessThan Text="Valor menor "/>
+            <LessThanPercent Text="Percentual menor"/>
+            <GreaterThan Text="Valor superior"/>
+            <GreaterThanPercent Text="Percentual superior"/>
+          </CollectData>
+          <Value Text="Valor:"/>
+          <CollectedText Text="Texto recolhido"/>
+          <CollectedColor Text="Cor recolhido"/>
+          <Explode Text="Expandido:">
+            <None Text="Nenhum"/>
+            <Biggest Text="Maior valor"/>
+            <Lowest Text="Menor valor"/>
+            <Specific Text="Valor específico"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Aparência">
+          <Default Text="Padrão"/>
+          <DrawingStyle Text="Stilo do desenho:"/>
+          <PointWidth Text="Largura do ponto:"/>
+          <LabelsStyle Text="Estilo de etiqueta:"/>
+          <ShowMarkerLines Text="Mostrar marcadores linhas"/>
+          <Markers Text="Marcadores:"/>
+          <BoxSize Text="Tamanho box:"/>
+        </Appearance>
+        <FillBorder Text="Borda e Preenchimento">
+          <Palette Text="Paleta:"/>
+        </FillBorder>
+        <Labels Text="Etiqueta">
+          <LabelView Text="Visualizar etiqueta:"/>
+          <Pattern Text="Padrão:"/>
+        </Labels>
+        <Markers Text="Marcadores">
+          <Style Text="Estilo:"/>
+          <Size Text="Tamanho:"/>
+          <Step Text="Etapa:"/>
+          <Color Text="Cor:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galeria">
+      <NewArea Text="Adicionar novo gráfico"/>
+      <Categories>
+        <BarColumn Text="Coluna e Barra"/>
+        <Area Text="Area"/>
+        <Line Text="Linha"/>
+        <Pie Text="Pizza"/>
+        <Circular Text="Circular"/>
+        <Financial Text="Finaceiro"/>
+        <Range Text="Range"/>
+      </Categories>
+      <Series>
+        <Bar Text="Barra"/>
+        <Column Text="Coluna"/>
+        <Area Text="Area"/>
+        <Line Text="Linha"/>
+        <Pie Text="Pizza"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Página de código">
+      <EnableVirtualSpace Text="Ativar espaço virtual"/>
+      <UseSpaces Text="Usar espaços para preencher tabulações"/>
+      <AllowOutlining Text="Permitir resumos"/>
+      <TabSize Text="Tamanho das tabulações:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Configurar Bandas">
+      <Add Text="Adicionar"/>
+      <Delete Text="Apagar"/>
+    </ConfigureBands>
+    <Connection Text="Ligação">
+      <Select Text="Selecione o tipo de ligação"/>
+      <AlwaysUse Text="Utilizar sempre esta ligação"/>
+      <LoginPrompt Text="Pedir identificação"/>
+      <Test Text="Testar ligação"/>
+      <TestSuccesful Text="O teste de ligação foi bem sucedido."/>
+    </Connection>
+    <CustomLabel Text="Etiqueta Personalizada">
+      <Paper Text="Papel"/>
+      <Landscape Text="Paisagem"/>
+      <PaperWidth Text="Largura do papel:"/>
+      <PaperHeight Text="Altura do papel:"/>
+      <LeftMargin Text="Margem esquerda:"/>
+      <TopMargin Text="Topo:"/>
+      <Label Text="Parâmetros da etiqueta"/>
+      <LabelWidth Text="Largura da etiqueta:"/>
+      <LabelHeight Text="Altura da Etiqueta:"/>
+      <RowGap Text="Intervalo entre linhas:"/>
+      <ColumnGap Text="Intervalo entre colunas:"/>
+      <Warning Text="Etiquetas não cabem na página!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Editar Banda de Dados">
+      <DataSource Text="Origem de dados"/>
+      <NoData Text="Não há origens de dados disponíveis.&#13;&#10;&#13;&#10;Vá ao menu &quot;Dados|Escolher dados do relatório...&quot; para escolher uma entre as origens de dados disponíveis, ou crie uma nova origem de dados utilizando o menu &quot;Dados|Adicionar Origem de Dados...&quot;."/>
+      <Sort Text="Ordenar"/>
+      <SortBy Text="Ordenar por"/>
+      <ThenBy Text="Depois por"/>
+      <Ascending Text="Crescente"/>
+      <Descending Text="Decrescente"/>
+      <Filter Text="Filtrar"/>
+      <Expression Text="Expressão de filtragem:"/>
+    </DataBandEditor>
+    <DataWizard Text="Assistente de Dados">
+      <Page1 Text="Escolher base de dados"/>
+      <WhichData Text="Que ligação deve o relatório utilizar para ligar à base de dados?"/>
+      <Hint Text="Selecione da lista de ligações usadas recentemente, ou pressione o botão &quot;Nova ligação...&quot; para criar uma nova ligação."/>
+      <NewConnection Text="Nova ligação..."/>
+      <EditConnection Text="Editar ligação..."/>
+      <ConnectionName Text="Digite o nome da ligação:"/>
+      <ConnectionString Text="Cadeia de ligação"/>
+      <Page2 Text="Escolher tabelas"/>
+      <WhichTables Text="Que tabelas pretende usar no relatório?"/>
+      <Wait Text="Lendo informação da base de dados"/>
+      <SortTables Text="Ordem tabelas"/>
+      <AddQuery Text="Adicionar consulta SQL"/>
+    </DataWizard>
+    <DialogPageOptions Text="Formulário de diálogo"/>
+    <Exception Text="Exceção">
+      <Hint Text="O seu relatório gerou a seguinte exceção:"/>
+      <Stack Text="Stack trace:"/>
+      <Copy Text="Copiar para clipboard"/>
+    </Exception>
+    <ExpressionEditor Text="Editar Expressão"/>
+    <Fill Text="Editor de preenchimento">
+      <Solid Text="Sólido"/>
+      <LinearGradient Text="Gradiente linear"/>
+      <PathGradient Text="Gradiente curvo"/>
+      <Hatch Text="Padrões"/>
+      <Glass Text="Vidro"/>
+      <Colors Text="Cores"/>
+      <Color Text="Cor"/>
+      <StartColor Text="Início"/>
+      <EndColor Text="Fim"/>
+      <Options Text="Opções"/>
+      <Focus Text="Focagem"/>
+      <Contrast Text="Contraste"/>
+      <Angle Text="Ângulo"/>
+      <CenterColor Text="Centro"/>
+      <EdgeColor Text="Borda"/>
+      <Shape Text="Forma"/>
+      <Ellipse Text="Elipse"/>
+      <Rectangle Text="Rectângulo"/>
+      <ForeColor Text="Tinta"/>
+      <BackColor Text="Fundo"/>
+      <Style Text="Estilo"/>
+      <Blend Text="Mistura"/>
+      <GlassHatch Text="Mostrar padrão"/>
+    </Fill>
+    <FormatEditor Text="Selecionar Formato">
+      <Expression Text="Expressão:"/>
+      <General Text="Geral"/>
+      <Number Text="Número"/>
+      <Currency Text="Moeda"/>
+      <Date Text="Data"/>
+      <Time Text="Hora"/>
+      <Percent Text="Percentagem"/>
+      <Boolean Text="Lógico"/>
+      <Custom Text="Personalizado"/>
+      <UseLocale Text="Usar definições locais"/>
+      <DecimalDigits Text="Dígitos decimais:"/>
+      <DecimalSeparator Text="Separador decimal:"/>
+      <GroupSeparator Text="Separador de grupo:"/>
+      <PositivePattern Text="Padrão positivo:"/>
+      <NegativePattern Text="Padrão negativo:"/>
+      <CurrencySymbol Text="Símbolo monetário:"/>
+      <PercentSymbol Text="Símbolo de percentagem:"/>
+      <FalseText Text="Texto para valor Falso:"/>
+      <TrueText Text="Texto para valor Verdadeiro:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Editar Colunas">
+      <Columns Text="Colunas"/>
+      <Properties Text="Propriedades"/>
+      <Add Text="Adicionar"/>
+      <Remove Text="Remover"/>
+      <AddAll Text="Adicionar todos"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Editar Grupo">
+      <Condition Text="Condição de agrupamento"/>
+      <Hint Text="Selecione uma coluna ou digite uma expressão:"/>
+      <Settings Text="Definições"/>
+      <Sort Text="Ordem:"/>
+      <NoSort Text="Não ordenar"/>
+      <Ascending Text="Crescente"/>
+      <Descending Text="Decrescente"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Assistente de Grupos">
+      <Condition Text="Condição de agrupamento"/>
+      <Hint Text="Selecione uma coluna ou digite uma expressão, depois pressione &quot;Adicionar&quot; para adicionar um novo grupo."/>
+      <Add Text="Adicionar"/>
+      <Groups Text="Grupos"/>
+      <Edit Text="Editar..."/>
+      <Delete Text="Apagar"/>
+    </GroupExpert>
+    <HighlightEditor Text="Condições de Destaque">
+      <Conditions Text="Condições"/>
+      <Add Text="Adicionar"/>
+      <Delete Text="Apagar"/>
+      <Edit Text="Editar"/>
+      <Style Text="Estilo"/>
+      <Fill Text="Preenchimento"/>
+      <TextColor Text="Cor do texto"/>
+      <Font Text="Tipo de Letra"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Editar Hiperligação">
+      <Url Text="URL"/>
+      <PageNumber Text="Número de página"/>
+      <Bookmark Text="Marcador"/>
+      <Report Text="Relatório"/>
+      <ReportPage Text="Página de relatório"/>
+      <Custom Text="Personalizado"/>
+      <UrlValue Text="Especifique um URL (exemplo: http://www.url.com):"/>
+      <UrlExpression Text="ou digite uma expressão que devolva um URL:"/>
+      <PageNumberValue Text="Indique o nº da página:"/>
+      <PageNumberExpression Text="ou digite uma expressão que devolva o nº da página:"/>
+      <BookmarkValue Text="Indique o nome do marcador:"/>
+      <BookmarkExpression Text="ou digite uma expressão que devolva o nome do marcador:"/>
+      <ReportName Text="Nome do relatório:"/>
+      <ParameterName Text="Parâmetro do relatório:"/>
+      <ParameterValue Text="Indique um valor para o parâmetro:"/>
+      <ParameterExpression Text="ou digite uma expressão que devolva o valor para o parâmetro:"/>
+      <PageName Text="Página do relatório:"/>
+      <CustomValue Text="Especifique um valor para a hiperligação:"/>
+      <CustomExpression Text="ou digite uma expressão que devolva o valor da hiperligação:"/>
+      <Hint Text="O que acontecerá se clicar neste objecto na pré-visualização:"/>
+      <HintUrl Text="URL específico será aberto."/>
+      <HintPageNumber Text="Irá para uma página especificada."/>
+      <HintBookmark Text="Irá para o objecto que contém o marcador especificado."/>
+      <HintReport Text="Será aberto o relatório especificado noutro separador."/>
+      <HintReportPage Text="A página especificada será gerada e aberta noutro separador."/>
+      <HintCustom Text="Deverá criar um processador de eventos &quot;Click&quot; para definir uma ação personalizada."/>
+      <ModifyAppearance Text="Modificar a aparência do objecto para que se assemelhe a uma hiperligação"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Assistente de Etiquetas">
+      <Hint Text="Selecione uma das etiquetas predefinidas, ou pressione&quot;Etiqueta personalizada&quot; para definir uma etiqueta própria."/>
+      <Label Text="Etiqueta"/>
+      <Manufacturer Text="Fabricante"/>
+      <Product Text="Produto"/>
+      <Parameters Text="Parâmetros"/>
+      <Size Text="Tamanho:"/>
+      <PaperSize Text="Tamanho do papel:"/>
+      <Rows Text="Linhas:"/>
+      <Columns Text="Colunas:"/>
+      <CustomLabel Text="Etiqueta personalizada..."/>
+      <Custom Text="Personalizada"/>
+    </LabelWizard>
+    <PageSetup Text="Definições da Página">
+      <Paper Text="Papel"/>
+      <Custom Text="Personalizado"/>
+      <Width Text="Largura:"/>
+      <Height Text="Altura:"/>
+      <Orientation Text="Orientação"/>
+      <Portrait Text="Retrato"/>
+      <Landscape Text="Paisagem"/>
+      <Margins Text="Margens"/>
+      <Left Text="Esquerda"/>
+      <Top Text="Superior"/>
+      <Right Text="Direita"/>
+      <Bottom Text="Inferior"/>
+      <MirrorMargins Text="Margens simétricas em páginas pares"/>
+      <Source Text="Origem"/>
+      <FirstPage Text="Primeira página"/>
+      <OtherPages Text="Outras páginas"/>
+      <Columns Text="Colunas"/>
+      <Count Text="Quantidade"/>
+      <ColumnWidth Text="Largura:"/>
+      <Positions Text="Posições:"/>
+      <Other Text="Outras"/>
+      <Duplex Text="Duplex"/>
+      <DupDefault Text="Padrão"/>
+      <DupSimplex Text="Simples"/>
+      <DupVertical Text="Vertical"/>
+      <DupHorizontal Text="Horizontal"/>
+      <EditWatermark Text="Editar marca D'Água..."/>
+      <ExtraWidth Text="Largura de desenho extra"/>
+    </PageSetup>
+    <PictureEditor Text="Editar Imagem">
+      <Picture Text="Imagem"/>
+      <Load Text="Abrir"/>
+      <Paste Text="Colar"/>
+      <Clear Text="Limpar"/>
+      <DataColumn Text="Coluna de dados"/>
+      <FileName Text="Nome de arquivo"/>
+      <Url Text="URL"/>
+      <FileHint1 Text="Nome do arquivo:"/>
+      <FileHint2 Text="Nota: tem de distribuir este arquivo em conjunto com o relatório."/>
+      <UrlHint Text="Hiperligação:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Extras">
+      <Hint Text="Lista de extras instalados no FastReport:"/>
+      <Add Text="Adicionar"/>
+      <Remove Text="Remover"/>
+      <Note Text="Nota: as alterações feitas terão efeito depois de reiniciar o FastReport"/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Aplicar a todas as páginas e reconstruir o relatório"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Procurar"/>
+    <PrinterSetup Text="Imprimir">
+      <PrinterSetup Text="Configurar Impressora"/>
+      <Printer Text="Impressora"/>
+      <SavePrinter Text="Salvar esta impressora no arquivo do relatório"/>
+      <Settings Text="Definições..."/>
+      <PrintToFile Text="Imp. para arquivo"/>
+      <PageRange Text="Intervalo de páginas"/>
+      <All Text="Todas"/>
+      <Current Text="Página corrente"/>
+      <Numbers Text="Páginas:"/>
+      <Hint Text="Digite números de página e/ou intervalos, separados por vírgulas. Por exemplo: 1,3,5-12"/>
+      <Copies Text="Cópias"/>
+      <Count Text="Quantidade:"/>
+      <Collate Text="Ordenar"/>
+      <Other Text="Outras"/>
+      <OddEven Text="Imprimir:"/>
+      <AllPages Text="Todas as páginas"/>
+      <OddPages Text="Páginas ímpares"/>
+      <EvenPages Text="Páginas pares"/>
+      <Order Text="Ordem:"/>
+      <OrderDirect Text="Directa(1-9)"/>
+      <OrderReverse Text="Inversa(9-1)"/>
+      <Duplex Text="Duplex:"/>
+      <Source Text="Origem:"/>
+      <PrintMode Text="Modo de Impressão"/>
+      <PrintModeDefault Text="Padrão"/>
+      <PrintModeSplit Text="Dividir páginas grandes"/>
+      <PrintModeScale Text="À escala"/>
+      <PrintOnSheet Text="Imprimir na folha:"/>
+      <PagesOnSheet Text="Páginas na folha:"/>
+      <PagesOnSheet1 Text="1 página"/>
+      <PagesOnSheet2 Text="2 páginas"/>
+      <PagesOnSheet4 Text="4 páginas"/>
+      <PagesOnSheet8 Text="8 páginas"/>
+      <Print Text="Imprimir"/>
+      <Error Text="Intervalo inválido."/>
+    </PrinterSetup>
+    <QueryWizard Text="Assistente de Consultas">
+      <Page1 Text="Definir o nome"/>
+      <SetName Text="Indique o nome do objecto de consulta."/>
+      <NameHint Text="O nome será mostrado na janela &quot;Dados&quot;."/>
+      <Page2 Text="Digite uma instrução SQL"/>
+      <WhatData Text="Que dados deve a consulta devolver?"/>
+      <TypeSql Text="Digite a sua instrução SQL ou utilize o &quot;Query Builder&quot; para a construir."/>
+      <QueryBuilder Text="Query Builder..."/>
+      <Page3 Text="Defina os parâmetros"/>
+      <Page4 Text="Defina as colunas"/>
+      <Refresh Text="Refrescar Colunas"/>
+      <AddColumn Text="Adicionar Coluna Calculada"/>
+      <AddParameter Text="Adicionar Parâmetro"/>
+      <Delete Text="Apagar"/>
+    </QueryWizard>
+    <RelationEditor Text="Editar Relação">
+      <ParentTable Text="Tabela mãe:"/>
+      <ChildTable Text="Tabela filha:"/>
+      <Parent Text="Mãe"/>
+      <Child Text="Filha"/>
+      <Columns Text="Colunas:"/>
+      <Error Text="Número inconsistente de colunas mãe e filha"/>
+    </RelationEditor>
+    <ReportData Text="Escolher os Dados para o Relatório">
+      <Hint Text="selecione as origens de dados e colunas que pretende usar no relatório:"/>
+      <Aliases Text="Mostrar aliases"/>
+    </ReportData>
+    <ReportOptions Text="Opções do Relatório">
+      <General Text="Geral"/>
+      <Description Text="Descrição"/>
+      <Script Text="Script"/>
+      <Security Text="Segurança"/>
+      <Inheritance Text="Herança"/>
+      <Name Text="Nome:"/>
+      <Author Text="Autor:"/>
+      <Version Text="Versão:"/>
+      <Description1 Text="Descrição:"/>
+      <Picture Text="Imagem:"/>
+      <SavePreviewPicture Text="Salvar imagem de pré-visualização"/>
+      <Load Text="Abrir..."/>
+      <Clear Text="Limpar"/>
+      <Created Text="Criado:"/>
+      <Modified Text="Modificado:"/>
+      <Language Text="Linguagem de script:"/>
+      <Note Text="Nota: se alterar a linguagem todo o script será apagado!"/>
+      <RefAssemblies Text="Assemblies referenciados:"/>
+      <Add Text="Adicionar..."/>
+      <Password Text="Senha:"/>
+      <RetypePassword Text="Repetir senha:"/>
+      <Inherited Text="Este relatório é herdado do relatório base:"/>
+      <NotInherited Text="Este relatório não é herdado."/>
+      <Choose Text="Escolha uma das opções:"/>
+      <DontChange Text="Não alterar"/>
+      <Detach Text="Separar do relatório base"/>
+      <Inherit Text="Herdar o relatório de:"/>
+      <Browse Text="Procurar..."/>
+      <DoublePass Text="Duplo passo"/>
+      <Compress Text="Compactar arquivo do relatório"/>
+      <UseFileCache Text="Utilizar cache em arquivo"/>
+      <ConvertNulls Text="Converter valores nulos"/>
+      <TextQuality Text="Qualidade do texto:"/>
+      <SmoothGraphics Text="Gráficos suavizados"/>
+      <QualityDefault Text="Padrão"/>
+      <QualityRegular Text="Regular"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Senha diferente da anterior. Digite novamente."/>
+    </ReportOptions>
+    <ReportPageOptions Text="Página de relatório">
+      <Units Text="Unidades da página"/>
+      <Millimeters Text="Milímetros"/>
+      <Centimeters Text="Centímetros"/>
+      <Inches Text="Polegadas"/>
+      <HundrethsOfInch Text="Centésimos de polegada"/>
+      <Grid Text="Grade"/>
+      <ShowGrid Text="Mostrar grade"/>
+      <SnapToGrid Text="Ajustar à grade"/>
+      <DottedGrid Text="Grade pontilhada"/>
+      <Size Text="Ponto de ajuste:"/>
+      <Markers Text="Marcadores"/>
+      <Rectangle Text="Rectângulo"/>
+      <Corners Text="Canto"/>
+      <BandView Text="Aspecto das bandas"/>
+      <Structure Text="Estruturado"/>
+      <Classic Text="Clássico"/>
+      <EditAfterInsert Text="Editar depois de inserir"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Editor de texto formatado">
+      <Open Text="Abrir"/>
+      <Save Text="Salvar"/>
+      <Subscript Text="Abaixo da linha"/>
+      <Superscript Text="Acima da linha"/>
+      <Bullets Text="Marcadores"/>
+      <Confirm Text="O texto foi alterado. Salvar alterações?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Procurar e Substituir">
+      <Find Text="Procurar:"/>
+      <Replace Text="Substituir por:"/>
+      <Options Text="Opções de pesquisa"/>
+      <MatchCase Text="Diferenciar maiúsculas/minúsculas"/>
+      <MatchWholeWord Text="Só palavras completas"/>
+      <FindNext Text="Seguinte"/>
+      <ReplaceBtn Text="Substituir"/>
+      <ReplaceAll Text="Substituir Todas"/>
+      <NotFound Text="Texto pesquisado não encontrado."/>
+      <NoMoreFound Text="Não foram encontradas mais ocorrências."/>
+    </SearchReplace>
+    <SelectDataSource Text="Selecionar Origem de Dados">
+      <Hint Text="Selecione uma ou mais origens de dados para usar no relatório."/>
+      <AvailableDs Text="Origens de dados disponíveis:"/>
+      <SelectedDs Text="Origens de dados selecionadas:"/>
+      <ProjectDs Text="Projetos dados"/>
+      <OtherDs Text="Outras fontes dados"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Selecionar Idioma">
+      <SelectLanguage Text="Selecione um idioma da lista seguinte:"/>
+      <Auto Text="Auto"/>
+      <Folder Text="Pasta com arquivos de idiomas:"/>
+      <SelectFolder Text="Selecione a pasta que contém os arquivos de idiomas (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Assistente de Relatório Padrão">
+      <GroupsPage Text="Criar Grupos"/>
+      <CreateGroups Text="Criar grupos (opcional)."/>
+      <Groups Text="Grupos:"/>
+      <LayoutPage Text="Definição da disposição"/>
+      <DefineLayout Text="Defina a orientação do papel e a disposição dos dados."/>
+      <Orientation Text="Orientação do papel"/>
+      <Portrait Text="Retrato"/>
+      <Landscape Text="Paisagem"/>
+      <Layout Text="Layout"/>
+      <Tabular Text="Tabular"/>
+      <Columnar Text="Colunar"/>
+      <StylePage Text="Selecionar estilo"/>
+      <Styles Text="Selecione o estilo do relatório."/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Editar coleção de linhas de texto"/>
+    <Style Text="Editor de Estilos">
+      <Styles Text="Estilos"/>
+      <Add Text="Adicionar"/>
+      <Delete Text="Apagar"/>
+      <Edit Text="Editar"/>
+      <Load Text="Abrir..."/>
+      <Save Text="Salvar..."/>
+      <Settings Text="Definições de estilo"/>
+      <Border Text="Bordas"/>
+      <Fill Text="Preenchimento"/>
+      <Font Text="Fonte"/>
+      <TextColor Text="Cor do texto"/>
+      <StyleName Text="Estilo"/>
+    </Style>
+    <TextEditor Text="Editar Texto">
+      <WordWrap Text="Ajustar linhas"/>
+    </TextEditor>
+    <TotalEditor Text="Editar Total">
+      <TotalName Text="Nome do Total:"/>
+      <Total Text="Total"/>
+      <Function Text="Função:"/>
+      <DataColumnOrExpression Text="Coluna de dados ou expressão:"/>
+      <DataBand Text="Calcular em cada linha da banda:"/>
+      <EvaluateCondition Text="Calcular se a seguinte condição se verificar:"/>
+      <PrintOn Text="Imprimir na banda:"/>
+      <Options Text="Opções"/>
+      <ResetAfterPrint Text="Reiniciar após imprimir"/>
+      <ResetRepeated Text="Reiniciar se a banda se repetir"/>
+      <InvisibleRows Text="Incluir linhas invisíveis"/>
+      <Sum Text="Soma"/>
+      <Min Text="Min"/>
+      <Max Text="Max"/>
+      <Avg Text="Média"/>
+      <Count Text="Contagem"/>
+    </TotalEditor>
+    <UIOptions Text="Aparência">
+      <Appearance Text="Aparência:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (blue),Office 2007 (silver),Office 2007 (black),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Marca D'Agua">
+      <Enabled Text="Activar"/>
+      <Text Text="Texto"/>
+      <TextItems Text="CONFIDENCIAL,COPIA,ORIGINAL,AMOSTRA,URGENTE"/>
+      <Rotation Text="Rotação"/>
+      <Horizontal Text="Horizontal"/>
+      <Vertical Text="Vertical"/>
+      <ForwardDiagonal Text="Diagonal para a frente"/>
+      <BackwardDiagonal Text="Diagonal para trás"/>
+      <Font Text="Fonte"/>
+      <Color Text="Cor"/>
+      <Picture Text="Imagem"/>
+      <Load Text="Abrir"/>
+      <Clear Text="Limpar"/>
+      <Size Text="Tamanho"/>
+      <Normal Text="Normal"/>
+      <Stretch Text="Esticar"/>
+      <Zoom Text="Ampliar"/>
+      <Tile Text="Mosaico"/>
+      <Transparency Text="Transparência"/>
+      <Zorder Text="Ordem-Z"/>
+      <TextOnTop Text="Texto em cima"/>
+      <PictureOnTop Text="Imagem em cima"/>
+      <ApplyToAll Text="Aplicar a todas as páginas"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Nome do servidor:"/>
+      <ServerLogon Text="Ligação ao servidor"/>
+      <UserName Text="Usuário:"/>
+      <Password Text="Senha:"/>
+      <Database Text="Ligação à base de dados"/>
+      <DatabaseName Text="Nome da base de dados:"/>
+      <DatabaseFile Text="Arquivo da base de dados:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Usar autenticação Windows"/>
+      <UseSql Text="Usar autenticação do SQL Server"/>
+      <SavePassword Text="Salvar minha senha"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="String de conexão:"/>
+      <Build Text="Gerar..."/>
+    </OleDb>
+    <Xml>
+      <Xsd Text="Arquivo do esquema:"/>
+      <Xml Text="Arquivo de dados:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Editar..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Pode Crescer"/>
+      <CanShrink Text="Pode Encolher"/>
+      <GrowToBottom Text="Crescer para Baixo"/>
+      <Hyperlink Text="Hiperligação..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Pode Separar-se"/>
+    </BreakableComponent>
+    <Band>
+      <StartNewPage Text="Iniciar Nova Página"/>
+      <PrintOnBottom Text="Imprimir em Baixo"/>
+    </Band>
+    <DataBand>
+      <KeepTogether Text="Manter Junto"/>
+      <KeepDetail Text="Manter Detalhe"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Repetir em Todas as Páginas"/>
+      <KeepWithData Text="Manter Com os Dados"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Reiniciar Números de Página"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Preencher Espaço Não Usado"/>
+      <CompleteToNRows Text="Completar até N linhas :"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Modo de Dimensionar"/>
+      <AutoSize Text="Tamanho Automático"/>
+      <CenterImage Text="Centralizar Imagem"/>
+      <Normal Text="Normal"/>
+      <StretchImage Text="Esticar Imagem"/>
+      <Zoom Text="Ampliar"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Formatar..."/>
+      <Clear Text="Limpar"/>
+      <AutoWidth Text="Largura Automática"/>
+      <WordWrap Text="Ajustar linhas"/>
+      <AllowExpressions Text="Permitir Expressões"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Imprimir no Pai"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Repetir Cabeçalhos"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Inserir linha acima"/>
+      <InsertBelow Text="Inserir linha abaixo"/>
+      <AutoSize Text="Tamanho Automático"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Inserir coluna à esquerda"/>
+      <InsertToRight Text="Inserir coluna à direita"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Juntar células"/>
+      <Split Text="Dividir células"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Células lado a lado"/>
+      <ShowTitle Text="Mostrar Título"/>
+      <Style Text="Estilo"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Totais"/>
+      <Function Text="Função"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Editar Colunas..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Tipo de Código de Barras"/>
+      <AutoSize Text="Tamanho Automático"/>
+      <AutoEncode Text="Codificação Automática"/>
+      <CalcChecksum Text="Calcular Valor de Controlo"/>
+      <ShowText Text="Mostrar Texto"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Mostrar Markers"/>
+      <ShowGrid Text="Mostrar Grade"/>
+    </ZipCodeObject>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Calculando limites..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Preenchendo a matriz..."/>
+      <NewColumn Text="Arraste dados p/aqui&#13;&#10;para criar nova coluna"/>
+      <NewRow Text="Arraste dados p/aqui&#13;&#10;para criar nova linha"/>
+      <NewCell Text="Arraste dados p/aqui&#13;&#10;para criar nova célula"/>
+      <Total Text="Total"/>
+      <Title Text="Título"/>
+      <White Text="Branco"/>
+      <Gray Text="Cinza"/>
+      <Orange Text="Laranja"/>
+      <Green Text="Verde"/>
+      <GreenOrange Text="Verde e Laranja"/>
+      <Blue Text="Azul"/>
+      <BlueWhite Text="Azul e Branco"/>
+      <GrayOrange Text="Cinza e Laranja"/>
+      <BlueOrange Text="Azul e Laranja"/>
+      <OrangeWhite Text="Laranja e Branco"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Relatório em branco"/>
+    <StandardReport Text="Assistente de Relatórios Padrão"/>
+    <InheritedReport Text="Relatório Herdado"/>
+    <Label Text="Assistente de Etiquetas"/>
+    <NewDataSource Text="Nova Origem de Dados"/>
+    <NewPage Text="Nova Página de Relatório"/>
+    <NewDialog Text="Novo Formulário de Diálogo"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Exportação feita em {0} ms"/>
+      <OrderByCells Text="Ordenar por células"/>
+      <AnalyzeObjects Text="Analisar objectos"/>
+      <SavePage Text="Salvar página"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Separadores de página"/>
+      <OpenAfterExport Text="Abrir após exportar"/>
+      <Pictures Text="Imagens"/>
+      <Options Text="Opções"/>
+      <None Text="Nenhum"/>
+      <Metafile Text="Metafile"/>
+    </Misc>
+    <Image Text="Exportar como Imagem">
+      <File Text="Arquivo de Imagem"/>
+      <ImageFormat Text="Formato:"/>
+      <Resolution Text="Resolução:"/>
+      <Quality Text="Qualidade Jpeg:"/>
+      <SeparateFiles Text="Um arquivo para cada página"/>
+      <Bmp Text="Imagem BMP"/>
+      <Png Text="Imagem PNG"/>
+      <Jpeg Text="Imagem JPG"/>
+      <Gif Text="Imagem GIF"/>
+      <Tiff Text="Imagem TIFF"/>
+      <Metafile Text="Windows metafile"/>
+    </Image>
+    <RichText Text="Exportar como Rich Text">
+      <File Text="Arquivo Rich Text"/>
+    </RichText>
+    <Text Text="Exportar para Texto/Matrix Printer">
+      <File Text="Arquivo Texto/Matrix Printer"/>
+      <EmptyLines Text="Linhas em Branco"/>
+      <DataOnly Text="Somente dados"/>
+      <Frames Text="Molduras"/>
+      <FramesNone Text="Nenhuma"/>
+      <FramesText Text="Texto"/>
+      <FramesGraphic Text="Grafico"/>
+      <Codepage Text="Código página"/>
+      <Default Text="Padrão"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Escala X:"/>
+      <ScaleY Text="Escala Y:"/>
+      <AutoScale Text="Auto Escala"/>
+      <Printer Text="Impressora"/>
+      <CopiesCount Text="Cópias"/>
+      <PrinterType Text="Tipo Impressora"/>
+      <Commands Text="Comandos"/>
+      <PageWidth Text="Largura página:"/>
+      <PageHeight Text="Altura página"/>
+      <DataLoss Text="POSSÍVEL PERDA DE DADOS &#13;&#10;queira aumentar Escala X / Y"/>
+      <ScaleMessage Text="Calcular melhor escala"/>
+      <Scale Text="Escala"/>
+    </Text>
+    <Csv Text="Exportar para CSV">
+      <File Text="Arquivo CSV"/>
+      <Separator Text="Separador"/>
+      <Codepage Text="Codepage"/>
+      <Default Text="Padrão"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Somente dados"/>
+    </Csv>
+    <Xml Text="Exportar como XML">
+      <File Text="Tabela XML (Excel)"/>
+    </Xml>
+    <Odt Text="Exportar para Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Exportar para Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Pdf Text="Exportar para PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Exportar"/>
+      <Compressed Text="Compactar"/>
+      <EmbeddedFonts Text="Anexar fontes"/>
+      <Background Text="Fundo"/>
+      <PrintOptimized Text="Otimizar impressora"/>
+      <Information Text="Informação"/>
+      <DocumentInformation Text="Informação do documento"/>
+      <Title Text="Título"/>
+      <Author Text="Autor"/>
+      <Subject Text="Assunto"/>
+      <Keywords Text="Palavras-chave"/>
+      <Creator Text="Criador"/>
+      <Producer Text="Produzido"/>
+      <Security Text="Segurança"/>
+      <Authentification Text="Autenticação"/>
+      <OwnerPassword Text="Senha antiga"/>
+      <UserPassword Text="Senha"/>
+      <Permissions Text="Permissões"/>
+      <PrintTheDocument Text="Imprimir o documento"/>
+      <ModifyTheDocument Text="Modificar o documento"/>
+      <CopyOfTextAndGraphics Text="Copiar texto e gráficos"/>
+      <AddOrModifyTextAnnotations Text="Adicionar ou modificar texto de anotações"/>
+      <Viewer Text="Visualizar"/>
+      <ViewerPreferences Text="Preferências de Visualização"/>
+      <HideToolbar Text="Ocutar barra de ferramenta"/>
+      <HideMenubar Text="Ocultar barra de menu"/>
+      <HideWindowUserInterface Text="Ocultar janelas"/>
+      <FitWindow Text="Janela de ajuste"/>
+      <CenterWindow Text="Centralizar Janela"/>
+      <PrintScaling Text="Print scaling"/>
+      <PrintAfterOpenOfDocument Text="Abrir documento após impressão"/>
+      <Outline Text="Outiline"/>
+    </Pdf>
+    <Html Text="Exportar como HTML">
+      <File Text="Arquivo HTML"/>
+      <SinglePage Text="Página única"/>
+      <SubFolder Text="Sub-pasta"/>
+      <Navigator Text="Navegador"/>
+      <Total Text="Total"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Email Text="Enviar por Correio Electrónico">
+      <Email Text="Mensagem"/>
+      <Account Text="Conta"/>
+      <Address Text="Endereço:"/>
+      <Subject Text="Assunto:"/>
+      <Message Text="Mensagem:"/>
+      <Attachment Text="Anexo:"/>
+      <Settings Text="Definições..."/>
+      <Name Text="Nome:"/>
+      <Template Text="Modelo:"/>
+      <Host Text="Servidor:"/>
+      <Port Text="Porta:"/>
+      <UserName Text="Utilizador:"/>
+      <Password Text="Senha:"/>
+      <AddressError Text="Endereço não pode estar vazio."/>
+      <HostError Text="Servidor não pode estar vazio."/>
+      <SendingEmail Text="Enviando email - {0} Kb"/>
+    </Email>
+  </Export>
+  <Properties>
+    <Categories>
+      <Appearance Text="Aparência"/>
+      <Behavior Text="Comportamento"/>
+      <Build Text="Construção"/>
+      <Data Text="Dados"/>
+      <Design Text="Desenho"/>
+      <Events Text="Eventos"/>
+      <Hierarchy Text="Hierarquia"/>
+      <Layout Text="Disposição"/>
+      <Misc Text="Misc"/>
+      <Navigation Text="Navegação"/>
+      <Preview Text="Pré-visualização"/>
+    </Categories>
+  </Properties>
+</Language>

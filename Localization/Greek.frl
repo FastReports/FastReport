@@ -1,0 +1,2564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="el" Author="Dionisis Divaris &lt;info@sgs-soft.gr&gt;;SGS-soft &lt;info@sgs-soft.gr&gt;;Dionisis Divaris &lt;support.sgs@gmail.com&gt;">
+  <Buttons>
+    <Ok Text="ΕΝΤΑΞΕΙ"/>
+    <Cancel Text="Ακύρωση"/>
+    <Close Text="Κλείσιμο"/>
+    <MoreOptions Text="Περισσότερες Επιλογές"/>
+    <LessOptions Text="Λιγότερες Επιλογές"/>
+    <Actions Text="Ενέργειες"/>
+    <Previous Text="&lt; Πίσω"/>
+    <Next Text="Επόμενο &gt;"/>
+    <Finish Text="Τέλος"/>
+    <Advanced Text="Για Προχωρημένους"/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Πρoσπέλαση δεδομένων..."/>
+    <Attention Text="Προσοχή"/>
+    <CantFindObject Text="Δεν βρέθηκε το αντικείμενο"/>
+    <CantLoadReport Text="Δεν βρέθηκε η έκθεση {0]"/>
+    <CantSaveReport Text="Αδύνατη η αποθήκευση της έκθεσης. Το αρχείο μπορεί να είναι μόνο για ανάγνωση"/>
+    <ClassError Text="Αδύνατη η εύρεση της κύριας κλάσης της  έκθεσης, ReportScript"/>
+    <Confirmation Text="Επιβεβαίωση"/>
+    <DataNotInitialized Text="Τα δεδομένα πηγής δεν έχουν ακόμα αρχικοποιηθεί."/>
+    <DecompressError Text="Αδύνατη η αποσυμπίεση του αρχείου"/>
+    <DecryptError Text="Σφάλμα Αποκρυπτογράφισης: Λανθασμένος κωδικός"/>
+    <DelegateError Text="{0} ο εκπρόσωπος πρέπει να έχει δυο ορίσματα: 'sender' και 'e'"/>
+    <DeleteAncestor Text="Δεν ήταν δυνατή η διαγραφή του {0}, εισήχθη στη γονική έκθεση"/>
+    <DuplicateName Text="Το αντικείμενο με ονομασία {0} ήδη υπάρχει"/>
+    <GroupHeaderHasNoGroupCondition Text="Το {0} δεν έχει συνθήκη ομαδοποίησης"/>
+    <DuplicateStyle Text="Υπάρχει ήδη στυλ με αυτή την ονομασία"/>
+    <Error Text="Λάθος"/>
+    <EventError Text="Δεν δημιουργήθηκε χειριστής συμβάντος λόγω σφαλμάτων στον πηγαίο κώδικα"/>
+    <ExportingPage Text="Εξαγωγή σελίδας {0} από {1}"/>
+    <GeneratingPage Text="Δημιουργία {0}ης σελίδας"/>
+    <GeneratingPageFirstPass Text="Πρώτο πέρσμα: δημιουργία της {0}ης σελίδας"/>
+    <Information Text="Πληροφορία"/>
+    <MatrixError Text="{0}:Το αντικείμενο μήτρας πρέπει να έχει διαστάσεις τουλάχιστον μια γραμμή ή στήλη και ένα κελί."/>
+    <MatrixValueError Text="Ο αριθμός τιμών διαφέρει από το  MatrixData.Cells.Count (θα πρέπει να είναι {0})"/>
+    <MatrixLayoutError Text="Δεν είναι δυνατή η διάταξη πινάκων που έχουν τοποθετηθεί στην ίδια ζώνη με την ίδια τιμή Layout.Left."/>
+    <ParentError Text="Ένα αντικείμενο τύπου {0} δεν μπορεί να εμπεριέχει αντικείμενα  τύπου {1}"/>
+    <ParentError1 Text="Ένα αντικείμενο τύπου {0} δεν μπορεί να εμπεριέχει αντικείμενα"/>
+    <Performance Text="Προετοιμάστηκε σε {0} ms"/>
+    <PreparingData Text="Προετοιμασία δεδομένων..."/>
+    <PrintingPage Text="Εκτύπωσης της {0}ης σελίδας"/>
+    <RenameAncestor Text="Αδύνατη η μετονομασία του {0}, εισήχθη στη γονική αναφορά"/>
+    <SaveChanges Text="Αποθήκευση αλλαγών στην {0};"/>
+    <SaveChangesToPreviewPage Text="Αποθήκευση των αλλαγών της σελίδας προεπισκόπισης;"/>
+    <SQLError Text="Λάθος SQL"/>
+    <TableIsNull Text="O πίνακας δεν συνδέεται με δεδομένα. Δηλώστε τα δεδομένα χρησιμοποιώντας τη μέθοδο Report.RegisterData."/>
+    <TableManualBuildError Text="Μπορείτε να χρησιμοποιήσετε τις μεθόδους  TableObject.PrintRow, PrintColumn μόνο μέσα στο συμβάν τους ManualBuild."/>
+    <Warning Text="Προειδοποίηση"/>
+    <WarningSaveRDL Text="Η μορφή RDL έχει κάποιους περιορισμούς! Το φίλτρο αυτό θα αποθηκεύσει μόνο την προβολή προτύπων! Δεν μπορούν να αποθηκευτούν Πηγές δεδομένων, αντικείμενα Γραμμωτού Κώδικα, Εμπλουτισμένου Κειμένου,Πλαισίου Ελέγχου και Ταχ.Κώδικα! Έτσι μπορεί να χαθούν μερικά στοιχεία και ιδιότητες από το πρότυπο σας.Θέλετε ωστόσο να το αποθηκεύσετε;  "/>
+    <WrongFileFormat Text="Αδύνατη η φόρτωση του αρχείου. Αρχείο άγνωστης μορφής"/>
+    <InvalidBarcode1 Text="Ο γραμμωτός κώδικας πρέπει να ξεκινά με τις ακολουθίες '&amp;A;', '&amp;B;' ή '&amp;C;'"/>
+    <InvalidBarcode2 Text="Άκυρος  χαρακτήρας στον κώδικα"/>
+    <ErrorInExpression Text="Λάθος στην έκφραση"/>
+    <ErrorInHighlightCondition Text="Λάθος στην συνθήκη επισήμανσης"/>
+    <FileNameEmpty Text="Παρακαλώ, καθορίστε το σωστό όνομα αρχείιου."/>
+    <SaveToAnotherFile Text="Θέλετε αποθήκευση σε άλλο αρχείο;"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="χιλ."/>
+    <ShortUnitsCm Text="εκατ."/>
+    <ShortUnitsIn Text="ίντσ."/>
+    <ShortUnitsHi Text="εκ.ιν"/>
+    <Sample Text="Δείγμα"/>
+    <None Text="Κανένα"/>
+    <PageN Text="Σελίδα{0}"/>
+    <PageNofM Text="Σελίδα {0} από {1}"/>
+    <ofM Text="από {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Έκθεση"/>
+    <ReportPage Text="Σελίδα"/>
+    <DialogPage Text="Φόρμα"/>
+    <XmlDataConnection Text="Βάση Δεδομένων XML"/>
+    <CsvDataConnection Text="Βάση Δεδομένων CSV"/>
+    <OleDbDataConnection Text="Σύνδεση μέσω OLE DB"/>
+    <MsAccessDataConnection Text="Σύνδεση με  MS Access"/>
+    <MsSqlDataConnection Text="Σύνδεση με  MS SQL"/>
+    <OdbcDataConnection Text="Σύνδεση μέσω ODBC"/>
+    <FirebirdDataConnection Text="Σύνδεση με FireBird"/>
+    <VistaDBDataConnection Text="Σύνδεση με VistaDB"/>
+    <PostgresDataConnection Text="Σύνδεση με Postgres"/>
+    <MySqlDataConnection Text="Σύνδεση με MySQL"/>
+    <OracleDataConnection Text="Σύνδεση με Oracle"/>
+    <SQLiteDataConnection Text="Σύνδεση με SQLite"/>
+    <SqlCeDataConnection Text="Σύνδεση με SQL CE"/>
+    <SharePointDataConnection Text="Σύνδεση SharePoint"/>
+    <GoogleBigQueryDataConnection Text="Google Big Query connection"/>
+    <JsonDataConnection Text="Βάση Δεδομένων JSON"/>
+    <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)"/>
+    <CouchbaseDataConnection Text="Διακομιστής Couchbase"/>
+    <MongoDBDataConnection Text="Σύνδεση σε MongoDB"/>
+    <NosDbDataConnection Text="Σύνδεση σε NosDb"/>
+    <RavenDBDataConnection Text="Σύνδεση RavenDB"/>
+    <SqlAnywhereDataConnection Text="Σύνδεση SqlAnywhere"/>
+    <Bands Text="Ζώνες">
+      <ReportTitle Text="Τίτλος Έκθεσης"/>
+      <ReportSummary Text="Περίληψη Έκθεσης"/>
+      <PageHeader Text="Κεφαλίδα Σελίδας"/>
+      <PageFooter Text="Υποσέλιδο Σελίδας"/>
+      <ColumnHeader Text="Κεφαλίδα Στήλης"/>
+      <ColumnFooter Text="Υποσέλιδο Στήλης"/>
+      <DataHeader Text="Κεφαλίδα"/>
+      <DataFooter Text="Υποσέλιδο"/>
+      <Data Text="Δεδομένα"/>
+      <GroupHeader Text="Κεφαλίδα Ομάδας"/>
+      <GroupFooter Text="Υποσέλιδο Ομάδας"/>
+      <Child Text="Παιδί"/>
+      <Overlay Text="Επικάλυψη"/>
+    </Bands>
+    <TextObject Text="Κείμενο"/>
+    <HtmlObject Text="HTML"/>
+    <Shapes Text="Σχήματα">
+      <Line Text="Γραμμή"/>
+      <DiagonalLine Text="Διαγώνια Γραμμή"/>
+      <Rectangle Text="Ορθογώνιο"/>
+      <RoundRectangle Text="Στρογγυλεμένο ορθογώνιο"/>
+      <Ellipse Text="Έλλειψη"/>
+      <Triangle Text="Τρίγωνο"/>
+      <Diamond Text="Ρόμβος"/>
+      <Bezier Text="Καμπύλη Μπεζιέ"/>
+      <Polyline Text="Πολύγραμμο"/>
+      <Polygon Text="Πολύγωνο"/>
+      <Pentagon Text="Πεντάγωνο"/>
+      <Hexagon Text="Εξάγωνο"/>
+      <Heptagon Text="Επτάγωνο"/>
+      <Octagon Text="Οκτάγωνο"/>
+    </Shapes>
+    <PictureObject Text="Εικόνα"/>
+    <SVGObject Text="Έγγραφο SVG"/>
+    <TableObject Text="Πίνακας"/>
+    <MatrixObject Text="Συνοπτικός Πίνακας (Μήτρα)"/>
+    <SubreportObject Text="Επιμέρους  Έκθεση"/>
+    <BarcodeObject Text="Γραμμωτός Κώδικας"/>
+    <RichObject Text="Εμπλουτισμένο Κείμενο"/>
+    <MSChartObject Text="Γράφημα MS"/>
+    <TeeChartObject Text="Διαγράμματα Steema TeeChart"/>
+    <ZipCodeObject Text="Ταχ. Κώδικας"/>
+    <CellularTextObject Text="Κυψελωτό Κείμενο"/>
+    <CheckBoxObject Text="Πλαίσιο Ελέγχου"/>
+    <ButtonControl Text="Πλήκτρο"/>
+    <CheckBoxControl Text="Πλαίσιο Ελέγχου"/>
+    <CheckedListBoxControl Text="Λίστα Πλαισίων Ελέγχου"/>
+    <ComboBoxControl Text="Σύνθετο Πλαίσιο"/>
+    <GridControl Text="Πλέγμα Δεδομένων"/>
+    <DataSelectorControl Text="Επιλογέας Δεδομένων"/>
+    <DateTimePickerControl Text="Επιλογή Ημερ/νίας Ώρας"/>
+    <GroupBoxControl Text="Πλαίσιο Ομαδοποίησης"/>
+    <LabelControl Text="Ετικέτα"/>
+    <ListBoxControl Text="Πλαίσιο Λίστας"/>
+    <ListViewControl Text="Λίστα Προβολής"/>
+    <MaskedTextBoxControl Text="Πλαίσιο Κειμένου με Μάσκα"/>
+    <MonthCalendarControl Text="Μηνιαίο Ημερολόγιο"/>
+    <NumericUpDownControl Text="Αριθμητικός Επιλογέας"/>
+    <PanelControl Text="Πλαίσιο"/>
+    <PictureBoxControl Text="Πλαίσιο Εικόνας"/>
+    <RadioButtonControl Text="Ραδιοπλήκτρο"/>
+    <RichTextBoxControl Text="Πλαίοιο Εμπλουτισμένου Κείμενου"/>
+    <TextBoxControl Text="Πλαίσιο Κειμένου"/>
+    <TreeViewControl Text="Δενδρική Απεικόνιση"/>
+    <MapObject Text="Χάρτης"/>
+    <SparklineObject Text="Αντικείμενο Sparkline"/>
+    <Gauge Text="Μετρητής">
+      <Linear Text="Γραμμικός Μετρητής"/>
+      <Simple Text="Aπλός Μετρητής"/>
+      <Radial Text="Ελλειπτικός Μετρητής"/>
+      <SimpleProgress Text="Απλός Μετρητής Προόδου"/>
+      <GaugeForms Text="Επεξεργασία Μετρητή">
+        <LinearGauge Text="Επεξεργασία Γραμμικού Μετρητή"/>
+        <SimpleGauge Text="Επεξεργασία Απλού Μετρητή"/>
+        <SimpleProgressGauge Text="Επεξεργασία Απλού Μετρητή Προόδου"/>
+        <RadialGauge Text="Επεξεργασία Ελλειπτικού Μετρητή"/>
+        <PageGeneral Text="Γενικά">
+          <Expression Text="Έκφραση..."/>
+          <Border Text="Πλαίσιο..."/>
+          <Fill Text="Γέμισμα..."/>
+          <LinearInverdted Text="Αντιστροφή:"/>
+          <Type Text="Τύπος:"/>
+          <Position Text="Θέση:"/>
+        </PageGeneral>
+        <PageScale Text="Κλίμακα">
+          <TabTicks Text="Σημάδια">
+            <MajorTicks Text="Κύρια Σημάδια">
+              <Width Text="Πλάτος:"/>
+              <Color Text="Χρώμα:"/>
+            </MajorTicks>
+            <MinorTicks Text="Δευτερεύοντα Σημάδια">
+              <Width Text="Πλάτος:"/>
+              <Color Text="Χρώμα:"/>
+            </MinorTicks>
+          </TabTicks>
+          <TabText Text="Κείμενο">
+            <Font Text="Γραμ/ρά:"/>
+            <TextFill Text="Γέμισμα Κειμένου"/>
+          </TabText>
+          <Subscales Text="Υποκλίμακες">
+            <FirstSubscale Text="1η Υποκλίμακα">
+              <Enabled Text="Ενεργοποίηση:"/>
+              <ShowCaption Text="Προβολή λεζάντας:"/>
+            </FirstSubscale>
+            <SecondSubscale Text="2η Υποκλίμακα">
+              <Enabled Text="Ενεργοποίηση:"/>
+              <ShowCaption Text="Προβολή λεζάντας:"/>
+            </SecondSubscale>
+          </Subscales>
+        </PageScale>
+        <PagePointer Text="Δείκτης">
+          <BorderColor Text="Χρώμα Πλαισίου"/>
+          <PointerFill Text="Γέμισμα Δείκτη"/>
+          <LabelPointerType Text="Τύπος:"/>
+        </PagePointer>
+        <PageLabel Text="Ειτκέτα">
+          <LabelColor Text="Χρώμα Ετικέτας"/>
+          <Font Text="Γραμματοσειρά:"/>
+          <Text Text="Κείμενο:"/>
+          <Decimals Text="Δεκαδικά:"/>
+        </PageLabel>
+      </GaugeForms>
+    </Gauge>
+    <CrossViewObject Text="Συνοπτική Προβολή"/>
+    <DigitalSignatureObject Text="Ψηφιακή Υπογραφή"/>
+  </Objects>
+  <Functions>
+    <Math Text="Μαθηματικές"/>
+    <Text Text="Κειμένου"/>
+    <DateTime Text="Ημερομηνίας &amp; Ώρας"/>
+    <Formatting Text="Μορφοποίησης"/>
+    <Conversion Text="Μετατροπής"/>
+    <ProgramFlow Text="Ροής Προγράμματος"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Αρχείο Έκθεσης (*.frx)|*.frx"/>
+    <PreparedReport Text="Έτοιμη έκθεση (*.fpx)|*.fpx"/>
+    <Style Text="Στυλ έκθεσης (*.frs)|*.frs"/>
+    <Dictionary Text="Λεξικό (*.frd)|*.frd"/>
+    <Localization Text="Αρχείο Γλώσσας (*.frl)|*.frl"/>
+    <XsdFile Text="Αρχείο ορισμού σχήματος XML (*.xsd)|*.xsd "/>
+    <XmlFile Text="Aρχείο XML (*.xml)|*.xml"/>
+    <MdbFile Text="Βάση Δεδομένων MS Access (*.mdb)|*.mdb"/>
+    <MdfFile Text="Βάση Δεδομένων Microsoft SQL Server"/>
+    <RtfFile Text="Αρχείο Εμπλουτισμένου Κειμένου (*.rtf)|*.rtf"/>
+    <Images Text="Αρχεία Εικόνων|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf "/>
+    <AllImages Text="Αρχεία εικόνας|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
+    <Assembly Text="Δυαδικά αρχεία (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Αρχείο Εκτύπωσης (*.prn)|*.prn"/>
+    <BmpFile Text="Εικόνα Bitmap (*.bmp)|*.bmp"/>
+    <PngFile Text="Εικόνα PNG (*.png)|*.png"/>
+    <JpegFile Text="Εικόνα JPG (*.jpg)|*.jpg"/>
+    <GifFile Text="Εικόνα GIF (*.gif)|*.gif"/>
+    <TiffFile Text="Εικόνα TIFF (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Μετα-αρχεία Windows (*.emf)|*.emf"/>
+    <HtmlFile Text="Αρχείο HTML (*.html)|*.html"/>
+    <MhtFile Text="Αρχείο-Ιστού  (*.mht)|*.mht"/>
+    <OdtFile Text="Αρχείο Κειμένου Open Office  (*.odt)|*.odt"/>
+    <OdsFile Text="Λογιστικό Φύλλο Open Office (*.ods)|*.ods"/>
+    <PdfFile Text="Αρχείο Adobe Acrobat (*.pdf)|*.pdf"/>
+    <TxtFile Text="Αρχείο Κειμένου (*.txt)|*.txt"/>
+    <CsvFile Text="Τιμές Διαχωρισμένες με Κόμμα (*.csv)|*.csv"/>
+    <DbfFile Text="Αρχείο Δεδομένων dBase  (*.dbf)|*.dbf"/>
+    <XlsFile Text="Αρχείο MS Excel (*.xls)|*.xls"/>
+    <CsFile Text="Αρχείο C#  (*.cs)|*.cs"/>
+    <VbFile Text="Αρχείο VB.NET (*.vb)|*.vb"/>
+    <FdbFile Text="Βάση Δεδομένων Firebird (*.fdb)|*.fdb"/>
+    <Vdb3File Text="Βάση Δεδομένων VistaDB  (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="Αρχείο MS Excel 2007 (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="Παρουσίαση MS PowerPoint (*.pptx)|*.pptx"/>
+    <XamlFile Text="Έγγραφο XAML (*.xaml)|*.xaml"/>
+    <SvgFile Text="Έγγραφο SVG (*.svg)|*.svg"/>
+    <PpmlFile Text="Έγγραφο PPML (*.ppml)|*.ppml"/>
+    <PSFile Text="Έγγραφο PostScript (*.ps)|*.ps"/>
+    <DocxFile Text="Έγγραφο MS Word (*.docx)|*.docx"/>
+    <SdfFile Text="Βάση  Δεδομένων SQL CE (*.sdf)|*.sdf"/>
+    <XpsFile Text="Αρχείο XPS (*.xps)|*.xps"/>
+    <RdlFiles Text="Αρχεία RDL (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="Αρχείο RDL (*.rdl)|*.rdl"/>
+    <RdlcFile Text="Aρχείο RDLC (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Aρχείο Crystal Reports (*.rpt)|*.rpt"/>
+    <ShpFile Text="Αρχείο σχήματoς ESRI (*.shp)|*.shp"/>
+    <OsmFile Text="Αρχείο OpenStreetMap(*.osm)|*.osm"/>
+    <Fr3File Text="Έκθεση FastReport VCL (*.fr3)|*.fr3"/>
+    <ListAndLabelFiles Text="Αρχεία Λίστας και Ετικέτας (*.rpt)|*.rpt"/>
+    <DevExpressFiles Text="Αρχεία DevExpress (*.repx)|*.repx"/>
+    <JsonFile Text="Αρχείο JSON  (*.json,*.txt)|*.json;*.txt"/>
+    <LaTeXFile Text="Αρχείο Tex (*.tex)|*.tex"/>
+    <ZplFile Text="Αρχείο ZPL (*.zpl)|*.zpl"/>
+    <DxfFile Text="αρχείο DXF (*.dxf)|*.dxf"/>
+    <HpglFile Text="Αρχείο Hpgl(plt) (*.plt)|*.plt"/>
+    <AllFiles Text="Όλα τα αρχεία (*.*)|*.*"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/ηη/χχ"/>
+    <Date6 Text="MMMM ηη, χχχχ"/>
+    <Date7 Text="MMMM χχχχ"/>
+    <Time1 Text="t"/>
+    <Time2 Text="Τ"/>
+    <Time3 Text="ωω:λλ δδ"/>
+    <Time4 Text="ΩΩ:λλ"/>
+    <Time5 Text="λλ:δδ"/>
+    <BooleanF1 Text="Ψευδές"/>
+    <BooleanF2 Text="Όχι"/>
+    <BooleanF3 Text="Εκτός"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Αληθές"/>
+    <BooleanT2 Text="Ναί"/>
+    <BooleanT3 Text="Εντός"/>
+    <BooleanT4 Text="Χ"/>
+    <Custom1 Text="Τηλέφωνο;(000) 000-0000"/>
+    <Custom2 Text="Τηλεφωνικό Πρόθεμα;+0(000) 000-0000"/>
+    <Custom3 Text="Κοινονική Ασφάλιση;000-00-000"/>
+    <Custom4 Text="Ταχ.Κώδικας;00000"/>
+    <Custom5 Text="Μεγάλος Ταχ.Κώδικας;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Ribbon>
+      <File Text="Αρχείο"/>
+      <Recent Text="Πρόσφατα Έγγραφα"/>
+      <Home Text="Αρχική"/>
+      <Clipboard Text="Πρόχειρο"/>
+      <Text Text="Κείμενο"/>
+      <BorderAndFill Text="Πλαίσιο και Γέμισμα"/>
+      <Format Text="Μορφή"/>
+      <Styles Text="Στυλ"/>
+      <Editing Text="Επεξεργασία"/>
+      <Report Text="Έκθεση"/>
+      <Data Text="Δεδομένα"/>
+      <Pages Text="Σελίδες"/>
+      <Bands Text="Ζώνες"/>
+      <Layout Text="Διάταξη"/>
+      <Alignment Text="Στοίχιση"/>
+      <Size Text="Μέγεθος"/>
+      <Spacing Text="Διάστημα"/>
+      <View Text="Προβολή"/>
+      <Panels Text="Πλαίσια"/>
+    </Ribbon>
+    <Menu>
+      <File Text="Αρχείο">
+        <New Text="Νέο..."/>
+        <Open Text="Ανοιγμα..."/>
+        <Close Text="Κλείσιμο"/>
+        <Save Text="Αποθήκευση"/>
+        <SaveAs Text="Αποθήκευση Ως..."/>
+        <SaveAll Text="Αποθήκευση Όλων"/>
+        <PageSetup Text="Ρυθμίσεις  Σελίδας..."/>
+        <PrinterSetup Text="Ρυθμίσεις Εκτυπωτή..."/>
+        <Preview Text="Προεπισκόπιση..."/>
+        <SelectLanguage Text="Επιλογή Γλώσσας..."/>
+        <Exit Text="Έξοδος"/>
+      </File>
+      <Edit Text="Επεξεργασία">
+        <Undo Text="Αναίρεση"/>
+        <Redo Text="Ακύρωση αναίρεσης"/>
+        <Cut Text="Αποκοπή"/>
+        <Copy Text="Αντιγραφή"/>
+        <Paste Text="Επικόλληση"/>
+        <Delete Text="Διαγραφή"/>
+        <CopyPage Text="Αντιγραφή Σελίδας"/>
+        <DeletePage Text="Διαγραφή Σελίδας"/>
+        <SelectAll Text="Επιλογή Όλων"/>
+        <Group Text="Ομαδοποίηση"/>
+        <Ungroup Text="Κατάργηση Ομαδοποίησης"/>
+        <Find Text="Εύρεση..."/>
+        <Replace Text="Αντικατάσταση..."/>
+      </Edit>
+      <View Text="Προβολή">
+        <StartPage Text="Αρχική Σελίδα"/>
+        <Toolbars Text="Γραμές Εργαλείων"/>
+        <Options Text="Επιλογές..."/>
+        <Grid Text="Πλέγμα"/>
+        <Guides Text="Οδηγοί"/>
+        <AutoGuides Text="Αυτόματοι Οδηγοί"/>
+        <DeleteHGuides Text="Διαγραφή Οριζόντιων Οδηγών"/>
+        <DeleteVGuides Text="Διαγραφή Κάθετων Οδηγών"/>
+        <Units Text="Μονάδες"/>
+      </View>
+      <Insert Text="Εισαγωγή"/>
+      <Report Text="Έκθεση">
+        <Bands Text="Διαμόρφωση Ζωνών..."/>
+        <Styles Text="Στυλ..."/>
+        <GroupExpert Text="Διαχείριση Ομάδων..."/>
+        <Options Text="Επιλογές..."/>
+      </Report>
+      <Data Text="Δεδομένα">
+        <ShowData Text="Εμφάνιση Παραθύρου Δεδομένων"/>
+        <Add Text="Προσθήκη Πηγής Δεδομένων..."/>
+        <Choose Text="Επιλογή Δεδομένων Έκθεσης..."/>
+      </Data>
+      <Window Text="Παράθυρο">
+        <CloseAll Text="Κλείσιμο Όλων"/>
+      </Window>
+      <Help Text="Βοήθεια">
+        <Contents Text="Περιεχόμενα Βοήθειας..."/>
+        <About Text="Σχετικά με το FastReport..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <AutoHide Text="Αυτόματη-απόκρυψη"/>
+      <Close Text="Κλείσιμο"/>
+      <Properties Text="Ιδιότητες">
+        <PropertiesTab Text="Ιδιότητες"/>
+        <EventsTab Text="Συμβάντα"/>
+        <NObjectsSelected Text="{0} επιλεγμένα αντικείμενα"/>
+      </Properties>
+      <ReportTree Text="Δενδρική Προβολή Έκθεσης"/>
+      <Dictionary Text="Δεδομένα">
+        <DataSources Text="Πηγές Δεδομένων"/>
+        <Parameters Text="Παράμετροι"/>
+        <SystemVariables Text="Μεταβλητές Συστήματος"/>
+        <Totals Text="Σύνολα"/>
+        <Functions Text="Συναρτήσεις"/>
+        <DialogControls Text="Κοντρόλ Διαλόγου"/>
+        <New Text="Νέο Λεξικό..."/>
+        <Open Text="Ανοιγμα Λεξικού..."/>
+        <Save Text="Αποθήκευση Λεξικού..."/>
+        <Merge Text="Συγχώνευση Λεξικού..."/>
+        <NewDataSource Text="Νέα Πηγή Δεδομένων..."/>
+        <SortDataSources Text="Ταξινόμηση Πηγών Δεδομένων"/>
+        <SortDataFields Text="Ταξινόμηση Πεδίων Data"/>
+        <NewRelation Text="Νέα Σχέση..."/>
+        <NewParameter Text="Νέα Παράμετρος"/>
+        <NewTotal Text="Νέο Σύνολο..."/>
+        <NewCalculatedColumn Text="Νέα Υπολογιζόμενη Στήλη..."/>
+        <Rename Text="Μετονομασία"/>
+        <Edit Text="Επεξεργασία..."/>
+        <Delete Text="Διαγραφή"/>
+        <DeleteAlias Text="Διαγραφή Ψευδώνυμου"/>
+        <View Text="Προβολή Δεδομένων..."/>
+        <ViewJson Text="Προβολή Json..."/>
+        <DuplicateName Text="Υπάρχει ήδη ένα στοιχείο με αυτό το όνομα"/>
+        <NRows Text="{0} στήλη(ες)"/>
+        <RowMofNRows Text="Σειρά {0} από {1}"/>
+        <RowsKtoLofNRows Text="Σειρές {0} - {1} από {2}"/>
+        <CubeSources Text="Πηγές Cube"/>
+      </Dictionary>
+      <Messages Text="Μηνύματα">
+        <Description Text="Περιγραφή"/>
+        <Line Text="Γραμμή"/>
+        <Column Text="Στήλη"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Προσθήκη ή Αφαίρεση Πλήκτρων"/>
+      <Reset Text="Επαναφορά Γραμμής Εργαλείων"/>
+      <MoreButtons Text="Περισσότερα πλήκτρα..."/>
+      <Standard Text="Τυπική">
+        <New Text="Προσθήκη Νέου Στοιχείου"/>
+        <Open Text="Ανοιγμα Έκθεσης (Ctrl+O)"/>
+        <Save Text="Αποθηκευση Έκθεσης (Ctrl+S)"/>
+        <SaveAll Text="Αποθήκευση Όλων (Ctrl+Shift+S)"/>
+        <Preview Text="Προεπισκόπιση (Ctrl+P)"/>
+        <NewPage Text="Νέα Σελίδα Έκθεσης"/>
+        <CopyPage Text="Αντιγραφή Σελιδας Έκθεσης"/>
+        <NewDialog Text="Νέος Διάλογος"/>
+        <DeletePage Text="Διαγραφή Σελίδας"/>
+        <PageSetup Text="Ρυθμίσεις Σελίδας"/>
+        <Cut Text="Αποκοπή (Ctrl+X)"/>
+        <Copy Text="Αντιγραφή (Ctrl+C)"/>
+        <Paste Text="Επικόλληση  (Ctrl+V)"/>
+        <FormatPainter Text="Πινέλο Μορφοποίησης"/>
+        <Undo Text="Αναίρεση (Ctrl+Z)"/>
+        <Redo Text="Ακύρωση αναίρεσης"/>
+        <Group Text="Ομαδοποίηση"/>
+        <Ungroup Text="Ακύρωση Ομαδοποίησης"/>
+      </Standard>
+      <Text Text="Κείμενο">
+        <Name Text="Όνομα Γραμματοσειράς"/>
+        <Size Text="Μέγεθος Γραμματοσειράς"/>
+        <Bold Text="Έντονα"/>
+        <Italic Text="Πλάγια"/>
+        <Underline Text="Υπογράμμιση"/>
+        <Left Text="Αριστερή Στοίχηση"/>
+        <Center Text="Στοιχιση στο Κέντρο"/>
+        <Right Text="Δεξιά Στοίχιση"/>
+        <Justify Text="Πλήρης στοίχιση"/>
+        <Top Text="Στοίχιση Eπάνω"/>
+        <Middle Text="Στοίχιση στη μέση"/>
+        <Bottom Text="Στοίχιση Κάτω"/>
+        <Color Text="Χρώμα Κειμένου"/>
+        <Highlight Text="Επισήμανση"/>
+        <Angle Text="Περιστροφή  Κειμένου"/>
+      </Text>
+      <Border Text="Πλάισιο και Γέμισμα">
+        <Top Text="Πάνω Γραμμή"/>
+        <Bottom Text="Κάτω Γραμμή"/>
+        <Left Text="Αριστερή Γραμμή"/>
+        <Right Text="Δεξιά Γραμμή"/>
+        <All Text="Όλες οι γραμμές του πλαισίου"/>
+        <None Text="Χωρίς Πλαίσιο"/>
+        <FillColor Text="Χρώμα Γεμίσματος"/>
+        <FillStyle Text="Στυλ Γεμίσματος..."/>
+        <LineColor Text="Χρώμα Πλαισίου"/>
+        <Width Text="Πλάτος Πλαισίου"/>
+        <Style Text="Στυλ Πλαισίου"/>
+        <Props Text="Ιδιότητες Πλαισίου..."/>
+      </Border>
+      <Style Text="Στυλ">
+        <Styles Text="Στυλ"/>
+        <SelectStyle Text="Επιλογή Στυλ"/>
+        <NoStyle Text="Κανένα στυλ"/>
+      </Style>
+      <Layout Text="Διάταξη">
+        <AlignToGrid Text="Στοίχιση στο Πλέγμα"/>
+        <Left Text="Στοίχιση Αριστερά"/>
+        <Center Text="Κεντράρισμα"/>
+        <Right Text="Στοίχιση Δεξιά"/>
+        <Top Text="Επάνω Στοίχιση"/>
+        <Middle Text="Στοίχιση  στη Μέση"/>
+        <Bottom Text="Στοίχιση κάτω"/>
+        <SameWidth Text="Ίδιο Πλάτος"/>
+        <SameHeight Text="Ίδιο Ύψος"/>
+        <SameSize Text="Ίδιο Μέγεθος"/>
+        <SizeToGrid Text="Μέγεθος στο πλέγμα"/>
+        <SpaceHorizontally Text="Οριζόντιος Διαχωρισμός"/>
+        <IncreaseHorizontalSpacing Text="Άυξηση Οριζόντιου Διατήματος"/>
+        <DecreaseHorizontalSpacing Text="Μείωση Οριζόντιου Διαστήματος"/>
+        <RemoveHorizontalSpacing Text="Αφαίρεση Οριζόντιου Διαστήματος"/>
+        <SpaceVertically Text="Κάθετος Διαχωρισμός"/>
+        <IncreaseVerticalSpacing Text="Αύξηση Κάθετου Διαστήματος"/>
+        <DecreaseVerticalSpacing Text="Μέιωση Κάθετου Διαστήματος"/>
+        <RemoveVerticalSpacing Text="Αφαίρεση Κάθετου Διαχωρισμού"/>
+        <CenterHorizontally Text="Οριζόντιο Κεντράρισμα"/>
+        <CenterVertically Text="Κάθετο Κεντράρισμα"/>
+        <BringToFront Text="Μεταφορά Εμπρός"/>
+        <SendToBack Text="Μεταφορά Πίσω"/>
+      </Layout>
+      <Objects Text="Αντικείμενα">
+        <Select Text="Επιλογή"/>
+      </Objects>
+      <Zoom Text="Μεγέθυνση">
+        <ZoomOut Text="Σμίκρυνση"/>
+        <ZoomIn Text="Μεγένθυση κατά"/>
+        <Zoom Text="Μεγένθυνση"/>
+        <PageWidth Text="Πλάτος Σελίδας"/>
+        <WholePage Text="Ολόκληρη Σελίδα"/>
+      </Zoom>
+      <Polygon Text="Πολύγωνο">
+        <MoveScale Text="Μετακίνηση &amp; κλιμάκωση"/>
+        <Pointer Text="Δείκτης"/>
+        <AddPointToStart Text="Προσθήκη νέας γραμμής στην αρχή"/>
+        <AddPointToEnd Text="Προσθήκη νέας γραμμής στο τέλος"/>
+        <AddPoint Text="Προσθήκη σημείου στη γραμμή"/>
+        <Bezier Text="Προσθήκη σημείου στη γραμμή"/>
+        <RemovePoint Text="Αφαίρεση σημείου"/>
+      </Polygon>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Κώδικας"/>
+      <Report>
+        <ConfigureBands Text="Ρυθμίσεις Ζωνών..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Επιλογές"/>
+    <UndoRedo>
+      <Delete Text="Διαγραφή {0}"/>
+      <Move Text="Μετακίνηση {0}"/>
+      <Size Text="Αλλαγή μεγέθους του {0}"/>
+      <Change Text="Αλλαγή {0}"/>
+      <AddGuide Text="Προσθήκη οδηγού"/>
+      <MoveGuide Text="Μετακίνηση οδηγού"/>
+      <DeleteHGuides Text="Διαγραφή οριζόντιων οδηγών"/>
+      <DeleteVGuides Text="Διαγραφή κάθετων οδηγών"/>
+      <ResizeBand Text="Αλλαγή μεγέθους ζώνης"/>
+      <ChangeParent Text="Αλλαγή του γονέα του {0}"/>
+      <Load Text="Φόρτωση έκθεσης"/>
+      <Paste Text="Επικόλληση {0}"/>
+      <Insert Text="Εισαγωγή {0}"/>
+      <AddPage Text="Προσθήκη σελίδας {0}"/>
+      <DeletePage Text="Διαγραφή σελίδας"/>
+      <Script Text="Αλλαγή δέσμης ενεργειών"/>
+      <NObjects Text="{0} αντικείμενα"/>
+      <UndoN Text="Αναίρεση {0} ενέργειας(ών)"/>
+      <RedoN Text="Ακύρωση αναίρεσης {0} ενέργειας(ών)"/>
+      <ChangeReport Text="Αλλαγή έκθεσης"/>
+      <ChangePagesOrder Text="Αλλαγή της σειράς των σελίδων"/>
+      <EditPage Text="Επεξεργασία σελίδας"/>
+      <EditPrinter Text="Επεξεργασία ρυθμίσεων του εκτυπωτή"/>
+      <EditReport Text="Επεξεργασία ρυθμίσεων της έκθεσης"/>
+      <SelectData Text="Επιλογή δεδομένων"/>
+      <EditData Text="Επεξεργασία δεδομένων"/>
+    </UndoRedo>
+    <StartPage Text="Αρχική Σελίδα"/>
+    <Untitled Text="Ανώνυμο.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Προσαρμογή"/>
+      <WebColors Text="Ιστού"/>
+      <SystemColors Text="Συστήματος"/>
+      <Other Text="Άλλα χρώματα..."/>
+      <Transparency Text="Διαφάνεια:"/>
+    </ColorSelector>
+    <Welcome>
+      <Button Text="Ανοίξτε το Παράθυρο Καλωσορίσματος..."/>
+      <Title Text="Καλωσορίσατε στο FastReport"/>
+      <Show Text="Εμφάνιση στην Εκκίνηση"/>
+      <Open Text="Άνοιγμα Πρόσφατου Στοιχείου"/>
+      <New Text="Δημιουργία Νέου"/>
+    </Welcome>
+  </Designer>
+  <Preview Text="Προεπισκόπιση">
+    <DesignText Text="Σχεδίαση"/>
+    <Design Text="Σχεδιαμός Έκθεσης"/>
+    <PrintText Text="Εκτύπωση"/>
+    <Print Text="Εκτύπωση (Ctrl+P)"/>
+    <Open Text="Άνοιγμα Αρχείου"/>
+    <Save Text="Αποθήκευση Αρχείου"/>
+    <SaveText Text="Αποθήκευση"/>
+    <SaveToCloud Text="Αποθήκευση σε Cloud"/>
+    <SaveToCloudText Text="Αποθήκευση σε Cloud"/>
+    <Email Text="Αποστολή μέσω E-mail"/>
+    <Find Text="Εύρεση Κειμένου"/>
+    <Outline Text="Περίγραμμα"/>
+    <PageSetup Text="Ρυθμίσεις Σελίδας"/>
+    <Edit Text="Επεξεργασία Σελίδας"/>
+    <CopyPage Text="Αντιγραφή Σελίδας"/>
+    <DeletePage Text="Διαγραφή Σελίδας"/>
+    <Watermark Text="Υδατογράφημα"/>
+    <First Text="Πρώτη Σελίδα"/>
+    <Prior Text="Προηγούμενη Σελίδα"/>
+    <Next Text="Επόμενη Σελίδα"/>
+    <Last Text="Τελευταία Σελίδα"/>
+    <SaveNative Text="Προετοιμασμένη  Έκθεση..."/>
+    <FtpText Text="Αποθήκευση σε FTP"/>
+    <DropboxText Text="Αποθήκευση στο DropBox"/>
+    <GoogleDriveText Text="Αποθήκευση στο Google Drive"/>
+    <SkyDriveText Text="Αποθήκευση στο OneDrive"/>
+  </Preview>
+  <Forms>
+    <About Text="Σχετικά με το FastReport">
+      <Version Text="Έκδοση"/>
+      <Visit Text="Επισκεφθείτε μας για περισσότερες  πληροφορίες:"/>
+    </About>
+    <AddLayer Text="Προσθήκη Επιπέδου">
+      <Source Text="Επιλογή πηγής:"/>
+      <Shapefile Text="Αρχείο-μορφής ESRI"/>
+      <Embed Text="Ενσωμάτωση αρχείου στην έκθεση"/>
+      <Empty Text="Κενό επίπεδο με γεωδεδομένα που παρέχονται από κάποια εφαρμογή"/>
+    </AddLayer>
+    <AddNewItem Text="Προσθήκη Νέου Στοιχείου">
+      <Add Text="Προσθήκη"/>
+      <Reports Text="Πρότυπα έκθεσης:"/>
+      <ReportItems Text="Στοιχεία έκθεσης:"/>
+      <Games Text="Παιχνίδια:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Ιδιότητες για Προχωρημένους"/>
+    <AskPassword Text="Κωδικός">
+      <Password Text="Αυτή η έκθεση προστατεύεται με κωδικό.&#13;&#10;&#13;&#10;Παρακαλώ εισάγετε τον κωδικό:&#13;&#10;"/>
+    </AskPassword>
+    <AskLoginPassword Text="Σύνδεση με τη  Βάση Δεδομένων">
+      <Login Text="Σύνδεση:"/>
+      <Password Text="Κωδικός:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Επιλογή πηγής δεδομένων"/>
+      <SelectDataSource Text="Επιλέξτε ένα από τις διαθέσιμες πηγές δεδομένων ή δημιουργήστε μια νέα:"/>
+      <CreateNewDatasource Text="Δημιουργία νέας πηγής δεδομένων"/>
+      <SelectColumnsPage Text="Επιλέξτε τις στήλες δεδομένων"/>
+      <SelectColumns Text="Επιλέξτε τις στήλες δεδομένων που θέλετε να εμφανίζονται σε μια έκθεση."/>
+      <AvailableColumns Text="Διαθέσιμες στήλες:"/>
+      <SelectedColumns Text="Επιλεγμένες στήλες:"/>
+    </BaseReportWizard>
+    <Border Text="Επεξεργαστής Πλαισίου">
+      <Border Text="Πλαίσιο"/>
+      <Line Text="Γραμμή"/>
+      <Shadow Text="Σκιά"/>
+      <Style Text="Στυλ:"/>
+      <Width Text="Πλάτος:"/>
+      <Color Text="Χρώμα:"/>
+      <Hint Text="Επιλέξτε στυλ γραμμής και ύστερα  επιλέξτε τη γραμμή για να εφαρμόσετε το στυλ."/>
+    </Border>
+    <ChartEditor Text="Επεξεργαστής Γραφήματος">
+      <Chart Text="Διάγραμμα"/>
+      <Add Text="Προσθήκη..."/>
+      <Delete Text="Διαγραφή"/>
+      <Hint Text="Κάντε κλικ σε ένα στοιχείο για ορισμό των ιδιοτήτων του."/>
+      <Common>
+        <Color Text="Χρώμα:"/>
+        <BackColor Text="Χρώμα Φόντου:"/>
+        <SecondaryColor Text="Δευτερεύον Χρώμα:"/>
+        <Gradient Text="Ντεγκραντέ:"/>
+        <HatchStyle Text="Στυλ μοτίβου:"/>
+        <BorderColor Text="Χρώμα πλαισίου:"/>
+        <BorderStyle Text="Στυλ πλαισίου:"/>
+        <BorderWidth Text="Πλάτος πλαισίου:"/>
+        <ShadowColor Text="Χρώμα σκιάς:"/>
+        <ShadowOffset Text="Offset σκιάς"/>
+        <LineColor Text="Χρώμα γραμμής:"/>
+        <LineStyle Text="Στυλ γραμμής:"/>
+        <LineWidth Text="Πλάτος γραμμής:"/>
+        <Text Text="Κείμενο:"/>
+        <Font Text="Γραμματοσειρά:"/>
+        <ForeColor Text="Εμπρόσθιο χρώμα:"/>
+        <Dock Text="Αγκύρωση:"/>
+        <InsideChartArea Text="Μέσα στη περιοχή του διαγράμματος"/>
+        <Format Text="Μορφή:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Δεδομένα">
+          <DataSource Text="Πηγή  δεδομένων:"/>
+          <Filter Text="Φίλτρο:"/>
+          <AutoSeries Text="Αυτo-δημιουργούμενες σειρές"/>
+          <DataColumn Text="Στήλη δεδομένων"/>
+          <ColorColumn Text="Χρώμα στήλης:"/>
+          <SeriesSort Text="Ταξινόμηση σειράς:"/>
+          <AlignXValues Text="Στοίχηση τιμών άξονα -X"/>
+          <ForceAutoSeries Text="Επιβολή Αυτόματης Δημιουργίας"/>
+        </Data>
+        <Appearance Text="Εμφάνιση">
+          <Template Text="Πρότυπο:"/>
+          <Load Text="Φόρτωση..."/>
+          <Save Text="Αποθήκευση..."/>
+          <SeriesPalette Text="Παλέτα σειράς:"/>
+          <BorderSkin Text="Eμφάνιση πλαισίου:"/>
+          <Templates>
+            <Custom Text="Προσαρμογή"/>
+            <Blue Text="Μπλέ"/>
+            <Gray Text="Γκρί"/>
+            <Green Text="Πράσινο"/>
+            <Pink Text="Ροζ"/>
+            <Sand Text="Αμμώδες"/>
+            <Steel Text="Χαλύβδινο"/>
+            <Light Text="Φωτισμός"/>
+          </Templates>
+        </Appearance>
+        <ChartArea Text="Περιοχή Διαγράμματος">
+          <Area Text="Περιοχή:"/>
+        </ChartArea>
+        <ThreeD Text="3Δ">
+          <Enable Text="Ενεργοποίηση 3Δ"/>
+          <XRotation Text="Περιστορφή Χ:"/>
+          <YRotation Text="Περιστροφη Υ:"/>
+          <Perspective Text="Προοπτική:"/>
+          <WallWidth Text="Πλάτος τοιχώματος:"/>
+          <AxisDepth Text="Βάθος άξονα:"/>
+          <LightStyle Text="Στυλ Φωτισμού:"/>
+          <ClusteredSeries Text="Ομαδοποιημένη σειρά"/>
+        </ThreeD>
+        <Axes Text="Αξονες">
+          <Axis Text="Άξονας:"/>
+          <CopyFromX Text="Αντιγραφή εμφάνισης από τον άξονα Χ"/>
+          <CopyFromPrimary Text="Αντιγραφή εμφάνισης από πρωτεύοντα άξονα y"/>
+          <Minor Text="Μικρότερη"/>
+          <Major Text="Μεγαλύτερη"/>
+          <General Text="Γενικά">
+            <Enabled Text="Ενεργοποίηση"/>
+            <MarginVisible Text="Ορατό περιθώριο "/>
+            <Logarithmic Text="Λογαριθμική"/>
+            <Reversed Text="Αντεστραμένο"/>
+            <Interval Text="Διάστημα"/>
+            <Interlaced Text="Πλέξη"/>
+            <InterlacedColor Text="Χρώμα πλέξης:"/>
+          </General>
+          <Labels Text="Ετικέτες">
+            <Enabled Text="Ενεργοποίηση"/>
+            <Angle Text="Γωνία:"/>
+          </Labels>
+          <Title Text="Τίτλος"/>
+          <CustomLabels Text="Προασαρμοσμένες Ετικέτες">
+            <Label Text="Ετικέτα"/>
+            <Start Text="Αρχή:"/>
+            <End Text="Τέλος:"/>
+            <Row Text="Γραμμή:"/>
+            <MarkColor Text="Χρώμα δείκτη:"/>
+            <MarkStyle Text="Στυλ δείκτη:"/>
+          </CustomLabels>
+          <Grid Text="Πλέγμα">
+            <GridLine Text="Γραμμή πλέγματος:"/>
+            <Enabled Text="Ενεργοποίηση"/>
+          </Grid>
+          <Ticks Text="Yποδιαιρέσεις">
+            <Ticks Text="Υποδιαιρέσεις:"/>
+            <Enabled Text="Ενεργοποίηση"/>
+            <TickStyle Text="Στυλ Υποδιαίρεσης:"/>
+            <TickSize Text="Μέγεθος υποδιαίρεσης:"/>
+          </Ticks>
+          <Strips Text="Λωρίδες">
+            <Strip Text="Λωρίδα"/>
+            <Interval Text="Διάστημα">
+              <Start Text="Αρχή:"/>
+              <Width Text="Πλάτος:"/>
+              <Interval Text="Διάστημα:"/>
+            </Interval>
+            <Appearance Text="Εμφάνιση"/>
+            <Text Text="Κείμενο">
+              <HorizontalAlign Text="Οριζόντια στοίχιση:"/>
+              <VerticalAlign Text="Κάθετη στοίχιση:"/>
+              <TextOrientation Text="Προσανατολισμός:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Υπόμνημα">
+          <Enabled Text="Ενεργοποίηση"/>
+          <StyleColumn Text="Στήλη"/>
+          <StyleRow Text="Σειρά"/>
+          <StyleTable Text="Πίνακας"/>
+          <General Text="Γενικά">
+            <LegendStyle Text="Στυλ Υπομνήματος:"/>
+          </General>
+          <Appearance Text="Εμφάνιση"/>
+        </Legend>
+        <Title Text="Τίτλος">
+          <Visible Text="Ορατός"/>
+          <General Text="Γενικά">
+            <TextOrientation Text="Προσανατολισμός"/>
+            <TextStyle Text="Στυλ κειμένου:"/>
+          </General>
+          <Appearance Text="Εμφάνιση"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Δεδομένα">
+          <Name Text="Όνομα:"/>
+          <XValue Text="Τιμή Χ:"/>
+          <Color Text="Χρώμα:"/>
+          <Filter Text="Φίλτρο:"/>
+          <XValueType Text="Τύπος Τιμής Χ:"/>
+          <YValueType Text="Τύπος Τιμής Υ:"/>
+          <XAxisType Text="Άξονας Χ:"/>
+          <YAxisType Text="Άξονας Υ:"/>
+          <PrimaryAxis Text="Αρχικός"/>
+          <SecondaryAxis Text="Δευτερεύων"/>
+          <SeriesValues>
+            <YValue Text="Τιμή Υ:"/>
+            <High Text="Μέγιστη:"/>
+            <Low Text="Ελάχιστη:"/>
+            <Open Text="Ανοικτή:"/>
+            <Close Text="Κλειστή:"/>
+            <RangeBegin Text="Αρχή Περιοχής:"/>
+            <RangeEnd Text="Τέλος Περιοχής:"/>
+            <Size Text="Μέγεθος:"/>
+            <YValue1 Text="1η Τιμή Υ:"/>
+            <YValue2 Text="2η Τιμή Υ:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Τιμές"/>
+        <DataProcessing Text="Επεξεργασία Δεδομένων">
+          <SortBy Text="Ταξινόμηση ανά:"/>
+          <SortByX Text="τιμή Χ"/>
+          <SortByY Text="τιμή Υ"/>
+          <SortOrder Text="Σειρά ταξινόμησης:"/>
+          <GroupBy Text="Ομαδοποίηση ανά:">
+            <None Text="Κανένα"/>
+            <XValue Text="τιμή Χ"/>
+            <Number Text="Αριθμός"/>
+            <Years Text="Έτη"/>
+            <Months Text="Μήνες"/>
+            <Weeks Text="Βδομάδες"/>
+            <Days Text="Μέρες"/>
+            <Hours Text="Ώρες"/>
+            <Minutes Text="Λεπτά"/>
+            <Seconds Text="Δευτερόλεπτα"/>
+            <Milliseconds Text="χιλιοστά του δευτερολέπτου"/>
+          </GroupBy>
+          <GroupInterval Text="Διάστημα Ομάδας:"/>
+          <GroupFunction Text="Συνάρτηση Ομάδας:"/>
+          <CollectData Text="Συλλογή Δεδομένων:">
+            <None Text="Κανένα"/>
+            <TopN Text="ΜέγιστοΝ"/>
+            <BottomN Text="ΕλάχιστοΝ"/>
+            <LessThan Text="Τιμή μικρότερη από"/>
+            <LessThanPercent Text="Ποσοστιαία μικρότερη από"/>
+            <GreaterThan Text="Τιμή μεγαλύτερη από"/>
+            <GreaterThanPercent Text="Ποσοστιαία μεγαλύτερη από"/>
+          </CollectData>
+          <Value Text="Τιμή:"/>
+          <CollectedText Text="Κείμενο συλλογής:"/>
+          <CollectedColor Text="Χρώμα συλλογής:"/>
+          <Explode Text="Ανάδειξη:">
+            <None Text="Καμιά"/>
+            <Biggest Text="Μέγιστη τιμή"/>
+            <Lowest Text="Ελάχιστη τιμή"/>
+            <Specific Text="Συγκεκριμένη τιμή"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Εμφάνιση">
+          <Default Text="Προεπιλογή"/>
+          <DrawingStyle Text="Στυλ σχεδίασης:"/>
+          <PointWidth Text="Πλάτος σημείου:"/>
+          <LabelsStyle Text="Στυλ Ετικετών:"/>
+          <DrawSideBySide Text="Σχεδίαση δίπλα-δίπλα"/>
+          <ShowMarkerLines Text="Εμφάνιση γραμμών δείκτη"/>
+          <DoughnutRadius Text="Ακτίνα δακτυλίου(%):"/>
+          <AreaDrawingStyle Text="Στυλ σχεδίασης περιοχής:"/>
+          <Markers Text="Δείκτες:"/>
+          <PriceUpColor Text="Χρώμα  μέγιστης τιμής:"/>
+          <ReversalAmount Text="Ποσό αντιλογισμού:"/>
+          <BoxSize Text="Μέγεθος πλαισίου"/>
+          <NumberOfLinesInBreak Text="Lines διαχωρισμού:"/>
+          <LabelsPlacement Text="Θέση ετικετών:"/>
+          <PointsGap Text="Διάκενο σημείων:"/>
+          <MinPointHeight Text="Ελαχ.ύψος σημείου:"/>
+          <ValueType Text="Τύπος τιμής:"/>
+          <ThreeDDrawingStyle Text="Στυλ σχεδίασης 3Δ:"/>
+          <ThreeDRotation Text="Περιστροφή 3Δ:"/>
+          <FunnelStyle Text="Στυλ χωνιού:"/>
+          <LineTension Text="Ένταση γραμμής:"/>
+          <NoSettings Text="Δεν υπάρχουν ειδικές ρυθμίσεις για αυτόν το τύπο σειράς."/>
+        </Appearance>
+        <FillBorder Text="Γέμισμα &amp;&amp; Πλαίσιο">
+          <Palette Text="Παλέτα:"/>
+        </FillBorder>
+        <Labels Text="Ετικέτες:">
+          <LabelView Text="Προβολή ετικέτας:"/>
+          <Pattern Text="Πρότυπο"/>
+        </Labels>
+        <Markers Text="Δείκτες">
+          <Style Text="Στυλ:"/>
+          <Size Text="Μέγεθος:"/>
+          <Step Text="Βήμα:"/>
+          <Color Text="Χρώμα:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Γκαλερί">
+      <NewArea Text="Προσθήκη νέας περιοχής διαγράμματος για αυτή τη σειρά"/>
+      <Categories>
+        <BarColumn Text="Ράβδοι &amp; Στήλες"/>
+        <Area Text="Περιοχής"/>
+        <Line Text="Γραμμή"/>
+        <PointBubble Text="Σημείο &amp; Φυσσαλίδα"/>
+        <Pie Text="Πίτα"/>
+        <Circular Text="Κυκλικό"/>
+        <Financial Text="Οικονομικά"/>
+        <PyramidFunnel Text="Πυραμίδα &amp; Χωνί"/>
+        <Range Text="Περιοχής"/>
+      </Categories>
+      <Series>
+        <Bar Text="Ράβδοι"/>
+        <StackedBar Text="Στοιβαγμένες Ράβδοι"/>
+        <StackedBar100 Text="100% Στοιβαγμένες Ράβδοι"/>
+        <Column Text="Στήλη"/>
+        <StackedColumn Text="Στοιβαγμένες Στήλες"/>
+        <StackedColumn100 Text="100% Στοιβαγμένες Στήλες"/>
+        <Area Text="Περιοχή"/>
+        <SplineArea Text="Εύκαμπτη Περιοχή"/>
+        <StackedArea Text="Στοιβαγμένες  Περιοχές"/>
+        <StackedArea100 Text="100% Στοιβαγμένες Περιοχές"/>
+        <Line Text="Γραμμή"/>
+        <FastLine Text="Γρήγορη Γραμμιή"/>
+        <StepLine Text="Βηματικό"/>
+        <Spline Text="Εύκαμπτο"/>
+        <Bubble Text="Φυσσαίδα"/>
+        <Point Text="Σημείου"/>
+        <FastPoint Text="Γρήγορου Σημείου"/>
+        <Pie Text="Πίτα"/>
+        <Doughnut Text="Δακτύλιος"/>
+        <Polar Text="Πολικό"/>
+        <Radar Text="Ραντάρ"/>
+        <Stock Text="Διάγραμμα  Μετοχών"/>
+        <Candlestick Text="Διάγραμμα Candlestick"/>
+        <Kagi Text="Διάγραμμα Kagi"/>
+        <Renko Text="διάγραμμα Renko"/>
+        <PointAndFigure Text="Διάγραμμα Point&amp; Figure"/>
+        <ThreeLineBreak Text="ΔΙάγραμμα Three Line Break"/>
+        <Pyramid Text="Πυραμίδα"/>
+        <Funnel Text="Χωνί"/>
+        <Range Text=" Περιοχής"/>
+        <SplineRange Text="Εύκαμπτης Περιοχής"/>
+        <RangeColumn Text="Περιοχής με στήλες"/>
+        <RangeBar Text="Περιοχής με Ράβδους"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Σελίδα Κώδικα">
+      <EnableCodeCompletion Text="Ενεργοποίηση ολοκλήρωσης κώδικα"/>
+      <EnableVirtualSpace Text="Ενεργοποίηση εικονκού χώρου"/>
+      <UseSpaces Text="Χρήση κενών για γέμισμα των στηλοθετών"/>
+      <AllowOutlining Text="Επιτρέπεται το περίγραμμα"/>
+      <LineNumbers Text="Αριθμοί γραμμών"/>
+      <TabSize Text="Μέγεθος στηλοθέτη"/>
+      <DefaultScriptLanguage Text="Εξορισμού γλώσσα σεναρίου:"/>
+      <CSharp Text="C#"/>
+      <VBNet Text="Visual Basic .NET"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Διαμόρφωση Ζωνών">
+      <Add Text="Προσθήκη"/>
+      <Delete Text="Διαγραφή"/>
+    </ConfigureBands>
+    <Connection Text="Σύνδεση">
+      <Select Text="Επιλογή τύπου σύνδεσης"/>
+      <AlwaysUse Text="Χρήση αυτής της σύνδεσης πάντα"/>
+      <LoginPrompt Text="Οθόνη Σύνδεσης"/>
+      <Test Text="Έλεγχος Σύνδεσης"/>
+      <TestSuccesful Text="Δοκιμαστική σύνδεση επιτυχής."/>
+    </Connection>
+    <CustomLabel Text="Προσαρμοσμένη Ετικέτα">
+      <Name Text="Όνομα:"/>
+      <Paper Text="Χαρτί"/>
+      <Landscape Text="Οριζόντιος Προσανατολισμός"/>
+      <PaperWidth Text="Πλάτος Χαρτιού:"/>
+      <PaperHeight Text="Ύψος χαρτιού:"/>
+      <LeftMargin Text="Αριστερό περιθώριο:"/>
+      <TopMargin Text="Πάνω Περιθώριο:"/>
+      <Label Text="Παράμετροι ετικέτας"/>
+      <LabelWidth Text="Πλάτος Ετικέτας:"/>
+      <LabelHeight Text="Ύψος ετικέτας:"/>
+      <RowGap Text="Κενό μεταξύ γραμμών:"/>
+      <ColumnGap Text="Κενό μεταξύ στηλών:"/>
+      <Warning Text="Οι ετικέτες δεν ταιριάζουν στη σελίδα!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Επεξεργασία Ζώνης Δεδομένων">
+      <DataSource Text="Πηγή  δεδομένων"/>
+      <NoData Text="Δεν υπάρχει διαθέσιμη πηγή δεδομένων&#13;&#10;&#13;&#10;Πηγαίνετε στο μενού &quot;Δεδομένα|Επιλογή Δεδομένων Έκθεσης...&quot;για να επιλέξετε πηγή δεδομένων, ή δημιουργήστε νέα χρησιμοποιώντας το μενού&quot;Δεδομένα|Προσθήκη Πηγής Δεδομένων...&quot;"/>
+      <Sort Text="Ταξινόμηση"/>
+      <SortBy Text="Ταξινόμηση βάσει"/>
+      <ThenBy Text="Ύστερα  βάσει"/>
+      <Ascending Text="Αύξουσα"/>
+      <Descending Text="Φθίνουσα"/>
+      <Filter Text="Φίλτρο"/>
+      <Expression Text="Έκφραση Φίλτρου"/>
+    </DataBandEditor>
+    <DataBandColumnEditor Text="Επεξεργαστής Στηλών Ζώνης Δεδομένων">
+      <Columns Text="Στήλες"/>
+      <Count Text="Αριθμός"/>
+      <Layout Text="Διάταξη"/>
+      <MinRowCount Text="Ελάχ Αρίθμ. Στήλης"/>
+      <Width Text="Πλάτος"/>
+    </DataBandColumnEditor>
+    <DataWizard Text="Βοηθός Δεδομένων">
+      <Page1 Text="Επιλογή Βάσης Δεδομένων"/>
+      <WhichData Text="Τι σύνδεση δεδομένων θα πρέπει να χρησιμοποιεί  η έκθεση σας για να συνδεθεί με βάση δεδομένων;"/>
+      <Hint Text="Επιλέξτε από τη λίστα των πρόσφατων συνδέσεων, ή πατήστε το πλήκτρο &quot;Νέα σύνδεση ...&quot; για να δημιουργήσετε μια νέα σύνδεση."/>
+      <NewConnection Text="Νέα σύνδεση..."/>
+      <EditConnection Text="Επεξεργασία σύνδεσης..."/>
+      <ConnectionName Text="Εισάγετε το όνομα της σύνδεσης:"/>
+      <ConnectionString Text="Συμβολοσειρά σύνδεσης"/>
+      <Page2 Text="Επιλογή πινάκων"/>
+      <WhichTables Text="Ποιούς πίνακες θέλετε να υπάρχουν στην έκθεση σας;"/>
+      <Wait Text="Ανάκτηση πληροφοριών βάσης δεδομένων"/>
+      <AddQuery Text="Προσθήκη ερωτήματος SQL..."/>
+      <CheckAll Text="Επιλογή Όλων"/>
+    </DataWizard>
+    <DialogPageOptions Text="Φόρμα διαλόγου"/>
+    <Exception Text="Εξαίρεση">
+      <Hint Text="Η έκθεση σας έχει αναφέρει την ακόλουθη εξαίρεση:"/>
+      <Stack Text="Διαδρομή σφάλματος:"/>
+      <Copy Text="Αντιγ/φή στο πρόχειρο..."/>
+    </Exception>
+    <ExpressionEditor Text="Επεξεγασία Έκφρασης"/>
+    <Fill Text="Επεξεργαστής Γεμίσματος">
+      <Solid Text="Συμπαγές"/>
+      <LinearGradient Text="Γραμμικό ντεγκραντέ"/>
+      <PathGradient Text="Διαδρομή ντεγκραντέ"/>
+      <Hatch Text="Μοτίβο"/>
+      <Glass Text="Κρύσταλλο"/>
+      <Texture Text="Υφή"/>
+      <ChooseImage Text="Επιλογή Εικόνας"/>
+      <PreserveAspectRatio Text="Διατήρηση Αναλογίας Διαστάσεων"/>
+      <ImageSize Text="Μέγεθος Εικόνας"/>
+      <ImageWidth Text="Πλάτος"/>
+      <ImageHeight Text="Ύψος"/>
+      <WrapMode Text="Τύπος Αναδίπλωσης"/>
+      <ImageOffset Text="Μετατόπιση Εικόνας"/>
+      <Colors Text="Χρώματα"/>
+      <Color Text="Χρώμα"/>
+      <StartColor Text="Αρχή"/>
+      <EndColor Text="Τέλος"/>
+      <Options Text="Επιλογές"/>
+      <Focus Text="Εστίαση"/>
+      <Contrast Text="Αντίθεση"/>
+      <Angle Text="Γωνία"/>
+      <CenterColor Text="Κέντρου"/>
+      <EdgeColor Text="Άκρης"/>
+      <Shape Text="Σχήμα"/>
+      <Ellipse Text="Ελλειπτικό"/>
+      <Rectangle Text="Ορθογώνιο"/>
+      <ForeColor Text="Εμπρός"/>
+      <BackColor Text="Πίσω"/>
+      <Style Text="Στυλ"/>
+      <Blend Text="Μείξη"/>
+      <GlassHatch Text="Εμφάνιση Μοτίβου"/>
+    </Fill>
+    <FormatEditor Text="Επιλογή Μορφής">
+      <Expression Text="Έκφραση:"/>
+      <General Text="Γενική"/>
+      <Number Text="Αριθμός"/>
+      <Currency Text="Νόμισμα"/>
+      <Date Text="Ημερομηνία"/>
+      <Time Text="Ώρα"/>
+      <Percent Text="Ποσοστό&#13;&#10;"/>
+      <Boolean Text="Λογική"/>
+      <Custom Text="Προσαρμογή"/>
+      <UseLocale Text="Χρήση τοπικών ρυθμίσεων"/>
+      <DecimalDigits Text="Δεκαδικά ψηφία:"/>
+      <DecimalSeparator Text="Υποδιαστολή:"/>
+      <GroupSeparator Text="Σύμβολο ομαδοποίησης:"/>
+      <PositivePattern Text="Μορφή θετικού ποσού:"/>
+      <NegativePattern Text="Μορφή αρνητικού ποσού:"/>
+      <CurrencySymbol Text="Σύμβολο νομίσματος:"/>
+      <PercentSymbol Text="Σύμβολο ποσοτού:"/>
+      <FalseText Text="Κείμενο ψευδούς τιμής:"/>
+      <TrueText Text="Κειμενου αληθούς τιμής:"/>
+    </FormatEditor>
+    <FontsPageOptions Text="Ρύθμιση Γραμματοσειρών">
+      <FormName Text="Ρύθμιση Γραμματοσειρών"/>
+      <Fonts Text="Γραμ/σειρές"/>
+      <Font Text="Γραμματοσειρά"/>
+      <SettingsFor Text="Προβολή ρυθμίσεων για"/>
+      <FormElement Text="Προβολή στοιχείων"/>
+      <DefaultButton Text="Χρήση προεπιλογών"/>
+      <Size Text="Μέγεθος"/>
+      <Italic Text="Πλάγια"/>
+      <Bold Text="Έντονα"/>
+      <Sample Text="Δείγμα"/>
+      <CancelButton Text="ΑΚΥΡΟ"/>
+    </FontsPageOptions>
+    <GridControlColumnsEditor Text="Επεξεργασία Στηλών">
+      <Columns Text="Στήλες"/>
+      <Properties Text="Ιδιότητες"/>
+      <Add Text="Προσθήκη"/>
+      <Remove Text="Αφαίρεση"/>
+      <AddAll Text="Προσθήκη όλων"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Επεξεργασία Ομάδας">
+      <Condition Text="Συνθήκη ομαδοποίησης"/>
+      <Hint Text="Επιλέξτε στήλη δεδομένων ή εισάγετε μια έκφραση:"/>
+      <Settings Text="Ρυθμίσεις"/>
+      <Sort Text="Ταξινόμηση:"/>
+      <NoSort Text="Χωρίς ταξινόμηση"/>
+      <Ascending Text="Αύξουσα"/>
+      <Descending Text="Φθίνουσα"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Διαχείριση Ομάδας">
+      <Condition Text="Συνθήκη ομαδοποίησης"/>
+      <Hint Text="Επιλέξτε μια στήλη δεδομένων ή εισάγετε μια έκφραση, ύστερα πιέστε το πλήκτρο &quot;Προσθήκη&quot;για να προσθέσετε μια νέα ομάδα."/>
+      <Add Text="Προσθήκη"/>
+      <Groups Text="Ομάδες"/>
+      <Edit Text="Επεξεργασία..."/>
+      <Delete Text="Διαγραφή"/>
+    </GroupExpert>
+    <HighlightEditor Text="Συνθήκες Επισήμανσης">
+      <Conditions Text="Συνθήκες"/>
+      <Add Text="Προσθήκη"/>
+      <Delete Text="Διαγραφή"/>
+      <Edit Text="Επεξεργασία"/>
+      <Style Text="Στυλ"/>
+      <Fill Text="Γέμισμα"/>
+      <TextColor Text="Χρώμα Κειμένου"/>
+      <Font Text="Γραμματοσειρά"/>
+      <Visible Text="Ορατό"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Επεξεργασία Υπερ-συνδέσμου">
+      <Url Text="URL"/>
+      <PageNumber Text="Αριθμός σελίδας"/>
+      <Bookmark Text="Σελιδοδείκτης"/>
+      <Report Text="Έκθεση"/>
+      <ReportPage Text="Σελίδα έκθεσης"/>
+      <Custom Text="Προσαρμογή"/>
+      <UrlValue Text="Καθορίστε μια διεύθυνση URL(π.χ. http://www.url.com):"/>
+      <UrlExpression Text="ή εισάγετε την έκφραση που επιστρέφει μια διεύθυνση URL:"/>
+      <PageNumberValue Text="Καθορίστε τον αριθμό της σελίδας:"/>
+      <PageNumberExpression Text="ή εισάγετε την έκφραση που επιστρέφει έναν αριθμό σελίδας:"/>
+      <BookmarkValue Text="Καθορίστε ένα όνομα σελιδοδείκτη:"/>
+      <BookmarkExpression Text="ή εισάγετε την έκφραση που επιστρέφει ένα όνομα σελιδοδείκτη:"/>
+      <ReportName Text="Όνομα έκθεσης:"/>
+      <ParameterName Text="Παράμετρος έκθεσης:"/>
+      <ParameterValue Text="Ορίστε μια τιμή παραμέτρου:"/>
+      <ParameterExpression Text="ή εισάγετε την έκφραση που επιστρέφει μια τιμή παραμέτρου:"/>
+      <PageName Text="Σελίδα έκθεσης:"/>
+      <CustomValue Text="Ορίστε μια τιμή για τον υπερ-σύνδεσμο:"/>
+      <CustomExpression Text="ή εισάγετε την έκφραση που επιστρέφει μια τιμή:"/>
+      <Hint Text="Τι θα συμβεί αν κάνετε κλικ στο εν λόγω αντικείμενο στο παράθυρο προεπισκόπησης:"/>
+      <HintUrl Text="Θα ανοίξει η καθορισμένη διεύθυνση URL."/>
+      <HintPageNumber Text="Μετάβαση  στη συγκεκριμένη σελίδα."/>
+      <HintBookmark Text="Μετάβαση στο αντικείμενο που περιέχει το συγκεκριμένο σελιδοδείκτη."/>
+      <HintReport Text="Η καθορισμένη έκθεση θα ανοίξει σε ξεχωριστό πλαίσιο προεπισκόπησης."/>
+      <HintReportPage Text="Η καθορισμένη σελίδα θα δημιουργηθεί και θα άνοίξει σε ξεχωριστό πλαίσιο προεπισκόπησης."/>
+      <HintCustom Text="Θα πρέπει να δημιουργήσετε χειριστή συμβάντος &quot;Click&quot; για να καθορίσετε μια προσαρμοσμένη ενέργεια."/>
+      <ModifyAppearance Text="Αλλαγή  εμφάνισης αντικειμένου έτσι ώστε να μοιάζει με επιλεγόμενο σύνδεσμο"/>
+      <OpenLinkInNewTab Text="Άνοιγμα  συνδέσμου σε νέα καρτέλα"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Βοηθός Ετικέτας">
+      <Hint Text="Επιλέξτε μία από τις προκαθορισμένες ετικέτες, ή πατήστε το κουμπί &quot;Προσαρμογή...&quot;  για να καθορίσετε τη δικιά σας ετικέτα."/>
+      <Label Text="Ετικέτα"/>
+      <Manufacturer Text="Κατασκευαστής:"/>
+      <Product Text="Προϊόν:"/>
+      <Parameters Text="Παράμετροι"/>
+      <Size Text="Μέγεθος:"/>
+      <PaperSize Text="Μέγεθος φύλου:"/>
+      <Rows Text="Σειρές:"/>
+      <Columns Text="Στήλες:"/>
+      <CustomLabel Text="Προσαρμογή..."/>
+      <Custom Text="Προσαρμογή..."/>
+      <Delete Text="Διαγραφή"/>
+      <Manufacturers>
+        <Manufacturer0 Text="AE"/>
+        <Manufacturer1 Text="Agipa"/>
+        <Manufacturer2 Text="AOne"/>
+        <Manufacturer3 Text="APLI"/>
+        <Manufacturer4 Text="Avery (A4, A5)"/>
+        <Manufacturer5 Text="Avery (standard)"/>
+        <Manufacturer6 Text="Boeder"/>
+        <Manufacturer7 Text="Devauzet"/>
+        <Manufacturer8 Text="Durable"/>
+        <Manufacturer9 Text="ERO"/>
+        <Manufacturer10 Text="Formtec"/>
+        <Manufacturer11 Text="Guilbert"/>
+        <Manufacturer12 Text="Herlitz"/>
+        <Manufacturer13 Text="Herma"/>
+        <Manufacturer14 Text="Hisago"/>
+        <Manufacturer15 Text="HP"/>
+        <Manufacturer16 Text="Inmac"/>
+        <Manufacturer17 Text="Kokuyo"/>
+        <Manufacturer18 Text="Leitz"/>
+        <Manufacturer19 Text="MACO/Wilson Jones"/>
+        <Manufacturer20 Text="MACtac"/>
+        <Manufacturer21 Text="May+Spies"/>
+        <Manufacturer22 Text="Pimaco"/>
+        <Manufacturer23 Text="RAJA ES"/>
+        <Manufacturer24 Text="Rank Xerox"/>
+        <Manufacturer25 Text="Sigel"/>
+        <Manufacturer26 Text="Stralfors"/>
+        <Manufacturer27 Text="UNISTAT"/>
+        <Manufacturer28 Text="Zweckform"/>
+      </Manufacturers>
+      <Labels>
+        <Label0 Text="Address"/>
+        <Label1 Text="Multi-usage"/>
+        <Label2 Text="Copilaser"/>
+        <Label3 Text="Laser"/>
+        <Label4 Text="Special Laser"/>
+        <Label5 Text="Inkjet+Laser"/>
+        <Label6 Text="Burotic"/>
+        <Label7 Text="Club Card"/>
+        <Label8 Text="Business Card"/>
+        <Label9 Text="Media"/>
+        <Label10 Text="Diskette"/>
+        <Label11 Text="Video Spine"/>
+        <Label12 Text="Video Face"/>
+        <Label13 Text="File Folder"/>
+        <Label14 Text="Postcard"/>
+        <Label15 Text="Name Badge"/>
+        <Label16 Text="Sticker"/>
+        <Label17 Text="Card"/>
+        <Label18 Text="Shipping"/>
+        <Label19 Text="Parcel"/>
+        <Label20 Text="Index Card"/>
+        <Label21 Text="CD ROM"/>
+        <Label22 Text="35mm Slide"/>
+        <Label23 Text="Audio Tape"/>
+        <Label24 Text="Data Cartridge"/>
+        <Label25 Text="Price Marking"/>
+        <Label26 Text="Label"/>
+        <Label27 Text="3.5&quot; Diskette (Face Only)"/>
+        <Label28 Text=".Mini Label - Full bleed"/>
+        <Label29 Text="Rectangle Sticker"/>
+        <Label30 Text="Square Sticker"/>
+        <Label31 Text="Small Round Sticker"/>
+        <Label32 Text="Big Round Sticker"/>
+        <Label33 Text="Full Page Sticker"/>
+        <Label34 Text="Mini Label"/>
+        <Label35 Text="Photo Quality Label (4 per page)"/>
+        <Label36 Text="Photo Quality Gloss Postcards"/>
+        <Label37 Text="Photo Quality Gloss Business Cards"/>
+        <Label38 Text="Photo Quality Card Sheet"/>
+        <Label39 Text="Full Face CD/DVD PQ Label"/>
+        <Label40 Text="3.5&quot; Diskette - Face Only"/>
+        <Label41 Text="Lever Arch"/>
+        <Label42 Text="Labels for colour printing - Shipping"/>
+        <Label43 Text="Clean Edge (TM) Business Card"/>
+        <Label44 Text="Name Card"/>
+        <Label45 Text="CD Case Insert - Cover"/>
+        <Label46 Text="CD Envelope"/>
+        <Label47 Text="Mini Labels"/>
+        <Label48 Text="Elasticated Folder / File Labels"/>
+        <Label49 Text="Ring Binder"/>
+        <Label50 Text="Fluorescent Yellow Promotional Labels"/>
+        <Label51 Text="IndexMaker Labels"/>
+        <Label52 Text="IndexMaker Contents"/>
+        <Label53 Text="ReadyIndex"/>
+        <Label54 Text="Mini"/>
+        <Label55 Text="Full Sheet Labels"/>
+        <Label56 Text="A5 Labels"/>
+        <Label57 Text="Circular"/>
+        <Label58 Text="5.25&quot; Diskette"/>
+        <Label59 Text="3.5&quot; Diskette (Wraparound)"/>
+        <Label60 Text="Mini Data Cartridge Labels"/>
+        <Label61 Text="Standard Data Cartridge"/>
+        <Label62 Text="Labels for Zip(TM) Disk"/>
+        <Label63 Text="Labels for SuperDisk (TM)"/>
+        <Label64 Text="Circular Fluorescent Yellow Promotional Labels"/>
+        <Label65 Text="4mm Data Cartridge"/>
+        <Label66 Text="Gold Mini Labels"/>
+        <Label67 Text="Compliment Slip"/>
+        <Label68 Text="Addressing"/>
+        <Label69 Text="Address/Shipping"/>
+        <Label70 Text="Filing"/>
+        <Label71 Text="3.5&quot; Diskette"/>
+        <Label72 Text="Embossed Note Cards"/>
+        <Label73 Text="Embossed Half-Fold Cards"/>
+        <Label74 Text="Postcards"/>
+        <Label75 Text="Half-Fold Greeting Cards"/>
+        <Label76 Text="Mailing Labels"/>
+        <Label77 Text="Return Address"/>
+        <Label78 Text="Filing Labels"/>
+        <Label79 Text="High Visibility Round Labels"/>
+        <Label80 Text="Medium Embossed Tent Cards"/>
+        <Label81 Text="Large Embossed Tent Cards"/>
+        <Label82 Text="Note Cards"/>
+        <Label83 Text="Laminated ID Cards"/>
+        <Label84 Text="Laminated Name Badges"/>
+        <Label85 Text="Business Cards"/>
+        <Label86 Text="Name Tag Kit"/>
+        <Label87 Text="Small Rotary Cards"/>
+        <Label88 Text="Large Rotary Cards"/>
+        <Label89 Text="Index Cards"/>
+        <Label90 Text="Name Badges Insert Refills "/>
+        <Label91 Text="Self Adhesive Name Badges"/>
+        <Label92 Text="White Address"/>
+        <Label93 Text="Clear Address"/>
+        <Label94 Text="Removable ID Labels"/>
+        <Label95 Text="Removable Filing Labels"/>
+        <Label96 Text="Return Address Labels"/>
+        <Label97 Text="Removable 3 1/2&quot; Diskette Labels"/>
+        <Label98 Text="Color Printing Labels"/>
+        <Label99 Text="Glossy Business Cards"/>
+        <Label100 Text="Glossy Postcards"/>
+        <Label101 Text="Full Sheet"/>
+        <Label102 Text="Bar Code"/>
+        <Label103 Text="Laser Tag"/>
+        <Label104 Text="InkJet"/>
+        <Label105 Text="8mm Video Tape"/>
+        <Label106 Text="Rotary Card"/>
+        <Label107 Text="Large Size"/>
+        <Label108 Text="Full Size"/>
+        <Label109 Text="Medium Size"/>
+        <Label110 Text="1 x 1 1/2 in"/>
+        <Label111 Text="1 x 4 in"/>
+        <Label112 Text="1 7/16 x 4 in"/>
+        <Label113 Text="2 x 4 in"/>
+        <Label114 Text="2 1/2 x 4 in"/>
+        <Label115 Text="3 1/3 x 4 in"/>
+        <Label116 Text="5 x 4 in"/>
+        <Label117 Text="5 1/2 x 8 1/2 in"/>
+        <Label118 Text="CD Label"/>
+        <Label119 Text="1 x 2 5/6 in"/>
+        <Label120 Text="3/4 x 3 1/2 in"/>
+        <Label121 Text="1 1/16 x 4 1/4 in"/>
+        <Label122 Text="1 9/16 x 4 1/4 in"/>
+        <Label123 Text="2 3/4 x 4 1/4 in"/>
+        <Label124 Text="3 2/3 x 4 1/4 in"/>
+        <Label125 Text="5 1/2 x 4 1/4 in"/>
+        <Label126 Text="3 1/2 x 8 1/2 in"/>
+        <Label127 Text="11 x 8 1/2 in"/>
+        <Label128 Text="3x11 Address"/>
+        <Label129 Text="3x12 Address"/>
+        <Label130 Text="InkJet+Laser, arrows"/>
+        <Label131 Text="InkJet+Laser, circles"/>
+        <Label132 Text="InkJet+Laser"/>
+        <Label133 Text="InkJet+Laser, red"/>
+        <Label134 Text="InkJet+Laser, blue"/>
+        <Label135 Text="InkJet+Laser, green"/>
+        <Label136 Text="InkJet+Laser, yellow"/>
+        <Label137 Text="File labels, wide"/>
+        <Label138 Text="File labels, narrow"/>
+        <Label139 Text="InkJet+Laser, Slide labels"/>
+        <Label140 Text="InkJet+Laser, Tab labels"/>
+        <Label141 Text="Laser, round labels, yellow"/>
+        <Label142 Text="InkJet+Laser, Disk labels"/>
+        <Label143 Text="InkJet+Laser, Video labels"/>
+        <Label144 Text="InkJet+Laser, Cassette labels"/>
+        <Label145 Text="Laser, transparent (film)"/>
+        <Label146 Text="Laser, weatherproof (film)"/>
+        <Label147 Text="landscape - Address"/>
+        <Label148 Text="landscape - File Folder"/>
+        <Label149 Text="landscape - Laser Tag"/>
+      </Labels>
+    </LabelWizard>
+    <MapEditor Text="Επεξεργασία Χάρτη">
+      <Map Text="Χάρτης"/>
+      <Layer Text="Επίπεδο"/>
+      <Add Text="Πρoσθήκη..."/>
+      <Delete Text="Διαγραφή"/>
+      <Hint Text="Κλικ σε ένα στοιχείο για ρύθμιση των ιδιοτήτων του:"/>
+      <Common>
+        <FillColor Text="Χρώμα Γεμίσματος:"/>
+        <TextColor Text="Χρώμα Κειμένου:"/>
+        <BorderColor Text="Χρώμα περιγράμματος"/>
+        <BorderStyle Text="Στυλ περιγράμματος"/>
+        <BorderWidth Text="Πλάτος περιγράμματος"/>
+        <Text Text="Κείμενο:"/>
+        <Font Text="Γραμ/σειρά:"/>
+        <Dock Text="Αγκύρωση:"/>
+        <Format Text="Μορφή:"/>
+        <Visible Text="Ορατή"/>
+        <NumberOfRanges Text="Αριθμ. περιοχών:"/>
+        <Start Text="Αρχή:"/>
+        <End Text="Τέλος:"/>
+        <Auto Text="Αυτόματο"/>
+      </Common>
+      <MapEditorControl>
+        <General Text="Γενικά">
+          <Mercator Text="Κυλινδρική Προβολή:"/>
+        </General>
+        <ColorScale Text="Χρωματική Κλίμακα">
+          <HideIfNoData Text="Απόκρυψη αν δεν υπάρχουν δεδομένα"/>
+          <Border Text="Πλαίσιο..."/>
+          <Fill Text="Γέμισμα..."/>
+          <General Text="Γενικά"/>
+          <Title Text="Τίτλος"/>
+          <Values Text="Τιμές"/>
+          <NoDataText Text="Κείμενο για Οχι Δεδομένα:"/>
+          <NoData Text="Όχι δεδομένα"/>
+        </ColorScale>
+      </MapEditorControl>
+      <LayerEditorControl>
+        <Data Text="Δεδομένα">
+          <DataSource Text="Πηγή Δεδομένων:"/>
+          <Filter Text="Φίλτρο:"/>
+          <SpatialData Text="Χωρικά δεδομένα:"/>
+          <Column Text="Στήλη:"/>
+          <Value Text="Τιμή:"/>
+          <Latitude Text="Γεωγραφ. πλάτος:"/>
+          <Longitude Text="Γεωγραφ. Μήκος:"/>
+          <Label Text="Ετικέτα:"/>
+          <AnalyticalData Text="Αναλυτικά δεδομένα:"/>
+          <Function Text="Συνάρτηση:"/>
+          <ZoomPolygon Text="Μεγέθυνση πολυγώνου:"/>
+        </Data>
+        <Appearance Text="Εμφάνιση">
+          <Palette Text="Παλέτα:"/>
+        </Appearance>
+        <ColorScale Text="Χρωματική Κλίμακα">
+          <StartColor Text="Χρώμα αρχής:"/>
+          <MiddleColor Text="Χρώμα μέσης:"/>
+          <EndColor Text="Χρώμα τέλους:"/>
+          <Color Text="Χρώμα:"/>
+        </ColorScale>
+        <SizeRanges Text="Μέγεθος περιοχών">
+          <StartSize Text="Αρχικό μέγεθος:"/>
+          <EndSize Text="Τελικό μέγεθος:"/>
+          <Size Text="Μέγεθος:"/>
+        </SizeRanges>
+        <Labels Text="Ετικέτες">
+          <LabelKind Text="Τύπος  ετικέτας:"/>
+          <None Text="Κανένα"/>
+          <Name Text="Όνομα"/>
+          <Value Text="Τιμή"/>
+          <NameAndValue Text="Όνομα και τιμή"/>
+          <LabelColumn Text="Ετικέτα στήλης:"/>
+          <VisibleAtZoom Text="Ορατή στο ζουμ:"/>
+        </Labels>
+      </LayerEditorControl>
+    </MapEditor>
+    <OutlineEditor Text="Επεξεργαστής Περιγράμματος">
+      <Enabled Text="Ενεργοποιημένος"/>
+      <Style Text="Στυλ:"/>
+      <Width Text="Πλάτος:"/>
+      <Color Text="Χρώμα:"/>
+      <DrawBehind Text="Σχεδίαση στο πίσω μέρος"/>
+    </OutlineEditor>
+    <PageSetup Text="Ρυθμίσεις Σελίδας">
+      <Paper Text="Χαρτί"/>
+      <Custom Text="Προσαρμογή"/>
+      <Width Text="Πλάτος:"/>
+      <Height Text="Ύψος:"/>
+      <Orientation Text="Προσανατολισμός:"/>
+      <Portrait Text="Κάθετος"/>
+      <Landscape Text="Οριζόντιος"/>
+      <Margins Text="Περιθώρια"/>
+      <Left Text="Αριατερό:"/>
+      <Top Text="Επάνω:"/>
+      <Right Text="Δεξί:"/>
+      <Bottom Text="Κάτω:"/>
+      <MirrorMargins Text="Αντικριστά περιθώρια στις ζυγές σελίδες"/>
+      <Source Text="Τροφοδοσία"/>
+      <FirstPage Text="Πρώτη Σελίδα"/>
+      <OtherPages Text="Άλλες σελίδες"/>
+      <Columns Text="Στήλες"/>
+      <Count Text="Αριθμός:"/>
+      <ColumnWidth Text="Πλάτος:"/>
+      <Positions Text="Θέσεις:"/>
+      <Other Text="Άλλα"/>
+      <Duplex Text="Εκτύπωση Διπλής Όψης:"/>
+      <DupDefault Text="Προεπιλογή"/>
+      <DupSimplex Text="Απλό"/>
+      <DupVertical Text="Κάθετα"/>
+      <DupHorizontal Text="Οριζόντα"/>
+      <EditWatermark Text="Επεξεργασία Υδατογραφήματος..."/>
+      <ExtraWidth Text="Επιπλέον πλάτος σχεδιασμού"/>
+      <UnlimitedHeight Text="Απεριόριστο ύψος"/>
+      <UnlimitedWidth Text="Απεριόριστο πλάτος"/>
+    </PageSetup>
+    <PictureEditor Text="Επεξεργασία Εικόνας">
+      <Picture Text="Εικόνα"/>
+      <Load Text="Φόρτωμα"/>
+      <Paste Text="Επικόλληση"/>
+      <Clear Text="Διαγραφή"/>
+      <Edit Text="Επεξεργασία"/>
+      <DataColumn Text="Στήλη δεδομένων"/>
+      <FileName Text="Όνομα αρχείου"/>
+      <Url Text="Υπερ-σύνδεσμος"/>
+      <FileHint1 Text="Όνομα αρχείου:"/>
+      <FileHint2 Text="Σημείωση: θα πρέπει να περιλάβετε αυτό το αρχείο, μαζί με την αναφορά σας."/>
+      <UrlHint Text="Υπερ-σύνδεσμος:"/>
+    </PictureEditor>
+    <PictureEditorAdvanced Text="Επεξεργασία Εικόνας">
+      <Reset Text="Επαναφορά"/>
+      <Resize Text="Αλλαγή μεγέθους"/>
+      <Crop Text="Περικοπή"/>
+      <Color Text="Χρώμα"/>
+      <Change Text="Αλλαγή:"/>
+      <Percentage Text="ποσοστό"/>
+      <Pixels Text="πίξελ"/>
+      <Horizontal Text="Οριζόντια:"/>
+      <Vertical Text="Κάθετα:"/>
+      <AspectRatio Text="Διατήρηση αναλογιών"/>
+      <Grayscale Text="Κλιμακα του γκρι"/>
+      <Monochrome Text="Μονόχρωμη"/>
+      <MinX Text="Ελαχ. X:"/>
+      <MinY Text="Ελαχ. Υ:"/>
+    </PictureEditorAdvanced>
+    <PluginsOptions Text="Πρόσθετα">
+      <Hint Text="Λίστα με εγκατεστημένα πρόσθετα του FastReport:"/>
+      <Add Text="Προσθήκη"/>
+      <Remove Text="Αφαίρεση"/>
+      <Note Text="Σημείωση: Οι αλλαγές που έγιναν θα  ισχύσουν με την επανεκκίνηση  του FastReport."/>
+      <Fonts Text="Γραμματοσειρές"/>
+      <ExportsEditor Text="Μενού Εξαγωγών"/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Εφαρμογή σε όλες τις σελίδες και ανακατασκευή έκθεσης."/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Εύρεση"/>
+    <PrinterSetup Text="Εκτύπωση">
+      <PrinterSetup Text="Ρυθμίσεις Εκτυπωτή"/>
+      <Printer Text="Εκτυπωτής"/>
+      <SavePrinter Text="Αποθήκευση αυτού του εκτυπωτή στο αρχείο της έκθεσης"/>
+      <Settings Text="Ρυθμίσεις..."/>
+      <PrintToFile Text="Εκτύπωση σε αρχείο"/>
+      <PageRange Text="Περιοχή Σελίδων"/>
+      <All Text="Όλες"/>
+      <Current Text="Τρέχουσα σελίδα"/>
+      <Numbers Text="Σελίδες:"/>
+      <Hint Text="Δώστε αριθμό σελίδων ή και εύρος σελίδων χωρισμένο με κόμα.(πχ 1,3,5-12)"/>
+      <Copies Text="Αντίγραφα"/>
+      <Count Text="Αριθμός:"/>
+      <Collate Text="Συρραφή"/>
+      <Other Text="Άλλα"/>
+      <OddEven Text="Εκτύπωση"/>
+      <AllPages Text="Όλες οι σελίδες"/>
+      <OddPages Text="Μονές σελίδες"/>
+      <EvenPages Text="Ζυγές σελίδες"/>
+      <Order Text="Σειρά:"/>
+      <OrderDirect Text="Ορθή (1-9)"/>
+      <OrderReverse Text="Ανάστροφη (9-1)"/>
+      <Duplex Text="Διπλή Όψη:"/>
+      <Source Text="Τροφοδοσία:"/>
+      <PrintMode Text="Τύπος εκτύπωσης"/>
+      <PrintModeDefault Text="Προεπιλογή"/>
+      <PrintModeSplit Text="Διάσπαση μεγάλων σελίδων"/>
+      <PrintModeScale Text="Κλίμακα"/>
+      <PrintOnSheet Text="Εκτύπωση σε σελίδα:"/>
+      <PagesOnSheet Text="Σελίδες ανά φύλλο:"/>
+      <PagesOnSheet1 Text="1 σελίδα"/>
+      <PagesOnSheet2 Text="2 σελίδες"/>
+      <PagesOnSheet4 Text="4 σελίδες"/>
+      <PagesOnSheet8 Text="8 σελίδες"/>
+      <Print Text="Εκτύπωση"/>
+      <Error Text="Μη έγκυρο εύρος σελίδων."/>
+      <CmdCommand Text="Εντολή"/>
+      <CmdDescription Text="Αντικαταστήστε το &quot;report1.fpx report2.fpx ... reportΝ.fpx&quot; με τις δικές σας εκθέσεις και αντιγράψτε την παρακάτω εντολή:"/>
+    </PrinterSetup>
+    <QueryBuilder Text="Δόμηση Ερωτήματος">
+      <Designer Text="Σχεδιαστής"/>
+      <Sql Text="SQL"/>
+      <Result Text="Αποτέλεσμα"/>
+      <Select Text="Επιλογή"/>
+      <Joins Text="Ενώσεις"/>
+      <Group Text="Ομαδοποίηση"/>
+      <Name Text="Όνομα"/>
+      <Alias Text="Ψευδώνυμο"/>
+      <Filter Text="Φίλτρο"/>
+      <Order Text="Σειρά"/>
+      <Func Text="Συνάρτηση"/>
+      <Editor Text="Επεξεργαστής"/>
+      <Delete Text="Διαγραφή"/>
+      <Change Text="Αλλαγή"/>
+      <JoinEditor Text="Επεξεργαστής Ενώσεων"/>
+      <Tables Text="Πίνακες:"/>
+      <Condition Text="Συνθήκη"/>
+      <InputAlias Text="Εισάγετε ένα ψευδώνυμο για τον πίνακα:"/>
+      <Where>
+        <Equal Text="Ίσον"/>
+        <NotEqual Text="Όχι ίσον"/>
+        <GtOrEqual Text="Μεγαλύτερο από ή ίσον"/>
+        <Gt Text="Μεγαλύτερο από"/>
+        <LtOrEqual Text="Μικρότερο από ή ίσον"/>
+        <Lt Text="Μυκρότερο από"/>
+        <Like Text="Όμοιο με"/>
+        <NotLike Text="Όχι όμοιο με"/>
+      </Where>
+      <QueryIsCorrupted Text="Το ερώτημα SQL δεν μπορεί να επεξεργαστεί μέσω του Query Builder. Με περαιτέρω επεξεργασία το ερώτημα SQL μπορεί να χαθεί εν μέρει ή εντελώς.&#13;&#10;Θέλετε να συνεχίσετε;"/>
+      <QueryIsCorruptedTitle Text="Προειδοποίηση!"/>
+    </QueryBuilder>
+    <QueryWizard Text="Βοηθός Ερωτήματος">
+      <Page1 Text="Ορισμός ονομασίας"/>
+      <SetName Text="Ορίστε το όνομα του αντικειμένου ερωτήματος."/>
+      <NameHint Text="Αυτό το όνομα θα εμφανίζεται στο παράθυρο &quot;Δεδομένα&quot;."/>
+      <Page2 Text="Εισάγετε μια πρόταση SQL"/>
+      <WhatData Text="Ποια στοιχεία πρέπει να επιστρέψει η επερώτηση;"/>
+      <TypeSql Text="Εισάγετε την πρόταση SQL, ή χρησιμοποιήστε τον Κατασκευατή Ερωτήματος."/>
+      <QueryBuilder Text="Κατασκευή Ερωτήματος..."/>
+      <Page3 Text="Καθορισμός παραμέτρων"/>
+      <Page4 Text="Ορισμός στηλών"/>
+      <Refresh Text="Ανανέωση Στηλών"/>
+      <AddColumn Text="Προσθήκη Υπολογιζόμενης στήλης"/>
+      <AddParameter Text="Προσθήκη Παραμέτρου"/>
+      <Delete Text="Διαγραφή"/>
+    </QueryWizard>
+    <RelationEditor Text="Επεξεργασία Σχέσεων">
+      <ParentTable Text="Πίνακας Γονέας:"/>
+      <ChildTable Text="Πίνακας παιδί:"/>
+      <Parent Text="Γονέας"/>
+      <Child Text="Παιδί"/>
+      <Columns Text="Στήλες:"/>
+      <Error Text="Αντιφατικός αριθμός στηλών γονέα και παιδιού"/>
+    </RelationEditor>
+    <ReportData Text="Επιλογή Δεδομένων Έκθεσης">
+      <Hint Text="Επιλέξτε πηγές δεδομένων και πεδία που θέλετε να χρησιμοποιήσετε στην έκθεση:"/>
+      <Aliases Text="Εμφάνιση ψευδωνύμων"/>
+    </ReportData>
+    <ReportOptions Text="Επιλογές Έκθεσης">
+      <General Text="Γενικές"/>
+      <Description Text="Περιγραφή"/>
+      <Script Text="Δέσμη Ενεργειών"/>
+      <Security Text="Ασφάλεια"/>
+      <Inheritance Text="Κληρονομικότητα"/>
+      <Email Text="Ε-mail"/>
+      <Name Text="Όνομα:"/>
+      <Author Text="Συντάκτης:"/>
+      <Version Text="Έκδοση:"/>
+      <Description1 Text="Περιγραφή:"/>
+      <Picture Text="Εικόνα:"/>
+      <SavePreviewPicture Text="Αποθήκευση εικόνας προεπισκόπησης"/>
+      <Load Text="Φόρτωση..."/>
+      <Clear Text="Διαγραφή"/>
+      <Created Text="Δημιουρία:"/>
+      <Modified Text="Τροποποίηση:"/>
+      <Language Text="Γλώσσα Δέσμης Ενεργειών:"/>
+      <Note Text="Σημείωση: Αν αλλάξετε τη γλώσσα, θα διαγραφεί ολόκληρη η  δέσμη ενεργειών!"/>
+      <RefAssemblies Text="Αναφορά στις συγκροτήσεις:"/>
+      <Add Text="Προσθήκη..."/>
+      <Password Text="Κωδικός Πρόσβασης:"/>
+      <RetypePassword Text="Ξαναδώστε  τον κωδικο:"/>
+      <Inherited Text="Η έκθεση αυτή κληρονομεί από την βασική έκθεση:"/>
+      <NotInherited Text="Η έκθεση αυτή  δεν κληρονομεί."/>
+      <Choose Text="Επιλέξτε από:"/>
+      <DontChange Text="Μην αλλάξει"/>
+      <Detach Text="Αποσύνδεση της βασικής έκθεσης"/>
+      <Inherit Text="Η έκθεση κληρονομεί από:"/>
+      <Browse Text="Αναζήτηση..."/>
+      <DoublePass Text="Διπλή διέλευση"/>
+      <Compress Text="Συμπίεση του αρχείου έκθεσης"/>
+      <UseFileCache Text="Χρήση της κρυφής μνήμης αρχείου"/>
+      <ConvertNulls Text="Μετατροπή μηδενικών τιμών"/>
+      <TextQuality Text="Ποιότητα κειμένου:"/>
+      <SmoothGraphics Text="Ομαλά γραφικά"/>
+      <QualityDefault Text="Προεπιλογή"/>
+      <QualityRegular Text="Κανονική"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="Εξομάλυνση"/>
+      <PasswordError Text="Ο κωδικος δεν ταιριάζει. Πληκτρολογήστε τον ξανά πάλι."/>
+      <Recipients Text="Παραλήπτης (ες) (πχ  john@url.com):"/>
+      <Subject Text="θέμα:"/>
+      <Message Text="Μήνυμα:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Σελίδα έκθεσης">
+      <Units Text="Μονάδες  μέτρησης σελίδας"/>
+      <Millimeters Text="Χιλιοστά (χιλ.)"/>
+      <Centimeters Text="Εκατοστά(εκατ.)"/>
+      <Inches Text="Ίντσες (ίντσ.)"/>
+      <HundrethsOfInch Text="Εκατοστά της ίντσας (εκ.ίν)"/>
+      <Grid Text="Πλέγμα"/>
+      <ShowGrid Text="Εμφάνιση πλέγματος"/>
+      <SnapToGrid Text="Συγκράτηση στο πλέγμα"/>
+      <DottedGrid Text="Διάστικτο πλέγμα"/>
+      <Size Text="Μέγεθος:"/>
+      <Markers Text="Δείκτες Αντικειμένου"/>
+      <Rectangle Text="Ορθογώνιο"/>
+      <Corners Text="Γωνίες"/>
+      <BandView Text="Προβολή Ζώνης"/>
+      <Structure Text="Δομή"/>
+      <Classic Text="Κλασσική"/>
+      <EditAfterInsert Text="Επεξεργασία μετά από την εισαγωγή"/>
+      <EventBandIndicator Text="Εμφάνιση δείκτη στις ζώνες με συμβάντα"/>
+      <EventObjectIndicator Text="Εμφάνιση δείκτη στα αντικείμενα με συμβάντα"/>
+      <ObjectsAppearance Text="Εμφάνιση Αντικειμένων"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Επεξεργαστής Εμπλουτισμένου Κείμενου">
+      <Open Text="Ανοιγμα"/>
+      <Save Text="Αποθήκευση"/>
+      <Subscript Text="Δείκτης"/>
+      <Superscript Text="Εκθέτης"/>
+      <Bullets Text="Κουκίδες"/>
+      <ConfirmChanges Text="Το κείμενο έχει τροποποιηθεί. Αποθήκευση των αλλαγών;"/>
+    </RichTextEditor>
+    <SearchReplace Text="Εύρεση και Αντικατάσταση">
+      <Find Text="Αναζήτηση για:"/>
+      <Replace Text="Αντικατάσταση με:"/>
+      <Options Text="Επιλογές Αναζήτησης"/>
+      <MatchCase Text="Ταίριασμα Πεζών/Κεφαλαίων"/>
+      <MatchWholeWord Text="Ταίριασμα ολόκληρης της λέξης"/>
+      <FindNext Text="Επόμενο"/>
+      <ReplaceBtn Text="Αντικατάσταση"/>
+      <ReplaceAll Text="Αντι/ση Όλων"/>
+      <NotFound Text="Το κείμενο αναζήτησης δεν βρέθηκε."/>
+      <NoMoreFound Text="Δεν βρέθηκαν άλλα αποτελέσματα."/>
+    </SearchReplace>
+    <SelectDataSource Text="Επιλογή Πηγής Δεδομένων">
+      <Hint Text="Επιλέξτε μία ή περισσότερες πηγές δεδομένων για χρήση στην έκθεση."/>
+      <AvailableDs Text="Διαθέσιμες πηγές δεδομένων:"/>
+      <SelectedDs Text="Επιλεγμένες πηγές δεδομένων:"/>
+      <ProjectDs Text="DataSet του έργου"/>
+      <OtherDs Text="Άλλες πηγές  δεδομένων"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Επιλογή Γλώσσας">
+      <SelectLanguage Text="Επιλέξτε γλώσσα από την παρακάτω λίστα:"/>
+      <Auto Text="Αυτόματα"/>
+      <Folder Text="Ο φάκελος με τα αρχεία γλωσσών:"/>
+      <SelectFolder Text="Επιλέξτε το φάκελο που περιέχει τα αρχεία γλώσσας (*. FRL)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Βοηθός Τυπικής Έκθεσης">
+      <GroupsPage Text="Δημιουργία Ομάδων"/>
+      <CreateGroups Text="Δημιουργία Ομάδων (προαιρετικά)."/>
+      <Groups Text="Ομάδες:"/>
+      <LayoutPage Text="Καθορισμός διάταξης"/>
+      <DefineLayout Text="Καθορίστε τον προσανατολισμό του χαρτιού και τη διάταξη των δεδομένων."/>
+      <Orientation Text="Προσανατολισμός χαρτιού"/>
+      <Portrait Text="Κάθετος"/>
+      <Landscape Text="Οριζόντιος"/>
+      <Layout Text="Διάταξη"/>
+      <Tabular Text="Πινακοειδής&#13;&#10;"/>
+      <Columnar Text="Με στήλες"/>
+      <StylePage Text="Επιλογή στυλ"/>
+      <Styles Text="Επιλογή στυλ της έκθεσης.">
+        <Standard Text="Στάνταρ"/>
+        <Gray Text="Γκρί"/>
+        <Green Text="Πράσινο"/>
+        <Sand Text="Αμμώδες"/>
+        <Blue Text="Μπλέ"/>
+        <Title Text="Τίτλος"/>
+        <Header Text="Επικεφαλίδα"/>
+        <Group Text="Ομάδα"/>
+        <Data Text="Δεδομένα"/>
+        <Footer Text="Υποσέλιδο"/>
+        <EvenRows Text="Ζυγές Σειρές"/>
+      </Styles>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Επεξεργασία Συλλογής Συμβολοσειρών"/>
+    <Style Text="Επεξεργαστής Στυλ">
+      <Styles Text="Στυλ"/>
+      <Add Text="Προσθήκη"/>
+      <Delete Text="Διαγραφή"/>
+      <Edit Text="Επεξεργασία"/>
+      <Load Text="Φόρτωση..."/>
+      <Save Text="Αποθήκευση..."/>
+      <Settings Text="Ρυθμίσεις στυλ"/>
+      <Border Text="Πλαίσιο"/>
+      <Fill Text="Γέμισμα"/>
+      <Font Text="Γραμματοσειρά"/>
+      <TextColor Text="Χρώμα Κειμένου"/>
+      <StyleName Text="Στυλ"/>
+    </Style>
+    <TextEditor Text="Επεξεργασία Κειμένου">
+      <WordWrap Text="Αναδίπλωση λέξεων"/>
+      <ConfirmChanges Text="Το κείμενο έχει τροποποιηθεί. Αποθήκευση των αλλαγών;"/>
+    </TextEditor>
+    <JsonEditor Text="Επεξεργαστής Json">
+      <Readonly Text="(μόνο για ανάγνωση)"/>
+      <Open Text="Άνοιγμα αρχείου"/>
+      <Save Text="Αποθήκευση αρχείου"/>
+      <FormatJson Text="Μορφοποίηση JSON"/>
+      <Filter Text="αρχεία json (*.json)|*.json|αρχεία txt (*.txt)|*.txt|Όλα τα αρχεία (*.*)|*.*"/>
+    </JsonEditor>
+    <TotalEditor Text="Επεξεργσία Συνόλου">
+      <TotalName Text="Όνομα συνόλου:"/>
+      <Total Text="Σύνολο"/>
+      <Function Text="Λειτουργία:"/>
+      <DataColumnOrExpression Text="Στήλη δεδομένων ή έκφραση:"/>
+      <DataBand Text="Αποτήμηση για κάθε γραμμή της ζώνης:"/>
+      <EvaluateCondition Text="Αποτίμηση αν τηρείται η παρακάτω συνθήκη:"/>
+      <PrintOn Text="Εκτύπωση στην ζώνη:"/>
+      <Options Text="Επιλογές"/>
+      <ResetAfterPrint Text="Επαναφορά μετά την εκτύπωση"/>
+      <ResetRepeated Text="Επαναφορά αν επαναλαμβάνεται η ζώνη"/>
+      <InvisibleRows Text="Συμπεριλάβετε τις μη ορατές σειρές"/>
+      <Sum Text="Άθροισμα"/>
+      <Min Text="Ελάχιστο"/>
+      <Max Text="Μέγιστο"/>
+      <Avg Text="Μέσος Όρος"/>
+      <Count Text="Καταμέτρηση"/>
+      <Custom Text="Προσαρμογή"/>
+    </TotalEditor>
+    <UIOptions Text="Περιβάλλον Χρήστη">
+      <Appearance Text="Εμφάνιση"/>
+      <Ribbon Text="Χρήση του νέου Περιβάλλοντος  Κορδέλας"/>
+      <Welcome Text="Εμφάνιση παραθύρου καλωσορίσματος στην έναρξη"/>
+      <RightToLeft Text="Περιβάλλον χρήστη δεξιά προς αριστερά:">
+        <Auto Text="Αυτόματο"/>
+        <No Text="Όχι"/>
+        <Yes Text="Ναι"/>
+      </RightToLeft>
+      <DisableHotkeys Text="Απενεργοποίηση Πλήκρων Συντόμευσης"/>
+    </UIOptions>
+    <WatermarkEditor Text="Υδατογράφημα">
+      <Enabled Text="Ενεργοποίηση"/>
+      <Text Text="Κείμενο"/>
+      <TextItems Text="ΕΜΠΙΣΤΕΥΤΙΚΟ,ΑΝΤΙΓΡΑΦΟ,ΠΡΩΤΟΤΥΠΟ,ΔΕΙΓΜΑ,ΕΠΕΙΓΟΝ,CONFIDENTIAL,COPY,ORIGINAL,SAMPLE,URGENT"/>
+      <Rotation Text="Περιστροφή"/>
+      <Horizontal Text="Οριζόντια"/>
+      <Vertical Text="Κάθετα"/>
+      <ForwardDiagonal Text="Εμπρός Διαγώνια"/>
+      <BackwardDiagonal Text="Πίσω Διαγώνια"/>
+      <Font Text="Γραμματοσειρά"/>
+      <Color Text="Χρώμα"/>
+      <Picture Text="Εικόνα"/>
+      <Load Text="Φόρτωμα"/>
+      <Clear Text="Διαγραφή"/>
+      <Size Text="Μέγεθος"/>
+      <Normal Text="Νορμάλ"/>
+      <Center Text="Κέντρο"/>
+      <Stretch Text="Τέντωμα"/>
+      <Zoom Text="Μεγέθυνση"/>
+      <Tile Text="Παράθεση"/>
+      <Transparency Text="Διαφάνεια"/>
+      <Zorder Text="Διάταξη-Ζ"/>
+      <TextOnTop Text="Κείμενο στη κορυφή"/>
+      <PictureOnTop Text="Εικόνα στη κορυφή"/>
+      <ApplyToAll Text="Εφαρμογή σε όλες τις σελίδες"/>
+    </WatermarkEditor>
+    <BarcodeEditor Text="Επεξεργασία Γραμμωτού  Κώδικα">
+      <Text Text="Κείμενο"/>
+      <vCard Text="Επαγγελματική κάρτα"/>
+      <URI Text="URI"/>
+      <EmailAddress Text="Διεύθυνση E-mail"/>
+      <EmailMessage Text="Μήνυμα E-mail"/>
+      <Geolocation Text="Γεωγραφικός εντοπισμός"/>
+      <SMS Text="Μήνυμα SMS"/>
+      <Call Text="Κλήση"/>
+      <Event Text="Συμβάν"/>
+      <Wifi Text="Wi-FI"/>
+      <FirstName Text="Όνομα"/>
+      <LastName Text="Επίθετο"/>
+      <Title Text="Τίτλος"/>
+      <Company Text="Εταιρεία"/>
+      <Website Text="Ιστότοπος"/>
+      <EmailPersonal Text="Ε-mail (προσωπικό)"/>
+      <EmailBusiness Text="Ε-mail (εταιρικό)"/>
+      <PhonePersonal Text="Τηλέφωνο (προσωπικό)"/>
+      <PhoneMobile Text="Τηλέφωνο (κινητό)"/>
+      <PhoneBusiness Text="Τηλέφωνο (εργασίας)"/>
+      <Street Text="Διεύθυνση"/>
+      <ZipCode Text="Ταχ. Κώδικας"/>
+      <City Text="Πόλη"/>
+      <Country Text="Χώρα"/>
+      <Email Text="E-mail"/>
+      <Subject Text="Θέμα"/>
+      <Latitude Text="Γεωγραφικό πλάτος"/>
+      <Longitude Text="Γεωγραφικό μήκος"/>
+      <Height Text="Ύψος"/>
+      <PhoneNumber Text="Αριθμός Τηλεφώνου"/>
+      <Description Text="Κείμενο"/>
+      <From Text="Από"/>
+      <To Text="Προς"/>
+      <Encryption Text="Κρυπτογράφηση"/>
+      <NetworkName Text="Όνομα Δικτύου"/>
+      <Password Text="Κωδικός"/>
+      <WifiHidden Text="Κρυμμένο δίκτυο Wi-Fi"/>
+      <Save Text="Αποθήκευση"/>
+      <Cancel Text="Ακύρωση"/>
+    </BarcodeEditor>
+    <SavingPageOptions Text="Αποθήκευση">
+      <EnableAutoSave Text="Ενεργοποιήση  αυτόματης αποθήκευσης κάθε (λεπτά)"/>
+    </SavingPageOptions>
+    <LoadAutoSave Text="Αποκατάσταση αυτόματης αποθήκευσης">
+      <Message Text="Το FastReport ανίχνευσε  εσφαλμένο τερματισμό του προγράμματος, θέλετε ανάκτηση της μη αποθηκευμένης έκθεσης;"/>
+      <Restore Text="Επαναφορά"/>
+    </LoadAutoSave>
+    <FastM1nesweeper Text="Ναρκαλιευτής Fast">
+      <Welcome Text="Δημιουργήστε ένα νέο παιχνίδι Αναφορών  Ναρκαλιευτής Fast"/>
+      <Settings Text="Ρυθμίσεις"/>
+      <Difficulty Text="Βαθμός Δυσκολίας"/>
+      <Custom Text="Προσαρμογή"/>
+      <Easy Text="Εύκολος"/>
+      <Medium Text="Μέσος"/>
+      <Hard Text="Δύσκολος"/>
+      <Master Text="Εξπέρ"/>
+      <Bombs Text="Νάρκες"/>
+      <Columns Text="Στήλες"/>
+      <Rows Text="Σειρές"/>
+    </FastM1nesweeper>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Όνομα Διακομιστή"/>
+      <ServerLogon Text="Σύνδεση με τον διακομιστή"/>
+      <UserName Text="Όνομα χρήστη:"/>
+      <Password Text="Κωδικός:"/>
+      <Database Text="Σύνδεση με βάση δεδομένων"/>
+      <DatabaseName Text="Όνονα DataBase:"/>
+      <DatabaseFile Text="Αρχείο Database:"/>
+      <DataSource Text="Δεδομένα προέλευσης"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Χρήση Ελέγχου Ταυτότητας των Windows"/>
+      <UseSql Text="Χρήση  Ελέγχου Ταυτότητος του Διακομιστή SQL"/>
+      <SavePassword Text="Απομνημόνευση Κωδικού"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Συμβολοσειρά σύνδεσης:"/>
+      <Build Text="Κατασκευή..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Πηγή Δεδομένων"/>
+      <DsName Text="Χρήση ονόματος χρήστη η της πηγής δεδομένων του συστήματος"/>
+      <ConnString Text="Χρήση της συμβολοσειράς σύνδεσης:"/>
+      <Login Text="Είσοδος"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Αρχείο Σχήματος:"/>
+      <Xml Text="Αρχείο Δεδομένων:"/>
+    </Xml>
+    <Csv>
+      <ConfigureDatabase Text="Διαμόρφωση Βάσης Δεδομένων"/>
+      <SelectFile Text="Επιλογή αρχείου .csv:"/>
+      <Codepage Text="Κωδικοσελίδα:"/>
+      <Separator Text="Διαχωριστής:"/>
+      <FieldNames Text="Ονόματα Πεδίων στο 1ο string"/>
+      <RemoveQuotes Text="Αφαίρεση εισαγωγικών"/>
+      <ConvertTypes Text="Προσπάθεια μετατροπής τύπων πεδίων"/>
+      <FilePreview Text="Προεπισκόπιση Αρχείου:"/>
+      <DataPreview Text="Προεπισκόπηση Δεδομένων:"/>
+      <Codepages>
+        <Default Text="Προεπιλογή"/>
+        <ASCII Text="ASCII"/>
+        <UTF8 Text="UTF8"/>
+        <UTF7 Text="UTF7"/>
+        <UTF32 Text="UTF32"/>
+        <Unicode Text="Unicode"/>
+        <BigEndianUnicode Text="Big Endian Unicode"/>
+      </Codepages>
+      <Separators>
+        <Semicolon Text=";"/>
+        <Comma Text=","/>
+        <Space Text="Διάστημα"/>
+        <Tab Text="Στηλοθέτης"/>
+        <Other Text="Άλλο"/>
+      </Separators>
+    </Csv>
+    <Json>
+      <Path Text="Διαδρομή στο αρχείο ή URL:"/>
+      <Settings Text="Ρυθμίσεις σύνδεσης"/>
+      <Encoding Text="Κωδικοποίηση"/>
+      <Input Text="Json σε URL"/>
+      <Schema Text="Σχήμα Json"/>
+      <ConfirmChanges Text="To JSON έχει τροποποιηθεί. Δημιουργία νέου σχήματος;"/>
+    </Json>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Επεξεργασία..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Μπορεί να μεγαλώσει"/>
+      <CanShrink Text="Μπορεί να μικρύνει"/>
+      <GrowToBottom Text="Αύξηση προς τα κάτω"/>
+      <Hyperlink Text="Υπερ-σύνδεσμος"/>
+      <Style Text="Στυλ"/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Επιτρέπεται Διαχωρισμός"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Προσθήκη Θυγατρικής Ζώνης"/>
+      <StartNewPage Text="Αρχή Νέας Σελίδας"/>
+      <PrintOnBottom Text="Εκτύπωση στο κάτω μέρος"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Προσθήκη Δεδομένων Detail"/>
+      <KeepTogether Text="Διατήρηση συνοχής"/>
+      <KeepDetail Text="Διατήρηση Συνοχής Detail "/>
+      <ColumnsEditor Text="Επεξεργαστής Στηλών"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Επανάληψη σε  Κάθε Σελίδα"/>
+      <KeepWithData Text="Διατήρηση με τα Δεδομένα"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Επαναφορά Αριθμού Σελίδας"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Συμπλήρωση του αχρησιμοποίητου χώρου"/>
+      <CompleteToNRows Text="Συμπλήρωση έως Ν γραμμές δεδομένων:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Επιλογή  Μεγέθους"/>
+      <AutoSize Text="Αυτόματο Μέγεθος"/>
+      <CenterImage Text="Κεντράρισμα Εικόνας"/>
+      <Normal Text="Κανονικό"/>
+      <StretchImage Text="Τέντωμα Εικόνας"/>
+      <Zoom Text="Μεγέθυνση"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Μορφή..."/>
+      <Clear Text="Διαγραφή"/>
+      <AutoWidth Text="Αυτόματο Πλάτος"/>
+      <WordWrap Text="Αναδίπλωση Λέξεων"/>
+      <AllowExpressions Text="Επιτρέπονται Εκφράσεις"/>
+      <HideZeros Text="Απόκρυψη Μηδενικών"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Τύπωμα στον γονέα"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Επανάληψη Επικεφαλίδων"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Εισαγωγή Σειράς Πάνω"/>
+      <InsertBelow Text="Εισαγωγή Σειράς Κάτω"/>
+      <AutoSize Text="Αυτόματο Μέγεθος"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Εισαγωγή Στήλης Αριστερά"/>
+      <InsertToRight Text="Εισαγωγή στήλης Δεξιά"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Ένωση Κελιών"/>
+      <Split Text="Διαχωρισμός Κελιών"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Κελιά πλάϊ-πλάϊ"/>
+      <ShowTitle Text="Εμφάνιση Τίτλου"/>
+      <Style Text="Στυλ"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Σύνολα"/>
+      <Function Text="Λειτουργία"/>
+      <SuppressTotals Text="Απόκρυψη Συνόλων"/>
+      <TotalsFirst Text="Πρώτα τα Σύνολα"/>
+      <Percent Text="Ποσοστό"/>
+      <PercentColumnTotal Text="%  του Συνόλου Στήλης"/>
+      <PercentRowTotal Text="% του Συνόλου Γραμμής"/>
+      <PercentGrandTotal Text="% του Γενικού Συνόλου"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Επεξεργασία Στηλών..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Τύπος BarCode"/>
+      <AutoSize Text="Αυτόματο Μέγεθος"/>
+      <AutoEncode Text="Αυτόματη Κωδικοποίηση"/>
+      <CalcChecksum Text="Υπολογισμός  Αθροίσματος Ελέγχου"/>
+      <ShowText Text="Εμφάνιση Κειμένου"/>
+      <Barcodes>
+        <Barcode0 Text="2/5 Interleaved"/>
+        <Barcode1 Text=",2/5 Industrial"/>
+        <Barcode2 Text="2/5 Matrix"/>
+        <Barcode3 Text="Codabar"/>
+        <Barcode4 Text="Code128"/>
+        <Barcode5 Text="Code39"/>
+        <Barcode6 Text="Code39 Extended"/>
+        <Barcode7 Text="Code93"/>
+        <Barcode8 Text="Code93 Extended"/>
+        <Barcode9 Text="EAN8"/>
+        <Barcode10 Text="EAN13"/>
+        <Barcode11 Text="MSI"/>
+        <Barcode12 Text="PostNet"/>
+        <Barcode13 Text="UPC-A"/>
+        <Barcode14 Text="UPC-E0"/>
+        <Barcode15 Text="UPC-E1"/>
+        <Barcode16 Text="Supplement 2"/>
+        <Barcode17 Text="Supplement 5"/>
+        <Barcode18 Text="PDF417"/>
+        <Barcode19 Text="Datamatrix"/>
+        <Barcode20 Text="QR Code"/>
+        <Barcode21 Text="Aztec"/>
+        <Barcode22 Text="Plessey"/>
+        <Barcode23 Text="GS1-128 (UCC/EAN-128)"/>
+        <Barcode24 Text="Pharmacode"/>
+        <Barcode25 Text="Intelligent Mail (USPS)"/>
+        <Barcode26 Text="MaxiCode"/>
+      </Barcodes>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Εμφάνιση Δεικτών"/>
+      <ShowGrid Text="Εμφάνιση Πλεγματος"/>
+    </ZipCodeObject>
+    <Report>
+      <DesignReport Text="Σχεδίαση  Έκθεσης"/>
+      <SelectDataSource Text="Επιλογή Πηγής Δεδομένων"/>
+    </Report>
+    <WebReport>
+      <SelectReportFile Text="Επιλογή Αρχείου Έκθεσης"/>
+      <SelectLocalizationFile Text="Επιλογή Αρχείου Τοποικών Ρυθμίσεων"/>
+    </WebReport>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Υπολογισμός ορίων..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Συμπλήρωση της μήτρας..."/>
+      <NewColumn Text="Σύρετε εδώ δεδομένα  για τη&#13;&#10;δημιουργία μιας νέας στήλης"/>
+      <NewRow Text="Σύρετε εδώ δεδομένα για τη&#13;&#10;δημιουργία μιας νέας γραμμής"/>
+      <NewCell Text="Σύρετε εδώ  δεδομένα για τη&#13;&#10;δημιουργία ενός νέου κελιού"/>
+      <Total Text="Σύνολο"/>
+      <Title Text="Τίτλος"/>
+      <White Text="Άσπρο"/>
+      <Gray Text="Γκρί"/>
+      <Orange Text="Πορτοκαλί"/>
+      <Green Text="Πράσινο"/>
+      <GreenOrange Text="Πράσινο και Πορτοκαλί"/>
+      <Blue Text="Μπλέ"/>
+      <BlueWhite Text="Μπλέ και Άσπρο"/>
+      <GrayOrange Text="Γκρί και Πορτοκαλί"/>
+      <BlueOrange Text="Μπλέ και Πορτοκαλί"/>
+      <OrangeWhite Text="Πορτοκαλί και Άσπρο"/>
+    </Matrix>
+    <Map>
+      <Hint Text="Διπλό κλικ για προσθήκη επιπέδων.&#13;&#10;&#13;&#10;Αριστερό πλήκτρο για μετακίνηση, τροχός για μεγέθυνση"/>
+    </Map>
+    <CrossView>
+      <SetSource Text="Ορισμός πηγής FastCube"/>
+      <FillData Text="Συμπλήρωση της μήτρας..."/>
+    </CrossView>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Κενή Έκθεση"/>
+    <StandardReport Text="Βοηθός Τυπικής Έκθεσης"/>
+    <InheritedReport Text="Έκθεση Κληρονόμος"/>
+    <Label Text="Βοηθός Ετικέτας"/>
+    <NewDataSource Text="Νέα Πηγή Δεδομένων"/>
+    <NewPage Text="Νέα Σελίδα Έκθεσης"/>
+    <NewDialog Text="Νέα Φόρμα Διαλόγου"/>
+    <FastM1nesweeper Text="Ναρκαλιευτής Fast"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="H εξαγωγή ολοκληρώθηκε σε {0} ms"/>
+      <OrderByCells Text="Ταξινόμηση κελιών..."/>
+      <AnalyzeObjects Text="Ανάλυση αντικειμένων"/>
+      <SavePage Text="Αποθήκευση σελίδας"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Αλλαγές σελίδας"/>
+      <OpenAfterExport Text="Άνοιγμα μετά την εξαγωγή"/>
+      <Pictures Text="Εικόνες"/>
+      <Options Text="Επιλογές"/>
+      <None Text="Καμιά"/>
+      <Metafile Text="Μετα-αρχείο"/>
+      <SaveFile Text="Αποθήκευση του αρχείου"/>
+      <TableBased Text="Πίνακας"/>
+      <LayerBased Text="Επίπεδα"/>
+      <ParagraphBased Text="Παράγραφοι"/>
+      <Seamless Text="Ενιαίος πίνακας&#13;&#10;"/>
+      <ToMultipleFiles Text="Εξαγωγή σε πολλαπλά αρχεία"/>
+      <PrintOptimized Text="Βελτιστοποίηση Εκτύπωσης"/>
+      <SplitPages Text="Διαίρεση σελίδων"/>
+    </Misc>
+    <Editor Text="Επεξεργαστής Μενού Εξαγωγών">
+      <ExportsMenu Text="Μενού Εξαγωγών"/>
+      <DefaultMenu Text="Προεπιλεγμένο Μενού"/>
+    </Editor>
+    <ExportGroups>
+      <Office Text="Office"/>
+      <XML Text="XML"/>
+      <Web Text="Ιστός"/>
+      <Image Text="Εικόνα"/>
+      <DataBase Text="Βάση Δεδομένων"/>
+      <Print Text="Εκτυπώσεις"/>
+      <Other Text="Αλλες"/>
+      <Cloud Text="Νέφος"/>
+      <Messengers Text="Messengers"/>
+    </ExportGroups>
+    <Image Text="Εξαγωγή σε Εικόνα">
+      <File Text="Αρχείο εικόνας"/>
+      <ImageFormat Text="Μορφή:"/>
+      <Resolution Text="Ανάλυση:"/>
+      <Quality Text="Ποιότητα Jpeg:"/>
+      <SeparateFiles Text="Χωριστό αρχείο για κάθε σελίδα"/>
+      <MultiFrame Text="ΤIFF πολλαπλών καρέ"/>
+      <Monochrome Text="Μονόχρωμη TIFF"/>
+      <Bmp Text="Εικόνα BitMap"/>
+      <Png Text="Eικόνα PNG"/>
+      <Jpeg Text="Eικόνα JPG"/>
+      <Gif Text="Eικόνα GIF"/>
+      <Tiff Text="Εικόνα TIFF"/>
+      <Metafile Text="Μετά-αρχείο Windows"/>
+    </Image>
+    <RichText Text="Εξαγωγή σε  Μορφή Εμπλουτισμένου Κειμένου">
+      <File Text="Αρχείο Εμπλουτισμένου Κειμένου..."/>
+      <RTFObjectAs Text="Αντικείμενο RTF ως"/>
+      <Picture Text="Εικόνα"/>
+      <EmbeddedRTF Text="Ενσωματωμένο RTF"/>
+    </RichText>
+    <Text Text="Εξαγωγωγή σε Κείμενο/ Εκτυπωτή Ακίδων">
+      <File Text="Αρχείου Κειμένου/Εκτυπωτή Ακίδων"/>
+      <EmptyLines Text="Κενές Γραμμές"/>
+      <DataOnly Text="Μόνο δεδομένα"/>
+      <Frames Text="Πλαίσια"/>
+      <FramesNone Text="Κανένα"/>
+      <FramesText Text="Χαρακτήρων"/>
+      <FramesGraphic Text="Γραφικά"/>
+      <Codepage Text="Κωδικοσελίδα"/>
+      <Default Text="Προεπιλογή"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Κλίμακα Χ:"/>
+      <ScaleY Text="Κλίμακα Υ:"/>
+      <AutoScale Text="Αυτόματη Κλιμακα"/>
+      <PrinterType Text="Τύπος Εκτυπωτή"/>
+      <Commands Text="Εντολές"/>
+      <PageWidth Text="Πλάτος Σελίδας:"/>
+      <PageHeight Text="Μήκος Σελίδας:"/>
+      <DataLoss Text="Πιθανή ΑΠΩΛΕΙΑ ΔΕΔΟΜΕΝΩΝ&#13;&#10;παρακαλούμε  αυξήστε την Κλίμακα Χ/Υ"/>
+      <ScaleMessage Text="Υπολογισμός βέλτιστης κλιμάκωσης"/>
+      <Scale Text="Κλίμακα"/>
+    </Text>
+    <Csv Text="Εξαγωγή σε μορφή CSV">
+      <File Text="Αρχείο CSV"/>
+      <Separator Text="Διαχωριστής"/>
+      <Codepage Text="Κωδικοσελίδα"/>
+      <Default Text="Προεπιλογή"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Μόνο Data"/>
+      <NoQuotes Text="Απενεργοπoίηση εισαγωγικών"/>
+      <EscapeQuotes Text="Διπλά Εισαγωγικά (\&quot;&quot;)"/>
+    </Csv>
+    <Dbf Text="Εξαγωγή σε DBF">
+      <File Text="Πίνακας DBF"/>
+      <Codepage Text="Κωδικοσελίδα"/>
+      <Default Text="Προεπιλογή"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Μόνο Δεδομένα"/>
+      <FieldNames Text="Ονόματα Πεδίων (πχ Field1,Field2):"/>
+    </Dbf>
+    <Xml Text="Εξαγωγή σε Μορφή XML">
+      <File Text="Πίνακας (Excel) XML"/>
+    </Xml>
+    <Odt Text="Εξαγωγή σε Κείμενο Open Office (Writer)">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Εξαγωγή για Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Eξαγωγή σε μορφή Excel 2007">
+      <File Text="Aρχείο Excel 2007"/>
+      <FontScale Text="Κλίμακα Γραμ/σειρών:"/>
+      <PrintScaling Text="Εκτύπωση υπό Κλίμακα"/>
+      <NoScaling Text="Όχι Κλίμακα"/>
+      <FitSheetOnOnePage Text="Προσαρμογή  Φύλλου σε μια Σελίδα"/>
+      <FitAllColumsOnOnePage Text="Πρσαρμογή όλων των Στηλών σε μια Σελίδα"/>
+      <FitAllRowsOnOnePage Text="Πρασρμογή όλων των Σειρών σε μια Σελίδα"/>
+    </Xlsx>
+    <Xls Text="Εξαγωγή σε Excel 97">
+      <File Text="Αρχείο Excel 97"/>
+    </Xls>
+    <Pptx Text="Εξαγωγή σε μορφή PowerPoint 2007">
+      <File Text="Αρχείο PowerPoint 2007"/>
+    </Pptx>
+    <Docx Text="Εξαγωγή Εγγράφου για MS Word 2007">
+      <File Text="Αρχείο MS Word 2007"/>
+      <RowHeight Text="Το ύψος γραμμής είναι"/>
+      <Exactly Text="Ακριβώς"/>
+      <Minimum Text="Ελάχιστο"/>
+      <DoNotExpandShiftReturn Text="Οχι επέκταση του shift return"/>
+    </Docx>
+    <Xaml Text="Εξαγωγή σε XAML">
+      <File Text="Αρχείο XAML"/>
+      <IsScrolled Text="Προσθήκη μπάρας κύλλισης"/>
+    </Xaml>
+    <Svg Text="Εξαγωγή σε SVG">
+      <File Text="Αρχείο SVG"/>
+      <EmbPic Text="Ενσωμάτωση εικόνων"/>
+    </Svg>
+    <Ppml Text="Εξαγωγή σε PPML">
+      <File Text="Αρχείο PPML"/>
+    </Ppml>
+    <PS Text="Εξαγωγή σε PostScript">
+      <File Text="Αρχείο PostScript"/>
+    </PS>
+    <Xps Text="Εξαγωγή σε μορφή XPS">
+      <File Text="Αρχείο Microsoft XPS"/>
+    </Xps>
+    <Pdf Text="Εξαγωγή σε μορφή PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Εξαγωγή"/>
+      <PDFCompliance Text="Συμμόρφωση PDF"/>
+      <EmbeddedFonts Text=" Ενσωματομένες Γραμματοσειρές"/>
+      <Background Text="Φόντο"/>
+      <TextInCurves Text="Κείμενο σε  Καμπύλες"/>
+      <Images Text="Εικόνες"/>
+      <ColorSpace Text="Χρώμα Κενού:"/>
+      <OriginalResolution Text="Αρχική Ανάλυση"/>
+      <PrintOptimized Text="Βελτιστη  Εκτύπωση"/>
+      <JpegCompression Text="Συμπίεση Jpeg"/>
+      <JpegQuality Text="Ποιότητα JPeg:"/>
+      <InteractiveForms Text="Διαδραστικές Φόρμες"/>
+      <Information Text="Πληροφορίες"/>
+      <DocumentInformation Text="Πληροφορίες Εγγράφου"/>
+      <Title Text="Τίτλος"/>
+      <Author Text="Συντάκτης"/>
+      <Subject Text="Θέμα"/>
+      <Keywords Text="Λέξεις-Κλειδιά"/>
+      <Creator Text="Δημιουργός"/>
+      <Producer Text="Παραγωγός"/>
+      <Security Text="Ασφάλεια"/>
+      <Authentification Text="Πιστοποίηση"/>
+      <OwnerPassword Text="Κωδικός Κατόχου"/>
+      <UserPassword Text="Κωδικός Χρήστη"/>
+      <Permissions Text="Δικαιώματα"/>
+      <PrintTheDocument Text="Εκτύπωση Εγγράφου"/>
+      <ModifyTheDocument Text="Μεταβολή Εγγράφου"/>
+      <CopyOfTextAndGraphics Text="Αντιγραφή Κειμένου και Γραφικών"/>
+      <AddOrModifyTextAnnotations Text="Προσθήκη ή τροποποίηση  κειμένου σχολίων"/>
+      <Viewer Text="Πρόγραμμα Προβολής"/>
+      <ViewerPreferences Text="Προτιμήσεις Προγράματος"/>
+      <ShowPrintDialog Text="Εμφάνιση Διαλόγου Εκτύπωσης"/>
+      <HideToolbar Text="Απόκρυψη της γραμμής εργαλείων"/>
+      <HideMenubar Text="Απόκρυψη των μενού"/>
+      <HideWindowUserInterface Text="Απόκρυψη παραθύρου περιβάλλοντος χρήστη"/>
+      <FitWindow Text="Ταίριασμα στο παράθυρο"/>
+      <CenterWindow Text="Κεντράρισμα παραθύρου"/>
+      <PrintScaling Text="Κλιμάκωση Εκτύπωσης"/>
+      <Outline Text="Περίγραμμα"/>
+      <InitialZoom Text="Αρχική Μεγένθυση:"/>
+      <ActualSize Text="Πραγματικό μέγεθος"/>
+      <FitPage Text="Προσαρμογή Σελίδας"/>
+      <FitWidth Text="Προσαρμογή Πλάτους"/>
+      <Default Text="Προεπιλογή"/>
+      <VectorGraphics Text="Διανυσματικά γραφικά">
+        <GradientQuality Text="Ποιότητα Ντεγκραντέ"/>
+        <ExportAsImage Text="Εξαγωγή ως εικόνα"/>
+        <LowQuality Text="Χαμηλής ποιότητας"/>
+        <MediumQuality Text="Μεσαίας ποιότητας"/>
+        <HighQuality Text="Υψηλής ποιότητας"/>
+        <GradientInterpolation Text="Παρεμβολή Ντεγκραντέ:"/>
+        <Curves Text="Καμπύλες"/>
+        <CurvesInterpolation Text="Καμπύλη παρεμβολής:"/>
+        <TextInterpolation Text="Κείμενο Παρεμβολής:"/>
+        <Disabled Text="Απενεργοποιημένο"/>
+        <SvgAsPicture Text="SVg ως Εικόνα"/>
+      </VectorGraphics>
+      <DigitalSignature Text="Ψηφιακή υπογραφή">
+        <SignInformation Text="Πληροφορίες υπογραφής"/>
+        <SignDocument Text="Υπογραφή εγγράφου"/>
+        <Location Text="Τοποθεσία"/>
+        <Reason Text="Αιτία"/>
+        <ContactInfo Text="Πληροφορίες επικοινωνίας"/>
+        <CertificateInformation Text="Πληροφορίες πιστοποιητικού"/>
+        <CertificatePath Text="Διαδρομή πιστοποιητικού"/>
+        <CertificatePassword Text="Κωδικός πρόσβασης πιστοποιητικού"/>
+        <CertificateSavePassword Text="Αποθήκευση κωδικού πρόσβασης"/>
+        <CertificateSavePasswordWarning Text="Προσοχή!!! Η αποθήκευση ενός κωδικού πρόσβασης μπορεί να είναι επισφαλής!"/>
+        <ClickToChangeThePassword Text="Κλικ για αλλαγή κωδικού πρόσβασης"/>
+      </DigitalSignature>
+    </Pdf>
+    <Html Text="Εξαγωγή σε μορφή HTML">
+      <File Text="Αρχείο HTML"/>
+      <MHTFile Text="Αρχείο MHT"/>
+      <Format Text="Μορφή"/>
+      <SinglePage Text="Μονή Σελίδα"/>
+      <SubFolder Text="Υπο-φάκελος"/>
+      <Navigator Text="Πλοηγός"/>
+      <Layers Text="Επίπεδα"/>
+      <EmbPic Text="Ενσωμάτωση εικόνων"/>
+      <Total Text="Σύνολο"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Εξαγωγή σε μορφή MHT (αρχείο Ιστού)">
+      <File Text="Αρχείο MHT (αρχεό Ιστού)"/>
+    </Mht>
+    <Json Text="Εξαγωγή σε Json">
+      <File Text="Αρχείο Json"/>
+    </Json>
+    <LaTeX Text="Εξαγωγή σε LaTex">
+      <File Text="Αρχείο LaTex"/>
+    </LaTeX>
+    <Zpl Text="Εξαγωγή σε ZPL">
+      <File Text="Αρχείο ZPL"/>
+      <PrinterSettings Text="Ρυθμίσεις Εκτυπωτή"/>
+      <Density Text="Πυκνότητα"/>
+      <FontScale Text="Κλίμακα Font"/>
+      <PrintAsBitmap Text="Εκτύπωση σαν Bitmap"/>
+    </Zpl>
+    <Email Text="Αποστολή με E-mail">
+      <Email Text="E-mail"/>
+      <Account Text="Λογαριασμός"/>
+      <Address Text="Διεύθυνση:"/>
+      <CC Text="Κοινοποίηση:"/>
+      <Subject Text="Θέμα:"/>
+      <Message Text="Μήνυμα:"/>
+      <Attachment Text="Επισύναψη:"/>
+      <Settings Text="Ρυθμίσεις..."/>
+      <Name Text="Όνομα:"/>
+      <Template Text="Περίγραμμα:"/>
+      <Host Text="SMTP:"/>
+      <Port Text="Θύρα:"/>
+      <UserName Text="Όνομα Χρήστη:"/>
+      <Password Text="Κωδικός:"/>
+      <AddressError Text="Λανθασμένη διεύθυνση e-mail."/>
+      <HostError Text="Το πεδίο SMTP δεν πρέπει να είναι κενό."/>
+      <SendingEmail Text="Αποστολή email - {0} Kb"/>
+      <EnableSSL Text="Ενεργοποίηση SSL"/>
+    </Email>
+    <Dxf Text="Εξαγωγή σε DXF">
+      <File Text="Αρχείο DXF"/>
+    </Dxf>
+    <Hpgl Text="Εξαγωγή σε Hpg(plt)">
+      <File Text="Αρχείο Hpgl"/>
+    </Hpgl>
+  </Export>
+  <Cloud>
+    <CloudStorage Text="Αποοθήκευση σε Cloud">
+      <File Text="Αρχείο"/>
+      <Proxy Text="Διακομιστής Proxy"/>
+      <FileType Text="Τύπος Αρχείου:"/>
+      <Settings Text="Ρυθμίσεις..."/>
+      <Server Text="Διακομιστής:"/>
+      <Username Text="Όνομα Χρήστη:"/>
+      <Password Text="Κωδικός:"/>
+      <PortError Text="Η θύρα πρέπει να είναι αριθμητικό."/>
+    </CloudStorage>
+    <Ftp Text="Αποθήκευση σε FTP">
+      <Name Text="FTP"/>
+      <FtpServer Text="Διακομιστής FTP :"/>
+      <FtpUsername Text="Χρήστης :          "/>
+      <FtpPassword Text="Κωδικός Πρόσβασης :"/>
+      <ServerConnectionFiledError Text="Αποτυχία σύνδεσης στον καθορισμένο διακομιστή."/>
+      <ServerNotFoundError Text="Ο καθορισμένος διακομιστής δεν βρέθηκε."/>
+      <AccessDeniedError Text="Απαγορευση πρόσβασης. Άκυρο όνομα χρήστη ή κωδικός πρόσβασης."/>
+      <SaveSuccess Text="Επιτυχής Αποθήκευση."/>
+    </Ftp>
+    <Box Text="Αποθήκευση στο Βοχ">
+      <Name Text="Βοχ"/>
+      <ClientInfoDialog Text="Πληροφορίες Λογαριαμού"/>
+      <ClientId Text="ID Χρήστη:"/>
+      <ClientSecret Text="Κωδικός Πρόσβασης:"/>
+    </Box>
+    <Dropbox Text="Αποθήκευση στο DropBox">
+      <Name Text="DropBox"/>
+      <ApplicationInfoDialog Text="Πληροφορίες Εφαρμογής"/>
+      <AccessToken Text="Διακριτικό Πρόσβασης:"/>
+      <File Text="Αρχείο"/>
+      <Proxy Text="Διακομιστής Proxy"/>
+      <FileType Text="Τύπος Αρχείου:"/>
+      <Settings Text="Ρυθμίσεις..."/>
+      <Save Text="Αποθήκευση"/>
+      <Server Text="Διακομιστής:"/>
+      <Username Text="Όνομα Χρήστη:"/>
+      <Password Text="Κωδικός:"/>
+      <PortError Text="Η θύρα πρέπει να είναι αριθμός."/>
+    </Dropbox>
+    <FastCloud Text="Αποθήκευση στο FastCloud">
+      <Name Text="Fast Cloud"/>
+      <UserDetails Text="Στοιχεία Χρήστη"/>
+      <Email Text="Email:"/>
+      <UserPassword Text="Κωδ. Πρόσβασης:"/>
+    </FastCloud>
+    <GoogleDrive Text="Αποθήκευση στο Google Drive">
+      <Name Text="GoogleDrive"/>
+      <ClientInfoDialog Text="Πληροφορία Πελάτη"/>
+      <ClientId Text="ID Πελάτη:"/>
+      <ClientSecret Text="Κωδικός Πελάτη:"/>
+    </GoogleDrive>
+    <SkyDrive Text="Αποθήκευση στο SkyDrive">
+      <Name Text="SkyDrive"/>
+      <ClientInfoDialog Text="Πληροφορίες Πελάτη"/>
+      <ClientId Text="ID Πελάτη:"/>
+      <ClientSecret Text="Κωδικός Πελάτη:"/>
+      <File Text="Αρχείο"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Τύπος Αρχείου:"/>
+      <Settings Text="Ρυθμίσεις..."/>
+      <Server Text="Διακομιστής:"/>
+      <Username Text="Όνομα Χρήστη:"/>
+      <Password Text="Κωδικός:"/>
+      <PortError Text="Η θύρα πρέπει να είναι αριθμητικό."/>
+    </SkyDrive>
+  </Cloud>
+  <Messaging>
+    <MessengerForm Text="Αποστολή Έκθεσης">
+      <File Text="Αρχείο"/>
+      <Proxy Text="Διακομιστής Proxy"/>
+      <FileType Text="Τύπος Αρχείου:"/>
+      <Settings Text="Ρυθμίσεις..."/>
+      <Server Text="Διακομιστής:"/>
+      <Username Text="Όνομα Χρήστη:"/>
+      <Password Text="Κωδικός Πρόσβασης:"/>
+      <PortError Text="Η θύρα πρέπει να είναι αριθμητικό."/>
+    </MessengerForm>
+    <Xmpp Text="Αποστολή Έκθεσης μέσω XMPP">
+      <Name Text="XMPP"/>
+      <JidFrom Text="Χαρακτριστικό Jabber:"/>
+      <Password Text="Κωδικός Πρόσβασης:"/>
+      <JidTo Text="Αποστολή στο JID (με πόρο):"/>
+      <CloudWarning Text="Προειδοποίηση! Το αρχείο θα ανέβει στο FastReport Cloud. Ο χρήστης θα λάβει έναν σύνδεσμο για να κατεβάσει το αρχείο."/>
+      <Errors>
+        <InvalidJidOrPassword Text="Άκυρη Ταυτότητα ή Κωδικός Jabber"/>
+        <UnableToUploadFile Text="Αδύνατο το ανέβασμα αρχείου στο cloud!"/>
+      </Errors>
+    </Xmpp>
+    <Telegram Text="Αποστολή έκθεσης μέσω Telegram">
+      <Name Text="Telegram"/>
+      <SenderPhone Text="Τηλέφωνο αποστολέα"/>
+      <Password Text="Κωδικός Telegram"/>
+      <CodeToAuthenticate Text="Κωδικός επιβεβαίωσης"/>
+      <RecipientPhone Text="Τηλέφωνο παραλήπτη"/>
+      <SignOut Text="Έξοδος"/>
+      <Errors>
+        <InvalidSenderPhoneOrPassword Text="Μη έγκυρο τηλέφωνο ή συνθηματικό αποστολέα"/>
+        <UnableToUploadFile Text="Αδύνατο το ανέβασμα στο νέφος"/>
+      </Errors>
+    </Telegram>
+  </Messaging>
+  <Web>
+    <Print Text="Εκτύπωση"/>
+    <PrintFromBrowser Text="Εκτύπωση από φυλλομετρητή"/>
+    <PrintFromAcrobat Text="Εκτύπωση από Adobe Reader"/>
+    <FitWidth Text="Προσαρμογή πλάτους"/>
+    <FitPage Text="Προσαρμογή σελίδας"/>
+    <Export Text="Εξαγωγή"/>
+    <Zoom Text="Μεγέθυνση"/>
+    <Refresh Text="Ανανέωση"/>
+    <First Text="Πρώτη"/>
+    <Prev Text="Προηγούμενη"/>
+    <Next Text="Επόμενη"/>
+    <Last Text="Τελευταία"/>
+    <EnterPage Text="Εισαγωγή Σελίδας"/>
+    <TotalPages Text="Σύνολο Σελίδων"/>
+    <Back Text="Πίσω"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Εμφάνιση"/>
+      <Behavior Text="Συμπεριφορά"/>
+      <Build Text="Δόμηση"/>
+      <Data Text="Δεδομένα"/>
+      <Design Text="Σχεδίαση"/>
+      <Designer Text="Σχεδιαστής"/>
+      <Email Text="Email"/>
+      <Engine Text="Μηχανή"/>
+      <Events Text="Συμβάντα"/>
+      <Hierarchy Text="Ιεραρχία"/>
+      <Layout Text="Διάταξη"/>
+      <Misc Text="Διάφορα"/>
+      <Navigation Text="Πλοήγηση"/>
+      <Paper Text="Χαρτί"/>
+      <Preview Text="Προεπισκόπιση"/>
+      <Print Text="Εκτύπωση"/>
+      <Report Text="Έκθεση"/>
+      <Script Text="Δέσμη Ενεργειών"/>
+      <Spatial Text="Χώρος"/>
+      <Toolbars Text="Γραμμές Εργαλείων"/>
+      <UI Text="Περιβάλλον Χρήστη"/>
+    </Categories>
+  </Properties>
+</Language>

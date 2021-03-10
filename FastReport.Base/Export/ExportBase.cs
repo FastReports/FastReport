@@ -465,37 +465,41 @@ namespace FastReport.Export
         internal void ExportPageNew(int pageNo)
         {
             PreparedPage ppage = Report.PreparedPages.GetPreparedPage(pageNo);
-            ReportPage page = null;
-            try
             {
-                page = ppage.StartGetPage(pageNo);
-                page.Width = ppage.PageSize.Width;
-                page.Height = ppage.PageSize.Height;
-                ExportPageBegin(page);
-                float topShift = 0;
-                foreach (Base obj in ppage.GetPageItems(page, false))
+                ReportPage page = null;
+                try
                 {
-                    if (shiftNonExportable && topShift != 0 && obj is BandBase &&
-                      !(obj is PageFooterBand) && !(obj as BandBase).PrintOnBottom)
+                    page = ppage.StartGetPage(pageNo);
+                    page.Width = ppage.PageSize.Width;
+                    page.Height = ppage.PageSize.Height;
+                    ExportPageBegin(page);
+                    float topShift = 0;
+                    foreach (Base obj in ppage.GetPageItems(page, false))
                     {
-                        (obj as BandBase).Top -= topShift;
-                    }
-                    if ((obj as BandBase).Exportable 
-                        || webPreview)
-                        ExportBand(obj);
-                    else if (obj != null)
-                    {
-                        if (shiftNonExportable)
-                            topShift += (obj as BandBase).Height;
-                        obj.Dispose();
-                    }
+                        if (shiftNonExportable && topShift != 0 && obj is BandBase &&
+                          !(obj is PageFooterBand) && !(obj as BandBase).PrintOnBottom)
+                        {
+                            (obj as BandBase).Top -= topShift;
+                        }
+                        if ((obj as BandBase).Exportable
+                            || webPreview)
+                            ExportBand(obj);
+                        else if (obj != null)
+                        {
+                            if (shiftNonExportable)
+                                topShift += (obj as BandBase).Height;
+                            obj.Dispose();
+                        }
 
+                    }
+                    ExportPageEnd(page);
                 }
-                ExportPageEnd(page);
-            }
-            finally
-            {
-                ppage.EndGetPage(page);
+                finally
+                {
+                    ppage.EndGetPage(page);
+                }
+                if(page != null)
+                    page.Dispose();
             }
         }
 

@@ -787,7 +787,6 @@ namespace FastReport
         /// <param name="e"></param>
         /// <param name="drawRect"></param>
         /// <param name="image"></param>
-#if MONO
         internal virtual void DrawImageInternal(FRPaintEventArgs e, RectangleF drawRect)
         {
             bool rotate = Angle == 90 || Angle == 270;
@@ -799,105 +798,8 @@ namespace FastReport
             PointF lowerLeft;
             System.Drawing.Drawing2D.Matrix matrix = e.Graphics.Transform;
             GetImageAngleTransform(drawRect, imageWidth, imageHeight, e.ScaleX, e.ScaleY, matrix.OffsetX, matrix.OffsetY, out upperLeft, out upperRight, out lowerLeft);
-
-            // TODO translate tranform matrix, WTF mono or coreCompat or both
-            // cant work with negative transforms so need to fix it
-
-            bool NeedTransform = Config.IsRunningOnMono;
-            System.Drawing.Drawing2D.Matrix matrixBack = null;
-#if NETSTANDARD2_0 || NETSTANDARD2_1
-            NeedTransform = true;
-#else
-            NeedTransform  = Config.IsRunningOnMono;
-#endif
-            if (NeedTransform)
-            {
-                matrixBack = e.Graphics.Transform;
-                System.Drawing.Drawing2D.Matrix matrixTemp = new System.Drawing.Drawing2D.Matrix(
-                    matrixBack.Elements[0],
-                    matrixBack.Elements[1],
-                    matrixBack.Elements[2],
-                    matrixBack.Elements[3],
-                    0,
-                    0
-                    );
-
-                upperLeft.X += matrixBack.OffsetX;
-                upperLeft.Y += matrixBack.OffsetY;
-
-                upperRight.X += matrixBack.OffsetX;
-                upperRight.Y += matrixBack.OffsetY;
-
-                lowerLeft.X += matrixBack.OffsetX;
-                lowerLeft.Y += matrixBack.OffsetY;
-
-                e.Graphics.Transform = matrixTemp;
-            }
-
             DrawImageInternal2(e.Graphics, upperLeft, upperRight, lowerLeft);
-
-            if (NeedTransform)
-                e.Graphics.Transform = matrixBack;
         }
-
-#else
-        internal virtual void DrawImageInternal(FRPaintEventArgs e, RectangleF drawRect)
-        {
-            bool rotate = Angle == 90 || Angle == 270;
-            float imageWidth = ImageWidth;//rotate ? Image.Height : Image.Width;
-            float imageHeight = ImageHeight;//rotate ? Image.Width : Image.Height;
-           
-            PointF upperLeft;
-            PointF upperRight;
-            PointF lowerLeft;
-            System.Drawing.Drawing2D.Matrix matrix = e.Graphics.Transform;
-            GetImageAngleTransform(drawRect, imageWidth, imageHeight, e.ScaleX, e.ScaleY, matrix.OffsetX, matrix.OffsetY, out upperLeft, out upperRight, out lowerLeft);
-
-            // TODO translate tranform matrix, WTF mono or coreCompat or both
-            // cant work with negative transforms so need to fix it
-
-#if NETSTANDARD2_0 || NETSTANDARD2_1
-            
-            System.Drawing.Drawing2D.Matrix matrixBack = e.Graphics.Transform;
-            /*
-             Временное решение (т.к. не удалось найти универсального), которое устраняет проблемы с экспортом картинок в Excel2007 на Windows, но на Linux не работает. 
-             */
-            if (!Config.IsWindows)
-            {
-                System.Drawing.Drawing2D.Matrix matrixTemp = new System.Drawing.Drawing2D.Matrix(
-                    matrixBack.Elements[0],
-                    matrixBack.Elements[1],
-                    matrixBack.Elements[2],
-                    matrixBack.Elements[3],
-                    0,
-                    0
-                    );
-
-                upperLeft.X += matrixBack.OffsetX;
-                upperLeft.Y += matrixBack.OffsetY;
-
-                upperRight.X += matrixBack.OffsetX;
-                upperRight.Y += matrixBack.OffsetY;
-
-                lowerLeft.X += matrixBack.OffsetX;
-                lowerLeft.Y += matrixBack.OffsetY;
-
-                e.Graphics.Transform = matrixTemp;
-            }
-#endif
-
-            DrawImageInternal2(e.Graphics, upperLeft, upperRight, lowerLeft);
-
-#if NETSTANDARD2_0 || NETSTANDARD2_1
-            if (!Config.IsWindows)
-            {
-                e.Graphics.Transform = matrixBack;
-            }
-#endif
-
-        }
-#endif
-
         #endregion Internal Methods
 
         #region Protected Methods

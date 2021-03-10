@@ -7,9 +7,7 @@
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void TryToLoadData()
-        {
-        }
+        partial void TryToLoadData();
 
         #endregion Private Methods
     }

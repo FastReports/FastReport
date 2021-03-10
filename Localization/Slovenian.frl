@@ -1,0 +1,2043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="sl" Author="Ludvik Medvešek &lt;ludvik@kvantniskok.com&gt;">
+  <Buttons>
+    <Ok Text="OK"/>
+    <Cancel Text="Prekini"/>
+    <Close Text="Zapri"/>
+    <MoreOptions Text="Več opcij"/>
+    <LessOptions Text="Manj opcij"/>
+    <Actions Text="Akcije"/>
+    <Previous Text="&lt; Prejšnji"/>
+    <Next Text="Naslednji &gt;"/>
+    <Finish Text="Konec"/>
+    <Advanced Text="Napredno..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Dostopam do podatkov..."/>
+    <Attention Text="Pozor"/>
+    <CantFindObject Text="Ne najdem objekta"/>
+    <CantLoadReport Text="Ne uspem naložiti poročila {0}"/>
+    <CantSaveReport Text="Ne morem shraniti poročila. Datotoke je morda zaščitena pred pisanjem."/>
+    <ClassError Text="Ne najdem razreda glavnega poročila, ReportScript"/>
+    <Confirmation Text="Potrditev"/>
+    <DataNotInitialized Text="Podatkovni vir še ni inicializiran. "/>
+    <DecompressError Text="Ne morem razširiti datoteke"/>
+    <DecryptError Text="Napaka pri dekripciji: napačno geslo"/>
+    <DelegateError Text="{0} delegat zahteva dva argumenta: 'sender' in 'e'"/>
+    <DeleteAncestor Text="Ne morem izbrisati {0}, uveden je bil v nadrejenem poročilu"/>
+    <DuplicateName Text="Objekt z imenom {0} že obstaja"/>
+    <DuplicateStyle Text="Stil s tem imenom že obstaja"/>
+    <Error Text="Napaka"/>
+    <EventError Text="Zaradi napak v izvorni kodi ne morem ustvariti upravitelja dogodka"/>
+    <ExportingPage Text="Izvažam stran {0} od {1}"/>
+    <GeneratingPage Text="Pripravljam stran {0}"/>
+    <GeneratingPageFirstPass Text="Prvi prehod: priprava strani {0}"/>
+    <Information Text="Obvestilo"/>
+    <MatrixError Text="{0}: Objekt matrika mora imeti vsaj en stolpec ali vrstico in eno dimenzijo celice."/>
+    <MatrixValueError Text="Število vrednosti se razlikuje od MatrixData.Cells.Count (mora biti {0})"/>
+    <ParentError Text="Objekt tipa {0} ne more vsebovati objekta tipa {1}"/>
+    <ParentError1 Text="Objekt tipa {0} ne more vsebovati objektov"/>
+    <Performance Text="Pripravljeno v {0} ms"/>
+    <PreparingData Text="Priprava podatkov..."/>
+    <PrintingPage Text="Tiskanje strani {0}"/>
+    <RenameAncestor Text="Ne morem preimenovati {0}, ker je bil uveden v nadrejenem poročilu "/>
+    <SaveChanges Text="Shranim spremembe v {0}?"/>
+    <SaveChangesToPreviewPage Text="Shranim spremembe strani predogleda?"/>
+    <SQLError Text="Napaka SQL"/>
+    <TableIsNull Text="Tabela ni povezana s podatki. Registrirajte podatke z metodo Report.RegisterData."/>
+    <TableManualBuildError Text="Metodi TabelObject.PrintRow in PrintColumn lahko uporabljate samo znotraj dogodka ManualBuild."/>
+    <Warning Text="Opozorilo"/>
+    <WarningSaveRDL Text="RDL format ima nekatere omejitve! Ta filter bo shranil samo pogled šablone! Viri podatkov in objekti Barcode, RichText, CheckBox in ZipCode ne bodo shranjeni! Nekatere lastnosti objektov ne bodo shranjene! Torej lahko izgubite nekatere elemente in lastnosti šablone. Naj vseeno shranim?"/>
+    <WrongFileFormat Text="Ne morem naložiti datoteke. Neznan format datoteke"/>
+    <InvalidBarcode1 Text="Barcode se mora začeti z nizom '&amp;A;', '&amp;B;' ali '&amp;C;'"/>
+    <InvalidBarcode2 Text="Neveljaven znak v vhodni kodi"/>
+    <ErrorInExpression Text="Napaka v izrazu"/>
+    <ErrorInHighlightCondition Text="Napaka v poudarjenem pogoju"/>
+    <FileNameEmpty Text="Prosim navedite pravilno ime datoteke."/>
+    <SaveToAnotherFile Text="Ali bi želeli shraniti v drugo datoteko?"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Vzorec"/>
+    <None Text="Noben"/>
+    <PageN Text="Stran {0}"/>
+    <PageNofM Text="Stran {0} od {1}"/>
+    <ofM Text="od {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Poročilo"/>
+    <ReportPage Text="Stran"/>
+    <DialogPage Text="Obrazec"/>
+    <XmlDataConnection Text="podatkovna baza XML"/>
+    <OleDbDataConnection Text="povezava OLE DB"/>
+    <MsAccessDataConnection Text="povezava MS Access"/>
+    <MsSqlDataConnection Text="povezava MS SQL"/>
+    <OdbcDataConnection Text="povezava ODBC"/>
+    <FirebirdDataConnection Text="povezava Firebird"/>
+    <VistaDBDataConnection Text="povezava VistaDB"/>
+    <PostgresDataConnection Text="povezava Postgres"/>
+    <MySqlDataConnection Text="povezava MySQL"/>
+    <OracleDataConnection Text="povezava Oracle"/>
+    <SQLiteDataConnection Text="povezava SQLite"/>
+    <SqlCeDataConnection Text="povezava SQL CE"/>
+    <Bands Text="Pasovi">
+      <ReportTitle Text="Naslov poročila"/>
+      <ReportSummary Text="Povzetek poročila"/>
+      <PageHeader Text="Glava strani"/>
+      <PageFooter Text="Vznožje strani"/>
+      <ColumnHeader Text="Glava stolpca"/>
+      <ColumnFooter Text="Vznožje stolpca"/>
+      <DataHeader Text="Glava"/>
+      <DataFooter Text="Vznožje"/>
+      <Data Text="Podatki"/>
+      <GroupHeader Text="Glava skupine"/>
+      <GroupFooter Text="Vznožje skupine"/>
+      <Child Text="Potomec"/>
+      <Overlay Text="Prekritje"/>
+    </Bands>
+    <TextObject Text="Besedilo"/>
+    <Shapes Text="Oblike">
+      <Line Text="Črta"/>
+      <DiagonalLine Text="Diagonalna črta"/>
+      <Rectangle Text="Pravokotnik"/>
+      <RoundRectangle Text="Zaokrožen pravokotnik"/>
+      <Ellipse Text="Elipsa"/>
+      <Triangle Text="Trikotnik"/>
+      <Diamond Text="Diamant"/>
+    </Shapes>
+    <PictureObject Text="Slika"/>
+    <TableObject Text="Tabela"/>
+    <MatrixObject Text="Matrica"/>
+    <SubreportObject Text="Podporočilo"/>
+    <BarcodeObject Text="Črtna koda"/>
+    <RichObject Text="Obogateno besedilo"/>
+    <MSChartObject Text="MS graf"/>
+    <ZipCodeObject Text="Poštna številka"/>
+    <CellularTextObject Text="Tekst v polju"/>
+    <CheckBoxObject Text="Potrditveno polje"/>
+    <ButtonControl Text="Gumb"/>
+    <CheckBoxControl Text="Potrditveno polje"/>
+    <CheckedListBoxControl Text="Seznam potrditvenih polj"/>
+    <ComboBoxControl Text="Kombinirano polje"/>
+    <GridControl Text="Mreža"/>
+    <DataSelectorControl Text="Izbirnik podatkov"/>
+    <DateTimePickerControl Text="Izbira datuma in ure"/>
+    <GroupBoxControl Text="Skupina možnosti"/>
+    <LabelControl Text="Oznaka"/>
+    <ListBoxControl Text="Polje s seznamom"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="Polje z besedilom z oblikovanjem"/>
+    <MonthCalendarControl Text="Mesečni koledar"/>
+    <NumericUpDownControl Text="Izbira števil"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="Slikovno polje"/>
+    <RadioButtonControl Text="Izbirni gumb"/>
+    <RichTextBoxControl Text="Polje z obogatenim besedilom"/>
+    <TextBoxControl Text="Polje z besedilom"/>
+    <TreeViewControl Text="TreeView"/>
+    <MapObject Text="Zemljevid"/>
+  </Objects>
+  <Functions>
+    <Math Text="Matematika"/>
+    <Text Text="Besedilo"/>
+    <DateTime Text="Datum in čas"/>
+    <Formatting Text="Oblikovanje"/>
+    <Conversion Text="Pretvorba"/>
+    <ProgramFlow Text="Tok programa"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Datoteka poročila (*.frx)|*.frx"/>
+    <PreparedReport Text="Pripravljeno poročilo ˙*.fpx)|*.fpx"/>
+    <Style Text="Stili poročil (*.frs)|*.frs"/>
+    <Dictionary Text="Slovar (*.frd)|*.frd"/>
+    <Localization Text="Datoteka s prevodom (*.frl)|*.frl"/>
+    <XsdFile Text="Datoteka z XML  definicijo (*.xsd)|*.xsd"/>
+    <XmlFile Text="Datoteka XML (*.xml)|*.xml"/>
+    <MdbFile Text="MS Accessova baza (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server baza (*.mdf)|*.mdf"/>
+    <RtfFile Text="Datoteka z obogatenim besedilom (*.rtf)|*.rtf"/>
+    <Images Text="Slikovne datoteke|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Tiskalnikova datoteka (*.prn)|*.prn"/>
+    <BmpFile Text="Bitna slika (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG slika (*.png)|*.png"/>
+    <JpegFile Text="JPG slika (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF slika (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF slika (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML datoteka (*.html)|*.html"/>
+    <MhtFile Text="Web arhivska datoteka (*.mht)|*.mht"/>
+    <OdtFile Text="Open Office Writer datoteka (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc datoteka (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat datoteka (*.pdf)|*.pdf"/>
+    <TxtFile Text="Tekstovna datoteka (*.txt)|*.txt"/>
+    <CsvFile Text="Vrednosti ločene z vejico (*.csv)|*.csv"/>
+    <DbfFile Text="dBase datoteka (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel datoteka (*.xls)|*.xls"/>
+    <CsFile Text="C# datoteka (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net datoteka (*.vb)|*.vb"/>
+    <FdbFile Text="baza Firebird (*.fdb)|*.fdb"/>
+    <Vdb3File Text="baza VistaDB (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="MS Excel zvezek (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint predstavitev (*.pptx)|*.pptx"/>
+    <DocxFile Text="MS Word dokument (*.docx)|*.docx"/>
+    <SdfFile Text="baza SQL CE (*.sdf)|*.sdf"/>
+    <XpsFile Text="XPS datoteka (*.xps)|*.xps"/>
+    <RdlFiles Text="RDL datoteke (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="RDL datoteka (*.rdl)|*.rdl"/>
+    <RdlcFile Text="RDLC datoteka (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Crystal Reports datoteka (*.rpt)|*.rpt"/>
+    <ShpFile Text="ESRI shape datoteka (*.shp)|*.shp"/>
+    <Fr3File Text="FastReport VCL poročilo (*.fr3)|*.fr3"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MMMM dd, yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Napačno"/>
+    <BooleanF2 Text="Ne"/>
+    <BooleanF3 Text="Izključeno"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Resnično"/>
+    <BooleanT2 Text="Da"/>
+    <BooleanT3 Text="Vključeno"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefon;(000) 000-0000"/>
+    <Custom2 Text="Dolg telefon;+0(000) 000-0000"/>
+    <Custom3 Text="Socialno zavarovanje;000-00-0000"/>
+    <Custom4 Text="Kratka poštna številka;00000"/>
+    <Custom5 Text="Dolga poštna številka;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Datoteka">
+        <New Text="Nov..."/>
+        <Open Text="Odpri..."/>
+        <Close Text="Zapri"/>
+        <Save Text="Shrani"/>
+        <SaveAs Text="Shrani kot..."/>
+        <SaveAll Text="Shrani vse"/>
+        <PageSetup Text="Priprava strani..."/>
+        <PrinterSetup Text="Nastavitev tiskalnika..."/>
+        <Preview Text="Predogled..."/>
+        <SelectLanguage Text="Izberite jezik..."/>
+        <Exit Text="Izhod"/>
+      </File>
+      <Edit Text="Urejanje">
+        <Undo Text="Razveljavi"/>
+        <Redo Text="Uveljavi"/>
+        <Cut Text="Izreži"/>
+        <Copy Text="Kopiraj"/>
+        <Paste Text="Prilepi"/>
+        <Delete Text="Izbriši"/>
+        <DeletePage Text="Izbriši stran"/>
+        <SelectAll Text="Izberi vse"/>
+        <Group Text="Združi"/>
+        <Ungroup Text="Razdruži"/>
+        <Find Text="Najdi..."/>
+        <Replace Text="Zamenjaj..."/>
+      </Edit>
+      <View Text="Pogled">
+        <StartPage Text="Začni stran"/>
+        <Toolbars Text="Orodne vrstica"/>
+        <Options Text="Izbire..."/>
+        <Grid Text="Mreža"/>
+        <Guides Text="Vodila"/>
+        <AutoGuides Text="Avtomatska vodila"/>
+        <DeleteHGuides Text="Odstrani vodoravna vodila"/>
+        <DeleteVGuides Text="Odstrani navpična vodila"/>
+        <Units Text="Enote"/>
+      </View>
+      <Insert Text="Vstavljanje"/>
+      <Report Text="Poročilo">
+        <Bands Text="Nastavi pasove..."/>
+        <Styles Text="Stili"/>
+        <GroupExpert Text="Čarovnik za skupino..."/>
+        <Options Text="Izbrire..."/>
+      </Report>
+      <Data Text="Podatki">
+        <ShowData Text="Pokaži okno s podatki"/>
+        <Add Text="Dodaj podatkovni vir..."/>
+        <Choose Text="Izberi podatke poročila..."/>
+      </Data>
+      <Window Text="Okno">
+        <CloseAll Text="Zapri vse"/>
+      </Window>
+      <Help Text="Pomoč">
+        <Contents Text="Vsebina pomoči..."/>
+        <About Text="Vizitka..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <AutoHide Text="Samodejno skrij"/>
+      <Close Text="Zapri"/>
+      <Properties Text="Lastnosti">
+        <PropertiesTab Text="Lastnosti"/>
+        <EventsTab Text="Dogodki"/>
+        <NObjectsSelected Text="Izbranih {0} objektov"/>
+      </Properties>
+      <ReportTree Text="Dreavo poročila"/>
+      <Dictionary Text="Podatki">
+        <DataSources Text="Podatkovni vir"/>
+        <Parameters Text="Parametri"/>
+        <SystemVariables Text="Sistemske spremenljivke"/>
+        <Totals Text="Zbirne vrednosti"/>
+        <Functions Text="Funkcije"/>
+        <DialogControls Text="Kontrole obrazcev"/>
+        <New Text="Nov slovar..."/>
+        <Open Text="Odpri slovar...."/>
+        <Save Text="Shrani slovar..."/>
+        <Merge Text="Združi slovar..."/>
+        <NewDataSource Text="Nov podatkovni vir..."/>
+        <NewRelation Text="Nova relacija..."/>
+        <NewParameter Text="Nov parameter"/>
+        <NewTotal Text="Nova zbirna vrednost..."/>
+        <NewCalculatedColumn Text="Nov izračunan stolpec..."/>
+        <Rename Text="Preimenuj"/>
+        <Edit Text="Uredi..."/>
+        <Delete Text="Brisanje"/>
+        <DeleteAlias Text="Brisanje psevdonima"/>
+        <View Text="Pogled podatkov..."/>
+        <DuplicateName Text="Element s tem imenom že obstaja"/>
+        <NRows Text="{0} vrstic"/>
+      </Dictionary>
+      <Messages Text="Sporočilo">
+        <Description Text="Opis"/>
+        <Line Text="Vrstica"/>
+        <Column Text="Stolpec"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Dodaj ali odstrani Gumbke"/>
+      <Reset Text="Obnovi orodno vrstico"/>
+      <MoreButtons Text="Več gumbkov..."/>
+      <Standard Text="Standard">
+        <New Text="Dodaj nov element"/>
+        <Open Text="Odpri poročilo (Ctrl+O)"/>
+        <Save Text="Shrani poročilo (Ctrl+S)"/>
+        <SaveAll Text="Shrani vse (Ctrl+Shift+S)"/>
+        <Preview Text="Predogled (Ctrl+P)"/>
+        <NewPage Text="Nova stran poročila"/>
+        <NewDialog Text="Nov obrazec"/>
+        <DeletePage Text="Izbris strani"/>
+        <PageSetup Text="Nastavitev strani"/>
+        <Cut Text="Izreži (Ctrl+X)"/>
+        <Copy Text="Kopiraj (Ctrl+C)"/>
+        <Paste Text="Prilepi (Ctrl+P)"/>
+        <FormatPainter Text="Risanje formatov"/>
+        <Undo Text="Razveljavi (Ctrl+Z)"/>
+        <Redo Text="Uveljavi"/>
+        <Group Text="Združi"/>
+        <Ungroup Text="Razdruži"/>
+      </Standard>
+      <Text Text="Besedilo">
+        <Name Text="Naziv pisave"/>
+        <Size Text="Velikost pisave"/>
+        <Bold Text="Odebeljeno"/>
+        <Italic Text="Poševno"/>
+        <Underline Text="Podčrtano"/>
+        <Left Text="Leva poravnava"/>
+        <Center Text="Sredinska poravnava"/>
+        <Right Text="Desna poravnava"/>
+        <Justify Text="Enakomerno razporedi"/>
+        <Top Text="Poravnaj na vrh"/>
+        <Middle Text="Poravnaj na sredino"/>
+        <Bottom Text="Poravnaj na dno"/>
+        <Color Text="Barva besedila"/>
+        <Highlight Text="Označevanje"/>
+        <Angle Text="Nagib besedila"/>
+      </Text>
+      <Border Text="Robovi in polnila">
+        <Top Text="Zgornja črta"/>
+        <Bottom Text="Spodnja črta"/>
+        <Left Text="Leva črta"/>
+        <Right Text="Desna črta"/>
+        <All Text="Vse robne črte"/>
+        <None Text="Brez obrobe"/>
+        <FillColor Text="Barva polnila"/>
+        <FillStyle Text="Stil polnila..."/>
+        <LineColor Text="Barva obrobe"/>
+        <Width Text="Širina obrobe"/>
+        <Style Text="Stil obrobe"/>
+        <Props Text="Lastnosti obrobe..."/>
+      </Border>
+      <Style Text="Stil">
+        <Styles Text="Stili"/>
+        <SelectStyle Text="Izberi stil"/>
+        <NoStyle Text="Brez stila"/>
+      </Style>
+      <Layout Text="Razpored">
+        <AlignToGrid Text="Poravnaj z mrežo"/>
+        <Left Text="Poravnaj levo"/>
+        <Center Text="Poravnaj na sredino"/>
+        <Right Text="Poravnaj desno"/>
+        <Top Text="Poravnaj na vrh"/>
+        <Middle Text="Poravnaj na sredino"/>
+        <Bottom Text="Poravnaj na dno"/>
+        <SameWidth Text="Enaka širina"/>
+        <SameHeight Text="Enaka višina"/>
+        <SameSize Text="Enaka velikost"/>
+        <SizeToGrid Text="Velikost na mrežo"/>
+        <SpaceHorizontally Text="Vodoravni razmik"/>
+        <IncreaseHorizontalSpacing Text="Povečaj vodoravni razmik"/>
+        <DecreaseHorizontalSpacing Text="Zmanjšaj vodoravni razmik"/>
+        <RemoveHorizontalSpacing Text="Odstrani vodoravni razmik"/>
+        <SpaceVertically Text="Razmakni navpično"/>
+        <IncreaseVerticalSpacing Text="Povečaj navpični razmik"/>
+        <DecreaseVerticalSpacing Text="Zmanjšaj navpični razmik"/>
+        <RemoveVerticalSpacing Text="Odstrani navpični razmik"/>
+        <CenterHorizontally Text="Usredini vodoravno"/>
+        <CenterVertically Text="Usredini navpično"/>
+        <BringToFront Text="Postavi v ospredje"/>
+        <SendToBack Text="Pošlji v ozadje"/>
+      </Layout>
+      <Objects Text="Objekti">
+        <Select Text="Izbira"/>
+      </Objects>
+      <Zoom Text="Zoom">
+        <ZoomOut Text="Povečava"/>
+        <ZoomIn Text="Zmanjšava"/>
+        <Zoom Text="Zoom"/>
+        <PageWidth Text="Širina strani"/>
+        <WholePage Text="Celotna stran"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Koda"/>
+      <Report>
+        <ConfigureBands Text="Konfiguriraj pasove..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Izbire"/>
+    <UndoRedo>
+      <Delete Text="Briši {0}"/>
+      <Move Text="Premakni {0}"/>
+      <Size Text="Spremeni velikost {0}"/>
+      <Change Text="Spremeni {0}"/>
+      <AddGuide Text="Dodaj vodilo"/>
+      <MoveGuide Text="Premakni vodilo"/>
+      <DeleteHGuides Text="Izbriši vodoravna vodila"/>
+      <DeleteVGuides Text="Izbriši navpična vodila"/>
+      <ResizeBand Text="Spremeni velikost pasov"/>
+      <ChangeParent Text="Spremeni prednika od {0}"/>
+      <Load Text="Naloži poročilo"/>
+      <Paste Text="Prilepi {0}"/>
+      <Insert Text="Vstavi {0}"/>
+      <AddPage Text="Dodaj stran {0}"/>
+      <DeletePage Text="Briši stran"/>
+      <Script Text="Skript je spremenjen"/>
+      <NObjects Text="{0} objektov"/>
+      <UndoN Text="Razveljavi {0} akcij"/>
+      <RedoN Text="Uveljavi {0} akcij"/>
+      <ChangeReport Text="Spremeni poročilo"/>
+      <ChangePagesOrder Text="Spremeni zaporedje strani"/>
+      <EditPage Text="Uredi stran"/>
+      <EditPrinter Text="Uredi nastavitve tiskalnika"/>
+      <EditReport Text="Uredi nastavitve poročila"/>
+      <SelectData Text="Izberi podatke"/>
+      <EditData Text="Uredi podatke"/>
+    </UndoRedo>
+    <StartPage Text="Začni stran"/>
+    <Untitled Text="Neimenovana.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Po izbiri"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="Sistem"/>
+      <Other Text="Ostale barve..."/>
+      <Transparency Text="Prosojnost:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Predogled">
+    <PrintText Text="Natisni"/>
+    <Print Text="Natisni (Ctrl+P)"/>
+    <Open Text="Odpri datoteko"/>
+    <Save Text="Shrani datoteko"/>
+    <SaveText Text="Shrani"/>
+    <SaveToCloud Text="Shrani v oblak"/>
+    <SaveToCloudText Text="Shrani v oblak"/>
+    <Email Text="Pošlji po E-pošti"/>
+    <Find Text="Poiščii besedilo"/>
+    <Outline Text="Outline"/>
+    <PageSetup Text="Nastavitve strani"/>
+    <Edit Text="Uredi stran"/>
+    <Watermark Text="Vodni žig"/>
+    <First Text="Prva stran"/>
+    <Prior Text="Prejšnja stran"/>
+    <Next Text="Naslednja stran"/>
+    <Last Text="Zadnja stran"/>
+    <SaveNative Text="Pripravljeno poročilo"/>
+    <DropboxText Text="Shrani v Dropbox"/>
+    <GoogleDriveText Text="Shrani v Google Drive"/>
+    <SkyDriveText Text="Shrani v SkyDrive"/>
+  </Preview>
+  <Forms>
+    <About Text="Vizitka">
+      <Version Text="Verzija"/>
+      <Visit Text="Za dodatne informacije obiščite našo internetno stran:"/>
+    </About>
+    <AddLayer Text="Dodaj plast">
+      <Source Text="Izberi vir:"/>
+      <Shapefile Text="ESRI shapefile"/>
+      <Embed Text="Vključi  shapefile v poročilo"/>
+      <Empty Text="Izprazni plast z geografskimi podatki, ki jih je zagotovila aplikacija"/>
+    </AddLayer>
+    <AddNewItem Text="Dodaj nov element">
+      <Add Text="Dodaj"/>
+      <Reports Text="Predloge poročil:"/>
+      <ReportItems Text="Elementi poročil:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Napredne lastnosti"/>
+    <AskPassword Text="Geslo">
+      <Password Text="To poročilo je zaščiteno z geslom.&#13;&#10;&#13;&#10;Prosim, vnesite geslo:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Prijava v bazo podatkov">
+      <Login Text="Prijava:"/>
+      <Password Text="Geslo:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Izberite podatkovni vir"/>
+      <SelectDataSource Text="Izberite enega od razpoložljivih virov podatkov ali ustvarite novega:"/>
+      <CreateNewDatasource Text="Ustvarite nov vir podatkov..."/>
+      <SelectColumnsPage Text="Izberite podatkovne stolpce"/>
+      <SelectColumns Text="Izberite podatkovne stolpce, ki jih želite prikazati v poročilu."/>
+      <AvailableColumns Text="Razpoložljivi stolpci:"/>
+      <SelectedColumns Text="Izbrani stolpci:"/>
+    </BaseReportWizard>
+    <Border Text="Urejevalnik obrobe">
+      <Border Text="Obroba"/>
+      <Line Text="Črta"/>
+      <Shadow Text="Senca"/>
+      <Style Text="Stil:"/>
+      <Width Text="Širina:"/>
+      <Color Text="Barva:"/>
+      <Hint Text="Izberite stil črte in izberite črto za katero stil velja."/>
+    </Border>
+    <ChartEditor Text="Urejevalnik grafov">
+      <Chart Text="Graf"/>
+      <Add Text="Dodaj..."/>
+      <Delete Text="Briši"/>
+      <Hint Text="Klikni na element za določitev njegovih lastnosti:"/>
+      <Common>
+        <Color Text="Barva:"/>
+        <BackColor Text="Barva ozadja:"/>
+        <SecondaryColor Text="Sekundarna barva:"/>
+        <Gradient Text="Gradijent:"/>
+        <HatchStyle Text="Hatch stil:"/>
+        <BorderColor Text="Barva obrobe:"/>
+        <BorderStyle Text="Stil obrobe:"/>
+        <BorderWidth Text="Širina obrobe:"/>
+        <ShadowColor Text="Barva sence:"/>
+        <ShadowOffset Text="Odmik sence:"/>
+        <LineColor Text="Barva črte:"/>
+        <LineStyle Text="Stil črte:"/>
+        <LineWidth Text="Širina črte:"/>
+        <Text Text="Besedilo:"/>
+        <Font Text="Pisava:"/>
+        <ForeColor Text="Barva ospredja:"/>
+        <Dock Text="Dock:"/>
+        <InsideChartArea Text="Znotraj področja grafa"/>
+        <Format Text="Format:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Podatki">
+          <DataSource Text="Vir podatkov:"/>
+          <Filter Text="Filter:"/>
+          <AutoSeries Text="Samodejno ustvarjene serije"/>
+          <DataColumn Text="Stolpec s podatki:"/>
+          <ColorColumn Text="Barva stolpca:"/>
+          <SeriesSort Text="Urejenost serij:"/>
+          <AlignXValues Text="Poravnaj X vrednosti"/>
+        </Data>
+        <Appearance Text="Izgled">
+          <Template Text="Predloga:"/>
+          <Load Text="Naloži..."/>
+          <Save Text="Shrani..."/>
+          <SeriesPalette Text="Paleta serij:"/>
+          <BorderSkin Text="Koža obrobe:"/>
+          <Templates>
+            <Custom Text="Prilagojeno"/>
+            <Blue Text="Modra"/>
+            <Gray Text="Siva"/>
+            <Green Text="Zelena"/>
+            <Pink Text="Roza"/>
+            <Sand Text="Peskasta"/>
+            <Steel Text="Jeklena"/>
+            <Light Text="Svetla"/>
+          </Templates>
+        </Appearance>
+        <ChartArea Text="Površina grafa">
+          <Area Text="Površina:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Omogoči 3D"/>
+          <XRotation Text="zasuk X:"/>
+          <YRotation Text="zasuk Y:"/>
+          <Perspective Text="Perspektiva:"/>
+          <WallWidth Text="Širina stene:"/>
+          <AxisDepth Text="Globina osi:"/>
+          <LightStyle Text="Lahki stil:"/>
+          <ClusteredSeries Text="Serije v več nivojih"/>
+        </ThreeD>
+        <Axes Text="Osi">
+          <Axis Text="Osi:"/>
+          <CopyFromX Text="Kopiraj izgled iz osi X"/>
+          <CopyFromPrimary Text="Kopiraj izgled iz primarne osi"/>
+          <Minor Text="Manjši"/>
+          <Major Text="Večji"/>
+          <General Text="Splošno">
+            <Enabled Text="Omogočeno"/>
+            <MarginVisible Text="Viden rob"/>
+            <Logarithmic Text="Logaritemsko"/>
+            <Reversed Text="Obratno"/>
+            <Interval Text="Interval"/>
+            <Interlaced Text="Prepleteno"/>
+            <InterlacedColor Text="Barva prepletanja:"/>
+          </General>
+          <Labels Text="Oznake">
+            <Enabled Text="Omogočeno"/>
+            <Angle Text="Zasuk:"/>
+          </Labels>
+          <Title Text="Naslov"/>
+          <CustomLabels Text="Izbirne oznake">
+            <Label Text="Oznaka"/>
+            <Start Text="Začetek:"/>
+            <End Text="Konec:"/>
+            <Row Text="Vrstica:"/>
+            <MarkColor Text="Barva oznake:"/>
+            <MarkStyle Text="Stil oznake:"/>
+          </CustomLabels>
+          <Grid Text="Mreža">
+            <GridLine Text="Mrežna črta:"/>
+            <Enabled Text="Omogočeno"/>
+          </Grid>
+          <Ticks Text="Črtice">
+            <Ticks Text="Črtice:"/>
+            <Enabled Text="Omogočeno"/>
+            <TickStyle Text="Stil črtic:"/>
+            <TickSize Text="Velikost črtic:"/>
+          </Ticks>
+          <Strips Text="Proge">
+            <Strip Text="Proga"/>
+            <Interval Text="Interval">
+              <Start Text="Začetek:"/>
+              <Width Text="Širina:"/>
+              <Interval Text="Interval:"/>
+            </Interval>
+            <Appearance Text="Izgled"/>
+            <Text Text="Besedilo">
+              <HorizontalAlign Text="Vodoravna poravnava:"/>
+              <VerticalAlign Text="Navpična poravnava:"/>
+              <TextOrientation Text="Orijentacija besedila:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Legenda">
+          <Enabled Text="Omogočeno"/>
+          <StyleColumn Text="Stolpec"/>
+          <StyleRow Text="Vrstica"/>
+          <StyleTable Text="Tabela"/>
+          <General Text="Splošno">
+            <LegendStyle Text="Stil legende:"/>
+          </General>
+          <Appearance Text="Izgled"/>
+        </Legend>
+        <Title Text="Naslov">
+          <Visible Text="Vidno"/>
+          <General Text="Splošno">
+            <TextOrientation Text="Orijentacija besedila:"/>
+            <TextStyle Text="Stil besedila:"/>
+          </General>
+          <Appearance Text="Izgled"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Podatki">
+          <Name Text="Naziv:"/>
+          <XValue Text="Vrednost X:"/>
+          <Color Text="Barva:"/>
+          <Filter Text="Filter:"/>
+          <XValueType Text="Tip vrednosti X:"/>
+          <YValueType Text="Tip vrednosti Y:"/>
+          <XAxisType Text="Os X:"/>
+          <YAxisType Text="Os Y:"/>
+          <PrimaryAxis Text="Primarna"/>
+          <SecondaryAxis Text="Sekundarna"/>
+          <SeriesValues>
+            <YValue Text="Vrednost Y:"/>
+            <High Text="Zgornja:"/>
+            <Low Text="Spodnja:"/>
+            <Open Text="Open:"/>
+            <Close Text="Close:"/>
+            <RangeBegin Text="Začetek obsega:"/>
+            <RangeEnd Text="Konec obsega:"/>
+            <Size Text="Velikost:"/>
+            <YValue1 Text="Y vrednost 1:"/>
+            <YValue2 Text="Y vrednost 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Vrednosti"/>
+        <DataProcessing Text="Obdelava podatkov">
+          <SortBy Text="Uredi po:"/>
+          <SortByX Text="X vrednost"/>
+          <SortByY Text="Y vrednost"/>
+          <SortOrder Text="Vrstni red:"/>
+          <GroupBy Text="Združi po:">
+            <None Text="Ničemer"/>
+            <XValue Text="X vrednosti"/>
+            <Number Text="Številu"/>
+            <Years Text="Letih"/>
+            <Months Text="Mesecih"/>
+            <Weeks Text="Tednih"/>
+            <Days Text="Dnevih"/>
+            <Hours Text="Urah"/>
+            <Minutes Text="Minutah"/>
+            <Seconds Text="Sekundah"/>
+            <Milliseconds Text="Milisekundah"/>
+          </GroupBy>
+          <GroupInterval Text="Interval združevanja:"/>
+          <GroupFunction Text="Funkcija združevanja:"/>
+          <CollectData Text="Zberi podatke:">
+            <None Text="Nobenih"/>
+            <TopN Text="ZgornjihN"/>
+            <BottomN Text="SpodnjihN"/>
+            <LessThan Text="Manj kot vrednost"/>
+            <LessThanPercent Text="Manj kot odstotek"/>
+            <GreaterThan Text="Več kot vrednost"/>
+            <GreaterThanPercent Text="Več kot odstotek"/>
+          </CollectData>
+          <Value Text="Vrednost:"/>
+          <CollectedText Text="Zbirno besedilo"/>
+          <CollectedColor Text="Zbirna barva:"/>
+          <Explode Text="Ekspodiraj:">
+            <None Text="Nič"/>
+            <Biggest Text="Največjo vrednost"/>
+            <Lowest Text="Najnižjo vrednost"/>
+            <Specific Text="Izbrano vrednost"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Izgled">
+          <Default Text="Privzeto"/>
+          <DrawingStyle Text="Stil risanja:"/>
+          <PointWidth Text="Širina točke:"/>
+          <LabelsStyle Text="Stil oznak:"/>
+          <DrawSideBySide Text="Riši rob do roba"/>
+          <ShowMarkerLines Text="Pokaži črte oznak"/>
+          <DoughnutRadius Text="Premer krofa (%):"/>
+          <AreaDrawingStyle Text="Stil risanja površine:"/>
+          <Markers Text="Oznake:"/>
+          <PriceUpColor Text="Barva povečanja cene:"/>
+          <ReversalAmount Text="Obratna vrednost:"/>
+          <BoxSize Text="Velikost okvirja:"/>
+          <NumberOfLinesInBreak Text="Lines in break:"/>
+          <LabelsPlacement Text="Postavitev oznak:"/>
+          <PointsGap Text="Razmik med točkami:"/>
+          <MinPointHeight Text="Najm. višina točk:"/>
+          <ValueType Text="Vrsta vrednosti:"/>
+          <ThreeDDrawingStyle Text="Stil 3D risanja:"/>
+          <ThreeDRotation Text="3D rotacija:"/>
+          <FunnelStyle Text="Stil Funnel:"/>
+          <LineTension Text="Napetost črte:"/>
+          <NoSettings Text="Nobenih posebnih nastavitev za to vrsto serij."/>
+        </Appearance>
+        <FillBorder Text="Polnila in obrobe">
+          <Palette Text="Paleta:"/>
+        </FillBorder>
+        <Labels Text="Oznake">
+          <LabelView Text="Izgled oznak:"/>
+          <Pattern Text="Vzorec:"/>
+        </Labels>
+        <Markers Text="Oznake">
+          <Style Text="Stil:"/>
+          <Size Text="Velikost:"/>
+          <Step Text="Korak:"/>
+          <Color Text="Barva:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galerija">
+      <NewArea Text="Dodaj novo površino grafa za to serijo"/>
+      <Categories>
+        <BarColumn Text="Stolpični diagrami"/>
+        <Area Text="Površina"/>
+        <Line Text="Črta"/>
+        <PointBubble Text="Točke &amp; mehurčki"/>
+        <Pie Text="Pica"/>
+        <Circular Text="Krožni"/>
+        <Financial Text="Finančni"/>
+        <PyramidFunnel Text="Piramide in dimniki"/>
+        <Range Text="Obseg"/>
+      </Categories>
+      <Series>
+        <Bar Text="Stolpci"/>
+        <StackedBar Text="Naloženi stolpci"/>
+        <StackedBar100 Text="100 % naloženi stolpci"/>
+        <Column Text="Stolpci"/>
+        <StackedColumn Text="Naloženi stolpci"/>
+        <StackedColumn100 Text="100 % naloženi stolpci"/>
+        <Area Text="Površina"/>
+        <SplineArea Text="Spline Area"/>
+        <StackedArea Text="Naložene površine"/>
+        <StackedArea100 Text="100 % naložene površine"/>
+        <Line Text="Črta"/>
+        <FastLine Text="Hitra črta"/>
+        <StepLine Text="Stopničasta črta"/>
+        <Spline Text="Krivulja"/>
+        <Bubble Text="Mehurček"/>
+        <Point Text="Točka"/>
+        <FastPoint Text="Hitra točka"/>
+        <Pie Text="Pica"/>
+        <Doughnut Text="Krof"/>
+        <Polar Text="Polarni"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Stock"/>
+        <Candlestick Text="Candlestick"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Point &amp; Figure"/>
+        <ThreeLineBreak Text="Three Line Break"/>
+        <Pyramid Text="Pyramid"/>
+        <Funnel Text="Funnel"/>
+        <Range Text="Obseg"/>
+        <SplineRange Text="Krivuljni obseg"/>
+        <RangeColumn Text="Stolpični obseg"/>
+        <RangeBar Text="Stolpični obseg"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Kodna stran">
+      <EnableVirtualSpace Text="Omogoči virtualni prostor"/>
+      <UseSpaces Text="Uporabi presledke za polnenje tabulatorjev"/>
+      <AllowOutlining Text="Dovoli obrobo"/>
+      <LineNumbers Text="Številke vrstic"/>
+      <TabSize Text="Velikost tabulatorja:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Nastavitev trakov">
+      <Add Text="Dodaj"/>
+      <Delete Text="Briši"/>
+    </ConfigureBands>
+    <Connection Text="Povezava">
+      <Select Text="Izberite vrsto povezave"/>
+      <AlwaysUse Text="Vedno uporabi to povezavo"/>
+      <LoginPrompt Text="Prijava"/>
+      <Test Text="Test povezave"/>
+      <TestSuccesful Text="Test povezave je uspel."/>
+    </Connection>
+    <CustomLabel Text="Nalepke po izbiri">
+      <Name Text="Naziv:"/>
+      <Paper Text="Papir"/>
+      <Landscape Text="Ležeče"/>
+      <PaperWidth Text="Širina papirja"/>
+      <PaperHeight Text="Višina papirja:"/>
+      <LeftMargin Text="Levi rob:"/>
+      <TopMargin Text="Zgornji rob:"/>
+      <Label Text="Parametri nalepke"/>
+      <LabelWidth Text="Širina nalepke:"/>
+      <LabelHeight Text="Višina nalepke:"/>
+      <RowGap Text="Razmik med vrstami:"/>
+      <ColumnGap Text="Razmik med stolpci:"/>
+      <Warning Text="Nalepke se ne ujemajo s stranjo "/>
+    </CustomLabel>
+    <DataBandEditor Text="Uredi podatkovni trak">
+      <DataSource Text="Vir podatkov"/>
+      <NoData Text="Podatkovni vir ni razpoložljiv.&#13;&#10;&#13;&#10;Odpri &quot;Data|Choose Report Data...&quot; meni za izbiro razpoložljivih podatkovnih virov, ali ustvari nov vir z menijem &quot;Data|Add Data Source...&quot;."/>
+      <Sort Text="Urejanje"/>
+      <SortBy Text="Uredi po"/>
+      <ThenBy Text="Nato"/>
+      <Ascending Text="Naraščajoče"/>
+      <Descending Text="Padajoče"/>
+      <Filter Text="Filter"/>
+      <Expression Text="Izraz filtra:"/>
+    </DataBandEditor>
+    <DataWizard Text="Podatkovni čarovnik">
+      <Page1 Text="Izberite bazo podatkov"/>
+      <WhichData Text="Kateri podatkovni vir naj vaše poročilo uporabi za povezavo z bazo?"/>
+      <Hint Text="Izberite iz seznama nazadnje uporabljenih povezav ali pritisnite gumb &quot;Nova povezava...&quot; in ustvarite novo."/>
+      <NewConnection Text="Nova povezava..."/>
+      <EditConnection Text="Uredi povezavo..."/>
+      <ConnectionName Text="Vnesite ime povezave:"/>
+      <ConnectionString Text="Connection string"/>
+      <Page2 Text="Izberite tabele"/>
+      <WhichTables Text="Katere tabele želite v svojem poročilu?"/>
+      <Wait Text="Pridobite podatke o bazi podatkov"/>
+      <AddQuery Text="Dodaj SQL poizvedbo..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Dialog obrazec"/>
+    <Exception Text="Izjema">
+      <Hint Text="Vaše poročilo je vrglo nasledjo izjemo:"/>
+      <Stack Text="Stack trace:"/>
+      <Copy Text="Kopiraj na odložišče"/>
+    </Exception>
+    <ExpressionEditor Text="Urejanje izraza"/>
+    <Fill Text="Urejevalnik polnil">
+      <Solid Text="Trdno"/>
+      <LinearGradient Text="Linearni gradient"/>
+      <PathGradient Text="Path gradient"/>
+      <Hatch Text="Hatch"/>
+      <Glass Text="Steklo"/>
+      <Colors Text="Barve"/>
+      <Color Text="Barva"/>
+      <StartColor Text="Začetek"/>
+      <EndColor Text="Konec"/>
+      <Options Text="Izbire"/>
+      <Focus Text="Fokus"/>
+      <Contrast Text="Kontrast"/>
+      <Angle Text="Kot"/>
+      <CenterColor Text="Sredina"/>
+      <EdgeColor Text="Rob"/>
+      <Shape Text="Oblika"/>
+      <Ellipse Text="Elipsa"/>
+      <Rectangle Text="Pravokotnik"/>
+      <ForeColor Text="Ospredje"/>
+      <BackColor Text="Ozadje"/>
+      <Style Text="Stil"/>
+      <Blend Text="Blend"/>
+      <GlassHatch Text="Pokaži hatch"/>
+    </Fill>
+    <FormatEditor Text="Izberite format">
+      <Expression Text="Izraz:"/>
+      <General Text="Splošno"/>
+      <Number Text="Število"/>
+      <Currency Text="Valuta"/>
+      <Date Text="Datum"/>
+      <Time Text="Čas"/>
+      <Percent Text="Odstotek"/>
+      <Boolean Text="Boolean"/>
+      <Custom Text="Po meri"/>
+      <UseLocale Text="Uporabi lokalne nastavitve"/>
+      <DecimalDigits Text="Decimalnih mest:"/>
+      <DecimalSeparator Text="Decimalno ločilo:"/>
+      <GroupSeparator Text="Ločilo skupine:"/>
+      <PositivePattern Text="Pozitivni vzorec:"/>
+      <NegativePattern Text="Negativni vzorec:"/>
+      <CurrencySymbol Text="Simbol valute:"/>
+      <PercentSymbol Text="Odstotni simbol:"/>
+      <FalseText Text="Besedilo za neresnično vrednost:"/>
+      <TrueText Text="Besedilo za resnično vrednost:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Urejanje stolpcev">
+      <Columns Text="Stolpci"/>
+      <Properties Text="Lastnosti"/>
+      <Add Text="Dodaj"/>
+      <Remove Text="Odstrani"/>
+      <AddAll Text="Dodaj vse"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Urejanje skupine">
+      <Condition Text="Pogoj skupine"/>
+      <Hint Text="Izberite stolpec s podatki ali vtipkajte izraz:"/>
+      <Settings Text="Nastavitve"/>
+      <Sort Text="Sort:"/>
+      <NoSort Text="Ne urejaj"/>
+      <Ascending Text="Naraščajoče"/>
+      <Descending Text="Padajoče"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Expert za skupine">
+      <Condition Text="Pogoj za skupino"/>
+      <Hint Text="Izberite podatkovni stolpec ali vtipkajte izraz, nato pritisnite gumb &quot;Dodaj&quot; za dodajanje nove skupine."/>
+      <Add Text="Dodaj"/>
+      <Groups Text="Skupine"/>
+      <Edit Text="Uredi..."/>
+      <Delete Text="Briši"/>
+    </GroupExpert>
+    <HighlightEditor Text="Pogoji za osvetljevanje">
+      <Conditions Text="Pogoji"/>
+      <Add Text="Dodaj"/>
+      <Delete Text="Briši"/>
+      <Edit Text="Uredi"/>
+      <Style Text="Stil"/>
+      <Fill Text="Polnilo"/>
+      <TextColor Text="Barva besedila"/>
+      <Font Text="Pisava"/>
+      <Visible Text="Vidno"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Urejanje povezav">
+      <Url Text="URL"/>
+      <PageNumber Text="Številka strani"/>
+      <Bookmark Text="Bookmark"/>
+      <Report Text="Poročilo"/>
+      <ReportPage Text="Stran poročila"/>
+      <Custom Text="Po meri"/>
+      <UrlValue Text="Navedite URL (n.pr.: http://www.url.com):"/>
+      <UrlExpression Text="ali vnesite izraz, ki vrne URL"/>
+      <PageNumberValue Text="Navedite številko strani:"/>
+      <PageNumberExpression Text="ali vnesite izraz, ki vrne šetvilko strani"/>
+      <BookmarkValue Text="Navedite ime bookmarka:"/>
+      <BookmarkExpression Text="ali vnesite izraz, ki vrne ime bookmarka:"/>
+      <ReportName Text="Naziv poročila:"/>
+      <ParameterName Text="Parametri poročila:"/>
+      <ParameterValue Text="Navedite vrednost parametra:"/>
+      <ParameterExpression Text="ali vnesite izraz, ki vrne vrednost parametra:"/>
+      <PageName Text="Stran poročila:"/>
+      <CustomValue Text="Navedite vrednost hiperpovezave:"/>
+      <CustomExpression Text="ali vnesite izraz, ki vrne vrednost:"/>
+      <Hint Text="Kaj se bo zgodilo, če kliknete ta objekt v oknu za predogled:"/>
+      <HintUrl Text="Navedeni URL se bo odprl."/>
+      <HintPageNumber Text="Šli boste na navedeno stran."/>
+      <HintBookmark Text="Šli boste na objekt, ki vsebuje navedeni bookmark."/>
+      <HintReport Text="Navedeno poročilo bo odprto v ločenem zavihku predogleda."/>
+      <HintReportPage Text="Navedena stran bo pripravljena in odprta v ločenem zavihku predogleda."/>
+      <HintCustom Text="Morali bi ustvariti upravitelj dogodka &quot;Click&quot; za uporabniško akcijo. "/>
+      <ModifyAppearance Text="Spremenite izgled objekta tako, da bo izgledal kot povezava na katero lahko kliknemo"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Čarovnik za nalepke">
+      <Hint Text="Izberi preddefinirano nalepko ali pritisnite gumb &quot;Nalepke po meri...&quot; za definicijo lastnih velikosti."/>
+      <Label Text="Nalepka"/>
+      <Manufacturer Text="Proizvajalec:"/>
+      <Product Text="Produkt:"/>
+      <Parameters Text="Parametri"/>
+      <Size Text="Velikost:"/>
+      <PaperSize Text="Velikost papirja:"/>
+      <Rows Text="Vrstic:"/>
+      <Columns Text="Stolpcev:"/>
+      <CustomLabel Text="Nalepke po meri..."/>
+      <Custom Text="Po meri"/>
+      <Delete Text="Briši"/>
+      <Manufacturers>
+        <Manufacturer0 Text="AE"/>
+        <Manufacturer1 Text="Agipa"/>
+        <Manufacturer2 Text="AOne"/>
+        <Manufacturer3 Text="APLI"/>
+        <Manufacturer4 Text="Avery (A4, A5)"/>
+        <Manufacturer5 Text="Avery (standard)"/>
+        <Manufacturer6 Text="Boeder"/>
+        <Manufacturer7 Text="Devauzet"/>
+        <Manufacturer8 Text="Durable"/>
+        <Manufacturer9 Text="ERO"/>
+        <Manufacturer10 Text="Formtec"/>
+        <Manufacturer11 Text="Guilbert"/>
+        <Manufacturer12 Text="Herlitz"/>
+        <Manufacturer13 Text="Herma"/>
+        <Manufacturer14 Text="Hisago"/>
+        <Manufacturer15 Text="HP"/>
+        <Manufacturer16 Text="Inmac"/>
+        <Manufacturer17 Text="Kokuyo"/>
+        <Manufacturer18 Text="Leitz"/>
+        <Manufacturer19 Text="MACO/Wilson Jones"/>
+        <Manufacturer20 Text="MACtac"/>
+        <Manufacturer21 Text="May+Spies"/>
+        <Manufacturer22 Text="Pimaco"/>
+        <Manufacturer23 Text="RAJA ES"/>
+        <Manufacturer24 Text="Rank Xerox"/>
+        <Manufacturer25 Text="Sigel"/>
+        <Manufacturer26 Text="Stralfors"/>
+        <Manufacturer27 Text="UNISTAT"/>
+        <Manufacturer28 Text="Zweckform"/>
+      </Manufacturers>
+      <Labels>
+        <Label0 Text="Address"/>
+        <Label1 Text="Multi-usage"/>
+        <Label2 Text="Copilaser"/>
+        <Label3 Text="Laser"/>
+        <Label4 Text="Special Laser"/>
+        <Label5 Text="Inkjet+Laser"/>
+        <Label6 Text="Burotic"/>
+        <Label7 Text="Club Card"/>
+        <Label8 Text="Business Card"/>
+        <Label9 Text="Media"/>
+        <Label10 Text="Diskette"/>
+        <Label11 Text="Video Spine"/>
+        <Label12 Text="Video Face"/>
+        <Label13 Text="File Folder"/>
+        <Label14 Text="Postcard"/>
+        <Label15 Text="Name Badge"/>
+        <Label16 Text="Sticker"/>
+        <Label17 Text="Card"/>
+        <Label18 Text="Shipping"/>
+        <Label19 Text="Parcel"/>
+        <Label20 Text="Index Card"/>
+        <Label21 Text="CD ROM"/>
+        <Label22 Text="35mm Slide"/>
+        <Label23 Text="Audio Tape"/>
+        <Label24 Text="Data Cartridge"/>
+        <Label25 Text="Price Marking"/>
+        <Label26 Text="Label"/>
+        <Label27 Text="3.5&quot; Diskette (Face Only)"/>
+        <Label28 Text="Mini Label - Full bleed"/>
+        <Label29 Text="Rectangle Sticker"/>
+        <Label30 Text="Square Sticker"/>
+        <Label31 Text="Small Round Sticker"/>
+        <Label32 Text="Big Round Sticker"/>
+        <Label33 Text="Full Page Sticker"/>
+        <Label34 Text="Mini Label"/>
+        <Label35 Text="Photo Quality Label (4 per page)"/>
+        <Label36 Text="Photo Quality Gloss Postcards"/>
+        <Label37 Text="Photo Quality Gloss Business Cards"/>
+        <Label38 Text="Photo Quality Card Sheet"/>
+        <Label39 Text="Full Face CD/DVD PQ Label"/>
+        <Label40 Text="3.5&quot; Diskette - Face Only"/>
+        <Label41 Text="Lever Arch"/>
+        <Label42 Text="Labels for colour printing - Shipping"/>
+        <Label43 Text="Clean Edge (TM) Business Card"/>
+        <Label44 Text="Name Card"/>
+        <Label45 Text="CD Case Insert - Cover"/>
+        <Label46 Text="CD Envelope"/>
+        <Label47 Text="Mini Labels"/>
+        <Label48 Text="Elasticated Folder / File Labels"/>
+        <Label49 Text="Ring Binder"/>
+        <Label50 Text="Fluorescent Yellow Promotional Labels"/>
+        <Label51 Text="IndexMaker Labels"/>
+        <Label52 Text="IndexMaker Contents"/>
+        <Label53 Text="ReadyIndex"/>
+        <Label54 Text="Mini"/>
+        <Label55 Text="Full Sheet Labels"/>
+        <Label56 Text="A5 Labels"/>
+        <Label57 Text="Circular"/>
+        <Label58 Text="5.25&quot; Diskette"/>
+        <Label59 Text="3.5&quot; Diskette (Wraparound)"/>
+        <Label60 Text="Mini Data Cartridge Labels"/>
+        <Label61 Text="Standard Data Cartridge"/>
+        <Label62 Text="Labels for Zip(TM) Disk"/>
+        <Label63 Text="Labels for SuperDisk (TM)"/>
+        <Label64 Text="Circular Fluorescent Yellow Promotional Labels"/>
+        <Label65 Text="4mm Data Cartridge"/>
+        <Label66 Text="Gold Mini Labels"/>
+        <Label67 Text="Compliment Slip"/>
+        <Label68 Text="Addressing"/>
+        <Label69 Text="Address/Shipping"/>
+        <Label70 Text="Filing"/>
+        <Label71 Text="3.5&quot; Diskette"/>
+        <Label72 Text="Embossed Note Cards"/>
+        <Label73 Text="Embossed Half-Fold Cards"/>
+        <Label74 Text="Postcards"/>
+        <Label75 Text="Half-Fold Greeting Cards"/>
+        <Label76 Text="Mailing Labels"/>
+        <Label77 Text="Return Address"/>
+        <Label78 Text="Filing Labels"/>
+        <Label79 Text="High Visibility Round Labels"/>
+        <Label80 Text="Medium Embossed Tent Cards"/>
+        <Label81 Text="Large Embossed Tent Cards"/>
+        <Label82 Text="Note Cards"/>
+        <Label83 Text="Laminated ID Cards"/>
+        <Label84 Text="Laminated Name Badges"/>
+        <Label85 Text="Business Cards"/>
+        <Label86 Text="Name Tag Kit"/>
+        <Label87 Text="Small Rotary Cards"/>
+        <Label88 Text="Large Rotary Cards"/>
+        <Label89 Text="Index Cards"/>
+        <Label90 Text="Name Badges Insert Refills "/>
+        <Label91 Text="Self Adhesive Name Badges"/>
+        <Label92 Text="White Address"/>
+        <Label93 Text="Clear Address"/>
+        <Label94 Text="Removable ID Labels"/>
+        <Label95 Text="Removable Filing Labels"/>
+        <Label96 Text="Return Address Labels"/>
+        <Label97 Text="Removable 3 1/2&quot; Diskette Labels"/>
+        <Label98 Text="Color Printing Labels"/>
+        <Label99 Text="Glossy Business Cards"/>
+        <Label100 Text="Glossy Postcards"/>
+        <Label101 Text="Full Sheet"/>
+        <Label102 Text="Bar Code"/>
+        <Label103 Text="Laser Tag"/>
+        <Label104 Text="InkJet"/>
+        <Label105 Text="8mm Video Tape"/>
+        <Label106 Text="Rotary Card"/>
+        <Label107 Text="Large Size"/>
+        <Label108 Text="Full Size"/>
+        <Label109 Text="Medium Size"/>
+        <Label110 Text="1 x 1 1/2 in"/>
+        <Label111 Text="1 x 4 in"/>
+        <Label112 Text="1 7/16 x 4 in"/>
+        <Label113 Text="2 x 4 in"/>
+        <Label114 Text="2 1/2 x 4 in"/>
+        <Label115 Text="3 1/3 x 4 in"/>
+        <Label116 Text="5 x 4 in"/>
+        <Label117 Text="5 1/2 x 8 1/2 in"/>
+        <Label118 Text="CD Label"/>
+        <Label119 Text="1 x 2 5/6 in"/>
+        <Label120 Text="3/4 x 3 1/2 in"/>
+        <Label121 Text="1 1/16 x 4 1/4 in"/>
+        <Label122 Text="1 9/16 x 4 1/4 in"/>
+        <Label123 Text="2 3/4 x 4 1/4 in"/>
+        <Label124 Text="3 2/3 x 4 1/4 in"/>
+        <Label125 Text="5 1/2 x 4 1/4 in"/>
+        <Label126 Text="3 1/2 x 8 1/2 in"/>
+        <Label127 Text="11 x 8 1/2 in"/>
+        <Label128 Text="3x11 Address"/>
+        <Label129 Text="3x12 Address"/>
+        <Label130 Text="InkJet+Laser, arrows"/>
+        <Label131 Text="InkJet+Laser, circles"/>
+        <Label132 Text="InkJet+Laser"/>
+        <Label133 Text="InkJet+Laser, red"/>
+        <Label134 Text="InkJet+Laser, blue"/>
+        <Label135 Text="InkJet+Laser, green"/>
+        <Label136 Text="InkJet+Laser, yellow"/>
+        <Label137 Text="File labels, wide"/>
+        <Label138 Text="File labels, narrow"/>
+        <Label139 Text="InkJet+Laser, Slide labels"/>
+        <Label140 Text="InkJet+Laser, Tab labels"/>
+        <Label141 Text="Laser, round labels, yellow"/>
+        <Label142 Text="InkJet+Laser, Disk labels"/>
+        <Label143 Text="InkJet+Laser, Video labels"/>
+        <Label144 Text="InkJet+Laser, Cassette labels"/>
+        <Label145 Text="Laser, transparent (film)"/>
+        <Label146 Text="Laser, weatherproof (film)"/>
+        <Label147 Text="landscape - Address"/>
+        <Label148 Text="landscape - File Folder"/>
+        <Label149 Text="landscape - Laser Tag"/>
+      </Labels>
+    </LabelWizard>
+    <MapEditor Text="Uredi zemljevid">
+      <Map Text="Zemljevid"/>
+      <Layer Text="Plast"/>
+      <Add Text="Dodaj..."/>
+      <Delete Text="Briši"/>
+      <Hint Text="Kliknite na element za nastavitev lastnosti:"/>
+      <Common>
+        <FillColor Text="Barva polnila:"/>
+        <TextColor Text="Barva besedila:"/>
+        <BorderColor Text="Barva obrobe:"/>
+        <BorderStyle Text="Stil obrobe:"/>
+        <BorderWidth Text="Širina obrobe:"/>
+        <Text Text="Besedilo:"/>
+        <Font Text="Pisava:"/>
+        <Dock Text="Dock:"/>
+        <Format Text="Format:"/>
+        <Visible Text="Vidno"/>
+        <NumberOfRanges Text="Število obsegov:"/>
+        <Start Text="Začetek:"/>
+        <End Text="Konec:"/>
+        <Auto Text="Auto"/>
+      </Common>
+      <MapEditorControl>
+        <General Text="Splošno">
+          <Mercator Text="Mercatorjeva projekcija"/>
+        </General>
+        <ColorScale Text="Barvna lestvica">
+          <HideIfNoData Text="Skrij, če ni podatkov"/>
+          <Border Text="Rob..."/>
+          <Fill Text="Polnilo..."/>
+          <General Text="Splošno"/>
+          <Title Text="Naslov"/>
+          <Values Text="Vrednosti"/>
+          <NoDataText Text="Besedilo, če ni podatkov: "/>
+          <NoData Text="Ni podatkov"/>
+        </ColorScale>
+      </MapEditorControl>
+      <LayerEditorControl>
+        <Data Text="Podatki">
+          <DataSource Text="Vir podatkov:"/>
+          <Filter Text="Filter:"/>
+          <SpatialData Text="Prostorski podatki:"/>
+          <Column Text="Stolpec:"/>
+          <Value Text="Vrednost:"/>
+          <Latitude Text="Širina:"/>
+          <Longitude Text="Dolžina:"/>
+          <Label Text="Oznaka:"/>
+          <AnalyticalData Text="Analitični podatki:"/>
+          <Function Text="Funkcija:"/>
+          <ZoomPolygon Text="Zumiraj poligon:"/>
+        </Data>
+        <Appearance Text="Izgled">
+          <Palette Text="Paleta:"/>
+        </Appearance>
+        <ColorScale Text="Barvna lestvica:">
+          <StartColor Text="Začetna barva:"/>
+          <MiddleColor Text="Srednja barva:"/>
+          <EndColor Text="Končna barva:"/>
+          <Color Text="Barva:"/>
+        </ColorScale>
+        <SizeRanges Text="Obseg velikosti">
+          <StartSize Text="Začetna velikost:"/>
+          <EndSize Text="Končna velikost:"/>
+          <Size Text="Velikost:"/>
+        </SizeRanges>
+        <Labels Text="Oznake">
+          <LabelKind Text="Vrsta oznake:"/>
+          <None Text="Nobena"/>
+          <Name Text="Ime"/>
+          <Value Text="Vrednost"/>
+          <NameAndValue Text="Ime in vrednost"/>
+          <LabelColumn Text="Stolpec oznake:"/>
+          <VisibleAtZoom Text="Vidno pri zumu:"/>
+        </Labels>
+      </LayerEditorControl>
+    </MapEditor>
+    <PageSetup Text="Nastavitev strani">
+      <Paper Text="Papir"/>
+      <Custom Text="Po meri"/>
+      <Width Text="Širina:"/>
+      <Height Text="Višina:"/>
+      <Orientation Text="Orijentacija:"/>
+      <Portrait Text="Portrait"/>
+      <Landscape Text="Landscape"/>
+      <Margins Text="Robovi"/>
+      <Left Text="Levi:"/>
+      <Top Text="Zgornji:"/>
+      <Right Text="Desni:"/>
+      <Bottom Text="Spodnji:"/>
+      <MirrorMargins Text="Zrcali robove na sodih straneh"/>
+      <Source Text="Vir"/>
+      <FirstPage Text="Prva stran:"/>
+      <OtherPages Text="Ostale strani:"/>
+      <Columns Text="Stolpci"/>
+      <Count Text="Število:"/>
+      <ColumnWidth Text="Širina:"/>
+      <Positions Text="Položaj:"/>
+      <Other Text="Drugo"/>
+      <Duplex Text="Duplex:"/>
+      <DupDefault Text="Privzeto"/>
+      <DupSimplex Text="Simplex"/>
+      <DupVertical Text="Navpično"/>
+      <DupHorizontal Text="Vodoravno"/>
+      <EditWatermark Text="Uredi watermark..."/>
+      <ExtraWidth Text="Dodatna širina pri načrtovanju"/>
+    </PageSetup>
+    <PictureEditor Text="Urejanje slike">
+      <Picture Text="Slika"/>
+      <Load Text="Naloži"/>
+      <Paste Text="Prilepi"/>
+      <Clear Text="Sprazni"/>
+      <DataColumn Text="Podatkovni stolpec"/>
+      <FileName Text="Ime datoteke"/>
+      <Url Text="Hiperlink"/>
+      <FileHint1 Text="Naziv datoteke:"/>
+      <FileHint2 Text="Opomba: datoteko morate objaviti skupaj s poročilom"/>
+      <UrlHint Text="Hiperlink:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Plugins">
+      <Hint Text="Seznam instaliranih FastReport pluginov:"/>
+      <Add Text="Dodaj"/>
+      <Remove Text="Odstrani"/>
+      <Note Text="Opozorilo: spremembe bodo aktivirane ob ponovnem zagonu FastReport-a."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Uporabi na vseh straneh in ponastavi poročilo"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Iskanje"/>
+    <PrinterSetup Text="Tiskanje">
+      <PrinterSetup Text="Nastavitev tiskalnika"/>
+      <Printer Text="Tiskalnik"/>
+      <SavePrinter Text="Shrani ta tiskalnik v datoteko poročila"/>
+      <Settings Text="Nastavitve..."/>
+      <PrintToFile Text="Natisni v datoteko"/>
+      <PageRange Text="Obseg strani"/>
+      <All Text="Vse"/>
+      <Current Text="Trenutna stran"/>
+      <Numbers Text="Strani:"/>
+      <Hint Text="Vnesite številke strani in/ali obsege strani, ločene z vejicami. Na primer 1,3,5-12"/>
+      <Copies Text="Kopij"/>
+      <Count Text="Število:"/>
+      <Collate Text="Collate"/>
+      <Other Text="Drugo"/>
+      <OddEven Text="Tiskaj:"/>
+      <AllPages Text="Vse strani"/>
+      <OddPages Text="Lihe strani"/>
+      <EvenPages Text="Sode strani"/>
+      <Order Text="Zaporedje:"/>
+      <OrderDirect Text="Direktno (1-9)"/>
+      <OrderReverse Text="Obratno (9-1)"/>
+      <Duplex Text="Duplex:"/>
+      <Source Text="Vir:"/>
+      <PrintMode Text="Print mode"/>
+      <PrintModeDefault Text="Privzeto"/>
+      <PrintModeSplit Text="Razcepi velike strani"/>
+      <PrintModeScale Text="Prilagodi velikost"/>
+      <PrintOnSheet Text="Tiskaj na list:"/>
+      <PagesOnSheet Text="Strani na listu:"/>
+      <PagesOnSheet1 Text="1 stran"/>
+      <PagesOnSheet2 Text="2 strani"/>
+      <PagesOnSheet4 Text="4 strani"/>
+      <PagesOnSheet8 Text="8 strani"/>
+      <Print Text="Natisni"/>
+      <Error Text="Neveljaven obseg strani."/>
+    </PrinterSetup>
+    <QueryBuilder Text="Graditelj poizvedb">
+      <Designer Text="Oblikovalec"/>
+      <Sql Text="SQL"/>
+      <Result Text="Rezultat"/>
+      <Select Text="Select"/>
+      <Joins Text="Joins"/>
+      <Group Text="Group"/>
+      <Name Text="Naziv"/>
+      <Alias Text="Psevdonim"/>
+      <Filter Text="Filter"/>
+      <Order Text="Order"/>
+      <Func Text="Func"/>
+      <Editor Text="Urejevalnik"/>
+      <Delete Text="Delete"/>
+      <Change Text="Spremenite"/>
+      <JoinEditor Text="Urejevalnik Join-ov"/>
+      <Tables Text="Tabele:"/>
+      <Condition Text="Pogoj"/>
+      <InputAlias Text="Vnesite psevdonim tabele:"/>
+      <Where>
+        <Equal Text="Enako"/>
+        <NotEqual Text="Ni enako"/>
+        <GtOrEqual Text="Večje ali enako"/>
+        <Gt Text="Večje kot"/>
+        <LtOrEqual Text="Manjše ali enako"/>
+        <Lt Text="Manjše"/>
+        <Like Text="Like"/>
+        <NotLike Text="Not like"/>
+      </Where>
+    </QueryBuilder>
+    <QueryWizard Text="Čarovnik za poizvedbe">
+      <Page1 Text="Nastavitev imena"/>
+      <SetName Text="Nastavite ime objekta poizvedbe."/>
+      <NameHint Text="Ime bo prikazano v podatkovnem oknu."/>
+      <Page2 Text="Vnesite SQL stavek"/>
+      <WhatData Text="Katere podatke naj vrne poizvedba?"/>
+      <TypeSql Text="Vnesite SQL stavek ali uporabite Graditelja poizvedb za njegovo izdelavo."/>
+      <QueryBuilder Text="Graditelj poizvedb..."/>
+      <Page3 Text="Določite parametre"/>
+      <Page4 Text="Določite stolpce"/>
+      <Refresh Text="Osveževanje stolpcev"/>
+      <AddColumn Text="Dodajanje izračunanega stolpca"/>
+      <AddParameter Text="Dodajanje parametra"/>
+      <Delete Text="Brisanje"/>
+    </QueryWizard>
+    <RelationEditor Text="Urejanje relacij">
+      <ParentTable Text="Nadrejena tabela:"/>
+      <ChildTable Text="Podrejena tabela:"/>
+      <Parent Text="Nadrejena"/>
+      <Child Text="Podrejena"/>
+      <Columns Text="Stolpci:"/>
+      <Error Text="Število stolpcev v nadrejeni in podrejeni tabli se ne ujema"/>
+    </RelationEditor>
+    <ReportData Text="Izberite podatke poročila">
+      <Hint Text="Izberite vire podatkov in polja, ki jih želite uporabiti v poročilu:"/>
+      <Aliases Text="Prikaz psevdonimov"/>
+    </ReportData>
+    <ReportOptions Text="Opcije poročila">
+      <General Text="Splošno"/>
+      <Description Text="Opis"/>
+      <Script Text="Skript"/>
+      <Security Text="Varnost"/>
+      <Inheritance Text="Dedovanje"/>
+      <Email Text="E-pošta"/>
+      <Name Text="Ime:"/>
+      <Author Text="Avtor:"/>
+      <Version Text="Verzija:"/>
+      <Description1 Text="Opis:"/>
+      <Picture Text="Slika:"/>
+      <SavePreviewPicture Text="Shrani sliko predogleda"/>
+      <Load Text="Naloži..."/>
+      <Clear Text="Izbriši"/>
+      <Created Text="Ustvarjeno:"/>
+      <Modified Text="Spremenjeno:"/>
+      <Language Text="Skriptni jezik:"/>
+      <Note Text="Opomba: če spremenite jezik, bo celoten skript izbrisan!"/>
+      <RefAssemblies Text="Referenced assemblies:"/>
+      <Add Text="Dodaj..."/>
+      <Password Text="Geslo"/>
+      <RetypePassword Text="Ponovni vnos gesla:"/>
+      <Inherited Text="To poročilo je naslednik osnovnega poročila:"/>
+      <NotInherited Text="To poročilo ni naslednik nobenega."/>
+      <Choose Text="Izberite opcijo:"/>
+      <DontChange Text="Ne spremeni"/>
+      <Detach Text="Odklopi osnovno poročilo"/>
+      <Inherit Text="Deduj od poročila"/>
+      <Browse Text="Pregled..."/>
+      <DoublePass Text="Dvojni prehod"/>
+      <Compress Text="Stiskanje datoteke poročila"/>
+      <UseFileCache Text="Uporabi začasni pomnilnik za datoteko"/>
+      <ConvertNulls Text="Pretvori null vrednosti"/>
+      <TextQuality Text="Kvaliteta besedila"/>
+      <SmoothGraphics Text="Gladka grafika"/>
+      <QualityDefault Text="Privzeto"/>
+      <QualityRegular Text="Regular"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Geslo se ne ujema. Prosim ponovno vtipkajte."/>
+      <Recipients Text="Prejemnik(i) (n.pr. john@url.com):"/>
+      <Subject Text="Predmet:"/>
+      <Message Text="Sporočilo:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Stran poročila">
+      <Units Text="Merske enote strani"/>
+      <Millimeters Text="Milimetri"/>
+      <Centimeters Text="Centimetri"/>
+      <Inches Text="Palci"/>
+      <HundrethsOfInch Text="Stotinke palca"/>
+      <Grid Text="Mreža"/>
+      <ShowGrid Text="Pokaži mrežo"/>
+      <SnapToGrid Text="Poravnaj z mrežo"/>
+      <DottedGrid Text="Pikčasta mreža"/>
+      <Size Text="Velikost poravnave"/>
+      <Markers Text="Označevanje objektov"/>
+      <Rectangle Text="Pravokotnik"/>
+      <Corners Text="Vogali"/>
+      <BandView Text="Pogled pasov"/>
+      <Structure Text="Strukture"/>
+      <Classic Text="Klasično"/>
+      <EditAfterInsert Text="Uredi po vstavljanju"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Urejevalnik obogatenega besedila">
+      <Open Text="Odpiranje"/>
+      <Save Text="Shranjevanje"/>
+      <Subscript Text="Subscript"/>
+      <Superscript Text="Superscript"/>
+      <Bullets Text="Bullets"/>
+      <Confirm Text="Besedilo je bilo spremenjeno. Shranim spremembe?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Poišči in zamenjaj">
+      <Find Text="Kaj poiskati:"/>
+      <Replace Text="Zamenjati z:"/>
+      <Options Text="Opcije za iskanje"/>
+      <MatchCase Text="Primerjaj velike/male črke"/>
+      <MatchWholeWord Text="Primerjaj celo besedo"/>
+      <FindNext Text="Najdi naslednjega"/>
+      <ReplaceBtn Text="Zamenjaj"/>
+      <ReplaceAll Text="Zamenjaj vse"/>
+      <NotFound Text="Ne najdem besedila."/>
+      <NoMoreFound Text="Ne najdem novih pojavljanj."/>
+    </SearchReplace>
+    <SelectDataSource Text="Izbira vira podatkov">
+      <Hint Text="Izberite enega ali več podatkovnih virov za uporabo v poročilu."/>
+      <AvailableDs Text="Razpoložljivi viri podatkov:"/>
+      <SelectedDs Text="Izbrani viri podatkov:"/>
+      <ProjectDs Text="Viri podatkov projekta"/>
+      <OtherDs Text="Ostali viri podatkov"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Izbira jezika">
+      <SelectLanguage Text="Izberite jezik iz spodnjega seznama:"/>
+      <Auto Text="Auto"/>
+      <Folder Text="Direktorij z jezikovnimi datotekami:"/>
+      <SelectFolder Text="Izberite direktorij, ki vsebuje jezikovne datoteke (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Čarovnik za standardna poročila">
+      <GroupsPage Text="Ustvarjanje skupin"/>
+      <CreateGroups Text="Ustvarite skupine (izbirno)."/>
+      <Groups Text="Skupine:"/>
+      <LayoutPage Text="Definicija razporeda"/>
+      <DefineLayout Text="Definicija orijentacije papirja in razporeda podatkov."/>
+      <Orientation Text="Orijentacija papirja"/>
+      <Portrait Text="Portrait"/>
+      <Landscape Text="Landscape"/>
+      <Layout Text="Razpored"/>
+      <Tabular Text="Tabela"/>
+      <Columnar Text="Stolpci"/>
+      <StylePage Text="Izbira stila"/>
+      <Styles Text="Izberite stil poročila.">
+        <Standard Text="Standard"/>
+        <Gray Text="Gray"/>
+        <Green Text="Green"/>
+        <Sand Text="Sand"/>
+        <Blue Text="Blue"/>
+        <Title Text="Naslov"/>
+        <Header Text="Glava"/>
+        <Group Text="Skupina"/>
+        <Data Text="Podatki"/>
+        <Footer Text="Vznožje"/>
+        <EvenRows Text="Sode vrstice"/>
+      </Styles>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Urejanje zbirke nizov"/>
+    <Style Text="Urejevalnik stilov">
+      <Styles Text="Stili"/>
+      <Add Text="Dodaj"/>
+      <Delete Text="Briši"/>
+      <Edit Text="Uredi"/>
+      <Load Text="Naloži..."/>
+      <Save Text="Shrani..."/>
+      <Settings Text="Nastavitve stila"/>
+      <Border Text="Obroba"/>
+      <Fill Text="Polnilo"/>
+      <Font Text="Pisava"/>
+      <TextColor Text="Barva besedila"/>
+      <StyleName Text="Style"/>
+    </Style>
+    <TextEditor Text="Urejevalnik besedila">
+      <WordWrap Text="Prelom besedila"/>
+    </TextEditor>
+    <TotalEditor Text="Urejevalnik zbirov">
+      <TotalName Text="Naziv zbira:"/>
+      <Total Text="Zbir"/>
+      <Function Text="Funkcija:"/>
+      <DataColumnOrExpression Text="Podatkovni stolpec ali izraz:"/>
+      <DataBand Text="Izračunaj za vsako vrstico pasu:"/>
+      <EvaluateCondition Text="Izračunaj, če je izpolnjen pogoj:"/>
+      <PrintOn Text="Tiskaj na pas:"/>
+      <Options Text="Izbire"/>
+      <ResetAfterPrint Text="Ponastavi po tiskanju"/>
+      <ResetRepeated Text="Ponastavi, če se pas ponavlja"/>
+      <InvisibleRows Text="Vključi vidne vrstice"/>
+      <Sum Text="Sum"/>
+      <Min Text="Min"/>
+      <Max Text="Max"/>
+      <Avg Text="Average"/>
+      <Count Text="Count"/>
+      <Custom Text="Custom"/>
+    </TotalEditor>
+    <UIOptions Text="Uporabniški vmesnik">
+      <Appearance Text="Izgled"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (blue),Office 2007 (silver),Office 2007 (black),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Watermark">
+      <Enabled Text="Omogočeno"/>
+      <Text Text="Besedilo"/>
+      <TextItems Text="CONFIDENTIAL,COPY,ORIGINAL,SAMPLE,URGENT"/>
+      <Rotation Text="Zasuk"/>
+      <Horizontal Text="Horizontal"/>
+      <Vertical Text="Vertical"/>
+      <ForwardDiagonal Text="Forward Diagonal"/>
+      <BackwardDiagonal Text="Backward Diagonal"/>
+      <Font Text="Pisava"/>
+      <Color Text="Barva"/>
+      <Picture Text="Slika"/>
+      <Load Text="Naloži"/>
+      <Clear Text="Izbriši"/>
+      <Size Text="Velikost"/>
+      <Normal Text="Normal"/>
+      <Center Text="Center"/>
+      <Stretch Text="Stretch"/>
+      <Zoom Text="Zoom"/>
+      <Tile Text="Tile"/>
+      <Transparency Text="Prozornost"/>
+      <Zorder Text="Z-Order"/>
+      <TextOnTop Text="Besedilo na vrhu"/>
+      <PictureOnTop Text="Slika na vrhu"/>
+      <ApplyToAll Text="Uporabi za vse strani"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Ime strežnika:"/>
+      <ServerLogon Text="Prijava na strežnik"/>
+      <UserName Text="Uporabniško ime:"/>
+      <Password Text="Geslo:"/>
+      <Database Text="Povezava z bazo podatkov"/>
+      <DatabaseName Text="Naziv baze podatkov:"/>
+      <DatabaseFile Text="Datoteka baze podatkov:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Uporabi Windows Authentication"/>
+      <UseSql Text="Uporabi SQL Server Authentication"/>
+      <SavePassword Text="Shrani moje geslo"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Connection string:"/>
+      <Build Text="Priprava..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Vir podatkov"/>
+      <DsName Text="Uporabi uporabniško ali sistemsko ime vira podatkov:"/>
+      <ConnString Text="Uporabi connection string:"/>
+      <Login Text="Prijava"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Datoteka s strukturo:"/>
+      <Xml Text="Podatkovna datoteka:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Uredi..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Lahko raste"/>
+      <CanShrink Text="Lahko se krči"/>
+      <GrowToBottom Text="Raste proti dnu"/>
+      <Hyperlink Text="Hiperpovezava..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Lahko na novo stran"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Dodaj podrejeni pas"/>
+      <StartNewPage Text="Začninovo stran"/>
+      <PrintOnBottom Text="Tiskaj na dno"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Dodaj Detail Data Band"/>
+      <KeepTogether Text="Obdrži skupaj"/>
+      <KeepDetail Text="Obdrži podrobnosti"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Ponovi na vsaki strani"/>
+      <KeepWithData Text="Obdrži s podatki"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Ponastavi številko strani"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Zapolni neuporabljen prostor"/>
+      <CompleteToNRows Text="Dokončaj do N podatkovnih vrstic:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Način velikosti"/>
+      <AutoSize Text="Avtomatska velikost"/>
+      <CenterImage Text="Usredini sliko"/>
+      <Normal Text="Normalno"/>
+      <StretchImage Text="Raztegni sliko"/>
+      <Zoom Text="Zoom"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Format..."/>
+      <Clear Text="Izbriši"/>
+      <AutoWidth Text="Samo širina"/>
+      <WordWrap Text="Prelom besedila"/>
+      <AllowExpressions Text="Dovoli izraze"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Natisni na nadrejenega"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Ponovi vzglavja"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Vstavi vrstico nad"/>
+      <InsertBelow Text="Vstavi vrstico pod"/>
+      <AutoSize Text="Samo velikost"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Vstavi stolpec levo"/>
+      <InsertToRight Text="Vstavi stolpec desno"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Združi celice"/>
+      <Split Text="Razdeli celice"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Celica ob celici"/>
+      <ShowTitle Text="Prikaži naslov"/>
+      <Style Text="Stil"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Zbirno"/>
+      <Function Text="Funkcija"/>
+      <SuppressTotals Text="Zatri zbirno"/>
+      <TotalsFirst Text="Najprej zbirno"/>
+      <Percent Text="Odstotek"/>
+      <PercentColumnTotal Text="% stolpca zbirno"/>
+      <PercentRowTotal Text="% vrstice zbirno"/>
+      <PercentGrandTotal Text="% celote zbirno"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Uredi stolpce..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Tip Barcode"/>
+      <AutoSize Text="Samo velikost"/>
+      <AutoEncode Text="Samo kodiranje"/>
+      <CalcChecksum Text="Izračunaj kontrolno vsoto"/>
+      <ShowText Text="Pokaži besedilo"/>
+      <Barcodes>
+        <Barcode0 Text="2/5 Interleaved"/>
+        <Barcode1 Text="2/5 Industrial"/>
+        <Barcode2 Text="2/5 Matrix"/>
+        <Barcode3 Text="Codabar"/>
+        <Barcode4 Text="Code128"/>
+        <Barcode5 Text="Code39"/>
+        <Barcode6 Text="Code39 Extended"/>
+        <Barcode7 Text="Code93"/>
+        <Barcode8 Text="Code93 Extended"/>
+        <Barcode9 Text="EAN8"/>
+        <Barcode10 Text="EAN13"/>
+        <Barcode11 Text="MSI"/>
+        <Barcode12 Text="PostNet"/>
+        <Barcode13 Text="UPC-A"/>
+        <Barcode14 Text="UPC-E0"/>
+        <Barcode15 Text="UPC-E1"/>
+        <Barcode16 Text="Supplement 2"/>
+        <Barcode17 Text="Supplement 5"/>
+        <Barcode18 Text="PDF417"/>
+        <Barcode19 Text="Datamatrix"/>
+        <Barcode20 Text="QR Code"/>
+      </Barcodes>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Pokaži oznake"/>
+      <ShowGrid Text="Pokaži mrežo"/>
+    </ZipCodeObject>
+    <Report>
+      <DesignReport Text="Načrtuj poročilo..."/>
+      <SelectDataSource Text="Izberi vir podatkov..."/>
+    </Report>
+    <WebReport>
+      <SelectReportFile Text="Izberi datoteko poročila"/>
+      <SelectLocalizationFile Text="Izbira lokalizacijske datoteke"/>
+    </WebReport>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Računam omejitve..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Polnem matrico..."/>
+      <NewColumn Text="Povleci podatke za ustvarjanje novega stolpca"/>
+      <NewRow Text="Povleci podatke sem za ustvarjanje nove vrstice"/>
+      <NewCell Text="Povleci podatke sem za ustvarjanje nove celice"/>
+      <Total Text="Skupaj"/>
+      <Title Text="Naslov"/>
+      <White Text="White"/>
+      <Gray Text="Gray"/>
+      <Orange Text="Orange"/>
+      <Green Text="Green"/>
+      <GreenOrange Text="Green and Orange"/>
+      <Blue Text="Blue"/>
+      <BlueWhite Text="Blue and White"/>
+      <GrayOrange Text="Gray and Orange"/>
+      <BlueOrange Text="Blue and Orange"/>
+      <OrangeWhite Text="Orange and White"/>
+    </Matrix>
+    <Map>
+      <Hint Text="Dvoklikni za dodajanje plasti.&#13;&#10;&#13;&#10;Levi gumb miške za pan, kolešček za zoom."/>
+    </Map>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Prazno poročilo"/>
+    <StandardReport Text="Čarovnik za standardno poročilo"/>
+    <InheritedReport Text="Dedovano poročilo"/>
+    <Label Text="Čarovnik za nalepke"/>
+    <NewDataSource Text="Nov vir podatkov"/>
+    <NewPage Text="Nova stran poročila"/>
+    <NewDialog Text="Nov obrazec"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Izvoženo v {0} ms"/>
+      <OrderByCells Text="Razvrsti po celicah"/>
+      <AnalyzeObjects Text="Analiza objektov"/>
+      <SavePage Text="Shranjevanje strani"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Prelomi strani"/>
+      <OpenAfterExport Text="Odpri poročilo po izvozu"/>
+      <Pictures Text="Slike"/>
+      <Options Text="Izbire"/>
+      <None Text="None"/>
+      <Metafile Text="Metafile"/>
+      <SaveFile Text="Shranjevanje datoteke"/>
+      <TableBased Text="Tabela"/>
+      <LayerBased Text="Plasti"/>
+    </Misc>
+    <Image Text="Izvoz v sliko">
+      <File Text="Datoteka s sliko"/>
+      <ImageFormat Text="Format:"/>
+      <Resolution Text="Ločljivost:"/>
+      <Quality Text="Kvaliteta Jpeg:"/>
+      <SeparateFiles Text="Ločena datoteka za vsako stran"/>
+      <MultiFrame Text="Multi-frame TIFF"/>
+      <Monochrome Text="Monochrome TIFF"/>
+      <Bmp Text="Bitmap slika"/>
+      <Png Text="PNG slika"/>
+      <Jpeg Text="JPG slika"/>
+      <Gif Text="GIF slika"/>
+      <Tiff Text="TIFF slika"/>
+      <Metafile Text="Windows metafile"/>
+    </Image>
+    <RichText Text="Izvozi kot obogateno besedilo">
+      <File Text="Datoteka z obogatenim besedilom"/>
+    </RichText>
+    <Text Text="Izvozi v besedilo/Matrični tiskalnik">
+      <File Text="Besedilna datoteka/Matrični tiskalnik"/>
+      <EmptyLines Text="Prazne vrstice"/>
+      <DataOnly Text="Samo podatki"/>
+      <Frames Text="Okvirji"/>
+      <FramesNone Text="None"/>
+      <FramesText Text="Text"/>
+      <FramesGraphic Text="Graphic"/>
+      <Codepage Text="Kodana stran"/>
+      <Default Text="Default"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Scale X:"/>
+      <ScaleY Text="Scale Y:"/>
+      <AutoScale Text="Auto Scale"/>
+      <PrinterType Text="Tiskalnik"/>
+      <Commands Text="Ukazi"/>
+      <PageWidth Text="Širina strani:"/>
+      <PageHeight Text="Višina strani:"/>
+      <DataLoss Text="MOŽNA IZGUBA PODATKOV&#13;&#10;prosim povečajte razmerje X/Y"/>
+      <ScaleMessage Text="Izračun optimalnega razmerja"/>
+      <Scale Text="Razmerje"/>
+    </Text>
+    <Csv Text="Izvoz v CSV">
+      <File Text="CSV datoteka"/>
+      <Separator Text="Ločilo"/>
+      <Codepage Text="Kodna stran"/>
+      <Default Text="Default"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Samo podatki"/>
+    </Csv>
+    <Dbf Text="Izvozi v DBF">
+      <File Text="DBF tabela"/>
+      <Codepage Text="Kodna stran"/>
+      <Default Text="Default"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Samo podatki"/>
+      <FieldNames Text="Imena polj (n.pr. Field1;Field2):"/>
+    </Dbf>
+    <Xml Text="Izvoz v XML">
+      <File Text="XML (Excel) datoteka"/>
+    </Xml>
+    <Odt Text="Izvozi v Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Izvozi v Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Izvozi v Excel 2007">
+      <File Text="Excel 2007 datoteka"/>
+    </Xlsx>
+    <Pptx Text="Izvozi v PowerPoint 2007">
+      <File Text="PowerPoint 2007 datoteka"/>
+    </Pptx>
+    <Docx Text="Izvozi v Microsoft Word 2007">
+      <File Text="Microsoft Word 2007 datoteka"/>
+    </Docx>
+    <Xps Text="Izvozi v XPS">
+      <File Text="Microsoft XPS datoteka"/>
+    </Xps>
+    <Pdf Text="Izvozi v PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Izvoz"/>
+      <Compressed Text="Stisnjeno"/>
+      <EmbeddedFonts Text="Vključene pisave"/>
+      <Background Text="Ozadje"/>
+      <PrintOptimized Text="Tiskaj optimizirano"/>
+      <Information Text="Informacija"/>
+      <DocumentInformation Text="Informacija o dokumentu"/>
+      <Title Text="Naslov"/>
+      <Author Text="Avtor"/>
+      <Subject Text="Tema"/>
+      <Keywords Text="Ključne besede"/>
+      <Creator Text="Ustvaril"/>
+      <Producer Text="Pripravil"/>
+      <Security Text="Varnost"/>
+      <Authentification Text="Avtentikacija"/>
+      <OwnerPassword Text="Lastnikovo geslo"/>
+      <UserPassword Text="Uporabnikovo geslo"/>
+      <Permissions Text="Dovoljenja"/>
+      <PrintTheDocument Text="Tiskaj dokument"/>
+      <ModifyTheDocument Text="Sporeminjaj dokument"/>
+      <CopyOfTextAndGraphics Text="Kopiranje besedila in grafike"/>
+      <AddOrModifyTextAnnotations Text="Dodaj ali spremeni anotacije"/>
+      <Viewer Text="Pregledovalnik"/>
+      <ViewerPreferences Text="Preference pregledovalnika"/>
+      <HideToolbar Text="Skrij orodno vrstico"/>
+      <HideMenubar Text="Skrij menijsko vrstico"/>
+      <HideWindowUserInterface Text="Skrij uporabniški vmesnik okna"/>
+      <FitWindow Text="Ustrezaj oknu"/>
+      <CenterWindow Text="Usredini v oknu"/>
+      <PrintScaling Text="Tiskaj spremenjeno velikost"/>
+      <PrintAfterOpenOfDocument Text="Natisni po odpiranju dokumenta"/>
+      <Outline Text="Outline"/>
+    </Pdf>
+    <Html Text="Izvozi v HTML">
+      <File Text="HTML datoteka"/>
+      <MHTFile Text="MHT datoteka"/>
+      <Format Text="Format"/>
+      <SinglePage Text="Ena stran"/>
+      <SubFolder Text="Poddirektorij"/>
+      <Navigator Text="Navigator"/>
+      <Layers Text="Plasti"/>
+      <Total Text="Skupaj"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Izvozi v MHT (web arhiv)">
+      <File Text="MHT datoteka (web-arhiv)"/>
+    </Mht>
+    <Email Text="Pošiljanje E-pošte">
+      <Email Text="E_pošta"/>
+      <Account Text="Račun"/>
+      <Address Text="Naslov:"/>
+      <CC Text="CC:"/>
+      <Subject Text="Predmet:"/>
+      <Message Text="Sporočilo:"/>
+      <Attachment Text="Priponka:"/>
+      <Settings Text="Nastavitve..."/>
+      <Name Text="Ime:"/>
+      <Template Text="Šablona:"/>
+      <Host Text="Strežnik:"/>
+      <Port Text="Port:"/>
+      <UserName Text="Uporabnik:"/>
+      <Password Text="Geslo:"/>
+      <AddressError Text="Nepravilen e-poštni naslov."/>
+      <HostError Text="Strežnik ne sme biti prazen."/>
+      <SendingEmail Text="Pošiljam epošto - {0} Kb"/>
+      <EnableSSL Text="Omogoči SSL"/>
+    </Email>
+  </Export>
+  <Cloud>
+    <CloudStorage Text="Shrani v oblak">
+      <File Text="Datoteka"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Tip datoteke:"/>
+      <Settings Text="Nastavitve..."/>
+      <Server Text="Strežnik:"/>
+      <Username Text="Uporabnik:"/>
+      <Password Text="Geslo:"/>
+      <PortError Text="Port mora biti numeričen."/>
+    </CloudStorage>
+    <Dropbox Text="Shrani v Dropbox">
+      <Name Text="Dropbox"/>
+      <ApplicationInfoDialog Text="Informacije o aplikaciji"/>
+      <ApplicationKey Text="Ključ aplikacije:"/>
+      <ApplicationSecret Text="Skrivnost aplikacije:"/>
+      <File Text="Datoteka"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Tip datoteke:"/>
+      <Settings Text="Nastavitve..."/>
+      <Save Text="Shrani"/>
+      <Server Text="Strežnik:"/>
+      <Username Text="Uporabnik:"/>
+      <Password Text="Geslo"/>
+      <PortError Text="Port mora biti numeričen."/>
+    </Dropbox>
+    <GoogleDrive Text="Shrani na Google Drive">
+      <Name Text="GoogleDrive"/>
+      <ClientInfoDialog Text="Podatki o odjemalcu"/>
+      <ClientId Text="ID odjemalca:"/>
+      <ClientSecret Text="Skrivnost odjemalca:"/>
+    </GoogleDrive>
+    <SkyDrive Text="Shrani na SkyDrive">
+      <Name Text="SkyDrive"/>
+      <ClientInfoDialog Text="Podatki o odjemalcu"/>
+      <ClientId Text="ID odjemalca:"/>
+      <ClientSecret Text="Skrivnost odjemalca:"/>
+      <File Text="Datoteka"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Tip datoteke:"/>
+      <Settings Text="Nastavitve..."/>
+      <Server Text="Strežnik:"/>
+      <Username Text="Uporabnik:"/>
+      <Password Text="Geslo:"/>
+      <PortError Text="Port mora biti numeričen."/>
+    </SkyDrive>
+  </Cloud>
+  <Web>
+    <Print Text="Tiskanje"/>
+    <Export Text="Izvoz"/>
+    <Zoom Text="Zoom"/>
+    <Refresh Text="Osveževanje"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Izgled"/>
+      <Behavior Text="Obnašanje"/>
+      <Build Text="Build"/>
+      <Data Text="Podatki"/>
+      <Design Text="Oblikovanje"/>
+      <Designer Text="Oblikovalec"/>
+      <Email Text="Epošta"/>
+      <Engine Text="Engine"/>
+      <Events Text="Dogodki"/>
+      <Hierarchy Text="Hierarhija"/>
+      <Layout Text="Razpored"/>
+      <Misc Text="Razno"/>
+      <Navigation Text="Navigacija"/>
+      <Paper Text="Papir"/>
+      <Preview Text="Predogled"/>
+      <Print Text="Tiskanje"/>
+      <Report Text="Poročilo"/>
+      <Script Text="Skript"/>
+      <Spatial Text="Prostorsko"/>
+      <Toolbars Text="Orodne vrstice"/>
+      <UI Text="UI"/>
+    </Categories>
+  </Properties>
+</Language>

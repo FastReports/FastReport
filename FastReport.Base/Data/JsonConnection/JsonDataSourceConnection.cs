@@ -201,6 +201,8 @@ namespace FastReport.Data.JsonConnection
                     //    jsonText = client.DownloadString(jsonText);
                     //}
 
+                    ServicePointManager.Expect100Continue = true;
+                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                     HttpWebRequest req = (HttpWebRequest)WebRequest.Create(jsonText);
 
                     foreach (var header in builder.Headers)

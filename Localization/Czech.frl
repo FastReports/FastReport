@@ -1,0 +1,1693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="cs" Author="Jan Bilak &lt;j.bilak@gmail.com&gt;;Jan Bilak &lt;jbilak@gmail.com&gt;">
+  <Buttons>
+    <Ok Text="OK"/>
+    <Cancel Text="Storno"/>
+    <Close Text="Zavřít"/>
+    <MoreOptions Text="Více možností"/>
+    <LessOptions Text="Méně možností"/>
+    <Actions Text="Akce"/>
+    <Previous Text="&lt; Předchozí"/>
+    <Next Text="Další &gt;"/>
+    <Finish Text="Dokončit"/>
+    <Advanced Text="Rozšířené..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Přistupuji k datům..."/>
+    <Attention Text="Pozor"/>
+    <CantFindObject Text="Nemohu najít objekt"/>
+    <CantLoadReport Text="Nemohu otevřít sestavu {0}"/>
+    <CantSaveReport Text="Nemohu uložit sestavu. Soubor může být chráněn proti zápisu."/>
+    <ClassError Text="Nemohu najít hlavní třídu sestavy, ReportScript"/>
+    <Confirmation Text="Potvrzení"/>
+    <DataNotInitialized Text="Datový zdroj nebyl dosud inicializován."/>
+    <DecompressError Text="Nemohu rozbalit soubor"/>
+    <DecryptError Text="Chyba dešifrování: chybné heslo"/>
+    <DelegateError Text="delegát {0} musí mít dva parametry: &quot;sender&quot; a &quot;e&quot;"/>
+    <DeleteAncestor Text="Nemohu smazat {0}, protože je zděděný z předka sestavy"/>
+    <DuplicateName Text="Objekt se jménem {0} již existuje"/>
+    <DuplicateStyle Text="Styl s takovým jménem již existuje"/>
+    <Error Text="Chyba"/>
+    <EventError Text="Nemohu vytvořit event handler, protože ve zdrojovém kódu jsou chyby"/>
+    <ExportingPage Text="Exportuji stranu {0} z {1}"/>
+    <GeneratingPage Text="Generuji stranu {0}"/>
+    <GeneratingPageFirstPass Text="První průchod: generuji stranu {0}"/>
+    <Information Text="Informace"/>
+    <MatrixError Text="{0}: Objekt matice musí mít alespoň jeden sloupec nebo řádek a alepsoň jednu dimenzi."/>
+    <MatrixValueError Text="Počet hodnot se liší od MatrixData.Cells.Count (musí být {0})"/>
+    <ParentError Text="Objekt typu {0} nemůže obsahovat objekty typu {1}"/>
+    <ParentError1 Text="Objekt typu {0} nemůže obsahovat objekty"/>
+    <Performance Text="Připraveno za {0} ms"/>
+    <PreparingData Text="Připravuji data..."/>
+    <PrintingPage Text="Tisknu stranu {0}"/>
+    <RenameAncestor Text="Nemohu přejmenovat {0}, protože je zděděný z předka sestavy"/>
+    <SaveChanges Text="Uložit změny do {0}?"/>
+    <SaveChangesToPreviewPage Text="Uložit změny do náhledu stránky?"/>
+    <SQLError Text="SQL chyba"/>
+    <TableIsNull Text="Tabulka není připojena k datům. Zaregistrujte data použitím metody Report.RegisterData."/>
+    <TableManualBuildError Text="Metody TableObject.PrintRow, PrintColumn můžete použít pouze uvnitř události ManualBuild."/>
+    <Warning Text="Varování"/>
+    <WarningSaveRDL Text="Formát RDL má omezení! Do RDL formátu se uloží pouze vlastní sestava, ale datové zdroje, objekty čárových kódů, formátovaného textu, zaškrtávacích políček a PSČ kódů nebudou uložena. Také některé vlastnosti jiných objektů nebudou uloženy. Ztratíte tak některé části a vlastnosti sestavy. Opravdu chcete sestavu uložit do formátu RDL?"/>
+    <WrongFileFormat Text="Nemohu otevřít soubor - neznámý formát souboru."/>
+    <InvalidBarcode1 Text="Čárový kód musí začínat řetězcem  '&amp;A;', '&amp;B;' nebo '&amp;C;'"/>
+    <InvalidBarcode2 Text="Chybný znak ve vstupním kódu"/>
+    <ErrorInExpression Text="Chyba ve výrazu"/>
+    <ErrorInHighlightCondition Text="Chyba ve zvýrazňovací podmínce"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Ukázka"/>
+    <None Text="Žádný"/>
+    <PageN Text="Strana {0}"/>
+    <PageNofM Text="Strana {0} z {1}"/>
+    <ofM Text="z {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Sestava"/>
+    <ReportPage Text="Strana"/>
+    <DialogPage Text="Formulář"/>
+    <XmlDataConnection Text="XML databáze"/>
+    <OleDbDataConnection Text="OLE DB připojení"/>
+    <MsAccessDataConnection Text="MS Access připojení"/>
+    <MsSqlDataConnection Text="MS SQL připojení"/>
+    <OdbcDataConnection Text="ODBC připojení"/>
+    <FirebirdDataConnection Text="Firebird připojení"/>
+    <VistaDBDataConnection Text="VistaDB připojení"/>
+    <PostgresDataConnection Text="Postgres připojení"/>
+    <MySqlDataConnection Text="MySQL připojení"/>
+    <OracleDataConnection Text="Oracle připojení"/>
+    <SQLiteDataConnection Text="SQLite připojení"/>
+    <SqlCeDataConnection Text="SQL CE připojení"/>
+    <Bands Text="Pásy">
+      <ReportTitle Text="Nadpis sestavy"/>
+      <ReportSummary Text="Souhrn sestavy"/>
+      <PageHeader Text="Záhlaví stránky"/>
+      <PageFooter Text="Zápatí stránky"/>
+      <ColumnHeader Text="Záhlaví sloupce"/>
+      <ColumnFooter Text="Zápatí sloupce"/>
+      <DataHeader Text="Záhlaví"/>
+      <DataFooter Text="Zápatí"/>
+      <Data Text="Data"/>
+      <GroupHeader Text="Záhlaví skupiny"/>
+      <GroupFooter Text="Zápatí skupiny"/>
+      <Child Text="Podřízený pruh"/>
+      <Overlay Text="Překryv"/>
+    </Bands>
+    <TextObject Text="Text"/>
+    <Shapes Text="Tvary">
+      <Line Text="Čára"/>
+      <DiagonalLine Text="Šikmá čára"/>
+      <Rectangle Text="Obdélník"/>
+      <RoundRectangle Text="Obdélník s oblými rohy"/>
+      <Ellipse Text="Elipsa"/>
+      <Triangle Text="Trojúhleník"/>
+      <Diamond Text="Kosočtverec"/>
+    </Shapes>
+    <PictureObject Text="Obrázek"/>
+    <TableObject Text="Tabulka"/>
+    <MatrixObject Text="Matice"/>
+    <SubreportObject Text="Podsestava"/>
+    <BarcodeObject Text="Čárový kód"/>
+    <RichObject Text="Formátovaný text"/>
+    <MSChartObject Text="MS Chart"/>
+    <ZipCodeObject Text="Zip Code"/>
+    <CellularTextObject Text="Text v políčkách"/>
+    <CheckBoxObject Text="Zaškrtávací políčko"/>
+    <ButtonControl Text="Button"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="NumericUpDown"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+  </Objects>
+  <Functions>
+    <Math Text="Matematické"/>
+    <Text Text="Textové"/>
+    <DateTime Text="Datové a časové"/>
+    <Formatting Text="Formátovací"/>
+    <Conversion Text="Konverzní"/>
+    <ProgramFlow Text="Tok programu"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Soubor sestavy (*.frx)|*.frx"/>
+    <PreparedReport Text="Připravené sestavy (*.fpx)|*.fpx"/>
+    <Style Text="Styly sestav (*.frs)|*.frs"/>
+    <Dictionary Text="Slovníky (*.frd)|*.frd"/>
+    <Localization Text="Lokalizační soubory (*.frl)|*.frl"/>
+    <XsdFile Text="XML schema definiční soubory (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML soubor (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access databáze (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server databáze (*.mdf)|*.mdf"/>
+    <RtfFile Text="Formátovaný text (*.rtf)|*.rtf"/>
+    <Images Text="Obrázky|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Tiskové soubory (*.prn)|*.prn"/>
+    <BmpFile Text="Rastrový obrázek (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG obrázek (*.png)|*.png"/>
+    <JpegFile Text="JPG obrázek (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF obrázek (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF obrázek (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML soubor (*.html)|*.html"/>
+    <MhtFile Text="Webový archiv (*.mht)|*.mht"/>
+    <OdtFile Text="Open Office Writer soubor (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc soubor (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat (*.pdf)|*.pdf"/>
+    <TxtFile Text="Textový soubor (*.txt)|*.txt"/>
+    <CsvFile Text="Čárkovou oddělené hodnoty (*.csv)|*.csv"/>
+    <DbfFile Text="DBase tabulka (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel (*.xls)|*.xls"/>
+    <CsFile Text="C# zdrojový soubor (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net zdrojový soubor (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird databáze (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB databáze (*.vdb3)|*.vdb3"/>
+    <XlsxFile Text="MS Excel sešit (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint prezentace (*.pptx)|*.pptx"/>
+    <DocxFile Text="MS Word dokument (*.docx)|*.docx"/>
+    <SdfFile Text="SQL CE databáze (*.sdf)|*.sdf"/>
+    <XpsFile Text="Microsoft XPS dokument (*.xps)|*.xps"/>
+    <RdlFiles Text="RDL (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="Sestava RDL (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlcFile Text="RDLC (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Crystal Reports (*.rpt)|*.rpt"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MMMM dd, yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Nepravda"/>
+    <BooleanF2 Text="Ne"/>
+    <BooleanF3 Text="Vypnuto"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Pravda"/>
+    <BooleanT2 Text="Ano"/>
+    <BooleanT3 Text="Zapnuto"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefonní číslo;(000) 000-0000"/>
+    <Custom2 Text="Dlouhé telefonní číslo;+0(000) 000-0000"/>
+    <Custom3 Text="Číslo soc. pojištění;000-00-0000"/>
+    <Custom4 Text="PSČ/Zip code;00000"/>
+    <Custom5 Text="Dlouhý Zip code;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Soubor">
+        <New Text="Nový..."/>
+        <Open Text="Otevřít…"/>
+        <Close Text="Zavřít"/>
+        <Save Text="Uložit"/>
+        <SaveAs Text="Uložit jako..."/>
+        <SaveAll Text="Uložit vše"/>
+        <PageSetup Text="Vzhled stránky…"/>
+        <PrinterSetup Text="Nastavení tiskárny..."/>
+        <Preview Text="Náhled..."/>
+        <SelectLanguage Text="Vybrat jazyk..."/>
+        <Exit Text="Konec"/>
+      </File>
+      <Edit Text="Úpravy">
+        <Undo Text="Zpět"/>
+        <Redo Text="Provést znovu"/>
+        <Cut Text="Vyjmout"/>
+        <Copy Text="Kopírovat"/>
+        <Paste Text="Vložit"/>
+        <Delete Text="Odstranit"/>
+        <DeletePage Text="Odstranit stránku"/>
+        <SelectAll Text="Vybrat vše"/>
+        <Group Text="Seskupit"/>
+        <Ungroup Text="Oddělit"/>
+        <Find Text="Najít…"/>
+        <Replace Text="Nahradit..."/>
+      </Edit>
+      <View Text="Zobrazení">
+        <StartPage Text="Úvodní stránka"/>
+        <Toolbars Text="Panely nástrojů"/>
+        <Options Text="Možnosti…"/>
+        <Grid Text="Mřížka"/>
+        <Guides Text="Vodítka"/>
+        <AutoGuides Text="Automatická vodítka"/>
+        <DeleteHGuides Text="Smazat horizontální vodítka"/>
+        <DeleteVGuides Text="Smazat vertikální vodítka"/>
+        <Units Text="Jednotky"/>
+      </View>
+      <Insert Text="Vložit"/>
+      <Report Text="Sestava">
+        <Bands Text="Nastavit pruhy..."/>
+        <Styles Text="Styly..."/>
+        <GroupExpert Text="Nastavení skupin..."/>
+        <Options Text="Možnosti…"/>
+      </Report>
+      <Data Text="Data">
+        <ShowData Text="Zobrazit okno dat"/>
+        <Add Text="Přidej datový zdroj..."/>
+        <Choose Text="Zvolit data sestavy..."/>
+      </Data>
+      <Window Text="Okno">
+        <CloseAll Text="Zavřít vše"/>
+      </Window>
+      <Help Text="Nápověda">
+        <Contents Text="Obsah návpovědy..."/>
+        <About Text="O programu..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <AutoHide Text="Automaticky schovávat"/>
+      <Close Text="Zavřít"/>
+      <Properties Text="Vlastnosti">
+        <PropertiesTab Text="Vlastnosti"/>
+        <EventsTab Text="Události"/>
+        <NObjectsSelected Text="{0} vybraných objektů"/>
+      </Properties>
+      <ReportTree Text="Strom sestavy"/>
+      <Dictionary Text="Data">
+        <DataSources Text="Datové zdroje"/>
+        <Parameters Text="Parametry"/>
+        <SystemVariables Text="Systémové proměnné"/>
+        <Totals Text="Součty"/>
+        <Functions Text="Funkce"/>
+        <DialogControls Text="Prvky dialogových oken"/>
+        <New Text="Nový datový slovník..."/>
+        <Open Text="Otevřít datový slovník..."/>
+        <Save Text="Uložit datový slovník..."/>
+        <Merge Text="Sloučit datový slovník..."/>
+        <NewDataSource Text="Nový datový zdroj..."/>
+        <NewRelation Text="Nová relace..."/>
+        <NewParameter Text="Nový parametr"/>
+        <NewTotal Text="Nový součet..."/>
+        <NewCalculatedColumn Text="Nový počítaný sloupec..."/>
+        <Rename Text="Přejmenovat"/>
+        <Edit Text="Upravit..."/>
+        <Delete Text="Odstranit"/>
+        <DeleteAlias Text="Smazat alias"/>
+        <View Text="Zobrazit data..."/>
+        <DuplicateName Text="Položka s daným jménem již existuje"/>
+        <NRows Text="{0} řádků"/>
+      </Dictionary>
+      <Messages Text="Zprávy">
+        <Description Text="Popis"/>
+        <Line Text="Řádek"/>
+        <Column Text="Sloupec"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Přidat či odebrat tlačítka"/>
+      <Reset Text="Původní nastavení panelu nástrojů"/>
+      <MoreButtons Text="Více tlačítek..."/>
+      <Standard Text="Standardní">
+        <New Text="Přidat novou položku"/>
+        <Open Text="Otevřít sestavu (Ctrl+O)"/>
+        <Save Text="Uložit sestavu (Ctrl+S)"/>
+        <SaveAll Text="Uložit vše (Ctrl+Shift+S)"/>
+        <Preview Text="Náhled (Ctrl+P)"/>
+        <NewPage Text="Nová stránka sestavy"/>
+        <NewDialog Text="Nové dialogové okno"/>
+        <DeletePage Text="Odstranit stránku"/>
+        <PageSetup Text="Vzhled stránky"/>
+        <Cut Text="Vyjmout (Ctrl+X)"/>
+        <Copy Text="Kopírovat (Ctrl+C)"/>
+        <Paste Text="Vložit (Ctrl+V)"/>
+        <FormatPainter Text="Kopírovat formát"/>
+        <Undo Text="Zpět (Ctrl+Z)"/>
+        <Redo Text="Znovu"/>
+        <Group Text="Seskupit"/>
+        <Ungroup Text="Oddělit"/>
+      </Standard>
+      <Text Text="Text">
+        <Name Text="Název písma"/>
+        <Size Text="Velikost písma"/>
+        <Bold Text="Tučné"/>
+        <Italic Text="Kurzíva"/>
+        <Underline Text="Podtržené"/>
+        <Left Text="Zarovnat doleva"/>
+        <Center Text="Zarovnat na střed"/>
+        <Right Text="Zarovnat doprava"/>
+        <Justify Text="Zarovnat do bloku"/>
+        <Top Text="Zarovnat nahoru"/>
+        <Middle Text="Zarovnat doprostřed"/>
+        <Bottom Text="Zarovnat dolů"/>
+        <Color Text="Barva textu"/>
+        <Highlight Text="Zvýraznění"/>
+        <Angle Text="Úhel textu"/>
+      </Text>
+      <Border Text="Rámeček a výplň">
+        <Top Text="Horní čára"/>
+        <Bottom Text="Dolní čára"/>
+        <Left Text="Levá čára"/>
+        <Right Text="Pravá čára"/>
+        <All Text="Všechny okrajové čáry"/>
+        <None Text="Žádné čáry"/>
+        <FillColor Text="Barva výplně"/>
+        <FillStyle Text="Styl výplně..."/>
+        <LineColor Text="Barva ohraničení"/>
+        <Width Text="Šířka okraje"/>
+        <Style Text="Styl ohraničení"/>
+        <Props Text="Vlastnosti ohraničení…"/>
+      </Border>
+      <Style Text="Styl">
+        <Styles Text="Styly"/>
+        <SelectStyle Text="Vybrat styl"/>
+        <NoStyle Text="Žádný styl"/>
+      </Style>
+      <Layout Text="Rozložení">
+        <AlignToGrid Text="Zarovnat k mřížce"/>
+        <Left Text="Zarovnat vlevo"/>
+        <Center Text="Zarovnat horizontálně na střed"/>
+        <Right Text="Zarovnat vpravo"/>
+        <Top Text="Zarovnat nahoru"/>
+        <Middle Text="Zarovnat vertikálně na střed"/>
+        <Bottom Text="Zarovnat dolů"/>
+        <SameWidth Text="Nastavit stejnou šířku"/>
+        <SameHeight Text="Nastavit stejnou výšku"/>
+        <SameSize Text="Nastavit stejnou velikost"/>
+        <SizeToGrid Text="Velikost podle mřížky"/>
+        <SpaceHorizontally Text="Horizontální mezery"/>
+        <IncreaseHorizontalSpacing Text="Zvětšit vodorovné mezery"/>
+        <DecreaseHorizontalSpacing Text="Zmenšit vodorovné mezery"/>
+        <RemoveHorizontalSpacing Text="Odebrat vodorovné mezery"/>
+        <SpaceVertically Text="Vertikální mezery"/>
+        <IncreaseVerticalSpacing Text="Zvětšit svislé mezery"/>
+        <DecreaseVerticalSpacing Text="Zmenšit svislé mezery"/>
+        <RemoveVerticalSpacing Text="Odebrat svislé mezery"/>
+        <CenterHorizontally Text="Na střed vodorovně"/>
+        <CenterVertically Text="Na střed svisle"/>
+        <BringToFront Text="Přenést do popředí"/>
+        <SendToBack Text="Přenést do pozadí"/>
+      </Layout>
+      <Objects Text="Objekty">
+        <Select Text="Výběr"/>
+      </Objects>
+      <Zoom Text="Měřítko zobrazení">
+        <ZoomOut Text="Oddálit"/>
+        <ZoomIn Text="Přiblížit"/>
+        <Zoom Text="Měřítko zobrazení"/>
+        <PageWidth Text="Šířka stránky"/>
+        <WholePage Text="Celá stránka"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Kód"/>
+      <Report>
+        <ConfigureBands Text="Nastavit pruhy..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Možnosti"/>
+    <UndoRedo>
+      <Delete Text="Odstranění {0}"/>
+      <Move Text="Přesunutí {0}"/>
+      <Size Text="Změna velikosti {0}"/>
+      <Change Text="Změna {0}"/>
+      <AddGuide Text="Přidání vodítek"/>
+      <MoveGuide Text="Posun vodítek"/>
+      <DeleteHGuides Text="Smazání horizontálních vodítkek"/>
+      <DeleteVGuides Text="Smazání vertikálních vodítek"/>
+      <ResizeBand Text="Změna velikosti pruhu"/>
+      <ChangeParent Text="Změna rodiče {0}"/>
+      <Load Text="Otevření sestavy"/>
+      <Paste Text="Vložení {0}"/>
+      <Insert Text="Vložení {0}"/>
+      <AddPage Text="Přidání stránky {0}"/>
+      <DeletePage Text="Smazání stránky"/>
+      <Script Text="Změna skriptu"/>
+      <NObjects Text="{0} objektů"/>
+      <UndoN Text="Vrácení zpět {0} akcí"/>
+      <RedoN Text="Znovu {0} akcí"/>
+      <ChangeReport Text="Změna sestavy"/>
+      <ChangePagesOrder Text="Změna pořadí stránek"/>
+      <EditPage Text="Úprava stránky"/>
+      <EditPrinter Text="Nastavení tiskárny"/>
+      <EditReport Text="Nastavení sestavy"/>
+      <SelectData Text="Výběr dat"/>
+      <EditData Text="Úprava dat"/>
+    </UndoRedo>
+    <StartPage Text="Úvodní stránka"/>
+    <Untitled Text="Nepojmenovaný.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Vlastní"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="Systémové"/>
+      <Other Text="Jiné barvy..."/>
+      <Transparency Text="Průhlednost:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Náhled">
+    <PrintText Text="Tisk"/>
+    <Print Text="Tisk (Ctrl+P)"/>
+    <Open Text="Otevřít soubor"/>
+    <Save Text="Uložit soubor"/>
+    <SaveText Text="Uložit"/>
+    <Email Text="Odeslat e-mailem"/>
+    <Find Text="Najít text"/>
+    <Outline Text="Osnova"/>
+    <PageSetup Text="Vzhled stránky"/>
+    <Edit Text="Upravit stránku"/>
+    <Watermark Text="Vodoznak"/>
+    <First Text="První stránka"/>
+    <Prior Text="Předchozí stránka"/>
+    <Next Text="Další stránka"/>
+    <Last Text="Poslední stránka"/>
+    <SaveNative Text="Připravená sestava"/>
+  </Preview>
+  <Forms>
+    <About Text="O prgoramu">
+      <Version Text="Verze"/>
+      <Visit Text="Další informace najde na:"/>
+    </About>
+    <AddNewItem Text="Přidání nové položky">
+      <Add Text="Přidat"/>
+      <Reports Text="Šablony sestav:"/>
+      <ReportItems Text="Položky sestavy:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Upřesnit vlastnosti"/>
+    <AskPassword Text="Heslo">
+      <Password Text="Tato sestava je chráněna heslem.&#13;&#10;&#13;&#10;Zadejte prosím heslo:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Přihlášení k databázi">
+      <Login Text="Uživatelské jméno:"/>
+      <Password Text="Heslo:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Výběr datového zdroje"/>
+      <SelectDataSource Text="Vyberte jeden z dostupných datových zdrojů nebo vytvořte nový:"/>
+      <CreateNewDatasource Text="Vyberte nový datový zdroj..."/>
+      <SelectColumnsPage Text="Výběr sloupců"/>
+      <SelectColumns Text="Vyberte sloupce, které chcete zobrazit v sestavě."/>
+      <AvailableColumns Text="Dostupné sloupce:"/>
+      <SelectedColumns Text="Zvolené sloupce:"/>
+    </BaseReportWizard>
+    <Border Text="Editor rámečků">
+      <Border Text="Rámeček"/>
+      <Line Text="Čára"/>
+      <Shadow Text="Stín"/>
+      <Style Text="Style:"/>
+      <Width Text="Šířka:"/>
+      <Color Text="Barva:"/>
+      <Hint Text="Zvol styl čáry a čáru, na kterou chcete styl aplikovat."/>
+    </Border>
+    <ChartEditor Text="Editor grafů">
+      <Chart Text="Graf"/>
+      <Add Text="Přidat..."/>
+      <Delete Text="Odstranit"/>
+      <Hint Text="Klikni na položky pro nastavení její vlastností:"/>
+      <Common>
+        <Color Text="Barva:"/>
+        <BackColor Text="Zadní barva:"/>
+        <SecondaryColor Text="Sekundární barva:"/>
+        <Gradient Text="Přechod:"/>
+        <HatchStyle Text="Styl šrafování:"/>
+        <BorderColor Text="Barva ohraničení:"/>
+        <BorderStyle Text="Styl ohraničení:"/>
+        <BorderWidth Text="Šířka ohraničení:"/>
+        <ShadowColor Text="Barva stínu:"/>
+        <ShadowOffset Text="Odsazení stínu:"/>
+        <LineColor Text="Barva čáry:"/>
+        <LineStyle Text="Styl čáry:"/>
+        <LineWidth Text="Šířka čáry:"/>
+        <Text Text="Text:"/>
+        <Font Text="Písmo:"/>
+        <ForeColor Text="Přední barva:"/>
+        <Dock Text="Přichycení k okraji:"/>
+        <InsideChartArea Text="Uvnitř plochy grafu"/>
+        <Format Text="Formát:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Data">
+          <DataSource Text="Zdroj dat:"/>
+          <Filter Text="Filtr:"/>
+          <AutoSeries Text="Automaticky vytvořené série"/>
+          <DataColumn Text="Datový sloupec:"/>
+          <ColorColumn Text="Barva sloupce:"/>
+          <SeriesSort Text="Třídění sérií:"/>
+          <AlignXValues Text="Zarovnej hodnoty X"/>
+        </Data>
+        <Appearance Text="Vzhled">
+          <Template Text="Šablona:"/>
+          <Load Text="Otevřít..."/>
+          <Save Text="Uložit..."/>
+          <SeriesPalette Text="Paleta série:"/>
+          <BorderSkin Text="Vzhled rámečku:"/>
+          <Templates>
+            <Custom Text="Vlastní"/>
+            <Blue Text="Modrá"/>
+            <Gray Text="Šedá"/>
+            <Green Text="Zelená"/>
+            <Pink Text="Růžová"/>
+            <Sand Text="Písková"/>
+            <Steel Text="Ocelová"/>
+            <Light Text="Světlá"/>
+          </Templates>
+        </Appearance>
+        <ChartArea Text="Plocha grafu">
+          <Area Text="Plocha:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Zapnout 3D"/>
+          <XRotation Text="Rotace podle osy X:"/>
+          <YRotation Text="Rotace podle osy Y:"/>
+          <Perspective Text="Perspektiva:"/>
+          <WallWidth Text="Tloštka zdi:"/>
+          <AxisDepth Text="Hloubka os:"/>
+          <LightStyle Text="Světla:"/>
+          <ClusteredSeries Text="Seskupené série"/>
+        </ThreeD>
+        <Axes Text="Osy">
+          <Axis Text="Osa:"/>
+          <CopyFromX Text="Kopírovat vzhled z osy X"/>
+          <CopyFromPrimary Text="Kopírovat vzhled z primární osy"/>
+          <Minor Text="Vedlejší"/>
+          <Major Text="Hlavní"/>
+          <General Text="Obecné">
+            <Enabled Text="Povoleno"/>
+            <MarginVisible Text="Viditelný okraj"/>
+            <Logarithmic Text="Logaritmický"/>
+            <Reversed Text="Obráceně"/>
+            <Interval Text="Interval"/>
+            <Interlaced Text="Prokládaný"/>
+            <InterlacedColor Text="Barva prokládání:"/>
+          </General>
+          <Labels Text="Štítky">
+            <Enabled Text="Povoleno"/>
+            <Angle Text="Úhel:"/>
+          </Labels>
+          <Title Text="Nadpis"/>
+          <CustomLabels Text="Vlastní popisky">
+            <Label Text="Popisek"/>
+            <Start Text="Začátek:"/>
+            <End Text="Konec:"/>
+            <Row Text="Řádek:"/>
+            <MarkColor Text="Barva značky:"/>
+            <MarkStyle Text="Styl značky:"/>
+          </CustomLabels>
+          <Grid Text="Mřížka">
+            <GridLine Text="Čára mřížky:"/>
+            <Enabled Text="Povoleno"/>
+          </Grid>
+          <Ticks Text="Značky">
+            <Ticks Text="Značky:"/>
+            <Enabled Text="Povoleno"/>
+            <TickStyle Text="Styl značek:"/>
+            <TickSize Text="Velikost značek:"/>
+          </Ticks>
+          <Strips Text="Pruhy">
+            <Strip Text="Pruh"/>
+            <Interval Text="Interval">
+              <Start Text="Začátek:"/>
+              <Width Text="Šířka:"/>
+              <Interval Text="Interval:"/>
+            </Interval>
+            <Appearance Text="Vzhled"/>
+            <Text Text="Text">
+              <HorizontalAlign Text="Vodorovné zarovnání:"/>
+              <VerticalAlign Text="Svislé zarovnání:"/>
+              <TextOrientation Text="Orientace textu:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Legenda">
+          <Enabled Text="Povoleno"/>
+          <StyleColumn Text="Sloupcová"/>
+          <StyleRow Text="Řádková"/>
+          <StyleTable Text="Tabulková"/>
+          <General Text="Obecné">
+            <LegendStyle Text="Styl legendy:"/>
+          </General>
+          <Appearance Text="Vzhled"/>
+        </Legend>
+        <Title Text="Nadpis">
+          <Visible Text="Zobrazit"/>
+          <General Text="Obecné">
+            <TextOrientation Text="Orientace textu:"/>
+            <TextStyle Text="Styl textu:"/>
+          </General>
+          <Appearance Text="Vzhled"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Data">
+          <Name Text="Název:"/>
+          <XValue Text="Hodnota X:"/>
+          <Color Text="Barva:"/>
+          <Filter Text="Filtr:"/>
+          <XValueType Text="Typ hodnoty X:"/>
+          <YValueType Text="Typ hodnoty Y:"/>
+          <XAxisType Text="Osa X:"/>
+          <YAxisType Text="Osa Y:"/>
+          <PrimaryAxis Text="Primární"/>
+          <SecondaryAxis Text="Sekundární"/>
+          <SeriesValues>
+            <YValue Text="Hodnota Y:"/>
+            <High Text="Vysoký:"/>
+            <Low Text="Nízký:"/>
+            <Open Text="Otevřený:"/>
+            <Close Text="Zavřený:"/>
+            <RangeBegin Text="Začátek rozsahu:"/>
+            <RangeEnd Text="Konec rozsahu:"/>
+            <Size Text="Velikost:"/>
+            <YValue1 Text="Hodnota Y 1:"/>
+            <YValue2 Text="Hodnota Y 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Hodnoty"/>
+        <DataProcessing Text="Zpracování dat">
+          <SortBy Text="Řadit podle:"/>
+          <SortByX Text="Hodnota X"/>
+          <SortByY Text="Hodnota Y"/>
+          <SortOrder Text="Pořadí řazení:"/>
+          <GroupBy Text="Seskupit podle:">
+            <None Text="Žádné"/>
+            <XValue Text="Hodnota X"/>
+            <Number Text="Číslo"/>
+            <Years Text="Roky"/>
+            <Months Text="Měsíce"/>
+            <Weeks Text="Týdny"/>
+            <Days Text="Dny"/>
+            <Hours Text="Hodiny"/>
+            <Minutes Text="Minuty"/>
+            <Seconds Text="Sekundy"/>
+            <Milliseconds Text="Milisekundy"/>
+          </GroupBy>
+          <GroupInterval Text="Interval seskupení:"/>
+          <GroupFunction Text="Funkce seskupení:"/>
+          <CollectData Text="Vybrat data:">
+            <None Text="Žádná"/>
+            <TopN Text="Horních N"/>
+            <BottomN Text="Spodních N"/>
+            <LessThan Text="Menší než hodnota"/>
+            <LessThanPercent Text="Menších než procento"/>
+            <GreaterThan Text="Větší než hodnota"/>
+            <GreaterThanPercent Text="Větších než procento"/>
+          </CollectData>
+          <Value Text="Hodnota:"/>
+          <CollectedText Text="Text pro vybraná data:"/>
+          <CollectedColor Text="Barva vybraných dat: "/>
+          <Explode Text="Rozděl:">
+            <None Text="Ne"/>
+            <Biggest Text="Největší hodnota"/>
+            <Lowest Text="Nejmenší hodnota"/>
+            <Specific Text="Určitá hodnota"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Vzhled">
+          <Default Text="Výchozí"/>
+          <DrawingStyle Text="Styl vykreslení:"/>
+          <PointWidth Text="Šířka bodu:"/>
+          <LabelsStyle Text="Styl popisků:"/>
+          <DrawSideBySide Text="Kresli vedle sebe"/>
+          <ShowMarkerLines Text="Zobraz čáry značek"/>
+          <DoughnutRadius Text="Poloměr koblihy (%):"/>
+          <AreaDrawingStyle Text="Styl vykreslení plochy:"/>
+          <Markers Text="Značky:"/>
+          <PriceUpColor Text="Barva zvýšení ceny:"/>
+          <ReversalAmount Text="Inverzní množství"/>
+          <BoxSize Text="Velikost "/>
+          <NumberOfLinesInBreak Text="Čar v mezeře:"/>
+          <LabelsPlacement Text="Umístění popisků:"/>
+          <PointsGap Text="Mezera mezi body:"/>
+          <MinPointHeight Text="Výška min. bodu:"/>
+          <ValueType Text="Typ hotnoty:"/>
+          <ThreeDDrawingStyle Text="3D styl vykreslení:"/>
+          <ThreeDRotation Text="3D rotace:"/>
+          <FunnelStyle Text="Styl trychtýře:"/>
+          <LineTension Text="Čára tenze:"/>
+          <NoSettings Text="Není žádné specifické nastavení pro tenty typ série."/>
+        </Appearance>
+        <FillBorder Text="Výplň a okraje">
+          <Palette Text="Paleta:"/>
+        </FillBorder>
+        <Labels Text="Popisky">
+          <LabelView Text="Zobrazení popisků:"/>
+          <Pattern Text="Vzorek:"/>
+        </Labels>
+        <Markers Text="Značky">
+          <Style Text="Styl:"/>
+          <Size Text="Velikost:"/>
+          <Step Text="Krok:"/>
+          <Color Text="Barva:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galerie">
+      <NewArea Text="Přidat nové série s vlastní plochou grafu"/>
+      <Categories>
+        <BarColumn Text="Pruhové a sloupcové"/>
+        <Area Text="Plošné"/>
+        <Line Text="Spojnicové"/>
+        <PointBubble Text="Bodové a bublinové"/>
+        <Pie Text="Výsečové"/>
+        <Circular Text="Kruhové"/>
+        <Financial Text="Finanční"/>
+        <PyramidFunnel Text="Jehlanové a trychtýřové"/>
+        <Range Text="Rozsahové"/>
+      </Categories>
+      <Series>
+        <Bar Text="Pruhový"/>
+        <StackedBar Text="Skládaný pruhový"/>
+        <StackedBar100 Text="100% skládaný pruhový"/>
+        <Column Text="Sloupcový"/>
+        <StackedColumn Text="Skládaný sloupcový"/>
+        <StackedColumn100 Text="100% skládaný sloupcový"/>
+        <Area Text="Plošný"/>
+        <SplineArea Text="Spline plošný"/>
+        <StackedArea Text="Skládaný plošný"/>
+        <StackedArea100 Text="100% skládaný plošný"/>
+        <Line Text="Spojnicový"/>
+        <FastLine Text="Rychlý spojnicový"/>
+        <StepLine Text="Klikatá čára"/>
+        <Spline Text="Spline"/>
+        <Bubble Text="Bublinový"/>
+        <Point Text="Bodový"/>
+        <FastPoint Text="Rychlý bodový"/>
+        <Pie Text="Výsečový"/>
+        <Doughnut Text="Prstencový"/>
+        <Polar Text="Polární"/>
+        <Radar Text="Paprskový"/>
+        <Stock Text="Burzovní"/>
+        <Candlestick Text="Svícen"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Bodový a obrázkový"/>
+        <ThreeLineBreak Text="Tři zlomené čáry"/>
+        <Pyramid Text="Jehlanový"/>
+        <Funnel Text="Trychtýř"/>
+        <Range Text="Rozsahový"/>
+        <SplineRange Text="Spline rozsahový"/>
+        <RangeColumn Text="Rozsahový sloupcový"/>
+        <RangeBar Text="Rozsahový pruhový"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Záložka skriptu">
+      <EnableVirtualSpace Text="Povolit virtuální prostor"/>
+      <UseSpaces Text="Použít mezery místo tabulátorů"/>
+      <AllowOutlining Text="Povolit outlining"/>
+      <LineNumbers Text="Čísla řádků"/>
+      <TabSize Text="Šířka tabulátoru:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Nastavení pruhů">
+      <Add Text="Přidat"/>
+      <Delete Text="Odstranit"/>
+    </ConfigureBands>
+    <Connection Text="Připojení">
+      <Select Text="Zvol typ připojení"/>
+      <AlwaysUse Text="Vždy použít toto připojení"/>
+      <LoginPrompt Text="Dotaz na heslo"/>
+      <Test Text="Vyzkoušet připojení"/>
+      <TestSuccesful Text="Test připojení dopadl úspěšně."/>
+    </Connection>
+    <CustomLabel Text="Vlastní štítek">
+      <Name Text="Název:"/>
+      <Paper Text="Papír"/>
+      <Landscape Text="Na šířku"/>
+      <PaperWidth Text="Šířka papíru:"/>
+      <PaperHeight Text="Výška papíru:"/>
+      <LeftMargin Text="Levý okraj:"/>
+      <TopMargin Text="Horní okraj:"/>
+      <Label Text="Parametry štítků"/>
+      <LabelWidth Text="Šířka štítku:"/>
+      <LabelHeight Text="Výška štítku:"/>
+      <RowGap Text="Mezera mezi řádky:"/>
+      <ColumnGap Text="Mezera mezi sloupci:"/>
+      <Warning Text="Štítky nepasují do stránky!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Úorava pruhů">
+      <DataSource Text="Datové zdroje"/>
+      <NoData Text="Žádné datové zdroje nejsou dostupné.&#13;&#10;&#13;&#10;Jdi do nabídky &quot;Data|Zvolit data sestavy...&quot; a vyber z dostupných datových zdrojů nebo vytvoř nový datový zdroj v menu &quot;Data|Přidej datový zdroj...&quot;."/>
+      <Sort Text="Řazení"/>
+      <SortBy Text="Třídit dle"/>
+      <ThenBy Text="Potom podle"/>
+      <Ascending Text="Vzestupně"/>
+      <Descending Text="Sestupně"/>
+      <Filter Text="Filtrování"/>
+      <Expression Text="Filtrovací výraz:"/>
+    </DataBandEditor>
+    <DataWizard Text="Průvodce daty">
+      <Page1 Text="Volba databáze"/>
+      <WhichData Text="Které datové připojení má být použito pro tuto sestavu?"/>
+      <Hint Text="Zvolete ze seznamu naposledy použitých připojení nebo stiskněte tlačítko &quot;Nové připojení...&quot; a vytvořte nové."/>
+      <NewConnection Text="Nové připojení..."/>
+      <EditConnection Text="Upravit připojení..."/>
+      <ConnectionName Text="Zadaj název připojení:"/>
+      <ConnectionString Text="Připojovací řetězec"/>
+      <Page2 Text="Volba tabulek"/>
+      <WhichTables Text="Které tabulky chcete použít v sestavě?"/>
+      <Wait Text="Získávám informace o databázi"/>
+      <AddQuery Text="Přidej SQL dotaz..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Dialogové okno"/>
+    <Exception Text="Výjimka">
+      <Hint Text="Vaše sestava vyhodila následující výjimku:"/>
+      <Stack Text="Výpis zásobníku:"/>
+      <Copy Text="Kopírovat do schránky"/>
+    </Exception>
+    <ExpressionEditor Text="Úprava výrazu"/>
+    <Fill Text="Editor výplní">
+      <Solid Text="Plná barva"/>
+      <LinearGradient Text="Lineární přechod"/>
+      <PathGradient Text="Přechod podle cesty"/>
+      <Hatch Text="Šrafování"/>
+      <Glass Text="Sklo"/>
+      <Colors Text="Barvy"/>
+      <Color Text="Barva"/>
+      <StartColor Text="Začátek"/>
+      <EndColor Text="Konec"/>
+      <Options Text="Volby"/>
+      <Focus Text="Ohnisko"/>
+      <Contrast Text="Kontrast"/>
+      <Angle Text="Úhel"/>
+      <CenterColor Text="Střed"/>
+      <EdgeColor Text="Okraj"/>
+      <Shape Text="Tvar"/>
+      <Ellipse Text="Elipsa"/>
+      <Rectangle Text="Obdélník"/>
+      <ForeColor Text="Popředí"/>
+      <BackColor Text="Pozadí"/>
+      <Style Text="Styl"/>
+      <Blend Text="Smíchání"/>
+      <GlassHatch Text="Zobraz šrafy"/>
+    </Fill>
+    <FormatEditor Text="Výběr formátu">
+      <Expression Text="Výraz:"/>
+      <General Text="Obecné"/>
+      <Number Text="Číslo"/>
+      <Currency Text="Měna"/>
+      <Date Text="Datum"/>
+      <Time Text="Čas"/>
+      <Percent Text="Procenta"/>
+      <Boolean Text="Logická hodnota"/>
+      <Custom Text="Vlastní"/>
+      <UseLocale Text="Použij místní nastavení"/>
+      <DecimalDigits Text="Desinných míst:"/>
+      <DecimalSeparator Text="Desetinný oddělnač:"/>
+      <GroupSeparator Text="Oddělovač tisíců:"/>
+      <PositivePattern Text="Vzorek kladného čísla:"/>
+      <NegativePattern Text="Vzorek záporného čísla:"/>
+      <CurrencySymbol Text="Symbol měny:"/>
+      <PercentSymbol Text="Symbol procent:"/>
+      <FalseText Text="Text nepravdy:"/>
+      <TrueText Text="Text pravdy:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Úprava sloupců">
+      <Columns Text="Sloupce"/>
+      <Properties Text="Vlastnosti"/>
+      <Add Text="Přidat"/>
+      <Remove Text="Odebrat"/>
+      <AddAll Text="Přidat vše"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Úprava skupiny">
+      <Condition Text="Podmínka skupiny"/>
+      <Hint Text="Vyber datový sloupec nebo zapiš výraz:"/>
+      <Settings Text="Nastavení"/>
+      <Sort Text="Řazení:"/>
+      <NoSort Text="Netřídit"/>
+      <Ascending Text="Vzestupně"/>
+      <Descending Text="Sestupně"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Nastavení skupin">
+      <Condition Text="Podmínka skupiny"/>
+      <Hint Text="Pro vytvoření skupiny vyber datový sloupec nebo zapiš výraz a stiskni tlačítko &quot;Přidat&quot;."/>
+      <Add Text="Přidat"/>
+      <Groups Text="Skupiny"/>
+      <Edit Text="Upravit…"/>
+      <Delete Text="Odstranit"/>
+    </GroupExpert>
+    <HighlightEditor Text="Podmínka zvýraznění">
+      <Conditions Text="Podmínky"/>
+      <Add Text="Přidat"/>
+      <Delete Text="Odstranit"/>
+      <Edit Text="Upravit"/>
+      <Style Text="Styl"/>
+      <Fill Text="Výplň"/>
+      <TextColor Text="Barva textu"/>
+      <Font Text="Písmo"/>
+      <Visible Text="Viditelný"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Úprava hypertextového odkazu">
+      <Url Text="Adresa URL"/>
+      <PageNumber Text="Číslo stránky"/>
+      <Bookmark Text="Záložka"/>
+      <Report Text="Sestava"/>
+      <ReportPage Text="Stránka sestavy"/>
+      <Custom Text="Vlastní"/>
+      <UrlValue Text="Uveďte adresu URL (například: http://www.url.com):"/>
+      <UrlExpression Text="nebo zapište výraz, jeho výsledkem je URL adresa:"/>
+      <PageNumberValue Text="Uveďte číslo strany:"/>
+      <PageNumberExpression Text="nebo zapiště výraz, jehož výsledkem je číslo strany:"/>
+      <BookmarkValue Text="Uveďte jméno záložky:"/>
+      <BookmarkExpression Text="nebo zapište výraz, jeho výsledkem je jméno záložky:"/>
+      <ReportName Text="Jméno sestavy:"/>
+      <ParameterName Text="Parametry sestavy:"/>
+      <ParameterValue Text="Uveďte hodnotu parametru:"/>
+      <ParameterExpression Text="nebo zapište výraz, jehož výsledkem je hodnota parametru:"/>
+      <PageName Text="Jméno stránky:"/>
+      <CustomValue Text="Uveďte hodnotu hypertextového odkazu:"/>
+      <CustomExpression Text="nebo zapište výraz, jehož výsledkem je hodnota:"/>
+      <Hint Text="Co se stane, když kliknete na objekt v okně náhledu:"/>
+      <HintUrl Text="Otevře se uvedená URL adresa."/>
+      <HintPageNumber Text="Přejtete na uvedenou stránku."/>
+      <HintBookmark Text="Přejdete na objekt obsahující uvedenou záložku."/>
+      <HintReport Text="V dalším okně se otevře uvedená sestava."/>
+      <HintReportPage Text="Bude vygenerována uvedená stránka a otevře se v další kartě."/>
+      <HintCustom Text="Můžete vytvořit vlastní obsluhu události &quot;Click&quot; a vytvořit vlastní akci."/>
+      <ModifyAppearance Text="Upravit vzhled objektu, aby vypadal jako klikatelný odkaz."/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Průvodce štítky">
+      <Hint Text="Zvolte jeden z předdefinovaných štítků nebo stiskněte tlačítko &quot;Vlastní štítek&quot; a nadefinujte si vlastní velikost."/>
+      <Label Text="Štítek"/>
+      <Manufacturer Text="Výrobce"/>
+      <Product Text="Výrobek"/>
+      <Parameters Text="Parametry"/>
+      <Size Text="Velikost:"/>
+      <PaperSize Text="Formát papíru:"/>
+      <Rows Text="Řádků:"/>
+      <Columns Text="Sloupců:"/>
+      <CustomLabel Text="Vlastní štítek..."/>
+      <Custom Text="Vlastní"/>
+      <Delete Text="Vymazat"/>
+    </LabelWizard>
+    <PageSetup Text="Vzhled stránky">
+      <Paper Text="Papír"/>
+      <Custom Text="Vlastní"/>
+      <Width Text="Šířka:"/>
+      <Height Text="Výška:"/>
+      <Orientation Text="Orientace:"/>
+      <Portrait Text="Na výšku"/>
+      <Landscape Text="Na šířku"/>
+      <Margins Text="Okraje"/>
+      <Left Text="Vlevo:"/>
+      <Top Text="Nahoře:"/>
+      <Right Text="Vpravo:"/>
+      <Bottom Text="Dole:"/>
+      <MirrorMargins Text="Zdrcadlení na sudých stránkách"/>
+      <Source Text="Zdroj"/>
+      <FirstPage Text="První stránka:"/>
+      <OtherPages Text="Ostatní stránky:"/>
+      <Columns Text="Sloupce"/>
+      <Count Text="Počet:"/>
+      <ColumnWidth Text="Šířka:"/>
+      <Positions Text="Pozice:"/>
+      <Other Text="Jiné"/>
+      <Duplex Text="Oboustranný tisk:"/>
+      <DupDefault Text="Výchozí"/>
+      <DupSimplex Text="Simplex"/>
+      <DupVertical Text="Svisle"/>
+      <DupHorizontal Text="Vodorovně"/>
+      <EditWatermark Text="Upravit vodoznak..."/>
+      <ExtraWidth Text="Rozšířit šířku stránky v režimu návrhu"/>
+    </PageSetup>
+    <PictureEditor Text="Upravit obrázek">
+      <Picture Text="Obrázek"/>
+      <Load Text="Otevři"/>
+      <Paste Text="Vložit"/>
+      <Clear Text="Smazat"/>
+      <DataColumn Text="Datový sloupec"/>
+      <FileName Text="Jméno souboru"/>
+      <Url Text="Odkaz URL"/>
+      <FileHint1 Text="Název souboru:"/>
+      <FileHint2 Text="Poznámka: Musíte dodávat tento soubor spolu se sestavou."/>
+      <UrlHint Text="Odkaz URL:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Moduly plug-in">
+      <Hint Text="Seznam nainstalovaných modulů plug-in:"/>
+      <Add Text="Přidat"/>
+      <Remove Text="Odebrat"/>
+      <Note Text="Poznámka: Změny se projeví až po restartu aplikace."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Použij na všechny stárnky a obnov sestavu"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Hledání"/>
+    <PrinterSetup Text="Tisk">
+      <PrinterSetup Text="Nastavení tiskárny"/>
+      <Printer Text="Tiskárna"/>
+      <SavePrinter Text="Uložit výber této tiskárny do souboru sestavy"/>
+      <Settings Text="Nastavení..."/>
+      <PrintToFile Text="Tisk do souboru"/>
+      <PageRange Text="Rozsah stránek"/>
+      <All Text="Vše"/>
+      <Current Text="Aktuální stránka"/>
+      <Numbers Text="Stránky:"/>
+      <Hint Text="Zapište čísla nebo rozsahy stránek oddělené čáskou. Například 1, 3, 5-12."/>
+      <Copies Text="Kopie"/>
+      <Count Text="Počet:"/>
+      <Collate Text="Kompletovat"/>
+      <Other Text="Jiné"/>
+      <OddEven Text="Tisknout:"/>
+      <AllPages Text="Všechny stránky"/>
+      <OddPages Text="Liché stránky"/>
+      <EvenPages Text="Sudé stránky"/>
+      <Order Text="Pořadí:"/>
+      <OrderDirect Text="Běžné (1-9)"/>
+      <OrderReverse Text="Obrácené (9-1)"/>
+      <Duplex Text="Oboustranný tisk:"/>
+      <Source Text="Zdroj:"/>
+      <PrintMode Text="Režim tisku"/>
+      <PrintModeDefault Text="Výchozí"/>
+      <PrintModeSplit Text="Rozdělit velké stránky"/>
+      <PrintModeScale Text="Změnit měřítko"/>
+      <PrintOnSheet Text="Tisk na formát:"/>
+      <PagesOnSheet Text="Stránek na list:"/>
+      <PagesOnSheet1 Text="1 stránka"/>
+      <PagesOnSheet2 Text="2 stránky"/>
+      <PagesOnSheet4 Text="4 stránky"/>
+      <PagesOnSheet8 Text="8 stránek"/>
+      <Print Text="OK"/>
+      <Error Text="Neplatný rozsah stránek."/>
+    </PrinterSetup>
+    <QueryBuilder Text="Tvůrce dotazů">
+      <Designer Text="Návrhář"/>
+      <Sql Text="SQL"/>
+      <Result Text="Výsledek dotazu"/>
+      <Select Text="Výběr"/>
+      <Joins Text="Spojení"/>
+      <Group Text="Seskupení"/>
+      <Name Text="Název"/>
+      <Alias Text="Alias"/>
+      <Filter Text="Filtr"/>
+      <Order Text="Setřídění"/>
+      <Func Text="Funkce"/>
+      <Editor Text="Editor"/>
+      <Delete Text="Smazat"/>
+      <Change Text="Upravit"/>
+      <JoinEditor Text="Editor spojení"/>
+      <Tables Text="Tabulky"/>
+      <Condition Text="Podmínky"/>
+      <InputAlias Text="Zapište alias pro tabulku:"/>
+      <Where>
+        <Equal Text="Rovno"/>
+        <NotEqual Text="Nerovno"/>
+        <GtOrEqual Text="Větší nebo rovno než"/>
+        <Gt Text="Větší než"/>
+        <LtOrEqual Text="Menší nebo rovno než"/>
+        <Lt Text="Menší než"/>
+        <Like Text="LIKE"/>
+        <NotLike Text="NOT LIKE"/>
+      </Where>
+    </QueryBuilder>
+    <QueryWizard Text="Průvodce dotazem">
+      <Page1 Text="Zvolení názvu"/>
+      <SetName Text="Zadej název dotazu."/>
+      <NameHint Text="Toto jméno bude zobrazeno v okně &quot;Data&quot;."/>
+      <Page2 Text="Zadání SQL dotazu"/>
+      <WhatData Text="Která data mají být vrácena dotazem?"/>
+      <TypeSql Text="Zapište SQL dotaz nebo použijte Tvůrce dotazů pro jeho sestavení."/>
+      <QueryBuilder Text="Tvůrce dotazů..."/>
+      <Page3 Text="Definice parametrů"/>
+      <Page4 Text="Definice sloupců"/>
+      <Refresh Text="Obnovit sloupce"/>
+      <AddColumn Text="Přidat vypočtený sloupec"/>
+      <AddParameter Text="Přidat parametr"/>
+      <Delete Text="Odstranit"/>
+    </QueryWizard>
+    <RelationEditor Text="Úprava relací">
+      <ParentTable Text="Rodičovká tabulka:"/>
+      <ChildTable Text="Související tabulka:"/>
+      <Parent Text="Rodičovská tabulka"/>
+      <Child Text="Související tabulka"/>
+      <Columns Text="Sloupce:"/>
+      <Error Text="Nesouhlasí počet sloupců ve vztahu tabulek."/>
+    </RelationEditor>
+    <ReportData Text="Zvolení dat sestavy">
+      <Hint Text="Zvolte datové zdroje a pole, které chcete používat v sestavě:"/>
+      <Aliases Text="Zobrazit aliasy"/>
+    </ReportData>
+    <ReportOptions Text="Nastavení sestavy">
+      <General Text="Obecné"/>
+      <Description Text="Popis"/>
+      <Script Text="Skript"/>
+      <Security Text="Bezpečnost"/>
+      <Inheritance Text="Dědičnost"/>
+      <Email Text="E-mail"/>
+      <Name Text="Název:"/>
+      <Author Text="Autor:"/>
+      <Version Text="Verze:"/>
+      <Description1 Text="Popis:"/>
+      <Picture Text="Obrázek:"/>
+      <SavePreviewPicture Text="Uložit obrázek s náhledem"/>
+      <Load Text="Otevři..."/>
+      <Clear Text="Smazat"/>
+      <Created Text="Vytvořeno:"/>
+      <Modified Text="Změněno:"/>
+      <Language Text="Skriptovací jazyk:"/>
+      <Note Text="Poznámka: Při změně jazyka jsou všechny skripty smazány!"/>
+      <RefAssemblies Text="Odkazované assemblies:"/>
+      <Add Text="Přidat..."/>
+      <Password Text="Heslo:"/>
+      <RetypePassword Text="Heslo znovu:"/>
+      <Inherited Text="Tato sestava je zděděna od šablony:"/>
+      <NotInherited Text="Tato sestava není zděděna od jiné."/>
+      <Choose Text="Zvol možnost:"/>
+      <DontChange Text="Neměnit"/>
+      <Detach Text="Odpoj od rodičovské sestavy"/>
+      <Inherit Text="Zdědit od sestavy:"/>
+      <Browse Text="Procházet…"/>
+      <DoublePass Text="Dva průchody"/>
+      <Compress Text="Komprimovat soubor sestavy"/>
+      <UseFileCache Text="Použít soubor cache"/>
+      <ConvertNulls Text="Převést null hodnoty"/>
+      <TextQuality Text="Kvalita textu:"/>
+      <SmoothGraphics Text="Vyhlazovat grafiku"/>
+      <QualityDefault Text="Výchozí"/>
+      <QualityRegular Text="Běžná"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="Vyhlazení"/>
+      <PasswordError Text="Hesla nejsou shodná. Prosíme, zapište je znovu."/>
+      <Recipients Text="Příjemci (např. john@url.com):"/>
+      <Subject Text="Předmět:"/>
+      <Message Text="Zpráva:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Stránka sestavy">
+      <Units Text="Jednotky stránky"/>
+      <Millimeters Text="Milimetry"/>
+      <Centimeters Text="Centimetry"/>
+      <Inches Text="Palce"/>
+      <HundrethsOfInch Text="Setiny palce"/>
+      <Grid Text="Mřížka"/>
+      <ShowGrid Text="Zobrazit mřížku"/>
+      <SnapToGrid Text="Přichytit k mřížce"/>
+      <DottedGrid Text="Tečkovaná mřížka"/>
+      <Size Text="Rozteč:"/>
+      <Markers Text="Značky objektu"/>
+      <Rectangle Text="Obdélník"/>
+      <Corners Text="Rohy"/>
+      <BandView Text="Zobrazení pruhů"/>
+      <Structure Text="Strukturované"/>
+      <Classic Text="Klasické"/>
+      <EditAfterInsert Text="Úprava po vložení"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Editor formátovaného textu">
+      <Open Text="Otevřít"/>
+      <Save Text="Uložit"/>
+      <Subscript Text="Dolní index"/>
+      <Superscript Text="Horní index"/>
+      <Bullets Text="Odrážky"/>
+      <Confirm Text="Text byl změněný. Uložit změny?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Najít a nahradit">
+      <Find Text="Najít co:"/>
+      <Replace Text="Nahradit čím:"/>
+      <Options Text="Možnosti hledání"/>
+      <MatchCase Text="Rozlišovat malá a VELKÁ písmena"/>
+      <MatchWholeWord Text="Jen celá slova"/>
+      <FindNext Text="Najít další"/>
+      <ReplaceBtn Text="Nahradit"/>
+      <ReplaceAll Text="Nahradit vše"/>
+      <NotFound Text="Nenalezen žádný text."/>
+      <NoMoreFound Text="Žádné další výskyty nebyly nalezeny."/>
+    </SearchReplace>
+    <SelectDataSource Text="Vybrat zdroj dat">
+      <Hint Text="Vyber jeden nebo více datových zdrojů, které chcete použít v sestavě."/>
+      <AvailableDs Text="Dostupné zdroje dat:"/>
+      <SelectedDs Text="Vybrat datové zdroje:"/>
+      <ProjectDs Text="Datové zdroje projektu"/>
+      <OtherDs Text="Ostatní datové zdroje"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Zvolení jazyka">
+      <SelectLanguage Text="Vyber jazyk ze seznamu níže:"/>
+      <Auto Text="Automaticky"/>
+      <Folder Text="Složka s jazykovými soubory:"/>
+      <SelectFolder Text="Vybrat složky, která obsahuje jazykové soubory (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Standardní průvodce sestavou">
+      <GroupsPage Text="Vytvoření skupin"/>
+      <CreateGroups Text="Vytvořte skupiny (volitelně)"/>
+      <Groups Text="Skupiny:"/>
+      <LayoutPage Text="Definice rozložení"/>
+      <DefineLayout Text="Vyberte orientaci papíru a rozložení dat."/>
+      <Orientation Text="Orientace papíru"/>
+      <Portrait Text="Na výšku"/>
+      <Landscape Text="Na šířku"/>
+      <Layout Text="Rozvržení"/>
+      <Tabular Text="Tabulárně"/>
+      <Columnar Text="Sloupcově"/>
+      <StylePage Text="Zvolení stylu"/>
+      <Styles Text="Vyberte styl sestavy.">
+        <Standard Text="Standardní"/>
+        <Gray Text="Šedý"/>
+        <Green Text="Zelený"/>
+        <Sand Text="Pískový"/>
+        <Blue Text="Modrý"/>
+        <Title Text="Nadpis"/>
+        <Header Text="Záhlaví"/>
+        <Group Text="Skupina"/>
+        <Data Text="Data"/>
+        <Footer Text="Patička"/>
+        <EvenRows Text="Sudé řádky"/>
+      </Styles>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Úprava kolekce řetězců"/>
+    <Style Text="Editor stylů">
+      <Styles Text="Styly"/>
+      <Add Text="Přidat"/>
+      <Delete Text="Odstranit"/>
+      <Edit Text="Upravit"/>
+      <Load Text="Otevřít..."/>
+      <Save Text="Uložit..."/>
+      <Settings Text="Nastavení stylu"/>
+      <Border Text="Ohraničení"/>
+      <Fill Text="Výplň"/>
+      <Font Text="Písmo"/>
+      <TextColor Text="Barva textu"/>
+      <StyleName Text="Styl"/>
+    </Style>
+    <TextEditor Text="Úprava textu">
+      <WordWrap Text="Zalamování řádků"/>
+    </TextEditor>
+    <TotalEditor Text="Editor souhrnů">
+      <TotalName Text="Jméno souhrnu:"/>
+      <Total Text="Souhrn"/>
+      <Function Text="Funkce:"/>
+      <DataColumnOrExpression Text="Datový sloupec nebo výraz:"/>
+      <DataBand Text="Počítej pro každý řádek pruhu:"/>
+      <EvaluateCondition Text="Počítej, když platí následující podmínka:"/>
+      <PrintOn Text="Tisk na pruhu:"/>
+      <Options Text="Možnosti"/>
+      <ResetAfterPrint Text="Resetovat po tisku"/>
+      <ResetRepeated Text="Resetovat při opakování pruhu"/>
+      <InvisibleRows Text="Zahrnout neviditelné řádky"/>
+      <Sum Text="Součet"/>
+      <Min Text="Minimum"/>
+      <Max Text="Maximum"/>
+      <Avg Text="Průměr"/>
+      <Count Text="Počet"/>
+      <Custom Text="Vlastní"/>
+    </TotalEditor>
+    <UIOptions Text="Uživatelské rozhraní">
+      <Appearance Text="Vzhled:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (modrá),Office 2007 (stříbrná),Office 2007 (černá),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Vodoznak">
+      <Enabled Text="Zapnuto"/>
+      <Text Text="Text"/>
+      <TextItems Text="DŮVĚRNÉ,KOPIE,ORIGINÁL,UKÁZKA,NALÉHAVÉ"/>
+      <Rotation Text="Otočení"/>
+      <Horizontal Text="vodorovně"/>
+      <Vertical Text="Svislá"/>
+      <ForwardDiagonal Text="Dopředná diagonála"/>
+      <BackwardDiagonal Text="Zpětná diagonála"/>
+      <Font Text="Písmo"/>
+      <Color Text="Barva"/>
+      <Picture Text="Obrázek"/>
+      <Load Text="Otevřít"/>
+      <Clear Text="Smazat"/>
+      <Size Text="Velikost"/>
+      <Normal Text="Normální"/>
+      <Center Text="Vystředit"/>
+      <Stretch Text="Roztáhnout"/>
+      <Zoom Text="Zvětšit"/>
+      <Tile Text="Dlaždice"/>
+      <Transparency Text="Průhlednost"/>
+      <Zorder Text="Pořadí vykreslování"/>
+      <TextOnTop Text="Text navrchu"/>
+      <PictureOnTop Text="Obrázek navrchu"/>
+      <ApplyToAll Text="Použij na všechny stránky"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Název serveru:"/>
+      <ServerLogon Text="Přihlášení k serveru"/>
+      <UserName Text="Uživatelské jméno:"/>
+      <Password Text="Heslo:"/>
+      <Database Text="Připojení k databázi"/>
+      <DatabaseName Text="Název databáze:"/>
+      <DatabaseFile Text="Databázový soubor:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Použít ověřování systému Windows"/>
+      <UseSql Text="Použít ověřování SQL Serveru"/>
+      <SavePassword Text="Uložit heslo"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Připojovací řetězec:"/>
+      <Build Text="Sestavit…"/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Datový zdroj"/>
+      <DsName Text="Název uživatelskhéo nebo systémového zdroje dat:"/>
+      <ConnString Text="Připojovací řetězec:"/>
+      <Login Text="Přihlášení"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Soubor schematu:"/>
+      <Xml Text="Datový soubor:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Upravit..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Možnost zvětšení"/>
+      <CanShrink Text="Možnost zmenšení"/>
+      <GrowToBottom Text="Zvětšení k dolnímu okraji pruhu"/>
+      <Hyperlink Text="Hypertextový odkaz..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Možnost zalomení"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Přidat podřízený pruh"/>
+      <StartNewPage Text="Zalomit stranu"/>
+      <PrintOnBottom Text="Tiskni dolů nad zápatí"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Přidat pruh detailu"/>
+      <KeepTogether Text="Udržovat pohromadě"/>
+      <KeepDetail Text="Udržovat pohromadě vnořené"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Opakuj na každé stránce"/>
+      <KeepWithData Text="Udržovat pohromadě s daty"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Resetuj číslování stran"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Zaplň navyužité místo"/>
+      <CompleteToNRows Text="Doplnit do N řádků:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Režim velikosti"/>
+      <AutoSize Text="Automatická velikost"/>
+      <CenterImage Text="Vycentrování obrázku"/>
+      <Normal Text="Normální"/>
+      <StretchImage Text="Roztáhnout obrázek"/>
+      <Zoom Text="Zachovat poměr"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Formát..."/>
+      <Clear Text="Vymazat obsah"/>
+      <AutoWidth Text="Automatická šířka"/>
+      <WordWrap Text="Zalamování řádků"/>
+      <AllowExpressions Text="Povoleny vzorce"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Tiskni na rodiče"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Opakovat záhlaví"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Vložit řádek nad"/>
+      <InsertBelow Text="Vložit řádek pod"/>
+      <AutoSize Text="Automatická velikost"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Vložit sloupec vlevo"/>
+      <InsertToRight Text="Vložit sloupec vpravo"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Sloučit buňky"/>
+      <Split Text="Rozdělit buňku"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Buňky vedle sebe"/>
+      <ShowTitle Text="Zobrazit titulek"/>
+      <Style Text="Styl"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Součty"/>
+      <Function Text="Funkce"/>
+      <SuppressTotals Text="Potlačit součty"/>
+      <TotalsFirst Text="Součty na začátku"/>
+      <Percent Text="Procenta"/>
+      <PercentColumnTotal Text="% součtu sloupce"/>
+      <PercentRowTotal Text="% součtu řádku"/>
+      <PercentGrandTotal Text="% celkového součtu"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Upravit sloupce..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Typ čárového kódu"/>
+      <AutoSize Text="Automatická velikost"/>
+      <AutoEncode Text="Automatické kódování"/>
+      <CalcChecksum Text="Počítat kontrolní součet"/>
+      <ShowText Text="Zobrazit text"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Zobrazit značky"/>
+      <ShowGrid Text="Zobrazit mřížku"/>
+    </ZipCodeObject>
+    <Report>
+      <DesignReport Text="Návrhář sestavy..."/>
+      <SelectDataSource Text="Výběr datového zdroje..."/>
+    </Report>
+    <WebReport>
+      <SelectReportFile Text="Výběr souboru sestavy"/>
+      <SelectLocalizationFile Text="Výběr lokalizačního souboru"/>
+    </WebReport>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Počítám hranice..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Vyplňuji matici..."/>
+      <NewColumn Text="Přetáhni sem data&#13;&#10;pro vytvoření sloupce"/>
+      <NewRow Text="Přetáhni sem data&#13;&#10;pro vytvoření řádku"/>
+      <NewCell Text="Přetáhni sem data&#13;&#10;pro vytvoření buňky"/>
+      <Total Text="Celkem"/>
+      <Title Text="Nadpis"/>
+      <White Text="Bílá"/>
+      <Gray Text="Šedá"/>
+      <Orange Text="Oranžová"/>
+      <Green Text="Zelená"/>
+      <GreenOrange Text="Zelená a oranžová"/>
+      <Blue Text="Modrá"/>
+      <BlueWhite Text="Modrá a bílá"/>
+      <GrayOrange Text="Šedá a oranžová"/>
+      <BlueOrange Text="Modrá a oranžová"/>
+      <OrangeWhite Text="Oranžová a bílá"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Prázná sestava"/>
+    <StandardReport Text="Stadardní průvodce sestavou"/>
+    <InheritedReport Text="Zděděná sestava"/>
+    <Label Text="Průvodce štítky"/>
+    <NewDataSource Text="Nový zdroj dat"/>
+    <NewPage Text="Nová stránka sestavy"/>
+    <NewDialog Text="Nové dialogové okno"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Export hotový za {0} ms"/>
+      <OrderByCells Text="Pořadí podle buněk"/>
+      <AnalyzeObjects Text="Analýza objektů"/>
+      <SavePage Text="Uložení strany"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Zalomení stran"/>
+      <OpenAfterExport Text="Otevřít po dokončení exportu"/>
+      <Pictures Text="Obrázky"/>
+      <Options Text="Možnosti"/>
+      <None Text="Žádné"/>
+      <Metafile Text="Metafile"/>
+      <SaveFile Text="Ukládám soubor"/>
+      <TableBased Text="Tabulkové rozložení"/>
+      <LayerBased Text="Rozložení založené na vrstvách (layers)"/>
+    </Misc>
+    <Image Text="Exportovat jako obrázek">
+      <File Text="Obrázek"/>
+      <ImageFormat Text="Formát:"/>
+      <Resolution Text="Rozlišení:"/>
+      <Quality Text="Kvalita jpeg:"/>
+      <SeparateFiles Text="Samostatný soubor pro každou stranu"/>
+      <MultiFrame Text="Vícestránkový TIFF"/>
+      <Monochrome Text="Jednobarevný TIFF"/>
+      <Bmp Text="Bitmapový obrázek"/>
+      <Png Text="PNG obrázek"/>
+      <Jpeg Text="JPG obrázek"/>
+      <Gif Text="GIF obrázek"/>
+      <Tiff Text="TIFF obrázek"/>
+      <Metafile Text="Windows metafile"/>
+    </Image>
+    <RichText Text="Exportování jako formátovaný text (RTF)">
+      <File Text="Formátovaný text (RTF)"/>
+    </RichText>
+    <Text Text="Exportování pro maticové tiskárny">
+      <File Text="Textový soubor/maticová tiskárna"/>
+      <EmptyLines Text="Prázdné řádky"/>
+      <DataOnly Text="Pouze data"/>
+      <Frames Text="Rámečky"/>
+      <FramesNone Text="Žádné"/>
+      <FramesText Text="Textové"/>
+      <FramesGraphic Text="Grafické"/>
+      <Codepage Text="Kódování"/>
+      <Default Text="Výchozí"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Měřítko X:"/>
+      <ScaleY Text="Měřítko Y:"/>
+      <AutoScale Text="Automatická velikost"/>
+      <PrinterType Text="Typ tiskárny"/>
+      <Commands Text="Příkazy"/>
+      <PageWidth Text="Šířka stránky:"/>
+      <PageHeight Text="Výška stránky:"/>
+      <DataLoss Text="MOŽNOST ZTRÁTY DAT&#13;&#10;prosíme zvětšte měřítko X/Y"/>
+      <ScaleMessage Text="Počítám optimální měřítko"/>
+      <Scale Text="Měřítko"/>
+    </Text>
+    <Csv Text="Export do CSV">
+      <File Text="CSV soubor"/>
+      <Separator Text="Oddělovač"/>
+      <Codepage Text="Kódování"/>
+      <Default Text="Výchozí"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Pouze data"/>
+    </Csv>
+    <Dbf Text="Export do DBF">
+      <File Text="DBF tabulka"/>
+      <Codepage Text="Kódová stránka"/>
+      <Default Text="Výchozí"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Pouze data"/>
+      <FieldNames Text="Názvy sloupců (např. pole1;pole2):"/>
+    </Dbf>
+    <Xml Text="Exportování do XML">
+      <File Text="XML (Excel) tabulka"/>
+    </Xml>
+    <Odt Text="Exportování jako Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Exportování jako Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Exportovat do Excelu 2007">
+      <File Text="Excel 2007"/>
+    </Xlsx>
+    <Pptx Text="Exportovat do PowerPoint 2007">
+      <File Text="PowerPoint 2007"/>
+    </Pptx>
+    <Docx Text="Exportovat do Microsoft Word 2007">
+      <File Text="Microsoft Word 2007"/>
+    </Docx>
+    <Xps Text="Expot do XPS dokumentu">
+      <File Text="Microsoft XPS dokument"/>
+    </Xps>
+    <Pdf Text="Exportování do PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Export"/>
+      <Compressed Text="Komprimovat"/>
+      <EmbeddedFonts Text="Vložit písma"/>
+      <Background Text="Pozadí"/>
+      <PrintOptimized Text="Optimalizovat tisk"/>
+      <Information Text="Informace"/>
+      <DocumentInformation Text="Informace o dokumentu"/>
+      <Title Text="Název"/>
+      <Author Text="Autor"/>
+      <Subject Text="Předmět"/>
+      <Keywords Text="Klíčová slova"/>
+      <Creator Text="Tvůrce"/>
+      <Producer Text="Producent"/>
+      <Security Text="Bezpečnost"/>
+      <Authentification Text="Autentizace"/>
+      <OwnerPassword Text="Heslo vlastníka"/>
+      <UserPassword Text="Heslo uživatele"/>
+      <Permissions Text="Oprávnění"/>
+      <PrintTheDocument Text="Tisk dokumentu"/>
+      <ModifyTheDocument Text="Úprava dokumentu"/>
+      <CopyOfTextAndGraphics Text="Kopírování textu a grafiky"/>
+      <AddOrModifyTextAnnotations Text="Přidání a změna textových poznámek"/>
+      <Viewer Text="Prohlížeč"/>
+      <ViewerPreferences Text="Nastavení prohlížeče"/>
+      <HideToolbar Text="Skryj panel nástrojů"/>
+      <HideMenubar Text="Skryj řádek nabídek"/>
+      <HideWindowUserInterface Text="Skryj okno uživatelského prostředí"/>
+      <FitWindow Text="Přizpůsobit okno"/>
+      <CenterWindow Text="Vycentrovat okno"/>
+      <PrintScaling Text="Měřítko tisku"/>
+      <PrintAfterOpenOfDocument Text="Tisknout po otevření dokumentu"/>
+      <Outline Text="Osnova"/>
+    </Pdf>
+    <Html Text="Export do HTML">
+      <File Text="HTML"/>
+      <MHTFile Text="MHT soubor"/>
+      <Format Text="Formát"/>
+      <SinglePage Text="Jedna stránka"/>
+      <SubFolder Text="Podsložky"/>
+      <Navigator Text="Navigátor"/>
+      <Layers Text="Vrstvy"/>
+      <Total Text="Celkem"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Export do MHT (webový archiv)">
+      <File Text="MHT (webový archiv)"/>
+    </Mht>
+    <Email Text="Zaslání e-mailem">
+      <Email Text="E-mail"/>
+      <Account Text="Účet"/>
+      <Address Text="Adresa:"/>
+      <Subject Text="Předmět:"/>
+      <Message Text="Zpráva:"/>
+      <Attachment Text="Příloha:"/>
+      <Settings Text="Nastavení…"/>
+      <Name Text="Jméno:"/>
+      <Template Text="Šablona:"/>
+      <Host Text="Hostitel:"/>
+      <Port Text="Port:"/>
+      <UserName Text="Uživ. jméno:"/>
+      <Password Text="Heslo:"/>
+      <AddressError Text="Adresa nemůže být nevyplněná."/>
+      <HostError Text="Hostitel nemůže být nevyplněný."/>
+      <SendingEmail Text="Posílání e-mailu - {0} Kb"/>
+      <EnableSSL Text="Zabezpečený přenos (SSL)"/>
+    </Email>
+  </Export>
+  <Web>
+    <Print Text="Tisk"/>
+    <Export Text="Export"/>
+    <Zoom Text="Měřítko zobrazení"/>
+    <Refresh Text="Obnovit"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Vzhled"/>
+      <Behavior Text="Chování"/>
+      <Build Text="Sestavení"/>
+      <Data Text="Data"/>
+      <Design Text="Návrh"/>
+      <Designer Text="Návrhář"/>
+      <Email Text="Email"/>
+      <Engine Text="Tvorba sestav"/>
+      <Events Text="Události"/>
+      <Hierarchy Text="Hierarchie"/>
+      <Layout Text="Rozložení"/>
+      <Misc Text="Různé"/>
+      <Navigation Text="Navigace"/>
+      <Paper Text="Papír"/>
+      <Preview Text="Náhled"/>
+      <Print Text="Tisk"/>
+      <Report Text="Sestava"/>
+      <Script Text="Skript"/>
+      <Toolbars Text="Lišty nástojů"/>
+      <UI Text="Uživatelské prostředí"/>
+    </Categories>
+  </Properties>
+</Language>

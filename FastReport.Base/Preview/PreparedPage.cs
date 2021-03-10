@@ -99,7 +99,6 @@ namespace FastReport.Preview
                     DoAdd(obj, item);
                 }
             }
-
             return true;
         }
 
@@ -279,52 +278,54 @@ namespace FastReport.Preview
                 reader.DeserializeFrom = SerializeTo.Preview;
                 reader.BlobStore = preparedPages.BlobStore;
                 reader.ReadChildren = false;
-                ReportPage page;
-                Base obj;
-                BandBase band;
 
-                page = ReadPage(Report, item, false, reader);
-                float maxWidth = 0.0f;
-                float maxHeight = 0.0f;
-                for (int i = 0; i < item.Count; i++)
+                using (ReportPage page = ReadPage(Report, item, false, reader))
                 {
-                    obj = ReadObject(page, item[i], true, reader);
-                    if (obj is BandBase)
+                    if (page.UnlimitedHeight | page.UnlimitedWidth)
                     {
-                        band = obj as BandBase;
-                        float bandsHeight = band.Top + band.Height;
-                        if (maxHeight < bandsHeight)
-                            maxHeight = bandsHeight;
-                        float bandWidth = 0.0f;
-                        foreach (ComponentBase comp in band.Objects)
+
+                        float maxWidth = 0.0f;
+                        float maxHeight = 0.0f;
+                        for (int i = 0; i < item.Count; i++)
                         {
-                            if ((comp.Anchor & AnchorStyles.Right) == 0 && comp.Dock == DockStyle.None)
+                            using (Base obj = ReadObject(page, item[i], true, reader))
                             {
-                                bandWidth = Math.Max(bandWidth, comp.Left + comp.Width);
+                                if (obj is BandBase)
+                                {
+                                    BandBase band = obj as BandBase;
+                                    float bandsHeight = band.Top + band.Height;
+                                    if (maxHeight < bandsHeight)
+                                        maxHeight = bandsHeight;
+                                    float bandWidth = 0.0f;
+                                    foreach (ComponentBase comp in band.Objects)
+                                    {
+                                        if ((comp.Anchor & AnchorStyles.Right) == 0 && comp.Dock == DockStyle.None)
+                                        {
+                                            bandWidth = Math.Max(bandWidth, comp.Left + comp.Width);
+                                        }
+                                    }
+                                    if (maxWidth < bandWidth)
+                                        maxWidth = bandWidth;
+                                }
                             }
                         }
-                        if (maxWidth < bandWidth)
-                            maxWidth = bandWidth;
+
+                        if (page.UnlimitedHeight)
+                            page.UnlimitedHeightValue = maxHeight + (page.TopMargin + page.BottomMargin) * Units.Millimeters;
+                        if (page.UnlimitedWidth)
+                            page.UnlimitedWidthValue = maxWidth + (page.LeftMargin + page.RightMargin) * Units.Millimeters;
+
                     }
-                    obj.Dispose();
+                    pageSize = new SizeF(page.WidthInPixels, page.HeightInPixels);
+
+                    using (FRWriter writer = new FRWriter(item))
+                    {
+                        writer.SerializeTo = SerializeTo.Preview;
+                        writer.SaveChildren = false;
+                        writer.BlobStore = preparedPages.BlobStore;
+                        writer.Write(page);
+                    }
                 }
-
-                if (page.UnlimitedHeight)
-                    page.UnlimitedHeightValue = maxHeight + (page.TopMargin + page.BottomMargin) * Units.Millimeters;
-                if (page.UnlimitedWidth)
-                    page.UnlimitedWidthValue = maxWidth + (page.LeftMargin + page.RightMargin) * Units.Millimeters;
-
-                pageSize = new SizeF(page.WidthInPixels, page.HeightInPixels);
-
-                using (FRWriter writer = new FRWriter(item))
-                {
-                    writer.SerializeTo = SerializeTo.Preview;
-                    writer.SaveChildren = false;
-                    writer.BlobStore = preparedPages.BlobStore;
-                    writer.Write(page);
-                }
-
-                page.Dispose();
             }
         }
 

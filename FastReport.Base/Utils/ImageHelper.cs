@@ -164,8 +164,7 @@ namespace FastReport.Utils
         {
             if (!String.IsNullOrEmpty(url))
             {
-                //Enable TLS1.2, 1.1. and 1.0;
-                System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00); // System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+                System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 using (WebClient web = new WebClient())
                 {
                     return web.DownloadData(url);

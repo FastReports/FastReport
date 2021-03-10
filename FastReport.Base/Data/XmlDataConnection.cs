@@ -5,6 +5,7 @@ using System.Data;
 using System.ComponentModel;
 using FastReport.Utils;
 using System.Data.Common;
+using System.Net;
 
 namespace FastReport.Data
 {
@@ -60,16 +61,15 @@ namespace FastReport.Data
         ConnectionString = builder.ToString();
       }
     }
-    #endregion
+        #endregion        
 
     #region Protected Methods
     /// <inheritdoc/>
     protected override DataSet CreateDataSet()
     {
       DataSet dataset = base.CreateDataSet();
-      if (!String.IsNullOrEmpty(XsdFile))
-        dataset.ReadXmlSchema(XsdFile);
-      dataset.ReadXml(XmlFile);
+      ReadXmlSchema(dataset);
+      ReadXml(dataset);
       return dataset;
     }
 
@@ -117,12 +117,94 @@ namespace FastReport.Data
     {
       return value;
     }
-    #endregion
+        #endregion
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="XmlDataConnection"/> class with default settings.
-    /// </summary>
-    public XmlDataConnection()
+        #region private methods
+        private void ReadXml(DataSet dataset)
+        {
+            try
+            {
+                Uri uri = new Uri(XmlFile);
+
+                if (uri.IsFile)
+                {
+                    if (Config.ForbidLocalData)
+                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+                    dataset.ReadXml(XmlFile);
+                }
+                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+                {
+                    LoadXmlFromUrl(dataset);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private void LoadXmlFromUrl(DataSet dataset)
+        {
+            ServicePointManager.Expect100Continue = true; 
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(XmlFile);
+            using (var response = req.GetResponse() as HttpWebResponse)
+            {
+                var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+
+                using (var responseStream = response.GetResponseStream())
+                using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                    dataset.ReadXml(reader, XmlReadMode.Auto);
+            }
+        }
+
+        private void ReadXmlSchema(DataSet dataset)
+        {
+            if (String.IsNullOrEmpty(XsdFile))
+                return;
+
+            try
+            {
+                Uri uri = new Uri(XsdFile);
+
+                if (uri.IsFile)
+                {
+                    if (Config.ForbidLocalData)
+                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+                    dataset.ReadXmlSchema(XsdFile);
+                }
+                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+                {
+                    LoadXmlSchemaFromUrl(dataset);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private void LoadXmlSchemaFromUrl(DataSet dataset)
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(XsdFile);
+            using (var response = req.GetResponse() as HttpWebResponse)
+            {
+                var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+
+                using (var responseStream = response.GetResponseStream())
+                using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                    dataset.ReadXmlSchema(reader);
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlDataConnection"/> class with default settings.
+        /// </summary>
+        public XmlDataConnection()
     {
       IsSqlBased = false;
     }

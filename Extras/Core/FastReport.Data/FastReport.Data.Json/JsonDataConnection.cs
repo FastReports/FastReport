@@ -33,6 +33,7 @@ namespace FastReport.Data
         {
             get
             {
+                System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 if (string.IsNullOrEmpty(jsonData))
                     using (WebClient webClient = new WebClient())
                     {

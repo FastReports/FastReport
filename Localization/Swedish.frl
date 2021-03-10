@@ -1,0 +1,1515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="sv" Author="Jan W &lt;jan.w@ideida.se&gt;">
+  <Buttons>
+    <Ok Text="Ok"/>
+    <Cancel Text="Avbryt"/>
+    <Close Text="Stäng"/>
+    <MoreOptions Text="Fler val"/>
+    <LessOptions Text="Färre val"/>
+    <Actions Text="Åtgärder"/>
+    <Previous Text="&lt; Föregående"/>
+    <Next Text="Nästa &gt;"/>
+    <Finish Text="Avsluta"/>
+    <Advanced Text="Avancerat.."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Hämtar data..."/>
+    <CantFindObject Text="Hittar inte objekt"/>
+    <CantLoadReport Text="Kan inte läsa in rapport {0}"/>
+    <ClassError Text="Rapportscript; Kan inte hitta klassen"/>
+    <Confirmation Text="Bekräfta"/>
+    <DataNotInitialized Text="Datakällan är inte initierad"/>
+    <DecompressError Text="Kan inte packa upp filen"/>
+    <DecryptError Text="Dekrypteringsfel; felaktigt lösenord"/>
+    <DelegateError Text="{0} delegat måste ha två argument: 'sender' och 'e'"/>
+    <DeleteAncestor Text="Kan inte radera {0}, då den introduseras i föräldrarapporten"/>
+    <DuplicateName Text="Ett objekt med namnet {0} finns redan"/>
+    <DuplicateStyle Text="Ett stil med det namnet finns redan"/>
+    <Error Text="Fel"/>
+    <EventError Text="Kan inte skapa en event hanterare p.g.a. fel i källkoden"/>
+    <ExportingPage Text="Exporterar sida {0} av {1}"/>
+    <GeneratingPage Text="Skapar sida {0}"/>
+    <GeneratingPageFirstPass Text="Första genomgången: skapar sida {0}"/>
+    <Information Text="Information"/>
+    <MatrixError Text="Matrisobjektet {0}: måste ha minst en kolumn eller en rad och en cell"/>
+    <MatrixValueError Text="Antalet värden skiljer sig från MatrixData.Cells.Count (ska vara {0})"/>
+    <ParentError Text="Objekt av typen {0} kan inte innehålla objekt av typen {1}"/>
+    <ParentError1 Text="Objekt av typen {0} kan inte innehålla objekt"/>
+    <Performance Text="Förberett på {0} ms"/>
+    <PreparingData Text="Förbereder data..."/>
+    <PrintingPage Text="Skriver sida {0}"/>
+    <RenameAncestor Text="Kan inte byta namn på {0}, då den introduseras i föräldrarapporten"/>
+    <SaveChanges Text="Spara ändringarna i {0}?"/>
+    <SaveChangesToPreviewPage Text="Spara ändringarna i förjandsgranska?"/>
+    <TableIsNull Text="Tabellen är inte kopplad till data. Registrera data genom att använda RegisterData metoden"/>
+    <TableManualBuildError Text="Du kan enbart använda TableObject.PrintRow, PrintColumn inuti ManualBuild Event."/>
+    <Warning Text="Varning"/>
+    <WrongFileFormat Text="Kan inte läsa in filen, Okänt filformat"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="tum"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Exempel"/>
+    <None Text="Ingen"/>
+    <PageN Text="Sida"/>
+    <PageNofM Text="Sida {0} av {1}"/>
+    <ofM Text="av {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Rapport"/>
+    <ReportPage Text="Sida"/>
+    <DialogPage Text="Form"/>
+    <XmlDataConnection Text="XML databas"/>
+    <OleDbDataConnection Text="OLE DB koppling"/>
+    <MsAccessDataConnection Text="MS Access koppling"/>
+    <MsSqlDataConnection Text="MS SQL koppling"/>
+    <FirebirdDataConnection Text="Firebird koppling"/>
+    <VistaDBDataConnection Text="VistaDB koppling"/>
+    <PostgresDataConnection Text="Postgres koppling"/>
+    <MySqlDataConnection Text="MySQL koppling"/>
+    <OracleDataConnection Text="Oracle koppling"/>
+    <Bands Text="Band">
+      <ReportTitle Text="Rapport Titel"/>
+      <ReportSummary Text="Rapportsummering"/>
+      <PageHeader Text="Sidhuvud"/>
+      <PageFooter Text="Sidfot"/>
+      <ColumnHeader Text="Kolumhuvud"/>
+      <ColumnFooter Text="Kolumnfot"/>
+      <DataHeader Text="Huvud"/>
+      <DataFooter Text="Fot"/>
+      <Data Text="Data"/>
+      <GroupHeader Text="Grupphuvud"/>
+      <GroupFooter Text="Gruppfot"/>
+      <Child Text="Barn"/>
+      <Overlay Text="Överlagring"/>
+    </Bands>
+    <TextObject Text="Text"/>
+    <Shapes Text="Figurer">
+      <Line Text="Linje"/>
+      <DiagonalLine Text="Digonal linje"/>
+      <Rectangle Text="rektangel"/>
+      <RoundRectangle Text="Rundad Rektangel"/>
+      <Ellipse Text="Elips"/>
+      <Triangle Text="Triangel"/>
+      <Diamond Text="Diamant"/>
+    </Shapes>
+    <PictureObject Text="Bild"/>
+    <TableObject Text="Tabell"/>
+    <MatrixObject Text="Matris"/>
+    <SubreportObject Text="Underrapport"/>
+    <BarcodeObject Text="Streckkod"/>
+    <RichObject Text="Rich Text"/>
+    <MSChartObject Text="MS Chart"/>
+    <ZipCodeObject Text="Zip Code"/>
+    <CheckBoxObject Text="Kryssbox"/>
+    <ButtonControl Text="Knapp"/>
+    <CheckBoxControl Text="Kryssbox"/>
+    <CheckedListBoxControl Text="Kryssboxlista"/>
+    <ComboBoxControl Text="Kombobox"/>
+    <GridControl Text="Matris"/>
+    <DataSelectorControl Text="Dataväljare"/>
+    <DateTimePickerControl Text="Datumbox"/>
+    <GroupBoxControl Text="Gruppbox"/>
+    <LabelControl Text="Etikett"/>
+    <ListBoxControl Text="Listbox"/>
+    <ListViewControl Text="Listvy"/>
+    <MaskedTextBoxControl Text="MaskeradTextBox"/>
+    <MonthCalendarControl Text="MånadsKalender"/>
+    <NumericUpDownControl Text="NumeriskUppNed"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="BildBox"/>
+    <RadioButtonControl Text="RadioKnapp"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TrädVy"/>
+  </Objects>
+  <Functions>
+    <Math Text="Matematiska"/>
+    <Text Text="Text"/>
+    <DateTime Text="Datum &amp; Tid"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Rapportfiler (*.frx)|*.frx"/>
+    <PreparedReport Text="Förberedda rapporter (*.fpx)|*.fpx"/>
+    <Style Text="Rapport Stilar (*.frs)|*.frs"/>
+    <Dictionary Text="Ordlista (*.frd)|*.frd"/>
+    <Localization Text="Språkfil (*.frl)|*.frl"/>
+    <XsdFile Text="XML schema definitions fil (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML fil (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access databas (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server databas (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text fil (*.rtf)|*.rtf"/>
+    <Images Text="Bildfiler|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Skrivarfil (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap bild (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG bild (*.png)|*.png"/>
+    <JpegFile Text="JPG bild (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF bild (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF bild (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafil (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML fil (*.html)|*.html"/>
+    <OdtFile Text="Open Office Writer fil (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc fil (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat fil (*.pdf)|*.pdf"/>
+    <TxtFile Text="Textfil (*.txt)|*.txt"/>
+    <CsvFile Text="Kommaseparerade värden (*.csv)|*.csv"/>
+    <XlsFile Text="MS Excel fil (*.xls)|*.xls"/>
+    <CsFile Text="C# fil (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net fil (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird databas (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB databas (*.vdb*)|*.vdb*"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MM/dd/yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Falsk"/>
+    <BooleanF2 Text="Nej"/>
+    <BooleanF3 Text="Av"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Sant"/>
+    <BooleanT2 Text="Ja"/>
+    <BooleanT3 Text="På"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefon;(000) 000-0000"/>
+    <Custom2 Text="Långt telefon;+0(000) 000-0000"/>
+    <Custom3 Text="Amerikansk Socialförsäkringsnummer;000-00-0000"/>
+    <Custom4 Text="Kort Zip code;00000"/>
+    <Custom5 Text="Lång Zip Code;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Arkiv">
+        <New Text="Ny..."/>
+        <Open Text="Öppna..."/>
+        <Close Text="Stäng"/>
+        <Save Text="Spara"/>
+        <SaveAs Text="Spara som..."/>
+        <SaveAll Text="Spara Allt"/>
+        <PageSetup Text="Sidinstälningar..."/>
+        <PrinterSetup Text="Skrivarinställningar..."/>
+        <Preview Text="Förhandsgranska"/>
+        <SelectLanguage Text="Välj språk"/>
+        <Exit Text="Avsluta"/>
+      </File>
+      <Edit Text="Redigera">
+        <Undo Text="Ångra"/>
+        <Redo Text="Gör om"/>
+        <Cut Text="Klipp ut"/>
+        <Copy Text="Kopiera"/>
+        <Paste Text="Klistra in"/>
+        <Delete Text="Radera"/>
+        <DeletePage Text="Radera sida"/>
+        <SelectAll Text="Välj alla"/>
+        <Group Text="Gruppera"/>
+        <Ungroup Text="Upplös Gruppering"/>
+        <Find Text="Sök..."/>
+        <Replace Text="Ersätt..."/>
+      </Edit>
+      <View Text="Visa">
+        <StartPage Text="Startsida"/>
+        <Toolbars Text="Vertygsrader"/>
+        <Options Text="Tillval..."/>
+        <Grid Text="Matris"/>
+        <Guides Text="Guider"/>
+        <AutoGuides Text="Automatiska guider"/>
+        <DeleteHGuides Text="Radera Horisontella Guider"/>
+        <DeleteVGuides Text="Radera Vertikala Guider"/>
+        <Units Text="Enheter"/>
+      </View>
+      <Insert Text="Infoga"/>
+      <Report Text="Rapport">
+        <Bands Text="Konfigurera Band..."/>
+        <Styles Text="Stilar..."/>
+        <GroupExpert Text="Grupperingsexpert..."/>
+        <Options Text="Tillval..."/>
+      </Report>
+      <Data Text="Data">
+        <ShowData Text="Visa Datafönster"/>
+        <Add Text="Lägg till Datakälla"/>
+        <Choose Text="Välj Rapportdata"/>
+      </Data>
+      <Window Text="Fönster">
+        <CloseAll Text="Stäng alla"/>
+      </Window>
+      <Help Text="Hjälp">
+        <Contents Text="Innehåll..."/>
+        <About Text="Om..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="Egenskaper">
+        <PropertiesTab Text="Hän"/>
+        <EventsTab Text="Händelser"/>
+        <NObjectsSelected Text="{0} objekt valda"/>
+      </Properties>
+      <ReportTree Text="Rapport Träd"/>
+      <Dictionary Text="Data">
+        <DataSources Text="Datakällor"/>
+        <Parameters Text="Parametrar"/>
+        <SystemVariables Text="Systemvariabler"/>
+        <Totals Text="SUmmeringar"/>
+        <Functions Text="Funktioner"/>
+        <New Text="Nytt Ordbok..."/>
+        <Open Text="Öppna Ordbok..."/>
+        <Save Text="Spara Ordbok..."/>
+        <Merge Text="Slå samman Ordböcker..."/>
+        <NewDataSource Text="Ny Datakälla..."/>
+        <NewRelation Text="Ny Relation..."/>
+        <NewParameter Text="Ny Parameter"/>
+        <NewTotal Text="Ny Summering..."/>
+        <NewCalculatedColumn Text="Ny Kalkylerad Kolumn..."/>
+        <Rename Text="Byt Namn"/>
+        <Edit Text="Redigera"/>
+        <Delete Text="Radera"/>
+        <DeleteAlias Text="Radera Alias"/>
+        <View Text="Visa"/>
+        <DuplicateName Text="Namnet finns redan"/>
+        <NRows Text="{0} rad(er)"/>
+      </Dictionary>
+      <Messages Text="Meddelanden">
+        <Description Text="Beskrivning"/>
+        <Line Text="Rad"/>
+        <Column Text="Kolumn"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Lägg till eller Ta Bort Knappar"/>
+      <Reset Text="Återställ Verktygsrad"/>
+      <Standard Text="Standard">
+        <New Text="Lägg till Element"/>
+        <Open Text="Öppna Rapport (Ctrl+O)"/>
+        <Save Text="Spara Rapport (Ctrl+S)"/>
+        <SaveAll Text="Spara Alla (Ctrl+Shift+S)"/>
+        <Preview Text="Förhandsgranska (Ctrl+P)"/>
+        <NewPage Text="Ny Rapportsida"/>
+        <NewDialog Text="Ny Dialog"/>
+        <DeletePage Text="Radera Sida"/>
+        <PageSetup Text="Sidinställningar"/>
+        <Cut Text="Klipp ut (Ctrl+X)"/>
+        <Copy Text="Kopiera (Ctrl+C)"/>
+        <Paste Text="Klistra In (Ctrl+V)"/>
+        <FormatPainter Text="Formathanterare"/>
+        <Undo Text="Ångra (Ctrl+Z)"/>
+        <Redo Text="Gör Om"/>
+        <Group Text="Gruppera"/>
+        <Ungroup Text="Upplös Gruppering"/>
+      </Standard>
+      <Text Text="Text">
+        <Name Text="Fontnamn"/>
+        <Size Text="Fontstorlek"/>
+        <Bold Text="Fet"/>
+        <Italic Text="Kursiv"/>
+        <Underline Text="Understruken"/>
+        <Left Text="Vänsterjustera"/>
+        <Center Text="Centrera"/>
+        <Right Text="Högerjustera"/>
+        <Justify Text="Marginaljustera"/>
+        <Top Text="Toppjustera"/>
+        <Middle Text="Justera mot mitt"/>
+        <Bottom Text="Bottenjustera"/>
+        <Color Text="Textfärg"/>
+        <Highlight Text="Markera"/>
+        <Angle Text="Textvinkel"/>
+      </Text>
+      <Border Text="Ramar och Fyllning">
+        <Top Text="Toplinje"/>
+        <Bottom Text="Bottenlinje"/>
+        <Left Text="Vänsterlinje"/>
+        <Right Text="Högerlinje"/>
+        <All Text="Ram"/>
+        <None Text="Ingen Ram"/>
+        <FillColor Text="Fyllnadsfärg"/>
+        <FillStyle Text="Fyllnadsstil..."/>
+        <LineColor Text="Ramfärg"/>
+        <Width Text="Rambredd"/>
+        <Style Text="Ramstil"/>
+        <Props Text="Ramegenskaper..."/>
+      </Border>
+      <Style Text="Stil">
+        <Styles Text="Stilar"/>
+        <SelectStyle Text="Välj Stil"/>
+        <NoStyle Text="Ingen Stil"/>
+      </Style>
+      <Layout Text="Layout">
+        <AlignToGrid Text="Justera mot rutnät"/>
+        <Left Text="Vänsterjustera"/>
+        <Center Text="Centrera"/>
+        <Right Text="Högerjustera"/>
+        <Top Text="Toppjustera"/>
+        <Middle Text="Justera mittpunkter"/>
+        <Bottom Text="Bottenjustera"/>
+        <SameWidth Text="Samma bredd"/>
+        <SameHeight Text="Samma höjd"/>
+        <SameSize Text="Samma storlek"/>
+        <SizeToGrid Text="Storlek mot rutnät"/>
+        <SpaceHorizontally Text="Horiosontellt mellanrum"/>
+        <IncreaseHorizontalSpacing Text="Öka Horionstellt Mellanrum"/>
+        <DecreaseHorizontalSpacing Text="Minska Horiosontellt Mellanrum"/>
+        <RemoveHorizontalSpacing Text="Ta Bort Horisontellt Mellanrum"/>
+        <SpaceVertically Text="Verikalt Mellanrum"/>
+        <IncreaseVerticalSpacing Text="Öka Vertikalt Mellanrum"/>
+        <DecreaseVerticalSpacing Text="Minska Vertikalt Mellanrum"/>
+        <RemoveVerticalSpacing Text="Ta Bort Vertikalt Mellanrum"/>
+        <CenterHorizontally Text="Centrera Horisontellt"/>
+        <CenterVertically Text="Centrera Vertikalt"/>
+        <BringToFront Text="Hämta till förgrund"/>
+        <SendToBack Text="Skicka till Bakgrund"/>
+      </Layout>
+      <Objects Text="Objekt">
+        <Select Text="Välj"/>
+      </Objects>
+      <Zoom Text="Zomma">
+        <ZoomOut Text="Förminska"/>
+        <ZoomIn Text="Förstora"/>
+        <Zoom Text="Zoom"/>
+        <PageWidth Text="Sidbredd"/>
+        <WholePage Text="Hela sidan"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Kod"/>
+      <Report>
+        <ConfigureBands Text="Konfigurera Band"/>
+      </Report>
+    </Workspace>
+    <Options Text="Tillval"/>
+    <UndoRedo>
+      <Delete Text="Radera {0}"/>
+      <Move Text="Flytta {0}"/>
+      <Size Text="Ändra storlek på {0}"/>
+      <Change Text="Ändra {0}"/>
+      <AddGuide Text="Lägg till guide"/>
+      <MoveGuide Text="Flytta Guide"/>
+      <DeleteHGuides Text="Radera Horisontella Guider"/>
+      <DeleteVGuides Text="Radera Vertikala Guider"/>
+      <ResizeBand Text="Ändra storlek på band"/>
+      <ChangeParent Text="Ändra förälder till {0}"/>
+      <Load Text="Ladda Rapport"/>
+      <Paste Text="Klistra {0}"/>
+      <Insert Text="Infoga {0}"/>
+      <AddPage Text="Läff"/>
+      <DeletePage Text="Radera sida"/>
+      <Script Text="Script Ändrat"/>
+      <NObjects Text="{0} objekt"/>
+      <UndoN Text="Ångra {0} åtgärd(er)"/>
+      <RedoN Text="Gör om {0} åtgärd(er)"/>
+      <ChangeReport Text="Ändra rapport"/>
+      <ChangePagesOrder Text="Ändra Rapportens sidordning"/>
+      <EditPage Text="Redigera sida"/>
+      <EditPrinter Text="Redigera skrivarinställningar"/>
+      <EditReport Text="Redigera Rapportinställningar"/>
+      <SelectData Text="Välj Data"/>
+      <EditData Text="Redigera Data"/>
+    </UndoRedo>
+    <StartPage Text="Startsida"/>
+    <Untitled Text="namnlös.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Egna"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="System"/>
+      <Other Text="Definiera"/>
+      <Transparency Text="Genomskinlighet"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Preview">
+    <PrintText Text="Skriv ut"/>
+    <Print Text="Skriv ut (Ctrl+P)"/>
+    <Open Text="Öppna fil"/>
+    <Save Text="Spara Fil"/>
+    <SaveText Text="Spara"/>
+    <Email Text="Skicka som Epost"/>
+    <Find Text="Sök"/>
+    <Outline Text="Disposition"/>
+    <PageSetup Text="Sidinställningar"/>
+    <Edit Text="Redigera Sida"/>
+    <Watermark Text="Vattenstämpel"/>
+    <First Text="Första sida"/>
+    <Prior Text="Föregående Sida"/>
+    <Next Text="Nästa Sida"/>
+    <Last Text="Sista Sidan"/>
+    <SaveNative Text="Förberedd rapport..."/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="Lägg till nytt Element">
+      <Add Text="Lägg till"/>
+      <Reports Text="Rapportmallar"/>
+      <ReportItems Text="Rapportelement"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Avancerade Egenskaper"/>
+    <AskPassword Text="Lösenord">
+      <Password Text="Den här rapporten är skyddad av lösenord&#13;&#10;&#13;&#10;Ange Lösenord"/>
+    </AskPassword>
+    <AskLoginPassword Text="Databas Inloggning">
+      <Login Text="Login:"/>
+      <Password Text="Lösenord:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Välj datakälla"/>
+      <SelectDataSource Text="Välj en av nedanstående datakällor eller skapa en ny:"/>
+      <CreateNewDatasource Text="Skapa ny datakälla..."/>
+      <SelectColumnsPage Text="Välj data kolumner"/>
+      <SelectColumns Text="Välj de data kolumner du vill använda i rapporten"/>
+      <AvailableColumns Text="Tillgängliga kolumner:"/>
+      <SelectedColumns Text="Valda kolumner:"/>
+    </BaseReportWizard>
+    <Border Text="Rameditor">
+      <Border Text="Ram"/>
+      <Line Text="Linje"/>
+      <Shadow Text="Skugga"/>
+      <Style Text="Stil:"/>
+      <Width Text="Bredd:"/>
+      <Color Text="Färg:"/>
+      <Hint Text="Välj Ram, Linjestil och Färg för fastställa stil"/>
+    </Border>
+    <ChartEditor Text="Diagrameditor">
+      <Chart Text="Diagram"/>
+      <Add Text="Lägg till..."/>
+      <Delete Text="Radera"/>
+      <Hint Text="Kliack på ett element för att ändra dess egenskaper:"/>
+      <Common>
+        <BackColor Text="Bakgrundsfärg:"/>
+        <SecondaryColor Text="Andrahandsfärg:"/>
+        <Gradient Text="Grdaient:"/>
+        <HatchStyle Text="Mönster:"/>
+        <BorderColor Text="Ramfärg:"/>
+        <BorderStyle Text="Ramfärg:"/>
+        <BorderWidth Text="Rambredd:"/>
+        <ShadowColor Text="Skuggfärg:"/>
+        <ShadowOffset Text="Skuggoffset:"/>
+        <LineColor Text="Linjefärg:"/>
+        <LineStyle Text="Linjestil:"/>
+        <LineWidth Text="Linjebedd:"/>
+        <Text Text="Text:"/>
+        <Font Text="GFont:"/>
+        <ForeColor Text="Fontfärg:"/>
+        <Dock Text="Docka:"/>
+        <InsideChartArea Text="Inuti diagramområde"/>
+        <Format Text="Format:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Data">
+          <DataSource Text="Datakälla"/>
+          <Filter Text="Filter:"/>
+          <AutoSeries Text="Automatiska Serier"/>
+          <DataColumn Text="Datakolumn:"/>
+          <ColorColumn Text="Färgkolumn:"/>
+          <SeriesSort Text="Seriesortering:"/>
+          <AlignXValues Text="Justera X Värden"/>
+        </Data>
+        <Appearance Text="Utseende">
+          <Template Text="Mallar"/>
+          <Load Text="Ladda..."/>
+          <Save Text="Spara..."/>
+          <SeriesPalette Text="Palettserie"/>
+          <BorderSkin Text="Gräns överlägg:"/>
+        </Appearance>
+        <ChartArea Text="Diagram område">
+          <Area Text="Område"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Tillåt 3D"/>
+          <XRotation Text="X rotation"/>
+          <YRotation Text="Y rotation"/>
+          <Perspective Text="Perspektiv"/>
+          <WallWidth Text="Vägg bredd:"/>
+          <AxisDepth Text="Axeldjup"/>
+          <LightStyle Text="Belyningsstil:"/>
+          <ClusteredSeries Text="Klustrade serier"/>
+        </ThreeD>
+        <Axes Text="Axlar">
+          <Axis Text="Axlar"/>
+          <CopyFromX Text="Kopiera utseende från X axel"/>
+          <CopyFromPrimary Text="Kopiera utseende från primär axel"/>
+          <Minor Text="Mindre"/>
+          <Major Text="Större"/>
+          <General Text="Allmänt">
+            <Enabled Text="Aktiverat"/>
+            <MarginVisible Text="Visa Marginaler"/>
+            <Logarithmic Text="Logaritmisk"/>
+            <Reversed Text="Återförd"/>
+            <Interval Text="Intervall"/>
+            <Interlaced Text="Sammankopplad"/>
+            <InterlacedColor Text="Sammankopplade färger"/>
+          </General>
+          <Labels Text="Etketter">
+            <Enabled Text="Aktiverat"/>
+            <Angle Text="Vinkel"/>
+          </Labels>
+          <Title Text="Titel"/>
+          <CustomLabels Text="Egna Etiketter">
+            <Label Text="Etikett"/>
+            <Start Text="Börja"/>
+            <End Text="Sluta"/>
+            <Row Text="Rad"/>
+            <MarkColor Text="Markeringsfärg"/>
+            <MarkStyle Text="Markeringsstil"/>
+          </CustomLabels>
+          <Grid Text="Matris">
+            <GridLine Text="Matrislinje"/>
+            <Enabled Text="Aktiverad"/>
+          </Grid>
+          <Ticks Text="Fästpunkter">
+            <Ticks Text="Fästpunkter"/>
+            <Enabled Text="Aktiverat"/>
+            <TickStyle Text="Fäststil"/>
+            <TickSize Text="Fäststorlek"/>
+          </Ticks>
+          <Strips Text="Strips">
+            <Strip Text="Strip"/>
+            <Interval Text="Intervall">
+              <Start Text="Börja"/>
+              <Width Text="Bredd:"/>
+              <Interval Text="Intervall:"/>
+            </Interval>
+            <Appearance Text="Utseende"/>
+            <Text Text="Text">
+              <HorizontalAlign Text="Horisontell justering:"/>
+              <VerticalAlign Text="Vertikal justering:"/>
+              <TextOrientation Text="Textorientering"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Historik">
+          <Enabled Text="Aktiverad"/>
+          <StyleColumn Text="Kolumn"/>
+          <StyleRow Text="Rad"/>
+          <StyleTable Text="Tabell"/>
+          <General Text="Allmänt">
+            <LegendStyle Text="Historik stil:"/>
+          </General>
+          <Appearance Text="Utseende"/>
+        </Legend>
+        <Title Text="Titel">
+          <Visible Text="Synlig"/>
+          <General Text="Allmänt">
+            <TextOrientation Text="Textorintering"/>
+            <TextStyle Text="Textstil"/>
+          </General>
+          <Appearance Text="Utseende"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Data">
+          <Name Text="Namn"/>
+          <XValue Text="X värde"/>
+          <Color Text="Färf:"/>
+          <Filter Text="Filter:"/>
+          <XValueType Text="X värdetyp"/>
+          <YValueType Text="Y värdetyp:"/>
+          <XAxisType Text="X axel:"/>
+          <YAxisType Text="Y axel:"/>
+          <PrimaryAxis Text="Primär"/>
+          <SecondaryAxis Text="Sekundär"/>
+          <SeriesValues>
+            <YValue Text="Y värde:"/>
+            <High Text="Hög:"/>
+            <Low Text="Låg:"/>
+            <Open Text="Öppna:"/>
+            <Close Text="Stäng:"/>
+            <RangeBegin Text="Omfång börjar"/>
+            <RangeEnd Text="Omfång slutar"/>
+            <Size Text="Storlek"/>
+            <YValue1 Text="Y värde 1"/>
+            <YValue2 Text="Y värde 2"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Värden"/>
+        <DataProcessing Text="Databearbetning">
+          <SortBy Text="Sortera efter"/>
+          <SortByX Text="X värde"/>
+          <SortByY Text="Y värde"/>
+          <SortOrder Text="Sorteringsordning"/>
+          <GroupBy Text="Gruppera efter">
+            <None Text="Inget"/>
+            <XValue Text="X värde"/>
+            <Number Text="Tal"/>
+            <Years Text="År"/>
+            <Months Text="Månader"/>
+            <Weeks Text="Veckor"/>
+            <Days Text="Dagar"/>
+            <Hours Text="Timmar"/>
+            <Minutes Text="Minuter"/>
+            <Seconds Text="Sekunder"/>
+            <Milliseconds Text="Millisekunder"/>
+          </GroupBy>
+          <GroupInterval Text="Gruppintervall"/>
+          <GroupFunction Text="Grupperingsfunktion"/>
+          <CollectData Text="Samla data">
+            <None Text="Inget"/>
+            <TopN Text="TopN"/>
+            <BottomN Text="BottenN"/>
+            <LessThan Text="Mindre än värde"/>
+            <LessThanPercent Text="Mindre än procent"/>
+            <GreaterThan Text="Större än värde"/>
+            <GreaterThanPercent Text="Större än procent"/>
+          </CollectData>
+          <Value Text="Värde:"/>
+          <CollectedText Text="Samlad text:"/>
+          <CollectedColor Text="Samlad färg:"/>
+          <Explode Text="Utvidga">
+            <None Text="Inget"/>
+            <Biggest Text="Största värde"/>
+            <Lowest Text="Minsta värde"/>
+            <Specific Text="Specefikt värde"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Utseende">
+          <Default Text="Förvalt"/>
+          <DrawingStyle Text="Ritstil"/>
+          <PointWidth Text="Punktbredd"/>
+          <LabelsStyle Text="Etikettstil"/>
+          <DrawSideBySide Text="Rita sida-vid-sida"/>
+          <ShowMarkerLines Text="Visa markeringslinjer"/>
+          <DoughnutRadius Text="Munkradie"/>
+          <AreaDrawingStyle Text="Ritstil för område"/>
+          <Markers Text="Markeringar:"/>
+          <PriceUpColor Text="Prisstegringsfärg"/>
+          <ReversalAmount Text="Återfört värde"/>
+          <BoxSize Text="Lådstorlek"/>
+          <NumberOfLinesInBreak Text="Rader i ett avbrott"/>
+          <LabelsPlacement Text="Etikettsplacering"/>
+          <PointsGap Text="Punktgap"/>
+          <MinPointHeight Text="Min. punkt höjd"/>
+          <ValueType Text="Värdetyp"/>
+          <ThreeDDrawingStyle Text="3d Ritstil:"/>
+          <ThreeDRotation Text="3D rotering:"/>
+          <FunnelStyle Text="Trattstil"/>
+          <LineTension Text="Radspänning"/>
+          <NoSettings Text="Inga inställningar för den här typen av serie"/>
+        </Appearance>
+        <FillBorder Text="Fyllnad och Ramar">
+          <Palette Text="Palett"/>
+        </FillBorder>
+        <Labels Text="Etiketter">
+          <LabelView Text="Etikettvy"/>
+          <Pattern Text="Mönster"/>
+        </Labels>
+        <Markers Text="Markeringar">
+          <Style Text="Stil"/>
+          <Size Text="Storlek"/>
+          <Step Text="Steg"/>
+          <Color Text="Färg:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galleri">
+      <NewArea Text="Lägg till ett nytt diagramormåde för den här serien"/>
+      <Categories>
+        <BarColumn Text="Stapel &amp; Kolumn"/>
+        <Area Text="Område"/>
+        <Line Text="Linje"/>
+        <PointBubble Text="Punkter och Bubblor"/>
+        <Pie Text="Paj"/>
+        <Circular Text="Cirkulär"/>
+        <Financial Text="Finans"/>
+        <PyramidFunnel Text="Pyramid &amp; Tratt"/>
+        <Range Text="Omfång"/>
+      </Categories>
+      <Series>
+        <Bar Text="Stapel"/>
+        <StackedBar Text="StapladeStaplar"/>
+        <StackedBar100 Text="100% Staplade Staplar"/>
+        <Column Text="Kolumn"/>
+        <StackedColumn Text="Staplade Kolumner"/>
+        <StackedColumn100 Text="100% Staplade Kolumner"/>
+        <Area Text="Område"/>
+        <SplineArea Text="Kurvat område"/>
+        <StackedArea Text="Staplat område"/>
+        <StackedArea100 Text="100% Staplat område"/>
+        <Line Text="Linje"/>
+        <FastLine Text="Snabb linje"/>
+        <StepLine Text="Steglinje"/>
+        <Spline Text="Kurvad Linje"/>
+        <Bubble Text="Bubblor"/>
+        <Point Text="Punkt"/>
+        <FastPoint Text="Snabb Punkt"/>
+        <Pie Text="Paj"/>
+        <Doughnut Text="Munk"/>
+        <Polar Text="Pol"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Aktie"/>
+        <Candlestick Text="Stearinljus"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Punkter och Figurer"/>
+        <ThreeLineBreak Text="Tre Rader"/>
+        <Pyramid Text="Pyramid"/>
+        <Funnel Text="Tratt"/>
+        <Range Text="Omfång"/>
+        <SplineRange Text="Kurvat omfång"/>
+        <RangeColumn Text="Kolumn omfång"/>
+        <RangeBar Text="Omfångsstapel"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Kodsida">
+      <EnableVirtualSpace Text="Aktivera virtuellt utrymme"/>
+      <UseSpaces Text="Använd mellanslag för att fylla ut tab"/>
+      <AllowOutlining Text="Tillåt disposition"/>
+      <TabSize Text="Tabstopp:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Konfigurera Band">
+      <Add Text="Lägg till"/>
+      <Delete Text="Radera"/>
+    </ConfigureBands>
+    <Connection Text="Koppling">
+      <Select Text="Välj kopplingstyp"/>
+      <AlwaysUse Text="Använd alltid den här kopplingen"/>
+      <LoginPrompt Text="Inloggningsbild"/>
+      <Test Text="Prova koppling"/>
+      <TestSuccesful Text="Uppkopplingen lyckades"/>
+    </Connection>
+    <CustomLabel Text="Egen Etiektt">
+      <Paper Text="Papper"/>
+      <Landscape Text="Landskap"/>
+      <PaperWidth Text="Papperberdd"/>
+      <PaperHeight Text="Pappershöjd"/>
+      <LeftMargin Text="Vänstermarginal"/>
+      <TopMargin Text="Topmarginal"/>
+      <Label Text="Etikett parametrar"/>
+      <LabelWidth Text="Etikett bredd"/>
+      <LabelHeight Text="Etikett höjd"/>
+      <RowGap Text="Radmellanrum"/>
+      <ColumnGap Text="Kolumnmellanrum"/>
+      <Warning Text="Etiketten passar inte in på sidan"/>
+    </CustomLabel>
+    <DataBandEditor Text="Redigera databand">
+      <DataSource Text="Datakälla"/>
+      <NoData Text="Välj &quot;Data|Välj Rapportdata...&quot; i menyn för att välja mellan tillgängliga datakällor, eller skapa en ny med hjälp av &quot;Data|Lägg till Datakälla...&quot; i menyn"/>
+      <Sort Text="Sortering"/>
+      <SortBy Text="Sortera efter"/>
+      <ThenBy Text="Därefter"/>
+      <Ascending Text="Stigande"/>
+      <Descending Text="Sjunkande"/>
+      <Filter Text="Filter"/>
+      <Expression Text="Filteruttryck"/>
+    </DataBandEditor>
+    <DataWizard Text="Dataguide">
+      <Page1 Text="Välj databas"/>
+      <WhichData Text="Vilken datakoppling vill du använda till Rapporten"/>
+      <Hint Text="Välj koppling från listan eller tryck på  &quot;Ny koppling..&quot; för att skapa en ny."/>
+      <NewConnection Text="Ny koppling..."/>
+      <EditConnection Text="Redigera koppling..."/>
+      <ConnectionName Text="Ange kopplingens namn"/>
+      <ConnectionString Text="Kopplingssträng"/>
+      <Page2 Text="Välj tabeller"/>
+      <WhichTables Text="Vilka tabeller vill du använda i Rapporten"/>
+      <Wait Text="Hämtar databasinformation"/>
+      <SortTables Text="Sortera tabeller"/>
+      <AddQuery Text="Lägg till SQL fråga..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Dialog form"/>
+    <Exception Text="Exception">
+      <Hint Text="Din rapport har genererat följande undantag"/>
+      <Stack Text="Stack spårning:"/>
+      <Copy Text="Kopiera till klippbordet"/>
+    </Exception>
+    <ExpressionEditor Text="Redigera uttryck"/>
+    <Fill Text="Fyllnadseditor">
+      <Solid Text="solid"/>
+      <LinearGradient Text="Linjär övertoning"/>
+      <PathGradient Text="Centrerad övertoning"/>
+      <Hatch Text="Mönster"/>
+      <Glass Text="Genomskinlighet"/>
+      <Colors Text="Färger"/>
+      <Color Text="Färg"/>
+      <StartColor Text="Start"/>
+      <EndColor Text="Slut"/>
+      <Options Text="Tillval"/>
+      <Focus Text="Fokus"/>
+      <Contrast Text="Kontrast"/>
+      <Angle Text="Vinkel"/>
+      <CenterColor Text="Centrum"/>
+      <EdgeColor Text="Kanter"/>
+      <Shape Text="Form"/>
+      <Ellipse Text="Elips"/>
+      <Rectangle Text="Rektangel"/>
+      <ForeColor Text="Förgrund"/>
+      <BackColor Text="Bakgrund"/>
+      <Style Text="Stil"/>
+      <Blend Text="Blandning"/>
+      <GlassHatch Text="Visa mönster"/>
+    </Fill>
+    <FormatEditor Text="Välj format">
+      <Expression Text="Uttryck"/>
+      <General Text="Allmänt"/>
+      <Number Text="Siffror"/>
+      <Currency Text="Valuta"/>
+      <Date Text="Datum"/>
+      <Time Text="Tid"/>
+      <Percent Text="Procent"/>
+      <Boolean Text="Boolean"/>
+      <Custom Text="Anpassat"/>
+      <UseLocale Text="Använd lokala instaällningar"/>
+      <DecimalDigits Text="Antal decimaler:"/>
+      <DecimalSeparator Text="Decimaltecken:"/>
+      <GroupSeparator Text="Gruppdelare:"/>
+      <PositivePattern Text="Positivt mönster:"/>
+      <NegativePattern Text="Negativt mönster:"/>
+      <CurrencySymbol Text="Valutasymbol:"/>
+      <PercentSymbol Text="Procent symbol:"/>
+      <FalseText Text="Falskt värde:"/>
+      <TrueText Text="Sant värde:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Redigera kolumner">
+      <Columns Text="Kolumn"/>
+      <Properties Text="Egenskaper"/>
+      <Add Text="Lägg till"/>
+      <Remove Text="Radera"/>
+      <AddAll Text="Lägg till alla"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Redigera Grupp">
+      <Condition Text="Grupperingsvillkor"/>
+      <Hint Text="Välj datakolumn eller skriv in ett uttryck"/>
+      <Settings Text="Inställningar"/>
+      <Sort Text="Sortering"/>
+      <NoSort Text="Sortera inte"/>
+      <Ascending Text="Stigande"/>
+      <Descending Text="Sjunkande"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Grupperingsexpert">
+      <Condition Text="Grupperingsvillkor"/>
+      <Hint Text="Välj en data kolumn eller ange ett uttryck, tyck därefter på &quot;Lägg till&quot;knappen för att lägga till en ny grupp"/>
+      <Add Text="Lägg till"/>
+      <Groups Text="Grupper"/>
+      <Edit Text="Redigera..."/>
+      <Delete Text="Radera"/>
+    </GroupExpert>
+    <HighlightEditor Text="Markeringsvillkor">
+      <Conditions Text="Villkor"/>
+      <Add Text="Lägg till"/>
+      <Delete Text="Radera"/>
+      <Edit Text="Redigera"/>
+      <Style Text="Stil"/>
+      <Fill Text="Fyll"/>
+      <TextColor Text="Textfärg"/>
+      <Font Text="Font"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Hyperlinkeditor">
+      <Url Text="URL"/>
+      <PageNumber Text="Sidnummer"/>
+      <Bookmark Text="Bokmärke"/>
+      <Report Text="Rapport"/>
+      <ReportPage Text="Rapportsida"/>
+      <Custom Text="Anpassat"/>
+      <UrlValue Text="Ange en URL (t.ex. http://www.ideida.se):"/>
+      <UrlExpression Text="eller ange ett uttryck som fer som resultat en URL:"/>
+      <PageNumberValue Text="Ange sidnummer:"/>
+      <PageNumberExpression Text="eller ange ett uttryck som ger ett sidnummer som resultat:"/>
+      <BookmarkValue Text="Ange bokmärke"/>
+      <BookmarkExpression Text="eller ange ett uttryck som ger ett bokmärke som resultat:"/>
+      <ReportName Text="Rapportnamn:"/>
+      <ParameterName Text="Rapportparameter:"/>
+      <ParameterValue Text="Ange parametervärde:"/>
+      <ParameterExpression Text="eller ange ett uttryck som resulterar i ett parametervärde:"/>
+      <PageName Text="Rapportsida:"/>
+      <CustomValue Text="Ange ett hyperlänk värde:"/>
+      <CustomExpression Text="eller ange ett uttryck som resulterar i ett hyperlänk värde:"/>
+      <Hint Text="Vad händer om du klickar på det här objektet i förhandsgranska:"/>
+      <HintUrl Text="Angiven URL kommer att öppnas"/>
+      <HintPageNumber Text="Du kommer att hamna op den angivna sidan."/>
+      <HintBookmark Text="Do kommer att hamna på objektet som innehåller angivet bokmärke"/>
+      <HintReport Text="Angiven rapport kommer att öppnas i ett separat förhandsgranska fönster"/>
+      <HintReportPage Text="Angiven sida kommer att genereras och öppnas i en egen föhandsgranskaflik"/>
+      <HintCustom Text="Du måste skapa en &quot;Klick&quot; händelse för att definierar en anpassad åtgärd."/>
+      <ModifyAppearance Text="Justera objektets utseende så at det ser ut som en klickbar länk."/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Etikettguide">
+      <Hint Text="Välj en av de födefinerade etiketterna, eller tryck på &quot;Anpassad Etikett...&quot; för att ange en egen storlek."/>
+      <Label Text="Etikett"/>
+      <Manufacturer Text="Tillverkare"/>
+      <Product Text="Proodukt"/>
+      <Parameters Text="Parametrar"/>
+      <Size Text="Storlek"/>
+      <PaperSize Text="Pappersformat"/>
+      <Rows Text="Rader"/>
+      <Columns Text="Kolumner"/>
+      <CustomLabel Text="Anpassad Etikett..."/>
+      <Custom Text="Anpassad"/>
+    </LabelWizard>
+    <PageSetup Text="Sidinställning">
+      <Paper Text="Papper"/>
+      <Custom Text="Anpassad"/>
+      <Width Text="Bredd"/>
+      <Height Text="Höjd"/>
+      <Orientation Text="Orientering"/>
+      <Portrait Text="Portätt"/>
+      <Landscape Text="Landskap"/>
+      <Margins Text="Marginaler"/>
+      <Left Text="Vänster"/>
+      <Top Text="Top"/>
+      <Right Text="Höger"/>
+      <Bottom Text="Botten"/>
+      <MirrorMargins Text="Spegelvänd marginalerna på jämna sidor"/>
+      <Source Text="Källa"/>
+      <FirstPage Text="Första sidan"/>
+      <OtherPages Text="Övriga sidor"/>
+      <Columns Text="Kolumner"/>
+      <Count Text="Antal:"/>
+      <ColumnWidth Text="Bredd:"/>
+      <Positions Text="Position:"/>
+      <Other Text="Övrigt"/>
+      <Duplex Text="Duplex"/>
+      <DupDefault Text="Förhandsvalt"/>
+      <DupSimplex Text="Simplex"/>
+      <DupVertical Text="Vertikal"/>
+      <DupHorizontal Text="Horisontell"/>
+      <EditWatermark Text="Redigera Vattenstämpel..."/>
+      <ExtraWidth Text="Extra design bredd"/>
+    </PageSetup>
+    <PictureEditor Text="Bildredigerare">
+      <Picture Text="Bild"/>
+      <Load Text="Läs in"/>
+      <Paste Text="Klistra in"/>
+      <Clear Text="Rensa"/>
+      <DataColumn Text="Datakolumn"/>
+      <FileName Text="Filnamn"/>
+      <Url Text="URL"/>
+      <FileHint1 Text="Filnamn"/>
+      <FileHint2 Text="O.B.S. Du måste installera den här filen tillsammans med rapporten."/>
+      <UrlHint Text="URL:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Expansionsmoduler">
+      <Hint Text="Lista på installerade moduler"/>
+      <Add Text="Lägg till"/>
+      <Remove Text="Radera"/>
+      <Note Text="O.B.S. Ändringar blir tillgängliga först när programmet startats om."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Utför ändringarna på alla sidor och bygg om rapporten"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Sök"/>
+    <PrinterSetup Text="Utskrift">
+      <PrinterSetup Text="Skrivarinställningar"/>
+      <Printer Text="Skrivare"/>
+      <SavePrinter Text="Spara vald skrivare i rapporten"/>
+      <Settings Text="Inställningar"/>
+      <PrintToFile Text="Skriv till fil"/>
+      <PageRange Text="Sidomfång"/>
+      <All Text="Alla"/>
+      <Current Text="Aktuell sida"/>
+      <Numbers Text="Sidor:"/>
+      <Hint Text="Ange sidnummer och/eller omfång åtskida med komma: Exempel: 1,3,5-12"/>
+      <Copies Text="Kopior"/>
+      <Count Text="Antal"/>
+      <Collate Text="Sortera"/>
+      <Other Text="Övrigt"/>
+      <OddEven Text="Skriv ut"/>
+      <AllPages Text="Alla sidor"/>
+      <OddPages Text="Udda sidor"/>
+      <EvenPages Text="Jämna sidor"/>
+      <Order Text="Ordning"/>
+      <OrderDirect Text="Stigande (1-9)"/>
+      <OrderReverse Text="Sjunkande (9-1)"/>
+      <Duplex Text="Duplex"/>
+      <Source Text="Källa"/>
+      <PrintMode Text="Utskrifttyp"/>
+      <PrintModeDefault Text="Förvalt"/>
+      <PrintModeSplit Text="Dela upp stora sidor"/>
+      <PrintModeScale Text="Skala"/>
+      <PrintOnSheet Text="Skriv på papper:"/>
+      <PagesOnSheet Text="Sidor på papper"/>
+      <PagesOnSheet1 Text="1 Sida"/>
+      <PagesOnSheet2 Text="2 Sidor"/>
+      <PagesOnSheet4 Text="4 Sidor"/>
+      <PagesOnSheet8 Text="8 Sidor"/>
+      <Print Text="Skriv ut"/>
+      <Error Text="Otillåtet sidomfång"/>
+    </PrinterSetup>
+    <QueryWizard Text="Frågeguide">
+      <Page1 Text="Välj ett namn"/>
+      <SetName Text="Väölj ett namn på fråge objektet."/>
+      <NameHint Text="Det här namnet kommer att visas i &quot;Data&quot; fönstret."/>
+      <Page2 Text="Ange SQL fråga"/>
+      <WhatData Text="Vilket data ska returneras av SQL frågan?"/>
+      <TypeSql Text="Skriv in din SQL-fråga ellen använd Query skaparen för att bygga en."/>
+      <QueryBuilder Text="Query skapare..."/>
+      <Page3 Text="Definiera parametrar"/>
+      <Page4 Text="Definiera kolumner"/>
+      <Refresh Text="Läs in kolumnerna på nytt"/>
+      <AddColumn Text="Lägg till kalkylerad kolumn"/>
+      <AddParameter Text="Lägg till parameter"/>
+      <Delete Text="Radera"/>
+    </QueryWizard>
+    <RelationEditor Text="Relationsredigerare">
+      <ParentTable Text="Föräldra tabell"/>
+      <ChildTable Text="Barn tabell"/>
+      <Parent Text="Förälder"/>
+      <Child Text="Barn"/>
+      <Columns Text="Kolumner"/>
+      <Error Text="Inkonsikvent antal förälder och barn kolumner"/>
+    </RelationEditor>
+    <ReportData Text="Välj rapportdata">
+      <Hint Text="Välj de datakällor och fält du vill använda i rapporten:"/>
+      <Aliases Text="Visa alias"/>
+    </ReportData>
+    <ReportOptions Text="Rapporttillägg">
+      <General Text="Allmänt"/>
+      <Description Text="Beskrivning"/>
+      <Script Text="Script"/>
+      <Security Text="Säkerhet"/>
+      <Inheritance Text="Arv"/>
+      <Name Text="namn"/>
+      <Author Text="Upphovsman"/>
+      <Version Text="Version"/>
+      <Description1 Text="Beskrivning"/>
+      <Picture Text="Bild"/>
+      <SavePreviewPicture Text="Spara förhandsgranskabild"/>
+      <Load Text="Läs in..."/>
+      <Clear Text="Rensa"/>
+      <Created Text="Skapad:"/>
+      <Modified Text="Ändrad:"/>
+      <Language Text="Script språk:"/>
+      <Note Text="O.B.S. Om du ändrar språk så kommer hela scriptet att rensas!"/>
+      <RefAssemblies Text="Refereande bibiliotek"/>
+      <Add Text="Lägg till..."/>
+      <Password Text="Lösenord:"/>
+      <RetypePassword Text="Lösenordsbekräftelse:"/>
+      <Inherited Text="Den här rapporten är ärvd från basraporten:"/>
+      <NotInherited Text="Den här rapporten är inte ärvd."/>
+      <Choose Text="Välj tillval:"/>
+      <DontChange Text="Ändra inte"/>
+      <Detach Text="Koppla loss från basrapport"/>
+      <Inherit Text="Ärv från den här rapporten:"/>
+      <Browse Text="Bläddra..."/>
+      <DoublePass Text="Dubbelpass"/>
+      <Compress Text="Komprimera rapportfil"/>
+      <UseFileCache Text="Använd filcash"/>
+      <ConvertNulls Text="Konvertera till null värden"/>
+      <TextQuality Text="Testkvalitet"/>
+      <SmoothGraphics Text="Utjämna grafik"/>
+      <QualityDefault Text="Förvalt"/>
+      <QualityRegular Text="Normal"/>
+      <QualityClearType Text="Clear type"/>
+      <QualityAntiAlias Text="Antialias"/>
+      <PasswordError Text="Lösenorden överenstämmer inte. Var vänlig och förösk igen."/>
+    </ReportOptions>
+    <ReportPageOptions Text="Rapportsida">
+      <Units Text="Sidenheter"/>
+      <Millimeters Text="Millimeter"/>
+      <Centimeters Text="Centimeter"/>
+      <Inches Text="Tum"/>
+      <HundrethsOfInch Text="Hundradelstum"/>
+      <Grid Text="Matris"/>
+      <ShowGrid Text="Visa Matris"/>
+      <SnapToGrid Text="Fäst mot Matris"/>
+      <DottedGrid Text="Punktmatris"/>
+      <Size Text="Fäststorlek"/>
+      <Markers Text="Objektmarkering"/>
+      <Rectangle Text="Rektangel"/>
+      <Corners Text="Hörn"/>
+      <BandView Text="Band Vy"/>
+      <Structure Text="Struktur"/>
+      <Classic Text="Klassisk"/>
+      <EditAfterInsert Text="Redigera efter infogning"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="RichText Redigerare">
+      <Open Text="Öppna"/>
+      <Save Text="Spara"/>
+      <Subscript Text="Nesdsänkt"/>
+      <Superscript Text="Upphöjt"/>
+      <Bullets Text="Punkter"/>
+      <Confirm Text="Texten har ändrats, Spara ändringarna?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Sök och Ersätt">
+      <Find Text="Sök efter:"/>
+      <Replace Text="Ersätt med:"/>
+      <Options Text="Söktillägg"/>
+      <MatchCase Text="VERSAL/gemen"/>
+      <MatchWholeWord Text="Sök hela ord"/>
+      <FindNext Text="Sök nästa"/>
+      <ReplaceBtn Text="Ersätt"/>
+      <ReplaceAll Text="Ersätt alla"/>
+      <NotFound Text="Hittar inte eftersökt text"/>
+      <NoMoreFound Text="Inga fler förekomster har hittats"/>
+    </SearchReplace>
+    <SelectDataSource Text="Välj Datakälla">
+      <Hint Text="Välj en eller flera datakällor för användning i rapporten."/>
+      <AvailableDs Text="Tillgängliga datakällor:"/>
+      <SelectedDs Text="Valda datakällor:"/>
+      <ProjectDs Text="Projekt dataset"/>
+      <OtherDs Text="Andra datakällor"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Välj språk">
+      <SelectLanguage Text="Välj ett av språken från listan"/>
+      <Auto Text="Automatiskt"/>
+      <Folder Text="Mapp som innehåller språkfiler:"/>
+      <SelectFolder Text="Välj den mapp som innehåller språkfilerna (*.frl)"/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Rapportguide">
+      <GroupsPage Text="Skapa grupper"/>
+      <CreateGroups Text="Skapa grupper (tillval)"/>
+      <Groups Text="Grupper:"/>
+      <LayoutPage Text="Definera utseende"/>
+      <DefineLayout Text="Definiera pappersorientering och datautseende"/>
+      <Orientation Text="Pappersorientering"/>
+      <Portrait Text="Porträtt"/>
+      <Landscape Text="Landskap"/>
+      <Layout Text="Utseende"/>
+      <Tabular Text="Tabellform"/>
+      <Columnar Text="Kolumnform"/>
+      <StylePage Text="Välj stil"/>
+      <Styles Text="Välj rapportstil"/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Strängredigerare"/>
+    <Style Text="Stilredigerare">
+      <Styles Text="Stilar"/>
+      <Add Text="Lägg till"/>
+      <Delete Text="Radera"/>
+      <Edit Text="Redigera"/>
+      <Load Text="Ladda..."/>
+      <Save Text="Spara..."/>
+      <Settings Text="Stilinställningar"/>
+      <Border Text="Ramar"/>
+      <Fill Text="Fyllnad"/>
+      <Font Text="Font"/>
+      <TextColor Text="Textfärg"/>
+      <StyleName Text="Stil"/>
+    </Style>
+    <TextEditor Text="Textredigerare">
+      <WordWrap Text="Ordbrytning"/>
+    </TextEditor>
+    <TotalEditor Text="Summeringsredigerare">
+      <TotalName Text="Sumeringsnamn:"/>
+      <Total Text="Summering"/>
+      <Function Text="Funktion:"/>
+      <DataColumnOrExpression Text="Datakolumn eller uttryck:"/>
+      <DataBand Text="Utvärdera baserat på varje rad i bandet:"/>
+      <EvaluateCondition Text="Utvärdera efter följande villkor:"/>
+      <PrintOn Text="Skriv på bandet:"/>
+      <Options Text="Tillval"/>
+      <ResetAfterPrint Text="Återställ efter utskrift"/>
+      <ResetRepeated Text="Återställ om bandet repeteras"/>
+      <InvisibleRows Text="Inkludera osynliga rader"/>
+      <Sum Text="Sum"/>
+      <Min Text="Min"/>
+      <Max Text="Max"/>
+      <Avg Text="Genomsnittliig"/>
+      <Count Text="Antal"/>
+    </TotalEditor>
+    <UIOptions Text="Användarinställningar">
+      <Appearance Text="Utseende:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (blue),Office 2007 (silver),Office 2007 (black),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Vattenstämpel">
+      <Enabled Text="Aktiverad"/>
+      <Text Text="Text"/>
+      <TextItems Text="HEMLIG,KOPIA,ORGINAL,EXEMPEL,VIKTIGT"/>
+      <Rotation Text="Vinkel"/>
+      <Horizontal Text="Horisontell"/>
+      <Vertical Text="Vertikal"/>
+      <ForwardDiagonal Text="Vertikal Diagonal"/>
+      <BackwardDiagonal Text="Bakvänd Diagonal"/>
+      <Font Text="Font"/>
+      <Color Text="Färg"/>
+      <Picture Text="Bild"/>
+      <Load Text="Läs in"/>
+      <Clear Text="Rensa"/>
+      <Size Text="Storlek"/>
+      <Normal Text="Normal"/>
+      <Stretch Text="Sträck"/>
+      <Zoom Text="Zomma"/>
+      <Tile Text="Sida vid Sida"/>
+      <Transparency Text="Genomskinlighet"/>
+      <Zorder Text="Z-Order"/>
+      <TextOnTop Text="Text överst"/>
+      <PictureOnTop Text="Bild överst"/>
+      <ApplyToAll Text="Genomför på alla sidor"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Server namn:"/>
+      <ServerLogon Text="Inloggning på den här servern"/>
+      <UserName Text="Användarnamn:"/>
+      <Password Text="Lösenord:"/>
+      <Database Text="Koppla upp databas"/>
+      <DatabaseName Text="Databasnamn:"/>
+      <DatabaseFile Text="Databasfil:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Använd Windowsidentifiering"/>
+      <UseSql Text="Andvänd SQL Server identifiering"/>
+      <SavePassword Text="Spara mitt lösenord"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Kopplingssträng"/>
+      <Build Text="Bygg..."/>
+    </OleDb>
+    <Xml>
+      <Xsd Text="Scxhema fil:"/>
+      <Xml Text="Data Fil:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Redigera..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Kan Växa"/>
+      <CanShrink Text="Kan Krympa"/>
+      <GrowToBottom Text="Väx mot Botten"/>
+      <Hyperlink Text="Hyperlänk..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Kan Bryta"/>
+    </BreakableComponent>
+    <Band>
+      <StartNewPage Text="Starta Ny Sida"/>
+      <PrintOnBottom Text="Skriv längst ned på sidan"/>
+    </Band>
+    <DataBand>
+      <KeepTogether Text="Håll Ihop"/>
+      <KeepDetail Text="Behåll Detalj"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Repetera På Varje Sida"/>
+      <KeepWithData Text="Håll Ihop Med Data"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Återställ sidnummer"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Fyll outnyttjat utrymme"/>
+      <CompleteToNRows Text="Fylli i upp till N datarader"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Storlekshantering"/>
+      <AutoSize Text="Automatisk"/>
+      <CenterImage Text="Centrera bild"/>
+      <Normal Text="Normal"/>
+      <StretchImage Text="Sträck bild"/>
+      <Zoom Text="Zomma"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Formatering..."/>
+      <Clear Text="Rensa"/>
+      <AutoWidth Text="Automatisk Bredd"/>
+      <WordWrap Text="Ordbrytning"/>
+      <AllowExpressions Text="Tillåt uttryck"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Skriv på förälder"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Repetera Huvuden"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Infoga raden ovanför"/>
+      <InsertBelow Text="Infoga raden nedanför"/>
+      <AutoSize Text="Automatisk Storlek"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Infoga kolumn till vänster"/>
+      <InsertToRight Text="Infoga kolumn till höger"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Slå samma celler"/>
+      <Split Text="Dela celler"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Celler sida vid sida"/>
+      <ShowTitle Text="Visa titel"/>
+      <Style Text="Stil"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Summering"/>
+      <Function Text="Funktioner"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Redigera kolumn..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Streckkod"/>
+      <AutoSize Text="Automatisk storlek"/>
+      <AutoEncode Text="Automatisk EnCode"/>
+      <CalcChecksum Text="Beräkna CRC"/>
+      <ShowText Text="Visa Text"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Visa Markeringar"/>
+      <ShowGrid Text="Visa Matris"/>
+    </ZipCodeObject>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Beräknar omfång..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Fyller matrisen..."/>
+      <NewColumn Text="Dra data hit för&#13;&#10;att skapa en ny kolumn"/>
+      <NewRow Text="Dra data hit för &#13;&#10;att skap en ny rad"/>
+      <NewCell Text="Dra data hit för&#13;&#10;för att skapa en ny cell"/>
+      <Total Text="Totalt"/>
+      <Title Text="Titel"/>
+      <White Text="Vit"/>
+      <Gray Text="Grå"/>
+      <Orange Text="Orange"/>
+      <Green Text="Grön"/>
+      <GreenOrange Text="Grön och Orange"/>
+      <Blue Text="Blå"/>
+      <BlueWhite Text="Blå och Vit"/>
+      <GrayOrange Text="Grå och Orange"/>
+      <BlueOrange Text="Blå och Orange"/>
+      <OrangeWhite Text="Orange och Vit"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Tom Rapport"/>
+    <StandardReport Text="Standard Rapportguide"/>
+    <InheritedReport Text="Ärvd Rapport"/>
+    <Label Text="Etikettguiide"/>
+    <NewDataSource Text="Ny Datakälla"/>
+    <NewPage Text="Ny Rapportsida"/>
+    <NewDialog Text="Ny Dialog"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Exporteringen klar på {0} ms"/>
+      <OrderByCells Text="Ordning efter cell"/>
+      <AnalyzeObjects Text="Analyserar objekt"/>
+      <SavePage Text="Spara sida"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Sidbrytning"/>
+      <OpenAfterExport Text="Öppna efter export"/>
+      <Pictures Text="Bilder"/>
+      <Options Text="Tillval"/>
+      <None Text="Inget"/>
+      <Metafile Text="Metafil"/>
+    </Misc>
+    <Image Text="Exportera till bild">
+      <File Text="Bildfil..."/>
+      <ImageFormat Text="Format"/>
+      <Resolution Text="Upplösning"/>
+      <Quality Text="Jpeg Kvalitet:"/>
+      <SeparateFiles Text="Separat fil för varje sida"/>
+      <Bmp Text="Bitmap bild"/>
+      <Png Text="PNG Bild"/>
+      <Jpeg Text="JPG Bild"/>
+      <Gif Text="GIF Bild"/>
+      <Tiff Text="TIFF Bild"/>
+      <Metafile Text="Windows Metafil"/>
+    </Image>
+    <RichText Text="Exportera till RTF">
+      <File Text="RTF..."/>
+    </RichText>
+    <Text Text="Exportera till Text/Matris Skrivare">
+      <File Text="Textfil/Matrisskriavre"/>
+      <EmptyLines Text="Tomma rader"/>
+      <DataOnly Text="Enbart data"/>
+      <Frames Text="Ramar"/>
+      <FramesNone Text="Ingen"/>
+      <FramesText Text="Text"/>
+      <FramesGraphic Text="Grafik"/>
+      <Codepage Text="Kodsida"/>
+      <Default Text="Förvalt"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Skala X:"/>
+      <ScaleY Text="Skala Y:"/>
+      <AutoScale Text="Automatisk skalning"/>
+      <Printer Text="Skrivare"/>
+      <CopiesCount Text="Kopieräknare"/>
+      <PrinterType Text="Skrivartyp"/>
+      <Commands Text="Kommandon"/>
+      <PageWidth Text="Sidbredd:"/>
+      <PageHeight Text="Sidhöjd:"/>
+      <DataLoss Text="TAPPAR TROLIGTVIS DATA&#13;&#10;v.v. öka skalan X/Y"/>
+      <ScaleMessage Text="Beräknar optimal skala"/>
+      <Scale Text="Skala"/>
+    </Text>
+    <Csv Text="Exportera till CSV">
+      <File Text="CSV Fil"/>
+      <Separator Text="Separator"/>
+      <Codepage Text="Kodsida"/>
+      <Default Text="Förvalt"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Enbart Data"/>
+    </Csv>
+    <Xml Text="Exportera till XML">
+      <File Text="XML (Excel) tabell..."/>
+    </Xml>
+    <Odt Text="Exportera till Open Office Writer">
+      <File Text="OpenOffice Calc..."/>
+    </Odt>
+    <Ods Text="Exportera till Open Ofiice calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Pdf Text="Exportera till PDF">
+      <File Text="Adobe Acrobat..."/>
+      <Export Text="Exportera"/>
+      <Compressed Text="Komprimerat"/>
+      <EmbeddedFonts Text="Infogade fonter"/>
+      <Background Text="Bakgrund"/>
+      <PrintOptimized Text="Skriv opitimerat"/>
+      <Information Text="Information"/>
+      <DocumentInformation Text="Dokumentinformation"/>
+      <Title Text="Titel"/>
+      <Author Text="Upphovsman"/>
+      <Subject Text="Ämne"/>
+      <Keywords Text="Nyckelord"/>
+      <Creator Text="Skapare"/>
+      <Producer Text="Producent"/>
+      <Security Text="Säkerhet"/>
+      <Authentification Text="Autentisiering"/>
+      <OwnerPassword Text="Ägarens lösenord"/>
+      <UserPassword Text="Användarens Lösenord"/>
+      <Permissions Text="Rättigheter"/>
+      <PrintTheDocument Text="SKriv dokument"/>
+      <ModifyTheDocument Text="Ändra dokument"/>
+      <CopyOfTextAndGraphics Text="Kopiering av text och grafik"/>
+      <AddOrModifyTextAnnotations Text="Lägg till eller ändra textnoteringar"/>
+      <Viewer Text="Visare"/>
+      <ViewerPreferences Text="Inställningar"/>
+      <HideToolbar Text="Göm Vertygsrad"/>
+      <HideMenubar Text="Göm Menyrad"/>
+      <HideWindowUserInterface Text="Göm Meny och Användarinterface"/>
+      <FitWindow Text="Passa in fönster"/>
+      <CenterWindow Text="Centrera Fönster"/>
+      <PrintScaling Text="Skala Utskrift"/>
+      <PrintAfterOpenOfDocument Text="Skriv ut efter öpnnandet av dokumentet"/>
+      <Outline Text="Disposition"/>
+    </Pdf>
+    <Html Text="Exportera till HTML">
+      <File Text="HTML fil..."/>
+      <SinglePage Text="En Sida"/>
+      <SubFolder Text="Underbibliotek"/>
+      <Navigator Text="Navigator"/>
+      <Total Text="Totalt"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Email Text="Skicka E-Post">
+      <Email Text="E-Post"/>
+      <Account Text="Konto"/>
+      <Address Text="Adress:"/>
+      <Subject Text="Ämne"/>
+      <Message Text="Meddelande"/>
+      <Attachment Text="Bilaga"/>
+      <Settings Text="Inställningar..."/>
+      <Name Text="Namn:"/>
+      <Template Text="Mall:"/>
+      <Host Text="Host:"/>
+      <Port Text="Port:"/>
+      <UserName Text="Användanamn:"/>
+      <Password Text="Lösenord:"/>
+      <AddressError Text="Adressen kan inte vara tom."/>
+      <HostError Text="Host kan inte vara tom."/>
+      <SendingEmail Text="Skickar epost - {0} kb"/>
+    </Email>
+  </Export>
+</Language>

@@ -14,6 +14,7 @@
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
+    <PackageIcon>frlogo-big.png</PackageIcon>
     <AssemblyOriginatorKeyFile>../FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright>Fast Reports Inc.</Copyright>
@@ -23,13 +24,13 @@
     <Authors>Fast Reports Inc.</Authors>
     <Product>FastReport</Product>
     <PackageId>FastReport.OpenSource</PackageId>
-    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
     <Version>1.0.0</Version>
     <Configurations>Debug;Release</Configurations>
     <AssemblyName>FastReport</AssemblyName>
     <RootNamespace>FastReport</RootNamespace>
-    <Description>FastReport Open Source is an open source reporting solution for .Net Core 2.x and .Net Framework 4.x. 
+    <Description>FastReport Open Source is an open source reporting solution for .Net Core and .Net Framework 4.x. 
 Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, shapes, line, PolyLine, Polygon and many more.</Description>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
   </PropertyGroup>
@@ -72,6 +73,14 @@ Various report objects will allow your report to look exactly how you want it to
     <EmbeddedResource Include="..\FastReport\Resources\**\*.*">
       <Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>    
     </EmbeddedResource>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="..\PackageNet\frlogo-big.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -5,9 +5,6 @@
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void OnProgressInternal()
-        {
-            
-        }
+        partial void OnProgressInternal();
     }
 }
