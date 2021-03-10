@@ -22,6 +22,8 @@ namespace FastReport.Web
             }
             else
             {
+                if (control.SelectedIndex == -1)
+                    control.SelectedIndex = 0;
                 control.SelectedItem = control.Items[control.SelectedIndex];
                 control.Text = control.SelectedItem.ToString();
             }

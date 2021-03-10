@@ -39,7 +39,7 @@ namespace FastReport.Data
             lblPassword.Text = res.Get("Password");
             gbDatabase.Text = res.Get("Database");
             lblDatabase.Text = res.Get("DatabaseName");
-			tbCertificatePath.Image = Res.GetImage(1);
+			tbCertificatePath.ImageIndex = 1;
             res = new MyRes("Export,Email");
         }
 

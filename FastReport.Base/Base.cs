@@ -757,6 +757,7 @@ namespace FastReport
             ObjectCollection list = ChildObjects;
             foreach (Base c in list)
             {
+                c.Clear();
                 c.Dispose();
             }
         }

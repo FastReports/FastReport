@@ -525,7 +525,7 @@ namespace FastReport
         /// </summary>
         [DefaultValue(0f)]
         [Category("Appearance")]
-        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        //[TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
         public float FirstTabOffset
         {
             get { return firstTabOffset; }
@@ -1078,17 +1078,17 @@ namespace FastReport
 
         internal HtmlTextRenderer GetHtmlTextRenderer(Graphics g, float scale, float fontScale, RectangleF textRect, StringFormat format)
         {
-            return GetHtmlTextRenderer(g, fontScale, scale, fontScale, textRect, format);
+            return GetHtmlTextRenderer(g, fontScale, scale, fontScale, textRect, format, false);
         }
 
 
-        internal HtmlTextRenderer GetHtmlTextRenderer(Graphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format)
+        internal HtmlTextRenderer GetHtmlTextRenderer(Graphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format, bool isPrinting)
         {
             return new HtmlTextRenderer(Text, g, font.Name, font.Size, font.Style, TextColor,
                       textOutline.Color, textRect, Underlines,
                       format, horzAlign, vertAlign, ParagraphFormat.MultipleScale(formatScale), ForceJustify,
-                      scale * 96f / DrawUtils.ScreenDpi, fontScale * 96f / DrawUtils.ScreenDpi, InlineImageCache
-                      );
+                      scale * 96f / DrawUtils.ScreenDpi, fontScale * 96f / DrawUtils.ScreenDpi, InlineImageCache,
+                      isPrinting);
         }
 
         /// <summary>
@@ -1137,7 +1137,7 @@ namespace FastReport
                             try
                             {
                                 using (HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(e.Graphics, e.ScaleX,
-                                    IsPrinting ? 1 : e.ScaleX, IsPrinting ? 1 : e.ScaleX, textRect, format))
+                                    IsPrinting ? 1 : e.ScaleX, IsPrinting ? 1 : e.ScaleX, textRect, format, IsPrinting))
                                 {
                                     htmlRenderer.Draw();
                                 }
@@ -1156,7 +1156,7 @@ namespace FastReport
                                     outlinePen, textRect, format, HorzAlign, VertAlign, LineHeight * e.ScaleY, Angle,
                                     FontWidthRatio, ForceJustify, Wysiwyg, HasHtmlTags, false,
                                     e.ScaleX * 96f / DrawUtils.ScreenDpi,
-                                    IsPrinting ? 1 : e.ScaleX * 96f / DrawUtils.ScreenDpi, InlineImageCache);
+                                    IsPrinting ? 1 : e.ScaleX * 96f / DrawUtils.ScreenDpi, InlineImageCache, IsPrinting);
                                 advancedRenderer.Draw();
                             }
                             else

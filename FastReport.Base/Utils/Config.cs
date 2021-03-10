@@ -25,9 +25,10 @@ namespace FastReport.Utils
 #endif
         #region Private Fields
 
-        private static CultureInfo engCultureInfo = new CultureInfo("en-US");
-        private static XmlDocument FDoc = new XmlDocument();
+        private static readonly CultureInfo engCultureInfo = new CultureInfo("en-US");
+        private static readonly XmlDocument FDoc = new XmlDocument();
 
+        private static readonly string version = typeof(Report).Assembly.GetName().Version.ToString(3);
         private static string FFolder = null;
         private static string FFontListFolder = null;
         private static string FLogs = "";
@@ -36,13 +37,16 @@ namespace FastReport.Utils
         private static bool FRightToLeft = false;
         private static string FTempFolder = null;
         private static string systemTempFolder = null;
-        private static bool FStringOptimization = false;
+        private static bool FStringOptimization = true;
         private static bool FWebMode;
         private static bool preparedCompressed = true;
         private static bool disableHotkeys = false;
         private static bool disableBacklight = false;
         private static bool enableScriptSecurity = false;
         private static ScriptSecurityProperties scriptSecurityProps = null;
+        private static bool forbidLocalData = false;
+        private static bool userSetsScriptSecurity = false;
+
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
         private static readonly bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
@@ -65,6 +69,17 @@ namespace FastReport.Utils
             get { return isWindows; }
         }
 #endif
+
+
+
+        /// <summary>
+        /// Gets or sets a value indicating is it impossible to specify a local data path in Xml and Csv.
+        /// </summary>
+        public static bool ForbidLocalData
+        {
+            get { return forbidLocalData; }
+            set { forbidLocalData = value; }
+        }
 
 
         /// <summary>
@@ -188,7 +203,7 @@ namespace FastReport.Utils
         /// </summary>
         public static string Version
         {
-            get { return typeof(Report).Assembly.GetName().Version.ToString(3); }
+            get { return version; }
         }
 
         /// <summary>
@@ -218,6 +233,13 @@ namespace FastReport.Utils
                 if (OnEnableScriptSecurityChanged != null)
                     OnEnableScriptSecurityChanged.Invoke(null, null);
                 enableScriptSecurity = value;
+                // 
+                userSetsScriptSecurity = true;
+                if (value)
+                {
+                    if(scriptSecurityProps == null)
+                        scriptSecurityProps = new ScriptSecurityProperties();
+                }
             }
         }
 
@@ -233,7 +255,6 @@ namespace FastReport.Utils
         {
             get { return scriptSecurityProps; }
         }
-
         #endregion Public Properties
 
         #region Internal Methods
@@ -254,12 +275,14 @@ namespace FastReport.Utils
         {
             FIsRunningOnMono = Type.GetType("Mono.Runtime") != null;
 
-            InitWebMode();
+            CheckWebMode();
+
 #if !NETSTANDARD
             if (!WebMode)
                 LoadConfig();
 #endif
-            if (WebMode)
+
+            if (!userSetsScriptSecurity && WebMode)
             {
                 enableScriptSecurity = true;    // don't throw event
                 scriptSecurityProps = new ScriptSecurityProperties();
@@ -281,23 +304,28 @@ namespace FastReport.Utils
             }
         }
 
-        private static void InitWebMode()
+        private static void CheckWebMode()
         {
-            string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-
-#if NETSTANDARD
-            ConfigSetsWebMode(String.Compare(processName, "dotnet") == 0);
+            // If we/user sets 'WebMode = true' before this check - Config shouln't change it (because check may be incorrect)
+            if (!WebMode)
+            {
+#if NETSTANDARD || NETCOREAPP
+                var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+                foreach (var loadedAsmbly in loadedAssemblies)
+                {
+                    bool isAspNetCore = loadedAsmbly.GetName().Name.StartsWith("Microsoft.AspNetCore");
+                    if (isAspNetCore)
+                    {
+                        WebMode = true;
+                        break;
+                    }
+                }
 #else
-            ConfigSetsWebMode(String.Compare(processName, "iisexpress") == 0 ||
-                              String.Compare(processName, "w3wp") == 0);
+                string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+                WebMode = String.Compare(processName, "iisexpress") == 0 ||
+                              String.Compare(processName, "w3wp") == 0;
 #endif
-        }
-
-        // If we/user sets 'WebMode = true' before checks in Config.cs - Config shouln't change it (because check may be incorrect)
-        private static void ConfigSetsWebMode(bool value)
-        {
-            if (!FWebMode)
-                WebMode = value;
+            }
         }
 
         internal static void WriteLogString(string s)
@@ -580,8 +608,6 @@ namespace FastReport.Utils
                 disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
             }
         }
-
-        
 
 #endregion Private Methods
     }

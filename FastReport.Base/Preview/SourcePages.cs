@@ -5,11 +5,11 @@ using FastReport.Utils;
 
 namespace FastReport.Preview
 {
-  internal class SourcePages : IDisposable
+  internal partial class SourcePages : IDisposable
   {
     #region Fields
-    private List<ReportPage> pages;
-    private PreparedPages preparedPages;
+    private readonly List<ReportPage> pages;
+    private readonly PreparedPages preparedPages;
     #endregion
 
     #region Properties
@@ -25,6 +25,7 @@ namespace FastReport.Preview
     #endregion
 
     #region Private Methods
+
     private Base CloneObjects(Base source, Base parent)
     {
       if (source is ReportComponentBase && !(source as ReportComponentBase).FlagPreviewVisible)
@@ -36,11 +37,7 @@ namespace FastReport.Preview
       Base clone = Activator.CreateInstance(source.GetType()) as Base;
       using (XmlItem xml = new XmlItem())
       using (FRWriter writer = new FRWriter(xml))
-#if MONO
-      using (FRReader reader = new FRReader(source.Report, xml))
-#else
       using (FRReader reader = new FRReader(null, xml))
-#endif
       {
         reader.DeserializeFrom = SerializeTo.SourcePages;
         writer.SaveChildren = false;
@@ -71,12 +68,9 @@ namespace FastReport.Preview
       ObjectCollection childObjects = source.ChildObjects;
       foreach (Base c in childObjects)
       {
-        CloneObjects(c, clone);
+        CloneObjects(c, clone); 
       }
       clone.Parent = parent;
-#if MONO
-            clone.SetReport(source.Report);
-#endif
       return clone;
     }
 #endregion

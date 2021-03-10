@@ -9,24 +9,12 @@ namespace FastReport.Code
 {
     partial class AssemblyDescriptor
     {
-        private void ErrorMsg(CompilerError ce, int number)
-        {
-            
-        }
+        partial void ErrorMsg(CompilerError ce, int number);
 
-        private void ErrorMsg(string str, CompilerError ce)
-        {
+        partial void ErrorMsg(string str, CompilerError ce);
 
-        }
+        partial void ErrorMsg(string str);
 
-        private void ErrorMsg(string str)
-        {
-            
-        }
-
-        private void ReviewReferencedAssemblies(StringCollection referencedAssemblies)
-        {
-
-        }
+        partial void ReviewReferencedAssemblies(StringCollection referencedAssemblies);
     }
 }

@@ -11,11 +11,7 @@ namespace FastReport.Utils
   {
     public static Stream Decompress(Stream source, bool bidiStream)
     {
-      int byte1 = source.ReadByte();
-      int byte2 = source.ReadByte();
-      source.Position -= 2;
-      bool result = byte1 == 0x1F && byte2 == 0x8B;
-      if (result)
+      if (IsStreamCompressed(source))
       {
         if (bidiStream)
         {
@@ -23,13 +19,8 @@ namespace FastReport.Utils
           Stream stream = new MemoryStream();
           using (GZipStream gzip = new GZipStream(source, CompressionMode.Decompress))
           {
-            byte[] buffer = new byte[4096];
-            while (true)
-            {
-              int bytesRead = gzip.Read(buffer, 0, 4096);
-              if (bytesRead == 0) break;
-              stream.Write(buffer, 0, bytesRead);
-            }
+                const int BUFFER_SIZE = 4096;
+                gzip.CopyTo(stream, BUFFER_SIZE);
           }
           stream.Position = 0;
           return stream;

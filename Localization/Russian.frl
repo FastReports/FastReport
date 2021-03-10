@@ -1,0 +1,2479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language Name="ru" Author="Alexander Tzyganenko &lt;tz@fast-report.com&gt;;Alexander Fediachov &lt;samuray@fast-report.com&gt;;Alexander Fediachov &lt;fediachov@fast-report.com&gt;;Alexander Tsyganenko &lt;tz@fast-report.com&gt;;Alexander Fedyashov &lt;fediachov@fast-report.com&gt;;Alexander Fediashov &lt;fediachov@fast-report.com&gt;">
+  <Fonts>
+    <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} шрифт не может быть изменён, встроен или передан любым спосбом без первоначального получения разрешения от правообладателя."/>
+    <FontMayNotBeSubsettedPriorToEmbedding Text="{0} шрифт не может быть упакован перед встраиванием в документ."/>
+  </Fonts>
+  <Buttons>
+    <Ok Text="ОК"/>
+    <Cancel Text="Отмена"/>
+    <Close Text="Закрыть"/>
+    <MoreOptions Text="Больше"/>
+    <LessOptions Text="Меньше"/>
+    <Actions Text="Действия"/>
+    <Previous Text="&lt; Назад"/>
+    <Next Text="Вперед &gt;"/>
+    <Finish Text="Готово"/>
+    <Advanced Text="Подробнее..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Доступ к данным..."/>
+    <Attention Text="Внимание"/>
+    <BarcodeFewError Text="Количество цифр меньше допустимого минимума."/>
+    <BarcodeManyError Text="Количество цифр больше допустимого максимума."/>
+    <CantFindObject Text="Не могу найти объект"/>
+    <CantLoadReport Text="Не могу открыть отчет {0}"/>
+    <CantSaveReport Text="Невозможно сохранить отчет. Файл может быть защищен от записи."/>
+    <ChangePicture Text="Хотите изменить текущее изображение?"/>
+    <ClassError Text="Не могу найти главный класс отчета - ReportScript"/>
+    <Confirmation Text="Подтверждение"/>
+    <DataNotInitialized Text="Источник данных не инициализирован."/>
+    <DecompressError Text="Не могу распаковать файл"/>
+    <DecryptError Text="Ошибка расшифровки: неверный пароль"/>
+    <DelegateError Text="Делегат {0} должен иметь два аргумента: 'sender' и 'e'"/>
+    <CompilerError Text="Скрипт отчета недействителен"/>
+    <DeleteAncestor Text="Не могу удалить {0}, он определен в базовом отчете."/>
+    <DuplicateName Text="Объект с именем {0} уже существует"/>
+    <GroupHeaderHasNoGroupCondition Text="В заголовке группы {0} отсутствует условие группировки"/>
+    <DuplicateStyle Text="Стиль с таким именем уже существует."/>
+    <Error Text="Ошибка"/>
+    <EventError Text="Не могу создать обработчик события из-за ошибок в скрипте отчета"/>
+    <ExportingPage Text="Экспортируется страница {0} из {1}"/>
+    <GeneratingPage Text="Готовится страница {0}"/>
+    <GeneratingPageFirstPass Text="Первый проход: страница {0}"/>
+    <Information Text="Информация"/>
+    <MatrixError Text="{0}: Матрица должна иметь как минимум одну строку или колонку и одну ячейку."/>
+    <MatrixValueError Text="Количество добавляемых значений отличается от MatrixData.Cells.Count (должно быть {0})"/>
+    <MatrixLayoutError Text="Невозможно разместить на бэнде две матрицы с однаковым значением Layout.Left."/>
+    <ParentError Text="Объект типа  {0} не может содержать объекты типа {1}"/>
+    <ParentError1 Text="Объект типа {0} не может содержать объекты"/>
+    <Performance Text="Выполнено за {0} мс"/>
+    <PreparingData Text="Подготовка данных..."/>
+    <PrintingPage Text="Печатается страница {0}"/>
+    <RenameAncestor Text="Не могу переименовать {0}, он определен в базовом отчете."/>
+    <SaveChanges Text="Сохранить изменения в {0}?"/>
+    <SaveChangesToPreviewPage Text="Сохранить изменения в странице отчета?"/>
+    <SQLError Text="Ошибка SQL"/>
+    <TableIsNull Text="Таблица не подключена к данным. Зарегистрируйте данные методом Report.RegisterData."/>
+    <TableManualBuildError Text="Вы можете использовать методы TableObject.PrintRow, PrintColumn только в событии ManualBuild."/>
+    <Warning Text="Предупреждение"/>
+    <WarningSaveRDL Text="Формат RDL имеет некоторые ограничения! Данный фильтр сохранит только внешний вид шаблона! Источники данных и объекты Barcode, Rich Text, CheckBox и ZipCode не будут сохранены! Некоторые из свойств объектов не будут сохранены! Так что вы можете потерять некоторые элементы и свойства шаблона. Все равно сохранить?"/>
+    <WrongFileFormat Text="Не могу прочитать файл, неизвестный формат файла."/>
+    <WrongListAndLabelFile Text="Не могу прочитать файл. Файл поврежден или не является отчетом List and Label."/>
+    <WrongCrystalReportsFile Text="Не могу прочитать файл. Файл поврежден или не является отчетом Crystal Reports."/>
+    <InvalidBarcode1 Text="Код должен начинаться с последовательности '&amp;A;', '&amp;B;' или '&amp;C;'"/>
+    <InvalidBarcode2 Text="Недопустимый символ в коде"/>
+    <ErrorInExpression Text="Ошибка в выражении"/>
+    <ErrorInHighlightCondition Text="Ошибка в условном выделении"/>
+    <FileNameEmpty Text="Пожалуйста, укажите имя файла."/>
+    <SaveToAnotherFile Text="Хотите сохранить в другой файл?"/>
+    <Swiss>
+      <SwissNullIban Text="IBAN не должен быть null"/>
+      <SwissNullCreditor Text="Плательщик не должен быть NULL"/>
+      <SwissNullReference Text="Ссылка не должна быть NULL"/>
+      <SwissNullCurrency Text="Валюта не должны быть NULL"/>
+      <SwissAmountLength Text="Длинна суммы (включая дробь) должна быть короче 13 символов"/>
+      <SwissQRIban Text="Если используется QR-IBAN, вы должны выбрать QRR в качестве ссылочного типа!"/>
+      <SwissNonQRIban Text="Если используется не QR-IBAN, вы должны выбрать SCOR или NON в качестве ссылочного типа!"/>
+      <SwissAltProcedureLength Text="Информационный блок альтернативной процедуры 1 должен быть короче 101 символа"/>
+      <SwissUnstructBillLength Text="Сообщение и информация о счете должны быть короче 141 символа в сумме."/>
+      <SwissRefTypeNon Text="Ссылка разрешена, только когда тип ссылки не NON"/>
+      <SwissRefTextTypeNon Text="Вы должны установить тип текста ссылки при наличии текста ссылки"/>
+      <SwissRefQRLength Text="&#13;&#10;QR-ссылки должны быть короче 28 символов"/>
+      <SwissRefQRNotOnlyDigits Text="QR-ссылка должна быть только из цифр"/>
+      <SwissRefQRCheckSum Text="QR-ссылка недействительна. Ошибка контрольной суммы"/>
+      <SwissRefISOLength Text="Ссылка на плательщиков (ISO 11649) должна быть короче, чем 26 символов"/>
+      <SwissEmptyProperty Text="{0} не может быть пустым"/>
+      <SwissLengthMore Text="должна быть короче {0} символов"/>
+      <SwissPatternError Text="{0} должна соответствовать шаблону:"/>
+      <SwissCountryTwoLetters Text="Страна должна быть действительным двухбуквенным кодом страны, как определено в ISO 3166-1"/>
+      <SwissIbanNotValid Text="Введенный недействительный IBAN "/>
+      <SwissQRIbanNotValid Text="Введенный недействительный QR-IBAN "/>
+      <SwissQRStartNotValid Text="IBAN должен начинаться символов CH или LI"/>
+    </Swiss>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="мм"/>
+    <ShortUnitsCm Text="см"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Образец"/>
+    <None Text="Нет"/>
+    <PageN Text="Страница {0}"/>
+    <PageNofM Text="Страница {0} из {1}"/>
+    <ofM Text="из {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Отчет"/>
+    <ReportPage Text="Страница"/>
+    <DialogPage Text="Диалог"/>
+    <XmlDataConnection Text="База данных XML"/>
+    <CsvDataConnection Text="База данных CSV"/>
+    <OleDbDataConnection Text="Подключение к OLE DB"/>
+    <MsAccessDataConnection Text="Подключение к MS Access"/>
+    <MsSqlDataConnection Text="Подключение к MS SQL"/>
+    <OdbcDataConnection Text="Подключение к ODBC"/>
+    <FirebirdDataConnection Text="Подключение к Firebird "/>
+    <VistaDBDataConnection Text="Подключение к VistaDB"/>
+    <PostgresDataConnection Text="Подключение к Postgres"/>
+    <MySqlDataConnection Text="Подключение к MySQL"/>
+    <OracleDataConnection Text="Подключение к Oracle"/>
+    <SQLiteDataConnection Text="Подключение к SQLite"/>
+    <SqlCeDataConnection Text="Подключение к SQL CE"/>
+    <SharePointDataConnection Text="Подключение к SharePoint"/>
+    <GoogleBigQueryDataConnection Text="Подключение к Google Big Query"/>
+    <JsonDataConnection Text="База данных JSON"/>
+    <CouchbaseDataConnection Text="Подключение к Couchbase"/>
+    <MongoDBDataConnection Text="Подключение к MongoDB"/>
+    <NosDbDataConnection Text="Подключение к NosDb"/>
+    <RavenDBDataConnection Text="Подключение к RavenDB"/>
+    <SqlAnywhereDataConnection Text="Подключение к SqlAnywhere"/>
+    <Bands Text="Бэнды">
+      <ReportTitle Text="Заголовок отчета"/>
+      <ReportSummary Text="Подвал отчета"/>
+      <PageHeader Text="Заголовок страницы"/>
+      <PageFooter Text="Подвал страницы"/>
+      <ColumnHeader Text="Заголовок колонки"/>
+      <ColumnFooter Text="Подвал колонки"/>
+      <DataHeader Text="Заголовок данных"/>
+      <DataFooter Text="Подвал данных"/>
+      <Data Text="Данные"/>
+      <GroupHeader Text="Заголовок группы"/>
+      <GroupFooter Text="Подвал группы"/>
+      <Child Text="Дочерний"/>
+      <Overlay Text="Фоновый"/>
+    </Bands>
+    <TextObject Text="Текст"/>
+    <HtmlObject Text="HTML"/>
+    <Shapes Text="Фигуры">
+      <Line Text="Линия"/>
+      <DiagonalLine Text="Диагональная линия"/>
+      <Rectangle Text="Прямоугольник"/>
+      <RoundRectangle Text="Скругленный прямоугольник"/>
+      <Ellipse Text="Эллипс"/>
+      <Triangle Text="Треугольник"/>
+      <Diamond Text="Ромб"/>
+      <Bezier Text="Кривая Безье"/>
+      <Polyline Text="Ломаная"/>
+      <Polygon Text="Многоугольник"/>
+      <Pentagon Text="Пятиугольник"/>
+      <Hexagon Text="Шестиугольник"/>
+      <Heptagon Text="Семиугольник"/>
+      <Octagon Text="Восьмиугольник"/>
+    </Shapes>
+    <PictureObject Text="Рисунок"/>
+    <SVGObject Text="SVG изображение"/>
+    <TableObject Text="Таблица"/>
+    <MatrixObject Text="Матрица"/>
+    <SubreportObject Text="Вложенный отчет"/>
+    <ContainerObject Text="Контейнер"/>
+    <BarcodeObject Text="Штрихкод"/>
+    <RichObject Text="Форматированный текст"/>
+    <MSChartObject Text="Диаграмма MS Chart"/>
+    <TeeChartObject Text="Диаграмма Steema TeeChart"/>
+    <ZipCodeObject Text="Почтовый индекс"/>
+    <CellularTextObject Text="Текст в ячейках"/>
+    <CheckBoxObject Text="Флажок"/>
+    <ButtonControl Text="Button"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="NumericUpDown"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+    <MapObject Text="Карта"/>
+    <SparklineObject Text="Искрографик"/>
+    <Gauge Text="Датчик">
+      <Linear Text="Линейный Датчик"/>
+      <Simple Text="Простой Датчик"/>
+      <Radial Text="Круговой датчик"/>
+      <SimpleProgress Text="Простой датчик прогресса"/>
+      <GaugeForms Text="Edit Gauge">
+        <LinearGauge Text="Редактор линейного датчика"/>
+        <SimpleGauge Text="Редактор простого датчика"/>
+        <SimpleProgressGauge Text="Редактор датчика прогресса"/>
+        <RadialGauge Text="Редактор кругового датчика"/>
+        <PageGeneral Text="Главная">
+          <Expression Text="Выражение..."/>
+          <Border Text="Рамка..."/>
+          <Fill Text="Фон..."/>
+          <LinearInverdted Text="Перевёрнут:"/>
+          <Type Text="Тип:"/>
+          <Position Text="Положение:"/>
+        </PageGeneral>
+        <PageScale Text="Шкала">
+          <TabTicks Text="Метки">
+            <MajorTicks Text="Большие отметки">
+              <Width Text="Толщина:"/>
+              <Color Text="Цвет:"/>
+            </MajorTicks>
+            <MinorTicks Text="Маленькие отметки">
+              <Width Text="Толщина:"/>
+              <Color Text="Цвет:"/>
+            </MinorTicks>
+          </TabTicks>
+          <TabText Text="Текст">
+            <Font Text="Шрифт:"/>
+            <TextFill Text="Фон текста"/>
+          </TabText>
+          <Subscales Text="Подшкалы">
+            <FirstSubscale Text="Первая подшкала">
+              <Enabled Text="Включена:"/>
+              <ShowCaption Text="Показывать текст:"/>
+            </FirstSubscale>
+            <SecondSubscale Text="Вторая подшкала">
+              <Enabled Text="Включена:"/>
+              <ShowCaption Text="Показывать текст:"/>
+            </SecondSubscale>
+          </Subscales>
+        </PageScale>
+        <PagePointer Text="Указатель">
+          <BorderColor Text="Цвет рамки:"/>
+          <PointerFill Text="Фон указателя"/>
+          <LabelPointerType Text="Тип:"/>
+        </PagePointer>
+        <PageLabel Text="Метка">
+          <LabelColor Text="Цвет метки:"/>
+          <Font Text="Шрифт:"/>
+          <Text Text="Текст:"/>
+          <Decimals Text="Десятичные:"/>
+        </PageLabel>
+      </GaugeForms>
+    </Gauge>
+    <CrossViewObject Text="CrossView"/>
+    <DigitalSignatureObject Text="Цифровая подпись"/>
+  </Objects>
+  <Functions>
+    <Math Text="Математические"/>
+    <Text Text="Текстовые"/>
+    <DateTime Text="Дата и время"/>
+    <Formatting Text="Форматирование"/>
+    <Conversion Text="Конвертирование"/>
+    <ProgramFlow Text="Условия"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Отчет (*.frx)|*.frx"/>
+    <PreparedReport Text="Готовый отчет (*.fpx)|*.fpx"/>
+    <Style Text="Стили отчета (*.frs)|*.frs"/>
+    <Dictionary Text="Данные (*.frd)|*.frd"/>
+    <Localization Text="Файл локализации (*.frl)|*.frl"/>
+    <XsdFile Text="XML схема (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML данные (*.xml)|*.xml"/>
+    <MdbFile Text="База данных MS Access (*.mdb)|*.mdb"/>
+    <MdfFile Text="База данных Microsoft SQL Server (*.mdf)|*.mdf"/>
+    <RtfFile Text="Форматированный текст (*.rtf)|*.rtf"/>
+    <Images Text="Файлы картинок|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <AllImages Text="Файлы картинок|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
+    <Assembly Text="Сборка (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Файл печати (*.prn)|*.prn"/>
+    <BmpFile Text="Точечный рисунок (*.bmp)|*.bmp"/>
+    <PngFile Text="Точечный рисунок (*.png)|*.png"/>
+    <JpegFile Text="Точечный рисунок (*.jpg)|*.jpg"/>
+    <GifFile Text="Точечный рисунок (*.gif)|*.gif"/>
+    <TiffFile Text="Точечный рисунок (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Векторный рисунок (*.emf)|*.emf"/>
+    <HtmlFile Text="Файл HTML (*.html)|*.html"/>
+    <MhtFile Text="Файл веб-архив (*.mht)|*.mht"/>
+    <OdtFile Text="Текст OpenOffice Writer (*.odt)|*.odt"/>
+    <OdsFile Text="Таблица Open Office Calc (*.ods)|*.ods"/>
+    <PdfFile Text="Файл Adobe Acrobat (*.pdf)|*.pdf"/>
+    <TxtFile Text="Текстовый файл (*.txt)|*.txt"/>
+    <CsvFile Text="Текстовый табличный файл  (*.csv)|*.csv"/>
+    <DbfFile Text="Таблица dBase (*.dbf)|*.dbf"/>
+    <XlsFile Text="Таблица Excel (*.xls)|*.xls"/>
+    <CsFile Text="Файл C# (*.cs)|*.cs"/>
+    <VbFile Text="Файл VB.Net (*.vb)|*.vb"/>
+    <FdbFile Text="База данных Firebird (*.fdb)|*.fdb"/>
+    <Vdb3File Text="База данных VistaDB (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="Книга Microsoft Excel (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="Презентация PowerPoint (*.pptx)|*.pptx"/>
+    <XamlFile Text="Документ XAML  (*.xaml)|*.xaml"/>
+    <SvgFile Text="Документ SVG (*.svg)|*.svg"/>
+    <PpmlFile Text="Документ PPML (*.ppml)|*.ppml"/>
+    <PSFile Text="Документ PostScript (*.ps)|*.ps"/>
+    <DocxFile Text="Документ Microsoft Word (*.docx)|*.docx"/>
+    <SdfFile Text="База данных SQL CE (*.sdf)|*.sdf"/>
+    <XpsFile Text="Файл XPS (*.xps)|*.xps"/>
+    <RdlFiles Text="Файлы RDL (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="Файл RDL (*.rdl)|*.rdl"/>
+    <RdlcFile Text="Файл RDLC (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Файл Crystal Reports (*.rpt)|*.rpt"/>
+    <ShpFile Text="Файл карты (*.shp)|*.shp"/>
+    <OsmFile Text="Файл OpenStreetMap(*.osm)|*.osm"/>
+    <Fr3File Text="Отчет FastReport VCL (*.fr3)|*.fr3"/>
+    <ListAndLabelFiles Text="Файл List and Label (*.rpt)|*.rpt"/>
+    <DevExpressFiles Text="Файл DevExpress (*.repx)|*.repx"/>
+    <JsonFile Text="Файл JSON (*.json,*.txt)|*.json;*.txt"/>
+    <LaTeXFile Text="Файл TeX (*.tex)|*.tex"/>
+    <ZplFile Text="Файл ZPL (*.zpl)|*.zpl"/>
+    <DxfFile Text="Файл DXF (*.dxf)|*.dxf"/>
+    <HpglFile Text="Файл Hpgl (plt) (*.plt)|*.plt"/>
+    <AllFiles Text="Все файлы (*.*)|*.*"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="dd.MM.yy"/>
+    <Date6 Text="dd.MM.yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm"/>
+    <Time4 Text="HH:mm"/>
+    <Time5 Text="mm:ss"/>
+    <BooleanF1 Text="Ложь"/>
+    <BooleanF2 Text="Нет"/>
+    <BooleanF3 Text="Выкл"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Истина"/>
+    <BooleanT2 Text="Да"/>
+    <BooleanT3 Text="Вкл"/>
+    <BooleanT4 Text="Х"/>
+    <Custom1 Text="Телефонный номер;(000) 000-00-00"/>
+    <Custom2 Text="Длинный номер;+0(000) 000-00-00"/>
+    <Custom3 Text="Табельный номер;G"/>
+    <Custom4 Text="Почтовый индекс;000000"/>
+    <Custom5 Text=" "/>
+  </Formats>
+  <Designer>
+    <Ribbon>
+      <File Text="Файл"/>
+      <Recent Text="Последние документы"/>
+      <Home Text="Главная"/>
+      <Clipboard Text="Буфер обмена"/>
+      <Text Text="Текст"/>
+      <BorderAndFill Text="Границы и заливка"/>
+      <Format Text="Оформление"/>
+      <Styles Text="Стили"/>
+      <Editing Text="Редактирование"/>
+      <Report Text="Отчет"/>
+      <Data Text="Данные"/>
+      <Pages Text="Страницы"/>
+      <Bands Text="Бэнды"/>
+      <Layout Text="Расположение"/>
+      <Alignment Text="Выравнивание"/>
+      <Size Text="Размер"/>
+      <Spacing Text="Интервал"/>
+      <View Text="Вид"/>
+      <Panels Text="Панели"/>
+    </Ribbon>
+    <Menu>
+      <File Text="Файл">
+        <New Text="Новый..."/>
+        <Open Text="Открыть..."/>
+        <Close Text="Закрыть"/>
+        <Save Text="Сохранить"/>
+        <SaveAs Text="Сохранить как..."/>
+        <SaveAll Text="Сохранить все"/>
+        <PageSetup Text="Параметры страницы..."/>
+        <PrinterSetup Text="Параметры принтера..."/>
+        <Preview Text="Предварительный просмотр..."/>
+        <SelectLanguage Text="Выберите язык..."/>
+        <Exit Text="Выход"/>
+      </File>
+      <Edit Text="Правка">
+        <Undo Text="Отменить"/>
+        <Redo Text="Повторить"/>
+        <Cut Text="Вырезать"/>
+        <Copy Text="Копировать"/>
+        <Paste Text="Вставить"/>
+        <Delete Text="Удалить"/>
+        <NewPage Text="Новая страница"/>
+        <CopyPage Text="Копировать страницу"/>
+        <DeletePage Text="Удалить страницу"/>
+        <SelectAll Text="Выбрать все"/>
+        <Group Text="Сгруппировать"/>
+        <Ungroup Text="Разгруппировать"/>
+        <Find Text="Найти..."/>
+        <Replace Text="Заменить..."/>
+      </Edit>
+      <View Text="Вид">
+        <StartPage Text="Стартовая страница"/>
+        <Toolbars Text="Панели инструментов"/>
+        <Options Text="Настройки..."/>
+        <Grid Text="Сетка"/>
+        <Guides Text="Направляющие линии"/>
+        <AutoGuides Text="Авто-направляющие"/>
+        <DeleteHGuides Text="Удалить горизонтальные направляющие"/>
+        <DeleteVGuides Text="Удалить вертикальные направляющие"/>
+        <Units Text="Единицы измерения"/>
+      </View>
+      <Insert Text="Вставка"/>
+      <Report Text="Отчет">
+        <Bands Text="Настроить бэнды..."/>
+        <Styles Text="Стили..."/>
+        <GroupExpert Text="Мастер группировки..."/>
+        <Options Text="Свойства..."/>
+      </Report>
+      <Data Text="Данные">
+        <ShowData Text="Показать окно данных"/>
+        <Add Text="Новый источник данных..."/>
+        <Choose Text="Выбрать данные для отчета..."/>
+      </Data>
+      <Window Text="Окно">
+        <CloseAll Text="Закрыть все"/>
+      </Window>
+      <Help Text="Справка">
+        <Contents Text="Содержание..."/>
+        <About Text="О программе..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <AutoHide Text="Скрывать автоматически"/>
+      <Close Text="Закрыть"/>
+      <Properties Text="Свойства">
+        <PropertiesTab Text="Свойства"/>
+        <EventsTab Text="События"/>
+        <NObjectsSelected Text="{0} объектов выбрано"/>
+      </Properties>
+      <ReportTree Text="Дерево отчета"/>
+      <Dictionary Text="Данные">
+        <DataSources Text="Источники данных"/>
+        <Parameters Text="Параметры"/>
+        <SystemVariables Text="Системные переменные"/>
+        <Totals Text="Итоги"/>
+        <Functions Text="Функции"/>
+        <DialogControls Text="Элементы управления"/>
+        <New Text="Новый словарь данных..."/>
+        <Open Text="Открыть словарь данных..."/>
+        <Save Text="Сохранить словарь данных..."/>
+        <Merge Text="Объединить словари..."/>
+        <NewDataSource Text="Новый источник данных..."/>
+        <SortDataSources Text="Сортировать источники данных"/>
+        <SortDataFields Text="Сортировать поля данных"/>
+        <NewRelation Text="Новая связь..."/>
+        <NewParameter Text="Новый параметр..."/>
+        <NewTotal Text="Новый итог..."/>
+        <NewCalculatedColumn Text="Новое вычисляемое поле..."/>
+        <Rename Text="Переименовать"/>
+        <Edit Text="Редактировать"/>
+        <Delete Text="Удалить"/>
+        <DeleteAlias Text="Удалить псевдоним"/>
+        <View Text="Показать данные..."/>
+        <ViewJson Text="Показать Json..."/>
+        <DuplicateName Text="Элемент с таким именем уже существует."/>
+        <NRows Text="{0} строк"/>
+        <RowMofNRows Text="Строка {0} из {1}"/>
+        <RowsKtoLofNRows Text="Строки {0} - {1} из {2}"/>
+        <CubeSources Text="Источники Cube"/>
+      </Dictionary>
+      <Messages Text="Сообщения">
+        <Description Text="Текст"/>
+        <Line Text="Строка"/>
+        <Column Text="Колонка"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Добавить/удалить кнопки"/>
+      <Reset Text="Сбросить панель инструментов"/>
+      <MoreButtons Text="Больше кнопок..."/>
+      <Standard Text="Стандартная">
+        <New Text="Новый..."/>
+        <Open Text="Открыть отчет (Ctrl+O)"/>
+        <Save Text="Сохранить отчет (Ctrl+S)"/>
+        <SaveAll Text="Сохранить все (Ctrl+Shift+S)"/>
+        <Preview Text="Предварительный просмотр (Ctrl+P)"/>
+        <NewPage Text="Новая страница отчета"/>
+        <CopyPage Text="Копировать страницу отчета"/>
+        <NewDialog Text="Новый диалог"/>
+        <DeletePage Text="Удалить страницу"/>
+        <PageSetup Text="Настройки страницы"/>
+        <Cut Text="Вырезать (Ctrl+X)"/>
+        <Copy Text="Копировать (Ctrl+C)"/>
+        <Paste Text="Вставить (Ctrl+V)"/>
+        <FormatPainter Text="Копировать формат"/>
+        <Undo Text="Отменить (Ctrl+Z)"/>
+        <Redo Text="Повторить"/>
+        <Group Text="Сгруппировать"/>
+        <Ungroup Text="Разгруппировать"/>
+      </Standard>
+      <Text Text="Текст">
+        <Name Text="Шрифт"/>
+        <Size Text="Размер шрифта"/>
+        <Bold Text="Полужирный"/>
+        <Italic Text="Курсив"/>
+        <Underline Text="Подчеркивание"/>
+        <Left Text="По левому краю"/>
+        <Center Text="По центру"/>
+        <Right Text="По правому краю"/>
+        <Justify Text="По ширине"/>
+        <Top Text="По верхнему краю"/>
+        <Middle Text="Посередине"/>
+        <Bottom Text="По нижнему краю"/>
+        <Color Text="Цвет текста"/>
+        <Highlight Text="Условное выделение"/>
+        <Angle Text="Поворот текста"/>
+      </Text>
+      <Border Text="Рамка и заливка">
+        <Top Text="Верхняя линия"/>
+        <Bottom Text="Нижняя линия"/>
+        <Left Text="Левая линия"/>
+        <Right Text="Правая линия"/>
+        <All Text="Все линии"/>
+        <None Text="Нет линий"/>
+        <FillColor Text="Цвет фона"/>
+        <FillStyle Text="Стиль заливки"/>
+        <LineColor Text="Цвет рамки"/>
+        <Width Text="Толщина рамки"/>
+        <Style Text="Стиль рамки"/>
+        <Props Text="Настройка рамки"/>
+      </Border>
+      <Style Text="Стиль">
+        <Styles Text="Стили отчета"/>
+        <SelectStyle Text="Выберите стиль"/>
+        <NoStyle Text="Нет стиля"/>
+      </Style>
+      <Layout Text="Выравнивание">
+        <AlignToGrid Text="Выровнять по сетке"/>
+        <Left Text="Выровнять левые края"/>
+        <Center Text="Выровнять по горизонтали по центру"/>
+        <Right Text="Выровнять правые края"/>
+        <Top Text="Выровнять верхние края"/>
+        <Middle Text="Выровнять по вертикали по центру"/>
+        <Bottom Text="Выровнять нижние края"/>
+        <SameWidth Text="Одинаковая ширина"/>
+        <SameHeight Text="Одинаковая высота"/>
+        <SameSize Text="Одинаковый размер"/>
+        <SizeToGrid Text="Выровнять размер по сетке"/>
+        <SpaceHorizontally Text="Расположить равномерно по ширине"/>
+        <IncreaseHorizontalSpacing Text="Увеличить промежуток по ширине"/>
+        <DecreaseHorizontalSpacing Text="Уменьшить промежуток по ширине"/>
+        <RemoveHorizontalSpacing Text="Убрать промежуток по ширине"/>
+        <SpaceVertically Text="Расположить равномерно по высоте"/>
+        <IncreaseVerticalSpacing Text="Увеличить промежуток по высоте"/>
+        <DecreaseVerticalSpacing Text="Уменьшить промежуток по высоте"/>
+        <RemoveVerticalSpacing Text="Убрать промежуток по высоте"/>
+        <CenterHorizontally Text="Выровнять по горизонтали"/>
+        <CenterVertically Text="Выровнять по вертикали"/>
+        <BringToFront Text="На передний план"/>
+        <SendToBack Text="На задний план"/>
+      </Layout>
+      <Objects Text="Объекты">
+        <Select Text="Выбрать"/>
+      </Objects>
+      <Zoom Text="Масштаб">
+        <ZoomOut Text="Уменьшить"/>
+        <ZoomIn Text="Увеличить"/>
+        <Zoom Text="Масштаб"/>
+        <PageWidth Text="По ширине"/>
+        <WholePage Text="Страница целиком"/>
+      </Zoom>
+      <Polygon Text="Многоугольник">
+        <Pointer Text="Мышь"/>
+        <AddPointToStart Text="Добавить новую линию в начало"/>
+        <AddPointToEnd Text="Добавить новую линию в конец"/>
+        <AddPoint Text="Добавить новую точку на линию"/>
+        <RemovePoint Text="Удалить точку"/>
+      </Polygon>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Код"/>
+      <Report>
+        <ConfigureBands Text="Настроить бэнды..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Настройки"/>
+    <UndoRedo>
+      <Delete Text="Удаление {0}"/>
+      <Move Text="Перемещение {0}"/>
+      <Size Text="Изменение размера {0}"/>
+      <Change Text="Изменение {0}"/>
+      <AddGuide Text="Добавление направляющей"/>
+      <MoveGuide Text="Перемещение направляющей"/>
+      <DeleteHGuides Text="Удаление горизонтальных направляющих"/>
+      <DeleteVGuides Text="Удаление вертикальных направляющих"/>
+      <ResizeBand Text="Изменение размера бэнда"/>
+      <ChangeParent Text="Изменение родителя {0}"/>
+      <Load Text="Открытие отчета"/>
+      <Paste Text="Вставка из буфера {0}"/>
+      <Insert Text="Вставка {0}"/>
+      <AddPage Text="Добавление страницы {0}"/>
+      <DeletePage Text="Удаление страницы"/>
+      <Script Text="Изменение кода"/>
+      <NObjects Text="{0} объектов"/>
+      <UndoN Text="Отменить {0} действий"/>
+      <RedoN Text="Повторить {0} действий"/>
+      <ChangeReport Text="Изменение отчета"/>
+      <ChangePagesOrder Text="Изменение порядка страниц"/>
+      <EditPage Text="Редактирование страницы"/>
+      <EditPrinter Text="Изменение настроек принтера"/>
+      <EditReport Text="Изменение настроек отчета"/>
+      <SelectData Text="Выбор данных"/>
+      <EditData Text="Редактирование данных"/>
+    </UndoRedo>
+    <StartPage Text="Стартовая страница"/>
+    <Untitled Text="Безымянный.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Прочие"/>
+      <WebColors Text="Интернет"/>
+      <SystemColors Text="Системные"/>
+      <Other Text="Прочие цвета..."/>
+      <Transparency Text="Прозрачность:"/>
+    </ColorSelector>
+    <Welcome>
+      <Button Text="Открыть окно приветствия..."/>
+      <Title Text="Добро пожаловать в FastReport"/>
+      <Show Text="Открывать при запуске"/>
+      <Open Text="Открыть недавний отчет"/>
+      <New Text="Создать новый"/>
+    </Welcome>
+  </Designer>
+  <Preview Text="Предварительный просмотр">
+    <DesignText Text="Дизайнер"/>
+    <Design Text="Редактировать отчёт"/>
+    <PrintText Text="Печать"/>
+    <Print Text="Печать (Ctrl+P)"/>
+    <OpenText Text="Открыть"/>
+    <Open Text="Открыть файл"/>
+    <Save Text="Сохранить файл"/>
+    <SaveText Text="Сохранить"/>
+    <SaveToCloud Text="Сохранить в Облако"/>
+    <SaveToCloudText Text="Сохранить в Облако"/>
+    <Search Text="Поиск"/>
+    <Email Text="Отправить по E-mail"/>
+    <Find Text="Найти текст"/>
+    <Outline Text="Структура отчета"/>
+    <PageSetup Text="Настройка страницы"/>
+    <Edit Text="Редактирование страницы"/>
+    <CopyPage Text="Копировать страницу"/>
+    <DeletePage Text="Удалить страницу"/>
+    <Watermark Text="Водяной знак"/>
+    <First Text="Первая страница"/>
+    <Prior Text="Предыдущая страница"/>
+    <Next Text="Следующая страница"/>
+    <Last Text="Последняя страница"/>
+    <SaveNative Text="Готовый отчет"/>
+    <FtpText Text="Сохранить на FTP"/>
+    <DropboxText Text="Сохранить в Dropbox"/>
+    <GoogleDriveText Text="Сохранить в Диск Google"/>
+    <SkyDriveText Text="Сохранить в SkyDrive"/>
+  </Preview>
+  <Forms>
+    <About Text="О программе">
+      <Version Text="Версия"/>
+      <Visit Text="Посетите нашу веб-страницу:"/>
+    </About>
+    <AddLayer Text="Новый слой">
+      <Source Text="Укажите источник:"/>
+      <Shapefile Text="Файл карты (*.shp, *.osm)"/>
+      <Embed Text="Внедрить в файл отчета"/>
+      <Empty Text="Пустой слой, геоданные предоставляет приложение"/>
+    </AddLayer>
+    <AddNewItem Text="Создать">
+      <Add Text="Создать"/>
+      <Reports Text="Типы отчетов:"/>
+      <ReportItems Text="Элементы отчета:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Расширенные свойства"/>
+    <AskPassword Text="Пароль">
+      <Password Text="Этот отчет защищен паролем.&#13;&#10;&#13;&#10;Пожалуйста, введите пароль:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Подключение к БД">
+      <Login Text="Имя пользователя:"/>
+      <Password Text="Пароль:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Выберите источник данных"/>
+      <SelectDataSource Text="Выберите один из источников данных или создайте новый:"/>
+      <CreateNewDatasource Text="Создать источник..."/>
+      <SelectColumnsPage Text="Выберите поля данных"/>
+      <SelectColumns Text="Выберите поля, которые вы хотите показать в отчете."/>
+      <AvailableColumns Text="Доступные поля:"/>
+      <SelectedColumns Text="Выбранные поля:"/>
+    </BaseReportWizard>
+    <Border Text="Редактор рамки">
+      <Border Text="Рамка"/>
+      <Line Text="Линия"/>
+      <Shadow Text="Тень"/>
+      <Style Text="Стиль:"/>
+      <Width Text="Толщина:"/>
+      <Color Text="Цвет:"/>
+      <Hint Text="Выберите тип линии и с помощью мыши укажите, к какой части рамки он относится."/>
+    </Border>
+    <ChartEditor Text="Редактор диаграммы">
+      <Chart Text="Диаграмма"/>
+      <Add Text="Добавить..."/>
+      <Delete Text="Удалить"/>
+      <Hint Text="Щелкните на элементе, чтобы настроить его свойства:"/>
+      <Common>
+        <Color Text="Цвет:"/>
+        <BackColor Text="Цвет заливки:"/>
+        <SecondaryColor Text="Второй цвет:"/>
+        <Gradient Text="Градиент:"/>
+        <HatchStyle Text="Штриховка:"/>
+        <BorderColor Text="Цвет рамки:"/>
+        <BorderStyle Text="Стиль рамки:"/>
+        <BorderWidth Text="Толщина рамки:"/>
+        <ShadowColor Text="Цвет тени:"/>
+        <ShadowOffset Text="Размер тени:"/>
+        <LineColor Text="Цвет линии:"/>
+        <LineStyle Text="Стиль линии:"/>
+        <LineWidth Text="Толщина линии:"/>
+        <Text Text="Текст:"/>
+        <Font Text="Шрифт:"/>
+        <ForeColor Text="Цвет:"/>
+        <Dock Text="Стыковка:"/>
+        <InsideChartArea Text="Внутри области диаграммы"/>
+        <Format Text="Формат:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Данные">
+          <DataSource Text="Источник данных:"/>
+          <Filter Text="Фильтр:"/>
+          <AutoSeries Text="Серии, создаваемые автоматически"/>
+          <DataColumn Text="Колонка данных:"/>
+          <ColorColumn Text="Колонка цвета:"/>
+          <SeriesSort Text="Сортировка серий:"/>
+          <AlignXValues Text="Выровнять значения по оси Х"/>
+          <ForceAutoSeries Text="Принудительно"/>
+        </Data>
+        <Appearance Text="Внешний вид">
+          <Template Text="Шаблон:"/>
+          <Load Text="Открыть..."/>
+          <Save Text="Сохранить..."/>
+          <SeriesPalette Text="Палитра серий:"/>
+          <BorderSkin Text="Тип рамки:"/>
+          <Templates>
+            <Custom Text="Пользовательский"/>
+            <Blue Text="Голубой"/>
+            <Gray Text="Серый"/>
+            <Green Text="Зеленый"/>
+            <Pink Text="Розовый"/>
+            <Sand Text="Песочный"/>
+            <Steel Text="Стальной"/>
+            <Light Text="Светлый"/>
+          </Templates>
+        </Appearance>
+        <ChartArea Text="Область диаграммы">
+          <Area Text="Область:"/>
+        </ChartArea>
+        <ThreeD Text="Трехмерность">
+          <Enable Text="Включить трехмерный вид"/>
+          <XRotation Text="Вращение вокруг X:"/>
+          <YRotation Text="Вращение вокруг Y:"/>
+          <Perspective Text="Перспектива:"/>
+          <WallWidth Text="Толщина стен:"/>
+          <AxisDepth Text="Глубина осей:"/>
+          <LightStyle Text="Освещение:"/>
+          <ClusteredSeries Text="Сгруппировать серии"/>
+        </ThreeD>
+        <Axes Text="Оси">
+          <Axis Text="Ось:"/>
+          <CopyFromX Text="Копировать внешний вид оси X"/>
+          <CopyFromPrimary Text="Копировать внешний вид основной оси"/>
+          <Minor Text="Дополнительная"/>
+          <Major Text="Основная"/>
+          <General Text="Основные">
+            <Enabled Text="Показывать ось"/>
+            <MarginVisible Text="Отступы"/>
+            <Logarithmic Text="Логарифмическая"/>
+            <Reversed Text="Перевернутая"/>
+            <Interval Text="Интервал"/>
+            <Interlaced Text="Показывать полосы"/>
+            <InterlacedColor Text="Цвет полос:"/>
+          </General>
+          <Labels Text="Подписи">
+            <Enabled Text="Показывать подписи"/>
+            <Angle Text="Угол:"/>
+          </Labels>
+          <Title Text="Заголовок"/>
+          <CustomLabels Text="Доп.подписи">
+            <Label Text="Метка"/>
+            <Start Text="Начало:"/>
+            <End Text="Конец:"/>
+            <Row Text="Строка:"/>
+            <MarkColor Text="Цвет метки:"/>
+            <MarkStyle Text="Стиль метки:"/>
+          </CustomLabels>
+          <Grid Text="Сетка">
+            <GridLine Text="Линия сетки:"/>
+            <Enabled Text="Показывать"/>
+          </Grid>
+          <Ticks Text="Насечки">
+            <Ticks Text="Насечка:"/>
+            <Enabled Text="Показывать"/>
+            <TickStyle Text="Стиль насечки:"/>
+            <TickSize Text="Размер насечки:"/>
+          </Ticks>
+          <Strips Text="Полосы">
+            <Strip Text="Полоса"/>
+            <Interval Text="Интервал">
+              <Start Text="Начало:"/>
+              <Width Text="Ширина:"/>
+              <Interval Text="Интервал:"/>
+            </Interval>
+            <Appearance Text="Внешний вид"/>
+            <Text Text="Текст">
+              <HorizontalAlign Text="Гор.выравнивание:"/>
+              <VerticalAlign Text="Верт.выравнивание:"/>
+              <TextOrientation Text="Ориентация текста:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Легенда">
+          <Enabled Text="Показывать"/>
+          <StyleColumn Text="Колонка"/>
+          <StyleRow Text="Строка"/>
+          <StyleTable Text="Таблица"/>
+          <General Text="Основные">
+            <LegendStyle Text="Стиль легенды:"/>
+          </General>
+          <Appearance Text="Внешний вид"/>
+        </Legend>
+        <Title Text="Заголовок">
+          <Visible Text="Показывать"/>
+          <General Text="Основные">
+            <TextOrientation Text="Ориентация текста:"/>
+            <TextStyle Text="Стиль текста:"/>
+          </General>
+          <Appearance Text="Внешний вид"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Данные">
+          <Name Text="Имя серии:"/>
+          <XValue Text="Значение X:"/>
+          <Color Text="Цвет:"/>
+          <Filter Text="Фильтр:"/>
+          <XValueType Text="Тип значения X:"/>
+          <YValueType Text="Тип значения Y:"/>
+          <XAxisType Text="Ось X:"/>
+          <YAxisType Text="Ось Y:"/>
+          <PrimaryAxis Text="Основная"/>
+          <SecondaryAxis Text="Дополнительная"/>
+          <SeriesValues>
+            <YValue Text="Значение Y:"/>
+            <High Text="Высокий курс:"/>
+            <Low Text="Низкий курс:"/>
+            <Open Text="Открытие:"/>
+            <Close Text="Закрытие:"/>
+            <RangeBegin Text="Начало диапазона:"/>
+            <RangeEnd Text="Конец диапазона:"/>
+            <Size Text="Размер:"/>
+            <YValue1 Text="Значение Y1:"/>
+            <YValue2 Text="Значение Y2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Значения"/>
+        <DataProcessing Text="Обработка данных">
+          <SortBy Text="Сортировать по:"/>
+          <SortByX Text="Значению X"/>
+          <SortByY Text="Значению Y"/>
+          <SortOrder Text="Порядок:"/>
+          <GroupBy Text="Группировать по:">
+            <None Text="Не группировать"/>
+            <XValue Text="Значению X"/>
+            <Number Text="Числу"/>
+            <Years Text="Годам"/>
+            <Months Text="Месяцам"/>
+            <Weeks Text="Неделям"/>
+            <Days Text="Дням"/>
+            <Hours Text="Часам"/>
+            <Minutes Text="Минутам"/>
+            <Seconds Text="Секундам"/>
+            <Milliseconds Text="Миллисекундам"/>
+          </GroupBy>
+          <GroupInterval Text="Интервал:"/>
+          <GroupFunction Text="Функция:"/>
+          <CollectData Text="Объединять данные:">
+            <None Text="Не объединять"/>
+            <TopN Text="Оставить N самых больших"/>
+            <BottomN Text="Оставить N самых маленьких"/>
+            <LessThan Text="Меньше чем значение"/>
+            <LessThanPercent Text="Меньше чем процент"/>
+            <GreaterThan Text="Больше чем значение"/>
+            <GreaterThanPercent Text="Больше чем процент"/>
+          </CollectData>
+          <Value Text="Значение:"/>
+          <CollectedText Text="Текст объед.знач.:"/>
+          <CollectedColor Text="Цвет объед.знач.:"/>
+          <Explode Text="Выделить:">
+            <None Text="Не выделять"/>
+            <Biggest Text="Большее значение"/>
+            <Lowest Text="Меньшее значение"/>
+            <Specific Text="Указанное значение"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Внешний вид">
+          <Default Text="По умолчанию"/>
+          <DrawingStyle Text="Стиль отрисовки:"/>
+          <PointWidth Text="Ширина элемента:"/>
+          <LabelsStyle Text="Стиль подписей:"/>
+          <DrawSideBySide Text="Рисовать встык"/>
+          <ShowMarkerLines Text="Показывать разделительные линии"/>
+          <DoughnutRadius Text="Радиус отверстия:"/>
+          <AreaDrawingStyle Text="Стиль области:"/>
+          <Markers Text="Маркеры:"/>
+          <PriceUpColor Text="Price up color:"/>
+          <ReversalAmount Text="Reversal amount:"/>
+          <BoxSize Text="Box size:"/>
+          <NumberOfLinesInBreak Text="Lines in break:"/>
+          <LabelsPlacement Text="Расположение:"/>
+          <PointsGap Text="Зазор:"/>
+          <MinPointHeight Text="Мин.высота слоя:"/>
+          <ValueType Text="Тип значения:"/>
+          <ThreeDDrawingStyle Text="3D стиль:"/>
+          <ThreeDRotation Text="3D поворот:"/>
+          <FunnelStyle Text="Стиль воронки:"/>
+          <LineTension Text="Натяжение линии:"/>
+          <NoSettings Text="Для выбранного типа серии нет настроек."/>
+        </Appearance>
+        <FillBorder Text="Рамка и заливка">
+          <Palette Text="Палитра:"/>
+        </FillBorder>
+        <Labels Text="Подписи">
+          <LabelView Text="Тип подписи:"/>
+          <Pattern Text="Шаблон:"/>
+        </Labels>
+        <Markers Text="Маркеры">
+          <Style Text="Стиль:"/>
+          <Size Text="Размер:"/>
+          <Step Text="Шаг:"/>
+          <Color Text="Цвет:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Галерея">
+      <NewArea Text="Добавить новую область для серии"/>
+      <Categories>
+        <BarColumn Text="Гистограммы"/>
+        <Area Text="Области"/>
+        <Line Text="Линии"/>
+        <PointBubble Text="Пузырьки"/>
+        <Pie Text="Круговые"/>
+        <Circular Text="Лепестковые"/>
+        <Financial Text="Финансовые"/>
+        <PyramidFunnel Text="Пирамидальные"/>
+        <Range Text="Диапазоны"/>
+      </Categories>
+      <Series>
+        <Bar Text="Линейчатая"/>
+        <StackedBar Text="Линейчатая с накоплением"/>
+        <StackedBar100 Text="Нормированная линейчатая"/>
+        <Column Text="Гистограмма"/>
+        <StackedColumn Text="Гистограмма с накоплением"/>
+        <StackedColumn100 Text="Нормированная гистограмма"/>
+        <Area Text="Область"/>
+        <SplineArea Text="Плавная область"/>
+        <StackedArea Text="Область с накоплением"/>
+        <StackedArea100 Text="Нормированная область"/>
+        <Line Text="Линейная"/>
+        <FastLine Text="Быстрая линия"/>
+        <StepLine Text="Шаговая линия"/>
+        <Spline Text="Плавная линия"/>
+        <Bubble Text="Пузырьковая"/>
+        <Point Text="Точечная"/>
+        <FastPoint Text="Быстрая точечная"/>
+        <Pie Text="Круговая"/>
+        <Doughnut Text="Кольцевая"/>
+        <Polar Text="Полярная"/>
+        <Radar Text="Лепестковая"/>
+        <Stock Text="Финансовая"/>
+        <Candlestick Text="Свечеобразная"/>
+        <Kagi Text="Каги"/>
+        <Renko Text="Ренко"/>
+        <PointAndFigure Text="Крестики-нолики"/>
+        <ThreeLineBreak Text="Трехполосный разворот"/>
+        <Pyramid Text="Пирамидальная"/>
+        <Funnel Text="Воронкообразная"/>
+        <Range Text="Диапазон"/>
+        <SplineRange Text="Плавный диапазон"/>
+        <RangeColumn Text="Вертикальный диапазон"/>
+        <RangeBar Text="Горизонтальный диапазон"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Страница &quot;Код&quot;">
+      <EnableCodeCompletion Text="Автозавершение кода"/>
+      <EnableVirtualSpace Text="Разрешить &quot;виртуальный пробел&quot;"/>
+      <UseSpaces Text="Символ пробела вместо табуляции"/>
+      <AllowOutlining Text="Структура кода"/>
+      <LineNumbers Text="Номера строк"/>
+      <TabSize Text="Размер символа TAB:"/>
+      <DefaultScriptLanguage Text="Язык скрипта по умолчанию:"/>
+      <CSharp Text="C#"/>
+      <VBNet Text="Visual Basic .NET"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Настройка бэндов">
+      <Add Text="Добавить"/>
+      <Delete Text="Удалить"/>
+    </ConfigureBands>
+    <Connection Text="Подключение">
+      <Select Text="Выберите тип подключения"/>
+      <AlwaysUse Text="Всегда использовать это подключение"/>
+      <LoginPrompt Text="Спрашивать пароль при подключении"/>
+      <Test Text="Тест"/>
+      <TestSuccesful Text="Тест подключения успешно завершен."/>
+    </Connection>
+    <CustomLabel Text="Этикетка">
+      <Name Text="Название:"/>
+      <Paper Text="Бумага"/>
+      <Landscape Text="Альбомная ориентация"/>
+      <PaperWidth Text="Ширина бумаги:"/>
+      <PaperHeight Text="Высота бумаги:"/>
+      <LeftMargin Text="Левое поле:"/>
+      <TopMargin Text="Верхнее поле:"/>
+      <Label Text="Параметры"/>
+      <LabelWidth Text="Ширина этикетки:"/>
+      <LabelHeight Text="Высота этикетки:"/>
+      <RowGap Text="Вертикальный промежуток:"/>
+      <ColumnGap Text="Горизонтальный промежуток:"/>
+      <Warning Text="Этикетки не помещаются на странице!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Редактор бэнда &quot;Данные&quot;">
+      <DataSource Text="Источник данных"/>
+      <NoData Text="Источники данных недоступны.&#13;&#10;&#13;&#10;Выберите источник данных в меню &quot;Данные|Выбрать данные для отчета...&quot;, или создайте новый источник в меню &quot;Данные|Новый источник данных...&quot;."/>
+      <Sort Text="Сортировка"/>
+      <SortBy Text="Сортировать по"/>
+      <ThenBy Text="Затем по"/>
+      <Ascending Text="По возрастанию"/>
+      <Descending Text="По убыванию"/>
+      <Filter Text="Фильтр"/>
+      <Expression Text="Выражение фильтра:"/>
+    </DataBandEditor>
+    <DataBandColumnEditor Text="Редактор колонок">
+      <Columns Text="Колонки"/>
+      <Count Text="Количество"/>
+      <Layout Text="Размещение"/>
+      <MinRowCount Text="Мин кол-во рядов"/>
+      <Width Text="Ширина"/>
+    </DataBandColumnEditor>
+    <DataWizard Text="Мастер подключения к данным">
+      <Page1 Text="Выберите базу данных"/>
+      <WhichData Text="Какое подключение должен использовать отчет для доступа к базе данных?"/>
+      <Hint Text="Выберите подключение из списка последних использованных, или нажмите кнопку &quot;Новое подключение...&quot; для создания нового подключения."/>
+      <NewConnection Text="Новое подключение..."/>
+      <EditConnection Text="Редактировать..."/>
+      <ConnectionName Text="Введите имя подключения:"/>
+      <ConnectionString Text="Строка подключения"/>
+      <Page2 Text="Выберите таблицы"/>
+      <WhichTables Text="Какие таблицы вы хотите использовать в отчете?"/>
+      <Wait Text="Подключение к базе данных"/>
+      <AddQuery Text="Добавить SQL запрос..."/>
+      <CheckAll Text="Выбрать все"/>
+    </DataWizard>
+    <DialogPageOptions Text="Диалоговая форма"/>
+    <Exception Text="Ошибка">
+      <Hint Text="Ваш отчет вызвал следующую ошибку:"/>
+      <Stack Text="Стек:"/>
+      <Copy Text="Копир. в буфер"/>
+    </Exception>
+    <ExpressionEditor Text="Редактор выражения"/>
+    <Fill Text="Редактор заливки">
+      <Solid Text="Сплошная"/>
+      <LinearGradient Text="Градиент"/>
+      <PathGradient Text="Фигурный градиент"/>
+      <Hatch Text="Штриховка"/>
+      <Glass Text="Стекло"/>
+      <Texture Text="Текстура"/>
+      <ChooseImage Text="Выберите изображение"/>
+      <PreserveAspectRatio Text="Сохранять пропорции"/>
+      <ImageSize Text="Размер изображения"/>
+      <ImageWidth Text="Ширина"/>
+      <ImageHeight Text="Высота"/>
+      <WrapMode Text="Режим переноса"/>
+      <ImageOffset Text="Отступ изображения"/>
+      <Colors Text="Цвета"/>
+      <Color Text="Цвет"/>
+      <StartColor Text="Начало"/>
+      <EndColor Text="Конец"/>
+      <Options Text="Свойства"/>
+      <Focus Text="Фокус"/>
+      <Contrast Text="Контраст"/>
+      <Angle Text="Угол"/>
+      <CenterColor Text="Центр"/>
+      <EdgeColor Text="Край"/>
+      <Shape Text="Фигура"/>
+      <Ellipse Text="Эллипс"/>
+      <Rectangle Text="Прямоугольник"/>
+      <ForeColor Text="Передний план"/>
+      <BackColor Text="Фон"/>
+      <Style Text="Стиль"/>
+      <Blend Text="Смесь"/>
+      <GlassHatch Text="Показывать штриховку"/>
+    </Fill>
+    <FormatEditor Text="Форматирование">
+      <Expression Text="Выражение:"/>
+      <General Text="Общий"/>
+      <Number Text="Числовой"/>
+      <Currency Text="Денежный"/>
+      <Date Text="Дата"/>
+      <Time Text="Время"/>
+      <Percent Text="Процент"/>
+      <Boolean Text="Логический"/>
+      <Custom Text="Пользовательский"/>
+      <UseLocale Text="Использовать системные настройки"/>
+      <DecimalDigits Text="Знаков в дробной части:"/>
+      <DecimalSeparator Text="Разделитель дроби:"/>
+      <GroupSeparator Text="Разделитель групп:"/>
+      <PositivePattern Text="Положительное значение:"/>
+      <NegativePattern Text="Отрицательное значение:"/>
+      <CurrencySymbol Text="Символ валюты:"/>
+      <PercentSymbol Text="Символ процента:"/>
+      <FalseText Text="Текст значения false"/>
+      <TrueText Text="Текст значения true"/>
+    </FormatEditor>
+    <FontsPageOptions Text="Настройка шрифтов">
+      <FormName Text="Настройка шрифтов"/>
+      <Fonts Text="Шрифты"/>
+      <Font Text="Шрифт"/>
+      <SettingsFor Text="Настройка для окна"/>
+      <FormElement Text="Элемент формы"/>
+      <DefaultButton Text="По умолчанию"/>
+      <Size Text="Размер"/>
+      <Italic Text="Курсив"/>
+      <Bold Text="Жирный"/>
+      <Sample Text="Пример"/>
+      <CancelButton Text="Отмена"/>
+    </FontsPageOptions>
+    <GridControlColumnsEditor Text="Редактор колонок">
+      <Columns Text="Колонки"/>
+      <Properties Text="Свойства"/>
+      <Add Text="Добавить"/>
+      <Remove Text="Удалить"/>
+      <AddAll Text="Добавить все"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Редактор группы">
+      <Condition Text="Условие группировки"/>
+      <Hint Text="Выберите поле данных или задайте выражение:"/>
+      <Settings Text="Настройки"/>
+      <Sort Text="Сортировка:"/>
+      <NoSort Text="Не сортировать"/>
+      <Ascending Text="По возрастанию"/>
+      <Descending Text="По убыванию"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Мастер группировки">
+      <Condition Text="Условие группировки"/>
+      <Hint Text="Выберите поле данных или введите выражение, потом нажмите &quot;Добавить&quot; для создания новой группы."/>
+      <Add Text="Добавить"/>
+      <Groups Text="Группы"/>
+      <Edit Text="Изменить..."/>
+      <Delete Text="Удалить"/>
+    </GroupExpert>
+    <HighlightEditor Text="Условное выделение">
+      <Conditions Text="Условия"/>
+      <Add Text="Добавить"/>
+      <Delete Text="Удалить"/>
+      <Edit Text="Изменить"/>
+      <Style Text="Стиль"/>
+      <Fill Text="Заливка"/>
+      <TextColor Text="Цвет текста"/>
+      <Font Text="Шрифт"/>
+      <Visible Text="Видимый"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Редактор гиперссылки">
+      <Url Text="Ссылка"/>
+      <PageNumber Text="Номер страницы"/>
+      <Bookmark Text="Закладка"/>
+      <Report Text="Детальный отчет"/>
+      <ReportPage Text="Детальная страница отчета"/>
+      <Custom Text="Пользовательская"/>
+      <UrlValue Text="Укажите ссылку (например, http://www.url.com):"/>
+      <UrlExpression Text="или введите выражение, возвращающее ссылку:"/>
+      <PageNumberValue Text="Укажите номер страницы:"/>
+      <PageNumberExpression Text="или введите выражение, возвращающее номер страницы:"/>
+      <BookmarkValue Text="Укажите имя закладки:"/>
+      <BookmarkExpression Text="или введите выражение, возвращающее имя закладки:"/>
+      <ReportName Text="Отчет:"/>
+      <ParameterName Text="Параметр отчета:"/>
+      <ParameterValue Text="Укажите значение параметра:"/>
+      <ParameterExpression Text="или введите выражение, возвращающее значение параметра:"/>
+      <PageName Text="Страница в этом отчете:"/>
+      <CustomValue Text="Укажите значение ссылки:"/>
+      <CustomExpression Text="или введите выражение, возвращающее значение ссылки:"/>
+      <Hint Text="Что произойдет, если вы нажмете на этот объект в окне просмотра:"/>
+      <HintUrl Text="Будет открыт указанный адрес."/>
+      <HintPageNumber Text="Вы перейдете на страницу с указанным номером."/>
+      <HintBookmark Text="Вы перейдете на объект, содержащий указанную закладку."/>
+      <HintReport Text="Указанный отчет будет запущен и открыт в новой закладке окна просмотра."/>
+      <HintReportPage Text="Указанная страница будет построена и открыта в новой закладке окна просмотра."/>
+      <HintCustom Text="Вы должны определить обработчик события &quot;Click&quot; у объекта."/>
+      <ModifyAppearance Text="Изменить внешний вид объекта, чтобы он выглядел как ссылка"/>
+      <OpenLinkInNewTab Text="Открывать ссылку в новой вкладке"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Мастер этикеток">
+      <Hint Text="Выберите одну из стандартных этикеток, или нажмите &quot;Создать...&quot; для создания собственной этикетки."/>
+      <Label Text="Этикетка"/>
+      <Manufacturer Text="Производитель"/>
+      <Product Text="Продукт"/>
+      <Parameters Text="Параметры"/>
+      <Size Text="Размер:"/>
+      <PaperSize Text="Размер бумаги:"/>
+      <Rows Text="Строк:"/>
+      <Columns Text="Колонок:"/>
+      <CustomLabel Text="Создать..."/>
+      <Custom Text="Пользовательская"/>
+      <Delete Text="Удалить"/>
+    </LabelWizard>
+    <MapEditor Text="Редактор карты">
+      <Map Text="Карта"/>
+      <Layer Text="Слой"/>
+      <Add Text="Добавить..."/>
+      <Delete Text="Удалить"/>
+      <Hint Text="Щелкните на элементе, чтобы настроить его свойства:"/>
+      <Common>
+        <FillColor Text="Цвет фона:"/>
+        <TextColor Text="Цвет текста:"/>
+        <BorderColor Text="Цвет рамки:"/>
+        <BorderStyle Text="Стиль рамки:"/>
+        <BorderWidth Text="Толщина рамки:"/>
+        <Text Text="Текст:"/>
+        <Font Text="Шрифт:"/>
+        <Dock Text="Стыковка:"/>
+        <Format Text="Формат:"/>
+        <Visible Text="Показывать"/>
+        <NumberOfRanges Text="Диапазоны:"/>
+        <Start Text="Начало:"/>
+        <End Text="Конец:"/>
+        <Auto Text="Авто"/>
+      </Common>
+      <MapEditorControl>
+        <General Text="Основные">
+          <Mercator Text="Проекция Меркатора"/>
+        </General>
+        <ColorScale Text="Цветовая шкала">
+          <HideIfNoData Text="Спрятать, если нет данных"/>
+          <Border Text="Рамка..."/>
+          <Fill Text="Фон..."/>
+          <General Text="Основные"/>
+          <Title Text="Заголовок"/>
+          <Values Text="Значения"/>
+          <NoDataText Text="Текст &quot;нет данных&quot;"/>
+          <NoData Text="Нет данных"/>
+        </ColorScale>
+      </MapEditorControl>
+      <LayerEditorControl>
+        <Data Text="Данные">
+          <DataSource Text="Источник данных:"/>
+          <Filter Text="Фильтр:"/>
+          <SpatialData Text="Пространственные данные:"/>
+          <Column Text="Поле:"/>
+          <Value Text="Значение:"/>
+          <Latitude Text="Широта:"/>
+          <Longitude Text="Долгота:"/>
+          <Label Text="Надпись:"/>
+          <AnalyticalData Text="Аналитические данные:"/>
+          <Function Text="Функция:"/>
+          <ZoomPolygon Text="Увеличить полигон:"/>
+        </Data>
+        <Appearance Text="Внешний вид">
+          <Palette Text="Палитра:"/>
+        </Appearance>
+        <ColorScale Text="Цветовая шкала">
+          <StartColor Text="Начальный цвет:"/>
+          <MiddleColor Text="Средний цвет:"/>
+          <EndColor Text="Конечный цвет:"/>
+          <Color Text="Цвет:"/>
+        </ColorScale>
+        <SizeRanges Text="Шкала размеров">
+          <StartSize Text="Начальный размер:"/>
+          <EndSize Text="Конечный размер:"/>
+          <Size Text="Размер:"/>
+        </SizeRanges>
+        <Labels Text="Надписи">
+          <LabelKind Text="Тип надписи:"/>
+          <None Text="Нет"/>
+          <Name Text="Название"/>
+          <Value Text="Значение"/>
+          <NameAndValue Text="Название и значение"/>
+          <LabelColumn Text="Поле для надписи:"/>
+          <VisibleAtZoom Text="Показывать при масштабе:"/>
+        </Labels>
+      </LayerEditorControl>
+    </MapEditor>
+    <OutlineEditor Text="Редактор Контура">
+      <Enabled Text="Показывать"/>
+      <Style Text="Стиль:"/>
+      <Width Text="Толщина:"/>
+      <Color Text="Цвет:"/>
+      <DrawBehind Text="Рисовать за текстом"/>
+    </OutlineEditor>
+    <PageSetup Text="Параметры страницы">
+      <Paper Text="Бумага"/>
+      <Custom Text="Пользовательский размер"/>
+      <Width Text="Ширина:"/>
+      <Height Text="Высота:"/>
+      <Orientation Text="Ориентация:"/>
+      <Portrait Text="Портретная"/>
+      <Landscape Text="Альбомная"/>
+      <Margins Text="Поля"/>
+      <Left Text="Левое:"/>
+      <Top Text="Верхнее:"/>
+      <Right Text="Правое:"/>
+      <Bottom Text="Нижнее:"/>
+      <MirrorMargins Text="Зеркальные поля на четных страницах"/>
+      <Source Text="Источник бумаги"/>
+      <FirstPage Text="Для первой страницы:"/>
+      <OtherPages Text="Для остальных страниц:"/>
+      <LastPage Text="Для последней страницы:"/>
+      <Columns Text="Колонки"/>
+      <Count Text="Количество:"/>
+      <ColumnWidth Text="Ширина:"/>
+      <Positions Text="Позиции:"/>
+      <Other Text="Прочее"/>
+      <Duplex Text="Двусторонняя печать:"/>
+      <DupDefault Text="По умолчанию"/>
+      <DupSimplex Text="Нет"/>
+      <DupVertical Text="Вертикальная"/>
+      <DupHorizontal Text="Горизонтальная"/>
+      <EditWatermark Text="Водяной знак..."/>
+      <ExtraWidth Text="Широкая страница в дизайнере"/>
+      <UnlimitedHeight Text="Бесконечная высота"/>
+      <UnlimitedWidth Text="Бесконечная ширина"/>
+    </PageSetup>
+    <PictureEditor Text="Редактор рисунка">
+      <Picture Text="Рисунок"/>
+      <Load Text="Открыть"/>
+      <Paste Text="Вставить"/>
+      <Clear Text="Очистить"/>
+      <Edit Text="Редактор"/>
+      <DataColumn Text="Поле данных"/>
+      <FileName Text="Имя файла"/>
+      <Url Text="Гиперссылка"/>
+      <FileHint1 Text="Имя файла:"/>
+      <FileHint2 Text="Замечание: вы должны рапространять этот файл вместе с отчетом."/>
+      <UrlHint Text="Гиперссылка:"/>
+    </PictureEditor>
+    <PictureEditorAdvanced Text="Редактор изображений">
+      <Reset Text="Сброс"/>
+      <Resize Text="Размер"/>
+      <Crop Text="Обрезка"/>
+      <Color Text="Цвет"/>
+      <Change Text="Изменять:"/>
+      <Percentage Text="проценты"/>
+      <Pixels Text="пиксели"/>
+      <Horizontal Text="Ширина:"/>
+      <Vertical Text="Высота:"/>
+      <AspectRatio Text="Сохранять пропорции"/>
+      <Grayscale Text="Градации серого"/>
+      <Monochrome Text="Черно-белое"/>
+      <MinX Text="Мин. X:"/>
+      <MinY Text="Мин. Y:"/>
+    </PictureEditorAdvanced>
+    <PluginsOptions Text="Плагины">
+      <Hint Text="Список установленных плагинов:"/>
+      <Add Text="Добавить"/>
+      <Remove Text="Удалить"/>
+      <Note Text="Внимание: изменения вступят в силу при следующем запуске программы."/>
+      <Fonts Text="Шрифты"/>
+      <ExportsEditor Text="Меню экспортов"/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Применить ко всем страницам и перестроить отчет"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Найти"/>
+    <PrinterSetup Text="Печать">
+      <PrinterSetup Text="Параметры принтера"/>
+      <Printer Text="Принтер"/>
+      <SavePrinter Text="Сохранить принтер в файле отчета"/>
+      <Settings Text="Настройки..."/>
+      <PrintToFile Text="Печать в файл"/>
+      <PageRange Text="Страницы"/>
+      <All Text="Все"/>
+      <Current Text="Текущая"/>
+      <Numbers Text="Номера:"/>
+      <Hint Text="Введите номера или диапазоны страниц, разделенные запятыми. Например: 1,3,5-12"/>
+      <Copies Text="Копии"/>
+      <Count Text="Число копий:"/>
+      <Collate Text="Разобрать по копиям"/>
+      <Other Text="Прочее"/>
+      <OddEven Text="Печатать:"/>
+      <AllPages Text="Все страницы"/>
+      <OddPages Text="Нечетные страницы"/>
+      <EvenPages Text="Четные страницы"/>
+      <Order Text="Порядок:"/>
+      <OrderDirect Text="Прямой (1-9)"/>
+      <OrderReverse Text="Обратный (9-1)"/>
+      <Duplex Text="Дуплекс:"/>
+      <Source Text="Источник:"/>
+      <PrintMode Text="Режим печати"/>
+      <PrintModeDefault Text="Обычный"/>
+      <PrintModeSplit Text="Разрезать большие страницы"/>
+      <PrintModeScale Text="Масштабирование"/>
+      <PrintOnSheet Text="Печатать на листе:"/>
+      <PagesOnSheet Text="Страниц на листе:"/>
+      <PagesOnSheet1 Text="1 страница"/>
+      <PagesOnSheet2 Text="2 страницы"/>
+      <PagesOnSheet4 Text="4 страницы"/>
+      <PagesOnSheet8 Text="8 страниц"/>
+      <Print Text="Печать"/>
+      <Error Text="Диапазон страниц задан неверно."/>
+    </PrinterSetup>
+    <QueryBuilder Text="Конструктор запроса">
+      <Designer Text="Дизайнер"/>
+      <Sql Text="Текст запроса"/>
+      <Result Text="Результат"/>
+      <Select Text="Выбор"/>
+      <Joins Text="Связи"/>
+      <Group Text="Группировка"/>
+      <Name Text="Имя"/>
+      <Alias Text="Алиас"/>
+      <Filter Text="Фильтр"/>
+      <Order Text="Сортировка"/>
+      <Func Text="Функция"/>
+      <Editor Text="Редактор"/>
+      <Delete Text="Удалить"/>
+      <Change Text="Изменить"/>
+      <JoinEditor Text="Редактор связи"/>
+      <Tables Text="Таблицы:"/>
+      <Condition Text="Условие:"/>
+      <InputAlias Text="Введите алиас для таблицы:"/>
+      <Where>
+        <Equal Text="Равно"/>
+        <NotEqual Text="Не равно"/>
+        <GtOrEqual Text="Больше или равно"/>
+        <Gt Text="Больше"/>
+        <LtOrEqual Text="Меньше или равно"/>
+        <Lt Text="Меньше"/>
+        <Like Text="Похоже на"/>
+        <NotLike Text="Не похоже на"/>
+      </Where>
+      <QueryIsCorrupted Text="SQL запрос не может быть отредактирован с помощью Query Builder. При дальнейшей обработке SQL запрос может быть частично или полностью потерян.&#13;&#10;Вы хотите продолжить?"/>
+      <QueryIsCorruptedTitle Text="Предупреждение!"/>
+    </QueryBuilder>
+    <QueryWizard Text="Мастер запроса">
+      <Page1 Text="Укажите имя"/>
+      <SetName Text="Укажите имя объекта &quot;запрос&quot;."/>
+      <NameHint Text="Это имя будет отображаться в окне &quot;Данные&quot;."/>
+      <Page2 Text="Введите текст SQL"/>
+      <WhatData Text="Какие данные должен вернуть запрос?"/>
+      <TypeSql Text="Введите текст запроса на языке SQL или используйте конструктор запроса."/>
+      <QueryBuilder Text="Конструктор запроса..."/>
+      <Page3 Text="Определите параметры"/>
+      <Page4 Text="Определите поля данных"/>
+      <Refresh Text="Обновить поля"/>
+      <AddColumn Text="Добавить вычисляемое поле"/>
+      <AddParameter Text="Добавить параметр"/>
+      <Delete Text="Удалить"/>
+    </QueryWizard>
+    <RelationEditor Text="Редактор связи">
+      <ParentTable Text="Главная таблица:"/>
+      <ChildTable Text="Подчиненная таблица:"/>
+      <Parent Text="Главные"/>
+      <Child Text="Подчиненные"/>
+      <Columns Text="Поля:"/>
+      <Error Text="Количество главных и подчиненных полей должно быть одинаковым."/>
+    </RelationEditor>
+    <ReportData Text="Выбрать данные">
+      <Hint Text="Выберите источники данных и поля, которые вы хотите использовать в отчете:"/>
+      <Aliases Text="Показывать псевдонимы"/>
+    </ReportData>
+    <ReportOptions Text="Свойства отчета">
+      <General Text="Основные"/>
+      <Description Text="Описание"/>
+      <Script Text="Скрипт"/>
+      <Security Text="Безопасность"/>
+      <Inheritance Text="Наследование"/>
+      <Email Text="Электронная почта"/>
+      <Name Text="Имя:"/>
+      <Author Text="Автор:"/>
+      <Version Text="Версия:"/>
+      <Description1 Text="Описание:"/>
+      <Picture Text="Картинка:"/>
+      <SavePreviewPicture Text="Взять картинку из готового отчета"/>
+      <Load Text="Загрузить..."/>
+      <Clear Text="Очистить"/>
+      <Created Text="Создан:"/>
+      <Modified Text="Изменен:"/>
+      <Language Text="Язык скрипта:"/>
+      <Note Text="Замечание: если вы поменяете язык, весь скрипт будет очищен!"/>
+      <RefAssemblies Text="Ссылки на сборки:"/>
+      <Add Text="Добавить..."/>
+      <Password Text="Пароль:"/>
+      <RetypePassword Text="Пароль еще раз:"/>
+      <Inherited Text="Этот отчет наследован от базового отчета:"/>
+      <NotInherited Text="Этот отчет не наследован."/>
+      <Choose Text="Выберите действие:"/>
+      <DontChange Text="Не менять"/>
+      <Detach Text="Отсоединить базовый отчет"/>
+      <Inherit Text="Наследовать отчет от:"/>
+      <Browse Text="Выбрать..."/>
+      <DoublePass Text="Двойной проход"/>
+      <Compress Text="Сжать файл отчета"/>
+      <UseFileCache Text="Использовать файловый кеш"/>
+      <ConvertNulls Text="Преобразовать null значения"/>
+      <TextQuality Text="Качество текста:"/>
+      <SmoothGraphics Text="Плавная отрисовка графики"/>
+      <QualityDefault Text="По умолчанию"/>
+      <QualityRegular Text="Обычное"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <QualitySingleBPP Text="SingleBPP"/>
+      <QualitySingleBPPGridFit Text="SingleBPPGridFit"/>
+      <PasswordError Text="Пароли не одинаковые, повторите ввод."/>
+      <Recipients Text="Получатель(и) (напр., john@url.com):"/>
+      <Subject Text="Тема письма:"/>
+      <Message Text="Текст письма:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Страница отчета">
+      <Units Text="Единицы измерения"/>
+      <Millimeters Text="Миллиметры"/>
+      <Centimeters Text="Сантиметры"/>
+      <Inches Text="Дюймы"/>
+      <HundrethsOfInch Text="Сотые доли дюйма"/>
+      <Grid Text="Сетка"/>
+      <ShowGrid Text="Показывать сетку"/>
+      <SnapToGrid Text="Выравнивать по сетке"/>
+      <DottedGrid Text="Точечная сетка"/>
+      <Size Text="Шаг сетки:"/>
+      <Markers Text="Маркеры объекта"/>
+      <Rectangle Text="Прямоугольник"/>
+      <Corners Text="Уголки"/>
+      <BandView Text="Вид бэндов"/>
+      <Structure Text="Структура"/>
+      <Classic Text="Классический"/>
+      <EditAfterInsert Text="Редактировать объект после вставки"/>
+      <EventBandIndicator Text="Отображать индикатор на бэндах с событиями"/>
+      <EventObjectIndicator Text="Отображать индикатор на объектах с событиями"/>
+      <ObjectsAppearance Text="Внешний вид объектов"/>
+	  <EnableBacklight Text="Подсвечивать активный бэнд"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Редактор текста">
+      <Open Text="Открыть файл"/>
+      <Save Text="Сохранить файл"/>
+      <Subscript Text="Нижний индекс"/>
+      <Superscript Text="Верхний индекс"/>
+      <Bullets Text="Список"/>
+      <ConfirmChanges Text="Текст был изменен. Сохранить изменения?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Поиск и замена">
+      <Find Text="Найти:"/>
+      <Replace Text="Заменить на:"/>
+      <Options Text="Настройки поиска:"/>
+      <MatchCase Text="Учитывать регистр"/>
+      <MatchWholeWord Text="Только слово целиком"/>
+      <FindNext Text="Дальше"/>
+      <ReplaceBtn Text="Заменить"/>
+      <ReplaceAll Text="Заменить все"/>
+      <NotFound Text="Текст не найден."/>
+      <NoMoreFound Text="Просмотр документа закончен."/>
+    </SearchReplace>
+    <SelectDataSource Text="Выберите источник данных">
+      <Hint Text="Выберите один или несколько источников данных для использования в отчете."/>
+      <AvailableDs Text="Доступные источники:"/>
+      <SelectedDs Text="Выбранные источники:"/>
+      <ProjectDs Text="Наборы данных"/>
+      <OtherDs Text="Другие источники"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Выберите язык">
+      <SelectLanguage Text="Выберите язык из списка:"/>
+      <Auto Text="Авто"/>
+      <Folder Text="Папка с файлами языков:"/>
+      <SelectFolder Text="Выберите папку, которая содержит языковые файлы (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Мастер стандартного отчета">
+      <GroupsPage Text="Создайте группы"/>
+      <CreateGroups Text="Создайте группы (не обязательно)."/>
+      <Groups Text="Группы:"/>
+      <LayoutPage Text="Определите размещение данных"/>
+      <DefineLayout Text="Выберите ориентацию листа и размещение данных."/>
+      <Orientation Text="Ориентация"/>
+      <Portrait Text="Портретная"/>
+      <Landscape Text="Альбомная"/>
+      <Layout Text="Размещение"/>
+      <Tabular Text="В виде таблицы"/>
+      <Columnar Text="В виде колонок"/>
+      <StylePage Text="Выберите стиль"/>
+      <Styles Text="Выберите стиль отчета.">
+        <Standard Text="Стандартный"/>
+        <Gray Text="Серый"/>
+        <Green Text="Зеленый"/>
+        <Sand Text="Песочный"/>
+        <Blue Text="Голубой"/>
+        <Title Text="Залоговок отчета"/>
+        <Header Text="Заголовок данных"/>
+        <Group Text="Группа"/>
+        <Data Text="Данные"/>
+        <Footer Text="Подвал"/>
+        <EvenRows Text="Четные строки"/>
+      </Styles>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Редактировать строки"/>
+    <Style Text="Редактор стилей">
+      <Styles Text="Стили"/>
+      <Add Text="Добавить"/>
+      <Delete Text="Удалить"/>
+      <Edit Text="Изменить"/>
+      <Load Text="Загрузить..."/>
+      <Save Text="Сохранить..."/>
+      <Settings Text="Свойства стиля"/>
+      <Border Text="Рамка"/>
+      <Fill Text="Заливка"/>
+      <Font Text="Шрифт"/>
+      <TextColor Text="Цвет текста"/>
+      <StyleName Text="Стиль"/>
+    </Style>
+    <TextEditor Text="Редактор текста">
+      <WordWrap Text="Переносить слова"/>
+      <ConfirmChanges Text="Текст был изменен. Сохранить изменения?"/>
+    </TextEditor>
+    <JsonEditor Text="Редактор Json">
+      <Readonly Text="(только для чтения)"/>
+      <Open Text="Открыть файл"/>
+      <Save Text="Сохранить файл"/>
+      <FormatJson Text="Форматировать JSON"/>
+      <Filter Text="json файлы (*.json)|*.json|txt файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"/>
+    </JsonEditor>
+    <TotalEditor Text="Редактор итога">
+      <TotalName Text="Имя итога:"/>
+      <Total Text="Итог"/>
+      <Function Text="Функция:"/>
+      <DataColumnOrExpression Text="Поле данных или выражение:"/>
+      <DataBand Text="Вычислять для каждой строки бэнда:"/>
+      <EvaluateCondition Text="Вычислять, если условие выполняется:"/>
+      <PrintOn Text="Печатать итог на бэнде:"/>
+      <Options Text="Настройки"/>
+      <ResetAfterPrint Text="Сбрасывать после печати"/>
+      <ResetRepeated Text="Сбрасывать, если бэнд повторяется на каждой странице"/>
+      <InvisibleRows Text="Включая невидимые строки"/>
+      <Sum Text="Сумма"/>
+      <Min Text="Минимум"/>
+      <Max Text="Максимум"/>
+      <Avg Text="Среднее"/>
+      <Count Text="Количество"/>
+      <CountDistinct Text="Количество разных"/>
+      <Custom Text="Пользовательская"/>
+    </TotalEditor>
+    <UIOptions Text="Интерфейс">
+      <Appearance Text="Внешний вид:"/>
+      <Ribbon Text="Использовать новый Ribbon-интерфейс"/>
+      <Welcome Text="Откывать окно приветствия при запуске"/>
+      <RightToLeft Text="Интерфейс Справа Налево:">
+        <Auto Text="Авто"/>
+        <No Text="Нет"/>
+        <Yes Text="Да"/>
+      </RightToLeft>
+      <DisableHotkeys Text="Отключить горячие клавиши"/>
+    </UIOptions>
+    <WatermarkEditor Text="Водяной знак">
+      <Enabled Text="Разрешить"/>
+      <Text Text="Текст"/>
+      <TextItems Text="СЕКРЕТНО,КОПИЯ,ОРИГИНАЛ,ОБРАЗЕЦ,СРОЧНО"/>
+      <Rotation Text="Поворот"/>
+      <Horizontal Text="Горизонтально"/>
+      <Vertical Text="Вертикально"/>
+      <ForwardDiagonal Text="По диагонали"/>
+      <BackwardDiagonal Text="По диагонали назад"/>
+      <Font Text="Шрифт"/>
+      <Color Text="Цвет"/>
+      <Picture Text="Картинка"/>
+      <Load Text="Загрузить"/>
+      <Clear Text="Очистить"/>
+      <Size Text="Размер"/>
+      <Normal Text="Нормальный"/>
+      <Center Text="По центру"/>
+      <Stretch Text="Растянуть"/>
+      <Zoom Text="Масштабировать"/>
+      <Tile Text="Плиткой"/>
+      <Transparency Text="Прозрачность"/>
+      <Zorder Text="Расположение"/>
+      <TextOnTop Text="Текст на переднем плане"/>
+      <PictureOnTop Text="Картинка на переднем плане"/>
+      <ApplyToAll Text="Применить ко всем страницам"/>
+    </WatermarkEditor>
+    <BarcodeEditor Text="Редактор баркодов">
+      <Text Text="Текст"/>
+      <vCard Text="vCard"/>
+      <URI Text="URI"/>
+      <EmailAddress Text="E-mail адрес"/>
+      <EmailMessage Text="E-mail сообщение"/>
+      <Geolocation Text="Координаты"/>
+      <SMS Text="SMS"/>
+      <Call Text="Звонок"/>
+      <Event Text="Событие"/>
+      <Wifi Text="Wi-Fi"/>
+      <FirstName Text="Имя"/>
+      <LastName Text="Фамилия"/>
+      <Title Text="Должность"/>
+      <Company Text="Компания"/>
+      <Website Text="Веб-сайт"/>
+      <EmailPersonal Text="E-mail (личный)"/>
+      <EmailBusiness Text="E-mail (рабочий)"/>
+      <PhonePersonal Text="Телефон (домашний)"/>
+      <PhoneMobile Text="Телефон (мобильный)"/>
+      <PhoneBusiness Text="Телефон (рабочий)"/>
+      <Street Text="Адрес"/>
+      <ZipCode Text="Индекс"/>
+      <City Text="Город"/>
+      <Country Text="Страна"/>
+      <Email Text="E-mail"/>
+      <Subject Text="Тема"/>
+      <Latitude Text="Широта"/>
+      <Longitude Text="Долгота"/>
+      <Height Text="Высота"/>
+      <PhoneNumber Text="Телефонный номер"/>
+      <Description Text="Текст"/>
+      <From Text="Начало"/>
+      <To Text="Конец"/>
+      <Encryption Text="Шифрование"/>
+      <NetworkName Text="Имя сети"/>
+      <Password Text="Пароль"/>
+      <WifiHidden Text="Скрытая сеть Wi-Fi"/>
+      <Save Text="Сохранить"/>
+      <Cancel Text="Отмена"/>
+      <Swiss>
+        <Iban Text="IBAN"/>
+        <IbanType Text="Тип IBAN'a"/>
+        <Name Text="Имя"/>
+        <HouseNumber Text="Номер дома"/>
+        <Reference Text="Ссылка"/>
+        <Creditor Text="Плательщик"/>
+        <Type Text="Тип"/>
+        <TextType Text="Тип текста"/>
+        <Debitor Text="Должник"/>
+        <AdditionalInformation Text="Добавочная информация"/>
+        <UnstructuredMessage Text="Сообщение"/>
+        <BillInformation Text="Информация о счете"/>
+        <Currency Text="Валюта"/>
+        <AlternativeProcedure1 Text="Альтернативная операция 1"/>
+        <AlternativeProcedure2 Text="Альтернативная операция 2"/>
+        <Amount Text="Сумма"/>
+      </Swiss>
+	  <SberbankQr>
+	    <Name Text="Наименование получателя"/>
+		<PersonalAcc Text="Номер счета получателя платежа "/>
+		<BankName Text="Наименование банка получателя платежа"/>
+		<BIC Text="БИК"/>
+		<CorrespAcc Text="Номер кор./сч. банка получателя платежа"/>
+		<Sum Text="Сумма платежа"/>
+		<Purpose Text="Наименование платежа (назначение)"/>
+		<PayeeINN Text="ИНН получателя платежа"/>
+		<PayerINN Text="ИНН плательщика"/>
+		<DrawerStatus Text="Статус составителя платежного документа"/>
+		<KPP Text="КПП получателя платежа"/>
+		<CBC Text="КБК"/>
+		<OKTMO Text="OKTMO"/>
+		<PayReason Text="Основание налогового платежа"/>
+		<TaxPeriod Text="Налоговый период"/>
+		<DocNo Text="Номер документа"/>
+		<DocDate Text="Дата документа"/>
+		<TaxPaytKind Text="Тип платежа"/>
+		<LastName Text="Фамилия плательщика"/>
+		<FirstName Text="Имя плательщика"/>
+		<MiddleName Text="Отчество плательщика"/>
+		<PayerAdress Text="Адрес плательщика"/>
+		<PersonalAccount Text="Лицевой счет бюджетного получателя"/>
+		<DocIdx Text="Индекс платежного документа"/>
+		<PensAcc Text="№ лицевого счета в системе персонифицированного учета 
+		в ПФР - СНИЛС"/>
+		<Contract Text="Номер договора"/>
+		<PersAcc Text="Номер лицевого счета плательщика в 
+		организации (в системе учета ПУ)"/>
+		<Flat Text="Номер квартиры"/>
+		<Phone Text="Номер телефона"/>
+		<PayerIdType Text="Вид ДУЛ плательщика"/>
+		<PayerIdNum Text="Номер ДУЛ плательщика"/>
+		<ChildFio Text="ФИО ребенка/учащегося"/>
+		<BirthDate Text="Дата рождения"/>
+		<PaymTerm Text="Срок платежа/дата выставления счета"/>
+		<PaymPeriod Text="Период оплаты"/>
+		<Category Text="Вид платежа"/>
+		<ServiceName Text="Код услуги/название прибора учета"/>
+		<CounterId Text="Номер прибора учета"/>
+		<CounterVal Text="Показание прибора учета"/>
+		<QuittId Text="Номер извещения, начисления, счета"/>
+		<QuittDate Text="Дата извещения/начисления/счета/постановления 
+		(для ГИБДД)"/>
+		<InstNum Text="Номер учреждения (образовательного, медицинского)"/>
+		<ClassNum Text="Номер группы детсада/класса школы"/>
+		<SpecFio Text="ФИО преподавателя, специалиста, оказывающего услугу"/>
+		<AddAmount Text="Сумма страховки/дополнительной услуги/Сумма пени (в копейках)"/>
+		<RuleId Text="Номер постановления (для ГИБДД)"/>
+		<ExecId Text="Номер исполнительного производства"/>
+		<RegType Text="Код вида платежа (например, для платежей в адрес Росреестра)"/>
+		<UIN Text=" Уникальный идентификатор начисления"/>
+		<TechCode Text="Технический код, рекомендуемый для заполнения поставщиком услуг. 
+		Может использоваться принимающей организацией для вызова 
+		соответствующей обрабатывающей ИТ-системы."/>
+		<ObligatoryProps Text="Обязательные реквизиты"/>
+		<AdditionalProps Text="Дополнительные реквизиты"/>
+		<AnotherProps Text="Другие"/>
+		<NotEnterDate Text="Не указывать дату"/>
+	  </SberbankQr>
+    </BarcodeEditor>
+    <SavingPageOptions Text="Сохранение">
+      <EnableAutoSave Text="Включить автосохранение каждые (минут)"/>
+    </SavingPageOptions>
+    <LoadAutoSave Text="Восстановление файла из автосохранения">
+      <Message Text="FastReport обнаружил некорректное завершение работы. Вы хотите восстановить несохраненный файл?"/>
+      <Restore Text="Восстановить"/>
+    </LoadAutoSave>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Имя сервера:"/>
+      <ServerLogon Text="Вход на сервер"/>
+      <UserName Text="Логин:"/>
+      <Password Text="Пароль:"/>
+      <Database Text="База данных"/>
+      <DatabaseName Text="Имя базы данных:"/>
+      <DatabaseFile Text="Файл базы данных:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Аутентификация Windows"/>
+      <UseSql Text="Аутентификация MS SQL"/>
+      <SavePassword Text="Сохранить пароль"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Строка подключения"/>
+      <Build Text="Создать..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Источник данных"/>
+      <DsName Text="Пользовательский или системный источник:"/>
+      <ConnString Text="Строка подключения:"/>
+      <Login Text="Логин"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Файл схемы или URL:"/>
+      <Xml Text="Файл данных или URL:"/>
+    </Xml>
+    <Csv>
+      <ConfigureDatabase Text="Настройка базы данных"/>
+      <SelectFile Text="Выберите .csv файл (путь или url):"/>
+      <Codepage Text="Кодировка:"/>
+      <Separator Text="Разделитель:"/>
+      <FieldNames Text="Имена полей в первой строке"/>
+      <RemoveQuotes Text="Удалить кавычки"/>
+      <ConvertTypes Text="Преобразовать типы полей"/>
+      <FilePreview Text="Просмотр файла:"/>
+      <DataPreview Text="Просмотр данных"/>
+      <Codepages>
+        <Default Text="По умолчанию"/>
+        <ASCII Text="ASCII"/>
+        <UTF8 Text="UTF8"/>
+        <UTF7 Text="UTF7"/>
+        <UTF32 Text="UTF32"/>
+        <Unicode Text="Юникод"/>
+        <BigEndianUnicode Text="Юникод Big Endian"/>
+      </Codepages>
+      <Separators>
+        <Semicolon Text=";"/>
+        <Comma Text=","/>
+        <Space Text="Пробел"/>
+        <Tab Text="Табуляция"/>
+        <Other Text="Другое"/>
+      </Separators>
+    </Csv>
+    <Json>
+      <Path Text="Путь к файлу или URL:"/>
+      <Settings Text="Настройка подключения"/>
+      <Encoding Text="Кодировка"/>
+      <Input Text="Json или URL"/>
+      <Schema Text="Json Schema"/>
+      <RequestHeaders Text="Заголовки запроса"/>
+      <HeaderKey Text="Заголовок"/>
+      <HeaderVal Text="Значение"/>
+      <ConfirmChanges Text="Json был изменен. Перестроить схему JSON?" />
+    </Json>
+    <MongoDB>
+      <Scheme Text="Схема:"/>
+      <Host Text="Сервер:"/>
+      <Port Text="Порт:"/>
+      <UseSsl Text="Использовать SSL"/>
+    </MongoDB>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Редактировать..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Может расти"/>
+      <CanShrink Text="Может сжиматься"/>
+      <GrowToBottom Text="Расти вниз"/>
+      <Hyperlink Text="Гиперссылка..."/>
+      <Style Text="Стиль"/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Может разрываться"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Добавить дочерний бэнд"/>
+      <StartNewPage Text="Формировать новую страницу"/>
+      <PrintOnBottom Text="Печатать внизу страницы"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Добавить детальный бэнд &quot;Данные&quot;"/>
+      <KeepTogether Text="Держать вместе"/>
+      <KeepDetail Text="Держать детали вместе"/>
+      <ColumnsEditor Text="Редактор колонок"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Повторять на каждой странице"/>
+      <KeepWithData Text="Не отрывать от данных"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Сбрасывать номер страницы"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Заполнять пустое место страницы"/>
+      <CompleteToNRows Text="Дополнить данные до N строк:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Режим отображения"/>
+      <AutoSize Text="Авторазмер"/>
+      <CenterImage Text="Центрировать"/>
+      <Normal Text="Нормальный"/>
+      <StretchImage Text="Растянуть"/>
+      <Zoom Text="Масштабировать"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Формат данных..."/>
+      <Clear Text="Очистить"/>
+      <AutoWidth Text="Автоширина"/>
+      <WordWrap Text="Перенос слов"/>
+      <AllowExpressions Text="Выражения в тексте"/>
+      <HideZeros Text="Скрыть нули"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Печатать на родителе"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Повторять заголовки на новой странице"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Вставить строку выше"/>
+      <InsertBelow Text="Вставить строку ниже"/>
+      <AutoSize Text="Авторазмер"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Вставить колонку левее"/>
+      <InsertToRight Text="Вставить колонку правее"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Объединить ячейки"/>
+      <Split Text="Разбить ячейку"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Ячейки одной строкой"/>
+      <ShowTitle Text="Заголовок матрицы"/>
+      <Style Text="Стиль"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Итоги"/>
+      <Function Text="Функция"/>
+      <SuppressTotals Text="Подавлять итоги"/>
+      <TotalsFirst Text="Итоги в начале"/>
+      <Percent Text="Процент"/>
+      <PercentColumnTotal Text="% от итога по колонке"/>
+      <PercentRowTotal Text="% от итога по строке"/>
+      <PercentGrandTotal Text="% от общего итога"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Редактировать колонки..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Тип штрих-кода"/>
+      <AutoSize Text="Авторазмер"/>
+      <AutoEncode Text="Авто кодировка"/>
+      <CalcChecksum Text="Контрольная сумма"/>
+      <ShowText Text="Показывать текст"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Показывать маркеры"/>
+      <ShowGrid Text="Показывать сетку"/>
+    </ZipCodeObject>
+    <Report>
+      <DesignReport Text="Редактировать отчет..."/>
+      <SelectDataSource Text="Выбрать источник данных..."/>
+    </Report>
+    <WebReport>
+      <SelectReportFile Text="Выбор файла отчета"/>
+      <SelectLocalizationFile Text="Выбор файла локализации"/>
+    </WebReport>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Вычисление размеров..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Заполнение матрицы..."/>
+      <NewColumn Text="Перенесите данные сюда&#13;&#10;для создания новой колонки"/>
+      <NewRow Text="Перенесите данные сюда&#13;&#10;для создания новой строки"/>
+      <NewCell Text="Перенесите данные сюда&#13;&#10;для создания новой ячейки"/>
+      <Total Text="Итого"/>
+      <Title Text="Название"/>
+      <White Text="Белый"/>
+      <Gray Text="Серый"/>
+      <Orange Text="Оранжевый"/>
+      <Green Text="Зеленый"/>
+      <GreenOrange Text="Оранжево-зеленый"/>
+      <Blue Text="Голубой"/>
+      <BlueWhite Text="Бело-голубой"/>
+      <GrayOrange Text="Оранжево-серый"/>
+      <BlueOrange Text="Оранжево-голубой"/>
+      <OrangeWhite Text="Оранжево-белый"/>
+    </Matrix>
+    <Map>
+      <Hint Text="Используйте двойной щелчок для добавления слоёв,&#13;&#10;левую кнопку мыши для панорамирования,&#13;&#10;колесо мыши для изменения масштаба."/>
+    </Map>
+    <CrossView>
+      <SetSource Text="Выбрать источник FastCube"/>
+      <FillData Text="Заполнение матрицы..."/>
+    </CrossView>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Пустой отчет"/>
+    <StandardReport Text="Мастер стандартного отчета"/>
+    <InheritedReport Text="Наследованный отчет"/>
+    <Label Text="Мастер этикеток"/>
+    <NewDataSource Text="Новый источник данных"/>
+    <NewPage Text="Новая страница отчета"/>
+    <NewDialog Text="Новая диалоговая форма"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Экспорт выполнен за {0} мс"/>
+      <OrderByCells Text="Сортировка ячеек"/>
+      <AnalyzeObjects Text="Анализ объектов"/>
+      <SavePage Text="Сохранение страницы"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Разрывы страниц"/>
+      <OpenAfterExport Text="Открыть после экспорта"/>
+      <Pictures Text="Картинки"/>
+      <Options Text="Настройки"/>
+      <None Text="Нет"/>
+      <Metafile Text="Метафайл"/>
+      <SaveFile Text="Сохранение файла"/>
+      <TableBased Text="Табличный"/>
+      <LayerBased Text="Послойный"/>
+      <ParagraphBased Text="По параграфам"/>
+      <Seamless Text="Без разрывов таблицы"/>
+      <ToMultipleFiles Text="Экспорт в несколько файлов"/>
+      <PrintOptimized Text="Для печати"/>
+      <SplitPages Text="Разделить страницы"/>
+    </Misc>
+    <Editor Text="Редактор меню экспортов">
+      <ExportsMenu Text="Меню"/>
+      <DefaultMenu Text="По умолчанию"/>
+    </Editor>
+    <ExportGroups>
+      <Office Text="Office"/>
+      <XML Text="XML"/>
+      <Web Text="Веб"/>
+      <Image Text="Изображения"/>
+      <DataBase Text="База данных"/>
+      <Print Text="Печать"/>
+      <Other Text="Другое"/>
+      <Cloud Text="Облако"/>
+      <Messengers Text="Мессенджер"/>
+    </ExportGroups>
+    <Image Text="Экспорт в рисунок">
+      <File Text="Файлы рисунков"/>
+      <ImageFormat Text="Формат:"/>
+      <ImageParceFormatException Text="Изображение не может быть преобразованно в выбранный формат."/>
+      <Resolution Text="Разрешение:"/>
+      <Quality Text="Качество Jpeg:"/>
+      <SeparateFiles Text="Отдельный файл для каждой страницы"/>
+      <MultiFrame Text="Многостраничный TIFF"/>
+      <Monochrome Text="Черно-белый TIFF"/>
+      <Bmp Text="Рисунок BMP"/>
+      <Png Text="Рисунок PNG"/>
+      <Jpeg Text="Рисунок JPG"/>
+      <Gif Text="Рисунок GIF"/>
+      <Tiff Text="Рисунок TIFF"/>
+      <Metafile Text="Метафайл"/>
+    </Image>
+    <RichText Text="Экспорт в RichText">
+      <File Text="RTF формат"/>
+      <RTFObjectAs Text="RTF объект как"/>
+      <Picture Text="Изображение"/>
+      <EmbeddedRTF Text="Встроенный RTF"/>
+    </RichText>
+    <Text Text="Экспорт в текстовый файл/матричный принтер">
+      <File Text="Текстовый файл/матричный принтер"/>
+      <EmptyLines Text="Пустые строки"/>
+      <DataOnly Text="Только данные"/>
+      <Frames Text="Рамки"/>
+      <FramesNone Text="Нет"/>
+      <FramesText Text="Текстовые"/>
+      <FramesGraphic Text="Графические"/>
+      <Codepage Text="Кодировка"/>
+      <Default Text="По умолчанию"/>
+      <Unicode Text="Юникод"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Масштаб X"/>
+      <ScaleY Text="Масштаб Y"/>
+      <AutoScale Text="Автоподбор"/>
+      <PrinterType Text="Тип принтера"/>
+      <Commands Text="Команды"/>
+      <PageWidth Text="Ширина страницы:"/>
+      <PageHeight Text="Высота страницы:"/>
+      <DataLoss Text="ВОЗМОЖНА ПОТЕРЯ ДАННЫХ&#13;&#10;пожалуйста, увеличьте Масштаб X/Y"/>
+      <ScaleMessage Text="Расчет оптимального масштаба"/>
+      <Scale Text="Масштаб"/>
+    </Text>
+    <Csv Text="Экспорт в CSV">
+      <File Text="CSV формат"/>
+      <Separator Text="Разделитель"/>
+      <Codepage Text="Кодировка"/>
+      <Default Text="По умолчанию"/>
+      <Unicode Text="Юникод"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Только данные"/>
+      <NoQuotes Text="Отключить кавычки"/>
+      <EscapeQuotes Text="Экранировать кавычки"/>
+    </Csv>
+    <Dbf Text="Экспорт в DBF">
+      <File Text="DBF таблица"/>
+      <Codepage Text="Кодировка"/>
+      <Default Text="По умолчанию"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Только данные"/>
+      <FieldNames Text="Имена полей (например, Field1;Field2):"/>
+    </Dbf>
+    <Xml Text="Экспорт в XML">
+      <File Text="XML (Excel) формат"/>
+    </Xml>
+    <Odf>
+      <Compliance Text="Стандарт ODF:  "/>
+    </Odf>
+    <Odt Text="Экспорт в  OpenOffice Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Экспорт в OpenOffice Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Экспорт в Excel 2007">
+      <File Text="Excel 2007 формат"/>
+      <FontScale Text="Масштаб шрифта:"/>
+      <PrintScaling Text="Масштабирование при печати"/>
+      <NoScaling Text="Фактический размер"/>
+      <FitSheetOnOnePage Text="Всё на одной странице"/>
+      <FitAllColumsOnOnePage Text="Все колонки на одной странице"/>
+      <FitAllRowsOnOnePage Text="Все строки на одной странице"/>
+    </Xlsx>
+    <Xls Text="Экспорт в Excel 97">
+      <File Text="Excel 97 формат"/>
+    </Xls>
+    <Pptx Text="Экспорт в PowerPoint 2007">
+      <File Text="PowerPoint 2007 формат"/>
+    </Pptx>
+    <Docx Text="Экспорт в Microsoft Word 2007">
+      <File Text="Microsoft Word 2007 формат"/>
+      <RowHeight Text="Высота строк таблицы"/>
+      <Exactly Text="Точно"/>
+      <Minimum Text="Минимум"/>
+      <DoNotExpandShiftReturn Text="Не расширять мягкий перенос"/>
+    </Docx>
+    <Xaml Text="Экспорт в XAML">
+      <File Text="Файл XAML"/>
+      <IsScrolled Text="Добавить полосы прокрутки"/>
+    </Xaml>
+    <Svg Text="Экспорт в SVG">
+      <File Text="Файл SVG"/>
+      <EmbPic Text="Встроенные картинки"/>
+    </Svg>
+    <Ppml Text="Экспорт в PPML">
+      <File Text="Файл PPML"/>
+    </Ppml>
+    <PS Text="Экспорт в PostScript">
+      <File Text="Файл PostScript"/>
+      <PagesInDiffFiles Text="Страницы в отдельных файлах"/>
+      <SaveImagesSeparately Text="Сохранять картинки отдельно"/>
+    </PS>
+    <Xps Text="Экспорт в XPS">
+      <File Text="Microsoft XPS формат"/>
+    </Xps>
+    <Pdf Text="Экспорт в PDF">
+      <File Text="PDF формат"/>
+      <Export Text="Экспорт"/>
+      <PDFCompliance Text="Стандарт PDF:  "/>
+      <EmbeddedFonts Text="Внедренные шрифты"/>
+      <Background Text="Фон"/>
+      <TextInCurves Text="Текст в кривых"/>
+      <Images Text="Изображения"/>
+      <ColorSpace Text="Цветовое пространство:  "/>
+      <OriginalResolution Text="Оригинальное разрешение"/>
+      <PrintOptimized Text="Для печати"/>
+      <JpegCompression Text="Jpeg сжатие:  "/>
+      <JpegQuality Text="Jpeg качество:  "/>
+      <InteractiveForms Text="Интерактивные формы"/>
+      <Information Text="Информация"/>
+      <DocumentInformation Text="Информация о документе"/>
+      <Title Text="Заголовок"/>
+      <Author Text="Автор"/>
+      <Subject Text="Тема"/>
+      <Keywords Text="Ключевые слова"/>
+      <Creator Text="Создатель"/>
+      <Producer Text="Программа"/>
+      <Security Text="Защита"/>
+      <Authentification Text="Аутентификация"/>
+      <OwnerPassword Text="Пароль владельца"/>
+      <UserPassword Text="Пароль пользователя"/>
+      <Permissions Text="Права доступа"/>
+      <PrintTheDocument Text="Печать документа"/>
+      <ModifyTheDocument Text="Изменение документа"/>
+      <CopyOfTextAndGraphics Text="Копирование текста и графики"/>
+      <AddOrModifyTextAnnotations Text="Аннотации"/>
+      <Viewer Text="Просмотр"/>
+      <ViewerPreferences Text="Настройки просмотра"/>
+      <ShowPrintDialog Text="Показать диалог печати"/>
+      <HideToolbar Text="Спрятать toolbar"/>
+      <HideMenubar Text="Спрятать menubar"/>
+      <HideWindowUserInterface Text="Спрятать интерфейс окна"/>
+      <FitWindow Text="Растянуть окно"/>
+      <CenterWindow Text="Центровать окно"/>
+      <PrintScaling Text="Растягивать при печати"/>
+      <Outline Text="Outline"/>
+      <InitialZoom Text="Масштаб:  "/>
+      <ActualSize Text="Реальный размер"/>
+      <FitPage Text="По странице"/>
+      <FitWidth Text="По ширине"/>
+      <Default Text="По умолчанию"/>
+      <VectorGraphics Text="Векторная графика">
+        <GradientQuality Text="Качество градиентов"/>
+        <ExportAsImage Text="Экспорт как изображение"/>
+        <LowQuality Text="Низкое качество"/>
+        <MediumQuality Text="Среднее качество"/>
+        <HighQuality Text="Высокое качество"/>
+        <GradientInterpolation Text="Интерполяция градиента:"/>
+        <Curves Text="Кривые"/>
+        <CurvesInterpolation Text="Интерполяция кривых:"/>
+        <TextInterpolation Text="Интерполяция текста:"/>
+        <Disabled Text="Отключено"/>
+        <SvgAsPicture Text="Svg как изображение"/>
+      </VectorGraphics>
+      <DigitalSignature Text="Цифровая подпись">
+        <SignInformation Text="Информация о подписи"/>
+        <SignDocument Text="Подписать документ"/>
+        <Location Text="Место нахождения"/>
+        <Reason Text="Основание"/>
+        <ContactInfo Text="Контакт"/>
+        <CertificateInformation Text="Информация о сертификате"/>
+        <CertificatePath Text="Путь к сертификату"/>
+        <CertificatePassword Text="Пароль сертификата"/>
+        <CertificateSavePassword Text="Сохранить пароль"/>
+        <CertificateSavePasswordWarning Text="Внимание!!! Сохранение пароля может быть небезопасным!"/>
+        <ClickToChangeThePassword Text="Нажмите, чтобы изменить пароль"/>
+      </DigitalSignature>
+    </Pdf>
+    <Html Text="Экспорт в HTML">
+      <File Text="HTML формат"/>
+      <MHTFile Text="MHT формат"/>
+      <Format Text="Формат"/>
+      <SinglePage Text="Одной страницей"/>
+      <SubFolder Text="Отдельная папка для файлов"/>
+      <Navigator Text="Навигатор"/>
+      <Layers Text="Слои"/>
+      <EmbPic Text="Встроенные картинки"/>
+      <Total Text="Всего"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Экспорт в MHT (веб-архив)">
+      <File Text="MHT файл (веб-архив)"/>
+    </Mht>
+    <Json Text="Экспорт в Json">
+      <File Text="Json формат"/>
+    </Json>
+    <LaTeX Text="Экспорт в LaTeX">
+      <File Text="LaTeX формат"/>
+    </LaTeX>
+    <Zpl Text="Экспорт в ZPL">
+      <File Text="ZPL формат"/>
+      <PrinterSettings Text="Настройки печати"/>
+      <Density Text="Плотность"/>
+      <FontScale Text="Масштаб шрифта"/>
+      <PrintAsBitmap Text="Печатать как изображение"/>
+    </Zpl>
+    <Email Text="Отправка e-mail">
+      <Email Text="Письмо"/>
+      <Account Text="Настройки"/>
+      <Address Text="Адрес:"/>
+      <CC Text="Копия:"/>
+      <Subject Text="Тема:"/>
+      <Message Text="Сообщение:"/>
+      <Attachment Text="Вложение:"/>
+      <Settings Text="Настройки..."/>
+      <Name Text="Имя:"/>
+      <Template Text="Шаблон:"/>
+      <Host Text="Сервер:"/>
+      <Port Text="Порт:"/>
+      <UserName Text="Логин:"/>
+      <Password Text="Пароль:"/>
+      <AddressError Text="Неверный адрес e-mail."/>
+      <HostError Text="Сервер не должен быть пустым."/>
+      <SendingEmail Text="Отправка письма - {0} Кб"/>
+      <EnableSSL Text="Использовать SSL"/>
+    </Email>
+    <Dxf Text="Экспорт в DXF">
+      <File Text="DXF формат"/>
+      <FillMode Text="Режим заливки:"/>
+      <FillModeBorder Text="Только границы"/>
+      <FillModeSolid Text="Сплошная"/>
+      <BarcodesGap Text="Разрыв штрих-кодов (мм):"/>
+    </Dxf>
+    <Hpgl Text="Экспорт в Hpgl (plt)">
+      <File Text="Hpgl (plt) формат"/>
+      <FillMode Text="Режим заливки:"/>
+      <FillModeSolid Text="Сплошная"/>
+      <FillModeBorder Text="Только границы"/>
+    </Hpgl>
+  </Export>
+  <Cloud>
+    <CloudStorage Text="Сохранить в Облако">
+      <File Text="Файл"/>
+      <Proxy Text="Прокси"/>
+      <FileType Text="Тип Файла:"/>
+      <Settings Text="Настройки..."/>
+      <Server Text="Сервер:"/>
+      <Username Text="Имя Пользователя:"/>
+      <Password Text="Пароль:"/>
+      <PortError Text="Номер порта должен быть числовым."/>
+    </CloudStorage>
+    <Ftp Text="Сохранить на FTP">
+      <Name Text="FTP"/>
+      <FtpServer Text="Сервер FTP:"/>
+      <FtpUsername Text="Имя Пользователя:"/>
+      <FtpPassword Text="Пароль:"/>
+      <ServerConnectionFiledError Text="Не удалось подключиться к указанному серверу."/>
+      <ServerNotFoundError Text="Не удалось найти указанный сервер."/>
+      <AccessDeniedError Text="Ошибка доступа. Неверный логин или пароль."/>
+      <SaveSuccess Text="Сохранение выполнено."/>
+    </Ftp>
+    <Box Text="Сохранить в Box">
+      <Name Text="Box"/>
+      <ClientInfoDialog Text="Информация о Клиенте"/>
+      <ClientId Text="ИД Клиента:"/>
+      <ClientSecret Text="Секрет Клиента:"/>
+    </Box>
+    <Dropbox Text="Сохранить в Dropbox">
+      <Name Text="Dropbox"/>
+      <ApplicationInfoDialog Text="Информация о Приложении"/>
+      <AccessToken Text="Токен Доступа:"/>
+      <File Text="Файл"/>
+      <Proxy Text="Прокси"/>
+      <FileType Text="Тип Файла:"/>
+      <Settings Text="Настройки..."/>
+      <Save Text="Сохранить"/>
+      <Server Text="Сервер:"/>
+      <Username Text="Имя Пользователя:"/>
+      <Password Text="Пароль:"/>
+      <PortError Text="Номер порта должен быть числовым."/>
+    </Dropbox>
+    <FastCloud Text="Сохранить в FastCloud">
+      <Name Text="FastCloud"/>
+      <UserDetails Text="Информация о пользователе"/>
+      <Email Text="Email:"/>
+      <UserPassword Text="Пароль:"/>
+    </FastCloud>
+    <GoogleDrive Text="Сохранить в Диск Google">
+      <Name Text="GoogleDrive"/>
+      <ClientInfoDialog Text="Информация о Клиенте"/>
+      <ClientId Text="ИД Клиента:"/>
+      <ClientSecret Text="Секрет Клиента:"/>
+    </GoogleDrive>
+    <SkyDrive Text="Сохранить в OneDrive">
+      <Name Text="OneDrive"/>
+      <ClientInfoDialog Text="Информация о Клиенте"/>
+      <ClientId Text="ИД Клиента:"/>
+      <ClientSecret Text="Секрет Клиента:"/>
+      <File Text="Файл"/>
+      <Proxy Text="Прокси"/>
+      <FileType Text="Тип Файла:"/>
+      <Settings Text="Настройки..."/>
+      <Server Text="Сервер:"/>
+      <Username Text="Имя Пользователя:"/>
+      <Password Text="Пароль:"/>
+      <PortError Text="Номер порта должен быть числовым."/>
+    </SkyDrive>
+  </Cloud>
+  <Messaging>
+    <MessengerForm Text="Отправить отчет">
+      <File Text="Файл"/>
+      <Proxy Text="Прокси"/>
+      <FileType Text="Тип файла:"/>
+      <Settings Text="Настройки..."/>
+      <Server Text="Сервер:"/>
+      <Username Text="Имя пользователя:"/>
+      <Password Text="Пароль:"/>
+      <PortError Text="Номер порта должен быть числовым."/>
+    </MessengerForm>
+    <Xmpp Text="Отправить отчет через XMPP">
+      <Name Text="XMPP"/>
+      <JidFrom Text="Jabber ID:"/>
+      <Password Text="Пароль:"/>
+      <JidTo Text="Кому отправить:"/>
+      <CloudWarning Text="Внимание! Файл будет загружен в облако FastReport Cloud. Пользователь получит ссылку на скачивание файла."/>
+      <Errors>
+        <InvalidJidOrPassword Text="Неверный Jabber ID или пароль!"/>
+        <UnableToUploadFile Text="Не удалось загрузить файл в облако!"/>
+      </Errors>
+    </Xmpp>
+    <Telegram Text="Отправить отчет через Telegram">
+      <Name Text="Telegram"/>
+      <SenderPhone Text="Телефон отправителя"/>
+      <Password Text="Пароль в Telegram"/>
+      <CodeToAuthenticate Text="Код аутентификации"/>
+      <RecipientPhone Text="Телефон получателя"/>
+      <SignOut Text="Выход"/>
+      <Errors>
+        <InvalidSenderPhoneOrPassword Text="Неверный телефон отправителя или пароль!"/>
+        <UnableToUploadFile Text="Невозможно отправить в облако!"/>
+      </Errors>
+    </Telegram>
+  </Messaging>
+  <Web>
+    <Print Text="Печать"/>
+    <PrintFromBrowser Text="Печать из браузера"/>
+    <PrintFromAcrobat Text="Печать из Adobe Reader"/>
+    <FitWidth Text="По ширине"/>
+    <FitPage Text="По размеру"/>
+    <Export Text="Экспорт"/>
+    <Zoom Text="Масштаб"/>
+    <Refresh Text="Обновить отчет"/>
+    <First Text="На первую страницу"/>
+    <Prev Text="На предыдущую страницу"/>
+    <Next Text="На следующую страницу"/>
+    <Last Text="На последнюю страницу"/>
+    <EnterPage Text="Введите номер страницы для перехода"/>
+    <TotalPages Text="Всего страниц (не редактируется)"/>
+    <Back Text="Назад"/>
+    <ScriptSecurity>
+        <ForbiddenType Text="Пожалуйста, не используйте тип {typeName}"/>
+        <ForbiddenMethod Text="Пожалуйста, не используйте метод {methodName}"/>
+    </ScriptSecurity>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Внешний вид"/>
+      <Behavior Text="Поведение"/>
+      <Build Text="Построение"/>
+      <Data Text="Данные"/>
+      <Design Text="Проектирование"/>
+      <Designer Text="Дизайнер"/>
+      <Email Text="Эл.почта"/>
+      <Engine Text="Движок"/>
+      <Events Text="События"/>
+      <Hierarchy Text="Иерархия"/>
+      <Layout Text="Макет"/>
+      <Misc Text="Разное"/>
+      <Navigation Text="Навигация"/>
+      <Paper Text="Бумага"/>
+      <Preview Text="Просмотр"/>
+      <Print Text="Печать"/>
+      <Report Text="Отчет"/>
+      <Script Text="Скрипт"/>
+      <Spatial Text="Пространственные"/>
+      <Toolbars Text="Панель инструментов"/>
+      <UI Text="Интерфейс"/>
+    </Categories>
+  </Properties>
+</Language>

@@ -129,7 +129,7 @@ namespace FastReport.Data
       // OracleConnectionEditor
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.gbServer);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.btnAdvanced);

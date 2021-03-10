@@ -114,7 +114,7 @@ namespace FastReport
 
             RegisteredObjects.AddCategory("ReportPage,Barcodes", 123, 9, "Objects,BarcodeObject");
             for (int i = 0; i <= Barcodes.Items.Length - 1; i++)
-                RegisteredObjects.Add(typeof(BarcodeObject), "ReportPage,Barcodes", -1, "ComponentMenu,Barcode,Barcodes,Barcode" + i, i);
+                RegisteredObjects.Add(typeof(BarcodeObject), "ReportPage,Barcodes", -1, Barcodes.Items[i].barcodeName, i);
 
             RegisteredObjects.Add(typeof(CheckBoxObject), "ReportPage", 124, 10);
 

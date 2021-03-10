@@ -10,10 +10,7 @@ namespace FastReport.Export
         /// Does nothing
         /// </summary>
         /// <param name="int0"></param>
-        private void ShowPerformance(int int0)
-        {
-
-        }
+        partial void ShowPerformance(int int0);
 
         protected ReportPage GetOverlayPage(ReportPage page)
         {

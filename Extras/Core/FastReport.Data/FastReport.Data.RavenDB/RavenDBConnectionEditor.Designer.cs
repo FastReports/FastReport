@@ -148,7 +148,7 @@
             // RavenDBConnectionEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.gbDatabase);
             this.Controls.Add(this.gbServer);
             this.Controls.Add(this.labelLine1);

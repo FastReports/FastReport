@@ -41,28 +41,18 @@
         /// <summary>
         /// Does nothing
         /// </summary>
-        private static void RestoreUIStyle()
-        {
-        }
+        static partial void RestoreUIStyle();
 
         /// <summary>
         /// Does nothing
         /// </summary>
-        private static void SaveUIStyle()
-        {
-        }
+        static partial void SaveUIStyle();
 
-        private static void RestorePreviewSettings()
-        {
-        }
+        static partial void RestorePreviewSettings();
 
-        private static void SavePreviewSettings()
-        {
-        }
+        static partial void SavePreviewSettings();
 
-        private static void SaveExportOptions()
-        {
-        }
+        static partial void SaveExportOptions();
 
         private static void RestoreExportOptions()
         {

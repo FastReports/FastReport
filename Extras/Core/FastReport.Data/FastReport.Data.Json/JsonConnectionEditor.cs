@@ -15,7 +15,7 @@ namespace FastReport.Data.ConnectionEditors
         {
             gbSelect.Text = Res.Get("ConnectionEditors,Common,Database");
             lblJsonPath.Text = Res.Get("ConnectionEditors,Json,Path");
-            tbJsonPath.Image = Res.GetImage(1);
+            tbJsonPath.ImageIndex = 1;
         }
 
         private void tbFile_ButtonClick(object sender, EventArgs e)

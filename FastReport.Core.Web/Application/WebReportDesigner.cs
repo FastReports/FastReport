@@ -45,6 +45,16 @@ namespace FastReport.Web
         /// Callback method for saving an edited report by Online Designer
         /// Params: reportID, report file name, report, out - message
         /// </summary>
+        /// <example>
+        /// webReport.DesignerSaveMethod = (string reportID, string filename, string report) =>
+        /// {
+        ///     string webRootPath = _hostingEnvironment.WebRootPath;
+        ///     string pathToSave = Path.Combine(webRootPath, filename);
+        ///     System.IO.File.WriteAllTextAsync(pathToSave, report);
+        ///     
+        ///     return "OK";
+        /// };
+        /// </example>
         public Func<string, string, string, string> DesignerSaveMethod { get; set; }
 
         /// <summary>
@@ -119,18 +129,19 @@ namespace FastReport.Web
                 // paste restricted back in report before save
                 Report.LoadFromString(PasteRestricted(reportString));
 
-                SaveDesignedReportEventArgs e = new SaveDesignedReportEventArgs();
-                e.Stream = new MemoryStream();
-                Report.Save(e.Stream);
-                e.Stream.Position = 0;
-                OnSaveDesignedReport(e);
+                if (SaveDesignedReport != null)
+                {
+                    SaveDesignedReportEventArgs e = new SaveDesignedReportEventArgs();
+                    e.Stream = new MemoryStream();
+                    Report.Save(e.Stream);
+                    e.Stream.Position = 0;
+                    OnSaveDesignedReport(e);
+                }
 
                 if (!DesignerSaveCallBack.IsNullOrWhiteSpace())
                 {
                     string report = Report.SaveToString();
-                    var reportName = (!String.IsNullOrEmpty(Report.ReportInfo.Name) ?
-                        Report.ReportInfo.Name : Path.GetFileNameWithoutExtension(Report.FileName));
-                    string reportFileName = $"{reportName}.frx";
+                    string reportFileName = ReportFileName;
 
                     UriBuilder uri = new UriBuilder
                     {
@@ -586,7 +597,7 @@ namespace FastReport.Web
         //    context.Response.Write(sb.ToString());
         //}
 
-        string GetPOSTReport(HttpContext context)
+        internal string GetPOSTReport(HttpContext context)
         {
             string requestString = "";
             using (TextReader textReader = new StreamReader(context.Request.Body))

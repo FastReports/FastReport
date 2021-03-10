@@ -10,25 +10,19 @@ namespace FastReport
         /// Does nothing
         /// </summary>
         /// <param name="reportPage"></param>
-        private void AssignPreview(ReportPage reportPage)
-        {
-        }
+        partial void AssignPreview(ReportPage reportPage);
 
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void InitPreview()
-        {
-        }
+        partial void InitPreview();
 
         /// <summary>
         /// Does nothing
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="reportPage"></param>
-        private void WritePreview(FRWriter writer, ReportPage reportPage)
-        {
-        }
+        partial void WritePreview(FRWriter writer, ReportPage reportPage);
 
         #endregion Private Methods
     }

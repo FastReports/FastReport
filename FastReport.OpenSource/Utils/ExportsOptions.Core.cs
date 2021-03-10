@@ -8,8 +8,8 @@ namespace FastReport.Utils
 {
     partial class ExportsOptions
     {
-        private void SaveOptions() { }
+        partial void SaveOptions();
 
-        private void RestoreOptions() { }
+        partial void RestoreOptions();
     }
 }

@@ -376,6 +376,8 @@ namespace FastReport
             GraphicsState state = g.Save();
             try
             {
+                if (Config.IsRunningOnMono) // strange behavior of mono - we need to reset clip before we set new one
+                    g.ResetClip();
                 g.SetClip(drawRect);
                 Report report = Report;
                 if (report != null && report.SmoothGraphics)
@@ -419,7 +421,7 @@ namespace FastReport
 
         protected override void DrawImageInternal2(Graphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft)
         {
-            Image image = transparentImage != null ? transparentImage : Image;
+            Image image = transparentImage != null ? transparentImage.Clone() as Image : Image.Clone() as Image;
             if (image == null)
                 return;
             if (Grayscale)
@@ -435,7 +437,24 @@ namespace FastReport
                 image = grayscaleBitmap;
             }
 
-            graphics.DrawImage(image, new PointF[] { upperLeft, upperRight, lowerLeft });
+            //graphics.DrawImage(image, new PointF[] { upperLeft, upperRight, lowerLeft });
+            DrawImage3Points(graphics, image, upperLeft, upperRight, lowerLeft);
+            image = null;
+        }
+
+        // This is analogue of graphics.DrawImage(image, PointF[] points) method. 
+        // The original gdi+ method does not work properly in mono on linux/macos.
+        private void DrawImage3Points(Graphics g, Image image, PointF p0, PointF p1, PointF p2)
+        {
+            if (image == null || image.Width == 0 || image.Height == 0)
+                return;
+            RectangleF rect = new RectangleF(0, 0, image.Width, image.Height);
+            float m11 = (p1.X - p0.X) / rect.Width;
+            float m12 = (p1.Y - p0.Y) / rect.Width;
+            float m21 = (p2.X - p0.X) / rect.Height;
+            float m22 = (p2.Y - p0.Y) / rect.Height;
+            g.MultiplyTransform(new System.Drawing.Drawing2D.Matrix(m11, m12, m21, m22, p0.X, p0.Y), MatrixOrder.Prepend);
+            g.DrawImage(image, rect);
         }
 
         /// <summary>

@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>Fast Reports Inc.</Copyright>
+    <Company>Fast Reports Inc.</Company>
+    <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <Authors>Fast Reports Inc.</Authors>
+    <Product>FastReport.Data.ClickHouse</Product>
+    <Description>Represents a connection to ClickHouse database for FastReport.Net.</Description>
+    <PackageId>FastReport.Data.ClickHouse</PackageId>
+    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageTags>reporting, ClickHouse, connection, reports</PackageTags>
+    <Version>1.0.0</Version>
+    <Configurations>Debug;Release;</Configurations>
+    <AssemblyName>FastReport.Data.ClickHouse</AssemblyName>
+    <RootNamespace>FastReport.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClickHouse.Client" Version="2.3.0.326" />
+    <!--<ProjectReference Include="..\ClickHouse.Client\ClickHouse.Client.csproj">
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>-->
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\FastReport\FastReport.csproj">
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)'=='net472'">
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)'=='net472'">
+    <Compile Update="ClickHouseConnectionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClickHouseConnectionEditor.Designer.cs">
+      <DependentUpon>ClickHouseConnectionEditor.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="ClickHouseConnectionEditor.resx">
+      <DependentUpon>ClickHouseConnectionEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

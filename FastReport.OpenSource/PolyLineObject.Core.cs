@@ -10,24 +10,18 @@ namespace FastReport
         /// Does nothing
         /// </summary>
         /// <param name="e"></param>
-        private void DrawDesign0(FRPaintEventArgs e)
-        {
-        }
+        partial void DrawDesign0(FRPaintEventArgs e);
 
         /// <summary>
         /// Does nothing
         /// </summary>
         /// <param name="e"></param>
-        private void DrawDesign1(FRPaintEventArgs e)
-        {
-        }
+        partial void DrawDesign1(FRPaintEventArgs e);
 
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void InitDesign()
-        {
-        }
+        partial void InitDesign();
 
         #endregion Private Methods
     }

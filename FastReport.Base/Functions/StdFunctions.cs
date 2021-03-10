@@ -1053,6 +1053,41 @@ namespace FastReport.Functions
         }
 
         /// <summary>
+        /// Converts a numeric value to a polish string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsPl(object value)
+        {
+            return ToWordsPl(value, "PLN");
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a polish representation of that value.
+        /// </summary>
+        /// <param name="value">he numeric value to convert.</param>
+        /// <param name="currencyName">The 3-digit ISO name of the currency, for example "EUR".</param>
+        /// <returns></returns>
+        public static string ToWordsPl(object value, string currencyName)
+        {
+            return new NumToWordsPl().ConvertCurrency(Convert.ToDecimal(value), currencyName);
+        }
+
+        /// <summary>
+        /// Converts a numeric value to a polish string representation of that value.
+        /// </summary>
+        /// <param name="value">The numeric value to convert.</param>
+        /// <param name="male">True if the name is of male gender.</param>
+        /// <param name="one">The name in singular form, for example "silla".</param>
+        /// <param name="two">The name in plural form, for example "Sillas".</param>
+        /// <param name="many">The name in plural form, for example "Sillas".</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsPl(object value, string one, string many)
+        {
+            return new NumToWordsPl().ConvertNumber(Convert.ToDecimal(value), true, one, many, many);
+        }
+
+        /// <summary>
         /// Converts a value to an english (US) alphabet string representation of that value.
         /// </summary>
         /// <param name="value">The value to convert.</param>
@@ -1319,6 +1354,9 @@ namespace FastReport.Functions
       RegisteredObjects.AddFunction(myConv.GetMethod("ToLetters", new Type[] { typeof(object), typeof(bool) }), "Conversion,ToLetters");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToLettersRu", new Type[] { typeof(object) }), "Conversion,ToLettersRu");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToLettersRu", new Type[] { typeof(object), typeof(bool) }), "Conversion,ToLettersRu");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPl", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsPl");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPl", new Type[] { typeof(object) }), "Conversion,ToWordsPl");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPl", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsPl");
             #endregion
 
             #region Program Flow

@@ -10,41 +10,31 @@ namespace FastReport.Table
         /// Does nothing
         /// </summary>
         /// <param name="e"></param>
-        private void DrawDesign(FRPaintEventArgs e)
-        {
-        }
+        partial void DrawDesign(FRPaintEventArgs e);
 
         /// <summary>
         /// Does nothing
         /// </summary>
         /// <param name="e"></param>
-        private void DrawDesign_Borders(FRPaintEventArgs e)
-        {
-        }
+        partial void DrawDesign_Borders(FRPaintEventArgs e);
 
         /// <summary>
         /// Does nothing
         /// </summary>
         /// <param name="e"></param>
-        private void DrawDesign_BordersRtl(FRPaintEventArgs e)
-        {
-        }
+        partial void DrawDesign_BordersRtl(FRPaintEventArgs e);
 
         /// <summary>
         /// Does nothing
         /// </summary>
         /// <param name="e"></param>
-        private void DrawDesign_SelectedCells(FRPaintEventArgs e)
-        {
-        }
+        partial void DrawDesign_SelectedCells(FRPaintEventArgs e);
 
         /// <summary>
         /// Does nothing
         /// </summary>
         /// <param name="e"></param>
-        private void DrawDesign_SelectedCellsRtl(FRPaintEventArgs e)
-        {
-        }
+        partial void DrawDesign_SelectedCellsRtl(FRPaintEventArgs e);
 
         #endregion Private Methods
     }

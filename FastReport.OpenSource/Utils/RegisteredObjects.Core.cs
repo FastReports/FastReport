@@ -15,9 +15,7 @@ namespace FastReport.Utils
         /// <param name="text"></param>
         /// <param name="flags"></param>
         /// <param name="multiInsert"></param>
-        private void UpdateDesign(object obj, Bitmap image, int imageIndex, string text, int flags, bool multiInsert)
-        {
-        }
+        partial void UpdateDesign(object obj, Bitmap image, int imageIndex, string text, int flags, bool multiInsert);
 
         /// <summary>
         /// Does nothing.
@@ -29,9 +27,7 @@ namespace FastReport.Utils
         /// <param name="text"></param>
         /// <param name="flags"></param>
         /// <param name="multiInsert"></param>
-        private void UpdateDesign(object obj, Bitmap image, int imageIndex, int ButtonIndex, string text, int flags, bool multiInsert)
-        {
-        }
+        partial void UpdateDesign(object obj, Bitmap image, int imageIndex, int ButtonIndex, string text, int flags, bool multiInsert);
 
         #endregion Private Methods
     }

@@ -473,7 +473,7 @@ namespace FastReport.Export.Image
 
                 bigImage = CreateImage((int)(w * ResolutionX / 96f), (int)(h * ResolutionY / 96f), "");
                 bigGraphics = Graphics.FromImage(bigImage);
-                bigGraphics.Clear(Color.White);
+                bigGraphics.Clear(Color.Transparent);
             }
             pageNumber = 0;
         }
@@ -503,8 +503,14 @@ namespace FastReport.Export.Image
             else
                 g = Graphics.FromImage(image);
 
-            state = g.Save();
-            g.FillRegion(Brushes.White, new Region(new RectangleF(0, curOriginY, width, height)));
+            state = g.Save(); 
+
+            g.FillRegion(Brushes.Transparent, new Region(new RectangleF(0, curOriginY, width, height)));
+            if (bigImage != null && curOriginY + height * 2 > bigImage.Height)
+                page.Fill.Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache), new RectangleF(0, curOriginY, widthK, bigImage.Height - curOriginY));
+            else
+                page.Fill.Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache), new RectangleF(0, curOriginY, widthK, height + paddingNonSeparatePages * 2));
+
 
             if (image == bigImage)
             {

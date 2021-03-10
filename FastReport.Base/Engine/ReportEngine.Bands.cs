@@ -375,7 +375,7 @@ namespace FastReport.Engine
                 {
                     bandHeight = 0;
                 }
-                while (FreeSpace - bandHeight - band.Child.Height > 0)
+                while (FreeSpace - bandHeight - band.Child.Height >= 0)
                 {
                     float saveCurY = CurY;
                     ShowBand(band.Child);

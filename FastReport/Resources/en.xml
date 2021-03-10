@@ -60,6 +60,8 @@
     <Warning Text="Warning"/>
     <WarningSaveRDL Text="RDL format has some restrictions! This filter will save template's view only! Data sources and objects Barcode, Rich Text, CheckBox and Zip Code will not be saved! Some of properties of objects will not be saved! So you can loose some elements and properties of your template. Save however?"/>
     <WrongFileFormat Text="Cannot load the file. Unknown file format"/>
+    <WrongListAndLabelFile Text="Cannot load the file. File is invalid or not a List and Label report."/>
+    <WrongCrystalReportsFile Text="Cannot load the file. File is invalid or not a Crystal Reports report."/>
     <InvalidBarcode1 Text="Barcode must start with '&amp;A;', '&amp;B;' or '&amp;C;' sequences"/>
     <InvalidBarcode2 Text="Invalid character in input code"/>
     <ErrorInExpression Text="Error in expression"/>
@@ -459,6 +461,7 @@
         <NewDataSource Text="New Data Source..."/>
         <SortDataSources Text="Sort Data Sources"/>
         <SortDataFields Text="Sort Data Fields"/>
+        <CopyDataSource Text="Copy Data Source"/>
         <NewRelation Text="New Relation..."/>
         <NewParameter Text="New Parameter"/>
         <NewTotal Text="New Total..."/>
@@ -1838,6 +1841,7 @@
       <Max Text="Max"/>
       <Avg Text="Average"/>
       <Count Text="Count"/>
+      <CountDistinct Text="CountDistinct"/>
       <Custom Text="Custom"/>
     </TotalEditor>
     <UIOptions Text="User Interface">
@@ -1850,6 +1854,7 @@
         <Yes Text="Yes"/>
       </RightToLeft>
       <DisableHotkeys Text="Disable hotkeys"/>
+      <DisableHDPI Text="Disable High Dpi"/>
     </UIOptions>
     <WatermarkEditor Text="Watermark">
       <Enabled Text="Enabled"/>
@@ -1960,9 +1965,7 @@
 		<PayerAdress Text="Payer's address"/>
 		<PersonalAccount Text="Payee's personal account"/>
 		<DocIdx Text="Index of payment document"/>
-		<PensAcc Text="Account number in the 
-		PFR [Pension Fund of the Russian Federation] - 
-		SNILS [Personal insurance policy number] system"/>
+		<PensAcc Text="Account number in the PFR [Pension Fund of the Russian Federation] - SNILS [Personal insurance policy number] system"/>
 		<Contract Text="Contract number"/>
 		<PersAcc Text="Account number in the organization 
 		(metering device accounting system)"/>
@@ -1985,12 +1988,10 @@
 		<ClassNum Text="Kindergarten group / school grade"/>
 		<SpecFio Text="Full name of the service providing specialist (teacher)"/>
 		<AddAmount Text="Insurance sum/additional service/fine"/>
-		<RuleId Text="Act number 
-		(for GIBDD)"/>
+		<RuleId Text="Act number (for GIBDD)"/>
 		<ExecId Text="Enforcement proceeding ID"/>
 		<RegType Text="Payment type code 
-		(for example, for Rosreestr
-		[The Federal Service for State Registration, Cadastre and Cartography] payments)"/>
+		(for example, for Rosreestr payments)"/>
 		<UIN Text="Money transfer ID"/>
 		<TechCode Text="Technical code, recommended to be filled by the service provider. 
 		Can be used by the receiving organization in a data processing system."/>
@@ -2031,6 +2032,7 @@
       <DatabaseName Text="Database name:"/>
       <DatabaseFile Text="Database file:"/>
       <DataSource Text="Data source"/>
+      <OnlyUrlException Text="There must be a link in the connection!"/>
     </Common>
     <MsSql>
       <UseWindows Text="Use Windows Authentication"/>
@@ -2048,8 +2050,8 @@
       <Login Text="Login"/>
     </Odbc>
     <Xml>
-      <Xsd Text="Schema file:"/>
-      <Xml Text="Data file:"/>
+      <Xsd Text="Schema file or URL:"/>
+      <Xml Text="Data file or URL:"/>
     </Xml>
     <Csv>
       <ConfigureDatabase Text="Configure database"/>
@@ -2381,6 +2383,9 @@
     <Xml Text="Export to XML">
       <File Text="XML (Excel) table"/>
     </Xml>
+    <Odf>
+      <Compliance Text="ODF Compliance:  "/>
+    </Odf>
     <Odt Text="Export to Open Office Writer">
       <File Text="OpenOffice Writer"/>
     </Odt>

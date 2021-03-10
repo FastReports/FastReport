@@ -58,15 +58,10 @@ namespace FastReport.Utils
       using (Stream gzipStream = new GZipStream(packedStream, CompressionMode.Decompress, true))
       {
         MemoryStream result = new MemoryStream();
-        
-        byte[] buffer = new byte[4096];
-        while (true)
-        {
-          int bytesRead = gzipStream.Read(buffer, 0, 4096);
-          if (bytesRead == 0) break;
-          result.Write(buffer, 0, bytesRead);
-        }
-        
+
+        const int BUFFER_SIZE = 4096;
+        gzipStream.CopyTo(result, BUFFER_SIZE);
+
         result.Position = 0;
         return result;
       }

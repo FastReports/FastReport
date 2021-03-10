@@ -88,17 +88,6 @@ namespace FastReport.Utils
       FLocaleLoaded = true;
     }
 
-    public static void CopyTo(Stream input, Stream output)
-    {
-        byte[] buffer = new byte[4 * 1024];
-        int bytesRead;
-
-        while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
-        {
-            output.Write(buffer, 0, bytesRead);
-        }
-    }
-
         /// <summary>
         /// Loads the locale from a file.
         /// </summary>

@@ -1,0 +1,1592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="uk">
+  <Buttons>
+    <Ok Text="ОК"/>
+    <Cancel Text="Скасувати"/>
+    <Close Text="Закрити"/>
+    <MoreOptions Text="Більше"/>
+    <LessOptions Text="Меньше"/>
+    <Actions Text="Дії"/>
+    <Previous Text="&lt; Назад"/>
+    <Next Text="Далі &gt;"/>
+    <Finish Text="Готово"/>
+    <Advanced Text="Детальніше..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Доступ до даних..."/>
+    <CantFindObject Text="Не можу знайти об'єкт"/>
+    <CantLoadReport Text="Не можу відкрити звіт {0}"/>
+    <CantSaveReport Text="Неможливо зберегти звіт. Файл може бути захищений від запису."/>
+    <ClassError Text="Не можу знайти головний клас звіту - ReportScript"/>
+    <Confirmation Text="Підтвердження"/>
+    <DataNotInitialized Text="Джерело даних не ініціалізовано."/>
+    <DecompressError Text="Не можу розпакувати файл"/>
+    <DecryptError Text="Помилка розшифровки: невірний пароль"/>
+    <DelegateError Text="Делегат {0} повинен мати два аргументи: 'sender' та 'e'"/>
+    <DeleteAncestor Text="Не можу видалити {0}, він визначений у базовому звіті."/>
+    <DuplicateName Text="Об'єкт з іменем {0} вже існує"/>
+    <DuplicateStyle Text="Стиль з таким іменем вже існує."/>
+    <Error Text="Помилка"/>
+    <EventError Text="Не можу створити обробник події через помилки в скрипті звіту"/>
+    <ExportingPage Text="Експортується сторінка {0} з {1}"/>
+    <GeneratingPage Text="Генерується сторінка {0}"/>
+    <GeneratingPageFirstPass Text="Перший прохід: сторінка {0}"/>
+    <Information Text="Інформація"/>
+    <MatrixError Text="{0}: Матриця повинна мати як мінімум один рядок або стовпчик і одну клітинку."/>
+    <MatrixValueError Text="Кількість значень, що добавляється, відрізняється від MatrixData.Cells.Count (повинно бути {0})"/>
+    <ParentError Text="Об'єкт типу {0} не може містити об'єкти типу {1}"/>
+    <ParentError1 Text="Об'єкт типу {0} не може містити об'єкти"/>
+    <Performance Text="Виконано за {0} мс"/>
+    <PreparingData Text="Підготовка даних..."/>
+    <PrintingPage Text="Друкується сторінка {0}"/>
+    <RenameAncestor Text="Не можу перейменувати {0}, він визначений в базовому звіті."/>
+    <SaveChanges Text="Зберегти зміни в {0}?"/>
+    <SaveChangesToPreviewPage Text="Зберегти зміни в сторінці звіту?"/>
+    <TableIsNull Text="Таблиця не під'єднана до даних. Зареєструйте дані методом Report.RegisterData."/>
+    <TableManualBuildError Text="Ви можете використовувати методи TableObject.PrintRow, PrintColumn тільки в події ManualBuild."/>
+    <Warning Text="Попередження"/>
+    <WrongFileFormat Text="Не можу прочитати файл, невідомий формат файлу."/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="мм"/>
+    <ShortUnitsCm Text="см"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Зразок"/>
+    <None Text="Немає"/>
+    <PageN Text="Сторінка {0}"/>
+    <PageNofM Text="Сторінка {0} з {1}"/>
+    <ofM Text="з {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Звіт"/>
+    <ReportPage Text="Сторінка"/>
+    <DialogPage Text="Діалог"/>
+    <XmlDataConnection Text="База даних XML"/>
+    <OleDbDataConnection Text="Підключення до OLE DB"/>
+    <MsAccessDataConnection Text="Підключення до MS Access"/>
+    <MsSqlDataConnection Text="Підключення до MS SQL"/>
+    <OdbcDataConnection Text="Підключення до ODBC"/>
+    <FirebirdDataConnection Text="Підключення до Firebird"/>
+    <VistaDBDataConnection Text="Підключення до VistaDB"/>
+    <PostgresDataConnection Text="Підключення до Postgres"/>
+    <MySqlDataConnection Text="Підключення до MySQL"/>
+    <OracleDataConnection Text="Підключення до Oracle"/>
+    <SQLiteDataConnection Text="Підключення до SQLite"/>
+    <SqlCeDataConnection Text="Підключення до SQL CE"/>
+    <Bands Text="Бенди">
+      <ReportTitle Text="Заголовок звіту"/>
+      <ReportSummary Text="Підсумок звіту"/>
+      <PageHeader Text="Заголовок сторінки"/>
+      <PageFooter Text="Підсумок сторінки"/>
+      <ColumnHeader Text="Заголовок колонки"/>
+      <ColumnFooter Text="Підсумок колонки"/>
+      <DataHeader Text="Заголовок даних"/>
+      <DataFooter Text="Підсумок даних"/>
+      <Data Text="Дані"/>
+      <GroupHeader Text="Заголовок групи"/>
+      <GroupFooter Text="Підсумок групи"/>
+      <Child Text="Дочірній"/>
+      <Overlay Text="Фоновий"/>
+    </Bands>
+    <TextObject Text="Текст"/>
+    <Shapes Text="Фігури">
+      <Line Text="Лінія"/>
+      <DiagonalLine Text="Діагональна лінія"/>
+      <Rectangle Text="Прямокутник"/>
+      <RoundRectangle Text="Округлений прямокутник"/>
+      <Ellipse Text="Еліпс"/>
+      <Triangle Text="Трикутник"/>
+      <Diamond Text="Ромб"/>
+    </Shapes>
+    <PictureObject Text="Зображення"/>
+    <TableObject Text="Таблиця"/>
+    <MatrixObject Text="Матриця"/>
+    <SubreportObject Text="Вкладений звіт"/>
+    <BarcodeObject Text="Штрих-код"/>
+    <RichObject Text="Форматований текст"/>
+    <MSChartObject Text="Діаграма MS Chart"/>
+    <ZipCodeObject Text="Поштовий індекс"/>
+    <CellularTextObject Text="Текст в клітинках"/>
+    <CheckBoxObject Text="Прапорець"/>
+    <ButtonControl Text="Button"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="NumericUpDown"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+  </Objects>
+  <Functions>
+    <Math Text="Математичні"/>
+    <Text Text="Текстові"/>
+    <DateTime Text="Дата та час"/>
+    <Formatting Text="Форматування"/>
+    <Conversion Text="Конвертування"/>
+    <ProgramFlow Text="Умови"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Звіт (*.frx)|*.frx"/>
+    <PreparedReport Text="Готовий звіт (*.fpx)|*.fpx"/>
+    <Style Text="Стилі звіту (*.frs)|*.frs"/>
+    <Dictionary Text="Дані (*.frd)|*.frd"/>
+    <Localization Text="Файл локалізації (*.frl)|*.frl"/>
+    <XsdFile Text="XML схема (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML дані (*.xml)|*.xml"/>
+    <MdbFile Text="База даних MS Access (*.mdb)|*.mdb"/>
+    <MdfFile Text="База даних Microsoft SQL Server (*.mdf)|*.mdf"/>
+    <RtfFile Text="Форматований текст (*.rtf)|*.rtf"/>
+    <Images Text="Файли зображень|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Збірка (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Файл друку (*.prn)|*.prn"/>
+    <BmpFile Text="Растрове зображення (*.bmp)|*.bmp"/>
+    <PngFile Text="Растрове зображення (*.png)|*.png"/>
+    <JpegFile Text="Растрове зображення (*.jpg)|*.jpg"/>
+    <GifFile Text="Растрове зображення (*.gif)|*.gif"/>
+    <TiffFile Text="Растрове зображення (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Векторне зображення (*.emf)|*.emf"/>
+    <HtmlFile Text="Файл HTML (*.html)|*.html"/>
+    <MhtFile Text="Файл веб-архів (*.mht)|*.mht"/>
+    <OdtFile Text="Текст OpenOffice Writer (*.odt)|*.odt"/>
+    <OdsFile Text="Таблиця Open Office Calc (*.ods)|*.ods"/>
+    <PdfFile Text="Файл Adobe Acrobat (*.pdf)|*.pdf"/>
+    <TxtFile Text="Текстовий файл (*.txt)|*.txt"/>
+    <CsvFile Text="Текстовий табличний файл  (*.csv)|*.csv"/>
+    <DbfFile Text="Таблиця dBase (*.dbf)|*.dbf"/>
+    <XlsFile Text="Таблиця Excel (*.xls)|*.xls"/>
+    <CsFile Text="Файл C# (*.cs)|*.cs"/>
+    <VbFile Text="Файл VB.Net (*.vb)|*.vb"/>
+    <FdbFile Text="База даних Firebird (*.fdb)|*.fdb"/>
+    <Vdb3File Text="База даних VistaDB (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="Книга Microsoft Excel (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="Презентація PowerPoint (*.pptx)|*.pptx"/>
+    <SdfFile Text="База даних SQL CE (*.sdf)|*.sdf"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="dd.MM.yy"/>
+    <Date6 Text="dd.MM.yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Неправда"/>
+    <BooleanF2 Text="Ні"/>
+    <BooleanF3 Text="Викл"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Істина"/>
+    <BooleanT2 Text="Так"/>
+    <BooleanT3 Text="Вкл"/>
+    <BooleanT4 Text="Х"/>
+    <Custom1 Text="Телефонний номер;(000) 000-00-00"/>
+    <Custom2 Text="Довгий номер;+0(000) 000-00-00"/>
+    <Custom3 Text="Табельний номер;G"/>
+    <Custom4 Text="Поштовий індекс;000000"/>
+    <Custom5 Text=" "/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Файл">
+        <New Text="Новий..."/>
+        <Open Text="Відкрити..."/>
+        <Close Text="Закрити"/>
+        <Save Text="Зберегти"/>
+        <SaveAs Text="Зберегти як..."/>
+        <SaveAll Text="Зберегти всі"/>
+        <PageSetup Text="Параметри сторінки..."/>
+        <PrinterSetup Text="Параметри принтера..."/>
+        <Preview Text="Попередній перегляд..."/>
+        <SelectLanguage Text="Виберіть мову..."/>
+        <Exit Text="Вихід"/>
+      </File>
+      <Edit Text="Редагування">
+        <Undo Text="Скасувати"/>
+        <Redo Text="Повторити"/>
+        <Cut Text="Вирізати"/>
+        <Copy Text="Копіювати"/>
+        <Paste Text="Вставити"/>
+        <Delete Text="Видалити"/>
+        <DeletePage Text="Видалити сторінку"/>
+        <SelectAll Text="Відмітити все"/>
+        <Group Text="Згрупувати"/>
+        <Ungroup Text="Розгрупувати"/>
+        <Find Text="Знайти..."/>
+        <Replace Text="Замінити..."/>
+      </Edit>
+      <View Text="Вигляд">
+        <StartPage Text="Стартова сторінка"/>
+        <Toolbars Text="Панелі інструментів"/>
+        <Options Text="Налаштування..."/>
+        <Grid Text="Сітка"/>
+        <Guides Text="Направляючі лінії"/>
+        <AutoGuides Text="Авто-направляючі"/>
+        <DeleteHGuides Text="Видалити горизонтальні направляючі"/>
+        <DeleteVGuides Text="Видалити вертикальні направляючі"/>
+        <Units Text="Одиниці виміру"/>
+      </View>
+      <Insert Text="Вставка"/>
+      <Report Text="Звіт">
+        <Bands Text="Налаштувати бенди..."/>
+        <Styles Text="Стилі..."/>
+        <GroupExpert Text="Майстер групування..."/>
+        <Options Text="Властивості..."/>
+      </Report>
+      <Data Text="Дані">
+        <ShowData Text="Показати вікно даних"/>
+        <Add Text="Нове джерело даних..."/>
+        <Choose Text="Вибрати дані для звіту..."/>
+      </Data>
+      <Window Text="Вікно">
+        <CloseAll Text="Закрити всі"/>
+      </Window>
+      <Help Text="Довідка">
+        <Contents Text="Зміст..."/>
+        <About Text="Про програму..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="Властивості">
+        <PropertiesTab Text="Властивості"/>
+        <EventsTab Text="Події"/>
+        <NObjectsSelected Text="{0} об'єктів вибрано"/>
+      </Properties>
+      <ReportTree Text="Дерево звіту"/>
+      <Dictionary Text="Дані">
+        <DataSources Text="Джерела даних"/>
+        <Parameters Text="Параметри"/>
+        <SystemVariables Text="Системні змінні"/>
+        <Totals Text="Підсумки"/>
+        <Functions Text="Функції"/>
+        <DialogControls Text="Елементи управління"/>
+        <New Text="Новий словник даних..."/>
+        <Open Text="Відкрити словник даних..."/>
+        <Save Text="Зберегти словник даних..."/>
+        <Merge Text="Об'єднати словники..."/>
+        <NewDataSource Text="Нове джерело даних..."/>
+        <NewRelation Text="Новий зв'язок..."/>
+        <NewParameter Text="Новий параметр..."/>
+        <NewTotal Text="Новий підсумок..."/>
+        <NewCalculatedColumn Text="Нове обчислюване поле..."/>
+        <Rename Text="Перейменувати"/>
+        <Edit Text="Редагувати"/>
+        <Delete Text="Видалити"/>
+        <DeleteAlias Text="Видалити псевдонім"/>
+        <View Text="Показати дані.."/>
+        <DuplicateName Text="Элемент з таким іменем вже існує."/>
+        <NRows Text="{0} рядків"/>
+      </Dictionary>
+      <Messages Text="Повідомлення">
+        <Description Text="Текст"/>
+        <Line Text="Рядок"/>
+        <Column Text="Стовпчик"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Добавити/видалити кнопки"/>
+      <Reset Text="Скинути панель інструментів"/>
+      <Standard Text="Стандартна">
+        <New Text="Новий..."/>
+        <Open Text="Відкрити звіт (Ctrl+O)"/>
+        <Save Text="Зберегти звіт (Ctrl+S)"/>
+        <SaveAll Text="Зберегти все (Ctrl+Shift+S)"/>
+        <Preview Text="Попередній перегляд (Ctrl+P)"/>
+        <NewPage Text="Нова сторінка звіту"/>
+        <NewDialog Text="Нова діалогова форма"/>
+        <DeletePage Text="Видалити сторінку"/>
+        <PageSetup Text="Параметри сторінки"/>
+        <Cut Text="Вирізати (Ctrl+X)"/>
+        <Copy Text="Копіювати (Ctrl+C)"/>
+        <Paste Text="Вставити (Ctrl+V)"/>
+        <FormatPainter Text="Копіювати формат"/>
+        <Undo Text="Скасувати (Ctrl+Z)"/>
+        <Redo Text="Повторити"/>
+        <Group Text="Згрупувати"/>
+        <Ungroup Text="Розгрупувати"/>
+      </Standard>
+      <Text Text="Текст">
+        <Name Text="Шрифт"/>
+        <Size Text="Розмір шрифту"/>
+        <Bold Text="Напівжирний"/>
+        <Italic Text="Курсив"/>
+        <Underline Text="Підкреслення"/>
+        <Left Text="По лівому краю"/>
+        <Center Text="По центру"/>
+        <Right Text="По правому краю"/>
+        <Justify Text="По ширині"/>
+        <Top Text="По верхньому краю"/>
+        <Middle Text="Посередині"/>
+        <Bottom Text="По нижньому краю"/>
+        <Color Text="Колір тексту"/>
+        <Highlight Text="Умовне виділення"/>
+        <Angle Text="Поворот тексту"/>
+      </Text>
+      <Border Text="Межі та заливка">
+        <Top Text="Верхня межа"/>
+        <Bottom Text="Нижня межа"/>
+        <Left Text="Ліва межа"/>
+        <Right Text="Права межа"/>
+        <All Text="Всі межі"/>
+        <None Text="Немає меж"/>
+        <FillColor Text="Колір заливки"/>
+        <FillStyle Text="Стиль заливки"/>
+        <LineColor Text="Колір лінії"/>
+        <Width Text="Товщина лінії"/>
+        <Style Text="Стиль лінії"/>
+        <Props Text="Налаштування меж..."/>
+      </Border>
+      <Style Text="Стиль">
+        <Styles Text="Стилі звіту"/>
+        <SelectStyle Text="Виберіть стиль"/>
+        <NoStyle Text="Немає стилю"/>
+      </Style>
+      <Layout Text="Вирівнювання">
+        <AlignToGrid Text="Вирівняти по сітці"/>
+        <Left Text="Вирівняти ліві краї"/>
+        <Center Text="Вирівняти по горизонталі по центру"/>
+        <Right Text="Вирівняти праві краї"/>
+        <Top Text="Вирівняти верхні краї"/>
+        <Middle Text="Вирівняти по вертикалі по центру"/>
+        <Bottom Text="Вирівняти нижні краї"/>
+        <SameWidth Text="Однакова ширина"/>
+        <SameHeight Text="Однакова висота"/>
+        <SameSize Text="Однаковий розмір"/>
+        <SizeToGrid Text="Вирівняти розмір по сітці"/>
+        <SpaceHorizontally Text="Розмістити рівномірно по ширині"/>
+        <IncreaseHorizontalSpacing Text="Збільшити горизонтальний інтервал"/>
+        <DecreaseHorizontalSpacing Text="Зменшити горизонтальний інтервал"/>
+        <RemoveHorizontalSpacing Text="Видалити горизонтальний інтервал"/>
+        <SpaceVertically Text="Розмістити рівномірно по висоті"/>
+        <IncreaseVerticalSpacing Text="Збільшити вертикальний інтервал"/>
+        <DecreaseVerticalSpacing Text="Зменшити вертикальний інтервал"/>
+        <RemoveVerticalSpacing Text="Видалити вертикальний інтервал"/>
+        <CenterHorizontally Text="Вирівняти по горизонталі"/>
+        <CenterVertically Text="Вирівняти по вертикалі"/>
+        <BringToFront Text="На передній план"/>
+        <SendToBack Text="На задній план"/>
+      </Layout>
+      <Objects Text="Об'єкти">
+        <Select Text="Вибрати"/>
+      </Objects>
+      <Zoom Text="Масштаб">
+        <ZoomOut Text="Зменшити"/>
+        <ZoomIn Text="Збільшити"/>
+        <Zoom Text="Масштаб"/>
+        <PageWidth Text="По ширині сторінки"/>
+        <WholePage Text="Сторінка повністю"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Код"/>
+      <Report>
+        <ConfigureBands Text="Налаштувати бенди..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Налаштування"/>
+    <UndoRedo>
+      <Delete Text="Видалення {0}"/>
+      <Move Text="Переміщення {0}"/>
+      <Size Text="Зміна розміру {0}"/>
+      <Change Text="Зміна {0}"/>
+      <AddGuide Text="Додавання направляючої"/>
+      <MoveGuide Text="Переміщення направляючої"/>
+      <DeleteHGuides Text="Видалення горизонтальних направляючих"/>
+      <DeleteVGuides Text="Видалення вертикальних направляючих"/>
+      <ResizeBand Text="Зміна розміру бенда"/>
+      <ChangeParent Text="Зміна батька {0}"/>
+      <Load Text="Відкриття звіту"/>
+      <Paste Text="Вставка з буфера {0}"/>
+      <Insert Text="Вставка {0}"/>
+      <AddPage Text="Додавання сторінки {0}"/>
+      <DeletePage Text="Видалення сторінки"/>
+      <Script Text="Зміна коду"/>
+      <NObjects Text="{0} об'єктів"/>
+      <UndoN Text="Скасувати {0} дій"/>
+      <RedoN Text="Повторити {0} дій"/>
+      <ChangeReport Text="Зміна звіту"/>
+      <ChangePagesOrder Text="Зміна порядку сторінок"/>
+      <EditPage Text="Редагування сторінки"/>
+      <EditPrinter Text="Зміна параметрів принтера"/>
+      <EditReport Text="Зміна параметрів звіту"/>
+      <SelectData Text="Вибір даних"/>
+      <EditData Text="Редагування даних"/>
+    </UndoRedo>
+    <StartPage Text="Стартова сторінка"/>
+    <Untitled Text="Безіменний.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Інші"/>
+      <WebColors Text="Інтернет"/>
+      <SystemColors Text="Системні"/>
+      <Other Text="Інші кольори..."/>
+      <Transparency Text="Прозорість:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Попередній перегляд">
+    <PrintText Text="Друк"/>
+    <Print Text="Друк (Ctrl+P)"/>
+    <Open Text="Відкрити файл"/>
+    <Save Text="Зберегти файл"/>
+    <SaveText Text="Зберегти"/>
+    <Email Text="Відправити по E-mail"/>
+    <Find Text="Знайти текст"/>
+    <Outline Text="Структура звіту"/>
+    <PageSetup Text="Параметри сторінки"/>
+    <Edit Text="Редагування сторінки"/>
+    <Watermark Text="Водяний знак"/>
+    <First Text="Перша сторінка"/>
+    <Prior Text="Попередня сторінка"/>
+    <Next Text="Наступна сторінка"/>
+    <Last Text="Остання сторінка"/>
+    <SaveNative Text="Готовий звіт"/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="Створити">
+      <Add Text="Створити"/>
+      <Reports Text="Типы звітів:"/>
+      <ReportItems Text="Елементи звіту:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Додаткові властивості"/>
+    <AskPassword Text="Пароль">
+      <Password Text="Цей звіт захищено паролем.&#13;&#10;&#13;&#10;Будь ласка, введіть пароль:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Підключення до БД">
+      <Login Text="Користувач:"/>
+      <Password Text="Пароль:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Виберіть джерело даних"/>
+      <SelectDataSource Text="Виберіть одне з джерел даних або створіть нове:"/>
+      <CreateNewDatasource Text="Створити джерело даних..."/>
+      <SelectColumnsPage Text="Виберіть поля даних"/>
+      <SelectColumns Text="Виберіть поля, які ви бажаєте показати у звіті"/>
+      <AvailableColumns Text="Доступні поля:"/>
+      <SelectedColumns Text="Вибрані поля:"/>
+    </BaseReportWizard>
+    <Border Text="Редактор меж">
+      <Border Text="Межа"/>
+      <Line Text="Лінія"/>
+      <Shadow Text="Тінь"/>
+      <Style Text="Стиль:"/>
+      <Width Text="Товщина:"/>
+      <Color Text="Колір:"/>
+      <Hint Text="Виберіть тип лінії та за допомогою миші вкажіть, до якої межі він відноситься."/>
+    </Border>
+    <ChartEditor Text="Редактор діаграми">
+      <Chart Text="Діаграма"/>
+      <Add Text="Додати..."/>
+      <Delete Text="Видалити"/>
+      <Hint Text="Клацніть на елементі, щоб налаштувати його властивості"/>
+      <Common>
+        <Color Text="Колір:"/>
+        <BackColor Text="Колір заливки:"/>
+        <SecondaryColor Text="Другий колір:"/>
+        <Gradient Text="Градієнт:"/>
+        <HatchStyle Text="Штриховка:"/>
+        <BorderColor Text="Колір меж:"/>
+        <BorderStyle Text="Стиль меж:"/>
+        <BorderWidth Text="Товщина меж:"/>
+        <ShadowColor Text="Колір тіні:"/>
+        <ShadowOffset Text="Розмір тіні:"/>
+        <LineColor Text="Колір лінії:"/>
+        <LineStyle Text="Стиль лінії:"/>
+        <LineWidth Text="Товщина лінії:"/>
+        <Text Text="Текст:"/>
+        <Font Text="Шрифт:"/>
+        <ForeColor Text="Колір:"/>
+        <Dock Text="Розміщення:"/>
+        <InsideChartArea Text="Всередині області діаграми"/>
+        <Format Text="Формат:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Дані">
+          <DataSource Text="Джерело даних:"/>
+          <Filter Text="Фільтр:"/>
+          <AutoSeries Text="Серії, що створюються автоматично"/>
+          <DataColumn Text="Колонка даних:"/>
+          <ColorColumn Text="Колонка кольору:"/>
+          <SeriesSort Text="Сортування серій:"/>
+          <AlignXValues Text="Вирівняти значення по осі Х"/>
+        </Data>
+        <Appearance Text="Зовнішній вигляд">
+          <Template Text="Шаблон:"/>
+          <Load Text="Відкрити..."/>
+          <Save Text="Зберегти..."/>
+          <SeriesPalette Text="Палітра серій:"/>
+          <BorderSkin Text="Тип рамки:"/>
+        </Appearance>
+        <ChartArea Text="Область діаграми">
+          <Area Text="Область:"/>
+        </ChartArea>
+        <ThreeD Text="Тривимірність">
+          <Enable Text="Увімкнути тривимірний вигляд"/>
+          <XRotation Text="Обертання по X:"/>
+          <YRotation Text="Обертання по Y:"/>
+          <Perspective Text="Перспектива:"/>
+          <WallWidth Text="Товщина стін:"/>
+          <AxisDepth Text="Глибина осей:"/>
+          <LightStyle Text="Освітлення:"/>
+          <ClusteredSeries Text="Згрупувати серії"/>
+        </ThreeD>
+        <Axes Text="Осі">
+          <Axis Text="Вісь:"/>
+          <CopyFromX Text="Копіювати зовнішній вигляд осі X"/>
+          <CopyFromPrimary Text="Копіювати зовнішній вигляд головної осі"/>
+          <Minor Text="Додаткова"/>
+          <Major Text="Головна"/>
+          <General Text="Головні">
+            <Enabled Text="Показувати вісь"/>
+            <MarginVisible Text="Відступи"/>
+            <Logarithmic Text="Логарифмічна"/>
+            <Reversed Text="Перевернута"/>
+            <Interval Text="Інтервал"/>
+            <Interlaced Text="Показувати смуги"/>
+            <InterlacedColor Text="Колір смуг:"/>
+          </General>
+          <Labels Text="Написи">
+            <Enabled Text="Показувати написи"/>
+            <Angle Text="Кут:"/>
+          </Labels>
+          <Title Text="Заголовок"/>
+          <CustomLabels Text="Дод.написи">
+            <Label Text="Мітка"/>
+            <Start Text="Початок:"/>
+            <End Text="Кінець:"/>
+            <Row Text="Рядок:"/>
+            <MarkColor Text="Колір мітки:"/>
+            <MarkStyle Text="Стиль мітки:"/>
+          </CustomLabels>
+          <Grid Text="Сітка">
+            <GridLine Text="Лінія сітки:"/>
+            <Enabled Text="Показувати"/>
+          </Grid>
+          <Ticks Text="Насічки">
+            <Ticks Text="Насічка"/>
+            <Enabled Text="Показувати"/>
+            <TickStyle Text="Стиль насічки:"/>
+            <TickSize Text="Розмір насічки:"/>
+          </Ticks>
+          <Strips Text="Смуги">
+            <Strip Text="Смуга"/>
+            <Interval Text="Інтервал">
+              <Start Text="Початок:"/>
+              <Width Text="Ширина:"/>
+              <Interval Text="Інтервал:"/>
+            </Interval>
+            <Appearance Text="Зовнішній вигляд"/>
+            <Text Text="Текст">
+              <HorizontalAlign Text="Гор.вирівнювання:"/>
+              <VerticalAlign Text="Верт.вирівнювання:"/>
+              <TextOrientation Text="Орієнтація тексту:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Легенда">
+          <Enabled Text="Показувати"/>
+          <StyleColumn Text="Колонка"/>
+          <StyleRow Text="Рядок"/>
+          <StyleTable Text="Таблиця"/>
+          <General Text="Основні">
+            <LegendStyle Text="Стиль легенди:"/>
+          </General>
+          <Appearance Text="Зовнішній вигляд"/>
+        </Legend>
+        <Title Text="Заголовок">
+          <Visible Text="Показувати"/>
+          <General Text="Основні">
+            <TextOrientation Text="Орієнтація тексту:"/>
+            <TextStyle Text="Стиль тексту:"/>
+          </General>
+          <Appearance Text="Зовнішній вигляд"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Дані">
+          <Name Text="Ім'я серії:"/>
+          <XValue Text="Значення X:"/>
+          <Color Text="Колір:"/>
+          <Filter Text="Фільтр:"/>
+          <XValueType Text="Тип значення X:"/>
+          <YValueType Text="Тип значення Y:"/>
+          <XAxisType Text="Вісь X:"/>
+          <YAxisType Text="Вісь Y:"/>
+          <PrimaryAxis Text="Основна"/>
+          <SecondaryAxis Text="Додаткова"/>
+          <SeriesValues>
+            <YValue Text="Значення Y:"/>
+            <High Text="Високий курс:"/>
+            <Low Text="Низький курс:"/>
+            <Open Text="Відкриття:"/>
+            <Close Text="Закриття:"/>
+            <RangeBegin Text="Початок діапазону:"/>
+            <RangeEnd Text="Кінець діапазону:"/>
+            <Size Text="Розмір:"/>
+            <YValue1 Text="Значення Y1:"/>
+            <YValue2 Text="Значення Y2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Значення"/>
+        <DataProcessing Text="Обробка даних">
+          <SortBy Text="Сортувати по:"/>
+          <SortByX Text="Значенню X"/>
+          <SortByY Text="Значенню Y"/>
+          <SortOrder Text="Порядок:"/>
+          <GroupBy Text="Групувати по:">
+            <None Text="Не групувати"/>
+            <XValue Text="Значенню X"/>
+            <Number Text="Числу"/>
+            <Years Text="Роках"/>
+            <Months Text="Місяцях"/>
+            <Weeks Text="Тижнях"/>
+            <Days Text="Днях"/>
+            <Hours Text="Годинах"/>
+            <Minutes Text="Хвилинах"/>
+            <Seconds Text="Секундах"/>
+            <Milliseconds Text="Мілісекундах"/>
+          </GroupBy>
+          <GroupInterval Text="Інтервал:"/>
+          <GroupFunction Text="Функція:"/>
+          <CollectData Text="Об'єднати дані:">
+            <None Text="Не об'єднувати"/>
+            <TopN Text="Залишити N найбільших"/>
+            <BottomN Text="Залишити N найменших"/>
+            <LessThan Text="Менше ніж значення"/>
+            <LessThanPercent Text="Менше ніж відсоток"/>
+            <GreaterThan Text="Більше ніж значення"/>
+            <GreaterThanPercent Text="Більше ніж відсоток"/>
+          </CollectData>
+          <Value Text="Значення:"/>
+          <CollectedText Text="Текст об'єд.знач.:"/>
+          <CollectedColor Text="Колір об'єд.знач.:"/>
+          <Explode Text="Виділити:">
+            <None Text="Не виділяти"/>
+            <Biggest Text="Більше значення"/>
+            <Lowest Text="Менше значення"/>
+            <Specific Text="Вказане значення"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Зовнішній вигляд">
+          <Default Text="За замовчуванням"/>
+          <DrawingStyle Text="Стиль відображення:"/>
+          <PointWidth Text="Ширина елемента:"/>
+          <LabelsStyle Text="Стиль написів:"/>
+          <DrawSideBySide Text="Малювати встик"/>
+          <ShowMarkerLines Text="Показувати роздільні лінії"/>
+          <DoughnutRadius Text="Радіус отвору (%):"/>
+          <AreaDrawingStyle Text="Стиль області:"/>
+          <Markers Text="Маркери:"/>
+          <PriceUpColor Text="Price up color:"/>
+          <ReversalAmount Text="Reversal amount:"/>
+          <BoxSize Text="Box size:"/>
+          <NumberOfLinesInBreak Text="Lines in break:"/>
+          <LabelsPlacement Text="Розміщення:"/>
+          <PointsGap Text="Зазор:"/>
+          <MinPointHeight Text="Мін.висота шару:"/>
+          <ValueType Text="Тип значення:"/>
+          <ThreeDDrawingStyle Text="3D стиль:"/>
+          <ThreeDRotation Text="3D поворот:"/>
+          <FunnelStyle Text="Стиль воронки:"/>
+          <LineTension Text="Натяг лінії:"/>
+          <NoSettings Text="Для вибраного типу серії налаштування відсутні."/>
+        </Appearance>
+        <FillBorder Text="Межі та заливка">
+          <Palette Text="Палітра:"/>
+        </FillBorder>
+        <Labels Text="Написи">
+          <LabelView Text="Тип напису:"/>
+          <Pattern Text="Шаблон:"/>
+        </Labels>
+        <Markers Text="Маркери">
+          <Style Text="Стиль:"/>
+          <Size Text="Розмір:"/>
+          <Step Text="Крок:"/>
+          <Color Text="Колір:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Галерея">
+      <NewArea Text="Добавити нову область для серії"/>
+      <Categories>
+        <BarColumn Text="Гістограми"/>
+        <Area Text="Області"/>
+        <Line Text="Лінії"/>
+        <PointBubble Text="Бульбашки"/>
+        <Pie Text="Кругові"/>
+        <Circular Text="Пелюсткові"/>
+        <Financial Text="Фінансові"/>
+        <PyramidFunnel Text="Пірамідальні"/>
+        <Range Text="Діапазони"/>
+      </Categories>
+      <Series>
+        <Bar Text="Лінійчата"/>
+        <StackedBar Text="Лінійчата з накопиченням"/>
+        <StackedBar100 Text="Нормована лінійчата"/>
+        <Column Text="Гістограма"/>
+        <StackedColumn Text="Гістограма з накопичуванням"/>
+        <StackedColumn100 Text="Нормована гістограма"/>
+        <Area Text="Область"/>
+        <SplineArea Text="Плавна область"/>
+        <StackedArea Text="Область з накопичуванням"/>
+        <StackedArea100 Text="Нормована область"/>
+        <Line Text="Лінійна"/>
+        <FastLine Text="Швидка лінія"/>
+        <StepLine Text="Крокова лінія"/>
+        <Spline Text="Плавна лінія"/>
+        <Bubble Text="Бульбашкова"/>
+        <Point Text="Точкова"/>
+        <FastPoint Text="Швидка точкова"/>
+        <Pie Text="Секторна"/>
+        <Doughnut Text="Кільцева"/>
+        <Polar Text="Полярна"/>
+        <Radar Text="Пелюсткова"/>
+        <Stock Text="Фінансова"/>
+        <Candlestick Text="Свічкоподібна"/>
+        <Kagi Text="Кагі"/>
+        <Renko Text="Ренко"/>
+        <PointAndFigure Text="Хрестики-нолики"/>
+        <ThreeLineBreak Text="Трисмуговий розворот"/>
+        <Pyramid Text="Пірамідальна"/>
+        <Funnel Text="Воронкоподібна"/>
+        <Range Text="Діапазон"/>
+        <SplineRange Text="Плавний діапазон"/>
+        <RangeColumn Text="Вертикальний діапазон"/>
+        <RangeBar Text="Горизонтальний діапазон"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Сторінка &quot;Код&quot;">
+      <EnableVirtualSpace Text="Дозволити &quot;віртуальний пробіл&quot;"/>
+      <UseSpaces Text="Символ пробілу замість табуляції"/>
+      <AllowOutlining Text="Структура коду"/>
+      <TabSize Text="Размір символу TAB:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Налаштування бендів">
+      <Add Text="Добавити"/>
+      <Delete Text="Видалити"/>
+    </ConfigureBands>
+    <Connection Text="З'єднання">
+      <Select Text="Виберіть тип з'єднання"/>
+      <AlwaysUse Text="Завжди використовувати це з'єднання"/>
+      <LoginPrompt Text="Запитувати пароль при підключенні"/>
+      <Test Text="Тест"/>
+      <TestSuccesful Text="Тест з'єднання завершено успішно."/>
+    </Connection>
+    <CustomLabel Text="Етикетка">
+      <Name Text="Назва:"/>
+      <Paper Text="Папір"/>
+      <Landscape Text="Альбомна орієнтація"/>
+      <PaperWidth Text="Ширина паперу:"/>
+      <PaperHeight Text="Висота паперу:"/>
+      <LeftMargin Text="Ліве поле:"/>
+      <TopMargin Text="Верхнє поле:"/>
+      <Label Text="Параметри"/>
+      <LabelWidth Text="Ширина етикетки:"/>
+      <LabelHeight Text="Висота етикетки:"/>
+      <RowGap Text="Вертикальний проміжок:"/>
+      <ColumnGap Text="Горизонтальний проміжок:"/>
+      <Warning Text="Етикетки не вміщаються на сторінці!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Редактор бенду &quot;Дані&quot;">
+      <DataSource Text="Джерело даних"/>
+      <NoData Text="Джерела даних недоступні.&#13;&#10;&#13;&#10;Виберіть джерело даних в меню &quot;Дані|Вибрати дані для звіту...&quot;, або створіть нове джерело в меню &quot;Дані|Нове джерело даних...&quot;"/>
+      <Sort Text="Сортування"/>
+      <SortBy Text="Сортувати по"/>
+      <ThenBy Text="Потім по"/>
+      <Ascending Text="За зростанням"/>
+      <Descending Text="За спаданням"/>
+      <Filter Text="Фільтр"/>
+      <Expression Text="Вираз фільтру:"/>
+    </DataBandEditor>
+    <DataWizard Text="Майстер з'єднання з даними">
+      <Page1 Text="Виберіть базу даних"/>
+      <WhichData Text="Які з'єднання повинен використовувати звіт для доступу до бази даних?"/>
+      <Hint Text="Виберіть з'єднання зі списку останніх використаних, або натисніть кнопку &quot;Нове з'єднання...&quot; для створення нового з'єднання."/>
+      <NewConnection Text="Нове з'єднання..."/>
+      <EditConnection Text="Редагувати..."/>
+      <ConnectionName Text="Введіть ім'я з'єднання:"/>
+      <ConnectionString Text="Рядок з'єднання"/>
+      <Page2 Text="Виберіть таблиці"/>
+      <WhichTables Text="Які таблиці ви бажаєте використовувати у звіті?"/>
+      <Wait Text="Підключення до бази даних..."/>
+      <AddQuery Text="Добавити SQL запит..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Діалогова форма"/>
+    <Exception Text="Помилка">
+      <Hint Text="Ваш звіт викликав наступну помилку:"/>
+      <Stack Text="Стек:"/>
+      <Copy Text="Копіювати в буфер"/>
+    </Exception>
+    <ExpressionEditor Text="Редактор виразів"/>
+    <Fill Text="Редактор заливки">
+      <Solid Text="Суцільна"/>
+      <LinearGradient Text="Градієнт"/>
+      <PathGradient Text="Фігурний градієнт"/>
+      <Hatch Text="Штриховка"/>
+      <Glass Text="Скло"/>
+      <Colors Text="Кольори"/>
+      <Color Text="Колір"/>
+      <StartColor Text="Початок"/>
+      <EndColor Text="Кінець"/>
+      <Options Text="Властивості"/>
+      <Focus Text="Фокус"/>
+      <Contrast Text="Контраст"/>
+      <Angle Text="Кут"/>
+      <CenterColor Text="Центр"/>
+      <EdgeColor Text="Край"/>
+      <Shape Text="Фігура"/>
+      <Ellipse Text="Еліпс"/>
+      <Rectangle Text="Прямокутник"/>
+      <ForeColor Text="Передній план"/>
+      <BackColor Text="Фон"/>
+      <Style Text="Стиль"/>
+      <Blend Text="Змішування"/>
+      <GlassHatch Text="Показувати штриховку"/>
+    </Fill>
+    <FormatEditor Text="Форматування">
+      <Expression Text="Вираз:"/>
+      <General Text="Загальний"/>
+      <Number Text="Числовий"/>
+      <Currency Text="Грошовий"/>
+      <Date Text="Дата"/>
+      <Time Text="Час"/>
+      <Percent Text="Відсотковий"/>
+      <Boolean Text="Логічний"/>
+      <Custom Text="Користувацький"/>
+      <UseLocale Text="Використовувати параметри системи"/>
+      <DecimalDigits Text="Знаків у дробовій частині:"/>
+      <DecimalSeparator Text="Роздільник дробу:"/>
+      <GroupSeparator Text="Роздільник груп:"/>
+      <PositivePattern Text="Додатнє значення:"/>
+      <NegativePattern Text="Від'ємне значення:"/>
+      <CurrencySymbol Text="Символ валюти:"/>
+      <PercentSymbol Text="Символ відсотку:"/>
+      <FalseText Text="Текст значення False:"/>
+      <TrueText Text="Текст значення True:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Редактор колонок">
+      <Columns Text="Колонки"/>
+      <Properties Text="Властивості"/>
+      <Add Text="Добавити"/>
+      <Remove Text="Видалити"/>
+      <AddAll Text="Добавити всі"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Редактор групи">
+      <Condition Text="Умова групування"/>
+      <Hint Text="Виберіть поле даних або задайте вираз:"/>
+      <Settings Text="Налаштування"/>
+      <Sort Text="Сортування:"/>
+      <NoSort Text="Не сортувати"/>
+      <Ascending Text="За зростанням"/>
+      <Descending Text="За спаданням"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Майстер групування">
+      <Condition Text="Умова групування"/>
+      <Hint Text="Виберіть поле даних або введіть вираз, потім натисніть &quot;Добавити&quot; для створення нової групи."/>
+      <Add Text="Добавити"/>
+      <Groups Text="Групи"/>
+      <Edit Text="Змінити..."/>
+      <Delete Text="Видалити"/>
+    </GroupExpert>
+    <HighlightEditor Text="Умовне виділення">
+      <Conditions Text="Умови"/>
+      <Add Text="Добавити"/>
+      <Delete Text="Видалити"/>
+      <Edit Text="Змінити"/>
+      <Style Text="Стиль"/>
+      <Fill Text="Заливка"/>
+      <TextColor Text="Колір тексту"/>
+      <Font Text="Шрифт"/>
+      <Visible Text="Видимий"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Редактор гіперпосилання">
+      <Url Text="Адреса"/>
+      <PageNumber Text="Номер сторінки"/>
+      <Bookmark Text="Закладка"/>
+      <Report Text="Детальний звіт"/>
+      <ReportPage Text="Детальна сторінка звіту"/>
+      <Custom Text="Користувацьке"/>
+      <UrlValue Text="Вкажіть адресу (наприклад, http://www.url.com):"/>
+      <UrlExpression Text="або введіть вираз, що повертає адресу:"/>
+      <PageNumberValue Text="Вкажіть номер сторінки:"/>
+      <PageNumberExpression Text="або введіть вираз, що повертає номер сторінки:"/>
+      <BookmarkValue Text="Вкажіть ім'я закладки:"/>
+      <BookmarkExpression Text="або введіть вираз, що повертає ім'я закладки:"/>
+      <ReportName Text="Звіт:"/>
+      <ParameterName Text="Параметр звіту:"/>
+      <ParameterValue Text="Вкажіть значення параметра:"/>
+      <ParameterExpression Text="або введіть вираз, що повертає ім'я параметра:"/>
+      <PageName Text="Сторінка в цьому звіті:"/>
+      <CustomValue Text="Вкажіть значення гіперпосилання:"/>
+      <CustomExpression Text="або введіть вираз, що повертає гіперпосилання:"/>
+      <Hint Text="Що станеться, якщо ви натисните на цей об'єкт у вікні перегляду:"/>
+      <HintUrl Text="Буде відкрито вказану адресу."/>
+      <HintPageNumber Text="Ви перейдете на сторінку з вказаним номером."/>
+      <HintBookmark Text="Ви перейдете на об'єкт, що містить вказану закладку."/>
+      <HintReport Text="Вказаний звіт буде запущено і відкрито в новій закладці вікна перегляду."/>
+      <HintReportPage Text="Вказану сторінку буде побудовано і відкрито в новій закладці вікна перегляду."/>
+      <HintCustom Text="Ви повинні визначити обробник події &quot;Click&quot; у об'єкта."/>
+      <ModifyAppearance Text="Змінити зовнішній вигляд об'єкта, щоб він виглядав як гіперпосилання"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Майстер етикеток">
+      <Hint Text="Виберіть одну з стандартних етикеток, або натисніть &quot;Створити...&quot; для створення власної етикетки"/>
+      <Label Text="Етикетка"/>
+      <Manufacturer Text="Виробник:"/>
+      <Product Text="Продукт:"/>
+      <Parameters Text="Параметри"/>
+      <Size Text="Розмір:"/>
+      <PaperSize Text="Розмір паперу:"/>
+      <Rows Text="Рядків:"/>
+      <Columns Text="Колонок:"/>
+      <CustomLabel Text="Створити..."/>
+      <Custom Text="Користувацька"/>
+      <Delete Text="Видалити"/>
+    </LabelWizard>
+    <PageSetup Text="Параметри сторінки">
+      <Paper Text="Папір"/>
+      <Custom Text="Інший"/>
+      <Width Text="Ширина:"/>
+      <Height Text="Висота:"/>
+      <Orientation Text="Орієнтація:"/>
+      <Portrait Text="Портретна"/>
+      <Landscape Text="Альбомна"/>
+      <Margins Text="Поля"/>
+      <Left Text="Ліве:"/>
+      <Top Text="Верхнє:"/>
+      <Right Text="Праве:"/>
+      <Bottom Text="Нижнє:"/>
+      <MirrorMargins Text="Зеркальні поля на парних сторінках"/>
+      <Source Text="Джерело паперу"/>
+      <FirstPage Text="Для першої сторінки:"/>
+      <OtherPages Text="Для інших сторінок:"/>
+      <Columns Text="Колонки"/>
+      <Count Text="Кількість:"/>
+      <ColumnWidth Text="Ширина:"/>
+      <Positions Text="Позиції:"/>
+      <Other Text="Інше"/>
+      <Duplex Text="Двосторонній друк:"/>
+      <DupDefault Text="За замовчуванням"/>
+      <DupSimplex Text="Ні"/>
+      <DupVertical Text="Вертикальний"/>
+      <DupHorizontal Text="Горизонтальний"/>
+      <EditWatermark Text="Водяний знак..."/>
+      <ExtraWidth Text="Широка сторінка в дизайнері"/>
+    </PageSetup>
+    <PictureEditor Text="Редактор зображення">
+      <Picture Text="Зображення"/>
+      <Load Text="Відкрити"/>
+      <Paste Text="Вставити"/>
+      <Clear Text="Очистити"/>
+      <DataColumn Text="Поле даних"/>
+      <FileName Text="Ім'я файлу"/>
+      <Url Text="Гіперпосилання"/>
+      <FileHint1 Text="Ім'я файлу"/>
+      <FileHint2 Text="Зауваження: ви повинні розповсюджувати цей файл разом зі звітом."/>
+      <UrlHint Text="Адреса:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Плагіни">
+      <Hint Text="Список встановлених плагінів:"/>
+      <Add Text="Добавити"/>
+      <Remove Text="Видалити"/>
+      <Note Text="Увага: зміни вступлять в силу при наступному запуску програми."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Застосувати до всіх сторінок і перебудувати звіт"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Знайти"/>
+    <PrinterSetup Text="Друк">
+      <PrinterSetup Text="Параметри принтера"/>
+      <Printer Text="Принтер"/>
+      <SavePrinter Text="Зберегти принтер у файлі звіту"/>
+      <Settings Text="Налаштування..."/>
+      <PrintToFile Text="Друк у файл"/>
+      <PageRange Text="Сторінки"/>
+      <All Text="Всі"/>
+      <Current Text="Поточна"/>
+      <Numbers Text="Номери:"/>
+      <Hint Text="Введіть номери або діапазони сторінок, розділені комами. Наприклад: 1,3,5-12"/>
+      <Copies Text="Копії"/>
+      <Count Text="Кількість копій:"/>
+      <Collate Text="Розібрати за копіями"/>
+      <Other Text="Інше"/>
+      <OddEven Text="Друкувати:"/>
+      <AllPages Text="Всі сторінки"/>
+      <OddPages Text="Непарні сторінки"/>
+      <EvenPages Text="Парні сторінки"/>
+      <Order Text="Порядок:"/>
+      <OrderDirect Text="Прямий (1-9)"/>
+      <OrderReverse Text="Зворотній (9-1)"/>
+      <Duplex Text="Дуплекс:"/>
+      <Source Text="Джерело:"/>
+      <PrintMode Text="Режим друку"/>
+      <PrintModeDefault Text="Звичайний"/>
+      <PrintModeSplit Text="Розрізати великі сторінки"/>
+      <PrintModeScale Text="Масштабування"/>
+      <PrintOnSheet Text="Друк на листі"/>
+      <PagesOnSheet Text="Сторінок на листі:"/>
+      <PagesOnSheet1 Text="1 сторінка"/>
+      <PagesOnSheet2 Text="2 сторінки"/>
+      <PagesOnSheet4 Text="4 сторінки"/>
+      <PagesOnSheet8 Text="8 сторінок"/>
+      <Print Text="Друк"/>
+      <Error Text="Діапазон сторінок задано невірно"/>
+    </PrinterSetup>
+    <QueryWizard Text="Майстер запиту">
+      <Page1 Text="Вкажіть ім'я"/>
+      <SetName Text="Вкажіть ім'я об'єкта &quot;запит&quot;."/>
+      <NameHint Text="Це ім'я буде відображатися у вікні &quot;Дані&quot;."/>
+      <Page2 Text="Введіть текст SQL"/>
+      <WhatData Text="Які дані повинен повернути запит?"/>
+      <TypeSql Text="Введіть текст запиту на мові SQL або скористуйтеся конструктором запиту."/>
+      <QueryBuilder Text="Конструктор запиту..."/>
+      <Page3 Text="Визначте параметри"/>
+      <Page4 Text="Визначте поля даних"/>
+      <Refresh Text="Оновити поля"/>
+      <AddColumn Text="Добавити обчислюване поле"/>
+      <AddParameter Text="Добавити параметр"/>
+      <Delete Text="Видалити"/>
+    </QueryWizard>
+    <RelationEditor Text="Редактор зв'язку">
+      <ParentTable Text="Головна таблиця:"/>
+      <ChildTable Text="Підлегла таблиця"/>
+      <Parent Text="Головні"/>
+      <Child Text="Підлеглі"/>
+      <Columns Text="Поля:"/>
+      <Error Text="Кількість головних та підлеглих полів повинно бути однаковим."/>
+    </RelationEditor>
+    <ReportData Text="Вибрати дані">
+      <Hint Text="Виберіть джерела даних і поля, які ви бажаєте використовувати у звіті:"/>
+      <Aliases Text="Показувати псевдоніми"/>
+    </ReportData>
+    <ReportOptions Text="Властивості звіту">
+      <General Text="Основні"/>
+      <Description Text="Опис"/>
+      <Script Text="Скрипт"/>
+      <Security Text="Безпека"/>
+      <Inheritance Text="Наслідування"/>
+      <Name Text="Ім'я:"/>
+      <Author Text="Автор:"/>
+      <Version Text="Версія:"/>
+      <Description1 Text="Опис:"/>
+      <Picture Text="Зображення:"/>
+      <SavePreviewPicture Text="Взяти зображення з готового звіту"/>
+      <Load Text="Завантажити..."/>
+      <Clear Text="Очистити"/>
+      <Created Text="Створений:"/>
+      <Modified Text="Змінений:"/>
+      <Language Text="Мова скрипта:"/>
+      <Note Text="Зауваження: якщо ви зміните мову, весь скрипт буде очищено!"/>
+      <RefAssemblies Text="Посилання на збірки:"/>
+      <Add Text="Добавити..."/>
+      <Password Text="Пароль:"/>
+      <RetypePassword Text="Пароль ще раз:"/>
+      <Inherited Text="Цей звіт наслідується від базового звіту:"/>
+      <NotInherited Text="Цей звіт не наслідується."/>
+      <Choose Text="Виберіть дію:"/>
+      <DontChange Text="Не змінювати"/>
+      <Detach Text="Від'єднати базовий звіт"/>
+      <Inherit Text="Наслідувати звіт від:"/>
+      <Browse Text="Вибрати..."/>
+      <DoublePass Text="Подвійний прохід"/>
+      <Compress Text="Стиснути файл звіту"/>
+      <UseFileCache Text="Використовувати файловий кеш"/>
+      <ConvertNulls Text="Конвертувати null значення"/>
+      <TextQuality Text="Якість тексту:"/>
+      <SmoothGraphics Text="Плавне відображення графіки"/>
+      <QualityDefault Text="За замовчуванням"/>
+      <QualityRegular Text="Звичайна"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Паролі не співпадають, введіть повторно."/>
+      <Recipients Text="Отримувач(і) (напр., john@url.com):"/>
+      <Subject Text="Тема листа:"/>
+      <Message Text="Текст листа:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Сторінка звіту">
+      <Units Text="Одиниці виміру"/>
+      <Millimeters Text="Міліметри"/>
+      <Centimeters Text="Сантиметри"/>
+      <Inches Text="Дюйми"/>
+      <HundrethsOfInch Text="Соті долі дюйма"/>
+      <Grid Text="Сітка"/>
+      <ShowGrid Text="Показувати сітку"/>
+      <SnapToGrid Text="Вирівнювати по сітці"/>
+      <DottedGrid Text="Точкова сітка"/>
+      <Size Text="Крок сітки:"/>
+      <Markers Text="Маркери об'єкта"/>
+      <Rectangle Text="Прямокутник"/>
+      <Corners Text="Кути"/>
+      <BandView Text="Вигляд бендів"/>
+      <Structure Text="Структура"/>
+      <Classic Text="Класичний"/>
+      <EditAfterInsert Text="Редагувати об'єкт після вставки"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Редактор тексту">
+      <Open Text="Відкрити файл"/>
+      <Save Text="Зберегти файл"/>
+      <Subscript Text="Нижній індекс"/>
+      <Superscript Text="Верхній індекс"/>
+      <Bullets Text="Список"/>
+      <Confirm Text="Текст було змінено. Зберегти зміни?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Пошук та заміна">
+      <Find Text="Знайти:"/>
+      <Replace Text="Замінити на:"/>
+      <Options Text="Параметри пошуку:"/>
+      <MatchCase Text="Враховувати регістр"/>
+      <MatchWholeWord Text="Тільки слово цілком"/>
+      <FindNext Text="Далі"/>
+      <ReplaceBtn Text="Замінити"/>
+      <ReplaceAll Text="Замінити все"/>
+      <NotFound Text="Текст не знайдено."/>
+      <NoMoreFound Text="Перегляд документа закінчено."/>
+    </SearchReplace>
+    <SelectDataSource Text="Виберіть джерело даних">
+      <Hint Text="Виберіть одне або кілька джерел даних для використання у звіті."/>
+      <AvailableDs Text="Доступні джерела:"/>
+      <SelectedDs Text="Вибрані джерела:"/>
+      <ProjectDs Text="Набори даних"/>
+      <OtherDs Text="Інші джерела"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Виберіть мову">
+      <SelectLanguage Text="Виберіть мову зі списку:"/>
+      <Auto Text="Авто"/>
+      <Folder Text="Папка з файлами мов:"/>
+      <SelectFolder Text="Виберіть папку, яка містить мовні файли (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Майстер стандартного звіту">
+      <GroupsPage Text="Створіть групи"/>
+      <CreateGroups Text="Створіть групи (не обов'язково)"/>
+      <Groups Text="Групи:"/>
+      <LayoutPage Text="Визначте розміщення даних"/>
+      <DefineLayout Text="Виберіть орієнтацію паперу і розміщення даних."/>
+      <Orientation Text="Орієнтація"/>
+      <Portrait Text="Портретна"/>
+      <Landscape Text="Альбомна"/>
+      <Layout Text="Розміщення"/>
+      <Tabular Text="У вигляді таблиці"/>
+      <Columnar Text="У вигляді колонок"/>
+      <StylePage Text="Виберіть стиль"/>
+      <Styles Text="Виберіть стиль звіту."/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Редагувати рядки"/>
+    <Style Text="Редактор стилів">
+      <Styles Text="Стилі"/>
+      <Add Text="Добавити"/>
+      <Delete Text="Видалити"/>
+      <Edit Text="Змінити"/>
+      <Load Text="Завантажити..."/>
+      <Save Text="Зберегти..."/>
+      <Settings Text="Властивості стилю"/>
+      <Border Text="Рамка"/>
+      <Fill Text="Заливка"/>
+      <Font Text="Шрифт"/>
+      <TextColor Text="Колір тексту"/>
+      <StyleName Text="Стиль"/>
+    </Style>
+    <TextEditor Text="Редактор тексту">
+      <WordWrap Text="Переносити слова"/>
+    </TextEditor>
+    <TotalEditor Text="Редактор підсумку">
+      <TotalName Text="Ім'я підсумку:"/>
+      <Total Text="Підсумок"/>
+      <Function Text="Функція:"/>
+      <DataColumnOrExpression Text="Поле даних або вираз:"/>
+      <DataBand Text="Вираховувати для кожного рядка бенду:"/>
+      <EvaluateCondition Text="Вираховувати, якщо умова виконується:"/>
+      <PrintOn Text="Друкувати підсумок на бенді:"/>
+      <Options Text="Параметри"/>
+      <ResetAfterPrint Text="Скидати після друку"/>
+      <ResetRepeated Text="Скидати, якщо бенд повторюється на кожній сторінці"/>
+      <InvisibleRows Text="Включаючи невидимі рядки"/>
+      <Sum Text="Сума"/>
+      <Min Text="Мінімум"/>
+      <Max Text="Максимум"/>
+      <Avg Text="Среднє"/>
+      <Count Text="Кількість"/>
+    </TotalEditor>
+    <UIOptions Text="Інтерфейс">
+      <Appearance Text="Зовнішній вигляд:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (блакитний),Office 2007 (срібний),Office 2007 (чорний),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Водяний знак">
+      <Enabled Text="Дозволити"/>
+      <Text Text="Текст"/>
+      <TextItems Text="КОНФІДЕНЦІЙНО,СЕКРЕТНО,КОПІЯ,ОРИГІНАЛ,ЗРАЗОК,ТЕРМІНОВО"/>
+      <Rotation Text="Поворот"/>
+      <Horizontal Text="Горизонтально"/>
+      <Vertical Text="Вертикально"/>
+      <ForwardDiagonal Text="По діагоналі"/>
+      <BackwardDiagonal Text="По діагоналі назад"/>
+      <Font Text="Шрифт"/>
+      <Color Text="Колір"/>
+      <Picture Text="Зображення"/>
+      <Load Text="Завантажити"/>
+      <Clear Text="Очистити"/>
+      <Size Text="Розмір"/>
+      <Normal Text="Нормальний"/>
+      <Center Text="По центру"/>
+      <Stretch Text="Розтягнути"/>
+      <Zoom Text="Масштабувати"/>
+      <Tile Text="Плиткою"/>
+      <Transparency Text="Прозорість"/>
+      <Zorder Text="Розміщення"/>
+      <TextOnTop Text="Текст на передньому плані"/>
+      <PictureOnTop Text="Зображення на передньому плані"/>
+      <ApplyToAll Text="Застосувати до всіх сторінок"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Ім'я сервера:"/>
+      <ServerLogon Text="Вхід на сервер"/>
+      <UserName Text="Логін:"/>
+      <Password Text="Пароль:"/>
+      <Database Text="База даних"/>
+      <DatabaseName Text="Ім'я бази даних:"/>
+      <DatabaseFile Text="Файл бази даних:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Аутентифікація Windows"/>
+      <UseSql Text="Аутентифікація MS SQL"/>
+      <SavePassword Text="Зберегти пароль"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Рядок з'єднання:"/>
+      <Build Text="Створити..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Джерело даних"/>
+      <DsName Text="Користувацьке або системне джерело:"/>
+      <ConnString Text="Рядок з'єднання:"/>
+      <Login Text="Логін"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Файл схеми:"/>
+      <Xml Text="Файл даних:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Редагувати..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Може рости"/>
+      <CanShrink Text="Може стискатись"/>
+      <GrowToBottom Text="Рости вниз"/>
+      <Hyperlink Text="Гіперпосилання..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Може розриватися"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Добавити дочірній бенд"/>
+      <StartNewPage Text="Формувати нову сторінку"/>
+      <PrintOnBottom Text="Друкувати внизу сторінки"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Добавити детальний бенд &quot;Дані&quot;"/>
+      <KeepTogether Text="Тримати разом"/>
+      <KeepDetail Text="Тримати деталі разом"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Повторювати на кожній сторінці"/>
+      <KeepWithData Text="Не відривати від даних"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Скидати номер сторінки"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Заповнювати порожнє місце сторінки"/>
+      <CompleteToNRows Text="Доповнити дані до N рядків:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Режим відображення"/>
+      <AutoSize Text="Авторозмір"/>
+      <CenterImage Text="Центрувати"/>
+      <Normal Text="Нормальний"/>
+      <StretchImage Text="Розтягнути"/>
+      <Zoom Text="Масштабувати"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Формат даних..."/>
+      <Clear Text="Очистити"/>
+      <AutoWidth Text="Автоширина"/>
+      <WordWrap Text="Переносити слова"/>
+      <AllowExpressions Text="Вираз у тексті"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Друкувати на батькові"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Повторювати заголовки на новій сторінці"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Вставити рядок вище"/>
+      <InsertBelow Text="Вставити рядок нижче"/>
+      <AutoSize Text="Авторозмір"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Вставити колонку ліворуч"/>
+      <InsertToRight Text="Вставити колонку праворуч"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Об'єднати клітинки"/>
+      <Split Text="Розділити клітинку"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Клітинки одним рядком"/>
+      <ShowTitle Text="Заголовок матриці"/>
+      <Style Text="Стиль"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Підсумки"/>
+      <Function Text="Функція"/>
+      <SuppressTotals Text="Приховувати підсумки"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Редагувати колонки..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Тип штрих-коду"/>
+      <AutoSize Text="Авторозмір"/>
+      <AutoEncode Text="Автокодування"/>
+      <CalcChecksum Text="Контрольна сума"/>
+      <ShowText Text="Показувати текст"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Показувати маркери"/>
+      <ShowGrid Text="Показувати сітку"/>
+    </ZipCodeObject>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Обчислення розмірів ..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Заповнення матриці ..."/>
+      <NewColumn Text="Перенесіть дані сюди&#13;&#10;для створення нової колонки"/>
+      <NewRow Text="Перенесіть дані сюди&#13;&#10;для створення нового рядка"/>
+      <NewCell Text="Перенесіть дані сюди&#13;&#10;для створення нової клітинки"/>
+      <Total Text="Всього"/>
+      <Title Text="Назва"/>
+      <White Text="Білий"/>
+      <Gray Text="Сірий"/>
+      <Orange Text="Помаранчевий"/>
+      <Green Text="Зелений"/>
+      <GreenOrange Text="Помаранчево-зелений"/>
+      <Blue Text="Блакитний"/>
+      <BlueWhite Text="Біло-блакитний"/>
+      <GrayOrange Text="Помаранчево-сірий"/>
+      <BlueOrange Text="Помаранчево-блакитний"/>
+      <OrangeWhite Text="Помаранчево-білий"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Порожній звіт"/>
+    <StandardReport Text="Майстер стандартного звіту"/>
+    <InheritedReport Text="Звіт, що наслідується"/>
+    <Label Text="Майстер етикеток"/>
+    <NewDataSource Text="Нове джерело даних"/>
+    <NewPage Text="Нова сторінка звіту"/>
+    <NewDialog Text="Нова діалогова форма"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Експорт виконано за {0} мс"/>
+      <OrderByCells Text="Сортування клітинок"/>
+      <AnalyzeObjects Text="Аналіз об'єктів"/>
+      <SavePage Text="Збереження сторінки"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Розриви сторінок"/>
+      <OpenAfterExport Text="Відкрити після експорту"/>
+      <Pictures Text="Зображення"/>
+      <Options Text="Налаштування"/>
+      <None Text="Немає"/>
+      <Metafile Text="Метафайл"/>
+      <SaveFile Text="Збереження файлу"/>
+    </Misc>
+    <Image Text="Експорт в зображення">
+      <File Text="Файли зображень"/>
+      <ImageFormat Text="Формат:"/>
+      <Resolution Text="Розд. здатність:"/>
+      <Quality Text="Якість Jpeg:"/>
+      <SeparateFiles Text="Окремий файл для кожної сторінки"/>
+      <MultiFrame Text="Багатосторінковий TIFF"/>
+      <Monochrome Text="Чорно-білий TIFF"/>
+      <Bmp Text="Зображення BMP"/>
+      <Png Text="Зображення PNG"/>
+      <Jpeg Text="Зображення JPG"/>
+      <Gif Text="Зображення GIF"/>
+      <Tiff Text="Зображення TIFF"/>
+      <Metafile Text="Метафайл"/>
+    </Image>
+    <RichText Text="Експорт в RichText">
+      <File Text="RTF формат"/>
+    </RichText>
+    <Text Text="Експорт в текстовий файл/матричний принтер">
+      <File Text="Текстовий файл/матричний принтер"/>
+      <EmptyLines Text="Порожні рядки"/>
+      <DataOnly Text="Тільки дані"/>
+      <Frames Text="Рамки"/>
+      <FramesNone Text="Немає"/>
+      <FramesText Text="Текстові"/>
+      <FramesGraphic Text="Графічні"/>
+      <Codepage Text="Кодування"/>
+      <Default Text="За замовчуванням"/>
+      <Unicode Text="Юнікод"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Масштаб X:"/>
+      <ScaleY Text="Масштаб Y:"/>
+      <AutoScale Text="Автопідбір"/>
+      <PrinterType Text="Тип принтера"/>
+      <Commands Text="Команди"/>
+      <PageWidth Text="Ширина сторінки:"/>
+      <PageHeight Text="Висота сторінки:"/>
+      <DataLoss Text="МОЖЛИВА ВТРАТА ДАНИХ&#13;&#10;будь ласка, збільшіть масштаб X/Y"/>
+      <ScaleMessage Text="Розрахунок оптимального масштабу"/>
+      <Scale Text="Масштаб"/>
+    </Text>
+    <Csv Text="Експорт в CSV">
+      <File Text="CSV формат"/>
+      <Separator Text="Роздільник"/>
+      <Codepage Text="Кодування"/>
+      <Default Text="За замовчуванням"/>
+      <Unicode Text="Юнікод"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Тільки дані"/>
+    </Csv>
+    <Dbf Text="Експорт в DBF">
+      <File Text="DBF таблиця"/>
+      <Codepage Text="Кодування"/>
+      <Default Text="За замовчуванням"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Тільки дані"/>
+      <Load Text="Завантажити імена полів з файлу:"/>
+    </Dbf>
+    <Xml Text="Експорт в XML">
+      <File Text="XML (Excel) формат"/>
+    </Xml>
+    <Odt Text="Експорт в  OpenOffice Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Експорт в OpenOffice Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Експорт в Excel 2007">
+      <File Text="Excel 2007 формат"/>
+    </Xlsx>
+    <Pptx Text="Експорт в PowerPoint 2007">
+      <File Text="PowerPoint 2007 формат"/>
+    </Pptx>
+    <Pdf Text="Експорт в PDF">
+      <File Text="PDF формат"/>
+      <Export Text="Експорт"/>
+      <Compressed Text="Стиснутий"/>
+      <EmbeddedFonts Text="З шрифтами"/>
+      <Background Text="Фон"/>
+      <PrintOptimized Text="Для друку"/>
+      <Information Text="Інформація"/>
+      <DocumentInformation Text="Інформація про документ"/>
+      <Title Text="Заголовок"/>
+      <Author Text="Автор"/>
+      <Subject Text="Тема"/>
+      <Keywords Text="Ключові слова"/>
+      <Creator Text="Творець"/>
+      <Producer Text="Програма"/>
+      <Security Text="Захист"/>
+      <Authentification Text="Аутентифікація"/>
+      <OwnerPassword Text="Пароль власника"/>
+      <UserPassword Text="Пароль користувача"/>
+      <Permissions Text="Права доступу"/>
+      <PrintTheDocument Text="Друк документа"/>
+      <ModifyTheDocument Text="Зміна документа"/>
+      <CopyOfTextAndGraphics Text="Копіювання тексту і графіки"/>
+      <AddOrModifyTextAnnotations Text="Анотації"/>
+      <Viewer Text="Перегляд"/>
+      <ViewerPreferences Text="Налаштування перегляду"/>
+      <HideToolbar Text="Сховати панель інструментів"/>
+      <HideMenubar Text="Сховати панель меню"/>
+      <HideWindowUserInterface Text="Сховати інтерфейс вікна"/>
+      <FitWindow Text="Розтягнути вікно"/>
+      <CenterWindow Text="Центрувати вікно"/>
+      <PrintScaling Text="Розтягувати при друку"/>
+      <PrintAfterOpenOfDocument Text="Друкувати після відкриття документа"/>
+      <Outline Text="Outline"/>
+    </Pdf>
+    <Html Text="Експорт в HTML">
+      <File Text="HTML формат"/>
+      <MHTFile Text="MHT формат"/>
+      <Format Text="Формат"/>
+      <SinglePage Text="Однією сторінкою"/>
+      <SubFolder Text="Окрема папка для файлів"/>
+      <Navigator Text="Навігатор"/>
+      <Total Text="Всього"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Експорт в MHT (веб-архів)">
+      <File Text="MHT файл (веб-архів)"/>
+    </Mht>
+    <Email Text="Відправка E-mail">
+      <Email Text="Лист"/>
+      <Account Text="Параметри"/>
+      <Address Text="Адреса:"/>
+      <Subject Text="Тема:"/>
+      <Message Text="Повідомлення:"/>
+      <Attachment Text="Додаток:"/>
+      <Settings Text="Налаштування..."/>
+      <Name Text="Ім'я:"/>
+      <Template Text="Шаблон:"/>
+      <Host Text="Сервер:"/>
+      <Port Text="Порт:"/>
+      <UserName Text="Логін:"/>
+      <Password Text="Пароль:"/>
+      <AddressError Text="Адреса не може бути порожня."/>
+      <HostError Text="Сервер не може бути порожній."/>
+      <SendingEmail Text="Відправка листа - {0} Кб"/>
+      <EnableSSL Text="Використовувати SSL"/>
+    </Email>
+  </Export>
+  <Web>
+    <Print Text="Друк"/>
+    <Export Text="Експорт"/>
+    <Zoom Text="Масштаб"/>
+    <Refresh Text="Оновити звіт"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Зовнішній вигляд"/>
+      <Behavior Text="Поведінка"/>
+      <Build Text="Побудова"/>
+      <Data Text="Дані"/>
+      <Design Text="Проектування"/>
+      <Email Text="Ел.пошта"/>
+      <Engine Text="Двигун"/>
+      <Events Text="Події"/>
+      <Hierarchy Text="Ієрархія"/>
+      <Layout Text="Макет"/>
+      <Misc Text="Різне"/>
+      <Navigation Text="Навігація"/>
+      <Paper Text="Папір"/>
+      <Preview Text="Перегляд"/>
+      <Print Text="Друк"/>
+      <Script Text="Скрипт"/>
+    </Categories>
+  </Properties>
+</Language>

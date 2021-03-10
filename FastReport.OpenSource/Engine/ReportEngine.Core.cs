@@ -2,8 +2,6 @@
 {
     partial class ReportEngine
     {
-        private void ShowProgress()
-        {
-        }
+        partial void ShowProgress();
     }
 }

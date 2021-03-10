@@ -1,0 +1,1610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="ro" Author="Sandor Kacso &lt;sandor.kacso@erpos.ro&gt;">
+  <Buttons>
+    <Ok Text="OK"/>
+    <Cancel Text="Anulare"/>
+    <Close Text="Inchidere"/>
+    <MoreOptions Text="Mai multe optiuni"/>
+    <LessOptions Text="Mai putine optiuni"/>
+    <Actions Text="Actiuni"/>
+    <Previous Text="&lt; Precedent"/>
+    <Next Text="Urmator &gt;"/>
+    <Finish Text="Terminare"/>
+    <Advanced Text="Avansat ..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Accesez datele ..."/>
+    <CantFindObject Text="Nu pot sa gasesc obiectul"/>
+    <CantLoadReport Text="Nu pot incarca raportul {0}"/>
+    <CantSaveReport Text="Nu pot sa salvez raportul. Fisierul poate sa fie protejat pentru scriere."/>
+    <ClassError Text="Nu pot sa gasesc clasa raportului principal, ReportScript"/>
+    <Confirmation Text="Confirmare"/>
+    <DataNotInitialized Text="Sursa de data nu este inca initializata."/>
+    <DecompressError Text="Nu pot sa decompresez fisierul"/>
+    <DecryptError Text="Eroare de decriptare: parola gresita"/>
+    <DelegateError Text="{0} delegat trebuie sa aiba doua argumente: 'sender' si 'e'"/>
+    <DeleteAncestor Text="Nu pot sa sterg {0}, a fost introdusa in raportul predecesor"/>
+    <DuplicateName Text="Obiect cu numele {0} deja existent"/>
+    <DuplicateStyle Text="Stil cu acest nume deja existent"/>
+    <Error Text="Eroare"/>
+    <EventError Text="Nu pot sa creez procesor de evenimente din cauza erorilor din codul de sursa"/>
+    <ExportingPage Text="Export pagina {0} of {1}"/>
+    <GeneratingPage Text="Generez pagina {0}"/>
+    <GeneratingPageFirstPass Text="Primul pas: generez pagina {0}"/>
+    <Information Text="Informatie"/>
+    <MatrixError Text="{0}: Obiectul matriceal trebuie sa aiba minim o coloana sau rand si dimeniunea unei celule."/>
+    <MatrixValueError Text="Numarul valorilor difera din MatrixData.Cells.Count (trebuie sa fie {0})"/>
+    <ParentError Text="Obiect de tipul {0} nu poate sa contine obiect de tipul {1}"/>
+    <ParentError1 Text="Obiect de tip {0} nu poate sa contine obiecte"/>
+    <Performance Text="Pregatit in {0} ms"/>
+    <PreparingData Text="Pregatesc datele .."/>
+    <PrintingPage Text="Listez pagina {0}"/>
+    <RenameAncestor Text="Nu pot sa redenumes {0}, a fost introdusa in raportul predecesor"/>
+    <SaveChanges Text="Salveaza modificarile la {0}?"/>
+    <SaveChangesToPreviewPage Text="Salveaza modificarile in pagina de previzualizare?"/>
+    <TableIsNull Text="Tabelul nu este conectat la baza de date. Registreaza baza de date folosing metoda Report.RegisterData."/>
+    <TableManualBuildError Text="Nu pot sa folosesti metodele TableObject.PrintRow, PrintColumn numai in cadrul evenimentului ManualBuild aferent."/>
+    <Warning Text="Atentiune"/>
+    <WrongFileFormat Text="Nu pot sa incarc fisierul. Format necunoscut"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Exemplu"/>
+    <None Text="Niciuna"/>
+    <PageN Text="Pagina {0}"/>
+    <PageNofM Text="Pagina {0} din {1}"/>
+    <ofM Text="din {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Raport"/>
+    <ReportPage Text="Pagina"/>
+    <DialogPage Text="Forma"/>
+    <XmlDataConnection Text="Baza de date XML"/>
+    <OleDbDataConnection Text="Conexiune OLE DB"/>
+    <MsAccessDataConnection Text="Conexiune MS Access"/>
+    <MsSqlDataConnection Text="Conexiune MS SQL"/>
+    <OdbcDataConnection Text="Conexiune ODBC"/>
+    <FirebirdDataConnection Text="Conexiune Firebird"/>
+    <VistaDBDataConnection Text="Conexiune VistaDB"/>
+    <PostgresDataConnection Text="Conexiune Postgres"/>
+    <MySqlDataConnection Text="Conexiune MySQL"/>
+    <OracleDataConnection Text="Conexiune Oracle"/>
+    <SQLiteDataConnection Text="Conexiune SQLite"/>
+    <SqlCeDataConnection Text="Conexiune SQL CE"/>
+    <Bands Text="Benzi">
+      <ReportTitle Text="Titlul raportului"/>
+      <ReportSummary Text="Sumarul Raportului"/>
+      <PageHeader Text="Antetul Paginii"/>
+      <PageFooter Text="Subsolul paginii"/>
+      <ColumnHeader Text="Antet de coloana"/>
+      <ColumnFooter Text="Subsol de Coloana"/>
+      <DataHeader Text="Antet"/>
+      <DataFooter Text="Subsol"/>
+      <Data Text="Date"/>
+      <GroupHeader Text="Antet de grup"/>
+      <GroupFooter Text="Subsol de grup"/>
+      <Child Text="Copil"/>
+      <Overlay Text="Suprapunere"/>
+    </Bands>
+    <TextObject Text="Text"/>
+    <Shapes Text="Forme">
+      <Line Text="Linie"/>
+      <DiagonalLine Text="Linie diagonala"/>
+      <Rectangle Text="Patrat"/>
+      <RoundRectangle Text="Patrat cu colturi rotunjite"/>
+      <Ellipse Text="Elipsa"/>
+      <Triangle Text="Triunghi"/>
+      <Diamond Text="Diamant"/>
+    </Shapes>
+    <PictureObject Text="Poza"/>
+    <TableObject Text="Tabel"/>
+    <MatrixObject Text="Matrice"/>
+    <SubreportObject Text="Subraport"/>
+    <BarcodeObject Text="Cod de bara"/>
+    <RichObject Text="Rich Text"/>
+    <MSChartObject Text="MS Chart"/>
+    <ZipCodeObject Text="Cod postal"/>
+    <CellularTextObject Text="Text cellular"/>
+    <CheckBoxObject Text="CheckBox"/>
+    <ButtonControl Text="Buton"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grilaj"/>
+    <DataSelectorControl Text="SelectorDate"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Elicheta"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="ListaNumerica"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+  </Objects>
+  <Functions>
+    <Math Text="Matematical"/>
+    <Text Text="Text"/>
+    <DateTime Text="Date &amp; Timp"/>
+    <Formatting Text="Formatari"/>
+    <Conversion Text="Conversie"/>
+    <ProgramFlow Text="Fluxul programului"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Fisier Raport (*.frx)|*.frx"/>
+    <PreparedReport Text="Raport preparat (*.fpx)|*.fpx"/>
+    <Style Text="Stiluri de raport (*.frs)|*.frs"/>
+    <Dictionary Text="Dictionar (*.frd)|*.frd"/>
+    <Localization Text="Fisier de localizare (*.frl)|*.frl"/>
+    <XsdFile Text="Fisier de definitie schema XML (*.xsd)|*.xsd"/>
+    <XmlFile Text="fisier XML (*.xml)|*.xml"/>
+    <MdbFile Text="Baza de date MS Access (*.mdb)|*.mdb"/>
+    <MdfFile Text="Baza de date Microsoft SQL Serve (*.mdf)|*.mdf"/>
+    <RtfFile Text="Fisier Rich Text (*.rtf)|*.rtf"/>
+    <Images Text="Fisier imagine|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Fisier de listareare (*.prn)|*.prn"/>
+    <BmpFile Text="Imagine bitmap (*.bmp)|*.bmp"/>
+    <PngFile Text="Imagine PNG (*.png)|*.png"/>
+    <JpegFile Text="Imagine JPG (*.jpg)|*.jpg"/>
+    <GifFile Text="Imagine GIF (*.gif)|*.gif"/>
+    <TiffFile Text="Imagine TIFF (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="fisier HTML (*.html)|*.html"/>
+    <MhtFile Text="fisier Web-archive (*.mht)|*.mht"/>
+    <OdtFile Text="fisier Open Office Writer (*.odt)|*.odt"/>
+    <OdsFile Text="Fisier Open Office Calc  (*.ods)|*.ods"/>
+    <PdfFile Text="Fisier Adobe Acrobat (*.pdf)|*.pdf"/>
+    <TxtFile Text="Fisier Text (*.txt)|*.txt"/>
+    <CsvFile Text="Comma Separated Values (*.csv)|*.csv"/>
+    <DbfFile Text="Fisier dBase table (*.dbf)|*.dbf"/>
+    <XlsFile Text="fisier MS Excel (*.xls)|*.xls"/>
+    <CsFile Text="fisier C# (*.cs)|*.cs"/>
+    <VbFile Text="fisier VB.Net (*.vb)|*.vb"/>
+    <FdbFile Text="Baza de date Firebird (*.fdb)|*.fdb"/>
+    <Vdb3File Text="Baza de date VistaDB (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="Fisier MS Excel (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="Prezentare MS PowerPoint (*.pptx)|*.pptx"/>
+    <DocxFile Text="Document MS Word (*.docx)|*.docx"/>
+    <SdfFile Text="Baza de date SQL CE (*.sdf)|*.sdf"/>
+    <XpsFile Text="Fisier XPS (*.xps)|*.xps"/>
+    <RdlFile Text="Fisier RDL (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MMMM dd, yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Fals"/>
+    <BooleanF2 Text="Nu"/>
+    <BooleanF3 Text="Inactiv"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Adevarat"/>
+    <BooleanT2 Text="Da"/>
+    <BooleanT3 Text="Activ"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefon;(000) 000-0000"/>
+    <Custom2 Text="Telefon international;+0(000) 000-0000"/>
+    <Custom3 Text="Social security;000-00-0000"/>
+    <Custom4 Text="Cod Postal scurt;00000"/>
+    <Custom5 Text="Cod postal lung;0000-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Fisier">
+        <New Text="Nou ..."/>
+        <Open Text="Deschide ..."/>
+        <Close Text="Inchide"/>
+        <Save Text="Salveaza"/>
+        <SaveAs Text="Salveaza ca ..."/>
+        <SaveAll Text="Salveaza Toate"/>
+        <PageSetup Text="Setare Pagina.."/>
+        <PrinterSetup Text="Setare Imprimanta ..."/>
+        <Preview Text="Previzualizare ..."/>
+        <SelectLanguage Text="Selectare Limba ..."/>
+        <Exit Text="Iesire"/>
+      </File>
+      <Edit Text="Editare">
+        <Undo Text="Undo"/>
+        <Redo Text="Redo"/>
+        <Cut Text="Taiere"/>
+        <Copy Text="Copiere"/>
+        <Paste Text="Inserare"/>
+        <Delete Text="Stergere"/>
+        <DeletePage Text="Stergere Pagina"/>
+        <SelectAll Text="Selecteaza Tot"/>
+        <Group Text="Grupare"/>
+        <Ungroup Text="Dezgrupare"/>
+        <Find Text="Cautare ..."/>
+        <Replace Text="Inlocuire ..."/>
+      </Edit>
+      <View Text="Vizualizare">
+        <StartPage Text="Pagina inceput"/>
+        <Toolbars Text="Bare de unelte"/>
+        <Options Text="Optiuni..."/>
+        <Grid Text="Grilaj"/>
+        <Guides Text="Linii ajutatoare"/>
+        <AutoGuides Text="Linii ajutatoare automate"/>
+        <DeleteHGuides Text="Sterge liniile ajutatoare orizontale"/>
+        <DeleteVGuides Text="Sterge liniile ajutatoare verticale"/>
+        <Units Text="Unitati"/>
+      </View>
+      <Insert Text="Inserare"/>
+      <Report Text="Raport">
+        <Bands Text="Configureaza Bandele .."/>
+        <Styles Text="Stiluri"/>
+        <GroupExpert Text="Expert Group ..."/>
+        <Options Text="Optiuni ..."/>
+      </Report>
+      <Data Text="Date">
+        <ShowData Text="Arata Fereastra Date"/>
+        <Add Text="Adauga Sursa de Date ..."/>
+        <Choose Text="Alege Raport Date ..."/>
+      </Data>
+      <Window Text="Ferestre">
+        <CloseAll Text="Inchide toate"/>
+      </Window>
+      <Help Text="Ajutor">
+        <Contents Text="Continut Ajutor ..."/>
+        <About Text="Despre ..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="Proprietati">
+        <PropertiesTab Text="Proprietati"/>
+        <EventsTab Text="Evenimente"/>
+        <NObjectsSelected Text="{0} obiecte selectate"/>
+      </Properties>
+      <ReportTree Text="Structura Raport"/>
+      <Dictionary Text="Date">
+        <DataSources Text="Source de Date"/>
+        <Parameters Text="Parametrii"/>
+        <SystemVariables Text="Variabile Sistem"/>
+        <Totals Text="Totaluri"/>
+        <Functions Text="Functii"/>
+        <DialogControls Text="Controale de dialog"/>
+        <New Text="Dictionar nou .."/>
+        <Open Text="Deschide Dictionar..."/>
+        <Save Text="Salveaza Dictionar ..."/>
+        <Merge Text="Uneste Dictionar.."/>
+        <NewDataSource Text="Sursa de Date Noua ..."/>
+        <NewRelation Text="Relatie Noua ..."/>
+        <NewParameter Text="Parametru Nou"/>
+        <NewTotal Text="Total nou .."/>
+        <NewCalculatedColumn Text="Coloana Noua Calculata ..."/>
+        <Rename Text="Redenumeste"/>
+        <Edit Text="Editeaza ..."/>
+        <Delete Text="Sterge"/>
+        <DeleteAlias Text="Sterge Alias"/>
+        <View Text="Vizualizare Date .."/>
+        <DuplicateName Text="Element cu aceasta nume deja existent"/>
+        <NRows Text="{0} rand(uri)"/>
+      </Dictionary>
+      <Messages Text="Mesaje">
+        <Description Text="Descriere"/>
+        <Line Text="Linie"/>
+        <Column Text="Coloana"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Adauga sau Revoca Butoane"/>
+      <Reset Text="Reseteaza Bara de Unelte"/>
+      <Standard Text="Standard">
+        <New Text="Adauga Element Nou"/>
+        <Open Text="Deschide Raport (Ctrl+O)"/>
+        <Save Text="Salvare Raport (Ctrl+S)"/>
+        <SaveAll Text="Salveaza Toate (Ctrl+Shift+S)"/>
+        <Preview Text="Previzualizare (Ctrl+P)"/>
+        <NewPage Text="Pagina Raport Nou"/>
+        <NewDialog Text="Dialog Nou"/>
+        <DeletePage Text="Sterge Pagina"/>
+        <PageSetup Text="Setare Pagina"/>
+        <Cut Text="Taiere (Ctrl+X)"/>
+        <Copy Text="Copiere (Ctrl+C)"/>
+        <Paste Text="Inserare (Ctrl+V)"/>
+        <FormatPainter Text="Formatare Pensula"/>
+        <Undo Text="Undo (Ctrl+Z)"/>
+        <Redo Text="Redo"/>
+        <Group Text="Grupare"/>
+        <Ungroup Text="Degrupare"/>
+      </Standard>
+      <Text Text="Text">
+        <Name Text="Nume Font"/>
+        <Size Text="Marime Font"/>
+        <Bold Text="Aldin"/>
+        <Italic Text="Cursiv"/>
+        <Underline Text="Subliniere"/>
+        <Left Text="Aliniere Stanga"/>
+        <Center Text="Aliniere Centrala"/>
+        <Right Text="Aliniere Dreapta"/>
+        <Justify Text="Aliniere la margini"/>
+        <Top Text="Aliniere Sus"/>
+        <Middle Text="Aliniere Mijloc"/>
+        <Bottom Text="Aliniere Jos"/>
+        <Color Text="Culoare Text"/>
+        <Highlight Text="Evidentiere"/>
+        <Angle Text="Unghi Text"/>
+      </Text>
+      <Border Text="Bordura si Umplere">
+        <Top Text="Linie Sus"/>
+        <Bottom Text="Linie Jos"/>
+        <Left Text="Linie Stanga"/>
+        <Right Text="Linie Dreapta"/>
+        <All Text="Toate liniile de bordura"/>
+        <None Text="Fara bordura"/>
+        <FillColor Text="Culoare de umplere"/>
+        <FillStyle Text="Still de umplere ..."/>
+        <LineColor Text="Culoare bordura"/>
+        <Width Text="Latime bordura"/>
+        <Style Text="Stil bordura"/>
+        <Props Text="Proprietati Bordura"/>
+      </Border>
+      <Style Text="Stil">
+        <Styles Text="Stiluri"/>
+        <SelectStyle Text="Selecteaza stilul"/>
+        <NoStyle Text="Fara stil"/>
+      </Style>
+      <Layout Text="Aspect">
+        <AlignToGrid Text="Aliniere la Grilaj"/>
+        <Left Text="Aliniere Stanga"/>
+        <Center Text="Aliniere Centru"/>
+        <Right Text="Aliniere Dreapta"/>
+        <Top Text="Aliniere Sus"/>
+        <Middle Text="Aliniere Mijloc"/>
+        <Bottom Text="Aliniere Jos"/>
+        <SameWidth Text="Acelasi Latime"/>
+        <SameHeight Text="Acelasi Inaltime"/>
+        <SameSize Text="Acelasi Marime"/>
+        <SizeToGrid Text="Marime la Grilaj"/>
+        <SpaceHorizontally Text="Spatiere Orizontal"/>
+        <IncreaseHorizontalSpacing Text="Creste Spatierea Orizontala"/>
+        <DecreaseHorizontalSpacing Text="Reduce Spatierea Orizontala"/>
+        <RemoveHorizontalSpacing Text="Sterge Spatierea Orizontala"/>
+        <SpaceVertically Text="Spatiere Verticala"/>
+        <IncreaseVerticalSpacing Text="Creste Spatierea Verticala"/>
+        <DecreaseVerticalSpacing Text="Scade Spatierea Verticala"/>
+        <RemoveVerticalSpacing Text="Sterge Spatierea Verticala"/>
+        <CenterHorizontally Text="Centrare Orizontala"/>
+        <CenterVertically Text="Centrare Verticala"/>
+        <BringToFront Text="Aduce in Fata"/>
+        <SendToBack Text="Trimite in Spate"/>
+      </Layout>
+      <Objects Text="Obiecte">
+        <Select Text="Selecteaza"/>
+      </Objects>
+      <Zoom Text="Focusare">
+        <ZoomOut Text="Focusare Afara"/>
+        <ZoomIn Text="Focusare Inauntru"/>
+        <Zoom Text="Focusare"/>
+        <PageWidth Text="Latime pagina"/>
+        <WholePage Text="Pagina intreaga"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Cod"/>
+      <Report>
+        <ConfigureBands Text="Configureaza benzile ..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Optiuni"/>
+    <UndoRedo>
+      <Delete Text="Sterge {0}"/>
+      <Move Text="Muta {0}"/>
+      <Size Text="Schimba marimea {0} - ului"/>
+      <Change Text="Schimba {0}"/>
+      <AddGuide Text="Adauga Linii Ajutatoare"/>
+      <MoveGuide Text="Muta Linii Ajutatoare"/>
+      <DeleteHGuides Text="Sterge Linii Ajutatoare Orizontale"/>
+      <DeleteVGuides Text="Sterge Linii Ajutotoare Verticale"/>
+      <ResizeBand Text="Redimensionare banda"/>
+      <ChangeParent Text="Schimba parintele {0}"/>
+      <Load Text="Incarcare raport"/>
+      <Paste Text="Lipire {0}"/>
+      <Insert Text="Inserare {0}"/>
+      <AddPage Text="Adauga pagina {0}"/>
+      <DeletePage Text="Sterge pagina"/>
+      <Script Text="Script modificat"/>
+      <NObjects Text="{0} obiecte"/>
+      <UndoN Text="Undo {0} actiune(i)"/>
+      <RedoN Text="Redo {0} actiune(i)"/>
+      <ChangeReport Text="Schimba raportul"/>
+      <ChangePagesOrder Text="Schimba ordinea paginilor"/>
+      <EditPage Text="Editeaza pagina"/>
+      <EditPrinter Text="Editeaza setarile imprimantei"/>
+      <EditReport Text="Editeaza setarile raportului"/>
+      <SelectData Text="Selecteaza data"/>
+      <EditData Text="Editeaza data"/>
+    </UndoRedo>
+    <StartPage Text="Pagina Inceput"/>
+    <Untitled Text="Faranume.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Alegere"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="Sistem"/>
+      <Other Text="Alte culori ..."/>
+      <Transparency Text="Transparenta:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Previzualizare">
+    <PrintText Text="Listare"/>
+    <Print Text="Listeaza (Ctrl+P)"/>
+    <Open Text="Deschide Fisier"/>
+    <Save Text="Salveaza Fisier"/>
+    <SaveText Text="Salvare"/>
+    <Email Text="Trimite prin E-mail"/>
+    <Find Text="Cauta Text"/>
+    <Outline Text="Contur"/>
+    <PageSetup Text="Setare Pagina"/>
+    <Edit Text="Editeaza Pagina"/>
+    <Watermark Text="Filigran"/>
+    <First Text="Prima Pagina"/>
+    <Prior Text="Pagina Anterioara"/>
+    <Next Text="Pagina Urmatoare"/>
+    <Last Text="Ultima Pagina"/>
+    <SaveNative Text="Raport pregatit ..."/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="Adauga Element Nou">
+      <Add Text="Adauga"/>
+      <Reports Text="Formulare Raport:"/>
+      <ReportItems Text="Elemente Raport:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Proprietati Avansate"/>
+    <AskPassword Text="Parola">
+      <Password Text="Acest raport este protejat cu parola.&#13;&#10;&#13;&#10;Va rugam introduceti parola:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Logare la Baza de Date">
+      <Login Text="Logare:"/>
+      <Password Text="Parola:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Selecteaza sursa bazei de date"/>
+      <SelectDataSource Text="Selecteaza unul dintre bazele de date existente sau creaza una noua:"/>
+      <CreateNewDatasource Text="Creaza sursa de baza de date noua:"/>
+      <SelectColumnsPage Text="Selecteaza coloana bazei de date"/>
+      <SelectColumns Text="Selecteaza coloanele bazei de date ce doriti sa vizualizati intr-un raport."/>
+      <AvailableColumns Text="Coloane disponibile:"/>
+      <SelectedColumns Text="Coloane Selectate:"/>
+    </BaseReportWizard>
+    <Border Text="Editor Margine">
+      <Border Text="Margine"/>
+      <Line Text="Linie"/>
+      <Shadow Text="Umbra"/>
+      <Style Text="Stil"/>
+      <Width Text="Latime"/>
+      <Color Text="Culoare"/>
+      <Hint Text="Alege stilul liniei si alege linia pentru a aplica stilul aferent."/>
+    </Border>
+    <ChartEditor Text="Editor Diagrama">
+      <Chart Text="Diagrama"/>
+      <Add Text="Adauga..."/>
+      <Delete Text="Sterge"/>
+      <Hint Text="Click pe un element pentru a seta proprietatile:"/>
+      <Common>
+        <Color Text="Culoare:"/>
+        <BackColor Text="Culoare din spate:"/>
+        <SecondaryColor Text="Culor secundar:"/>
+        <Gradient Text="Variatie"/>
+        <HatchStyle Text="Stilul de hasurare:"/>
+        <BorderColor Text="Culoare Margine:"/>
+        <BorderStyle Text="Stil Margine:"/>
+        <BorderWidth Text="Latime Margine"/>
+        <ShadowColor Text="Culoare Umbra:"/>
+        <ShadowOffset Text="Compensatie Umbra:"/>
+        <LineColor Text="Culoare linie:"/>
+        <LineStyle Text="Stil linie:"/>
+        <LineWidth Text="Latime linie:"/>
+        <Text Text="Text:"/>
+        <Font Text="Font:"/>
+        <ForeColor Text="Culoare fata:"/>
+        <Dock Text="Doc"/>
+        <InsideChartArea Text="In zona de diagrama"/>
+        <Format Text="Formatare:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Date">
+          <DataSource Text="Source datei:"/>
+          <Filter Text="Filtru:"/>
+          <AutoSeries Text="Serii auto-create"/>
+          <DataColumn Text="Coloana date:"/>
+          <ColorColumn Text="Culoare coloana:"/>
+          <SeriesSort Text="Sortarea seriilor:"/>
+          <AlignXValues Text="Alinierea valorii X"/>
+        </Data>
+        <Appearance Text="Aparenta">
+          <Template Text="Sablon"/>
+          <Load Text="Incarcare ..."/>
+          <Save Text="Salvare ..."/>
+          <SeriesPalette Text="Seria palettelor:"/>
+          <BorderSkin Text="Invelis margine:"/>
+        </Appearance>
+        <ChartArea Text="Zona de Diagrama">
+          <Area Text="Zona:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Permite 3D"/>
+          <XRotation Text="Rotatia X:"/>
+          <YRotation Text="Rotatia Y:"/>
+          <Perspective Text="Perspectiva:"/>
+          <WallWidth Text="Latime pereti:"/>
+          <AxisDepth Text="Adancime axa:"/>
+          <LightStyle Text="Stil usor:"/>
+          <ClusteredSeries Text="Serii grupate"/>
+        </ThreeD>
+        <Axes Text="Axe">
+          <Axis Text="Axa:"/>
+          <CopyFromX Text="Copiaza aparenta de la axa X"/>
+          <CopyFromPrimary Text="Copiaza aparenta de la axa primara"/>
+          <Minor Text="Minor"/>
+          <Major Text="Major"/>
+          <General Text="General">
+            <Enabled Text="Activat"/>
+            <MarginVisible Text="Margini visibile"/>
+            <Logarithmic Text="Logaritmic"/>
+            <Reversed Text="Invers"/>
+            <Interval Text="Interval"/>
+            <Interlaced Text="Intretesut"/>
+            <InterlacedColor Text="Culoare intertesut:"/>
+          </General>
+          <Labels Text="Etichete">
+            <Enabled Text="Activat"/>
+            <Angle Text="Unghi:"/>
+          </Labels>
+          <Title Text="Titlu"/>
+          <CustomLabels Text="Etichete speciale">
+            <Label Text="Eticheta"/>
+            <Start Text="Inceput:"/>
+            <End Text="Final:"/>
+            <Row Text="Rand:"/>
+            <MarkColor Text="Culoare marcare:"/>
+            <MarkStyle Text="Stil marcare:"/>
+          </CustomLabels>
+          <Grid Text="Grilaj">
+            <GridLine Text="Linie Grilaj"/>
+            <Enabled Text="Activ"/>
+          </Grid>
+          <Ticks Text="Capusele">
+            <Ticks Text="Capusele:"/>
+            <Enabled Text="Activ"/>
+            <TickStyle Text="Stil Capuseala:"/>
+            <TickSize Text="Marime Capuseala:"/>
+          </Ticks>
+          <Strips Text="Benzi">
+            <Strip Text="Banda"/>
+            <Interval Text="Interval">
+              <Start Text="Inceput:"/>
+              <Width Text="Latime:"/>
+              <Interval Text="Interval:"/>
+            </Interval>
+            <Appearance Text="Aparenta:"/>
+            <Text Text="Text">
+              <HorizontalAlign Text="Aliniere Orizontala:"/>
+              <VerticalAlign Text="Aliniere Verticala:"/>
+              <TextOrientation Text="Orientare Text:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Legenda">
+          <Enabled Text="Activ"/>
+          <StyleColumn Text="Coloana"/>
+          <StyleRow Text="Rand"/>
+          <StyleTable Text="Tabel"/>
+          <General Text="General">
+            <LegendStyle Text="Stil legenda:"/>
+          </General>
+          <Appearance Text="Aparenta"/>
+        </Legend>
+        <Title Text="Titlu">
+          <Visible Text="Vizibil"/>
+          <General Text="General">
+            <TextOrientation Text="Orientare Text:"/>
+            <TextStyle Text="Stil Text:"/>
+          </General>
+          <Appearance Text="Aparenta"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Date">
+          <Name Text="Nume:"/>
+          <XValue Text="Valoare X:"/>
+          <Color Text="Culoare:"/>
+          <Filter Text="Filtru:"/>
+          <XValueType Text="Tip valoare X:"/>
+          <YValueType Text="Tip valoare Y:"/>
+          <XAxisType Text="Axa X:"/>
+          <YAxisType Text="Axa Y:"/>
+          <PrimaryAxis Text="Primar"/>
+          <SecondaryAxis Text="Secundar"/>
+          <SeriesValues>
+            <YValue Text="Valoare Y:"/>
+            <High Text="Mare:"/>
+            <Low Text="Mic:"/>
+            <Open Text="Deschide:"/>
+            <Close Text="Inchide:"/>
+            <RangeBegin Text="Gama inceput:"/>
+            <RangeEnd Text="Gama sfarsit:"/>
+            <Size Text="Marime:"/>
+            <YValue1 Text="Valoare Y 1:"/>
+            <YValue2 Text="Valoare Y 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Valori"/>
+        <DataProcessing Text="Procesare date">
+          <SortBy Text="Sortare dupa:"/>
+          <SortByX Text="Valoare X"/>
+          <SortByY Text="Valoare Y"/>
+          <SortOrder Text="Ordinea sortarii:"/>
+          <GroupBy Text="Grupat dupa:">
+            <None Text="Nimic"/>
+            <XValue Text="Valoare X"/>
+            <Number Text="Numar"/>
+            <Years Text="Ani"/>
+            <Months Text="Luni"/>
+            <Weeks Text="Saptamani"/>
+            <Days Text="Zile"/>
+            <Hours Text="Ore"/>
+            <Minutes Text="Minute"/>
+            <Seconds Text="Secunde"/>
+            <Milliseconds Text="Milisecunde"/>
+          </GroupBy>
+          <GroupInterval Text="Interval grup:"/>
+          <GroupFunction Text="Functie Grup:"/>
+          <CollectData Text="Colectare date:">
+            <None Text="Niciuna"/>
+            <TopN Text="TopN"/>
+            <BottomN Text="BottomN"/>
+            <LessThan Text="Mai putin decat valoarea"/>
+            <LessThanPercent Text="Mai putin decat procent"/>
+            <GreaterThan Text="Mai mare decat valoarea"/>
+            <GreaterThanPercent Text="Mai mare decat procent"/>
+          </CollectData>
+          <Value Text="Valoare:"/>
+          <CollectedText Text="Text colectat:"/>
+          <CollectedColor Text="Culoare colectat:"/>
+          <Explode Text="Exploda:">
+            <None Text="Niciuna"/>
+            <Biggest Text="Cea mai mare valoare"/>
+            <Lowest Text="Cea mai mica valoare"/>
+            <Specific Text="Valoare specifica"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Aparenta">
+          <Default Text="Predefinit"/>
+          <DrawingStyle Text="Stil desen:"/>
+          <PointWidth Text="Latime punct:"/>
+          <LabelsStyle Text="Stil eticheta:"/>
+          <DrawSideBySide Text="Deseneaza unul-langa-altul"/>
+          <ShowMarkerLines Text="Arata liniile de marcaj"/>
+          <DoughnutRadius Text="Unghi Doughnut (%)"/>
+          <AreaDrawingStyle Text="Stil zona de desenare:"/>
+          <Markers Text="Markeri:"/>
+          <PriceUpColor Text="Culoare pana la:"/>
+          <ReversalAmount Text="Valoare inversata:"/>
+          <BoxSize Text="Marime cutie:"/>
+          <NumberOfLinesInBreak Text="Linii in pauza:"/>
+          <LabelsPlacement Text="Plasare etichete"/>
+          <PointsGap Text="Decalaj puncte:"/>
+          <MinPointHeight Text="Latime punct min.:"/>
+          <ValueType Text="Tip valoare:"/>
+          <ThreeDDrawingStyle Text="Stil desen 3D:"/>
+          <ThreeDRotation Text="Rotatie 3D"/>
+          <FunnelStyle Text="Stil Palnie:"/>
+          <LineTension Text="Tensiune Linie:"/>
+          <NoSettings Text="Nu exista setari specifice pentru acest tip de serie."/>
+        </Appearance>
+        <FillBorder Text="Umplere &amp;&amp; Margine">
+          <Palette Text="Paleta:"/>
+        </FillBorder>
+        <Labels Text="Etichete">
+          <LabelView Text="Vizualizare Eticheta"/>
+          <Pattern Text="Model:"/>
+        </Labels>
+        <Markers Text="Marcari">
+          <Style Text="Stil:"/>
+          <Size Text="Marime:"/>
+          <Step Text="Pasi:"/>
+          <Color Text="Culoare:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galeria">
+      <NewArea Text="Adauga o zona de diagrama pentru aceasta serie"/>
+      <Categories>
+        <BarColumn Text="Bare &amp; Coloane"/>
+        <Area Text="Zona"/>
+        <Line Text="Linie"/>
+        <PointBubble Text="Punct &amp; Balon"/>
+        <Pie Text="Placinta"/>
+        <Circular Text="Circular"/>
+        <Financial Text="Financiar"/>
+        <PyramidFunnel Text="Piramid &amp; Palnie"/>
+        <Range Text="Interval"/>
+      </Categories>
+      <Series>
+        <Bar Text="Bara"/>
+        <StackedBar Text="Bara Stratificata"/>
+        <StackedBar100 Text="100% Bara Stratificata"/>
+        <Column Text="Coloana"/>
+        <StackedColumn Text="Coloana Stratificata"/>
+        <StackedColumn100 Text="100% Coloana Stratificata"/>
+        <Area Text="Zona"/>
+        <SplineArea Text="Zona moale"/>
+        <StackedArea Text="Zona stratificata"/>
+        <StackedArea100 Text="100% Zona Stratificata"/>
+        <Line Text="Linie"/>
+        <FastLine Text="Linie Rapida"/>
+        <StepLine Text="Linie in Pasi"/>
+        <Spline Text="Spline"/>
+        <Bubble Text="Balon"/>
+        <Point Text="Punct"/>
+        <FastPoint Text="Punct rapid"/>
+        <Pie Text="Placinta"/>
+        <Doughnut Text="Doughnut"/>
+        <Polar Text="Polar"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Stoc"/>
+        <Candlestick Text="Candlestick"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Puncte si Figuri"/>
+        <ThreeLineBreak Text="Trei Linii Pauza"/>
+        <Pyramid Text="Piramid"/>
+        <Funnel Text="Palnie"/>
+        <Range Text="Interval"/>
+        <SplineRange Text="Interval Spline"/>
+        <RangeColumn Text="Coloana Interval"/>
+        <RangeBar Text="Bara Interval"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Pagina Cod">
+      <EnableVirtualSpace Text="Permite spatiu virtual"/>
+      <UseSpaces Text="Foloseste spatii pentru a umple taburile"/>
+      <AllowOutlining Text="Permite conturare"/>
+      <TabSize Text="Marime Tab:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Configureaza Benzile">
+      <Add Text="Adauga"/>
+      <Delete Text="Sterge"/>
+    </ConfigureBands>
+    <Connection Text="Conectare">
+      <Select Text="Selecteaza tipul de conectare"/>
+      <AlwaysUse Text="Foloseste tot timpul aceasta conexiune"/>
+      <LoginPrompt Text="Solicita Logare"/>
+      <Test Text="Testare conexiune"/>
+      <TestSuccesful Text="Conectare test reusita."/>
+    </Connection>
+    <CustomLabel Text="Eticheta Speciala">
+      <Name Text="Numele:"/>
+      <Paper Text="Hartia"/>
+      <Landscape Text="Peisaj"/>
+      <PaperWidth Text="Latime hartie:"/>
+      <PaperHeight Text="Inaltime hartie:"/>
+      <LeftMargin Text="Margine Stanga:"/>
+      <TopMargin Text="Martine Sus:"/>
+      <Label Text="Parametrii etichetei"/>
+      <LabelWidth Text="Latime Eticheta:"/>
+      <LabelHeight Text="Inaltime Eticheta:"/>
+      <RowGap Text="Decalaj rand:"/>
+      <ColumnGap Text="Decalaj coloana:"/>
+      <Warning Text="Etichetele nu se potrivesc pe pagina!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Editeaza DataBand">
+      <DataSource Text="Sursa de date"/>
+      <NoData Text="Nu exista sursa de date valabil.&#13;&#10;&#13;&#10;Mergeti la meniul  &quot;Date|Alege Date Raport&quot; pentru a alege din sursele de date disponibile, sau creati o alta sursa de date folosing meniul &quot;Date|Adauga Sursa de Date...&quot;"/>
+      <Sort Text="Sortare"/>
+      <SortBy Text="Sorteaza dupa"/>
+      <ThenBy Text="Dupa care"/>
+      <Ascending Text="Crescator"/>
+      <Descending Text="Descrescator"/>
+      <Filter Text="Filtru"/>
+      <Expression Text="Expresie filtru:"/>
+    </DataBandEditor>
+    <DataWizard Text="Vrajitor Date">
+      <Page1 Text="Alege baza de date"/>
+      <WhichData Text="Care conexiunea de date foloseste raportul tau pentru a se conecta la baza de date?"/>
+      <Hint Text="Selecteaza din lista conexiunilor folosite ultima data, sau apasa butonul &quot;Conectare noua...&quot;pentru a crea o conexiune noua."/>
+      <NewConnection Text="Conectare noua ..."/>
+      <EditConnection Text="Editeaza conexiunea ..."/>
+      <ConnectionName Text="Introduce numele conexiunii:"/>
+      <ConnectionString Text="String de conexiune"/>
+      <Page2 Text="Alege tabelele"/>
+      <WhichTables Text="Care tabele vrei in raportul tau?"/>
+      <Wait Text="Returnez informatiile aferente bazei de date"/>
+      <AddQuery Text="Adauga interogare SQL ..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Forma Dialog"/>
+    <Exception Text="Exceptie">
+      <Hint Text="Raportul tau a generat urmatoarea exceptie:"/>
+      <Stack Text="Trasare Stack:"/>
+      <Copy Text="Copieaza in Tampon"/>
+    </Exception>
+    <ExpressionEditor Text="Editeaza Expresia"/>
+    <Fill Text="Editor de Umplere">
+      <Solid Text="Solid"/>
+      <LinearGradient Text="Gradient Linear"/>
+      <PathGradient Text="Cale gradient"/>
+      <Hatch Text="Hasurat"/>
+      <Glass Text="Sticla"/>
+      <Colors Text="Culori"/>
+      <Color Text="Culoare"/>
+      <StartColor Text="Inceput"/>
+      <EndColor Text="Final"/>
+      <Options Text="Optiuni"/>
+      <Focus Text="Focusare"/>
+      <Contrast Text="Contrast"/>
+      <Angle Text="Unghi"/>
+      <CenterColor Text="Centru"/>
+      <EdgeColor Text="Margini"/>
+      <Shape Text="Forma"/>
+      <Ellipse Text="Elipsa"/>
+      <Rectangle Text="Patrat"/>
+      <ForeColor Text="Fata"/>
+      <BackColor Text="Spate"/>
+      <Style Text="Stil"/>
+      <Blend Text="Indoire"/>
+      <GlassHatch Text="Arata hasurarea"/>
+    </Fill>
+    <FormatEditor Text="Selecteaza Formatul">
+      <Expression Text="Expresia"/>
+      <General Text="General"/>
+      <Number Text="Numar"/>
+      <Currency Text="Valuta"/>
+      <Date Text="Data"/>
+      <Time Text="Timp"/>
+      <Percent Text="Procentaj"/>
+      <Boolean Text="Boolean"/>
+      <Custom Text="Special"/>
+      <UseLocale Text="Foloseste setarile locale"/>
+      <DecimalDigits Text="Cifre zecimale:"/>
+      <DecimalSeparator Text="Separator decimal:"/>
+      <GroupSeparator Text="Separator Grup:"/>
+      <PositivePattern Text="Model positiv:"/>
+      <NegativePattern Text="Model negativ:"/>
+      <CurrencySymbol Text="Simbol valuta:"/>
+      <PercentSymbol Text="Simbol procentaj:"/>
+      <FalseText Text="Text valoare falsa:"/>
+      <TrueText Text="Text valoare adevar:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Editare Coloane">
+      <Columns Text="Coloane"/>
+      <Properties Text="Proprietati"/>
+      <Add Text="Adauga"/>
+      <Remove Text="Elimina"/>
+      <AddAll Text="Adauga tot"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Editeaza Grup">
+      <Condition Text="Conditie Grup"/>
+      <Hint Text="Selecteaza coloana data sau introduce o expresie:"/>
+      <Settings Text="Setari"/>
+      <Sort Text="Sortare:"/>
+      <NoSort Text="Nu sorta"/>
+      <Ascending Text="Crescator"/>
+      <Descending Text="Descrescator"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Exprert Grup">
+      <Condition Text="Conditie Grup"/>
+      <Hint Text="Selecteaza a coloana de date sau introduceti o expresie, dupa care apasati butonul &quot;Adaugare&quot; pentru a adauga un grup nou."/>
+      <Add Text="Adauga"/>
+      <Groups Text="Grupe"/>
+      <Edit Text="Editeaza ..."/>
+      <Delete Text="Sterge"/>
+    </GroupExpert>
+    <HighlightEditor Text="Evidentiere Conditii">
+      <Conditions Text="Conditii"/>
+      <Add Text="Adauga"/>
+      <Delete Text="Sterge"/>
+      <Edit Text="Editeaza"/>
+      <Style Text="Stil"/>
+      <Fill Text="Umplere"/>
+      <TextColor Text="Culoare Text"/>
+      <Font Text="Font"/>
+      <Visible Text="Vizibil"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Hyperlink Editor">
+      <Url Text="URL"/>
+      <PageNumber Text="Numar Pagina"/>
+      <Bookmark Text="Semn de carte"/>
+      <Report Text="Raport"/>
+      <ReportPage Text="Pagina Raport"/>
+      <Custom Text="Special"/>
+      <UrlValue Text="Specificati un URL (exemplu: http://www.url.com):"/>
+      <UrlExpression Text="sau adaugati o expresie care returneaza un URL:"/>
+      <PageNumberValue Text="Specifica numarul paginii:"/>
+      <PageNumberExpression Text="sau introduce o expresie care returneaza un numar de pagina:"/>
+      <BookmarkValue Text="Specifica un nume Semn de Carte:"/>
+      <BookmarkExpression Text="sau introduce o expresie care sa returneze numele unui semn de carte:"/>
+      <ReportName Text="Nume Raport:"/>
+      <ParameterName Text="Parametru Raport:"/>
+      <ParameterValue Text="Specifica o valoare a parametrului:"/>
+      <ParameterExpression Text="sau introduce o expresie care returneaza valoarea parametrului:"/>
+      <PageName Text="Pagina Raport:"/>
+      <CustomValue Text="Specifica o valoare hyperlink:"/>
+      <CustomExpression Text="sau introduce o expresie care sa returneze o valoare:"/>
+      <Hint Text="Ce o sa se intample daca se da un click pe acest obiect in ecranul de previzualizare:"/>
+      <HintUrl Text="URL-ul specificat va fi deschis."/>
+      <HintPageNumber Text="O sa mergeti pe pagina respectiva."/>
+      <HintBookmark Text="O sa mergeti la obiectul care contine acest Semn de Carte"/>
+      <HintReport Text="Raportul specificat se va deschide intr-o fereastra de previziualizare."/>
+      <HintReportPage Text="Pagina specificata va fi generat si deschis intr-o fereastra previzualizata."/>
+      <HintCustom Text="Ar trebui sa creati &quot;Click&quot; procesor de evenimente pentru a definii actiuni speciale."/>
+      <ModifyAppearance Text="Modifica aparenta obiectelor pentru a arata ca si o legatura pe care se poate da click."/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Vrajitor Eticheta">
+      <Hint Text="Selecteaza unul dintre etichetele predefinite, sau apasati butonul &quot;Eticheta speciala...&quot; pentru a defini marimi speciale."/>
+      <Label Text="Eticheta"/>
+      <Manufacturer Text="Producator:"/>
+      <Product Text="Produs:"/>
+      <Parameters Text="Parametrii:"/>
+      <Size Text="Marime:"/>
+      <PaperSize Text="Marime hartie:"/>
+      <Rows Text="Randuri:"/>
+      <Columns Text="Coloane:"/>
+      <CustomLabel Text="Eticheta speciala..."/>
+      <Custom Text="Speciala"/>
+      <Delete Text="Sterge"/>
+    </LabelWizard>
+    <PageSetup Text="Setare Pagina">
+      <Paper Text="Hartie"/>
+      <Custom Text="Special"/>
+      <Width Text="Latime:"/>
+      <Height Text="Inaltime:"/>
+      <Orientation Text="Orientare:"/>
+      <Portrait Text="Portret"/>
+      <Landscape Text="Peisaj"/>
+      <Margins Text="Marginile"/>
+      <Left Text="Stanga:"/>
+      <Top Text="Sus:"/>
+      <Right Text="Dreapta:"/>
+      <Bottom Text="Jos:"/>
+      <MirrorMargins Text="Margini oglina pe pagini impare"/>
+      <Source Text="Sursa"/>
+      <FirstPage Text="Prima pagina:"/>
+      <OtherPages Text="Alte pagini:"/>
+      <Columns Text="Coloane"/>
+      <Count Text="Numerotare:"/>
+      <ColumnWidth Text="Latime:"/>
+      <Positions Text="Pozitii:"/>
+      <Other Text="Alte"/>
+      <Duplex Text="Duplex:"/>
+      <DupDefault Text="Predefinit"/>
+      <DupSimplex Text="Simplex"/>
+      <DupVertical Text="Vertical"/>
+      <DupHorizontal Text="Orizontal"/>
+      <EditWatermark Text="Editeaza filigrant..."/>
+      <ExtraWidth Text="Latime extra design"/>
+    </PageSetup>
+    <PictureEditor Text="Editeaza Imaginea">
+      <Picture Text="Imagine"/>
+      <Load Text="Incarcare"/>
+      <Paste Text="Lipire"/>
+      <Clear Text="Sterge"/>
+      <DataColumn Text="Coloane Date"/>
+      <FileName Text="Nume fisier"/>
+      <Url Text="Hyperlink"/>
+      <FileHint1 Text="Nume fisier:"/>
+      <FileHint2 Text="Nota: trebuie sa atasezi acest fisier impreuna cu raportul tau."/>
+      <UrlHint Text="Hyperlink:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Plugin-uri">
+      <Hint Text="Lista plugin-urilor FastReport instalate:"/>
+      <Add Text="Adauga"/>
+      <Remove Text="Elimina"/>
+      <Note Text="Nota: schimbarile vor avea effect dupa ce FastReportul se relanseaza."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Apilca la toate paginile si reconstruieste raportul"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Cauta"/>
+    <PrinterSetup Text="Listeaza">
+      <PrinterSetup Text="Setare Imprimanta"/>
+      <Printer Text="Imprimanta"/>
+      <SavePrinter Text="Salveaza acesta imprimanta in fisierul raport"/>
+      <Settings Text="Setari..."/>
+      <PrintToFile Text="Listeaza in fisier"/>
+      <PageRange Text="Interval pagina"/>
+      <All Text="Toate"/>
+      <Current Text="Pagina curenta"/>
+      <Numbers Text="Paginile:"/>
+      <Hint Text="Introduceti numerele pagini si/sau intervalele de pagina, separate prin virgula. De exemplu, 1,2,5-12"/>
+      <Copies Text="Copii"/>
+      <Count Text="Numar:"/>
+      <Collate Text="Collate"/>
+      <Other Text="Altele"/>
+      <OddEven Text="Listeaza:"/>
+      <AllPages Text="Toate paginile"/>
+      <OddPages Text="Paginile pare"/>
+      <EvenPages Text="Paginile impare"/>
+      <Order Text="Ordine:"/>
+      <OrderDirect Text="Direkt (1-9)"/>
+      <OrderReverse Text="Invers (9-1)"/>
+      <Duplex Text="Duplex:"/>
+      <Source Text="Sursa:"/>
+      <PrintMode Text="Mod de listare"/>
+      <PrintModeDefault Text="Predefinit"/>
+      <PrintModeSplit Text="Imparte paginile mari"/>
+      <PrintModeScale Text="Scaleaza"/>
+      <PrintOnSheet Text="Listeaza pe pagina:"/>
+      <PagesOnSheet Text="Pagini pe foaie:"/>
+      <PagesOnSheet1 Text="1 pagina"/>
+      <PagesOnSheet2 Text="2 pagini"/>
+      <PagesOnSheet4 Text="4 pagini"/>
+      <PagesOnSheet8 Text="8 pagini"/>
+      <Print Text="Listeaza"/>
+      <Error Text="Numar interval pagina invalida."/>
+    </PrinterSetup>
+    <QueryWizard Text="Vrajitor de Interogari">
+      <Page1 Text="Defineste Numele"/>
+      <SetName Text="Defineste numele obiectului interogat"/>
+      <NameHint Text="Acest nume o sa apare in ecranul &quot;Date&quot;"/>
+      <Page2 Text="Introduce declaratia SQL"/>
+      <WhatData Text="Ce date ar trebui sa returneze interogarea?"/>
+      <TypeSql Text="Introduceti declaratia SQL sau folositi Constructorul de Interogari pentru a le construi."/>
+      <QueryBuilder Text="Constructor de Interogari ..."/>
+      <Page3 Text="Defineste parametrii"/>
+      <Page4 Text="Defineste coloanele"/>
+      <Refresh Text="Reimprospateaza Coloanele"/>
+      <AddColumn Text="Adauga Coloana Calculata"/>
+      <AddParameter Text="Adauga Parametru"/>
+      <Delete Text="Sterge"/>
+    </QueryWizard>
+    <RelationEditor Text="Editeaza Relatia">
+      <ParentTable Text="Tabel Parinte:"/>
+      <ChildTable Text="Tabel Copil:"/>
+      <Parent Text="Parinte"/>
+      <Child Text="Copil"/>
+      <Columns Text="Coloane:"/>
+      <Error Text="Numar inconsistent de coloane de parinti si copii."/>
+    </RelationEditor>
+    <ReportData Text="Alege Date Raport">
+      <Hint Text="Selecteaza sursa datei si campurile pe care doriti sa le folositi in raport:"/>
+      <Aliases Text="Arata aliasurile"/>
+    </ReportData>
+    <ReportOptions Text="Optiuni Raport">
+      <General Text="General"/>
+      <Description Text="Descriere"/>
+      <Script Text="Script"/>
+      <Security Text="Securitate"/>
+      <Inheritance Text="Mostenire"/>
+      <Name Text="Numele:"/>
+      <Author Text="Autor:"/>
+      <Version Text="Versiune:"/>
+      <Description1 Text="Descriere:"/>
+      <Picture Text="Imagine:"/>
+      <SavePreviewPicture Text="Salveaza imagine de previzualizare"/>
+      <Load Text="Incarcare..."/>
+      <Clear Text="Sterge"/>
+      <Created Text="Creat:"/>
+      <Modified Text="Modificat:"/>
+      <Language Text="Limbaj script:"/>
+      <Note Text="Nota: daca schimbati limbajul, tot scriptul va fi sters!"/>
+      <RefAssemblies Text="Ansambluri de referinta:"/>
+      <Add Text="Adauga..."/>
+      <Password Text="Parola:"/>
+      <RetypePassword Text="Reintroduceti parola:"/>
+      <Inherited Text="Acest raport a fost mostenit din raportul de baza:"/>
+      <NotInherited Text="Acest raport nu este mostenit."/>
+      <Choose Text="Alege optiunea:"/>
+      <DontChange Text="Nu schimba"/>
+      <Detach Text="Detasa raportul de baza"/>
+      <Inherit Text="Mosteneste raportul din:"/>
+      <Browse Text="Rasfoieste.."/>
+      <DoublePass Text="Trecere Dubla"/>
+      <Compress Text="Compreseaza fisierul raport"/>
+      <UseFileCache Text="Foloseste cashe fisier"/>
+      <ConvertNulls Text="Converteste valorile nule"/>
+      <TextQuality Text="Calitatea textului:"/>
+      <SmoothGraphics Text="Grafica neteda"/>
+      <QualityDefault Text="Predefinit"/>
+      <QualityRegular Text="Regular"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Parolele nu corespund. Va rugam reintroduceti din nou."/>
+      <Recipients Text="Destinatar(i) (de exemplu, john@url.com):"/>
+      <Subject Text="Subiect:"/>
+      <Message Text="Mesaj:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Pagina raport">
+      <Units Text="Unitati pagina"/>
+      <Millimeters Text="Milimetru"/>
+      <Centimeters Text="Centimetru"/>
+      <Inches Text="Inch"/>
+      <HundrethsOfInch Text="Sute de Inch"/>
+      <Grid Text="Grilaj"/>
+      <ShowGrid Text="Arata grilaj"/>
+      <SnapToGrid Text="Aliniere pe grilaj"/>
+      <DottedGrid Text="Grilaj punctat"/>
+      <Size Text="Marime salt:"/>
+      <Markers Text="Markere obiecte"/>
+      <Rectangle Text="Patrat"/>
+      <Corners Text="Colturi"/>
+      <BandView Text="Vizualizare banda"/>
+      <Structure Text="Structurat"/>
+      <Classic Text="Clasic"/>
+      <EditAfterInsert Text="Editeaza dupa inserare"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Editor RichText">
+      <Open Text="Deschide"/>
+      <Save Text="Salveaza"/>
+      <Subscript Text="Indice"/>
+      <Superscript Text="Exponent"/>
+      <Bullets Text="Gloante"/>
+      <Confirm Text="Textul a fost modificat. Salvezi acum?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Cauta si Inlocuire">
+      <Find Text="Cauta ce:"/>
+      <Replace Text="Inlocuieste cu:"/>
+      <Options Text="Optiuni de cautare"/>
+      <MatchCase Text="Potriveste situatia"/>
+      <MatchWholeWord Text="Potriveste cuvantul intreg"/>
+      <FindNext Text="Cauta Urmatorul"/>
+      <ReplaceBtn Text="Inlocuieste"/>
+      <ReplaceAll Text="Inlocuieste Toate"/>
+      <NotFound Text="Textul cautat nu a fost gasit."/>
+      <NoMoreFound Text="Nu s-a mai gasit alte aparitii."/>
+    </SearchReplace>
+    <SelectDataSource Text="Selecteaza Sursa de Date">
+      <Hint Text="Selecteaza una sau mai multe surse de date pentru a utiliza in raport."/>
+      <AvailableDs Text="Surse de date valabile:"/>
+      <SelectedDs Text="Surse de date selectate:"/>
+      <ProjectDs Text="Seturi de date a proiectului"/>
+      <OtherDs Text="Alte sursa de date"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Selecteaza Limba">
+      <SelectLanguage Text="Selecteaza limba din lista de mai jos:"/>
+      <Auto Text="Auto"/>
+      <Folder Text="Mapa cu fisierele de limba:"/>
+      <SelectFolder Text="Selecteaza mapa care contine fisierele de limba (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Vrajitor Raport Standard">
+      <GroupsPage Text="Creaza Grupe"/>
+      <CreateGroups Text="Creaza Grupe (optional)."/>
+      <Groups Text="Grupe:"/>
+      <LayoutPage Text="Defineste forma"/>
+      <DefineLayout Text="Defineste orientarea pagini si amplasarea datelor"/>
+      <Orientation Text="Orientarea paginii"/>
+      <Portrait Text="Portret"/>
+      <Landscape Text="Peisaj"/>
+      <Layout Text="Forma"/>
+      <Tabular Text="Tabular"/>
+      <Columnar Text="Columnar"/>
+      <StylePage Text="Selecteaza stilul"/>
+      <Styles Text="Selecteaza stilul raportului."/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Editeaza Colectia de String"/>
+    <Style Text="Editor Stil">
+      <Styles Text="Stiluri"/>
+      <Add Text="Adauga"/>
+      <Delete Text="Sterge"/>
+      <Edit Text="Editeaza"/>
+      <Load Text="Incarca ..."/>
+      <Save Text="Salveaza..."/>
+      <Settings Text="Setari stil"/>
+      <Border Text="Bordura"/>
+      <Fill Text="Umplere"/>
+      <Font Text="Font"/>
+      <TextColor Text="Culoare Text"/>
+      <StyleName Text="Stil"/>
+    </Style>
+    <TextEditor Text="Editare Text">
+      <WordWrap Text="Spargere cuvant"/>
+    </TextEditor>
+    <TotalEditor Text="Editare Total">
+      <TotalName Text="Nume Total:"/>
+      <Total Text="Total"/>
+      <Function Text="Functia:"/>
+      <DataColumnOrExpression Text="Coloana date sau expresia:"/>
+      <DataBand Text="Evaluaza pe fiecare linie a benzii:"/>
+      <EvaluateCondition Text="Evaluaza daca conditia urmatoare se intalneste:"/>
+      <PrintOn Text="Listeaza pe banda:"/>
+      <Options Text="Optiuni"/>
+      <ResetAfterPrint Text="Reseteaza dupa imprimare"/>
+      <ResetRepeated Text="Reseteaza daca banda se repeta"/>
+      <InvisibleRows Text="Include liniile invisibile"/>
+      <Sum Text="Sum"/>
+      <Min Text="Min"/>
+      <Max Text="Max"/>
+      <Avg Text="Media"/>
+      <Count Text="Count"/>
+      <Custom Text="Special"/>
+    </TotalEditor>
+    <UIOptions Text="Interfata Utilizator">
+      <Appearance Text="Aparenta:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (blue),Office 2007 (silver),Office 2007 (black),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Filigran">
+      <Enabled Text="Activat"/>
+      <Text Text="Text"/>
+      <TextItems Text="CONFIDENTIAL,COPIE,ORIGINAL,EXEMPLU,URGENT"/>
+      <Rotation Text="Rotatie"/>
+      <Horizontal Text="Orizontal"/>
+      <Vertical Text="Vertical"/>
+      <ForwardDiagonal Text="Diagonala Inainte"/>
+      <BackwardDiagonal Text="Diagonala Inapoi"/>
+      <Font Text="Font"/>
+      <Color Text="Culoare"/>
+      <Picture Text="Imagine"/>
+      <Load Text="Incarca"/>
+      <Clear Text="Sterge"/>
+      <Size Text="Marime"/>
+      <Normal Text="Normal"/>
+      <Center Text="Centru"/>
+      <Stretch Text="Intindere"/>
+      <Zoom Text="Focusare"/>
+      <Tile Text="Tigla"/>
+      <Transparency Text="Transparenta"/>
+      <Zorder Text="Ordine-Z"/>
+      <TextOnTop Text="Text pe sus"/>
+      <PictureOnTop Text="Imagine pe sus"/>
+      <ApplyToAll Text="Aplica la toate paginile"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Nume server:"/>
+      <ServerLogon Text="Logare la server"/>
+      <UserName Text="Nume utilizator:"/>
+      <Password Text="Parola:"/>
+      <Database Text="Conectare la baza de date"/>
+      <DatabaseName Text="Nume baza de date:"/>
+      <DatabaseFile Text="Fisier baza de date:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Foloseste Autentificare Windows"/>
+      <UseSql Text="Foloseste Autentificare Server SQL"/>
+      <SavePassword Text="Salveaza parola mea"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="String de conectare:"/>
+      <Build Text="Construieste ..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Sursa baza de date"/>
+      <DsName Text="Foloseste numele sursei baze de date al utilizatorului sau a sistemului"/>
+      <ConnString Text="Foloseste stringul de conectare:"/>
+      <Login Text="Logare"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Fisier schema:"/>
+      <Xml Text="Fisier date:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Editeaza..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Poate sa se Creasca"/>
+      <CanShrink Text="Poate sa se Stranga"/>
+      <GrowToBottom Text="Creste pana Jos"/>
+      <Hyperlink Text="Hyperlink..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Poate sa se Sparga"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Adauga Banda Copil"/>
+      <StartNewPage Text="Incepe Pagina Noua"/>
+      <PrintOnBottom Text="Listeaza in Josul Paginii"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Adauga Banda Date Detaliu"/>
+      <KeepTogether Text="Tine Impreuna"/>
+      <KeepDetail Text="Tine Detaliile"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Repeta pe Fiecare Pagina"/>
+      <KeepWithData Text="Tine cu Date"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Reseteaza Numarul Paginii"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Umple Spatiul Nefolosit"/>
+      <CompleteToNRows Text="Completeaza pana la N coloane:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Mod marime"/>
+      <AutoSize Text="Marime Auto"/>
+      <CenterImage Text="Centralizeaza Imaginea"/>
+      <Normal Text="Normal"/>
+      <StretchImage Text="Intinde Imaginea"/>
+      <Zoom Text="Focalizare"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Format ..."/>
+      <Clear Text="Sterge"/>
+      <AutoWidth Text="Latime Auto"/>
+      <WordWrap Text="Word Wrap"/>
+      <AllowExpressions Text="Permite Expressi"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Listeaza pe Parinte"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Repeta Anteturile"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Insereaza o Linie Deasupra"/>
+      <InsertBelow Text="Insereaza o Linie Dedesubt"/>
+      <AutoSize Text="Marime Auto"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Insereaza o Coloana la Stanga"/>
+      <InsertToRight Text="Insereaza o Coloana la Dreapta"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Uneste Celulele"/>
+      <Split Text="Imparte Celulele"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Celulele una-langa-alta"/>
+      <ShowTitle Text="Arata Titlul"/>
+      <Style Text="Stil"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Total"/>
+      <Function Text="Functia"/>
+      <SuppressTotals Text="Suprima Totalurile"/>
+      <TotalsFirst Text="Prima data Totalurile"/>
+      <Percent Text="Procentaj"/>
+      <PercentColumnTotal Text="% din Total Coloana"/>
+      <PercentRowTotal Text="% din Total Rand"/>
+      <PercentGrandTotal Text="% din Total"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Editeaza Coloanele..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Tip Barcode"/>
+      <AutoSize Text="Marime Auto"/>
+      <AutoEncode Text="Codificare Auto"/>
+      <CalcChecksum Text="Calculeaza Suma Control"/>
+      <ShowText Text="Arata Text"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Arata Markeri"/>
+      <ShowGrid Text="Arata Grilaj"/>
+    </ZipCodeObject>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Calculez limitele..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Incarc matrixul ..."/>
+      <NewColumn Text="Trage datele aici pentru&#13;&#10;a crea o coloana noua"/>
+      <NewRow Text="Trage datele aici pentru&#13;&#10;a crea un rand nou"/>
+      <NewCell Text="Trage datele aici pentru&#13;&#10;a crea o celula noua"/>
+      <Total Text="Total"/>
+      <Title Text="Titlu"/>
+      <White Text="Alb"/>
+      <Gray Text="Gri"/>
+      <Orange Text="Portocaliu"/>
+      <Green Text="Verde"/>
+      <GreenOrange Text="Verde si Portocaliu"/>
+      <Blue Text="Albastru"/>
+      <BlueWhite Text="Albastru si Alb"/>
+      <GrayOrange Text="Gri si Portocaliu"/>
+      <BlueOrange Text="Albastru si Portocaliu"/>
+      <OrangeWhite Text="Portocaliu si Alb"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Raport Gol"/>
+    <StandardReport Text="Varjitor Raport Standard"/>
+    <InheritedReport Text="Raport Mostenit"/>
+    <Label Text="Vrajitorul de Etichete"/>
+    <NewDataSource Text="Sursa Baza de Date Noua"/>
+    <NewPage Text="Pagina Raport Noua"/>
+    <NewDialog Text="Forma de Dialog Noua"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Export facut in {0} ms"/>
+      <OrderByCells Text="Ordonat dupa celule"/>
+      <AnalyzeObjects Text="Analizeaza obiectele"/>
+      <SavePage Text="Salveaza pagina"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Sfarsit de pagina"/>
+      <OpenAfterExport Text="Deschide dupa export"/>
+      <Pictures Text="Imagini"/>
+      <Options Text="Optiuni"/>
+      <None Text="Niciuna"/>
+      <Metafile Text="Metafile"/>
+      <SaveFile Text="Salvez fisierul"/>
+      <TableBased Text="Tabel"/>
+      <LayerBased Text="Straturi"/>
+    </Misc>
+    <Image Text="Exporeaza in Imagine">
+      <File Text="Fisier Imagine"/>
+      <ImageFormat Text="Format:"/>
+      <Resolution Text="Rezolutie:"/>
+      <Quality Text="Calitatea Jpeg:"/>
+      <SeparateFiles Text="Fisier separat pentru fiecare pagina"/>
+      <MultiFrame Text="TIFF multi-cadru"/>
+      <Monochrome Text="TIFF Monochrome"/>
+      <Bmp Text="Imagine Bitmap"/>
+      <Png Text="Imagine PNG"/>
+      <Jpeg Text="Imagine JPG"/>
+      <Gif Text="Imagine GIF"/>
+      <Tiff Text="Imagine TIFF"/>
+      <Metafile Text="Windows metafile"/>
+    </Image>
+    <RichText Text="Exporteaza in Rich Text">
+      <File Text="Fisier Tich Text"/>
+    </RichText>
+    <Text Text="Exporteaza la Imprimanta Text/Matrice">
+      <File Text="Imprimanta Text Fisier/Matrice"/>
+      <EmptyLines Text="Linii Goale"/>
+      <DataOnly Text="Numai datele"/>
+      <Frames Text="Chenare"/>
+      <FramesNone Text="Niciuna"/>
+      <FramesText Text="Text"/>
+      <FramesGraphic Text="Grafica"/>
+      <Codepage Text="Pagina cod"/>
+      <Default Text="Predefinit"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Scalare X:"/>
+      <ScaleY Text="Scalare Y:"/>
+      <AutoScale Text="Scalare Auto"/>
+      <PrinterType Text="Tip imprimanta"/>
+      <Commands Text="Comenzi"/>
+      <PageWidth Text="Latime pagina:"/>
+      <PageHeight Text="Inaltime pagina:"/>
+      <DataLoss Text="POSIBILITATEA DE A PIERDE DATELE&#13;&#10;va rugam cresteti scalarea X/Y"/>
+      <ScaleMessage Text="Calculez scala optima"/>
+      <Scale Text="Scala"/>
+    </Text>
+    <Csv Text="Exporta in CSV">
+      <File Text="Fisier CSV"/>
+      <Separator Text="Separator"/>
+      <Codepage Text="Pagina Cod"/>
+      <Default Text="Predefinit"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Numai datele"/>
+    </Csv>
+    <Dbf Text="Exporta in DBF">
+      <File Text="Tabel DBF"/>
+      <Codepage Text="Pagina Cod"/>
+      <Default Text="Predefinit"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Datele numai"/>
+      <FieldNames Text="Numele campurilor (de exemplu Camp1;Camp2):"/>
+    </Dbf>
+    <Xml Text="Exporta in XML">
+      <File Text="Tabel XML (Excel)"/>
+    </Xml>
+    <Odt Text="Exporta in Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Exporta in Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Exporta in Excel 2007">
+      <File Text="Fisier Excel 2007"/>
+    </Xlsx>
+    <Pptx Text="Exporta in PowerPoint 2007">
+      <File Text="Fiseir PowerPoint 2007"/>
+    </Pptx>
+    <Docx Text="Exporta in Microsoft Word 2007">
+      <File Text="Fisier Microsoft Word 2007"/>
+    </Docx>
+    <Xps Text="Exporta in XPS">
+      <File Text="Fisier Microsoft XPS"/>
+    </Xps>
+    <Pdf Text="Exporta in PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Export"/>
+      <Compressed Text="Compresat"/>
+      <EmbeddedFonts Text="Fonturi Incorporate"/>
+      <Background Text="Fundal"/>
+      <PrintOptimized Text="Optimizat pentru Imprimare"/>
+      <Information Text="Informatie"/>
+      <DocumentInformation Text="Informatie Document"/>
+      <Title Text="Titlu"/>
+      <Author Text="Autor"/>
+      <Subject Text="Subiect"/>
+      <Keywords Text="Cuvinte cheie"/>
+      <Creator Text="Creat de"/>
+      <Producer Text="Produs de"/>
+      <Security Text="Securitate"/>
+      <Authentification Text="Autentificare"/>
+      <OwnerPassword Text="Parola proprietarului"/>
+      <UserPassword Text="Parola Utilizatorului"/>
+      <Permissions Text="Permisiuni"/>
+      <PrintTheDocument Text="Listare document"/>
+      <ModifyTheDocument Text="Modificare document"/>
+      <CopyOfTextAndGraphics Text="Copierea textului si a graficii"/>
+      <AddOrModifyTextAnnotations Text="Adauga sau modifica adnotarile de tip text"/>
+      <Viewer Text="Vizualizator"/>
+      <ViewerPreferences Text="Preferinte vizualizare"/>
+      <HideToolbar Text="Ascunde Bara de Unelte"/>
+      <HideMenubar Text="Ascunde Bara de Meniu"/>
+      <HideWindowUserInterface Text="Ascunde Interfata de Utilizare Windows"/>
+      <FitWindow Text="Potriveste fereastra"/>
+      <CenterWindow Text="Centrare fereastra"/>
+      <PrintScaling Text="Scalare Imprimare"/>
+      <PrintAfterOpenOfDocument Text="Imprima dupa deschiderea documentului"/>
+      <Outline Text="Contur"/>
+    </Pdf>
+    <Html Text="Exporta in HTML">
+      <File Text="Fisier HTML"/>
+      <MHTFile Text="Fisier MHT"/>
+      <Format Text="Formatare"/>
+      <SinglePage Text="Pagina unica"/>
+      <SubFolder Text="Sub-mapa"/>
+      <Navigator Text="Navigator"/>
+      <Layers Text="Straturi"/>
+      <Total Text="Total"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Exporta in MHT (arhiva-web)">
+      <File Text="Fisier MHT (arhiva-web)"/>
+    </Mht>
+    <Email Text="Trimite E-mail">
+      <Email Text="E-mail"/>
+      <Account Text="Cont"/>
+      <Address Text="Adresa:"/>
+      <Subject Text="Subiect:"/>
+      <Message Text="Mesaj:"/>
+      <Attachment Text="Atasament:"/>
+      <Settings Text="Setari:"/>
+      <Name Text="Numele:"/>
+      <Template Text="Sablon:"/>
+      <Host Text="Gazda:"/>
+      <Port Text="Port:"/>
+      <UserName Text="Nume utilizator:"/>
+      <Password Text="Parola:"/>
+      <AddressError Text="Adresa nu poate sa fie goala."/>
+      <HostError Text="Gazda nu poate sa fie goala."/>
+      <SendingEmail Text="Trimit email - {0} Kb"/>
+      <EnableSSL Text="Permite SSL"/>
+    </Email>
+  </Export>
+  <Web>
+    <Print Text="Listare"/>
+    <Export Text="Export"/>
+    <Zoom Text="Focusare"/>
+    <Refresh Text="Reimprospatare"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Aparenta"/>
+      <Behavior Text="Comportament"/>
+      <Build Text="Construit"/>
+      <Data Text="Data"/>
+      <Design Text="Design"/>
+      <Email Text="Email"/>
+      <Engine Text="Motor"/>
+      <Events Text="Evenimente"/>
+      <Hierarchy Text="Hierarhie"/>
+      <Layout Text="Aspect"/>
+      <Misc Text="Misc"/>
+      <Navigation Text="Navigare"/>
+      <Paper Text="Hartie"/>
+      <Preview Text="Previzualizare"/>
+      <Print Text="Listare"/>
+      <Script Text="Script"/>
+    </Categories>
+  </Properties>
+</Language>

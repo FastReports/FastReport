@@ -539,16 +539,6 @@ namespace FastReport.Export
             return SystemFake.Guid.NewGuid().ToString();
         }
 
-        internal static void CopyStream(Stream source, Stream target)
-        {
-            source.Position = 0;
-            int bufflength = 2048;
-            byte[] buff = new byte[bufflength];
-            int i;
-            while ((i = source.Read(buff, 0, bufflength)) > 0)
-                target.Write(buff, 0, i);
-        }
-
         internal static byte[] StringToByteArray(string source)
         {
             byte[] result = new byte[source.Length];

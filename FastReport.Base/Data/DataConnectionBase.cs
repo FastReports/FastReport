@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Drawing.Design;
+using FastReport.Data.JsonConnection;
 using FastReport.Utils;
 
 namespace FastReport.Data
@@ -745,6 +746,48 @@ namespace FastReport.Data
                 source.Table.Dispose();
                 source.Table = null;
             }
+        }
+
+        /// <summary>
+        /// Clone table.
+        /// For internal use only.
+        /// </summary>
+        public virtual void Clone()
+        {
+            XmlItem item = new XmlItem();
+            using(FRWriter writer = new FRWriter(item))
+            {
+                writer.SerializeTo = SerializeTo.Clipboard;
+                writer.BlobStore = new BlobStore(false);
+                writer.Write(this);
+            }
+            using (FRReader reader = new FRReader(Report, item))
+            {
+                reader.DeserializeFrom = SerializeTo.Clipboard;
+                reader.BlobStore = new BlobStore(false);
+                var connection = Activator.CreateInstance(this.GetType()) as DataConnectionBase;
+                connection.Parent = this.Parent;
+                connection.SetReport(Report);
+                reader.Read(connection);
+                connection.CreateUniqueName();
+                foreach (TableDataSource table in connection.Tables)
+                    table.CreateUniqueName();
+                Report.Dictionary.AddChild(connection);
+            }
+        }
+
+        protected void CreateUniqueNames(DataConnectionBase copyTo)
+        {
+            int i = 1;
+            string s;
+            do
+            {
+                s = this.Alias + i.ToString();
+                i++;
+            }
+            while (Report.Dictionary.FindByAlias(s) != null);
+            copyTo.Alias = s;
+            copyTo.Name = s;
         }
 
         /// <inheritdoc/>

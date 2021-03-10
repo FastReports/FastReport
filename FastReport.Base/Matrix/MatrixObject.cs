@@ -649,6 +649,7 @@ namespace FastReport.Matrix
             MatrixEvenStylePriority = src.MatrixEvenStylePriority;
             SplitRows = src.SplitRows;
             PrintIfEmpty = src.PrintIfEmpty;
+            data = src.Data;            
         }
 
         /// <inheritdoc/>

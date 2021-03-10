@@ -1,0 +1,1992 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="hy" Author="Tigran Manukyan &lt;tigran.manukyan@mersoft.am&gt;;Tigran Manukyan &lt;tigran.manukyan@mersoft.com&gt;">
+  <Buttons>
+    <Ok Text="Հաստատել"/>
+    <Cancel Text="Ջնջել"/>
+    <Close Text="Փակել"/>
+    <MoreOptions Text="Շատ պարամետրեր"/>
+    <LessOptions Text="Քիչ պարամետրեր"/>
+    <Actions Text="Գործողություններ"/>
+    <Previous Text="&lt; Նախորդ"/>
+    <Next Text="Հաջորդ &gt;"/>
+    <Finish Text="Ավարտել"/>
+    <Advanced Text="Ընդլայնված..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Տվյալների ստացում..."/>
+    <Attention Text="Ուշադրություն"/>
+    <CantFindObject Text="Օբյեկտը չի գտնվել"/>
+    <CantLoadReport Text="Հնարավոր չէ բեռնել {0} հաշվետվությունը"/>
+    <CantSaveReport Text="Հաշվետվությունը հնարավոր չէ գրանցել: Հնարավոր է, ֆայլը գրավոր փոփոխման ենթակա չէ:"/>
+    <ClassError Text="Հնարավոր չէ գտնել հիմանական հաշվետվության կլաս, ReportScript"/>
+    <Confirmation Text="Հաստատում"/>
+    <DataNotInitialized Text="Տվյալները (Datasource) դեռեւս նկարագրված չեն:"/>
+    <DecompressError Text="Հնարավոր չէ ֆայլը վերաբացել նախնական վիճակի:"/>
+    <DecryptError Text="Ծածկագիրը սխալ է"/>
+    <DelegateError Text="{0} դելեգատը պետք է ունենա երկու արգումենտ՝ 'sender' եւ 'e' "/>
+    <DeleteAncestor Text="Հնարավոր չէ հեռացնել {0}, այն օգտագործվում է նախորդ հաշվետվության մեջ"/>
+    <DuplicateName Text="{0} անունով օբյեկտն արդեն գոյություն ունի"/>
+    <DuplicateStyle Text="Այս անունով նկարագրություն արդեն գոյություն ունի"/>
+    <Error Text="Սխալ"/>
+    <EventError Text="Հնարավոր չէ ստեղծել event handler՝ կոդում առկա սխալների պատճառով"/>
+    <ExportingPage Text="Արտահանվում է  {1}-ից {0} էջերը"/>
+    <GeneratingPage Text="Գեներացվում է {0} էջը"/>
+    <GeneratingPageFirstPass Text="Գեներացվում է {0} էջը"/>
+    <Information Text="Տեղեկություն"/>
+    <MatrixError Text="{0}: Մատրիցան պետք է ունենա նվազագույնը մեկ սյունակ կամ տող "/>
+    <MatrixValueError Text="Արժեքների քանակը տարբերվում է MatrixData.Cells.Count  (պետք է լինի {0})"/>
+    <ParentError Text=" {0} տեսակի օբյեկտը չի կարող պարունակել {1} տեսակի օբյեկներ"/>
+    <ParentError1 Text=" {0} տեսակի օբյեկտը չի կարող օբյեկտներ պարունակել "/>
+    <Performance Text="Ներկայացված է {0} ms"/>
+    <PreparingData Text="Գեներացվող տվյալներ..."/>
+    <PrintingPage Text="Տպել {0} էջը"/>
+    <RenameAncestor Text="Հնարավոր չէ փոփոխել {0} անունը, այն օգտագործվում է նախորդ հաշվետվության մեջ"/>
+    <SaveChanges Text="Գրանցե՞լ փոփոխությունները  {0} ում:"/>
+    <SaveChangesToPreviewPage Text="Գրանցե՞լ փոփոխությունները  նախնական դիտման էջում:"/>
+    <SQLError Text="SQL սխալ"/>
+    <TableIsNull Text="Աղյուսակը կապված չէ տվյալների հետ: Գրանցել տվյալները օգտագործելով  Report.RegisterData "/>
+    <TableManualBuildError Text="Կարող եք օգտագործել TableObject.PrintRow, PrintColumn միայն  ManualBuild դեպքում"/>
+    <Warning Text="Հիշեցում"/>
+    <WarningSaveRDL Text="RDL ֆորմատը ունի սահմանափակումներ: Այս ֆիլտրը կգտանցի միայն թեմփլեյթի դիտումը: Data sources եւ Barcode, Rich Text, CheckBox and Zip Codes չեն գրանցվի: Օբյեկտների որոշ հատկություններ չեն պահպանվի: Հնարավոր է ունենալ թեմփլեյթի որոշ էլեմենտների կորուստ: Գրանցե՞լ ամեն դեպքում:"/>
+    <WrongFileFormat Text="Հնարավոր չէ բեռնել ֆայլը: Ֆայլի ֆորմատը անհայտ է"/>
+    <InvalidBarcode1 Text="Բարկոդը պետք է սկսի  '&amp;A;', '&amp;B;' կամ '&amp;C; կարգով"/>
+    <InvalidBarcode2 Text=" input code-ում սխալ նիշ"/>
+    <ErrorInExpression Text="Սխալ expression  "/>
+    <ErrorInHighlightCondition Text="սխալ  highlight condition "/>
+    <FileNameEmpty Text="Նշեք խնդրեմ ֆայլի ճիշտ անվանումը"/>
+    <SaveToAnotherFile Text="Ցանկանում ե՞ք գրանցել այլ ֆայլում:"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="մմ"/>
+    <ShortUnitsCm Text="սմ"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Օրինակ"/>
+    <None Text="Դատարկ"/>
+    <PageN Text="Էջ {0}"/>
+    <PageNofM Text="էջ  {0}, {1} ից"/>
+    <ofM Text="{0} ից"/>
+  </Misc>
+  <Objects>
+    <Report Text="Հաշվետվություն"/>
+    <ReportPage Text="Էջ"/>
+    <DialogPage Text="Ձեւ"/>
+    <XmlDataConnection Text="XMLտվյալների բազա"/>
+    <OleDbDataConnection Text="OLE DB կապ"/>
+    <MsAccessDataConnection Text="MS Access կապ"/>
+    <MsSqlDataConnection Text="MS SQL կապ"/>
+    <OdbcDataConnection Text="ODBC կապ"/>
+    <FirebirdDataConnection Text="Firebird կապ"/>
+    <VistaDBDataConnection Text="VistaDB կապ"/>
+    <PostgresDataConnection Text="Postgres կապ"/>
+    <MySqlDataConnection Text="MySQL կապ"/>
+    <OracleDataConnection Text="Oracle կապ"/>
+    <SQLiteDataConnection Text="SQLite կապ"/>
+    <SqlCeDataConnection Text="SQL CE կապ"/>
+    <Bands Text="Bands">
+      <ReportTitle Text="Հաշվետվության անվանում"/>
+      <ReportSummary Text="Ամփոփ հաշվետվություն "/>
+      <PageHeader Text="Էջի գլխամաս"/>
+      <PageFooter Text="էջի ֆութեր"/>
+      <ColumnHeader Text="Սյունակի գլխամաս"/>
+      <ColumnFooter Text="Սյունակի ֆութեր"/>
+      <DataHeader Text="Գլխամաս"/>
+      <DataFooter Text="Ֆութեր"/>
+      <Data Text="Տվյալներ"/>
+      <GroupHeader Text="Խմբային գլխամաս"/>
+      <GroupFooter Text="Խմբային ֆութեր"/>
+      <Child Text="Child"/>
+      <Overlay Text="Վերադրում"/>
+    </Bands>
+    <TextObject Text="Տեքստ"/>
+    <Shapes Text="Պատկերներ">
+      <Line Text="Ուղիղ գիծ"/>
+      <DiagonalLine Text="Անկյունագիծ"/>
+      <Rectangle Text="Ուղղանկյուն"/>
+      <RoundRectangle Text="Կլոր անկյուններով ուղղանկյուն"/>
+      <Ellipse Text="Էլիպս"/>
+      <Triangle Text="Եռանկյուն"/>
+      <Diamond Text="Շեղանկյուն"/>
+    </Shapes>
+    <PictureObject Text="Նկար"/>
+    <TableObject Text="Աղյուսակ"/>
+    <MatrixObject Text="Մատրիցա"/>
+    <SubreportObject Text="Ենթահաշվետվություն"/>
+    <BarcodeObject Text="Բարկոդ"/>
+    <RichObject Text="Rich տեքստ"/>
+    <MSChartObject Text="MS գծապատկեր"/>
+    <ZipCodeObject Text="Zip Կոդ"/>
+    <CellularTextObject Text="Cellular տեքստ"/>
+    <CheckBoxObject Text="Չեքբոքս"/>
+    <ButtonControl Text="Ստեղն"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Աղյուսակ"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="Ամիս Օրացույց"/>
+    <NumericUpDownControl Text="ԹվայինUpDown"/>
+    <PanelControl Text="Վահանակ"/>
+    <PictureBoxControl Text="Նկար"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="Տեքստային "/>
+    <TreeViewControl Text="Ծառի տեսք"/>
+    <MapObject Text="Քարտեզ"/>
+  </Objects>
+  <Functions>
+    <Math Text="Մաթեմատիկական"/>
+    <Text Text="Տեքստ"/>
+    <DateTime Text="Ամսաթիվ եւ Ժամ"/>
+    <Formatting Text="Ֆորմատավորել"/>
+    <Conversion Text="Կոնվերտում"/>
+    <ProgramFlow Text="Program Flow"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Հաշվետվության ֆայլ (*.frx)|*.frx"/>
+    <PreparedReport Text="Պատրաստի հաշվետվություն (*.fpx)|*.fpx"/>
+    <Style Text="Հաշվետվության տեսակներ (*.frs)|*.frs"/>
+    <Dictionary Text="Բառարան (*.frd)|*.frd"/>
+    <Localization Text="Localization ֆայլ (*.frl)|*.frl "/>
+    <XsdFile Text="XML սխեմայի սահմանման ֆայլ (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML ֆայլ (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access հենք (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server հենքեր (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text ֆայլ (*.rtf)|*.rtf"/>
+    <Images Text="Նկար ֆայլեր |*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Տպելու համար ֆայլ (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap նկար (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG նկար (*.png)|*.png"/>
+    <JpegFile Text="JPG նկար (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF նկար (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF նկար (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows մետաֆայլ (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML ֆայլ (*.html)|*.html"/>
+    <MhtFile Text="Վեբ-արխիվ ֆայլ (*.mht)|*.mht"/>
+    <OdtFile Text="Open Office Writer ֆայլ (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc ֆայլ (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat ֆայլ (*.pdf)|*.pdf"/>
+    <TxtFile Text="Տեքստային ֆայլ (*.txt)|*.txt"/>
+    <CsvFile Text="Comma Separated Values (*.csv)|*.csv"/>
+    <DbfFile Text="dBase table ֆայլ (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel file (*.xls)|*.xls"/>
+    <CsFile Text="C# ֆայլ(*.cs)|*.cs"/>
+    <VbFile Text="VB.Net ֆայլ (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird հենք (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB հենք (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="MS Excel book (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint presentation (*.pptx)|*.pptx"/>
+    <DocxFile Text="MS Word document (*.docx)|*.docx"/>
+    <SdfFile Text="SQL CE հենք (*.sdf)|*.sdf"/>
+    <XpsFile Text="XPS ֆայլ (*.xps)|*.xps"/>
+    <RdlFiles Text="RDL ֆայլեր (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="RDL ֆայլ (*.rdl)|*.rdl"/>
+    <RdlcFile Text="RDLC ֆայլ (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Crystal Reports ֆայլ (*.rpt)|*.rpt"/>
+    <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>
+    <Fr3File Text="FastReport VCL report (*.fr3)|*.fr3"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MMMM dd, yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Սխալ"/>
+    <BooleanF2 Text="Ոչ"/>
+    <BooleanF3 Text="Անջատել"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Ճիշտ"/>
+    <BooleanT2 Text="Այո"/>
+    <BooleanT3 Text="Միացնել"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Հեռախոս; (000) 000-0000"/>
+    <Custom2 Text="Երկար հեռախոսահամար ;+0(000) 000-0000"/>
+    <Custom3 Text="Սոց ապահովագրություն ;000-00-0000"/>
+    <Custom4 Text="Կարճ փոսատային կոդ;00000"/>
+    <Custom5 Text="Երկար փոստային կոդ;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Ֆայլ">
+        <New Text="Նոր..."/>
+        <Open Text="Բացել..."/>
+        <Close Text="Փակել"/>
+        <Save Text="Պահպանել"/>
+        <SaveAs Text="Պահպանել որպես..."/>
+        <SaveAll Text="Պահպանել ամբողջը"/>
+        <PageSetup Text="Էջի տվյալներ..."/>
+        <PrinterSetup Text="Տպիչի տվյալներ..."/>
+        <Preview Text="Դիտել..."/>
+        <SelectLanguage Text="Ընտրել լեզուն..."/>
+        <Exit Text="Դուրս գալ"/>
+      </File>
+      <Edit Text="Փոփոխել">
+        <Undo Text="Քայլ հետ"/>
+        <Redo Text="Քայլ առաջ"/>
+        <Cut Text="Կրտել"/>
+        <Copy Text="Պատճենել"/>
+        <Paste Text="Տեղադրել պատճեն"/>
+        <Delete Text="Ջնջել"/>
+        <DeletePage Text="Ջնջել էջը"/>
+        <SelectAll Text="Նշել ամբողջը"/>
+        <Group Text="Խմբավորել"/>
+        <Ungroup Text="Թողնել խմբավորումը"/>
+        <Find Text="Փնտրել..."/>
+        <Replace Text="Փոխարինել..."/>
+      </Edit>
+      <View Text="Դիտել">
+        <StartPage Text="Սկզբնական էջ"/>
+        <Toolbars Text="Գործիքների շարք"/>
+        <Options Text="Պարամետրեր"/>
+        <Grid Text="Աղյուսակ"/>
+        <Guides Text="Սահմաններ"/>
+        <AutoGuides Text="Ավտոմատ սահմաններ"/>
+        <DeleteHGuides Text="Ջնջել հորիզոնական սահմանները"/>
+        <DeleteVGuides Text="Ջնջել ուղղահայաց սահմանները"/>
+        <Units Text="Չափման միավորներ"/>
+      </View>
+      <Insert Text="ներդնել"/>
+      <Report Text="Հաշվետվություն">
+        <Bands Text="Կազմավորել Bands..."/>
+        <Styles Text="Արտաքին տեսք"/>
+        <GroupExpert Text="Խումբ..."/>
+        <Options Text="Պարամետրեր"/>
+      </Report>
+      <Data Text="Տվյալներ">
+        <ShowData Text="Տվյալների պատուհան"/>
+        <Add Text="Ավելացնել  Data Source..."/>
+        <Choose Text="Ընտրել Report Data..."/>
+      </Data>
+      <Window Text="Պատուհան">
+        <CloseAll Text="Փակել ամբողջը"/>
+      </Window>
+      <Help Text="Օգնություն">
+        <Contents Text="Բովանդակություն..."/>
+        <About Text="Մասին..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <AutoHide Text="Ավտոմատ փակել"/>
+      <Close Text="Փակել"/>
+      <Properties Text="Հատկություններ">
+        <PropertiesTab Text="Հատկություններ"/>
+        <EventsTab Text="Պատահարներ"/>
+        <NObjectsSelected Text="ընտրվել են {0} օբյեկտներ"/>
+      </Properties>
+      <ReportTree Text="Հաշվետվության ծառ"/>
+      <Dictionary Text="Տվյալներ">
+        <DataSources Text="Data Sources"/>
+        <Parameters Text="Պարամետրեր"/>
+        <SystemVariables Text="Համակարգի փոփոխականներ"/>
+        <Totals Text="Գումարներ"/>
+        <Functions Text="Ֆունկցիաներ"/>
+        <DialogControls Text="Դիալոգներ"/>
+        <New Text="Նոր բառարան"/>
+        <Open Text="Բացել բառարանը..."/>
+        <Save Text="Գրանցել բառարանը..."/>
+        <Merge Text="Միավորել բառարանը..."/>
+        <NewDataSource Text="Նոր Data Source..."/>
+        <NewRelation Text="Նոր կապ..."/>
+        <NewParameter Text="Նոր պարամերտ"/>
+        <NewTotal Text="Նոր գումար..."/>
+        <NewCalculatedColumn Text="Նոր հաշվարկված սյունակ..."/>
+        <Rename Text="Վերանվանել"/>
+        <Edit Text="Փոփոխել..."/>
+        <Delete Text="Ջնջել"/>
+        <DeleteAlias Text="Ջնջել  ծածկանուն"/>
+        <View Text="Դիտել տվյլաներ..."/>
+        <DuplicateName Text="Նման անվանմամբ օբյեկտ արդեն գոյություն ունի"/>
+        <NRows Text="{0} շարք"/>
+      </Dictionary>
+      <Messages Text="Հաղորդագրություններ">
+        <Description Text="Նկարագրություն"/>
+        <Line Text="Տող"/>
+        <Column Text="Սյունակ"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Ավելացնել կամ հանել ստեղները  "/>
+      <Reset Text="Սկզբնական վիճակի բերել գործիքները"/>
+      <MoreButtons Text="Ավելի շատ ստեղներ..."/>
+      <Standard Text="Ստանդարտ">
+        <New Text="Ավելացնել նորը"/>
+        <Open Text="Բացել հաշվետվություն (Ctrl+O)"/>
+        <Save Text="Գրանցել հաշվետվությունը  (Ctrl+S)"/>
+        <SaveAll Text="Գրանցել բոլորը (Ctrl+Shift+S)"/>
+        <Preview Text="Դիտել  (Ctrl+P)"/>
+        <NewPage Text="Նոր հաշվետվության էջ"/>
+        <NewDialog Text="Նոր դիալոգ"/>
+        <DeletePage Text="Ջնջել էջը"/>
+        <PageSetup Text="էջի կառուցվածք"/>
+        <Cut Text="Կտրել (Ctrl+X)"/>
+        <Copy Text="Պատճենել (Ctrl+C)"/>
+        <Paste Text="Տեղադրել պատճեն (Ctrl+V)"/>
+        <FormatPainter Text="ֆորմատավորել"/>
+        <Undo Text="Քայլ հետ  (Ctrl+Z)"/>
+        <Redo Text="Քայլ առաջ"/>
+        <Group Text="Խմբավորել"/>
+        <Ungroup Text="Ապախմբավորել"/>
+      </Standard>
+      <Text Text="Տեքստ">
+        <Name Text="Ֆոնտի անվանում"/>
+        <Size Text="Չափս"/>
+        <Bold Text="Մգացնել"/>
+        <Italic Text="Թեքություն"/>
+        <Underline Text="Ընդգծել"/>
+        <Left Text="Հավասարեցնել ձախ"/>
+        <Center Text="Շարել մեջտեղում"/>
+        <Right Text="Հավասարեցնել աջ"/>
+        <Justify Text="Երկկողմանի հավասարեցում"/>
+        <Top Text="Հավասարեցնել վերեւում"/>
+        <Middle Text="Հավասարեցնել մեջտեղում"/>
+        <Bottom Text="Հավասարեցնել ներքեւում"/>
+        <Color Text="Գույնը"/>
+        <Highlight Text="Ընդգծել "/>
+        <Angle Text="Տեքստի անկույն"/>
+      </Text>
+      <Border Text="Սահմաններ եւ ">
+        <Top Text="Վերեւի գիծ"/>
+        <Bottom Text="Ներքեւի գիծ"/>
+        <Left Text="Ձախակողմյա գիծ"/>
+        <Right Text="Աջակողմյա գիծ"/>
+        <All Text="Սահմանային բոլոր գծերը"/>
+        <None Text="Հանել սահմանագծերը"/>
+        <FillColor Text="Լցնել գույնը"/>
+        <FillStyle Text="Լցնել տեսակը..."/>
+        <LineColor Text="Սահմանագծերի գույնը"/>
+        <Width Text="Սահմանագծի լայնություն"/>
+        <Style Text="Սահմանագծի տեսակ"/>
+        <Props Text="Սահմանագծի հատկություններ..."/>
+      </Border>
+      <Style Text="Տեսակներ">
+        <Styles Text="Տեսականի"/>
+        <SelectStyle Text="Ընտրել տեսակները"/>
+        <NoStyle Text="Չօգտագործել որեւէ տեսակ"/>
+      </Style>
+      <Layout Text="Դասավորվածություն">
+        <AlignToGrid Text="Հավասարեցնել գրիդին"/>
+        <Left Text="Ձախակողմյա հավասարեցում"/>
+        <Center Text="Հավասարեցնել մեջտեղում"/>
+        <Right Text="Աջակողմյա հավասարեցում"/>
+        <Top Text="Հավասարեցում վերեւում"/>
+        <Middle Text="Հավասարեցում մեջտեղում"/>
+        <Bottom Text="Հավասարեցում ներքեւում"/>
+        <SameWidth Text="Միեւնույն լայնություն"/>
+        <SameHeight Text="Միեւնույն բարձրություն"/>
+        <SameSize Text="Միեւնույն չափ"/>
+        <SizeToGrid Text="Չափավորել ըստ գրիդի"/>
+        <SpaceHorizontally Text="Հորիզոնական տարածություն"/>
+        <IncreaseHorizontalSpacing Text="Մեծացնել հորիզոնական տարածությունը"/>
+        <DecreaseHorizontalSpacing Text="Կրճատել հորիզոնական տարածությունը"/>
+        <RemoveHorizontalSpacing Text="Հանել հորիզոնական տարածությունը"/>
+        <SpaceVertically Text="Ուղղահայաց տարածություն"/>
+        <IncreaseVerticalSpacing Text="Մեծացնել ուղղահայաց տարածությունը"/>
+        <DecreaseVerticalSpacing Text="Փոքրացնել ուղղահայաց տարածությունը"/>
+        <RemoveVerticalSpacing Text="Հանել ուղղահայաց տարածությունը"/>
+        <CenterHorizontally Text="Հորիզոնական մեջտեղում"/>
+        <CenterVertically Text="Ուղղահայաց մեջտեղում"/>
+        <BringToFront Text="Բերել առաջ"/>
+        <SendToBack Text="Տանել հետ"/>
+      </Layout>
+      <Objects Text="Օբյեկտներ">
+        <Select Text="Ընտրել"/>
+      </Objects>
+      <Zoom Text="Խոշորացնել">
+        <ZoomOut Text="Խոշորացնել"/>
+        <ZoomIn Text="Մանրացնել"/>
+        <Zoom Text="Խոշորացում"/>
+        <PageWidth Text="Էջի լայնություն"/>
+        <WholePage Text="Ամբողջական էջ"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Կոդ"/>
+      <Report>
+        <ConfigureBands Text="Կոնֆիգուրացնել bands..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Պարամետրեր"/>
+    <UndoRedo>
+      <Delete Text="Ջնջել {0}"/>
+      <Move Text="Տեղափոխել  {0}"/>
+      <Size Text="Փոփոխել  {0} -ի չափը"/>
+      <Change Text="Փոփոխել  {0}"/>
+      <AddGuide Text="Ուղեցույց ավելացնել"/>
+      <MoveGuide Text="Տեղափոխել ուղեցույցը"/>
+      <DeleteHGuides Text="Ջնջել հորիզոնական ուղեցույցերը"/>
+      <DeleteVGuides Text="Ջնջել ուղղահայաց ուղեցույցերը"/>
+      <ResizeBand Text="Փոխել band-ի չափերը"/>
+      <ChangeParent Text="Փոփոխել {0} -ի  parent "/>
+      <Load Text="Բեռնել հաշվետվությունը"/>
+      <Paste Text="Տեղադրել պատճենած {0}"/>
+      <Insert Text="Ներդնել {0}"/>
+      <AddPage Text="Ավելացնել  {0} էջը"/>
+      <DeletePage Text="Ջնջել էջը"/>
+      <Script Text="Սկրիպտը փոխել"/>
+      <NObjects Text=" {0} օբյեկտներ"/>
+      <UndoN Text="{0} գործողություն հետ տանել"/>
+      <RedoN Text="{0} գործողություն առաջ տանել"/>
+      <ChangeReport Text="Փոփոխել հաշվետվությունը"/>
+      <ChangePagesOrder Text="Փոփոխել էջերի հերթականությունը"/>
+      <EditPage Text="Փոփոխել էջը"/>
+      <EditPrinter Text="Փոփոխել տպիչի պարամետրերը"/>
+      <EditReport Text="Փոփոխել հաշվետվության պարամետրերը"/>
+      <SelectData Text="Ընտրել տվյալներ"/>
+      <EditData Text="Փոփոխել տվյալները"/>
+    </UndoRedo>
+    <StartPage Text="Սկզբնական էջ"/>
+    <Untitled Text="Untitled.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Ընդհանուր"/>
+      <WebColors Text="Վեբ"/>
+      <SystemColors Text="Համակարգ"/>
+      <Other Text="Այլ գույներ..."/>
+      <Transparency Text="Թափանցիկություն:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Դիտել">
+    <PrintText Text="Տպել"/>
+    <Print Text="Տպել(Ctrl+P)"/>
+    <Open Text="Բացել ֆայլը"/>
+    <Save Text="Պահպանել Ֆայլը"/>
+    <SaveText Text="Պահպանել"/>
+    <SaveToCloud Text="Պահպանել  to Cloud"/>
+    <SaveToCloudText Text="Պահպանել"/>
+    <Email Text="Էլ-փոստ"/>
+    <Find Text="Որոնել"/>
+    <Outline Text="Ուրվագիծ"/>
+    <PageSetup Text="Էջի պարամետրեր"/>
+    <Edit Text="Փոփոխել էջը"/>
+    <Watermark Text="Ջրանիշ"/>
+    <First Text="Առաջին էջ"/>
+    <Prior Text="Նախորդ էջ"/>
+    <Next Text="Հաջորդ էջ"/>
+    <Last Text="Վերջին էջ"/>
+    <SaveNative Text="Կազմված հաշվետվություն"/>
+    <DropboxText Text="Պահպանել Dropbox-ում"/>
+  </Preview>
+  <Forms>
+    <About Text="Մասին">
+      <Version Text="Տարբերակ"/>
+      <Visit Text="Հավելյալ տեղեկությունների համար այցելեք մեր վեբ կայք՝"/>
+    </About>
+    <AddLayer Text="Ավելացնել շերտ">
+      <Source Text="Ընտրել տվյալների աղբյուրը:"/>
+      <Shapefile Text=";"/>
+      <Embed Text="Ներդնել shapefile-ը հաշվետվության մեջ"/>
+      <Empty Text="Դատարկ մակարդակ ծրագրի կողմից տրամադրվող գեոդատայով"/>
+    </AddLayer>
+    <AddNewItem Text="Ավելացնել նորը">
+      <Add Text="Ավելացնել"/>
+      <Reports Text="Հաշվետվությունների թեմփլեյթներ:"/>
+      <ReportItems Text="Հաշվետվությունների գործիքներ"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Հավելյալ հատկություններ"/>
+    <AskPassword Text="Ծածկագիր">
+      <Password Text="Այս հաշվետվությունը պաշտպանված է ծածկագրով:&#13;&#10;&#13;&#10;Խնդրում ենք մուտքագրել ծածկագիրը՝"/>
+    </AskPassword>
+    <AskLoginPassword Text="Հենքի մուտքագիր">
+      <Login Text="Մուտքագիր"/>
+      <Password Text="Ծածկագիր"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="ԸՆտրել տվյալների աղբյուրը"/>
+      <SelectDataSource Text="Ընտրել առկա տվյալների աղբյուրներից որեւէ մեկը, կամ ստեղծեք նորը:"/>
+      <CreateNewDatasource Text="Ստեղծել նոր տվյլաների աղբյուր..."/>
+      <SelectColumnsPage Text="Ընտրել տվյալների սյունակներ"/>
+      <SelectColumns Text="Ընտրել այն տվյալների սյունակները որոնք ցանկանում եք ցուցադրել հաշվետվություն:"/>
+      <AvailableColumns Text="Առկա սյունակներ."/>
+      <SelectedColumns Text="Ընտրել սյունակներ."/>
+    </BaseReportWizard>
+    <Border Text="Եզրագծի հատկություններ">
+      <Border Text="Եզրագիծ"/>
+      <Line Text="Գիծ"/>
+      <Shadow Text="Ստվեր"/>
+      <Style Text="Տեսակ"/>
+      <Width Text="Լայնություն"/>
+      <Color Text="Գույն"/>
+      <Hint Text="Ընտրել գծի տեսակը եւ նշել գիծը՝ փոփոխությունը կատարելու համար"/>
+    </Border>
+    <ChartEditor Text="Գրաֆիկի խմբագրիչ">
+      <Chart Text="Գրաֆիկ"/>
+      <Add Text="Ավելացնել..."/>
+      <Delete Text="Ջնջել"/>
+      <Hint Text="Սեղմել գրաֆիկի վրա հատկությունները փոփոխելու համար."/>
+      <Common>
+        <Color Text="Գույն:"/>
+        <BackColor Text="Հետեւի ֆոնի գույն:"/>
+        <SecondaryColor Text="Երկրորդական գույն:"/>
+        <Gradient Text="Թեքություն:"/>
+        <HatchStyle Text="Գծի տեսակ:"/>
+        <BorderColor Text="Եզրագծի գույն:"/>
+        <BorderStyle Text="Եզրագծի ձեւ:"/>
+        <BorderWidth Text="Եզրագծի լայնություն:"/>
+        <ShadowColor Text="Ստվերի գույն:"/>
+        <ShadowOffset Text="Ստվերի օֆսեթ:"/>
+        <LineColor Text="Գծի գույն:"/>
+        <LineStyle Text="Գծի ձեւ:"/>
+        <LineWidth Text="Գծի լայնություն:"/>
+        <Text Text="Թեքստ:"/>
+        <Font Text="Ֆոնտ:"/>
+        <ForeColor Text="Դիմացի գույն:"/>
+        <Dock Text="Dock:"/>
+        <InsideChartArea Text="Գրաֆիկի տարածքի ներսում"/>
+        <Format Text="Ֆորմատ:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Տվյալներ">
+          <DataSource Text="Տվյալների աղբյուր:"/>
+          <Filter Text="Ֆիլտր:"/>
+          <AutoSeries Text="Ավտոմատ ստեղծված շարքեր"/>
+          <DataColumn Text="Տվյալների սյունակ"/>
+          <ColorColumn Text="Գույնի սյունակ"/>
+          <SeriesSort Text="Շարքերի դասավորություն:"/>
+          <AlignXValues Text="Հավասարեցնել X արժեքները"/>
+        </Data>
+        <Appearance Text="Արտաքին տեսք">
+          <Template Text="Թեմփլեյթ:"/>
+          <Load Text="Բեռնել..."/>
+          <Save Text="Գրանցել..."/>
+          <SeriesPalette Text="Շարքերի երանգներ:"/>
+          <BorderSkin Text="Եզրագծի տեսակ:"/>
+          <Templates>
+            <Custom Text="Հիմնական"/>
+            <Blue Text="Կապույտ"/>
+            <Gray Text="Մոխրագույն"/>
+            <Green Text="Կանաչ"/>
+            <Pink Text="Վարդագույն"/>
+            <Sand Text="Ավազագույն"/>
+            <Steel Text="Երկաթի գույն"/>
+            <Light Text="Թեթեւ"/>
+          </Templates>
+        </Appearance>
+        <ChartArea Text="Գրաֆիկի տարածք">
+          <Area Text="Տարածք"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Ակտիվացնել 3D"/>
+          <XRotation Text="X պտույտ:"/>
+          <YRotation Text="Y պտույտ:"/>
+          <Perspective Text="Պատկեր"/>
+          <WallWidth Text="Պատի լայնություն:"/>
+          <AxisDepth Text="Առանցքի խորություն:"/>
+          <LightStyle Text="Տեսակ"/>
+          <ClusteredSeries Text="Կլաստերիզացված շարքեր"/>
+        </ThreeD>
+        <Axes Text="Առանցքներ">
+          <Axis Text="Առանցք:"/>
+          <CopyFromX Text="Պատճենել X առանցքի տեսքը"/>
+          <CopyFromPrimary Text="Պատճենել հիմնական առանցքի տեսքը"/>
+          <Minor Text="Երկրորդական"/>
+          <Major Text="Գլխավոր"/>
+          <General Text="Ընդհանուր">
+            <Enabled Text="Միացված"/>
+            <MarginVisible Text="Լուսանցքը տեսանելի է"/>
+            <Logarithmic Text="Լոգարիթմիկ"/>
+            <Reversed Text="Շրջված"/>
+            <Interval Text="Ինտերվալ"/>
+            <Interlaced Text="Միահյուսված"/>
+            <InterlacedColor Text="Միահյուսված գույն:"/>
+          </General>
+          <Labels Text="Պիտակներ">
+            <Enabled Text="Միացված"/>
+            <Angle Text="Անկյուն:"/>
+          </Labels>
+          <Title Text="Վերնագիր"/>
+          <CustomLabels Text="Հիմնական պիտակներ">
+            <Label Text="Պիտակ"/>
+            <Start Text="Սկիզբ:"/>
+            <End Text="Վերջ:"/>
+            <Row Text="Շարգ:"/>
+            <MarkColor Text="Նշիչ գույներ:"/>
+            <MarkStyle Text="Նշիչ տեսակ:"/>
+          </CustomLabels>
+          <Grid Text="Գրիդ">
+            <GridLine Text="Գրիդի գիծ"/>
+            <Enabled Text="Միացված "/>
+          </Grid>
+          <Ticks Text="Նշաններ">
+            <Ticks Text="Նշաններ"/>
+            <Enabled Text="Միացված "/>
+            <TickStyle Text="տեսակ:"/>
+            <TickSize Text="չափ:"/>
+          </Ticks>
+          <Strips Text="Շերտեր">
+            <Strip Text="Շերտ"/>
+            <Interval Text="Ինտերվալ">
+              <Start Text="Սկիզբ:"/>
+              <Width Text="Լայնություն:"/>
+              <Interval Text="Ինտերվալ:"/>
+            </Interval>
+            <Appearance Text="Արտաքին տեսք"/>
+            <Text Text="Տեքստ">
+              <HorizontalAlign Text="Հորիզոնական կարգ"/>
+              <VerticalAlign Text="Ուղղահայաց կարգ:"/>
+              <TextOrientation Text="Տեքստի ուղղություն:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Համակարգի նշանակում">
+          <Enabled Text="Միացված"/>
+          <StyleColumn Text="Սյունակ"/>
+          <StyleRow Text="Շարք"/>
+          <StyleTable Text="Աղյուսակ"/>
+          <General Text="Հիմնական">
+            <LegendStyle Text="Legend տեսակ:"/>
+          </General>
+          <Appearance Text="Արտաքին տեսք"/>
+        </Legend>
+        <Title Text="Վերնագիր">
+          <Visible Text="Տեսանելի"/>
+          <General Text="Հիմնական">
+            <TextOrientation Text="Տեքստի ուղղություն:"/>
+            <TextStyle Text="Տեքստի տեսակ:"/>
+          </General>
+          <Appearance Text="Արտաքին տեսք"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Տվյալներ">
+          <Name Text="Անուն"/>
+          <XValue Text="X արժեք:"/>
+          <Color Text="Գույն:"/>
+          <Filter Text="Ֆիլտր:"/>
+          <XValueType Text="X արժեքի տեսակ:"/>
+          <YValueType Text="Y արժեքի տեսակ:"/>
+          <XAxisType Text="X առանցք:"/>
+          <YAxisType Text="Y առանցք:"/>
+          <PrimaryAxis Text="Առաջնակարգ"/>
+          <SecondaryAxis Text="Երկրորդական"/>
+          <SeriesValues>
+            <YValue Text="Y արժեք:"/>
+            <High Text="Բարձր:"/>
+            <Low Text="Ցածր:"/>
+            <Open Text="Բացել:"/>
+            <Close Text="Փակել:"/>
+            <RangeBegin Text="Սահմանի սկիզբ:"/>
+            <RangeEnd Text="Սահմանի վերջ:"/>
+            <Size Text="Չափ:"/>
+            <YValue1 Text="Y արժեք 1:"/>
+            <YValue2 Text="Y արժեք 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Արժեքներ"/>
+        <DataProcessing Text="Տվյալների մշակում">
+          <SortBy Text="Դասակարգել ըստ:"/>
+          <SortByX Text="X արժեք"/>
+          <SortByY Text="Y արժեք"/>
+          <SortOrder Text="Դասակարգում"/>
+          <GroupBy Text="Խմբավորել ըստ:">
+            <None Text="Ոչինչ"/>
+            <XValue Text="X արժեք"/>
+            <Number Text="Թիվ"/>
+            <Years Text="Տարիներ"/>
+            <Months Text="Ամիսներ"/>
+            <Weeks Text="Շաբաթներ"/>
+            <Days Text="Օրեր"/>
+            <Hours Text="Ժամեր"/>
+            <Minutes Text="Րոպեներ"/>
+            <Seconds Text="Վայրկյաններ"/>
+            <Milliseconds Text="Միլիվարկյաններ"/>
+          </GroupBy>
+          <GroupInterval Text="Խմբային ինտերվալ"/>
+          <GroupFunction Text="Խմբային ֆունկցիա:"/>
+          <CollectData Text="Հավաքագրել տվյլաներ:">
+            <None Text="Ոչինչ"/>
+            <TopN Text="ՎերեւN"/>
+            <BottomN Text="ՆերքեւN"/>
+            <LessThan Text="Արժեքից ավելի քիչ"/>
+            <LessThanPercent Text="Տոկոսից ավելի քիչ"/>
+            <GreaterThan Text="Արժեքից ավելի մեծ"/>
+            <GreaterThanPercent Text="Տոկոսից ավելի մեծ"/>
+          </CollectData>
+          <Value Text="Արժեք"/>
+          <CollectedText Text="Հավաքագրված տեքստ:"/>
+          <CollectedColor Text="Հավաքագրված գույն:"/>
+          <Explode Text="Պայթելով բացում:">
+            <None Text="Ոչինչ"/>
+            <Biggest Text="Առավելագույն արժեք"/>
+            <Lowest Text="Նվազագույն արժեք"/>
+            <Specific Text="Հատուկ արժեք"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Արտաքին տեսք">
+          <Default Text="Ըստ լռության"/>
+          <DrawingStyle Text="Պատկերի տեսակ:"/>
+          <PointWidth Text="Կետի լայնություն:"/>
+          <LabelsStyle Text="Պիտակի տեսակ:"/>
+          <DrawSideBySide Text="Նկարել կողք կողքի"/>
+          <ShowMarkerLines Text="Ցույց տալ մարքերի գծերը"/>
+          <DoughnutRadius Text="Շրջանի շառավիղ (%):"/>
+          <AreaDrawingStyle Text="A"/>
+          <Markers Text="Մարկերներ:"/>
+          <PriceUpColor Text="Արժեքի աճի գույն:"/>
+          <ReversalAmount Text="Հակադարձ արժեք:"/>
+          <BoxSize Text="Եզրագծի չափեր:"/>
+          <NumberOfLinesInBreak Text="Կիսված տողեր:"/>
+          <LabelsPlacement Text="Պիտակների տեղադրում:"/>
+          <PointsGap Text="Կետերի միջեւ հեռավորություն:"/>
+          <MinPointHeight Text="Մինիմալ կետի բարձրությունը:"/>
+          <ValueType Text="Արժեքի տեսակը:"/>
+          <ThreeDDrawingStyle Text="3D նկարի տեսակը:"/>
+          <ThreeDRotation Text="3D պտույտ:"/>
+          <FunnelStyle Text="Funnel-ի տեսակը:"/>
+          <LineTension Text="Գծի խտություն:"/>
+          <NoSettings Text="Այս տեսակի համար յուրահատուկ պարամետրեր չկան:"/>
+        </Appearance>
+        <FillBorder Text="Եզրագծեր եւ գույներ">
+          <Palette Text="Պալիտրա:"/>
+        </FillBorder>
+        <Labels Text="Պիտակներ">
+          <LabelView Text="Պիտակային տեսք"/>
+          <Pattern Text="Նմուշ"/>
+        </Labels>
+        <Markers Text="Մարկերներ">
+          <Style Text="Սթայլ:"/>
+          <Size Text="Չափ:"/>
+          <Step Text="Քայլ:"/>
+          <Color Text="Գույն:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Պատկերասրահ">
+      <NewArea Text="Ավելացնել նոր գրաֆիկի տիրույթ այս խմբի համար"/>
+      <Categories>
+        <BarColumn Text="Ձող եւ սյունակ"/>
+        <Area Text="Տիրույթ"/>
+        <Line Text="Գիծ"/>
+        <PointBubble Text="Կետ եւ պղպջակ"/>
+        <Pie Text="Խնձոր"/>
+        <Circular Text="Շրջանաձեւ"/>
+        <Financial Text="Ֆինանսական"/>
+        <PyramidFunnel Text="Բուրգ եւ Ձագար"/>
+        <Range Text="Դիապազոն"/>
+      </Categories>
+      <Series>
+        <Bar Text="Բար"/>
+        <StackedBar Text="Լցված բար"/>
+        <StackedBar100 Text="100% լցված բար"/>
+        <Column Text="Սյունակային"/>
+        <StackedColumn Text="Լցված սյունակ"/>
+        <StackedColumn100 Text="100% լցված սյունակ"/>
+        <Area Text="Մակերես"/>
+        <SplineArea Text="Սփլայն մակերես"/>
+        <StackedArea Text="Լցված մակերես"/>
+        <StackedArea100 Text="100% լցված մակերես"/>
+        <Line Text="Գծային"/>
+        <FastLine Text="Արագ Գիծ"/>
+        <StepLine Text="Քայլով գիծ"/>
+        <Spline Text="Սպլայն"/>
+        <Bubble Text="Պղպջակ"/>
+        <Point Text="Կետ"/>
+        <FastPoint Text="Արագ կետային"/>
+        <Pie Text="Շրջան"/>
+        <Doughnut Text="Բլիթ"/>
+        <Polar Text="Բեւեռային"/>
+        <Radar Text="Ռադարային"/>
+        <Stock Text="ֆոնդային"/>
+        <Candlestick Text="Մոմակալ"/>
+        <Kagi Text="Կագի"/>
+        <Renko Text="Ռենկո"/>
+        <PointAndFigure Text="Կետ եւ "/>
+        <ThreeLineBreak Text="Եռակի գծերի անջատում"/>
+        <Pyramid Text="Բուրգ"/>
+        <Funnel Text="Ձագար"/>
+        <Range Text="Միջակայք"/>
+        <SplineRange Text="Սպլայն միջակայք"/>
+        <RangeColumn Text="Միջակայքի սյունակ"/>
+        <RangeBar Text="Միջակայքի "/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Կոդի էջ">
+      <EnableVirtualSpace Text="Միացնել վիրտուալ տարածքը"/>
+      <UseSpaces Text="Օգտագործել տարածքները թաբերը լցնելու համար"/>
+      <AllowOutlining Text="Թույլ տալ ուրվագծումը"/>
+      <LineNumbers Text="Գծի թվեր"/>
+      <TabSize Text="Թաբի չափս:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Band-երի կոնֆիգուրացիա">
+      <Add Text="Ավելացնել"/>
+      <Delete Text="Ջնջել"/>
+    </ConfigureBands>
+    <Connection Text="Կապ">
+      <Select Text="Ընտրել կապի տեսակը"/>
+      <AlwaysUse Text="Մշտապես օգտագործել այս կապը"/>
+      <LoginPrompt Text="Արագ մուտք"/>
+      <Test Text="Տեստավորել կապը"/>
+      <TestSuccesful Text="Տեստավորվող կապը հաստատված է:"/>
+    </Connection>
+    <CustomLabel Text="Ընդունված պիտակներ">
+      <Name Text="Անուն:"/>
+      <Paper Text="Թուղթ"/>
+      <Landscape Text="Հորիզոնական"/>
+      <PaperWidth Text="էջի լայնություն:"/>
+      <PaperHeight Text="Էջի բարձրություն:"/>
+      <LeftMargin Text="Ձախ լուսանցք:"/>
+      <TopMargin Text="Վերեւի լուսանցք:"/>
+      <Label Text="Պիտակի պարամետրեր"/>
+      <LabelWidth Text="Պիտակի լայնություն:"/>
+      <LabelHeight Text="Պիտակի բարձրություն:"/>
+      <RowGap Text="Շարքերի միջեւ հեռավորություն:"/>
+      <ColumnGap Text="Սյունակների միջեւ հեռավորություն"/>
+      <Warning Text="Պիտակները չեն տեղավորվում էջի մեջ:"/>
+    </CustomLabel>
+    <DataBandEditor Text="Խմբագրել տՎյալների Bandը">
+      <DataSource Text="Տվյալների աղբյուր"/>
+      <NoData Text="Տվյալների աղբյուրներ չկան:&#13;&#10;Տեղափոխվեք ՞Տվյալներ|Ընտրել Հաշվետվության տվյալները...՞ մենյուն, հասանելի տվյալների աղբյուրներից ընտրելու համար:"/>
+      <Sort Text="Դասավորություն"/>
+      <SortBy Text="Դասավորել ըստ"/>
+      <ThenBy Text="Այնուհետեւ ըստ"/>
+      <Ascending Text="Աճող"/>
+      <Descending Text="Նվազող"/>
+      <Filter Text="Ֆիլտր"/>
+      <Expression Text="Ֆիլտրի արտահայտություն:"/>
+    </DataBandEditor>
+    <DataWizard Text="Տվյալների Խորհրդատու">
+      <Page1 Text="Ընտրել տվյալների հենքը"/>
+      <WhichData Text="Որ տվյալների միացնումն է օգտագործվելու Ձեր հաշվետվության մեջ տվյալների հենքի հետ կապվելու համար:"/>
+      <Hint Text="Ընտրել տրված վերջինը օգտագործված կապերից, կամ սեղել ՞Նոր կապ...՞ ստեղնը նոր միացում ստեղծելու համար:"/>
+      <NewConnection Text="Նոր միացում..."/>
+      <EditConnection Text="Փոփոխել միացումը..."/>
+      <ConnectionName Text="Մուտքագրել միացման անունը:"/>
+      <ConnectionString Text="Կապի սթրինգ"/>
+      <Page2 Text="Ընտրել աղյուսկները"/>
+      <WhichTables Text="Ո՞ ր աղյուսակներն եք ցանկանում օգտագործել Ձեր հաշվետվության մեջ:"/>
+      <Wait Text="Վերականգնվում է տվյալների հենքի ինֆորմացիան"/>
+      <AddQuery Text="Ավելացնել SQL հարցում..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Դիալոգի ձեւ"/>
+    <Exception Text="Պատահար">
+      <Hint Text="Ձեր հաշվետվությունը տվել է հետեւյալ պատահարը:"/>
+      <Stack Text="Ստեկի պարունակություն:"/>
+      <Copy Text="Հիշել "/>
+    </Exception>
+    <ExpressionEditor Text="Փոփոխել բանաձեւը"/>
+    <Fill Text="Ֆոնի փոփոխություններ">
+      <Solid Text="Հոծ"/>
+      <LinearGradient Text="Գծային գրադիենտ"/>
+      <PathGradient Text="Path  գրադիենտ"/>
+      <Hatch Text="Ստվերագծել"/>
+      <Glass Text="Ապակի"/>
+      <Colors Text="Գույներ"/>
+      <Color Text="Գույն"/>
+      <StartColor Text="Սկիզբ"/>
+      <EndColor Text="Ավարտ"/>
+      <Options Text="Պարամետրեր"/>
+      <Focus Text="Ֆոկուս"/>
+      <Contrast Text="Կոնտրաստ"/>
+      <Angle Text="Անկյուն"/>
+      <CenterColor Text="Մեջտեղում"/>
+      <EdgeColor Text="Ծայրում"/>
+      <Shape Text="Պատկեր"/>
+      <Ellipse Text="էլիպս"/>
+      <Rectangle Text="Եռանկյունի"/>
+      <ForeColor Text="Դիմացի "/>
+      <BackColor Text="Հետեւի"/>
+      <Style Text="Սթայլ"/>
+      <Blend Text="Միացում"/>
+      <GlassHatch Text="Ցուցադրել նրբագիծը"/>
+    </Fill>
+    <FormatEditor Text="Ընտրել ֆորմատը">
+      <Expression Text="Արտահայտություն"/>
+      <General Text="Հիմնական"/>
+      <Number Text="Քանակ"/>
+      <Currency Text="Տարադրամ"/>
+      <Date Text="Ամսաթիվ"/>
+      <Time Text="Ժամ"/>
+      <Percent Text="Տոկոս"/>
+      <Boolean Text="Բուլյան"/>
+      <Custom Text="Ընդունված"/>
+      <UseLocale Text="Օգտագործել տեղային պարամետրեր"/>
+      <DecimalDigits Text="Տասնորդական թվանիշեր:"/>
+      <DecimalSeparator Text="Տասնորդական անջատիչ նշան"/>
+      <GroupSeparator Text="Խմբային անջատիչ նշան"/>
+      <PositivePattern Text="Դրական օրինակ:"/>
+      <NegativePattern Text="Բացասական օրինակ:"/>
+      <CurrencySymbol Text="Տարադրամի նշան:"/>
+      <PercentSymbol Text="Տոկոսի նշանը:"/>
+      <FalseText Text="Սխալ արժեքի տեքստ:"/>
+      <TrueText Text="Ճշգրիտ արժեքի տեքստ:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Փոփոխել սյունակները">
+      <Columns Text="Սյունակներ"/>
+      <Properties Text="Պարամետրեր"/>
+      <Add Text="Ավելացնել"/>
+      <Remove Text="Ջնջել"/>
+      <AddAll Text="Ավելացնել ամբողջը"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Խմբագրել խումբը">
+      <Condition Text="Խմբի պայման"/>
+      <Hint Text="Ընտրել տվյալների սյունակ կամ նշել արտահայտություն:"/>
+      <Settings Text="Պարամետրեր"/>
+      <Sort Text="Դասակարգել:"/>
+      <NoSort Text="Չդասակարգել"/>
+      <Ascending Text="Աճող"/>
+      <Descending Text="Նվազող"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Խմբի էքսպերտ">
+      <Condition Text="Խմբի պայման"/>
+      <Hint Text="Նշել տվյալների այունակ կամ մուտքագրել արտահայտությն, այնուհետեւ սեղմել ՞Ավելացնել՞ ստեղնը՝ նոր խումբ ավելացնելու նպատակով"/>
+      <Add Text="Ավելացնել"/>
+      <Groups Text="Խմբեր"/>
+      <Edit Text="Փոփոխել..."/>
+      <Delete Text="Ջնջել"/>
+    </GroupExpert>
+    <HighlightEditor Text="Ընդգծման պայմաններ ">
+      <Conditions Text="Պայմաններ"/>
+      <Add Text="Ավելացնել"/>
+      <Delete Text="Ջնջել"/>
+      <Edit Text="Փոփոխել"/>
+      <Style Text="Ձեւ"/>
+      <Fill Text="Ֆոն"/>
+      <TextColor Text="Տեքստի գույն"/>
+      <Font Text="Ֆոնտ"/>
+      <Visible Text="Տեսանելի"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Խմբագրել հղումը">
+      <Url Text="URL"/>
+      <PageNumber Text="Էջի համար"/>
+      <Bookmark Text="Էջանիշ"/>
+      <Report Text="Հաշվետվություն"/>
+      <ReportPage Text="Հաշվետվության էջ"/>
+      <Custom Text="Ընդունված"/>
+      <UrlValue Text="Նշել URL (օրինակ, http://www.url.com)"/>
+      <UrlExpression Text="կամ նշել այն արտահայտությունը, որը կբերի URL-ը:"/>
+      <PageNumberValue Text="Նշել էջի համար:"/>
+      <PageNumberExpression Text="կամ մուտքագրել այն արտահայտությունը, որը բերում է էջի համարը"/>
+      <BookmarkValue Text="Նշել էջանիշի անունը:"/>
+      <BookmarkExpression Text="կամ մուտքագրել այն արտահայտությունը, որը կբերի էջանիշի անունը:"/>
+      <ReportName Text="Հաշվետվության անունը:"/>
+      <ParameterName Text="Հաշվետվության պարամետր:"/>
+      <ParameterValue Text="Նշել պարամետրի արժեք:"/>
+      <ParameterExpression Text="կամ մուտքագրեք այն արտահայտությունը, որը կբերի պարամետրի արժեքը"/>
+      <PageName Text="Հաշվետվության էջ:"/>
+      <CustomValue Text="Նշել հղման արժեք:"/>
+      <CustomExpression Text="կամ մուտքագրել այն արտահայտությունը, որը կբերի արժեք:"/>
+      <Hint Text="Ինչ կստացվի դիտման պատուհանում այս օբյեկտի վրա սեղմելիս"/>
+      <HintUrl Text="Նշված URL-ը կբացվի:"/>
+      <HintPageNumber Text="Դուք կուղղորդվեք նշված էջ:"/>
+      <HintBookmark Text="Դուք կուղղորդվեք այն օբյեկտի վրա, որը պարունակում է նշված էջանիշը:"/>
+      <HintReport Text="Նշված հաշվետվությունը կբացվի առանձին դիտման թաբում:"/>
+      <HintReportPage Text="Նշված էջը կգեներացվի եւ կբացվի առանձին դիտման թաբում:"/>
+      <HintCustom Text="Անհրաժեշտ է ստեղծել ՞click՞ event handler ընդունված գործողությունը սահմանելու համար:"/>
+      <ModifyAppearance Text="Ձեւափոխել օբյեկտի տեսքը, որպեսզի այն դառնա սեղմման ենթակա հղում"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Պիտակի ">
+      <Hint Text="Ընտրել նախապես նշված նշ"/>
+      <Label Text="Պիտակ"/>
+      <Manufacturer Text="Արտադրող:"/>
+      <Product Text="Արտադրանք:"/>
+      <Parameters Text="Պարամետրեր"/>
+      <Size Text="Չափս:"/>
+      <PaperSize Text="Էջի չափս:"/>
+      <Rows Text="Շարք:"/>
+      <Columns Text="Սյունակներ:"/>
+      <CustomLabel Text="Ընդունվաշ նշանակում"/>
+      <Custom Text="Ընդունված"/>
+      <Delete Text="Ջնջել"/>
+      <Manufacturers>
+        <Manufacturer0 Text="AE"/>
+        <Manufacturer1 Text="Agipa"/>
+        <Manufacturer2 Text="AOne"/>
+        <Manufacturer3 Text="APLI"/>
+        <Manufacturer4 Text="Avery (A4, A5)"/>
+        <Manufacturer5 Text="Avery (ստանդարտ)"/>
+        <Manufacturer6 Text="Boeder"/>
+        <Manufacturer7 Text="Devauzet"/>
+        <Manufacturer8 Text="Durable"/>
+        <Manufacturer9 Text="ERO"/>
+        <Manufacturer10 Text="&#13;&#10;Formtec"/>
+        <Manufacturer11 Text="Guilbert"/>
+        <Manufacturer12 Text="Herlitz"/>
+        <Manufacturer13 Text="Herma"/>
+        <Manufacturer14 Text="Hisago"/>
+        <Manufacturer15 Text="HP"/>
+        <Manufacturer16 Text="Inmac"/>
+        <Manufacturer17 Text="Kokuyo"/>
+        <Manufacturer18 Text="Leitz"/>
+        <Manufacturer19 Text="MACO/Wilson Jones"/>
+        <Manufacturer20 Text="&#13;&#10;MACtac"/>
+        <Manufacturer21 Text="May+Spies"/>
+        <Manufacturer22 Text="Pimaco"/>
+        <Manufacturer23 Text="RAJA ES"/>
+        <Manufacturer24 Text="Rank Xerox"/>
+        <Manufacturer25 Text="Sigel"/>
+        <Manufacturer26 Text="Stralfors"/>
+        <Manufacturer27 Text="&#13;&#10;UNISTAT"/>
+        <Manufacturer28 Text="Zweckform"/>
+      </Manufacturers>
+      <Labels>
+        <Label0 Text="Հասցե"/>
+        <Label1 Text="Բազմակի օգտագործում"/>
+        <Label2 Text="Copilaser"/>
+        <Label3 Text="Լազեր"/>
+        <Label4 Text="Հատուկ Լազեր"/>
+        <Label5 Text="Inkjet+Laser"/>
+        <Label6 Text="Burotic"/>
+        <Label7 Text="Ակումբային քարտ"/>
+        <Label8 Text="Բիզնես քարտ"/>
+        <Label9 Text="Մեդիա"/>
+        <Label10 Text="Դիսկետ"/>
+        <Label11 Text="Վիդեո  Spine"/>
+        <Label12 Text="Վիդեո Face"/>
+        <Label13 Text="Ֆայլ թղթապանակ"/>
+        <Label14 Text="Փոստքարդ"/>
+        <Label15 Text="Անվան Նշան"/>
+        <Label16 Text="Տիպ"/>
+        <Label17 Text="Քարտ"/>
+        <Label18 Text="Փոխադրում"/>
+        <Label19 Text="Ծանրոց"/>
+        <Label20 Text="Ինդեքս Քարտ"/>
+        <Label21 Text="CD ROM"/>
+        <Label22 Text="35mm Սլայդ"/>
+        <Label23 Text="Աուդիո Երիզ"/>
+        <Label24 Text="Տվյալների Քարտրիջ"/>
+        <Label25 Text="Արժեքի նշում"/>
+        <Label26 Text="Նշանակում"/>
+        <Label27 Text="3.5&quot; սկավառակ (Face Only)"/>
+        <Label28 Text="Մինի Պիտակ -  Full bleed"/>
+        <Label29 Text="Ուղղանկյուն Sticker"/>
+        <Label30 Text="Քառակուսի Sticker"/>
+        <Label31 Text="Փոքր կլոր Sticker"/>
+        <Label32 Text="Մեծ կլոր Sticker&#13;&#10;"/>
+        <Label33 Text="Ամբողջ էջի Sticker"/>
+        <Label34 Text="Մինի պիտակ"/>
+        <Label35 Text="Ֆոտոի որակի պիտակ (4 յուրաքանչյուր էջին)"/>
+        <Label36 Text="Ֆոտո որակի Gloss Postcards"/>
+        <Label37 Text="Ֆոտո որակի Gloss Բիզնես քարտեր"/>
+        <Label38 Text="Ֆոտո որակի Card Sheet"/>
+        <Label39 Text="Full Face CD/DVD PQ Label"/>
+        <Label40 Text="3.5&quot; սկավառակ- Face Only"/>
+        <Label41 Text="Lever Arch"/>
+        <Label42 Text="Պիտակներ գունավոր տպելու համար - առաքում"/>
+        <Label43 Text="Clean Edge (TM) Business Card"/>
+        <Label44 Text="Անվան քարտ"/>
+        <Label45 Text="CD Case Insert - Cover"/>
+        <Label46 Text="CD Ծրար"/>
+        <Label47 Text="Մինի պիտակներ"/>
+        <Label48 Text="Էլաստիկացված թղթապանակ/ ֆայլ պիտակներ"/>
+        <Label49 Text="Ring Binder"/>
+        <Label50 Text="Fluorescent Yellow Promotional Labels"/>
+        <Label51 Text="IndexMaker Labels"/>
+        <Label52 Text="IndexMaker Contents"/>
+        <Label53 Text="ReadyIndex"/>
+        <Label54 Text="Մինի&#13;&#10;"/>
+        <Label55 Text="Ամբողջ էջի պիտակներ&#13;&#10;"/>
+        <Label56 Text="A5 Պիտակներ"/>
+        <Label57 Text="Շրջանաձեւ"/>
+        <Label58 Text="5.25&quot; սկավառակ "/>
+        <Label59 Text="3.5&quot; սկավառակ (Wraparound)"/>
+        <Label60 Text="Mini Data Cartridge Labels"/>
+        <Label61 Text="Ստանդարտ Տվյալների Քարտրիջ"/>
+        <Label62 Text="Պիտակներ  Zip(TM) Դիսկի համար"/>
+        <Label63 Text="Labels for SuperDisk (TM)"/>
+        <Label64 Text="Circular Fluorescent Yellow Promotional Labels"/>
+        <Label65 Text="4mm Data Cartridge"/>
+        <Label66 Text="Ոսկե մինի պիտակներ"/>
+        <Label67 Text="&#13;&#10;"/>
+        <Label68 Text="Addressing"/>
+        <Label69 Text="Հասցե/առաքում"/>
+        <Label70 Text="Ֆայլավորել"/>
+        <Label71 Text="3.5&quot; սկավառակ"/>
+        <Label72 Text="Embossed Note Cards"/>
+        <Label73 Text="Embossed Half-Fold Cards"/>
+        <Label74 Text="Postcards"/>
+        <Label75 Text="Half-Fold Greeting Cards"/>
+        <Label76 Text="Mailing Labels"/>
+        <Label77 Text="Հետդարձի հասցե"/>
+        <Label78 Text="Ֆայլ անելու պիտակներ"/>
+        <Label79 Text="Բարձր տեսանելիությամբ կլոր պիտակներ"/>
+        <Label80 Text="Medium Embossed Tent Cards"/>
+        <Label81 Text="&#13;&#10;Large Embossed Tent Cards"/>
+        <Label82 Text="Նշումների քարտեր"/>
+        <Label83 Text="Լամինացված ID քարտեր"/>
+        <Label84 Text="Լամինացված Name Badges"/>
+        <Label85 Text="Բիզնես քարտեր"/>
+        <Label86 Text="Name Tag Kit"/>
+        <Label87 Text="Small Rotary Cards"/>
+        <Label88 Text="Large Rotary Cards"/>
+        <Label89 Text="&#13;&#10;Index Cards"/>
+        <Label90 Text="Name Badges Insert Refills "/>
+        <Label91 Text="Self Adhesive Name Badges"/>
+        <Label92 Text="White Address"/>
+        <Label93 Text="Clear Address"/>
+        <Label94 Text="Removable ID Labels"/>
+        <Label95 Text="Removable Filing Labels"/>
+        <Label96 Text="Հետդարձի հասցեի պիտակներ"/>
+        <Label97 Text="Շարժական  3 1/2&quot; սկավառակի պիտակներ"/>
+        <Label98 Text="Գունավոր տպագրության պիտակներ"/>
+        <Label99 Text="Glossy Business Cards"/>
+        <Label100 Text="Glossy Postcards"/>
+        <Label101 Text="Ամբողջական էջ"/>
+        <Label102 Text="Բար Կոդ"/>
+        <Label103 Text="Լազեր Թեգ"/>
+        <Label104 Text="InkJet"/>
+        <Label105 Text="8mm Վիդեո երիզ"/>
+        <Label106 Text="Rotary Card"/>
+        <Label107 Text="Ընդարձակ չափս"/>
+        <Label108 Text="Ամբողջական չափս"/>
+        <Label109 Text="Միջին չափ"/>
+        <Label110 Text="1 x 1 1/2 in"/>
+        <Label111 Text="1 x 4 in"/>
+        <Label112 Text="1 7/16 x 4 in"/>
+        <Label113 Text="2 x 4 in"/>
+        <Label114 Text="2 1/2 x 4 in"/>
+        <Label115 Text="3 1/3 x 4 in"/>
+        <Label116 Text="&#13;&#10;5 x 4 in"/>
+        <Label117 Text="5 1/2 x 8 1/2 in"/>
+        <Label118 Text="CD պիտակ"/>
+        <Label119 Text="1 x 2 5/6 in"/>
+        <Label120 Text="3/4 x 3 1/2 in"/>
+        <Label121 Text="1 1/16 x 4 1/4 in"/>
+        <Label122 Text="1 9/16 x 4 1/4 in"/>
+        <Label123 Text="2 3/4 x 4 1/4 in"/>
+        <Label124 Text="3 2/3 x 4 1/4 in"/>
+        <Label125 Text="5 1/2 x 4 1/4 in"/>
+        <Label126 Text="3 1/2 x 8 1/2 in"/>
+        <Label127 Text="11 x 8 1/2 in"/>
+        <Label128 Text="3x11 Հասցե"/>
+        <Label129 Text="3x12 Հասցե"/>
+        <Label130 Text="InkJet+Laser, սլաքներ"/>
+        <Label131 Text="InkJet+Laser, շրջաններ"/>
+        <Label132 Text="InkJet+Laser"/>
+        <Label133 Text="InkJet+Laser, կարմիր"/>
+        <Label134 Text="InkJet+Laser, կապույտ"/>
+        <Label135 Text="InkJet+Laser, կանաչ"/>
+        <Label136 Text="InkJet+Laser, դեղին"/>
+        <Label137 Text="Ֆայլի պիտակներ, լայն"/>
+        <Label138 Text="Ֆայլի պիտակներ, նեղ"/>
+        <Label139 Text="InkJet+Laser, Slide labels"/>
+        <Label140 Text="InkJet+Laser, Tab labels"/>
+        <Label141 Text="Լազեր, կլոր պիտակներ, դեղին"/>
+        <Label142 Text="InkJet+Laser, Դիսկի պիտակներ"/>
+        <Label143 Text="InkJet+Laser, Վիդեո պիտակներ"/>
+        <Label144 Text="InkJet+Laser, Ձայներիզային պիտակներ"/>
+        <Label145 Text="Լազեր, թափանցիկ (ֆիլմ)"/>
+        <Label146 Text="Լազեր, եղանակից պատշտպանված (ֆիլմ)"/>
+        <Label147 Text="Լանդսքեյփ- Հասցե"/>
+        <Label148 Text="լանդսքեյփ - ֆայլի թղթապանակ"/>
+        <Label149 Text="landscape - Laser Tag"/>
+      </Labels>
+    </LabelWizard>
+    <MapEditor Text="Խմբագրել քարտեզը">
+      <Map Text="Քարտեզ"/>
+      <Layer Text="Մակարդակ"/>
+      <Add Text="Ավելացնել..."/>
+      <Delete Text="Ջնջել"/>
+      <Hint Text="Սեղմեք որեւէ կետի՝ պարամետրերը փոփոխելու նպատակով:"/>
+      <Common>
+        <FillColor Text="Ֆոնի գույն:"/>
+        <TextColor Text="Տեքստի գույն:"/>
+        <BorderColor Text="Եզրագծի գույն:"/>
+        <BorderStyle Text="Եզրագծի ձեւ:"/>
+        <BorderWidth Text="Եզրագծի լայնություն:"/>
+        <Text Text="Տեքստ:"/>
+        <Font Text="Ֆոնտ"/>
+        <Dock Text="Համապատասխանում:"/>
+        <Format Text="Ֆորմատ:"/>
+        <Visible Text="Տեսանելի"/>
+        <NumberOfRanges Text="Միջակայքերի թիվը:"/>
+        <Start Text="Սկիզբ:"/>
+        <End Text="Վերջ:"/>
+        <Auto Text="Ավտոմատ"/>
+      </Common>
+      <MapEditorControl>
+        <General Text="Հիմանական">
+          <Mercator Text="Mercator պրոեկցիա"/>
+        </General>
+        <ColorScale Text="Գույնի գամմա">
+          <HideIfNoData Text="Թաքցնել, եթե տվյալներ չկան"/>
+          <Border Text="Եզրագիծ..."/>
+          <Fill Text="Ֆոն..."/>
+          <General Text="Հիմնական"/>
+          <Title Text="Վերնագիր"/>
+          <Values Text="Արժեքներ"/>
+          <NoDataText Text="Տվյալների տեքստ չկա:"/>
+          <NoData Text="Տվյալներ չկան"/>
+        </ColorScale>
+      </MapEditorControl>
+      <LayerEditorControl>
+        <Data Text="ՏՎվյալներ">
+          <DataSource Text="Տվյալների աղբյուր:"/>
+          <Filter Text="Ֆիլտր:"/>
+          <SpatialData Text="Տարածական տվյալներ:"/>
+          <Column Text="Սյունակ:"/>
+          <Value Text="Արժեք:"/>
+          <Latitude Text="Լայնություն:"/>
+          <Longitude Text="Երկայնություն:"/>
+          <Label Text="Պիտակ:"/>
+          <AnalyticalData Text="Անալիտիկ տվյալներ:"/>
+          <Function Text="Ֆունկցիա:"/>
+          <ZoomPolygon Text="Պոլիգոնի չափեր"/>
+        </Data>
+        <Appearance Text="Արտաքին տեսք">
+          <Palette Text="Պալիտրա:"/>
+        </Appearance>
+        <ColorScale Text="Գունային սանդղակ">
+          <StartColor Text="Սկզբնական գույն:"/>
+          <MiddleColor Text="Միջանկյալ գույն:"/>
+          <EndColor Text="Ավարտի գույն:"/>
+          <Color Text="Գույն:"/>
+        </ColorScale>
+        <SizeRanges Text="Չափսեր">
+          <StartSize Text="Սկզբնական չափս:"/>
+          <EndSize Text="Ավարտի չափս:"/>
+          <Size Text="Չափս:"/>
+        </SizeRanges>
+        <Labels Text="Նշանակումներ">
+          <LabelKind Text="Նշանակման տեսակ:"/>
+          <None Text="Դատարկ"/>
+          <Name Text="Անուն"/>
+          <Value Text="Արժեք"/>
+          <NameAndValue Text="Անուն եւ արժեք"/>
+          <LabelColumn Text="Նշանակման սյունակ:"/>
+          <VisibleAtZoom Text="Տեսանելի չափս"/>
+        </Labels>
+      </LayerEditorControl>
+    </MapEditor>
+    <PageSetup Text="Էջի պարամետրեր">
+      <Paper Text="Թուղթ"/>
+      <Custom Text="Ընտրված"/>
+      <Width Text="Լայնություն:"/>
+      <Height Text="Բարձրություն:"/>
+      <Orientation Text="Ձեւ"/>
+      <Portrait Text="Ուղղահայաց"/>
+      <Landscape Text="Հորիզոնական"/>
+      <Margins Text="Լուսանցքներ"/>
+      <Left Text="Ձախ:"/>
+      <Top Text="Վերեւ:"/>
+      <Right Text="Աջ:"/>
+      <Bottom Text="Ներքեւ:"/>
+      <MirrorMargins Text="Միանման լուսանցքներ զույգ էջերի համար"/>
+      <Source Text="Աղբյուր"/>
+      <FirstPage Text="Առաջին էջ:"/>
+      <OtherPages Text="Այլ էջեր:"/>
+      <Columns Text="Սյունակներ"/>
+      <Count Text="Քանակ:"/>
+      <ColumnWidth Text="Լայնություն:"/>
+      <Positions Text="Դիրքեր:"/>
+      <Other Text="Այլ"/>
+      <Duplex Text="Դուպլեքս:"/>
+      <DupDefault Text="Ըստ լռության"/>
+      <DupSimplex Text="Սիմպլեքս"/>
+      <DupVertical Text="Ուղղահայաց"/>
+      <DupHorizontal Text="Հորիզոնական"/>
+      <EditWatermark Text="Փոփոխել ջրանիշը..."/>
+      <ExtraWidth Text="Հավելյալ դիզայնի լայնություն"/>
+    </PageSetup>
+    <PictureEditor Text="Խմբագրել նկար">
+      <Picture Text="Նկար"/>
+      <Load Text="Բեռնել"/>
+      <Paste Text="Տեղադրել"/>
+      <Clear Text="Մաքրել"/>
+      <DataColumn Text="Տվյալների սյունակ"/>
+      <FileName Text="Ֆայլի անուն"/>
+      <Url Text="Հղում"/>
+      <FileHint1 Text="Ֆայլի անուն:"/>
+      <FileHint2 Text="Հիշեցում: դուք պետք է տեղակայել այս ֆայլը Ձեր հաշվետվության մեջ:"/>
+      <UrlHint Text="Հղում:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Plugins">
+      <Hint Text="Տեղադրված FastReport  plugin-ների ցուցակ:"/>
+      <Add Text="Ավելացնել"/>
+      <Remove Text="Հանել"/>
+      <Note Text="Հիշեցում: կատարված փոփոխությունները կիրականացվեն FastReport-ի վերաբեռնավորումից հետո:"/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Կիրառել բոլոր էջերի համար եւ վերակառուցել հաշվետվությունը"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Որոնել"/>
+    <PrinterSetup Text="Տպիչ">
+      <PrinterSetup Text="Տպիչի պարամետրեր"/>
+      <Printer Text="Տպիչ"/>
+      <SavePrinter Text="Պահպանել այս տպիչը հաշվետվության ֆայլի մեջ"/>
+      <Settings Text="Պարամետրեր..."/>
+      <PrintToFile Text="Տպել որպես ֆայլ"/>
+      <PageRange Text="Էջի քանակ"/>
+      <All Text="Ամբողջը"/>
+      <Current Text="Տվյալ էջը"/>
+      <Numbers Text="Էջերը:"/>
+      <Hint Text="Մուտքագրեք էջի համարը եւ/կամ իրար հաջորդող էջերի միջակայքը, իրարից անջատելով ստորակետներով: Օրինակ, 1,3,5-12"/>
+      <Copies Text="Պատճեներ"/>
+      <Count Text="Քանակ:"/>
+      <Collate Text="Բաղդատել"/>
+      <Other Text="Այլ"/>
+      <OddEven Text="Տպել:"/>
+      <AllPages Text="Բոլոր էջերը"/>
+      <OddPages Text="Կենտ էջերը"/>
+      <EvenPages Text="Զույգ էջերը"/>
+      <Order Text="Հերթականությունը:"/>
+      <OrderDirect Text="Ուղիղ (1-9)"/>
+      <OrderReverse Text="Հակառակ (9-1)"/>
+      <Duplex Text="Դուպլեքս:"/>
+      <Source Text="Աղբյուր:"/>
+      <PrintMode Text="Տպելու տեսակ"/>
+      <PrintModeDefault Text="Ըստ լռության"/>
+      <PrintModeSplit Text="Կիսել մեծ էջերը"/>
+      <PrintModeScale Text="Հարմարեցնել"/>
+      <PrintOnSheet Text="Տպել այս էջին:"/>
+      <PagesOnSheet Text="Մեկ թղթի վրայի էջերի քանակը"/>
+      <PagesOnSheet1 Text="1 էջ"/>
+      <PagesOnSheet2 Text="2 էջ"/>
+      <PagesOnSheet4 Text="4 էջ"/>
+      <PagesOnSheet8 Text="8 էջ"/>
+      <Print Text="Տպել"/>
+      <Error Text="Իրար հաջորդող էջերի սխալ միջակայք"/>
+    </PrinterSetup>
+    <QueryBuilder Text="Հարցում կառուցող">
+      <Designer Text="Դիզայներ"/>
+      <Sql Text="SQL"/>
+      <Result Text="Արդյունք"/>
+      <Select Text="Ընտրել"/>
+      <Joins Text="Միացնել"/>
+      <Group Text="Խումբ"/>
+      <Name Text="Անուն"/>
+      <Alias Text="Կեղծանուն"/>
+      <Filter Text="Ֆիլտր"/>
+      <Order Text="Հերթականություն"/>
+      <Func Text="Ֆունցկիա"/>
+      <Editor Text="Խմբագիր"/>
+      <Delete Text="Ջնջել"/>
+      <Change Text="Փոփոխել"/>
+      <JoinEditor Text="Կապերի խմբագիր"/>
+      <Tables Text="Աղյուսակներ:"/>
+      <Condition Text="Պայմաններ"/>
+      <InputAlias Text="Մուտքագրեք կեղծանուն աղյուսակի համար:"/>
+      <Where>
+        <Equal Text="Հավասար"/>
+        <NotEqual Text="Ոչ հավասար"/>
+        <GtOrEqual Text="Մեծ կամ հավասար"/>
+        <Gt Text="Մեծ քան"/>
+        <LtOrEqual Text="Փոքր կամ հավասար"/>
+        <Lt Text="Փոքր քան"/>
+        <Like Text="Նման"/>
+        <NotLike Text="Տարբեր"/>
+      </Where>
+    </QueryBuilder>
+    <QueryWizard Text="Հարցման օգնական">
+      <Page1 Text="Նշել անունը"/>
+      <SetName Text="Նշել հարցման օբյեկտի անունը:"/>
+      <NameHint Text="Այս անունը կցուցադրվի Տվյալներ պատուհանում:"/>
+      <Page2 Text="Մուտքագրել SQL հայտարարում"/>
+      <WhatData Text="Ի ՞նչ տվյալներ պետք է առաջ բերի հարցումը:"/>
+      <TypeSql Text="Նշեք ՁԵր SQL հայտարարումը կամ օգտագործեք Հարցում Կառուցող այն ստեղծելու համար:"/>
+      <QueryBuilder Text="Հարցում Կառուցող..."/>
+      <Page3 Text="Նշել պարամետրերը"/>
+      <Page4 Text="Նշել սյունակները"/>
+      <Refresh Text="Թարմացնել սյունակները"/>
+      <AddColumn Text="Ավելացնել հաշվարկվաշ սյունակ"/>
+      <AddParameter Text="Ավելացնել պարամետր"/>
+      <Delete Text="Ջնջել"/>
+    </QueryWizard>
+    <RelationEditor Text="Խմբագրել կապը">
+      <ParentTable Text="Հիմնական աղյուսակ:"/>
+      <ChildTable Text="Երկրորդական աղյուսակ:"/>
+      <Parent Text="Սկզբնական"/>
+      <Child Text="Երկրորդական"/>
+      <Columns Text="Սյունակներ:"/>
+      <Error Text="Հիմնական եւ երկրորդական սյունակների քանակի անհամապատասխանություն"/>
+    </RelationEditor>
+    <ReportData Text="Ընտրել հաշվետվության տվյալները">
+      <Hint Text="Նշել տվյալների այն աղբյուներն ու դաշտերը, որոնք ցանկանում եք օգտագործել հաշվետվության մեջ"/>
+      <Aliases Text="Ցույց տալ կեղծանունները"/>
+    </ReportData>
+    <ReportOptions Text="Հաշվետվության պարամետրեր">
+      <General Text="Հիմնական"/>
+      <Description Text="Նկարագրություն"/>
+      <Script Text="Սկրիպտ"/>
+      <Security Text="Անվտանգություն"/>
+      <Inheritance Text="Ժառանգություն"/>
+      <Email Text="Էլ-փոստ"/>
+      <Name Text="Անուն:"/>
+      <Author Text="Հեղինակ:"/>
+      <Version Text="Տարբերակ:"/>
+      <Description1 Text="Նկարագրություն:"/>
+      <Picture Text="Նկար:"/>
+      <SavePreviewPicture Text="Պահպանել նկարի ցուցադրումը"/>
+      <Load Text="Բեռնել..."/>
+      <Clear Text="Մաքրել"/>
+      <Created Text="Ստեղծված:"/>
+      <Modified Text="Փոփոխված:"/>
+      <Language Text="Սկրիպտի լեզուն:"/>
+      <Note Text="Հիշեցում: եթե փոփոխվել է լեզուն, սկրիպտը կմաքրվի:"/>
+      <RefAssemblies Text="Հղված գրադարաններ:"/>
+      <Add Text="Ավելացնել..."/>
+      <Password Text="Ծածկագիր:"/>
+      <RetypePassword Text="Կրկնել ծածկագիրը:"/>
+      <Inherited Text="Այս հաշվետվությունը վերցված է հիմնական հաշվետվությունից:"/>
+      <NotInherited Text="Այս հաշվետվությունը վերցված չի:"/>
+      <Choose Text="Ընտրել պարամետր:"/>
+      <DontChange Text="Չփոփոխել"/>
+      <Detach Text="Անջատել բազային հաշվետվությունը"/>
+      <Inherit Text="Վերցնել հաշվետվությունն այստեղից:"/>
+      <Browse Text="Որոնել..."/>
+      <DoublePass Text="Երկակի անցագիր"/>
+      <Compress Text="Սեղմել հաշվետվության ֆայլը"/>
+      <UseFileCache Text="Օգտագործել cache ֆայլը"/>
+      <ConvertNulls Text="Կոնվերտացնել զրոները որպես արժեքներ"/>
+      <TextQuality Text="Տեքստի որակ:"/>
+      <SmoothGraphics Text="Հարթեցված գրաֆիկներ"/>
+      <QualityDefault Text="Ըստ լռության"/>
+      <QualityRegular Text="Սովորական"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Ծածկագրերը չեն համընկնում: Խնդրում եմ, նորից հավաքել:"/>
+      <Recipients Text="Ստացողնել (օրինակ, john@url.com)"/>
+      <Subject Text="Թեմա"/>
+      <Message Text="Հաղորդագրություն:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Հաշվետվության էջ">
+      <Units Text="Էջի միավորներ"/>
+      <Millimeters Text="Միլիմետր"/>
+      <Centimeters Text="Սանտիմետր"/>
+      <Inches Text="Մատնաչափ"/>
+      <HundrethsOfInch Text="մատնաչափի հարուրերորդը"/>
+      <Grid Text="Գրիդ"/>
+      <ShowGrid Text="Ցույց տալ գրիդը"/>
+      <SnapToGrid Text="Համապատասխանեցնել գրիդին"/>
+      <DottedGrid Text="Կետային գրիդ"/>
+      <Size Text="Համապատասխանեցնել չափը:"/>
+      <Markers Text="Օբյեկտների մարկերներ"/>
+      <Rectangle Text="Եռանկյունի"/>
+      <Corners Text="Անկյուններ"/>
+      <BandView Text="Band-ի դիտման ձեւ"/>
+      <Structure Text="Կառուցվածքային"/>
+      <Classic Text="Կլասիկ"/>
+      <EditAfterInsert Text="Փոփոխել ներդնելուց հետո"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="RichText խմբագրում">
+      <Open Text="Բացել"/>
+      <Save Text="Պահպանել"/>
+      <Subscript Text="Ենթասկրիպտ"/>
+      <Superscript Text="Սուպեր սկրիպտ"/>
+      <Bullets Text="Կետանշաններ"/>
+      <Confirm Text="Տեքստը ենթարկվել է փոփոխության: Պահպանե ՞լ փոփոխությո?ւնը:"/>
+    </RichTextEditor>
+    <SearchReplace Text="Որոնել եւ փոխարինել">
+      <Find Text="Ինչ որոնել:"/>
+      <Replace Text="Փոխարինել հետեւյալով:"/>
+      <Options Text="Որոնման տարբերակներ"/>
+      <MatchCase Text="Համապատասխանեցված"/>
+      <MatchWholeWord Text="Ամբողջական բառի համապատասխանեցում"/>
+      <FindNext Text="Որոնել հաջորդը"/>
+      <ReplaceBtn Text="Փոխարինել"/>
+      <ReplaceAll Text="Փոխարինել ամբողջը"/>
+      <NotFound Text="Որոնված տեքստը չի գտնվել:"/>
+      <NoMoreFound Text="Այլ համապատասխան տվյալներ չեն գտնվել:"/>
+    </SearchReplace>
+    <SelectDataSource Text="Ընտրել տվյլաների աղբյուրը">
+      <Hint Text="ԸՆտրել մեկ կամ մի քանի տվյլաների աղբյուրներ&#13;&#10;այս հաշվետվության մեջ օգտագործելու համար"/>
+      <AvailableDs Text="Առկա տվյալների աղբյուրներ:"/>
+      <SelectedDs Text="Ընտրված տվյալների աղբյուրները:"/>
+      <ProjectDs Text="Պրոյեկտի տվյալների շտեմարաններ"/>
+      <OtherDs Text="Այլ տվյալների աղբյուրներ"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Լեզվի ընտրություն">
+      <SelectLanguage Text="Ընտրել լեզուն տրված ցուցակից:"/>
+      <Auto Text="Ավտոմատ"/>
+      <Folder Text="Լեզվի ֆայլերի թղթապանակ"/>
+      <SelectFolder Text="ԸՆտրել թղթապանակը, որը պարունակում է լեզուների ֆայլեր (*.frl)"/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Ստանդարտ հաշվետվության ուղեցույց">
+      <GroupsPage Text="Ստեղծել խմբեր"/>
+      <CreateGroups Text="Ստեղծել խումբ (ոչ պարտադիր):"/>
+      <Groups Text="Խմբեր:"/>
+      <LayoutPage Text="Որոշել դասավորությունը"/>
+      <DefineLayout Text="Նշել էջի դիրքը եւ տվյալների դասավորությունը"/>
+      <Orientation Text="Էջի դիրք"/>
+      <Portrait Text="Ուղղահայաց"/>
+      <Landscape Text="Հորիզոնական"/>
+      <Layout Text="Դասավորություն"/>
+      <Tabular Text="Աղյուսակային"/>
+      <Columnar Text="Սյունակային"/>
+      <StylePage Text="Ընտրել սթայլը"/>
+      <Styles Text="Ընտրել հաշվետվության սթայլը:">
+        <Standard Text="Ստանդարտ"/>
+        <Gray Text="Մոխրագույն"/>
+        <Green Text="Կանաչ"/>
+        <Sand Text="Ավազի գույն"/>
+        <Blue Text="Կապույտ"/>
+        <Title Text="Վերնագիր"/>
+        <Header Text="Էջի գլխամաս"/>
+        <Group Text="Խումբ"/>
+        <Data Text="Տվյալներ"/>
+        <Footer Text="Էջատակի մաս"/>
+        <EvenRows Text="Զույգ տողեր"/>
+      </Styles>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Խմբագրել տողերի հաջորդականությունը"/>
+    <Style Text="Սթայլի փոփոխություններ">
+      <Styles Text="Սթյալեր"/>
+      <Add Text="Ավելացնել"/>
+      <Delete Text="Ջնջել"/>
+      <Edit Text="Փոփոխել"/>
+      <Load Text="Բեռնել"/>
+      <Save Text="Գրանցել..."/>
+      <Settings Text="Սթայլի պարամետրեր"/>
+      <Border Text="Եզրագիծ"/>
+      <Fill Text="Ֆոնի լցոնում"/>
+      <Font Text="Ֆոնտ"/>
+      <TextColor Text="Տեքստի գույն"/>
+      <StyleName Text="Սթայլ"/>
+    </Style>
+    <TextEditor Text="Տեքստի փոփոխություն">
+      <WordWrap Text="Բառի համապատասխանեցում"/>
+    </TextEditor>
+    <TotalEditor Text="Փոփոխել Ընդհանուր  գումարը">
+      <TotalName Text="Ընդհանուր գումարի անուն:"/>
+      <Total Text="Ընդհամենը"/>
+      <Function Text="Ֆունկցիա:"/>
+      <DataColumnOrExpression Text="Տվյալների սյունակ կամ ներկայացում:"/>
+      <DataBand Text="Հաշվարկել band-ի յուրաքանչյուր տողով:"/>
+      <EvaluateCondition Text="Հաշվարկել, եթե համապատասխանում է հետեւյալ պայմանին:"/>
+      <PrintOn Text="Տպել band-ի վրա:"/>
+      <Options Text="Պարամետրեր"/>
+      <ResetAfterPrint Text="Տպելուց հետո բերել սկզբնական վիճակի"/>
+      <ResetRepeated Text="Սկզբնական վիճակի բերել, եթե band-ը կրկնվում է"/>
+      <InvisibleRows Text="Ավելացնել անտեսանելի տողեր"/>
+      <Sum Text="Գումար"/>
+      <Min Text="Մինիմալ"/>
+      <Max Text="Մաքսիմալ"/>
+      <Avg Text="Միջին"/>
+      <Count Text="Քանակ"/>
+      <Custom Text="Նշված"/>
+    </TotalEditor>
+    <UIOptions Text="Օգտագործողի ինտերֆեյս">
+      <Appearance Text="Արտաքին տեսք:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (կապույտ),Office 2007 (արծաթգույն),Office 2007 (սեւ),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Ջրանիշ">
+      <Enabled Text="Միացնել"/>
+      <Text Text="Տեքստ"/>
+      <TextItems Text="ԿՈՆՖԻԴԵՆՑԻԱԼ,ՊԱՏՃԵ,ԲՆԱԳԻՐ,ՕՐԻՆԱԿ,ՀՐԱՏԱՊ"/>
+      <Rotation Text="Պտույտ"/>
+      <Horizontal Text="Հորիզոնական"/>
+      <Vertical Text="Ուղղահայաց"/>
+      <ForwardDiagonal Text="Առաջ անկյունագիծ"/>
+      <BackwardDiagonal Text="Հետադարձ անկյունագծային"/>
+      <Font Text="Ֆոնտ"/>
+      <Color Text="Գույն"/>
+      <Picture Text="Նկար"/>
+      <Load Text="Բեռնել"/>
+      <Clear Text="Մաքրել"/>
+      <Size Text="Չափ"/>
+      <Normal Text="Նորմալ"/>
+      <Center Text="Կենտրոն"/>
+      <Stretch Text="Ձգված"/>
+      <Zoom Text="Խոշոր"/>
+      <Tile Text="Խճանկարային"/>
+      <Transparency Text="Թափանցիկություն"/>
+      <Zorder Text="Z-Կարգ"/>
+      <TextOnTop Text="Տեքստը վերեւից"/>
+      <PictureOnTop Text="Նկարը վերեւից"/>
+      <ApplyToAll Text="Կիրառել բոլոր էջերի համար"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Սերվերի անունը"/>
+      <ServerLogon Text="Մուտք սերվեր"/>
+      <UserName Text="Օգտագործողի անունը:"/>
+      <Password Text="Ծածկագիր:"/>
+      <Database Text="Միանալ տվյալների բազային"/>
+      <DatabaseName Text="Տվյալների բազայի անուն:"/>
+      <DatabaseFile Text="Տվյալների բազայի ֆայլ:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Օգտագործել Windows Authentication"/>
+      <UseSql Text="Օգտագործել  SQL Server Authentication"/>
+      <SavePassword Text="Պահպանել իմ ծածկագիրը"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Connection string:"/>
+      <Build Text="Կառուցել..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Տվյալների աղբյուր (Data Source)"/>
+      <DsName Text="Օգտագործել օգտագործողի կամ համակարգի տվյալների աղբյուրի անունը:"/>
+      <ConnString Text="Օգտագործել connection string:"/>
+      <Login Text="Մուտք"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Սխեմաֆայլ:"/>
+      <Xml Text="Դատաֆայլ"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Փոփոխել..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Կարող է աճել"/>
+      <CanShrink Text="Կարող է կրճատվել"/>
+      <GrowToBottom Text="մեծանալ ստորին մասում"/>
+      <Hyperlink Text="Hyper-հղում..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Կարող է կիսվել"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Ավելացնել Child Band"/>
+      <StartNewPage Text="Սկսել նոր էջ"/>
+      <PrintOnBottom Text="Տպել ստորին մասում"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Ավելացնել մանրամասն "/>
+      <KeepTogether Text="Պահել միասին"/>
+      <KeepDetail Text="Պահել տեղեկություններ"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Կրկնել բոլոր էջերի վրա"/>
+      <KeepWithData Text="Պահել տվյալների հետ"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Նորացնել էջի համարը"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Լցնել չօգտագործվող տիրույթը"/>
+      <CompleteToNRows Text="Լրացնել մինչեւ N տվյալով շարքերը:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Չափի տեսակ"/>
+      <AutoSize Text="Ավտոմատ չափ"/>
+      <CenterImage Text="Կենտրոնացնել նկարը"/>
+      <Normal Text="Նորմալ"/>
+      <StretchImage Text="Ձգել նկարը"/>
+      <Zoom Text="Խոշորացում"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Ֆորմատ..."/>
+      <Clear Text="Մաքրել"/>
+      <AutoWidth Text="Ավտոմատ լայնություն"/>
+      <WordWrap Text="Բառի միաձուլում"/>
+      <AllowExpressions Text="Թույլատրել բանաձեւերը"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Տպել սկզբնականը"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Կրկնել վերնամասը"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Ներմուծել շարք վերեւում"/>
+      <InsertBelow Text="Ներմուծել շարք ներքեւում"/>
+      <AutoSize Text="Ավտոմատ չափս"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Ներմուծել ձախակողմյա սյունակ"/>
+      <InsertToRight Text="Ներմուծել աջակողմյա սյունակ"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Միացնել սյունակները"/>
+      <Split Text="Բաժանել սյունակները"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Սյունակները կողք կողքի"/>
+      <ShowTitle Text="Ցույց տալ վերնագիրը"/>
+      <Style Text="Արտաքին տեսքի տեսակներ"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Գումարներ"/>
+      <Function Text="Ֆունկցիա"/>
+      <SuppressTotals Text="Փոքրացնել գումարները"/>
+      <TotalsFirst Text="Գումարները սկզբում"/>
+      <Percent Text="Տոկոս"/>
+      <PercentColumnTotal Text="Սյունակի գումարի % "/>
+      <PercentRowTotal Text="Շարքի գումարի %"/>
+      <PercentGrandTotal Text="% գլխավոր գումար"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Փոփոխել սյունակները..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Բարկոդի տեսակ"/>
+      <AutoSize Text="Ավտոմատ չափ"/>
+      <AutoEncode Text="Ավտոմատ կոդավորում"/>
+      <CalcChecksum Text="Գումարի ստուգում (Calc Checksum)"/>
+      <ShowText Text="Ցույց տալ տեքստը"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Ցույց տալ նշանները"/>
+      <ShowGrid Text="Ցույց տալ գրիդը"/>
+    </ZipCodeObject>
+    <Report>
+      <DesignReport Text="Ձեւավորել հաշվետվությունը..."/>
+      <SelectDataSource Text="Ընտրել տվյալների աղբյուրը"/>
+    </Report>
+    <WebReport>
+      <SelectReportFile Text="Ընտրել հաշվետվության ֆայլը"/>
+      <SelectLocalizationFile Text="Ընտրել լոկալիզացման ֆայլը"/>
+    </WebReport>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Հաշվվում են bound-ները"/>
+    </Table>
+    <Matrix>
+      <FillData Text="Լցվում է մատրիցան..."/>
+      <NewColumn Text="Քաշել տվյալներն այստեղ &#13;&#10;նոր սյունակ ստեղծելու համար"/>
+      <NewRow Text="Քաշել տվյալներն այստեղ &#13;&#10;նոր շարք ստեղծելու համար"/>
+      <NewCell Text="Քաշել տվյալներն այստեղ &#13;&#10;նոր սյուն ստեղծելու համար"/>
+      <Total Text="Ընդամենը"/>
+      <Title Text="Անվանում"/>
+      <White Text="Սպիտակ"/>
+      <Gray Text="Մոխրագույն"/>
+      <Orange Text="Նարնջագույն"/>
+      <Green Text="Կանաչ"/>
+      <GreenOrange Text="Կանաչ եւ նարնջագույն"/>
+      <Blue Text="Կապույտ"/>
+      <BlueWhite Text="Կապույտ եւ սպիտակ"/>
+      <GrayOrange Text="Մոխրագույն եւ նարնջագույն"/>
+      <BlueOrange Text="Կապույտ եւ նարնջագույն"/>
+      <OrangeWhite Text="Նարնջագույն եւ սպիտակ"/>
+    </Matrix>
+    <Map>
+      <Hint Text="Կրկնակի քլիք շերտեր ավելացնելու համար&#13;&#10;&#13;&#10;Օգտագործել մկնիիկի ձախ ստեղնը կետային որոնման ,  սքրոլը՝ խոշորացնելու համար"/>
+    </Map>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Դատարկ հաշվետվություն"/>
+    <StandardReport Text="Ստանդարտ հաշվետվության խորհրդտու"/>
+    <InheritedReport Text="Ինհերիթիդ հաշվետվություն"/>
+    <Label Text="Նշանակված հաշվետվություն"/>
+    <NewDataSource Text="Նոր Տվյալների աղբյուր"/>
+    <NewPage Text="Նոր հաշվետվության էջ"/>
+    <NewDialog Text="Նոր դիալոգԻ Ձեւ"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Արտահանումը կատարվել է {0} մվ"/>
+      <OrderByCells Text="Դասակարգումը ըստ կետերի"/>
+      <AnalyzeObjects Text="Վերլուծել օբյեկտը"/>
+      <SavePage Text="Գրանցել էջը"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Page breaks"/>
+      <OpenAfterExport Text="Արտահանելուց հետո բացել"/>
+      <Pictures Text="Նկարներ"/>
+      <Options Text="Պարամետրեր"/>
+      <None Text="Դատարկ"/>
+      <Metafile Text="Metafile"/>
+      <SaveFile Text="Պահպանել ֆայլը"/>
+      <TableBased Text="Աղյուսակ"/>
+      <LayerBased Text="Շերտեր"/>
+      <PrintOptimized Text="Օպտիմալացված տպելու համար"/>
+    </Misc>
+    <Image Text="Արտահանել նկարով">
+      <File Text="Նկար ֆայլ"/>
+      <ImageFormat Text="Ֆորմատ:"/>
+      <Resolution Text="Ռեզոլյուցիա"/>
+      <Quality Text="Jpeg որակ"/>
+      <SeparateFiles Text="Առանձնացված ֆայլեր յուրաքանչյուր էջի համար"/>
+      <MultiFrame Text="Բազմաշրջանակ TIFF"/>
+      <Monochrome Text="Միաշրջանակ TIFF"/>
+      <Bmp Text="Bitmap նկար"/>
+      <Png Text="PNG նկար"/>
+      <Jpeg Text="JPG նկար"/>
+      <Gif Text="GIF նկար"/>
+      <Tiff Text="TIFF նկար"/>
+      <Metafile Text="Windows մետաֆայլ"/>
+    </Image>
+    <RichText Text="Արտահանել որպես Rich Text">
+      <File Text="Ֆայլ"/>
+    </RichText>
+    <Text Text="Արտահանել որպես Տեքստ/Մատրիքս Տպիչ">
+      <File Text="Տեքստ ֆայլ/Մարտիքս Տպիչ"/>
+      <EmptyLines Text="Դատարկ տողեր"/>
+      <DataOnly Text="Միայն տվյալներ"/>
+      <Frames Text="Շրջանակներ"/>
+      <FramesNone Text="Չկա"/>
+      <FramesText Text="Տեքստ"/>
+      <FramesGraphic Text="Գրաֆիկ"/>
+      <Codepage Text="Կոդավորում"/>
+      <Default Text="ԸՆդունված"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text=" X չափը:"/>
+      <ScaleY Text=" Y չափը"/>
+      <AutoScale Text="Ավտոմատ մասշտաբավորել"/>
+      <PrinterType Text="Տպիչի տեսակը"/>
+      <Commands Text="Հրամաններ"/>
+      <PageWidth Text="Էջի լայնություն"/>
+      <PageHeight Text="Էջի բարձրություն"/>
+      <DataLoss Text="Տվյալների հնարավոր կորուստ&#13;&#10;ԽՆդրում ենք մեծացնել X/Y մասշտաբը"/>
+      <ScaleMessage Text="Հաշվարկվում է օպտիմալ մասշտաբը"/>
+      <Scale Text="Մասշտաբ"/>
+    </Text>
+    <Csv Text="Արտահանել որպես CSV">
+      <File Text="CSV ֆայլ"/>
+      <Separator Text="Անջատիչ գրանշան"/>
+      <Codepage Text="Կոդավորում"/>
+      <Default Text="Ընդունված"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Միայն տվյալ"/>
+    </Csv>
+    <Dbf Text="Արտահանել DBF">
+      <File Text="DBF աղյուսակ"/>
+      <Codepage Text="Կոդավրում"/>
+      <Default Text="տ"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="ի"/>
+      <FieldNames Text="Դաշտի անունները (օր.,դաշտ1; դաշտ2 )"/>
+    </Dbf>
+    <Xml Text="Արտահանել որպես XML">
+      <File Text="XML (Excel) աղյուսակ"/>
+    </Xml>
+    <Odt Text="Արտահանել որպես Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Արտահանել որպես Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Արտահանել որպես Excel 2007">
+      <File Text="Excel 2007 ֆայլ"/>
+    </Xlsx>
+    <Pptx Text="Արտահանել որպես PowerPoint 2007">
+      <File Text="PowerPoint 2007 ֆայլ"/>
+    </Pptx>
+    <Docx Text="Արտահանել որպես Microsoft Word 2007">
+      <File Text="Microsoft Word 2007 ֆայլ"/>
+    </Docx>
+    <Xps Text="Արտահանել որպես XPS">
+      <File Text="Microsoft XPS ֆայլ"/>
+    </Xps>
+    <Pdf Text="Արտահանել որպես PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Արտահանել"/>
+      <Compressed Text="Սեղմված"/>
+      <EmbeddedFonts Text="Ներդրված ֆոնտեր"/>
+      <Background Text="Ֆոնային պատկեր"/>
+      <PrintOptimized Text="Օպտիմալացված տպելու համար"/>
+      <Information Text="Տեղեկություններ"/>
+      <DocumentInformation Text="Փաստաթղթի տեղեկություններ"/>
+      <Title Text="Վերնագիր"/>
+      <Author Text="Հեղինակ"/>
+      <Subject Text="Թեմա"/>
+      <Keywords Text="Բանալի բառեր"/>
+      <Creator Text="Ստեղծման միջոց"/>
+      <Producer Text="Արտադրող"/>
+      <Security Text="Անվտանգություն"/>
+      <Authentification Text="Աութենտիֆիկացիա"/>
+      <OwnerPassword Text="Սեփականատիրոջ գաղտնագիրը"/>
+      <UserPassword Text="Օգտագործողի ծածկագիրը"/>
+      <Permissions Text="Թույլատրումները"/>
+      <PrintTheDocument Text="Տպել փաստաթուղթը"/>
+      <ModifyTheDocument Text="Մոդիֆիկացնել փաստաթուղթը"/>
+      <CopyOfTextAndGraphics Text="Տեքստի եւ գրաֆիկների պատճեն"/>
+      <AddOrModifyTextAnnotations Text="Ավելացնել կամ փոփոխել տեքստի անոտացիաները"/>
+      <Viewer Text="Դիտորդ"/>
+      <ViewerPreferences Text="Դիտելու պարամետրերը"/>
+      <HideToolbar Text="Թաքցնել գործիքների շարքը"/>
+      <HideMenubar Text="Թաքցնել մենյույի տողը"/>
+      <HideWindowUserInterface Text="Հանել window user interface"/>
+      <FitWindow Text=" Հարմարեցնել պատուհանը"/>
+      <CenterWindow Text="Կենտրոնացված պատուհան"/>
+      <PrintScaling Text="Տպելու մասշտաբներով"/>
+      <PrintAfterOpenOfDocument Text="Փաստաթուղթը բացելուց հետո տպել"/>
+      <Outline Text="Ուրվագիրծ"/>
+    </Pdf>
+    <Html Text="Արտահանել որպես HTML">
+      <File Text="HTML ֆայլ"/>
+      <MHTFile Text="MHT ֆայլ"/>
+      <Format Text="Ֆորմատ"/>
+      <SinglePage Text="Մեկ էջ"/>
+      <SubFolder Text="ԵՆթաթղթապանակ"/>
+      <Navigator Text="Նավիգատոր"/>
+      <Layers Text="Շերտեր"/>
+      <Total Text="Ընդհանուր"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Արտահանել որպես MHT (վեբ-արխիվ)">
+      <File Text="MHT ֆայլ (վեբ արխիվ)"/>
+    </Mht>
+    <Email Text="Ուղարկել էլ-նամակ">
+      <Email Text="Էլ-փոստ"/>
+      <Account Text="Գրանցման անվանումը"/>
+      <Address Text="Հասցե"/>
+      <CC Text="CC:"/>
+      <Subject Text="Վերնագիր"/>
+      <Message Text="Հաղորդագրություն"/>
+      <Attachment Text="Կցորդներ"/>
+      <Settings Text="Պարամետրեր"/>
+      <Name Text="Անուն"/>
+      <Template Text="Թեմփլեյթ"/>
+      <Host Text="Հոստ"/>
+      <Port Text="Պորտ"/>
+      <UserName Text="Օգտագործողի անուն"/>
+      <Password Text="Ծածկագիր"/>
+      <AddressError Text="Սխալ Էլ-փոստի հասցե"/>
+      <HostError Text="Հոստ դաշտը չի կարող դատարկ լինել"/>
+      <SendingEmail Text="Էլ-նամակը ուղարկվում է - {0} Kb"/>
+      <EnableSSL Text="Ակտիվացնել SSL"/>
+    </Email>
+  </Export>
+  <Cloud>
+    <Dropbox Text="Գրանցել Dropbox-ում">
+      <ApplicationInfoDialog Text="Տեղեկություններ ծրագրի մասին"/>
+      <ApplicationKey Text="Ծրագրի Բանալի:"/>
+      <ApplicationSecret Text="Գաղտնիություն"/>
+      <File Text="Ֆայլ"/>
+      <Proxy Text="Պրոքսի"/>
+      <FileType Text="Ֆայլի տեսակ:"/>
+      <Settings Text="Պարամետրեր..."/>
+      <ProxySettings Text="Պրոքսի պարամետրեր"/>
+      <Authorize Text="Ավտորիզացիա"/>
+      <Save Text="Գրանցել"/>
+      <Server Text="Սերվեր:"/>
+      <Username Text="Օգտագործողի անունը"/>
+      <Password Text="Ծածկագիր"/>
+      <ApplicationKeyError Text="Ծրագրի բանալի դաշտը չի կարող դատարկ լինել"/>
+      <ApplicationSecretError Text="Գաղտնիություն դաշտը չի կարող դատարկ լինել"/>
+      <PortError Text="Պորտը պերք է լինի թվանիշ:"/>
+    </Dropbox>
+  </Cloud>
+  <Web>
+    <Print Text="Տպել"/>
+    <Export Text="Արտահանել"/>
+    <Zoom Text="Խոշորացնել"/>
+    <Refresh Text="Թարմացնել"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Արտաքին տեսք"/>
+      <Behavior Text="Վարք"/>
+      <Build Text="Կառուցել"/>
+      <Data Text="Տվյալներ"/>
+      <Design Text="Դիզայն"/>
+      <Designer Text="Դիզայներ"/>
+      <Email Text="էլ-փոստ"/>
+      <Engine Text="Շարժիչ"/>
+      <Events Text="Իրադարձություններ"/>
+      <Hierarchy Text="Հիերարխիա"/>
+      <Layout Text="Պլան"/>
+      <Misc Text="Խառը"/>
+      <Navigation Text="Նավիգացիա"/>
+      <Paper Text="Թուղթ"/>
+      <Preview Text="Դիտել"/>
+      <Print Text="Տպել"/>
+      <Report Text="Հաշվետվություն"/>
+      <Script Text="Սկրիպտ"/>
+      <Spatial Text="Տարածական"/>
+      <Toolbars Text="Գործիքների շարք"/>
+      <UI Text="UI"/>
+    </Categories>
+  </Properties>
+</Language>

@@ -77,7 +77,7 @@ namespace FastReport.Utils
             }
             baseNames[baseName] = num;
           }
-          else
+          else if (!baseNames.ContainsKey(objName))
           {
             baseNames[objName] = 0;
           }

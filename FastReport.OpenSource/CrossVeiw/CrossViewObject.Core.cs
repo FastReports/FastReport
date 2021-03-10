@@ -6,9 +6,6 @@
         /// Does nothing
         /// </summary>
         /// <param name="flag"></param>
-        private void RefreshTemplate(bool flag)
-        {
-
-        }
+        partial void RefreshTemplate(bool flag);
     }
 }

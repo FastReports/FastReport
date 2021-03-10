@@ -1,0 +1,2258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="ar" Author="Stark DaFixzer &lt;Stark.mk@gmail.com&gt;;Stark &lt;Stark.mk@gmail.com&gt;">
+  <Buttons>
+    <Ok Text="موافق"/>
+    <Cancel Text="إلغاء الأمر"/>
+    <Close Text="إغلاق"/>
+    <MoreOptions Text="مزيد من الخيارات"/>
+    <LessOptions Text="خيارت أقل"/>
+    <Actions Text="بدء"/>
+    <Previous Text="&lt; السابق"/>
+    <Next Text="التالي &gt;"/>
+    <Finish Text="إنهاء"/>
+    <Advanced Text="متقدم..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="الدخول إلى البيانات..."/>
+    <Attention Text="تنبيه"/>
+    <CantFindObject Text="لا يمكن إيجاد الكائن"/>
+    <CantLoadReport Text="{0} لا يمكن تحميل التقرير"/>
+    <CantSaveReport Text="لا يمكن حفظ التقرير , الملف غير قابل للكتابة."/>
+    <ClassError Text="لايمكن إيجاد تصنيف التقرير الرئيسي , سكريبت التقرير"/>
+    <Confirmation Text="تأكيد"/>
+    <DataNotInitialized Text=".لم يتم بدء تعيين مصدر البيانات"/>
+    <DecompressError Text="لا يمكن فك ضغط الملف"/>
+    <DecryptError Text="خطأ في فك التشفير : كلمة المرور خاطئة"/>
+    <DelegateError Text="'sender' و 'e' : يجب أن يحتوي التفويض {0} على البارمترين "/>
+    <DeleteAncestor Text="لا يمكن حذف {0}  , لأنه معرف في أصل التقرير"/>
+    <DuplicateName Text="الكائن بالإسم {0} موجود مسبقاً"/>
+    <GroupHeaderHasNoGroupCondition Text="{0} المجموعة ليس لها شرط"/>
+    <DuplicateStyle Text="اسم التاُثير موجود مسبقاً"/>
+    <Error Text="خطأ"/>
+    <EventError Text="لا يمكن إنشاء مكون الحدث بسبب خطأ في الشيفرة المصدرية "/>
+    <ExportingPage Text="{1} تصدير الصفحة {0} من"/>
+    <GeneratingPage Text="{0}  إنشاء الصفحة"/>
+    <GeneratingPageFirstPass Text="{0}  المرحلة الأولى : إنشاء الصفحة"/>
+    <Information Text="معلومات"/>
+    <MatrixError Text="{0} : يجب أن تحتوي المصفوفة على عمود أو سطر واحد على الأقل و خلية واحدة"/>
+    <MatrixValueError Text="MatrixData.Cells.Count ( must be {0} ) عدد القيم يختلف عن"/>
+    <ParentError Text="{1} الكائن من النوع {0}  لا يمكن أن يحتوي الكائن من النوع"/>
+    <ParentError1 Text="الكائن من النوع {0} لا يمكن أن يحتوي كائنات"/>
+    <Performance Text="جهز في {0} م/ث"/>
+    <PreparingData Text="... تجهيز البيانات "/>
+    <PrintingPage Text="{0} طباعة الصفحة"/>
+    <RenameAncestor Text="لا يمكن إعادة تسمية {0} , لأنه معرف في أصل التقرير "/>
+    <SaveChanges Text="حفظ التغيرات لـ {0} ؟"/>
+    <SaveChangesToPreviewPage Text="حفظ التغيرات لصفحة المعاينة ؟"/>
+    <SQLError Text="SQL خطأ"/>
+    <TableIsNull Text="Report.RegisterData method. الجدول غير متصل بالبيانات. سجّل البيانات بإستخدام الحدث"/>
+    <TableManualBuildError Text="ضمن البناء اليدوي فقط TableObject.PrintRow, PrintColumn تستطيع إستخدام "/>
+    <Warning Text="تحذير"/>
+    <WarningSaveRDL Text="إن تنسيق RDL له بعض المحظورات ! و هذا الفلتر سوف يستخدم قالب العرض فقط , الباكورد و مصادر البيانات و النص و زر الإختيار و رمز الدولة لن يتم تخزينها , و أيضا بعض خصائص الكائن لن يتم تخزينها ! و ستخسر بعض العناصر من القالب ! هل أنت مأكد من تخزينه ؟"/>
+    <WrongFileFormat Text="لا يمكن تحميل الملف .  نوع الملف غير معروف"/>
+    <InvalidBarcode1 Text="الباركود يجب أن يبدأ بـ '&amp;A;', '&amp;B;' or '&amp;C;' سلسلة"/>
+    <InvalidBarcode2 Text="خطأ في في محرف الكود"/>
+    <ErrorInExpression Text="خطأ في التعبير"/>
+    <ErrorInHighlightCondition Text="خطأ في الشرط المحدد"/>
+    <FileNameEmpty Text="يرجى حديد اسم صحيح للملف"/>
+    <SaveToAnotherFile Text="هل ترغب بالحفظ إلى ملف آخر ؟"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="مم"/>
+    <ShortUnitsCm Text="سم"/>
+    <ShortUnitsIn Text="إنش"/>
+    <ShortUnitsHi Text="م.إ"/>
+    <Sample Text="عينة"/>
+    <None Text="بلا"/>
+    <PageN Text="{0} صفحة"/>
+    <PageNofM Text="{1} صفحة {0} من"/>
+    <ofM Text="{0} من"/>
+  </Misc>
+  <Objects>
+    <Report Text="تقرير"/>
+    <ReportPage Text="صفحة"/>
+    <DialogPage Text="نموذج"/>
+    <XmlDataConnection Text="XML قاعدة بيانات"/>
+    <CsvDataConnection Text="CSV قاعدة بيانات"/>
+    <OleDbDataConnection Text="OLE DB إتصال"/>
+    <MsAccessDataConnection Text="إتصال بمايكروسوفت أكسس "/>
+    <MsSqlDataConnection Text="SQL إتصال بمخدم"/>
+    <OdbcDataConnection Text="إتصال ODBC"/>
+    <FirebirdDataConnection Text="FireBird إتصال"/>
+    <VistaDBDataConnection Text="VistaDB إتصال"/>
+    <PostgresDataConnection Text="Postgres إتصال"/>
+    <MySqlDataConnection Text="MySql إتصال"/>
+    <OracleDataConnection Text="إتصال أوراكل"/>
+    <SQLiteDataConnection Text="Sqlite إتصال"/>
+    <SqlCeDataConnection Text="SQL CE إتصال"/>
+    <SharePointDataConnection Text="SharePoint إتصال"/>
+    <GoogleBigQueryDataConnection Text="Google Big Query إتصال"/>
+    <JsonDataConnection Text="JSON قاعدة بيانات"/>
+    <CouchbaseDataConnection Text="Couchbase مخدم"/>
+    <MongoDBDataConnection Text="MongoDB إتصال"/>
+    <NosDbDataConnection Text="NosDb إتصال"/>
+    <RavenDBDataConnection Text="RavenDB إتصال"/>
+    <SqlAnywhereDataConnection Text="SqlAnywhere إتصال"/>
+    <Bands Text="بنود">
+      <ReportTitle Text="عنوان التقرير"/>
+      <ReportSummary Text="ملخص التقرير"/>
+      <PageHeader Text="رأس الصفحة"/>
+      <PageFooter Text="تذييل الصفحة"/>
+      <ColumnHeader Text="رأس العمود"/>
+      <ColumnFooter Text="تذييل العمود"/>
+      <DataHeader Text="رأس"/>
+      <DataFooter Text="تذييل"/>
+      <Data Text="بيانات"/>
+      <GroupHeader Text="رأس المجموعة"/>
+      <GroupFooter Text="تذييل المجموعة"/>
+      <Child Text="ابن"/>
+      <Overlay Text="تغشية"/>
+    </Bands>
+    <TextObject Text="نص"/>
+    <HtmlObject Text="HTML"/>
+    <Shapes Text="أشكال">
+      <Line Text="خط"/>
+      <DiagonalLine Text="خط مائل"/>
+      <Rectangle Text="رباعي"/>
+      <RoundRectangle Text="رباعي دائري"/>
+      <Ellipse Text="بيضوي"/>
+      <Triangle Text="مثلث"/>
+      <Diamond Text="معين"/>
+      <Bezier Text="منحنى بيزيه"/>
+      <Polyline Text="شكل متعدد الخطوط"/>
+      <Polygon Text="مضلع"/>
+      <Pentagon Text="مخمس"/>
+      <Hexagon Text="شكل سداسي"/>
+      <Heptagon Text="شكل سباعي"/>
+      <Octagon Text="مثمن"/>
+    </Shapes>
+    <PictureObject Text="صورة"/>
+    <SVGObject Text="SVG مستند"/>
+    <TableObject Text="جدول"/>
+    <MatrixObject Text="مصفوفة"/>
+    <SubreportObject Text="تقرير فرعي"/>
+    <BarcodeObject Text="باركود"/>
+    <RichObject Text="نص منسق"/>
+    <MSChartObject Text="رسم بياني"/>
+    <TeeChartObject Text="Steema مخطط بياني"/>
+    <ZipCodeObject Text="رقم المنطقة"/>
+    <CellularTextObject Text="نص خيلوي"/>
+    <CheckBoxObject Text="خانة تأشير"/>
+    <ButtonControl Text="زر"/>
+    <CheckBoxControl Text="خانة تأشير"/>
+    <CheckedListBoxControl Text="قائمة خانات تأشير"/>
+    <ComboBoxControl Text="قائمة منسدلة"/>
+    <GridControl Text="شبكة"/>
+    <DataSelectorControl Text="محدد بيانات"/>
+    <DateTimePickerControl Text="تاريخ و وقت"/>
+    <GroupBoxControl Text="صندوق إحتواء"/>
+    <LabelControl Text="لصاقة"/>
+    <ListBoxControl Text="قائمة صندوقية"/>
+    <ListViewControl Text="قائمة عرض"/>
+    <MaskedTextBoxControl Text="نص مع قناع"/>
+    <MonthCalendarControl Text="روزنامة شهرية"/>
+    <NumericUpDownControl Text="عداد رقمي"/>
+    <PanelControl Text="لوحة"/>
+    <PictureBoxControl Text="مربع صورة"/>
+    <RadioButtonControl Text="خانة إختيار"/>
+    <RichTextBoxControl Text="نص منسق"/>
+    <TextBoxControl Text="نص"/>
+    <TreeViewControl Text="شجرة عرض"/>
+    <MapObject Text="خريطة"/>
+    <SparklineObject Text="خط مؤشر"/>
+    <Gauge Text="مقياس">
+      <Linear Text="مقياس خطي"/>
+      <Simple Text="مقياس بسيط"/>
+      <Radial Text="مقياس دائري"/>
+      <SimpleProgress Text="مقياس بسيط"/>
+      <GaugeForms Text="تحرير المقياس">
+        <LinearGauge Text="محرر المقياس الخطي"/>
+        <SimpleGauge Text="محرر المقياس البسيط"/>
+        <SimpleProgressGauge Text="محرر المقياس البسيط"/>
+        <RadialGauge Text="محرر المقياس الدائري"/>
+        <PageGeneral Text="عام">
+          <Expression Text="تعبير..."/>
+          <Border Text="...حواف"/>
+          <Fill Text="إمتلاء..."/>
+          <LinearInverdted Text="معكوس:"/>
+          <Type Text="نوع:"/>
+          <Position Text="توضع:"/>
+        </PageGeneral>
+        <PageScale Text="قياس">
+          <TabTicks Text="تكات">
+            <MajorTicks Text="تكة رئيسية">
+              <Width Text="العرض:"/>
+              <Color Text="اللون:"/>
+            </MajorTicks>
+            <MinorTicks Text="تكة ثانوية">
+              <Width Text="العرض:"/>
+              <Color Text="اللون:"/>
+            </MinorTicks>
+          </TabTicks>
+          <TabText Text="نص">
+            <Font Text="الخط:"/>
+            <TextFill Text="إمتلاء النص"/>
+          </TabText>
+          <Subscales Text="فرع جانبي">
+            <FirstSubscale Text="الفرع الأول">
+              <Enabled Text="تمكين:"/>
+              <ShowCaption Text="إظهار النص:"/>
+            </FirstSubscale>
+            <SecondSubscale Text="الفرع الثاني">
+              <Enabled Text="تمكين:"/>
+              <ShowCaption Text="إظهار النص:"/>
+            </SecondSubscale>
+          </Subscales>
+        </PageScale>
+        <PagePointer Text="مؤشر">
+          <BorderColor Text="حواف اللون:"/>
+          <PointerFill Text="إمتلاء نقطي"/>
+          <LabelPointerType Text="النوع:"/>
+        </PagePointer>
+        <PageLabel Text="نص">
+          <LabelColor Text="لون النص:"/>
+          <Font Text="خط:"/>
+          <Text Text="نص:"/>
+          <Decimals Text="عشري:"/>
+        </PageLabel>
+      </GaugeForms>
+    </Gauge>
+    <CrossViewObject Text="عرض تقاطعي"/>
+  </Objects>
+  <Functions>
+    <Math Text="رياضي"/>
+    <Text Text="نصي"/>
+    <DateTime Text="تاريخ ووقت"/>
+    <Formatting Text="تنسيق"/>
+    <Conversion Text="تحويل"/>
+    <ProgramFlow Text="تدفق البرنامج"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Report file (*.frx)|*.frx"/>
+    <PreparedReport Text="Prepared report (*.fpx)|*.fpx"/>
+    <Style Text="Report styles (*.frs)|*.frs"/>
+    <Dictionary Text="Dictionary (*.frd)|*.frd"/>
+    <Localization Text="Localization file (*.frl)|*.frl"/>
+    <XsdFile Text="XML schema definition file (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML file (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text file (*.rtf)|*.rtf"/>
+    <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <AllImages Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Printer file (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap image (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG image (*.png)|*.png"/>
+    <JpegFile Text="JPG image (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF image (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF image (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML file (*.html)|*.html"/>
+    <MhtFile Text="Web-archive file (*.mht)|*.mht"/>
+    <OdtFile Text="Open Office Writer file (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc file (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat file (*.pdf)|*.pdf"/>
+    <TxtFile Text="Text file (*.txt)|*.txt"/>
+    <CsvFile Text="Comma Separated Values (*.csv)|*.csv"/>
+    <DbfFile Text="dBase table file (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel file (*.xls)|*.xls"/>
+    <CsFile Text="C# file (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net file (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird database (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB database (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="MS Excel book (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint presentation (*.pptx)|*.pptx"/>
+    <XamlFile Text="XAML document (*.xaml)|*.xaml"/>
+    <SvgFile Text="SVG document (*.svg)|*.svg"/>
+    <PpmlFile Text="PPML document (*.ppml)|*.ppml"/>
+    <PSFile Text="PostScript document (*.ps)|*.ps"/>
+    <DocxFile Text="MS Word document (*.docx)|*.docx"/>
+    <SdfFile Text="SQL CE database (*.sdf)|*.sdf"/>
+    <XpsFile Text="Microsoft XML Paper Specification (*.xps)|*.xps"/>
+    <RdlFiles Text="RDL files (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="RDL file (*.rdl)|*.rdl"/>
+    <RdlcFile Text="RDLC file (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Crystal Reports file (*.rpt)|*.rpt"/>
+    <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>
+    <OsmFile Text="OpenStreetMap file(*.osm)|*.osm"/>
+    <Fr3File Text="FastReport VCL report (*.fr3)|*.fr3"/>
+    <ListAndLabelFiles Text="List and Label files|*.rpt;*.crd;*.srt;*.inv;*.lab;*.let"/>
+    <DevExpressFiles Text="DevExpress files (*.repx)|*.repx"/>
+    <JsonFile Text="JSON file (*.json,*.txt)|*.json;*.txt"/>
+    <LaTeXFile Text="TeX file (*.tex)|*.tex"/>
+    <ZplFile Text="ZPL file (*.zpl)|*.zpl"/>
+    <AllFiles Text="All files (*.*)|*.*"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MM/dd/yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="خاطئ"/>
+    <BooleanF2 Text="لا"/>
+    <BooleanF3 Text="غير جاهز"/>
+    <BooleanF4 Text="  "/>
+    <BooleanT1 Text="صحيح"/>
+    <BooleanT2 Text="نعم"/>
+    <BooleanT3 Text="جاهز"/>
+    <BooleanT4 Text="س"/>
+    <Custom1 Text="هاتف;(000) 000-0000"/>
+    <Custom2 Text="هاتف دولي; +0(000) 000-0000"/>
+    <Custom3 Text="رقم وطني;000-00-0000"/>
+    <Custom4 Text="رمز منطقة مختصر;00000"/>
+    <Custom5 Text="رمز منطقة موسع;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Ribbon>
+      <File Text="ملف"/>
+      <Recent Text="المستندات الأخيرة"/>
+      <Home Text="الصفحة الرئيسية"/>
+      <Clipboard Text="الحافظة"/>
+      <Text Text="نص"/>
+      <BorderAndFill Text="الحدود و  الحواف "/>
+      <Format Text="تنسيق"/>
+      <Styles Text="أنماط"/>
+      <Editing Text="تحريري"/>
+      <Report Text="تقرير"/>
+      <Data Text="بيانات"/>
+      <Pages Text="صفحات"/>
+      <Bands Text="القيود"/>
+      <Layout Text="تخطيط"/>
+      <Alignment Text="محاذاة"/>
+      <Size Text="قياس"/>
+      <Spacing Text="فراغات"/>
+      <View Text="عرض"/>
+      <Panels Text="النوافذ"/>
+    </Ribbon>
+    <Menu>
+      <File Text="ملف">
+        <New Text="جديد..."/>
+        <Open Text="فتح..."/>
+        <Close Text="إغلاق"/>
+        <Save Text="حفظ"/>
+        <SaveAs Text="حفظ بإسم..."/>
+        <SaveAll Text="حفظ الكل"/>
+        <PageSetup Text="إعداد الصفحة..."/>
+        <PrinterSetup Text="إعداد الطابعة..."/>
+        <Preview Text="معاينة..."/>
+        <SelectLanguage Text="إختيار اللغة..."/>
+        <Exit Text="خروج"/>
+      </File>
+      <Edit Text="تحرير">
+        <Undo Text="تراجع"/>
+        <Redo Text="إعادة"/>
+        <Cut Text="قص"/>
+        <Copy Text="نسخ"/>
+        <Paste Text="لصق"/>
+        <Delete Text="حذف"/>
+        <CopyPage Text="نسخ الصفحة"/>
+        <DeletePage Text="حذف الصفحة"/>
+        <SelectAll Text="تحديد الكل"/>
+        <Group Text="تجميع"/>
+        <Ungroup Text="فك التجميع"/>
+        <Find Text="بحث..."/>
+        <Replace Text="إستبدال..."/>
+      </Edit>
+      <View Text="عرض">
+        <StartPage Text="صفحة البداية"/>
+        <Toolbars Text="أشرطة الأدوات"/>
+        <Options Text="الخيارات..."/>
+        <Grid Text="شبكة"/>
+        <Guides Text="دلائل"/>
+        <AutoGuides Text="دلائل تلقائية"/>
+        <DeleteHGuides Text="حذف الدلائل الأفقية"/>
+        <DeleteVGuides Text="حذف الدلائل العمودية"/>
+        <Units Text="الواحدات"/>
+      </View>
+      <Insert Text="إدراج"/>
+      <Report Text="تقرير">
+        <Bands Text="إعداد القيود..."/>
+        <Styles Text="التأثيرات..."/>
+        <GroupExpert Text="تجميع متقدم..."/>
+        <Options Text="خيارات..."/>
+      </Report>
+      <Data Text="بيانات">
+        <ShowData Text="إظهار نافذة البيانات"/>
+        <Add Text="إضافة مصدر بيانات..."/>
+        <Choose Text="تحديد بيانات التقرير..."/>
+      </Data>
+      <Window Text="نافذة">
+        <CloseAll Text="إغلاق الكل"/>
+      </Window>
+      <Help Text="مساعدة">
+        <Contents Text="محتويات المساعدة..."/>
+        <About Text="حول البرنامج..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <AutoHide Text="إخفاء تلقائي"/>
+      <Close Text="إغلاق"/>
+      <Properties Text="خصائص">
+        <PropertiesTab Text="خصائص"/>
+        <EventsTab Text="حدث"/>
+        <NObjectsSelected Text="{0} الكائنات المحددة"/>
+      </Properties>
+      <ReportTree Text="شجرة التقرير"/>
+      <Dictionary Text="بيانات">
+        <DataSources Text="مصادر البيانات"/>
+        <Parameters Text="الوسائط"/>
+        <SystemVariables Text="متحولات النظام"/>
+        <Totals Text="المجموع"/>
+        <Functions Text="معادلات"/>
+        <DialogControls Text="ضبط نوافذ الحوار"/>
+        <New Text="قاموس جديد..."/>
+        <Open Text="فتح قاموس..."/>
+        <Save Text="حفظ القاموس..."/>
+        <Merge Text="دمج قاموس..."/>
+        <NewDataSource Text="مصدر بيانات جديد..."/>
+        <NewRelation Text="علاقة جديدة..."/>
+        <NewParameter Text="وسيط جديد"/>
+        <NewTotal Text="مجموع جديد..."/>
+        <NewCalculatedColumn Text="عمود حسابي جديد..."/>
+        <Rename Text="إعادة تسمية"/>
+        <Edit Text="تحرير..."/>
+        <Delete Text="حذف"/>
+        <DeleteAlias Text="حذف الإسم المستعار"/>
+        <View Text="عرض البيانات..."/>
+        <DuplicateName Text="يوجد عنصر بنفس الإسم موجود مسبقاً"/>
+        <NRows Text="{0} سطر"/>
+        <RowMofNRows Text="سطر {0} من {1}"/>
+        <RowsKtoLofNRows Text="سطر {0} - {1} من {2}"/>
+        <CubeSources Text="Cube مصادر"/>
+      </Dictionary>
+      <Messages Text="رسائل">
+        <Description Text="الوصف"/>
+        <Line Text="السطر"/>
+        <Column Text="العمود"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="إضافة أو حذف أزرار"/>
+      <Reset Text="إعادة تعيين شريط الأدوات"/>
+      <MoreButtons Text="مزيد من الأزرار ...."/>
+      <Standard Text="قياسي">
+        <New Text="إضافة عنصر جديد"/>
+        <Open Text="(Ctrl+O) فتح تقرير"/>
+        <Save Text="(Ctrl+S) حفظ التقرير"/>
+        <SaveAll Text="(Ctrl+Shift+S) حفظ الكل"/>
+        <Preview Text="(Ctrl+P) معاينة"/>
+        <NewPage Text="صفحة تقرير جديدة"/>
+        <CopyPage Text="نسخ صفحة التقرير"/>
+        <NewDialog Text="نموذج جديد"/>
+        <DeletePage Text="حذف الصفحة"/>
+        <PageSetup Text="إعداد الصفحة"/>
+        <Cut Text="(Ctrl+X) قص"/>
+        <Copy Text="(Ctrl+C) نسخ"/>
+        <Paste Text="(Ctrl+V) لصق"/>
+        <FormatPainter Text="تنسيق الرسام"/>
+        <Undo Text="(Ctrl+Z) تراجع"/>
+        <Redo Text="إعادة"/>
+        <Group Text="تجميع"/>
+        <Ungroup Text="فك التجميع"/>
+      </Standard>
+      <Text Text="نص">
+        <Name Text="اسم الخط"/>
+        <Size Text="حجم الخط"/>
+        <Bold Text="عريض"/>
+        <Italic Text="مائل"/>
+        <Underline Text="تحته خط"/>
+        <Left Text="محاذاة لليسار"/>
+        <Center Text="توسيط"/>
+        <Right Text="محاذاة لليمين"/>
+        <Justify Text="ضبط"/>
+        <Top Text="محاذاة للأعلى"/>
+        <Middle Text="توسيط"/>
+        <Bottom Text="محاذاة للأسفل"/>
+        <Color Text="لون النص"/>
+        <Highlight Text="تمييز"/>
+        <Angle Text="زاوية النص"/>
+      </Text>
+      <Border Text="الحدود و التعبئة">
+        <Top Text="الحد العلوي"/>
+        <Bottom Text="الحد السفلي"/>
+        <Left Text="الحد اليساري"/>
+        <Right Text="الحد اليميني"/>
+        <All Text="إحاطة بالحدود"/>
+        <None Text="بلا حدود"/>
+        <FillColor Text="لون التعبئة"/>
+        <FillStyle Text="تأثير التعبئة..."/>
+        <LineColor Text="لون الحد..."/>
+        <Width Text="عرض الحد"/>
+        <Style Text="تأثير الحد"/>
+        <Props Text="خصائص الحد..."/>
+      </Border>
+      <Style Text="تأثير">
+        <Styles Text="مؤثرات"/>
+        <SelectStyle Text="تحديد التأثير"/>
+        <NoStyle Text="بلا تأثير"/>
+      </Style>
+      <Layout Text="تخطيط">
+        <AlignToGrid Text="محاذاة للشبكة"/>
+        <Left Text="محاذاة يسارية"/>
+        <Center Text="محاذاة عمودية"/>
+        <Right Text="محاذاة لليمين"/>
+        <Top Text="محاذاة للأعلى"/>
+        <Middle Text="محاذاة أفقية"/>
+        <Bottom Text="محاذاة سفلية"/>
+        <SameWidth Text="مساواة بالعرض"/>
+        <SameHeight Text="مساواة بالإرتفاع"/>
+        <SameSize Text="مساواة بالقياس"/>
+        <SizeToGrid Text="تحجيم على الشبكة"/>
+        <SpaceHorizontally Text="المسافة الأفقية"/>
+        <IncreaseHorizontalSpacing Text="زيادة المسافة الأفقية"/>
+        <DecreaseHorizontalSpacing Text="إنقاص المسافة الأفقية"/>
+        <RemoveHorizontalSpacing Text="إزالة المسافة الأفقية"/>
+        <SpaceVertically Text="المسافة العمودية"/>
+        <IncreaseVerticalSpacing Text="زيادة المسافة العمودية"/>
+        <DecreaseVerticalSpacing Text="إنقاص المسافة العمودية"/>
+        <RemoveVerticalSpacing Text="إزالة المسافة العمودية"/>
+        <CenterHorizontally Text="تمركز أفقي"/>
+        <CenterVertically Text="تمركز عمودي"/>
+        <BringToFront Text="إرسال إلى الأمام"/>
+        <SendToBack Text="إرسال إلى الخلف"/>
+      </Layout>
+      <Objects Text="كائنات">
+        <Select Text="تحديد"/>
+      </Objects>
+      <Zoom Text="تكبير / تصغير">
+        <ZoomOut Text="تصغير"/>
+        <ZoomIn Text="تكبير"/>
+        <Zoom Text="تكبير /  تصغير"/>
+        <PageWidth Text="عرض الصفحة"/>
+        <WholePage Text="كامل الصفحة"/>
+      </Zoom>
+      <Polygon Text="مضلع">
+        <Pointer Text="مؤشر"/>
+        <AddPointToStart Text="إضافة خط جديد للبداية"/>
+        <AddPointToEnd Text="إضافة خط جديد للنهاية"/>
+        <AddPoint Text="إضافة نقطة إلى الخط"/>
+        <RemovePoint Text="حذف نقطة"/>
+      </Polygon>
+    </Toolbar>
+    <Workspace>
+      <Code Text="ترميز"/>
+      <Report>
+        <ConfigureBands Text="إعداد البنود..."/>
+      </Report>
+    </Workspace>
+    <Options Text="خيارات"/>
+    <UndoRedo>
+      <Delete Text="{0}  حذف"/>
+      <Move Text="{0} تحريك"/>
+      <Size Text="{0}  تغيير حجم الـ"/>
+      <Change Text="{0} تغيير"/>
+      <AddGuide Text="إضافة دليل"/>
+      <MoveGuide Text="تحريك دليل"/>
+      <DeleteHGuides Text="حذف الدلائل الأفقية"/>
+      <DeleteVGuides Text="حذف الدلائل العمودية"/>
+      <ResizeBand Text="تغيير قياس قيد"/>
+      <ChangeParent Text="{0} تغيير الأب لـ"/>
+      <Load Text="تحميل التقرير"/>
+      <Paste Text="{0} لصق"/>
+      <Insert Text="{0} إدراج"/>
+      <AddPage Text="{0} إضافة صفحة"/>
+      <DeletePage Text="حذف صفحة"/>
+      <Script Text="تم تغيير السكريبت"/>
+      <NObjects Text="{0} كائن"/>
+      <UndoN Text="تراجع عن {0} عملية"/>
+      <RedoN Text="إعادة {0} عملية"/>
+      <ChangeReport Text="تغيير التقرير"/>
+      <ChangePagesOrder Text="تغيير ترتيب الصفحات"/>
+      <EditPage Text="تحرير الصفحة"/>
+      <EditPrinter Text="تحرير إعدادت الطابعة"/>
+      <EditReport Text="تحرير إعدادت التقرير"/>
+      <SelectData Text="تحديد البيانات"/>
+      <EditData Text="تحرير البيانات"/>
+    </UndoRedo>
+    <StartPage Text="صفحة البداية"/>
+    <Untitled Text="بدون عنوان.frx"/>
+    <ColorSelector>
+      <CustomColors Text="مخصص"/>
+      <WebColors Text="ويب"/>
+      <SystemColors Text="النظام"/>
+      <Other Text="...ألوان أخرى"/>
+      <Transparency Text="الشفافية:"/>
+    </ColorSelector>
+    <Welcome>
+      <Button Text="فتح نافذة الترحيب... "/>
+      <Title Text="مرحبا بك في FastReport"/>
+      <Show Text="إظهار عند بداية التشغيل"/>
+      <Open Text="فتح آخر الملفات"/>
+      <New Text="إنشاء جديد"/>
+    </Welcome>
+  </Designer>
+  <Preview Text="معاينة">
+    <DesignText Text="تصميم"/>
+    <Design Text="تصميم التقرير"/>
+    <PrintText Text="طباعة"/>
+    <Print Text="(Ctrl+P) طباعة"/>
+    <Open Text="فتح ملف"/>
+    <Save Text="حفظ ملف"/>
+    <SaveText Text="حفظ"/>
+    <SaveToCloud Text="تخزين سحابي"/>
+    <SaveToCloudText Text="تخزين سحابي"/>
+    <Email Text="إرسال بواسطة البريد الإلكتروني"/>
+    <Find Text="بحث عن نص"/>
+    <Outline Text="مخطط تمهيدي"/>
+    <PageSetup Text="إعدادات الصفحة"/>
+    <Edit Text="تحرير الصفحة"/>
+    <CopyPage Text="نسخ الصفحة"/>
+    <DeletePage Text="حذف الصفحة"/>
+    <Watermark Text="علامة مائية"/>
+    <First Text="الصفحة الأولى"/>
+    <Prior Text="الصفحة السابقة"/>
+    <Next Text="الصفحة التالية"/>
+    <Last Text="الصفحة الأخيرة"/>
+    <SaveNative Text="تقرير جاهز"/>
+    <FtpText Text="حفظ إلى FTP"/>
+    <DropboxText Text="حفظ إلى Dropbox"/>
+    <GoogleDriveText Text="حفظ إلى Google Drive"/>
+    <SkyDriveText Text="حفظ إلى OneDrive"/>
+  </Preview>
+  <Forms>
+    <About Text="حول البرنامج">
+      <Version Text="الإصدار"/>
+      <Visit Text="زيارة الموقع لمزيد من المعلومات"/>
+    </About>
+    <AddLayer Text="إضافة طبقة">
+      <Source Text="إختيار المصدر:"/>
+      <Shapefile Text="Save to Cloud"/>
+      <Embed Text="دمج الملف مع التقرير"/>
+      <Empty Text="تفريغ الطبقة مع بيانات geodata المزودة من التطبيق"/>
+    </AddLayer>
+    <AddNewItem Text="إضافة عنصر جديد">
+      <Add Text="إضافة"/>
+      <Reports Text="قوالب التقرير:"/>
+      <ReportItems Text="عناصر التقرير:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="خيارات متقدمة"/>
+    <AskPassword Text="كلمة المرور">
+      <Password Text="هذا التقرير محمي بكلمة مرور&#13;&#10;&#13;&#10;يرجى إدخال كلمة المرور"/>
+    </AskPassword>
+    <AskLoginPassword Text="الدخول إلى قاعدة البيانات">
+      <Login Text="تسجيل الدخول:"/>
+      <Password Text="كلمة المرور:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="إختيار مصدر البيانات"/>
+      <SelectDataSource Text="إختر واحد من مصادر البيانات المتوفرة أو أنشئ مصدر جديد:"/>
+      <CreateNewDatasource Text="... إنشاء مصدر بيانات جديد"/>
+      <SelectColumnsPage Text="إختيار أعمدة البيانات"/>
+      <SelectColumns Text="إختر أعمدة البيانات التي تريدها أن تظهر في التقرير"/>
+      <AvailableColumns Text="الأعمدة المتوفرة:"/>
+      <SelectedColumns Text="الأعمدة المحددة:"/>
+    </BaseReportWizard>
+    <Border Text="محرر الحدود">
+      <Border Text="الجوانب"/>
+      <Line Text="الخط"/>
+      <Shadow Text="الظل"/>
+      <Style Text="التاُير:"/>
+      <Width Text="العرض:"/>
+      <Color Text="اللون:"/>
+      <Hint Text="حدد تأثير الخط و حدد الخط ليتم تطبيق التأثير"/>
+    </Border>
+    <ChartEditor Text="محرر الرسم البياني">
+      <Chart Text="الرسم البياني"/>
+      <Add Text="... إضافة"/>
+      <Delete Text="حذف"/>
+      <Hint Text="إضغط على العنصر لتعديل خصائصه"/>
+      <Common>
+        <Color Text="اللون:"/>
+        <BackColor Text="لون الخلفية:"/>
+        <SecondaryColor Text="اللون الثانوي:"/>
+        <Gradient Text="التدرج:"/>
+        <HatchStyle Text="التظليل:"/>
+        <BorderColor Text="لون الحدود:"/>
+        <BorderStyle Text="تأثير الحدود:"/>
+        <BorderWidth Text="عرض الحدود:"/>
+        <ShadowColor Text="لون الظل:"/>
+        <ShadowOffset Text="موازنة الظل:"/>
+        <LineColor Text="لون الخط:"/>
+        <LineStyle Text="تأثير الخط:"/>
+        <LineWidth Text="عرض الخط:"/>
+        <Text Text="النص:"/>
+        <Font Text="الخط:"/>
+        <ForeColor Text="لون الكتابة:"/>
+        <Dock Text="التوضع:"/>
+        <InsideChartArea Text="داخل منطقة الرسم البياني"/>
+        <Format Text="التنسيق:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="بيانات">
+          <DataSource Text="مصدر البيانات:"/>
+          <Filter Text="تصفية:"/>
+          <AutoSeries Text="إنشاء تسلسل تلقائي"/>
+          <DataColumn Text="عمود البيانات:"/>
+          <ColorColumn Text="لون العمود:"/>
+          <SeriesSort Text="ترتيب التسلسل:"/>
+          <AlignXValues Text="إنحياز قيم س"/>
+          <ForceAutoSeries Text="فرض"/>
+        </Data>
+        <Appearance Text="المظهر">
+          <Template Text="قالب:"/>
+          <Load Text="... تحميل"/>
+          <Save Text="... حفظ"/>
+          <SeriesPalette Text="لوح الألوان:"/>
+          <BorderSkin Text="إكساء الحدود:"/>
+          <Templates>
+            <Custom Text="مخصص"/>
+            <Blue Text="أزرق"/>
+            <Gray Text="رمادي"/>
+            <Green Text="أخضر"/>
+            <Pink Text="وردي"/>
+            <Sand Text="رملي"/>
+            <Steel Text="فولاذي"/>
+            <Light Text="فاتح"/>
+          </Templates>
+        </Appearance>
+        <ChartArea Text="منطقة الرسم البياني">
+          <Area Text="المنطقة:"/>
+        </ChartArea>
+        <ThreeD Text="ثلاثي البعد">
+          <Enable Text="تمكين ثلاثي البعد"/>
+          <XRotation Text="دوران س:"/>
+          <YRotation Text="دوران ع:"/>
+          <Perspective Text="المنظور:"/>
+          <WallWidth Text="سماكة الجدار:"/>
+          <AxisDepth Text="عمق المحاور:"/>
+          <LightStyle Text="تأثير الإضاءة:"/>
+          <ClusteredSeries Text="تجميع التسلسل"/>
+        </ThreeD>
+        <Axes Text="المحاور">
+          <Axis Text="المحور:"/>
+          <CopyFromX Text="نسخ المظهر من المحور س"/>
+          <CopyFromPrimary Text="نسخ المظهر من المحور الرئيسي"/>
+          <Minor Text="ثانوي"/>
+          <Major Text="رئيسي"/>
+          <General Text="عام">
+            <Enabled Text="تمكين"/>
+            <MarginVisible Text="إظهار الهامش"/>
+            <Logarithmic Text="لوغارتمي"/>
+            <Reversed Text="معكوس"/>
+            <Interval Text="فاصل"/>
+            <Interlaced Text="مزج"/>
+            <InterlacedColor Text="مزج الألوان"/>
+          </General>
+          <Labels Text="لصاقات">
+            <Enabled Text="تمكين"/>
+            <Angle Text="زاوية:"/>
+          </Labels>
+          <Title Text="عنوان"/>
+          <CustomLabels Text="لصاقات خاصة">
+            <Label Text="لصاقة"/>
+            <Start Text="بداية:"/>
+            <End Text="نهاية:"/>
+            <Row Text="سطر:"/>
+            <MarkColor Text="لون التحديد:"/>
+            <MarkStyle Text="تأثير العلامة:"/>
+          </CustomLabels>
+          <Grid Text="شبكة">
+            <GridLine Text="خطوط الشبكة:"/>
+            <Enabled Text="تمكين"/>
+          </Grid>
+          <Ticks Text="وسمات">
+            <Ticks Text="الوسمة:"/>
+            <Enabled Text="تمكين"/>
+            <TickStyle Text="تأثير الوسمة:"/>
+            <TickSize Text="حجم الوسمة:"/>
+          </Ticks>
+          <Strips Text="شقوق">
+            <Strip Text="شق"/>
+            <Interval Text="فاصل">
+              <Start Text="بداية:"/>
+              <Width Text="عرض:"/>
+              <Interval Text="فاصل:"/>
+            </Interval>
+            <Appearance Text="المظهر"/>
+            <Text Text="النص">
+              <HorizontalAlign Text="محاذاة أفقية:"/>
+              <VerticalAlign Text="محاذاة عمودية:"/>
+              <TextOrientation Text="إتجاه النص:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="عنوان تفسيري">
+          <Enabled Text="تمكين"/>
+          <StyleColumn Text="عمود"/>
+          <StyleRow Text="صف"/>
+          <StyleTable Text="جدول"/>
+          <General Text="عام">
+            <LegendStyle Text="التأثير:"/>
+          </General>
+          <Appearance Text="المظهر"/>
+        </Legend>
+        <Title Text="العنوان">
+          <Visible Text="ظاهر"/>
+          <General Text="عام">
+            <TextOrientation Text="إتجاه النص:"/>
+            <TextStyle Text="تأثير النص:"/>
+          </General>
+          <Appearance Text="المظهر"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="بيانات">
+          <Name Text="الاسم:"/>
+          <XValue Text="قيمة س:"/>
+          <Color Text="اللون:"/>
+          <Filter Text="تصفية:"/>
+          <XValueType Text="نوع قيمة س:"/>
+          <YValueType Text="نوع قيمة ع:"/>
+          <XAxisType Text="محور س:"/>
+          <YAxisType Text="محور ع:"/>
+          <PrimaryAxis Text="رئيسي"/>
+          <SecondaryAxis Text="ثانوي"/>
+          <SeriesValues>
+            <YValue Text="قيمة ع:"/>
+            <High Text="عالي:"/>
+            <Low Text="منخفض:"/>
+            <Open Text="فتح:"/>
+            <Close Text="إغلاق:"/>
+            <RangeBegin Text="بداية النطاق:"/>
+            <RangeEnd Text="نهاية النطاق:"/>
+            <Size Text="القياس:"/>
+            <YValue1 Text="قيمة ع1:"/>
+            <YValue2 Text="قيمة ع2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="قيم"/>
+        <DataProcessing Text="معالجة البيانات">
+          <SortBy Text="ترتيب حسب:"/>
+          <SortByX Text="قيمة س"/>
+          <SortByY Text="قيمة ع"/>
+          <SortOrder Text="نمط الترتيب:"/>
+          <GroupBy Text="تجميع حسب:">
+            <None Text="بدون"/>
+            <XValue Text="قيمة س"/>
+            <Number Text="رقم"/>
+            <Years Text="سنوات"/>
+            <Months Text="أشهر"/>
+            <Weeks Text="أسابيع"/>
+            <Days Text="أيام"/>
+            <Hours Text="ساعات"/>
+            <Minutes Text="دقائق"/>
+            <Seconds Text="ثواني"/>
+            <Milliseconds Text="أجزاء ثانية"/>
+          </GroupBy>
+          <GroupInterval Text="فاصل التجميع:"/>
+          <GroupFunction Text="دالة التجميع:"/>
+          <CollectData Text="جمع البيانات:">
+            <None Text="بدون"/>
+            <TopN Text="قمة ن"/>
+            <BottomN Text="أسفل ن"/>
+            <LessThan Text="أقل من قيمة"/>
+            <LessThanPercent Text="أقل من نسبة"/>
+            <GreaterThan Text="أكبر من قيمة"/>
+            <GreaterThanPercent Text="أكبر من نسبة"/>
+          </CollectData>
+          <Value Text="القيمة:"/>
+          <CollectedText Text="النص المجمع:"/>
+          <CollectedColor Text="اللون المجمع:"/>
+          <Explode Text="توسع:">
+            <None Text="بدون"/>
+            <Biggest Text="أكبر قيمة"/>
+            <Lowest Text="أصغر قيمة"/>
+            <Specific Text="قيمة مخصصة"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="مظهر">
+          <Default Text="إفتراضي"/>
+          <DrawingStyle Text="تأثير الرسم:"/>
+          <PointWidth Text="عرض النقطة:"/>
+          <LabelsStyle Text="تأثير اللصاقات:"/>
+          <DrawSideBySide Text="رسم جنب إلى جنب"/>
+          <ShowMarkerLines Text="إظهار خطوط العلام"/>
+          <DoughnutRadius Text="قطر الحلقة (%):"/>
+          <AreaDrawingStyle Text="تأثير منطقة الرسم:"/>
+          <Markers Text="علامات:"/>
+          <PriceUpColor Text="درجة اللون:"/>
+          <ReversalAmount Text="الكمية المعكوسة:"/>
+          <BoxSize Text="حجم الإطار:"/>
+          <NumberOfLinesInBreak Text="خطوط في الفواصل:"/>
+          <LabelsPlacement Text="توضع اللصاقات:"/>
+          <PointsGap Text="نقاط الإمساك:"/>
+          <MinPointHeight Text="أدنى إرتفاع للنقطة:"/>
+          <ValueType Text="نوع القيمة:"/>
+          <ThreeDDrawingStyle Text="تأثير رسم ثلاثي البعد:"/>
+          <ThreeDRotation Text="تدوير ثلاثي البعد:"/>
+          <FunnelStyle Text="تأثير البؤرة:"/>
+          <LineTension Text="توتر الخط:"/>
+          <NoSettings Text="لا يوجد إعدادت مخصصة لهذا النوع من التسلسل"/>
+        </Appearance>
+        <FillBorder Text="حدود و تعبئة">
+          <Palette Text="لوح الألوان:"/>
+        </FillBorder>
+        <Labels Text="لصاقات">
+          <LabelView Text="عرض اللصاقات:"/>
+          <Pattern Text="النقش:"/>
+        </Labels>
+        <Markers Text="علامات">
+          <Style Text="التاُثير:"/>
+          <Size Text="القياس:"/>
+          <Step Text="الخطوة:"/>
+          <Color Text="اللون:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="معرض">
+      <NewArea Text="إضافة منطقة رسم بياني جديدة لهذه المجموعة"/>
+      <Categories>
+        <BarColumn Text="قضبان و أعمدة"/>
+        <Area Text="منطقة"/>
+        <Line Text="خط"/>
+        <PointBubble Text="نقاط و فقاعات"/>
+        <Pie Text="فطيرة"/>
+        <Circular Text="دائري"/>
+        <Financial Text="مالي"/>
+        <PyramidFunnel Text="إهرامات و أنابيب"/>
+        <Range Text="نطاق"/>
+      </Categories>
+      <Series>
+        <Bar Text="قضيب"/>
+        <StackedBar Text="قضيب مكدس"/>
+        <StackedBar100 Text="100% قضيب مكدس "/>
+        <Column Text="عمود"/>
+        <StackedColumn Text="عمود مكدس"/>
+        <StackedColumn100 Text="100% عمود مكدس"/>
+        <Area Text="منطقة"/>
+        <SplineArea Text="منطقة أعمدة"/>
+        <StackedArea Text="منطقة مكدسة"/>
+        <StackedArea100 Text="100% منطقة مكدسة"/>
+        <Line Text="خط"/>
+        <FastLine Text="خط سريع"/>
+        <StepLine Text="خط مقطع"/>
+        <Spline Text="عمودي"/>
+        <Bubble Text="فقاعة"/>
+        <Point Text="نقطة"/>
+        <FastPoint Text="نقطة سريعة"/>
+        <Pie Text="فطيرة"/>
+        <Doughnut Text="حلقة"/>
+        <Polar Text="قطبي"/>
+        <Radar Text="رادار"/>
+        <Stock Text="دعامة"/>
+        <Candlestick Text="شمعدان"/>
+        <Kagi Text="كاجي"/>
+        <Renko Text="رينكو"/>
+        <PointAndFigure Text="نقاط و أشكال"/>
+        <ThreeLineBreak Text="خط بثلاث فواصل"/>
+        <Pyramid Text="هرم"/>
+        <Funnel Text="أنبوب"/>
+        <Range Text="نطاق"/>
+        <SplineRange Text="نطاق أعمدة"/>
+        <RangeColumn Text="نطاق عمود"/>
+        <RangeBar Text="نطاق قضيب"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="ترميز الصفحة">
+      <EnableCodeCompletion Text="تمكين الإكمال التلقائي"/>
+      <EnableVirtualSpace Text="تمكين المسافة العملية"/>
+      <UseSpaces Text="(tabs) إستخدام المسافات لملء الفواصل "/>
+      <AllowOutlining Text="السماح بالمخطط التمهيدي"/>
+      <LineNumbers Text="أرقام الأسطر"/>
+      <TabSize Text="مسافة (tab):"/>
+      <DefaultScriptLanguage Text="لغة البرمجة الإفتراضية:"/>
+      <CSharp Text="C#"/>
+      <VBNet Text="Visual Basic .NET"/>
+    </CodePageOptions>
+    <ConfigureBands Text="إعداد البنود">
+      <Add Text="إضافة"/>
+      <Delete Text="حذف"/>
+    </ConfigureBands>
+    <Connection Text="إتصال">
+      <Select Text="تحديد نوع الإتصال"/>
+      <AlwaysUse Text="إستخدم هذا الإتصال دائماً"/>
+      <LoginPrompt Text="السؤال عند تسجيل الدخول"/>
+      <Test Text="التحقق من الإتصال"/>
+      <TestSuccesful Text="تم الإتصال بنجاح"/>
+    </Connection>
+    <CustomLabel Text="تخصيص اللصاقة">
+      <Name Text="الاسم:"/>
+      <Paper Text="الورق"/>
+      <Landscape Text="أفقي"/>
+      <PaperWidth Text="عرض الورقة:"/>
+      <PaperHeight Text="إرتفاع الورقة:"/>
+      <LeftMargin Text="الهامش اليساري:"/>
+      <TopMargin Text="الهامش العلوي:"/>
+      <Label Text="وسائط اللصاقة"/>
+      <LabelWidth Text="عرض اللصاقة:"/>
+      <LabelHeight Text="إرتفاع اللصاقة:"/>
+      <RowGap Text="تباعد الصفوف:"/>
+      <ColumnGap Text="تباعد الأعمدة:"/>
+      <Warning Text="! اللصاقات ليست مناسبة للصفحة"/>
+    </CustomLabel>
+    <DataBandEditor Text="تحرير البيانات">
+      <DataSource Text="مصدر البيانات"/>
+      <NoData Text=". لا يتوفر مصدر للبيانات&#13;&#10;&#13;&#10; إضغط قائمة &quot;بيانات|تحديد بيانات التقرير ...&quot; وقم بالإختيار من مصادر البيانات المتوفرة , أو أنشئ مصدر بيانات جديد بإستخدام &quot;بيانات|إضافة مصدر بيانات...&quot;  من القائمة"/>
+      <Sort Text="ترتيب"/>
+      <SortBy Text="ترتيب حسب"/>
+      <ThenBy Text="ثم حسب"/>
+      <Ascending Text="تصاعدي"/>
+      <Descending Text="تنازلي"/>
+      <Filter Text="تصفية"/>
+      <Expression Text="معادلة التصفية:"/>
+    </DataBandEditor>
+    <DataBandColumnEditor Text="تحرير أعمدة القيود">
+      <Columns Text="أعمدة"/>
+      <Count Text="العدد"/>
+      <Layout Text="نسق"/>
+      <MinRowCount Text="العدد الأدنى للأسطر"/>
+      <Width Text="عرض"/>
+    </DataBandColumnEditor>
+    <DataWizard Text="مرشد البيانات">
+      <Page1 Text="إختر قاعدة البيانات"/>
+      <WhichData Text="أي من بيانات الإتصال يجب أن يستعملها تقريرك ليتصل بقاعدة البيانات ؟"/>
+      <Hint Text=" إختر من القائمة آخر الإتصالات المستخدمة , أو إضغط زر &quot;إتصال جديد ...&quot; لإنشاء إتصال جديد"/>
+      <NewConnection Text="... إتصال جديد"/>
+      <EditConnection Text="... تحرير الإتصال"/>
+      <ConnectionName Text="أدخل إسم الإتصال:"/>
+      <ConnectionString Text="تعليمة الإتصال"/>
+      <Page2 Text="إختيار الجداول"/>
+      <WhichTables Text="أي من الجداول تريدها في تقريرك ؟"/>
+      <Wait Text="قراءة معلومات قاعدة البيانات"/>
+      <AddQuery Text="... SQL إضافة إستعلام"/>
+      <CheckAll Text="تحديد الكل"/>
+    </DataWizard>
+    <DialogPageOptions Text="شكل مربع الحوار"/>
+    <Exception Text="إعتراض">
+      <Hint Text="لقد حصل الإعتراض التالي في تقريرك"/>
+      <Stack Text="تتبع المكدس:"/>
+      <Copy Text="نسخ إلى الحافظة"/>
+    </Exception>
+    <ExpressionEditor Text="تحرير الإعتراض"/>
+    <Fill Text="محرر التعبئة">
+      <Solid Text="ممتلئ"/>
+      <LinearGradient Text="تدرج خطي"/>
+      <PathGradient Text="تدرج مساري"/>
+      <Hatch Text="تظليل"/>
+      <Glass Text="زجاجي"/>
+      <Colors Text="الألوان"/>
+      <Color Text="اللون"/>
+      <StartColor Text="البداية"/>
+      <EndColor Text="النهاية"/>
+      <Options Text="الخيارات"/>
+      <Focus Text="التركيز"/>
+      <Contrast Text="التباين"/>
+      <Angle Text="الزاوية"/>
+      <CenterColor Text="المركز"/>
+      <EdgeColor Text="الحواف"/>
+      <Shape Text="الشكل"/>
+      <Ellipse Text="قطع ناقص"/>
+      <Rectangle Text="رباعي الأضلاع"/>
+      <ForeColor Text="أمامي"/>
+      <BackColor Text="خلفي"/>
+      <Style Text="التأثير"/>
+      <Blend Text="دمج"/>
+      <GlassHatch Text="إظهار التظليل"/>
+    </Fill>
+    <FormatEditor Text="تحديد التنسيق">
+      <Expression Text="معادلة:"/>
+      <General Text="عام"/>
+      <Number Text="رقم"/>
+      <Currency Text="عملة"/>
+      <Date Text="تاريخ"/>
+      <Time Text="وقت"/>
+      <Percent Text="نسبة مئوية"/>
+      <Boolean Text="قيمة ثنائية"/>
+      <Custom Text="مخصص"/>
+      <UseLocale Text="إستخدام الإعدادت المحلية"/>
+      <DecimalDigits Text="الأرقام بعد الفاصلة:"/>
+      <DecimalSeparator Text="الفاصلة العشرية:"/>
+      <GroupSeparator Text="فاصل التجميع:"/>
+      <PositivePattern Text="نمط القيمة الموجبة:"/>
+      <NegativePattern Text="نمط القيمة السالبة:"/>
+      <CurrencySymbol Text="رمز العملة:"/>
+      <PercentSymbol Text="رمز النسبة المئوية:"/>
+      <FalseText Text="نص القيمة الخاطئة:"/>
+      <TrueText Text="نص القيمة الصحيحة:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="تحرير الأعمدة">
+      <Columns Text="الأعمدة"/>
+      <Properties Text="الخصائص"/>
+      <Add Text="إضافة"/>
+      <Remove Text="إزالة"/>
+      <AddAll Text="إضافة الكل"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="تحرير التجميع">
+      <Condition Text="شرط التجميع"/>
+      <Hint Text="حدد عمود البيانات أو إكتب معادلة:"/>
+      <Settings Text="الإعدادات"/>
+      <Sort Text="ترتيب:"/>
+      <NoSort Text="بدون ترتيب"/>
+      <Ascending Text="تصاعدي"/>
+      <Descending Text="تنازلي"/>
+    </GroupBandEditor>
+    <GroupExpert Text="تجميع متقدم">
+      <Condition Text="شرط التجميع"/>
+      <Hint Text="حدد عمود البيانات أو أكتب معادلة , ثم إضغط زر &quot;إضافة&quot; لإضافة تجميع جديد"/>
+      <Add Text="إضافة"/>
+      <Groups Text="مجموعات"/>
+      <Edit Text="...تحرير"/>
+      <Delete Text="حذف"/>
+    </GroupExpert>
+    <HighlightEditor Text="تنسيق شرطي">
+      <Conditions Text="الشروط"/>
+      <Add Text="إضافة"/>
+      <Delete Text="حذف"/>
+      <Edit Text="تحرير"/>
+      <Style Text="تأثير"/>
+      <Fill Text="تعبئة"/>
+      <TextColor Text="لون النص"/>
+      <Font Text="الخط"/>
+      <Visible Text="مرئي"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="تحرير الرابط السريع">
+      <Url Text="الرابط"/>
+      <PageNumber Text="رقم الصفحة"/>
+      <Bookmark Text="مؤشرة"/>
+      <Report Text="تقرير"/>
+      <ReportPage Text="صفحة التقرير"/>
+      <Custom Text="مخصص"/>
+      <UrlValue Text="(http://www.url.com):حدد الرابط كما في الشكل"/>
+      <UrlExpression Text="أو أدخل المعادلة التي ترجع قيمة الرابط:"/>
+      <PageNumberValue Text="حدد رقم الصفحة:"/>
+      <PageNumberExpression Text="أو أدخل المعادلة التي تردع رقم الصفحة:"/>
+      <BookmarkValue Text="حدد اسم المؤشر:"/>
+      <BookmarkExpression Text="أو ادخل المعادلة التي ترجع قيمة المؤشر:"/>
+      <ReportName Text="اسم التقرير:"/>
+      <ParameterName Text="وسائط التقرير:"/>
+      <ParameterValue Text="حدد قيمة الوسيط:"/>
+      <ParameterExpression Text="أو أدخل المعادلة التي ترجع قيمة الوسيط:"/>
+      <PageName Text="صفحة التقرير:"/>
+      <CustomValue Text="أدخل قيمة الرابط السريع:"/>
+      <CustomExpression Text="أو أدخل المعادلة التي ترجع القيمة:"/>
+      <Hint Text="ماذا يحدث إذا قمت بالضغط على هذا الكائن في نافذة المعاينة:"/>
+      <HintUrl Text="حدد الرابط الذي سيتم فتحه"/>
+      <HintPageNumber Text="سوف يتم نقلك إلى صفحة محددة"/>
+      <HintBookmark Text="سوف يتم نقلك إلى كائن يحوي مؤشرة محددة"/>
+      <HintReport Text="التقرير المحدد سوف يفتح في نافذة معاينة منفصلة"/>
+      <HintReportPage Text="الصفحة المحددة سوف توّلد و تفتح في نافذة معاينة منفصلة"/>
+      <HintCustom Text="يجب أن تنشئ حدث &quot;النقر&quot; ليتم تعريف حدث مخصص"/>
+      <ModifyAppearance Text="عدل مظهر الكائن بحيث يبدو كرابط قابل للضغط"/>
+      <OpenLinkInNewTab Text="فتح الإختصار في لسان جديد"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="مرشد اللصاقات">
+      <Hint Text="حدد إحدى اللصاقات المعرفة مسبقاً , أو إضغط زر &quot;لصاقة مخصصة&quot; لتعريف قياس لصاقات خاص بك"/>
+      <Label Text="لصاقة"/>
+      <Manufacturer Text="المصنع"/>
+      <Product Text="المنتج"/>
+      <Parameters Text="الوسائط"/>
+      <Size Text="القياس:"/>
+      <PaperSize Text="قياس الورق:"/>
+      <Rows Text="الصفوف:"/>
+      <Columns Text="الأعمدة:"/>
+      <CustomLabel Text="...لصاقة مخصصة"/>
+      <Custom Text="مخصص"/>
+      <Delete Text="حذف"/>
+    </LabelWizard>
+    <MapEditor Text="محرر الخرائط">
+      <Map Text="خرائط"/>
+      <Layer Text="طبقات"/>
+      <Add Text="إضافة..."/>
+      <Delete Text="حذف"/>
+      <Hint Text="إضغط على العنصر لتحديد خصائصه:"/>
+      <Common>
+        <FillColor Text="لون التعبئة:"/>
+        <TextColor Text="لون النص:"/>
+        <BorderColor Text="لون الحواف:"/>
+        <BorderStyle Text="نمط الحواف:"/>
+        <BorderWidth Text="عرض الحواف:"/>
+        <Text Text="نص:"/>
+        <Font Text="خط:"/>
+        <Dock Text="محاذاة و توضع:"/>
+        <Format Text="تنسيق:"/>
+        <Visible Text="إظهار"/>
+        <NumberOfRanges Text="عدد النطاقات"/>
+        <Start Text="البداية:"/>
+        <End Text="النهاية:"/>
+        <Auto Text="تلقائي"/>
+      </Common>
+      <MapEditorControl>
+        <General Text="عام">
+          <Mercator Text="Mercator حماية"/>
+        </General>
+        <ColorScale Text="تحجيم الألوان">
+          <HideIfNoData Text="إخفاء في حال عدم توفر بيانات"/>
+          <Border Text="حواف..."/>
+          <Fill Text="تعبئة..."/>
+          <General Text="عام"/>
+          <Title Text="عنوان"/>
+          <Values Text="قيم"/>
+          <NoDataText Text="لا يوجد بيانات للنص:"/>
+          <NoData Text="لا يوجد بيانات"/>
+        </ColorScale>
+      </MapEditorControl>
+      <LayerEditorControl>
+        <Data Text="بيانات">
+          <DataSource Text="مصدر البيانات:"/>
+          <Filter Text="الفلتر:"/>
+          <SpatialData Text="بيانات مساحية:"/>
+          <Column Text="العمود:"/>
+          <Value Text="قيمة:"/>
+          <Latitude Text="خط العرض:"/>
+          <Longitude Text="خط الطول:"/>
+          <Label Text="نص:"/>
+          <AnalyticalData Text="البيانات التحليلة:"/>
+          <Function Text="تابع:"/>
+          <ZoomPolygon Text="تحجيم المضلع:"/>
+        </Data>
+        <Appearance Text="المظهر">
+          <Palette Text="قالب الألوان:"/>
+        </Appearance>
+        <ColorScale Text="تحجيم الألوان">
+          <StartColor Text="لون البداية:"/>
+          <MiddleColor Text="لون الوسط:"/>
+          <EndColor Text="لون النهاية:"/>
+          <Color Text="اللون:"/>
+        </ColorScale>
+        <SizeRanges Text="حجم المجالات">
+          <StartSize Text="حجم البداية:"/>
+          <EndSize Text="حجم النهاية:"/>
+          <Size Text="الحجم:"/>
+        </SizeRanges>
+        <Labels Text="النصوص">
+          <LabelKind Text="نوع النص:"/>
+          <None Text="بدون"/>
+          <Name Text="الاسم"/>
+          <Value Text="قيمة"/>
+          <NameAndValue Text="الاسم و القيمة"/>
+          <LabelColumn Text="نص العمود:"/>
+          <VisibleAtZoom Text="إظهار التكبير و التصغير:"/>
+        </Labels>
+      </LayerEditorControl>
+    </MapEditor>
+    <OutlineEditor Text="محرر الخطوط الخارجية">
+      <Enabled Text="تمكين"/>
+      <Style Text="النمط:"/>
+      <Width Text="العرض:"/>
+      <Color Text="اللون:"/>
+      <DrawBehind Text="رسم خلفي:"/>
+    </OutlineEditor>
+    <PageSetup Text="إعداد الصفحة">
+      <Paper Text="الورق"/>
+      <Custom Text="تخصيص"/>
+      <Width Text="العرض:"/>
+      <Height Text="الإرتفاع:"/>
+      <Orientation Text="الإتجاه:"/>
+      <Portrait Text="عمودي"/>
+      <Landscape Text="أفقي"/>
+      <Margins Text="الهوامش"/>
+      <Left Text="يسار:"/>
+      <Top Text="علوي:"/>
+      <Right Text="يمين:"/>
+      <Bottom Text="سفلي:"/>
+      <MirrorMargins Text="عكس الهوامش على الصفحات المتناوبة"/>
+      <Source Text="المصدر"/>
+      <FirstPage Text="الصفحة الأولى:"/>
+      <OtherPages Text="الصفحات الأخرى:"/>
+      <Columns Text="الأعمدة"/>
+      <Count Text="العدد:"/>
+      <ColumnWidth Text="العرض:"/>
+      <Positions Text="التوضع:"/>
+      <Other Text="المزيد"/>
+      <Duplex Text="مزدوج:"/>
+      <DupDefault Text="إفتراضي"/>
+      <DupSimplex Text="بسيط"/>
+      <DupVertical Text="عمودي"/>
+      <DupHorizontal Text="أفقي"/>
+      <EditWatermark Text="... تحرير العلامة المائية"/>
+      <ExtraWidth Text="عرض تصميم إضافي"/>
+      <UnlimitedHeight Text="إرتفاع لا نهائي"/>
+      <UnlimitedWidth Text="عرض لا نهائي"/>
+    </PageSetup>
+    <PictureEditor Text="تحرير الصورة">
+      <Picture Text="صورة"/>
+      <Load Text="تحميل"/>
+      <Paste Text="لصق"/>
+      <Clear Text="مسح"/>
+      <Edit Text="تحرير"/>
+      <DataColumn Text="عمود بيانات"/>
+      <FileName Text="اسم ملف"/>
+      <Url Text="رابط سريع"/>
+      <FileHint1 Text="اسم الملف:"/>
+      <FileHint2 Text="ملاحظة: يجب أن تنشر هذا الملف مع التقرير"/>
+      <UrlHint Text="رابط سريع:"/>
+    </PictureEditor>
+    <PictureEditorAdvanced Text="محرر الصورة">
+      <Reset Text="إعادة ضبط"/>
+      <Resize Text="تغيير قياس"/>
+      <Crop Text="قص"/>
+      <Color Text="لون"/>
+      <Change Text="تغيير:"/>
+      <Percentage Text="النسبة المئوية"/>
+      <Pixels Text="البكسلات"/>
+      <Horizontal Text="أفقي:"/>
+      <Vertical Text="عمودي:"/>
+      <AspectRatio Text="صيانة التباعد"/>
+      <Grayscale Text="رمادي"/>
+      <Monochrome Text="أسود و أبيض"/>
+      <MinX Text="الحد الأدنى. س:"/>
+      <MinY Text="الحد الأدنى. ع:"/>
+    </PictureEditorAdvanced>
+    <PluginsOptions Text="إضافات">
+      <Hint Text="FastReport قائمة بالإضافات المركبة على "/>
+      <Add Text="إضافة"/>
+      <Remove Text="إزالة"/>
+      <Note Text="FastReport ملاحظة: سيتم تطبيق التغيرات بعد إعادة تشغيل "/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="تطبيق على كافة الصفحات و إعادة تشغيل التقرير"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="بحث"/>
+    <PrinterSetup Text="طباعة">
+      <PrinterSetup Text="إعداد الطابعة"/>
+      <Printer Text="الطابعة"/>
+      <SavePrinter Text="حفظ هذه الطابعة في ملف التقرير"/>
+      <Settings Text="... الإعدادت"/>
+      <PrintToFile Text="طباعة إلى ملف"/>
+      <PageRange Text="نطاق الصفحات"/>
+      <All Text="الكل"/>
+      <Current Text="الصفحة الحالية"/>
+      <Numbers Text="الصفحات:"/>
+      <Hint Text="أدخل أرقام الصفحات و/أو نطاق الصفحات , مع فصلهم بفاصلة . مثال , 12-1,3,5"/>
+      <Copies Text="النسخ"/>
+      <Count Text="العدد:"/>
+      <Collate Text="الفرز"/>
+      <Other Text="مزيد"/>
+      <OddEven Text="طباعة:"/>
+      <AllPages Text="كافة الصفحات"/>
+      <OddPages Text="الصفحات الفردية"/>
+      <EvenPages Text="الصفحات الزوجية"/>
+      <Order Text="الترتيب:"/>
+      <OrderDirect Text="(1-9) مباشر"/>
+      <OrderReverse Text="(9-1) عكسي"/>
+      <Duplex Text="مزدوج:"/>
+      <Source Text="المصدر:"/>
+      <PrintMode Text="نظام الطباعة"/>
+      <PrintModeDefault Text="إفتراضي"/>
+      <PrintModeSplit Text="تقسيم الصفحات الكبيرة"/>
+      <PrintModeScale Text="تحجيم"/>
+      <PrintOnSheet Text="طباعة على شريحة:"/>
+      <PagesOnSheet Text="الصفحات على الشريحة:"/>
+      <PagesOnSheet1 Text="صفحة 1"/>
+      <PagesOnSheet2 Text="صفحتين 2"/>
+      <PagesOnSheet4 Text="صفحات 4"/>
+      <PagesOnSheet8 Text="صفحات 8"/>
+      <Print Text="طباعة"/>
+      <Error Text="نطاق الصفحات غير صحيح"/>
+      <CmdCommand Text="سطر الأوامر"/>
+    </PrinterSetup>
+    <QueryBuilder Text="باني الاستعلامات">
+      <Designer Text="مصمم"/>
+      <Sql Text="SQL"/>
+      <Result Text="النتائج"/>
+      <Select Text="إختيار"/>
+      <Joins Text="دمج"/>
+      <Group Text="مجموعة"/>
+      <Name Text="اسم"/>
+      <Alias Text="اسم مستعار"/>
+      <Filter Text="تصفية"/>
+      <Order Text="ترتيب"/>
+      <Func Text="تعبير"/>
+      <Editor Text="محرر"/>
+      <Delete Text="حذف"/>
+      <Change Text="تغيير"/>
+      <JoinEditor Text="دمج المحرر"/>
+      <Tables Text="جداول:"/>
+      <Condition Text="شرط"/>
+      <InputAlias Text="أدخل اسم مستعار للجدول"/>
+      <Where>
+        <Equal Text="مساواة"/>
+        <NotEqual Text="غير مساوي"/>
+        <GtOrEqual Text="أكبر من أو مساوي"/>
+        <Gt Text="أكبر من"/>
+        <LtOrEqual Text="أصغر من أو مساوي"/>
+        <Lt Text="أصغر من"/>
+        <Like Text="مشابه"/>
+        <NotLike Text="غير مشابه"/>
+      </Where>
+    </QueryBuilder>
+    <QueryWizard Text="مرشد الإستعلام">
+      <Page1 Text="قم بتعيين الاسم"/>
+      <SetName Text=".قم بتعيين اسم كائن الإستعلام"/>
+      <NameHint Text=".&quot;هذا الاسم سوف يعرض في نافذة &quot;البيانات"/>
+      <Page2 Text="SQL أدخل تعبير"/>
+      <WhatData Text="ما هي البيانات التي تريدها من الإستعلام ؟"/>
+      <TypeSql Text="أو إستخدم مولد الإستعلام لإنشاءه SQL أدخل إستعلام الــ"/>
+      <QueryBuilder Text="... مولد الإستعلام"/>
+      <Page3 Text="تعريف الوسائط"/>
+      <Page4 Text="تعريف الأعمدة"/>
+      <Refresh Text="تحديث الأعمدة"/>
+      <AddColumn Text="إضافة عمود حسابي"/>
+      <AddParameter Text="إضافة وسيط"/>
+      <Delete Text="حذف"/>
+    </QueryWizard>
+    <RelationEditor Text="تحرير العلاقة">
+      <ParentTable Text="الجدول الأب:"/>
+      <ChildTable Text="الجدول الإبن:"/>
+      <Parent Text="الأب"/>
+      <Child Text="الإبن"/>
+      <Columns Text="الأعمدة:"/>
+      <Error Text="عدد الأعمدة الآباء و الأعمدة الأبناء غير متوافق"/>
+    </RelationEditor>
+    <ReportData Text="إختر بيانات التقرير">
+      <Hint Text="حدد مصادر البيانات و الحقول التي تريد إستخدامها في التقرير"/>
+      <Aliases Text="إظهار الأسماء المستعارة"/>
+    </ReportData>
+    <ReportOptions Text="خيارات التقرير">
+      <General Text="عام"/>
+      <Description Text="الوصف"/>
+      <Script Text="سكريبت"/>
+      <Security Text="الأمان"/>
+      <Inheritance Text="وراثة"/>
+      <Email Text="بريد الكتروني"/>
+      <Name Text="الاسم:"/>
+      <Author Text="المؤلف:"/>
+      <Version Text="النسخة:"/>
+      <Description1 Text="الوصف:"/>
+      <Picture Text="الصورة:"/>
+      <SavePreviewPicture Text="حفظ معاينة الصورة"/>
+      <Load Text="...تحميل"/>
+      <Clear Text="مسح"/>
+      <Created Text="أنشئ:"/>
+      <Modified Text="عدّل:"/>
+      <Language Text="لغة السكريبت:"/>
+      <Note Text="!ملاحظة: إذا قمت بتغيير اللغة , فسوف يتم مسح كل السكريبت"/>
+      <RefAssemblies Text="مكاتب تجميعية و مرجعية:"/>
+      <Add Text="...إضافة"/>
+      <Password Text="كلمة المرور:"/>
+      <RetypePassword Text="تأكيد كلمة المرور:"/>
+      <Inherited Text="هذا التقرير مورث من التقرير الأساسي:"/>
+      <NotInherited Text="هذا التقرير غير مورث"/>
+      <Choose Text="حدد الخيارات:"/>
+      <DontChange Text="لا تقم بالتغيير"/>
+      <Detach Text="فصل التقرير الأساسي"/>
+      <Inherit Text="توريث التقرير من:"/>
+      <Browse Text="...إستعراض"/>
+      <DoublePass Text="تمرير مزدوج"/>
+      <Compress Text="ضغط ملف التقرير"/>
+      <UseFileCache Text="إستخدام ملف مخبأ"/>
+      <ConvertNulls Text="تحويل القيم الخالية"/>
+      <TextQuality Text="جودة النص:"/>
+      <SmoothGraphics Text="صقل الرسوميات"/>
+      <QualityDefault Text="إفتراضي"/>
+      <QualityRegular Text="قياسي"/>
+      <QualityClearType Text="حدود واضحة"/>
+      <QualityAntiAlias Text="حواف ممزوجة"/>
+      <PasswordError Text=".كلمة السر غير مطابقة. يرجى إدخالها مرة أخرى"/>
+      <Recipients Text="John@url.com المستقبل : على سبيل المثال  "/>
+      <Subject Text="الموضوع:"/>
+      <Message Text="الرسالة:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="صفحة التقرير">
+      <Units Text="وحدات قياس الصفحة"/>
+      <Millimeters Text="ميلميتر"/>
+      <Centimeters Text="سنتيمتر"/>
+      <Inches Text="إنش"/>
+      <HundrethsOfInch Text="مئة من الإنش"/>
+      <Grid Text="شبكة"/>
+      <ShowGrid Text="إظهار الشبكة"/>
+      <SnapToGrid Text="محاذاة على الشبكة"/>
+      <DottedGrid Text="شبكة منقطة"/>
+      <Size Text="حجم القفزة:"/>
+      <Markers Text="علامات الكائن"/>
+      <Rectangle Text="رباعي الأضلاع"/>
+      <Corners Text="زوايا"/>
+      <BandView Text="عرض القيود"/>
+      <Structure Text="بنى"/>
+      <Classic Text="كلاسيكي"/>
+      <EditAfterInsert Text="تحرير بعد الإدراج"/>
+      <EventBandIndicator Text="إظهار مؤشرات على القيود مع الأحداث"/>
+      <EventObjectIndicator Text="إظهار مؤشرات على الكائنات مع الأحداث"/>
+      <ObjectsAppearance Text="مظهر الكائنات"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="محرر النص المنسق">
+      <Open Text="فتح"/>
+      <Save Text="حفظ"/>
+      <Subscript Text="رمز سفلي"/>
+      <Superscript Text="رمز علوي"/>
+      <Bullets Text="تعداد نقطي"/>
+      <Confirm Text="تم تغيير النص . هل تريد حفظ التغيرات ؟"/>
+    </RichTextEditor>
+    <SearchReplace Text="بحث و إستبدال">
+      <Find Text="بحث عن:"/>
+      <Replace Text="إستيدال بـ:"/>
+      <Options Text="خيارات البحث"/>
+      <MatchCase Text="مطابقة حالة الأحرف"/>
+      <MatchWholeWord Text="مطابقة كامل الكلمة"/>
+      <FindNext Text="بحث عن التالي"/>
+      <ReplaceBtn Text="إستبدال"/>
+      <ReplaceAll Text="إستبدال الكل"/>
+      <NotFound Text=".لم يتم العثور على النص"/>
+      <NoMoreFound Text=".لا يمكن العثور على المزيد"/>
+    </SearchReplace>
+    <SelectDataSource Text="إختر مصدر البيانات">
+      <Hint Text=".حدد واحد أو أكثر من مصادر البيانات لإستخدامها في التقرير"/>
+      <AvailableDs Text="مصادر البيانات المتوفرة:"/>
+      <SelectedDs Text="مصادر البيانات المختارة:"/>
+      <ProjectDs Text="المشروع datasets"/>
+      <OtherDs Text="مصادر بيانات أخرى"/>
+    </SelectDataSource>
+    <SelectLanguage Text="إختيار اللغة">
+      <SelectLanguage Text="حدد اللغة من القائمة التالية:"/>
+      <Auto Text="تلقائي"/>
+      <Folder Text="مجلد ملفات اللغة:"/>
+      <SelectFolder Text="(*.frl) إختر المجلد الذي يحوي ملفات اللغة"/>
+    </SelectLanguage>
+    <StandardReportWizard Text="معالج التقرير القياسي">
+      <GroupsPage Text="إنشاء مجموعات"/>
+      <CreateGroups Text="(إنشاء مجموعات (إختياري "/>
+      <Groups Text="المجموعات:"/>
+      <LayoutPage Text="تحديد التخطيط"/>
+      <DefineLayout Text="تحديد إتجاه الورقة و تخطيط البيانات"/>
+      <Orientation Text="إتجاه الورقة"/>
+      <Portrait Text="عمودي"/>
+      <Landscape Text="أفقي"/>
+      <Layout Text="تخطيط"/>
+      <Tabular Text="بشكل جداول"/>
+      <Columnar Text="بشكل أعمدة"/>
+      <StylePage Text="إختر التأثير"/>
+      <Styles Text="إختر تأثير التقرير">
+        <Standard Text="قياسي"/>
+        <Gray Text="رمادي"/>
+        <Green Text="أخضر"/>
+        <Sand Text="رملي"/>
+        <Blue Text="أزرق"/>
+        <Title Text="عنوان"/>
+        <Header Text="رأس"/>
+        <Group Text="مجموعة"/>
+        <Data Text="بيانات"/>
+        <Footer Text="تذييل"/>
+        <EvenRows Text="سطر أحادي"/>
+      </Styles>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="تحرير مجموعة القيم النصية"/>
+    <Style Text="محرر التأثير">
+      <Styles Text="التأثيرات"/>
+      <Add Text="إضافة"/>
+      <Delete Text="حذف"/>
+      <Edit Text="تحرير"/>
+      <Load Text="...تحميل"/>
+      <Save Text="...حفظ"/>
+      <Settings Text="إعدادت التأثير"/>
+      <Border Text="الحدود"/>
+      <Fill Text="التعبئة"/>
+      <Font Text="الخط"/>
+      <TextColor Text="لون النص"/>
+      <StyleName Text="التأثير"/>
+    </Style>
+    <TextEditor Text="تحرير النص">
+      <WordWrap Text="إلتفاف النص"/>
+    </TextEditor>
+    <TotalEditor Text="تحرير المجموع">
+      <TotalName Text="اسم المجموع:"/>
+      <Total Text="المجموع"/>
+      <Function Text="الدالة:"/>
+      <DataColumnOrExpression Text="عمود البيانات أو المعادلة:"/>
+      <DataBand Text="س"/>
+      <EvaluateCondition Text="تخمين تحقق الشرط التالي:"/>
+      <PrintOn Text="طباعة على البند:"/>
+      <Options Text="خيارات"/>
+      <ResetAfterPrint Text="إعادة العملية بعد الطباعة"/>
+      <ResetRepeated Text="إعادة العملية إذا كان القيد مكرر"/>
+      <InvisibleRows Text="يحتوي على الصفوف الظاهرة"/>
+      <Sum Text="Sum (جمع)"/>
+      <Min Text="Min (أصغر)"/>
+      <Max Text="Max (أكبر)"/>
+      <Avg Text="Average (متوسط)"/>
+      <Count Text="Count (عدد)"/>
+      <Custom Text="مخصص"/>
+    </TotalEditor>
+    <UIOptions Text="واجهة المستخدم">
+      <Appearance Text="المظهر:"/>
+      <Ribbon Text="إستخدام شريط أدوات ريبون"/>
+      <Welcome Text="شاشة ترحيب البداية"/>
+      <RightToLeft Text="واجهة المستخدم من اليمين إلى اليسار">
+        <Auto Text="تلقائي"/>
+        <No Text="كلا"/>
+        <Yes Text="نعم"/>
+      </RightToLeft>
+      <DisableHotkeys Text="إلغاء مفاتيح الإختصارات"/>
+    </UIOptions>
+    <WatermarkEditor Text="علامة مائية">
+      <Enabled Text="تمكين"/>
+      <Text Text="النص"/>
+      <TextItems Text="سري,نسخة,أصلي,مثال,عاجل"/>
+      <Rotation Text="التدوير"/>
+      <Horizontal Text="أفقي"/>
+      <Vertical Text="عمودي"/>
+      <ForwardDiagonal Text="قطري إلى الأمام"/>
+      <BackwardDiagonal Text="قطري إلى الخلف"/>
+      <Font Text="الخط"/>
+      <Color Text="اللون"/>
+      <Picture Text="الصورة"/>
+      <Load Text="تحميل"/>
+      <Clear Text="مسح"/>
+      <Size Text="حجم"/>
+      <Normal Text="طبيعي"/>
+      <Center Text="توسيط"/>
+      <Stretch Text="تقليص"/>
+      <Zoom Text="تحجيم"/>
+      <Tile Text="مكررة"/>
+      <Transparency Text="الشفافية"/>
+      <Zorder Text="الترتيب"/>
+      <TextOnTop Text="النص في الأمام"/>
+      <PictureOnTop Text="الصورة في الأمام"/>
+      <ApplyToAll Text="تطبيق على كافة الصفحات"/>
+    </WatermarkEditor>
+    <BarcodeEditor Text="محرر الباركود">
+      <Text Text="نص"/>
+      <vCard Text="vCard"/>
+      <URI Text="الرابط"/>
+      <EmailAddress Text="عنوان الإيميل"/>
+      <EmailMessage Text="رسالة إيميل"/>
+      <Geolocation Text="Geolocation"/>
+      <SMS Text="رسالة نصية"/>
+      <Call Text="إتصال"/>
+      <Event Text="الحدث"/>
+      <Wifi Text="وايرلس"/>
+      <FirstName Text="الاسم الأول"/>
+      <LastName Text="الاسم الأخير"/>
+      <Title Text="العنوان"/>
+      <Company Text="الشركة"/>
+      <Website Text="الموقع الإلكتروني"/>
+      <EmailPersonal Text="الإيميل ( الشخصي )"/>
+      <EmailBusiness Text="الإيميل ( العمل )"/>
+      <PhonePersonal Text="الهاتف ( شخصي )"/>
+      <PhoneMobile Text="الهاتف ( جوال )"/>
+      <PhoneBusiness Text="هاتف ( العمل ) "/>
+      <Street Text="الشاره=ع"/>
+      <ZipCode Text="الرمز البريدي"/>
+      <City Text="المدينة"/>
+      <Country Text="البلد"/>
+      <Email Text="الإيميل"/>
+      <Subject Text="الموضوع"/>
+      <Latitude Text="خط العرض"/>
+      <Longitude Text="خط الطول"/>
+      <Height Text="الإرتفاع"/>
+      <PhoneNumber Text="رقم الهاتف"/>
+      <Description Text="نص"/>
+      <From Text="نموذج"/>
+      <To Text="إلى"/>
+      <Encryption Text="التشفير"/>
+      <NetworkName Text="اسم الشبكة"/>
+      <Password Text="كلمة المرور"/>
+      <WifiHidden Text="شبكة الوايرلس مخفية"/>
+      <Save Text="حفظ"/>
+      <Cancel Text="إلغاء"/>
+    </BarcodeEditor>
+    <SavingPageOptions Text="حفظ">
+      <EnableAutoSave Text="تفعيل الحفظ التلقائي كل ( دقيقة ) "/>
+    </SavingPageOptions>
+    <LoadAutoSave Text="إستعادة الحفظ التلقائي">
+      <Message Text="لقد تم إغلاق  الFastReport  بشكل غير متوقع، هل تريد إستعادة نسخة الحفظ التلقائي ؟"/>
+      <Restore Text="إستعادة"/>
+    </LoadAutoSave>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="اسم المخدم:"/>
+      <ServerLogon Text="تسجيل الدخول للمخدم"/>
+      <UserName Text="اسم المستخدم:"/>
+      <Password Text="كلمة المرور:"/>
+      <Database Text="إتصال بقاعدة البيانات"/>
+      <DatabaseName Text="اسم قاعدة البيانات:"/>
+      <DatabaseFile Text="ملف قاعدة البيانات:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="نمط تحقق ويندوز"/>
+      <UseSql Text="SQL نمط تحقق "/>
+      <SavePassword Text="حفظ كلمة المرور"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="تعليمة الإتصال"/>
+      <Build Text="... بناء"/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="مصدر البيانات"/>
+      <DsName Text="استعمل مستخدم أو اسم اسم مصدر بيانات النظام :"/>
+      <ConnString Text="استعمل نص الاتصال:"/>
+      <Login Text="تسجيل دخول"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="ملف التخطيط:"/>
+      <Xml Text="ملف البيانات:"/>
+    </Xml>
+    <Csv>
+      <ConfigureDatabase Text="إعداد قاعدة البيانات"/>
+      <SelectFile Text="إختيار ملف .csv:"/>
+      <Codepage Text="ترميز الصفحة:"/>
+      <Separator Text="الفواصل:"/>
+      <FieldNames Text="أسماء الحقول في السطر الأول"/>
+      <RemoveQuotes Text="حذف علامات الإقتباس"/>
+      <ConvertTypes Text="محاولة تحويل الحقول إلى أنواعها"/>
+      <FilePreview Text="معاينة الملف:"/>
+      <DataPreview Text="معاينة البيانات:"/>
+      <Codepages>
+        <Default Text="إفتراضي"/>
+        <ASCII Text="ASCII"/>
+        <UTF8 Text="UTF8"/>
+        <UTF7 Text="UTF7"/>
+        <UTF32 Text="UTF32"/>
+        <Unicode Text="Unicode"/>
+        <BigEndianUnicode Text="Big Endian Unicode"/>
+      </Codepages>
+      <Separators>
+        <Semicolon Text=";"/>
+        <Comma Text=","/>
+        <Space Text="فراغ"/>
+        <Tab Text="مسافة"/>
+        <Other Text="آخر"/>
+      </Separators>
+    </Csv>
+    <Json>
+      <Path Text="مسار أو رابط الملف:"/>
+    </Json>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="تحرير..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="قابل للتمدد"/>
+      <CanShrink Text="قابل للتقلص"/>
+      <GrowToBottom Text="تمدد إلى الأسفل"/>
+      <Hyperlink Text="رابط سريع..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="يمكن فصله"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="إضافة بند ابن"/>
+      <StartNewPage Text="بدء صفحة جديدة"/>
+      <PrintOnBottom Text="طباعة بالأسفل"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="إضافة بند تفاصيل البيانات"/>
+      <KeepTogether Text="متجاور"/>
+      <KeepDetail Text="إبقاء التفاصيل"/>
+      <ColumnsEditor Text="محرر الأعمدة"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="تكرار على كل صفحة"/>
+      <KeepWithData Text="إبقاء مع البيانات"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="إعادة ترقيم الصفحة"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="ملئ المساحة الغير مستخدمة"/>
+      <CompleteToNRows Text="الإكمال لــ ن عدد صفوف البيانات"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="نظام القياس"/>
+      <AutoSize Text="تلقائي"/>
+      <CenterImage Text="توسيط الصورة"/>
+      <Normal Text="طبيعي"/>
+      <StretchImage Text="تقليص الصورة"/>
+      <Zoom Text="تحجيم"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="تنسيق..."/>
+      <Clear Text="مسح"/>
+      <AutoWidth Text="عرض تلقائي"/>
+      <WordWrap Text="إلتفاف النص"/>
+      <AllowExpressions Text="السماح بالمعادلات"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="طباعة على الأب"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="تكرار الرؤوس"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="إدراج سطر إلى الأعلى"/>
+      <InsertBelow Text="إدراج سطر إلى الأسفل"/>
+      <AutoSize Text="قياس تلقائي"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="إدراج عمود إلى اليسار"/>
+      <InsertToRight Text="إدراج عمود إلى اليمين"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="دمج الخلايا"/>
+      <Split Text="تقسيم الخلايا"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="رصف الخلايا جنب إلى جنب"/>
+      <ShowTitle Text="إظهار العنوان"/>
+      <Style Text="التأثير"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="المجموع"/>
+      <Function Text="دالة"/>
+      <SuppressTotals Text="تجميد المجموع"/>
+      <TotalsFirst Text="المجاميع أولاً"/>
+      <Percent Text="نسبة مئوية"/>
+      <PercentColumnTotal Text="من العمود %"/>
+      <PercentRowTotal Text="من السطر %"/>
+      <PercentGrandTotal Text="من المجموع الإجمالي %"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="تحرير الأعمدة..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="نوع الباركود"/>
+      <AutoSize Text="قياس تلقائي"/>
+      <AutoEncode Text="ترميز تلقائي"/>
+      <CalcChecksum Text="(CheckSum) حساب إختباري"/>
+      <ShowText Text="إظهار النص"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="إظهار العلامات"/>
+      <ShowGrid Text="إظهار الشبكة"/>
+    </ZipCodeObject>
+    <Report>
+      <DesignReport Text="تصميم تقرير ..."/>
+      <SelectDataSource Text="إختيار مصدر البيانات ..."/>
+    </Report>
+    <WebReport>
+      <SelectReportFile Text="إختيار ملف التقرير"/>
+      <SelectLocalizationFile Text="إختيار ملف اللغة"/>
+    </WebReport>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="...حساب الحدود"/>
+    </Table>
+    <Matrix>
+      <FillData Text="... تعبئة المصفوفة"/>
+      <NewColumn Text="إسحب البيانات إلى هنا &#13;&#10;لإنشاء عمود جديد"/>
+      <NewRow Text="إسحب البيانات إلى هنا&#13;&#10;لإنشاء سطر جديد"/>
+      <NewCell Text="إسحب البيانات إلى هنا&#13;&#10;لإنشاء خلية جديدة"/>
+      <Total Text="المجموع"/>
+      <Title Text="العنوان"/>
+      <White Text="أبيض"/>
+      <Gray Text="رمادي"/>
+      <Orange Text="برتقالي"/>
+      <Green Text="أخضر"/>
+      <GreenOrange Text="أخضر و برتقالي"/>
+      <Blue Text="أزرق"/>
+      <BlueWhite Text="أزرق و أبيض"/>
+      <GrayOrange Text="رمادي و برتقالي"/>
+      <BlueOrange Text="أزرق و برتقالي"/>
+      <OrangeWhite Text="برتقالي و أبيض"/>
+    </Matrix>
+    <Map>
+      <Hint Text="نقرتين لإضافة الطبقات.&#13;&#10;&#13;&#10;إستخدم زر الفأرة الأيسر للتحريك، و دولاب الفأرة للتكبيرو التصغير."/>
+    </Map>
+    <CrossView>
+      <SetSource Text="تعيين مصدر FastCube"/>
+      <FillData Text="تعبئة الجدول..."/>
+    </CrossView>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="تقرير فارغ"/>
+    <StandardReport Text="معالج تقرير قياسي"/>
+    <InheritedReport Text="تقرير موروث"/>
+    <Label Text="معالج اللصاقات"/>
+    <NewDataSource Text="مصدر بيانات جديد"/>
+    <NewPage Text="صفحة تقرير جديدة"/>
+    <NewDialog Text="نموذج جديد"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="إنتهى التصدير في {0} م/ث"/>
+      <OrderByCells Text="ترتيب حسب الخلايا"/>
+      <AnalyzeObjects Text="تحليل الكائنات"/>
+      <SavePage Text="حفظ الصفحة"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="فواصل الصفحات"/>
+      <OpenAfterExport Text="فتح بعد التصدير"/>
+      <Pictures Text="الصور"/>
+      <Options Text="الخيارات"/>
+      <None Text="بدون"/>
+      <Metafile Text="Metafile"/>
+      <SaveFile Text="حفظ الملف"/>
+      <TableBased Text="جدول"/>
+      <LayerBased Text="طبقات"/>
+      <ParagraphBased Text="فقرات"/>
+      <Seamless Text="جدول متواصل"/>
+      <ToMultipleFiles Text="تصدير إلى عدة ملفات"/>
+      <PrintOptimized Text="تحسين الطباعة"/>
+    </Misc>
+    <ExportGroups>
+      <Office Text="الأوفيس"/>
+      <XML Text="XML"/>
+      <Web Text="ويب"/>
+      <Image Text="صورة"/>
+      <DataBase Text="قاعدة بيانات"/>
+      <Print Text="طباعة"/>
+      <Other Text="أخرى"/>
+      <Cloud Text="سحابي"/>
+      <Messengers Text="التواصل"/>
+    </ExportGroups>
+    <Image Text="تصدير إلى صورة">
+      <File Text="ملف صورة"/>
+      <ImageFormat Text="تنسيق:"/>
+      <Resolution Text="الدقة:"/>
+      <Quality Text="جودة Jpeg:"/>
+      <SeparateFiles Text="ملف منفصل لكل صفحة"/>
+      <MultiFrame Text="متعدةة الطبقات TIFF"/>
+      <Monochrome Text="أحادية اللون TIFF"/>
+      <Bmp Text="صورة نقطية"/>
+      <Png Text="PNG صورة"/>
+      <Jpeg Text="JPG صورة"/>
+      <Gif Text="GIF صورة"/>
+      <Tiff Text="TIFF صورة"/>
+      <Metafile Text="metafile وبندوز"/>
+    </Image>
+    <RichText Text="تصدير إلى نص منسق">
+      <File Text="ملف نص منسق"/>
+      <RTFObjectAs Text="RTF كملف"/>
+      <Picture Text="صورة"/>
+      <EmbeddedRTF Text=" مدمج RTF"/>
+    </RichText>
+    <Text Text="تصدير إلى نص\مصفوفة طابعة">
+      <File Text="ملف نصي / مصفوفة طابعة"/>
+      <EmptyLines Text="سطور فارغة"/>
+      <DataOnly Text="البيانات فقط"/>
+      <Frames Text="الإطارات"/>
+      <FramesNone Text="بدون"/>
+      <FramesText Text="النص"/>
+      <FramesGraphic Text="الرسوميات"/>
+      <Codepage Text="ترميز الصفحة"/>
+      <Default Text="إفتراضي"/>
+      <Unicode Text="مرمز"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="مقياس س:"/>
+      <ScaleY Text="مقياس ع:"/>
+      <AutoScale Text="مقياس تلقائي"/>
+      <PrinterType Text="نوع الطابعة"/>
+      <Commands Text="الأوامر"/>
+      <PageWidth Text="عرض الصفحة:"/>
+      <PageHeight Text="إرتفاع الصفحة:"/>
+      <DataLoss Text="إحتمال فقدان البيانات&#13;&#10;يرجى زيادة مقياس س\ع"/>
+      <ScaleMessage Text="حساب المقياس الأمثل"/>
+      <Scale Text="مقياس"/>
+    </Text>
+    <Csv Text="CSV تصدير إلى ">
+      <File Text="CSV ملف"/>
+      <Separator Text="فاصل"/>
+      <Codepage Text="ترميز الصفحة"/>
+      <Default Text="إفتراضي"/>
+      <Unicode Text="ترميز"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="بيانات فقط"/>
+    </Csv>
+    <Dbf Text="تصدير إلى DBF">
+      <File Text="DBF جدول"/>
+      <Codepage Text="ترميز الصفحة"/>
+      <Default Text="افتراضي"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="البيانات فقط"/>
+      <FieldNames Text="أسماء الحقول ( مثال : حقل 1 , حقل 2 ) "/>
+    </Dbf>
+    <Xml Text="XML تصدير إلى ">
+      <File Text="XML (Excel) جدول"/>
+    </Xml>
+    <Odt Text="Open Office Writer تصدير إلى ">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Open Office Calc  تصدير إلى ">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="تصدير إلى Excel 2007">
+      <File Text="ملف Excel 2007"/>
+      <FontScale Text="تحجيم الخط:"/>
+      <PrintScaling Text="تج"/>
+      <NoScaling Text="بدون تحجيم"/>
+      <FitSheetOnOnePage Text="توسيع الورقة على صفحة واحدة"/>
+      <FitAllColumsOnOnePage Text="توسيع كافة الأعمدة على صفحة واحدة"/>
+      <FitAllRowsOnOnePage Text="توسيع كافة الأسطر على صفحة واحدة"/>
+    </Xlsx>
+    <Xls Text="تصدير إلى إكسل 97">
+      <File Text="ملف إكسل 97"/>
+    </Xls>
+    <Pptx Text="تصدير إلى ملف PowerPoint 2007">
+      <File Text="ملف PowerPoint 2007"/>
+    </Pptx>
+    <Docx Text="تصدير إلى ملف Microsot Word 2007">
+      <File Text="ملف Micorosoft Word 2007"/>
+      <RowHeight Text="إرتفاع السطر هو"/>
+      <Exactly Text="بالضبط"/>
+      <Minimum Text="الحد الأدنى"/>
+      <DoNotExpandShiftReturn Text="عدم توسيع الShift و ال Enter"/>
+    </Docx>
+    <Xaml Text="تصدير إلى XAML">
+      <File Text="XAML ملف"/>
+      <IsScrolled Text="إضافة شريط تمرير"/>
+    </Xaml>
+    <Svg Text="تصدير إلى SVG">
+      <File Text="SVG ملف"/>
+      <EmbPic Text="صورة مدمجة"/>
+    </Svg>
+    <Ppml Text="تصدير إلى PPML">
+      <File Text="PPML ملف"/>
+    </Ppml>
+    <PS Text="تصدير PostScript">
+      <File Text="PostScript ملف"/>
+    </PS>
+    <Xps Text="تصدير إلى ملف Microsoft XML Paper Specification">
+      <File Text="ملف Microsoft XML Paper Specification"/>
+    </Xps>
+    <Pdf Text="PDFتصدير إلى ">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="تصدير"/>
+      <PDFCompliance Text="PDF إلتزام:  "/>
+      <EmbeddedFonts Text="إحتواء الخط"/>
+      <Background Text="الخلفية"/>
+      <TextInCurves Text="نص في منحنى"/>
+      <Images Text="صورة"/>
+      <ColorSpace Text="مساحة اللون:"/>
+      <OriginalResolution Text="الأبعاد الأصلية"/>
+      <PrintOptimized Text="طباعة بالشكل الأمثل"/>
+      <JpegCompression Text="Jpeg ضغط"/>
+      <JpegQuality Text="Jpeg جودة:  "/>
+      <InteractiveForms Text="نماذج تفاعلية"/>
+      <Information Text="معلومات"/>
+      <DocumentInformation Text="معلومات المستند"/>
+      <Title Text="العنوان"/>
+      <Author Text="المؤلف"/>
+      <Subject Text="الموضوع"/>
+      <Keywords Text="الكلمة المفتاحية"/>
+      <Creator Text="المنشئ"/>
+      <Producer Text="المنتج"/>
+      <Security Text="الأمان"/>
+      <Authentification Text="التحقق من الصحة"/>
+      <OwnerPassword Text="كلمة مرور المالك"/>
+      <UserPassword Text="كلمة مرور المستخدم"/>
+      <Permissions Text="الأذونات"/>
+      <PrintTheDocument Text="طباعة إلى مستند"/>
+      <ModifyTheDocument Text="تعديل المستند"/>
+      <CopyOfTextAndGraphics Text="نسخ من النص و الرسوميات"/>
+      <AddOrModifyTextAnnotations Text="إضافة أو تعديل شرح النص"/>
+      <Viewer Text="العارض"/>
+      <ViewerPreferences Text="تفضيلات العارض"/>
+      <ShowPrintDialog Text="إظهار نافذة الطباعة"/>
+      <HideToolbar Text="إخفاء شريط الأدوات"/>
+      <HideMenubar Text="إخفاء شريط القوائم"/>
+      <HideWindowUserInterface Text="إخفاء نافذة واجهة المستخدم"/>
+      <FitWindow Text="تناسب النافذة"/>
+      <CenterWindow Text="توسيط النافذة"/>
+      <PrintScaling Text="طباعة بمقياس"/>
+      <Outline Text="مخطط تمهيدي"/>
+      <InitialZoom Text="الحجم الإبتدائي:"/>
+      <ActualSize Text="الحجم الطبيعي"/>
+      <FitPage Text="توسيع على الصفحة"/>
+      <FitWidth Text="توسيع على العرض"/>
+      <Default Text="إفتراضي"/>
+      <VectorGraphics Text="رسومات فيكتور">
+        <GradientQuality Text="جودة التدرج"/>
+        <ExportAsImage Text="تصدير كصورة"/>
+        <LowQuality Text="جودة ضعيفة"/>
+        <MediumQuality Text="جودة متوسطة"/>
+        <HighQuality Text="جودة عالية"/>
+        <GradientInterpolation Text="حشر التدرج:"/>
+        <Curves Text="منحنيات"/>
+        <CurvesInterpolation Text="إقحام منحنيات:"/>
+        <TextInterpolation Text="إقحام نص:"/>
+        <Disabled Text="تعطيل"/>
+        <SvgAsPicture Text="Svg كصورة"/>
+      </VectorGraphics>
+    </Pdf>
+    <Html Text="HTML تصدير إلى ">
+      <File Text="HTML ملف"/>
+      <MHTFile Text="ملف MHT"/>
+      <Format Text="تنسيق"/>
+      <SinglePage Text="صفحة وحيدة"/>
+      <SubFolder Text="مجلد فرعي"/>
+      <Navigator Text="مستكشف"/>
+      <Layers Text="طبقات"/>
+      <EmbPic Text="صور مدمجة"/>
+      <Total Text="المجموع"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="تصدير إلى ويب أرشيف">
+      <File Text=" MHT أرشيف ويب"/>
+    </Mht>
+    <Json Text="تصدير إلى Json">
+      <File Text="Json ملف"/>
+    </Json>
+    <LaTeX Text="تصدير إلى LaTeX">
+      <File Text="LaTeX ملف"/>
+    </LaTeX>
+    <Zpl Text="تصدير ZPL">
+      <File Text="ZPL ملف"/>
+      <PrinterSettings Text="إعدادات الطابعة"/>
+      <Density Text="الكثافة"/>
+      <FontScale Text="تحجيم الخط"/>
+      <PrintAsBitmap Text="طباعة كصورة نقطية"/>
+    </Zpl>
+    <Email Text="إرسال بالبريد الإلكتروني">
+      <Email Text="البريد الإلكتروني "/>
+      <Account Text="الحساب"/>
+      <Address Text="العنوان:"/>
+      <CC Text="نسخة إلى:"/>
+      <Subject Text="الموضوع:"/>
+      <Message Text="الرسالة:"/>
+      <Attachment Text="المرفق:"/>
+      <Settings Text="...الإعدادات"/>
+      <Name Text="الاسم:"/>
+      <Template Text="القالب:"/>
+      <Host Text="المستضيف:"/>
+      <Port Text="المنفذ:"/>
+      <UserName Text="اسم المستخدم:"/>
+      <Password Text="كلمة المرور:"/>
+      <AddressError Text="لا يمكن أن يكون العنوان فارغ"/>
+      <HostError Text="لا يمكن أن يكون المستضيف فارغ"/>
+      <SendingEmail Text="إرسال الإيميل {0} كيلو بايت"/>
+      <EnableSSL Text="تمكين SSL"/>
+    </Email>
+  </Export>
+  <Cloud>
+    <CloudStorage Text="تخزين سحابي">
+      <File Text="ملف"/>
+      <Proxy Text="بروكسي"/>
+      <FileType Text="نوع الملف:"/>
+      <Settings Text="الإعدادات..."/>
+      <Server Text="المخدم:"/>
+      <Username Text="اسم المستخدم:"/>
+      <Password Text="كلمة المرور:"/>
+      <PortError Text="يجب أن يكون رقم المنفذ عدد صحيح."/>
+    </CloudStorage>
+    <Ftp Text="حفظ إلى FTP">
+      <Name Text="FTP"/>
+      <FtpServer Text="FTP مخدم:"/>
+      <FtpUsername Text="اسم المستخدم:"/>
+      <FtpPassword Text="كلمة المرور:"/>
+      <ServerConnectionFiledError Text="فشل الإتصال بالمخدم."/>
+      <ServerNotFoundError Text="لم يتمكن من العثور على المخدم."/>
+      <AccessDeniedError Text="تم رفض الوصول. اسم المستخدم أو كلمة المرور غير صحيحة."/>
+      <SaveSuccess Text="تم الحفظ."/>
+    </Ftp>
+    <Box Text="حفظ إلى Box">
+      <Name Text="Box"/>
+      <ClientInfoDialog Text="معلومات الطرفية"/>
+      <ClientId Text="رمز الطرفية:"/>
+      <ClientSecret Text="كلمة سر الطرفية:"/>
+    </Box>
+    <Dropbox Text="حفظ إلى Dropbox">
+      <Name Text="Dropbox"/>
+      <ApplicationInfoDialog Text="معلومات التطبيق"/>
+      <AccessToken Text="رمز الوصول:"/>
+      <File Text="ملف"/>
+      <Proxy Text="بروكسي"/>
+      <FileType Text="نوع الملف:"/>
+      <Settings Text="الإعدادات..."/>
+      <Save Text="حفظ"/>
+      <Server Text="المخدم:"/>
+      <Username Text="اسم المستخدم:"/>
+      <Password Text="كلمة المرور:"/>
+      <PortError Text="يجب أن يكون رقم المنفذ عدد صحيح."/>
+    </Dropbox>
+    <FastCloud Text="حفظ إلى التخزين السحابي لـ FastReport">
+      <Name Text="تخزين FastReport  السحابي"/>
+      <UserDetails Text="تفاصيل المستخدم"/>
+      <Email Text="تسجيل الدخول:"/>
+      <UserPassword Text="كلمة المرور:"/>
+    </FastCloud>
+    <GoogleDrive Text="حفظ إلى Google Drive">
+      <Name Text="GoogleDrive"/>
+      <ClientInfoDialog Text="معلومات الطرفية"/>
+      <ClientId Text="رمز الطرفية:"/>
+      <ClientSecret Text="كلمة سر الطرفية:"/>
+    </GoogleDrive>
+    <SkyDrive Text="حفظ إلى OneDrive">
+      <Name Text="OneDrive"/>
+      <ClientInfoDialog Text="معلومات الطرفية"/>
+      <ClientId Text="رمز الطرفية:"/>
+      <ClientSecret Text="كلمة سر الطرفية:"/>
+      <File Text="ملف"/>
+      <Proxy Text="بروكسي"/>
+      <FileType Text="نوع الملف:"/>
+      <Settings Text="الإعدادات..."/>
+      <Server Text="المخدم:"/>
+      <Username Text="اسم المستخدم:"/>
+      <Password Text="كلمة المرور:"/>
+      <PortError Text="يجب أن يكون رقم المنفذ عدد صحيح."/>
+    </SkyDrive>
+  </Cloud>
+  <Messaging>
+    <MessengerForm Text="إرسال التقرير">
+      <File Text="ملف"/>
+      <Proxy Text="البروكسي"/>
+      <FileType Text="نوع الملف:"/>
+      <Settings Text="الإعدادات..."/>
+      <Server Text="المخدم:"/>
+      <Username Text="اسم المستخدم:"/>
+      <Password Text="كلمة المرور:"/>
+      <PortError Text="يجب أن يكون رقم المنفذ أرقام."/>
+    </MessengerForm>
+    <Xmpp Text="إرسال التقرير عبر XMPP">
+      <Name Text="XMPP"/>
+      <JidFrom Text="رقم معرف جابر:"/>
+      <Password Text="كلمة المرور:"/>
+      <JidTo Text="إرسال إلى JID:"/>
+      <CloudWarning Text="تحذير! سوف يتم رفع الملف إلى مخدمات Fast Report و سوف يحصل المستخدم على رباط لتحميل الملف."/>
+      <Errors>
+        <InvalidJidOrPassword Text="خطأ في اسم مستخدم جابر أو كلمة المرور!"/>
+        <UnableToUploadFile Text="لم يتمكن من رفع الملف إلى التخزين السحابي!"/>
+      </Errors>
+    </Xmpp>
+    <Telegram Text="إرسال التقرير عبر التيليغرام">
+      <Name Text="تيليغرام"/>
+      <SenderPhone Text="رقم هاتف المرسل"/>
+      <Password Text="كلمة مرور التيلغرام"/>
+      <CodeToAuthenticate Text="رمز التحقق"/>
+      <RecipientPhone Text="رقم هاتف المستلم"/>
+      <SignOut Text="تسجيل خروج"/>
+      <Errors>
+        <InvalidSenderPhoneOrPassword Text="خطأ في رقم هاتف المرسل أو كلمة المرور!"/>
+        <UnableToUploadFile Text="لم يتمكن من رفع الملف إلى التخزين السحابي!"/>
+      </Errors>
+    </Telegram>
+  </Messaging>
+  <Web>
+    <Print Text="طباعة"/>
+    <PrintFromBrowser Text="طباعة من المتصفح"/>
+    <PrintFromAcrobat Text="طباعة من Adobe Reader"/>
+    <FitWidth Text="تناسب العرض"/>
+    <FitPage Text="تناسب الصفحة"/>
+    <Export Text="تصدير"/>
+    <Zoom Text="مكبرة"/>
+    <Refresh Text="تحديث"/>
+    <First Text="الإنتقال إلى الصفحة الأولى"/>
+    <Prev Text="الإنتقال إلى الصفحة السابقة"/>
+    <Next Text="الإنتقال إلى الصفحة التالية"/>
+    <Last Text="الإنتقال إلى الصفحة الأخيرة"/>
+    <EnterPage Text="أدخل رقم الصفحة للإنتقال"/>
+    <TotalPages Text="عدد الصفحات ( للقراء فقط )"/>
+    <Back Text="رجوع"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="المظهر"/>
+      <Behavior Text="السلوك"/>
+      <Build Text="بناء"/>
+      <Data Text="بيانات"/>
+      <Design Text="تصميم"/>
+      <Designer Text="مصمم"/>
+      <Email Text="بريد الكتروني"/>
+      <Engine Text="معالج"/>
+      <Events Text="الأحداث"/>
+      <Hierarchy Text="التسلسل هرمي"/>
+      <Layout Text="تخطيط"/>
+      <Misc Text="منوعات"/>
+      <Navigation Text="تصفح"/>
+      <Paper Text="ورقة"/>
+      <Preview Text="معاينة"/>
+      <Print Text="طباعة"/>
+      <Report Text="تقرير"/>
+      <Script Text="سكريبت"/>
+      <Spatial Text="مساحي"/>
+      <Toolbars Text="أشرطة الأدوات"/>
+      <UI Text="واجهة المستخدم"/>
+    </Categories>
+  </Properties>
+</Language>

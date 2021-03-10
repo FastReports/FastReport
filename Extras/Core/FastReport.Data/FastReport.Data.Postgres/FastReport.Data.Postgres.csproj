@@ -48,8 +48,6 @@
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <Compile Update="PostgresConnectionEditor.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
+        <Compile Update="PostgresConnectionEditor.cs" />
     </ItemGroup>
 </Project>

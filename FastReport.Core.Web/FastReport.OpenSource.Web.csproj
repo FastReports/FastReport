@@ -7,28 +7,22 @@
         <Authors>Fast Reports Inc.</Authors>
         <Company>Fast Reports Inc.</Company>
         <RootNamespace>FastReport.Web</RootNamespace>
-        <Description>FastReport.Net is a full-featured reporting solution for .Net Core 2.0. 
-Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, diagram, maps, shapes, line, PolyLine, Polygon and many more. 
-FastReport.Net supports export to various popular formats, such as PDF/A, Excel, Word, Open Office, HTML, CSV, Json, XAML, ZPL, etc.
-</Description>
         <Copyright>Fast Reports Inc.</Copyright>
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageIconUrl></PackageIconUrl>
         <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
         <SignAssembly>true</SignAssembly>
         <Configurations>Debug;Release;Demo</Configurations>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo|AnyCPU'">
-        <DemoDescription>The full version of the package is available in FastReport.Net Professional at https://www.fast-report.com/en/fast-report-net-editions-compare/</DemoDescription>
     </PropertyGroup>
     <PropertyGroup>
         <PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
         <DefineConstants>OPENSOURCE;</DefineConstants>
         <PackageId>FastReport.OpenSource.Web</PackageId>
         <AssemblyOriginatorKeyFile>../FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
-        <Description>FastReport Open Source is an open source reporting solution for .Net Core 2.x and .Net Framework 4.x. 
+        <Description>FastReport Open Source is an open source reporting solution for .Net Core and .Net Framework 4.x. 
 Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, shapes, line, PolyLine, Polygon and many more.</Description>
         <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+        <PackageIcon>frlogo-big.png</PackageIcon>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="$(SolutionDir)FastReport.OpenSource\FastReport.OpenSource.csproj" />
@@ -54,6 +48,10 @@ Various report objects will allow your report to look exactly how you want it to
         <None Remove="Resources\slash.svg" />
         <None Remove="Resources\spinner.svg" />
         <None Remove="Resources\split.min.js" />
+        <None Include="..\PackageNet\frlogo-big.png">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Resources\angle-double-left.svg" />
@@ -77,6 +75,6 @@ Various report objects will allow your report to look exactly how you want it to
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.2" />
     </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Application\Dialog\*.*"/>
+    <Compile Remove="Application\Dialog\*.*" />
   </ItemGroup>
 </Project>

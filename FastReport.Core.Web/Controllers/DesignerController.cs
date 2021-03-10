@@ -40,7 +40,7 @@ namespace FastReport.Web.Controllers
                 {
                     // save by using a Func
 
-                    string report = webReport.Report.SaveToString();
+                    string report = webReport.GetPOSTReport(Context);
                     string msg = string.Empty;
                     int code = 200;
                     try

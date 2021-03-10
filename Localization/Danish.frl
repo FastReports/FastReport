@@ -1,0 +1,1593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="da" Author="Kurt Bilde &lt;kub@sdu.dk&gt;">
+  <Buttons>
+    <Ok Text="OK"/>
+    <Cancel Text="Fortryd"/>
+    <Close Text="Luk"/>
+    <MoreOptions Text="Flere valg"/>
+    <LessOptions Text="Færre valg"/>
+    <Actions Text="Handlinger"/>
+    <Previous Text="&lt; Foregående"/>
+    <Next Text="Næste &gt;"/>
+    <Finish Text="Afslut"/>
+    <Advanced Text="Avanceret..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Tilgår data..."/>
+    <CantFindObject Text="Kan ikke finde objekt"/>
+    <CantLoadReport Text="Kan ikke hente rapporten {0}"/>
+    <CantSaveReport Text="Kan ikke gemme rapporten. Muligvis er filen skrivebeskyttede."/>
+    <ClassError Text="Kan ikke finde hoved rapportklassen, ReportScript"/>
+    <Confirmation Text="Bekræft venligst"/>
+    <DataNotInitialized Text="Datakilden er endnu ikke initialiseret."/>
+    <DecompressError Text="Kan ikke dekompresse filen"/>
+    <DecryptError Text="Dekryperingsfejl: forkert kodeord"/>
+    <DelegateError Text="{0} delegat skal have to argumenter: 'sender' og 'e'"/>
+    <DeleteAncestor Text="Kunne ikke slette {0}, da den er introduceret i forældrerapporten"/>
+    <DuplicateName Text="Objekt med navnet {0} findes allerede"/>
+    <DuplicateStyle Text="Et udseende med et sådan navn findes allerede"/>
+    <Error Text="Der opstod en fejl"/>
+    <EventError Text="Kunne ikke lave event handler på grund af fejl i kildekoden"/>
+    <ExportingPage Text="Eksporterer side {0} af {1}"/>
+    <GeneratingPage Text="Genererer side {0}"/>
+    <GeneratingPageFirstPass Text="Første gennemløb: Genererer side {0}"/>
+    <Information Text="Information"/>
+    <MatrixError Text="{0}: Matrix objekt skal have mindst en kolonne eller række og en celle dimension."/>
+    <MatrixValueError Text="Antallet af værdier er forskellig fra MatrixData.Cells.Count (skal være {0})"/>
+    <ParentError Text="Objekter af typen {0} kan ikke indeholde objekter af typen {1}"/>
+    <ParentError1 Text="Objekt af typen {0} kan ikke indeholde objekter"/>
+    <Performance Text="Forberedt på {0} ms"/>
+    <PreparingData Text="Forbereder data..."/>
+    <PrintingPage Text="Udskriver side {0}"/>
+    <RenameAncestor Text="Kunne ikke omdøbe {0}, da den blev introduceret i forældrerapporten"/>
+    <SaveChanges Text="Gem ændringerne i {0}?"/>
+    <SaveChangesToPreviewPage Text="Gem ændringer i vis udskrift siden?"/>
+    <TableIsNull Text="Tabellen er ikke forbundet til data. Registre data ved at bruge Report.RegisterData metoden."/>
+    <TableManualBuildError Text="Du kan kun bruge TableObject.PrintRow, PrintColumn metoderne inden i ManualBuild eventen."/>
+    <Warning Text="Advarsel"/>
+    <WrongFileFormat Text="Kan ikke hente filen. Ukendt filformat"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Prøve"/>
+    <None Text="Ingen"/>
+    <PageN Text="Side {0}"/>
+    <PageNofM Text="Side {0} af {1}"/>
+    <ofM Text="af {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Rapport"/>
+    <ReportPage Text="Side"/>
+    <DialogPage Text="Form"/>
+    <XmlDataConnection Text="XML database"/>
+    <OleDbDataConnection Text="OLE DB forbindelse"/>
+    <MsAccessDataConnection Text="MS Access forbindelse"/>
+    <MsSqlDataConnection Text="MS SQL forbindelse"/>
+    <OdbcDataConnection Text="ODBC forbindelse"/>
+    <FirebirdDataConnection Text="Firebird forbindelse"/>
+    <VistaDBDataConnection Text="VistaDB forbindelse"/>
+    <PostgresDataConnection Text="Postgres forbindelse"/>
+    <MySqlDataConnection Text="MySQL forbindelse"/>
+    <OracleDataConnection Text="Oracle forbindelse"/>
+    <SQLiteDataConnection Text="SQLite forbindelse"/>
+    <SqlCeDataConnection Text="SQL CE forbindelse"/>
+    <Bands Text="Bånd">
+      <ReportTitle Text="Rapporttitel"/>
+      <ReportSummary Text="Rapportsummering"/>
+      <PageHeader Text="Sidehoved"/>
+      <PageFooter Text="Sidefod"/>
+      <ColumnHeader Text="Kolonne hoved"/>
+      <ColumnFooter Text="Kolonne fod"/>
+      <DataHeader Text="Hoved"/>
+      <DataFooter Text="Fod"/>
+      <Data Text="Data"/>
+      <GroupHeader Text="Gruppehoved"/>
+      <GroupFooter Text="Gruppefod"/>
+      <Child Text="Barn"/>
+      <Overlay Text="Lag"/>
+    </Bands>
+    <TextObject Text="Tekst"/>
+    <Shapes Text="Former">
+      <Line Text="Linie"/>
+      <DiagonalLine Text="Diagonal linie"/>
+      <Rectangle Text="Rektangle"/>
+      <RoundRectangle Text="Rektangel med runde hjørner"/>
+      <Ellipse Text="Ellipse"/>
+      <Triangle Text="Trekant"/>
+      <Diamond Text="Diamant"/>
+    </Shapes>
+    <PictureObject Text="Billede"/>
+    <TableObject Text="Tabel"/>
+    <MatrixObject Text="Krydstabel"/>
+    <SubreportObject Text="Subreport"/>
+    <BarcodeObject Text="Stregkode"/>
+    <RichObject Text="Rich Text"/>
+    <MSChartObject Text="MS Chart"/>
+    <ZipCodeObject Text="Postnummer"/>
+    <CellularTextObject Text="Celledelt tekst"/>
+    <CheckBoxObject Text="CheckBox"/>
+    <ButtonControl Text="Knap"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="NumericUpDown"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+  </Objects>
+  <Functions>
+    <Math Text="Matematiske"/>
+    <Text Text="Tekst"/>
+    <DateTime Text="Dato &amp; Tid"/>
+    <Formatting Text="Formattering"/>
+    <Conversion Text="Konvertering"/>
+    <ProgramFlow Text="Programmets gemmenløb"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Rapport-fil (*.frx)|*.frx"/>
+    <PreparedReport Text="Forberedt rapport (*.fpx)|*.fpx"/>
+    <Style Text="Rapport udseende (*.frs)|*.frs"/>
+    <Dictionary Text="Ordbog (*.frd)|*.frd"/>
+    <Localization Text="Oversættelsesfil (*.frl)|*.frl"/>
+    <XsdFile Text="XML skemadefinitionsfil (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML-fil (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server database (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text-fil (*.rtf)|*.rtf"/>
+    <Images Text="Billedefiler|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Printerfil (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap billede (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG billede (*.png)|*.png"/>
+    <JpegFile Text="JPG billede (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF billede (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF billede (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafil (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML-fil (*.html)|*.html"/>
+    <MhtFile Text="Web-arkiv fil (*.mht)|*mht"/>
+    <OdtFile Text="Open Office Writer-fil (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc-fil (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat fil (*.pdf)|*.pdf"/>
+    <TxtFile Text="Tekstfil (*.txt)|*.txt"/>
+    <CsvFile Text="Kommaseparerede værdier (*.csv)|*csv"/>
+    <DbfFile Text="dBase tabel fil (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel-fil (*.xls)|*.xls"/>
+    <CsFile Text="C#-fil (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net-fil (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird database (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB database (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="Microsoft Excel projektmappe (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint præsentation (*.pptx)|*.pptx"/>
+    <SdfFile Text="SQL CE database (*.sdf)|*.sdf"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="dd/MM/yy"/>
+    <Date6 Text="dd/MM/yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Falsk"/>
+    <BooleanF2 Text="Nej"/>
+    <BooleanF3 Text="Slukket"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Sand"/>
+    <BooleanT2 Text="Ja"/>
+    <BooleanT3 Text="Tændt"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefon;0000 0000"/>
+    <Custom2 Text="Langt telefonnummer;+(00) 0000 0000"/>
+    <Custom3 Text="CPR nummer; 000000-0000"/>
+    <Custom4 Text="Kort postnummer;0000"/>
+    <Custom5 Text="Langt postnummer;DK-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Filer">
+        <New Text="Ny..."/>
+        <Open Text="Åbn..."/>
+        <Close Text="Luk"/>
+        <Save Text="Gem"/>
+        <SaveAs Text="Gem som..."/>
+        <SaveAll Text="Gem alle"/>
+        <PageSetup Text="Sideopsætning...."/>
+        <PrinterSetup Text="Printeropsætning..."/>
+        <Preview Text="Vis udskrift..."/>
+        <SelectLanguage Text="Vælg sprog..."/>
+        <Exit Text="Afslut"/>
+      </File>
+      <Edit Text="Rediger">
+        <Undo Text="Fortryd"/>
+        <Redo Text="Anuller fortryd"/>
+        <Cut Text="Klip"/>
+        <Copy Text="Kopier"/>
+        <Paste Text="Sæt ind"/>
+        <Delete Text="Slet"/>
+        <DeletePage Text="Slet side"/>
+        <SelectAll Text="Vælg alle"/>
+        <Group Text="Grupér"/>
+        <Ungroup Text="Opløs gruppering"/>
+        <Find Text="Find..."/>
+        <Replace Text="Erstat..."/>
+      </Edit>
+      <View Text="Vis">
+        <StartPage Text="Startside"/>
+        <Toolbars Text="Værktøjslinier"/>
+        <Options Text="Valgmuligheder..."/>
+        <Grid Text="Gitter"/>
+        <Guides Text="Hjælpelinier"/>
+        <AutoGuides Text="Automatisk hjælpelinier"/>
+        <DeleteHGuides Text="Slet horisontale hjælpelinier"/>
+        <DeleteVGuides Text="Slet vertikale hjælpelinier"/>
+        <Units Text="Enheder"/>
+      </View>
+      <Insert Text="Indsæt"/>
+      <Report Text="Rapport">
+        <Bands Text="Konfigurer bånd"/>
+        <Styles Text="Udseende..."/>
+        <GroupExpert Text="Grupperingsekspert"/>
+        <Options Text="Valgmuligheder..."/>
+      </Report>
+      <Data Text="Data">
+        <ShowData Text="Vis datavindue"/>
+        <Add Text="Tilføj datakilde..."/>
+        <Choose Text="Vælg rapportdata..."/>
+      </Data>
+      <Window Text="Vindue">
+        <CloseAll Text="Luk alle"/>
+      </Window>
+      <Help Text="Hjælp">
+        <Contents Text="Hjælpens indhold"/>
+        <About Text="Om..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="Egenskaber">
+        <PropertiesTab Text="Egenskaber"/>
+        <EventsTab Text="Handlinger"/>
+        <NObjectsSelected Text="{0} objekter valgt"/>
+      </Properties>
+      <ReportTree Text="Rapporttræ"/>
+      <Dictionary Text="Data">
+        <DataSources Text="Datakilde"/>
+        <Parameters Text="Parameter"/>
+        <SystemVariables Text="System variable"/>
+        <Totals Text="Totaler"/>
+        <Functions Text="Funktioner"/>
+        <DialogControls Text="Dialog controller"/>
+        <New Text="Nyt Dictionary..."/>
+        <Open Text="Åbn Dictionary..."/>
+        <Save Text="Gem Dictionary..."/>
+        <Merge Text="Sammensæt Dictionary..."/>
+        <NewDataSource Text="Ny datakilde..."/>
+        <NewRelation Text="Ny relation..."/>
+        <NewParameter Text="Ny parameter"/>
+        <NewTotal Text="Ny total..."/>
+        <NewCalculatedColumn Text="Ny beregnede kolonne"/>
+        <Rename Text="Omdøb"/>
+        <Edit Text="Editér..."/>
+        <Delete Text="Slet"/>
+        <DeleteAlias Text="Slet Alias"/>
+        <View Text="Vis data..."/>
+        <DuplicateName Text="Element med identisk navn, findes allerede"/>
+        <NRows Text="{0} række(r)"/>
+      </Dictionary>
+      <Messages Text="Beskeder">
+        <Description Text="Beskrivelse"/>
+        <Line Text="Linie"/>
+        <Column Text="Kolonne"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Tilføj eller fjern knapper"/>
+      <Reset Text="Reset værktøjslinie"/>
+      <Standard Text="Standard">
+        <New Text="Tilføj nyt element"/>
+        <Open Text="Åbn Rapport (ctrl+O)"/>
+        <Save Text="Gem rapport (Ctrl+S)"/>
+        <SaveAll Text="Gem alt (Ctrl+Shift+S)"/>
+        <Preview Text="Vis udskrift (Ctrl+P)"/>
+        <NewPage Text="Ny rapportside"/>
+        <NewDialog Text="Ny Dialogboks"/>
+        <DeletePage Text="Slet side"/>
+        <PageSetup Text="Sideopsætning"/>
+        <Cut Text="Klip (Ctrl+X)"/>
+        <Copy Text="Kopier (Ctrl+C)"/>
+        <Paste Text="Sæt ind (Ctrl+V)"/>
+        <FormatPainter Text="Formatpensel"/>
+        <Undo Text="Fortryd (Ctrl+Z)"/>
+        <Redo Text="Anuller fortryd"/>
+        <Group Text="Grupér"/>
+        <Ungroup Text="Opløs gruppering"/>
+      </Standard>
+      <Text Text="Tekst">
+        <Name Text="Skrifttype"/>
+        <Size Text="Skriftsstørrelse"/>
+        <Bold Text="Fed"/>
+        <Italic Text="Kursiv"/>
+        <Underline Text="Understreg"/>
+        <Left Text="Venstre justeret"/>
+        <Center Text="Centreret"/>
+        <Right Text="Højre justeret"/>
+        <Justify Text="Juster"/>
+        <Top Text="Justeret øverst"/>
+        <Middle Text="Justeret centreret"/>
+        <Bottom Text="Justeret nederst"/>
+        <Color Text="Tekstfarve"/>
+        <Highlight Text="Tekstfremhævningsfarve"/>
+        <Angle Text="Tekstvinkel"/>
+      </Text>
+      <Border Text="Ramme og fyld">
+        <Top Text="Øverste linie"/>
+        <Bottom Text="Nederste linie"/>
+        <Left Text="Venstre linie"/>
+        <Right Text="Højre linie"/>
+        <All Text="Alle rammens linier"/>
+        <None Text="Ingen ramme"/>
+        <FillColor Text="Udfyldningsfarve"/>
+        <FillStyle Text="Udseende for udfyldning..."/>
+        <LineColor Text="Rammens farve"/>
+        <Width Text="Rammens bredde"/>
+        <Style Text="Rammens udseende"/>
+        <Props Text="Rammens egenskaber..."/>
+      </Border>
+      <Style Text="Udseende">
+        <Styles Text="Udseende"/>
+        <SelectStyle Text="Vælg udseende"/>
+        <NoStyle Text="Intet udseende"/>
+      </Style>
+      <Layout Text="Layout">
+        <AlignToGrid Text="Juster til gitter"/>
+        <Left Text="Juster til venstre"/>
+        <Center Text="Centrer"/>
+        <Right Text="Juster til højre"/>
+        <Top Text="Juster til top"/>
+        <Middle Text="Juster i midten"/>
+        <Bottom Text="Juster til bund"/>
+        <SameWidth Text="Samme bredde"/>
+        <SameHeight Text="Samme højde"/>
+        <SameSize Text="Samme størrelse"/>
+        <SizeToGrid Text="Tilpas til gitter"/>
+        <SpaceHorizontally Text="Plads horisontalt"/>
+        <IncreaseHorizontalSpacing Text="Forøg horisontal plads"/>
+        <DecreaseHorizontalSpacing Text="Formindsk horisontal plads"/>
+        <RemoveHorizontalSpacing Text="Fjern horisontal plads"/>
+        <SpaceVertically Text="Plads vertikalt"/>
+        <IncreaseVerticalSpacing Text="Forøg vertikal plads"/>
+        <DecreaseVerticalSpacing Text="Formindsk vertikal plads"/>
+        <RemoveVerticalSpacing Text="Fjern vertikal plads"/>
+        <CenterHorizontally Text="Centrer horisontalt"/>
+        <CenterVertically Text="Centerer vertikalt"/>
+        <BringToFront Text="Send frem"/>
+        <SendToBack Text="Send tilbage"/>
+      </Layout>
+      <Objects Text="Objekter">
+        <Select Text="Vælg"/>
+      </Objects>
+      <Zoom Text="Zoom">
+        <ZoomOut Text="Zoom ud"/>
+        <ZoomIn Text="Zoom ind"/>
+        <Zoom Text="Zoom"/>
+        <PageWidth Text="Sidebredde"/>
+        <WholePage Text="Hele siden"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Kode"/>
+      <Report>
+        <ConfigureBands Text="Konfigurer bånd..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Valgmuligheder"/>
+    <UndoRedo>
+      <Delete Text="Slet {0}"/>
+      <Move Text="Flyt {0}"/>
+      <Size Text="Skift størrelse på {0}"/>
+      <Change Text="Skift {0}"/>
+      <AddGuide Text="Tilføj linier"/>
+      <MoveGuide Text="Flyt linier"/>
+      <DeleteHGuides Text="Slet horisontale linier"/>
+      <DeleteVGuides Text="Slet vertikale linier"/>
+      <ResizeBand Text="Ændre størrelse på bånd"/>
+      <ChangeParent Text="Skift forældre til {0}"/>
+      <Load Text="Hent rapport"/>
+      <Paste Text="Sæt {0} ind"/>
+      <Insert Text="Indsæt {0}"/>
+      <AddPage Text="Tilføj side {0}"/>
+      <DeletePage Text="Slet side"/>
+      <Script Text="Skript ændringer"/>
+      <NObjects Text="{0} objekter"/>
+      <UndoN Text="Omgør {0} handlinger"/>
+      <RedoN Text="Genskab {0} handlinger"/>
+      <ChangeReport Text="Ændre rapport"/>
+      <ChangePagesOrder Text="Ændre side følge"/>
+      <EditPage Text="Rediger side"/>
+      <EditPrinter Text="Rediger printeropsætning"/>
+      <EditReport Text="Rediger rapportopsætning"/>
+      <SelectData Text="Udvælg data"/>
+      <EditData Text="Rediger data"/>
+    </UndoRedo>
+    <StartPage Text="Startside"/>
+    <Untitled Text="ejnavngivet.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Brugervalgt"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="System"/>
+      <Other Text="Andre farver..."/>
+      <Transparency Text="Transparens:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Vis udskrift">
+    <PrintText Text="Udskriv"/>
+    <Print Text="Udskriv (Ctrl+P)"/>
+    <Open Text="Åbn fil"/>
+    <Save Text="Gem fil"/>
+    <SaveText Text="Gem"/>
+    <Email Text="Send som E-mail"/>
+    <Find Text="Find tekst"/>
+    <Outline Text="Omrids"/>
+    <PageSetup Text="Sideopsætning"/>
+    <Edit Text="Rediger side"/>
+    <Watermark Text="Vandmærke"/>
+    <First Text="Første side"/>
+    <Prior Text="Foregående side"/>
+    <Next Text="Næste side"/>
+    <Last Text="Sidste side"/>
+    <SaveNative Text="Forbered rapport"/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="Tilføj nyt element">
+      <Add Text="Tilføj"/>
+      <Reports Text="Rapportskabeloner:"/>
+      <ReportItems Text="Rapportelementer:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Avancerede egenskaber"/>
+    <AskPassword Text="Kodeord">
+      <Password Text="Denne rapport er kodeordsbeskyttede.&#13;&#10;&#13;&#10;Angiv venligst kodeordet:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Database login">
+      <Login Text="Login:"/>
+      <Password Text="Kodeord:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Vælg datakilde"/>
+      <SelectDataSource Text="Væl en af de tilgængelige datakilder eller lav en ny:"/>
+      <CreateNewDatasource Text="Lav ny datakilde..."/>
+      <SelectColumnsPage Text="Vælg datakolonne"/>
+      <SelectColumns Text="Vælg de datakolonner du ønsker at vise i rapporten."/>
+      <AvailableColumns Text="Tilgængelige kolonner:"/>
+      <SelectedColumns Text="Valgte kolonner:"/>
+    </BaseReportWizard>
+    <Border Text="Rammeeditor">
+      <Border Text="Ramme"/>
+      <Line Text="Linie"/>
+      <Shadow Text="Skygge"/>
+      <Style Text="Udseende:"/>
+      <Width Text="Bredde:"/>
+      <Color Text="Farve:"/>
+      <Hint Text="Vælg liniens udseende og selve linien for at tilføje udseendet."/>
+    </Border>
+    <ChartEditor Text="Diagrameditor">
+      <Chart Text="Diagram"/>
+      <Add Text="Tilføj..."/>
+      <Delete Text="Slet"/>
+      <Hint Text="Tryk på et element for at ændre egenskaber:"/>
+      <Common>
+        <Color Text="Farve:"/>
+        <BackColor Text="Baggrundsfarve:"/>
+        <SecondaryColor Text="Sekundærfarve:"/>
+        <Gradient Text="Hældning:"/>
+        <HatchStyle Text="Hatch stil:"/>
+        <BorderColor Text="Kantfarve:"/>
+        <BorderStyle Text="Kantstil:"/>
+        <BorderWidth Text="Kantbredde:"/>
+        <ShadowColor Text="Skyggefarve:"/>
+        <ShadowOffset Text="Skygge offset:"/>
+        <LineColor Text="Liniefarve:"/>
+        <LineStyle Text="Liniestil:"/>
+        <LineWidth Text="Liniebredde:"/>
+        <Text Text="Tekst:"/>
+        <Font Text="Skrifttype:"/>
+        <ForeColor Text="Forgrundsfarve:"/>
+        <Dock Text="Dock:"/>
+        <InsideChartArea Text="Indeni diagramområdet"/>
+        <Format Text="Format:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Data">
+          <DataSource Text="Datakilde:"/>
+          <Filter Text="Filter:"/>
+          <AutoSeries Text="Auto"/>
+          <DataColumn Text="Datakolonne:"/>
+          <ColorColumn Text="Kolonnens farve:"/>
+          <SeriesSort Text="Seriesortering:"/>
+          <AlignXValues Text="Juster X værdier"/>
+        </Data>
+        <Appearance Text="Udseende">
+          <Template Text="Skabelon:"/>
+          <Load Text="Hent..."/>
+          <Save Text="Gem..."/>
+          <SeriesPalette Text="Seriens palette:"/>
+          <BorderSkin Text="Kantens skin:"/>
+        </Appearance>
+        <ChartArea Text="Diagramområde">
+          <Area Text="Område:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Slå 3D til"/>
+          <XRotation Text="X rotation:"/>
+          <YRotation Text="Y rotation:"/>
+          <Perspective Text="Perspektiv:"/>
+          <WallWidth Text="Bredde på mur:"/>
+          <AxisDepth Text="Aksens dybte:"/>
+          <LightStyle Text="Lyssætningsstil:"/>
+          <ClusteredSeries Text="Clustered serier"/>
+        </ThreeD>
+        <Axes Text="Akser">
+          <Axis Text="Akse:"/>
+          <CopyFromX Text="Kopier udseende fra X aksen"/>
+          <CopyFromPrimary Text="Kopier udseende fra primær akse"/>
+          <Minor Text="Minimal"/>
+          <Major Text="Maksimal"/>
+          <General Text="Generelt">
+            <Enabled Text="Slået til"/>
+            <MarginVisible Text="Synlig margin"/>
+            <Logarithmic Text="Logaritm"/>
+            <Reversed Text="Omvendt"/>
+            <Interval Text="Interval"/>
+            <Interlaced Text="Interlaced"/>
+            <InterlacedColor Text="Interlaced farve:"/>
+          </General>
+          <Labels Text="Etiketter">
+            <Enabled Text="Slået til"/>
+            <Angle Text="Vinkel:"/>
+          </Labels>
+          <Title Text="Titel"/>
+          <CustomLabels Text="Brugervalgte etiketter">
+            <Label Text="Etikette"/>
+            <Start Text="Start:"/>
+            <End Text="Slut:"/>
+            <Row Text="Række:"/>
+            <MarkColor Text="Markør farve:"/>
+            <MarkStyle Text="Markør stil:"/>
+          </CustomLabels>
+          <Grid Text="Gitter">
+            <GridLine Text="Gitterlinie:"/>
+            <Enabled Text="Slået til"/>
+          </Grid>
+          <Ticks Text="Mærke">
+            <Ticks Text="Mærker:"/>
+            <Enabled Text="Slået til"/>
+            <TickStyle Text="Mærkestil:"/>
+            <TickSize Text="Mærkestørrelse:"/>
+          </Ticks>
+          <Strips Text="Strimler">
+            <Strip Text="Strimle"/>
+            <Interval Text="Interval">
+              <Start Text="Start:"/>
+              <Width Text="Bredde:"/>
+              <Interval Text="Interval:"/>
+            </Interval>
+            <Appearance Text="Udseende"/>
+            <Text Text="Tekst">
+              <HorizontalAlign Text="Horisontal justering:"/>
+              <VerticalAlign Text="Vertikal justering:"/>
+              <TextOrientation Text="Tekstorientering:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Forklaring">
+          <Enabled Text="Slået til"/>
+          <StyleColumn Text="Kolonne"/>
+          <StyleRow Text="Række"/>
+          <StyleTable Text="Tabel"/>
+          <General Text="Generelt">
+            <LegendStyle Text="Forklaringsstil:"/>
+          </General>
+          <Appearance Text="Udseende"/>
+        </Legend>
+        <Title Text="Titel">
+          <Visible Text="Synlig"/>
+          <General Text="Generelt">
+            <TextOrientation Text="Tekstorientering:"/>
+            <TextStyle Text="Tekststil:"/>
+          </General>
+          <Appearance Text="Udseende"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Data">
+          <Name Text="Navn:"/>
+          <XValue Text="X værdi:"/>
+          <Color Text="Farve:"/>
+          <Filter Text="Filer:"/>
+          <XValueType Text="X værdi type:"/>
+          <YValueType Text="Y værdi type:"/>
+          <XAxisType Text="X akse:"/>
+          <YAxisType Text="Y akse:"/>
+          <PrimaryAxis Text="Primær"/>
+          <SecondaryAxis Text="Sekundær"/>
+          <SeriesValues>
+            <YValue Text="Y værdi:"/>
+            <High Text="Høj:"/>
+            <Low Text="Lav:"/>
+            <Open Text="Åben:"/>
+            <Close Text="Luk:"/>
+            <RangeBegin Text="Område start:"/>
+            <RangeEnd Text="Område slut:"/>
+            <Size Text="Størrelse:"/>
+            <YValue1 Text="Y værdi 1:"/>
+            <YValue2 Text="Y værdi 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Værdier"/>
+        <DataProcessing Text="Databehandling">
+          <SortBy Text="Sorter efter:"/>
+          <SortByX Text="X værdi"/>
+          <SortByY Text="Y værdi"/>
+          <SortOrder Text="Sorteringsorden:"/>
+          <GroupBy Text="Gruppér efter:">
+            <None Text="Ingen"/>
+            <XValue Text="X værdi"/>
+            <Number Text="Tal"/>
+            <Years Text="År"/>
+            <Months Text="Måneder"/>
+            <Weeks Text="Uger"/>
+            <Days Text="Dage"/>
+            <Hours Text="Timer"/>
+            <Minutes Text="Minutter"/>
+            <Seconds Text="Sekunder"/>
+            <Milliseconds Text="Millisekunder"/>
+          </GroupBy>
+          <GroupInterval Text="Grupperingsinterval"/>
+          <GroupFunction Text="Grupperingsfunktion:"/>
+          <CollectData Text="Samle data:">
+            <None Text="Ingen"/>
+            <TopN Text="TopN"/>
+            <BottomN Text="BundN"/>
+            <LessThan Text="Mindre end værdi"/>
+            <LessThanPercent Text="Mindre end procent"/>
+            <GreaterThan Text="Større end værdi"/>
+            <GreaterThanPercent Text="Større end procent"/>
+          </CollectData>
+          <Value Text="Værdi:"/>
+          <CollectedText Text="Tekst for det samlede:"/>
+          <CollectedColor Text="Farve for det samlede:"/>
+          <Explode Text="Eksplodere:">
+            <None Text="Ingen"/>
+            <Biggest Text="Største værdi"/>
+            <Lowest Text="Mindste værdi"/>
+            <Specific Text="Angivne værdi"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Udseende">
+          <Default Text="Standard"/>
+          <DrawingStyle Text="Tegningsstil:"/>
+          <PointWidth Text="Punktbredde:"/>
+          <LabelsStyle Text="Etikettestil:"/>
+          <DrawSideBySide Text="Tegn side om side"/>
+          <ShowMarkerLines Text="Vis markørlinier"/>
+          <DoughnutRadius Text="Radius på krans (%):"/>
+          <AreaDrawingStyle Text="Stil for områdetegning:"/>
+          <Markers Text="Markører:"/>
+          <PriceUpColor Text="Farve for prisstigning:"/>
+          <ReversalAmount Text="Omvendte størrelse:"/>
+          <BoxSize Text="Boksstørrelse:"/>
+          <NumberOfLinesInBreak Text="Linier i brud:"/>
+          <LabelsPlacement Text="Placering af forklaring:"/>
+          <PointsGap Text="Punktafstand:"/>
+          <MinPointHeight Text="Min. punkthøjde:"/>
+          <ValueType Text="Værditype:"/>
+          <ThreeDDrawingStyle Text="3D tegningsstil:"/>
+          <ThreeDRotation Text="3D rotation:"/>
+          <FunnelStyle Text="Stil for tragt:"/>
+          <LineTension Text="Liniespænding:"/>
+          <NoSettings Text="Ingen specifik opsætning for denne serietype."/>
+        </Appearance>
+        <FillBorder Text="Udfyldning og kant">
+          <Palette Text="Palette:"/>
+        </FillBorder>
+        <Labels Text="Etikkette">
+          <LabelView Text="Etikettevisning:"/>
+          <Pattern Text="Mønster:"/>
+        </Labels>
+        <Markers Text="Markører">
+          <Style Text="Stil:"/>
+          <Size Text="Størrelse:"/>
+          <Step Text="Forøg med:"/>
+          <Color Text="Farve:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galleri">
+      <NewArea Text="Tilføj nyt diagramområde til denne serie"/>
+      <Categories>
+        <BarColumn Text="Søjle og kolonne"/>
+        <Area Text="Område"/>
+        <Line Text="Streg"/>
+        <PointBubble Text="Punkt og boblediagram"/>
+        <Pie Text="Cirkel"/>
+        <Circular Text="Cirkulær"/>
+        <Financial Text="Finasiel"/>
+        <PyramidFunnel Text="Pyramide og tragt"/>
+        <Range Text="Område"/>
+      </Categories>
+      <Series>
+        <Bar Text="Søjle"/>
+        <StackedBar Text="Stablet søjle"/>
+        <StackedBar100 Text="100% stablet søjle"/>
+        <Column Text="Kolonne"/>
+        <StackedColumn Text="Stablet kolonne"/>
+        <StackedColumn100 Text="100% stablet kolonne"/>
+        <Area Text="Område"/>
+        <SplineArea Text="Splinie område"/>
+        <StackedArea Text="Stablet område"/>
+        <StackedArea100 Text="100% stablet område"/>
+        <Line Text="Linie"/>
+        <FastLine Text="Hurtigt linie"/>
+        <StepLine Text="Step Linie"/>
+        <Spline Text="Spline"/>
+        <Bubble Text="Boble"/>
+        <Point Text="Punkt"/>
+        <FastPoint Text="Hurtigt punkt"/>
+        <Pie Text="Cirkel"/>
+        <Doughnut Text="Krans"/>
+        <Polar Text="Polar"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Aktie"/>
+        <Candlestick Text="Flamme"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Punkt og figur"/>
+        <ThreeLineBreak Text="Tre liniers brud"/>
+        <Pyramid Text="Pyramide"/>
+        <Funnel Text="Tragt"/>
+        <Range Text="Område"/>
+        <SplineRange Text="Splinie område"/>
+        <RangeColumn Text="Områdekolonne"/>
+        <RangeBar Text="Områdesøjle"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Code page">
+      <EnableVirtualSpace Text="Slå virtuel plads til"/>
+      <UseSpaces Text="Brug mellemrum til at fylde tabulatorer"/>
+      <AllowOutlining Text="Tillad omrids"/>
+      <TabSize Text="tabulatorstørrelse:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Konfigurer bånd">
+      <Add Text="Tilføj"/>
+      <Delete Text="Slet"/>
+    </ConfigureBands>
+    <Connection Text="Forbindelse">
+      <Select Text="Vælg forbindelsestype"/>
+      <AlwaysUse Text="Brug altid denne forbindelse"/>
+      <LoginPrompt Text="Spørg om login"/>
+      <Test Text="Test forbindelse"/>
+      <TestSuccesful Text="Test af forbindelse lykkedes."/>
+    </Connection>
+    <CustomLabel Text="Brugervalgte labels">
+      <Name Text="Navn:"/>
+      <Paper Text="Papir"/>
+      <Landscape Text="Landskab"/>
+      <PaperWidth Text="Papirbredde:"/>
+      <PaperHeight Text="Papirhøjde:"/>
+      <LeftMargin Text="Venstremargen"/>
+      <TopMargin Text="Topmargen:"/>
+      <Label Text="Label parameter"/>
+      <LabelWidth Text="Labelbredde:"/>
+      <LabelHeight Text="Labelhøjde:"/>
+      <RowGap Text="Rækkeafstand:"/>
+      <ColumnGap Text="Kolonneafstand:"/>
+      <Warning Text="Labels passer ikke til siden!"/>
+    </CustomLabel>
+    <DataBandEditor Text="Rediger databånd">
+      <DataSource Text="Datakilde"/>
+      <NoData Text="Ingen datakilde tilgængelig.&#13;&#10;&#13;&#10;Gå til Data|Vælg rapportdata...&quot;-menuen for at vælge fra de tilgængelige datakilder eller lave en ny datakilde ved at vælge &quot;Data|Tilføj datakilde...&quot;- menuen."/>
+      <Sort Text="Sortering"/>
+      <SortBy Text="Sorter efter"/>
+      <ThenBy Text="Så efter"/>
+      <Ascending Text="Stigende"/>
+      <Descending Text="Faldende"/>
+      <Filter Text="Filter"/>
+      <Expression Text="Filterudtryk"/>
+    </DataBandEditor>
+    <DataWizard Text="Dataguide">
+      <Page1 Text="Vælg database"/>
+      <WhichData Text="Hvilken dataforbindelse skal din rapport bruge for at forbinde til databasen?"/>
+      <Hint Text="Vælg fra listen af sidst brugte forbindelser eller tryk &quot;Ny forbindelse...&quot;-knappen for at lave en ny forbindelse."/>
+      <NewConnection Text="Ny forbindelse..."/>
+      <EditConnection Text="Rediger forbindelse..."/>
+      <ConnectionName Text="Angiv forbindelsesnavn:"/>
+      <ConnectionString Text="Forbindelsesstreng"/>
+      <Page2 Text="Vælg tabeller"/>
+      <WhichTables Text="Hvilke tabeller ønsker du i din rapport?"/>
+      <Wait Text="Modtager databaseninformation"/>
+      <SortTables Text="Sorter tabeller"/>
+      <AddQuery Text="Tilføj SQL forespørgsel..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Dialog form"/>
+    <Exception Text="Undtagelser">
+      <Hint Text="Din rapport har rejst følgende undtagelser:"/>
+      <Stack Text="Stack trace:"/>
+      <Copy Text="Kopier til udskriftsholder"/>
+    </Exception>
+    <ExpressionEditor Text="Rediger udtryk"/>
+    <Fill Text="Udfyldningseditor">
+      <Solid Text="Masiv"/>
+      <LinearGradient Text="Lineær hældning"/>
+      <PathGradient Text="Mønsterhældning"/>
+      <Hatch Text="Skravere"/>
+      <Glass Text="Glas"/>
+      <Colors Text="Farver"/>
+      <Color Text="Farve"/>
+      <StartColor Text="Start"/>
+      <EndColor Text="Slut"/>
+      <Options Text="Valgmulighed"/>
+      <Focus Text="Fokus"/>
+      <Contrast Text="Kontrast"/>
+      <Angle Text="Vinkel"/>
+      <CenterColor Text="Center"/>
+      <EdgeColor Text="Kant"/>
+      <Shape Text="Form"/>
+      <Ellipse Text="Ellipse"/>
+      <Rectangle Text="Rektangel"/>
+      <ForeColor Text="Forgrund"/>
+      <BackColor Text="Baggrund"/>
+      <Style Text="Udseende"/>
+      <Blend Text="Blanding"/>
+      <GlassHatch Text="Vis skravering"/>
+    </Fill>
+    <FormatEditor Text="Vælg format">
+      <Expression Text="Udtryk:"/>
+      <General Text="Generelt"/>
+      <Number Text="Nummer"/>
+      <Currency Text="Valuta"/>
+      <Date Text="Dato"/>
+      <Time Text="Tid"/>
+      <Percent Text="Procent"/>
+      <Boolean Text="Boolean"/>
+      <Custom Text="Brugervalgt"/>
+      <UseLocale Text="Brug lokal opsætning"/>
+      <DecimalDigits Text="Decimal cifre:"/>
+      <DecimalSeparator Text="Decimal adskiller"/>
+      <GroupSeparator Text="Gruppe adskiller"/>
+      <PositivePattern Text="Positiv formatering:"/>
+      <NegativePattern Text="Negativ formatering:"/>
+      <CurrencySymbol Text="Valutasymbol"/>
+      <PercentSymbol Text="Procentsymbol"/>
+      <FalseText Text="Tekst for Falsk værdi:"/>
+      <TrueText Text="Tekst for sand værdi:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Rediger kolonner">
+      <Columns Text="Kolonner"/>
+      <Properties Text="Egenskaber"/>
+      <Add Text="Tilføj"/>
+      <Remove Text="Fjern"/>
+      <AddAll Text="Tilføj alle"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Rediger grupper">
+      <Condition Text="Gruppebetingelser"/>
+      <Hint Text="Vælg datakolonne eller angiv et udtryk:"/>
+      <Settings Text="Opsætning"/>
+      <Sort Text="Sortering:"/>
+      <NoSort Text="Ingen sortering"/>
+      <Ascending Text="Stigende"/>
+      <Descending Text="Faldende"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Gruppeekspert">
+      <Condition Text="Gruppebetingelser"/>
+      <Hint Text="Vælg en datakolonne eller angiv et udtryk og tryk så på &quot;Tilføj&quot;-knappen for at tilføje en ny gruppe."/>
+      <Add Text="Tilføj"/>
+      <Groups Text="Grupper"/>
+      <Edit Text="Editér..."/>
+      <Delete Text="Slet"/>
+    </GroupExpert>
+    <HighlightEditor Text="Fremhævbetingelser">
+      <Conditions Text="Betingelser"/>
+      <Add Text="Tilføj"/>
+      <Delete Text="Slet"/>
+      <Edit Text="Editér"/>
+      <Style Text="Udseende"/>
+      <Fill Text="Udfyldning"/>
+      <TextColor Text="Tekstfarve"/>
+      <Font Text="Skrifttype"/>
+      <Visible Text="Synlig"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Rediger URL (Hyperlink)">
+      <Url Text="URL"/>
+      <PageNumber Text="Sidenummer"/>
+      <Bookmark Text="Bogmærke"/>
+      <Report Text="Rapport"/>
+      <ReportPage Text="Rapportside"/>
+      <Custom Text="Brugervalgt"/>
+      <UrlValue Text="Angiv en URL (eksempelvis http://www.url.com):"/>
+      <UrlExpression Text="eller angiv et udtryk der returnere en URL:"/>
+      <PageNumberValue Text="Angiv sidenummer:"/>
+      <PageNumberExpression Text="eller angiv et udtryk der returnere et sidenummer:"/>
+      <BookmarkValue Text="Angiv et bogmærkenavn:"/>
+      <BookmarkExpression Text="eller angiv et udtryk der returnere et bogmærkenavn:"/>
+      <ReportName Text="Rapportnavn:"/>
+      <ParameterName Text="Rapportparameter:"/>
+      <ParameterValue Text="Angiv en parameterværdi:"/>
+      <ParameterExpression Text="eller angiv et udtryk der returnere en parameterværdi:"/>
+      <PageName Text="Rapportside:"/>
+      <CustomValue Text="Angiv en URL (hyperlink) værdi:"/>
+      <CustomExpression Text="eller angiv et udtryk der returnere en værdi:"/>
+      <Hint Text="Dette vil ske hvis du trykker på dette objekt i vis udskrift vinduet:"/>
+      <HintUrl Text="Angiv URL som skal åbnes."/>
+      <HintPageNumber Text="Du vil gå til den angivne side."/>
+      <HintBookmark Text="Du vil gå til objektet der indeholder det angivne bogmærke."/>
+      <HintReport Text="Den angivne rapport vil åbne i en ny vis udskrift tab."/>
+      <HintReportPage Text="Den angivne side vil blive genereret og åbnet i en separat vis udskrift tab."/>
+      <HintCustom Text="Du skal lave en &quot;Click&quot; event handle for at definere en brugervalgt handling."/>
+      <ModifyAppearance Text="Ændre på objektets udseende, så det ser ud som et trykbart link"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Labelguide">
+      <Hint Text="Vælg en af de foruddefinerede labels, eller tryk &quot;Brugervalgt label...&quot;-knappen for at definere din egen labelstørrelse."/>
+      <Label Text="Label"/>
+      <Manufacturer Text="Leverandør"/>
+      <Product Text="Produkt"/>
+      <Parameters Text="Parameter"/>
+      <Size Text="Størrelse:"/>
+      <PaperSize Text="Papirstørrelse:"/>
+      <Rows Text="Rækker:"/>
+      <Columns Text="Kolonner:"/>
+      <CustomLabel Text="Brugerdefinerede label..."/>
+      <Custom Text="Brugervalgt"/>
+      <Delete Text="Slet"/>
+    </LabelWizard>
+    <PageSetup Text="Sideopsætning">
+      <Paper Text="Papir"/>
+      <Custom Text="Brugervalgt"/>
+      <Width Text="Bredde:"/>
+      <Height Text="Højde:"/>
+      <Orientation Text="Retning:"/>
+      <Portrait Text="Portræt"/>
+      <Landscape Text="Landskab"/>
+      <Margins Text="Margener"/>
+      <Left Text="Venstre:"/>
+      <Top Text="Top:"/>
+      <Right Text="Højre:"/>
+      <Bottom Text="Bund:"/>
+      <MirrorMargins Text="Afspejl margener på lige sider"/>
+      <Source Text="Kilde"/>
+      <FirstPage Text="Første side:"/>
+      <OtherPages Text="Andre sider:"/>
+      <Columns Text="Kolonner"/>
+      <Count Text="Antal:"/>
+      <ColumnWidth Text="Bredde:"/>
+      <Positions Text="Positioner:"/>
+      <Other Text="Andet"/>
+      <Duplex Text="Duplex:"/>
+      <DupDefault Text="Standard"/>
+      <DupSimplex Text="Simplex"/>
+      <DupVertical Text="Vertikal"/>
+      <DupHorizontal Text="Horisontal"/>
+      <EditWatermark Text="Rediger vandmærke..."/>
+      <ExtraWidth Text="Ekstra designbredde"/>
+    </PageSetup>
+    <PictureEditor Text="Billedeeditor">
+      <Picture Text="Billede"/>
+      <Load Text="Indlæs"/>
+      <Paste Text="Sæt ind"/>
+      <Clear Text="Nulstil"/>
+      <DataColumn Text="Datakolonne"/>
+      <FileName Text="Filnavn"/>
+      <Url Text="URL"/>
+      <FileHint1 Text="Filnavn:"/>
+      <FileHint2 Text="Bemærk: Du skal distribuere denne fil sammen med din rapport."/>
+      <UrlHint Text="URL (Hyperlink):"/>
+    </PictureEditor>
+    <PluginsOptions Text="Plugins">
+      <Hint Text="Liste med installerede FastReport plugins:"/>
+      <Add Text="Tilføj"/>
+      <Remove Text="Fjern"/>
+      <Note Text="Bemærk: Ændringer vil slå igennem i FastReport ved genstart."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Føj til alle sider"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Find"/>
+    <PrinterSetup Text="Printeropsætning">
+      <PrinterSetup Text="Printeropsætning"/>
+      <Printer Text="Printer"/>
+      <SavePrinter Text="Gem denne printer i rapportfilen"/>
+      <Settings Text="Opsætning..."/>
+      <PrintToFile Text="Udskriv til fil"/>
+      <PageRange Text="Sideområde"/>
+      <All Text="Alle"/>
+      <Current Text="Aktuelle side"/>
+      <Numbers Text="Sider:"/>
+      <Hint Text="Angiv sidenummer og/eller sideområde, adskilt af komma. Eksempelvis 1,3,5-12"/>
+      <Copies Text="Kopier"/>
+      <Count Text="Antal:"/>
+      <Collate Text="Sætvis"/>
+      <Other Text="Andet"/>
+      <OddEven Text="Udskriv"/>
+      <AllPages Text="Alle sider"/>
+      <OddPages Text="Ulige sider"/>
+      <EvenPages Text="Lige sider"/>
+      <Order Text="Rækkefølge"/>
+      <OrderDirect Text="Direkte (1-9)"/>
+      <OrderReverse Text="Omvendt (9-1)"/>
+      <Duplex Text="Duplex:"/>
+      <Source Text="Kilde"/>
+      <PrintMode Text="Udskriftstype"/>
+      <PrintModeDefault Text="Standard"/>
+      <PrintModeSplit Text="Opdel store sider"/>
+      <PrintModeScale Text="Skaléring"/>
+      <PrintOnSheet Text="Udskriv på ark"/>
+      <PagesOnSheet Text="Sider på ark"/>
+      <PagesOnSheet1 Text="1 side"/>
+      <PagesOnSheet2 Text="2 sider"/>
+      <PagesOnSheet4 Text="4 sider"/>
+      <PagesOnSheet8 Text="8 sider"/>
+      <Print Text="Udskriv"/>
+      <Error Text="Ugyldig sideangivelse."/>
+    </PrinterSetup>
+    <QueryWizard Text="Forespørgselsguide">
+      <Page1 Text="Angiv navnet"/>
+      <SetName Text="Angiv navnet på forespørgselsobjektet"/>
+      <NameHint Text="Dette navn bliver vist i &quot;Data&quot;-vinduet"/>
+      <Page2 Text="Angiv en SQL sætning"/>
+      <WhatData Text="Hvilke data skal forespørgslen returnere?"/>
+      <TypeSql Text="Angiv en SQL sætning eller brug forespørgselsbyggeren til at lave den."/>
+      <QueryBuilder Text="Forespørgselsbyggeren..."/>
+      <Page3 Text="Definer parametre"/>
+      <Page4 Text="Definer kolonner"/>
+      <Refresh Text="Genopfrisk kolonner"/>
+      <AddColumn Text="Tilføj en beregnende kolonne"/>
+      <AddParameter Text="Tilføj parameter"/>
+      <Delete Text="Slet"/>
+    </QueryWizard>
+    <RelationEditor Text="Rediger relationer">
+      <ParentTable Text="Forældre-tabel:"/>
+      <ChildTable Text="Barne tabel:"/>
+      <Parent Text="Forældre"/>
+      <Child Text="Barn"/>
+      <Columns Text="Kolonner:"/>
+      <Error Text="Der er ikke overensstemmelse mellem antallet af forældre- og børne- kolonner"/>
+    </RelationEditor>
+    <ReportData Text="Vælg rapportdata">
+      <Hint Text="Vælg datakilder og felter, som du vil bruge i rapporten:"/>
+      <Aliases Text="Vis aliaser"/>
+    </ReportData>
+    <ReportOptions Text="Valgmuligheder for rapporten">
+      <General Text="Generelt"/>
+      <Description Text="Beskrivelse"/>
+      <Script Text="Script"/>
+      <Security Text="Sikkerhed"/>
+      <Inheritance Text="Arv"/>
+      <Name Text="Navn:"/>
+      <Author Text="Forfatter:"/>
+      <Version Text="Version:"/>
+      <Description1 Text="Beskrivelse:"/>
+      <Picture Text="Billede:"/>
+      <SavePreviewPicture Text="Gem 'vis udskrift' billede"/>
+      <Load Text="Hent..."/>
+      <Clear Text="Rens"/>
+      <Created Text="Skabt:"/>
+      <Modified Text="Ændret:"/>
+      <Language Text="Scriptsprog:"/>
+      <Note Text="Bemærk: Hvis du skifter sprog, så vil hele Scriptet blive nulstillet!"/>
+      <RefAssemblies Text="Refererede assemblies:"/>
+      <Add Text="Tilføj..."/>
+      <Password Text="Kodeord:"/>
+      <RetypePassword Text="Genskriv kodeord:"/>
+      <Inherited Text="Denne rapport er nedarvet fra basisrapporten:"/>
+      <NotInherited Text="Denne rapport er ikke nedarvet."/>
+      <Choose Text="Angiv valgmulighed:"/>
+      <DontChange Text="Skift ikke"/>
+      <Detach Text="Løsriv fra basisrapporten"/>
+      <Inherit Text="Arv rapport fra:"/>
+      <Browse Text="Gennemse..."/>
+      <DoublePass Text="Dobbelt gennemløb"/>
+      <Compress Text="Pak rapportfilen"/>
+      <UseFileCache Text="Brug fil cache"/>
+      <ConvertNulls Text="Konverter null værdier"/>
+      <TextQuality Text="Tekstkvalitet:"/>
+      <SmoothGraphics Text="Udglattet grafik"/>
+      <QualityDefault Text="Standard"/>
+      <QualityRegular Text="Almindelig"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Kodeordet passer ikke. Angive venligst dette igen."/>
+      <Recipients Text="Modtager (f.eks., john@url.com):"/>
+      <Subject Text="Emne:"/>
+      <Message Text="Besked:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Rapportside">
+      <Units Text="Måleenhed for side"/>
+      <Millimeters Text="Millimeter"/>
+      <Centimeters Text="Centimeter"/>
+      <Inches Text="Tommer"/>
+      <HundrethsOfInch Text="Hundrededele tommer"/>
+      <Grid Text="Gitter"/>
+      <ShowGrid Text="Vis gitter"/>
+      <SnapToGrid Text="Hold til gitter"/>
+      <DottedGrid Text="Prikkede gitter"/>
+      <Size Text="Størrelse:"/>
+      <Markers Text="Objektmarkører"/>
+      <Rectangle Text="Rektangel"/>
+      <Corners Text="Hjørner"/>
+      <BandView Text="Visning af bånd"/>
+      <Structure Text="Struktur"/>
+      <Classic Text="Klassisk"/>
+      <EditAfterInsert Text="Rediger efter indsæt"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="RichText Editor">
+      <Open Text="Åbn"/>
+      <Save Text="Gem"/>
+      <Subscript Text="Sænket skrift"/>
+      <Superscript Text="Hævet skrift"/>
+      <Bullets Text="Punktopstilling"/>
+      <Confirm Text="Teksten er blevet ændret. Gem ændringerne?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Find og erstat">
+      <Find Text="Find hvad:"/>
+      <Replace Text="Erstat med:"/>
+      <Options Text="Find valgmuligheder"/>
+      <MatchCase Text="Foreskel på store og små bogstaver"/>
+      <MatchWholeWord Text="Kun hele ord"/>
+      <FindNext Text="Find næste"/>
+      <ReplaceBtn Text="Erstat"/>
+      <ReplaceAll Text="Erstat alle"/>
+      <NotFound Text="Søgeteksten blev ikke fundet."/>
+      <NoMoreFound Text="Ikke flere forekomster blev fundet."/>
+    </SearchReplace>
+    <SelectDataSource Text="Vælg datakilde">
+      <Hint Text="Vælg en eller flere datakilder til brug i rapporten"/>
+      <AvailableDs Text="Tilgængelige datakilder:"/>
+      <SelectedDs Text="Valgte datakilder:"/>
+      <ProjectDs Text="Projekt datasæt"/>
+      <OtherDs Text="Andre datakilder"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Vælg sprog">
+      <SelectLanguage Text="Vælg sprog fra listen nedenfor:"/>
+      <Auto Text="Auto"/>
+      <Folder Text="Mappe med sprogfilerne:"/>
+      <SelectFolder Text="Vælg den mappe der indeholder sprogfilerne (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Standard Rapportguide">
+      <GroupsPage Text="Lav grupper"/>
+      <CreateGroups Text="Lav grupper (valgfri)."/>
+      <Groups Text="Grupper:"/>
+      <LayoutPage Text="Definer layout"/>
+      <DefineLayout Text="Definer sideorienteringen og datalayoutet."/>
+      <Orientation Text="Papirorientering"/>
+      <Portrait Text="Portræt"/>
+      <Landscape Text="Landskab"/>
+      <Layout Text="Layout"/>
+      <Tabular Text="Tabular"/>
+      <Columnar Text="Kolonnevis"/>
+      <StylePage Text="Vælg udseende"/>
+      <Styles Text="Vælg rapportens udseende."/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Rediger strengkollektion"/>
+    <Style Text="Udseende editor">
+      <Styles Text="Udseende"/>
+      <Add Text="Tilføj"/>
+      <Delete Text="Slet"/>
+      <Edit Text="Editer"/>
+      <Load Text="Hent..."/>
+      <Save Text="Gem..."/>
+      <Settings Text="Opsætning af udseende"/>
+      <Border Text="Ramme"/>
+      <Fill Text="Udfyldning"/>
+      <Font Text="Skrifttype"/>
+      <TextColor Text="Tekstfarve"/>
+      <StyleName Text="Udseende"/>
+    </Style>
+    <TextEditor Text="Editer tekst">
+      <WordWrap Text="Ombryd ord"/>
+    </TextEditor>
+    <TotalEditor Text="Editer total">
+      <TotalName Text="Total navn:"/>
+      <Total Text="Total"/>
+      <Function Text="Funktion:"/>
+      <DataColumnOrExpression Text="Data kolonne eller udtryk:"/>
+      <DataBand Text="Evaluer på hver række på båndet:"/>
+      <EvaluateCondition Text="Evaluer hvis følgende betingelse er opfyldt:"/>
+      <PrintOn Text="Udskriv på båndet:"/>
+      <Options Text="Valgmuligheder"/>
+      <ResetAfterPrint Text="Nulstil efter udskrift"/>
+      <ResetRepeated Text="Nulstil hvis båndet bliver gentaget"/>
+      <InvisibleRows Text="Inkluder usynlige rækker"/>
+      <Sum Text="Sum"/>
+      <Min Text="Min"/>
+      <Max Text="Maks"/>
+      <Avg Text="Gennemsnit"/>
+      <Count Text="Antal"/>
+    </TotalEditor>
+    <UIOptions Text="Brugerinterface">
+      <Appearance Text="Udseende:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (blå),Office 2007 (sølv),Office 2007 (sort),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Vandmærke">
+      <Enabled Text="Slået til"/>
+      <Text Text="Tekst"/>
+      <TextItems Text="FORTROLIGT,KOPI,ORIGINAL,PRØVE,HASTER"/>
+      <Rotation Text="Rotation"/>
+      <Horizontal Text="Horisontal"/>
+      <Vertical Text="Vertikal"/>
+      <ForwardDiagonal Text="Fremad diagonalt"/>
+      <BackwardDiagonal Text="Tilbage diagonalt"/>
+      <Font Text="Skrifttype"/>
+      <Color Text="Farve"/>
+      <Picture Text="Billede"/>
+      <Load Text="Hent"/>
+      <Clear Text="Rens"/>
+      <Size Text="Størrelse"/>
+      <Normal Text="Normal"/>
+      <Center Text="Centreret"/>
+      <Stretch Text="Udstruket"/>
+      <Zoom Text="Zoom"/>
+      <Tile Text="Tile"/>
+      <Transparency Text="Transparens"/>
+      <Zorder Text="Z-orden"/>
+      <TextOnTop Text="Tekst øverst"/>
+      <PictureOnTop Text="Billede øverst"/>
+      <ApplyToAll Text="Føj til alle sider"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Servernavn:"/>
+      <ServerLogon Text="Log on til serveren"/>
+      <UserName Text="Brugernavn:"/>
+      <Password Text="Kodeord:"/>
+      <Database Text="Forbind til databasen"/>
+      <DatabaseName Text="Databasenavn:"/>
+      <DatabaseFile Text="Databasefil:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Brug Windows Authentikation"/>
+      <UseSql Text="Brug SQL Server Authentikation"/>
+      <SavePassword Text="Gem mit kodeord"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Forbindelsesstreng:"/>
+      <Build Text="Byg..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Datakilde"/>
+      <DsName Text="Brug bruger eller systemdata kildenavn:"/>
+      <ConnString Text="Brug forbindelsesstreng:"/>
+      <Login Text="Login"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Skemafil:"/>
+      <Xml Text="datafil:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Editer..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Kan vokse"/>
+      <CanShrink Text="Kan skrumpe"/>
+      <GrowToBottom Text="Gro til bunden"/>
+      <Hyperlink Text="Hyperlink..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Kan bryde"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Tilføj Child bånd"/>
+      <StartNewPage Text="Start på ny side"/>
+      <PrintOnBottom Text="Udskriv nederst"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Tilføj detalje databånd"/>
+      <KeepTogether Text="Hold sammen"/>
+      <KeepDetail Text="Hold Detalje"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Gentag på alle sider"/>
+      <KeepWithData Text="Hold sammen med data"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Nulstil sidenummer"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Udfyld ubrugt plads"/>
+      <CompleteToNRows Text="Fuldfør op til N data rækker:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Størrelsemode"/>
+      <AutoSize Text="Auto størrelse"/>
+      <CenterImage Text="Centre billde"/>
+      <Normal Text="Normal"/>
+      <StretchImage Text="Stræk billede ud"/>
+      <Zoom Text="Zoom"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Format..."/>
+      <Clear Text="Rens"/>
+      <AutoWidth Text="Auto bredde"/>
+      <WordWrap Text="Bryd ord"/>
+      <AllowExpressions Text="Tillad udtryk"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Udskriv på forældre"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Gentag overskrifter"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Indsæt række ovenfor"/>
+      <InsertBelow Text="Indsæt række nedenfor"/>
+      <AutoSize Text="Automatisk størrelse"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Indsæt kolonne til venstre"/>
+      <InsertToRight Text="Indsæt kolonne til højre"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Sammensæt celler"/>
+      <Split Text="Split celler"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Celler side om side"/>
+      <ShowTitle Text="Vis titel"/>
+      <Style Text="Udseende"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Totaler"/>
+      <Function Text="Funktion"/>
+      <SuppressTotals Text="Undertryk totaler"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Editer kolonner..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Stregkodetype"/>
+      <AutoSize Text="Auto størrelse"/>
+      <AutoEncode Text="Auto enkodning"/>
+      <CalcChecksum Text="Beregn checksum"/>
+      <ShowText Text="Vis tekst"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Vis mærker"/>
+      <ShowGrid Text="Vis gitter"/>
+    </ZipCodeObject>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Beregner rammen..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Fylder matricen..."/>
+      <NewColumn Text="Træk data hertil&#13;&#10;for at lave en ny&#13;&#10;kolonne"/>
+      <NewRow Text="Træk data hertil&#13;&#10;for at lave en ny&#13;&#10;række"/>
+      <NewCell Text="Træk data hertil&#13;&#10;for at lave en ny&#13;&#10;celle"/>
+      <Total Text="Total"/>
+      <Title Text="Titel"/>
+      <White Text="Hvid"/>
+      <Gray Text="Grå"/>
+      <Orange Text="Orange"/>
+      <Green Text="Grøn"/>
+      <GreenOrange Text="Grøn og orange"/>
+      <Blue Text="Blå"/>
+      <BlueWhite Text="Blå og hvid"/>
+      <GrayOrange Text="Grå og orange"/>
+      <BlueOrange Text="Blå og orange"/>
+      <OrangeWhite Text="Orange og hvid"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Tom rapport"/>
+    <StandardReport Text="Standard rapport guide"/>
+    <InheritedReport Text="Nedarvet rapport"/>
+    <Label Text="Label guide"/>
+    <NewDataSource Text="Ny datakilde"/>
+    <NewPage Text="Ny rapport side"/>
+    <NewDialog Text="Ny dialogboks form"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Eksport udført på {0} ms"/>
+      <OrderByCells Text="Sorteret efter celler"/>
+      <AnalyzeObjects Text="Analyserer objekter"/>
+      <SavePage Text="Gem side"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Bryd side"/>
+      <OpenAfterExport Text="Åbn efter eksport"/>
+      <Pictures Text="Billeder"/>
+      <Options Text="Valgmuligheder"/>
+      <None Text="Ingen"/>
+      <Metafile Text="Metafil"/>
+      <SaveFile Text="Gem filen"/>
+    </Misc>
+    <Image Text="Eksporter til billede">
+      <File Text="Billedefil..."/>
+      <ImageFormat Text="Format:"/>
+      <Resolution Text="Opløsning:"/>
+      <Quality Text="Jpeg kvalitet:"/>
+      <SeparateFiles Text="Separate filer for hver side"/>
+      <MultiFrame Text="Multi-frame TIFF"/>
+      <Monochrome Text="Monochrom TIFF"/>
+      <Bmp Text="Bitmap billede"/>
+      <Png Text="PNG billede"/>
+      <Jpeg Text="JPG billede"/>
+      <Gif Text="GIF billede"/>
+      <Tiff Text="TIFF billede"/>
+      <Metafile Text="Windows metafil"/>
+    </Image>
+    <RichText Text="Eksporter til Rich Text (RTF)">
+      <File Text="Rech Text fil"/>
+    </RichText>
+    <Text Text="Eksporter til tekstfil/matrixprinter">
+      <File Text="Tekstfil/Matrixprinter"/>
+      <EmptyLines Text="Tomme linier"/>
+      <DataOnly Text="Kun data"/>
+      <Frames Text="Rammer"/>
+      <FramesNone Text="Ingen"/>
+      <FramesText Text="Tekst"/>
+      <FramesGraphic Text="Grafik"/>
+      <Codepage Text="Codepage"/>
+      <Default Text="Standard"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="Skala X:"/>
+      <ScaleY Text="Skala Y:"/>
+      <AutoScale Text="Autoskala"/>
+      <PrinterType Text="Printertype"/>
+      <Commands Text="Kommandoer"/>
+      <PageWidth Text="Sidebredde:"/>
+      <PageHeight Text="Sidehøjde:"/>
+      <DataLoss Text="Muligt datatab!&#13;&#10;Forøg venligst Scala X/Y"/>
+      <ScaleMessage Text="Beregner optimal skala"/>
+      <Scale Text="Skala"/>
+    </Text>
+    <Csv Text="Eksporter til CSV">
+      <File Text="CSV fil"/>
+      <Separator Text="Separator"/>
+      <Codepage Text="Codepage"/>
+      <Default Text="Standard"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Kun data"/>
+    </Csv>
+    <Dbf Text="Eksporter til DBF">
+      <File Text="DBF tabel"/>
+      <Codepage Text="Codepage"/>
+      <Default Text="Standard"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Kun data"/>
+      <Load Text="Hent feltnavne fra filen:"/>
+    </Dbf>
+    <Xml Text="Eksporter til XML">
+      <File Text="XML (Excel) tabel"/>
+    </Xml>
+    <Odt Text="Eksporter til OpenOffice Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Eksporter til OpenOfice Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Eksporter til Excel 2007">
+      <File Text="Excel 2007 fil"/>
+    </Xlsx>
+    <Pptx Text="Eksporter til PowerPoint 2007">
+      <File Text="PowerPoint 2007 fil"/>
+    </Pptx>
+    <Pdf Text="Eksporter til PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Eksport"/>
+      <Compressed Text="Komprimeret"/>
+      <EmbeddedFonts Text="Indkapslet skrifttyper"/>
+      <Background Text="Baggrund"/>
+      <PrintOptimized Text="Optimeret udskrift"/>
+      <Information Text="Information"/>
+      <DocumentInformation Text="Dokumentinformation"/>
+      <Title Text="Titel"/>
+      <Author Text="Forfatter"/>
+      <Subject Text="Emne"/>
+      <Keywords Text="Nøgleord"/>
+      <Creator Text="Skabt af"/>
+      <Producer Text="Producent"/>
+      <Security Text="Sikkerhed"/>
+      <Authentification Text="Authentifikation"/>
+      <OwnerPassword Text="Ejers password"/>
+      <UserPassword Text="Brugerens password"/>
+      <Permissions Text="Tilladelser"/>
+      <PrintTheDocument Text="Udskriv dokumentet"/>
+      <ModifyTheDocument Text="Ændre i dokumentet"/>
+      <CopyOfTextAndGraphics Text="Kopi af tekst og grafik"/>
+      <AddOrModifyTextAnnotations Text="Tilføj eller ændre tekstkommentarer"/>
+      <Viewer Text="Fremviser"/>
+      <ViewerPreferences Text="Opsætning for fremviser"/>
+      <HideToolbar Text="Skjul værktøjslinie"/>
+      <HideMenubar Text="Skjul menu"/>
+      <HideWindowUserInterface Text="Skjul vindues brugerinterface"/>
+      <FitWindow Text="Tilpas vindue"/>
+      <CenterWindow Text="Centrer vindue"/>
+      <PrintScaling Text="Skalér udskrift"/>
+      <PrintAfterOpenOfDocument Text="Udskriv efter åbning af dokument"/>
+      <Outline Text="Ramme"/>
+    </Pdf>
+    <Html Text="Eksporter til HTML">
+      <File Text="HTML fil"/>
+      <MHTFile Text="MHT fil"/>
+      <Format Text="Format"/>
+      <SinglePage Text="Som en side"/>
+      <SubFolder Text="Undermapper"/>
+      <Navigator Text="Navigation"/>
+      <Total Text="Total"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Eksporter til MHT (web-arkiv)">
+      <File Text="MHT fil (web-arkiv)"/>
+    </Mht>
+    <Email Text="Send E-mail">
+      <Email Text="E-mail"/>
+      <Account Text="Konto"/>
+      <Address Text="Adresse:"/>
+      <Subject Text="Emne:"/>
+      <Message Text="Besked:"/>
+      <Attachment Text="Vedhæftninger:"/>
+      <Settings Text="Opsætning..."/>
+      <Name Text="Navn:"/>
+      <Template Text="Template:"/>
+      <Host Text="Vært:"/>
+      <Port Text="Port:"/>
+      <UserName Text="Brugernavn:"/>
+      <Password Text="Kodeord:"/>
+      <AddressError Text="Adressen kan ikke være tom."/>
+      <HostError Text="Vært kan ikke være tom."/>
+      <SendingEmail Text="Sender e-mail - {0} kb"/>
+      <EnableSSL Text="Slå SSL til"/>
+    </Email>
+  </Export>
+  <Web>
+    <Print Text="Udskriv"/>
+    <Export Text="Eksporter"/>
+    <Zoom Text="Zoom"/>
+    <Refresh Text="Genopfrisk"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Udseende"/>
+      <Behavior Text="Opførelse"/>
+      <Build Text="Byg"/>
+      <Data Text="Data"/>
+      <Design Text="Design"/>
+      <Email Text="Email"/>
+      <Engine Text="Motor"/>
+      <Events Text="Handlinger"/>
+      <Hierarchy Text="Hiraki"/>
+      <Layout Text="Layout"/>
+      <Misc Text="Diverse"/>
+      <Navigation Text="Navigation"/>
+      <Paper Text="Papir"/>
+      <Preview Text="Vis udskrift"/>
+      <Print Text="Udskriv"/>
+      <Script Text="Skript"/>
+    </Categories>
+  </Properties>
+</Language>

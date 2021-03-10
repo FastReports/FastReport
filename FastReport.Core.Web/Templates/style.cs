@@ -16,6 +16,11 @@
     position: relative;
 }}
 
+.{template_FR}-container * {{
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}}
+
 .{template_FR}-body {{
     display: flex;
     overflow: hidden;

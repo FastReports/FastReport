@@ -34,9 +34,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Update="MongoDBConnectionEditor.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
+        <Compile Update="MongoDBConnectionEditor.cs" />
         <Compile Update="MongoDBConnectionEditor.Designer.cs">
             <DependentUpon>MongoDBConnectionEditor.cs</DependentUpon>
         </Compile>

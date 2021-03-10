@@ -40,7 +40,7 @@ namespace FastReport.Utils
         private StyleDescriptor initalStyle;
         private float fontScale;
         private FastString cacheString = new FastString(100);
-
+        private bool isPrinting;
         #endregion Private Fields
 
         #region Public Properties
@@ -110,7 +110,7 @@ namespace FastReport.Utils
         public HtmlTextRenderer(string text, Graphics g, string font, float size,
                     FontStyle style, Color color, Color underlineColor, RectangleF rect, bool underlines,
                     StringFormat format, HorzAlign horzAlign, VertAlign vertAlign,
-                    ParagraphFormat paragraphFormat, bool forceJustify, float scale, float fontScale, InlineImageCache cache)
+                    ParagraphFormat paragraphFormat, bool forceJustify, float scale, float fontScale, InlineImageCache cache, bool isPrinting = false)
         {
             this.cache = cache;
             this.scale = scale;
@@ -142,6 +142,7 @@ namespace FastReport.Utils
             this.paragraphFormat = paragraphFormat;
             this.font = font;
             this.size = size;
+            this.isPrinting = isPrinting;
             everUnderlines = underlines;
 
             backgrounds = new List<RectangleFColor>();

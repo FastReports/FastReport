@@ -7,17 +7,13 @@
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void InitDesign()
-        {
-        }
+        partial void InitDesign();
 
         /// <summary>
         /// Does nothing
         /// </summary>
         /// <param name="flag"></param>
-        private void RefreshTemplate(bool flag)
-        {
-        }
+        partial void RefreshTemplate(bool flag);
 
         #endregion Private Methods
     }

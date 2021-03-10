@@ -1,0 +1,1774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="hu" Author="Sandor Kacso &lt;sandor.kacso@erpos.ro&gt;;Tamas Martin &lt;tamas.martin@gmail.com&gt;; Zoltan Sutto">
+  <Buttons>
+    <Ok Text="OK"/>
+    <Cancel Text="Mégse"/>
+    <Close Text="Bezárás"/>
+    <MoreOptions Text="Több opció"/>
+    <LessOptions Text="Kevesebb opció"/>
+    <Actions Text="Műveletek"/>
+    <Previous Text="Előző"/>
+    <Next Text="Következő"/>
+    <Finish Text="Befejezés"/>
+    <Advanced Text="Speciális..."/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Adatok beolvasása..."/>
+    <Attention Text="Figyelem"/>
+    <CantFindObject Text="Az objektum nem található"/>
+    <CantLoadReport Text="Nem tudom betölteni a {0} riportot"/>
+    <CantSaveReport Text="Riport mentése nem sikerült. A fájl írásvédett lehet."/>
+    <ClassError Text="A fő riport osztály nem található, ReportScript"/>
+    <Confirmation Text="Megerősítés"/>
+    <DataNotInitialized Text="Az adatforrás még nincs inicializálva."/>
+    <DecompressError Text="A fájl kicsomagolása nem sikerült"/>
+    <DecryptError Text="Dekódolási hiba: rossz jelszó"/>
+    <DelegateError Text="{0} eseménykezelőnek kell legyen két parametere: 'sender' és  'e'"/>
+    <DeleteAncestor Text="Nem tudom letörölni a {0}, már bennevan a fentebbi riportban"/>
+    <DuplicateName Text="Az objektum a {0} névvel már létezik"/>
+    <DuplicateStyle Text="Ilyen nevű stílus már létezik"/>
+    <Error Text="Hiba"/>
+    <EventError Text="Nem tudom elkésziteni ezt az eseménykezelőt, hiba van a forráskódban"/>
+    <ExportingPage Text="Exportálom a {0} lapot a {1} -ból"/>
+    <GeneratingPage Text="Generálom a {0} lapot"/>
+    <GeneratingPageFirstPass Text="Első lépés: generálom a {0} lapot"/>
+    <Information Text="Információ"/>
+    <MatrixError Text="{0}: a mátrix objektumnak minimum egy oszlopa vagy sora és egy cella dimenziója kell hogy legyen"/>
+    <MatrixValueError Text="Az értékek száma különbözik a MatrixData.Cells.Count értékétől ({0} kellene legyen)"/>
+    <ParentError Text="A {0} típusú objektum nem tartalmazhat {1} típusú objektumot"/>
+    <ParentError1 Text="A {0} típusú objektum nem tartalmazhat objektumokat"/>
+    <Performance Text="Elkészítve {0} ms alatt"/>
+    <PreparingData Text="Készítem az adatokat ..."/>
+    <PrintingPage Text="Nyomtatom a {0} lapot"/>
+    <RenameAncestor Text="Nem tudom átnevezni {0}, bele volt téve a fenti riportban"/>
+    <SaveChanges Text="Menti a módosításokat a(z) {0} fájlba?"/>
+    <SaveChangesToPreviewPage Text="Menti az a előnézeti lapon végzett módosításokat?"/>
+    <SQLError Text="Adatbázis hiba"/>
+    <TableIsNull Text="A tábla nincsen összekötve az adattal. Regisztrálja az adatot a Riport.RegisterData metódusát használva."/>
+    <TableManualBuildError Text="A TableObject.PrintRow, PrintColumn metódusokat csak a ManualBuild eseményen belül használhatja."/>
+    <Warning Text="Figyelmeztetés"/>
+    <WarningSaveRDL Text="Az RDL formátumnak vannak megkötései. Ez a szűrő csak a nézetet menti el. Adatforrások, vonalkódok, formázott szöveg, bejelölő és Zip kód nem kerülnek mentésre. Az objektumok néhány tulajdonsága nem lesz mentve. Tehát a mentés adatvesztést okozhat. Mégis menti?"/>
+    <WrongFileFormat Text="Nem sikerült betölteni a fájlt. Nem ismert fájl formátum"/>
+    <InvalidBarcode1 Text="A Barcode-nak '&amp;A;', '&amp;B;' vagy '&amp;C;' karakterekkel kell kezdődnie."/>
+    <InvalidBarcode2 Text="Hibás karakter a kódban."/>
+    <ErrorInExpression Text="Hiba a kiterjesztésben."/>
+    <ErrorInHighlightCondition Text="Hiba a kiemelés feltételében."/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="in"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Példa"/>
+    <None Text="Egyiksem"/>
+    <PageN Text="Oldalszám {0}"/>
+    <PageNofM Text="{0} lapszám a {1} lapszámból"/>
+    <ofM Text="{0} lapszámból"/>
+  </Misc>
+  <Objects>
+    <Report Text="Riport"/>
+    <ReportPage Text="Lapszám"/>
+    <DialogPage Text="Forma"/>
+    <XmlDataConnection Text="XML adatkapcsolat"/>
+    <OleDbDataConnection Text="OLE DB adatkapcsolat"/>
+    <MsAccessDataConnection Text="MS Access adatkapcsolat"/>
+    <MsSqlDataConnection Text="MS SQL adatkapcsolat"/>
+    <OdbcDataConnection Text="ODBC adatkapcsolat"/>
+    <FirebirdDataConnection Text="Firebird adatkapcsolat"/>
+    <VistaDBDataConnection Text="VistaDB adatkapcsolat"/>
+    <PostgresDataConnection Text="Postgres adatkapcsolat"/>
+    <MySqlDataConnection Text="MySQL adatkapcsolat"/>
+    <OracleDataConnection Text="Oracle adatkapcsolat"/>
+    <SQLiteDataConnection Text="SQLite adatkapcsolat"/>
+    <SqlCeDataConnection Text="SQL CE kapcsolat"/>
+    <Bands Text="Sávok">
+      <ReportTitle Text="Riport Címe"/>
+      <ReportSummary Text="Riport Összefoglalás"/>
+      <PageHeader Text="Oldal fejléc"/>
+      <PageFooter Text="Oldal lábléc"/>
+      <ColumnHeader Text="Oszlop fejléc"/>
+      <ColumnFooter Text="Oszlop lábléc"/>
+      <DataHeader Text="Adat Fejléc"/>
+      <DataFooter Text="Adat Lábléc"/>
+      <Data Text="Adat"/>
+      <GroupHeader Text="Csoport Fejléc"/>
+      <GroupFooter Text="Csoport Lábléc"/>
+      <Child Text="Gyerek"/>
+      <Overlay Text="Átfedés"/>
+    </Bands>
+    <TextObject Text="Szöveg"/>
+    <Shapes Text="Alakzatok">
+      <Line Text="Vonal"/>
+      <DiagonalLine Text="Átlós vonal"/>
+      <Rectangle Text="Téglalap"/>
+      <RoundRectangle Text="Lekerekített téglalap"/>
+      <Ellipse Text="Ellipszis"/>
+      <Triangle Text="Háromszög"/>
+      <Diamond Text="Gyémánt"/>
+    </Shapes>
+    <PictureObject Text="Kép"/>
+    <TableObject Text="Táblázat"/>
+    <MatrixObject Text="Mátrix"/>
+    <SubreportObject Text="Alriport"/>
+    <BarcodeObject Text="Vonalkód"/>
+    <RichObject Text="Rich Text"/>
+    <MSChartObject Text="MS Diagram"/>
+    <ZipCodeObject Text="Irányítószám"/>
+    <CellularTextObject Text="Táblázatos Szöveg"/>
+    <CheckBoxObject Text="Jelölőnégyzet"/>
+    <ButtonControl Text="Gomb"/>
+    <CheckBoxControl Text="Jelölőnégyzet"/>
+    <CheckedListBoxControl Text="Jelölőnégyzetes lista"/>
+    <ComboBoxControl Text="Beviteli lista"/>
+    <GridControl Text="Rács"/>
+    <DataSelectorControl Text="Adatválasztó"/>
+    <DateTimePickerControl Text="Dátum-és idő Választó"/>
+    <GroupBoxControl Text="Csoportpanel"/>
+    <LabelControl Text="Címke"/>
+    <ListBoxControl Text="Lista"/>
+    <ListViewControl Text="Listanézet"/>
+    <MaskedTextBoxControl Text="Maszkolt szövegdoboz"/>
+    <MonthCalendarControl Text="Havi naptár"/>
+    <NumericUpDownControl Text="Numerikus Fel-Le"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="KépDoboz"/>
+    <RadioButtonControl Text="Választógomb"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="SzövegDoboz"/>
+    <TreeViewControl Text="Fastruktúra nézet"/>
+  </Objects>
+  <Functions>
+    <Math Text="Matematikai"/>
+    <Text Text="Szöveg"/>
+    <DateTime Text="Dátum és Idő"/>
+    <Formatting Text="Formázás"/>
+    <Conversion Text="Konverzíó"/>
+    <ProgramFlow Text="Program Folyamat"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Riport fájl (.frx)|*.frx"/>
+    <PreparedReport Text="Előkészitett riport (*.fpx)|*.fpx"/>
+    <Style Text="Riport stílus (*.frs)|*.frs"/>
+    <Dictionary Text="Szótár (*.frd)|*.frd"/>
+    <Localization Text="Localizált fájl (*.frl)|*.frl"/>
+    <XsdFile Text="XML séma definicios fájl (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML fájl (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access adatbázis(*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server adatbázis (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text fájl (*.rtf)|*.rtf"/>
+    <Images Text="Kép fájlok|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Kompilálás (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Nyomtató fájl (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap kép (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG kép (*.png)|*.png"/>
+    <JpegFile Text="JPG kép (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF kép (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF kép (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML fájl (*.html)|*.html"/>
+    <MhtFile Text="Web-archive fájl (*.mht)|*.mht"/>
+    <OdtFile Text="Open Office Writer fájl (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc fájl (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat fájl (*.pdf)|*.pdf"/>
+    <TxtFile Text="Text fájl (*.txt)|*.txt"/>
+    <CsvFile Text="Vesszővel elválaszott értékek (*.csv)|*.csv"/>
+    <DbfFile Text="dBase fájl  (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel fájl (*.xls)|*.xls"/>
+    <CsFile Text="C# fájl (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net fájl (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird adatbázis (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB adatbázis (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="MS Excel munkafüzet (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint prezentáció (*.pptx)|*.pptx"/>
+    <DocxFile Text="MS Word dokumentum (*.docx)|*.docx"/>
+    <SdfFile Text="SQL CE adatbázis (*.sdf)|*.sdf"/>
+    <XpsFile Text="XPS fájl (*.xps)|*.xps"/>
+    <RdlFiles Text="RDL fájlok (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="RDL fájl (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlcFile Text="RDLC fájlok (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Crystal Riport fájlok (*.rpt)|*.rpt"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="n"/>
+    <Date2 Text="N"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="HH/nn/ee"/>
+    <Date6 Text="HHHH nn, eeee"/>
+    <Date7 Text="HHHH eeee"/>
+    <Time1 Text="i"/>
+    <Time2 Text="I"/>
+    <Time3 Text="oo:pp tt"/>
+    <Time4 Text="OO:pp"/>
+    <BooleanF1 Text="Hamis"/>
+    <BooleanF2 Text="Nem"/>
+    <BooleanF3 Text="Kikapcsol"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Igaz"/>
+    <BooleanT2 Text="Igen"/>
+    <BooleanT3 Text="Bekapcsol"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefon;(000) 000-0000"/>
+    <Custom2 Text="Nemzetközi telefon;+0(000) 000-0000"/>
+    <Custom3 Text="Társadalombiztosítási szám;000-00-0000"/>
+    <Custom4 Text="Irányítószám;00000"/>
+    <Custom5 Text="Irányítószám Hosszú;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Ribbon>
+      <File Text="Fájl"/>
+      <Recent Text="Legutóbbi fájlok"/>
+      <Home Text="Kezdőlap"/>
+      <Clipboard Text="Vágólap"/>
+      <Text Text="Szöveg"/>
+      <BorderAndFill Text="Szegély és kitöltés"/>
+      <Format Text="Formázás"/>
+      <Styles Text="Stílusok"/>
+      <Editing Text="Szerkesztés"/>
+      <Report Text="Riport"/>
+      <Data Text="Adat"/>
+      <Pages Text="Oldalak"/>
+      <Bands Text="Sávok"/>
+      <Layout Text="Elrendezés"/>
+      <Alignment Text="Igazítás"/>
+      <Size Text="Méret"/>
+      <Spacing Text="Térköz"/>
+      <View Text="Nézet"/>
+      <Panels Text="Panelek"/>
+    </Ribbon>
+    <Menu>
+      <File Text="Fájl">
+        <New Text="Új..."/>
+        <Open Text="Nyitás..."/>
+        <Close Text="Bezárás"/>
+        <Save Text="Mentés"/>
+        <SaveAs Text="Mentés másként..."/>
+        <SaveAll Text="Mentés Mindent"/>
+        <PageSetup Text="Oldal beállítás"/>
+        <PrinterSetup Text="Nyomtató Beállítás..."/>
+        <Preview Text="Előnézet..."/>
+        <SelectLanguage Text="Nyelv választás..."/>
+        <Exit Text="Kilépés"/>
+      </File>
+      <Edit Text="Szerkesztés">
+        <Undo Text="Vissza"/>
+        <Redo Text="Előre"/>
+        <Cut Text="Kivágás"/>
+        <Copy Text="Másolás"/>
+        <Paste Text="Beszúrás"/>
+        <Delete Text="Törlés"/>
+        <DeletePage Text="Oldal törlése"/>
+        <SelectAll Text="Kijelöl Mind"/>
+        <Group Text="Csoport"/>
+        <Ungroup Text="Csoport Bontás"/>
+        <Find Text="Keresés..."/>
+        <Replace Text="Cserél..."/>
+      </Edit>
+      <View Text="Nézet">
+        <StartPage Text="Kezdő oldal"/>
+        <Toolbars Text="Eszköztár"/>
+        <Options Text="Opciók..."/>
+        <Grid Text="Rács"/>
+        <Guides Text="Segédvonalak"/>
+        <AutoGuides Text="Automatikus segédvonalak"/>
+        <DeleteHGuides Text="Horizontális segédvonalak Törlése"/>
+        <DeleteVGuides Text="Vertikális segédvonalak Törlése"/>
+        <Units Text="Mértékegységek"/>
+      </View>
+      <Insert Text="Beszúrás"/>
+      <Report Text="Riport">
+        <Bands Text="Sávok Konfigurálása..."/>
+        <Styles Text="Stílusok..."/>
+        <GroupExpert Text="Csoport Szakértő"/>
+        <Options Text="Opciók..."/>
+      </Report>
+      <Data Text="Adat">
+        <ShowData Text="Adat Ablak Megmutatása"/>
+        <Add Text="Adat Forrás Hozzáadása..."/>
+        <Choose Text="Riport Adat Kiválasztása..."/>
+      </Data>
+      <Window Text="Ablak">
+        <CloseAll Text="Bezár Mind"/>
+      </Window>
+      <Help Text="Súgó">
+        <Contents Text="Súgó Tartalma..."/>
+        <About Text="Névjegy..."/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <AutoHide Text="Automatikus elrejtés"/>
+      <Close Text="Bezárás"/>
+      <Properties Text="Tulajdonságok">
+        <PropertiesTab Text="Tulajdonságok fül"/>
+        <EventsTab Text="Események fül"/>
+        <NObjectsSelected Text="{0} objektum kijelölve"/>
+      </Properties>
+      <ReportTree Text="Riport faszerkezet"/>
+      <Dictionary Text="Szótár">
+        <DataSources Text="Adat Források"/>
+        <Parameters Text="Paraméterek"/>
+        <SystemVariables Text="Rendszer Változók"/>
+        <Totals Text="Összegek"/>
+        <Functions Text="Függvények"/>
+        <DialogControls Text="Dialog kontrollok"/>
+        <New Text="Új Szótár..."/>
+        <Open Text="Szótár Megnyitása..."/>
+        <Save Text="Szótár Mentése..."/>
+        <Merge Text="Szótár Összevonása..."/>
+        <NewDataSource Text="Új Adat Forrás..."/>
+        <NewRelation Text="Új Reláció..."/>
+        <NewParameter Text="Új Paraméter"/>
+        <NewTotal Text="Új Összeg..."/>
+        <NewCalculatedColumn Text="Új Számolt Oszlop..."/>
+        <Rename Text="Átnevezés"/>
+        <Edit Text="Szerkesztés..."/>
+        <Delete Text="Törlés"/>
+        <DeleteAlias Text="Alias Törlése"/>
+        <View Text="Adat megtekintése ..."/>
+        <DuplicateName Text="Ilyen névvel rendelkező elem mér létezik"/>
+        <NRows Text="{0} sor(ok)"/>
+      </Dictionary>
+      <Messages Text="Üzenetek">
+        <Description Text="Leírás"/>
+        <Line Text="Sor"/>
+        <Column Text="Oszlop"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Hozzáad vagy eltávolít Gombokat"/>
+      <Reset Text="Eszköztár Visszaállítása"/>
+      <MoreButtons Text="Több gomb..."/>
+      <Standard Text="Standard">
+        <New Text="Új Elem Hozzáadása"/>
+        <Open Text="Riport Megnyitás (Ctrl+O)"/>
+        <Save Text="Riport Mentés (Ctrl+S)"/>
+        <SaveAll Text="Összes Mentése (Ctrl+Shift+S)"/>
+        <Preview Text="Előnézet (Ctrl+P)"/>
+        <NewPage Text="Új Riport Lap"/>
+        <NewDialog Text="Új Dialog ablak"/>
+        <DeletePage Text="Lap Törlés"/>
+        <PageSetup Text="Oldal beállítás"/>
+        <Cut Text="Kivágás (Ctrl+X)"/>
+        <Copy Text="Másolás (Ctrl+C)"/>
+        <Paste Text="Beillesztés (Ctrl+V)"/>
+        <FormatPainter Text="Formátum másoló"/>
+        <Undo Text="Vissza (Ctrl+Z)"/>
+        <Redo Text="Mégis"/>
+        <Group Text="Csoportosítás"/>
+        <Ungroup Text="Csoportbontás"/>
+      </Standard>
+      <Text Text="Szöveg">
+        <Name Text="Betűtípus Neve"/>
+        <Size Text="Betűtípus Mérete"/>
+        <Bold Text="Félkövér"/>
+        <Italic Text="Dőlt"/>
+        <Underline Text="Aláhúzott"/>
+        <Left Text="Balra igazít"/>
+        <Center Text="Középre Igazít"/>
+        <Right Text="Jobbra Igazít"/>
+        <Justify Text="Sorkizárt"/>
+        <Top Text="Fent Igazít"/>
+        <Middle Text="Középre Igazít"/>
+        <Bottom Text="Lent Igazít"/>
+        <Color Text="Szöveg Színe"/>
+        <Highlight Text="Kiemelés"/>
+        <Angle Text="Szöveg elfordítása"/>
+      </Text>
+      <Border Text="Szegély és Kitölt">
+        <Top Text="Felső szegély"/>
+        <Bottom Text="Alsó szegély"/>
+        <Left Text="Bal szegély"/>
+        <Right Text="Jobb szegély"/>
+        <All Text="Külső szegély"/>
+        <None Text="Nincs szegély"/>
+        <FillColor Text="Kitöltés Színe"/>
+        <FillStyle Text="Kitöltés Stílusa..."/>
+        <LineColor Text="Szegély Színe"/>
+        <Width Text="Szegély Vastagság"/>
+        <Style Text="Szegély Stílus"/>
+        <Props Text="Szegély Tulajdonságai..."/>
+      </Border>
+      <Style Text="Stílus">
+        <Styles Text="Stílusok"/>
+        <SelectStyle Text="Stílus Választás"/>
+        <NoStyle Text="Nincs Stílus"/>
+      </Style>
+      <Layout Text="Elrendezés">
+        <AlignToGrid Text="Rácshoz Igazít"/>
+        <Left Text="Balra Igazít"/>
+        <Center Text="Középre Igazít"/>
+        <Right Text="Jobbra Igazít"/>
+        <Top Text="Fent Igazít"/>
+        <Middle Text="Középre Igazít"/>
+        <Bottom Text="Lent Igazít"/>
+        <SameWidth Text="Azonos szélesség"/>
+        <SameHeight Text="Azonos magasság"/>
+        <SameSize Text="Egyforma Méret"/>
+        <SizeToGrid Text="Rácshoz méretezés"/>
+        <SpaceHorizontally Text="Térköz Horizontálisan"/>
+        <IncreaseHorizontalSpacing Text="Növeld a Horizontális Térközt"/>
+        <DecreaseHorizontalSpacing Text="Csökkentsd Horizontális Térközt"/>
+        <RemoveHorizontalSpacing Text="Horizontális Térköz eltávolítása"/>
+        <SpaceVertically Text="Vertikális Térköz"/>
+        <IncreaseVerticalSpacing Text="Növeld a Vertikális Térközt"/>
+        <DecreaseVerticalSpacing Text="Csökkentsd Vertikális Térközt"/>
+        <RemoveVerticalSpacing Text="Vertikális Térköz eltávolítása"/>
+        <CenterHorizontally Text="Horizontálisan középre"/>
+        <CenterVertically Text="Vertikálisan középre"/>
+        <BringToFront Text="Előrehozás"/>
+        <SendToBack Text="Hátraküldás"/>
+      </Layout>
+      <Objects Text="Objektumok">
+        <Select Text="Kiválasztás"/>
+      </Objects>
+      <Zoom Text="Nagyítás">
+        <ZoomOut Text="Kicsinyítés"/>
+        <ZoomIn Text="Nagyítás"/>
+        <Zoom Text="Nagyítás"/>
+        <PageWidth Text="Oldal szélesség"/>
+        <WholePage Text="Egész oldal"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Kód"/>
+      <Report>
+        <ConfigureBands Text="Sávok konfigurálása..."/>
+      </Report>
+    </Workspace>
+    <Options Text="Opciók"/>
+    <UndoRedo>
+      <Delete Text="Törlés {0}"/>
+      <Move Text="Mozgás {0}"/>
+      <Size Text="{0} méret változás"/>
+      <Change Text="{0} változtatás"/>
+      <AddGuide Text="Segédvonal Hozzáadása"/>
+      <MoveGuide Text="Segédvonal Mozgatása"/>
+      <DeleteHGuides Text="Horizontális segédvonal Törlése"/>
+      <DeleteVGuides Text="Vertikális Segédvonal Törlése"/>
+      <ResizeBand Text="Sáv átméretezése"/>
+      <ChangeParent Text="{0} szülő változtatása"/>
+      <Load Text="Riport Betöltés"/>
+      <Paste Text="{0} Beszúrás"/>
+      <Insert Text="{0} Beszúrás"/>
+      <AddPage Text="{0} lap hozzáadása"/>
+      <DeletePage Text="Lap Törlés"/>
+      <Script Text="Szkript vátoztatás"/>
+      <NObjects Text="{0} objektum(ok)"/>
+      <UndoN Text="Vissza {0} cselekmény"/>
+      <RedoN Text="Előre {0} cselekmény"/>
+      <ChangeReport Text="Riport módosítása"/>
+      <ChangePagesOrder Text="Oldalak sorrendjének módosítása"/>
+      <EditPage Text="Oldal Szerkesztés"/>
+      <EditPrinter Text="Nyomtató beállítás Szerkesztése"/>
+      <EditReport Text="Riport beállítás Szerkesztése"/>
+      <SelectData Text="Adat Kiválasztása"/>
+      <EditData Text="Adat Szerkesztése"/>
+    </UndoRedo>
+    <StartPage Text="Kezdő oldal"/>
+    <Untitled Text="Névtelen.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Egyedi"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="Rendszer"/>
+      <Other Text="Más szín..."/>
+      <Transparency Text="Átlátszóság:"/>
+    </ColorSelector>
+    <Welcome>
+      <Button Text="Üdvözlő ablak megnyitása..."/>
+      <Title Text="Üdvözli Önt a FastReport"/>
+      <Show Text="Megjelenítés indításkor"/>
+      <Open Text="Legutóbbi elem megnyitása"/>
+      <New Text="Új létrehozása"/>
+    </Welcome>
+  </Designer>
+  <Preview Text="Előnézet">
+    <PrintText Text="Nyomtatás"/>
+    <Print Text="Nyomtatás (Ctrl+P)"/>
+    <Open Text="Megnyitás"/>
+    <Save Text="Mentés"/>
+    <SaveText Text="Mentés"/>
+    <Email Text="Küldés e-mailben"/>
+    <Find Text="Szöveg Keresés"/>
+    <Outline Text="Kontúr"/>
+    <PageSetup Text="Oldalbeállítás"/>
+    <Edit Text="Lap szerkesztés"/>
+    <Watermark Text="Vízjel"/>
+    <First Text="Első oldal"/>
+    <Prior Text="Előző oldal"/>
+    <Next Text="Következő oldal"/>
+    <Last Text="Utolsó oldal"/>
+    <SaveNative Text="Előkészített Riport"/>
+  </Preview>
+  <Forms>
+    <About Text="Információ">
+      <Version Text="Verzió"/>
+      <Visit Text="Látogasson el honlapunkra további információkért:"/>
+    </About>
+    <AddNewItem Text="Új elem hozzáadása">
+      <Add Text="Hozzáad"/>
+      <Reports Text="Riportok"/>
+      <ReportItems Text="Riport elemek"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Haladó Jellemzők"/>
+    <AskPassword Text="Jelszó">
+      <Password Text="Ez a riport jelszó védett.&#13;&#10;&#13;&#10;Kérem írja be a jelszót:"/>
+    </AskPassword>
+    <AskLoginPassword Text="Adatbázis Bejelentkezés">
+      <Login Text="Bejelentkezés:"/>
+      <Password Text="Jelszó:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Adatforrás választása"/>
+      <SelectDataSource Text="Válasszon ki egy létező adatforrást vagy készítsen egy újat:"/>
+      <CreateNewDatasource Text="Új adatforrás létrehozása..."/>
+      <SelectColumnsPage Text="Válasszon ki adat oszlopokat"/>
+      <SelectColumns Text="Válasszon ki adat oszlopokat amit szeretne látni a riporton."/>
+      <AvailableColumns Text="Létező oszlopok:"/>
+      <SelectedColumns Text="Kiválasztott oszlopok:"/>
+    </BaseReportWizard>
+    <Border Text="Keret Szerkesztő">
+      <Border Text="Keret"/>
+      <Line Text="Vonal"/>
+      <Shadow Text="Árnyék"/>
+      <Style Text="Stílus:"/>
+      <Width Text="Szélesség:"/>
+      <Color Text="Szín:"/>
+      <Hint Text="Válassza ki a vonal stílusat és a vonalat hogy a stílus alkalmazva legyen."/>
+    </Border>
+    <ChartEditor Text="Grafikon Szerkesztő">
+      <Chart Text="Grafikon"/>
+      <Add Text="Hozzáad..."/>
+      <Delete Text="Töröl"/>
+      <Hint Text="Kattintson egy elemre hogy beállítsa a tulajdonságait:"/>
+      <Common>
+        <Color Text="Szín:"/>
+        <BackColor Text="Háttér Szín:"/>
+        <SecondaryColor Text="Második Szín:"/>
+        <Gradient Text="Átmenet:"/>
+        <HatchStyle Text="Satírozási stílus:"/>
+        <BorderColor Text="Keret Szín:"/>
+        <BorderStyle Text="Keret stílusa:"/>
+        <BorderWidth Text="Keret vastagság:"/>
+        <ShadowColor Text="Árnyék Szín:"/>
+        <ShadowOffset Text="Árnyék eltolás:"/>
+        <LineColor Text="Vonal Szín:"/>
+        <LineStyle Text="Vonal stílus:"/>
+        <LineWidth Text="Vonal vastagság:"/>
+        <Text Text="Szöveg:"/>
+        <Font Text="Betűtípus:"/>
+        <ForeColor Text="Előtér Szín:"/>
+        <Dock Text="Helység:"/>
+        <InsideChartArea Text="A grafikonon belül"/>
+        <Format Text="Formázás:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Adat">
+          <DataSource Text="Adat forrás:"/>
+          <Filter Text="Szűrő:"/>
+          <AutoSeries Text="Automatikusan létrehozott sorozatok"/>
+          <DataColumn Text="Adat oszlop:"/>
+          <ColorColumn Text="Oszlop Szín:"/>
+          <SeriesSort Text="Sorozat rendezés:"/>
+          <AlignXValues Text="Igazít X értékeket"/>
+        </Data>
+        <Appearance Text="Megjelenés">
+          <Template Text="Sablon:"/>
+          <Load Text="Betöltés..."/>
+          <Save Text="Mentés..."/>
+          <SeriesPalette Text="Paletta Sorozat:"/>
+          <BorderSkin Text="Keret rétege:"/>
+          <Templates>
+            <Custom Text="Egyedi"/>
+            <Blue Text="Kék"/>
+            <Gray Text="Szürke"/>
+            <Green Text="Zöld"/>
+            <Pink Text="Rózsaszín"/>
+            <Sand Text="Homok"/>
+            <Steel Text="Acél"/>
+            <Light Text="Világos"/>
+          </Templates>
+        </Appearance>
+        <ChartArea Text="Grafikon területe">
+          <Area Text="Terület:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="Engedélyez"/>
+          <XRotation Text="X forgatás"/>
+          <YRotation Text="Y forgatás:"/>
+          <Perspective Text="Perspektíva:"/>
+          <WallWidth Text="Fal szélesség:"/>
+          <AxisDepth Text="Tengely mélység:"/>
+          <LightStyle Text="Könnyű stílus:"/>
+          <ClusteredSeries Text="Összefűzött sorozatok"/>
+        </ThreeD>
+        <Axes Text="Tengelyek">
+          <Axis Text="Tengely:"/>
+          <CopyFromX Text="Másold át a megjelenítést az X tengelyről"/>
+          <CopyFromPrimary Text="Másold át a megjelenítést a fő tengelyről"/>
+          <Minor Text="Kisebb"/>
+          <Major Text="Nagyobb"/>
+          <General Text="Általános">
+            <Enabled Text="Engedélyezve"/>
+            <MarginVisible Text="Keret látható"/>
+            <Logarithmic Text="Logaritmikus"/>
+            <Reversed Text="Fordított"/>
+            <Interval Text="Intervallum"/>
+            <Interlaced Text="Váltott soros"/>
+            <InterlacedColor Text="Váltott soros Színe:"/>
+          </General>
+          <Labels Text="Címkék">
+            <Enabled Text="Engedélyezve"/>
+            <Angle Text="Szög:"/>
+          </Labels>
+          <Title Text="Cím"/>
+          <CustomLabels Text="Egyedi címkék">
+            <Label Text="Címke"/>
+            <Start Text="Kezdés:"/>
+            <End Text="Vége:"/>
+            <Row Text="Sor:"/>
+            <MarkColor Text="Jelölés Színe:"/>
+            <MarkStyle Text="Jelölés stílusa:"/>
+          </CustomLabels>
+          <Grid Text="Rács">
+            <GridLine Text="Rács vonal:"/>
+            <Enabled Text="Engedélyezve"/>
+          </Grid>
+          <Ticks Text="Pipák">
+            <Ticks Text="Pipák:"/>
+            <Enabled Text="Engedélyezve"/>
+            <TickStyle Text="Pipa stílusa:"/>
+            <TickSize Text="Pipa mérete:"/>
+          </Ticks>
+          <Strips Text="Csíkok">
+            <Strip Text="Csík"/>
+            <Interval Text="Intervallum">
+              <Start Text="Kezdés:"/>
+              <Width Text="Szélesség:"/>
+              <Interval Text="Intervallum:"/>
+            </Interval>
+            <Appearance Text="Megjelenítés:"/>
+            <Text Text="Szöveg">
+              <HorizontalAlign Text="Horizontális ígazitás:"/>
+              <VerticalAlign Text="Vertikális ígazitás:"/>
+              <TextOrientation Text="Szöveg tájolása:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Jelmagyarázat">
+          <Enabled Text="Engedélyezve"/>
+          <StyleColumn Text="Oszlop"/>
+          <StyleRow Text="Sor"/>
+          <StyleTable Text="Tábla"/>
+          <General Text="Általános">
+            <LegendStyle Text="Jelmagyarázat stílusa:"/>
+          </General>
+          <Appearance Text="Megjelenítés"/>
+        </Legend>
+        <Title Text="Cím">
+          <Visible Text="Látható"/>
+          <General Text="Általános">
+            <TextOrientation Text="Szöveg tájolása:"/>
+            <TextStyle Text="Szöveg stílusa:"/>
+          </General>
+          <Appearance Text="Megjelenítés"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Adat">
+          <Name Text="Név:"/>
+          <XValue Text="X érték:"/>
+          <Color Text="Szín:"/>
+          <Filter Text="Szűrő:"/>
+          <XValueType Text="X érték típusa:"/>
+          <YValueType Text="Y érték típusa:"/>
+          <XAxisType Text="X tengely típusa:"/>
+          <YAxisType Text="Y tengely típusa:"/>
+          <PrimaryAxis Text="Elsődleges"/>
+          <SecondaryAxis Text="Másodlagos"/>
+          <SeriesValues>
+            <YValue Text="Y érték:"/>
+            <High Text="Magas:"/>
+            <Low Text="Alacsony:"/>
+            <Open Text="Nyitva:"/>
+            <Close Text="Zárva:"/>
+            <RangeBegin Text="Intervallum kezdete:"/>
+            <RangeEnd Text="Intervallum vége:"/>
+            <Size Text="Méret:"/>
+            <YValue1 Text="Y érték 1:"/>
+            <YValue2 Text="Y érték 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Értékek"/>
+        <DataProcessing Text="Adat feldolgozás">
+          <SortBy Text="Sorrend szerint:"/>
+          <SortByX Text="X érték"/>
+          <SortByY Text="Y érték"/>
+          <SortOrder Text="Rendezés sorrendje:"/>
+          <GroupBy Text="Csoportosítás szerint:">
+            <None Text="Egyiksem"/>
+            <XValue Text="X érték"/>
+            <Number Text="Szám"/>
+            <Years Text="Évek"/>
+            <Months Text="Hónapok"/>
+            <Weeks Text="Hetek"/>
+            <Days Text="Napok"/>
+            <Hours Text="Órák"/>
+            <Minutes Text="Percek"/>
+            <Seconds Text="Másodpercek"/>
+            <Milliseconds Text="Milliszekundumok"/>
+          </GroupBy>
+          <GroupInterval Text="Csoport intervallum:"/>
+          <GroupFunction Text="Csoport funkció:"/>
+          <CollectData Text="Adat gyűjtés:">
+            <None Text="Egyik sem"/>
+            <TopN Text="TopN"/>
+            <BottomN Text="BottomN"/>
+            <LessThan Text="Kevesebb mint érték"/>
+            <LessThanPercent Text="Kevesebb mint százalék"/>
+            <GreaterThan Text="Nagyobb mint érték"/>
+            <GreaterThanPercent Text="Nagyobb mint százalék"/>
+          </CollectData>
+          <Value Text="Érték:"/>
+          <CollectedText Text="Összegyűjtött szöveg:"/>
+          <CollectedColor Text="Összegyűjtött Szín:"/>
+          <Explode Text="Terjeszt:">
+            <None Text="Egyiksem"/>
+            <Biggest Text="Legnagyobb érték"/>
+            <Lowest Text="Legkisebb érték"/>
+            <Specific Text="Bizonyos érték"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Megjelenítés">
+          <Default Text="Alapérték"/>
+          <DrawingStyle Text="Rajzolási stílusa:"/>
+          <PointWidth Text="Pont szélessége:"/>
+          <LabelsStyle Text="Címke stílusa:"/>
+          <DrawSideBySide Text="Rajzold egymás mellé"/>
+          <ShowMarkerLines Text="Mutasd a jelző vonalakat"/>
+          <DoughnutRadius Text="Fánk szöge (%):"/>
+          <AreaDrawingStyle Text="A felület rajzolási stílusa:"/>
+          <Markers Text="Markerek:"/>
+          <PriceUpColor Text="Price up Szín:"/>
+          <ReversalAmount Text="Fordított érték:"/>
+          <BoxSize Text="Doboz mérete:"/>
+          <NumberOfLinesInBreak Text="Vonalak a törésben:"/>
+          <LabelsPlacement Text="Címkék elhelyezése:"/>
+          <PointsGap Text="Pontok távolsága:"/>
+          <MinPointHeight Text="Min. pont magasság:"/>
+          <ValueType Text="Érték típusa:"/>
+          <ThreeDDrawingStyle Text="3D rajzolási stílusa:"/>
+          <ThreeDRotation Text="3D forgatás:"/>
+          <FunnelStyle Text="Tölcsér stílusa:"/>
+          <LineTension Text="Vonal feszítés:"/>
+          <NoSettings Text="Nincsen speciális beállithatóság ennek a típusú sorozatnak."/>
+        </Appearance>
+        <FillBorder Text="Keret kitöltése">
+          <Palette Text="Paletta:"/>
+        </FillBorder>
+        <Labels Text="Címkék">
+          <LabelView Text="Címke nézet:"/>
+          <Pattern Text="Sablon:"/>
+        </Labels>
+        <Markers Text="Markerek:">
+          <Style Text="Stílus:"/>
+          <Size Text="Méret:"/>
+          <Step Text="Lépték:"/>
+          <Color Text="Szín:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galéria:">
+      <NewArea Text="Hozzáad új grafikon térséget ehhez a sorozathoz"/>
+      <Categories>
+        <BarColumn Text="Rúd &amp; Oszlop"/>
+        <Area Text="Terület"/>
+        <Line Text="Vonal"/>
+        <PointBubble Text="Pont &amp; Buborék"/>
+        <Pie Text="Körcikk"/>
+        <Circular Text="Cirkuláris"/>
+        <Financial Text="Pénzügyi"/>
+        <PyramidFunnel Text="Piramis &amp; Tölcsér"/>
+        <Range Text="Sorozat"/>
+      </Categories>
+      <Series>
+        <Bar Text="Rúd"/>
+        <StackedBar Text="Rakatolt Rúd"/>
+        <StackedBar100 Text="100% Rakatolt Rúd"/>
+        <Column Text="Oszlop"/>
+        <StackedColumn Text="Rakatolt Oszlop"/>
+        <StackedColumn100 Text="100% Rakatolt Oszlop"/>
+        <Area Text="Terület"/>
+        <SplineArea Text="Szplájn Térség"/>
+        <StackedArea Text="Rakatolt Térség"/>
+        <StackedArea100 Text="100% Rakatolt Térség"/>
+        <Line Text="Vonal"/>
+        <FastLine Text="Gyors Vonal"/>
+        <StepLine Text="Léptetett Vonal"/>
+        <Spline Text="Szplájn"/>
+        <Bubble Text="Buborék"/>
+        <Point Text="Pont"/>
+        <FastPoint Text="Gyors Pont"/>
+        <Pie Text="Körcikk"/>
+        <Doughnut Text="Fánk"/>
+        <Polar Text="Poláris"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Stock"/>
+        <Candlestick Text="Gyertyarúd"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Pont &amp; Kép"/>
+        <ThreeLineBreak Text="Három Vonal Törés"/>
+        <Pyramid Text="Piramis"/>
+        <Funnel Text="Tölcsér"/>
+        <Range Text="Sorozat"/>
+        <SplineRange Text="Szpláin Sorozat"/>
+        <RangeColumn Text="Oszlop Sorozat"/>
+        <RangeBar Text="Rúd Sorozat"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Kód fül">
+	  <EnableCodeCompletion Text="Kódkiegészítés engedélyezése"/>
+      <EnableVirtualSpace Text="Virtuális hely engedélyezése"/>
+      <UseSpaces Text="Üres helyek használata a fül kitöltéséhez"/>
+      <AllowOutlining Text="Körvonalazás engedélyezése"/>
+      <LineNumbers Text="Sorok számozása"/>
+      <TabSize Text="Fül mérete:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Sávok beállítása">
+      <Add Text="Hozzáad"/>
+      <Delete Text="Töröl"/>
+    </ConfigureBands>
+    <Connection Text="Kapcsolodás">
+      <Select Text="Válassza ki a kapcsolat típusát"/>
+      <AlwaysUse Text="Mindig ezt a kapcsolatot használja"/>
+      <LoginPrompt Text="Bejelentkezési ablak"/>
+      <Test Text="Kapcsolat tesztelése"/>
+      <TestSuccesful Text="A kapcsolat tesztelése sikeres volt."/>
+    </Connection>
+    <CustomLabel Text="Egyedi Címke">
+      <Name Text="Név:"/>
+      <Paper Text="Papír"/>
+      <Landscape Text="Tájolás"/>
+      <PaperWidth Text="Papír szélesség:"/>
+      <PaperHeight Text="Papír magasság:"/>
+      <LeftMargin Text="Bal margó:"/>
+      <TopMargin Text="Felső margó:"/>
+      <Label Text="Címke paraméterek"/>
+      <LabelWidth Text="Címke szélessége:"/>
+      <LabelHeight Text="Címke magassága:"/>
+      <RowGap Text="Sor távolság"/>
+      <ColumnGap Text="Oszlop távolság:"/>
+      <Warning Text="A címkék nem férnek a lapon!"/>
+    </CustomLabel>
+    <DataBandEditor Text="DataBand Szerkesztés">
+      <DataSource Text="Adat Forrás"/>
+      <NoData Text="Nincsen érvényes adatforrás.&#13;&#10;&#13;&#10;Az &quot;Adat|Válassz Riport Adat ...&quot; menüpontban válasszon a létező adatforrásokból, vagy készítsen egy új adatforrást az &quot;Adat|Hozzáad Adar Forrás...&quot; menüpontban."/>
+      <Sort Text="Rendezés"/>
+      <SortBy Text="Rendezés szerint"/>
+      <ThenBy Text="Utána pedig"/>
+      <Ascending Text="Növekvő"/>
+      <Descending Text="Csökkenő"/>
+      <Filter Text="Szűrő"/>
+      <Expression Text="Szűrő kifejezés:"/>
+    </DataBandEditor>
+    <DataWizard Text="Adat Varázsló">
+      <Page1 Text="Válasszon adatbázist"/>
+      <WhichData Text="Melyik adat kapcsolatot használja a riport az adatbázishoz csatlakozáshoz?"/>
+      <Hint Text="Válasszon az utoljára használt kapcsolatok listájából, vagy kattintson az &quot;Új kapcsolat...&quot; gombra az új kapcsolat létrehozásához."/>
+      <NewConnection Text="Új kapcsolat..."/>
+      <EditConnection Text="Kapcsolat szerkesztése..."/>
+      <ConnectionName Text="Kapcsolat neve:"/>
+      <ConnectionString Text="Kapcsolodási Füzér"/>
+      <Page2 Text="Válassza ki a táblákat"/>
+      <WhichTables Text="Melyik táblákat akarja a riportban?"/>
+      <Wait Text="Adatbázis információ visszakeresése"/>
+      <AddQuery Text="Új SQL lekérdezés..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Dialog Forma"/>
+    <Exception Text="Kivétel">
+      <Hint Text="A riport a következő kivételt adta vissza:"/>
+      <Stack Text="Stack követése:"/>
+      <Copy Text="Másold a Vágólapra"/>
+    </Exception>
+    <ExpressionEditor Text="Kifejezés Szerkesztése"/>
+    <Fill Text="Kitöltés Szerkesztő">
+      <Solid Text="Telített"/>
+      <LinearGradient Text="Lineáris színátmenet"/>
+      <PathGradient Text="Ösvény színátmenet"/>
+      <Hatch Text="Satírozás"/>
+      <Glass Text="Áttetsző"/>
+      <Colors Text="Színek"/>
+      <Color Text="Szín"/>
+      <StartColor Text="Kezdőszín"/>
+      <EndColor Text="Zárószín"/>
+      <Options Text="Opciók"/>
+      <Focus Text="Fókusz"/>
+      <Contrast Text="Kontraszt"/>
+      <Angle Text="Szög"/>
+      <CenterColor Text="Középső szín"/>
+      <EdgeColor Text="Szél"/>
+      <Shape Text="Alakzat"/>
+      <Ellipse Text="Elipszis"/>
+      <Rectangle Text="Téglalap"/>
+      <ForeColor Text="Előtér színe"/>
+      <BackColor Text="Háttér színe"/>
+      <Style Text="Stílus"/>
+      <Blend Text="Hajlítottság"/>
+      <GlassHatch Text="Satírozás megjelenítése"/>
+    </Fill>
+    <FormatEditor Text="Formátum Választása">
+      <Expression Text="Kifejezés:"/>
+      <General Text="Általános"/>
+      <Number Text="Szám"/>
+      <Currency Text="Pénznem"/>
+      <Date Text="Dátum"/>
+      <Time Text="Idő"/>
+      <Percent Text="Százalék"/>
+      <Boolean Text="Logikai változó"/>
+      <Custom Text="Egyedi"/>
+      <UseLocale Text="Nyelvi beállítások használata"/>
+      <DecimalDigits Text="Tizedes pontosság:"/>
+      <DecimalSeparator Text="Tizedes elválasztó:"/>
+      <GroupSeparator Text="Csoport választó"/>
+      <PositivePattern Text="Pozitív minta:"/>
+      <NegativePattern Text="Negatív minta:"/>
+      <CurrencySymbol Text="Pénznem szimbólum:"/>
+      <PercentSymbol Text="Százalék szimbólum:"/>
+      <FalseText Text="Hamis érték szövege:"/>
+      <TrueText Text="Igaz érték szövege:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Oszlopok Szerkesztése">
+      <Columns Text="Oszlopok"/>
+      <Properties Text="Tulajdonságok"/>
+      <Add Text="Hozzáad"/>
+      <Remove Text="Eltávolít"/>
+      <AddAll Text="Hozzáad Mind"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Csoport Szerkesztése">
+      <Condition Text="Csoport feltétel"/>
+      <Hint Text="Válasszon egy adat oszlopot vagy adjon meg egy kifejezést:"/>
+      <Settings Text="Beállítások"/>
+      <Sort Text="Rendezés:"/>
+      <NoSort Text="Nem rendez"/>
+      <Ascending Text="Növekvő"/>
+      <Descending Text="Csökkenő"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Csoport Szakértő">
+      <Condition Text="Csoport feltétel"/>
+      <Hint Text="Válasszon egy adat oszlopot vagy adjon meg egy kifejezést, majd kattintson a &quot;Hozzáad&quot; gombra új csoport létrehozásához."/>
+      <Add Text="Hozzáad"/>
+      <Groups Text="Csoportok"/>
+      <Edit Text="Szerkesztés..."/>
+      <Delete Text="Törlés"/>
+    </GroupExpert>
+    <HighlightEditor Text="Kiemelés Feltételei">
+      <Conditions Text="Feltételek"/>
+      <Add Text="Hozzáad"/>
+      <Delete Text="Töröl"/>
+      <Edit Text="Szerkeszt"/>
+      <Style Text="Stílus"/>
+      <Fill Text="Töltés"/>
+      <TextColor Text="Szöveg szín"/>
+      <Font Text="Betűtípus"/>
+      <Visible Text="Látható"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Hiperhivatkozás Szerkesztése">
+      <Url Text="URL"/>
+      <PageNumber Text="Oldal számozás"/>
+      <Bookmark Text="Könyvjelző"/>
+      <Report Text="Riport"/>
+      <ReportPage Text="Riport Lap"/>
+      <Custom Text="Egyedi"/>
+      <UrlValue Text="Adja meg az URL-t (példa: http://www.url.com):"/>
+      <UrlExpression Text="vagy üssön be egy kifejezést, amely egy URL-t ad vissza:"/>
+      <PageNumberValue Text="Adja meg az oldal számot:"/>
+      <PageNumberExpression Text="vagy üssön be egy kifejezést, amely egy oldal számot ad vissza:"/>
+      <BookmarkValue Text="Adja meg a könyvjelző nevét:"/>
+      <BookmarkExpression Text="vagy üssön be egy kifejezést, amely egy könyvjelzöt-t ad vissza:"/>
+      <ReportName Text="Riport neve:"/>
+      <ParameterName Text="Riport paraméter:"/>
+      <ParameterValue Text="Pontosítsa a paraméter értékét:"/>
+      <ParameterExpression Text="vagy üssön be egy kifejezést, amely egy paramétert ad vissza:"/>
+      <PageName Text="Riport oldal neve:"/>
+      <CustomValue Text="Pontosítsa a hiperhivatkozás címét:"/>
+      <CustomExpression Text="vagy üssön be egy kifejezést, amely egy értéket ad vissza:"/>
+      <Hint Text="Mi fog történni ha rákattint erre az objektumra az előnézeti ablakban:"/>
+      <HintUrl Text="A megadott URL meg fog nyílni."/>
+      <HintPageNumber Text="A megfelelő oldalra fog ugrani."/>
+      <HintBookmark Text="Arra az objektumra fog ugrani, amely tartalmazza a bizonyos könyvjelzőt."/>
+      <HintReport Text="A megadott riport meg fog nyilni egy külön ablakban."/>
+      <HintReportPage Text="A megadott oldal elkészül és megnyilik egy másik ablakban."/>
+      <HintCustom Text="Kellene definiálni &quot;Click&quot; eseménykezelőt, hogy egyedi aktivitásokat definiáljanak."/>
+      <ModifyAppearance Text="Módosítja az objektum megjelenítését, hogy úgy nézzen ki mint egy kattintható hivatkozás"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Címke Varázsló">
+      <Hint Text="Válasszon az előre definiált címkék közül, vagy kattintson az &quot;Egyedi Címke...&quot; gombra, és adja meg a címke méretét."/>
+      <Label Text="Címke"/>
+      <Manufacturer Text="Gyártó:"/>
+      <Product Text="Termék:"/>
+      <Parameters Text="Paraméterek:"/>
+      <Size Text="Méret:"/>
+      <PaperSize Text="Papír méret:"/>
+      <Rows Text="Sorok:"/>
+      <Columns Text="Oszlopok:"/>
+      <CustomLabel Text="Egyedi címke..."/>
+      <Custom Text="Egyedi"/>
+      <Delete Text="Törlés"/>
+    </LabelWizard>
+    <PageSetup Text="Oldal beállítás">
+      <Paper Text="Papír"/>
+      <Custom Text="Egyedi"/>
+      <Width Text="Szélesség"/>
+      <Height Text="Magasság"/>
+      <Orientation Text="Tájolás:"/>
+      <Portrait Text="Álló"/>
+      <Landscape Text="Fekvő"/>
+      <Margins Text="Margók"/>
+      <Left Text="Bal:"/>
+      <Top Text="Fent:"/>
+      <Right Text="Jobb:"/>
+      <Bottom Text="Alul:"/>
+      <MirrorMargins Text="Margók tükrözése minden oldalon"/>
+      <Source Text="Forrás"/>
+      <FirstPage Text="Első oldal:"/>
+      <OtherPages Text="További oldalak:"/>
+      <Columns Text="Oszlopok"/>
+      <Count Text="Oszlopok száma:"/>
+      <ColumnWidth Text="Oszlopszélesség:"/>
+      <Positions Text="Pozició:"/>
+      <Other Text="Egyéb"/>
+      <Duplex Text="Kétoldalas:"/>
+      <DupDefault Text="Alapbeállítás"/>
+      <DupSimplex Text="Egyoldalas"/>
+      <DupVertical Text="Vertikális"/>
+      <DupHorizontal Text="Horizontális"/>
+      <EditWatermark Text="Vízjel Szerkesztése..."/>
+      <ExtraWidth Text="Extra tervezési szélesség"/>
+      <UnlimitedHeight Text="Végtelen magasság"/>
+      <UnlimitedWidth Text="Szélesség végtelen"/>
+    </PageSetup>
+    <PictureEditor Text="Kép Szerkesztése">
+      <Picture Text="Kép"/>
+      <Load Text="Betöltés"/>
+      <Paste Text="Beszúrás"/>
+      <Clear Text="Törlés"/>
+      <DataColumn Text="Adat oszlop"/>
+      <FileName Text="Fájl név"/>
+      <Url Text="Hiperhivatkozás"/>
+      <FileHint1 Text="Fájl neve:"/>
+      <FileHint2 Text="Megjegyzés: ezt a fájlt a riportal együtt kell kiadni. "/>
+      <UrlHint Text="Hiperhivatkozás:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Bővítmények">
+      <Hint Text="Lista a telepített FastReport bővítményekről:"/>
+      <Add Text="Hozzáad"/>
+      <Remove Text="Eltávolít"/>
+      <Note Text="Megjegyzés: a módosítások a FastReport újrainditása után lépnek érvénybe."/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Alkalmaz minden oldalra és újraépíti a riportot"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Keresés"/>
+    <PrinterSetup Text="Nyomtatás">
+      <PrinterSetup Text="Nyomtató beállítása"/>
+      <Printer Text="Nyomtató"/>
+      <SavePrinter Text="A nyomató mentése a riport fájlba"/>
+      <Settings Text="Beállítások..."/>
+      <PrintToFile Text="Fájlba nyomtatás"/>
+      <PageRange Text="Oldalak"/>
+      <All Text="Minden"/>
+      <Current Text="Aktuális"/>
+      <Numbers Text="Lapok:"/>
+      <Hint Text="Adja meg az oldalakat és/vagy tartományokat, vesszővel elvállasztva. Példaul: 1,3,5-12"/>
+      <Copies Text="Példányszám"/>
+      <Count Text="Számoló:"/>
+      <Collate Text="Szétválogatás"/>
+      <Other Text="Egyéb"/>
+      <OddEven Text="Páros/páratlan:"/>
+      <AllPages Text="Minden oldal"/>
+      <OddPages Text="Páros oldalak"/>
+      <EvenPages Text="Páratlan oldalak"/>
+      <Order Text="Sorrend:"/>
+      <OrderDirect Text="Direkt (1-9)"/>
+      <OrderReverse Text="Fordítva (9-1)"/>
+      <Duplex Text="Kétoldalas:"/>
+      <Source Text="Forrás:"/>
+      <PrintMode Text="Nyomtatási mód"/>
+      <PrintModeDefault Text="Alapbeállítás"/>
+      <PrintModeSplit Text="Nagy lapok elosztása"/>
+      <PrintModeScale Text="Átméretezés"/>
+      <PrintOnSheet Text="Nyomtatás oldalra:"/>
+      <PagesOnSheet Text="Oldalak száma a lapon:"/>
+      <PagesOnSheet1 Text="1 oldal"/>
+      <PagesOnSheet2 Text="2 oldal"/>
+      <PagesOnSheet4 Text="4 oldal"/>
+      <PagesOnSheet8 Text="8 oldal"/>
+      <Print Text="Nyomtatás"/>
+      <Error Text="Érvénytelen lap tartomány."/>
+    </PrinterSetup>
+    <QueryBuilder Text="Lekérdezés készítő">
+      <Designer Text="Szerkesztő"/>
+      <Sql Text="SQL"/>
+      <Result Text="Result"/>
+      <Select Text="Select"/>
+      <Joins Text="Joins"/>
+      <Group Text="Group"/>
+      <Name Text="Name"/>
+      <Alias Text="Alias"/>
+      <Filter Text="Filter"/>
+      <Order Text="Rendezés"/>
+      <Func Text="Függvény"/>
+      <Editor Text="Szerkesztő"/>
+      <Delete Text="Töröl"/>
+      <Change Text="Megváltoztat"/>
+      <JoinEditor Text="Kapcsolatszerkesztő"/>
+      <Tables Text="Táblák:"/>
+      <Condition Text="Feltétel"/>
+      <InputAlias Text="Egy alias importálása táblából:"/>
+      <Where>
+        <Equal Text="Egyenlő"/>
+        <NotEqual Text="Nem egyenlő"/>
+        <GtOrEqual Text="Nagyobb vagy egyenlő"/>
+        <Gt Text="Nagyobb"/>
+        <LtOrEqual Text="Kisebb vagy egyenlő"/>
+        <Lt Text="Kisebb"/>
+        <Like Text="Tartalmazza"/>
+        <NotLike Text="Nem tartalmazza"/>
+      </Where>
+    </QueryBuilder>
+    <QueryWizard Text="Lekérdezés Varázsló">
+      <Page1 Text="Név definiálása"/>
+      <SetName Text="Név definiálása a lekérdezési objektumra."/>
+      <NameHint Text="Ez a név meg fog jelenni az &quot;Adat&quot; ablakban."/>
+      <Page2 Text="Adja meg az SQL utasitást!"/>
+      <WhatData Text="A lekérdezés eredménye?"/>
+      <TypeSql Text="Adja meg az SQL utasítást vagy használja a Lekérdezés Építőt!"/>
+      <QueryBuilder Text="Lekérdezés Építő..."/>
+      <Page3 Text="Paraméterek Definiálása"/>
+      <Page4 Text="Oszlopok definiálása"/>
+      <Refresh Text="Oszlopok Frissitése"/>
+      <AddColumn Text="Hozzáad Számolt Oszlopot"/>
+      <AddParameter Text="Hozzáad Paramétert"/>
+      <Delete Text="Töröl"/>
+    </QueryWizard>
+    <RelationEditor Text="Kapcsolat Szerkesztés">
+      <ParentTable Text="Szülő tábla:"/>
+      <ChildTable Text="Gyerek tábla:"/>
+      <Parent Text="Szülő"/>
+      <Child Text="Gyerek"/>
+      <Columns Text="Oszlopok:"/>
+      <Error Text="Nem következetes a szülő és gyerek oszlopok száma"/>
+    </RelationEditor>
+    <ReportData Text="Válassza ki a Riport Adatait!">
+      <Hint Text="Válasza ki az adatforrásokat és mezőket, amelyeket használni akar a riportban:"/>
+      <Aliases Text="Aliászok megmutatása"/>
+    </ReportData>
+    <ReportOptions Text="Riport Opcíók">
+      <General Text="Általános"/>
+      <Description Text="Leírás"/>
+      <Script Text="Szkript"/>
+      <Security Text="Biztonság"/>
+      <Inheritance Text="Öröklődés"/>
+      <Email Text="Email"/>
+      <Name Text="Név:"/>
+      <Author Text="Szerző:"/>
+      <Version Text="Verzió:"/>
+      <Description1 Text="Leírás:"/>
+      <Picture Text="Kép:"/>
+      <SavePreviewPicture Text="Előnézeti kép mentése"/>
+      <Load Text="Betölt..."/>
+      <Clear Text="Töröl"/>
+      <Created Text="Készítve:"/>
+      <Modified Text="Módosítva:"/>
+      <Language Text="Szkript nyelv:"/>
+      <Note Text="Megjegyzés: ha megváltoztatja a nyelvet, a jelenlegi szkript törlése kerül!"/>
+      <RefAssemblies Text="Hivatkozott függvénytárak"/>
+      <Add Text="Hozzáad..."/>
+      <Password Text="Jelszó:"/>
+      <RetypePassword Text="Jelszó újra megadása:"/>
+      <Inherited Text="Ez a riport örökölve van egy alap riportból."/>
+      <NotInherited Text="Ez a riport nem örökölt."/>
+      <Choose Text="Válasszon egy opcíót:"/>
+      <DontChange Text="Nem változtat"/>
+      <Detach Text="Szétválaszt az alap riporttól"/>
+      <Inherit Text="Örökli a riport formát:"/>
+      <Browse Text="Tallózás..."/>
+      <DoublePass Text="Előállítás két lépésben"/>
+      <Compress Text="Riport fájl tömörítése"/>
+      <UseFileCache Text="Gyorsítótár használata"/>
+      <ConvertNulls Text="Nulla értékek konvertálása"/>
+      <TextQuality Text="Szöveg minősége:"/>
+      <SmoothGraphics Text="Finomított grafika"/>
+      <QualityDefault Text="Alapértelmezett"/>
+      <QualityRegular Text="Normál"/>
+      <QualityClearType Text="ClearType"/>
+      <QualityAntiAlias Text="Élsimítás"/>
+      <PasswordError Text="A jelszavak nem egyeznek. Kérem adja meg újra."/>
+      <Recipients Text="Címzett(ek) (például, john@url.com):"/>
+      <Subject Text="Tárgy:"/>
+      <Message Text="Üzenet:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Riport oldalak">
+      <Units Text="Lap mértékegysége"/>
+      <Millimeters Text="Milliméter"/>
+      <Centimeters Text="Centiméter"/>
+      <Inches Text="Hüvelyk"/>
+      <HundrethsOfInch Text="Század hüvelyk"/>
+      <Grid Text="Rács"/>
+      <ShowGrid Text="Rács mutatása"/>
+      <SnapToGrid Text="Rácshoz igazít"/>
+      <DottedGrid Text="Pontozott Rács"/>
+      <Size Text="Távolság mérete:"/>
+      <Markers Text="Objektum megjelölése"/>
+      <Rectangle Text="Téglalap"/>
+      <Corners Text="Sarkok"/>
+      <BandView Text="Sáv nézet"/>
+      <Structure Text="Struktúra"/>
+      <Classic Text="Klasszikus"/>
+      <EditAfterInsert Text="Szerkesztés beszúrás után"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Rich Text szerkesztő">
+      <Open Text="Megnyitás"/>
+      <Save Text="Mentés"/>
+      <Subscript Text="Alsó index"/>
+      <Superscript Text="Felső index"/>
+      <Bullets Text="Felsorolás jelző"/>
+      <Confirm Text="A szöveg megváltozott. Menti a módosításokat?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Keres és Cserél">
+      <Find Text="Keresett szöveg:"/>
+      <Replace Text="Csere erre:"/>
+      <Options Text="Keresési opciók"/>
+      <MatchCase Text="Kis-és nagybetűk egyezősége"/>
+      <MatchWholeWord Text="Teljes Szó Egyeztetése"/>
+      <FindNext Text="Következő keresése"/>
+      <ReplaceBtn Text="Cserél"/>
+      <ReplaceAll Text="Cserél Mind"/>
+      <NotFound Text="A keresett szöveg nem található."/>
+      <NoMoreFound Text="Nincsen több előfordulás."/>
+    </SearchReplace>
+    <SelectDataSource Text="Válassza ki az Adatforrást">
+      <Hint Text="Válasszon ki egy vagy több adatforrást amit használni szeretne a riportban."/>
+      <AvailableDs Text="Létező adatforrások:"/>
+      <SelectedDs Text="Kiválasztott adatforrások:"/>
+      <ProjectDs Text="Projekt adatforrásai"/>
+      <OtherDs Text="Egyéb adatforrások"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Nyelv választás">
+      <SelectLanguage Text="Válasszon nyelvet az alábbi listából:"/>
+      <Auto Text="Automata"/>
+      <Folder Text="Nyelvi fájlok könyvtára:"/>
+      <SelectFolder Text="Válassza ki a mappát, amely tartalmazza a nyelv fájlokat (*.frl)."/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Standard Riport Varázsló">
+      <GroupsPage Text="Csoportok készítése"/>
+      <CreateGroups Text="Csoportok készítése (opcionális)."/>
+      <Groups Text="Csoportok:"/>
+      <LayoutPage Text="Elrendezés definiálása"/>
+      <DefineLayout Text="Definiálja a papír orientálását és az adat elrendezést."/>
+      <Orientation Text="Papír orientálása"/>
+      <Portrait Text="Álló"/>
+      <Landscape Text="Fekvő"/>
+      <Layout Text="Elrendezés"/>
+      <Tabular Text="Tabuláris"/>
+      <Columnar Text="Oszlopos"/>
+      <StylePage Text="Válasszon stílust"/>
+      <Styles Text="Válassza ki a riport stílusát.">
+        <Standard Text="Általános"/>
+        <Gray Text="Szürke"/>
+        <Green Text="Zöld"/>
+        <Sand Text="Homok"/>
+        <Blue Text="Kék"/>
+        <Title Text="Cím"/>
+        <Header Text="Fejléc"/>
+        <Group Text="Csoport"/>
+        <Data Text="Adat"/>
+        <Footer Text="Lábléc"/>
+        <EvenRows Text="Páros sorok"/>
+      </Styles>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Füzér Gyűjtemény Szerkesztése"/>
+    <Style Text="Stílus Szerkesztő">
+      <Styles Text="Stílusok"/>
+      <Add Text="Hozzáad"/>
+      <Delete Text="Töröl"/>
+      <Edit Text="Szerkeszt"/>
+      <Load Text="Betölt..."/>
+      <Save Text="Mentés..."/>
+      <Settings Text="Stílus beállítások"/>
+      <Border Text="Keret"/>
+      <Fill Text="Töltés"/>
+      <Font Text="Betűtípus"/>
+      <TextColor Text="Szöveg szín"/>
+      <StyleName Text="Stílus"/>
+    </Style>
+    <TextEditor Text="Szöveg Szerkesztés">
+      <WordWrap Text="Szöveg tördelése"/>
+    </TextEditor>
+    <TotalEditor Text="Összesen Serkesztése">
+      <TotalName Text="Összesen neve:"/>
+      <Total Text="Összesen"/>
+      <Function Text="Függvény:"/>
+      <DataColumnOrExpression Text="Adat oszlop vagy kifejezés:"/>
+      <DataBand Text="Értékeld minden sorát a sávnak:"/>
+      <EvaluateCondition Text="Értékeld ha a következő feltétel teljesül:"/>
+      <PrintOn Text="Nyomtatás a sávon:"/>
+      <Options Text="Opciók"/>
+      <ResetAfterPrint Text="Visszaállítás a nyomtatás után"/>
+      <ResetRepeated Text="Visszaállítás ha a sáv ismétlődik"/>
+      <InvisibleRows Text="Magába foglalja a láthatatlan sorokat"/>
+      <Sum Text="Összeg"/>
+      <Min Text="Minimum"/>
+      <Max Text="Maximum"/>
+      <Avg Text="Átlag"/>
+      <Count Text="Számláló"/>
+      <Custom Text="Egyedi"/>
+    </TotalEditor>
+    <UIOptions Text="Felhasználói Felület">
+      <Appearance Text="Megjelenés stílusa:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (kék),Office 2007 (ezüst),Office 2007 (fekete),Vista Glass"/>
+	  <Ribbon Text="Új szalagos felület használata"/>
+      <Welcome Text="Üdvözlő képernyő megjelenítése indításkor"/>
+   </UIOptions>
+    <WatermarkEditor Text="Vízjel">
+      <Enabled Text="Engedélyezve"/>
+      <Text Text="Szöveg"/>
+      <TextItems Text="KONFIDENCIÁLIS,MÁSOLAT,EREDETI,PÉLDA,FONTOS"/>
+      <Rotation Text="Elforgatás"/>
+      <Horizontal Text="Horizontális"/>
+      <Vertical Text="Vertikális"/>
+      <ForwardDiagonal Text="Előre Átlóban"/>
+      <BackwardDiagonal Text="Hátra Átlóban"/>
+      <Font Text="Betűtípus"/>
+      <Color Text="Szín"/>
+      <Picture Text="Kép"/>
+      <Load Text="Betöltés"/>
+      <Clear Text="Töröl"/>
+      <Size Text="Méret"/>
+      <Normal Text="Normális"/>
+      <Center Text="Közép"/>
+      <Stretch Text="Nyújtás/zsugorítás"/>
+      <Zoom Text="Nagyítás/Kicsinyités"/>
+      <Tile Text="Cím"/>
+      <Transparency Text="Átlátszóság "/>
+      <Zorder Text="Z-Sorrend"/>
+      <TextOnTop Text="Szöveg felül"/>
+      <PictureOnTop Text="Kép felül"/>
+      <ApplyToAll Text="Alkalmazás minden oldalra"/>
+    </WatermarkEditor>
+	<BarcodeEditor Text="Vonalkód szerkesztő">
+      <Text Text="Szöveg"/>
+      <vCard Text="vCard"/>
+      <URI Text="URI"/>
+      <EmailAddress Text="E-mail cím"/>
+      <EmailMessage Text="E-mail üzenet"/>
+      <Geolocation Text="Koordináta"/>
+      <SMS Text="SMS"/>
+      <Call Text="Hívás"/>
+      <Event Text="Esemény"/>
+      <Wifi Text="Wi-Fi"/>
+      <FirstName Text="Vezetéknév"/>
+      <LastName Text="Keresztnév"/>
+      <Title Text="Beosztás"/>
+      <Company Text="Cég"/>
+      <Website Text="Webcím"/>
+      <EmailPersonal Text="E-mail (privát)"/>
+      <EmailBusiness Text="E-mail (céges)"/>
+      <PhonePersonal Text="Telefon (privát)"/>
+      <PhoneMobile Text="Telefon (mobil)"/>
+      <PhoneBusiness Text="Telefon (céges)"/>
+      <Street Text="Utca"/>
+      <ZipCode Text="Irányítószám"/>
+      <City Text="Város"/>
+      <Country Text="Ország"/>
+      <Email Text="E-mail"/>
+      <Subject Text="Tárgy"/>
+      <Latitude Text="Szélesség"/>
+      <Longitude Text="Hosszúság"/>
+      <Height Text="Magasság"/>
+      <PhoneNumber Text="Telefonszám"/>
+      <Description Text="Leírás"/>
+      <From Text="Feladó"/>
+      <To Text="Címzett"/>
+      <Encryption Text="Titkosítás"/>
+      <NetworkName Text="Hálózat neve"/>
+      <Password Text="Jelszó"/>
+      <WifiHidden Text="Rejtett Wi-Fi hálózat"/>
+      <Save Text="Mentés"/>
+      <Cancel Text="Mégse"/>
+    </BarcodeEditor>
+    <SavingPageOptions Text="Mentés">
+      <EnableAutoSave Text="Automatikus mentés minden (percben)"/>
+    </SavingPageOptions>
+    <LoadAutoSave Text="Fájl helyreállítása mentésből">
+      <Message Text="FastReport nem szabályosan lett leállítva. Szeretné helyreállítani a mentett fájlt?"/>
+      <Restore Text="Helyreállítás"/>
+    </LoadAutoSave>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Szerver neve:"/>
+      <ServerLogon Text="Bejelentkezés a kiszolgálóra"/>
+      <UserName Text="Felhasználó név:"/>
+      <Password Text="Jelszó:"/>
+      <Database Text="Kapcsolodás az adatbázishoz"/>
+      <DatabaseName Text="Adatbázis neve:"/>
+      <DatabaseFile Text="Adatbázis fájl:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="Használj Windows Azonosítót"/>
+      <UseSql Text="Használj SQL Szerver Azonosítót"/>
+      <SavePassword Text="Jelszó megőrzése"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Kapcsolódási füzér:"/>
+      <Build Text="Létrehozás..."/>
+    </OleDb>
+    <Odbc>
+      <DataSource Text="Adatforrás"/>
+      <DsName Text="Hasznáj felhasználói vagy rendszer adatforrás nevet:"/>
+      <ConnString Text="Használj kapcsolódási füzért:"/>
+      <Login Text="Bejelentkezés"/>
+    </Odbc>
+    <Xml>
+      <Xsd Text="Séma fájl"/>
+      <Xml Text="Adat fájl:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Szerkesztés..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Növekedés megengedett"/>
+      <CanShrink Text="Összenyomás megengedett"/>
+      <GrowToBottom Text="Növeld az Alapig"/>
+      <Hyperlink Text="Hiperhivatkozás..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="Törés megengedett"/>
+    </BreakableComponent>
+    <Band>
+      <AddChildBand Text="Gyerek Sáv hozzáadása"/>
+      <StartNewPage Text="Új Lap Kezdése"/>
+      <PrintOnBottom Text="Nyomtatás az oldal alján"/>
+    </Band>
+    <DataBand>
+      <AddDetailDataBand Text="Részletes Adatsáv hozzáadása"/>
+      <KeepTogether Text="Együtt Tartás"/>
+      <KeepDetail Text="Részletes Tartása"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Ismétlés minden oldalon"/>
+      <KeepWithData Text="Együtt tartás az adatokkal"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Oldalszámok alaphelyzetbe állítása"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Fel nem használt hely kitöltése"/>
+      <CompleteToNRows Text="Kitölt egészen N adat sort:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Méretezés típusa"/>
+      <AutoSize Text="Automatikus méretezés"/>
+      <CenterImage Text="Kép Középre Igazítása"/>
+      <Normal Text="Normális"/>
+      <StretchImage Text="Kép Kifeszítés"/>
+      <Zoom Text="Nagyítás"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Formátum..."/>
+      <Clear Text="Töröl"/>
+      <AutoWidth Text="Automatikus szélesség"/>
+      <WordWrap Text="Szó Tördelés"/>
+      <AllowExpressions Text="Kifejezések Engedélyezése"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Nyomtatás a Szülőn"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Fejlécek ismétlése"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Sor Beszúrás Felül"/>
+      <InsertBelow Text="Sor Beszúrás Alul"/>
+      <AutoSize Text="Automatikus Méret"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Oszlop Beszúrás Balra"/>
+      <InsertToRight Text="Oszlop Beszurás Jobbra"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Cellák Összevonása"/>
+      <Split Text="Cellák Felosztása"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Cellák Egymás Mellé"/>
+      <ShowTitle Text="Cím Mutatása"/>
+      <Style Text="Stílus"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Összegek"/>
+      <Function Text="Funkció"/>
+      <SuppressTotals Text="Összegek Elrejtése"/>
+      <TotalsFirst Text="Összegek Elöre"/>
+      <Percent Text="Százalék"/>
+      <PercentColumnTotal Text="% az Oszlop Összegéböl"/>
+      <PercentRowTotal Text="% a Sor Összegéböl"/>
+      <PercentGrandTotal Text="% a Fő Összegböl"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Oszlopok Szerkesztése..."/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Vonalkód típusa"/>
+      <AutoSize Text="Automatikus Méret"/>
+      <AutoEncode Text="Automatikus kódolás"/>
+      <CalcChecksum Text="Ellenőrző összeg Számolás"/>
+      <ShowText Text="Szöveg Megjelenítése"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="Markerek megjelenítése"/>
+      <ShowGrid Text="Rács megjelenítése"/>
+    </ZipCodeObject>
+    <Report>
+      <DesignReport Text="Riport szerkesztése..."/>
+      <SelectDataSource Text="Adatforrás kiválasztása..."/>
+    </Report>
+    <WebReport>
+      <SelectReportFile Text="Riport fájl kiválasztása"/>
+      <SelectLocalizationFile Text="Nyelvi fájl kiválasztása"/>
+    </WebReport>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Határok számolása..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Matrix Kitöltése..."/>
+      <NewColumn Text="Húzd az adatot ide, hogy&#13;&#10;elkészíts egy új oszlopot"/>
+      <NewRow Text="Húzd az adatot ide, hogy&#13;&#10;elkészíts egy új sort"/>
+      <NewCell Text="Húzd az adatot ide, hogy&#13;&#10;elkészíts egy új cellát"/>
+      <Total Text="Összeg"/>
+      <Title Text="Cím"/>
+      <White Text="Fehér"/>
+      <Gray Text="Szürke"/>
+      <Orange Text="Narancs"/>
+      <Green Text="Zöld"/>
+      <GreenOrange Text="Zöld és Narancs"/>
+      <Blue Text="Kék"/>
+      <BlueWhite Text="Kék és Fehér"/>
+      <GrayOrange Text="Szürke és Narancs"/>
+      <BlueOrange Text="Kék és Narancs"/>
+      <OrangeWhite Text="Narancs és Fehér"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Üres Riport"/>
+    <StandardReport Text="Standard Riport Varázsló"/>
+    <InheritedReport Text="Örökölt Riport"/>
+    <Label Text="Címke Varázsló"/>
+    <NewDataSource Text="Új Adatforrás"/>
+    <NewPage Text="Új oldal"/>
+    <NewDialog Text="Új Dialog Form"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Exportálás elkészitve {0} ms alatt"/>
+      <OrderByCells Text="Cella utáni Sorrend"/>
+      <AnalyzeObjects Text="Az objektumok Ellemzése"/>
+      <SavePage Text="Lap Mentés"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Oldaltördelés"/>
+      <OpenAfterExport Text="Megnyitás exportálás után "/>
+      <Pictures Text="Képek"/>
+      <Options Text="Opciók"/>
+      <None Text="Egyik sem"/>
+      <Metafile Text="Metafájl"/>
+      <SaveFile Text="Fájl Mentése"/>
+      <TableBased Text="Táblázat"/>
+      <LayerBased Text="Rétegek"/>
+    </Misc>
+    <Image Text="Exportálás Képként">
+      <File Text="Kép fájl"/>
+      <ImageFormat Text="Formázás:"/>
+      <Resolution Text="Felbontás:"/>
+      <Quality Text="Jpeg minőség:"/>
+      <SeparateFiles Text="Külön fájlba minden lapot"/>
+      <MultiFrame Text="Multi-keretes TIFF"/>
+      <Monochrome Text="Monokróm TIFF"/>
+      <Bmp Text="Bitmap kép"/>
+      <Png Text="PNG kép"/>
+      <Jpeg Text="JPG kép"/>
+      <Gif Text="GIF kép"/>
+      <Tiff Text="TIFF kép"/>
+      <Metafile Text="Windows metafájl"/>
+    </Image>
+    <RichText Text="Exportáld Rich Text formátumba">
+      <File Text="Rich Text fájl"/>
+    </RichText>
+    <Text Text="Exportál Szöveg/Mátrixos Nyomtatásra">
+      <File Text="Szöveg Fájl/Matrixos Nyomtató"/>
+      <EmptyLines Text="Üres Sorok"/>
+      <DataOnly Text="Csak Adat"/>
+      <Frames Text="Keretek"/>
+      <FramesNone Text="Nincs keret"/>
+      <FramesText Text="Szöveg"/>
+      <FramesGraphic Text="Grafika"/>
+      <Codepage Text="Kódlap"/>
+      <Default Text="Alapbeállítás"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="X méretezés:"/>
+      <ScaleY Text="Y méretezés:"/>
+      <AutoScale Text="Automatikus méretezés"/>
+      <PrinterType Text="Nyomtató típusa"/>
+      <Commands Text="Utasítások"/>
+      <PageWidth Text="Lap szélesség:"/>
+      <PageHeight Text="Lap magasság:"/>
+      <DataLoss Text="LEHETSÉGES ADAT VESZTESÉG&#13;&#10;&#13;&#10;Kérem növelje meg az X/Y méretezését"/>
+      <ScaleMessage Text="Számolom az optimális léptéket"/>
+      <Scale Text="Lépték"/>
+    </Text>
+    <Csv Text="CSV-be Exportálás">
+      <File Text="CSV fájl"/>
+      <Separator Text="Elválasztó"/>
+      <Codepage Text="Kódlap"/>
+      <Default Text="Alapbeállítás"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Csak Adat"/>
+    </Csv>
+    <Dbf Text="DBF-be Exportálás">
+      <File Text="DBF tábla"/>
+      <Codepage Text="Kódlap"/>
+      <Default Text="Alapbeállítás"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Csak Adat"/>
+      <FieldNames Text="Mezők neve (például Mező1 Mező2):"/>
+    </Dbf>
+    <Xml Text="Export XML-be">
+      <File Text="XML (Excel) tábla"/>
+    </Xml>
+    <Odt Text="Exportál Open Office Writer-be">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Exportál Open Office Calc-ba">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="Exportál Excel 2007-be">
+      <File Text="Excel 2007 fájl"/>
+    </Xlsx>
+    <Pptx Text="Exportál PowerPoint 2007-be">
+      <File Text="PowerPoint 2007 fájl"/>
+    </Pptx>
+    <Docx Text="Exportál Microsoft Word 2007-be">
+      <File Text="Microsoft Word 2007 fájl"/>
+    </Docx>
+    <Xps Text="Exportál XPS-be">
+      <File Text="Microsoft XPS fájl"/>
+    </Xps>
+    <Pdf Text="Exportál PDF-be">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Export"/>
+      <Compressed Text="Sűrített"/>
+      <EmbeddedFonts Text="Betűtípusok beágyazása"/>
+      <Background Text="Háttér"/>
+      <PrintOptimized Text="Nyomtatásra Optimizált"/>
+      <Information Text="Információ"/>
+      <DocumentInformation Text="Dokumentum Információ"/>
+      <Title Text="Cím"/>
+      <Author Text="Szerző"/>
+      <Subject Text="Tárgy"/>
+      <Keywords Text="Kulcsszavak"/>
+      <Creator Text="Készítő"/>
+      <Producer Text="Gyártó"/>
+      <Security Text="Biztonság"/>
+      <Authentification Text="Hitelesítés"/>
+      <OwnerPassword Text="Tulajdonosi Jelszó"/>
+      <UserPassword Text="Felhasználói Jelszó"/>
+      <Permissions Text="Engedélyek"/>
+      <PrintTheDocument Text="Dokumentum nyomtatása"/>
+      <ModifyTheDocument Text="Dokumentum módosítása"/>
+      <CopyOfTextAndGraphics Text="Szöveg és grafika másolása"/>
+      <AddOrModifyTextAnnotations Text="Hozzáad vagy módosít szöveges jegyzeteket"/>
+      <Viewer Text="Néző"/>
+      <ViewerPreferences Text="Néző Kedvezményei"/>
+      <HideToolbar Text="Eszköztár Elrejtése"/>
+      <HideMenubar Text="Menübár Elrejtése"/>
+      <HideWindowUserInterface Text="A Windows Felhasználói Felület Elrejtése"/>
+      <FitWindow Text="Az ablak illesztése"/>
+      <CenterWindow Text="Az ablak középre ígazitása"/>
+      <PrintScaling Text="Nyomtatás méretezése"/>
+      <PrintAfterOpenOfDocument Text="Nyomtatás a dokumentum megnyitása után"/>
+      <Outline Text="Körvonal"/>
+    </Pdf>
+    <Html Text="Exportálás HTML-be">
+      <File Text="HTML fájl"/>
+      <MHTFile Text="MHT fájl"/>
+      <Format Text="Formátum"/>
+      <SinglePage Text="Egy oldal"/>
+      <SubFolder Text="Alkönyvtár"/>
+      <Navigator Text="Navigátor"/>
+      <Layers Text="Rétegek"/>
+      <Total Text="Összeg"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Mht Text="Exportálás MHT (web-arhívumba)">
+      <File Text="MHT fájl (web-arhívumba)"/>
+    </Mht>
+    <Email Text="E-mail Küldése">
+      <Email Text="E-mail"/>
+      <Account Text="Fiók:"/>
+      <Address Text="Cím:"/>
+      <Subject Text="Tárgy:"/>
+      <Message Text="Üzenet:"/>
+      <Attachment Text="Melléklet:"/>
+      <Settings Text="Beállítások..."/>
+      <Name Text="Név:"/>
+      <Template Text="Sablon:"/>
+      <Host Text="Gazdagép:"/>
+      <Port Text="Port:"/>
+      <UserName Text="Felhasználó név:"/>
+      <Password Text="Jelszó:"/>
+      <AddressError Text="Cím nem lehet üres."/>
+      <HostError Text="Gazdagép nem lehet üres."/>
+      <SendingEmail Text="Email küldése  - {0} Kb"/>
+      <EnableSSL Text="SSL Engedélyezés"/>
+    </Email>
+  </Export>
+  <Web>
+    <Print Text="Nyomtatás"/>
+    <Export Text="Exportálás"/>
+    <Zoom Text="Nagyítás"/>
+    <Refresh Text="Frissités"/>
+  </Web>
+  <Properties>
+    <Categories>
+      <Appearance Text="Megjelenítés"/>
+      <Behavior Text="Viselkedés"/>
+      <Build Text="Kompilálás"/>
+      <Data Text="Adat"/>
+      <Design Text="Tervezet"/>
+      <Designer Text="Szerkesztő"/>
+      <Email Text="Email"/>
+      <Engine Text="Motor"/>
+      <Events Text="Események"/>
+      <Hierarchy Text="Hierarhia"/>
+      <Layout Text="Elrendezés"/>
+      <Misc Text="Más."/>
+      <Navigation Text="Navigáció"/>
+      <Paper Text="Papír"/>
+      <Preview Text="Előnézet"/>
+      <Print Text="Nyomtatás"/>
+      <Report Text="Riport"/>
+      <Script Text="Szkript"/>
+      <Toolbars Text="Eszköztárak"/>
+      <UI Text="Felhasználói felület"/>
+    </Categories>
+  </Properties>
+</Language>

@@ -1,0 +1,1543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="tr" Author="kadircakir;karebarkod@hotmail.com;;kadircakir &lt;karebarkod@hotmail.com&gt;;abdul kadir cakir &lt;karebarkod@hotmail.com&gt;">
+  <Buttons>
+    <Ok Text="Tamam"/>
+    <Cancel Text="Vazgeç"/>
+    <Close Text="Kapat"/>
+    <MoreOptions Text="Diger Ayarlar"/>
+    <LessOptions Text="Ayarları Gizle"/>
+    <Actions Text="Aksiyon"/>
+    <Previous Text="Onceki Sayfa"/>
+    <Next Text="Sonraki Sayfa"/>
+    <Finish Text="Son"/>
+    <Advanced Text="Gelismis"/>
+  </Buttons>
+  <Messages>
+    <AccessingData Text="Ulaşılan veri..."/>
+    <CantFindObject Text="Bulunamayan Obje"/>
+    <CantLoadReport Text="Açılamayan Rapor"/>
+    <ClassError Text="Ana rapor sınıfını bulamadı, ReportScript&#13;&#10;"/>
+    <Confirmation Text="Onayla"/>
+    <DataNotInitialized Text="Veri Kaynağı, henüz başa döndürülmez.&#13;&#10;"/>
+    <DecompressError Text="Dosyada baskıyı azaltamadı&#13;&#10;"/>
+    <DecryptError Text="Hatalı Şifre"/>
+    <DelegateError Text="{0} Temsilci, iki düşünceye sahip olmalıdır: 'Yollayıcı' ve 'Sahip'&#13;&#10;"/>
+    <DeleteAncestor Text="{0} silemedi, ata raporunda tanıştırıldı&#13;&#10;"/>
+    <DuplicateName Text="isimli nesne {0} zaten var"/>
+    <DuplicateStyle Text="Adlandırılan biçim zaten var&#13;&#10;"/>
+    <Error Text="Hata"/>
+    <EventError Text="Kaynak kodunda hatalar yüzünden olay kaynak eğiticisini yaratamadı&#13;&#10;"/>
+    <ExportingPage Text="Verilen Sayfa {0} / {1}"/>
+    <GeneratingPage Text="Hazırlanan Sayfa {0}"/>
+    <GeneratingPageFirstPass Text="1. Hazırlanan: ilk Sayfa {0}"/>
+    <Information Text="Information"/>
+    <MatrixError Text="{0}: Matris nesnesi, en az bir sütununa sahip olmalıdır, veya kürekle götürmelidir, ve bir hücre boyutu olmalı.&#13;&#10;"/>
+    <MatrixValueError Text="MatrixData.Cells.Count ({0} olmalıdır) sayı ve değerlerden oluşmalıdır.&#13;&#10;"/>
+    <ParentError Text="İtiraz et, tipten {0}, {1} tipin nesnelerini içeremez&#13;&#10;"/>
+    <ParentError1 Text="İtiraz et, tipten {0}, nesneleri içeremez&#13;&#10;"/>
+    <Performance Text="Hazırlanması {0} ms sürdü"/>
+    <PreparingData Text="Hazırlanan Sayfa..."/>
+    <PrintingPage Text="Yazdırılan Sayfa {0}"/>
+    <RenameAncestor Text="Yeniden Adlandırılamıyor {0},Yeniden Deneyiniz"/>
+    <SaveChanges Text="Degisenleri Kaydet {0}"/>
+    <SaveChangesToPreviewPage Text="Sayfadaki Değişiklikleri Kaydetmek İstiyormusunuz...?"/>
+    <TableIsNull Text="Tablo, veriye bağlanmaz. Veri kullanma raporunu kaydet. RegisterData metodu ile&#13;&#10;"/>
+    <TableManualBuildError Text="Sen, TableObject.PrintRow methodunu kullanabilirsin, onun ManualBuild olayının içinde PrintColumn metotlarını sadece.&#13;&#10;"/>
+    <Warning Text="Uyarı"/>
+    <WrongFileFormat Text="Dosya yüklenemiyor. Bilinmeyen dosya formatı"/>
+  </Messages>
+  <Misc>
+    <ShortUnitsMm Text="mm"/>
+    <ShortUnitsCm Text="cm"/>
+    <ShortUnitsIn Text="inch"/>
+    <ShortUnitsHi Text="hi"/>
+    <Sample Text="Örnek"/>
+    <None Text="Bos"/>
+    <PageN Text="Sayfa {0}"/>
+    <PageNofM Text="Sayfa {0} / {1}"/>
+    <ofM Text="/ {0}"/>
+  </Misc>
+  <Objects>
+    <Report Text="Rapor"/>
+    <ReportPage Text="Sayfa"/>
+    <DialogPage Text="Diyalog Penceresi"/>
+    <XmlDataConnection Text="XML Database"/>
+    <OleDbDataConnection Text="OLE Veri Baglantısı"/>
+    <MsAccessDataConnection Text="MS Access Baglantısı"/>
+    <MsSqlDataConnection Text="MS SQL Baglantısı"/>
+    <FirebirdDataConnection Text="Firebird Baglantısı"/>
+    <VistaDBDataConnection Text="VistaDB Baglantısı"/>
+    <PostgresDataConnection Text="Postgres Baglantısı"/>
+    <MySqlDataConnection Text="MySQL Baglantısı"/>
+    <OracleDataConnection Text="Oracle Veri Bağlantısı"/>
+    <Bands Text="Band">
+      <ReportTitle Text="Rapor Başlığı"/>
+      <ReportSummary Text="Rapor Toplamı"/>
+      <PageHeader Text="Sayfa Baslığı"/>
+      <PageFooter Text="Sayfa Toplamı"/>
+      <ColumnHeader Text="Kolon Baslığı"/>
+      <ColumnFooter Text="Kolon Toplamı"/>
+      <DataHeader Text="Veri Başlığı"/>
+      <DataFooter Text="Veri Toplamı"/>
+      <Data Text="Veri"/>
+      <GroupHeader Text="Grup Başlığı"/>
+      <GroupFooter Text="Grup Toplamı"/>
+      <Child Text="Çocuk"/>
+      <Overlay Text="Yardımcı"/>
+    </Bands>
+    <TextObject Text="Metin"/>
+    <Shapes Text="Şekiller">
+      <Line Text="Duz Cizgi"/>
+      <DiagonalLine Text="Çapraz Çizgi"/>
+      <Rectangle Text="Dikdörtgen"/>
+      <RoundRectangle Text="Yuvarlanmış Dikdörtgen"/>
+      <Ellipse Text="Elips"/>
+      <Triangle Text="Üçgen"/>
+      <Diamond Text="Karo"/>
+    </Shapes>
+    <PictureObject Text="Resim"/>
+    <TableObject Text="Tablo"/>
+    <MatrixObject Text="Matrix"/>
+    <SubreportObject Text="Alt Rapor"/>
+    <BarcodeObject Text="Barkod"/>
+    <RichObject Text="Metin Kutusu"/>
+    <MSChartObject Text="Grafik"/>
+    <ZipCodeObject Text="Zip Kod"/>
+    <CellularTextObject Text="Hücre Metin"/>
+    <CheckBoxObject Text="Onay Kutusu"/>
+    <ButtonControl Text="Buton Kontrolu"/>
+    <CheckBoxControl Text="Onay Kutusu Kontrolu"/>
+    <CheckedListBoxControl Text="Seçimli Onay Kutusu Kontrolü"/>
+    <ComboBoxControl Text="Acilan Liste Kutusu Kontrolu"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="Veri Secim Kontrolu"/>
+    <DateTimePickerControl Text="Tarih Kontrolu"/>
+    <GroupBoxControl Text="Grup Kutusu Kontrolu"/>
+    <LabelControl Text="Etiket"/>
+    <ListBoxControl Text="Liste Kutusu Kontrolu"/>
+    <ListViewControl Text="Liste Gorunumu Kontrolu"/>
+    <MaskedTextBoxControl Text="Bicimli Metin Kontrolu"/>
+    <MonthCalendarControl Text="Takvim Kontrolu"/>
+    <NumericUpDownControl Text="Sayisal Kutu Kontrolu"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="Resim Kontrolu"/>
+    <RadioButtonControl Text="Radyo Düğme Kontrolü"/>
+    <RichTextBoxControl Text="Yazı Kontrolü"/>
+    <TextBoxControl Text="Metin"/>
+    <TreeViewControl Text="Agac Gorunumu Kontrolu"/>
+  </Objects>
+  <Functions>
+    <Math Text="Matematik"/>
+    <Text Text="Metin"/>
+    <DateTime Text="Tarih &amp; Saat"/>
+    <Formatting Text="Biçim"/>
+    <Conversion Text="Değişim"/>
+    <ProgramFlow Text="Program Taşma Hatası"/>
+  </Functions>
+  <FileFilters>
+    <Report Text="Tasarım Dosyası (*.frx)|*.frx"/>
+    <PreparedReport Text="Hazır Rapor (*.fpx)|*.fpx"/>
+    <Style Text="Report Style (*.frs)|*.frs"/>
+    <Dictionary Text="Sözlük (*.frd)|*.frd"/>
+    <Localization Text="Localization Dosya (*.frl)|*.frl"/>
+    <XsdFile Text="XML Tanım Dosyası (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML Dosya (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access Veritabanı (*.mdb)|*.mdb"/>
+    <MdfFile Text="Microsoft SQL Server  Veritabanı (*.mdf)|*.mdf"/>
+    <RtfFile Text="Metin Dosyası (*.rtf)|*.rtf"/>
+    <Images Text="Resim Dosyası|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Assembly Text="Derleme Dosyası (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Dosya Yazdır (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap Resim Dosyası (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG Resim Dosya (*.png)|*.png"/>
+    <JpegFile Text="JPG image Dosya (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF Resim Dosya (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF image Dosya (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows Metafile Dosya (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML Dosya (*.html)|*.html"/>
+    <OdtFile Text="Open Office Writer Dosya (*.odt)|*.odt"/>
+    <OdsFile Text="Open Office Calc Dosya (*.ods)|*.ods"/>
+    <PdfFile Text="Adobe Acrobat Dosya (*.pdf)|*.pdf"/>
+    <TxtFile Text="Text Dosya (*.txt)|*.txt"/>
+    <CsvFile Text="Virgülle Ayrılmış (*.csv)|*.csv"/>
+    <XlsFile Text="MS Excel Dosya (*.xls)|*.xls"/>
+    <CsFile Text="C# Dosya (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net Dosya (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird Datenbank (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB Datenbank (*.vdb*)|*.vdb*"/>
+  </FileFilters>
+  <Formats>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MM/dd/yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <BooleanF1 Text="Yanlış"/>
+    <BooleanF2 Text="Hayır"/>
+    <BooleanF3 Text="Kapalı"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="Doğru"/>
+    <BooleanT2 Text="Evet"/>
+    <BooleanT3 Text="Açık"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Telefon;(000) 000-0000"/>
+    <Custom2 Text="Uzun Telefon;+0(000) 000-0000"/>
+    <Custom3 Text="Sosyal Güvenlik;000-00-0000"/>
+    <Custom4 Text="Kısa PostaKodu;00000"/>
+    <Custom5 Text="Uzun Posta Kodu;00000-0000"/>
+  </Formats>
+  <Designer>
+    <Menu>
+      <File Text="Dosya">
+        <New Text="Yeni"/>
+        <Open Text="Ac"/>
+        <Close Text="Kapat"/>
+        <Save Text="Kaydet"/>
+        <SaveAs Text="Farklı Kaydet..."/>
+        <SaveAll Text="Tümünü Kaydet"/>
+        <PageSetup Text="Sayfa Ayari"/>
+        <PrinterSetup Text="Yazici Ayari"/>
+        <Preview Text="Önizleme Ctrl+P"/>
+        <SelectLanguage Text="Dil Seçimi"/>
+        <Exit Text="Çıkış"/>
+      </File>
+      <Edit Text="Düzen">
+        <Undo Text="Yenile"/>
+        <Redo Text="Geri Al"/>
+        <Cut Text="Kes"/>
+        <Copy Text="Kopyala"/>
+        <Paste Text="Yapistir"/>
+        <Delete Text="Sil"/>
+        <DeletePage Text="Sayfayi Sil"/>
+        <SelectAll Text="Tümünü Sec"/>
+        <Group Text="Grupla"/>
+        <Ungroup Text="Grubu Coz"/>
+        <Find Text="Bul..."/>
+        <Replace Text="Degistir"/>
+      </Edit>
+      <View Text="Görünüm">
+        <StartPage Text="Sayfa Baslangici"/>
+        <Toolbars Text="Arac Cubuklari"/>
+        <Options Text="Ayarlar"/>
+        <Grid Text="Grid"/>
+        <Guides Text="Rehberler"/>
+        <AutoGuides Text="Rehberleri Sil"/>
+        <DeleteHGuides Text="Dikey Rehberleri Sil"/>
+        <DeleteVGuides Text="Yatay Rehberleri Sil"/>
+        <Units Text="Birimler"/>
+      </View>
+      <Insert Text="Ekle"/>
+      <Report Text="Rapor">
+        <Bands Text="Band Araci"/>
+        <Styles Text="Stil..."/>
+        <GroupExpert Text="Grup Eksperi..."/>
+        <Options Text="Secenekler..."/>
+      </Report>
+      <Data Text="Veri">
+        <ShowData Text="Verileri Goster"/>
+        <Add Text="Veri Kaynagi Ekle..."/>
+        <Choose Text="Veri Kaynagi Sec..."/>
+      </Data>
+      <Window Text="Pencere">
+        <CloseAll Text="Tümünü Kapat"/>
+      </Window>
+      <Help Text="Yardım">
+        <Contents Text="İcindekiler"/>
+        <About Text="Hakkında"/>
+      </Help>
+    </Menu>
+    <ToolWindow>
+      <Properties Text="Özellikler">
+        <PropertiesTab Text="Ozellikler"/>
+        <EventsTab Text="Gecmis"/>
+        <NObjectsSelected Text="{0} Secilen Obje"/>
+      </Properties>
+      <ReportTree Text="Rapor Ağacı"/>
+      <Dictionary Text="Sözlük">
+        <DataSources Text="Veri Kaynagi"/>
+        <Parameters Text="Parametre"/>
+        <SystemVariables Text="Sistem Degiskenleri"/>
+        <Totals Text="Toplamlar"/>
+        <Functions Text="Fonksiyonlar"/>
+        <New Text="Yeni Sözlük..."/>
+        <Open Text="Sözlük Ac..."/>
+        <Save Text="Sözlük Kaydet..."/>
+        <Merge Text="Sözlük birlestir..."/>
+        <NewDataSource Text="Yeni Veri Kaynagi..."/>
+        <NewRelation Text="Yeni İliski..."/>
+        <NewParameter Text="Yeni Parametre..."/>
+        <NewTotal Text="Yeni Toplam..."/>
+        <NewCalculatedColumn Text="Yeni Hesaplanmis Kolon..."/>
+        <Rename Text="Yeniden Adlandir"/>
+        <Edit Text="Duzenle"/>
+        <Delete Text="Sil"/>
+        <DeleteAlias Text="Başlık Sil"/>
+        <View Text="Görünüm..."/>
+        <DuplicateName Text="Tekrarlanan Ad"/>
+        <NRows Text="{0} Satir(s)"/>
+      </Dictionary>
+      <Messages Text="Mesaj">
+        <Description Text="Tanim"/>
+        <Line Text="Satir"/>
+        <Column Text="Kolon"/>
+      </Messages>
+    </ToolWindow>
+    <Toolbar>
+      <AddOrRemove Text="Ekle/Kaldır"/>
+      <Reset Text="Arac Kutusu"/>
+      <Standard Text="Standart">
+        <New Text="Yeni"/>
+        <Open Text="Ac"/>
+        <Save Text="Kaydet"/>
+        <SaveAll Text="Tümünü Kaydet (Ctrl+Shift+S)"/>
+        <Preview Text="Önizleme Ctrl+P"/>
+        <NewPage Text="Yeni Sayfa"/>
+        <NewDialog Text="Yeni Dialog Sayfası"/>
+        <DeletePage Text="Sayfayi Sil"/>
+        <PageSetup Text="Sayfa Ayari"/>
+        <Cut Text="Kes (Ctrl+X)"/>
+        <Copy Text="Kopyala (Ctrl+C)"/>
+        <Paste Text="Yapistir (Ctrl+V)"/>
+        <FormatPainter Text="Biçim Boyacısı"/>
+        <Undo Text="Yenile (Ctrl+Z)"/>
+        <Redo Text="Geri Al"/>
+        <Group Text="Grupla"/>
+        <Ungroup Text="Grubu Coz"/>
+      </Standard>
+      <Text Text="Text">
+        <Name Text="Yazı Tipi Adı"/>
+        <Size Text="Yazı Tipi Büyüklüğü"/>
+        <Bold Text="Kalın"/>
+        <Italic Text="İtalik"/>
+        <Underline Text="Altı Cizili"/>
+        <Left Text="Sola Yasla"/>
+        <Center Text="Ortala"/>
+        <Right Text="Sağa Yasla"/>
+        <Justify Text="İki Yana Hizala"/>
+        <Top Text="Üste Hizala"/>
+        <Middle Text="Ortala"/>
+        <Bottom Text="Alta Hizala"/>
+        <Color Text="Yazı Rengi"/>
+        <Highlight Text="Vurgu"/>
+        <Angle Text="Metni Döndürme Açısı"/>
+      </Text>
+      <Border Text="Pencerenin Stili">
+        <Top Text="Üstü Çizgi"/>
+        <Bottom Text="Alt Çizgi"/>
+        <Left Text="Sol Çizgi"/>
+        <Right Text="Sağ Çizgi"/>
+        <All Text="Tüm Çerçeve Çizgileri"/>
+        <None Text="Çerçeve Yok"/>
+        <FillColor Text="Arka Plan Rengi"/>
+        <FillStyle Text="Biçimlendir..."/>
+        <LineColor Text="Çerçeve Rengi"/>
+        <Width Text="Çerçeve Kalınlığı"/>
+        <Style Text="Bicim"/>
+        <Props Text="Ozellikler"/>
+      </Border>
+      <Style Text="Bicim">
+        <Styles Text="Bicim"/>
+        <SelectStyle Text="Secili Bicim"/>
+        <NoStyle Text="Bicim Yok"/>
+      </Style>
+      <Layout Text="Layout">
+        <AlignToGrid Text="Am Raster ausrichten"/>
+        <Left Text="Sola Hizala"/>
+        <Center Text="Ortala"/>
+        <Right Text="Sağa Yasla"/>
+        <Top Text="Üste Hizala"/>
+        <Middle Text="Ortala"/>
+        <Bottom Text="Alta Hizala"/>
+        <SameWidth Text="Aynı Genişlik"/>
+        <SameHeight Text="Aynı Yükseklik"/>
+        <SameSize Text="Aynı Boyut"/>
+        <SizeToGrid Text="Grid Büyüklüğü"/>
+        <SpaceHorizontally Text="Dikey Boşluk"/>
+        <IncreaseHorizontalSpacing Text="Aralarını Aç"/>
+        <DecreaseHorizontalSpacing Text="Aralarını Kapat"/>
+        <RemoveHorizontalSpacing Text="Boşlukları Al"/>
+        <SpaceVertically Text="Dikay Boşluk"/>
+        <IncreaseVerticalSpacing Text="Dikey Boşlur ver"/>
+        <DecreaseVerticalSpacing Text="Dikey Boşluğu Al"/>
+        <RemoveVerticalSpacing Text="Dikey Boşlukları Al"/>
+        <CenterHorizontally Text="Bandın içinde dikey hizala"/>
+        <CenterVertically Text="Bandın içinde yatay hizala"/>
+        <BringToFront Text="Öne Getir"/>
+        <SendToBack Text="Alta Gönder"/>
+      </Layout>
+      <Objects Text="Obje">
+        <Select Text="Seç"/>
+      </Objects>
+      <Zoom Text="Yaklaş">
+        <ZoomOut Text="Uzaklastir"/>
+        <ZoomIn Text="Yakinlastir"/>
+        <Zoom Text="Oran"/>
+        <PageWidth Text="Sayfa Genisligi"/>
+        <WholePage Text="Sayfa Boyu"/>
+      </Zoom>
+    </Toolbar>
+    <Workspace>
+      <Code Text="Code"/>
+      <Report>
+        <ConfigureBands Text="Band Aracı"/>
+      </Report>
+    </Workspace>
+    <Options Text="Ayarlar"/>
+    <UndoRedo>
+      <Delete Text="{0} Sil"/>
+      <Move Text="{0} Tasi"/>
+      <Size Text="Boyutlandir {0}"/>
+      <Change Text="{0} Degistir"/>
+      <AddGuide Text="Rehber Ekle"/>
+      <MoveGuide Text="Rehberi Tasi"/>
+      <DeleteHGuides Text="Dikey Rehberleri Sil"/>
+      <DeleteVGuides Text="Yatay Rehberleri Sil"/>
+      <ResizeBand Text="Bandı Boyutlandir"/>
+      <ChangeParent Text="Stamm von {0} ändern"/>
+      <Load Text="Report öffnen"/>
+      <Paste Text="{0} Yapistir"/>
+      <Insert Text="{0} Ekle"/>
+      <AddPage Text="Sayfa {0} Ekle"/>
+      <DeletePage Text="Sayfayi Sil"/>
+      <Script Text="Script"/>
+      <NObjects Text="{0} Obje"/>
+      <UndoN Text="{0} Yenile"/>
+      <RedoN Text="{0} Geri Al"/>
+      <ChangeReport Text="Rapor Degistir"/>
+      <ChangePagesOrder Text="Sayfa Siralamasi Degistir"/>
+      <EditPage Text="Sayfayi Duzenle"/>
+      <EditPrinter Text="Yazıcı Düzenle"/>
+      <EditReport Text="Rapor Düzenle"/>
+      <SelectData Text="Seçili Veri"/>
+      <EditData Text="Veri Düzenle"/>
+    </UndoRedo>
+    <StartPage Text="Sayfa Baslangici"/>
+    <Untitled Text="isimsiz.frx"/>
+    <ColorSelector>
+      <CustomColors Text="Özel"/>
+      <WebColors Text="Web"/>
+      <SystemColors Text="Sistem"/>
+      <Other Text="Diger Renkler..."/>
+      <Transparency Text="Saydamlık:"/>
+    </ColorSelector>
+  </Designer>
+  <Preview Text="Önizleme">
+    <PrintText Text="Yazdır"/>
+    <Print Text="Yazdır (Ctrl+P)"/>
+    <Open Text="Aç"/>
+    <Save Text="Kaydet"/>
+    <SaveText Text="Kaydet"/>
+    <Email Text="E-Posta Gönder"/>
+    <Find Text="Bul"/>
+    <Outline Text="Dış Hat"/>
+    <PageSetup Text="Sayfa Ayarı"/>
+    <Edit Text="Sayfa Düzenle"/>
+    <Watermark Text="Filigran"/>
+    <First Text="İlk Sayfa"/>
+    <Prior Text="Önceki Sayfa"/>
+    <Next Text="Sonraki Sayfa"/>
+    <Last Text="Son Sayfa"/>
+    <SaveNative Text="Hazır Rapor..."/>
+  </Preview>
+  <Forms>
+    <AddNewItem Text="Yeni Parça Ekle">
+      <Add Text="Ekle"/>
+      <Reports Text="Rapor:"/>
+      <ReportItems Text="Rapor Parçaları:"/>
+    </AddNewItem>
+    <AdvancedConnectionProperties Text="Gelişmiş Bağlantı Özellikleri"/>
+    <AskPassword Text="Şifre">
+      <Password Text="Bu rapor için Şifre Gerekli. Lütfen Şifreyi Giriniz."/>
+    </AskPassword>
+    <AskLoginPassword Text="Giriş Şifresi">
+      <Login Text="Kullanıcı Adı:"/>
+      <Password Text="Şifre:"/>
+    </AskLoginPassword>
+    <BaseReportWizard>
+      <SelectDataSourcePage Text="Seçili Veri Kaynağı Sayfası"/>
+      <SelectDataSource Text="Seçili Veri Kaynağı:"/>
+      <CreateNewDatasource Text="Yeni Veri Kaynağı Oluştur..."/>
+      <SelectColumnsPage Text="Seçili kolonlar sayfa"/>
+      <SelectColumns Text="Raporda Görünmesini istediğiniz Kolonları Seçin"/>
+      <AvailableColumns Text="Kullanılabilir Kolonlar:"/>
+      <SelectedColumns Text="Seçilen Kolonlar:"/>
+    </BaseReportWizard>
+    <Border Text="Kenar Düzenle">
+      <Border Text="Kenar"/>
+      <Line Text="Duz Cizgi"/>
+      <Shadow Text="Gölge"/>
+      <Style Text="Biçim:"/>
+      <Width Text="Genişlik:"/>
+      <Color Text="Renk:"/>
+      <Hint Text="Çizgi tarzını seç, ve tarzı uygulaması için çizgiyi seç."/>
+    </Border>
+    <ChartEditor Text="Grafik Editörü">
+      <Chart Text="Grafik"/>
+      <Add Text="Ekle..."/>
+      <Delete Text="Sil"/>
+      <Hint Text="Ayarlar için birini tıklayın."/>
+      <Common>
+        <BackColor Text="Arka Font:"/>
+        <SecondaryColor Text="İkincil Renk:"/>
+        <Gradient Text="Gradyan:"/>
+        <HatchStyle Text="Bölme Biçimi:"/>
+        <BorderColor Text="Kenarlık Rengi:"/>
+        <BorderStyle Text="Kenarlık Biçimi:"/>
+        <BorderWidth Text="Kenarlık Uzunluğu:"/>
+        <ShadowColor Text="Gölge Rengi:"/>
+        <ShadowOffset Text="Gölgelik Kaydırma:"/>
+        <LineColor Text="Çizgi Rengi:"/>
+        <LineStyle Text="Çizgi Biçimi:"/>
+        <LineWidth Text="Çizgi Genişliği:"/>
+        <Text Text="Metin:"/>
+        <Font Text="Font:"/>
+        <ForeColor Text="Ön Renk:"/>
+        <Dock Text="Kapla:"/>
+        <InsideChartArea Text="Grafik Alanı içinde:"/>
+        <Format Text="Biçim:"/>
+      </Common>
+      <ChartEditorControl>
+        <Data Text="Veri">
+          <DataSource Text="Veri Kaynağı:"/>
+          <Filter Text="Filtre:"/>
+          <AutoSeries Text="Otomatik Seri Oluşturma"/>
+          <DataColumn Text="Veri Kolonu:"/>
+          <ColorColumn Text="Kolon Rengi:"/>
+          <SeriesSort Text="Seri Sıralama:"/>
+          <AlignXValues Text="X Değerine Hizala"/>
+        </Data>
+        <Appearance Text="Görünüş">
+          <Template Text="Şablon:"/>
+          <Load Text="Yükle..."/>
+          <Save Text="Kaydet..."/>
+          <SeriesPalette Text="Seri Renk Paleti:"/>
+          <BorderSkin Text="Kenar Görünümü:"/>
+        </Appearance>
+        <ChartArea Text="Grafik Alanı:">
+          <Area Text="Alan:"/>
+        </ChartArea>
+        <ThreeD Text="3D">
+          <Enable Text="3D Uygula"/>
+          <XRotation Text="X Döndürme:"/>
+          <YRotation Text="Y Döndürme:"/>
+          <Perspective Text="Perspektif:"/>
+          <WallWidth Text="Duvar Genişliği:"/>
+          <AxisDepth Text="Eksen Derinliği:"/>
+          <LightStyle Text="Işık Biçimi:"/>
+          <ClusteredSeries Text="Kapalı Seri:"/>
+        </ThreeD>
+        <Axes Text="Eksenler">
+          <Axis Text="Eksen"/>
+          <CopyFromX Text="Görünümü X eksenine Kopyala"/>
+          <CopyFromPrimary Text="Görünümü Birincil Eksene Kopyala"/>
+          <Minor Text="Küçük"/>
+          <Major Text="Büyük"/>
+          <General Text="Genel">
+            <Enabled Text="Uygula"/>
+            <MarginVisible Text="Marj Görünsün"/>
+            <Logarithmic Text="Logaritmik"/>
+            <Reversed Text="Ters Çevrilmiş"/>
+            <Interval Text="Aralık"/>
+            <Interlaced Text="Titreşimli"/>
+            <InterlacedColor Text="Titreşim Rengi:"/>
+          </General>
+          <Labels Text="Etiketler">
+            <Enabled Text="Uygula"/>
+            <Angle Text="Döndür:"/>
+          </Labels>
+          <Title Text="Başlık"/>
+          <CustomLabels Text="Özel Etiketler">
+            <Label Text="Etiket"/>
+            <Start Text="Başlangıç:"/>
+            <End Text="Son:"/>
+            <Row Text="Satır:"/>
+            <MarkColor Text="İşaret Rengi:"/>
+            <MarkStyle Text="İşaret Biçimi:"/>
+          </CustomLabels>
+          <Grid Text="Grid">
+            <GridLine Text="Grid Çizgisi:"/>
+            <Enabled Text="Uygula"/>
+          </Grid>
+          <Ticks Text="Çalışma">
+            <Ticks Text="Çalışma:"/>
+            <Enabled Text="Uygula"/>
+            <TickStyle Text="Çalışma Biçimi:"/>
+            <TickSize Text="Çalışma Boyutu:"/>
+          </Ticks>
+          <Strips Text="Çerçeveler">
+            <Strip Text="Çerçeve"/>
+            <Interval Text="Aralık">
+              <Start Text="Başlangıç:"/>
+              <Width Text="Genişlik"/>
+              <Interval Text="Aralık:"/>
+            </Interval>
+            <Appearance Text="Görünüş"/>
+            <Text Text="Metin">
+              <HorizontalAlign Text="Yatay Hizalama:"/>
+              <VerticalAlign Text="Dikey Hizalama:"/>
+              <TextOrientation Text="Metin Yönlendirme:"/>
+            </Text>
+          </Strips>
+        </Axes>
+        <Legend Text="Gösterge">
+          <Enabled Text="Uygula"/>
+          <StyleColumn Text="Kolon"/>
+          <StyleRow Text="Satır"/>
+          <StyleTable Text="Tablo"/>
+          <General Text="Genel">
+            <LegendStyle Text="Gösterge Biçimi:"/>
+          </General>
+          <Appearance Text="Görünüş"/>
+        </Legend>
+        <Title Text="Başlık">
+          <Visible Text="Görünür"/>
+          <General Text="Genel">
+            <TextOrientation Text="Metin Yönlendirme:"/>
+            <TextStyle Text="Metin Biçimi:"/>
+          </General>
+          <Appearance Text="Görünüş"/>
+        </Title>
+      </ChartEditorControl>
+      <SeriesEditorControl>
+        <Data Text="Veri">
+          <Name Text="İsim:"/>
+          <XValue Text="X Değeri:"/>
+          <Color Text="Renk:"/>
+          <Filter Text="Filtre:"/>
+          <XValueType Text="X Veri Tipi:"/>
+          <YValueType Text="Y veri tipi:"/>
+          <XAxisType Text="X Ekseni:"/>
+          <YAxisType Text="Y Ekseni:"/>
+          <PrimaryAxis Text="Birincil"/>
+          <SecondaryAxis Text="İkincil"/>
+          <SeriesValues>
+            <YValue Text="Y Değeri:"/>
+            <High Text="Yüksek:"/>
+            <Low Text="Düşük:"/>
+            <Open Text="Açık:"/>
+            <Close Text="Kapalı:"/>
+            <RangeBegin Text="Alan Başlangıcı:"/>
+            <RangeEnd Text="Alan Bitişi:"/>
+            <Size Text="Ölçü:"/>
+            <YValue1 Text="Y Değeri 1:"/>
+            <YValue2 Text="Y değeri 2:"/>
+          </SeriesValues>
+        </Data>
+        <Values Text="Değerler"/>
+        <DataProcessing Text="Veri İşleme">
+          <SortBy Text="Sıralama:"/>
+          <SortByX Text="X değeri"/>
+          <SortByY Text="Y değeri"/>
+          <SortOrder Text="Sıralama:"/>
+          <GroupBy Text="Gruplama:">
+            <None Text="Yok"/>
+            <XValue Text="X değeri"/>
+            <Number Text="Sayı"/>
+            <Years Text="Yıllar"/>
+            <Months Text="Aylar"/>
+            <Weeks Text="Haftalar"/>
+            <Days Text="Günler"/>
+            <Hours Text="Saatler"/>
+            <Minutes Text="Dakikalar"/>
+            <Seconds Text="Saniyeler"/>
+            <Milliseconds Text="Saliseler"/>
+          </GroupBy>
+          <GroupInterval Text="Grup Aralığı:"/>
+          <GroupFunction Text="Grup Fonksiyonu:"/>
+          <CollectData Text="Veri Derleme:">
+            <None Text="Yok"/>
+            <TopN Text="Üstte"/>
+            <BottomN Text="Altta"/>
+            <LessThan Text="Küçükse"/>
+            <LessThanPercent Text="Yüzdesel Küçükse"/>
+            <GreaterThan Text="Büyükse"/>
+            <GreaterThanPercent Text="Yüzdesel Büyükse"/>
+          </CollectData>
+          <Value Text="Değer:"/>
+          <CollectedText Text="Metin Derleme:"/>
+          <CollectedColor Text="Derleme Rengi:"/>
+          <Explode Text="Kırılım:">
+            <None Text="Yok"/>
+            <Biggest Text="Büyük değer"/>
+            <Lowest Text="Düşük değer"/>
+            <Specific Text="Spesifik değer"/>
+          </Explode>
+        </DataProcessing>
+        <Appearance Text="Görünüş">
+          <Default Text="Varsayılan"/>
+          <DrawingStyle Text="Çizgi Biçimi:"/>
+          <PointWidth Text="Nokta Genişliği:"/>
+          <LabelsStyle Text="Etiket biçimi:"/>
+          <DrawSideBySide Text="Çizim içten içe"/>
+          <ShowMarkerLines Text="İşaret Çizgilerini Göster"/>
+          <DoughnutRadius Text="Halka Yarıçapı (%)"/>
+          <AreaDrawingStyle Text="Alan Çizgi Biçimi:"/>
+          <Markers Text="İşaretler:"/>
+          <PriceUpColor Text="Fiyatın üstü Renk:"/>
+          <ReversalAmount Text="Ters Miktar:"/>
+          <BoxSize Text="Kutu ölçüsü:"/>
+          <NumberOfLinesInBreak Text="Çizgi Aralığı:"/>
+          <LabelsPlacement Text="Etiket Yerleştirme:"/>
+          <PointsGap Text="Noktalar Boşluk:"/>
+          <MinPointHeight Text="Min. Nokta Yüksekliği:"/>
+          <ValueType Text="Değer Tipi:"/>
+          <ThreeDDrawingStyle Text="3D Çizim Biçimi:"/>
+          <ThreeDRotation Text="3D  Dönme:"/>
+          <FunnelStyle Text="Huni Biçimi:"/>
+          <LineTension Text="Çizgi Gerilimi:"/>
+          <NoSettings Text="Spesifik özellikler bu seri tipinde yok."/>
+        </Appearance>
+        <FillBorder Text="Doldur &amp;&amp; Kenarlık">
+          <Palette Text="Renk Paleti:"/>
+        </FillBorder>
+        <Labels Text="Etiketler">
+          <LabelView Text="Etiket Görünümü:"/>
+          <Pattern Text="Desen:"/>
+        </Labels>
+        <Markers Text="İşaretler:">
+          <Style Text="Biçim:"/>
+          <Size Text="Ölçü:"/>
+          <Step Text="Adım:"/>
+          <Color Text="Renk:"/>
+        </Markers>
+      </SeriesEditorControl>
+    </ChartEditor>
+    <ChartGallery Text="Galeri">
+      <NewArea Text="Yeni Grafiği Bu Serilerden Ekleyebilirsiniz"/>
+      <Categories>
+        <BarColumn Text="Çubuk &amp; Kolon"/>
+        <Area Text="Alan"/>
+        <Line Text="Çizgi"/>
+        <PointBubble Text="Nokta &amp; Kabarcık"/>
+        <Pie Text="Pasta"/>
+        <Circular Text="Dairesel"/>
+        <Financial Text="Finansal"/>
+        <PyramidFunnel Text="Piramit &amp; Huni"/>
+        <Range Text="Aralık"/>
+      </Categories>
+      <Series>
+        <Bar Text="Çubuk"/>
+        <StackedBar Text="Yığın Çizgi"/>
+        <StackedBar100 Text="%100 Yığın Çizgi"/>
+        <Column Text="Kolon"/>
+        <StackedColumn Text="Yığın Kolon"/>
+        <StackedColumn100 Text="%100 Yığın Kolon"/>
+        <Area Text="Alan"/>
+        <SplineArea Text="Oluk Alan"/>
+        <StackedArea Text="Yığın Alan"/>
+        <StackedArea100 Text="%100 Yığın Alan"/>
+        <Line Text="Çizgi"/>
+        <FastLine Text="Hızlı Çizgi"/>
+        <StepLine Text="Adım Çizgi"/>
+        <Spline Text="Oluk"/>
+        <Bubble Text="Kabarcık"/>
+        <Point Text="Nokta"/>
+        <FastPoint Text="Hızlı Nokta"/>
+        <Pie Text="Pasta"/>
+        <Doughnut Text="Halka"/>
+        <Polar Text="Kutuplu"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Hisse"/>
+        <Candlestick Text="Şamdan"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Nokta &amp; Figür"/>
+        <ThreeLineBreak Text="Üçlü Çizgi Kırılması"/>
+        <Pyramid Text="Piramit"/>
+        <Funnel Text="Huni"/>
+        <Range Text="Aralık"/>
+        <SplineRange Text="Oluk Aralık"/>
+        <RangeColumn Text="Kolon Aralığı"/>
+        <RangeBar Text="Çizgi Aralığı"/>
+      </Series>
+    </ChartGallery>
+    <CodePageOptions Text="Kod Sayfası">
+      <EnableVirtualSpace Text="Sanal Boşluk Uygula"/>
+      <UseSpaces Text="Tabları Doldurması için boşlukları kullan"/>
+      <AllowOutlining Text="Anahatlarını çizmeye izin ver"/>
+      <TabSize Text="Tab Ölçüsü:"/>
+    </CodePageOptions>
+    <ConfigureBands Text="Band Konfigürasyonu">
+      <Add Text="Ekle"/>
+      <Delete Text="Sil"/>
+    </ConfigureBands>
+    <Connection Text="Bağlantı">
+      <Select Text="Bağlantı Tipi Seç"/>
+      <AlwaysUse Text="Her zaman bu bağlantıyı kullan"/>
+      <LoginPrompt Text="Bağlan"/>
+      <Test Text="Bağlantı Testi"/>
+      <TestSuccesful Text="Bağlantı Başarıyla Sağlandı"/>
+    </Connection>
+    <CustomLabel Text="Özel Etiket">
+      <Paper Text="Sayfa"/>
+      <Landscape Text="Yatay"/>
+      <PaperWidth Text="Sayfa Genişliği:"/>
+      <PaperHeight Text="Sayfa Boyu:"/>
+      <LeftMargin Text="Sol Boşluk:"/>
+      <TopMargin Text="Üst Boşluk:"/>
+      <Label Text="Etiket"/>
+      <LabelWidth Text="Etiket Genişliği:"/>
+      <LabelHeight Text="Etiket Yüksekliği:"/>
+      <RowGap Text="Satır Boşluğu"/>
+      <ColumnGap Text="Kolon Boşluğu"/>
+      <Warning Text="Etiket Boyu Sayfaya Uymuyor"/>
+    </CustomLabel>
+    <DataBandEditor Text="Veri Bandı Düzenle">
+      <DataSource Text="Veri Kaynagi"/>
+      <NoData Text="Kullanılabilir veri Kaynağı Yok. Git &quot;Veri|Veri Kaynağı Seç...&quot; menüden kullanılabilir veri kaynağı seç veya menüden yeni Veri den Yeni Veri Kaynağı Ekle"/>
+      <Sort Text="Sıralama"/>
+      <SortBy Text="Sırala"/>
+      <ThenBy Text="veya"/>
+      <Ascending Text="A-Z Aşağı"/>
+      <Descending Text="Z-A Yukarı"/>
+      <Filter Text="Filtrele"/>
+      <Expression Text="İfade"/>
+    </DataBandEditor>
+    <DataWizard Text="Veri Sihirbazı">
+      <Page1 Text="Veri seç"/>
+      <WhichData Text="Raporun kullanacağı veri bağlantısını hangisi ise bağlantısını sağlayın."/>
+      <Hint Text="Son kullanılan bağlantılar listesinden seçebilir veya &quot;Yeni bağlantı&quot; butonunu kullanarak yeni bağlantı oluşturabilirsiniz."/>
+      <NewConnection Text="Yeni Bağlantı..."/>
+      <EditConnection Text="Bağlantıyı Düzenle..."/>
+      <ConnectionName Text="Bağlantı Adını Girin:"/>
+      <ConnectionString Text="Bağlantı Metni:"/>
+      <Page2 Text="Tablo Seçimi:"/>
+      <WhichTables Text="Raporunuz verileri Hangi Tabloda"/>
+      <Wait Text="Data Bilgisi Yenileniyor"/>
+      <SortTables Text="Tabloları Sırala"/>
+      <AddQuery Text="SQL sorgusu ekle..."/>
+    </DataWizard>
+    <DialogPageOptions Text="Diyalog Sayfası Özellikleri"/>
+    <Exception Text="İstisna">
+      <Hint Text="Rapordaki Hata Belirteci:"/>
+      <Stack Text="Detay:"/>
+      <Copy Text="Kopyala"/>
+    </Exception>
+    <ExpressionEditor Text="İfade Düzenle"/>
+    <Fill Text="Arka Plan">
+      <Solid Text="Katı"/>
+      <LinearGradient Text="Çizgisel Gradyant"/>
+      <PathGradient Text="Gradyant"/>
+      <Hatch Text="Bölme"/>
+      <Glass Text="Cam"/>
+      <Colors Text="Renkler"/>
+      <Color Text="Renk"/>
+      <StartColor Text="Başlangıç"/>
+      <EndColor Text="Bitiş"/>
+      <Options Text="Ayarlar"/>
+      <Focus Text="Yakınlaştırma"/>
+      <Contrast Text="Kontrast"/>
+      <Angle Text="Döndürme"/>
+      <CenterColor Text="OrtaRenk"/>
+      <EdgeColor Text="Kenar Rengi"/>
+      <Shape Text="Şekil"/>
+      <Ellipse Text="Elips"/>
+      <Rectangle Text="Dikdörtgen"/>
+      <ForeColor Text="Yazı Rengi"/>
+      <BackColor Text="Arka Plan Rengi"/>
+      <Style Text="Biçim"/>
+      <Blend Text="Karışım"/>
+      <GlassHatch Text="Cam Bölmesi"/>
+    </Fill>
+    <FormatEditor Text="Görüntü Biçimi">
+      <Expression Text="İfade:"/>
+      <General Text="Genel"/>
+      <Number Text="Sayı"/>
+      <Currency Text="Para"/>
+      <Date Text="Tarih"/>
+      <Time Text="Saat"/>
+      <Percent Text="Yüzdelik"/>
+      <Boolean Text="Doğru/Yanlış"/>
+      <Custom Text="Diğer"/>
+      <UseLocale Text="Sistem Ayarlarını Kullan"/>
+      <DecimalDigits Text="Ondalık:"/>
+      <DecimalSeparator Text="Gruplama:"/>
+      <GroupSeparator Text="Gruplama Ayracı"/>
+      <PositivePattern Text="Pozitif Deseni:"/>
+      <NegativePattern Text="Negatif Deseni:"/>
+      <CurrencySymbol Text="ParaBirimi Sembolü:"/>
+      <PercentSymbol Text="Yüzdelikİşareti:"/>
+      <FalseText Text="Yanlış Metni:"/>
+      <TrueText Text="Doğru Metni:"/>
+    </FormatEditor>
+    <GridControlColumnsEditor Text="Kolon düzenle">
+      <Columns Text="Kolon"/>
+      <Properties Text="Özellikler"/>
+      <Add Text="Ekle"/>
+      <Remove Text="Kaldır"/>
+      <AddAll Text="Tümünü Ekle"/>
+    </GridControlColumnsEditor>
+    <GroupBandEditor Text="Grup düzenle">
+      <Condition Text="Gruplama Şartı"/>
+      <Hint Text="Veri Kolonu veya ifade tipi seçin:"/>
+      <Settings Text="Ayarlar"/>
+      <Sort Text="Sırala:"/>
+      <NoSort Text="Sıralama Yok"/>
+      <Ascending Text="A-Z Aşağı Sırala"/>
+      <Descending Text="Z-A Yukarı Sırala"/>
+    </GroupBandEditor>
+    <GroupExpert Text="Grup Ekspertisi">
+      <Condition Text="Gruplama Şartı"/>
+      <Hint Text="Veri Kolonu veya ifade tipi seçin, veya &quot;Ekle&quot; butonundan yeni grup ekleyin."/>
+      <Add Text="Ekle"/>
+      <Groups Text="Gruplar"/>
+      <Edit Text="Düzenle..."/>
+      <Delete Text="Sil"/>
+    </GroupExpert>
+    <HighlightEditor Text="Vurgu Editörü">
+      <Conditions Text="Koşullar"/>
+      <Add Text="Ekle"/>
+      <Delete Text="Sil"/>
+      <Edit Text="Düzenle"/>
+      <Style Text="Biçim"/>
+      <Fill Text="Doldur"/>
+      <TextColor Text="MetinRengi"/>
+      <Font Text="Metin Yazı Tipi"/>
+      <Visible Text="Görünür"/>
+    </HighlightEditor>
+    <HyperlinkEditor Text="Köprü Düzenle">
+      <Url Text="URL"/>
+      <PageNumber Text="Sayfa Numarası"/>
+      <Bookmark Text="Yer imi"/>
+      <Report Text="Rapor"/>
+      <ReportPage Text="Rapor Sayfası"/>
+      <Custom Text="Diğer"/>
+      <UrlValue Text="URL adresi belirtin (Örnek: http://www.url.com):"/>
+      <UrlExpression Text="veya URL adresinden gelen ifadeyi girin:"/>
+      <PageNumberValue Text="Sayfa numarasını belirtin"/>
+      <PageNumberExpression Text="veya sayfa numarasından gelen ifadeyi girin"/>
+      <BookmarkValue Text="Yer imi adını belirtin:"/>
+      <BookmarkExpression Text="veya yer imi adından gelen ifadeyi belirtin:"/>
+      <ReportName Text="Rapor Adı:"/>
+      <ParameterName Text="Rapor Parametresi:"/>
+      <ParameterValue Text="Parametre değerini belirtin:"/>
+      <ParameterExpression Text="veya parametre değerinden gelen ifadeyi belirtin:"/>
+      <PageName Text="Rapor Sayfası:"/>
+      <CustomValue Text="Köprü Değerini belirtin:"/>
+      <CustomExpression Text="veya gelen ifadeyi belirtin:"/>
+      <Hint Text="Ne olacak, eğer sen, ön gösterim penceresinde bu nesneyi tıklarsan:"/>
+      <HintUrl Text="Belirtilen URL, açılacak."/>
+      <HintPageNumber Text="Sen, belirtilen sayfaya gideceksin."/>
+      <HintBookmark Text="Sen, belirtilen işareti içeren nesneye gideceksin."/>
+      <HintReport Text="Belirtilen rapor, ayrı ön gösterim tabında açılacak."/>
+      <HintReportPage Text="Belirtilen sayfa, oluşturulacak, ve ayrı ön gösterim tabında açılacak.&#13;&#10;"/>
+      <HintCustom Text="Sen, gelenek hareketini tanımlaması için &quot;Click&quot; olay eğiticisini yaratmalıydın."/>
+      <ModifyAppearance Text="Nesnenin görünüşünü değiştir, bundan dolayı o, tıklanabilir bir bağlantıya benzeyecek"/>
+    </HyperlinkEditor>
+    <LabelWizard Text="Etiket Sihirbazı">
+      <Hint Text="Önceden tanımlanan etiketlerden seç, veya &quot;Özel Etiketi...&quot; tıklarsan Kendi Özel Etiket Boyutunu tanımlayabilirsin."/>
+      <Label Text="Etiket"/>
+      <Manufacturer Text="Üreticisi"/>
+      <Product Text="Ürün"/>
+      <Parameters Text="Parametre"/>
+      <Size Text="Ölçü:"/>
+      <PaperSize Text="Kağıt Ölçüsü:"/>
+      <Rows Text="Satırlar:"/>
+      <Columns Text="Kolonlar:"/>
+      <CustomLabel Text="Özel Etiket..."/>
+      <Custom Text="Özel"/>
+    </LabelWizard>
+    <PageSetup Text="Sayfa Ayarı">
+      <Paper Text="Sayfa"/>
+      <Custom Text="Ölçü"/>
+      <Width Text="Genişlik :"/>
+      <Height Text="Yükseklik :"/>
+      <Orientation Text="Yönlendirme :"/>
+      <Portrait Text="Dikey"/>
+      <Landscape Text="Yatay"/>
+      <Margins Text="Boşluklar"/>
+      <Left Text="Sol :"/>
+      <Top Text="Üst :"/>
+      <Right Text="Sağ :"/>
+      <Bottom Text="Alt :"/>
+      <MirrorMargins Text="Diğer Sayfalarada Uygula"/>
+      <Source Text="Kağıt Kaynağı"/>
+      <FirstPage Text="İlk Sayfa :"/>
+      <OtherPages Text="Diğer Sayfalar :"/>
+      <Columns Text="Kolonlar"/>
+      <Count Text="Sayı"/>
+      <ColumnWidth Text="Genişlik :"/>
+      <Positions Text="Konumlar :"/>
+      <Other Text="Diğer"/>
+      <Duplex Text="Çift Hat :"/>
+      <DupDefault Text="Öndeğer"/>
+      <DupSimplex Text="Basit"/>
+      <DupVertical Text="Yatay"/>
+      <DupHorizontal Text="Dikey"/>
+      <EditWatermark Text="Filigran"/>
+      <ExtraWidth Text="Geniş Dizayn Kullan"/>
+    </PageSetup>
+    <PictureEditor Text="Resim Düzenle">
+      <Picture Text="Resim"/>
+      <Load Text="Yükle"/>
+      <Paste Text="Yapıştır"/>
+      <Clear Text="Temizle"/>
+      <DataColumn Text="Veri Kolonu"/>
+      <FileName Text="Dosya Adı"/>
+      <Url Text="Köprü"/>
+      <FileHint1 Text="Dosya Adı :"/>
+      <FileHint2 Text="Not: Sen, bu dosyayı senin raporunla beraber konuşlandırmak zorundasın."/>
+      <UrlHint Text="Köprü:"/>
+    </PictureEditor>
+    <PluginsOptions Text="Eklentiler">
+      <Hint Text="Yerleştirilen FastReport eklentilerin listesi:"/>
+      <Add Text="Ekle"/>
+      <Remove Text="Kaldır"/>
+      <Note Text="Not: Yapılan değişiklikler, FastReport'ta etkinin, tekrar başladığında etkili olacak.&#13;&#10;"/>
+    </PluginsOptions>
+    <PreviewPageSetup>
+      <Apply Text="Tüm Sayfalara Uygula"/>
+    </PreviewPageSetup>
+    <PreviewSearch Text="Ara"/>
+    <PrinterSetup Text="Yazdır">
+      <PrinterSetup Text="Yazıcı Ayarı"/>
+      <Printer Text="Yazdır"/>
+      <SavePrinter Text="Yazıcıyı rapor dosyasında kaydet"/>
+      <Settings Text="Özellikler..."/>
+      <PrintToFile Text="Dosyaya Yazdır"/>
+      <PageRange Text="Sayfa Aralığı"/>
+      <All Text="Tümü"/>
+      <Current Text="Geçerli Sayfa"/>
+      <Numbers Text="Sayfalar :"/>
+      <Hint Text="Sayfa numaralarını ve/veya sayfa aralıklarını virgulle ayırarak girin. Örn. : 1,3,5-12"/>
+      <Copies Text="Kopyala"/>
+      <Count Text="Kopya Sayısı :"/>
+      <Collate Text="Harmanla"/>
+      <Other Text="Diğer"/>
+      <OddEven Text="Yazdır :"/>
+      <AllPages Text="Tüm Sayfalar"/>
+      <OddPages Text="Tek Sayfalar"/>
+      <EvenPages Text="Çift Sayfalar"/>
+      <Order Text="Sipariş :"/>
+      <OrderDirect Text="Doğrudan (1-9)"/>
+      <OrderReverse Text="Ters (9-1)"/>
+      <Duplex Text="Çift Hat :"/>
+      <Source Text="Sayfa Kaynağı :"/>
+      <PrintMode Text="Baskı Modu"/>
+      <PrintModeDefault Text="Öndeğer"/>
+      <PrintModeSplit Text="Büyük Sayfaları Böl"/>
+      <PrintModeScale Text="Boyutlandır"/>
+      <PrintOnSheet Text="Sayfaya Yazdır :"/>
+      <PagesOnSheet Text="Sayfa Sayısı :"/>
+      <PagesOnSheet1 Text="1 Sayfa"/>
+      <PagesOnSheet2 Text="2 Sayfa"/>
+      <PagesOnSheet4 Text="4 Sayfa"/>
+      <PagesOnSheet8 Text="8 sayfa"/>
+      <Print Text="Yazdır"/>
+      <Error Text="Bilinmeyen Sayfa Aralığı"/>
+    </PrinterSetup>
+    <QueryWizard Text="Sorgu Sihirbazı">
+      <Page1 Text="İsim Tanımla"/>
+      <SetName Text="Sorgu objesine isim tanımlayın."/>
+      <NameHint Text="Bu isim &quot;Veri&quot; penceresinde listelenecek."/>
+      <Page2 Text="Sql Cümlesi Girin"/>
+      <WhatData Text="Sorguya ne veri dönmeliydi?"/>
+      <TypeSql Text="Senin SQL ifadeni yaz, veya onu inşa etmesi için sorgu yapıcısını kullan.&#13;&#10;"/>
+      <QueryBuilder Text="Sorgu Yapıcı..."/>
+      <Page3 Text="Parametre Tanımla"/>
+      <Page4 Text="Kolon Tanımla"/>
+      <Refresh Text="Kolonları Yenile"/>
+      <AddColumn Text="Hesaplanmış Kolon Ekle"/>
+      <AddParameter Text="Parametre Ekle"/>
+      <Delete Text="Sil"/>
+    </QueryWizard>
+    <RelationEditor Text="İlişki Düzenle">
+      <ParentTable Text="Ana Tablo:"/>
+      <ChildTable Text="Alt Tablo:"/>
+      <Parent Text="Ana"/>
+      <Child Text="Alt"/>
+      <Columns Text="Kolonlar:"/>
+      <Error Text="Ana ve alt tablo sütunlarının tutarsız sayısı"/>
+    </RelationEditor>
+    <ReportData Text="Rapor Verisi Seçin">
+      <Hint Text="Senin, raporda kullanmayı istediğin seçkin veri kaynakları ve alanlar:&#13;&#10;"/>
+      <Aliases Text="Takma İsimleri Göster"/>
+    </ReportData>
+    <ReportOptions Text="Rapor Ayarları">
+      <General Text="Genel"/>
+      <Description Text="Açıklama"/>
+      <Script Text="Komut Dizisi"/>
+      <Security Text="Güvenlik"/>
+      <Inheritance Text="Miras"/>
+      <Name Text="İsim:"/>
+      <Author Text="Yazan:"/>
+      <Version Text="Versiyon:"/>
+      <Description1 Text="Açıklama:"/>
+      <Picture Text="Resim:"/>
+      <SavePreviewPicture Text="Öngörünüm Resmini Kaydet"/>
+      <Load Text="Yükle..."/>
+      <Clear Text="Temizle"/>
+      <Created Text="Oluşturma:"/>
+      <Modified Text="Değiştirme:"/>
+      <Language Text="Komut Dizisi Dili:"/>
+      <Note Text="Not: Eğer sen, lisanı değiştirirsen, Komut Dizisindeki tüm metin temizlenecek!"/>
+      <RefAssemblies Text="Referans gösterilen derlemeler:"/>
+      <Add Text="Ekle..."/>
+      <Password Text="Şifre:"/>
+      <RetypePassword Text="Şifreyi Yenileyin:"/>
+      <Inherited Text="Bu rapor, üs raporundan alınır:"/>
+      <NotInherited Text="Bu rapor, miras alınmaz."/>
+      <Choose Text="Ayarları Seçin:"/>
+      <DontChange Text="Değiştirilemez"/>
+      <Detach Text="Üs Raporunu Ayır"/>
+      <Inherit Text="Raporu Miras Al:"/>
+      <Browse Text="Gözat..."/>
+      <DoublePass Text="Çift Geçiş"/>
+      <Compress Text="Rapor Dosyasını Sıkıştır"/>
+      <UseFileCache Text="Kullanım dosya belleği"/>
+      <ConvertNulls Text="Boş Değerli Çevir"/>
+      <TextQuality Text="Metin Kalitesi:"/>
+      <SmoothGraphics Text="Düzgün Grafikler"/>
+      <QualityDefault Text="Ön Değer"/>
+      <QualityRegular Text="Düz"/>
+      <QualityClearType Text="Temizle"/>
+      <QualityAntiAlias Text="AntiAlias"/>
+      <PasswordError Text="Şifreniz Uyuşmuyor, Lütfen tekran deneyiniz."/>
+      <Recipients Text="Alıcı(lar) (örneğin, john@url.com):"/>
+      <Subject Text="Konu:"/>
+      <Message Text="Mesaj:"/>
+    </ReportOptions>
+    <ReportPageOptions Text="Rapor Sayfası:">
+      <Units Text="Sayfa Birimleri"/>
+      <Millimeters Text="Milimetre"/>
+      <Centimeters Text="Santimetre"/>
+      <Inches Text="inç"/>
+      <HundrethsOfInch Text="inç yüzdeliği"/>
+      <Grid Text="Tablo"/>
+      <ShowGrid Text="Tabloyu Göster"/>
+      <SnapToGrid Text="Tabloyu Hizala"/>
+      <DottedGrid Text="Noktalı Tablo"/>
+      <Size Text="ölçü:"/>
+      <Markers Text="İşaret Objeleri"/>
+      <Rectangle Text="Dikdörtgen"/>
+      <Corners Text="Dirsekler"/>
+      <BandView Text="Band Görünümü"/>
+      <Structure Text="Yapı"/>
+      <Classic Text="Klasik"/>
+      <EditAfterInsert Text="Eklemeden sonra Düzelt"/>
+    </ReportPageOptions>
+    <RichTextEditor Text="Metin Kutusu Editörü">
+      <Open Text="Aç"/>
+      <Save Text="Kaydet"/>
+      <Subscript Text="Alt Simge"/>
+      <Superscript Text="Üst Simge"/>
+      <Bullets Text="Madde İmleri"/>
+      <Confirm Text="Metin Değişti. Değişiklikleri Kaydetmek İstiyor musunuz?"/>
+    </RichTextEditor>
+    <SearchReplace Text="Bul ve Değiştir">
+      <Find Text="Aranan:"/>
+      <Replace Text="Değiştir:"/>
+      <Options Text="Arama seçenekleri"/>
+      <MatchCase Text="Büyük/Küçük Harf Duyarlı"/>
+      <MatchWholeWord Text="Baştan Ara"/>
+      <FindNext Text="Sonrakini Bul"/>
+      <ReplaceBtn Text="Değiştir"/>
+      <ReplaceAll Text="Tümünü Değiştir"/>
+      <NotFound Text="Aranan Metin Bulunamadı."/>
+      <NoMoreFound Text="Daha hiçbir hadise, bulmadı."/>
+    </SearchReplace>
+    <SelectDataSource Text="Veri Kaynağı seç">
+      <Hint Text="Raporda kullanması için bir veya birkaç veri kaynağını seç.&#13;&#10;"/>
+      <AvailableDs Text="Kullanılabilir Veri Kaynakları:"/>
+      <SelectedDs Text="Seçilen Veri Kaynakları:"/>
+      <ProjectDs Text="Datasetleri Tasarla"/>
+      <OtherDs Text="Diğer veri Kaynakları"/>
+    </SelectDataSource>
+    <SelectLanguage Text="Lisan seç">
+      <SelectLanguage Text="Listeden seçilen lisan aşağıda:&#13;&#10;"/>
+      <Auto Text="Otomatik"/>
+      <Folder Text="Lisan Dosyalarının bulunduğu Klasör:"/>
+      <SelectFolder Text="Lisan dosyalarını içeren (* .frl) uzantılı dosyayı seç.&#13;&#10;"/>
+    </SelectLanguage>
+    <StandardReportWizard Text="Standart Rapor Sihirbazı">
+      <GroupsPage Text="Grup Oluştur"/>
+      <CreateGroups Text="Group Oluştur(Opsiyonel)"/>
+      <Groups Text="Gruplar:"/>
+      <LayoutPage Text="Düzenlemeyi Tanımla"/>
+      <DefineLayout Text="Kağıt yön ve veri düzenlemesini tanımla."/>
+      <Orientation Text="Kağıt Yönü:"/>
+      <Portrait Text="Dikey"/>
+      <Landscape Text="Yatay"/>
+      <Layout Text="Düzenleme"/>
+      <Tabular Text="Çizelge biçiminde&#13;&#10;"/>
+      <Columnar Text="Kolon biçiminde"/>
+      <StylePage Text="Biçim Seç"/>
+      <Styles Text="Rapor Biçimi Seç."/>
+    </StandardReportWizard>
+    <StringCollectionEditor Text="Metin Dizesi Düzenle"/>
+    <Style Text="Biçim Editörü">
+      <Styles Text="Biçimler"/>
+      <Add Text="Ekle"/>
+      <Delete Text="Sil"/>
+      <Edit Text="Düzenle"/>
+      <Load Text="Yükle..."/>
+      <Save Text="Kaydet..."/>
+      <Settings Text="Biçim Ayarı"/>
+      <Border Text="Kenarlık"/>
+      <Fill Text="Doldur"/>
+      <Font Text="Yazı Fontu"/>
+      <TextColor Text="Yazı Biçimi"/>
+      <StyleName Text="Biçim"/>
+    </Style>
+    <TextEditor Text="Metin Editörü">
+      <WordWrap Text="Sözcük Örtüsü Kullan"/>
+    </TextEditor>
+    <TotalEditor Text="Toplam Editörü">
+      <TotalName Text="Toplam ismi:"/>
+      <Total Text="Toplam"/>
+      <Function Text="Fonkisyon:"/>
+      <DataColumnOrExpression Text="Veri Kolonu İfadesi:"/>
+      <DataBand Text="Bandın her sırasında değerlendir:"/>
+      <EvaluateCondition Text="Değerlendir, eğer takip eden hal, karşılanırsa:"/>
+      <PrintOn Text="Bantta Yazdır:&#13;&#10;"/>
+      <Options Text="Ayarlar"/>
+      <ResetAfterPrint Text="Yazdıktan Sonra Sıfırla&#13;&#10;"/>
+      <ResetRepeated Text="Sıfırla, eğer bant, tekrarlanırsa&#13;&#10;"/>
+      <InvisibleRows Text="Görünmez satırları kapsa&#13;&#10;"/>
+      <Sum Text="Toplam"/>
+      <Min Text="Min"/>
+      <Max Text="Max"/>
+      <Avg Text="Ortalama"/>
+      <Count Text="KayıtSayısı"/>
+    </TotalEditor>
+    <UIOptions Text="Kullanıcı Arayüzü">
+      <Appearance Text="Görünüş:"/>
+      <AppearanceStyles Text="Visual Studio 2005,Office 2003,Office 2007 (blue),Office 2007 (silver),Office 2007 (black),Vista Glass"/>
+    </UIOptions>
+    <WatermarkEditor Text="Filigran">
+      <Enabled Text="Uygula"/>
+      <Text Text="Metin"/>
+      <TextItems Text="GİZLİ, KOPYA, ORJİNAL, NUMUNE,ACİL&#13;&#10;"/>
+      <Rotation Text="Dönme"/>
+      <Horizontal Text="Dikey"/>
+      <Vertical Text="Yatay"/>
+      <ForwardDiagonal Text="İleri Ok"/>
+      <BackwardDiagonal Text="Geri Ok"/>
+      <Font Text="Yazı Biçimi"/>
+      <Color Text="Yazı Rengi"/>
+      <Picture Text="Resim"/>
+      <Load Text="Yükle"/>
+      <Clear Text="Temizle"/>
+      <Size Text="Ölçü"/>
+      <Normal Text="Normal"/>
+      <Stretch Text="Sığdır"/>
+      <Zoom Text="Yakınlaştır"/>
+      <Tile Text="Döşe"/>
+      <Transparency Text="Şeffaflık"/>
+      <Zorder Text="Z-Emir"/>
+      <TextOnTop Text="Metin Üstte"/>
+      <PictureOnTop Text="Resim Üstte"/>
+      <ApplyToAll Text="Tüm Sayfala Uygula"/>
+    </WatermarkEditor>
+  </Forms>
+  <ConnectionEditors>
+    <Common>
+      <Server Text="Anamakine Adı"/>
+      <ServerLogon Text="Bağlan"/>
+      <UserName Text="Kullanıcı Adı:"/>
+      <Password Text="Şifre:"/>
+      <Database Text="Veritabani"/>
+      <DatabaseName Text="Veritabanı Adı:"/>
+      <DatabaseFile Text="Veritabanı Dosyası:"/>
+    </Common>
+    <MsSql>
+      <UseWindows Text="WindowsNT Tümleşik Güvenliğini Kullan"/>
+      <UseSql Text="SQL-Server Tümleşik Güvenliğini Kullan"/>
+      <SavePassword Text="Şifreyi Kaydet?"/>
+    </MsSql>
+    <OleDb>
+      <ConnectionString Text="Bağlantı:"/>
+      <Build Text="İnşaa..."/>
+    </OleDb>
+    <Xml>
+      <Xsd Text="Schema Dosyası:"/>
+      <Xml Text="Veri Dosyası:"/>
+    </Xml>
+  </ConnectionEditors>
+  <ComponentMenu>
+    <Component>
+      <Edit Text="Düzenle..."/>
+    </Component>
+    <ReportComponent>
+      <CanGrow Text="Otomatik Büyüklük"/>
+      <CanShrink Text="Sözcük Kaydır"/>
+      <GrowToBottom Text="Aşağı Doğru Büyüt"/>
+      <Hyperlink Text="Köprü..."/>
+    </ReportComponent>
+    <BreakableComponent>
+      <CanBreak Text="İfadelere İzin Ver"/>
+    </BreakableComponent>
+    <Band>
+      <StartNewPage Text="Yeni Sayfada Başla"/>
+      <PrintOnBottom Text="Sayfa Sonunu Birlikte Tut"/>
+    </Band>
+    <DataBand>
+      <KeepTogether Text="Bir arada tut"/>
+      <KeepDetail Text="Detayı Birlikte Tut"/>
+    </DataBand>
+    <HeaderBand>
+      <RepeatOnEveryPage Text="Yeni Sayfada Tekrarla"/>
+      <KeepWithData Text="Veriyi Birlikte Tut"/>
+    </HeaderBand>
+    <GroupHeaderBand>
+      <ResetPageNumber Text="Sayfa Numarası Yenile"/>
+    </GroupHeaderBand>
+    <ChildBand>
+      <FillUnusedSpace Text="Kullanılmamış boşluğu doldur"/>
+      <CompleteToNRows Text="N veri sıralarına kadar tamamla:"/>
+    </ChildBand>
+    <PictureObject>
+      <SizeMode Text="Biçimi boyutlandır"/>
+      <AutoSize Text="Otomatik Büyüklük"/>
+      <CenterImage Text="Ortala"/>
+      <Normal Text="Normal"/>
+      <StretchImage Text="Sıkıştır"/>
+      <Zoom Text="Yakınlaştır"/>
+    </PictureObject>
+    <TextObject>
+      <Format Text="Görüntü Biçimi..."/>
+      <Clear Text="Sil"/>
+      <AutoWidth Text="Otomatik Genişlik"/>
+      <WordWrap Text="Sözcük Kaydır"/>
+      <AllowExpressions Text="İfadelere İzin Ver"/>
+    </TextObject>
+    <SubreportObject>
+      <PrintOnParent Text="Birlikte Yazdır"/>
+    </SubreportObject>
+    <TableObject>
+      <RepeatHeaders Text="Başlıkları Yenile"/>
+    </TableObject>
+    <TableRow>
+      <InsertAbove Text="Satiri Yukarı Ekle"/>
+      <InsertBelow Text="Satışı Aşağıya Ekle"/>
+      <AutoSize Text="Otomatik Büyüklük"/>
+    </TableRow>
+    <TableColumn>
+      <InsertToLeft Text="Sola Ekle"/>
+      <InsertToRight Text="Sağa Ekle"/>
+    </TableColumn>
+    <TableCell>
+      <Join Text="Birleştir"/>
+      <Split Text="Ayraç"/>
+    </TableCell>
+    <MatrixObject>
+      <CellsSideBySide Text="Hücreler Karşı Karşıya"/>
+      <ShowTitle Text="Başlık Göster"/>
+      <Style Text="Biçim"/>
+    </MatrixObject>
+    <MatrixCell>
+      <Totals Text="Toplamlar"/>
+      <Function Text="Fonksiyon"/>
+    </MatrixCell>
+    <GridControl>
+      <EditColumns Text="Kolon Düzenle"/>
+    </GridControl>
+    <Barcode>
+      <BarcodeType Text="Barkod Tipi"/>
+      <AutoSize Text="Otomatik Boyutlandır"/>
+      <AutoEncode Text="Otomatik Encode"/>
+      <CalcChecksum Text="Sağlamasını Yap"/>
+      <ShowText Text="Rakamları Göster"/>
+    </Barcode>
+    <ZipCodeObject>
+      <ShowMarkers Text="İşaretleyicileri göster&#13;&#10;"/>
+      <ShowGrid Text="Tablo Göster"/>
+    </ZipCodeObject>
+  </ComponentMenu>
+  <ComponentsMisc>
+    <Table>
+      <CalcBounds Text="Sınırı hesaplamak..."/>
+    </Table>
+    <Matrix>
+      <FillData Text="Veri Dolduruluyor"/>
+      <NewColumn Text="Yeni bir sütunu yaratmak için veriyi burada sürükle"/>
+      <NewRow Text="Yeni bir sırayı yaratmak için veriyi burada sürükle"/>
+      <NewCell Text="Yeni bir hücreyi yaratmak için veriyi burada sürükle"/>
+      <Total Text="Toplam"/>
+      <Title Text="Başlık"/>
+      <White Text="Beyaz"/>
+      <Gray Text="Gri"/>
+      <Orange Text="Portakal"/>
+      <Green Text="Yeşil"/>
+      <GreenOrange Text="Yeşil Portakal"/>
+      <Blue Text="Mavi"/>
+      <BlueWhite Text="Mavi Beyaz"/>
+      <GrayOrange Text="Gri Portakal"/>
+      <BlueOrange Text="Mavi Portakal"/>
+      <OrangeWhite Text="Portakal Beyaz"/>
+    </Matrix>
+  </ComponentsMisc>
+  <Wizards>
+    <BlankReport Text="Boş Rapor"/>
+    <StandardReport Text="Standart Rapor Sihirbazı"/>
+    <InheritedReport Text="Miras"/>
+    <Label Text="Etiket Sihirbazı"/>
+    <NewDataSource Text="Yeni Veri Kaynağı"/>
+    <NewPage Text="Yeni Sayfa"/>
+    <NewDialog Text="Yeni Dialog Penceresi"/>
+  </Wizards>
+  <Export>
+    <Misc>
+      <Performance Text="Veri Verme {0} ms"/>
+      <OrderByCells Text="Hücreleri sırala"/>
+      <AnalyzeObjects Text="Obje Analizi"/>
+      <SavePage Text="Sayfa Kaydet"/>
+      <Wysiwyg Text="Wysiwyg"/>
+      <PageBreaks Text="Sayfaları Böl"/>
+      <OpenAfterExport Text="Oluşturduktan sonra aç"/>
+      <Pictures Text="Resimler"/>
+      <Options Text="Ayarlar"/>
+      <None Text="Yok"/>
+      <Metafile Text="Metafile"/>
+    </Misc>
+    <Image Text="Grafik olarak ver">
+      <File Text="Resim Dosyası..."/>
+      <ImageFormat Text="Biçim:"/>
+      <Resolution Text="Çözünürlük:"/>
+      <Quality Text="Jpeg Kalitesi"/>
+      <SeparateFiles Text="Her sayfa için ayrı dosya"/>
+      <Bmp Text="Bitmap Dosya"/>
+      <Png Text="PNG Grafik"/>
+      <Jpeg Text="JPG Grafik"/>
+      <Gif Text="GIF Grafik"/>
+      <Tiff Text="TIFF Grafik"/>
+      <Metafile Text="Windows metafile"/>
+    </Image>
+    <RichText Text="Metin Dosyası Ver">
+      <File Text="Metin Dosyası..."/>
+    </RichText>
+    <Text Text="Text/Matrix Yazıcı Verisi Ver">
+      <File Text="Metin Dosyası/Matrix Yazıcı"/>
+      <EmptyLines Text="Boş Çizgiler"/>
+      <DataOnly Text="Yalnızca Veri"/>
+      <Frames Text="Çerçeveler"/>
+      <FramesNone Text="Yok"/>
+      <FramesText Text="Metin"/>
+      <FramesGraphic Text="Grafik"/>
+      <Codepage Text="Kod Sayfası"/>
+      <Default Text="Ön Değer"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <ScaleX Text="X Ölçeği:"/>
+      <ScaleY Text="Y Ölçeği:"/>
+      <AutoScale Text="Otomatik Ölçeklendir"/>
+      <Printer Text="Yazıcı"/>
+      <CopiesCount Text="Kopya Sayısı"/>
+      <PrinterType Text="Yazıcı Tipi"/>
+      <Commands Text="Komutlar"/>
+      <PageWidth Text="Sayfa Genişliği:"/>
+      <PageHeight Text="Sayfa Yüksekliği:"/>
+      <DataLoss Text="Artış ölçeğinin olduğu mümkün veri kaybı lütfen, X Y'dir&#13;&#10;"/>
+      <ScaleMessage Text="Optimal ölçeğini hesapla&#13;&#10;"/>
+      <Scale Text="Ölçek"/>
+    </Text>
+    <Csv Text="CSV Verisi Ver">
+      <File Text="CSV dosya"/>
+      <Separator Text="Ayraç"/>
+      <Codepage Text="Kod Sayfası"/>
+      <Default Text="Ön Değer"/>
+      <Unicode Text="Unicode"/>
+      <OEM Text="OEM"/>
+      <DataOnly Text="Yalnızca Veri"/>
+    </Csv>
+    <Xml Text="XML verisi ver">
+      <File Text="XML (Excel) tablo..."/>
+    </Xml>
+    <Odt Text="Veri ver Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="Veri ver Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Pdf Text="Veri ver PDF">
+      <File Text="Adobe Acrobat"/>
+      <Export Text="Ver"/>
+      <Compressed Text="Sıkıştırılmış"/>
+      <EmbeddedFonts Text="Gömülen yazı tipleri"/>
+      <Background Text="Arka Plan"/>
+      <PrintOptimized Text="Optimize Yazdır"/>
+      <Information Text="İnformation"/>
+      <DocumentInformation Text="Döküman Bilgisi"/>
+      <Title Text="Başlık"/>
+      <Author Text="Yazar"/>
+      <Subject Text="Konu"/>
+      <Keywords Text="Anahtar Cümle"/>
+      <Creator Text="Oluşturan"/>
+      <Producer Text="Yapımcı"/>
+      <Security Text="Güvenlik"/>
+      <Authentification Text="Güvenlik Sorgulama"/>
+      <OwnerPassword Text="Sahip Şifresi"/>
+      <UserPassword Text="Kullanıcı Şifresi"/>
+      <Permissions Text="İzin"/>
+      <PrintTheDocument Text="Yazdır"/>
+      <ModifyTheDocument Text="Değiştir"/>
+      <CopyOfTextAndGraphics Text="Metin ve Grafikleri Kopyala"/>
+      <AddOrModifyTextAnnotations Text="Ekle, veya metin açıklayıcı notlarını değiştir&#13;&#10;"/>
+      <Viewer Text="Görüntüleyici"/>
+      <ViewerPreferences Text="Görüntüleyici Tercihleri"/>
+      <HideToolbar Text="Araç Kutusunu Gizle"/>
+      <HideMenubar Text="Menu Gizle"/>
+      <HideWindowUserInterface Text="Kullanıcı Arayüz Penceresini Gizle"/>
+      <FitWindow Text="Pencereye uydur"/>
+      <CenterWindow Text="Orta Pencere"/>
+      <PrintScaling Text="Yazıcıya ölçekle"/>
+      <PrintAfterOpenOfDocument Text="Daha sonra bas, dokümandan aç"/>
+      <Outline Text="Anahat"/>
+    </Pdf>
+    <Html Text="HTML Oluşturma">
+      <File Text="HTML Dosya"/>
+      <SinglePage Text="Tek Sayfa"/>
+      <SubFolder Text="AltKlasör"/>
+      <Navigator Text="Navigator"/>
+      <Total Text="Toplamlar"/>
+      <First Text="&lt;&lt;"/>
+      <Last Text="&gt;&gt;"/>
+      <Prev Text="&lt;"/>
+      <Next Text="&gt;"/>
+    </Html>
+    <Email Text="E-mail Gönder">
+      <Email Text="E-Mail"/>
+      <Account Text="Hesap"/>
+      <Address Text="Adres:"/>
+      <Subject Text="Konu:"/>
+      <Message Text="Mesaj:"/>
+      <Attachment Text="Eklenti:"/>
+      <Settings Text="Ayarlar..."/>
+      <Name Text="İsim:"/>
+      <Template Text="Şablon:"/>
+      <Host Text="Host:"/>
+      <Port Text="Port:"/>
+      <UserName Text="KullanıcıAdı:"/>
+      <Password Text="Şifre:"/>
+      <AddressError Text="Belirtilen Adrese Bağlanılamadı!"/>
+      <HostError Text="Belirtilen Hostinge bağlanılamadı!"/>
+      <SendingEmail Text="Gönderilen E-Mail - {0} Kb"/>
+    </Email>
+  </Export>
+  <Properties>
+    <Categories>
+      <Appearance Text="Dış Görünüş"/>
+      <Behavior Text="Davranış"/>
+      <Build Text="İnşa"/>
+      <Data Text="Veri"/>
+      <Design Text="Dizayn"/>
+      <Email Text="Email"/>
+      <Engine Text="Makine"/>
+      <Events Text="Geçmiş"/>
+      <Hierarchy Text="Hiyararşi"/>
+      <Layout Text="Yerleşim Planı"/>
+      <Misc Text="Diğer"/>
+      <Navigation Text="Navigasyon"/>
+      <Paper Text="Sayfa"/>
+      <Preview Text="Önizle"/>
+      <Print Text="Yazdır"/>
+      <Script Text="Komut Dizisi"/>
+    </Categories>
+  </Properties>
+</Language>

@@ -27,34 +27,22 @@ namespace FastReport
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="report"></param>
-        private void SerializeDesign(FRWriter writer, Report report)
-        {
-            
-        }
+        partial void SerializeDesign(FRWriter writer, Report report);
 
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void InitDesign()
-        {
-            
-        }
+        partial void InitDesign();
 
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void ClearDesign()
-        {
-            
-        }
+        partial void ClearDesign();
 
         /// <summary>
         /// Does nothing
         /// </summary>
-        private void DisposeDesign()
-        {
-            
-        }
+        partial void DisposeDesign();
 
         #endregion Private Methods
     }
