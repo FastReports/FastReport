@@ -26,26 +26,29 @@ namespace FastReport.Web.Controllers
                 return webReport.DesignerGetReport();
             });
 
-            RegisterHandler("/designer.saveReport", () =>
+            RegisterHandler("/designer.saveReport", async () =>
             {
                 if (!FindWebReport(out WebReport webReport))
                     return new NotFoundResult();
 
+                /*
                 if (webReport.DesignerSaveMethod == null)
                 {
                     // old saving way by self-request
                     return webReport.DesignerSaveReport(Context);
                 }
                 else
+                */
                 {
                     // save by using a Func
 
-                    string report = webReport.GetPOSTReport(Context);
+                    string vNewContent = await webReport.GetPOSTReport(Context);
                     string msg = string.Empty;
                     int code = 200;
                     try
                     {
-                        msg = webReport.DesignerSaveMethod(webReport.ID, webReport.ReportFileName, report);
+                        webReport.Report.LoadFromString(vNewContent);
+                        msg = webReport.DesignerSaveMethod(webReport.ID, webReport.ReportFileName, vNewContent);
                     }
                     catch(Exception ex)
                     {
@@ -122,7 +125,8 @@ namespace FastReport.Web.Controllers
 
         bool FindWebReport(out WebReport webReport)
         {
-            webReport = WebReportCache.Instance.Find(Request.Query["reportId"].ToString());
+            //webReport = WebReportCache.Instance.Find(Request.Query["reportId"].ToString());
+            webReport = WebReportCache.Instance.Find(new Guid(Request.Query["reportId"]));
             return webReport != null;
         }
 

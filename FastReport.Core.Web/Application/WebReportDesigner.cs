@@ -38,8 +38,10 @@ namespace FastReport.Web
         /// <summary>
         /// Gets or sets path to callback page after Save from Designer
         /// </summary>
+        /*
         [Obsolete("DesignerSaveCallBack is obsolete, please use DesignerSaveMethod instead.")]
         public string DesignerSaveCallBack { get; set; } = "";
+        */
 
         /// <summary>
         /// Callback method for saving an edited report by Online Designer
@@ -55,7 +57,7 @@ namespace FastReport.Web
         ///     return "OK";
         /// };
         /// </example>
-        public Func<string, string, string, string> DesignerSaveMethod { get; set; }
+        public Func<Guid, string, string, string> DesignerSaveMethod { get; set; }
 
         /// <summary>
         /// Report name without extension
@@ -114,6 +116,7 @@ namespace FastReport.Web
         /// <summary>
         /// Save report from designer
         /// </summary>
+        /*
         internal IActionResult DesignerSaveReport(HttpContext context)
         {
             var result = new ContentResult()
@@ -291,6 +294,7 @@ namespace FastReport.Web
 
             return result;
         }
+        */
 
         // send report to the designer
         internal IActionResult DesignerGetReport()
@@ -360,11 +364,11 @@ namespace FastReport.Web
         // preview for Designer
         internal async Task<IActionResult> DesignerMakePreview(HttpContext context)
         {
-            string receivedReportString = GetPOSTReport(context);
+            string receivedReportString = await GetPOSTReport(context);
 
             try
             {
-                var previewReport = new WebReport();
+                var previewReport = new WebReport(Guid.NewGuid());//ID);
                 //previewReport.ID = webReport.ID + "-preview";
                 previewReport.Report = Report;
                 //previewReport.Prop.Assign(webReport.Prop);
@@ -597,13 +601,17 @@ namespace FastReport.Web
         //    context.Response.Write(sb.ToString());
         //}
 
-        internal string GetPOSTReport(HttpContext context)
+        internal async Task<string> GetPOSTReport(HttpContext context)
         {
             string requestString = "";
             using (TextReader textReader = new StreamReader(context.Request.Body))
-                requestString = textReader.ReadToEndAsync().Result;
+                requestString = await textReader.ReadToEndAsync();//.Result;
 
-            string xmlHeader = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+            const string cnstXmlHeader = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+            var vRes = cnstXmlHeader + System.Web.HttpUtility.HtmlDecode(requestString);
+            return vRes;
+
+            /*
             StringBuilder result = new StringBuilder(xmlHeader.Length + requestString.Length + 100);
             result.Append(xmlHeader);
             result.Append(requestString.
@@ -619,6 +627,7 @@ namespace FastReport.Web
                     Replace("&amp;#xD;", "&#xD;").
                     Replace("&amp;#xA;", "&#xA;");
             return result.ToString();
+            */
         }
 
         string GetFitScript(string ID)

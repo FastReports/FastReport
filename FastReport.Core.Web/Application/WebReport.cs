@@ -28,13 +28,14 @@ namespace FastReport.Web
         }
 #endif
 
-#region Public Properties
+        #region Public Properties
 
         /// <summary>
         /// Unique ID of this instance.
         /// Automatically generates on creation.
         /// </summary>
-        public string ID { get; } = Guid.NewGuid().ToString("N");
+        //        public string _ID { get; } = Guid.NewGuid().ToString("N");
+        public Guid ID { get; }// = Guid.NewGuid();
 
         /// <summary>
         /// Adds "display: inline-*" to html container.
@@ -200,8 +201,17 @@ namespace FastReport.Web
 
 #endregion
 
-        public WebReport()
+        public static WebReport WebReportGet(Guid AId)
         {
+            WebReport vRes = WebReportCache.Instance.Find(AId);
+            if (vRes == null)
+                vRes = new WebReport(AId);
+            return vRes;
+        }
+
+        public WebReport(Guid AId)
+        {
+            ID = AId;// = Guid.NewGuid();
             string path = WebUtils.MapPath(LocalizationFile);
             Res.LoadLocale(path);
             WebReportCache.Instance.Add(this);

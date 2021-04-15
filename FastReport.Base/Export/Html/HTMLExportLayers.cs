@@ -118,9 +118,10 @@ namespace FastReport.Export.Html
             {
                 string onclick = null;
                 
-                if (!String.IsNullOrEmpty(ReportID))
-                {
-                    if (!String.IsNullOrEmpty(obj.ClickEvent) || obj.HasClickListeners())
+                //if (!String.IsNullOrEmpty(ReportID))
+                    if (ReportID != Guid.Empty)
+                    {
+                        if (!String.IsNullOrEmpty(obj.ClickEvent) || obj.HasClickListeners())
                     {
                         onclick = "click";
                     }

@@ -57,13 +57,13 @@ namespace FastReport.Web
             cache.Add(item);
         }
 
-        public bool Touch(string id)
+        public bool Touch(Guid id)
         {
             Clean();
             return Find(id) != null;
         }
 
-        public WebReport Find(string id)
+        public WebReport Find(Guid id)
         {
             Clean();
 

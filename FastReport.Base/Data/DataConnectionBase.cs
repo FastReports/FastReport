@@ -492,9 +492,15 @@ namespace FastReport.Data
                     return connection;
 
                 // create a new connection object
+                /*
                 connection = Activator.CreateInstance(connectionType) as DbConnection;
                 connection.ConnectionString = ConnectionString;
                 return connection;
+                */
+
+                _Connection = Activator.CreateInstance(connectionType) as DbConnection;
+                _Connection.ConnectionString = ConnectionString;
+                return _Connection;
             }
             return null;
         }
@@ -835,6 +841,14 @@ namespace FastReport.Data
             IsSqlBased = true;
             commandTimeout = 30;
             SetFlags(Flags.CanEdit, true);
+        }
+
+        public bool TableExists(string AName)
+        {
+            foreach (TableDataSource vTbl in Tables)
+                if (vTbl.Name == AName)
+                    return true;
+            return false;
         }
     }
 }

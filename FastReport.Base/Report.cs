@@ -1973,7 +1973,9 @@ namespace FastReport
             if (String.IsNullOrEmpty(s))
                 return;
 
-            int startIndex = s.IndexOf("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            const string cnstXMLHeader = "<?xml version=\"1.0\" encoding=\"utf-8\"";
+            //int startIndex = s.IndexOf("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            int startIndex = s.IndexOf(cnstXMLHeader, 0, StringComparison.OrdinalIgnoreCase);
             if (startIndex != -1)
             {
                 UTF8Encoding encoding = new UTF8Encoding();
@@ -2182,6 +2184,10 @@ namespace FastReport
         public void RegisterData(DataTable data, string name)
         {
             Dictionary.RegisterDataTable(data, name, false);
+        }
+        public void RegisterTable(DataTable ATable, string AName)
+        {
+            Dictionary.RegisterDataTable(ATable, AName, false);
         }
 
         /// <summary>

@@ -64,7 +64,7 @@ namespace FastReport.Web.Controllers
 
             RegisterHandler("/preview.touchReport", () =>
             {
-                var reportId = Request.Query["reportId"].ToString();
+                var reportId = new System.Guid(Request.Query["reportId"]);//Request.Query["reportId"].ToString();
                 WebReportCache.Instance.Touch(reportId);
                 return new OkResult();
             });
@@ -192,7 +192,8 @@ namespace FastReport.Web.Controllers
 
         bool FindWebReport(out WebReport webReport)
         {
-            webReport = WebReportCache.Instance.Find(Request.Query["reportId"].ToString());
+            //webReport = WebReportCache.Instance.Find(Request.Query["reportId"].ToString());
+            webReport = WebReportCache.Instance.Find(new System.Guid(Request.Query["reportId"]));
             return webReport != null;
         }
 
