@@ -81,7 +81,7 @@ namespace FastReport.Barcode
             return s;
         }
 
-        internal override void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)
+        internal override void Draw2DBarcode(IGraphics g, float kx, float ky)
         {
             Brush b = new SolidBrush(Color);
             Pen p = new Pen(Color, PenSizeFactor * ((kx + ky) / 2));
@@ -263,23 +263,22 @@ namespace FastReport.Barcode
             }
         }
 
+#if READONLY_STRUCTS
+        public readonly struct Hexagon
+#else
         public struct Hexagon
+#endif
         {
             const double INK_SPREAD = 1.25;
 
-            static double[] OFFSET_X = new double[] { 0.0, 0.86, 0.86, 0.0, -0.86, -0.86 };
-            static double[] OFFSET_Y = new double[] { 1.0, 0.5, -0.5, -1.0, -0.5, 0.5 };
+            static readonly double[] OFFSET_X = new double[] { 0.0, 0.86, 0.86, 0.0, -0.86, -0.86 };
+            static readonly double[] OFFSET_Y = new double[] { 1.0, 0.5, -0.5, -1.0, -0.5, 0.5 };
 
-            public double centreX;
-            public double centreY;
-            public double[] pointX;
-            public double[] pointY;
+            public readonly double[] pointX;
+            public readonly double[] pointY;
 
             public Hexagon(double centreX, double centreY)
             {
-                this.centreX = centreX;
-                this.centreY = centreY;
-
                 pointX = new double[6];
                 pointY = new double[6];
 
@@ -291,13 +290,17 @@ namespace FastReport.Barcode
             }
         }
 
+#if READONLY_STRUCTS
+        public readonly struct Ellipse
+#else
         public struct Ellipse
+#endif
         {
 #pragma warning disable FR0006 // Field name of struct must be longer than 2 characters.
-            public double x;
-            public double y;
-            public double w;
-            public double h;
+            public readonly double x;
+            public readonly double y;
+            public readonly double w;
+            public readonly double h;
 #pragma warning restore FR0006 // Field name of struct must be longer than 2 characters.
 
             public Ellipse(double x, double y, double w, double h)

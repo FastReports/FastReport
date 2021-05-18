@@ -335,8 +335,8 @@ namespace FastReport.Barcode
               (Width - Padding.Horizontal) * e.ScaleX,
               (Height - Padding.Vertical) * e.ScaleY);
 
-            Graphics g = e.Graphics;
-            GraphicsState state = g.Save();
+            IGraphics g = e.Graphics;
+            IGraphicsState state = g.Save();
             try
             {
                 Report report = Report;
@@ -349,7 +349,7 @@ namespace FastReport.Barcode
                     }
                     g.TextRenderingHint = report.GetTextQuality();
                 }
-                barcode.DrawBarcode(new ImageGraphicsRenderer(g, false), displayRect);
+                barcode.DrawBarcode(g, displayRect);
             }
             finally
             {
@@ -640,10 +640,14 @@ namespace FastReport.Barcode
 
     internal static class Barcodes
     {
+#if READONLY_STRUCTS
+        internal readonly struct BarcodeItem
+#else
         internal struct BarcodeItem
+#endif
         {
-            public Type objType;
-            public string barcodeName;
+            public readonly Type objType;
+            public readonly string barcodeName;
 
             public BarcodeItem(Type objType, string barcodeName)
             {

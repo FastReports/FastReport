@@ -6,7 +6,6 @@ using FastReport.Data.ConnectionEditors;
 using Npgsql;
 using NpgsqlTypes;
 using System.Data;
-using FastReport.Data.ConnectionEditors;
 
 namespace FastReport.Data
 {

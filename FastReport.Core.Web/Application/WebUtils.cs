@@ -122,6 +122,7 @@ namespace FastReport.Web
         #endregion
     }
 
+#if DESIGNER
     /// <summary>
     /// Event arguments for Save report from Designer
     /// </summary>
@@ -132,4 +133,5 @@ namespace FastReport.Web
         /// </summary>
         public Stream Stream;
     }
+#endif
 }

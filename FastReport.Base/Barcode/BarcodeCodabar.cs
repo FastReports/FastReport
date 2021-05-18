@@ -9,18 +9,23 @@ namespace FastReport.Barcode
   /// </summary>
   public class BarcodeCodabar : LinearBarcodeBase
   {
-    private struct Codabar
-    {
+#if READONLY_STRUCTS
+        private readonly struct Codabar
+#else
+        private struct Codabar
+#endif
+        {
 #pragma warning disable FR0006 // Field name of struct must be longer than 2 characters.
-      public string c;
+            public readonly string c;
 #pragma warning restore FR0006 // Field name of struct must be longer than 2 characters.
-      public string data;
-      public Codabar(string c, string data)
-      {
-        this.c = c;
-        this.data = data;
-      }
-    }
+            public readonly string data;
+
+            public Codabar(string c, string data)
+            {
+                this.c = c;
+                this.data = data;
+            }
+        }
 
     private static Codabar[] tabelle_cb = {
       new Codabar("1", "5050615"),

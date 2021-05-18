@@ -8,21 +8,25 @@ namespace FastReport.Barcode
   /// </summary>
   public class Barcode39 : LinearBarcodeBase
   {
-    private struct Code39
-    {
+#if READONLY_STRUCTS
+        private readonly struct Code39
+#else
+        private struct Code39
+#endif
+        {
 #pragma warning disable FR0006 // Field name of struct must be longer than 2 characters.
-      public string c;
+            public readonly string c;
 #pragma warning restore FR0006 // Field name of struct must be longer than 2 characters.
-      public string data;
-      public short chk;
+            public readonly string data;
+            public readonly short chk;
 
-      public Code39(string c, string data, short chk)
-      {
-        this.c = c;
-        this.data = data;
-        this.chk = chk;
-      }
-    }
+            public Code39(string c, string data, short chk)
+            {
+                this.c = c;
+                this.data = data;
+                this.chk = chk;
+            }
+        }
 
     private static Code39[] tabelle_39 = {
       new Code39("0", "505160605", 0),

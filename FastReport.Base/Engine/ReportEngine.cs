@@ -415,15 +415,7 @@ namespace FastReport.Engine
 
         internal bool Run(bool runDialogs, bool append, bool resetDataState, ReportPage page)
         {
-            date = SystemFake.DateTime.Now;
-            Report.SetOperation(ReportOperation.Running);
-            ResetDesigningFlag();
-
-            // don't reset the data state if we run the hyperlink's detail page or refresh a report.
-            // This is necessary to keep data filtering settings alive
-            if (resetDataState)
-                InitializeData();
-            Report.OnStartReport(EventArgs.Empty);
+            RunPhase1(resetDataState);
 
             try
             {
@@ -469,12 +461,16 @@ namespace FastReport.Engine
             return true;
         }
 
-        internal void RunPhase1()
+        internal void RunPhase1(bool resetDataState = true)
         {
             date = SystemFake.DateTime.Now;
             Report.SetOperation(ReportOperation.Running);
             ResetDesigningFlag();
-            InitializeData();
+
+            // don't reset the data state if we run the hyperlink's detail page or refresh a report.
+            // This is necessary to keep data filtering settings alive
+            if (resetDataState)
+                InitializeData();
             Report.OnStartReport(EventArgs.Empty);
         }
 

@@ -61,7 +61,7 @@ namespace FastReport.Gauge.Linear
 
         private void DrawHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleX, DashStyle.Solid);
 
             left = (float)(Parent.AbsLeft + 0.5f * Units.Centimeters + (Parent.Width - 1.0f * Units.Centimeters) * (Parent.Value - Parent.Minimum) / (Parent.Maximum - Parent.Minimum)) * e.ScaleX;
@@ -99,7 +99,7 @@ namespace FastReport.Gauge.Linear
 
         private void DrawVert(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleX, DashStyle.Solid);
 
             left = (Parent.AbsLeft + Parent.Width / 2) * e.ScaleX;

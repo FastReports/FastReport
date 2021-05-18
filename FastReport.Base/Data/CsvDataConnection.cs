@@ -476,6 +476,18 @@ namespace FastReport.Data
         {
             return value;
         }
+
+
+        /// <inheritdoc/>
+        public override string[] GetTableNames()
+        {
+            string[] result = new string[DataSet.Tables.Count];
+            for (int i = 0; i < DataSet.Tables.Count; i++)
+            {
+                result[i] = DataSet.Tables[i].TableName;
+            }
+            return result;
+        }
         #endregion Public Methods
     }
 }

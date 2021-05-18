@@ -8,7 +8,11 @@ namespace FastReport.Utils
     /// <summary>
     /// Represents a xml property.
     /// </summary>
+#if READONLY_STRUCTS
+    public readonly struct XmlProperty
+#else
     public struct XmlProperty
+#endif
     {
         private readonly string key;
         private readonly string value;

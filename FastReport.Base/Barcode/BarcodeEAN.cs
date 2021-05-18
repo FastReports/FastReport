@@ -73,7 +73,7 @@ namespace FastReport.Barcode
   /// </summary>
   public class BarcodeEAN8 : BarcodeEAN
   {
-    internal override void DrawText(IGraphicsRenderer g, string barData)
+    internal override void DrawText(IGraphics g, string barData)
     {
       // parts of pattern: 3 + 16 + 5 + 16 + 3
       float x1 = GetWidth(pattern.Substring(0, 3));
@@ -127,7 +127,7 @@ namespace FastReport.Barcode
       {"A", "B", "B", "A", "B", "A"}     // 9 
     };
 
-    internal override void DrawText(IGraphicsRenderer g, string barData)
+    internal override void DrawText(IGraphics g, string barData)
     {
       DrawString(g, -8, -2, barData.Substring(0, 1));
 

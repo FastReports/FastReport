@@ -42,6 +42,11 @@ Various report objects will allow your report to look exactly how you want it to
     <DefineConstants>$(DefineConstants);DEBUG;</DefineConstants>
   </PropertyGroup>
 
+  <!--readonly struct's feature-->
+  <PropertyGroup Condition="'$(MSBuildVersion)' >= '16'">
+    <DefineConstants>$(DefineConstants);READONLY_STRUCTS</DefineConstants>
+  </PropertyGroup>
+
   <!--Import version-info of referenced packages-->
   <Import Project="..\UsedPackages.version" />
   
@@ -77,7 +82,12 @@ Various report objects will allow your report to look exactly how you want it to
 
 
   <ItemGroup>
-    <None Include="..\PackageNet\frlogo-big.png">
+    <None Include="..\Pack\frlogo-big.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\Pack\$(MSBuildProjectName)\**\*.*">
+      <Visible>false</Visible>
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

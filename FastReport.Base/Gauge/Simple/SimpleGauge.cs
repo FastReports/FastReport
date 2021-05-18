@@ -46,7 +46,7 @@ namespace FastReport.Gauge.Simple
             Scale.Draw(e);
             Pointer.Draw(e);
             Border.Draw(e, new RectangleF(AbsLeft, AbsTop, Width, Height));
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
 
             if (Report != null && Report.SmoothGraphics)
             {

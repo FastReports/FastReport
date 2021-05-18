@@ -804,7 +804,7 @@ namespace FastReport
 
         #region Protected Methods
 
-        protected abstract void DrawImageInternal2(Graphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft);
+        protected abstract void DrawImageInternal2(IGraphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft);
 
         /// <summary>
         /// Reset index of image

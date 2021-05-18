@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.MsSql", "FastReport.Data.MsSql\FastReport.Data.MsSql.csproj", "{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.MySql", "FastReport.Data.MySql\FastReport.Data.MySql.csproj", "{2F557F54-6836-44D8-B279-2CEAD6834D74}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.SQLite", "FastReport.Data.SQLite\FastReport.Data.SQLite.csproj", "{163D31BF-E81B-4CF8-BC19-F41F3B77FE83}"
@@ -21,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Couchbase",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.RavenDB", "FastReport.Data.RavenDB\FastReport.Data.RavenDB.csproj", "{BB143926-05EB-4569-A474-EA21225EB6CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.ClickHouse", "FastReport.ClickHouse\FastReport.ClickHouse\FastReport.ClickHouse.csproj", "{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.ClickHouse", "FastReport.Data.ClickHouse\FastReport.Data.ClickHouse.csproj", "{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Data.Firebird", "FastReport.Data.Firebird\FastReport.Data.Firebird.csproj", "{86FE9F44-81B7-4032-ADAA-009762A4127A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00C4F5E9-E580-4D3A-9AD5-961AA8BEAC13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F557F54-6836-44D8-B279-2CEAD6834D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2F557F54-6836-44D8-B279-2CEAD6834D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F557F54-6836-44D8-B279-2CEAD6834D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95AA6CC1-39AA-41A6-90E5-D8931DD814DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86FE9F44-81B7-4032-ADAA-009762A4127A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86FE9F44-81B7-4032-ADAA-009762A4127A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86FE9F44-81B7-4032-ADAA-009762A4127A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86FE9F44-81B7-4032-ADAA-009762A4127A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

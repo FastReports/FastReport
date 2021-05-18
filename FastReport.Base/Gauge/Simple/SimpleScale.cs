@@ -70,7 +70,7 @@ namespace FastReport.Gauge.Simple
 
         private void DrawMajorTicksHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft, Parent.AbsTop, Parent.Width, Parent.Height), e.ScaleX, e.ScaleY);
             pointerHeightOffset = (Parent.Pointer as SimplePointer).Height / 2 + Parent.Pointer.BorderWidth * 2 * e.ScaleY;
@@ -91,7 +91,7 @@ namespace FastReport.Gauge.Simple
                     if (firstSubScale.ShowCaption)
                     {
                         SizeF strSize = g.MeasureString(text, Font);
-                        g.DrawString(text, font, brush, x - strSize.Width / 2 * e.ScaleX, y1 - 0.4f * Units.Centimeters * e.ScaleY);
+                        g.DrawString(text, font, brush, x - strSize.Width / 2 * e.ScaleX / (DrawUtils.ScreenDpi / 96f), y1 - 0.4f * Units.Centimeters * e.ScaleY);
                         text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                     }
                     x += step;
@@ -108,7 +108,7 @@ namespace FastReport.Gauge.Simple
                     {
                         SizeF strSize = g.MeasureString(text, Font);
 
-                        g.DrawString(text, font, brush, x - strSize.Width / 2 * e.ScaleX, y4 + 0.08f * Units.Centimeters * e.ScaleY);
+                        g.DrawString(text, font, brush, x - strSize.Width / 2 * e.ScaleX / (DrawUtils.ScreenDpi / 96f), y4 + 0.08f * Units.Centimeters * e.ScaleY);
                         text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                     }
                     x += step;
@@ -119,7 +119,7 @@ namespace FastReport.Gauge.Simple
 
         private void DrawMinorTicksHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MinorTicks.Color, MinorTicks.Width * e.ScaleX, DashStyle.Solid);
             pointerHeightOffset = (Parent.Pointer as SimplePointer).Height / 2 + Parent.Pointer.BorderWidth * 2 * e.ScaleY;
             float x = left;
@@ -157,7 +157,7 @@ namespace FastReport.Gauge.Simple
 
         private void DrawMajorTicksVert(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleY, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
     Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
@@ -179,7 +179,7 @@ namespace FastReport.Gauge.Simple
                     if (firstSubScale.ShowCaption)
                     {
                         SizeF strSize = g.MeasureString(text, Font);
-                        g.DrawString(text, font, brush, x1 - strSize.Width * e.ScaleX - 0.04f * Units.Centimeters * e.ScaleX, y - strSize.Height / 2 * e.ScaleY);
+                        g.DrawString(text, font, brush, x1 - strSize.Width * e.ScaleX / (DrawUtils.ScreenDpi / 96f) - 0.04f * Units.Centimeters * e.ScaleX, y - strSize.Height / 2 * e.ScaleY / (DrawUtils.ScreenDpi / 96f));
                         text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                     }
                     y -= step;
@@ -196,7 +196,7 @@ namespace FastReport.Gauge.Simple
                     {
                         SizeF strSize = g.MeasureString(text, Font);
 
-                        g.DrawString(text, font, brush, x4 + 0.04f * Units.Centimeters * e.ScaleX, y - strSize.Height / 2 * e.ScaleY);
+                        g.DrawString(text, font, brush, x4 + 0.04f * Units.Centimeters * e.ScaleX, y - strSize.Height / 2 * e.ScaleY / (DrawUtils.ScreenDpi / 96f));
                         text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                     }
                     y -= step;
@@ -207,7 +207,7 @@ namespace FastReport.Gauge.Simple
 
         private void DrawMinorTicksVert(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MinorTicks.Color, MinorTicks.Width * e.ScaleY, DashStyle.Solid);
             pointerWidthOffset = (Parent.Pointer as SimplePointer).Width / 2 + Parent.Pointer.BorderWidth * 2 * e.ScaleX;
             float y = top + height;

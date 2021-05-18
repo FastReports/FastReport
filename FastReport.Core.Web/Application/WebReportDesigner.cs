@@ -11,6 +11,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Buffers;
 
 namespace FastReport.Web
 {
@@ -466,9 +467,13 @@ namespace FastReport.Web
                     {
                         xml.Save(secondXmlStream);
                         secondXmlStream.Position = 0;
-                        byte[] buff = new byte[secondXmlStream.Length];
-                        secondXmlStream.Read(buff, 0, buff.Length);
-                        xmlString = Encoding.UTF8.GetString(buff);
+                        bool rent = secondXmlStream.Length > 1024;
+                        byte[] buff = rent ?
+                            ArrayPool<byte>.Shared.Rent((int)secondXmlStream.Length)
+                            : new byte[secondXmlStream.Length];
+                        secondXmlStream.Read(buff, 0, (int)secondXmlStream.Length);
+                        xmlString = Encoding.UTF8.GetString(buff, 0, (int)secondXmlStream.Length);
+                        if (rent) ArrayPool<byte>.Shared.Return(buff);
                     }
                 }
             }
@@ -534,9 +539,13 @@ namespace FastReport.Web
                 {
                     xml2.Save(secondXmlStream);
                     secondXmlStream.Position = 0;
-                    byte[] buff = new byte[secondXmlStream.Length];
-                    secondXmlStream.Read(buff, 0, buff.Length);
-                    xmlString = Encoding.UTF8.GetString(buff);
+                    bool rent = secondXmlStream.Length > 1024;
+                    byte[] buff = rent ?
+                        ArrayPool<byte>.Shared.Rent((int)secondXmlStream.Length)
+                        : new byte[secondXmlStream.Length];
+                    secondXmlStream.Read(buff, 0, (int)secondXmlStream.Length);
+                    xmlString = Encoding.UTF8.GetString(buff, 0, (int)secondXmlStream.Length);
+                    if (rent) ArrayPool<byte>.Shared.Return(buff);
                 }
                 xml1.Dispose();
                 xml2.Dispose();

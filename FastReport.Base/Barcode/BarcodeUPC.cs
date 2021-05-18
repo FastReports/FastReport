@@ -24,7 +24,7 @@ namespace FastReport.Barcode
       {"E", "o", "o", "E", "o", "E" }     // 9
     };
 
-    internal override void DrawText(IGraphicsRenderer g, string barData)
+    internal override void DrawText(IGraphics g, string barData)
     {
       DrawString(g, -8, -2, "0", true);
       
@@ -106,7 +106,7 @@ namespace FastReport.Barcode
   /// </summary>
   public class BarcodeUPC_A : BarcodeUPC_E0
   {
-    internal override void DrawText(IGraphicsRenderer g, string barData)
+    internal override void DrawText(IGraphics g, string barData)
     {
       DrawString(g, -8, -2, barData.Substring(0, 1), true);
 
@@ -171,7 +171,7 @@ namespace FastReport.Barcode
       return tmp + sum.ToString();
     }
 
-    internal override void DrawText(IGraphicsRenderer g, string barData)
+    internal override void DrawText(IGraphics g, string barData)
     {
       DrawString(g, 0, drawArea.Width, barData);
     }

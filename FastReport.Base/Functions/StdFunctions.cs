@@ -278,7 +278,11 @@ namespace FastReport.Functions
     /// <returns>A new string.</returns>
     public static string Substring(string s, int startIndex)
     {
-      return s == null ? "" : s.Substring(startIndex);
+        if (s != null && startIndex < s.Length)
+        {
+            return s.Substring(startIndex);
+        }
+        return "";
     }
 
     /// <summary>
@@ -291,7 +295,18 @@ namespace FastReport.Functions
     /// <returns>A new string.</returns>
     public static string Substring(string s, int startIndex, int length)
     {
-      return s == null ? "" : s.Substring(startIndex, length);
+        if (s != null && startIndex < s.Length)
+        {
+            if (startIndex + length < s.Length)
+            {
+                return s.Substring(startIndex, length);
+            }
+            else
+            {
+                return s.Substring(startIndex);
+            }
+        }
+        return "";
     }
 
     /// <summary>
@@ -1131,14 +1146,14 @@ namespace FastReport.Functions
 
         #endregion
 
-        #region Program Flow
-        /// <summary>
-        /// Selects and returns a value from a list of arguments.
-        /// </summary>
-        /// <param name="index">A value between 1 and the number of elements passed in the "choice" argument.</param>
-        /// <param name="choice">Object parameter array.</param>
-        /// <returns>One of the values in the "choice" argument.</returns>
-        public static object Choose(double index, params object[] choice)
+    #region Program Flow
+    /// <summary>
+    /// Selects and returns a value from a list of arguments.
+    /// </summary>
+    /// <param name="index">A value between 1 and the number of elements passed in the "choice" argument.</param>
+    /// <param name="choice">Object parameter array.</param>
+    /// <returns>One of the values in the "choice" argument.</returns>
+    public static object Choose(double index, params object[] choice)
     {
       int ind = (int)index - 1;
       if (ind < 0 || ind >= choice.Length)
@@ -1320,10 +1335,10 @@ namespace FastReport.Functions
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object) }), "Conversion,ToWords");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWords");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWords");
-            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object) }), "Conversion,ToWordsIn");
-            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object),typeof(string) }), "Conversion,ToWordsIn");
-            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object), typeof(string),typeof(string) }), "Conversion,ToWordsIn");
-            RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object) }), "Conversion,ToWordsDe");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object) }), "Conversion,ToWordsIn");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object),typeof(string) }), "Conversion,ToWordsIn");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object), typeof(string),typeof(string) }), "Conversion,ToWordsIn");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object) }), "Conversion,ToWordsDe");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsDe");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsDe", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsDe");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsEnGb", new Type[] { typeof(object) }), "Conversion,ToWordsEnGb");
@@ -1347,7 +1362,7 @@ namespace FastReport.Functions
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsSp", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsSp");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsSp", new Type[] { typeof(object) }), "Conversion,ToWordsSp");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsSp", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsSp");
-	  RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPersian", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsPersian");
+      RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPersian", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsPersian");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPersian", new Type[] { typeof(object) }), "Conversion,ToWordsPersian");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPersian", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsPersian");
       RegisteredObjects.AddFunction(myConv.GetMethod("ToLetters", new Type[] { typeof(object) }), "Conversion,ToLetters");
@@ -1359,8 +1374,8 @@ namespace FastReport.Functions
       RegisteredObjects.AddFunction(myConv.GetMethod("ToWordsPl", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWordsPl");
             #endregion
 
-            #region Program Flow
-            RegisteredObjects.AddFunctionCategory("ProgramFlow", "Functions,ProgramFlow");
+      #region Program Flow
+      RegisteredObjects.AddFunctionCategory("ProgramFlow", "Functions,ProgramFlow");
       Type misc = typeof(StdFunctions);
       RegisteredObjects.AddFunction(misc.GetMethod("Choose"), "ProgramFlow");
       RegisteredObjects.AddFunction(misc.GetMethod("IIf"), "ProgramFlow");

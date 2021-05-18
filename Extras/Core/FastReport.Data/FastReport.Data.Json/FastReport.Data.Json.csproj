@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net4;net45;net47</TargetFrameworks>
+        <TargetFrameworks>net4;net45</TargetFrameworks>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

@@ -1,5 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+
+        <Designer>true</Designer>
+
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Version>1.0.0</Version>
@@ -33,42 +36,20 @@ Various report objects will allow your report to look exactly how you want it to
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <None Remove="Resources\angle-double-left.svg" />
-        <None Remove="Resources\angle-double-right.svg" />
-        <None Remove="Resources\angle-left.svg" />
-        <None Remove="Resources\angle-right.svg" />
-        <None Remove="Resources\caret-down.svg" />
-        <None Remove="Resources\caret-right.svg" />
-        <None Remove="Resources\close.svg" />
-        <None Remove="Resources\file.svg" />
-        <None Remove="Resources\magnifier.svg" />
-        <None Remove="Resources\print.svg" />
-        <None Remove="Resources\reload.svg" />
-        <None Remove="Resources\save.svg" />
-        <None Remove="Resources\slash.svg" />
-        <None Remove="Resources\spinner.svg" />
+      <None Remove="Resources\*.svg" />
         <None Remove="Resources\split.min.js" />
-        <None Include="..\PackageNet\frlogo-big.png">
+        <None Include="..\Pack\frlogo-big.png">
           <Pack>True</Pack>
           <PackagePath></PackagePath>
         </None>
     </ItemGroup>
     <ItemGroup>
-        <EmbeddedResource Include="Resources\angle-double-left.svg" />
-        <EmbeddedResource Include="Resources\angle-double-right.svg" />
-        <EmbeddedResource Include="Resources\angle-left.svg" />
-        <EmbeddedResource Include="Resources\angle-right.svg" />
-        <EmbeddedResource Include="Resources\caret-down.svg" />
-        <EmbeddedResource Include="Resources\caret-right.svg" />
-        <EmbeddedResource Include="Resources\close.svg" />
-        <EmbeddedResource Include="Resources\file.svg" />
-        <EmbeddedResource Include="Resources\magnifier.svg" />
-        <EmbeddedResource Include="Resources\print.svg" />
-        <EmbeddedResource Include="Resources\reload.svg" />
-        <EmbeddedResource Include="Resources\save.svg" />
-        <EmbeddedResource Include="Resources\slash.svg" />
-        <EmbeddedResource Include="Resources\spinner.svg" />
-        <EmbeddedResource Include="Resources\split.min.js" />
+      <EmbeddedResource Include="Resources\*.svg">
+        <LogicalName>$(AssemblyName).Resources.%(Filename)%(Extension)</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\split.min.js">
+        <LogicalName>$(AssemblyName).Resources.%(Filename)%(Extension)</LogicalName>
+      </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
@@ -77,4 +58,7 @@ Various report objects will allow your report to look exactly how you want it to
   <ItemGroup>
     <Compile Remove="Application\Dialog\*.*" />
   </ItemGroup>
+  <PropertyGroup Condition="$(Designer)">
+    <DefineConstants>$(DefineConstants);DESIGNER</DefineConstants>
+  </PropertyGroup>
 </Project>

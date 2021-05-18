@@ -378,7 +378,7 @@ namespace FastReport.Barcode
             return result;
         }
 
-        internal override void DrawText(IGraphicsRenderer g, string data)
+        internal override void DrawText(IGraphics g, string data)
         {
             data = StripControlCodes(data);
             DrawString(g, 0, drawArea.Width, data.Insert(1, " ").Insert(4, " ").Insert(10, " ").Insert(16, " "));
@@ -405,7 +405,7 @@ namespace FastReport.Barcode
             DrawVerticalBearerBars = src.DrawVerticalBearerBars;
         }
 
-        public override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+        public override void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
             base.DrawBarcode(g, displayRect);
             float bearerWidth = WideBarRatio * 2 * zoom;

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FastReport.Web
 {
-    public static class Extensions
+    public static partial class Extensions
     {
         public static void FindClickedObject<T>(
                 this Report Report,

@@ -120,18 +120,17 @@ namespace FastReport.Web
             }
         }
 
+#if DIALOGS
         internal void Dialogs(HttpRequest request)
         {
-#if DIALOGS
             string dialogN = request.Query["dialog"];
             string controlName = request.Query["control"];
             string eventName = request.Query["event"];
             string data = request.Query["data"];
 
             Dialog.SetDialogs(dialogN, controlName, eventName, data);
+    }
 #endif
-        }
-
 
         internal StringBuilder ReportBody()
         {
@@ -258,16 +257,7 @@ namespace FastReport.Web
                         float.TryParse(@params[2], out var left) &&
                         float.TryParse(@params[3], out var top))
                     {
-                        Report.FindClickedObject<CheckBoxObject>(@params[0], pageN, left, top,
-                            (obj, reportPage, _pageN) =>
-                            {
-                                obj.Checked = !obj.Checked;
-
-                                if (Report.NeedRefresh)
-                                    Report.InteractiveRefresh();
-                                else
-                                    Report.PreparedPages.ModifyPage(_pageN, reportPage);
-                            });
+                        Report.FindClickedObject<CheckBoxObject>(@params[0], pageN, left, top, CheckboxClick);
                     }
                 }
                 return;
@@ -289,10 +279,7 @@ namespace FastReport.Web
                             {
                                 obj.Text = text;
 
-                                if (Report.NeedRefresh)
-                                    Report.InteractiveRefresh();
-                                else
-                                    Report.PreparedPages.ModifyPage(_pageN, reportPage);
+                                Refresh(_pageN, reportPage);
                             });
                     }
                 }
@@ -311,25 +298,7 @@ namespace FastReport.Web
             string @goto = request.Query["goto"].ToString();
             if (!@goto.IsNullOrWhiteSpace())
             {
-                switch (@goto)
-                {
-                    case "first":
-                        FirstPage();
-                        break;
-                    case "last":
-                        LastPage();
-                        break;
-                    case "prev":
-                        PrevPage();
-                        break;
-                    case "next":
-                        NextPage();
-                        break;
-                    default:
-                        if (int.TryParse(@goto, out int value))
-                            GotoPage(value - 1);
-                        break;
-                }
+                GoToPageNumber(@goto);
                 return;
             }
 
@@ -421,9 +390,40 @@ namespace FastReport.Web
             }
         }
 
-#endregion
+        #endregion
 
-#region Private Methods
+        #region Private Methods
+
+        private void Refresh(int pageN, ReportPage page)
+        {
+            if (Report.NeedRefresh)
+                Report.InteractiveRefresh();
+            else
+                Report.PreparedPages.ModifyPage(pageN, page);
+        }
+
+        private void GoToPageNumber(string @goto)
+        {
+            switch (@goto)
+            {
+                case "first":
+                    FirstPage();
+                    break;
+                case "last":
+                    LastPage();
+                    break;
+                case "prev":
+                    PrevPage();
+                    break;
+                case "next":
+                    NextPage();
+                    break;
+                default:
+                    if (int.TryParse(@goto, out int value))
+                        GotoPage(value - 1);
+                    break;
+            }
+        }
 
         private int PageNByBookmark(string bookmark)
         {
@@ -488,7 +488,7 @@ namespace FastReport.Web
                                                     textcell.Height);
                                                 if (rect.Contains(point))
                                                 {
-                                                    Click(textcell, pageN, page);
+                                                    Click(textcell, page, pageN);
                                                     found = true;
                                                     break;
                                                 }
@@ -506,7 +506,7 @@ namespace FastReport.Web
                                 //                                  c.PointInObject(point))
                                 //#endif
                                 {
-                                    Click(c, pageN, page);
+                                    Click(c, page, pageN);
                                     found = true;
                                     break;
                                 }
@@ -519,63 +519,71 @@ namespace FastReport.Web
             }
         }
 
-        private void Click(ReportComponentBase c, int pageN, ReportPage page)
+        private void Click(ReportComponentBase c, ReportPage page, int pageN)
         {
             c.OnClick(null);
-            if (Report.NeedRefresh)
-                Report.InteractiveRefresh();
-            else
-                Report.PreparedPages.ModifyPage(pageN, page);
+            Refresh(pageN, page);
+        }
+
+        private void CheckboxClick(CheckBoxObject checkBox, ReportPage page, int pageN)
+        {
+            checkBox.Checked = !checkBox.Checked;
+            Refresh(pageN, page);
         }
 
         private void DoDetailedReport(string objectName, string paramName, string paramValue)
         {
             if (!String.IsNullOrEmpty(objectName))
             {
-                Report tabReport = new Report();
                 ReportComponentBase obj = Report.FindObject(objectName) as ReportComponentBase;
-                if (obj != null && obj.Hyperlink.Kind == HyperlinkKind.DetailReport)
-                {
-                    string fileName = obj.Hyperlink.DetailReportName;
-                    if (File.Exists(fileName))
-                    {
-                        tabReport.Load(fileName);
+                DoDetailedReport(obj);
+            }
+        }
 
-                        Data.Parameter param = tabReport.Parameters.FindByName(paramName);
-                        if (param != null && param.ChildObjects.Count > 0)
+        private void DoDetailedReport(ReportComponentBase obj)
+        {
+            Report tabReport = new Report();
+            if (obj != null)
+            {
+                string fileName = obj.Hyperlink.DetailReportName;
+                if (File.Exists(fileName))
+                {
+                    tabReport.Load(fileName);
+                    string paramName = obj.Hyperlink.ReportParameter;
+                    string paramValue = obj.Hyperlink.Value;
+
+                    Data.Parameter param = tabReport.Parameters.FindByName(paramName);
+                    if (param != null && param.ChildObjects.Count > 0)
+                    {
+                        string[] paramValues = paramValue.Split(obj.Hyperlink.ValuesSeparator[0]);
+                        if (paramValues.Length > 0)
                         {
-                            string[] paramValues = paramValue.Split(obj.Hyperlink.ValuesSeparator[0]);
-                            if (paramValues.Length > 0)
+                            int i = 0;
+                            foreach (Data.Parameter childParam in param.ChildObjects)
                             {
-                                int i = 0;
-                                foreach (Data.Parameter childParam in param.ChildObjects)
-                                {
-                                    childParam.Value = paramValues[i++];
-                                    if (i >= paramValues.Length)
-                                        break;
-                                }
+                                childParam.Value = paramValues[i++];
+                                if (i >= paramValues.Length)
+                                    break;
                             }
                         }
-                        else
-                            tabReport.SetParameterValue(paramName, paramValue);
-                        Report.Dictionary.ReRegisterData(tabReport.Dictionary);
-
-                        tabReport.PreparePhase1();
-                        tabReport.PreparePhase2();
-
-                        Tabs.Add(new ReportTab()
-                        {
-                            Name = paramValue,
-                            Report = tabReport,
-                            ReportPrepared = true,
-                            Closeable = true,
-                            NeedParent = false
-                        });
-
-                        int prevTab = CurrentTabIndex;
-                        CurrentTabIndex = Tabs.Count - 1;
-                        //Prop.PreviousTab = prevTab;
                     }
+                    else
+                        tabReport.SetParameterValue(paramName, paramValue);
+                    Report.Dictionary.ReRegisterData(tabReport.Dictionary);
+
+                    tabReport.PreparePhase1();
+                    tabReport.PreparePhase2();
+
+                    Tabs.Add(new ReportTab()
+                    {
+                        Name = paramValue,
+                        Report = tabReport,
+                        ReportPrepared = true,
+                        Closeable = true,
+                        NeedParent = false
+                    });
+
+                    CurrentTabIndex = Tabs.Count - 1;
                 }
             }
         }
@@ -712,11 +720,15 @@ namespace FastReport.Web
 
             if (SinglePage)
             {
-                foreach (ReportPage page in Report.Pages)
+                foreach (PageBase page in Report.Pages)
                 {
                     // find maxWidth
-                    if (page.WidthInPixels > _pageWidth)
-                        _pageWidth = page.WidthInPixels;
+                    if (page is ReportPage)
+                    {
+                        var _page = page as ReportPage;
+                        if (_page.WidthInPixels > _pageWidth)
+                            _pageWidth = _page.WidthInPixels;
+                    }
                 }
             }
             else

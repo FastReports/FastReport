@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.Common;
 using FastReport.Data.ConnectionEditors;
+#if FRCORE
+using Microsoft.Data.Sqlite;
+#else
 using System.Data.SQLite;
+#endif
 
 namespace FastReport.Data
 {
@@ -11,7 +15,11 @@ namespace FastReport.Data
     {
         public override string GetConnectionId()
         {
-            SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder(ConnectionString);
+#if FRCORE
+            var builder = new SqliteConnectionStringBuilder(ConnectionString);
+#else
+            var builder = new SQLiteConnectionStringBuilder(ConnectionString);
+#endif
             string info = "";
             try
             {

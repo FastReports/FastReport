@@ -94,7 +94,7 @@ namespace FastReport
             string text = Text;
             if (!String.IsNullOrEmpty(text))
             {
-                Graphics g = e.Graphics;
+                IGraphics g = e.Graphics;
                 RectangleF textRect = new RectangleF(
                   (AbsLeft + Padding.Left) * e.ScaleX,
                   (AbsTop + Padding.Top) * e.ScaleY,

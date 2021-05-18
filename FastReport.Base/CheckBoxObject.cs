@@ -210,7 +210,7 @@ namespace FastReport
             float ratio = Width / (Units.Millimeters * 5);
             drawRect.Inflate(-4 * ratio * e.ScaleX, -4 * ratio * e.ScaleY);
             Pen pen = e.Cache.GetPen(CheckColor, 1.6f * ratio * CheckWidthRatio * e.ScaleX, DashStyle.Solid);
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             SmoothingMode saveSmoothing = g.SmoothingMode;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 

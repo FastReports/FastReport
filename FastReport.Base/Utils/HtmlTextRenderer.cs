@@ -6,11 +6,11 @@ using System.Text;
 
 namespace FastReport.Utils
 {
-    internal class HtmlTextRenderer : IDisposable
+    public class HtmlTextRenderer : IDisposable
     {
         #region Internal Fields
 
-        internal static readonly System.Globalization.CultureInfo CultureInfo = System.Globalization.CultureInfo.InvariantCulture;
+        public static readonly System.Globalization.CultureInfo CultureInfo = System.Globalization.CultureInfo.InvariantCulture;
 
         #endregion Internal Fields
 
@@ -26,7 +26,7 @@ namespace FastReport.Utils
         private float scale;
         private bool forceJustify;
         private StringFormat format;
-        private Graphics graphics;
+        private IGraphics graphics;
         private HorzAlign horzAlign;
         private ParagraphFormat paragraphFormat;
         private List<HtmlTextRenderer.Paragraph> paragraphs;
@@ -107,7 +107,7 @@ namespace FastReport.Utils
 
         #region Public Constructors
 
-        public HtmlTextRenderer(string text, Graphics g, string font, float size,
+        public HtmlTextRenderer(string text, IGraphics g, string font, float size,
                     FontStyle style, Color color, Color underlineColor, RectangleF rect, bool underlines,
                     StringFormat format, HorzAlign horzAlign, VertAlign vertAlign,
                     ParagraphFormat paragraphFormat, bool forceJustify, float scale, float fontScale, InlineImageCache cache, bool isPrinting = false)
@@ -153,7 +153,7 @@ namespace FastReport.Utils
             initalStyle = new StyleDescriptor(style, color, BaseLine.Normal, this.font, this.size * this.fontScale);
             using (Font f = initalStyle.GetFont())
             {
-                fontLineHeight = f.GetHeight(g);
+                fontLineHeight = f.GetHeight(g.Graphics);
             }
 
             this.forceJustify = forceJustify;
@@ -330,7 +330,7 @@ namespace FastReport.Utils
         internal void Draw()
         {
             // set clipping
-            GraphicsState state = graphics.Save();
+            IGraphicsState state = graphics.Save();
             //RectangleF rect = new RectangleF(FDisplayRect.Location, SizeF.Add(FDisplayRect.Size, new SizeF(width_dotnet, 0)));
             //FGraphics.SetClip(rect, CombineMode.Intersect);
             graphics.SetClip(displayRect, CombineMode.Intersect);
@@ -1027,7 +1027,7 @@ namespace FastReport.Utils
         /// <summary>
         /// Represents character placement.
         /// </summary>
-        internal enum BaseLine
+        public enum BaseLine
         {
             Normal,
             Subscript,
@@ -1058,15 +1058,19 @@ namespace FastReport.Utils
             #endregion Public Constructors
         }
 
+#if READONLY_STRUCTS
+        public readonly struct LineFColor
+#else
         public struct LineFColor
+#endif
         {
             #region Public Fields
 
-            public Color Color;
-            public float Left;
-            public float Right;
-            public float Top;
-            public float Width;
+            public readonly Color Color;
+            public readonly float Left;
+            public readonly float Right;
+            public readonly float Top;
+            public readonly float Width;
 
             #endregion Public Fields
 
@@ -1104,15 +1108,19 @@ namespace FastReport.Utils
             #endregion Public Constructors
         }
 
+#if READONLY_STRUCTS
+        public readonly struct RectangleFColor
+#else
         public struct RectangleFColor
+#endif
         {
             #region Public Fields
 
-            public Color Color;
-            public float Height;
-            public float Left;
-            public float Top;
-            public float Width;
+            public readonly Color Color;
+            public readonly float Height;
+            public readonly float Left;
+            public readonly float Top;
+            public readonly float Width;
 
             #endregion Public Fields
 
@@ -1841,7 +1849,7 @@ namespace FastReport.Utils
                 baseLine = Height;
                 using (Font ff = style.GetFont())
                 {
-                    float height = ff.GetHeight(Renderer.graphics);
+                    float height = ff.GetHeight(Renderer.graphics.Graphics);
                     float lineSpace = ff.FontFamily.GetLineSpacing(style.FontStyle);
                     float descent = ff.FontFamily.GetCellDescent(style.FontStyle);
                     base.descent = height * descent / lineSpace;
@@ -1877,7 +1885,7 @@ namespace FastReport.Utils
 
             #region Internal Methods
 
-            internal Bitmap GetBitmap(out float width, out float height)
+            public Bitmap GetBitmap(out float width, out float height)
             {
                 width = 1;
                 height = 1;
@@ -2006,7 +2014,7 @@ namespace FastReport.Utils
                             width = Renderer.graphics.MeasureString(this.text, ff, int.MaxValue, base.renderer.format).Width;
                         }
                     }
-                    height = ff.GetHeight(Renderer.graphics);
+                    height = ff.GetHeight(Renderer.graphics.Graphics);
                     float lineSpace = ff.FontFamily.GetLineSpacing(style.FontStyle);
                     float ascent = ff.FontFamily.GetCellAscent(style.FontStyle);
                     baseLine = height * ascent / lineSpace;
@@ -2071,6 +2079,13 @@ namespace FastReport.Utils
                     r = new RunText(renderer, word, style, list, left, charIndex);
                     if (r.Width > availableWidth)
                     {
+                        if(point == 1)
+                        {
+                            // Single char width is less than availableWidth
+                            // Give up splitting
+                            secondPart = null;
+                            return this;
+                        }
                         to = point;
                         point = (to + from) / 2;
                     }
@@ -2632,7 +2647,7 @@ namespace FastReport.Utils
         /// <summary>
         /// Represents a style used in HtmlTags mode. Color does not affect the equals function.
         /// </summary>
-        internal class StyleDescriptor
+        public class StyleDescriptor
         {
             #region Private Fields
 
@@ -2762,6 +2777,7 @@ namespace FastReport.Utils
 
             public void ToHtml(FastString sb, bool close)
             {
+                float fontsize = size / DrawUtils.ScreenDpiFX;
                 if (close)
                 {
                     sb.Append("</span>");
@@ -2794,7 +2810,7 @@ namespace FastReport.Utils
                     if (backgroundColor.A > 0) sb.Append(String.Format(CultureInfo, "background-color:rgba({0},{1},{2},{3});", backgroundColor.R, backgroundColor.G, backgroundColor.B, ((float)backgroundColor.A) / 255f));
                     if (color.A > 0) sb.Append(String.Format(CultureInfo, "color:rgba({0},{1},{2},{3});", color.R, color.G, color.B, ((float)color.A) / 255f));
                     if (font != null) { sb.Append("font-family:"); sb.Append(font); sb.Append(";"); }
-                    if (size > 0) { sb.Append("font-size:"); sb.Append(size.ToString(CultureInfo)); sb.Append("pt;"); }
+                    if (fontsize > 0) { sb.Append("font-size:"); sb.Append(fontsize.ToString(CultureInfo)); sb.Append("pt;"); }
                     sb.Append("\">");
                 }
             }

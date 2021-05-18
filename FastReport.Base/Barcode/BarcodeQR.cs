@@ -190,11 +190,9 @@ namespace FastReport.Barcode
             return new SizeF(matrix.Width * PixelSize, matrix.Height * PixelSize + textAdd);
         }
 
-        internal override void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)
+        internal override void Draw2DBarcode(IGraphics g, float kx, float ky)
         {
-            Brush light = Brushes.White;
             Brush dark = new SolidBrush(Color);
-            GraphicsPath path = new GraphicsPath();
 
             for (int y = 0; y < matrix.Height; y++)
             {
@@ -202,7 +200,7 @@ namespace FastReport.Barcode
                 {
                     if (matrix.get_Renamed(x, y) == 0)
                     {
-                        g.PathAddRectangle(path, new RectangleF(
+                        g.FillRectangle(dark, new RectangleF(
                         x * PixelSize * kx,
                         y * PixelSize * ky,
                         PixelSize * kx,
@@ -211,17 +209,12 @@ namespace FastReport.Barcode
                     }
                 }
             }
-            if (path.PointCount > 0)
+            if (text.StartsWith("SPC"))
             {
-                g.FillPath(dark, path);
-                if(text.StartsWith("SPC"))
-                {
-                    ErrorCorrection = QRCodeErrorCorrection.M;
-                }
+                ErrorCorrection = QRCodeErrorCorrection.M;
             }
 
             dark.Dispose();
-            path.Dispose();
         }
         #endregion
 

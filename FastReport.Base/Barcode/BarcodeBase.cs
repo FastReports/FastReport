@@ -86,7 +86,7 @@ namespace FastReport.Barcode
             return data;
         }
 
-        public virtual void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+        public virtual void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
         }
         #endregion

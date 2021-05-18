@@ -178,7 +178,7 @@ namespace FastReport
     internal void Draw(FRPaintEventArgs e, float x, float y, float x1, float y1, 
       bool reverseGaps, bool gap1, bool gap2)
     {
-      Graphics g = e.Graphics;
+      IGraphics g = e.Graphics;
 
       int penWidth = (int)Math.Round(Width * e.ScaleX);
       if (penWidth <= 0)
@@ -538,7 +538,7 @@ namespace FastReport
       {
         if (Lines != c.Lines)
           writer.WriteValue(prefix + ".Lines", Lines);
-        if (Lines != BorderLines.None)
+        if (Lines != BorderLines.None || Color != Color.Black)
         {
           if (LeftLine.Equals(RightLine) && LeftLine.Equals(TopLine) && LeftLine.Equals(BottomLine) &&
             c.LeftLine.Equals(c.RightLine) && c.LeftLine.Equals(c.TopLine) && c.LeftLine.Equals(c.BottomLine))
@@ -566,7 +566,7 @@ namespace FastReport
     /// </remarks>
     public void Draw(FRPaintEventArgs e, RectangleF rect)
     {
-      Graphics g = e.Graphics;
+      IGraphics g = e.Graphics;
       rect.X *= e.ScaleX;
       rect.Y *= e.ScaleY;
       rect.Width *= e.ScaleX;

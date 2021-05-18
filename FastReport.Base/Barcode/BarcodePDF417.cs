@@ -1518,7 +1518,7 @@ namespace FastReport.Barcode
       return new SizeF(bitColumns * PixelSize.Width, codeRows * PixelSize.Height + textAdd);
     }
     
-    internal override void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)
+    internal override void Draw2DBarcode(IGraphics g, float kx, float ky)
     {
       Brush light = Brushes.White;
       Brush dark = new SolidBrush(Color);

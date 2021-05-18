@@ -24,7 +24,10 @@ namespace FastReport.ClickHouse
             try
             {
                 OpenConnection(connection);
-                schema = connection.GetSchema(name, new string[] { connection.Database });
+                if(name == "Tables")
+                    schema = DescribeTables(connection, connection.Database);
+                else
+                    schema = connection.GetSchema(name, new string[] { connection.Database });
             }
             finally
             {
@@ -35,6 +38,22 @@ namespace FastReport.ClickHouse
                 list.Add(row["name"].ToString());
             }
         }
+
+        private static DataTable DescribeTables(DbConnection connection, string database)
+        {
+            var command = connection.CreateCommand();
+            var query = new StringBuilder("show tables in ");
+            query.Append(database);
+            command.CommandText = query.ToString();
+            DataTable result = new DataTable();
+            using (var adapter = new ClickHouseDataAdapter())
+            {
+                adapter.SelectCommand = command;
+                adapter.Fill(result);
+            }
+            return result;
+        }
+
         public override string QuoteIdentifier(string value, DbConnection connection)
         {
             return "\"" + value + "\"";

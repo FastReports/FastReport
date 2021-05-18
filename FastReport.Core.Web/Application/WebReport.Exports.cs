@@ -22,7 +22,7 @@ namespace FastReport.Web
         /// <summary>
         /// Switches a visibility of Word 2007 export in toolbar.
         /// </summary>
-        public bool ShowWord2007Export { get; set; } = false;
+        public bool ShowWord2007Export { get; set; } = true;
         /// <summary>
         /// Switches a visibility of PowerPoint 2007 export in toolbar.
         /// </summary>

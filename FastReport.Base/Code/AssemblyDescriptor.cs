@@ -451,7 +451,7 @@ namespace FastReport.Code
         /// <summary>
         /// Handle compile errors
         /// </summary>
-        /// <returns>Returns <"true"> if all errors were handled</returns>
+        /// <returns>Returns <b>true</b> if all errors were handled</returns>
         private bool HandleCompileErrors(CompilerParameters cp, CompilerResults cr, out string errors)
         {
             errors = string.Empty;
@@ -670,9 +670,9 @@ namespace FastReport.Code
 
         private class SourcePosition
         {
-            public string sourceObject;
-            public int start;
-            public int end;
+            public readonly string sourceObject;
+            public readonly int start;
+            public readonly int end;
 
             public SourcePosition(string obj, int start, int end)
             {

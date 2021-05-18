@@ -71,7 +71,7 @@ namespace FastReport.Gauge.Linear
         /// <inheritdoc/>
         public override void Draw(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             if (Report != null && Report.SmoothGraphics)
             {
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;

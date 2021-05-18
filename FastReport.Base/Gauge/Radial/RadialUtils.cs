@@ -12,8 +12,7 @@ namespace FastReport.Gauge.Radial
         }
         public static SizeF GetStringSize(FRPaintEventArgs e, GaugeObject gauge, Font font, string text)
         {
-            Graphics g = e.Graphics;
-            return g.MeasureString(text, GetFont(e, gauge, font));
+            return e.Graphics.MeasureString(text, GetFont(e, gauge, font));
         }
 
         public static PointF[] RotateVector(PointF[] vector, double angle, PointF center)

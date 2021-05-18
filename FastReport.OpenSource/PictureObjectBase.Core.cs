@@ -10,7 +10,7 @@ namespace FastReport
         /// </summary>
         /// <param name="g"></param>
         /// <param name="e"></param>
-        protected void DrawErrorImage(Graphics g, FRPaintEventArgs e)
+        protected void DrawErrorImage(IGraphics g, FRPaintEventArgs e)
         {
 
         }

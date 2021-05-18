@@ -59,7 +59,7 @@ namespace FastReport.Gauge.Simple.Progress
 
         internal override void DrawHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleX, DashStyle.Solid);
 
             Left = (Parent.AbsLeft + Parent.Border.Width / 2 + HorizontalOffset) * e.ScaleX;
@@ -86,7 +86,7 @@ namespace FastReport.Gauge.Simple.Progress
 
         internal override void DrawVert(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleY, DashStyle.Solid);
 
             Width = ((Parent.Width - Parent.Border.Width) * PointerRatio) * e.ScaleX;

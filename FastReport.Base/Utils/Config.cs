@@ -482,6 +482,31 @@ namespace FastReport.Utils
                 {
                 }
             }
+
+            // For CoreWin
+#if NETCOREAPP
+            LoadPluginsInCurrentFolder();
+#endif
+        }
+
+        private static void LoadPluginsInCurrentFolder()
+        {
+            // find all plugin-connector in current directory
+            var plugins = Directory.GetFiles(ApplicationFolder, "FastReport.Data.*.dll");
+
+            // initialize
+            foreach(var pluginName in plugins)
+            {
+                try
+                {
+                    ProcessAssembly(Assembly.LoadFrom(pluginName));
+                }
+                catch
+                {
+                }
+            }
+
+
         }
 
         private static void ProcessAssembly(Assembly a)

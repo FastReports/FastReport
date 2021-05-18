@@ -11,5 +11,10 @@
                     PreparedPages.AddSourcePage(page);
             }
         }
+
+        private void TranslateObjects(BandBase parentBand)
+        {
+	   // Avoid compilation errors
+        }
     }
 }

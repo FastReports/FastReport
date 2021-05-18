@@ -39,7 +39,9 @@ namespace FastReport.Web
             {
                 new ResourceController(),
                 new ReportController(),
+#if DESIGNER
                 new DesignerController(),
+#endif
             };
 
             foreach (var controller in controllers)

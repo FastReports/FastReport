@@ -13,10 +13,13 @@ namespace FastReport.Web
         #region Singletone
 
         public static readonly Resources Instance;
+        static readonly string AssemblyName;
 
         static Resources()
         {
             Instance = new Resources();
+
+            AssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
         }
 
         private Resources()
@@ -25,15 +28,15 @@ namespace FastReport.Web
 
         #endregion
 
-        ConcurrentDictionary<string, string> cache1 = new ConcurrentDictionary<string, string>();
-        ConcurrentDictionary<string, byte[]> cache2 = new ConcurrentDictionary<string, byte[]>();
+        readonly ConcurrentDictionary<string, string> cache1 = new ConcurrentDictionary<string, string>();
+        readonly ConcurrentDictionary<string, byte[]> cache2 = new ConcurrentDictionary<string, byte[]>();
 
         public async Task<string> GetContent(string name)
         {
             if (cache1.TryGetValue(name, out string value))
                 return value;
 
-            var fullname = $"{typeof(Resources).Namespace}.Resources.{name}";
+            var fullname = $"{AssemblyName}.Resources.{name}";
             var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(fullname);
             if (resourceStream == null)
                 return null;
@@ -51,7 +54,7 @@ namespace FastReport.Web
             if (cache1.TryGetValue(name, out string value))
                 return value;
 
-            var fullname = $"{typeof(Resources).Namespace}.Resources.{name}";
+            var fullname = $"{AssemblyName}.Resources.{name}";
             var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(fullname);
             if (resourceStream == null)
                 return null;
@@ -69,7 +72,7 @@ namespace FastReport.Web
             if (cache2.TryGetValue(name, out byte[] value))
                 return value;
 
-            var fullname = $"{typeof(Resources).Namespace}.Resources.{name}";
+            var fullname = $"{AssemblyName}.Resources.{name}";
             var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(fullname);
             if (resourceStream == null)
                 return null;

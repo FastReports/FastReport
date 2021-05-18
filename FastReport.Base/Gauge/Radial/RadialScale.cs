@@ -138,7 +138,7 @@ namespace FastReport.Gauge.Radial
         }
         private void DrawText(FRPaintEventArgs e, string text, Brush brush, float x, float y, HorAlign hAlign, VertAlign vAlign)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Font font = RadialUtils.GetFont(e, Parent, Font);
             SizeF strSize = RadialUtils.GetStringSize(e, Parent, Font, text);
             float dx = 0;
@@ -195,7 +195,7 @@ namespace FastReport.Gauge.Radial
             bool isLeftPart = false;
             PointF txtPoint;
 
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
     Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
@@ -505,7 +505,7 @@ namespace FastReport.Gauge.Radial
 
         private void DrawMinorTicks(FRPaintEventArgs e)
         { 
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MinorTicks.Color, MinorTicks.Width * e.ScaleX, DashStyle.Solid);
 
             MinorTicks.Length = width / 24;
