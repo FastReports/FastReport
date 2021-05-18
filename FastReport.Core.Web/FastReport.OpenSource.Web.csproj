@@ -36,7 +36,7 @@ Various report objects will allow your report to look exactly how you want it to
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <None Remove="Resources\*.svg" />
+      <None Remove="Resources\*.svg" />
         <None Remove="Resources\split.min.js" />
         <None Include="..\Pack\frlogo-big.png">
           <Pack>True</Pack>
@@ -44,8 +44,12 @@ Various report objects will allow your report to look exactly how you want it to
         </None>
     </ItemGroup>
     <ItemGroup>
-        <EmbeddedResource Include="Resources\*.svg" />
-        <EmbeddedResource Include="Resources\split.min.js" />
+      <EmbeddedResource Include="Resources\*.svg">
+        <LogicalName>$(AssemblyName).Resources.%(Filename)%(Extension)</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\split.min.js">
+        <LogicalName>$(AssemblyName).Resources.%(Filename)%(Extension)</LogicalName>
+      </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
