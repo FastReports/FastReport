@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.Firebird</Product>
+        <Description>Represents a connection to Firebird data for FastReport.Net.</Description>
+        <PackageId>FastReport.CoreWin.Data.Firebird</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, Firebird, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.Firebird</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    </PropertyGroup>
+    <PropertyGroup >
+        <DefineConstants>FRCORE;</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\FastReport.Core3\FastReport\FastReport.csproj">
+        <PrivateAssets>all</PrivateAssets>
+      </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="6.6.0" />
+    </ItemGroup>
+</Project>

@@ -25,23 +25,27 @@ namespace FastReport.Barcode
   public class Barcode128 : LinearBarcodeBase
   {
     #region Fields
-    private struct Code128
-    {
+#if READONLY_STRUCTS
+        private readonly struct Code128
+#else
+        private struct Code128
+#endif
+        {
 #pragma warning disable FR0006 // Field name of struct must be longer than 2 characters.
-      public string a;
-      public string b;
-      public string c;
+            public readonly string a;
+            public readonly string b;
+            public readonly string c;
 #pragma warning restore FR0006 // Field name of struct must be longer than 2 characters.
-      public string data;
+            public readonly string data;
       
-      public Code128(string a, string b, string c, string data)
-      {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.data = data;
-      }
-    }
+            public Code128(string a, string b, string c, string data)
+            {
+                this.a = a;
+                this.b = b;
+                this.c = c;
+                this.data = data;
+            }
+        }
 
     private static Code128[] tabelle_128 = {
       new Code128(" ", " ", "00", "212222"),

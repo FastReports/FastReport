@@ -10,7 +10,7 @@
     <Authors>Fast Reports Inc.</Authors>
     <Product>FastReport.Data.ClickHouse</Product>
     <Description>Represents a connection to ClickHouse database for FastReport .NET</Description>
-    <PackageId>FastReport.Core.Data.ClickHouse</PackageId>
+    <PackageId>FastReport.OpenSource.Data.ClickHouse</PackageId>
     <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
     <PackageTags>reporting, ClickHouse, connection, reports</PackageTags>
     <Version>1.0.0</Version>
@@ -21,13 +21,10 @@
 
   <ItemGroup>
     <PackageReference Include="ClickHouse.Client" Version="2.3.0.326" />
-    <!--<ProjectReference Include="..\ClickHouse.Client\ClickHouse.Client.csproj">
-      <PrivateAssets>all</PrivateAssets>
-    </ProjectReference>-->
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\FastReport.Core\FastReport.Core.csproj"/>
+    <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">

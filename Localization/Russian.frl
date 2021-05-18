@@ -288,7 +288,9 @@
     <HtmlFile Text="Файл HTML (*.html)|*.html"/>
     <MhtFile Text="Файл веб-архив (*.mht)|*.mht"/>
     <OdtFile Text="Текст OpenOffice Writer (*.odt)|*.odt"/>
+    <XodtFile Text="Документ МойОфис Текст (*.xodt)|*.xodt"/>
     <OdsFile Text="Таблица Open Office Calc (*.ods)|*.ods"/>
+    <XodsFile Text="Документ МойОфис Таблица (*.xods)|*.xods"/>
     <PdfFile Text="Файл Adobe Acrobat (*.pdf)|*.pdf"/>
     <TxtFile Text="Текстовый файл (*.txt)|*.txt"/>
     <CsvFile Text="Текстовый табличный файл  (*.csv)|*.csv"/>

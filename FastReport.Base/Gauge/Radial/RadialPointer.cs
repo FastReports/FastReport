@@ -44,7 +44,7 @@ namespace FastReport.Gauge.Radial
 
         private void DrawHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleX, DashStyle.Solid);
 
             PointF center = (Parent as RadialGauge).Center;

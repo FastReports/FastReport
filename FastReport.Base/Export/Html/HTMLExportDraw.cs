@@ -305,9 +305,7 @@ namespace FastReport.Export.Html
                             }
                             else
                             {
-                                PicsArchiveItem item;
-                                item.FileName = ImageFileName;
-                                item.Stream = PictureStream;
+                                PicsArchiveItem item = new PicsArchiveItem(ImageFileName, PictureStream);
                                 bool founded = false;
                                 for (int i = 0; i < picsArchive.Count; i++)
                                     if (item.FileName == picsArchive[i].FileName)

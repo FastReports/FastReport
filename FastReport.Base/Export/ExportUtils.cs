@@ -259,6 +259,8 @@ namespace FastReport.Export
                 {
                     Result.Append("&nbsp;");
                 }
+                else if (text[i] == '<' && textRenderType == TextRenderType.HtmlTags && crlf == CRLF.odt)
+                    i += text.IndexOf('>', i) - i;
                 else if (i < text.Length - 1 && text[i] == '\r' && text[i + 1] == '\n')
                 {
                     if (crlf == CRLF.xml)
@@ -341,7 +343,7 @@ namespace FastReport.Export
             return sb.ToString();
         }
 
-        internal static FastString HtmlString(string text, TextRenderType textRenderType)
+        public static FastString HtmlString(string text, TextRenderType textRenderType)
         {
             return HtmlString(text, textRenderType, CRLF.html, false);
         }

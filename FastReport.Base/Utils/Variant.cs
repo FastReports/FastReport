@@ -52,27 +52,32 @@ using System;
 
 namespace FastReport
 {
-  /// <summary>
-  /// A strongly typed object that readily casts an intrinsic
-  /// object to the other intrinsic types when possible.
-  /// </summary>
-  /// <remarks>
-  /// <para>The Variant class is an intrinsic object container structure
-  /// inspired by Visual Basic 6.0's Variant. The key features
-  /// of a Variant class include the ability to perform typecasts and
-  /// arithmetic between types that are not normally considered compatible.
-  /// For example, if a Variant class contains a string describing a
-  /// number, such as "1.1", then floating point arithmetic can be
-  /// performed on it.</para>
-  /// <para>Variants are normally considered dangerous because they
-  /// strip away the effectiveness of type safety, which is the
-  /// reason why the Visual Basic 6.0 Variant was left out of
-  /// Visual Basic .NET. However, this implementation restores the
-  /// Variant structure, both as a proof of concept and as a
-  /// restoration of the utility and positive merits of the Variant
-  /// where it can be used responsibly.</para>
-  /// </remarks>
-  public struct Variant : System.IConvertible, IComparable {
+    /// <summary>
+    /// A strongly typed object that readily casts an intrinsic
+    /// object to the other intrinsic types when possible.
+    /// </summary>
+    /// <remarks>
+    /// <para>The Variant class is an intrinsic object container structure
+    /// inspired by Visual Basic 6.0's Variant. The key features
+    /// of a Variant class include the ability to perform typecasts and
+    /// arithmetic between types that are not normally considered compatible.
+    /// For example, if a Variant class contains a string describing a
+    /// number, such as "1.1", then floating point arithmetic can be
+    /// performed on it.</para>
+    /// <para>Variants are normally considered dangerous because they
+    /// strip away the effectiveness of type safety, which is the
+    /// reason why the Visual Basic 6.0 Variant was left out of
+    /// Visual Basic .NET. However, this implementation restores the
+    /// Variant structure, both as a proof of concept and as a
+    /// restoration of the utility and positive merits of the Variant
+    /// where it can be used responsibly.</para>
+    /// </remarks>
+#if READONLY_STRUCTS
+    public readonly struct Variant
+#else
+    public struct Variant
+#endif
+    : IConvertible, IComparable {
     /// <summary>
     /// Creates a strongly typed object that readily casts a primitive
     /// object to the other primitive types when possible.
@@ -85,7 +90,7 @@ namespace FastReport
       else
         _value = value;
     }
-    private object _value;
+    private readonly object _value;
     /// <summary>
     /// The actual value being stored in its original <see cref="System.Type"/>,
     /// returned as an <see cref="Object"/>.

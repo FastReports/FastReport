@@ -32,19 +32,42 @@ namespace FastReport.Export.Html
 
         #region Private fields
 
+#if READONLY_STRUCTS
+        private readonly struct HTMLData
+#else
         private struct HTMLData
+#endif
         {
-            public int ReportPage;
-            public int PageNumber;
-            public int CurrentPage;
-            public ReportPage page;
-            public Stream PagesStream;
+            public readonly int ReportPage;
+            public readonly int PageNumber;
+            public readonly int CurrentPage;
+            public readonly ReportPage page;
+            public readonly Stream PagesStream;
+
+            public HTMLData(int reportPage, int pageNumber, int currentPage, ReportPage page, Stream pagesStream)
+            {
+                ReportPage = reportPage;
+                PageNumber = pageNumber;
+                CurrentPage = currentPage;
+                this.page = page;
+                PagesStream = pagesStream;
+            }
         }
 
+#if READONLY_STRUCTS
+        private readonly struct PicsArchiveItem
+#else
         private struct PicsArchiveItem
+#endif
         {
-            public string FileName;
-            public MemoryStream Stream;
+            public readonly string FileName;
+            public readonly MemoryStream Stream;
+
+            public PicsArchiveItem(string fileName, MemoryStream stream)
+            {
+                FileName = fileName;
+                Stream = stream;
+            }
         }
 
         /// <summary>
@@ -126,7 +149,7 @@ namespace FastReport.Export.Html
         private const string NBSP = "&nbsp;";
         private int currentPage = 0;
         private HTMLData d;
-        private Graphics htmlMeasureGraphics;
+        private IGraphics htmlMeasureGraphics;
         private float maxWidth, maxHeight;
         private FastString css;
         private FastString htmlPage;
@@ -745,30 +768,25 @@ namespace FastReport.Export.Html
             {
                 if (singlePage)
                 {
-                    d = new HTMLData();
-                    d.page = page;
-                    d.ReportPage = pagesCount;
-                    d.PageNumber = pagesCount;
+                    Stream stream;
                     if (navigator)
                     {
                         if (saveStreams)
-                        {
-                            d.PagesStream = new MemoryStream();
-                            ExportHTMLPageBegin(d);
-                        }
+                            stream = new MemoryStream();
                         else
-                        {
-                            d.PagesStream = new FileStream(singlePageFileName, FileMode.Append);
-                            ExportHTMLPageBegin(d);
-                        }
+                            stream = new FileStream(singlePageFileName, FileMode.Append);
+
+                        d = new HTMLData(pagesCount, pagesCount, 0, page, stream);
+                        ExportHTMLPageBegin(d);
                     }
                     else
                     {
                         if (format == HTMLExportFormat.HTML)
-                            d.PagesStream = Stream;
+                            stream = Stream;
                         else
-                            d.PagesStream = mimeStream;
+                            stream = mimeStream;
 
+                        d = new HTMLData(pagesCount, pagesCount, 0, page, stream);
                         ExportHTMLPageBegin(d);
                     }
                 }
@@ -822,11 +840,7 @@ namespace FastReport.Export.Html
         /// <param name="page"></param>
         public void ProcessPageBegin(int p, int ReportPage, ReportPage page)
         {
-            d.page = page;
-            d.ReportPage = ReportPage;
-            d.PageNumber = pagesCount;
-            d.PagesStream = null;
-            d.CurrentPage = p;
+            d = new HTMLData(ReportPage, pagesCount, p, page, null);
             ExportHTMLPageBegin(d);
         }
 

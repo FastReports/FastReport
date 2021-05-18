@@ -104,7 +104,7 @@ namespace FastReport.Gauge.Simple
 
         internal virtual void DrawHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleX, DashStyle.Solid);
 
             left = (Parent.AbsLeft + Parent.Border.Width / 2 + horizontalOffset) * e.ScaleX;
@@ -119,7 +119,7 @@ namespace FastReport.Gauge.Simple
 
         internal virtual void DrawVert(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleY, DashStyle.Solid);
 
             width = ((Parent.Width - Parent.Border.Width) * ptrRatio) * e.ScaleX;

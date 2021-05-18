@@ -133,7 +133,7 @@ namespace FastReport.Barcode
             modules[3] = modules[1] * 2;
         }
 
-        private void DoLines(string data, IGraphicsRenderer g, float zoom)
+        private void DoLines(string data, IGraphics g, float zoom)
         {
             using (Pen pen = new Pen(Color))
             {
@@ -420,9 +420,12 @@ namespace FastReport.Barcode
             {
                 float txtWidth = 0;
                 using (Bitmap bmp = new Bitmap(1, 1))
-                using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    txtWidth = g.MeasureString(text, FFont, 100000).Width;
+                    bmp.SetResolution(96, 96);
+                    using (Graphics g = Graphics.FromImage(bmp))
+                    {
+                        txtWidth = g.MeasureString(text, FFont, 100000).Width;
+                    }
                 }
 
                 if (barWidth < txtWidth)
@@ -443,7 +446,7 @@ namespace FastReport.Barcode
             return new SizeF(drawArea.Width * 1.25f, 0);
         }
 
-        public override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+        public override void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
             float originalWidth = CalcBounds().Width / 1.25f;
             float width = angle == 90 || angle == 270 ? displayRect.Height : displayRect.Width;
@@ -458,7 +461,7 @@ namespace FastReport.Barcode
             }
             drawArea.Height = height / zoom;
 
-            IGraphicsRendererState state = g.Save();
+            IGraphicsState state = g.Save();
             try
             {
                 // rotate
@@ -488,12 +491,12 @@ namespace FastReport.Barcode
             }
         }
 
-        internal void DrawString(IGraphicsRenderer g, float x1, float x2, string s)
+        internal void DrawString(IGraphics g, float x1, float x2, string s)
         {
             DrawString(g, x1, x2, s, false);
         }
 
-        internal void DrawString(IGraphicsRenderer g, float x1, float x2, string s, bool small)
+        internal void DrawString(IGraphics g, float x1, float x2, string s, bool small)
         {
             if (String.IsNullOrEmpty(s))
                 return;
@@ -514,7 +517,7 @@ namespace FastReport.Barcode
             }
         }
 
-        internal virtual void DrawText(IGraphicsRenderer g, string data)
+        internal virtual void DrawText(IGraphics g, string data)
         {
             data = StripControlCodes(data);
             DrawString(g, 0, drawArea.Width, data);

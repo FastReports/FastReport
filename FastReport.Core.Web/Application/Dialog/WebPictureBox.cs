@@ -20,12 +20,14 @@ namespace FastReport.Web
         private string GetPictureBoxURL(Image image)
         {
             int hash = image.GetHashCode();
-            MemoryStream picStream = new MemoryStream();
-            image.Save(picStream, image.RawFormat);
-            byte[] imageArray = new byte[picStream.Length];
-            picStream.Position = 0;
-            picStream.Read(imageArray, 0, (int)picStream.Length);
-            WebReport.PictureCache.Add(hash.ToString(), imageArray);
+            using (MemoryStream picStream = new MemoryStream())
+            {
+                image.Save(picStream, image.RawFormat);
+                byte[] imageArray = new byte[picStream.Length];
+                picStream.Position = 0;
+                picStream.Read(imageArray, 0, (int)picStream.Length);
+                WebReport.PictureCache.Add(hash.ToString(), imageArray);
+            }
 
             string url = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?");
             return $" background: url('{url}reportId={WebReport.ID}&pictureId={hash}') no-repeat !important;-webkit-print-color-adjust:exact;";

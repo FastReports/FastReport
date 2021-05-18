@@ -16,7 +16,11 @@ namespace Microsoft.AspNetCore.Builder
             FastReport.Utils.Config.WebMode = true;
 
             // TODO: find better way to share global objects
+#if BLAZOR
+            FastReportGlobal.HostingEnvironment = (IWebHostEnvironment)app.ApplicationServices.GetService(typeof(IWebHostEnvironment));
+#else
             FastReportGlobal.HostingEnvironment = (IHostingEnvironment)app.ApplicationServices.GetService(typeof(IHostingEnvironment));
+#endif
             FastReportGlobal.FastReportOptions = options;
 
             return app.UseMiddleware<FastReportMiddleware>();

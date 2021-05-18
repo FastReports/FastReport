@@ -21,13 +21,10 @@
 
   <ItemGroup>
     <PackageReference Include="ClickHouse.Client" Version="2.3.0.326" />
-    <!--<ProjectReference Include="..\ClickHouse.Client\ClickHouse.Client.csproj">
-      <PrivateAssets>all</PrivateAssets>
-    </ProjectReference>-->
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\FastReport\FastReport.csproj">
+    <ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
       <PrivateAssets>all</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

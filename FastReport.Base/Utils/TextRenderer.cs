@@ -49,7 +49,7 @@ namespace FastReport.Utils
         #region Fields
         private List<Paragraph> paragraphs;
         private string text;
-        private Graphics graphics;
+        private IGraphics graphics;
         private Font font;
         private Brush brush;
         private Pen outlinePen;
@@ -77,7 +77,7 @@ namespace FastReport.Utils
             get { return paragraphs; }
         }
 
-        public Graphics Graphics
+        public IGraphics Graphics
         {
             get { return graphics; }
         }
@@ -225,7 +225,7 @@ namespace FastReport.Utils
         const string ab = "abcdefabcdef";
         const string a40b = "abcdef                                        abcdef";
 
-        internal static float CalculateSpaceSize(Graphics g, Font f)
+        internal static float CalculateSpaceSize(IGraphics g, Font f)
         {
             float w_ab = g.MeasureString(ab, f).Width;
             float w_a40b = g.MeasureString(a40b, f).Width;
@@ -303,7 +303,7 @@ namespace FastReport.Utils
         public void Draw()
         {
             // set clipping
-            GraphicsState state = Graphics.Save();
+            IGraphicsState state = Graphics.Save();
             Graphics.SetClip(DisplayRect, CombineMode.Intersect);
 
             // reset alignment
@@ -393,7 +393,7 @@ namespace FastReport.Utils
         }
         #endregion
 
-        public AdvancedTextRenderer(string text, Graphics g, Font font, Brush brush, Pen outlinePen,
+        public AdvancedTextRenderer(string text, IGraphics g, Font font, Brush brush, Pen outlinePen,
           RectangleF rect, StringFormat format, HorzAlign horzAlign, VertAlign vertAlign,
           float lineHeight, int angle, float widthRatio,
           bool forceJustify, bool wysiwyg, bool htmlTags, bool pdfMode,
@@ -413,11 +413,11 @@ namespace FastReport.Utils
             this.horzAlign = horzAlign;
             this.vertAlign = vertAlign;
             this.lineHeight = lineHeight;
-            fontLineHeight = font.GetHeight(g);
+            fontLineHeight = font.GetHeight(g.Graphics);
             if (this.lineHeight == 0)
             {
                 this.lineHeight = fontLineHeight;
-                if (isPrinting && Config.IsRunningOnMono && DrawUtils.GetMonoRendering(g) == MonoRendering.Pango)
+                if (isPrinting && Config.IsRunningOnMono && DrawUtils.GetMonoRendering(g.Graphics) == MonoRendering.Pango)
                 {
                     // we need this in order to fix inconsistent line spacing when print using Pango rendering
                     this.lineHeight = fontLineHeight * 1.33f;
@@ -1792,7 +1792,7 @@ namespace FastReport.Utils
                         if (style.Font == null && style.Size <= 0)
                             lineHeight = Renderer.LineHeight;
                         else
-                            lineHeight = GetFont().GetHeight(Renderer.Graphics);
+                            lineHeight = GetFont().GetHeight(Renderer.Graphics.Graphics);
                     }
                     return lineHeight;
                 }
@@ -1839,7 +1839,7 @@ namespace FastReport.Utils
                         if (style.Font == null && style.Size <= 0)
                             fontLineHeight = Renderer.FontLineHeight;
                         else
-                            fontLineHeight = GetFont().GetHeight(Renderer.Graphics);
+                            fontLineHeight = GetFont().GetHeight(Renderer.Graphics.Graphics);
                     }
                     return fontLineHeight;
                 }
@@ -2012,7 +2012,7 @@ namespace FastReport.Utils
 
                 destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-                using (Graphics graphics = Graphics.FromImage(destImage))
+                using (Graphics graphics = System.Drawing.Graphics.FromImage(destImage))
                 {
                     graphics.CompositingMode = CompositingMode.SourceCopy;
                     graphics.CompositingQuality = CompositingQuality.HighQuality;
@@ -2048,10 +2048,10 @@ namespace FastReport.Utils
     /// </summary>
     internal class StandardTextRenderer
     {
-        public static void Draw(string text, Graphics g, Font font, Brush brush, Pen outlinePen,
+        public static void Draw(string text, IGraphics g, Font font, Brush brush, Pen outlinePen,
           RectangleF rect, StringFormat format, int angle, float widthRatio)
         {
-            GraphicsState state = g.Save();
+            IGraphicsState state = g.Save();
             g.SetClip(rect, CombineMode.Intersect);
             g.TranslateTransform(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2);
             g.RotateTransform(angle);

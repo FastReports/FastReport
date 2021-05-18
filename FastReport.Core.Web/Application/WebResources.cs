@@ -8,17 +8,15 @@ namespace FastReport.Web.Application
 {
     internal class WebRes
     {
+        //private XmlItem root;
         private string category;
-        private bool localeLoaded = false;
-        private string badResult = "NOT LOCALIZED!";
+        private const string badResult = "NOT LOCALIZED!";
         private XmlDocument locale;
-        private XmlDocument builtinLocale;
+
+        private readonly XmlDocument builtinLocale;
 
         public void LoadLocale(string fileName)
         {
-            if (!localeLoaded)
-                LoadBuiltinLocale();
-
             if (File.Exists(fileName))
             {
                 locale = new XmlDocument();
@@ -28,14 +26,17 @@ namespace FastReport.Web.Application
                 locale = builtinLocale;
         }
 
+        public void LoadLocale(Stream stream)
+        {
+            locale = new XmlDocument();
+            locale.Load(stream);
+        }
+
         public string Get(string id)
         {
             if (!String.IsNullOrEmpty(category))
             {
-                if (id != "")
-                    return InternalGet(category + "," + id);
-                else
-                    return InternalGet(category);
+                return InternalGet(category + "," + id);
             }
             else
                 return InternalGet(id);
@@ -43,13 +44,16 @@ namespace FastReport.Web.Application
 
         private string InternalGet(string id)
         {
-            if (!localeLoaded)
-                LoadBuiltinLocale();
-
             string result = Get(id, locale);
             // if no item found, try built-in (english) locale
-            if (result.IndexOf(badResult) != -1 && locale != builtinLocale)
-                result = Get(id, builtinLocale);
+            if (string.IsNullOrEmpty(result))
+            {
+                if (locale != builtinLocale)
+                    result = Get(id, builtinLocale);
+
+                if (string.IsNullOrEmpty(result))
+                    result = id + " " + badResult;
+            }
             return result;
         }
 
@@ -61,13 +65,10 @@ namespace FastReport.Web.Application
             {
                 int i = xi.Find(category);
                 if (i == -1)
-                    return id + " " + badResult;
+                    return null;
                 xi = xi[i];
             }
-            string result = xi.GetProp("Text");
-            if (result == "")
-                result = id + " " + badResult;
-            return result;
+            return xi.GetProp("Text");
         }
 
 
@@ -76,7 +77,7 @@ namespace FastReport.Web.Application
             category = Section;
         }
 
-        private void LoadBuiltinLocale()
+        public WebRes(string Section = "")
         {
             locale = new XmlDocument();
             builtinLocale = locale;
@@ -84,17 +85,8 @@ namespace FastReport.Web.Application
             {
                 locale.Load(stream);
             }
-            localeLoaded = true;
-        }
 
-        public WebRes(string Section)
-        {
             category = Section;
-        }
-
-        public WebRes()
-        {
-            category = "";
         }
     }
 }

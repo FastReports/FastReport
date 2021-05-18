@@ -241,7 +241,7 @@ namespace FastReport
         private bool aborted;
         private bool modified;
         private Bitmap measureBitmap;
-        private Graphics measureGraphics;
+        private IGraphics measureGraphics;
         private bool storeInResources;
         private PermissionSet scriptRestrictions;
         private ReportOperation operation;
@@ -867,7 +867,7 @@ namespace FastReport
             get { return codeHelper; }
         }
 
-        internal Graphics MeasureGraphics
+        public IGraphics MeasureGraphics
         {
             get
             {
@@ -875,9 +875,9 @@ namespace FastReport
                 {
 #if NETSTANDARD2_0 || NETSTANDARD2_1 || MONO
                     measureBitmap = new Bitmap(1, 1);
-                    measureGraphics = Graphics.FromImage(measureBitmap);
+                    measureGraphics = new GdiGraphics(measureBitmap);
 #else
-                    measureGraphics = Graphics.FromHwnd(IntPtr.Zero);
+                    measureGraphics = new GdiGraphics(Graphics.FromHwnd(IntPtr.Zero), false);
 #endif
                 }
                 return measureGraphics;
@@ -1425,7 +1425,7 @@ namespace FastReport
 
             // expression not found. Probably it was added after the start of the report.
             // Compile new assembly containing this expression.
-            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
+            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, CodeHelper.EmptyScript());
             assemblies.Add(descriptor);
             descriptor.AddObjects();
             descriptor.AddSingleExpression(expression);

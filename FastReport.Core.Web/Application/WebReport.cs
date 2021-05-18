@@ -14,10 +14,14 @@ namespace FastReport.Web
     public enum WebReportMode
     {
         Preview,
+#if DESIGNER
         Designer,
-        Dialog
+#endif
+#if DIALOGS
+        Dialog,
+#endif
     }
-    
+
     public partial class WebReport
     {
         private string localizationFile;
@@ -172,7 +176,12 @@ namespace FastReport.Web
 
         #endregion
         public float Zoom { get; set; } = 1.0f;
-        public bool Debug { get; set; } = false;
+        public bool Debug { get; set; }
+#if DEBUG
+            = true;
+#else
+            = false;
+#endif
         internal bool Canceled { get; set; } = false;
 
         /// <summary>
@@ -193,7 +202,7 @@ namespace FastReport.Web
         /// <summary>
         /// Toolbar height in pixels
         /// </summary>
-        private int ToolbarHeight { get; set; } = 40;
+        public int ToolbarHeight { get; set; } = 40;
 
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
         int currentTabIndex;
@@ -245,11 +254,15 @@ namespace FastReport.Web
         {
             switch (Mode)
             {
-                case WebReportMode.Preview:
+#if DIALOGS
                 case WebReportMode.Dialog:
+#endif
+                case WebReportMode.Preview:
                     return new HtmlString(template_render(renderBody));
+#if DESIGNER
                 case WebReportMode.Designer:
                     return RenderDesigner();
+#endif
                 default:
                     throw new Exception($"Unknown mode: {Mode}");
             }

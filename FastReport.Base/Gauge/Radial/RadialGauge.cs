@@ -252,7 +252,7 @@ namespace FastReport.Gauge.Radial
         /// <inheritdoc/>
         public override void Draw(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
 
             float x = (AbsLeft + Border.Width / 2) * e.ScaleX;
             float y = (AbsTop + Border.Width / 2) * e.ScaleY;

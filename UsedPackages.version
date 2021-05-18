@@ -3,9 +3,9 @@
 <!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
     <PropertyGroup>
 
-        <FRCompatVersion>2021.1.1</FRCompatVersion>
+        <FRCompatVersion>2021.2.0</FRCompatVersion>
 
-        <FRDataVisualizationVersion>2021.1.0</FRDataVisualizationVersion>
+        <FRDataVisualizationVersion>2021.2.0</FRDataVisualizationVersion>
 		
         <!-- Not available in Core3 -->
         <SystemDrawingCommonVersion>[4.6.1,)</SystemDrawingCommonVersion>
@@ -24,13 +24,13 @@
 <!-- This group sets version used packages in Demos -->
 	<PropertyGroup>
         
-		<FRCoreVersion>2021.1.20</FRCoreVersion>
+		<FRCoreVersion>2021.2.5</FRCoreVersion>
 		
-		<FRCoreWebVersion>2021.1.20</FRCoreWebVersion>
+		<FRCoreWebVersion>2021.2.5</FRCoreWebVersion>
 		
-		<FROSVersion>2021.1.20</FROSVersion>
+		<FROSVersion>2021.2.0</FROSVersion>
 		
-		<FROSWebVersion>2021.1.20</FROSWebVersion>
+		<FROSWebVersion>2021.2.0</FROSWebVersion>
 		
     </PropertyGroup>
 

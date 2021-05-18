@@ -319,8 +319,8 @@ namespace FastReport.Export.Html
                 default:
                     if (obj.VertAlign != VertAlign.Top)
                     {
-                        Graphics g = htmlMeasureGraphics;
-                        using (Font f = new Font(obj.Font.Name, obj.Font.Size, obj.Font.Style))
+                        IGraphics g = htmlMeasureGraphics;
+                        using (Font f = new Font(obj.Font.Name, obj.Font.Size * DrawUtils.ScreenDpiFX, obj.Font.Style))
                         {
                             RectangleF textRect = new RectangleF(obj.AbsLeft, obj.AbsTop, obj.Width, obj.Height);
                             StringFormat format = obj.GetStringFormat(Report.GraphicCache, 0);

@@ -12,7 +12,7 @@ namespace FastReport.Web
             get;
         }
 
-        private int CurrentForm {
+        internal int CurrentForm {
             get;
             set;
         }
@@ -24,7 +24,7 @@ namespace FastReport.Web
         }
 
 
-        private void CheckDialogs()
+        internal void CheckDialogs()
         {
             Report report = this.WebReport.Report;
             while (CurrentForm < report.Pages.Count && !(report.Pages[CurrentForm] is DialogPage && report.Pages[CurrentForm].Visible == true))

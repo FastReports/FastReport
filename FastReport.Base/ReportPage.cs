@@ -888,9 +888,9 @@ namespace FastReport
         writer.WriteStr("ExportAlias", ExportAlias);
       if (Landscape != c.Landscape)
         writer.WriteBool("Landscape", Landscape);
-      if (FloatDiff(PaperWidth, c.PaperWidth))
+      if (FloatDiff(PaperWidth, c.PaperWidth) || Landscape != c.Landscape)
         writer.WriteFloat("PaperWidth", PaperWidth);
-      if (FloatDiff(PaperHeight, c.PaperHeight))
+      if (FloatDiff(PaperHeight, c.PaperHeight) || Landscape != c.Landscape)
         writer.WriteFloat("PaperHeight", PaperHeight);
       if (RawPaperSize != c.RawPaperSize)
         writer.WriteInt("RawPaperSize", RawPaperSize);
@@ -949,7 +949,7 @@ namespace FastReport
       if (IsDesigning)
         return;
       
-      Graphics g = e.Graphics;
+      IGraphics g = e.Graphics;
       RectangleF pageRect = new RectangleF(0, 0,
         WidthInPixels - 1 / e.ScaleX, HeightInPixels - 1 / e.ScaleY);
       RectangleF printableRect = new RectangleF(

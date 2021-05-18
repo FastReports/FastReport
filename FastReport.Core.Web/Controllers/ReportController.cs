@@ -35,18 +35,21 @@ namespace FastReport.Web.Controllers
                 if (!FindWebReport(out WebReport webReport))
                     return new NotFoundResult();
 
+#if DIALOGS
                 webReport.Dialogs(Request);
 
                 if (webReport.Canceled)
                     return new OkResult();
 
-                if (webReport.Mode != WebReportMode.Dialog)
+                if (webReport.Mode == WebReportMode.Dialog)
                 {
-                    if (!webReport.ReportPrepared && Request.Query["skipPrepare"].ToString() != "yes")
-                        webReport.Report.Prepare();
+                    webReport.Report.PreparePhase1();
                 }
                 else
-                    webReport.Report.PreparePhase1();
+#endif
+                if (!webReport.ReportPrepared && Request.Query["skipPrepare"].ToString() != "yes")
+                        webReport.Report.Prepare();
+
 
                 webReport.SetReportTab(Request);
                 webReport.SetReportPage(Request);
@@ -94,7 +97,7 @@ namespace FastReport.Web.Controllers
                 {
                     case "html":
                         return webReport.PrintHtml();
-#if  !OPENSOURCE
+#if !OPENSOURCE
                     case "pdf":
                         return webReport.PrintPdf();
 #endif
@@ -133,6 +136,7 @@ namespace FastReport.Web.Controllers
                 }
             });
 
+#if DIALOGS
             RegisterHandler("/dialog", () =>
             {
                 if (!FindWebReport(out WebReport webReport))
@@ -142,6 +146,7 @@ namespace FastReport.Web.Controllers
 
                 return new OkResult();
             });
+#endif
 
             RegisterHandler("/preview.textEditForm", () =>
             {
@@ -202,7 +207,7 @@ namespace FastReport.Web.Controllers
 
             switch (exportFormat)
             {
-#if  !OPENSOURCE
+#if !OPENSOURCE
                  case "pdf":
                     export = new PDFExport();
                     break;

@@ -8,7 +8,11 @@ using System.Windows.Forms;
 using FastReport.Data.ConnectionEditors;
 using FastReport.Forms;
 using FastReport.Utils;
+#if FRCORE
+using Microsoft.Data.Sqlite;
+#else
 using System.Data.SQLite;
+#endif
 
 namespace FastReport.Data
 {
@@ -20,7 +24,11 @@ namespace FastReport.Data
         {
             using (AdvancedConnectionPropertiesForm form = new AdvancedConnectionPropertiesForm())
             {
-                SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder(ConnectionString);
+#if FRCORE
+                var builder = new SqliteConnectionStringBuilder(ConnectionString);
+#else
+                var builder = new SQLiteConnectionStringBuilder(ConnectionString);
+#endif
                 form.AdvancedProperties = builder;
                 if (form.ShowDialog() == DialogResult.OK)
                     ConnectionString = form.AdvancedProperties.ToString();
@@ -41,8 +49,11 @@ namespace FastReport.Data
 
         protected override string GetConnectionString()
         {
-            SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder(FConnectionString);
-
+#if FRCORE
+            var builder = new SqliteConnectionStringBuilder(FConnectionString);
+#else
+            var builder = new SQLiteConnectionStringBuilder(FConnectionString);
+#endif
             builder.DataSource = tbDataSource.Text;
 
             return builder.ToString();
@@ -51,7 +62,11 @@ namespace FastReport.Data
         protected override void SetConnectionString(string value)
         {
             FConnectionString = value;
-            SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder(value);
+#if FRCORE
+            var builder = new SqliteConnectionStringBuilder(value);
+#else
+            var builder = new SQLiteConnectionStringBuilder(value);
+#endif
 
             tbDataSource.Text = builder.DataSource;
         }

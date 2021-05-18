@@ -141,7 +141,7 @@ namespace FastReport
     #region Private Methods
     private void DrawSegmentGrid(FRPaintEventArgs e, float offsetX, float offsetY)
     {
-      Graphics g = e.Graphics;
+      IGraphics g = e.Graphics;
       SmoothingMode saveSmoothing = g.SmoothingMode;
       g.SmoothingMode = SmoothingMode.AntiAlias;
 
@@ -176,7 +176,7 @@ namespace FastReport
 
     private void DrawReferenceLine(FRPaintEventArgs e, float offsetX)
     {
-      Graphics g = e.Graphics;
+      IGraphics g = e.Graphics;
       Brush b = e.Cache.GetBrush(Border.Color);
 
       g.FillRectangle(b,
@@ -194,7 +194,7 @@ namespace FastReport
 
     private void DrawSegment(FRPaintEventArgs e, int symbol, float offsetX)
     {
-      Graphics g = e.Graphics;
+      IGraphics g = e.Graphics;
       float offsetY = 0;
 
       // draw marker

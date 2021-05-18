@@ -130,7 +130,7 @@ namespace FastReport
       if (Math.Abs(Width) < 1 || Math.Abs(Height) < 1)
         return;
 
-      Graphics g = e.Graphics;
+      IGraphics g = e.Graphics;
       float x = (AbsLeft + Border.Width / 2) * e.ScaleX;
       float y = (AbsTop + Border.Width / 2) * e.ScaleY;
       float dx = (Width - Border.Width) * e.ScaleX - 1;

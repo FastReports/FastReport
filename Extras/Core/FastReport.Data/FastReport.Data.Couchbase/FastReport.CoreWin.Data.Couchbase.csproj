@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.Couchbase</Product>
+        <Description>Represents a connection to Couchbase server for FastReport.Net.</Description>
+        <PackageId>FastReport.CoreWin.Data.Couchbase</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, Couchbase, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.Couchbase</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes></PackageReleaseNotes>
+    </PropertyGroup>
+    <PropertyGroup>
+        <DefineConstants>FRCORE;</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\FastReport.Core3\FastReport\FastReport.csproj">
+        <PrivateAssets>all</PrivateAssets>
+      </ProjectReference>
+      <ProjectReference Include="..\FastReport.Data.Json\FastReport.CoreWin.Data.Json.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="CouchbaseNetClient" Version="2.7.15" />
+    </ItemGroup>
+</Project>

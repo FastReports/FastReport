@@ -21,6 +21,7 @@ namespace FastReport.Engine
                 {
                     band.GetData();
                 }
+                TranslateObjects(band);
                 RenderInnerSubreports(band);
                 band.CalcHeight();
             }

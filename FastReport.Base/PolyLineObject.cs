@@ -173,7 +173,7 @@ namespace FastReport
             {
                 case 0:
                 case 1:
-                    Graphics g = e.Graphics;
+                    IGraphics g = e.Graphics;
                     float x = AbsLeft + CenterX;
                     float y = AbsTop + CenterY;
                     if(pointsCollection.Count == 1)
@@ -504,7 +504,7 @@ namespace FastReport
 
         internal void DoDrawPoly(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Report report = Report;
             if (report != null && report.SmoothGraphics)
             {

@@ -985,7 +985,7 @@ namespace FastReport.Barcode
             return data;
     }
 
-    internal override void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)
+    internal override void Draw2DBarcode(IGraphics g, float kx, float ky)
     {
       if (image == null)
         return;

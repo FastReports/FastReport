@@ -1,4 +1,5 @@
-﻿using FastReport.Dialog;
+﻿using System;
+using FastReport.Dialog;
 using static FastReport.Web.Constants;
 
 namespace FastReport.Web
@@ -7,9 +8,12 @@ namespace FastReport.Web
     {
         private void CheckBoxClick(CheckBoxControl cb, string data)
         {
+            bool oldValue = cb.Checked;
             cb.Checked = data == "true";
             cb.FilterData();
             cb.OnClick(null);
+            if (oldValue != cb.Checked)
+                cb.OnCheckedChanged(EventArgs.Empty);
         }
 
         private string GetCheckBoxHtml(CheckBoxControl control)

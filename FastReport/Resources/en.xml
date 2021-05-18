@@ -291,7 +291,9 @@
     <HtmlFile Text="HTML file (*.html)|*.html"/>
     <MhtFile Text="Web-archive file (*.mht)|*.mht"/>
     <OdtFile Text="Open Office Writer file (*.odt)|*.odt"/>
+    <XodtFile Text="My Office Text file (*.xodt)|*.xodt"/>
     <OdsFile Text="Open Office Calc file (*.ods)|*.ods"/>
+    <XodsFile Text="My Office Table file (*.xods)|*.xods"/>
     <PdfFile Text="Adobe Acrobat file (*.pdf)|*.pdf"/>
     <TxtFile Text="Text file (*.txt)|*.txt"/>
     <CsvFile Text="Comma Separated Values (*.csv)|*.csv"/>

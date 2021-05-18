@@ -154,318 +154,318 @@ internal static class Config {}
 
             const string stubClassesVBNet = @"
 Namespace System
-    Friend Module Activator
-    End Module
+    Friend Class Activator
+    End Class
 
-    Friend Module AppContext
-    End Module
+    Friend Class AppContext
+    End Class
 
-    Friend Module AppDomain
-    End Module
+    Friend Class AppDomain
+    End Class
 
-    Friend Module Environment
-    End Module
+    Friend Class Environment
+    End Class
 End Namespace
 
 Namespace System.IO
-    Friend Module Directory
-    End Module
+    Friend Class Directory
+    End Class
 
-    Friend Module DirectoryInfo
-    End Module
+    Friend Class DirectoryInfo
+    End Class
 
-    Friend Module DriveInfo
-    End Module
+    Friend Class DriveInfo
+    End Class
 
-    Friend Module File
-    End Module
+    Friend Class File
+    End Class
 
-    Friend Module FileInfo
-    End Module
+    Friend Class FileInfo
+    End Class
 
-    Friend Module FileStream
-    End Module
+    Friend Class FileStream
+    End Class
 
-    Friend Module FileSystemInfo
-    End Module
+    Friend Class FileSystemInfo
+    End Class
 
-    Friend Module Path
-    End Module
+    Friend Class Path
+    End Class
 End Namespace
 
 Namespace System.Diagnostics
-    Friend Module FileVersionInfo
-    End Module
+    Friend Class FileVersionInfo
+    End Class
 
-    Friend Module Process
-    End Module
+    Friend Class Process
+    End Class
 
-    Friend Module ProcessModule
-    End Module
+    Friend Class ProcessClass
+    End Class
 
-    Friend Module ProcessStartInfo
-    End Module
+    Friend Class ProcessStartInfo
+    End Class
 
-    Friend Module ProcessThread
-    End Module
+    Friend Class ProcessThread
+    End Class
 
-    Friend Module ProcessThreadCollection
-    End Module
+    Friend Class ProcessThreadCollection
+    End Class
 
-    Friend Module StackFrame
-    End Module
+    Friend Class StackFrame
+    End Class
 End Namespace
 
 Namespace System.Reflection
-    Friend Module Assembly
-    End Module
+    Friend Class Assembly
+    End Class
 
-    Friend Module AssemblyExtensions
-    End Module
+    Friend Class AssemblyExtensions
+    End Class
 
-    Friend Module Binder
-    End Module
+    Friend Class Binder
+    End Class
 
-    Friend Module ConstructorInfo
-    End Module
+    Friend Class ConstructorInfo
+    End Class
 
-    Friend Module EventInfo
-    End Module
+    Friend Class EventInfo
+    End Class
 
-    Friend Module FieldInfo
-    End Module
+    Friend Class FieldInfo
+    End Class
 
-    Friend Module LocalVariableInfo
-    End Module
+    Friend Class LocalVariableInfo
+    End Class
 
-    Friend Module MemberInfo
-    End Module
+    Friend Class MemberInfo
+    End Class
 
-    Friend Module MethodBase
-    End Module
+    Friend Class MethodBase
+    End Class
 
-    Friend Module MethodInfo
-    End Module
+    Friend Class MethodInfo
+    End Class
 
-    Friend Module [Module]
-    End Module
+    Friend Class [Class]
+    End Class
 
-    Friend Module ParameterInfo
-    End Module
+    Friend Class ParameterInfo
+    End Class
 
-    Friend Module PropertyInfo
-    End Module
+    Friend Class PropertyInfo
+    End Class
 
-    Friend Module ReflectionContext
-    End Module
+    Friend Class ReflectionContext
+    End Class
 
-    Friend Module TypeInfo
-    End Module
+    Friend Class TypeInfo
+    End Class
 End Namespace
 
 Namespace System.Timers
-    Friend Module Timer
-    End Module
+    Friend Class Timer
+    End Class
 End Namespace
 
 Namespace System.Windows.Forms
-    Friend Module Timer
-    End Module
+    Friend Class Timer
+    End Class
 End Namespace
 
 Namespace System.Threading
-    Friend Module AsyncLocal
-    End Module
+    Friend Class AsyncLocal
+    End Class
 
-    Friend Module Barrier
-    End Module
+    Friend Class Barrier
+    End Class
 
-    Friend Module Interlocked
-    End Module
+    Friend Class Interlocked
+    End Class
 
-    Friend Module Monitor
-    End Module
+    Friend Class Monitor
+    End Class
 
-    Friend Module Mutex
-    End Module
+    Friend Class Mutex
+    End Class
 
-    Friend Module Overlapped
-    End Module
+    Friend Class Overlapped
+    End Class
 
-    Friend Module Semaphore
-    End Module
+    Friend Class Semaphore
+    End Class
 
-    Friend Module SemaphoreSlim
-    End Module
+    Friend Class SemaphoreSlim
+    End Class
 
-    Friend Module SynchronizationContext
-    End Module
+    Friend Class SynchronizationContext
+    End Class
 
-    Friend Module Thread
-    End Module
+    Friend Class Thread
+    End Class
 
-    Friend Module ThreadPool
-    End Module
+    Friend Class ThreadPool
+    End Class
 
-    Friend Module Timer
-    End Module
+    Friend Class Timer
+    End Class
 
-    Friend Module Volatile
-    End Module
+    Friend Class Volatile
+    End Class
 End Namespace
 
 Namespace System.Threading.Tasks
-    Friend Module ConcurrentExclusiveSchedulerPair
-    End Module
+    Friend Class ConcurrentExclusiveSchedulerPair
+    End Class
 
-    Friend Module Parallel
-    End Module
+    Friend Class Parallel
+    End Class
 
-    Friend Module Task
-    End Module
+    Friend Class Task
+    End Class
 
-    Friend Module Task(Of TResult)
-    End Module
+    Friend Class Task(Of TResult)
+    End Class
 
-    Friend Module TaskCompletionSource(Of TResult)
-    End Module
+    Friend Class TaskCompletionSource(Of TResult)
+    End Class
 
-    Friend Module TaskFactory
-    End Module
+    Friend Class TaskFactory
+    End Class
 
-    Friend Module TaskFactory(Of TResult)
-    End Module
+    Friend Class TaskFactory(Of TResult)
+    End Class
 
-    Friend Module TaskScheduler
-    End Module
+    Friend Class TaskScheduler
+    End Class
 End Namespace
 
 Namespace System.Net
-    Friend Module AuthenticationManager
-    End Module
+    Friend Class AuthenticationManager
+    End Class
 
-    Friend Module Authorization
-    End Module
+    Friend Class Authorization
+    End Class
 
-    Friend Module Cookie
-    End Module
+    Friend Class Cookie
+    End Class
 
-    Friend Module Dns
-    End Module
+    Friend Class Dns
+    End Class
 
-    Friend Module DnsEndPoint
-    End Module
+    Friend Class DnsEndPoint
+    End Class
 
-    Friend Module EndPoint
-    End Module
+    Friend Class EndPoint
+    End Class
 
-    Friend Module FileWebRequest
-    End Module
+    Friend Class FileWebRequest
+    End Class
 
-    Friend Module FileWebResponse
-    End Module
+    Friend Class FileWebResponse
+    End Class
 
-    Friend Module FtpWebRequest
-    End Module
+    Friend Class FtpWebRequest
+    End Class
 
-    Friend Module FtpWebResponse
-    End Module
+    Friend Class FtpWebResponse
+    End Class
 
-    Friend Module HttpListener
-    End Module
+    Friend Class HttpListener
+    End Class
 
-    Friend Module HttpListenerContext
-    End Module
+    Friend Class HttpListenerContext
+    End Class
 
-    Friend Module HttpListenerRequest
-    End Module
+    Friend Class HttpListenerRequest
+    End Class
 
-    Friend Module HttpListenerResponse
-    End Module
+    Friend Class HttpListenerResponse
+    End Class
 
-    Friend Module HttpWebRequest
-    End Module
+    Friend Class HttpWebRequest
+    End Class
 
-    Friend Module HttpWebResponse
-    End Module
+    Friend Class HttpWebResponse
+    End Class
 
-    Friend Module IPAddress
-    End Module
+    Friend Class IPAddress
+    End Class
 
-    Friend Module NetworkCredential
-    End Module
+    Friend Class NetworkCredential
+    End Class
 
-    Friend Module ServicePoint
-    End Module
+    Friend Class ServicePoint
+    End Class
 
-    Friend Module ServicePointManager
-    End Module
+    Friend Class ServicePointManager
+    End Class
 
-    Friend Module TransportContext
-    End Module
+    Friend Class TransportContext
+    End Class
 
-    Friend Module WebClient
-    End Module
+    Friend Class WebClient
+    End Class
 
-    Friend Module WebProxy
-    End Module
+    Friend Class WebProxy
+    End Class
 
-    Friend Module WebRequest
-    End Module
+    Friend Class WebRequest
+    End Class
 
-    Friend Module WebResponse
-    End Module
+    Friend Class WebResponse
+    End Class
 
-    Friend Module Uri
-    End Module
+    Friend Class Uri
+    End Class
 End Namespace
 
 Namespace System.Net.Http
-    Friend Module ByteArrayContent
-    End Module
+    Friend Class ByteArrayContent
+    End Class
 
-    Friend Module FormUrlEncodedContent
-    End Module
+    Friend Class FormUrlEncodedContent
+    End Class
 
-    Friend Module HttpClient
-    End Module
+    Friend Class HttpClient
+    End Class
 
-    Friend Module HttpContent
-    End Module
+    Friend Class HttpContent
+    End Class
 
-    Friend Module HttpMethod
-    End Module
+    Friend Class HttpMethod
+    End Class
 
-    Friend Module HttpRequestMessage
-    End Module
+    Friend Class HttpRequestMessage
+    End Class
 
-    Friend Module HttpResponseMessage
-    End Module
+    Friend Class HttpResponseMessage
+    End Class
 
-    Friend Module MultipartContent
-    End Module
+    Friend Class MultipartContent
+    End Class
 
-    Friend Module MultipartFormDataContent
-    End Module
+    Friend Class MultipartFormDataContent
+    End Class
 
-    Friend Module ReadOnlyMemoryContent
-    End Module
+    Friend Class ReadOnlyMemoryContent
+    End Class
 
-    Friend Module StreamContent
-    End Module
+    Friend Class StreamContent
+    End Class
 
-    Friend Module StringContent
-    End Module
+    Friend Class StringContent
+    End Class
 End Namespace
 
 Namespace System.Web.UI
-    Friend Module Timer
-    End Module
+    Friend Class Timer
+    End Class
 End Namespace
 
 Namespace FastReport.Utils
-    Friend Module Config
-    End Module
+    Friend Class Config
+    End Class
 End Namespace
 ";
 

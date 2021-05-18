@@ -14,7 +14,7 @@ namespace FastReport.Barcode
   {
     private static Font FFont = new Font("Arial", 8);
 
-        private void DrawBarcode(IGraphicsRenderer g, float width, float height)
+        private void DrawBarcode(IGraphics g, float width, float height)
         {
             SizeF originalSize = CalcBounds();
             float kx = width / originalSize.Width;
@@ -56,15 +56,15 @@ namespace FastReport.Barcode
             }
         }
     
-    internal virtual void Draw2DBarcode(IGraphicsRenderer g, float kx, float ky)
+    internal virtual void Draw2DBarcode(IGraphics g, float kx, float ky)
     {
     }
     
-    public override void DrawBarcode(IGraphicsRenderer g, RectangleF displayRect)
+    public override void DrawBarcode(IGraphics g, RectangleF displayRect)
     {
       float width = angle == 90 || angle == 270 ? displayRect.Height : displayRect.Width;
       float height = angle == 90 || angle == 270 ? displayRect.Width : displayRect.Height;
-            IGraphicsRendererState state = g.Save();
+            IGraphicsState state = g.Save();
             try
       {
         // rotate

@@ -352,7 +352,7 @@ namespace FastReport
         /// <param name="e">Paint event args.</param>
         public override void DrawImage(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             if (Image == null)
                 ForceLoadImage();
 
@@ -373,10 +373,10 @@ namespace FastReport
               drawWidth,
               drawHeight);
 
-            GraphicsState state = g.Save();
+            IGraphicsState state = g.Save();
             try
             {
-                if (Config.IsRunningOnMono) // strange behavior of mono - we need to reset clip before we set new one
+                //if (Config.IsRunningOnMono) // strange behavior of mono - we need to reset clip before we set new one
                     g.ResetClip();
                 g.SetClip(drawRect);
                 Report report = Report;
@@ -419,7 +419,7 @@ namespace FastReport
             }
         }
 
-        protected override void DrawImageInternal2(Graphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft)
+        protected override void DrawImageInternal2(IGraphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft)
         {
             Image image = transparentImage != null ? transparentImage.Clone() as Image : Image.Clone() as Image;
             if (image == null)
@@ -438,13 +438,14 @@ namespace FastReport
             }
 
             //graphics.DrawImage(image, new PointF[] { upperLeft, upperRight, lowerLeft });
+
             DrawImage3Points(graphics, image, upperLeft, upperRight, lowerLeft);
             image = null;
         }
 
         // This is analogue of graphics.DrawImage(image, PointF[] points) method. 
         // The original gdi+ method does not work properly in mono on linux/macos.
-        private void DrawImage3Points(Graphics g, Image image, PointF p0, PointF p1, PointF p2)
+        private void DrawImage3Points(IGraphics g, Image image, PointF p0, PointF p1, PointF p2)
         {
             if (image == null || image.Width == 0 || image.Height == 0)
                 return;
@@ -596,9 +597,9 @@ namespace FastReport
         {
             imageIndex = -1;
         }
-        #endregion
+#endregion
 
-        #region Report Engine
+#region Report Engine
 
 
         /// <inheritdoc/>
@@ -665,7 +666,7 @@ namespace FastReport
             ShouldDisposeImage = true;
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PictureObject"/> class with default settings.

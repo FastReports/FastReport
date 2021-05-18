@@ -12,12 +12,21 @@ namespace FastReport.Web.Controllers
 {
     abstract class BaseController
     {
-        public struct Handler
+        public readonly struct Handler
         {
             //public HttpMethod Method;
-            public TemplateMatcher RouteTemplate;
-            public Func<IActionResult> ActionSync;
-            public Func<Task<IActionResult>> ActionAsync;
+            public readonly TemplateMatcher RouteTemplate;
+            public readonly Func<IActionResult> ActionSync;
+            public readonly Func<Task<IActionResult>> ActionAsync;
+
+            public Handler(TemplateMatcher routeTemplate,
+                            Func<IActionResult> actionSync,
+                            Func<Task<IActionResult>> actionAsync)
+            {
+                RouteTemplate = routeTemplate;
+                ActionSync = actionSync;
+                ActionAsync = actionAsync;
+            }
         }
 
         //public readonly string RouteBasePath;
@@ -41,12 +50,12 @@ namespace FastReport.Web.Controllers
 
         protected void RegisterHandler(/*HttpMethod method, */string routeTemplate, RouteValueDictionary routeDefaults, Func<IActionResult> action)
         {
-            handlers.Add(new Handler()
-            {
+            handlers.Add(new Handler(
                 //Method = method,
-                RouteTemplate = new TemplateMatcher(TemplateParser.Parse(WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, /*RouteBasePath, */routeTemplate).TrimStart('/')), routeDefaults),
-                ActionSync = action,
-            });
+                routeTemplate: new TemplateMatcher(TemplateParser.Parse(WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, /*RouteBasePath, */routeTemplate).TrimStart('/')), routeDefaults),
+                actionSync: action,
+                actionAsync: null
+            ));
         }
 
         protected void RegisterHandler(/*HttpMethod method, */string routeTemplate, Func<Task<IActionResult>> action)
@@ -56,12 +65,12 @@ namespace FastReport.Web.Controllers
 
         protected void RegisterHandler(/*HttpMethod method, */string routeTemplate, RouteValueDictionary routeDefaults, Func<Task<IActionResult>> action)
         {
-            handlers.Add(new Handler()
-            {
+            handlers.Add(new Handler(
                 //Method = method,
-                RouteTemplate = new TemplateMatcher(TemplateParser.Parse(WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, /*RouteBasePath, */routeTemplate).TrimStart('/')), routeDefaults),
-                ActionAsync = action,
-            });
+                routeTemplate: new TemplateMatcher(TemplateParser.Parse(WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, /*RouteBasePath, */routeTemplate).TrimStart('/')), routeDefaults),
+                actionAsync: action,
+                actionSync: null
+            ));
         }
 
         public async Task<bool> OnRequest(HttpContext httpContext)

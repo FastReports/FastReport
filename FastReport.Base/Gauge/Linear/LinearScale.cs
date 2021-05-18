@@ -45,7 +45,7 @@ namespace FastReport.Gauge.Linear
 
         private void DrawMajorTicksHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
                 Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
@@ -65,7 +65,7 @@ namespace FastReport.Gauge.Linear
             {
                 g.DrawLine(pen, x, y1, x, y2);
                 SizeF strSize = g.MeasureString(text, Font);
-                g.DrawString(text, font, brush, x - strSize.Width / 2 * e.ScaleX, y3);
+                g.DrawString(text, font, brush, x - strSize.Width / 2 * e.ScaleX / (DrawUtils.ScreenDpi / 96f), y3);
                 text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                 x += step;
             }
@@ -74,7 +74,7 @@ namespace FastReport.Gauge.Linear
 
         private void DrawMinorTicksHorz(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MinorTicks.Color, MinorTicks.Width * e.ScaleX, DashStyle.Solid);
             float x = left;
             float y1 = top + height * 0.2f;
@@ -93,7 +93,7 @@ namespace FastReport.Gauge.Linear
 
         private void DrawMajorTicksVert(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MajorTicks.Color, MajorTicks.Width * e.ScaleX, DashStyle.Solid);
             Brush brush = TextFill.CreateBrush(new RectangleF(Parent.AbsLeft * e.ScaleX, Parent.AbsTop * e.ScaleY,
      Parent.Width * e.ScaleX, Parent.Height * e.ScaleY), e.ScaleX, e.ScaleY);
@@ -108,12 +108,12 @@ namespace FastReport.Gauge.Linear
             {
                 g.DrawLine(pen, x1, y, x2, y);
                 SizeF strSize = g.MeasureString(text, Font);
-                float x3 = x1 - strSize.Width * e.ScaleX - 0.04f * Units.Centimeters * e.ScaleX;
+                float x3 = x1 - strSize.Width * e.ScaleX / (DrawUtils.ScreenDpi / 96f) - 0.04f * Units.Centimeters * e.ScaleX;
                 if ((Parent as LinearGauge).Inverted)
                 {
                     x3 = x2 + 0.04f * Units.Centimeters * e.ScaleX;
                 }
-                g.DrawString(text, font, brush, x3, y - strSize.Height / 2 * e.ScaleY);
+                g.DrawString(text, font, brush, x3, y - strSize.Height / 2 * e.ScaleY / (DrawUtils.ScreenDpi / 96f));
                 text = Convert.ToString(textStep * (i + 1) + Parent.Minimum);
                 y -= step;
             }
@@ -122,7 +122,7 @@ namespace FastReport.Gauge.Linear
 
         private void DrawMinorTicksVert(FRPaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MinorTicks.Color, MinorTicks.Width * e.ScaleX, DashStyle.Solid);
             float y = top + height;
             float x1 = left + width * 0.2f;
