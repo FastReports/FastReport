@@ -16,5 +16,8 @@
   <ItemGroup>
     <PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSWebVersion)" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FastReport.Core.Web\FastReport.OpenSource.Web.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -23,6 +23,9 @@
   <ItemGroup>
     <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+  </ItemGroup>
 
 
   
