@@ -6,14 +6,25 @@ using System.Text;
 
 namespace FastReport.Web.Application
 {
-    internal class WebRes
+    internal interface IWebRes
+    {
+        void LoadLocale(string fileName);
+
+        void LoadLocale(Stream stream);
+
+        string Get(string id);
+
+        void Root(string Section);
+    }
+
+    internal class WebRes : IWebRes
     {
         //private XmlItem root;
-        private string category;
+        private string[] categories;
         private const string badResult = "NOT LOCALIZED!";
         private XmlDocument locale;
 
-        private readonly XmlDocument builtinLocale;
+        private static readonly XmlDocument builtinLocale;
 
         public void LoadLocale(string fileName)
         {
@@ -34,16 +45,6 @@ namespace FastReport.Web.Application
 
         public string Get(string id)
         {
-            if (!String.IsNullOrEmpty(category))
-            {
-                return InternalGet(category + "," + id);
-            }
-            else
-                return InternalGet(id);
-        }
-
-        private string InternalGet(string id)
-        {
             string result = Get(id, locale);
             // if no item found, try built-in (english) locale
             if (string.IsNullOrEmpty(result))
@@ -59,34 +60,45 @@ namespace FastReport.Web.Application
 
         private string Get(string id, XmlDocument locale)
         {
-            string[] categories = id.Split(new char[] { ',' });
             XmlItem xi = locale.Root;
+            int i;
             foreach (string category in categories)
             {
-                int i = xi.Find(category);
+                i = xi.Find(category);
                 if (i == -1)
                     return null;
                 xi = xi[i];
             }
+
+            // find 'id'
+            i = xi.Find(id);
+            if (i == -1)
+                return null;
+            xi = xi[i];
+
             return xi.GetProp("Text");
         }
 
 
         public void Root(string Section)
         {
-            category = Section;
+            categories = Section.Split(',');
         }
 
         public WebRes(string Section = "")
         {
-            locale = new XmlDocument();
-            builtinLocale = locale;
+            locale = builtinLocale;
+
+            Root(Section);
+        }
+
+        static WebRes()
+        {
+            builtinLocale = new XmlDocument();
             using (Stream stream = ResourceLoader.GetStream("en.xml"))
             {
-                locale.Load(stream);
+                builtinLocale.Load(stream);
             }
-
-            category = Section;
         }
     }
 }

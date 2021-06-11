@@ -621,10 +621,13 @@ namespace FastReport
         {
             get { return referencedAssemblies; }
             set {
-                // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
-                for (int i = 0; i < value.Length;i++)
+                if (value != null)
                 {
-                    value[i] = value[i].Replace("System.Windows.Forms.DataVisualization", "FastReport.DataVisualization");
+                    // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        value[i] = value[i].Replace("System.Windows.Forms.DataVisualization", "FastReport.DataVisualization");
+                    }
                 }
                 referencedAssemblies = value; 
             }

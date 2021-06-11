@@ -5,7 +5,7 @@ namespace FastReport.Web
     partial class WebReport
     {
         string template_FR => $"fr{ID}";
-        string template_ROUTE_BASE_PATH => WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath);
+        internal string template_ROUTE_BASE_PATH => WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath);
         string template_resource_url(string resourceName, string contentType) => $"{template_ROUTE_BASE_PATH}/resources.getResource?resourceName={WebUtility.UrlEncode(resourceName)}&contentType={WebUtility.UrlEncode(contentType)}";
         internal string template_export_url(string exportFormat) => $"{template_ROUTE_BASE_PATH}/preview.exportReport?reportId={ID}&exportFormat={exportFormat}";
         internal string template_print_url(string printMode) => $"{template_ROUTE_BASE_PATH}/preview.printReport?reportId={ID}&printMode={printMode}";

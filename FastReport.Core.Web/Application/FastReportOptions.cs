@@ -8,7 +8,13 @@ namespace FastReport.Web
     public class FastReportOptions
     {
         /// <summary>
-        /// Base url for API.
+        /// Request.PathBase url for API.
+        /// Default value: "".
+        /// </summary>
+        internal string RoutePathBaseRoot { get; set; } = "";
+
+        /// <summary>
+        /// Request.Path part of url for API.
         /// Default value: "/_fr".
         /// </summary>
         public string RouteBasePath { get; set; } = "/_fr";

@@ -405,6 +405,9 @@ namespace FastReport.Export
         /// </remarks>
         public void Export(Report report, Stream stream)
         {
+            if (report == null || report.PreparedPages == null)
+                return;
+
             SetReport(report);
             this.stream = stream;
             PreparePageNumbers();
