@@ -35,8 +35,8 @@ namespace FastReport.OpenSource.Web.MVC
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvc();
             app.UseFastReport();
+            app.UseMvc();
         }
     }
 }

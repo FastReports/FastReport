@@ -12,20 +12,30 @@ namespace FastReport.Web
     {
         private readonly RequestDelegate next;
 
+        Func<HttpContext, Task<bool>> ExecuteFunc;
+
         public FastReportMiddleware(RequestDelegate next)
         {
             this.next = next;
+            ExecuteFunc = RequestFastReportControllerStart;
         }
 
         public async Task Invoke(HttpContext httpContext)
         {
-            if (!(await RequestFastReportController(httpContext)))
+            if (!(await ExecuteFunc(httpContext)))
                 await next(httpContext);
+        }
+
+        private Task<bool> RequestFastReportControllerStart(HttpContext httpContext)
+        {
+            FastReportGlobal.FastReportOptions.RoutePathBaseRoot = httpContext.Request.PathBase;
+            ExecuteFunc = RequestFastReportController;
+            return RequestFastReportController(httpContext);
         }
 
         private async Task<bool> RequestFastReportController(HttpContext httpContext)
         {
-            if (!httpContext.Request.Path.StartsWithSegments(WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath)))
+            if (!httpContext.Request.Path.StartsWithSegments(FastReportGlobal.FastReportOptions.RouteBasePath))
                 return false;
 
             if (!(FastReportGlobal.FastReportOptions.Authorize?.Invoke(httpContext.Request) ?? true))

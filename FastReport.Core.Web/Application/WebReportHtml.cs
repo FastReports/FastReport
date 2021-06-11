@@ -77,7 +77,7 @@ namespace FastReport.Web
                 htmlExport.SubFolder = false;
                 htmlExport.EmbedPictures = EmbedPictures;
                 //htmlExport.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, controller.RouteBasePath, ID, "picture") + "/";
-                htmlExport.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={ID}&pictureId=");
+                htmlExport.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={ID}&pictureId=");
                 htmlExport.ExportMode = HTMLExport.ExportType.WebPrint;
 
                 byte[] file = null;
@@ -179,7 +179,7 @@ namespace FastReport.Web
                 //    html.HeightUnits = HtmlSizeUnits.Percent;
 
                 //html.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, controller.RouteBasePath, ID, "picture") + "/"; //html.WebImagePrefix = String.Concat(context.Response.ApplyAppPathModifier(WebUtils.HandlerFileName), "?", WebUtils.PicsPrefix);
-                html.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={ID}&pictureId=");
+                html.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={ID}&pictureId=");
                 html.SinglePage = SinglePage; //html.SinglePage = SinglePage;
                 html.CurPage = CurrentPageIndex; //html.CurPage = CurrentPage;
                 html.Export(Report, (Stream)null);

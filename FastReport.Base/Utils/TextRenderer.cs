@@ -444,7 +444,8 @@ namespace FastReport.Utils
             if (WordWrap)
                 Format.Trimming = StringTrimming.Word;
 
-            Format.FormatFlags = Format.FormatFlags | StringFormatFlags.MeasureTrailingSpaces;
+            // LineLimit flag is essential in linux
+            Format.FormatFlags = Format.FormatFlags | StringFormatFlags.MeasureTrailingSpaces | StringFormatFlags.LineLimit;
 
             if (Angle != 0)
             {
@@ -531,7 +532,7 @@ namespace FastReport.Utils
                     int linesFit = 0;
                     // END: The fix for linux and core app a264aae5-193b-4e5c-955c-0818de3ca01b
                     Renderer.Graphics.MeasureString(text, Renderer.Font,
-                      new SizeF(Renderer.DisplayRect.Width - left, Renderer.FontLineHeight + 1),
+                      new SizeF(Renderer.DisplayRect.Width - left, Renderer.FontLineHeight * 1.25f), 
                       Renderer.Format, out charsFit, out linesFit);
                     return charsFit + tabFit;
                 }

@@ -51,20 +51,20 @@ namespace FastReport.Web
                 var nodeId = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{ID}{page}{offset}{sb.Length}{GetCurrentTabName()}"));
 
                 sb.Append($@"<div class=""{template_FR}-outline-node"">");
-
-                var caret = "";
+                
+                string caret;
                 if (hasChildren)
                 {
-                    caret += $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-open-node"" src=""{template_resource_url("caret-right.svg", "image/svg+xml")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineOpenNode(this);"" {styleShow}>";
+                    caret = $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-open-node"" src=""{template_resource_url("caret-right.svg", "image/svg+xml")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineOpenNode(this);"" {styleShow}>";
                     caret += $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-close-node"" src=""{template_resource_url("caret-down.svg", "image/svg+xml")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineCloseNode(this);"" {styleHide}>";
                 }
                 else
                 {
-                    caret += $@"<div class=""{template_FR}-outline-caret-blank""></div>";
+                    caret = $@"<div class=""{template_FR}-outline-caret-blank""></div>";
                 }
 
                 sb.Append($@"<div class=""{template_FR}-outline-text"">");
-                sb.Append($@"{caret}");
+                sb.Append(caret);
                 sb.Append($@"<img class=""{template_FR}-outline-file"" src=""{template_resource_url("file.svg", "image/svg+xml")}"">");
                 sb.Append($@"<a onclick=""{template_FR}.outlineGoto({page + 1}, {offset.ToString().Replace(',', '.')});"">{HttpUtility.HtmlEncode(text)}</a>");
                 sb.Append($@"</div>");

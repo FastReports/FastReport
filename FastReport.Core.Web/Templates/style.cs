@@ -8,8 +8,8 @@
 ***********/
 
 .{template_FR}-container {{
-    {(Width.IsNullOrWhiteSpace() ? "" : $"width: {Width};")};
-    {(Height.IsNullOrWhiteSpace() ? "" : $"height: {Height};")};
+    {(Width.IsNullOrWhiteSpace() ? "" : $"width: {Width};")}
+    {(Height.IsNullOrWhiteSpace() ? "" : $"height: {Height};")}
     background-color: white;
     display: {(Inline ? "inline-" : "")}flex;
     flex-direction: column;
