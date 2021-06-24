@@ -333,12 +333,12 @@ namespace FastReport.Web
                 for (int i = reportInheritance.Count - 1; i >= 0; i--)
                 {
                     string s = reportInheritance[i];
-                    responseBuilder.Append("\"");
+                    responseBuilder.Append('\"');
                     responseBuilder.Append(s.Replace("\r\n", "").Replace("\"", "\\\""));
                     if (i > 0)
                         responseBuilder.Append("\",");
                     else
-                        responseBuilder.Append("\"");
+                        responseBuilder.Append('\"');
                 }
                 responseBuilder.Append("]}");
 

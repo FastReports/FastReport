@@ -447,8 +447,13 @@ namespace FastReport
         // The original gdi+ method does not work properly in mono on linux/macos.
         private void DrawImage3Points(IGraphics g, Image image, PointF p0, PointF p1, PointF p2)
         {
+            // Skip drawing image, when height or width of the image equal zero.
             if (image == null || image.Width == 0 || image.Height == 0)
                 return;
+            // Skip drawing image, when height or width of the parallelogram for drawing equal zero.
+            if (p0 == p1 || p0 == p2)
+                return;
+
             RectangleF rect = new RectangleF(0, 0, image.Width, image.Height);
             float m11 = (p1.X - p0.X) / rect.Width;
             float m12 = (p1.Y - p0.Y) / rect.Width;

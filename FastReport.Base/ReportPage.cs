@@ -1098,7 +1098,7 @@ namespace FastReport
       guides = new FloatCollection();
       columns = new PageColumns(this);
       border = new Border();
-      fill = new SolidFill(SystemColors.Window);
+      fill = new SolidFill(Color.White);
       watermark = new Watermark();
       titleBeforeHeader = true;
       startPageEvent = "";
