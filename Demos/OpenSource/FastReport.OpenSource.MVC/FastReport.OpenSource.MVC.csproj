@@ -23,7 +23,9 @@
   <ItemGroup>
     <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
   </ItemGroup>
-   
+
+
+  
   <ItemGroup>
     <None Update="fastreport.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

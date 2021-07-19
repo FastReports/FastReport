@@ -216,11 +216,11 @@ namespace FastReport.Web.Controllers
             using (var xml = new XmlDocument())
             {
                 xml.AutoIndent = true;
-                var list = new List<ObjectInfo>();
-                RegisteredObjects.Objects.EnumItems(list);
-                ObjectInfo rootFunctions = null;
+                var list = new List<FunctionInfo>();
+                RegisteredObjects.Functions.EnumItems(list);
+                FunctionInfo rootFunctions = null;
 
-                foreach (ObjectInfo item in list)
+                foreach (FunctionInfo item in list)
                 {
                     if (item.Name == "Functions")
                     {

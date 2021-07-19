@@ -20,7 +20,9 @@ namespace FastReport.Web
         internal const string ONCHANGE = "onchange";
 
 
-        public const string DEFAULT_DATE_TIME_PICKER_FORMAT = "yyyy-MM-dd";
+        public const string DEFAULT_DATE_PICKER_FORMAT = "yyyy-MM-dd";
+
+        public const string DEFAULT_TIME_PICKER_FORMAT = "HH:mm:ss";
 
     }
 #endif

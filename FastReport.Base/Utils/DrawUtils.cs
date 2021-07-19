@@ -146,18 +146,6 @@ namespace FastReport.Utils
             }
         }
 
-        public static int DefaultItemHeight
-        {
-            get
-            {
-                using (Bitmap bmp = new Bitmap(1, 1))
-                using (Graphics g = Graphics.FromImage(bmp))
-                {
-                    return (int)Math.Round(MeasureString("Wg", DefaultFont).Height);
-                }
-            }
-        }
-
         public static SizeF MeasureString(string text)
         {
             return MeasureString(text, DefaultFont);

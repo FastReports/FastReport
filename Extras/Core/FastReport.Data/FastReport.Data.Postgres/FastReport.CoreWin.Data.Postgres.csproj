@@ -10,7 +10,6 @@
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
         <Authors>Fast Reports Inc.</Authors>
         <Product>FastReport.Data.Postgres</Product>
-        <Description>Represents a connection to PostgreSQL database for FastReport.Net.</Description>
         <PackageId>FastReport.CoreWin.Data.Postgres</PackageId>
         <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
         <PackageTags>reporting, postgres, connection, reports</PackageTags>
@@ -18,16 +17,20 @@
         <Configurations>Debug;Release;</Configurations>
         <AssemblyName>FastReport.Data.Postgres</AssemblyName>
         <RootNamespace>FastReport.Data</RootNamespace>
+        <Description>Represents a connection to PostgreSQL database for FastReport.Net for .Net Core 3.1 and .Net 5 Windows.
+        
+This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
+</Description>
         <PackageReleaseNotes>added system schemas filter</PackageReleaseNotes>
     </PropertyGroup>
     <PropertyGroup>
         <DefineConstants>FRCORE;</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Npgsql" Version="[4.0.3,)" />
+        <PackageReference Include="Npgsql" Version="[3.2.7,)" />
     </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\FastReport.Core3\FastReport\FastReport.csproj">
+    <ProjectReference Include="..\..\..\..\FastReport.CoreWin\FastReport\FastReport.csproj">
       <PrivateAssets>all</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

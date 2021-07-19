@@ -32,34 +32,34 @@ namespace FastReport
             RegisteredObjects.AddPage(typeof(ReportPage), "ReportPage", 135);
 
             // data items
-            RegisteredObjects.Add(typeof(Column), "", 0);
-            RegisteredObjects.Add(typeof(CommandParameter), "", 0);
-            RegisteredObjects.Add(typeof(Relation), "", 0);
-            RegisteredObjects.Add(typeof(Parameter), "", 0);
-            RegisteredObjects.Add(typeof(Total), "", 0);
-            RegisteredObjects.Add(typeof(TableDataSource), "", 0);
-            RegisteredObjects.Add(typeof(ViewDataSource), "", 0);
-            RegisteredObjects.Add(typeof(BusinessObjectDataSource), "", 0);
-            RegisteredObjects.Add(typeof(SliceCubeSource), "", 0);
+            RegisteredObjects.InternalAdd(typeof(Column), "", 0);
+            RegisteredObjects.InternalAdd(typeof(CommandParameter), "", 0);
+            RegisteredObjects.InternalAdd(typeof(Relation), "", 0);
+            RegisteredObjects.InternalAdd(typeof(Parameter), "", 0);
+            RegisteredObjects.InternalAdd(typeof(Total), "", 0);
+            RegisteredObjects.InternalAdd(typeof(TableDataSource), "", 0);
+            RegisteredObjects.InternalAdd(typeof(ViewDataSource), "", 0);
+            RegisteredObjects.InternalAdd(typeof(BusinessObjectDataSource), "", 0);
+            RegisteredObjects.InternalAdd(typeof(SliceCubeSource), "", 0);
 
-            RegisteredObjects.AddConnection(typeof(XmlDataConnection));
-            RegisteredObjects.AddConnection(typeof(CsvDataConnection));
+            RegisteredObjects.InternalAddConnection(typeof(XmlDataConnection));
+            RegisteredObjects.InternalAddConnection(typeof(CsvDataConnection));
 
             // json
-            RegisteredObjects.Add(typeof(Data.JsonConnection.JsonTableDataSource), "", 0);
+            RegisteredObjects.InternalAdd(typeof(Data.JsonConnection.JsonTableDataSource), "", 0);
             //RegisteredObjects.Add(typeof(Data.JsonConnection.JsonObjectDataSource), "", 0);
             //RegisteredObjects.Add(typeof(Data.JsonConnection.JsonArrayDataSource), "", 0);
-            RegisteredObjects.AddConnection(typeof(Data.JsonConnection.JsonDataSourceConnection));
+            RegisteredObjects.InternalAddConnection(typeof(Data.JsonConnection.JsonDataSourceConnection));
 
             // formats
-            RegisteredObjects.Add(typeof(BooleanFormat), "", 0);
-            RegisteredObjects.Add(typeof(CurrencyFormat), "", 0);
-            RegisteredObjects.Add(typeof(CustomFormat), "", 0);
-            RegisteredObjects.Add(typeof(DateFormat), "", 0);
-            RegisteredObjects.Add(typeof(GeneralFormat), "", 0);
-            RegisteredObjects.Add(typeof(NumberFormat), "", 0);
-            RegisteredObjects.Add(typeof(PercentFormat), "", 0);
-            RegisteredObjects.Add(typeof(TimeFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(BooleanFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(CurrencyFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(CustomFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(DateFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(GeneralFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(NumberFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(PercentFormat), "", 0);
+            RegisteredObjects.InternalAdd(typeof(TimeFormat), "", 0);
 
 
             // bands
@@ -78,8 +78,8 @@ namespace FastReport
             RegisteredObjects.Add(typeof(OverlayBand), "", 166, "Objects,Bands,Overlay");
 
             // report objects
-            RegisteredObjects.Add(typeof(TextObject), "ReportPage", 102, 1);
-            RegisteredObjects.Add(typeof(PictureObject), "ReportPage", 103, 2);
+            RegisteredObjects.InternalAdd(typeof(TextObject), "ReportPage", 102, 1);
+            RegisteredObjects.InternalAdd(typeof(PictureObject), "ReportPage", 103, 2);
 
             RegisteredObjects.AddCategory("ReportPage,Shapes", 106, 4, "Objects,Shapes");
             RegisteredObjects.Add(typeof(LineObject), "ReportPage,Shapes", 105, "Objects,Shapes,Line", 0, true);
@@ -99,43 +99,37 @@ namespace FastReport
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 243, "Objects,Shapes,Hexagon", 0x60);
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 244, "Objects,Shapes,Heptagon", 0x70);
             RegisteredObjects.Add(typeof(PolygonObject), "ReportPage,Shapes", 245, "Objects,Shapes,Octagon", 0x80);
-            RegisteredObjects.Add(typeof(SubreportObject), "ReportPage", 104, 5);
-            RegisteredObjects.Add(typeof(ContainerObject), "ReportPage", 144, 5);
+            RegisteredObjects.InternalAdd(typeof(SubreportObject), "ReportPage", 104, 5);
+            RegisteredObjects.InternalAdd(typeof(ContainerObject), "ReportPage", 144, 5);
 
-            RegisteredObjects.Add(typeof(TableObject), "ReportPage", 127, 6);
-            RegisteredObjects.Add(typeof(TableColumn), "", 215);
-            RegisteredObjects.Add(typeof(TableRow), "", 216);
-            RegisteredObjects.Add(typeof(TableCell), "", 214);
-            RegisteredObjects.Add(typeof(MatrixObject), "ReportPage", 142, 7);
+            RegisteredObjects.InternalAdd(typeof(TableObject), "ReportPage", 127, 6);
+            RegisteredObjects.InternalAdd(typeof(TableColumn), "", 215);
+            RegisteredObjects.InternalAdd(typeof(TableRow), "", 216);
+            RegisteredObjects.InternalAdd(typeof(TableCell), "", 214);
+            RegisteredObjects.InternalAdd(typeof(MatrixObject), "ReportPage", 142, 7);
 
 #if !COMMUNITY
-            RegisteredObjects.Add(typeof(CrossViewObject), "ReportPage", 247, 8);
+            RegisteredObjects.InternalAdd(typeof(CrossViewObject), "ReportPage", 247, 8);
 #endif
 
             RegisteredObjects.AddCategory("ReportPage,Barcodes", 123, 9, "Objects,BarcodeObject");
             for (int i = 0; i <= Barcodes.Items.Length - 1; i++)
-                RegisteredObjects.Add(typeof(BarcodeObject), "ReportPage,Barcodes", -1, Barcodes.Items[i].barcodeName, i);
+                RegisteredObjects.Add(typeof(BarcodeObject), "ReportPage,Barcodes", 123, Barcodes.Items[i].barcodeName, i);
 
-            RegisteredObjects.Add(typeof(CheckBoxObject), "ReportPage", 124, 10);
-
-            RegisteredObjects.Add(typeof(ZipCodeObject), "ReportPage", 129, 14);
-            RegisteredObjects.Add(typeof(CellularTextObject), "ReportPage", 121, 15);
+            RegisteredObjects.InternalAdd(typeof(CheckBoxObject), "ReportPage", 124, 10);
+            RegisteredObjects.InternalAdd(typeof(ZipCodeObject), "ReportPage", 129, 14);
+            RegisteredObjects.InternalAdd(typeof(CellularTextObject), "ReportPage", 121, 15);
 
             RegisteredObjects.AddCategory("ReportPage,Gauge", 140, 17, "Objects,Gauge");
-            RegisteredObjects.Add(typeof(LinearGauge), "ReportPage,Gauge", -1, "Objects,Gauge,Linear", 0, false);
-            RegisteredObjects.Add(typeof(SimpleGauge), "ReportPage,Gauge", -1, "Objects,Gauge,Simple", 0, false);
-            RegisteredObjects.Add(typeof(RadialGauge), "ReportPage,Gauge", -1, "Objects,Gauge,Radial", 0, false);
-            RegisteredObjects.Add(typeof(SimpleProgressGauge), "ReportPage,Gauge", -1, "Objects,Gauge,SimpleProgress", 0, false);
+            RegisteredObjects.Add(typeof(LinearGauge), "ReportPage,Gauge", 140, "Objects,Gauge,Linear", 0, false);
+            RegisteredObjects.Add(typeof(SimpleGauge), "ReportPage,Gauge", 140, "Objects,Gauge,Simple", 0, false);
+            RegisteredObjects.Add(typeof(RadialGauge), "ReportPage,Gauge", 140, "Objects,Gauge,Radial", 0, false);
+            RegisteredObjects.Add(typeof(SimpleProgressGauge), "ReportPage,Gauge", 140, "Objects,Gauge,SimpleProgress", 0, false);
 
-            //      RegisteredObjects.Add(typeof(CrossBandObject), "ReportPage", 11, "Cross-band line", 0);
-            //      RegisteredObjects.Add(typeof(CrossBandObject), "ReportPage", 11, "Cross-band rectangle", 1);
-
-            RegisteredObjects.Add(typeof(HtmlObject), "ReportPage", 246, 18);
-
+            RegisteredObjects.InternalAdd(typeof(HtmlObject), "ReportPage", 246, 18);
 
             // exports
-
-            RegisteredObjects.AddExport(typeof(ImageExport), "Image", "Export,Image,File");
+            RegisteredObjects.InternalAddExport(typeof(ImageExport), "Image", "Export,Image,File");
 
             // functions
             RegisteredObjects.AddCategory("Functions", -1, "");

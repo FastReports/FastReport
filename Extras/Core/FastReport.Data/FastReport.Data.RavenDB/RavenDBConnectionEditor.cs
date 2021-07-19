@@ -1,7 +1,7 @@
-﻿using FastReport.Utils;
-using FastReport.Data.ConnectionEditors;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using FastReport.Utils;
+using FastReport.Data.ConnectionEditors;
 
 namespace FastReport.Data
 {
@@ -35,12 +35,15 @@ namespace FastReport.Data
         {
             MyRes res = new MyRes("ConnectionEditors,Common");
             gbServer.Text = res.Get("ServerLogon");
-            //lblUserName.Text = res.Get("UserName");
             lblPassword.Text = res.Get("Password");
             gbDatabase.Text = res.Get("Database");
             lblDatabase.Text = res.Get("DatabaseName");
-			tbCertificatePath.ImageIndex = 1;
-            res = new MyRes("Export,Email");
+        }
+
+        public override void UpdateDpiDependencies()
+        {
+            base.UpdateDpiDependencies();
+			tbCertificatePath.Image = this.GetImage(1);
         }
 
         #endregion Private Methods

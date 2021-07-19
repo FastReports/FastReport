@@ -10,6 +10,7 @@ using FastReport.Format;
 using FastReport.Code;
 using System.Windows.Forms;
 using System.Drawing.Design;
+using System.Globalization;
 
 namespace FastReport
 {
@@ -271,6 +272,7 @@ namespace FastReport
         private float fontWidthRatio;
         private float firstTabOffset;
         private float tabWidth;
+        private FloatCollection tabPositions;
         private bool clip;
         private ConditionCollection highlight;
         private bool wysiwyg;
@@ -423,6 +425,22 @@ namespace FastReport
                 font = value;
                 if (!String.IsNullOrEmpty(Style))
                     Style = "";
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a collection of TAB symbol positions, in pixels.
+        /// </summary>
+        /// <remarks>Use collection methods to add or remove TAB positions.</remarks>
+        public FloatCollection TabPositions
+        {
+            get { return tabPositions; }
+            set 
+            {
+                if (value == null)
+                    tabPositions.Clear();
+                else
+                    tabPositions = value; 
             }
         }
 
@@ -1017,7 +1035,14 @@ namespace FastReport
                 flags |= StringFormatFlags.NoWrap;
             if (!Clip)
                 flags |= StringFormatFlags.NoClip;
-
+            if (TabPositions.Count > 0)
+            {
+                FloatCollection tabPositions = new FloatCollection();
+                foreach (var i in TabPositions)
+                    tabPositions.Add((float)i * scale);
+                return cache.GetStringFormat(align, lineAlign, Trimming, flags, firstTabOffset * scale, tabPositions,
+                    48 * scale);
+            }
             return cache.GetStringFormat(align, lineAlign, Trimming, flags, firstTabOffset * scale, tabWidth * scale);
         }
 
@@ -1041,6 +1066,7 @@ namespace FastReport
             FontWidthRatio = src.FontWidthRatio;
             FirstTabOffset = src.FirstTabOffset;
             TabWidth = src.TabWidth;
+            TabPositions.Assign(src.TabPositions);
             Clip = src.Clip;
             Highlight.Assign(src.Highlight);
             Wysiwyg = src.Wysiwyg;
@@ -1299,6 +1325,8 @@ namespace FastReport
                 writer.WriteFloat("FirstTabOffset", FirstTabOffset);
             if (TabWidth != c.TabWidth)
                 writer.WriteFloat("TabWidth", TabWidth);
+            if (TabPositions.Count > 0)
+                writer.WriteValue("TabPositions", TabPositions);
             if (Clip != c.Clip)
                 writer.WriteBool("Clip", Clip);
             if (Wysiwyg != c.Wysiwyg)
@@ -1681,6 +1709,7 @@ namespace FastReport
             trimming = StringTrimming.None;
             fontWidthRatio = 1;
             tabWidth = 58;
+            tabPositions = new FloatCollection();
             clip = true;
             highlight = new ConditionCollection();
             FlagSerializeStyle = false;

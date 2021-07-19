@@ -20,7 +20,7 @@ using FastReport.Utils;
 
 namespace FastReport.Code
 {
-    internal partial class AssemblyDescriptor
+    partial class AssemblyDescriptor
     {
         private static readonly ConcurrentDictionary<string, Assembly> FAssemblyCache;
         private readonly FastString scriptText;
@@ -132,7 +132,7 @@ namespace FastReport.Code
             return args.Text.ToString();
         }
 
-        private bool ContansAssembly(IList assemblies, string assembly)
+        private bool ContansAssembly(IEnumerable assemblies, string assembly)
         {
             string asmName = Path.GetFileName(assembly);
             foreach (string a in assemblies)
@@ -146,18 +146,19 @@ namespace FastReport.Code
 
         private void AddFastReportAssemblies(IList assemblies)
         {
-            List<ObjectInfo> list = new List<ObjectInfo>();
-            RegisteredObjects.Objects.EnumItems(list);
-
-            foreach (ObjectInfo info in list)
+            foreach (Assembly assembly in RegisteredObjects.Assemblies)
             {
-                string aLocation = "";
-                if (info.Object != null)
-                    aLocation = info.Object.Assembly.Location;
-                else if (info.Function != null)
-                    aLocation = info.Function.DeclaringType.Assembly.Location;
-
-                if (aLocation != "" && !ContansAssembly(assemblies, aLocation))
+                string aLocation = assembly.Location;
+#if NETSTANDARD || NETCOREAPP
+                if (aLocation == "")
+                {
+                    // try fix SFA in FastReport.Compat
+                    string fixedReference = CodeDomProvider.TryFixReferenceInSingeFileApp(assembly);
+                    if (!string.IsNullOrEmpty(fixedReference))
+                        aLocation = fixedReference;
+                }
+#endif
+                if (!ContansAssembly(assemblies, aLocation))
                     assemblies.Add(aLocation);
             }
         }
@@ -194,6 +195,8 @@ namespace FastReport.Code
 
         private string GetFullAssemblyReference(string relativeReference, string defaultPath)
         {
+            // in .NET Core we get the AssemblyReference in FR.Compat
+#if !(NETSTANDARD || NETCOREAPP)
             if (relativeReference == null || relativeReference.Trim() == "")
                 return "";
 
@@ -214,14 +217,14 @@ namespace FastReport.Code
             }
 
             // See if the required assembly is present in the ReferencedAssemblies but not yet loaded
-            foreach (AssemblyName assemblyName in System.Reflection.Assembly.GetExecutingAssembly().GetReferencedAssemblies())
+            foreach (AssemblyName assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
             {
                 if (string.Compare(assemblyName.Name, dllName, true) == 0)
                 {
                     // Found it, try to load assembly and return the location as the full reference.
                     try
                     {
-                        return System.Reflection.Assembly.ReflectionOnlyLoad(assemblyName.FullName).Location;
+                        return Assembly.ReflectionOnlyLoad(assemblyName.FullName).Location;
                     }
                     catch { }
                 }
@@ -231,7 +234,7 @@ namespace FastReport.Code
             string path = Path.Combine(defaultPath, relativeReference);
             if (File.Exists(path))
                 return path;
-
+#endif
             return relativeReference;
         }
 
@@ -336,10 +339,10 @@ namespace FastReport.Code
 
         public void AddFunctions()
         {
-            List<ObjectInfo> list = new List<ObjectInfo>();
-            RegisteredObjects.Objects.EnumItems(list);
+            List<FunctionInfo> list = new List<FunctionInfo>();
+            RegisteredObjects.Functions.EnumItems(list);
 
-            foreach (ObjectInfo info in list)
+            foreach (FunctionInfo info in list)
             {
                 if (info.Function != null)
                 {
@@ -370,8 +373,8 @@ namespace FastReport.Code
         {          
             // configure compiler options
             CompilerParameters cp = new CompilerParameters();
-            AddFastReportAssemblies(cp.ReferencedAssemblies);
-            AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);
+            AddFastReportAssemblies(cp.ReferencedAssemblies);   // 2
+            AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);    // 9
             ReviewReferencedAssemblies(cp.ReferencedAssemblies);
             cp.GenerateInMemory = true;
             // sometimes the system temp folder is not accessible...
@@ -427,11 +430,17 @@ namespace FastReport.Code
                 return true;
             }
 
+
             // compile report scripts
             using (CodeDomProvider provider = Report.CodeHelper.GetCodeProvider())
             {
+
                 ScriptSecurityEventArgs ssea = new ScriptSecurityEventArgs(Report, scriptText.ToString(), Report.ReferencedAssemblies);
                 Config.OnScriptCompile(ssea);
+
+#if NETSTANDARD || NETCOREAPP
+                provider.BeforeEmitCompilation += Config.OnBeforeScriptCompilation;
+#endif
 
                 cr = provider.CompileAssemblyFromSource(cp, scriptText.ToString());
                 Assembly = null;

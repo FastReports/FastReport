@@ -45,7 +45,7 @@ namespace FastReport.Data
       lblUserName.Text = res.Get("UserName");
       lblPassword.Text = res.Get("Password");
       btnAdvanced.Text = Res.Get("Buttons,Advanced");
-      tbDatabase.Image = Res.GetImage(1);
+      tbDatabase.Image = this.GetImage(1);
     }
 
     protected override string GetConnectionString()

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net45</TargetFrameworks>
+        <TargetFrameworks>net452</TargetFrameworks>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -10,7 +10,9 @@
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
         <Authors>Fast Reports Inc.</Authors>
         <Product>FastReport.Data.Couchbase</Product>
-        <Description>Represents a connection to Couchbase server for FastReport.Net.</Description>
+        <Description>Represents a connection to Couchbase server. Shared Plugin for all versions of FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
+
+Requirements: Any FastReport $(Version)+ package, NuGet Client 3.4.4+</Description>
         <PackageId>FastReport.Data.Couchbase</PackageId>
         <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
         <PackageTags>reporting, Couchbase, connection, reports</PackageTags>
@@ -21,7 +23,7 @@
         <PackageReleaseNotes></PackageReleaseNotes>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="CouchbaseNetClient" Version="2.5.9" />
+        <PackageReference Include="CouchbaseNetClient" Version="2.7.15" />
         <ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>

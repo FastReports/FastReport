@@ -550,10 +550,25 @@ namespace FastReport.Utils
             }
         }
 
-        private float GetTabPosition(float pos)
+        private float GetTabPosition(float pos, int tabIndex)
         {
-            float tabOffset = TabOffset;
-            float tabSize = TabSize;
+            float tabOffset = 0;
+            float tabSize;
+            float firstTabOffset;
+            float[] tabsPos = format.GetTabStops(out firstTabOffset);
+            if (tabIndex <= 1)
+            {
+                tabOffset = TabOffset;
+                tabSize = TabSize;
+            }
+            else 
+            {
+                for (int i = 0; i < tabIndex; i++)
+                {
+                    tabOffset += tabsPos[i];
+                }
+                tabSize = tabsPos[tabIndex];
+            }
             int tabPosition = (int)((pos - tabOffset) / tabSize);
             if (pos < tabOffset)
                 return tabOffset;
@@ -568,6 +583,7 @@ namespace FastReport.Utils
             float width = paragraphFormat.SkipFirstLineIndent ? 0 : paragraphFormat.FirstLineIndent;
             Paragraph paragraph = new Paragraph(this);
             int charIndex = 0;
+            int tabIndex = 0;
             Line line = new Line(this, paragraph, charIndex);
             paragraph.Lines.Add(line);
             paragraphs.Add(paragraph);
@@ -632,18 +648,21 @@ namespace FastReport.Utils
 
                             word = new Word(this, line, WordType.Tab);
 
+                            
                             Run tabRun = new RunText(this, word, style, new List<CharWithIndex>(new CharWithIndex[] { reader.Character }), width, charIndex);
                             word.Runs.Add(tabRun);
-                            float width2 = GetTabPosition(width);
+                            float width2 = GetTabPosition(width, tabIndex);
                             if (width2 < width) width2 = width;
                             if (line.Words.Count > 0 && width2 > displayRect.Width)
                             {
                                 tabRun.Left = 0;
                                 line = new Line(this, paragraph, charIndex);
+                                tabIndex = 0;
                                 paragraph.Lines.Add(line);
                                 width = 0;
-                                width2 = GetTabPosition(width);
+                                width2 = GetTabPosition(width, tabIndex);
                             }
+                            tabIndex++;
                             line.Words.Add(word);
                             tabRun.Width = width2 - width;
                             width = width2;
@@ -1221,6 +1240,7 @@ namespace FastReport.Utils
                 get { return renderer; }
             }
 
+
             public float Top
             {
                 get { return top; }
@@ -1275,6 +1295,7 @@ namespace FastReport.Utils
             {
                 return String.Format("Words[{0}]", Words.Count);
             }
+
 
             #endregion Public Methods
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" StartReportEvent="_StartReport" ReportInfo.Description="Demonstrates how to add simple dialog form to the report. To do this:&#13;&#10;&#13;&#10;- press the &quot;New Dialog&quot; button on a toolbar;&#13;&#10;&#13;&#10;- this will create an empty dialog form with two default buttons. Put some controls on it and set its properties as you want.&#13;&#10;&#13;&#10;When you run a report, you will see the dialog. If you close it by &quot;OK&quot; button, the report will be generated.&#13;&#10;&#13;&#10;Note: you may add several dialogs." ReportInfo.Created="01/18/2008 03:08:14" ReportInfo.Modified="06/04/2020 14:00:46" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" StartReportEvent="_StartReport" ReportInfo.Description="Demonstrates how to add simple dialog form to the report. To do this:&#13;&#10;&#13;&#10;- press the &quot;New Dialog&quot; button on a toolbar;&#13;&#10;&#13;&#10;- this will create an empty dialog form with two default buttons. Put some controls on it and set its properties as you want.&#13;&#10;&#13;&#10;When you run a report, you will see the dialog. If you close it by &quot;OK&quot; button, the report will be generated.&#13;&#10;&#13;&#10;Note: you may add several dialogs." ReportInfo.Created="01/18/2008 03:08:14" ReportInfo.Modified="06/22/2021 18:31:35" ReportInfo.CreatorVersion="2021.3.6.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -69,25 +69,27 @@ namespace FastReport
     </ReportTitleBand>
   </ReportPage>
   <DialogPage Name="Form1" Width="460" Height="604" Font="Tahoma, 8pt" LoadEvent="Form1_Load" FormClosedEvent="Form1_FormClosed">
-    <ButtonControl Name="Button1" Left="280" Top="532" Font="Tahoma, 8pt" TabIndex="1" Text="OK" DialogResult="OK"/>
-    <ButtonControl Name="Button2" Left="360" Top="532" Font="Tahoma, 8pt" TabIndex="2" Text="Cancel" DialogResult="Cancel"/>
-    <LabelControl Name="Label1" Left="8" Top="12" Width="79" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="Enter the text:"/>
-    <TextBoxControl Name="TextBox1" Left="8" Top="32" Width="188" Font="Tahoma, 8pt" TabIndex="0" Text="Hello!"/>
-    <CheckBoxControl Name="CheckBox1" Left="8" Top="72" Width="79" Height="17" Font="Tahoma, 8pt" TabIndex="4" Text="CheckBox1" Checked="true" CheckState="Checked"/>
-    <CheckBoxControl Name="CheckBox2" Left="8" Top="96" Width="79" Height="17" Font="Tahoma, 8pt" TabIndex="5" Text="CheckBox2"/>
-    <CheckBoxControl Name="CheckBox3" Left="8" Top="120" Width="79" Height="17" Font="Tahoma, 8pt" TabIndex="6" Text="CheckBox3"/>
-    <RadioButtonControl Name="RadioButton1" Left="108" Top="72" Width="90" Height="17" Font="Tahoma, 8pt" TabIndex="7" Text="RadioButton1" Checked="true"/>
-    <RadioButtonControl Name="RadioButton2" Left="108" Top="96" Width="90" Height="17" Font="Tahoma, 8pt" TabIndex="8" TabStop="false" Text="RadioButton2"/>
-    <RadioButtonControl Name="RadioButton3" Left="108" Top="120" Width="90" Height="17" Font="Tahoma, 8pt" TabIndex="9" TabStop="false" Text="RadioButton3"/>
-    <ComboBoxControl Name="ComboBox1" Left="216" Top="32" Font="Tahoma, 8pt" TabIndex="10" Text="ComboBox" ItemHeight="13" ItemsText="Item 1&#13;&#10;Item 2&#13;&#10;Item 3&#13;&#10;Item 4&#13;&#10;Item 5&#13;&#10;Item 6&#13;&#10;Item 7&#13;&#10;Item 8"/>
-    <DateTimePickerControl Name="DateTimePicker1" Left="8" Top="176" Width="176" Font="Tahoma, 8pt" TabIndex="12" Checked="false" Value="03/11/2013 02:00:10"/>
-    <LabelControl Name="Label2" Left="8" Top="156" Width="86" Height="13" Font="Tahoma, 8pt" TabIndex="16" Text="DateTimePicker1"/>
-    <DateTimePickerControl Name="DateTimePicker2" Left="8" Top="232" Width="176" Font="Tahoma, 8pt" TabIndex="12" Checked="false" Value="03/11/2013 02:00:10"/>
-    <LabelControl Name="Label3" Left="8" Top="212" Width="86" Height="13" Font="Tahoma, 8pt" TabIndex="16" Text="DateTimePicker2"/>
-    <LabelControl Name="Label5" Left="216" Top="12" Width="58" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="ComboBox"/>
-    <CheckedListBoxControl Name="CheckedListBox1" Left="8" Top="316" Width="176" Height="104" Font="Tahoma, 8pt" TabIndex="17" Text="CheckedListBox" ClickEvent="" ItemsText="CheckListBox Value1&#13;&#10;CheckListBox Value2&#13;&#10;CheckListBox Value3&#13;&#10;CheckListBox Value4&#13;&#10;CheckListBox Value5&#13;&#10;CheckListBox Value6&#13;&#10;CheckListBox Value7&#13;&#10;CheckListBox Value8&#13;&#10;CheckListBox Value9&#13;&#10;CheckListBox Value10" CheckOnClick="true"/>
-    <ListBoxControl Name="ListBox1" Left="216" Top="316" Width="164" Height="104" Font="Tahoma, 8pt" TabIndex="18" Text="ListBox" ItemsText="ListBox Value1&#13;&#10;ListBox Value2&#13;&#10;ListBox Value3&#13;&#10;ListBox Value4&#13;&#10;ListBox Value5&#13;&#10;ListBox Value6&#13;&#10;ListBox Value7&#13;&#10;ListBox Value8"/>
-    <LabelControl Name="Label6" Left="8" Top="432" Width="120" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="Enter the multiline text:"/>
+    <ButtonControl Name="Button1" Left="280" Top="532" Width="75" Height="23" Font="Tahoma, 8pt" TabIndex="1" Text="OK" DialogResult="OK"/>
+    <ButtonControl Name="Button2" Left="360" Top="532" Width="75" Height="23" Font="Tahoma, 8pt" TabIndex="2" Text="Cancel" DialogResult="Cancel"/>
+    <LabelControl Name="Label1" Left="8" Top="12" Width="110" Height="19" Font="Tahoma, 8pt" TabIndex="3" Text="Enter the text:"/>
+    <TextBoxControl Name="TextBox1" Left="8" Top="32" Width="188" Height="27" Font="Tahoma, 8pt" TabIndex="0" Text="Hello!"/>
+    <CheckBoxControl Name="CheckBox1" Left="8" Top="72" Width="112" Height="23" Font="Tahoma, 8pt" TabIndex="4" Text="CheckBox1" Checked="true" CheckState="Checked"/>
+    <CheckBoxControl Name="CheckBox2" Left="8" Top="96" Width="112" Height="23" Font="Tahoma, 8pt" TabIndex="5" Text="CheckBox2"/>
+    <CheckBoxControl Name="CheckBox3" Left="8" Top="120" Width="112" Height="23" Font="Tahoma, 8pt" TabIndex="6" Text="CheckBox3"/>
+    <RadioButtonControl Name="RadioButton1" Left="108" Top="72" Width="129" Height="23" Font="Tahoma, 8pt" TabIndex="7" Text="RadioButton1" Checked="true"/>
+    <RadioButtonControl Name="RadioButton2" Left="108" Top="96" Width="129" Height="23" Font="Tahoma, 8pt" TabIndex="8" TabStop="false" Text="RadioButton2"/>
+    <RadioButtonControl Name="RadioButton3" Left="108" Top="120" Width="129" Height="23" Font="Tahoma, 8pt" TabIndex="9" TabStop="false" Text="RadioButton3"/>
+    <ComboBoxControl Name="ComboBox1" Left="216" Top="32" Height="27" Width="121" Font="Tahoma, 8pt" TabIndex="10" Text="ComboBox" ItemHeight="19" ItemsText="Item 1&#13;&#10;Item 2&#13;&#10;Item 3&#13;&#10;Item 4&#13;&#10;Item 5&#13;&#10;Item 6&#13;&#10;Item 7&#13;&#10;Item 8"/>
+    <DateTimePickerControl Name="DateTimePicker1" Left="8" Top="176" Width="176" Height="27" Font="Tahoma, 8pt" TabIndex="12" Text="22.06.2021" Checked="false" Format="Short" Value="03/11/2013 02:00:10"/>
+    <LabelControl Name="Label2" Left="8" Top="156" Width="177" Height="19" Font="Tahoma, 8pt" TabIndex="16" Text="DateTimePicker1 Short:" ClickEvent=""/>
+    <DateTimePickerControl Name="DateTimePicker2" Left="8" Top="232" Height="27" Width="200" BackColor="White" Font="Tahoma, 8pt" ForeColor="Black" TabIndex="12" Text="22 июня 2021 г." Checked="false" Value="03/11/2013 02:00:10"/>
+    <LabelControl Name="Label3" Left="8" Top="212" Width="174" Height="19" Font="Tahoma, 8pt" TabIndex="16" Text="DateTimePicker2 Long:"/>
+    <LabelControl Name="Label5" Left="216" Top="12" Width="86" Height="19" Font="Tahoma, 8pt" TabIndex="3" Text="ComboBox"/>
+    <CheckedListBoxControl Name="CheckedListBox1" Left="8" Top="316" Width="176" Height="104" Font="Tahoma, 8pt" TabIndex="17" Text="CheckedListBox" ClickEvent="" ItemHeight="22" ItemsText="CheckListBox Value1&#13;&#10;CheckListBox Value2&#13;&#10;CheckListBox Value3&#13;&#10;CheckListBox Value4&#13;&#10;CheckListBox Value5&#13;&#10;CheckListBox Value6&#13;&#10;CheckListBox Value7&#13;&#10;CheckListBox Value8&#13;&#10;CheckListBox Value9&#13;&#10;CheckListBox Value10" CheckOnClick="true"/>
+    <ListBoxControl Name="ListBox1" Left="216" Top="316" Width="164" Height="104" Font="Tahoma, 8pt" TabIndex="18" Text="ListBox" ItemHeight="19" ItemsText="ListBox Value1&#13;&#10;ListBox Value2&#13;&#10;ListBox Value3&#13;&#10;ListBox Value4&#13;&#10;ListBox Value5&#13;&#10;ListBox Value6&#13;&#10;ListBox Value7&#13;&#10;ListBox Value8"/>
+    <LabelControl Name="Label6" Left="8" Top="432" Width="176" Height="19" Font="Tahoma, 8pt" TabIndex="3" Text="Enter the multiline text:"/>
     <TextBoxControl Name="TextBox2" Left="8" Top="452" Width="440" Height="68" Font="Tahoma, 8pt" TabIndex="0" Text="FastReport.Net is a full-featured reporting solution for Windows Forms, ASP.NET and MVC. It can be used in Microsoft Visual Studio 2005, 2008, Microsoft Visual Studio 2010-2015 and Delphi Prism." ClickEvent="" Multiline="true"/>
+    <DateTimePickerControl Name="DateTimePicker3" Left="8" Top="280" Height="27" Width="200" Font="Tahoma, 8pt" TabIndex="19" Text="14:24:33" Format="Time" Value="06/22/2021 14:24:33"/>
+    <LabelControl Name="Label7" Left="8" Top="260" Width="175" Height="19" Font="Tahoma, 8pt" TabIndex="16" Text="DateTimePicker3 Time:"/>
   </DialogPage>
 </Report>

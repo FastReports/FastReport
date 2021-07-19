@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net4.5</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net452;netcoreapp3.1</TargetFrameworks>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -10,7 +10,6 @@
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
         <Authors>Fast Reports Inc.</Authors>
         <Product>FastReport.Data.Couchbase</Product>
-        <Description>Represents a connection to Couchbase server for FastReport.Net.</Description>
         <PackageId>FastReport.OpenSource.Data.Couchbase</PackageId>
         <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
         <PackageTags>reporting, Couchbase, connection, reports</PackageTags>
@@ -19,6 +18,10 @@
         <AssemblyName>FastReport.Data.Couchbase</AssemblyName>
         <RootNamespace>FastReport.Data</RootNamespace>
         <PackageReleaseNotes></PackageReleaseNotes>
+        <Description>Represents a connection to Couchbase server for FastReport.OpenSource.
+
+This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
+</Description>
         <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
     </PropertyGroup>
     <PropertyGroup>
@@ -38,9 +41,9 @@
         <EmbeddedResource Remove="CouchbaseConnectionEditor.resx" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="CouchbaseNetClient" Version="2.5.9" />
+        <PackageReference Include="CouchbaseNetClient" Version="2.7.15" />
     </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net452'">
         <Reference Include="System" />
         <Reference Include="System.Data" />
         <Reference Include="System.Data.Entity.Design" />

@@ -77,7 +77,7 @@ namespace FastReport.Utils
 #if true// | NETSTANDARD2_0 || NETSTANDARD2_1
             if (value is Font)
             {
-                return FastReport.TypeConverters.FontConverter.Instance.ConvertToInvariantString(value);
+                return new TypeConverters.FontConverter().ConvertToInvariantString(value);
             }
 #endif
             if(value is System.Drawing.Imaging.ImageFormat)
@@ -135,7 +135,7 @@ namespace FastReport.Utils
 #if true //NETSTANDARD2_0 || NETSTANDARD2_1
             if (type == typeof(Font))
             {
-                return FastReport.TypeConverters.FontConverter.Instance.ConvertFromInvariantString(value);
+                return new TypeConverters.FontConverter().ConvertFromInvariantString(value);
             }
 #endif
       if (type == typeof(Color))

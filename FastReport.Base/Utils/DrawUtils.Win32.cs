@@ -30,6 +30,12 @@ namespace FastReport.Utils
             PRF_OWNED = 0x20
         }
 
+        /// <summary>
+        /// Draws control to a bitmap.
+        /// </summary>
+        /// <param name="control">Control to draw.</param>
+        /// <param name="children">Determines whether to draw control's children or not.</param>
+        /// <returns>The bitmap.</returns>
         public static Bitmap DrawToBitmap(Control control, bool children)
         {
             Bitmap bitmap = new Bitmap(control.Width, control.Height);
