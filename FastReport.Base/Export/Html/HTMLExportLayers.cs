@@ -774,7 +774,7 @@ namespace FastReport.Export.Html
                 htmlPage.Append(HTMLGetAncor((d.PageNumber).ToString()));
 
                 if (doPageBreak && d.PageNumber > 1)
-                    htmlPage.Append("<div style=\"break-after:page\"></div>").ToString();
+                    htmlPage.Append("<div style=\"break-after:page\"></div>");
 
                 pageStyleName = "frpage" + currentPage;
                 htmlPage.Append("<div ").Append(doPageBreak ? "class=\"" + pageStyleName + "\"" : String.Empty)

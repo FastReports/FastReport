@@ -46,6 +46,7 @@ namespace FastReport.Utils
         private static ScriptSecurityProperties scriptSecurityProps = null;
         private static bool forbidLocalData = false;
         private static bool userSetsScriptSecurity = false;
+        internal static bool CleanupOnExit;
 
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
@@ -357,6 +358,18 @@ namespace FastReport.Utils
             }
         }
 
+#if NETSTANDARD || NETCOREAPP
+        public static event EventHandler<Code.CodeDom.Compiler.CompilationEventArgs> BeforeEmitCompile;
+
+        internal static void OnBeforeScriptCompilation(object sender, Code.CodeDom.Compiler.CompilationEventArgs e)
+        {
+            if (BeforeEmitCompile != null)
+            {
+                BeforeEmitCompile.Invoke(sender, e);
+            }
+        }
+#endif
+
 #endregion Internal Methods
 
 #region Private Methods
@@ -390,17 +403,24 @@ namespace FastReport.Utils
             SaveUIOptions();
             SavePreviewSettings();
 #if !COMMUNITY
-                SaveExportOptions();
+            SaveExportOptions();
 #endif
 
             if (!WebMode)
             {
                 try
                 {
-                    // added by Samuray
                     if (!Directory.Exists(Folder))
                         Directory.CreateDirectory(Folder);
-                    FDoc.Save(Path.Combine(Folder, CONFIG_NAME));
+                    string configFile = Path.Combine(Folder, CONFIG_NAME);
+                    if (CleanupOnExit)
+                    {
+                        File.Delete(configFile);
+                    }
+                    else
+                    {
+                        FDoc.Save(configFile);
+                    }
                     if (FLogs != "")
                         File.WriteAllText(Path.Combine(Folder, "FastReport.logs"), FLogs);
                 }
@@ -421,9 +441,6 @@ namespace FastReport.Utils
                     {
                         string baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                         Folder = Path.Combine(baseFolder, "FastReport");
-                        // commented by Samuray
-                        //if (!Directory.Exists(Folder))
-                        //    Directory.CreateDirectory(Folder);
                     }
                     else if (Folder == "")
                         Folder = ApplicationFolder;

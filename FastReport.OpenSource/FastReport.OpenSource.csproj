@@ -13,13 +13,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
-    <PackageIcon>frlogo-big.png</PackageIcon>
+    <PackageIcon>frlogo192.png</PackageIcon>
     <AssemblyOriginatorKeyFile>../FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright>Fast Reports Inc.</Copyright>
     <Company>Fast Reports Inc.</Company>
-    <PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageLicenseFile>FastReport MIT license.md</PackageLicenseFile>
     <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
     <Authors>Fast Reports Inc.</Authors>
     <Product>FastReport</Product>
@@ -82,7 +84,11 @@ Various report objects will allow your report to look exactly how you want it to
 
 
   <ItemGroup>
-    <None Include="..\Pack\frlogo-big.png">
+    <None Include="..\Pack\FastReport MIT license.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\Pack\frlogo192.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

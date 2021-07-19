@@ -70,15 +70,15 @@ namespace FastReport.Utils
         {
             if (image == null)
                 return false;
-            if(format == ImageFormat.Jpeg || format == ImageFormat.Gif 
-                || format == ImageFormat.Tiff || format == ImageFormat.Bmp 
-                || format == ImageFormat.Png 
+            if (format == ImageFormat.Jpeg || format == ImageFormat.Gif
+                || format == ImageFormat.Tiff || format == ImageFormat.Bmp
+                || format == ImageFormat.Png
                 || format == ImageFormat.MemoryBmp)
             {
-                if(image is Bitmap)
+                if (image is Bitmap)
                 {
                     if (format == ImageFormat.MemoryBmp)
-                        throw new Exception(Res.Get("Export,Image,ImageParceFormatException")); 
+                        throw new Exception(Res.Get("Export,Image,ImageParceFormatException"));
                     image.Save(stream, format);
                     return true;
                 }
@@ -97,12 +97,12 @@ namespace FastReport.Utils
                 }
                 return true;
 
-            }   
-            else if(format == ImageFormat.Icon)
+            }
+            else if (format == ImageFormat.Icon)
             {
                 return SaveAsIcon(image, stream, true);
             }
-            else if(format == ImageFormat.Wmf || format == ImageFormat.Emf)
+            else if (format == ImageFormat.Wmf || format == ImageFormat.Emf)
             {
                 if (image is Metafile)
                 {
@@ -119,7 +119,7 @@ namespace FastReport.Utils
                         g.DrawImage(image, 0, 0);
                     }
                     return true;
-                 }
+                }
             }
             //throw new Exception(Res.Get("Export,Image,ImageParceFormatException")); // we cant convert image to exif or from bitmap to mf 
             return false;
@@ -207,7 +207,7 @@ namespace FastReport.Utils
         public static Bitmap GetGrayscaleBitmap(Image source)
         {
             Bitmap grayscaleBitmap = new Bitmap(source.Width, source.Height, source.PixelFormat);
-            
+
             // Red should be converted to (R*.299)+(G*.587)+(B*.114)
             // Green should be converted to (R*.299)+(G*.587)+(B*.114)
             // Blue should be converted to (R*.299)+(G*.587)+(B*.114)
@@ -221,7 +221,7 @@ namespace FastReport.Utils
 
             ImageAttributes attributes = new ImageAttributes();
             attributes.SetColorMatrix(grayscaleMatrix);
-            
+
             // Use a Graphics object from the new image
             using (Graphics graphics = Graphics.FromImage(grayscaleBitmap))
             {
@@ -310,8 +310,6 @@ namespace FastReport.Utils
 
             return true;
         }
-
-
     }
 
     public static class ImageExtension

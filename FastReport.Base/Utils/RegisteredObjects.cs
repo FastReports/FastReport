@@ -1,3 +1,4 @@
+//#define CATEGORY_OPTIMIZATION
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,22 +9,168 @@ using FastReport.Export;
 
 namespace FastReport.Utils
 {
+    public partial class FunctionInfo
+    {
+        #region Fields
+        private string text;
+#if CATEGORY_OPTIMIZATION
+        private FunctionInfo root;
+#endif
+        #endregion
+
+#region Properties
+        /// <summary>
+        /// Name of object or category.
+        /// </summary>
+        public string Name
+        {
+            get;
+            set;
+        }
+
+#if CATEGORY_OPTIMIZATION
+        public FunctionInfo Category
+        {
+            get => root;
+            set
+            {
+                root = value;
+            }
+        }
+#else
+
+        /// <summary>
+        /// Tooltip text.
+        /// </summary>
+        public string Text
+        {
+            get { return text; }
+            set
+            {
+                text = value;
+                if (text == "")
+                {
+                    if (Function != null)
+                        text = "Objects," + Function.Name;
+                }
+            }
+        }
+#endif
+
+        /// <summary>
+        /// The registered function.
+        /// </summary>
+        public MethodInfo Function
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// List of subitems.
+        /// </summary>
+        public List<FunctionInfo> Items
+        {
+            get;
+        }
+#endregion
+
+#region Public Methods
+        /// <summary>
+        /// Enumerates all objects.
+        /// </summary>
+        /// <param name="list">List that will contain enumerated items.</param>
+        public void EnumItems(ICollection<FunctionInfo> list)
+        {
+            list.Add(this);
+            foreach (FunctionInfo item in Items)
+            {
+                item.EnumItems(list);
+            }
+        }
+
+#if !CATEGORY_OPTIMIZATION
+        internal FunctionInfo FindOrCreate(string complexName)
+        {
+            string[] itemNames = complexName.Split(new char[] { ',' });
+            FunctionInfo root = this;
+            foreach (string itemName in itemNames)
+            {
+                FunctionInfo item = null;
+                foreach (FunctionInfo rootItem in root.Items)
+                {
+                    if (rootItem.Name != "" && rootItem.Name == itemName)
+                    {
+                        item = rootItem;
+                        break;
+                    }
+                }
+                if (item == null)
+                {
+                    item = new FunctionInfo();
+                    item.Name = itemName;
+                    item.Text = itemName;
+                    root.Items.Add(item);
+                }
+                root = item;
+            }
+            return root;
+        }
+#else
+
+        internal FunctionInfo FindOrCreate(FunctionInfo category, string name)
+        {
+            foreach(FunctionInfo item in category.Items)
+            {
+                if (item.Name == name)
+                {
+                    return item;
+                }
+            }
+            FunctionInfo newItem = new FunctionInfo();
+            newItem.Name = name;
+            newItem.Category = category;
+            category.Items.Add(newItem);
+            return newItem;
+        }
+#endif
+
+        internal void Update(MethodInfo func, string text)
+        {
+            Function = func;
+            Text = text;
+        }
+
+#endregion
+
+        internal FunctionInfo()
+        {
+            Items = new List<FunctionInfo>();
+            Name = "";
+        }
+
+        internal FunctionInfo(string name, MethodInfo func, string text) : this()
+        {
+            this.Name = name;
+            Update(func, text);
+        }
+    }
+
     /// <summary>
     /// Holds the information about the registered object.
     /// </summary>
     public partial class ObjectInfo
     {
-        #region Fields
+#region Fields
         private string name;
         private Object fObject;
         private string text;
         private int flags;
         private bool multiInsert;
         private bool enabled;
-        private List<ObjectInfo> items;
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
         /// <summary>
         /// Name of object or category.
         /// </summary>
@@ -45,6 +192,7 @@ namespace FastReport.Utils
         /// <summary>
         /// The registered function.
         /// </summary>
+        [Obsolete("Use RegisteredObjects.Functions")]
         public MethodInfo Function
         {
             get { return fObject as MethodInfo; }
@@ -103,19 +251,19 @@ namespace FastReport.Utils
         /// </summary>
         public List<ObjectInfo> Items
         {
-            get { return items; }
+            get;
         }
-        #endregion
+#endregion
 
-        #region Public Methods
+#region Public Methods
         /// <summary>
         /// Enumerates all objects.
         /// </summary>
         /// <param name="list">List that will contain enumerated items.</param>
-        public void EnumItems(List<ObjectInfo> list)
+        public void EnumItems(ICollection<ObjectInfo> list)
         {
             list.Add(this);
-            foreach (ObjectInfo item in items)
+            foreach (ObjectInfo item in Items)
             {
                 item.EnumItems(list);
             }
@@ -128,11 +276,11 @@ namespace FastReport.Utils
             foreach (string itemName in itemNames)
             {
                 ObjectInfo item = null;
-                for (int i = 0; i < root.Items.Count; i++)
+                foreach (ObjectInfo rootItem in root.Items)
                 {
-                    if (root.Items[i].Name != "" && root.Items[i].Name == itemName)
+                    if (rootItem.Name != "" && rootItem.Name == itemName)
                     {
-                        item = root.Items[i];
+                        item = rootItem;
                         break;
                     }
                 }
@@ -151,7 +299,7 @@ namespace FastReport.Utils
         internal void Update(Object obj, Bitmap image, int imageIndex, string text, int flags, bool multiInsert)
         {
             fObject = obj;
-            UpdateDesign(obj, image, imageIndex, text, flags, multiInsert);
+            UpdateDesign(image, imageIndex);
             Text = text;
             Flags = flags;
             MultiInsert = multiInsert;
@@ -161,17 +309,17 @@ namespace FastReport.Utils
             bool multiInsert)
         {
             fObject = obj;
-            UpdateDesign(obj, image, imageIndex, buttonIndex, text, flags, multiInsert);
+            UpdateDesign(image, imageIndex, buttonIndex);
             Text = text;
             Flags = flags;
             MultiInsert = multiInsert;
         }
 
-        #endregion
+#endregion
 
         internal ObjectInfo()
         {
-            items = new List<ObjectInfo>();
+            Items = new List<ObjectInfo>();
             name = "";
             enabled = true;
         }
@@ -203,14 +351,14 @@ namespace FastReport.Utils
     /// </example>
     public static partial class RegisteredObjects
     {
-        #region Fields
+#region Fields
         private static Hashtable FTypes = new Hashtable();
         private static ObjectInfo FObjects = new ObjectInfo();
         private static Dictionary<Type, Dictionary<string, Delegate>> methodsDictionary
             = new Dictionary<Type, Dictionary<string, Delegate>>();
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
         /// <summary>
         /// Root object for all registered objects.
         /// </summary>
@@ -218,9 +366,23 @@ namespace FastReport.Utils
         {
             get { return FObjects; }
         }
-        #endregion
 
-        #region Private Methods
+        /// <summary>
+        /// Root object for all registered functions.
+        /// </summary>
+        public static FunctionInfo Functions
+        {
+            get;
+        }
+
+        public static List<Assembly> Assemblies
+        {
+            get;
+        }
+
+#endregion
+
+#region Private Methods
 
         private static void RegisterType(Type type)
         {
@@ -245,9 +407,23 @@ namespace FastReport.Utils
                 RegisterType(obj as Type);
         }
 
-        #endregion
+#if CATEGORY_OPTIMIZATION
+        private static void PrivateAddFunction(MethodInfo func, FunctionInfo category, int imageIndex, string name)
+        {
+            FunctionInfo item = Functions.FindOrCreate(category, func.Name);
+            item.Update(func, imageIndex);
+        }
+#else
+        private static void PrivateAddFunction(MethodInfo func, string category, string text = "")
+        {
+            FunctionInfo item = Functions.FindOrCreate(category);
+            item.Update(func, text);
+        }
+#endif
 
-        #region Public Methods
+#endregion
+
+#region Public Methods
         /// <summary>
         /// Checks whether the specified type is registered already.
         /// </summary>
@@ -256,6 +432,12 @@ namespace FastReport.Utils
         public static bool IsTypeRegistered(Type obj)
         {
             return FTypes.ContainsKey(obj.Name);
+        }
+
+        private static void AddAssembly(Assembly assembly)
+        {
+            if (!Assemblies.Contains(assembly))
+                Assemblies.Add(assembly);
         }
 
         internal static void AddReport(Type obj, int imageIndex)
@@ -307,12 +489,7 @@ namespace FastReport.Utils
         /// </summary>
         /// <param name="name">Category name.</param>
         /// <param name="text">Category text.</param>
-        public static void AddExportCategory(string name, string text)
-        {
-            InternalAdd(null, "ExportGroups," + name, null, -1, text, 0, false);
-        }
-
-        internal static void AddExportCategory(string name, string text, int imageIndex)
+        public static void AddExportCategory(string name, string text, int imageIndex = -1)
         {
             InternalAdd(null, "ExportGroups," + name, null, imageIndex, text, 0, false);
         }
@@ -333,9 +510,7 @@ namespace FastReport.Utils
         /// </example>
         public static void AddExport(Type obj, string text)
         {
-            if (!obj.IsSubclassOf(typeof(ExportBase)))
-                throw new Exception("The 'obj' parameter must be of ExportBase type.");
-            InternalAdd(obj, "", null, -1, text, 0, false);
+            AddExport(obj, "", text);
         }
 
         internal static void AddExport(Type obj, string text, int imageIndex)
@@ -343,43 +518,24 @@ namespace FastReport.Utils
             InternalAdd(obj, "", null, imageIndex, text, 0, false);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void AddExport(Type obj, string category, string text)
-        {
-            if (!obj.IsSubclassOf(typeof(ExportBase)))
-                throw new Exception("The 'obj' parameter must be of ExportBase type.");
-            InternalAdd(obj, "ExportGroups," + category + ",", null, -1, text, 0, false);
-        }
-
         internal static void AddExport(Type obj, string category, string text, int imageIndex)
         {
             InternalAdd(obj, "ExportGroups," + category + ",", null, imageIndex, text, 0, false);
         }
 
-        public static void AddExport(Type obj, string category, string text, Bitmap image)
+        public static void AddExport(Type obj, string category, string text, Bitmap image = null)
+        {
+            if (!obj.IsSubclassOf(typeof(ExportBase)))
+                throw new Exception("The 'obj' parameter must be of ExportBase type.");
+            AddAssembly(obj.Assembly);
+            InternalAddExport(obj, category, text, image);
+        }
+
+        internal static void InternalAddExport(Type obj, string category, string text, Bitmap image = null)
         {
             InternalAdd(obj, "ExportGroups," + category + ",", image, -1, text, 0, false);
         }
 
-        /// <summary>
-        /// Registers data connection.
-        /// </summary>
-        /// <param name="obj">Type of connection.</param>
-        /// <remarks>
-        /// The <b>obj</b> must be of <see cref="DataConnectionBase"/> type.
-        /// </remarks>
-        /// <example>
-        /// <code>
-        /// // register data connection
-        /// RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
-        /// </code>
-        /// </example>
-        public static void AddConnection(Type obj)
-        {
-            AddConnection(obj, "");
-        }
 
         /// <summary>
         /// Registers custom data connection.
@@ -395,10 +551,17 @@ namespace FastReport.Utils
         /// RegisteredObjects.AddConnection(typeof(MyDataConnection), "My Data Connection");
         /// </code>
         /// </example>
-        public static void AddConnection(Type obj, string text)
+        public static void AddConnection(Type obj, string text = "")
         {
             if (!obj.IsSubclassOf(typeof(DataConnectionBase)))
                 throw new Exception("The 'obj' parameter must be of DataConnectionBase type.");
+
+            AddAssembly(obj.Assembly);
+            InternalAddConnection(obj, text);
+        }
+
+        internal static void InternalAddConnection(Type obj, string text = "")
+        {
             if (!IsTypeRegistered(obj))
                 Add(obj, "", 0, text);
         }
@@ -409,45 +572,34 @@ namespace FastReport.Utils
         /// <param name="obj">Type of object to register.</param>
         /// <param name="category">Name of category to register in.</param>
         /// <param name="imageIndex">Index of image for object's button.</param>
-        public static void Add(Type obj, string category, int imageIndex)
+        /// <param name="buttonIndex">Index of object's button in toolbar.</param>
+        public static void Add(Type obj, string category, int imageIndex, int buttonIndex = -1)
         {
-            InternalAdd(obj, category + ",", null, imageIndex, "", 0, false);
+            AddAssembly(obj.Assembly);
+            InternalAdd(obj, category, imageIndex, buttonIndex);
         }
 
-        /// <summary>
-        /// Registers an object in the specified category.
-        /// </summary>
-        /// <param name="obj">Type of object to register.</param>
-        /// <param name="category">Name of category to register in.</param>
-        /// <param name="imageIndex">Index of image for object's button.</param>
-        /// <param name="buttonIndex">Index of object's button in toolbar.</param>
-        public static void Add(Type obj, string category, int imageIndex, int buttonIndex)
+        internal static void InternalAdd(Type obj, string category, int imageIndex, int buttonIndex = -1)
         {
             InternalAdd(obj, category + ",", null, imageIndex, buttonIndex, "", 0, false);
         }
 
-        internal static void Add(Type obj, string category, int imageIndex, string text)
-        {
-            InternalAdd(obj, category + ",", null, imageIndex, text, 0, false);
-        }
-
-        internal static void Add(Type obj, string category, int imageIndex, string text, int flags)
-        {
-            InternalAdd(obj, category + ",", null, imageIndex, text, flags, false);
-        }
-
-        internal static void Add(Type obj, string category, int imageIndex, string text, int flags, bool multiInsert)
+        internal static void Add(Type obj, string category, int imageIndex, string text, int flags = 0, bool multiInsert = false)
         {
             InternalAdd(obj, category + ",", null, imageIndex, text, flags, multiInsert);
         }
 
+
         /// <summary>
-        /// Registers an object in the specified category with button's image and text.
+        /// Registers an object in the specified category with button's image, text, object's flags and multi-insert flag.
         /// </summary>
         /// <param name="obj">Type of object to register.</param>
         /// <param name="category">Name of category to register in.</param>
         /// <param name="image">Image for object's button.</param>
         /// <param name="text">Text for object's button.</param>
+        /// <param name="flags">Integer value that will be passed to object's <b>OnBeforeInsert</b> method.</param>
+        /// <param name="multiInsert">Specifies whether the object may be inserted several times until you
+        /// select the "arrow" button or insert another object.</param>
         /// <remarks>
         /// <para>You must specify either the page type name or existing category name in the <b>category</b> parameter.
         /// The report objects must be registered in the "ReportPage" category or custom category that is
@@ -456,6 +608,7 @@ namespace FastReport.Utils
         /// <para>If you want to register an object that needs to be serialized, but you don't want
         /// to show it on the toolbar, pass empty string in the <b>category</b> parameter.
         /// </para>
+        /// <para>To learn about flags, see the <see cref="Base.OnBeforeInsert"/> method.</para>
         /// </remarks>
         /// <example>
         /// <code>
@@ -470,44 +623,10 @@ namespace FastReport.Utils
         ///   anotherReportObjectBmp, "Another Report Object");
         /// </code>
         /// </example>
-        public static void Add(Type obj, string category, Bitmap image, string text)
+        public static void Add(Type obj, string category, Bitmap image, string text, int flags = 0, bool multiInsert = false)
         {
-            InternalAdd(obj, category + ",", image, -1, text, 0, false);
-        }
+            AddAssembly(obj.Assembly);
 
-        /// <summary>
-        /// Registers an object in the specified category with button's image, text and object's flags.
-        /// </summary>
-        /// <param name="obj">Type of object to register.</param>
-        /// <param name="category">Name of category to register in.</param>
-        /// <param name="image">Image for object's button.</param>
-        /// <param name="text">Text for object's button.</param>
-        /// <param name="flags">Integer value that will be passed to object's <b>OnBeforeInsert</b> method.</param>
-        /// <remarks>
-        /// <para>See the <see cref="Add(Type,string,Bitmap,string)"/> method for more details.</para>
-        /// <para>To learn about flags, see the <see cref="Base.OnBeforeInsert"/> method.</para>
-        /// </remarks>
-        public static void Add(Type obj, string category, Bitmap image, string text, int flags)
-        {
-            InternalAdd(obj, category + ",", image, -1, text, flags, false);
-        }
-
-        /// <summary>
-        /// Registers an object in the specified category with button's image, text, object's flags and multi-insert flag.
-        /// </summary>
-        /// <param name="obj">Type of object to register.</param>
-        /// <param name="category">Name of category to register in.</param>
-        /// <param name="image">Image for object's button.</param>
-        /// <param name="text">Text for object's button.</param>
-        /// <param name="flags">Integer value that will be passed to object's <b>OnBeforeInsert</b> method.</param>
-        /// <param name="multiInsert">Specifies whether the object may be inserted several times until you
-        /// select the "arrow" button or insert another object.</param>
-        /// <remarks>
-        /// <para>See the <see cref="Add(Type,string,Bitmap,string)"/> method for more details.</para>
-        /// <para>To learn about flags, see the <see cref="Base.OnBeforeInsert"/> method.</para>
-        /// </remarks>
-        public static void Add(Type obj, string category, Bitmap image, string text, int flags, bool multiInsert)
-        {
             InternalAdd(obj, category + ",", image, -1, text, flags, multiInsert);
         }
 
@@ -517,7 +636,7 @@ namespace FastReport.Utils
         /// <param name="category">Short name of category.</param>
         /// <param name="text">Display name of category.</param>
         /// <remarks>
-        /// Short name is used to reference the category in the subsequent <see cref="AddFunction"/> 
+        /// Short name is used to reference the category in the subsequent <see cref="InternalAddFunction"/> 
         /// method call. It may be any value, for example, "MyFuncs". Display name of category is displayed 
         /// in the "Data" window. In may be, for example, "My Functions".
         /// <para/>The following standard categories are registered by default:
@@ -551,7 +670,16 @@ namespace FastReport.Utils
         public static void AddFunctionCategory(string category, string text)
         {
             InternalAdd(null, "Functions," + category, null, 66, text, 0, false);
+            PrivateAddFunction(null, "Functions," + category, text);
         }
+
+#if CATEGORY_OPTIMIZATION
+        public static void AddFunctionCategory(string name, FunctionInfo category)
+        {
+            InternalAdd(null, "Functions," + category, null, 66, name, 0, false);
+            PrivateAddFunction(null, category, 66, name);
+        }
+#endif
 
         /// <summary>
         /// Adds a new function into the specified category.
@@ -646,12 +774,21 @@ namespace FastReport.Utils
         {
             if (function == null)
                 throw new ArgumentNullException("function");
+            // User runs this function, trying to add external assembly
+            AddAssembly(function.DeclaringType.Assembly);
+            InternalAddFunction(function, category);
+        }
+
+        internal static void InternalAddFunction(MethodInfo function, string category)
+        {
             InternalAdd(function, "Functions," + category + ",", null, 52, "", 0, false);
+            // new 
+            PrivateAddFunction(function, "Functions," + category + ",");
         }
 
         internal static Type FindType(string typeName)
         {
-            if (typeName != null && typeName != "")
+            if (!string.IsNullOrEmpty(typeName))
             {
                 return FTypes[typeName] as Type;
             }
@@ -700,6 +837,7 @@ namespace FastReport.Utils
         public static void RegisterMethod(Type type, string methodName, Delegate method)
         {
             Dictionary<string, Delegate> methods;
+            AddAssembly(type.Assembly);
             if (!methodsDictionary.TryGetValue(type, out methods))
             {
                 methods = new Dictionary<string, Delegate>();
@@ -732,11 +870,11 @@ namespace FastReport.Utils
             return null;
         }
 
-        public static void CreateFunctionsTree(Report report, ObjectInfo rootItem, XmlItem rootNode)
+        public static void CreateFunctionsTree(Report report, FunctionInfo rootItem, XmlItem rootNode)
         {
-            foreach (ObjectInfo item in rootItem.Items)
+            foreach (FunctionInfo item in rootItem.Items)
             {
-                string text = String.Empty;
+                string text;
                 string desc = String.Empty;
                 MethodInfo func = item.Function;
                 if (func != null)
@@ -797,7 +935,16 @@ namespace FastReport.Utils
         }
 
 
-        #endregion
+#endregion
+
+        static RegisteredObjects()
+        {
+            Assemblies = new List<Assembly>();
+            // add FastReport Assembly
+            Assemblies.Add(Assembly.GetExecutingAssembly());
+
+            Functions = new FunctionInfo();
+        }
     }
 
 }

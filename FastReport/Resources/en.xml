@@ -258,6 +258,32 @@
     </Gauge>
     <CrossViewObject Text="CrossView"/>
     <DigitalSignatureObject Text="Digital signature"/>
+    <FastBI Text="FastReport Business Graphics">
+      <TreeMap Text="TreeMap chart"/>
+      <Sunburst Text="Sunburst chart"/>
+      <Icicle Text="Icicle chart"/>
+      <Gantt Text="Gantt chart"/>
+      <Data Text="Data">
+        <ValueColumn Text="Value column"/>
+        <RootText Text="Root text"/>
+        <DataSource Text="Data source"/>
+        <MaxDepth Text="Max depth"/>
+        <TextColumns Text="Text columns"/>
+        <Add Text="Add"/>
+        <Delete Text="Delete"/>
+        <Edit Text="Edit"/>
+      </Data>
+      <Appearance Text="Appearance">
+        <Palette Text="Palette"/>
+        <StartAngle Text="Start angle"/>
+        <TextDirection Text="Text direction"/>
+        <LayoutMode Text="Layout mode"/>
+        <IcicleDirection Text="Direction"/>
+        <SunburstForm Text="Sunburst editor form"/>
+        <IcicleForm Text="Icicle editor form"/>
+        <TreeMapForm Text="TreeMap editor form"/>
+      </Appearance>
+    </FastBI>    
   </Objects>
   <Functions>
     <Math Text="Mathematical"/>
@@ -1086,6 +1112,12 @@
       <Copy Text="Copy to clipboard"/>
     </Exception>
     <ExpressionEditor Text="Edit Expression"/>
+    <ExpressionsEditor Text="Edit Expressions">
+      <Expressions Text="Expressions"/>
+      <Add Text="Add"/>
+      <Delete Text="Delete"/>
+      <Edit Text="Edit"/>      
+    </ExpressionsEditor>
     <Fill Text="Fill Editor">
       <Solid Text="Solid"/>
       <LinearGradient Text="Linear gradient"/>
@@ -1848,6 +1880,10 @@
     </TotalEditor>
     <UIOptions Text="User Interface">
       <Appearance Text="Appearance:"/>
+      <IconPack Text="Icons:">
+        <Pack1 Text="Classic"/>
+        <Pack2 Text="Visual Studio"/>
+      </IconPack>
       <Ribbon Text="Use the new Ribbon interface"/>
       <Welcome Text="Show welcome window on startup"/>
       <RightToLeft Text="Right to Left user interface:">
@@ -1856,7 +1892,8 @@
         <Yes Text="Yes"/>
       </RightToLeft>
       <DisableHotkeys Text="Disable hotkeys"/>
-      <DisableHDPI Text="Disable High Dpi"/>
+      <Restart Text="* Restart required"/>
+      <Reset Text="Reset config"/>
     </UIOptions>
     <WatermarkEditor Text="Watermark">
       <Enabled Text="Enabled"/>
@@ -2063,6 +2100,9 @@
       <FieldNames Text="Field names in first string"/>
       <RemoveQuotes Text="Remove quotation marks"/>
       <ConvertTypes Text="Try to convert field types"/>
+      <NumberFormat Text="Number format:"/>
+      <CurrencyFormat Text="Currency format:"/>
+      <DateTimeFormat Text="Date/Time format:"/>
       <FilePreview Text="File preview:"/>
       <DataPreview Text="Data preview:"/>
       <Codepages>

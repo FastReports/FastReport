@@ -10,7 +10,6 @@
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
         <Authors>Fast Reports Inc.</Authors>
         <Product>FastReport.Data.OracleODPCore</Product>
-        <Description>Represents a connection to Oracle database for FastReport.Net.</Description>
         <PackageId>FastReport.CoreWin.Data.OracleODPCore</PackageId>
         <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
         <PackageTags>reporting, oracle, core, connection, reports</PackageTags>
@@ -18,6 +17,10 @@
         <Configurations>Debug;Release;</Configurations>
         <AssemblyName>FastReport.Data.OracleODPCore</AssemblyName>
         <RootNamespace>FastReport.Data</RootNamespace>
+	    	<Description>Represents a connection to Oracle database for FastReport.Net for .Net Core 3.1 and .Net 5 Windows.
+		
+This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
+</Description>
         <PackageReleaseNotes></PackageReleaseNotes>
     </PropertyGroup>
     <PropertyGroup>
@@ -27,7 +30,7 @@
         <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.18.3" />
     </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\FastReport.Core3\FastReport\FastReport.csproj">
+    <ProjectReference Include="..\..\..\..\FastReport.CoreWin\FastReport\FastReport.csproj">
       <PrivateAssets>all</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

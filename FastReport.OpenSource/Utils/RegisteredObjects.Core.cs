@@ -9,25 +9,17 @@ namespace FastReport.Utils
         /// <summary>
         /// Does nothing
         /// </summary>
-        /// <param name="obj"></param>
         /// <param name="image"></param>
         /// <param name="imageIndex"></param>
-        /// <param name="text"></param>
-        /// <param name="flags"></param>
-        /// <param name="multiInsert"></param>
-        partial void UpdateDesign(object obj, Bitmap image, int imageIndex, string text, int flags, bool multiInsert);
+        partial void UpdateDesign(Bitmap image, int imageIndex);
 
         /// <summary>
         /// Does nothing.
         /// </summary>
-        /// <param name="obj"></param>
         /// <param name="image"></param>
         /// <param name="imageIndex"></param>
         /// <param name="ButtonIndex"></param>
-        /// <param name="text"></param>
-        /// <param name="flags"></param>
-        /// <param name="multiInsert"></param>
-        partial void UpdateDesign(object obj, Bitmap image, int imageIndex, int ButtonIndex, string text, int flags, bool multiInsert);
+        partial void UpdateDesign(Bitmap image, int imageIndex, int ButtonIndex);
 
         #endregion Private Methods
     }

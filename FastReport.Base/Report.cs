@@ -239,7 +239,6 @@ namespace FastReport
         private FastReport.Preview.PreparedPages preparedPages;
         private ReportEngine engine;
         private bool aborted;
-        private bool modified;
         private Bitmap measureBitmap;
         private IGraphics measureGraphics;
         private bool storeInResources;

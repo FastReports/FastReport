@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net4;netstandard2.0;net46</TargetFrameworks>
+        <TargetFrameworks>net40;netstandard2.0;netcoreapp3.1</TargetFrameworks>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -10,7 +10,6 @@
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
         <Authors>Fast Reports Inc.</Authors>
         <Product>FastReport.Data.SQLite</Product>
-        <Description>Represents a connection to SQLite database for FastReport.Net.</Description>
         <PackageId>FastReport.Core.Data.SQLite</PackageId>
         <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
         <PackageTags>reporting, SQLite, connection, reports</PackageTags>
@@ -18,19 +17,23 @@
         <Configurations>Debug;Release;</Configurations>
         <AssemblyName>FastReport.Data.SQLite</AssemblyName>
         <RootNamespace>FastReport.Data</RootNamespace>
+		<Description>Represents a connection to SQLite database for FastReport.Core.
+		
+This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
+</Description>
         <PackageReleaseNotes></PackageReleaseNotes>
         <PackageTargetFallback Condition="'$(TargetFramework)'=='net47'">
 		    $(PackageTargetFallback);net46
 		</PackageTargetFallback>
     </PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+	<PropertyGroup Condition="'$(TargetFramework)'!='net40'">
 		<DefineConstants>FRCORE</DefineConstants>
 	</PropertyGroup>
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net40'">
 		<PackageReference Include="System.Data.SQLite.Core" Version="[1.0.113.7,)" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="[2.0.1,)" />
+	<ItemGroup Condition="'$(TargetFramework)'!='net40'">
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="[3.0.0,)" />
 	</ItemGroup>
     <ItemGroup>
         <Compile Remove="SQLiteConnectionEditor.cs" />
@@ -41,7 +44,7 @@
     <ItemGroup>
         <EmbeddedResource Remove="SQLiteConnectionEditor.resx" />
     </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net40'">
         <Reference Include="System" />
         <Reference Include="System.Data" />
         <Reference Include="System.Design" />

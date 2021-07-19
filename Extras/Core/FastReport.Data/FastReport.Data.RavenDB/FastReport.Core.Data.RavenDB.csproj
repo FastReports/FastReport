@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net4.7;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net461;netstandard2.0;netcoreapp3.1</TargetFrameworks>
         <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Copyright>Fast Reports Inc.</Copyright>
@@ -9,7 +9,6 @@
         <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
         <Authors>Fast Reports Inc.</Authors>
         <Product>FastReport.Data.RavenDB</Product>
-        <Description>Represents a connection to RavenDB database for FastReport.Net.</Description>
         <PackageId>FastReport.Core.Data.RavenDB</PackageId>
         <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
         <PackageTags>reporting, RavenDB, connection, reports</PackageTags>
@@ -17,13 +16,17 @@
         <Configurations>Debug;Release;</Configurations>
         <AssemblyName>FastReport.Data.RavenDB</AssemblyName>
         <RootNamespace>FastReport.Data</RootNamespace>
+		<Description>Represents a connection to RavenDB database for FastReport.Core.
+		
+This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
+</Description>
         <PackageReleaseNotes></PackageReleaseNotes>
     </PropertyGroup>
     <PropertyGroup>
         <DefineConstants>FRCORE;</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="RavenDB.Client" Version="4.0.2" />
+        <PackageReference Include="RavenDB.Client" Version="4.0.6" />
     </ItemGroup>
     <ItemGroup>
         <Compile Remove="RavenDBConnectionEditor.cs" />
@@ -34,7 +37,7 @@
     <ItemGroup>
         <EmbeddedResource Remove="RavenDBConnectionEditor.resx" />
     </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net461'">
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Xml.Linq" />

@@ -1,7 +1,7 @@
 ﻿
 namespace FastReport.Code
 {
-    internal partial class AssemblyDescriptor
+    partial class AssemblyDescriptor
     {
         private void AddStubClasses()
         {

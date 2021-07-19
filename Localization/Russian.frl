@@ -255,6 +255,31 @@
     </Gauge>
     <CrossViewObject Text="CrossView"/>
     <DigitalSignatureObject Text="Цифровая подпись"/>
+    <FastBI Text="Диаграммы FastBI">
+      <TreeMap Text="Диаграмма TreeMap"/>
+      <Sunburst Text="Диаграмма Sunburst"/>
+      <Icicle Text="Диаграмма Icicle"/>
+      <Data Text="Данные">
+        <ValueColumn Text="Колонка данных"/>
+        <RootText Text="Текст корня"/>
+        <DataSource Text="Источник данных"/>
+        <MaxDepth Text="Максимальная глубина"/>
+        <TextColumns Text="Колонки текста"/>
+        <Add Text="Добавить"/>
+        <Delete Text="Удалить"/>
+        <Edit Text="Изменить"/>
+      </Data>
+      <Appearance Text="Вид">
+        <Palette Text="Цветовая палитра"/>
+        <StartAngle Text="Начальный угол"/>
+        <TextDirection Text="Направление текста"/>
+        <LayoutMode Text="Режим"/>
+        <IcicleDirection Text="Направление"/>
+        <SunburstForm Text="Редактор диаграммы Sunburst"/>
+        <IcicleForm Text="Редактор диаграммы Icicle"/>
+        <TreeMapForm Text="Редактор диаграммы TreeMap"/>
+      </Appearance>
+    </FastBI>
   </Objects>
   <Functions>
     <Math Text="Математические"/>
@@ -692,6 +717,7 @@
     <BaseReportWizard>
       <SelectDataSourcePage Text="Выберите источник данных"/>
       <SelectDataSource Text="Выберите один из источников данных или создайте новый:"/>
+      <OpenDataDictionary Text="Открыть словарь данных..."/>
       <CreateNewDatasource Text="Создать источник..."/>
       <SelectColumnsPage Text="Выберите поля данных"/>
       <SelectColumns Text="Выберите поля, которые вы хотите показать в отчете."/>
@@ -1347,7 +1373,7 @@
       <FileName Text="Имя файла"/>
       <Url Text="Гиперссылка"/>
       <FileHint1 Text="Имя файла:"/>
-      <FileHint2 Text="Замечание: вы должны рапространять этот файл вместе с отчетом."/>
+      <FileHint2 Text="Замечание: вы должны раcпространять этот файл вместе с отчетом."/>
       <UrlHint Text="Гиперссылка:"/>
     </PictureEditor>
     <PictureEditorAdvanced Text="Редактор изображений">
@@ -1652,6 +1678,10 @@
     </TotalEditor>
     <UIOptions Text="Интерфейс">
       <Appearance Text="Внешний вид:"/>
+      <IconPack Text="Иконки:">
+        <Pack1 Text="Классические"/>
+        <Pack2 Text="Visual Studio"/>
+      </IconPack>
       <Ribbon Text="Использовать новый Ribbon-интерфейс"/>
       <Welcome Text="Откывать окно приветствия при запуске"/>
       <RightToLeft Text="Интерфейс Справа Налево:">
@@ -1660,6 +1690,8 @@
         <Yes Text="Да"/>
       </RightToLeft>
       <DisableHotkeys Text="Отключить горячие клавиши"/>
+      <Restart Text="* Требуется перезапуск"/>
+      <Reset Text="Сброс настроек"/>
     </UIOptions>
     <WatermarkEditor Text="Водяной знак">
       <Enabled Text="Разрешить"/>
@@ -1852,7 +1884,10 @@
       <FieldNames Text="Имена полей в первой строке"/>
       <RemoveQuotes Text="Удалить кавычки"/>
       <ConvertTypes Text="Преобразовать типы полей"/>
-      <FilePreview Text="Просмотр файла:"/>
+      <NumberFormat Text="Формат чисел:"/>
+      <CurrencyFormat Text="Формат валюты:"/>
+      <DateTimeFormat Text="Формат даты:"/>
+      <FilePreview Text="Просмотр файла"/>
       <DataPreview Text="Просмотр данных"/>
       <Codepages>
         <Default Text="По умолчанию"/>

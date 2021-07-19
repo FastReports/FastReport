@@ -1,3 +1,4 @@
+using FastReport.Utils;
 using System;
 using System.Collections;
 using System.Drawing;
@@ -135,7 +136,50 @@ namespace FastReport
       }
       return result;
     }
-    
+
+        /// <summary>
+        /// Gets a string format with specified settings.
+        /// </summary>
+        /// <param name="align">Text alignment information on the vertical plane.</param>
+        /// <param name="lineAlign">Line alignment on the horizontal plane.</param>
+        /// <param name="trimming"><b>StringTrimming</b> enumeration.</param>
+        /// <param name="flags"><b>StringFormatFlags</b> enumeration that contains formatting information.</param>
+        /// <param name="firstTab">The number of spaces between the beginning of a line of text and the first tab stop.</param>
+        /// <param name="tabWidth">Distance between tab stops.</param>
+        /// <param name="defaultTab">Default distance between default tabs stops.</param>
+        /// <returns>The <b>StringFormat</b> object.</returns>
+        public StringFormat GetStringFormat(StringAlignment align, StringAlignment lineAlign,
+          StringTrimming trimming, StringFormatFlags flags, float firstTab, FloatCollection tabWidth,
+          float defaultTab)
+        {
+            int hash = align.GetHashCode() ^ (lineAlign.GetHashCode() << 2) ^ (trimming.GetHashCode() << 5) ^
+              (flags.GetHashCode() << 16) ^ (100 - firstTab).GetHashCode() ^ tabWidth.GetHashCode();
+            StringFormat result = stringFormats[hash] as StringFormat;
+            if (result == null)
+            {
+                result = new StringFormat();
+                result.Alignment = align;
+                result.LineAlignment = lineAlign;
+                result.Trimming = trimming;
+                result.FormatFlags = flags;
+                float[] tabStops = new float[64];
+                // fixed issue 2823
+                tabStops[0] = firstTab;
+                for (int i = 1; i < 64; i++)
+                {
+                    if (i > tabWidth.Count)
+                    {
+                        tabStops[i] = defaultTab;
+                        continue;
+                    }
+                    tabStops[i] = tabWidth[i - 1];
+                }
+                result.SetTabStops(0, tabStops);
+                stringFormats[hash] = result;
+            }
+            return result;
+        }
+
     /// <summary>
     /// Disposes resources used by this object.
     /// </summary>

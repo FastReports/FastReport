@@ -7,6 +7,8 @@ using System.Data.Common;
 using System.IO;
 using System.Net;
 using FastReport.Utils;
+using System.Globalization;
+using System.Collections;
 
 namespace FastReport.Data
 {
@@ -24,18 +26,10 @@ namespace FastReport.Data
     /// </example>
     public partial class CsvDataConnection : DataConnectionBase
     {
-        #region Constants
-
-        /// <summary>
-        /// The default field name.
-        /// </summary>
-        public const string DEFAULT_FIELD_NAME = "Field";
-        private const int NUMBER_OF_STRINGS_FOR_TYPE_CHECKING = 100;
-
-        #endregion Constants
+        #region Fields
+        #endregion Fields
 
         #region Properties
-
         /// <summary>
         /// Gets or sets the path to .csv file.
         /// </summary>
@@ -64,12 +58,12 @@ namespace FastReport.Data
             get
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                return Convert.ToInt32(builder.Codepage);
+                return builder.Codepage;
             }
             set
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                builder.Codepage = value.ToString();
+                builder.Codepage = value;
                 ConnectionString = builder.ToString();
             }
         }
@@ -102,16 +96,12 @@ namespace FastReport.Data
             get
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                if (builder.FieldNamesInFirstString.ToLower() == "false")
-                {
-                    return false;
-                }
-                return true;
+                return builder.FieldNamesInFirstString;
             }
             set
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                builder.FieldNamesInFirstString = value.ToString().ToLower();
+                builder.FieldNamesInFirstString = value;
                 ConnectionString = builder.ToString();
             }
         }
@@ -125,16 +115,12 @@ namespace FastReport.Data
             get
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                if (builder.RemoveQuotationMarks.ToLower() == "true")
-                {
-                    return true;
-                }
-                return false;
+                return builder.RemoveQuotationMarks;
             }
             set
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                builder.RemoveQuotationMarks = value.ToString().ToLower();
+                builder.RemoveQuotationMarks = value;
                 ConnectionString = builder.ToString();
             }
         }
@@ -149,16 +135,69 @@ namespace FastReport.Data
             get
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                if (builder.ConvertFieldTypes.ToLower() == "true")
-                {
-                    return true;
-                }
-                return false;
+                return builder.ConvertFieldTypes;
             }
             set
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-                builder.ConvertFieldTypes = value.ToString().ToLower();
+                builder.ConvertFieldTypes = value;
+                ConnectionString = builder.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets locale name used to auto-convert numeric fields, e.g. "en-US".
+        /// </summary>
+        [Category("Data")]
+        public string NumberFormat
+        {
+            get
+            {
+                CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
+                return builder.NumberFormat;
+            }
+            set
+            {
+                CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
+                builder.NumberFormat = value;
+                ConnectionString = builder.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets locale name used to auto-convert currency fields, e.g. "en-US".
+        /// </summary>
+        [Category("Data")]
+        public string CurrencyFormat
+        {
+            get
+            {
+                CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
+                return builder.CurrencyFormat;
+            }
+            set
+            {
+                CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
+                builder.CurrencyFormat = value;
+                ConnectionString = builder.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets locale name used to auto-convert datetime fields, e.g. "en-US".
+        /// </summary>
+        [Category("Data")]
+        public string DateTimeFormat
+        {
+            get
+            {
+                CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
+                return builder.DateTimeFormat;
+            }
+            set
+            {
+                CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
+                builder.DateTimeFormat = value;
                 ConnectionString = builder.ToString();
             }
         }
@@ -177,254 +216,17 @@ namespace FastReport.Data
 
         #endregion Constructors
 
-        #region Private Methods
-
-        private bool CheckType(List<string> values, Type type)
-        {
-            // column type is int
-            if (type == typeof(Int32))
-            {
-                int intTemp = 0;
-                foreach (string value in values)
-                {
-                    if (!Int32.TryParse(value, out intTemp))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            // column type is double
-            else if (type == typeof(Double))
-            {
-                double doubleTemp = 0.0;
-                foreach (string value in values)
-                {
-                    if (!Double.TryParse(value, out doubleTemp))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            // column type is decimal
-            else if (type == typeof(Decimal))
-            {
-                decimal decimalTemp;
-                foreach (string value in values)
-                {
-                    if (!Decimal.TryParse(value, out decimalTemp))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-
-        private void DetermineTypes(List<string> lines, DataTable table)
-        {
-            // init test columns
-            List<List<string>> columns = new List<List<string>>();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                columns.Add(new List<string>());
-            }
-
-            // init all rows of each test column
-            foreach (string line in lines)
-            {
-                string[] values = line.Split(Separator.ToCharArray());
-                // remove qoutes if needed
-                if (RemoveQuotationMarks)
-                {
-                    for (int i = 0; i < values.Length; i++)
-                    {
-                        values[i] = values[i].Trim("\"".ToCharArray());
-                    }
-                }
-
-                int valuesCount = values.Length < table.Columns.Count ? values.Length : table.Columns.Count;
-                for (int i = 0; i < valuesCount; i++)
-                {
-                    columns[i].Add(values[i]);
-                }
-            }
-
-            // determine the types first time
-            int intTemp = 0;
-            double doubleTemp = 0.0;
-            decimal decimalTemp;
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                if (columns[i].Count > 0)
-                {
-                    if (Int32.TryParse(columns[i][0], out intTemp))
-                    {
-                        table.Columns[i].DataType = typeof(Int32);
-                    }
-                    else if (Double.TryParse(columns[i][0], out doubleTemp))
-                    {
-                        table.Columns[i].DataType = typeof(Double);
-                    }
-                    else if (Decimal.TryParse(columns[i][0], out decimalTemp))
-                    {
-                        table.Columns[i].DataType = typeof(Decimal);
-                    }
-                }
-            }
-
-            // try to convert all test values of each column to type determined first time
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                if (!CheckType(columns[i], table.Columns[i].DataType))
-                {
-                    table.Columns[i].DataType = typeof(string);
-                }
-            }
-        }
-
-        #endregion Private Methods
-
         #region Protected Methods
 
         /// <inheritdoc/>
         protected override DataSet CreateDataSet()
         {
             DataSet dataset = base.CreateDataSet();
-
-            if (!String.IsNullOrEmpty(CsvFile) && !String.IsNullOrEmpty(Separator))
-            {
-                string allText = "";
-
-                ServicePointManager.Expect100Continue = true;
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-                WebRequest request;
-                WebResponse response = null;
-                try
-                {
-                    Uri uri = new Uri(CsvFile);
-
-                    if (uri.IsFile)
-                    {
-                        if (Config.ForbidLocalData)
-                            throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-                        request = (FileWebRequest)WebRequest.Create(uri);
-                        request.Timeout = 5000;
-                        response = (FileWebResponse)request.GetResponse();
-                    }
-                    else if (uri.OriginalString.StartsWith("http"))
-                    {
-                        request = (HttpWebRequest)WebRequest.Create(uri);
-                        request.Timeout = 5000;
-                        response = (HttpWebResponse)request.GetResponse();
-                    }
-                    else if (uri.OriginalString.StartsWith("ftp"))
-                    {
-                        request = (FtpWebRequest)WebRequest.Create(uri);
-                        request.Timeout = 5000;
-                        response = (FtpWebResponse)request.GetResponse();
-                    }
-                }
-                catch(Exception e)
-                {
-                    throw e;
-                }
-                if (response == null) return dataset;
-
-                using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(Codepage)))
-                {
-                    allText = reader.ReadToEnd();
-                }
-                List<string> lines = new List<string>();
-                lines.AddRange(allText.Split(Environment.NewLine.ToCharArray()));
-
-                // get table name from file name
-                string tableName = Path.GetFileNameWithoutExtension(CsvFile).Replace(".", "_");
-                if (String.IsNullOrEmpty(tableName))
-                {
-                    tableName = "Table";
-                }
-
-                DataTable table = new DataTable(tableName);
-
-                // get values for field names
-                string[] values = lines[0].Split(Separator.ToCharArray());
-
-                // remove qoutes if needed
-                if (RemoveQuotationMarks)
-                {
-                    for (int i = 0; i < values.Length; i++)
-                    {
-                        values[i] = values[i].Trim("\"".ToCharArray());
-                    }
-                }
-
-                // create table columns
-                for (int i = 0; i < values.Length; i++)
-                {
-                    DataColumn column = new DataColumn();
-                    column.DataType = typeof(string);
-
-                    // get field names from first string if needed
-                    if (FieldNamesInFirstString && !table.Columns.Contains(values[i].Replace("\t", "")))
-                    {
-                        column.ColumnName = values[i].Replace("\t", "");
-                        column.Caption = column.ColumnName;
-                    }
-                    else
-                    {
-                        column.ColumnName = DEFAULT_FIELD_NAME + i.ToString();
-                        column.Caption = column.ColumnName;
-                    }
-
-                    table.Columns.Add(column);
-                }
-
-                // cast types of fields if needed
-                if (ConvertFieldTypes)
-                {
-                    int index = FieldNamesInFirstString ? 1 : 0;
-                    int number = lines.Count - index;
-                    if (lines.Count > NUMBER_OF_STRINGS_FOR_TYPE_CHECKING)
-                    {
-                        number = NUMBER_OF_STRINGS_FOR_TYPE_CHECKING;
-                    }
-                    DetermineTypes(lines.GetRange(index, number), table);
-                }
-
-                // add table rows
-                for (int i = FieldNamesInFirstString ? 1 : 0; i < lines.Count; i++)
-                {
-                    if (!String.IsNullOrEmpty(lines[i]))
-                    {
-                        // get values from the string
-                        values = lines[i].Split(Separator.ToCharArray());
-
-                        // remove qoutes if needed
-                        if (RemoveQuotationMarks)
-                        {
-                            for (int j = 0; j < values.Length; j++)
-                            {
-                                values[j] = values[j].Trim("\"".ToCharArray());
-                            }
-                        }
-
-                        // add a new row
-                        DataRow row = table.NewRow();
-                        int valuesCount = values.Length < table.Columns.Count ? values.Length : table.Columns.Count;
-                        for (int j = 0; j < valuesCount; j++)
-                        {
-                            row[j] = values[j];
-                        }
-                        table.Rows.Add(row);
-                    }
-                }
-
+            CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
+            List<string> rawLines = CsvUtils.ReadLines(builder);
+            DataTable table = CsvUtils.CreateDataTable(builder, rawLines);
+            if (table != null)
                 dataset.Tables.Add(table);
-            }
-
             return dataset;
         }
 
@@ -438,6 +240,7 @@ namespace FastReport.Data
         #endregion Protected Methods
 
         #region Public Methods
+
 
         /// <inheritdoc/>
         public override void FillTableSchema(DataTable table, string selectCommand, CommandParameterCollection parameters)
@@ -454,9 +257,9 @@ namespace FastReport.Data
         /// <inheritdoc/>
         public override void CreateTable(TableDataSource source)
         {
-            if (DataSet.Tables.Contains(source.TableName))
+            if (DataSet.Tables.Count == 1)
             {
-                source.Table = DataSet.Tables[source.TableName];
+                source.Table = DataSet.Tables[0];
                 base.CreateTable(source);
             }
             else
