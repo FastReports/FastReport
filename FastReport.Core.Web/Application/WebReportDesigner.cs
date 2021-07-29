@@ -128,7 +128,9 @@ namespace FastReport.Web
             try
             {
                 // paste restricted back in report before save
-                Report.LoadFromString(PasteRestricted(reportString));
+                string restrictedReport = PasteRestricted(reportString);
+                restrictedReport = FixLandscapeProperty(restrictedReport);
+                Report.LoadFromString(restrictedReport);
 
                 if (SaveDesignedReport != null)
                 {
@@ -376,6 +378,7 @@ namespace FastReport.Web
                 //previewReport.Toolbar.EnableFit = true;
                 //previewReport.Layers = true;
                 string reportString = PasteRestricted(receivedReportString);
+                reportString = FixLandscapeProperty(reportString);
                 previewReport.Report.ReportResourceString = reportString; // TODO
                 //previewReport.ReportFile = String.Empty;
                 previewReport.ReportResourceString = reportString; // TODO
@@ -413,6 +416,32 @@ namespace FastReport.Web
 
         #region Private Methods
 
+        // In an Online-Designer, the page property 'Landscape' may come last in the list, however, it must come first
+        internal static string FixLandscapeProperty(string reportString)
+        {
+            int indexOfLandscape = reportString.IndexOf(nameof(ReportPage.Landscape));
+            if (indexOfLandscape != -1)
+            {
+                // Landscape="~"
+                int lastIndexOfLandscapeValue =
+                    reportString.IndexOf('"', indexOfLandscape + nameof(ReportPage.Landscape).Length + 2, 10);
+
+                var indexOfPage = reportString.IndexOf(nameof(ReportPage), 0, indexOfLandscape);
+                int startposition = indexOfPage + nameof(ReportPage).Length + 1;
+                if (indexOfLandscape == startposition)
+                    return reportString;
+
+                StringBuilder sb = new StringBuilder(reportString);
+                var property = reportString.Substring(indexOfLandscape, lastIndexOfLandscapeValue - indexOfLandscape + 2);
+
+                sb.Remove(indexOfLandscape, property.Length);
+
+                sb.Insert(startposition, property);
+                reportString = sb.ToString();
+            }
+            return reportString;
+        }
+
         HtmlString RenderDesigner()
         {
             //string designerPath = WebUtils.GetAppRoot(DesignerPath);
@@ -441,13 +470,13 @@ namespace FastReport.Web
                     {
                         xml.Root.SetProp("CodeRestricted", "true");
                         // cut script
-                        var scriptItem = xml.Root.FindItem("ScriptText");
+                        var scriptItem = xml.Root.FindItem(nameof(Report.ScriptText));
                         if (scriptItem != null && !String.IsNullOrEmpty(scriptItem.Value))
                             scriptItem.Value = String.Empty;
                     }
 
                     // cut connection strings
-                    var dictionary = xml.Root.FindItem("Dictionary");
+                    var dictionary = xml.Root.FindItem(nameof(Report.Dictionary));
                     {
                         if (dictionary != null)
                         {
@@ -467,12 +496,13 @@ namespace FastReport.Web
                     {
                         xml.Save(secondXmlStream);
                         secondXmlStream.Position = 0;
-                        bool rent = secondXmlStream.Length > 1024;
+                        int secondXmlLength = (int)secondXmlStream.Length;
+                        bool rent = secondXmlLength > 1024;
                         byte[] buff = rent ?
-                            ArrayPool<byte>.Shared.Rent((int)secondXmlStream.Length)
-                            : new byte[secondXmlStream.Length];
-                        secondXmlStream.Read(buff, 0, (int)secondXmlStream.Length);
-                        xmlString = Encoding.UTF8.GetString(buff, 0, (int)secondXmlStream.Length);
+                            ArrayPool<byte>.Shared.Rent(secondXmlLength)
+                            : new byte[secondXmlLength];
+                        secondXmlStream.Read(buff, 0, secondXmlLength);
+                        xmlString = Encoding.UTF8.GetString(buff, 0, secondXmlLength);
                         if (rent) ArrayPool<byte>.Shared.Return(buff);
                     }
                 }
@@ -498,10 +528,10 @@ namespace FastReport.Web
                 {
                     xml2.Root.SetProp("CodeRestricted", "");
                     // paste old script
-                    var scriptItem1 = xml1.Root.FindItem("ScriptText");
+                    var scriptItem1 = xml1.Root.FindItem(nameof(Report.ScriptText));
                     if (scriptItem1 != null && String.IsNullOrEmpty(scriptItem1.Value))
                     {
-                        var scriptItem2 = xml2.Root.FindItem("ScriptText");
+                        var scriptItem2 = xml2.Root.FindItem(nameof(Report.ScriptText));
                         if (scriptItem2 != null)
                         {
                             scriptItem2.Value = scriptItem1.Value;
@@ -515,8 +545,8 @@ namespace FastReport.Web
                 }
 
                 // paste saved connection strings
-                var dictionary1 = xml1.Root.FindItem("Dictionary");
-                var dictionary2 = xml2.Root.FindItem("Dictionary");
+                var dictionary1 = xml1.Root.FindItem(nameof(Report.Dictionary));
+                var dictionary2 = xml2.Root.FindItem(nameof(Report.Dictionary));
                     if (dictionary1 != null && dictionary2 != null)
                     {
                         for (int i = 0; i < dictionary1.Items.Count; i++)
@@ -539,12 +569,13 @@ namespace FastReport.Web
                 {
                     xml2.Save(secondXmlStream);
                     secondXmlStream.Position = 0;
-                    bool rent = secondXmlStream.Length > 1024;
+                    int secondXmlLength = (int)secondXmlStream.Length;
+                    bool rent = secondXmlLength > 1024;
                     byte[] buff = rent ?
-                        ArrayPool<byte>.Shared.Rent((int)secondXmlStream.Length)
-                        : new byte[secondXmlStream.Length];
-                    secondXmlStream.Read(buff, 0, (int)secondXmlStream.Length);
-                    xmlString = Encoding.UTF8.GetString(buff, 0, (int)secondXmlStream.Length);
+                        ArrayPool<byte>.Shared.Rent(secondXmlLength)
+                        : new byte[secondXmlLength];
+                    secondXmlStream.Read(buff, 0, secondXmlLength);
+                    xmlString = Encoding.UTF8.GetString(buff, 0, secondXmlLength);
                     if (rent) ArrayPool<byte>.Shared.Return(buff);
                 }
                 xml1.Dispose();
@@ -612,7 +643,7 @@ namespace FastReport.Web
             using (TextReader textReader = new StreamReader(context.Request.Body))
                 requestString = textReader.ReadToEndAsync().Result;
 
-            string xmlHeader = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+            const string xmlHeader = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
             StringBuilder result = new StringBuilder(xmlHeader.Length + requestString.Length + 100);
             result.Append(xmlHeader);
             result.Append(requestString.
@@ -653,6 +684,6 @@ namespace FastReport.Web
             return sb.ToString();
         }
 
-        #endregion
+#endregion
     }
 }

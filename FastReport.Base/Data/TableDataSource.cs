@@ -239,7 +239,13 @@ namespace FastReport.Data
                 return null;
 
             if (column.Tag == null)
-                column.Tag = Table.Columns.IndexOf(column.Name);
+            {
+                int index = Table.Columns.IndexOf(column.Name);
+                if (index == -1)
+                    return null;
+                column.Tag = index;
+            }
+
 
             return CurrentRow == null ? null : ((DataRow)CurrentRow)[(int)column.Tag];
         }

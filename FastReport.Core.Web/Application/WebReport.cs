@@ -155,26 +155,46 @@ namespace FastReport.Web
 
 
         #region ToolbarSettings
-        public bool ShowToolbar { get; set; } = true;
-        public bool ShowPrevButton { get; set; } = true;
-        public bool ShowNextButton { get; set; } = true;
-        public bool ShowFirstButton { get; set; } = true;
-        public bool ShowLastButton { get; set; } = true;
-        public bool ShowExports { get; set; } = true;
-        public bool ShowRefreshButton { get; set; } = true;
-        public bool ShowZoomButton { get; set; } = true;
 
-        public bool ShowPrint { get; set; } = true;
-        public bool PrintInHtml { get; set; } = true;
+        /// <summary>
+        /// Toolbar settings
+        /// </summary>
+        public ToolbarSettings Toolbar { get; set; } = ToolbarSettings.Default; 
+
+        [Obsolete("Please, use Toolbar.Show")]
+        public bool ShowToolbar { get => Toolbar.Show; set => Toolbar.Show = value; }
+        [Obsolete("Please, use Toolbar.ShowPrevButton")]
+        public bool ShowPrevButton { get => Toolbar.ShowPrevButton; set => Toolbar.ShowPrevButton = value; }
+        [Obsolete("Please, use Toolbar.ShowNextButton")]
+        public bool ShowNextButton { get => Toolbar.ShowNextButton; set => Toolbar.ShowNextButton = value; }
+        [Obsolete("Please, use Toolbar.ShowFirstButton")]
+        public bool ShowFirstButton { get => Toolbar.ShowFirstButton; set => Toolbar.ShowFirstButton = value; }
+        [Obsolete("Please, use Toolbar.ShowLastButton")]
+        public bool ShowLastButton { get => Toolbar.ShowLastButton; set => Toolbar.ShowLastButton = value; }
+
+        [Obsolete("Please, use Toolbar.Exports.Show")]
+        public bool ShowExports { get => Toolbar.Exports.Show; set => Toolbar.Exports.Show = value; }
+
+        [Obsolete("Please, use Toolbar.ShowRefreshButton")]
+        public bool ShowRefreshButton { get => Toolbar.ShowRefreshButton; set => Toolbar.ShowRefreshButton = value; }
+        [Obsolete("Please, use Toolbar.ShowZoomButton")]
+        public bool ShowZoomButton { get => Toolbar.ShowZoomButton; set => Toolbar.ShowZoomButton = value; }
+
+        [Obsolete("Please, use Toolbar.ShowPrint")]
+        public bool ShowPrint { get => Toolbar.ShowPrint; set => Toolbar.ShowPrint = value; }
+        [Obsolete("Please, use Toolbar.PrintInHtml")]
+        public bool PrintInHtml { get => Toolbar.PrintInHtml; set => Toolbar.PrintInHtml = value; }
 #if !OPENSOURCE
-        public bool PrintInPdf { get; set; } = true;
+        [Obsolete("Please, use Toolbar.PrintInPdf")]
+        public bool PrintInPdf { get => Toolbar.PrintInPdf; set => Toolbar.PrintInPdf = value; }
 #endif
 
-        public bool ShowBottomToolbar { get; set; } = false;
+        public bool ShowBottomToolbar { get => Toolbar.ShowBottomToolbar; set => Toolbar.ShowBottomToolbar = value; }
 
-        public Color ToolbarColor { get; set; } = Color.LightGray;
+        public Color ToolbarColor { get => Toolbar.Color; set => Toolbar.Color = value; }
 
         #endregion
+
         public float Zoom { get; set; } = 1.0f;
         public bool Debug { get; set; }
 #if DEBUG

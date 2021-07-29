@@ -474,8 +474,10 @@ namespace FastReport.Engine
             Report.OnStartReport(EventArgs.Empty);
         }
 
-        internal void RunPhase2()
+        internal void RunPhase2(int? pagesLimit = null)
         {
+            if (pagesLimit != null)
+                this.pagesLimit = pagesLimit.Value;
             try
             {
                 Config.ReportSettings.OnStartProgress(Report);

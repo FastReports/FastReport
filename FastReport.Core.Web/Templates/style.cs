@@ -58,7 +58,7 @@
 .{template_FR}-toolbar {{
     flex-shrink: 0;
     font-family: Verdana,Arial,sans-serif;
-    background-color: {ToolbarColor.Name};
+    background-color: {Toolbar.Color.Name};
     {(Tabs.Count > 1 ? "" : "box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);")}
     display: flex;
     /* flex-wrap: wrap; */

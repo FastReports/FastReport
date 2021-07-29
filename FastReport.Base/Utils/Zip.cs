@@ -351,7 +351,7 @@ namespace FastReport.Utils
             Stream.Write(BitConverter.GetBytes(fileNameLength), 0, 2);
             Stream.Write(BitConverter.GetBytes(extraFieldLength), 0, 2);            
             if (fileNameLength > 0)
-                Stream.Write(Converter.StringToByteArray(fileName), 0, fileNameLength);
+                Stream.Write(System.Text.Encoding.UTF8.GetBytes(fileName), 0, fileNameLength);
             if (extraFieldLength > 0)
                 Stream.Write(Converter.StringToByteArray(extraField), 0, extraFieldLength);
         }
@@ -421,7 +421,7 @@ namespace FastReport.Utils
             set 
             {                
                 fileName = value.Replace('\\', '/');
-                fileNameLength = (ushort)value.Length;            
+                fileNameLength = (ushort)System.Text.Encoding.UTF8.GetBytes(value).Length;            
             }
         }
 
@@ -440,7 +440,7 @@ namespace FastReport.Utils
         {
             localFileHeaderSignature = 0x04034b50;
             version = 20;
-            generalPurpose = 0;
+            generalPurpose = 0x800;
             compressionMethod = 0;
             crc32 = 0;
             lastModFileDate = 0;
@@ -591,7 +591,7 @@ namespace FastReport.Utils
             Stream.Write(BitConverter.GetBytes(internalFileAttribute), 0, 2);
             Stream.Write(BitConverter.GetBytes(externalFileAttribute), 0, 4);
             Stream.Write(BitConverter.GetBytes(relativeOffsetLocalHeader), 0, 4);
-            Stream.Write(Converter.StringToByteArray(fileName), 0, fileNameLength);
+            Stream.Write(System.Text.Encoding.UTF8.GetBytes(fileName), 0, fileNameLength);
             Stream.Write(Converter.StringToByteArray(extraField), 0, extraFieldLength);
             Stream.Write(Converter.StringToByteArray(fileComment), 0, fileCommentLength);
         }
@@ -695,7 +695,7 @@ namespace FastReport.Utils
             set 
             { 
                 fileName = value.Replace('\\', '/');
-                fileNameLength = (ushort)value.Length;
+                fileNameLength = (ushort)System.Text.Encoding.UTF8.GetBytes(value).Length;
             }
         }
         
@@ -735,7 +735,7 @@ namespace FastReport.Utils
             diskNumberStart = 0;
             lastModFileDate = 0;
             versionMadeBy = 20;
-            generalPurpose = 0;
+            generalPurpose = 0x800;
             fileNameLength = 0;
             internalFileAttribute = 0;
             extraFieldLength = 0;

@@ -41,6 +41,7 @@ namespace FastReport.Web.Controllers
                     // save by using a Func
 
                     string report = webReport.GetPOSTReport(Context);
+                    report = WebReport.FixLandscapeProperty(report);
                     string msg = string.Empty;
                     int code = 200;
                     try

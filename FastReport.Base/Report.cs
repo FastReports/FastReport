@@ -2406,9 +2406,9 @@ namespace FastReport
         /// For internal use only.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void PreparePhase2()
+        public void PreparePhase2(int? pagesLimit = null)
         {
-            Engine.RunPhase2();
+            Engine.RunPhase2(pagesLimit);
             SetRunning(false);
         }
 

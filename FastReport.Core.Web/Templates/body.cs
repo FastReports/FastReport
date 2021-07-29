@@ -8,7 +8,7 @@ namespace FastReport.Web
         {
             if (!renderBody)
                 return $@"
-<div class=""{template_FR}-body"" style=""min-height:200px"">
+<div class=""{template_FR}-body"" style=""min-height:250px;min-width:250px;"">
 
     <script>
         setTimeout(function () {{

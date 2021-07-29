@@ -469,6 +469,8 @@
         <NObjectsSelected Text="{0} объектов выбрано"/>
       </Properties>
       <ReportTree Text="Дерево отчета"/>
+      <CollapseAll Text="Свернуть все"/>
+      <ExpandAll Text="Развернуть все"/>
       <Dictionary Text="Данные">
         <DataSources Text="Источники данных"/>
         <Parameters Text="Параметры"/>

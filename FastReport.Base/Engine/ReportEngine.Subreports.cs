@@ -47,7 +47,6 @@ namespace FastReport.Engine
 
         private void RenderOuterSubreports(BandBase parentBand)
         {
-            float saveCurX = CurX;
             float saveCurY = CurY;
             float saveOriginX = originX;
             int saveCurPage = CurPage;
@@ -60,10 +59,9 @@ namespace FastReport.Engine
             {
                 for (int i = 0; i < parentBand.Objects.Count; i++)
                 {
-                    if ((parentBand.Objects[i] is SubreportObject) && (parentBand.Objects[i] as SubreportObject).Visible &&
-                        !(parentBand.Objects[i] as SubreportObject).PrintOnParent)
+                    SubreportObject subreport = parentBand.Objects[i] as SubreportObject;
+                    if (subreport != null && subreport.Visible && !subreport.PrintOnParent)
                     {
-                        SubreportObject subreport = parentBand.Objects[i] as SubreportObject;
                         hasSubreports = true;
                         // restore start position
                         CurPage = saveCurPage;

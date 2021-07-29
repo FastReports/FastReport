@@ -41,6 +41,8 @@ namespace FastReport.Utils
         private float fontScale;
         private FastString cacheString = new FastString(100);
         private bool isPrinting;
+        private bool isDifferentTabPositions;
+
         #endregion Private Fields
 
         #region Public Properties
@@ -110,7 +112,7 @@ namespace FastReport.Utils
         public HtmlTextRenderer(string text, IGraphics g, string font, float size,
                     FontStyle style, Color color, Color underlineColor, RectangleF rect, bool underlines,
                     StringFormat format, HorzAlign horzAlign, VertAlign vertAlign,
-                    ParagraphFormat paragraphFormat, bool forceJustify, float scale, float fontScale, InlineImageCache cache, bool isPrinting = false)
+                    ParagraphFormat paragraphFormat, bool forceJustify, float scale, float fontScale, InlineImageCache cache, bool isPrinting = false, bool isDifferentTabPositions = false)
         {
             this.cache = cache;
             this.scale = scale;
@@ -143,6 +145,7 @@ namespace FastReport.Utils
             this.font = font;
             this.size = size;
             this.isPrinting = isPrinting;
+            this.isDifferentTabPositions = isDifferentTabPositions;
             everUnderlines = underlines;
 
             backgrounds = new List<RectangleFColor>();
@@ -550,6 +553,16 @@ namespace FastReport.Utils
             }
         }
 
+        private float GetTabPosition(float pos)
+        {
+            float tabOffset = TabOffset;
+            float tabSize = TabSize;
+            int tabPosition = (int)((pos - tabOffset) / tabSize);
+            if (pos < tabOffset)
+                return tabOffset;
+            return (tabPosition + 1) * tabSize + tabOffset;
+        }
+
         private float GetTabPosition(float pos, int tabIndex)
         {
             float tabOffset = 0;
@@ -651,7 +664,11 @@ namespace FastReport.Utils
                             
                             Run tabRun = new RunText(this, word, style, new List<CharWithIndex>(new CharWithIndex[] { reader.Character }), width, charIndex);
                             word.Runs.Add(tabRun);
-                            float width2 = GetTabPosition(width, tabIndex);
+                            float width2 = GetTabPosition(width);
+                            if (isDifferentTabPositions)
+                            {
+                                width2 = GetTabPosition(width, tabIndex);
+                            }
                             if (width2 < width) width2 = width;
                             if (line.Words.Count > 0 && width2 > displayRect.Width)
                             {
@@ -660,7 +677,11 @@ namespace FastReport.Utils
                                 tabIndex = 0;
                                 paragraph.Lines.Add(line);
                                 width = 0;
-                                width2 = GetTabPosition(width, tabIndex);
+                                width2 = GetTabPosition(width);
+                                if (isDifferentTabPositions)
+                                {
+                                    width2 = GetTabPosition(width, tabIndex);
+                                }
                             }
                             tabIndex++;
                             line.Words.Add(word);

@@ -1110,11 +1110,12 @@ namespace FastReport
 
         internal HtmlTextRenderer GetHtmlTextRenderer(IGraphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format, bool isPrinting)
         {
+            bool isDifferentTabPositions = TabPositions.Count > 0;
             return new HtmlTextRenderer(Text, g, font.Name, font.Size, font.Style, TextColor,
                       textOutline.Color, textRect, Underlines,
                       format, horzAlign, vertAlign, ParagraphFormat.MultipleScale(formatScale), ForceJustify,
                       scale * 96f / DrawUtils.ScreenDpi, fontScale * 96f / DrawUtils.ScreenDpi, InlineImageCache,
-                      isPrinting);
+                      isPrinting, isDifferentTabPositions);
         }
 
         /// <summary>
