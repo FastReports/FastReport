@@ -59,14 +59,14 @@ namespace FastReport.Web
         <img src=""{template_resource_url("spinner.svg", "image/svg+xml")}"">
     </div>
 
-  {(ShowBottomToolbar?$@"
+  {(Toolbar.ShowBottomToolbar ?$@"
 {template_body(renderBody)}
-{template_toolbar(saveTxt, reloadTxt, preparedTxt, printTxt, printFromBrowserTxt,
+{template_toolbar(renderBody, saveTxt, reloadTxt, preparedTxt, printTxt, printFromBrowserTxt,
     printFromPdf, zoomTxt, firstPageTxt, previousPageTxt, currentPageTxt, nextPageTxt,
     lastPageTxt, totalPagesTxt, pdfTxt, excel2007Txt, word2007Txt, pptxTxt, txtTxt, rtfTxt, xpsTxt, odsTxt,
     odtTxt, xmlTxt, csvTxt, dbfTxt, mhtTxt)}"
     :$@" 
-{template_toolbar(saveTxt, reloadTxt, preparedTxt, printTxt, printFromBrowserTxt,
+{template_toolbar(renderBody, saveTxt, reloadTxt, preparedTxt, printTxt, printFromBrowserTxt,
     printFromPdf, zoomTxt, firstPageTxt, previousPageTxt, currentPageTxt, nextPageTxt,
     lastPageTxt, totalPagesTxt, pdfTxt, excel2007Txt, word2007Txt, pptxTxt, txtTxt, rtfTxt, xpsTxt, odsTxt,
     odtTxt, xmlTxt, csvTxt, dbfTxt, mhtTxt)}

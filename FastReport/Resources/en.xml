@@ -475,6 +475,8 @@
         <NObjectsSelected Text="{0} objects selected"/>
       </Properties>
       <ReportTree Text="Report Tree"/>
+      <CollapseAll Text="Collapse all"/>
+      <ExpandAll Text="Expand all"/>
       <Dictionary Text="Data">
         <DataSources Text="Data Sources"/>
         <Parameters Text="Parameters"/>

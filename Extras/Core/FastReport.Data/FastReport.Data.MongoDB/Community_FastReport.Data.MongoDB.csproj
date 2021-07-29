@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net452</TargetFrameworks>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Fast Reports Inc.</Copyright>
+        <Company>Fast Reports Inc.</Company>
+        <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+        <Authors>Fast Reports Inc.</Authors>
+        <Product>FastReport.Data.MongoDB</Product>
+        <Description>Represents a connection to MongoDB database</Description>
+        <PackageId>FastReport.Data.MongoDB</PackageId>
+        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+        <PackageTags>reporting, MongoDB, connection, reports</PackageTags>
+        <Version>1.0.0</Version>
+        <Configurations>Debug;Release;</Configurations>
+        <AssemblyName>FastReport.Data.MongoDB</AssemblyName>
+        <RootNamespace>FastReport.Data</RootNamespace>
+        <PackageReleaseNotes>fixed a bug with wrong database name</PackageReleaseNotes>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="StrongNamer" Version="0.2.5">
+        <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\FastReport\FastReport.csproj">
+            <PrivateAssets>all</PrivateAssets>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Design" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="MongoDBConnectionEditor.cs" />
+        <Compile Update="MongoDBConnectionEditor.Designer.cs">
+            <DependentUpon>MongoDBConnectionEditor.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="MongoDBConnectionEditor.resx">
+            <DependentUpon>MongoDBConnectionEditor.cs</DependentUpon>
+            <SubType>Designer</SubType>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
+    </ItemGroup>
+</Project>
