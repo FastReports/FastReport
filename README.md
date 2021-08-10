@@ -1,4 +1,4 @@
-[![Visits Badge](https://badges.pufler.dev/visits/FastReports/FastReport)](https://github.com/FastReports/FastReport) [![Created Badge](https://badges.pufler.dev/created/FastReports/FastReport)](https://github.com/FastReports/FastReport) [![Gitter](https://badges.gitter.im/FastReports/FastReport.svg)](https://gitter.im/FastReports/FastReport?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Visits Badge](https://badges.pufler.dev/visits/FastReports/FastReport)](https://github.com/FastReports/FastReport) [![Created Badge](https://badges.pufler.dev/created/FastReports/FastReport)](https://github.com/FastReports/FastReport) [![Twitter Follow](https://img.shields.io/twitter/follow/fastreports?style=social)](https://twitter.com/FastReports)  [![Channel on Telegram](https://img.shields.io/badge/Channel%20on-Telegram-brightgreen.svg)](https://t.me/fastreport_open_source) [![Chat on Telegram](https://img.shields.io/badge/Chat%20on-Telegram-brightgreen.svg)](https://t.me/joinchat/hs87tfi79Rg3OGQy)
 
 [![FastReport Open Source](https://fastreports.github.io/FastReport.Documentation/images/fros-youtube-title.jpg)](https://youtu.be/Js78gl_xAOU)
 
@@ -139,6 +139,4 @@ Licensed under the MIT license. See [LICENSE.md](LICENSE.md) for details.
 - [FastReport Online Designer](https://www.fast-report.com/en/product/fast-report-online-designer/ "Click to view FastReport Online Designer Home Page")
 - [Fast Reports Home Page](https://www.fast-report.com "Click for visiting the Fast Reports Home Page")
 
-
-![Twitter Follow](https://img.shields.io/twitter/follow/fastreports?style=social)
 
