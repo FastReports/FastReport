@@ -1,4 +1,6 @@
-﻿namespace FastReport.Web
+﻿using System.Drawing;
+
+namespace FastReport.Web
 {
     partial class WebReport
     {
@@ -6,13 +8,12 @@
 /**********
     MAIN
 ***********/
-
 .{template_FR}-container {{
     {(Width.IsNullOrWhiteSpace() ? "" : $"width: {Width};")}
     {(Height.IsNullOrWhiteSpace() ? "" : $"height: {Height};")}
     background-color: white;
     display: {(Inline ? "inline-" : "")}flex;
-    flex-direction: column;
+    flex-direction: {Toolbar.Vertical};
     position: relative;
 }}
 
@@ -32,8 +33,8 @@
     overflow: auto;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: {Toolbar.RowOrColumn};
+    align-items: flex-start;
 }}
 
 /***********
@@ -56,15 +57,22 @@
 **************/
 
 .{template_FR}-toolbar {{
-    flex-shrink: 0;
-    font-family: Verdana,Arial,sans-serif;
-    background-color: {Toolbar.Color.Name};
+    flex-shrink: 1;
+    font:{Toolbar.UserFontSettings};
+    background-color: {ColorTranslator.ToHtml(Toolbar.Color)};
     {(Tabs.Count > 1 ? "" : "box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);")}
     display: flex;
+    flex-direction: {Toolbar.RowOrColumn};
     /* flex-wrap: wrap; */
-    width: 100%;
+    width: auto;
+    height: {Toolbar.VerticalToolbarHeight}%;
+    order:{Toolbar.TopOrBottom} ;
     position: relative;
+    align-items: center;
+    justify-content:{Toolbar.Content};
     z-index: 2;
+    border-radius:{Toolbar.ToolbarRoundness}px;
+    min-width:50px;
     /*min-width: intrinsic;
     min-width: -moz-max-content;
     min-width: -webkit-max-content;
@@ -73,11 +81,13 @@
 
 .{template_FR}-toolbar-item {{
     height: {ToolbarHeight}px;
+    border-radius:{Toolbar.ToolbarRoundness}px;
+    background-color: #00000000;
     position: relative;
 }}
 
 .{template_FR}-toolbar-item:hover {{
-    background-color: #d1d1d1;
+    background-color: {ColorTranslator.ToHtml(Toolbar.Color)};
 }}
 
 .{template_FR}-toolbar-item > img {{
@@ -86,8 +96,9 @@
     padding-bottom: calc({ToolbarHeight}px * 0.15);
     padding-left: calc({ToolbarHeight}px * 0.25);
     padding-right: calc({ToolbarHeight}px * 0.25);
-    opacity: 0.5;
+    opacity: {Toolbar.TransparencyIcon};
     display: block;
+    filter:invert({Toolbar.ColorIcon})
 }}
 
 .{template_FR}-toolbar-item:hover > img {{
@@ -109,12 +120,11 @@
 .{template_FR}-toolbar-dropdown-content {{
     display: none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    background-color: #f9f9f9;
+    background-color: {ColorTranslator.ToHtml(Toolbar.DropDownMenuColor)};
     min-width: 120px;
     z-index: 2;
     position: absolute;
-    top: {ToolbarHeight}px;
-    left: 0;
+    {Toolbar.DropDownMenuPosition}
     white-space: nowrap;
 }}
 
@@ -124,7 +134,7 @@
 
 .{template_FR}-toolbar-dropdown-content > a {{
     float: none;
-    color: black;
+    color: {ColorTranslator.ToHtml(Toolbar.DropDownMenuTextColor)};
     padding: 6px 12px 6px 8px;
     text-decoration: none;
     display: block;
@@ -135,7 +145,8 @@
 }}
 
 .{template_FR}-toolbar-dropdown-content > a:hover {{
-    background-color: #ddd;
+    background-color: {ColorTranslator.ToHtml(Toolbar.DropDownMenuColor)};
+    opacity:0.5;
     cursor: pointer;
 }}
 
@@ -169,8 +180,7 @@
     text-align: center;
     border: 0;
     background: #fbfbfb;
-    border-radius: 4px;
-
+    border-radius:{Toolbar.ToolbarRoundness}px;
     height: calc({ToolbarHeight}px * 0.68);
     width: 2.5em;
     margin-top: calc({ToolbarHeight}px * 0.17);
@@ -251,10 +261,12 @@
     font-family: Verdana,Arial,sans-serif;
     background-color: #f1f1f1;
     display: table;
-    width: 100%;
+    width: {Toolbar.TabsPositionSettings};
+    max-width: 800px;
     box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 1;
+    {Toolbar.TabsPositionSettings}
 }}
 
 .{template_FR}-tabs .{template_FR}-tab {{

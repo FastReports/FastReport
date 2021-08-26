@@ -448,10 +448,18 @@ namespace FastReport
                 {
                     if ((c.Anchor & AnchorStyles.Right) != 0)
                     {
+                        // Save width of right anchor when page has unlimited width and its width is increasing.
+                        if (Page != null && (Page as ReportPage).UnlimitedWidth && dx > 0)
+                            c.RightAnchorWidth = Width - c.Right;
+
                         if ((c.Anchor & AnchorStyles.Left) != 0)
                             c.Width += dx;
                         else
                             c.Left += dx;
+
+                        // Restore width of right anchor when page has unlimited width and its width is decreasing.
+                        if (Page != null && (Page as ReportPage).UnlimitedWidth && dx < 0)
+                            c.Width = PageWidth - c.RightAnchorWidth - c.Left;
                     }
                     else if ((c.Anchor & AnchorStyles.Left) == 0)
                     {
@@ -1048,6 +1056,5 @@ namespace FastReport
             FlagUseStartNewPage = true;
             FlagCheckFreeSpace = true;
         }
-
     }
 }

@@ -161,6 +161,7 @@ namespace FastReport.Web
         /// </summary>
         public ToolbarSettings Toolbar { get; set; } = ToolbarSettings.Default; 
 
+
         [Obsolete("Please, use Toolbar.Show")]
         public bool ShowToolbar { get => Toolbar.Show; set => Toolbar.Show = value; }
         [Obsolete("Please, use Toolbar.ShowPrevButton")]
@@ -189,7 +190,10 @@ namespace FastReport.Web
         public bool PrintInPdf { get => Toolbar.PrintInPdf; set => Toolbar.PrintInPdf = value; }
 #endif
 
+        [Obsolete("Please, use Toolbar.Position")]
+      
         public bool ShowBottomToolbar { get => Toolbar.ShowBottomToolbar; set => Toolbar.ShowBottomToolbar = value; }
+
 
         public Color ToolbarColor { get => Toolbar.Color; set => Toolbar.Color = value; }
 

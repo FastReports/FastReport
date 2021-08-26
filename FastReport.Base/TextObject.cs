@@ -10,7 +10,6 @@ using FastReport.Format;
 using FastReport.Code;
 using System.Windows.Forms;
 using System.Drawing.Design;
-using System.Globalization;
 
 namespace FastReport
 {
@@ -775,7 +774,7 @@ namespace FastReport
                 {
                     if (width == 0)
                         width = 100000;
-                    AdvancedTextRenderer renderer = new AdvancedTextRenderer(Text, g, font, Brushes.Black, Pens.Black,
+                    AdvancedTextRenderer renderer = new AdvancedTextRenderer(GetDisplayText(), g, font, Brushes.Black, Pens.Black,
                       new RectangleF(0, 0, width, 100000), GetStringFormat(report.GraphicCache, 0),
                       HorzAlign, VertAlign, LineHeight, Angle, FontWidthRatio, false, Wysiwyg, HasHtmlTags, false, 96f / DrawUtils.ScreenDpi,
                       96f / DrawUtils.ScreenDpi, InlineImageCache);
@@ -792,7 +791,7 @@ namespace FastReport
                 {
                     if (FontWidthRatio != 1)
                         width /= FontWidthRatio;
-                    SizeF size = g.MeasureString(Text, font, new SizeF(width, 100000));
+                    SizeF size = g.MeasureString(GetDisplayText(), font, new SizeF(width, 100000));
                     size.Width += Padding.Horizontal + 1;
                     size.Height += Padding.Vertical + 1;
                     return size;
@@ -1010,6 +1009,12 @@ namespace FastReport
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Returns StringFormat object.
+        /// </summary>
+        /// <param name="cache">Report graphic cache.</param>
+        /// <param name="flags">StringFormat flags.</param>
+        /// <returns>StringFormat object.</returns>
         public StringFormat GetStringFormat(GraphicCache cache, StringFormatFlags flags)
         {
             return GetStringFormat(cache, flags, 1);
@@ -1079,6 +1084,17 @@ namespace FastReport
             paragraphFormat.Assign(src.paragraphFormat);
         }
 
+        /// <summary>
+        /// Returns an instance of html text renderer.
+        /// </summary>
+        /// <param name="scale">Scale ratio.</param>
+        /// <param name="fontScale">Font scale ratio.</param>
+        /// <returns>The html text renderer.</returns>
+        public HtmlTextRenderer GetHtmlTextRenderer(float scale, float fontScale)
+        {
+            return GetHtmlTextRenderer(Report.MeasureGraphics, scale, fontScale);
+        }
+
         internal HtmlTextRenderer GetHtmlTextRenderer(IGraphics g, float scale, float fontScale)
         {
             StringFormat format = GetStringFormat(Report.GraphicCache, 0, scale);
@@ -1091,11 +1107,6 @@ namespace FastReport
 
         }
 
-        public HtmlTextRenderer GetHtmlTextRenderer(float scale, float fontScale)
-        {
-            return GetHtmlTextRenderer(Report.MeasureGraphics, scale, fontScale);
-        }
-
         internal HtmlTextRenderer GetHtmlTextRenderer(IGraphics g, RectangleF textRect, float scale, float fontScale)
         {
             StringFormat format = GetStringFormat(Report.GraphicCache, 0, fontScale);
@@ -1104,14 +1115,13 @@ namespace FastReport
 
         internal HtmlTextRenderer GetHtmlTextRenderer(IGraphics g, float scale, float fontScale, RectangleF textRect, StringFormat format)
         {
-            return GetHtmlTextRenderer(g, fontScale, scale, fontScale, textRect, format, false);
+            return GetHtmlTextRenderer(GetDisplayText(), g, fontScale, scale, fontScale, textRect, format, false);
         }
 
-
-        internal HtmlTextRenderer GetHtmlTextRenderer(IGraphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format, bool isPrinting)
+        internal HtmlTextRenderer GetHtmlTextRenderer(string text, IGraphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format, bool isPrinting)
         {
             bool isDifferentTabPositions = TabPositions.Count > 0;
-            return new HtmlTextRenderer(Text, g, font.Name, font.Size, font.Style, TextColor,
+            return new HtmlTextRenderer(text, g, font.Name, font.Size, font.Style, TextColor,
                       textOutline.Color, textRect, Underlines,
                       format, horzAlign, vertAlign, ParagraphFormat.MultipleScale(formatScale), ForceJustify,
                       scale * 96f / DrawUtils.ScreenDpi, fontScale * 96f / DrawUtils.ScreenDpi, InlineImageCache,
@@ -1124,7 +1134,7 @@ namespace FastReport
         /// <param name="e">Paint event data.</param>
         public void DrawText(FRPaintEventArgs e)
         {
-            string text = Text;
+            string text = GetDisplayText();
             if (!String.IsNullOrEmpty(text))
             {
                 IGraphics g = e.Graphics;
@@ -1163,7 +1173,7 @@ namespace FastReport
                         case TextRenderType.HtmlParagraph:
                             try
                             {
-                                using (HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(e.Graphics, e.ScaleX,
+                                using (HtmlTextRenderer htmlRenderer = GetHtmlTextRenderer(text, e.Graphics, e.ScaleX,
                                     IsPrinting ? 1 : e.ScaleX, IsPrinting ? 1 / (96f / DrawUtils.ScreenDpi) : e.ScaleX, textRect, format, IsPrinting))
                                 {
                                     htmlRenderer.Draw();
