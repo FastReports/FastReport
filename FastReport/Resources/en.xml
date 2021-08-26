@@ -126,6 +126,7 @@
     <GoogleBigQueryDataConnection Text="Google Big Query connection"/>
     <JsonDataConnection Text="JSON database"/>
     <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)" />
+    <ESDataSourceConnection Text="ElasticSearch connection" />
 	  <CouchbaseDataConnection Text="Couchbase server"/>
     <MongoDBDataConnection Text="MongoDB connection"/>
     <NosDbDataConnection Text="NosDb connection"/>
@@ -1772,7 +1773,8 @@
       <EventBandIndicator Text="Show indicator on bands with events" />
       <EventObjectIndicator Text="Show indicator on objects with events" />
       <ObjectsAppearance Text="Objects appearance"/>
-	  <EnableBacklight Text="Backlight active band"/>
+      <EnableBacklight Text="Backlight active band"/>
+      <SimplifyDBFields Text="Simplified display of DB fields"/>
     </ReportPageOptions>
     <RichTextEditor Text="RichText Editor">
       <Open Text="Open"/>
@@ -2453,10 +2455,11 @@
     </Pptx>
     <Docx Text="Export to Microsoft Word 2007">
       <File Text="Microsoft Word 2007 file"/>
-      <RowHeight Text="Row height is" />
-      <Exactly Text="Exactly" />
+      <RowHeight Text="Row height is"/>
+      <Exactly Text="Exactly"/>
       <Minimum Text="Minimum"/>
       <DoNotExpandShiftReturn Text="Do not expand shift return"/>
+      <DisableSectionBreak Text="Do not add section breaks on page breaks"/>
     </Docx>
     <Xaml Text="Export to XAML">
       <File Text="XAML file"/>

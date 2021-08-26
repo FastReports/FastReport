@@ -63,6 +63,7 @@ namespace FastReport.Web
         /// Switches visibility the MHT export in toolbar.
         /// </summary>
         public bool ShowMhtExport { get => Toolbar.Exports.ShowMhtExport; set => Toolbar.Exports.ShowMhtExport = value; }
+
 #endif
     }
 }

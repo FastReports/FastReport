@@ -1,4 +1,5 @@
-﻿using FastReport.Data.JsonConnection.JsonParser;
+﻿using FastReport.Data.ElasticSearch;
+using FastReport.Data.JsonConnection.JsonParser;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -279,6 +280,8 @@ namespace FastReport.Data.JsonConnection
 
         internal object GetJson(Base parentColumn, Column column)
         {
+            if(parentColumn is ESDataSourceConnection)
+                parentColumn = (parentColumn as ESDataSourceConnection).GetParentJTDSByName(column.Name);
             if (parentColumn is JsonDataSourceConnection)
             {
                 // return zero level json
@@ -286,6 +289,8 @@ namespace FastReport.Data.JsonConnection
             }
             else if (parentColumn is JsonTableDataSource)
             {
+                if (parentColumn.Parent is ESDataSourceConnection)
+                    parentColumn.Parent = (parentColumn.Parent as ESDataSourceConnection).GetParentJTDSByName(parentColumn.Name);
                 JsonTableDataSource source = parentColumn as JsonTableDataSource;
                 return source.Json[source.CurrentRowNo] as object;
             }

@@ -20,6 +20,14 @@ using FastReport.Export.Svg;
 using FastReport.Export.Text;
 using FastReport.Export.XAML;
 using FastReport.Export.Xml;
+using FastReport.Export.BIFF8;
+using FastReport.Export.Email;
+using FastReport.Export.Hpgl;
+using FastReport.Export.LaTeX;
+using FastReport.Export.Zpl;
+using FastReport.Export.Dxf;
+
+
 #endif
 
 namespace FastReport.Web.Controllers
@@ -208,13 +216,28 @@ namespace FastReport.Web.Controllers
             switch (exportFormat)
             {
 #if !OPENSOURCE
-                 case "pdf":
+                case "latex":
+                    export = new LaTeXExport();
+                    break;
+                case "xls":
+                    export = new Excel2003Document();
+                   break;
+                //case "email":
+                //    export = new EmailExport(); //Required modal window
+                //    break;
+                case "zpl":
+                    export = new ZplExport();
+                    break;
+                case "hpgl":
+                    export = new HpglExport();
+                    break;
+                case "pdf":
                     export = new PDFExport();
                     break;
                 case "rtf":
                     export = new RTFExport();
                     break;
-                  case "mht":
+                case "mht":
                     export = new MHTExport();
                     break;
                 case "xml":
@@ -262,10 +285,13 @@ namespace FastReport.Web.Controllers
                 case "json":
                     export = new JsonExport();
                     break;
+                case "dxf":
+                    export = new DxfExport();
+                    break;
 #endif
                 case "html":
                     export = new HTMLExport();
-                    break;        
+                    break;    
                 case "bmp":
                     export = new ImageExport() { ImageFormat = ImageExportFormat.Bmp };
                     break;
@@ -286,9 +312,11 @@ namespace FastReport.Web.Controllers
                 case "tiff":
                     export = new ImageExport() { ImageFormat = ImageExportFormat.Tiff };
                     break;
+               
             }
-
+           
             return export;
+            
         }
 
         string Template_textedit_form(string text, string okText, string cancelText) => $@"

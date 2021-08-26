@@ -21,6 +21,7 @@
     <Attention Text="Внимание"/>
     <BarcodeFewError Text="Количество цифр меньше допустимого минимума."/>
     <BarcodeManyError Text="Количество цифр больше допустимого максимума."/>
+    <BarcodeLengthMismatch Text="Несоответствие количества символов."/>
     <CantFindObject Text="Не могу найти объект"/>
     <CantLoadReport Text="Не могу открыть отчет {0}"/>
     <CantSaveReport Text="Невозможно сохранить отчет. Файл может быть защищен от записи."/>
@@ -1571,6 +1572,7 @@
       <EventObjectIndicator Text="Отображать индикатор на объектах с событиями"/>
       <ObjectsAppearance Text="Внешний вид объектов"/>
 	  <EnableBacklight Text="Подсвечивать активный бэнд"/>
+	  <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
     </ReportPageOptions>
     <RichTextEditor Text="Редактор текста">
       <Open Text="Открыть файл"/>
@@ -2208,6 +2210,7 @@
       <Exactly Text="Точно"/>
       <Minimum Text="Минимум"/>
       <DoNotExpandShiftReturn Text="Не расширять мягкий перенос"/>
+      <DisableSectionBreak Text="Не добавлять разрывы разделов при разрывах страниц"/>
     </Docx>
     <Xaml Text="Экспорт в XAML">
       <File Text="Файл XAML"/>

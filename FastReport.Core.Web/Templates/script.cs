@@ -106,8 +106,7 @@ var {template_FR} = {{
     }},
 
     goto: function (page) {{
-        this._reload('&skipPrepare=yes&goto=' + page);"+
-        (Toolbar.ShowBottomToolbar ? $@"document.getElementsByClassName('{template_FR}-body')[0].scrollIntoView({{behavior:""smooth""}});" : "")+$@"
+        this._reload('&skipPrepare=yes&goto=' + page);
     }},
 
     click: function (el, kind, value) {{

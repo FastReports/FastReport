@@ -358,6 +358,7 @@ namespace FastReport.Export
         /// <param name="band">Band, dispose after method compite.</param>
         protected virtual void ExportBand(Base band)
         {
+            (band as BandBase).UpdateWidth();
         }
 
         /// <summary>

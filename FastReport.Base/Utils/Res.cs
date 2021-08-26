@@ -153,9 +153,10 @@ namespace FastReport.Utils
                 localeFile = FindLocaleFile(ref culture, localeFolder);
             }
 
+            // Find 'Localization' directory from FastReport.Localization package
             if (string.IsNullOrEmpty(localeFile))
             {
-                localeFolder = Path.Combine(localeFolder, "Localization");
+                localeFolder = Path.Combine(Config.ApplicationFolder, "Localization");
                 if (Directory.Exists(localeFolder))
                 {
                     localeFile = FindLocaleFile(ref culture, localeFolder);
