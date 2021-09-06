@@ -16,5 +16,10 @@
         {
 	   // Avoid compilation errors
         }
+
+        private void RestoreTemplate()
+        {
+	   // Avoid compilation errors
+        }
     }
 }

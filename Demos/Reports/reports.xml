@@ -102,7 +102,7 @@
   </Folder>
   <Folder Name="Maps" Core="false" Basic="false" Description="Reports with sample maps, and their combination with other features.">
     <Report File="World Map.frx"/>
-    <Report File="USA Map.frx"/>
+    <Report File="The USA Map.frx"/>
     <Report File="World Sales.frx"/>
     <Report File="Sales in the USA.frx"/>
     <Report File="Sales in Germany.frx"/>
