@@ -5,7 +5,7 @@
 
         <FRCompatVersion>2021.3.0</FRCompatVersion>
 
-        <FRDataVisualizationVersion>2021.2.3</FRDataVisualizationVersion>
+        <FRDataVisualizationVersion>2021.3.0</FRDataVisualizationVersion>
 		
         <!-- Not available in Core3 -->
         <SystemDrawingCommonVersion>[4.6.1,)</SystemDrawingCommonVersion>

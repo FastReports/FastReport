@@ -436,6 +436,7 @@ namespace FastReport.Engine
             }
             finally
             {
+                RestoreTemplate();
                 Report.OnFinishReport(EventArgs.Empty);
                 Config.ReportSettings.OnFinishProgress(Report);
                 Report.SetOperation(ReportOperation.None);
