@@ -8,7 +8,7 @@ namespace FastReport.Gauge.Radial
     {
         public static Font GetFont(FRPaintEventArgs e, GaugeObject gauge, Font font)
         {
-            return e.Cache.GetFont(font.Name, gauge.IsPrinting ? font.Size : font.Size * e.ScaleX * 96f / DrawUtils.ScreenDpi, font.Style);
+            return e.Cache.GetFont(font.FontFamily, gauge.IsPrinting ? font.Size : font.Size * e.ScaleX * 96f / DrawUtils.ScreenDpi, font.Style);
         }
         public static SizeF GetStringSize(FRPaintEventArgs e, GaugeObject gauge, Font font, string text)
         {

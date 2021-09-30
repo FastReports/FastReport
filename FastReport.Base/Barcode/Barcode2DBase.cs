@@ -48,7 +48,7 @@ namespace FastReport.Barcode
                     // When we print, .Net automatically scales the font. However, we need to handle this process.
                     // Downscale the font to the screen resolution, then scale by required value (ky).
                     float fontZoom = 18f / (int)g.MeasureString(data, FFont).Height * ky;
-                    using (Font drawFont = new Font(FFont.Name, FFont.Size * fontZoom, FFont.Style))
+                    using (Font drawFont = new Font(FFont.FontFamily, FFont.Size * fontZoom, FFont.Style))
                     {
                         g.DrawString(data, drawFont, Brushes.Black, new RectangleF(0, height - 18 * ky, width, 18 * ky));
                     }

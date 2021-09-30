@@ -1841,6 +1841,8 @@
 		<AdditionalProps Text="Дополнительные реквизиты"/>
 		<AnotherProps Text="Другие"/>
 		<NotEnterDate Text="Не указывать дату"/>
+      <Error Text="Не все необходимые банковские реквизиты заполнены."/>
+      <Warning Text="Некорректные данные в полях:"/>
 	  </SberbankQr>
     </BarcodeEditor>
     <SavingPageOptions Text="Сохранение">

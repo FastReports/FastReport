@@ -1901,7 +1901,7 @@ namespace FastReport.Utils
                     fontStyle = fontStyle & ~FontStyle.Underline & ~FontStyle.Strikeout;
                 if (Style.Font != null)
                     return new Font(Style.Font, fontSize, fontStyle);
-                return new Font(Renderer.Font.Name, fontSize, fontStyle);
+                return new Font(Renderer.Font.FontFamily, fontSize, fontStyle);
             }
             #endregion
 

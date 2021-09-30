@@ -713,6 +713,8 @@ namespace FastReport
                 obj.OnBeforePrint(EventArgs.Empty);
             }
 
+            Report.Engine.TranslatedObjectsToBand(this);
+
             // apply even style
             if (RowNo % 2 == 0)
             {
@@ -736,7 +738,9 @@ namespace FastReport
             }
             SetRunning(false);
 
-            foreach (ReportComponentBase obj in Objects)
+            ReportComponentCollection collection_clone = new ReportComponentCollection(); 
+            Objects.CopyTo(collection_clone);
+            foreach (ReportComponentBase obj in collection_clone)
             {
                 obj.OnAfterPrint(EventArgs.Empty);
                 obj.RestoreState();

@@ -2042,6 +2042,8 @@
 		<AdditionalProps Text="Additional details"/>
 		<AnotherProps Text="Other details"/>
 		<NotEnterDate Text="Don't enter date"/>
+      <Error Text="Not all the required banking details are filled in."/>
+      <Warning Text="Incorrect data in the fields:"/>
 	  </SberbankQr>
     </BarcodeEditor>
     <SavingPageOptions Text="Saving">

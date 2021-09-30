@@ -46,7 +46,9 @@ namespace FastReport.Utils
         private static ScriptSecurityProperties scriptSecurityProps = null;
         private static bool forbidLocalData = false;
         private static bool userSetsScriptSecurity = false;
+        private static FRPrivateFontCollection privateFontCollection = new FRPrivateFontCollection();
         internal static bool CleanupOnExit;
+
 
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
@@ -215,9 +217,9 @@ namespace FastReport.Utils
         /// <summary>
         /// Gets a PrivateFontCollection instance.
         /// </summary>
-        public static PrivateFontCollection PrivateFontCollection
+        public static FRPrivateFontCollection PrivateFontCollection
         {
-            get { return FastReport.TypeConverters.FontConverter.PrivateFontCollection; }
+            get { return privateFontCollection; }
         }
 
         /// <summary>

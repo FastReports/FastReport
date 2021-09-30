@@ -320,7 +320,7 @@ namespace FastReport.Export.Html
                     if (obj.VertAlign != VertAlign.Top)
                     {
                         IGraphics g = htmlMeasureGraphics;
-                        using (Font f = new Font(obj.Font.Name, obj.Font.Size * DrawUtils.ScreenDpiFX, obj.Font.Style))
+                        using (Font f = new Font(obj.Font.FontFamily, obj.Font.Size * DrawUtils.ScreenDpiFX, obj.Font.Style))
                         {
                             RectangleF textRect = new RectangleF(obj.AbsLeft, obj.AbsTop, obj.Width, obj.Height);
                             StringFormat format = obj.GetStringFormat(Report.GraphicCache, 0);
@@ -341,7 +341,7 @@ namespace FastReport.Export.Html
                     }
 
                     LayerBack(Page, obj,
-                        GetSpanText(obj, ExportUtils.HtmlString(obj.Text, obj.TextRenderType),
+                        GetSpanText(obj, ExportUtils.HtmlString(obj.Text, obj.TextRenderType, Px(Math.Round(obj.Font.Size * 96 / 72))),
                         top + obj.Padding.Top,
                         obj.Width - obj.Padding.Horizontal,
                         obj.ParagraphOffset));
