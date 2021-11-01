@@ -2042,6 +2042,8 @@
 		<AdditionalProps Text="Additional details"/>
 		<AnotherProps Text="Other details"/>
 		<NotEnterDate Text="Don't enter date"/>
+      <Error Text="Not all the required banking details are filled in."/>
+      <Warning Text="Incorrect data in the fields:"/>
 	  </SberbankQr>
     </BarcodeEditor>
     <SavingPageOptions Text="Saving">
@@ -2446,9 +2448,11 @@
       <FitSheetOnOnePage Text="Fit Sheet on One Page" />
       <FitAllColumsOnOnePage Text="Fit All Colums on One Page" />
       <FitAllRowsOnOnePage Text="Fit All Rows on One Page" />
+      <GroupOnSeparateSheet Text="Groups on separate sheets"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
+      <HideGridLines Text="Hide gridlines"/>
     </Xls>
     <Pptx Text="Export to PowerPoint 2007">
       <File Text="PowerPoint 2007 file"/>

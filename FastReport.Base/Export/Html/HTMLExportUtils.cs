@@ -225,5 +225,4 @@ namespace FastReport.Export.Html
             pageEvent = new ManualResetEvent(false);
         }
     }
-
 }

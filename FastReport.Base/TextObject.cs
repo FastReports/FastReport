@@ -736,7 +736,7 @@ namespace FastReport
             if (String.IsNullOrEmpty(Text) || report == null)
                 return new SizeF(0, 0);
 
-            Font font = report.GraphicCache.GetFont(Font.Name, Font.Size * 96f / DrawUtils.ScreenDpi, Font.Style);
+            Font font = report.GraphicCache.GetFont(Font.FontFamily, Font.Size * 96f / DrawUtils.ScreenDpi, Font.Style);
             float width = 0;
             if (WordWrap)
             {
@@ -887,7 +887,7 @@ namespace FastReport
             if (report == null)
                 return "";
 
-            Font font = report.GraphicCache.GetFont(Font.Name, Font.Size * 96f / DrawUtils.ScreenDpi, Font.Style);
+            Font font = report.GraphicCache.GetFont(Font.FontFamily, Font.Size * 96f / DrawUtils.ScreenDpi, Font.Style);
             StringFormat format = GetStringFormat(report.GraphicCache, StringFormatFlags.LineLimit);
             RectangleF textRect = new RectangleF(0, 0, Width - Padding.Horizontal, Height - Padding.Vertical);
             if (textRect.Height < 0)
@@ -969,7 +969,7 @@ namespace FastReport
             {
                 while (CalcWidth() > Width - 1 && Font.Size > AutoShrinkMinSize && Font.Size>1)
                 {
-                    Font = new Font(Font.Name, Font.Size - 1, Font.Style);
+                    Font = new Font(Font.FontFamily, Font.Size - 1, Font.Style);
                 }
             }
             else if (AutoShrink == AutoShrinkMode.FontWidth)
@@ -1121,7 +1121,7 @@ namespace FastReport
         internal HtmlTextRenderer GetHtmlTextRenderer(string text, IGraphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format, bool isPrinting)
         {
             bool isDifferentTabPositions = TabPositions.Count > 0;
-            return new HtmlTextRenderer(text, g, font.Name, font.Size, font.Style, TextColor,
+            return new HtmlTextRenderer(text, g, font.FontFamily, font.Size, font.Style, TextColor,
                       textOutline.Color, textRect, Underlines,
                       format, horzAlign, vertAlign, ParagraphFormat.MultipleScale(formatScale), ForceJustify,
                       scale * 96f / DrawUtils.ScreenDpi, fontScale * 96f / DrawUtils.ScreenDpi, InlineImageCache,
@@ -1148,7 +1148,7 @@ namespace FastReport
                     text = MakeParagraphOffset(text);
                 StringFormat format = GetStringFormat(e.Cache, 0, e.ScaleX);
 
-                Font font = e.Cache.GetFont(Font.Name,
+                Font font = e.Cache.GetFont(Font.FontFamily,
                   IsPrinting ? Font.Size : Font.Size * e.ScaleX * 96f / DrawUtils.ScreenDpi,
                   Font.Style);
 

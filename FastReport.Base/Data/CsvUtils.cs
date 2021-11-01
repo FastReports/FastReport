@@ -103,6 +103,10 @@ namespace FastReport.Data
 
             try
             {
+                // fix for datafile in current folder
+                if (File.Exists(builder.CsvFile))
+                    builder.CsvFile = Path.GetFullPath(builder.CsvFile);
+
                 Uri uri = new Uri(builder.CsvFile);
 
                 if (uri.IsFile)

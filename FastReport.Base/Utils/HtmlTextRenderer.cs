@@ -21,7 +21,7 @@ namespace FastReport.Utils
         private InlineImageCache cache;
         private RectangleF displayRect;
         private bool everUnderlines;
-        private string font;
+        private FontFamily font;
         private float fontLineHeight;
         private float scale;
         private bool forceJustify;
@@ -109,7 +109,7 @@ namespace FastReport.Utils
 
         #region Public Constructors
 
-        public HtmlTextRenderer(string text, IGraphics g, string font, float size,
+        public HtmlTextRenderer(string text, IGraphics g, FontFamily font, float size,
                     FontStyle style, Color color, Color underlineColor, RectangleF rect, bool underlines,
                     StringFormat format, HorzAlign horzAlign, VertAlign vertAlign,
                     ParagraphFormat paragraphFormat, bool forceJustify, float scale, float fontScale, InlineImageCache cache, bool isPrinting = false, bool isDifferentTabPositions = false)
@@ -447,7 +447,7 @@ namespace FastReport.Utils
                     try { style.Size *= Single.Parse(tStr.Substring(0, tStr.Length - 2), CultureInfo); } catch { }
             }
             if (dict.TryGetValue("font-family", out tStr))
-                style.Font = tStr;
+                style.Font = new FontFamily(tStr);
             if (dict.TryGetValue("color", out tStr))
             {
                 if (StartsWith(tStr, "#"))
@@ -2043,6 +2043,12 @@ namespace FastReport.Utils
                     chars = new List<CharWithIndex>(text);
 
                     this.text = GetString(text);
+
+                    if (ff.FontFamily.Name == "Wingdings" || ff.FontFamily.Name == "Webdings")
+                    {
+                        this.text = WingdingsToUnicodeConverter.Convert(this.text);
+                    }
+
                     if (this.text.Length > 0)
                     {
                         base.charIndex = text[0].Index;
@@ -2697,7 +2703,7 @@ namespace FastReport.Utils
             private Color backgroundColor;
             private BaseLine baseLine;
             private Color color;
-            private string font;
+            private FontFamily font;
             private FontStyle fontStyle;
             private float size;
 
@@ -2723,7 +2729,7 @@ namespace FastReport.Utils
                 set { color = value; }
             }
 
-            public string Font
+            public FontFamily Font
             {
                 get { return font; }
                 set { font = value; }
@@ -2745,7 +2751,7 @@ namespace FastReport.Utils
 
             #region Public Constructors
 
-            public StyleDescriptor(FontStyle fontStyle, Color color, BaseLine baseLine, string font, float size)
+            public StyleDescriptor(FontStyle fontStyle, Color color, BaseLine baseLine, FontFamily font, float size)
             {
                 this.fontStyle = fontStyle;
                 this.color = color;
@@ -2810,7 +2816,7 @@ namespace FastReport.Utils
                 unchecked
                 {
                     hashCode = hashCode * -1521134295 + baseLine.GetHashCode();
-                    hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(font);
+                    hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(font.Name);
                     hashCode = hashCode * -1521134295 + fontStyle.GetHashCode();
                     hashCode = hashCode * -1521134295 + size.GetHashCode();
                 }
@@ -2851,7 +2857,7 @@ namespace FastReport.Utils
                     sb.Append("<span style=\"");
                     if (backgroundColor.A > 0) sb.Append(String.Format(CultureInfo, "background-color:rgba({0},{1},{2},{3});", backgroundColor.R, backgroundColor.G, backgroundColor.B, ((float)backgroundColor.A) / 255f));
                     if (color.A > 0) sb.Append(String.Format(CultureInfo, "color:rgba({0},{1},{2},{3});", color.R, color.G, color.B, ((float)color.A) / 255f));
-                    if (font != null) { sb.Append("font-family:"); sb.Append(font); sb.Append(";"); }
+                    if (font != null) { sb.Append("font-family:"); sb.Append(font.Name); sb.Append(";"); }
                     if (fontsize > 0) { sb.Append("font-size:"); sb.Append(fontsize.ToString(CultureInfo)); sb.Append("pt;"); }
                     sb.Append("\">");
                 }
@@ -2934,5 +2940,29 @@ namespace FastReport.Utils
         }
 
         #endregion IDisposable Support
+    }
+
+    /// <summary>
+    /// Class that converts strings with Wingdings characters to Unicode strings.
+    /// </summary>
+    public static class WingdingsToUnicodeConverter
+    {
+        /// <summary>
+        /// Converts string with Wingdings characters to its Unicode analog.
+        /// </summary>
+        /// <param name="str">The string that should be converted.</param>
+        /// <returns></returns>
+        public static string Convert(string str)
+        {
+            char[] chars = str.ToCharArray();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] >= 0x20 && chars[i] <= 0xFF)
+                {
+                    chars[i] = (char)(0xF000 + chars[i]);
+                }
+            }
+            return new string(chars);
+        }
     }
 }

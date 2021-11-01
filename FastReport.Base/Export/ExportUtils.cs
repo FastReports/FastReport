@@ -246,10 +246,35 @@ namespace FastReport.Export
             return HtmlString(text, TextRenderType.Default);
         }
 
-        internal static FastString HtmlString(string text, TextRenderType textRenderType, CRLF crlf, bool excel2007)
+        internal static FastString HtmlString(string text, TextRenderType textRenderType, CRLF crlf, bool excel2007, string fontSize = "13px;")
         {
             FastString Result = new FastString(text.Length);
             int len = text.Length;
+            int lineBreakCount = 0;
+
+            if (textRenderType == TextRenderType.HtmlTags)
+            {
+                string wingdings = "<font face=\"Wingdings\">";
+                string webdings = "<font face=\"Webdings\">";
+                int ind1 = 0, ind2 = 0;
+                if (text.Contains(wingdings))
+                {
+                    ind1 = text.IndexOf(wingdings) + wingdings.Length;
+                    ind2 = text.IndexOf('<', ind1);
+                    text = text.Substring(0, ind1) +
+                        WingdingsToUnicodeConverter.Convert(text.Substring(ind1, ind2 - ind1)) +
+                        text.Substring(ind2, text.Length - ind2);
+                }
+                else if (text.Contains(webdings))
+                {
+                    ind1 = text.IndexOf(webdings) + webdings.Length;
+                    ind2 = text.IndexOf('<', ind1);
+                    text = text.Substring(0, ind1) +
+                        WingdingsToUnicodeConverter.Convert(text.Substring(ind1, ind2 - ind1)) +
+                        text.Substring(ind2, text.Length - ind2);
+                }
+            }
+
             for (int i = 0; i < len; i++)
             {
                 if (crlf != CRLF.xml && crlf != CRLF.odt && text[i] == ' ' && (text.Length == 1 ||
@@ -269,51 +294,59 @@ namespace FastReport.Export
                         Result.Append("<text:line-break />");
                     else
                     {
-                     Result.Append("<p style=\"margin-top:0px;margin-bottom:0px;\">");
+                        if (lineBreakCount == 0)
+                            Result.Append("<p style=\"margin-top:0px;margin-bottom:0px;\"></p>");
+                        else
+                            Result.Append($"<p style=\"margin-top:0px;height:{fontSize}margin-bottom:0px\"></p>");
+                        lineBreakCount++;
                     }
                     i++;
                 }
-                else if (text[i] == '\t' && crlf == CRLF.odt)
-                    Result.Append("<text:tab/>");
-                else if (text[i] == ' ' && crlf == CRLF.odt)
-                {
-                    int spaces = 1;
-                    while (i < text.Length - 1)
-                    {
-                        if (text[i + 1] == ' ')
-                        {
-                            i++;
-                            spaces++;
-                        }
-                        else
-                            break;
-                    }
-                    Result.Append("<text:s text:c=\"" + spaces + "\"/>");
-                }
-                else if (text[i] == '\\')
-                    Result.Append("&#92;");
-                else if (text[i] == '~' && !excel2007)
-                    Result.Append("&tilde;");
-                else if (text[i] == '€' && !excel2007)
-                    Result.Append("&euro;");
-                else if (text[i] == '‹' && !excel2007)
-                    Result.Append("&lsaquo;");
-                else if (text[i] == '›' && !excel2007)
-                    Result.Append("&rsaquo;");
-                else if (text[i] == 'ˆ' && !excel2007)
-                    Result.Append("&circ;");
-                else if (text[i] == '&' && textRenderType == TextRenderType.Default)
-                    Result.Append("&amp;");
-                else if (text[i] == '"' && textRenderType == TextRenderType.Default)
-                    Result.Append("&quot;");
-                else if (text[i] == '<' && textRenderType == TextRenderType.Default)
-                    Result.Append("&lt;");
-                else if (text[i] == '>' && textRenderType == TextRenderType.Default)
-                    Result.Append("&gt;");
-                else if (text[i] == '\t' && excel2007)
-                    continue;
                 else
-                    Result.Append(text[i]);
+                {
+                    lineBreakCount = 0;
+                    if (text[i] == '\t' && crlf == CRLF.odt)
+                        Result.Append("<text:tab/>");
+                    else if (text[i] == ' ' && crlf == CRLF.odt)
+                    {
+                        int spaces = 1;
+                        while (i < text.Length - 1)
+                        {
+                            if (text[i + 1] == ' ')
+                            {
+                                i++;
+                                spaces++;
+                            }
+                            else
+                                break;
+                        }
+                        Result.Append("<text:s text:c=\"" + spaces + "\"/>");
+                    }
+                    else if (text[i] == '\\')
+                        Result.Append("&#92;");
+                    else if (text[i] == '~' && !excel2007)
+                        Result.Append("&tilde;");
+                    else if (text[i] == '€' && !excel2007)
+                        Result.Append("&euro;");
+                    else if (text[i] == '‹' && !excel2007)
+                        Result.Append("&lsaquo;");
+                    else if (text[i] == '›' && !excel2007)
+                        Result.Append("&rsaquo;");
+                    else if (text[i] == 'ˆ' && !excel2007)
+                        Result.Append("&circ;");
+                    else if (text[i] == '&' && textRenderType == TextRenderType.Default)
+                        Result.Append("&amp;");
+                    else if (text[i] == '"' && textRenderType == TextRenderType.Default)
+                        Result.Append("&quot;");
+                    else if (text[i] == '<' && textRenderType == TextRenderType.Default)
+                        Result.Append("&lt;");
+                    else if (text[i] == '>' && textRenderType == TextRenderType.Default)
+                        Result.Append("&gt;");
+                    else if (text[i] == '\t' && excel2007)
+                        continue;
+                    else
+                        Result.Append(text[i]);
+                }
             }
             return Result;
         }
@@ -343,9 +376,9 @@ namespace FastReport.Export
             return sb.ToString();
         }
 
-        public static FastString HtmlString(string text, TextRenderType textRenderType)
+        public static FastString HtmlString(string text, TextRenderType textRenderType, string fontSize = "13px;")
         {
-            return HtmlString(text, textRenderType, CRLF.html, false);
+            return HtmlString(text, textRenderType, CRLF.html, false, fontSize);
         }
 
         internal static string XmlString(string Str, TextRenderType textRenderType)

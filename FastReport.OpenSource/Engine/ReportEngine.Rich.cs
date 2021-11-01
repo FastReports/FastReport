@@ -17,7 +17,7 @@
 	   // Avoid compilation errors
         }
 
-        private void RestoreTemplate()
+        internal void TranslatedObjectsToBand(BandBase band)
         {
 	   // Avoid compilation errors
         }

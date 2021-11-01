@@ -337,10 +337,11 @@ namespace FastReport.Table
 
       if (Objects != null)
       {
-        foreach (ReportComponentBase c in Objects)
+        for(int i = 0; i<objects.Count; i++)
         {
-          c.OnAfterPrint(EventArgs.Empty);
-          c.RestoreState();
+            ReportComponentBase c = objects[i];
+            c.OnAfterPrint(EventArgs.Empty);
+            c.RestoreState();
         }
       }
     }
@@ -361,9 +362,9 @@ namespace FastReport.Table
       }
       OnAfterData();
     }
-    #endregion
+#endregion
 
-    #region IParent Members
+#region IParent Members
     /// <inheritdoc/>
     public bool CanContain(Base child)
     {
@@ -509,7 +510,7 @@ namespace FastReport.Table
         updatingLayout = false;
       }
     }
-    #endregion
+#endregion
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TableCell"/> class.

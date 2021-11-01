@@ -85,7 +85,8 @@ namespace FastReport.Engine
                 {
                     AddToPreparedPages(cloneBand);
                     EndColumn();
-                    ShowBand(breakTo, false);
+                    breakTo.CalcHeight();
+                    AddToPreparedPages(breakTo);
                 }
                 else
                 {
@@ -98,7 +99,8 @@ namespace FastReport.Engine
                     else
                     {
                         EndColumn();
-                        ShowBand(breakTo, false);
+                        breakTo.CalcHeight();
+                        AddToPreparedPages(breakTo);
                     }
                 }
             }
