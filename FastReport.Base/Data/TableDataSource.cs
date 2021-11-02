@@ -156,13 +156,16 @@ namespace FastReport.Data
             }
             set
             {
-                using (MemoryStream stream = new MemoryStream(Convert.FromBase64String(value)))
-                using (DataSet tempDs = new DataSet())
+                if(!string.IsNullOrEmpty(value))
                 {
-                    tempDs.ReadXml(stream);
-                    table = tempDs.Tables[0];
-                    Reference = table;
-                    tempDs.Tables.RemoveAt(0);
+                    using (MemoryStream stream = new MemoryStream(Convert.FromBase64String(value)))
+                    using (DataSet tempDs = new DataSet())
+                    {
+                        tempDs.ReadXml(stream);
+                        table = tempDs.Tables[0];
+                        Reference = table;
+                        tempDs.Tables.RemoveAt(0);
+                    }
                 }
             }
         }

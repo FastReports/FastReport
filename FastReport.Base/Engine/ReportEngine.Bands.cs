@@ -29,6 +29,10 @@ namespace FastReport.Engine
 
         private float CalcHeight(BandBase band)
         {
+            // band is already prepared, its Height is ready to use
+            if (band.IsRunning)
+                return band.Height;
+
             band.SaveState();
             try
             {

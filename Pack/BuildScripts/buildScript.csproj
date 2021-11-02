@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cake.Common" Version="1.2.0" />
+    <PackageReference Include="Cake.Core" Version="1.2.0" />
+    <PackageReference Include="Cake.FileHelpers" Version="4.0.1" />
+    <PackageReference Include="Cake.Incubator" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>

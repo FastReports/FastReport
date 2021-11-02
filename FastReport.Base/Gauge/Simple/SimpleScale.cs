@@ -81,7 +81,7 @@ namespace FastReport.Gauge.Simple
             float y4 = top + height;
             float step = width / (majorTicksNum - 1);
             int textStep = (int)((Parent.Maximum - Parent.Minimum) / (majorTicksNum - 1));
-            Font font = e.Cache.GetFont(Font.Name, Parent.IsPrinting ? Font.Size : Font.Size * e.ScaleX * 96f / DrawUtils.ScreenDpi, Font.Style);
+            Font font = e.Cache.GetFont(Font.FontFamily, Parent.IsPrinting ? Font.Size : Font.Size * e.ScaleX * 96f / DrawUtils.ScreenDpi, Font.Style);
             string text = Parent.Minimum.ToString();
             if (firstSubScale.Enabled)
             {
@@ -169,7 +169,7 @@ namespace FastReport.Gauge.Simple
             float x4 = left + width;
             float step = height / (majorTicksNum - 1);
             int textStep = (int)((Parent.Maximum - Parent.Minimum) / (majorTicksNum - 1));
-            Font font = e.Cache.GetFont(Font.Name, Parent.IsPrinting ? Font.Size : Font.Size * e.ScaleX * 96f / DrawUtils.ScreenDpi, Font.Style);
+            Font font = e.Cache.GetFont(Font.FontFamily, Parent.IsPrinting ? Font.Size : Font.Size * e.ScaleX * 96f / DrawUtils.ScreenDpi, Font.Style);
             string text = Parent.Minimum.ToString();
             if (firstSubScale.Enabled)
             {

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using FastReport.Utils;
 using System.Data.Common;
 using System.Net;
+using System.IO;
 
 namespace FastReport.Data
 {
@@ -135,6 +136,10 @@ namespace FastReport.Data
         {
             try
             {
+                // fix for datafile in current folder
+                if (File.Exists(XmlFile))
+                    XmlFile = Path.GetFullPath(XmlFile);
+
                 Uri uri = new Uri(XmlFile);
 
                 if (uri.IsFile)

@@ -375,9 +375,9 @@ namespace FastReport.Engine
             while (band != null)
             {
                 if (CanPrint(band))
-                    result += (band.CanGrow || band.CanShrink) ? band.CalcHeight() : band.Height;
+                    result += (band.CanGrow || band.CanShrink) ? CalcHeight(band) : band.Height;
                 else if (FinalPass && !String.IsNullOrEmpty(band.VisibleExpression) && band.VisibleExpression.Contains("TotalPages"))
-                    result += (band.CanGrow || band.CanShrink) ? band.CalcHeight() : band.Height;
+                    result += (band.CanGrow || band.CanShrink) ? CalcHeight(band) : band.Height;
                 band = band.Child;
                 if (band != null && ((band as ChildBand).FillUnusedSpace || (band as ChildBand).CompleteToNRows != 0))
                     break;
@@ -436,7 +436,6 @@ namespace FastReport.Engine
             }
             finally
             {
-                RestoreTemplate();
                 Report.OnFinishReport(EventArgs.Empty);
                 Config.ReportSettings.OnFinishProgress(Report);
                 Report.SetOperation(ReportOperation.None);

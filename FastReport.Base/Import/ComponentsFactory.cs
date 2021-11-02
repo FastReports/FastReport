@@ -227,7 +227,8 @@ namespace FastReport.Import
         {
             TextObject text = new TextObject();
             text.Name = name;
-            text.Parent = parent;
+            if ((parent as IParent).CanContain(text))
+                text.Parent = parent;
             return text;
         }
 
@@ -241,7 +242,8 @@ namespace FastReport.Import
         {
             PictureObject picture = new PictureObject();
             picture.Name = name;
-            picture.Parent = parent;
+            if ((parent as IParent).CanContain(picture))
+                picture.Parent = parent;
             return picture;
         }
 
@@ -255,7 +257,8 @@ namespace FastReport.Import
         {
             LineObject line = new LineObject();
             line.Name = name;
-            line.Parent = parent;
+            if ((parent as IParent).CanContain(line))
+                line.Parent = parent;
             return line;
         }
 
@@ -269,7 +272,8 @@ namespace FastReport.Import
         {
             ShapeObject shape = new ShapeObject();
             shape.Name = name;
-            shape.Parent = parent;
+            if ((parent as IParent).CanContain(shape))
+                shape.Parent = parent;
             return shape;
         }
 
@@ -283,7 +287,8 @@ namespace FastReport.Import
         {
             PolyLineObject polyLine = new PolyLineObject();
             polyLine.Name = name;
-            polyLine.Parent = parent;
+            if ((parent as IParent).CanContain(polyLine))
+                polyLine.Parent = parent;
             return polyLine;
         }
 
@@ -297,7 +302,8 @@ namespace FastReport.Import
         {
             PolygonObject polygon = new PolygonObject();
             polygon.Name = name;
-            polygon.Parent = parent;
+            if ((parent as IParent).CanContain(polygon))
+                polygon.Parent = parent;
             return polygon;
         }
 
@@ -311,7 +317,8 @@ namespace FastReport.Import
         {
             SubreportObject subreport = new SubreportObject();
             subreport.Name = name;
-            subreport.Parent = parent;
+            if ((parent as IParent).CanContain(subreport))
+                subreport.Parent = parent;
             return subreport;
         }
 
@@ -323,10 +330,11 @@ namespace FastReport.Import
         /// <returns>The ContainerObject instance.</returns>
         public static ContainerObject CreateContainerObject(string name, Base parent)
         {
-            ContainerObject subreport = new ContainerObject();
-            subreport.Name = name;
-            subreport.Parent = parent;
-            return subreport;
+            ContainerObject container = new ContainerObject();
+            container.Name = name;
+            if ((parent as IParent).CanContain(container))
+                container.Parent = parent;
+            return container;
         }
 
         /// <summary>
@@ -339,7 +347,8 @@ namespace FastReport.Import
         {
             CheckBoxObject checkBox = new CheckBoxObject();
             checkBox.Name = name;
-            checkBox.Parent = parent;
+            if ((parent as IParent).CanContain(checkBox))
+                checkBox.Parent = parent;
             return checkBox;
         }
 
@@ -353,7 +362,8 @@ namespace FastReport.Import
         {
             HtmlObject html = new HtmlObject();
             html.Name = name;
-            html.Parent = parent;
+            if ((parent as IParent).CanContain(html))
+                html.Parent = parent;
             return html;
         }
 
@@ -367,7 +377,8 @@ namespace FastReport.Import
         {
             TableObject table = new TableObject();
             table.Name = name;
-            table.Parent = parent;
+            if ((parent as IParent).CanContain(table))
+                table.Parent = parent;
             return table;
         }
 
@@ -381,7 +392,8 @@ namespace FastReport.Import
         {
             MatrixObject matrix = new MatrixObject();
             matrix.Name = name;
-            matrix.Parent = parent;
+            if ((parent as IParent).CanContain(matrix))
+                matrix.Parent = parent;
             return matrix;
         }
 
@@ -395,7 +407,8 @@ namespace FastReport.Import
         {
             BarcodeObject barcode = new BarcodeObject();
             barcode.Name = name;
-            barcode.Parent = parent;
+            if ((parent as IParent).CanContain(barcode))
+                barcode.Parent = parent;
             return barcode;
         }
 
@@ -409,7 +422,8 @@ namespace FastReport.Import
         {
             ZipCodeObject zipCode = new ZipCodeObject();
             zipCode.Name = name;
-            zipCode.Parent = parent;
+            if ((parent as IParent).CanContain(zipCode))
+                zipCode.Parent = parent;
             return zipCode;
         }
 
@@ -423,7 +437,8 @@ namespace FastReport.Import
         {
             CellularTextObject cellularText = new CellularTextObject();
             cellularText.Name = name;
-            cellularText.Parent = parent;
+            if ((parent as IParent).CanContain(cellularText))
+                cellularText.Parent = parent;
             return cellularText;
         }
 
@@ -437,7 +452,8 @@ namespace FastReport.Import
         {
             LinearGauge gauge = new LinearGauge();
             gauge.Name = name;
-            gauge.Parent = parent;
+            if ((parent as IParent).CanContain(gauge))
+                gauge.Parent = parent;
             return gauge;
         }
 
@@ -451,7 +467,8 @@ namespace FastReport.Import
         {
             SimpleGauge gauge = new SimpleGauge();
             gauge.Name = name;
-            gauge.Parent = parent;
+            if ((parent as IParent).CanContain(gauge))
+                gauge.Parent = parent;
             return gauge;
         }
         #endregion // Objects

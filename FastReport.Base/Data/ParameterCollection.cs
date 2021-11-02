@@ -78,11 +78,14 @@ namespace FastReport.Data
 
     private void EnumParameters(ParameterCollection root, SortedList<string,Parameter> list)
     {
-      foreach (Parameter p in root)
-      {
-        list.Add(p.FullName, p);
-        EnumParameters(p.Parameters, list);
-      }
+        foreach (Parameter p in root)
+        {
+            if (!list.ContainsKey(p.FullName))
+            {
+                list.Add(p.FullName, p);
+                EnumParameters(p.Parameters, list);
+            }
+        }
     }
     
     internal void AssignValues(ParameterCollection source)

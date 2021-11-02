@@ -44,14 +44,8 @@ namespace FastReport.Web
         /// </summary>
         public bool ShowPreparedReport
         {
-            get => (ExportTypes & Exports.Prepared) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Prepared;
-                else
-                    ExportTypes &= ~Exports.Prepared;
-            }
+            get => GetExport(Exports.Prepared);
+            set => SetExport(value, Exports.Prepared);
         }
 
 #if !OPENSOURCE
@@ -60,183 +54,104 @@ namespace FastReport.Web
         /// </summary>
         public bool ShowPdfExport
         {
-            get => (ExportTypes & Exports.Pdf) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Pdf;
-
-                else
-                    ExportTypes &= ~Exports.Pdf;
-            }
+            get => GetExport(Exports.Pdf);
+            set => SetExport(value, Exports.Pdf);
         }
 
         /// <summary>
         /// Switches a visibility of Excel 2007 export in toolbar.
         /// </summary>
         public bool ShowExcel2007Export {
-            get => (ExportTypes & Exports.Excel2007) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Excel2007;
-                else
-                    ExportTypes &= ~Exports.Excel2007;
-            }
+            get => GetExport(Exports.Excel2007);
+            set => SetExport(value, Exports.Excel2007);
         }
 
         /// <summary>
         /// Switches a visibility of Word 2007 export in toolbar.
         /// </summary>
         public bool ShowWord2007Export {
-            get => (ExportTypes & Exports.Word2007) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Word2007;
-                else
-                    ExportTypes &= ~Exports.Word2007;
-            }
+            get => GetExport(Exports.Word2007);
+            set => SetExport(value, Exports.Word2007);
         }
 
         /// <summary>
         /// Switches a visibility of PowerPoint 2007 export in toolbar.
         /// </summary>
         public bool ShowPowerPoint2007Export {
-            get => (ExportTypes & Exports.PowerPoint2007) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.PowerPoint2007;
-                else
-                    ExportTypes &= ~Exports.PowerPoint2007;
-            }
+            get => GetExport(Exports.PowerPoint2007);
+            set => SetExport(value, Exports.PowerPoint2007);
         }
 
         /// <summary>
         /// Switch a visibility of text (plain text) export in toolbar
         /// </summary>
         public bool ShowTextExport {
-            get => (ExportTypes & Exports.Text) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Text;
-                else
-                    ExportTypes &= ~Exports.Text;
-            }
+            get => GetExport(Exports.Text);
+            set => SetExport(value, Exports.Text);
         }
 
         /// <summary>
         /// Switches a visibility of RTF export in toolbar.
         /// </summary>
         public bool ShowRtfExport {
-            get => (ExportTypes & Exports.Rtf) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Rtf;
-                else
-                    ExportTypes &= ~Exports.Rtf;
-            }
+            get => GetExport(Exports.Rtf);
+            set => SetExport(value, Exports.Rtf);
         }
 
         /// <summary>
         /// Switches a visibility of XPS export in toolbar.
         /// </summary>
         public bool ShowXpsExport {
-            get => (ExportTypes & Exports.Xps) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Xps;
-                else
-                    ExportTypes &= ~Exports.Xps;
-            }
+            get => GetExport(Exports.Xps);
+            set => SetExport(value, Exports.Xps);
         }
 
         /// <summary>
         /// Switches a visibility of Open Office Spreadsheet (ODS) export in toolbar.
         /// </summary>
         public bool ShowOdsExport {
-            get => (ExportTypes & Exports.Ods) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Ods;
-                else
-                    ExportTypes &= ~Exports.Ods;
-            }
+            get => GetExport(Exports.Ods);
+            set => SetExport(value, Exports.Ods);
         }
 
         /// <summary>
         /// Switches a visibility of Open Office Text (ODT) export in toolbar
         /// </summary>
         public bool ShowOdtExport {
-            get => (ExportTypes & Exports.Odt) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Odt;
-                else
-                    ExportTypes &= ~Exports.Odt;
-            }
+            get => GetExport(Exports.Odt);
+            set => SetExport(value, Exports.Odt);
         }
 
         /// <summary>
         /// Switches a visibility of XML (Excel) export in toolbar.
         /// </summary>
         public bool ShowXmlExcelExport {
-            get => (ExportTypes & Exports.XmlExcel) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.XmlExcel;
-                else
-                    ExportTypes &= ~Exports.XmlExcel;
-            }
+            get => GetExport(Exports.XmlExcel);
+            set => SetExport(value, Exports.XmlExcel);
         }
 
         /// <summary>
         /// Switches a visibility of DBF export in toolbar.
         /// </summary>
         public bool ShowDbfExport {
-            get => (ExportTypes & Exports.Dbf) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Dbf;
-                else
-                    ExportTypes &= ~Exports.Dbf;
-            }
+            get => GetExport(Exports.Dbf);
+            set => SetExport(value, Exports.Dbf);
         }
 
         /// <summary>
         /// Switches visibility the CSV (comma separated values) export in toolbar.
         /// </summary>
         public bool ShowCsvExport {
-            get => (ExportTypes & Exports.Csv) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Csv;
-                else
-                    ExportTypes &= ~Exports.Csv;
-            }
+            get => GetExport(Exports.Csv);
+            set => SetExport(value, Exports.Csv);
         }
 
         /// <summary>
         /// Switches visibility the MHT export in toolbar.
         /// </summary>
         public bool ShowMhtExport {
-            get => (ExportTypes & Exports.Mht) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Mht;
-                else
-                    ExportTypes &= ~Exports.Mht;
-            }
+            get => GetExport(Exports.Mht);
+            set => SetExport(value, Exports.Mht);
         }
 
         /// <summary>
@@ -244,28 +159,16 @@ namespace FastReport.Web
         /// </summary>
         public bool ShowHTMLExport
         {
-            get => (ExportTypes & Exports.HTML) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.HTML;
-                else
-                    ExportTypes &= ~Exports.HTML;
-            }
+            get => GetExport(Exports.HTML);
+            set => SetExport(value, Exports.HTML);
         }
         /// <summary>
         /// Switches visibility the HPGL export in toolbar.
         /// </summary>
         public bool ShowHpglExport
         {
-            get => (ExportTypes & Exports.Hpgl) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Hpgl;
-                else
-                    ExportTypes &= ~Exports.Hpgl;
-            }
+            get => GetExport(Exports.Hpgl);
+            set => SetExport(value, Exports.Hpgl);
         }
         //public bool ShowEmailExport
         //{
@@ -283,42 +186,24 @@ namespace FastReport.Web
         /// </summary>
         public bool ShowDxfExport
         {
-            get => (ExportTypes & Exports.Dxf) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Dxf;
-                else
-                    ExportTypes &= ~Exports.Dxf;
-            }
+            get => GetExport(Exports.Dxf);
+            set => SetExport(value, Exports.Dxf);
         }
         /// <summary>
         /// Switches visibility the Json export in toolbar.
         /// </summary>
         public bool ShowJsonExport
         {
-            get => (ExportTypes & Exports.Json) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Json;
-                else
-                    ExportTypes &= ~Exports.Json;
-            }
+            get => GetExport(Exports.Json);
+            set => SetExport(value, Exports.Json);
         }
         /// <summary>
         /// Switches visibility the LaTeX export in toolbar.
         /// </summary>
         public bool ShowLaTeXExport
         {
-            get => (ExportTypes & Exports.LaTeX) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.LaTeX;
-                else
-                    ExportTypes &= ~Exports.LaTeX;
-            }
+            get => GetExport(Exports.LaTeX);
+            set => SetExport(value, Exports.LaTeX);
         }
         //public bool ShowImageExport
         //{
@@ -336,87 +221,64 @@ namespace FastReport.Web
         /// </summary>
         public bool ShowPpmlExport
         {
-            get => (ExportTypes & Exports.Ppml) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Ppml;
-                else
-                    ExportTypes &= ~Exports.Ppml;
-            }
+            get => GetExport(Exports.Ppml);
+            set => SetExport(value, Exports.Ppml);
         }
         /// <summary>
         /// Switches visibility the PS export in toolbar.
         /// </summary>
         public bool ShowPSExport
         {
-            get => (ExportTypes & Exports.PS) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.PS;
-                else
-                    ExportTypes &= ~Exports.PS;
-            }
+            get => GetExport(Exports.PS);
+            set => SetExport(value, Exports.PS);
         }
         /// <summary>
         /// Switches visibility the XAML export in toolbar.
         /// </summary>
         public bool ShowXamlExport
         {
-            get => (ExportTypes & Exports.Xaml) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Xaml;
-                else
-                    ExportTypes &= ~Exports.Xaml;
-            }
+            get => GetExport(Exports.Xaml);
+            set => SetExport(value, Exports.Xaml);
         }
         /// <summary>
         /// Switches visibility the ZPL export in toolbar.
         /// </summary>
         public bool ShowZplExport
         {
-            get => (ExportTypes & Exports.Zpl) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Zpl;
-                else
-                    ExportTypes &= ~Exports.Zpl;
-            }
+            get => GetExport(Exports.Zpl);
+            set => SetExport(value, Exports.Zpl);
         }
         /// <summary>
         /// Switches visibility the Excel-97 export in toolbar.
         /// </summary>
         public bool ShowExcel97Export
         {
-            get => (ExportTypes & Exports.Excel97) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Excel97;
-                else
-                    ExportTypes &= ~Exports.Excel97;
-            }
+            get => GetExport(Exports.Excel97);
+            set => SetExport(value, Exports.Excel97);
         }
         /// <summary>
         /// Switches visibility the SVG export in toolbar.
         /// </summary>
         public bool ShowSvgExport
         {
-            get => (ExportTypes & Exports.Svg) > 0;
-            set
-            {
-                if (value)
-                    ExportTypes |= Exports.Svg;
-                else
-                    ExportTypes &= ~Exports.Svg;
-            }
+            get => GetExport(Exports.Svg);
+            set => SetExport(value, Exports.Svg);
         }
 #endif
-  
+
+        private bool GetExport(Exports export)
+        {
+            return (ExportTypes & export) > 0;
+        }
+
+        private void SetExport(bool value, Exports export)
+        {
+            if (value)
+                ExportTypes |= export;
+            else
+                ExportTypes &= ~export;
+        }
+
     }
     ///<summary>
     ///Used to select exports 

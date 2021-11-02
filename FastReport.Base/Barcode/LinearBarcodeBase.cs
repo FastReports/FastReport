@@ -505,7 +505,7 @@ namespace FastReport.Barcode
             // Downscale the font to the screen resolution, then scale by required value (Zoom).
             float fontZoom = 14f / (int)g.MeasureString(s, FFont).Height * zoom;
             Font font = small ? FSmallFont : FFont;
-            using (Font drawFont = new Font(font.Name, font.Size * fontZoom, font.Style))
+            using (Font drawFont = new Font(font.FontFamily, font.Size * fontZoom, font.Style))
             {
                 SizeF size = g.MeasureString(s, drawFont);
                 size.Width /= zoom;
