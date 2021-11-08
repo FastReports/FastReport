@@ -26,6 +26,7 @@
     <Report File="RichText.frx" Basic="false" WebDemo="false"/>
     <Report File="Table.frx" Basic="false"/>
     <Report File="Matrix.frx" Core="false" Basic="false"/>
+    <Report File="Advanced Matrix.frx" Core="false" Basic="false"/>
     <Report File="Chart.frx" Core="false" Basic="false"/>
     <Report File="Sparkline.frx" Core="false" Basic="false"/>
     <Report File="CellularText.frx" Basic="false"/>
@@ -76,6 +77,16 @@
     <Report File="Objects Inside The Matrix.frx"  WebDemo="false"/>
     <Report File="Pictures Inside The Matrix.frx"/>
     <Report File="Two Matrices.frx"  WebDemo="false"/>
+  </Folder>
+  <Folder Name="Advanced Matrix" Basic="false" Description="Reports showing the various capabilities of the advanced matrix.">
+    <Report File="AdvMatrix - Order details.frx"/>
+    <Report File="AdvMatrix - Items comparison.frx"/>
+    <Report File="AdvMatrix - Sparkline, Gauge.frx"/>
+    <Report File="AdvMatrix - Collapse + Sort.frx"/>
+    <Report File="AdvMatrix - Sort Year by total.frx"/>
+    <Report File="AdvMatrix - Stepped layout.frx"/>
+    <Report File="AdvMatrix - Two data cells.frx"/>
+    <Report File="AdvMatrix - User function.frx"/>
   </Folder>
   <Folder Name="Dialogs" Core="false" Basic="false" Description="Reports that demonstrate how dialog boxes work.">
     <Report File="Hello, FastReport!.frx"/>

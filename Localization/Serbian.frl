@@ -1015,7 +1015,7 @@
       <InsertToRight Text="Umetni kolonu desno"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Pridruži ćelije"/>
+      <Merge Text="Pridruži ćelije"/>
       <Split Text="Razdvoji ćelije"/>
     </TableCell>
     <MatrixObject>

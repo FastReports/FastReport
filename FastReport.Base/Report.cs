@@ -1437,14 +1437,15 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Invokes the script event handler with given name.
+        /// Invokes the script method with given name.
         /// </summary>
         /// <param name="name">The name of the script method.</param>
         /// <param name="parms">The method parameters.</param>
-        public void InvokeEvent(string name, object[] parms)
+        public object InvokeMethod(string name, object[] parms)
         {
             if (assemblies.Count > 0)
-                assemblies[0].InvokeEvent(name, parms);
+                return assemblies[0].InvokeMethod(name, parms);
+            return null;
         }
 
         private Column GetColumn(string complexName)
@@ -1710,7 +1711,7 @@ namespace FastReport
             SetRunning(true);
             if (StartReport != null)
                 StartReport(this, e);
-            InvokeEvent(StartReportEvent, new object[] { this, e });
+            InvokeMethod(StartReportEvent, new object[] { this, e });
         }
 
         /// <summary>
@@ -1722,7 +1723,7 @@ namespace FastReport
             SetRunning(false);
             if (FinishReport != null)
                 FinishReport(this, e);
-            InvokeEvent(FinishReportEvent, new object[] { this, e });
+            InvokeMethod(FinishReportEvent, new object[] { this, e });
         }
 
         /// <summary>

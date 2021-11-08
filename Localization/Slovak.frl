@@ -1347,7 +1347,7 @@
       <InsertToRight Text="Vložiť stĺpec vpravo"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Zlúčiť bunky"/>
+      <Merge Text="Zlúčiť bunky"/>
       <Split Text="Rozdeliť bunku"/>
     </TableCell>
     <MatrixObject>

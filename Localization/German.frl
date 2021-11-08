@@ -1830,7 +1830,7 @@
       <InsertToRight Text="Spalte rechts einfügen"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Zellen verbinden"/>
+      <Merge Text="Zellen verbinden"/>
       <Split Text="Zelle aufteilen"/>
     </TableCell>
     <MatrixObject>

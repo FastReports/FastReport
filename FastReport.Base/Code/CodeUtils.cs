@@ -281,7 +281,7 @@ namespace FastReport.Code
         /// </summary>
         /// <param name="args">Object with find arguments.</param>
         /// <param name="skipStrings">Indicates whether to skip strings.</param>
-        /// <returns>The expression if found; otherwise, returns an empty string.</returns>
+        /// <returns>The expression if found; otherwise, returns null.</returns>
         public static string GetExpression(FindTextArgs args, bool skipStrings)
         {
             if (args.StartIndex < args.Text.Length)
@@ -289,7 +289,7 @@ namespace FastReport.Code
                 if (FindMatchingBrackets(args, skipStrings))
                     return args.FoundText;
             }
-            return "";
+            return null;
         }
     }
 }

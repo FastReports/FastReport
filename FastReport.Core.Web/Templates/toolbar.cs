@@ -18,9 +18,9 @@ namespace FastReport.Web
 
             var localization = new ToolbarLocalization(Res);
             var exports = Toolbar.Exports;
-            var toolbarExportItem = $@"<div class=""{template_FR}-toolbar-item"">
+            var toolbarExportItem = $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"">
         <img src=""{template_resource_url("save.svg", "image/svg+xml")}"" title=""{localization.saveTxt}"" style=""transform:translateY(1px)"">
-        <div class=""{template_FR}-toolbar-dropdown-content"">" +
+        <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">" +
             (exports.ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">{localization.preparedTxt}</a>" : "")
 #if !OPENSOURCE
             + (exports.ShowPdfExport ? $@"<a target=""_blank"" href=""{template_export_url("pdf")}"">{localization.pdfTxt}</a>" : "") +
@@ -52,9 +52,9 @@ namespace FastReport.Web
 #endif
              +"</div></div>"
             ;
-            var toolbarPrintItem = $@" <div class=""{template_FR}-toolbar-item"">
+            var toolbarPrintItem = $@" <div class=""fr-toolbar-item {template_FR}-toolbar-item"">
         <img src=""{template_resource_url("print.svg", "image/svg+xml")}"" title=""{localization.printTxt}"">
-        <div class=""{template_FR}-toolbar-dropdown-content"">
+        <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">
             " +
             (Toolbar.PrintInHtml ? $@"<a target=""_blank"" href=""{template_print_url("html")}"">{localization.printFromBrowserTxt}</a>
             " : "") +
@@ -65,15 +65,15 @@ namespace FastReport.Web
         $@"</div>
     </div>";
             var currentZoom = Zoom * 100;
-            var selectedZoom1 = $@"<div class=""{template_FR}-zoom-selected"">•</div>";
-            var selectedZoom2 = $@"<div class=""{template_FR}-zoom-selected""></div>";
+            var selectedZoom1 = $@"<div class=""fr-toolbar-zoom-selected {template_FR}-zoom-selected"">•</div>";
+            var selectedZoom2 = $@"<div class=""fr-toolbar-zoom-selected {template_FR}-zoom-selected""></div>";
             var isFirstPage = CurrentPageIndex == 0;
             var isLastPage = CurrentPageIndex >= TotalPages - 1;
 
             string templateToolbar = $@"
-<div class=""{template_FR}-toolbar"">
+<div class=""fr-toolbar {template_FR}-toolbar"">
 
-{(Toolbar.ShowRefreshButton ? $@"<div class=""{template_FR}-toolbar-item {template_FR}-pointer"" onclick=""{template_FR}.refresh();"" title=""{localization.reloadTxt}"">
+{(Toolbar.ShowRefreshButton ? $@"<div class=""fr-toolbar-item fr-toolbar-pointer {template_FR}-toolbar-item {template_FR}-pointer"" onclick=""{template_FR}.refresh();"" title=""{localization.reloadTxt}"">
         <img src=""{template_resource_url("reload.svg", "image/svg+xml")}"">
     </div>" : "")}
 
@@ -82,9 +82,9 @@ namespace FastReport.Web
 
 {(Toolbar.ShowPrint ? $"{toolbarPrintItem}" : "")}
 
-{(Toolbar.ShowZoomButton ? $@"<div class=""{template_FR}-toolbar-item"">
+{(Toolbar.ShowZoomButton ? $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"">
         <img src=""{template_resource_url("magnifier.svg", "image/svg+xml")}"" title=""{localization.zoomTxt}"" style=""transform:translateY(-1px)"">
-        <div class=""{template_FR}-toolbar-dropdown-content"">
+        <div class=""fr-toolbar-item-dropdown-content {template_FR}-toolbar-dropdown-content"">
             <a onclick=""{template_FR}.zoom(300);"">{(currentZoom == 300 ? selectedZoom1 : selectedZoom2)}300%</a>
             <a onclick=""{template_FR}.zoom(200);"">{(currentZoom == 200 ? selectedZoom1 : selectedZoom2)}200%</a>
             <a onclick=""{template_FR}.zoom(150);"">{(currentZoom == 150 ? selectedZoom1 : selectedZoom2)}150%</a>
@@ -98,33 +98,33 @@ namespace FastReport.Web
   
 
 {((SinglePage || TotalPages < 2) ? "" : $@"
- {(Toolbar.ShowFirstButton ? $@"<div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('first');""")} title=""{localization.firstPageTxt}"">
+ {(Toolbar.ShowFirstButton ? $@"<div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('first');""")} title=""{localization.firstPageTxt}"">
         <img src=""{template_resource_url("angle-double-left.svg", "image/svg+xml")}"">
     </div>" : "")}
    
-{(Toolbar.ShowPrevButton ? $@"<div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('prev');""")} title=""{localization.previousPageTxt}"">
+{(Toolbar.ShowPrevButton ? $@"<div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('prev');""")} title=""{localization.previousPageTxt}"">
         <img src=""{template_resource_url("angle-left.svg", "image/svg+xml")}"">
     </div>" : "")}
    
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
+    <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
         <input class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
     </div>
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"">
+    <div class=""fr-toolbar-item fr-toolbar-notbutton fr-toolbar-slash {template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"">
         <img src=""{template_resource_url("slash.svg", "image/svg+xml")}"">
     </div>
 
 
-    <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
+    <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
         <input type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
     </div>
 
-{(Toolbar.ShowNextButton ? $@" <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('next');""")} title=""{localization.nextPageTxt}"">
+{(Toolbar.ShowNextButton ? $@" <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('next');""")} title=""{localization.nextPageTxt}"">
         <img src=""{template_resource_url("angle-right.svg", "image/svg+xml")}"">
     </div>" : "")}
    
-{(Toolbar.ShowLastButton ? $@"   <div class=""{template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('last');""")} title=""{localization.lastPageTxt}"">
+{(Toolbar.ShowLastButton ? $@"   <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('last');""")} title=""{localization.lastPageTxt}"">
         <img src=""{template_resource_url("angle-double-right.svg", "image/svg+xml")}"">
     </div>" : "")}
  

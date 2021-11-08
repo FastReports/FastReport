@@ -1755,7 +1755,7 @@
       <InsertToRight Text="Insérer une colonne à droite"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Fusionner les cellules"/>
+      <Merge Text="Fusionner les cellules"/>
       <Split Text="Fractionner les cellules"/>
     </TableCell>
     <MatrixObject>

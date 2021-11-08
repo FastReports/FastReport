@@ -1300,7 +1300,7 @@
       <InsertToRight Text="右邊插入列"/>
     </TableColumn>
     <TableCell>
-      <Join Text="合併儲存格"/>
+      <Merge Text="合併儲存格"/>
       <Split Text="分割儲存格"/>
     </TableCell>
     <MatrixObject>

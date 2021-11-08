@@ -1348,7 +1348,7 @@
       <InsertToRight Text="Insereaza o Coloana la Dreapta"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Uneste Celulele"/>
+      <Merge Text="Uneste Celulele"/>
       <Split Text="Imparte Celulele"/>
     </TableCell>
     <MatrixObject>

@@ -48,6 +48,7 @@ namespace FastReport.Utils
         private static bool userSetsScriptSecurity = false;
         private static FRPrivateFontCollection privateFontCollection = new FRPrivateFontCollection();
         internal static bool CleanupOnExit;
+        private static CompilerSettings compilerSettings = new CompilerSettings();
 
 
 
@@ -258,6 +259,16 @@ namespace FastReport.Utils
         {
             get { return scriptSecurityProps; }
         }
+
+        /// <summary>
+        /// Settings of report compiler.
+        /// </summary>
+        public static CompilerSettings CompilerSettings
+        {
+            get { return compilerSettings; }
+            set { compilerSettings = value; }
+        }
+
         #endregion Public Properties
 
         #region Internal Methods
@@ -404,6 +415,7 @@ namespace FastReport.Utils
             SaveUIStyle();
             SaveUIOptions();
             SavePreviewSettings();
+            SaveCompilerSettings();
 #if !COMMUNITY
             SaveExportOptions();
 #endif
@@ -469,6 +481,7 @@ namespace FastReport.Utils
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
                 RestorePreviewSettings();
+                RestoreCompilerSettings();
                 Res.LoadDefaultLocale();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }
@@ -650,6 +663,34 @@ namespace FastReport.Utils
             if (!String.IsNullOrEmpty(disableHotkeysStringValue))
             {
                 disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
+            }
+        }
+
+        private static void SaveCompilerSettings()
+        {
+            XmlItem xi = Root.FindItem("CompilerSettings");
+            xi.SetProp("Placeholder", CompilerSettings.Placeholder);
+            xi.SetProp("ExceptionBehaviour", Converter.ToString(CompilerSettings.ExceptionBehaviour));
+        }
+
+        private static void RestoreCompilerSettings()
+        {
+            XmlItem xi = Root.FindItem("CompilerSettings");
+            CompilerSettings.Placeholder = xi.GetProp("Placeholder");
+
+            string exceptionBehaviour = xi.GetProp("ExceptionBehaviour");
+            if (!String.IsNullOrEmpty(exceptionBehaviour))
+            {
+                try
+                {
+                    CompilerSettings.ExceptionBehaviour =
+                        (CompilerExceptionBehaviour)Converter.FromString(typeof(CompilerExceptionBehaviour),
+                        exceptionBehaviour);
+                }
+                catch
+                {
+                    CompilerSettings.ExceptionBehaviour = CompilerExceptionBehaviour.Default;
+                }
             }
         }
 

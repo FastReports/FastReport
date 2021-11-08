@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StyleSheet>
   <Styles Name="White">
-    <Style Name="Header" Border.Lines="All"/>
-    <Style Name="Body" Border.Lines="All"/>
+    <Style Name="Header" Border.Lines="All" Border.Color="LightGray"/>
+    <Style Name="Body" Border.Lines="All" Border.Color="LightGray"/>
   </Styles>
   <Styles Name="Gray">
     <Style Name="Header" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro"/>

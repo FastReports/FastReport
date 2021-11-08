@@ -1340,7 +1340,7 @@
       <InsertToRight Text="Umetni kolonu u desno"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Spoji ćelije"/>
+      <Merge Text="Spoji ćelije"/>
       <Split Text="Razdvoji ćelije"/>
     </TableCell>
     <MatrixObject>
