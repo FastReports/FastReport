@@ -67,7 +67,7 @@ namespace FastReport.Gauge
         }
 
         /// <summary>
-        /// Gets or sets the currenta value of gauge.
+        /// Gets or sets the current value of gauge.
         /// </summary>
         [Category("Layout")]
         public double Value

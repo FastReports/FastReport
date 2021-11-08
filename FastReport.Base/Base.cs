@@ -856,8 +856,6 @@ namespace FastReport
             }
         }
 
-        //static int i = 0;
-
         /// <summary>
         /// Assigns values from another source.
         /// </summary>
@@ -943,7 +941,7 @@ namespace FastReport
             Clear();
             Assign(source);
             if (assignName)
-                Name = source.Name;
+                SetName(source.Name);
 
             foreach (Base child in source.ChildObjects)
             {
@@ -1017,7 +1015,7 @@ namespace FastReport
                 return;
             Report report = Report;
             if (report != null)
-                report.InvokeEvent(name, new object[] { this, param });
+                report.InvokeMethod(name, new object[] { this, param });
         }
 
         /// <summary>

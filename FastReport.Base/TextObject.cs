@@ -774,7 +774,7 @@ namespace FastReport
                 {
                     if (width == 0)
                         width = 100000;
-                    AdvancedTextRenderer renderer = new AdvancedTextRenderer(GetDisplayText(), g, font, Brushes.Black, Pens.Black,
+                    AdvancedTextRenderer renderer = new AdvancedTextRenderer(Text, g, font, Brushes.Black, Pens.Black,
                       new RectangleF(0, 0, width, 100000), GetStringFormat(report.GraphicCache, 0),
                       HorzAlign, VertAlign, LineHeight, Angle, FontWidthRatio, false, Wysiwyg, HasHtmlTags, false, 96f / DrawUtils.ScreenDpi,
                       96f / DrawUtils.ScreenDpi, InlineImageCache);
@@ -791,7 +791,7 @@ namespace FastReport
                 {
                     if (FontWidthRatio != 1)
                         width /= FontWidthRatio;
-                    SizeF size = g.MeasureString(GetDisplayText(), font, new SizeF(width, 100000));
+                    SizeF size = g.MeasureString(Text, font, new SizeF(width, 100000));
                     size.Width += Padding.Horizontal + 1;
                     size.Height += Padding.Vertical + 1;
                     return size;
@@ -1115,7 +1115,7 @@ namespace FastReport
 
         internal HtmlTextRenderer GetHtmlTextRenderer(IGraphics g, float scale, float fontScale, RectangleF textRect, StringFormat format)
         {
-            return GetHtmlTextRenderer(GetDisplayText(), g, fontScale, scale, fontScale, textRect, format, false);
+            return GetHtmlTextRenderer(Text, g, fontScale, scale, fontScale, textRect, format, false);
         }
 
         internal HtmlTextRenderer GetHtmlTextRenderer(string text, IGraphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format, bool isPrinting)
@@ -1558,7 +1558,7 @@ namespace FastReport
                     while (args.StartIndex < args.Text.Length)
                     {
                         string expression = CodeUtils.GetExpression(args, false);
-                        if (expression == "")
+                        if (expression == null)
                             break;
 
                         string formattedValue = CalcAndFormatExpression(expression, expressionIndex);

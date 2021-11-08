@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates the following AdvMatrixObject features:&#13;&#10;- collapse/expand header elements;&#13;&#10;- stepped layout of row groups;&#13;&#10;- use of Display Text setting for &quot;Month&quot; element" ReportInfo.Created="09/01/2021 21:12:23" ReportInfo.Modified="10/31/2021 23:02:49" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="Year" DataType="System.Int32"/>
+      <Column Name="Month" DataType="System.Int32"/>
+      <Column Name="ItemsSold" DataType="System.Int32"/>
+      <Column Name="Revenue" DataType="System.Decimal"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" FirstPageSource="1" OtherPagesSource="1" LastPageSource="1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="66.15" CanGrow="true">
+      <TextObject Name="Text1" Top="37.8" Width="1048.95" Height="28.35" Text="REVENUE BY EMPLOYEES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Width="1047.06" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="68.15" Width="1047.06" Height="113.4">
+      <AdvMatrixObject Name="AdvMatrix1" Left="15.12" Top="20.79" Width="343.98" Height="75.6" DataSource="MatrixDemo" Style="BlueWhite">
+        <Columns>
+          <Descriptor Expression="[MatrixDemo.Name]"/>
+          <Descriptor DisplayText="Total"/>
+        </Columns>
+        <Rows>
+          <Descriptor Expression="[MatrixDemo.Year]" Stepped="true">
+            <Descriptor Expression="[MatrixDemo.Month]" DisplayText="[MonthName([MatrixDemo.Month])]" VisibleToggledBy="CollapseButton1"/>
+          </Descriptor>
+          <Descriptor DisplayText="Total"/>
+        </Rows>
+        <TableColumn Name="Column1" Width="111.51" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="122.85" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="109.62" AutoSize="true"/>
+        <TableRow Name="Row1">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Year/Month" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[MatrixDemo.Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Total" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row2">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[MatrixDemo.Year]" Padding="16, 1, 2, 1" AllowExpressions="false" VertAlign="Center" Font="Arial, 9pt">
+            <MatrixCollapseButton Name="CollapseButton1" Width="16" Height="18.9" Dock="Left" SymbolSize="5"/>
+          </TableCell>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="Gainsboro" Fill.Color="151, 189, 253" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="Gainsboro" Fill.Color="151, 189, 253" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row3">
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="Gainsboro" Text="[MatrixDemo.Month]" Padding="20, 1, 2, 1" AllowExpressions="false" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="Gainsboro" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="Gainsboro" Fill.Color="White" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row4">
+          <TableCell Name="Cell10" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 9pt"/>
+        </TableRow>
+      </AdvMatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="183.55" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

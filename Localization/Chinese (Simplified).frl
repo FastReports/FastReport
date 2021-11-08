@@ -1300,7 +1300,7 @@
       <InsertToRight Text="右边插入列"/>
     </TableColumn>
     <TableCell>
-      <Join Text="合并单元格"/>
+      <Merge Text="合并单元格"/>
       <Split Text="分割单元格"/>
     </TableCell>
     <MatrixObject>

@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Language Name="pt" Author="Isaque Pinheiro &lt;isaquesp@gmail.com&gt;">
+<Language Name="pt" Author="Isaque Pinheiro &lt;isaquesp@gmail.com&gt; | Siegmar Gieseler &lt;easylob@gmail.com&gt;">
+  <Fonts>
+    <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} a fonte não pode ser alterada, incorporada ou transferida de qualquer forma sem primeiro ter obtida a permissão do detentor dos direitos autorais."/>
+    <FontMayNotBeSubsettedPriorToEmbedding Text="{0} a fonte não pode ser empacotada antes de ser incorporada no documento."/>
+  </Fonts>
   <Buttons>
     <Ok Text="OK"/>
     <Cancel Text="Cancelar"/>
@@ -35,7 +39,7 @@
     <MatrixValueError Text="O número de valores difere de MatrixData.Cells.Count (tem de ser {0})"/>
     <ParentError Text="Um objecto do tipo {0} não pode conter objetos do tipo {1}"/>
     <ParentError1 Text="Um objecto do tipo {0} não pode conter objetos"/>
-    <Performance Text="Preparado em {0} ms"/>
+    <Performance Text="Preparado em {0} ms "/>
     <PreparingData Text="Preparando os dados..."/>
     <PrintingPage Text="Imprimindo página {0}"/>
     <RenameAncestor Text="Não foi possível renomear {0}, foi introduzido no relatório ascendente"/>
@@ -125,6 +129,14 @@
     <TextBoxControl Text="TextBox"/>
     <TreeViewControl Text="TreeView"/>
   </Objects>
+  <Functions>
+    <Math Text="Matemática"/>
+    <Text Text="Texto"/>
+    <DateTime Text="Data e Hora"/>
+    <Formatting Text="Formatando"/>
+    <Conversion Text="Conversão"/>
+    <ProgramFlow Text="Fluxo do Programa"/>
+  </Functions>
   <FileFilters>
     <Report Text="Relatório (*.frx)|*.frx"/>
     <PreparedReport Text="Relatório preparado (*.fpx)|*.fpx"/>
@@ -1264,7 +1276,7 @@
       <InsertToRight Text="Inserir coluna à direita"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Juntar células"/>
+      <Merge Text="Juntar células"/>
       <Split Text="Dividir células"/>
     </TableCell>
     <MatrixObject>
@@ -1461,6 +1473,130 @@
       <SendingEmail Text="Enviando email - {0} Kb"/>
     </Email>
   </Export>
+  <Cloud>
+    <CloudStorage Text="Salvar na Nuvem">
+      <File Text="Arquivo"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Tipo do Arquivo:"/>
+      <Settings Text="Configurações..."/>
+      <Server Text="Servidor:"/>
+      <Username Text="Usuário:"/>
+      <Password Text="Senha:"/>
+      <PortError Text="O número da porta deve ser numérico."/>
+    </CloudStorage>
+    <Ftp Text="Salvar no FTP">
+      <Name Text="FTP"/>
+      <FtpServer Text="Servidor:"/>
+      <FtpUsername Text="Usuário:"/>
+      <FtpPassword Text="Senha:"/>
+      <ServerConnectionFiledError Text="Falha na conexão ao servidor especificado."/>
+      <ServerNotFoundError Text="O servidor especificado não foi encontrado."/>
+      <AccessDeniedError Text="Erro de acesso. Login ou senha errados."/>
+      <SaveSuccess Text="Salvo com sucesso."/>
+    </Ftp>
+    <Box Text="Salvar no Box">
+      <Name Text="Box"/>
+      <ClientInfoDialog Text="Informações do Cliente"/>
+      <ClientId Text="Client ID:"/>
+      <ClientSecret Text="Senha do cliente:"/>
+    </Box>
+    <Dropbox Text="Salvar no Dropbox">
+      <Name Text="Dropbox"/>
+      <ApplicationInfoDialog Text="Informações do Aplicativo"/>
+      <AccessToken Text="Token de acesso:"/>
+      <File Text="Arquivo"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Tipo do Arquivo:"/>
+      <Settings Text="Configurações..."/>
+      <Save Text="Salvar"/>
+      <Server Text="Servidor:"/>
+      <Username Text="Usuário:"/>
+      <Password Text="Senha:"/>
+      <PortError Text="O número da porta deve ser numérico."/>
+    </Dropbox>
+    <FastCloud Text="Salvar no FastCloud">
+      <Name Text="FastCloud"/>
+      <UserDetails Text="Informação do Usuário"/>
+      <Email Text="Email:"/>
+      <UserPassword Text="Senha:"/>
+    </FastCloud>
+    <GoogleDrive Text="Salvar no Google">
+      <Name Text="GoogleDrive"/>
+      <ClientInfoDialog Text="Informação do Cliente"/>
+      <ClientId Text="Cliente ID:"/>
+      <ClientSecret Text="Client Secret:"/>
+    </GoogleDrive>
+    <SkyDrive Text="Salvar no OneDrive">
+      <Name Text="OneDrive"/>
+      <ClientInfoDialog Text="Informação do Cliente"/>
+      <ClientId Text="Client ID:"/>
+      <ClientSecret Text="Senha do Cliente:"/>
+      <File Text="Arquivo"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Tipo do Arquivo:"/>
+      <Settings Text="Configurações..."/>
+      <Server Text="Servidor:"/>
+      <Username Text="Usuário:"/>
+      <Password Text="Senha:"/>
+      <PortError Text="O número da porta deve ser numérico."/>
+    </SkyDrive>
+  </Cloud>
+  <Messaging>
+    <MessengerForm Text="Enviar relatório via Messenger">
+      <File Text="Arquivo"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Tipo do Arquivo:"/>
+      <Settings Text="Configurações..."/>
+      <Server Text="Servidor:"/>
+      <Username Text="Usuário:"/>
+      <Password Text="Senha:"/>
+      <PortError Text="O número da porta deve ser numérico."/>
+    </MessengerForm>
+    <Xmpp Text="Enviar relatório via XMPP">
+      <Name Text="XMPP"/>
+      <JidFrom Text="Jabber ID:"/>
+      <Password Text="Senha:"/>
+      <JidTo Text="Para quem enviar:"/>
+      <CloudWarning Text="Atenção! O arquivo será enviado para a nuvem FastReport Cloud. O usuário receberá um link para baixar o arquivo."/>
+      <Errors>
+        <InvalidJidOrPassword Text="ID Jabber ou senha inválida!"/>
+        <UnableToUploadFile Text="Falha ao fazer upload do arquivo para a nuvem!"/>
+      </Errors>
+    </Xmpp>
+    <Telegram Text="Enviar relatório via Telegram">
+      <Name Text="Telegram"/>
+      <SenderPhone Text="Telefone do remetente"/>
+      <Password Text="Senha do Telegram"/>
+      <CodeToAuthenticate Text="Código de Autenticação"/>
+      <RecipientPhone Text="Telefone do destinatário"/>
+      <SignOut Text="Sair"/>
+      <Errors>
+        <InvalidSenderPhoneOrPassword Text="Telefone ou senha do remetente inválido!"/>
+        <UnableToUploadFile Text="Incapaz de enviar para a nuvem!"/>
+      </Errors>
+    </Telegram>
+  </Messaging>
+  <Web>
+    <Print Text="Imprimir"/>
+    <PrintFromBrowser Text="Imprimir do browser"/>
+    <PrintFromAcrobat Text="Imprimir do Acrobat"/>
+    <FitWidth Text="Ajustar largura"/>
+    <FitPage Text="Ajustar página"/>
+    <Export Text="Exportar"/>
+    <Zoom Text="Zoom"/>
+    <Refresh Text="Atualizar"/>
+    <First Text="Primeira"/>
+    <Prev Text="Anterior"/>
+    <Next Text="Próxima"/>
+    <Last Text="Última"/>
+    <EnterPage Text="Página ?"/>
+    <TotalPages Text="Total de páginas"/>
+    <Back Text="Retornar"/>
+    <ScriptSecurity>
+        <ForbiddenType Text="Tipo {typeName} não permitido"/>
+        <ForbiddenMethod Text="Método {methodName} não permitido"/>
+    </ScriptSecurity>
+  </Web>
   <Properties>
     <Categories>
       <Appearance Text="Aparência"/>

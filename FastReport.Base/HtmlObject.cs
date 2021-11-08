@@ -238,7 +238,7 @@ namespace FastReport
                     while (args.StartIndex < args.Text.Length)
                     {
                         string expression = CodeUtils.GetExpression(args, false);
-                        if (expression == "")
+                        if (expression == null)
                             break;
 
                         string formattedValue = CalcAndFormatExpression(expression, expressionIndex);

@@ -85,6 +85,7 @@ namespace FastReport.Engine
                 {
                     AddToPreparedPages(cloneBand);
                     EndColumn();
+                    // CalcHeight fixes the height of objects in the remaining part
                     breakTo.CalcHeight();
                     AddToPreparedPages(breakTo);
                 }

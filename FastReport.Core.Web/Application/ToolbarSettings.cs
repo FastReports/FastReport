@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Drawing;
+using System.Globalization;
 
 namespace FastReport.Web
 {
@@ -93,8 +94,36 @@ namespace FastReport.Web
         /// </summary>
         public Font FontSettings { get; set; } = null;
 
+        public int Height { get; set; } = 40;
 
-
+        internal int ToolbarSlash
+        {
+            get
+            {
+                switch (Position)
+                {
+                    case Positions.Left:
+                    case Positions.Right:
+                        return 90;
+                    default:
+                        return 20;
+                }
+            }
+        }
+        internal int ToolbarNarrow
+        {
+            get
+            {
+                switch (Position)
+                {
+                    case Positions.Left:
+                    case Positions.Right:
+                        return 90;
+                    default:
+                        return 0;
+                }
+            }
+        }
 
         internal string UserFontSettings
         {
@@ -110,7 +139,7 @@ namespace FastReport.Web
         }
 
         
-        internal int VerticalToolbarHeight
+        internal string VerticalToolbarHeight
         {
             get
             {
@@ -118,12 +147,13 @@ namespace FastReport.Web
                 {
                     case Positions.Left:
                     case Positions.Right:
-                        return 100;
+                        return (Height * 2.5f).ToString("0.##", CultureInfo.InvariantCulture);
                     default:
-                        return 40;
+                        return Height.ToString("0.##", CultureInfo.InvariantCulture);
                 }
             }
         }
+        
         internal int TopOrBottom
         {
             get
@@ -162,7 +192,7 @@ namespace FastReport.Web
                 {
                     case Positions.Left:
                     case Positions.Right:
-                        return 50;
+                        return Height+10;
                     default:
                         return 0;
                 }
@@ -218,13 +248,13 @@ namespace FastReport.Web
                 switch (Position)
                 {
                     case Positions.Left:
-                        return "left:48px;" + "text-align:left;" + "top:8px;";
+                        return "left:" + Height + "px;" + "text-align:left;" + "top:8px;";
                     case Positions.Right:
-                        return "right:48px;" + "text-align:right;" + "top:8px;";
+                        return "right:" + Height + "px;" + "text-align:right;" + "top:8px;";
                     case Positions.Bottom:
-                        return "bottom:40px;";
+                        return "bottom:" + Height + "px;";
                     default:
-                        return "top: 40px;";
+                        return "top:" + Height + "px;";
                 }
             }
         }

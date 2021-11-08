@@ -1777,7 +1777,7 @@
       <InsertToRight Text="إدراج عمود إلى اليمين"/>
     </TableColumn>
     <TableCell>
-      <Join Text="دمج الخلايا"/>
+      <Merge Text="دمج الخلايا"/>
       <Split Text="تقسيم الخلايا"/>
     </TableCell>
     <MatrixObject>

@@ -586,7 +586,7 @@ namespace FastReport.Barcode
                     while (args.StartIndex < args.Text.Length)
                     {
                         string expression = CodeUtils.GetExpression(args, false);
-                        if (expression == "")
+                        if (expression == null)
                             break;
 
                         string value = Report.Calc(expression).ToString();

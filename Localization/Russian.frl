@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Language Name="ru" Author="Alexander Tzyganenko &lt;tz@fast-report.com&gt;;Alexander Fediachov &lt;samuray@fast-report.com&gt;;Alexander Fediachov &lt;fediachov@fast-report.com&gt;;Alexander Tsyganenko &lt;tz@fast-report.com&gt;;Alexander Fedyashov &lt;fediachov@fast-report.com&gt;;Alexander Fediashov &lt;fediachov@fast-report.com&gt;">
+<Language Name="ru" Author="Alexander Tsyganenko &lt;tz@fast-report.com&gt;;Alexander Fediashov &lt;fediachov@fast-report.com&gt;">
   <Fonts>
-    <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} шрифт не может быть изменён, встроен или передан любым спосбом без первоначального получения разрешения от правообладателя."/>
+    <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} шрифт не может быть изменён, встроен или передан любым способом без первоначального получения разрешения от правообладателя."/>
     <FontMayNotBeSubsettedPriorToEmbedding Text="{0} шрифт не может быть упакован перед встраиванием в документ."/>
   </Fonts>
   <Buttons>
@@ -22,23 +22,23 @@
     <BarcodeFewError Text="Количество цифр меньше допустимого минимума."/>
     <BarcodeManyError Text="Количество цифр больше допустимого максимума."/>
     <BarcodeLengthMismatch Text="Несоответствие количества символов."/>
-    <CantFindObject Text="Не могу найти объект"/>
-    <CantLoadReport Text="Не могу открыть отчет {0}"/>
+    <CantFindObject Text="Невозможно найти объект"/>
+    <CantLoadReport Text="Невозможно открыть отчет {0}"/>
     <CantSaveReport Text="Невозможно сохранить отчет. Файл может быть защищен от записи."/>
     <ChangePicture Text="Хотите изменить текущее изображение?"/>
-    <ClassError Text="Не могу найти главный класс отчета - ReportScript"/>
+    <ClassError Text="Невозможно найти главный класс отчета - ReportScript"/>
     <Confirmation Text="Подтверждение"/>
     <DataNotInitialized Text="Источник данных не инициализирован."/>
-    <DecompressError Text="Не могу распаковать файл"/>
+    <DecompressError Text="Невозможно распаковать файл"/>
     <DecryptError Text="Ошибка расшифровки: неверный пароль"/>
     <DelegateError Text="Делегат {0} должен иметь два аргумента: 'sender' и 'e'"/>
     <CompilerError Text="Скрипт отчета недействителен"/>
-    <DeleteAncestor Text="Не могу удалить {0}, он определен в базовом отчете."/>
+    <DeleteAncestor Text="Невозможно удалить {0}, он определен в базовом отчете."/>
     <DuplicateName Text="Объект с именем {0} уже существует"/>
     <GroupHeaderHasNoGroupCondition Text="В заголовке группы {0} отсутствует условие группировки"/>
     <DuplicateStyle Text="Стиль с таким именем уже существует."/>
     <Error Text="Ошибка"/>
-    <EventError Text="Не могу создать обработчик события из-за ошибок в скрипте отчета"/>
+    <EventError Text="Невозможно создать обработчик события из-за ошибок в скрипте отчета"/>
     <ExportingPage Text="Экспортируется страница {0} из {1}"/>
     <GeneratingPage Text="Готовится страница {0}"/>
     <GeneratingPageFirstPass Text="Первый проход: страница {0}"/>
@@ -51,7 +51,7 @@
     <Performance Text="Выполнено за {0} мс"/>
     <PreparingData Text="Подготовка данных..."/>
     <PrintingPage Text="Печатается страница {0}"/>
-    <RenameAncestor Text="Не могу переименовать {0}, он определен в базовом отчете."/>
+    <RenameAncestor Text="Невозможно переименовать {0}, он определен в базовом отчете."/>
     <SaveChanges Text="Сохранить изменения в {0}?"/>
     <SaveChangesToPreviewPage Text="Сохранить изменения в странице отчета?"/>
     <SQLError Text="Ошибка SQL"/>
@@ -59,9 +59,9 @@
     <TableManualBuildError Text="Вы можете использовать методы TableObject.PrintRow, PrintColumn только в событии ManualBuild."/>
     <Warning Text="Предупреждение"/>
     <WarningSaveRDL Text="Формат RDL имеет некоторые ограничения! Данный фильтр сохранит только внешний вид шаблона! Источники данных и объекты Barcode, Rich Text, CheckBox и ZipCode не будут сохранены! Некоторые из свойств объектов не будут сохранены! Так что вы можете потерять некоторые элементы и свойства шаблона. Все равно сохранить?"/>
-    <WrongFileFormat Text="Не могу прочитать файл, неизвестный формат файла."/>
-    <WrongListAndLabelFile Text="Не могу прочитать файл. Файл поврежден или не является отчетом List and Label."/>
-    <WrongCrystalReportsFile Text="Не могу прочитать файл. Файл поврежден или не является отчетом Crystal Reports."/>
+    <WrongFileFormat Text="Невозможно прочитать файл, неизвестный формат файла."/>
+    <WrongListAndLabelFile Text="Невозможно прочитать файл. Файл поврежден или не является отчетом List and Label."/>
+    <WrongCrystalReportsFile Text="Невозможно прочитать файл. Файл поврежден или не является отчетом Crystal Reports."/>
     <InvalidBarcode1 Text="Код должен начинаться с последовательности '&amp;A;', '&amp;B;' или '&amp;C;'"/>
     <InvalidBarcode2 Text="Недопустимый символ в коде"/>
     <ErrorInExpression Text="Ошибка в выражении"/>
@@ -166,6 +166,7 @@
     <SVGObject Text="SVG изображение"/>
     <TableObject Text="Таблица"/>
     <MatrixObject Text="Матрица"/>
+    <AdvMatrixObject Text="Улучшенная матрица"/>
     <SubreportObject Text="Вложенный отчет"/>
     <ContainerObject Text="Контейнер"/>
     <BarcodeObject Text="Штрихкод"/>
@@ -1852,6 +1853,46 @@
       <Message Text="FastReport обнаружил некорректное завершение работы. Вы хотите восстановить несохраненный файл?"/>
       <Restore Text="Восстановить"/>
     </LoadAutoSave>
+    <AdvMatrixHeaderEditor Text="Свойства элемента">
+      <General Text="Основные">
+        <ItemType Text="Тип элемента:"/>
+        <Simple Text="Простой"/>
+        <Group Text="Группа"/>
+        <DisplayText Text="Отображаемый текст:"/>
+      </General>
+      <Sort Text="Сортировка">
+        <SortOrder Text="Порядок сортировки:"/>
+        <SortBy Text="Сортировать по:"/>
+        <ItemValue Text="Значению элемента"/>
+        <TotalValue Text="Значению итога:"/>
+        <InteractiveSortBy Text="Интерактивная сортировка по итогу:"/>
+        <SortOrderToggledBy Text="Порядок сортировки переключается кнопкой:"/>
+        <Auto Text="Авто"/>
+      </Sort>
+      <Filter Text="Фильтр">
+        <Filter Text="Фильтр:"/>
+      </Filter>
+      <TopN Text="Группировка TopN">
+        <Count Text="Показывать Top N значений:"/>
+        <AdditionalItems Text="Дополнительные элементы:"/>
+        <TopNTotal Text="Top N итог"/>
+        <Others Text="Прочие значения"/>
+        <OthersTotal Text="Прочие, итог"/>
+        <Create Text="Добавить дополнительные элементы в шаблон матрицы"/>
+      </TopN>
+      <Visibility Text="Видимость">
+        <Visible Text="Видимый"/>
+        <VisibleExpression Text="Видимость задается выражением:"/>
+        <VisibleToggledBy Text="Видимость переключается кнопкой:"/>
+      </Visibility>
+      <Other Text="Прочие">
+        <Stepped Text="Ступенчатое отображение"/>
+        <Merge Text="Объединять с единственным дочерним элементом"/>
+        <PageBreak Text="Разрыв страницы"/>
+        <ColSpan Text="Объединение колонок (0 - авто):"/>
+        <RowSpan Text="Объединение строк (0 - авто):"/>
+      </Other>
+    </AdvMatrixHeaderEditor>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -1998,7 +2039,7 @@
       <InsertToRight Text="Вставить колонку правее"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Объединить ячейки"/>
+      <Merge Text="Объединить ячейки"/>
       <Split Text="Разбить ячейку"/>
     </TableCell>
     <MatrixObject>
@@ -2016,6 +2057,57 @@
       <PercentRowTotal Text="% от итога по строке"/>
       <PercentGrandTotal Text="% от общего итога"/>
     </MatrixCell>
+    <AdvMatrixObject>
+      <Style Text="Стиль"/>
+      <Swap Text="Поменять местами колонки и строки"/>
+    </AdvMatrixObject>
+    <AdvMatrixCell>
+      <Function Text="Функция">
+        <Sum Text="Сумма (Sum)"/>
+        <Min Text="Минимум (Min)"/>
+        <Max Text="Максимум (Max)"/>
+        <Avg Text="Среднее (Avg)"/>
+        <Count Text="Количество (Count)"/>
+        <CountDistinct Text="Количество разных (CountDistinct)"/>
+        <StDev Text="Стандартное отклонение (StDev)"/>
+        <StDevP Text="Стандартное отклонение по популяции (StDevP)"/>
+        <Var Text="Дисперсия (Var)"/>
+        <VarP Text="Дисперсия по популяции (VarP)"/>
+        <First Text="Первое значение (First)"/>
+        <Last Text="Последнее значение (Last)"/>
+        <ValuesList Text="Список значений (ValuesList)"/>
+      </Function>
+      <Percent Text="Процент">
+        <None Text="Нет"/>
+        <PercentOfColumnTotal Text="% от итога по колонке"/>
+        <PercentOfRowTotal Text="% от итога по строке"/>
+        <PercentOfGrandTotal Text="% от общего итога"/>
+        <PercentOfPreviousColumn Text="% от предыдущей колонки"/>
+        <PercentOfPreviousRow Text="% от предыдущей строки"/>
+      </Percent>
+      <Insert Text="Вставить">
+        <Chart Text="Искрографик"/>
+        <Gauge Text="Индикатор прогресса"/>
+      </Insert>
+      <AggregateFunctions Text="Агрегатные функции"/>
+      <SpecialFunctions Text="Специальные функции"/>
+      <Properties Text="Свойства"/>
+    </AdvMatrixCell>
+    <AdvMatrixHeader>
+      <CollapseButton Text="Кнопка сворачивания"/>
+      <SortButton Text="Кнопка сортировки"/>
+      <AddTotal Text="Добавить итог"/>
+      <Insert Text="Добавить новый элемент">
+        <After Text="После"/>
+        <Before Text="Перед"/>
+        <Parent Text="Родительский элемент"/>
+        <Child Text="Дочерний элемент"/>
+      </Insert>
+      <Delete Text="Удалить">
+        <ThisItem Text="Выбранный элемент"/>
+        <ItemTree Text="Дерево элементов"/>
+      </Delete>
+    </AdvMatrixHeader>
     <GridControl>
       <EditColumns Text="Редактировать колонки..."/>
     </GridControl>
@@ -2061,6 +2153,9 @@
       <BlueOrange Text="Оранжево-голубой"/>
       <OrangeWhite Text="Оранжево-белый"/>
     </Matrix>
+    <AdvMatrix>
+      <NewItems Text="Перенесите данные сюда для создания строк, колонок, ячеек"/>
+    </AdvMatrix>
     <Map>
       <Hint Text="Используйте двойной щелчок для добавления слоёв,&#13;&#10;левую кнопку мыши для панорамирования,&#13;&#10;колесо мыши для изменения масштаба."/>
     </Map>
