@@ -19,6 +19,9 @@
         <!-- Not available in Core3 -->
         <SystemTextEncodingCodePagesVersion>4.5.1</SystemTextEncodingCodePagesVersion>
 
+        <!-- Not available in Core3 -->
+        <MicrosoftCSharpVersion>4.7.0</MicrosoftCSharpVersion>
+
     </PropertyGroup>
 	
 <!-- This group sets version used packages in Demos -->

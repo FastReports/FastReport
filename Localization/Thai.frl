@@ -1223,7 +1223,7 @@
       <InsertToRight Text="แทรกคอลัมน์ด้านขวา"/>
     </TableColumn>
     <TableCell>
-      <Join Text="ผสานเซลล์"/>
+      <Merge Text="ผสานเซลล์"/>
       <Split Text="แยกเซลล์"/>
     </TableCell>
     <MatrixObject>

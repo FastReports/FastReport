@@ -1315,7 +1315,7 @@
       <InsertToRight Text="Inserir coluna à direita"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Juntar células"/>
+      <Merge Text="Juntar células"/>
       <Split Text="Dividir células"/>
     </TableCell>
     <MatrixObject>

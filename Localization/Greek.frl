@@ -2027,7 +2027,7 @@
       <InsertToRight Text="Εισαγωγή στήλης Δεξιά"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Ένωση Κελιών"/>
+      <Merge Text="Ένωση Κελιών"/>
       <Split Text="Διαχωρισμός Κελιών"/>
     </TableCell>
     <MatrixObject>

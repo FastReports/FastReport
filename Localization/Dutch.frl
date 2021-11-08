@@ -1345,7 +1345,7 @@
       <InsertToRight Text="Kolom rechts invoegen"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Cellen samenvoegen"/>
+      <Merge Text="Cellen samenvoegen"/>
       <Split Text="Cel splitsen"/>
     </TableCell>
     <MatrixObject>

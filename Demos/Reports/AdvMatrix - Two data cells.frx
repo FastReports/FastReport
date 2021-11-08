@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the following AdvMatrixObject features:&#13;&#10;- two adjacent data cells" ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="10/31/2021 23:05:02" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="Year" DataType="System.Int32"/>
+      <Column Name="Month" DataType="System.Int32"/>
+      <Column Name="ItemsSold" DataType="System.Int32"/>
+      <Column Name="Revenue" DataType="System.Decimal"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
+      <TextObject Name="Text1" Top="37.8" Width="718.2" Height="28.35" Text="REVENUE BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="68.15" Width="718.2" Height="115.87">
+      <AdvMatrixObject Name="Matrix1" Left="9.45" Top="11.92" Width="330.75" Height="103.95" Layout="Wrapped" WrappedGap="37.8" DataSource="MatrixDemo">
+        <Columns>
+          <Descriptor Expression="[MatrixDemo.Name]"/>
+          <Descriptor DisplayText="Total"/>
+        </Columns>
+        <Rows>
+          <Descriptor Expression="[MatrixDemo.Year]">
+            <Descriptor DisplayText="Sum"/>
+            <Descriptor DisplayText="Count"/>
+          </Descriptor>
+          <Descriptor DisplayText="Total">
+            <Descriptor DisplayText="Sum"/>
+            <Descriptor DisplayText="Count"/>
+          </Descriptor>
+        </Rows>
+        <TableColumn Name="Column1"/>
+        <TableColumn Name="Column2" Width="51.03"/>
+        <TableColumn Name="Column3" Width="102.06" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="111.51" AutoSize="true"/>
+        <TableRow Name="Row1" Height="28.35">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Year" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" ColSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Month / Quarter" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="[Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2">
+          <TableCell Name="Cell1_" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell2_" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Sum" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell21_" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell7_" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row3">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" AllowExpressions="false" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Wheat" Fill.Blend="0.35" Fill.Hatch="true" Text="Count" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell41" Border.Lines="All" Border.Color="White" Fill.Color="Wheat" Text="[Count([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="Wheat" Text="[Count([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row4">
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="Sum" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell61" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row4">
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="Count" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Count([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell13" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Count([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        </TableRow>
+      </AdvMatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="186.02" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

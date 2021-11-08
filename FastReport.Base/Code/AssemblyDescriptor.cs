@@ -104,7 +104,7 @@ namespace FastReport.Code
             while (args.StartIndex < args.Text.Length)
             {
                 expression = CodeUtils.GetExpression(args, true);
-                if (expression == "")
+                if (expression == null)
                     break;
 
                 if (DataHelper.IsValidColumn(Report.Dictionary, expression))
@@ -132,7 +132,7 @@ namespace FastReport.Code
             return args.Text.ToString();
         }
 
-        private bool ContansAssembly(IEnumerable assemblies, string assembly)
+        private bool ContainsAssembly(IEnumerable assemblies, string assembly)
         {
             string asmName = Path.GetFileName(assembly);
             foreach (string a in assemblies)
@@ -158,7 +158,7 @@ namespace FastReport.Code
                         aLocation = fixedReference;
                 }
 #endif
-                if (!ContansAssembly(assemblies, aLocation))
+                if (!ContainsAssembly(assemblies, aLocation))
                     assemblies.Add(aLocation);
             }
         }
@@ -184,12 +184,16 @@ namespace FastReport.Code
 
                 AddReferencedAssembly(assemblies, defaultPath, s);
             }
+
+            // these two required for "dynamic" type support
+            AddReferencedAssembly(assemblies, defaultPath, "System.Core");
+            AddReferencedAssembly(assemblies, defaultPath, "Microsoft.CSharp");
         }
 
         private void AddReferencedAssembly(IList assemblies, string defaultPath, string assemblyName)
         {
             string location = GetFullAssemblyReference(assemblyName, defaultPath);
-            if (location != "" && !ContansAssembly(assemblies, location))
+            if (location != "" && !ContainsAssembly(assemblies, location))
                 assemblies.Add(location);
         }
 
@@ -394,7 +398,7 @@ namespace FastReport.Code
                 exception = !HandleCompileErrors(cp, cr, out errors);
             }
 
-            if (exception)
+            if (exception && errors != string.Empty)
                 throw new CompilerException(errors);
         }
         
@@ -457,6 +461,36 @@ namespace FastReport.Code
             }
         }
 
+        private string ReplaceExpression(string error, TextObjectBase text)
+        {
+            string result = text.Text;
+            string[] parts = error.Split('\"');
+            if (parts.Length == 3)
+            {
+                string[] expressions = (text as Base).GetExpressions();
+                foreach (string expr in expressions)
+                {
+                    if (expr.Contains(parts[1]))
+                    {
+                        if (!DataHelper.IsValidColumn(Report.Dictionary, expr))
+                        {
+                            string replaceString = text.Brackets[0] + expr + text.Brackets[2];
+                            if (Config.CompilerSettings.ExceptionBehaviour == CompilerExceptionBehaviour.ShowExceptionMessage ||
+                                Config.CompilerSettings.ExceptionBehaviour == CompilerExceptionBehaviour.ReplaceExpressionWithPlaceholder)
+                            {
+                                result = result.Replace(replaceString, Config.CompilerSettings.Placeholder);
+                            }
+                            else if (Config.CompilerSettings.ExceptionBehaviour == CompilerExceptionBehaviour.ReplaceExpressionWithExceptionMessage)
+                            {
+                                result = result.Replace(replaceString, error);
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
         /// <summary>
         /// Handle compile errors
         /// </summary>
@@ -485,10 +519,10 @@ namespace FastReport.Code
 
                         const string res = "Web,ScriptSecurity,ForbiddenType";
                         string message = Res.TryGet(res);
-                        if(string.Equals(res, message))
-                            message = "Please, don't use the type " + typeName;
+                        if (string.Equals(res, message))
+                            message = "Please don't use the type " + typeName;
                         else
-                            message = message.Replace("{typeName}", typeName); //$"Please, don't use the type {typeName}";
+                            message = message.Replace("{typeName}", typeName); //$"Please don't use the type {typeName}";
 
                         ce.ErrorText = message;
                         
@@ -505,9 +539,9 @@ namespace FastReport.Code
                             const string res = "Web,ScriptSecurity,ForbiddenMethod";
                             string message = Res.TryGet(res);
                             if (string.Equals(res, message))
-                                message = "Please, don't use the method " + methodName;
+                                message = "Please don't use the method " + methodName;
                             else 
-                                message = message.Replace("{methodName}", methodName); //$"Please, don't use the method {methodName}";
+                                message = message.Replace("{methodName}", methodName); //$"Please don't use the method {methodName}";
 
                             ce.ErrorText = message;
                         }
@@ -546,6 +580,19 @@ namespace FastReport.Code
                 { 
                     string errObjName = GetErrorObjectName(ce.Line);
 
+                    if (Config.CompilerSettings.ExceptionBehaviour != CompilerExceptionBehaviour.Default)
+                    {
+                        // handle errors when name does not exist in the current context
+                        if (ce.ErrorNumber == "CS0103")
+                        {
+                            TextObjectBase text = Report.FindObject(errObjName) as TextObjectBase;
+                            text.Text = ReplaceExpression(ce.ErrorText, text);
+                            if (Config.CompilerSettings.ExceptionBehaviour == CompilerExceptionBehaviour.ShowExceptionMessage)
+                                System.Windows.Forms.MessageBox.Show(ce.ErrorText);
+                            continue;
+                        }
+                    }
+
                     // handle division by zero errors
                     if (ce.ErrorNumber == "CS0020")
                     {
@@ -553,8 +600,7 @@ namespace FastReport.Code
                         text.CanGrow = true;
                         text.FillColor = Color.Red;
                         text.Text = "DIVISION BY ZERO!";
-                        if (cr.Errors.Count == 1) // there are only division by zero errors, exception does't needed
-                            return true;
+                        continue;
                     }
                     else
                     {
@@ -576,7 +622,7 @@ namespace FastReport.Code
         }
 
         /// <summary>
-        /// Returns true, if recompilation is successful
+        /// Returns true if recompilation is successful
         /// </summary>
         private bool ReCompile(CompilerParameters cp, CompilerResults cr, IList additionalAssemblies)
         {
@@ -609,12 +655,12 @@ namespace FastReport.Code
                 return null;
         }
 
-        public void InvokeEvent(string name, object[] parms)
+        public object InvokeMethod(string name, object[] parms)
         {
             if (String.IsNullOrEmpty(name))
-                return;
+                return null;
 
-            string exprName = "event_" + name;
+            string exprName = "method_" + name;
             if (!ContainsExpression(exprName))
             {
                 ExpressionDescriptor descriptor = new ExpressionDescriptor(this);
@@ -623,7 +669,7 @@ namespace FastReport.Code
             }
             try
             {
-                (Expressions[exprName] as ExpressionDescriptor).Invoke(parms);
+                return (Expressions[exprName] as ExpressionDescriptor).Invoke(parms);
             }
             catch (TargetInvocationException ex)
             {

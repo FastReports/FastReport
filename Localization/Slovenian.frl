@@ -1694,7 +1694,7 @@
       <InsertToRight Text="Vstavi stolpec desno"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Združi celice"/>
+      <Merge Text="Združi celice"/>
       <Split Text="Razdeli celice"/>
     </TableCell>
     <MatrixObject>

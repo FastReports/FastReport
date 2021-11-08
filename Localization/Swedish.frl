@@ -1315,7 +1315,7 @@
       <InsertToRight Text="Infoga kolumn till höger"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Slå samma celler"/>
+      <Merge Text="Slå samma celler"/>
       <Split Text="Dela celler"/>
     </TableCell>
     <MatrixObject>

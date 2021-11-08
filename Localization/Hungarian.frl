@@ -1500,7 +1500,7 @@
       <InsertToRight Text="Oszlop Beszurás Jobbra"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Cellák Összevonása"/>
+      <Merge Text="Cellák Összevonása"/>
       <Split Text="Cellák Felosztása"/>
     </TableCell>
     <MatrixObject>

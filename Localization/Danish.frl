@@ -1345,7 +1345,7 @@
       <InsertToRight Text="Indsæt kolonne til højre"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Sammensæt celler"/>
+      <Merge Text="Sammensæt celler"/>
       <Split Text="Split celler"/>
     </TableCell>
     <MatrixObject>

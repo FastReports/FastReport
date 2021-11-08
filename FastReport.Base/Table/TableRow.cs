@@ -55,12 +55,6 @@ namespace FastReport.Table
                 if (value < MinHeight)
                     value = MinHeight;
                 base.Height = value;
-                // this is done already in the base method
-                /*if (FloatDiff(base.Height, value))
-                {
-                  UpdateLayout(0, value - base.Height);
-                  base.Height = value;
-                }*/
             }
         }
 
@@ -275,7 +269,7 @@ namespace FastReport.Table
             // update this row cells
             for (int i = 0; i < table.Columns.Count; i++)
             {
-                CellData(i).UpdateLayout(table.Columns[i].Width, Height, dx, dy);
+                this.CellData(i).UpdateLayout(dx, dy);
             }
 
             // update spanned cells that contains this row
@@ -283,10 +277,7 @@ namespace FastReport.Table
             foreach (Rectangle span in spanList)
             {
                 if (Index > span.Top && Index < span.Bottom)
-                {
-                    TableRow row = table.Rows[span.Top];
-                    row.CellData(span.Left).UpdateLayout(table.Columns[span.Left].Width, row.Height, dx, dy);
-                }
+                    table[span.Left, span.Top].CellData.UpdateLayout(dx, dy);
             }
 
         }
