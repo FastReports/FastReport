@@ -1602,7 +1602,7 @@
       <InsertToRight Text="Ingresar Columna a la derecha"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Combiar celdas"/>
+      <Merge Text="Combiar celdas"/>
       <Split Text="Combinar Celdas"/>
     </TableCell>
     <MatrixObject>

@@ -1013,7 +1013,7 @@
       <InsertToRight Text="inserisce colonna a destra"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Unisci celle"/>
+      <Merge Text="Unisci celle"/>
       <Split Text="Dividi celle"/>
     </TableCell>
     <MatrixObject>

@@ -72,7 +72,6 @@ namespace FastReport.Web
     justify-content:{Toolbar.Content};
     z-index: 2;
     border-radius:{Toolbar.ToolbarRoundness}px;
-    min-width:50px;
     /*min-width: intrinsic;
     min-width: -moz-max-content;
     min-width: -webkit-max-content;
@@ -80,7 +79,7 @@ namespace FastReport.Web
 }}
 
 .{template_FR}-toolbar-item {{
-    height: {ToolbarHeight}px;
+    height: {Toolbar.Height}px;
     border-radius:{Toolbar.ToolbarRoundness}px;
     background-color: #00000000;
     position: relative;
@@ -91,11 +90,11 @@ namespace FastReport.Web
 }}
 
 .{template_FR}-toolbar-item > img {{
-    height: calc({ToolbarHeight}px * 0.7);
-    padding-top: calc({ToolbarHeight}px * 0.15);
-    padding-bottom: calc({ToolbarHeight}px * 0.15);
-    padding-left: calc({ToolbarHeight}px * 0.25);
-    padding-right: calc({ToolbarHeight}px * 0.25);
+    height: calc({Toolbar.Height}px * 0.7);
+    padding-top: calc({Toolbar.Height}px * 0.15);
+    padding-bottom: calc({Toolbar.Height}px * 0.15);
+    padding-left: calc({Toolbar.Height}px * 0.25);
+    padding-right: calc({Toolbar.Height}px * 0.25);
     opacity: {Toolbar.TransparencyIcon};
     display: block;
     filter:invert({Toolbar.ColorIcon})
@@ -162,31 +161,36 @@ namespace FastReport.Web
 *************************/
 
 .{template_FR}-toolbar-narrow > img {{
+    transform: rotate({Toolbar.ToolbarNarrow}deg);
     padding-left: 0px;
     padding-right: 0px;
 }}
-
+.{template_FR}-toolbar-slash{{
+    height: 20px;
+    margin-top: -20px;
+ }}
 .{template_FR}-toolbar-slash > img {{
-    height: calc({ToolbarHeight}px * 0.44);
-    padding-top: calc({ToolbarHeight}px * 0.3);
-    padding-bottom: calc({ToolbarHeight}px * 0.26);
-    padding-left: 0;
-    padding-right: 0;
+    height: calc({Toolbar.Height}px * 0.44);
+    padding-top: calc({Toolbar.Height}px * 0.3);
+    padding-bottom: calc({Toolbar.Height}px * 0.26);
+    transform: rotate({Toolbar.ToolbarSlash}deg);
+    padding-left: 3px;
+    padding-right: 3px;
 }}
 
 .{template_FR}-toolbar-item > input {{
     font-family: Arial,sans-serif;
-    font-size: calc({ToolbarHeight}px * 0.35);
+    font-size: calc({Toolbar.Height}px * 0.35);
     text-align: center;
     border: 0;
     background: #fbfbfb;
     border-radius:{Toolbar.ToolbarRoundness}px;
-    height: calc({ToolbarHeight}px * 0.68);
+    height: calc({Toolbar.Height}px * 0.68);
     width: 2.5em;
-    margin-top: calc({ToolbarHeight}px * 0.17);
-    margin-bottom: calc({ToolbarHeight}px * 0.15);
-    margin-left: calc({ToolbarHeight}px * 0.1);
-    margin-right: calc({ToolbarHeight}px * 0.1);
+    margin-top: calc({Toolbar.Height}px * 0.17);
+    margin-bottom: calc({Toolbar.Height}px * 0.15);
+    margin-left: calc({Toolbar.Height}px * 0.1);
+    margin-right: calc({Toolbar.Height}px * 0.1);
     padding: 0;
     display: block;
 }}

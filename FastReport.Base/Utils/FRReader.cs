@@ -361,7 +361,7 @@ namespace FastReport.Utils
                         else if (pi.PropertyType.IsClass && pi.PropertyType.IsSubclassOf(typeof(Base)))
                         {
                             // it's a reference
-                            fixups.Add(new FixupInfo(obj1 as Base, name, value));
+                            fixups.Add(new FixupInfo(obj1, name, value));
                         }
                         else
                         {
@@ -654,11 +654,11 @@ namespace FastReport.Utils
 
         private class FixupInfo
         {
-            public Base obj;
+            public object obj;
             public string name;
             public string value;
 
-            public FixupInfo(Base obj, string name, string value)
+            public FixupInfo(object obj, string name, string value)
             {
                 this.obj = obj;
                 this.name = name;

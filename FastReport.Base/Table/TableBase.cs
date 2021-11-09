@@ -323,10 +323,10 @@ namespace FastReport.Table
                     TableCell cell = this[x, y];
                     float width = Columns[x].Width;
 
+                    cell.Left = left;
+                    cell.Top = top;
                     if (!IsInsideSpan(cell) && (!IsPrinting || cell.Printable))
                     {
-                        cell.Left = left;
-                        cell.Top = top;
                         cell.SetPrinting(IsPrinting);
                         proc(e, cell);
                     }
@@ -577,6 +577,7 @@ namespace FastReport.Table
 
             ResetSpanList();
         }
+        
         public bool IsInsideSpan(TableCell cell)
         {
             Point address = cell.Address;

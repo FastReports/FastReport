@@ -226,11 +226,12 @@ namespace FastReport.Web
         /// <summary>
         /// Toolbar height in pixels
         /// </summary>
-        public int ToolbarHeight { get; set; } = 40;
+        [Obsolete("Please, use Toolbar.Height")]
+        public int ToolbarHeight { get => Toolbar.Height; set => Toolbar.Height = value; }
 
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
         int currentTabIndex;
-
+        
 #endregion
 
         public WebReport()

@@ -1007,7 +1007,7 @@
       <InsertToRight Text="Wstaw kolumnę po prawej"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Połącz komórki"/>
+      <Merge Text="Połącz komórki"/>
       <Split Text="Podziel komórki"/>
     </TableCell>
     <MatrixObject>

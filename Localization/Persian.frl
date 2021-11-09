@@ -1341,7 +1341,7 @@
       <InsertToRight Text="درج ستون در راست"/>
     </TableColumn>
     <TableCell>
-      <Join Text="متصل نمودن خانه ها"/>
+      <Merge Text="متصل نمودن خانه ها"/>
       <Split Text="جداسازی خانه ها"/>
     </TableCell>
     <MatrixObject>

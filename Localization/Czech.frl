@@ -1419,7 +1419,7 @@
       <InsertToRight Text="Vložit sloupec vpravo"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Sloučit buňky"/>
+      <Merge Text="Sloučit buňky"/>
       <Split Text="Rozdělit buňku"/>
     </TableCell>
     <MatrixObject>

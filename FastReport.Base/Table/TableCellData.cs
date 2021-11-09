@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace FastReport.Table
 {
@@ -20,6 +21,7 @@ namespace FastReport.Table
         private TableCell cell;
         private TableBase table;
         private Point address;
+        private bool updatingLayout;
 
         #endregion // Fields
 
@@ -80,19 +82,13 @@ namespace FastReport.Table
             {
                 if (colSpan != value)
                 {
-                    // get the width difference. Setting colSpan will affect the Width and lead to incorrect layout of objects inside this cell
                     float oldWidth = Width;
-                    int oldSpan = colSpan;
                     colSpan = value;
-                    float newWidth = Width;
-                    // keep old span here
-                    colSpan = oldSpan;
-                    UpdateLayout(newWidth, Height, newWidth - oldWidth, 0);
-                    // now update it
-                    colSpan = value;
-
                     if (Table != null)
+                    {
                         Table.ResetSpanList();
+                        UpdateLayout(oldWidth, Height, Width - oldWidth, 0);
+                    }
                 }
             }
         }
@@ -107,19 +103,13 @@ namespace FastReport.Table
             {
                 if (rowSpan != value)
                 {
-                    // get the height difference. Setting rowSpan will affect the Height and lead to incorrect layout of objects inside this cell
                     float oldHeight = Height;
-                    int oldSpan = rowSpan;
                     rowSpan = value;
-                    float newHeight = Height;
-                    // keep old span here
-                    rowSpan = oldSpan;
-                    UpdateLayout(Width, newHeight, 0, newHeight - oldHeight);
-                    // now update it
-                    rowSpan = value;
-
                     if (Table != null)
+                    {
                         Table.ResetSpanList();
+                        UpdateLayout(Width, oldHeight, 0, Height - oldHeight);
+                    }
                 }
             }
         }
@@ -151,8 +141,13 @@ namespace FastReport.Table
                         cell0.Alias = this.cell.Alias;
                         cell0.OriginalComponent = this.cell.OriginalComponent;
                     }
+                    // handling dock/anchor of cell objects correctly: detach old celldata, update size, attach new one.
+                    cell0.CellData = null;
+                    cell0.Width = Width;
+                    cell0.Height = Height;
                     cell0.CellData = this;
                     cell0.Hyperlink.Value = HyperlinkValue;
+
                     return cell0;
                 }
 
@@ -308,14 +303,14 @@ namespace FastReport.Table
             // return the existing style; in other case, create new style based
             // on the given cell.
             SetStyle(cell);
-            // FCell is used to reference the original cell. It is necessary to use Alias, OriginalComponent
+            // cell is used to reference the original cell. It is necessary to use Alias, OriginalComponent
             this.cell = cell;
 
-            // reset object's location as if we set ColSpan and RowSpan to 1.
+            // reset object's size as if we set ColSpan and RowSpan to 1.
             // It is nesessary when printing spanned cells because the span of such cells will be corrected
             // when print new rows/columns and thus will move cell objects.
             if (objects != null)
-                UpdateLayout(Width, Height, Width - cell.CellData.Width, Height - cell.CellData.Height);
+                UpdateLayout(cell.Width, cell.Height, Width - cell.Width, Height - cell.Height);
         }
 
         /// <summary>
@@ -442,23 +437,82 @@ namespace FastReport.Table
 
             return cellHeight;
         }
-
-        /// <summary>
-        /// Updates layout of the table cell.
-        /// </summary>
-        /// <param name="width">The width of the table cell.</param>
-        /// <param name="height">The height of the table cell.</param>
-        /// <param name="dx">The new value of x coordinate.</param>
-        /// <param name="dy">The new value of y coordinate.</param>
-        public void UpdateLayout(float width, float height, float dx, float dy)
+        internal void UpdateLayout(float dx, float dy)
         {
-            if (Objects == null)
+            UpdateLayout(Width, Height, dx, dy);
+        }
+
+        internal void UpdateLayout(float width, float height, float dx, float dy)
+        {
+            if (updatingLayout || Objects == null)
                 return;
 
-            TableCell cell = Cell;
-            cell.Width = width;
-            cell.Height = height;
-            cell.UpdateLayout(dx, dy);
+            updatingLayout = true;
+            try
+            {
+                RectangleF remainingBounds = new RectangleF(0, 0, width, height);
+                remainingBounds.Width += dx;
+                remainingBounds.Height += dy;
+                foreach (ReportComponentBase c in Objects)
+                {
+                    if ((c.Anchor & AnchorStyles.Right) != 0)
+                    {
+                        if ((c.Anchor & AnchorStyles.Left) != 0)
+                            c.Width += dx;
+                        else
+                            c.Left += dx;
+                    }
+                    else if ((c.Anchor & AnchorStyles.Left) == 0)
+                    {
+                        c.Left += dx / 2;
+                    }
+                    if ((c.Anchor & AnchorStyles.Bottom) != 0)
+                    {
+                        if ((c.Anchor & AnchorStyles.Top) != 0)
+                            c.Height += dy;
+                        else
+                            c.Top += dy;
+                    }
+                    else if ((c.Anchor & AnchorStyles.Top) == 0)
+                    {
+                        c.Top += dy / 2;
+                    }
+                    switch (c.Dock)
+                    {
+                        case DockStyle.Left:
+                            c.Bounds = new RectangleF(remainingBounds.Left, remainingBounds.Top, c.Width, remainingBounds.Height);
+                            remainingBounds.X += c.Width;
+                            remainingBounds.Width -= c.Width;
+                            break;
+
+                        case DockStyle.Top:
+                            c.Bounds = new RectangleF(remainingBounds.Left, remainingBounds.Top, remainingBounds.Width, c.Height);
+                            remainingBounds.Y += c.Height;
+                            remainingBounds.Height -= c.Height;
+                            break;
+
+                        case DockStyle.Right:
+                            c.Bounds = new RectangleF(remainingBounds.Right - c.Width, remainingBounds.Top, c.Width, remainingBounds.Height);
+                            remainingBounds.Width -= c.Width;
+                            break;
+
+                        case DockStyle.Bottom:
+                            c.Bounds = new RectangleF(remainingBounds.Left, remainingBounds.Bottom - c.Height, remainingBounds.Width, c.Height);
+                            remainingBounds.Height -= c.Height;
+                            break;
+
+                        case DockStyle.Fill:
+                            c.Bounds = remainingBounds;
+                            remainingBounds.Width = 0;
+                            remainingBounds.Height = 0;
+                            break;
+                    }
+                }
+            }
+            finally
+            {
+                updatingLayout = false;
+            }
         }
 
         #endregion // Public Methods

@@ -162,6 +162,88 @@ namespace FastReport.Table
             return columnsFit;
         }
 
+        private void ProcessDuplicates(TableCell cell, int startX, int startY, List<Rectangle> list)
+        {
+            string cellAlias = cell.Alias;
+            TableCellData cellData = cell.CellData;
+            string cellText = cell.Text;
+            CellDuplicates cellDuplicates = cell.CellDuplicates;
+
+            Func<int, int> func = (row) =>
+            {
+                int span = 0;
+                for (int x = startX; x < ColumnCount; x++)
+                {
+                    TableCell c = this[x, row];
+                    if (IsInsideSpan(c, list))
+                        break;
+                    if (c.Alias == cellAlias)
+                    {
+                        if (c.Text == cellText)
+                            span++;
+                        else
+                            break;
+                    }
+                    else
+                        break;
+                }
+                return span;
+            };
+
+            int colSpan = func(startY);
+            int rowSpan = 1;
+            for (int y = startY + 1; y < RowCount; y++)
+            {
+                int span = func(y);
+                if (span < cellData.ColSpan)
+                    break;
+                rowSpan++;
+            }
+
+            if (cellDuplicates == CellDuplicates.Clear)
+            {
+                for (int x = 0; x < colSpan; x++)
+                    for (int y = 0; y < rowSpan; y++)
+                        if (!(x == 0 && y == 0))
+                            GetCellData(x + startX, y + startY).Text = "";
+            }
+            else if (cellDuplicates == CellDuplicates.Merge ||
+                (cellDuplicates == CellDuplicates.MergeNonEmpty && !String.IsNullOrEmpty(cellText)))
+            {
+                cellData.ColSpan = colSpan;
+                cellData.RowSpan = rowSpan;
+            }
+
+            list.Add(new Rectangle(startX, startY, colSpan, rowSpan));
+        }
+
+        private bool IsInsideSpan(TableCell cell, List<Rectangle> list)
+        {
+            Point address = cell.Address;
+            foreach (Rectangle span in list)
+            {
+                if (span.Contains(address))
+                    return true;
+            }
+            return false;
+        }
+
+        private void ProcessDuplicates()
+        {
+            List<Rectangle> list = new List<Rectangle>();
+            for (int x = 0; x < ColumnCount; x++)
+            {
+                for (int y = 0; y < RowCount; y++)
+                {
+                    TableCell cell = this[x, y];
+                    if (cell.CellDuplicates != CellDuplicates.Show && !IsInsideSpan(cell, list))
+                    {
+                        ProcessDuplicates(cell, x, y, list);
+                    }
+                }
+            }
+        }
+
         internal void GeneratePages(object sender, EventArgs e)
         {
             isFirstRow = false;
@@ -249,6 +331,8 @@ namespace FastReport.Table
 
             // calculate cells' bounds
             CalcBounds();
+            // manage duplicates
+            ProcessDuplicates();
 
             if (Report.Engine.UnlimitedHeight || Report.Engine.UnlimitedWidth)
             {

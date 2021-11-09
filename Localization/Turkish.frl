@@ -1323,7 +1323,7 @@
       <InsertToRight Text="Sağa Ekle"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Birleştir"/>
+      <Merge Text="Birleştir"/>
       <Split Text="Ayraç"/>
     </TableCell>
     <MatrixObject>

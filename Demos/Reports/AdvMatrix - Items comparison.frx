@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates the following AdvMatrixObject features:&#13;&#10;- use special functions FirstColumn, NextColumn, LastColumn, PreviousColumn, SpecificColumn" ReportInfo.Created="09/09/2021 08:50:09" ReportInfo.Modified="10/31/2021 23:34:14" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="Year" DataType="System.Int32"/>
+      <Column Name="Month" DataType="System.Int32"/>
+      <Column Name="ItemsSold" DataType="System.Int32"/>
+      <Column Name="Revenue" DataType="System.Decimal"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text12" Top="37.8" Width="718.2" Height="28.35" Text="REVENUE BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="68.15" Width="718.2" Height="136.08">
+      <AdvMatrixObject Name="Matrix1" Left="13.23" Top="45.36" Width="378" Height="73.71" DataSource="MatrixDemo" Style="Gray">
+        <Columns>
+          <Descriptor Expression="[MatrixDemo.Year]"/>
+          <Descriptor DisplayText="Second to first change"/>
+          <Descriptor DisplayText="Second to first %"/>
+        </Columns>
+        <Rows>
+          <Descriptor Expression="[MatrixDemo.Name]"/>
+          <Descriptor DisplayText="Total"/>
+        </Rows>
+        <TableColumn Name="Column1" Width="134.19"/>
+        <TableColumn Name="Column2"/>
+        <TableColumn Name="Column3" Width="88.83"/>
+        <TableColumn Name="Column4" Width="88.83"/>
+        <TableRow Name="Row1" Height="35.91">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="[MatrixDemo.Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="Second to first change" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="Second to first %" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row2">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="[MatrixDemo.Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[NextColumn(Sum([MatrixDemo.Revenue])) - FirstColumn()]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[NextColumn(Sum([MatrixDemo.Revenue])) / FirstColumn()]" AllowExpressions="false" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row3">
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[NextColumn(Sum([MatrixDemo.Revenue])) - FirstColumn()]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[NextColumn(Sum([MatrixDemo.Revenue])) / FirstColumn()]" AllowExpressions="false" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+        </TableRow>
+      </AdvMatrixObject>
+      <TextObject Name="Text1" Left="13.23" Top="18.9" Width="378" Height="18.9" Text="Comparing the first two items" Font="Arial, 10pt, style=Bold"/>
+      <ChildBand Name="Child1" Top="206.23" Width="718.2" Height="128.52">
+        <AdvMatrixObject Name="Matrix2" Left="13.23" Top="52.92" Width="378" Height="73.71" DataSource="MatrixDemo">
+          <Columns>
+            <Descriptor Expression="[MatrixDemo.Year]" Sort="Descending"/>
+            <Descriptor DisplayText="Last to prev. change"/>
+            <Descriptor DisplayText="Last to prev. %"/>
+          </Columns>
+          <Rows>
+            <Descriptor Expression="[MatrixDemo.Name]"/>
+            <Descriptor DisplayText="Total"/>
+          </Rows>
+          <TableColumn Name="Column5" Width="134.19"/>
+          <TableColumn Name="Column6"/>
+          <TableColumn Name="Column7" Width="88.83"/>
+          <TableColumn Name="Column8" Width="88.83"/>
+          <TableRow Name="Row4" Height="35.91">
+            <TableCell Name="Cell13" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell14" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="[MatrixDemo.Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell15" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="Last to prev. change" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell16" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="Last to prev. %" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+          </TableRow>
+          <TableRow Name="Row5">
+            <TableCell Name="Cell17" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="[MatrixDemo.Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell18" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell19" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[LastColumn(Sum([MatrixDemo.Revenue])) - PreviousColumn()]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell20" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[LastColumn(Sum([MatrixDemo.Revenue])) / PreviousColumn()]" AllowExpressions="false" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+          </TableRow>
+          <TableRow Name="Row6">
+            <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell22" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell23" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[LastColumn(Sum([MatrixDemo.Revenue])) - PreviousColumn()]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+            <TableCell Name="Cell24" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[LastColumn(Sum([MatrixDemo.Revenue])) / PreviousColumn()]" AllowExpressions="false" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+          </TableRow>
+        </AdvMatrixObject>
+        <TextObject Name="Text2" Left="13.23" Top="28.35" Width="378" Height="18.9" Text="Comparing the last two items" Font="Arial, 10pt, style=Bold"/>
+        <ChildBand Name="Child2" Top="336.75" Width="718.2" Height="149.31">
+          <AdvMatrixObject Name="Matrix3" Left="13.23" Top="56.7" Width="378" Height="73.71" DataSource="MatrixDemo">
+            <Columns>
+              <Descriptor Expression="[MatrixDemo.Year]"/>
+              <Descriptor DisplayText="2012 to 2011 change"/>
+              <Descriptor DisplayText="2012 to 2011 %"/>
+            </Columns>
+            <Rows>
+              <Descriptor Expression="[MatrixDemo.Name]"/>
+              <Descriptor DisplayText="Total"/>
+            </Rows>
+            <TableColumn Name="Column9" Width="134.19"/>
+            <TableColumn Name="Column10"/>
+            <TableColumn Name="Column11" Width="88.83"/>
+            <TableColumn Name="Column12" Width="88.83"/>
+            <TableRow Name="Row7" Height="35.91">
+              <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell26" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="[MatrixDemo.Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell27" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="2012 to 2011 change" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell28" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="2012 to 2011 %" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+            </TableRow>
+            <TableRow Name="Row8">
+              <TableCell Name="Cell29" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="[MatrixDemo.Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell30" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell31" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[SpecificColumn(2012, Sum([MatrixDemo.Revenue])) - SpecificColumn(2011)]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell32" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[SpecificColumn(2012, Sum([MatrixDemo.Revenue])) / SpecificColumn(2011)]" AllowExpressions="false" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+            </TableRow>
+            <TableRow Name="Row9">
+              <TableCell Name="Cell33" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell34" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Sum([MatrixDemo.Revenue])]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell35" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[SpecificColumn(2012, Sum([MatrixDemo.Revenue])) - SpecificColumn(2011)]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell36" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="WhiteSmoke" Text="[SpecificColumn(2012, Sum([MatrixDemo.Revenue])) / SpecificColumn(2011)]" AllowExpressions="false" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+            </TableRow>
+          </AdvMatrixObject>
+          <TextObject Name="Text3" Left="13.23" Top="32.13" Width="378" Height="18.9" Text="Comparing two specific items" Font="Arial, 10pt, style=Bold"/>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="488.06" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text13" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

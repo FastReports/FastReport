@@ -1344,7 +1344,7 @@
       <InsertToRight Text="Вставити колонку праворуч"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Об'єднати клітинки"/>
+      <Merge Text="Об'єднати клітинки"/>
       <Split Text="Розділити клітинку"/>
     </TableCell>
     <MatrixObject>

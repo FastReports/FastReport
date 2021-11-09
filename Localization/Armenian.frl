@@ -1692,7 +1692,7 @@
       <InsertToRight Text="Ներմուծել աջակողմյա սյունակ"/>
     </TableColumn>
     <TableCell>
-      <Join Text="Միացնել սյունակները"/>
+      <Merge Text="Միացնել սյունակները"/>
       <Split Text="Բաժանել սյունակները"/>
     </TableCell>
     <MatrixObject>
