@@ -4,7 +4,7 @@
 
 ## What is FastReport?
 
-FastReport provides free open source report generator for .NET 5/.NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
+FastReport provides free open source report generator for .NET 6/.NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
 
 [![Image of FastReport](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2-small.png)](https://raw.githubusercontent.com/FastReports/FastReport.Documentation/master/images/FastReport-screenshot2.png)
 
