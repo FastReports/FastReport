@@ -12,17 +12,23 @@ using Cake.Common.Tools.NuGet.Pack;
 using Cake.Common.Tools.MSBuild;
 using Cake.Common.Tools.DotNetCore;
 using Cake.Common.Tools.DotNetCore.MSBuild;
-using Cake.Incubator.Project;
-using Cake.Incubator.GlobbingExtensions;
 using Cake.Common.Solution.Project;
 using Cake.Common.Xml;
 using Cake.Core.Configuration;
-using Cake.FileHelpers;
 using static Cake.Core.IO.GlobberExtensions;
+#if FILEHELPERS
+using Cake.FileHelpers;
+#endif
+#if INCUBATOR
+using Cake.Incubator.Project;
+using Cake.Incubator.GlobbingExtensions;
 using static Cake.Incubator.Project.ProjectParserExtensions;
+#endif
 using Cake.Common.Tools.DotNetCore.Pack;
 using Cake.Common.Tools.DotNetCore.Test;
 using Cake.Common.Tools.NuGet.Restore;
+using Cake.Common.Tools.DotNetCore.Restore;
+using Cake.Core.Annotations;
 
 namespace CakeScript
 {
@@ -36,7 +42,14 @@ namespace CakeScript
         {
             var env = new CakeEnvironment(new CakePlatform(), new CakeRuntime());
             var fileSystem = new FileSystem();
-            var cakeLog = new CakeBuildLog(new CakeConsole(env));
+
+            var verbosity = Verbosity.Normal;
+            if(Startup.HasArgument("cake-verbosity"))
+            {
+                verbosity = Enum.Parse<Verbosity>(Startup.Argument("cake-verbosity"));
+            }
+            var cakeLog = new CakeBuildLog(new CakeConsole(env), verbosity);
+
             var cakeConfiguration = new CakeConfiguration(new Dictionary<string, string>());
             var toolRepos = new ToolRepository(env);
             Globber = new Globber(fileSystem, env);
@@ -59,6 +72,9 @@ namespace CakeScript
 
         public static void DotNetCoreRestore(string project)
             => Context.DotNetCoreRestore(project);
+
+        public static void DotNetCoreRestore(string root, DotNetCoreRestoreSettings settings)
+            => Context.DotNetCoreRestore(root, settings);
 
         public static void DotNetCorePack(string project, DotNetCorePackSettings packSettings)
             => Context.DotNetCorePack(project, packSettings);
@@ -90,14 +106,13 @@ namespace CakeScript
         public static void DeleteDirectory(DirectoryPath path, DeleteDirectorySettings settings)
             => Context.DeleteDirectory(path, settings);
 
+#if INCUBATOR
         public static CustomProjectParserResult ParseProject(FilePath project, string configuration)
             => Context.ParseProject(project, configuration);
 
         public static CustomProjectParserResult ParseProject(FilePath project, string configuration, string platform)
             => Context.ParseProject(project, configuration, platform);
-
-        public static FilePath[] ReplaceTextInFiles(string globberPattern, string findText, string replaceText)
-            => Context.ReplaceTextInFiles(globberPattern, findText, replaceText);
+#endif
 
         public static void CopyFiles(GlobPattern pattern, DirectoryPath targetDirectoryPath)
             => Context.CopyFiles(pattern, targetDirectoryPath);
@@ -120,13 +135,21 @@ namespace CakeScript
         public static IEnumerable<FilePath> GetFiles(GlobPattern pattern)
             => Globber.GetFiles(pattern);
 
+#if INCUBATOR
         public static FilePathCollection GetFiles(string[] patterns)
             => Context.GetFiles(patterns);
+#endif
 
         public static string XmlPeek(FilePath filePath, string xpath)
             => Context.XmlPeek(filePath, xpath);
 
+#if FILEHELPERS
         public static FilePath[] ReplaceRegexInFiles(string globberPattern, string rxFindPattern, string replaceText)
             => Context.ReplaceRegexInFiles(globberPattern, rxFindPattern, replaceText);
+
+        public static FilePath[] ReplaceTextInFiles(string globberPattern, string findText, string replaceText)
+            => Context.ReplaceTextInFiles(globberPattern, findText, replaceText);
+
+#endif
     }
 }

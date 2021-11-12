@@ -50,6 +50,8 @@ namespace CakeScript
         private static string[] GetDebugArgs(MethodInfo method)
         {
             var args = method.GetCustomAttribute<DebugAttribute>().Args;
+            if (string.IsNullOrEmpty(args))
+                return Array.Empty<string>();
 
             //TODO: whitespace in path, for example "path="D:/Program Files""
             return args.Split(' ');
@@ -67,7 +69,9 @@ namespace CakeScript
 
                 var splitted = argument.Split('=', 2);
 
-                Args.Add(splitted[0].Remove(0, 2), splitted[1]);
+                var arg = splitted[0].Remove(0, 2);
+                var value = splitted[1].Trim('"');
+                Args.Add(arg, value);
             }
         }
 
@@ -149,6 +153,22 @@ namespace CakeScript
             Console.ResetColor();
         }
 
+
+        public static bool HasArgument(string argument)
+        {
+            if (Args.ContainsKey(argument))
+                return true;
+
+            return false;
+        }
+
+        public static string Argument(string argument)
+        {
+            if (Args.ContainsKey(argument))
+                return Args[argument];
+
+            throw new Exception($"Argument '{argument}' not found");
+        }
 
         public static string Argument(string argument, string defaultValue)
         {

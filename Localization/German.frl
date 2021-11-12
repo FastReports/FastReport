@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Language Name="de" Author="Ralf &lt;rf-design@t-online.de&gt;;Fabian Soppe &lt;fsoppe@soppe-partner.de&gt;;Alexander Fediachov &lt;fediachov@fast-report.com&gt;;Alexander Fedyashov &lt;fediachov@fast-report.com&gt;;Michael Dvoskin &lt;md@fast-report.com&gt;">
+<Language Name="de" Author="Ralf &lt;rf-design@t-online.de&gt;;Fabian Soppe &lt;fsoppe@soppe-partner.de&gt;;Alexander Fedyashov &lt;fediachov@fast-report.com&gt;;Michael Dvoskin &lt;md@fast-report.com&gt;">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="Die Schriftart {0} darf nur geändert, eingebettet oder ausgetauscht werden, wenn zuvor die Genehmigung des rechtmässigen Besitzers eingeholt wurde."/>
     <FontMayNotBeSubsettedPriorToEmbedding Text="Für die Schriftart {0} darf vor dem Einbetten keine Teilmenge erstellt werden."/>
@@ -125,6 +125,7 @@
     </Shapes>
     <PictureObject Text="Bild"/>
     <TableObject Text="Tabelle"/>
+    <Matrix Text="Matrix"/>
     <MatrixObject Text="Matrix"/>
     <SubreportObject Text="Unterbericht"/>
     <BarcodeObject Text="Barcode"/>

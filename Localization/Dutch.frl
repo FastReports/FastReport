@@ -101,6 +101,7 @@
     </Shapes>
     <PictureObject Text="Afbeelding"/>
     <TableObject Text="Tabel"/>
+    <Matrix Text="Matrix"/>
     <MatrixObject Text="Matrix"/>
     <SubreportObject Text="Subrapport"/>
     <BarcodeObject Text="Barcode"/>
