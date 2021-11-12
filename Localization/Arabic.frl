@@ -129,6 +129,7 @@
     <PictureObject Text="صورة"/>
     <SVGObject Text="SVG مستند"/>
     <TableObject Text="جدول"/>
+    <Matrix Text="مصفوفة"/>
     <MatrixObject Text="مصفوفة"/>
     <SubreportObject Text="تقرير فرعي"/>
     <BarcodeObject Text="باركود"/>

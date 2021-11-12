@@ -167,14 +167,22 @@ namespace FastReport.Utils
       data = data.Substring(3);
       using (Stream stream = Converter.FromString(typeof(Stream), data) as Stream)
       {
-        using (Stream decryptedStream = Decrypt(stream, password))
-        {
-          byte[] bytes = new byte[data.Length];
-          int bytesRead = decryptedStream.Read(bytes, 0, bytes.Length);
-          return Encoding.UTF8.GetString(bytes, 0, bytesRead);
+                using (Stream decryptedStream = Decrypt(stream, password))
+                {
+                    byte[] bytes = new byte[data.Length];
+                    int bytesRead = 0;
+                    while (bytesRead < bytes.Length)
+                    {
+                        int n = decryptedStream.Read(bytes, bytesRead, bytes.Length - bytesRead);
+                        if (n == 0)
+                            break;
+                        bytesRead += n;
+                    }
+
+                    return Encoding.UTF8.GetString(bytes, 0, bytesRead);
+                }
+            }
         }
-      }
-    }
 
     /// <summary>
     /// Computes hash of specified stream. Initial position in stream will be saved.

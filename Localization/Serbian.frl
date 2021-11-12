@@ -96,6 +96,7 @@
     </Shapes>
     <PictureObject Text="Slika"/>
     <TableObject Text="Tabela"/>
+    <Matrix Text="Matrica"/>
     <MatrixObject Text="Matrica"/>
     <SubreportObject Text="Pod-izveštaj"/>
     <BarcodeObject Text="Barkod"/>

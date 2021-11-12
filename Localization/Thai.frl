@@ -92,6 +92,7 @@
     </Shapes>
     <PictureObject Text="รูปภาพ"/>
     <TableObject Text="ตาราง"/>
+    <Matrix Text="ตาราง Matrix"/>
     <MatrixObject Text="ตาราง Matrix"/>
     <SubreportObject Text="รายงานย่อย"/>
     <BarcodeObject Text="รหัสแท่ง"/>

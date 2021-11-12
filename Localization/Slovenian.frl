@@ -110,6 +110,7 @@
     </Shapes>
     <PictureObject Text="Slika"/>
     <TableObject Text="Tabela"/>
+    <Matrix Text="Matrica"/>
     <MatrixObject Text="Matrica"/>
     <SubreportObject Text="Podporočilo"/>
     <BarcodeObject Text="Črtna koda"/>

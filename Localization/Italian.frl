@@ -97,6 +97,7 @@
     </Shapes>
     <PictureObject Text="Immagine"/>
     <TableObject Text="Tabella"/>
+    <Matrix Text="Matrice"/>
     <MatrixObject Text="Matrice"/>
     <SubreportObject Text="Subreport"/>
     <BarcodeObject Text="Cadice a barre"/>

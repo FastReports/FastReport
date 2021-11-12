@@ -101,6 +101,7 @@
     </Shapes>
     <PictureObject Text="Billede"/>
     <TableObject Text="Tabel"/>
+    <Matrix Text="Krydstabel"/>
     <MatrixObject Text="Krydstabel"/>
     <SubreportObject Text="Subreport"/>
     <BarcodeObject Text="Stregkode"/>

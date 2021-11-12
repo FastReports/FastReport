@@ -100,6 +100,7 @@
     </Shapes>
     <PictureObject Text="تصویر"/>
     <TableObject Text="جدول"/>
+    <Matrix Text="ماتریس"/>
     <MatrixObject Text="ماتریس"/>
     <SubreportObject Text="زیرگزارش"/>
     <BarcodeObject Text="بارکد"/>

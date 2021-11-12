@@ -101,6 +101,7 @@
     </Shapes>
     <PictureObject Text="Зображення"/>
     <TableObject Text="Таблиця"/>
+    <Matrix Text="Матриця"/>
     <MatrixObject Text="Матриця"/>
     <SubreportObject Text="Вкладений звіт"/>
     <BarcodeObject Text="Штрих-код"/>

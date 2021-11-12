@@ -108,6 +108,7 @@
     </Shapes>
     <PictureObject Text="Kép"/>
     <TableObject Text="Táblázat"/>
+    <Matrix Text="Mátrix"/>
     <MatrixObject Text="Mátrix"/>
     <SubreportObject Text="Alriport"/>
     <BarcodeObject Text="Vonalkód"/>

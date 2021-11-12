@@ -97,6 +97,7 @@
     </Shapes>
     <PictureObject Text="Bild"/>
     <TableObject Text="Tabell"/>
+    <Matrix Text="Matris"/>
     <MatrixObject Text="Matris"/>
     <SubreportObject Text="Underrapport"/>
     <BarcodeObject Text="Streckkod"/>

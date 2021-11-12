@@ -131,6 +131,7 @@
     <PictureObject Text="Εικόνα"/>
     <SVGObject Text="Έγγραφο SVG"/>
     <TableObject Text="Πίνακας"/>
+    <Matrix Text="Συνοπτικός Πίνακας (Μήτρα)"/>
     <MatrixObject Text="Συνοπτικός Πίνακας (Μήτρα)"/>
     <SubreportObject Text="Επιμέρους  Έκθεση"/>
     <BarcodeObject Text="Γραμμωτός Κώδικας"/>

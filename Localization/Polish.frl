@@ -93,6 +93,7 @@
     </Shapes>
     <PictureObject Text="Obrazek"/>
     <TableObject Text="Tabela"/>
+    <Matrix Text="Matryca"/>
     <MatrixObject Text="Matryca"/>
     <SubreportObject Text="Podreport"/>
     <BarcodeObject Text="Kod kreskowy"/>
