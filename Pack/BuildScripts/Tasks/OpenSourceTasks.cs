@@ -5,7 +5,6 @@ using Cake.Core.IO;
 using Cake.Core.Diagnostics;
 using Cake.Core.Tooling;
 using Cake.Common.IO;
-using Cake.Incubator.Project;
 using Cake.Common.Solution.Project;
 using Path = System.IO.Path;
 

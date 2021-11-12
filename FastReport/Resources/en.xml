@@ -19,9 +19,9 @@
   <Messages>
     <AccessingData Text="Accessing data..."/>
     <Attention Text="Attention"/>
-	  <BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
-	  <BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
-	  <BarcodeLengthMismatch Text="Number of characters mismatch."/>
+    <BarcodeFewError Text="The number of digits is less than the permissible minimum."/>
+    <BarcodeManyError Text="The number of digits is greater than the allowable maximum."/>
+    <BarcodeLengthMismatch Text="Number of characters mismatch."/>
     <CantFindObject Text="Can't find object"/>
     <CantLoadReport Text="Can't load the report {0}"/>
     <CantSaveReport Text="Can't save the report. The file may be write-protected."/>
@@ -127,11 +127,11 @@
     <JsonDataConnection Text="JSON database"/>
     <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)" />
     <ESDataSourceConnection Text="ElasticSearch connection" />
-	  <CouchbaseDataConnection Text="Couchbase server"/>
+    <CouchbaseDataConnection Text="Couchbase server"/>
     <MongoDBDataConnection Text="MongoDB connection"/>
     <NosDbDataConnection Text="NosDb connection"/>
     <RavenDBDataConnection Text="RavenDB connection"/>
-	  <SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
+    <SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
     <Bands Text="Bands">
       <ReportTitle Text="Report Title"/>
       <ReportSummary Text="Report Summary"/>

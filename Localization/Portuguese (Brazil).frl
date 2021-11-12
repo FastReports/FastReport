@@ -101,6 +101,7 @@
     </Shapes>
     <PictureObject Text="Figura"/>
     <TableObject Text="Tabela"/>
+    <Matrix Text="Matriz"/>
     <MatrixObject Text="Matriz"/>
     <SubreportObject Text="Sub-relatório"/>
     <BarcodeObject Text="Código de Barras"/>

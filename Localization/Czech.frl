@@ -108,6 +108,7 @@
     </Shapes>
     <PictureObject Text="Obrázek"/>
     <TableObject Text="Tabulka"/>
+    <Matrix Text="Matice"/>
     <MatrixObject Text="Matice"/>
     <SubreportObject Text="Podsestava"/>
     <BarcodeObject Text="Čárový kód"/>

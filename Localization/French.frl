@@ -131,6 +131,7 @@
     <PictureObject Text="Image"/>
     <SVGObject Text="Document SVG"/>
     <TableObject Text="Table"/>
+    <Matrix Text="Matrice"/>
     <MatrixObject Text="Matrice"/>
     <SubreportObject Text="Sous-rapport"/>
     <BarcodeObject Text="Code à barres"/>
