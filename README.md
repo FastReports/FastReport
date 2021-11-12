@@ -77,17 +77,17 @@ FastReport can be compiled from sources or installed from [NuGet packages](https
 # for windows users
 git clone https://github.com/FastReports/FastReport.git
 cd FastReport
-Tools\pack.bat
+pack.bat
 ```
 
 ```sh
 # for linux users
 git clone https://github.com/FastReports/FastReport.git
 cd FastReport
-chmod 777 Tools/pack.sh && ./Tools/pack.sh
+chmod 777 pack.sh && ./pack.sh
 ```
 
-The package is located at `fr_nuget` directory.
+The package is located at `fr_packages` directory.
 
 ### NuGet
 
