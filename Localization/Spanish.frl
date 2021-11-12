@@ -108,6 +108,7 @@
     </Shapes>
     <PictureObject Text="Imagen"/>
     <TableObject Text="Tabla"/>
+    <Matrix Text="Tabla Cruzada"/>
     <MatrixObject Text="Tabla Cruzada"/>
     <SubreportObject Text="Subinforme"/>
     <BarcodeObject Text="Código de barras"/>

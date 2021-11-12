@@ -165,6 +165,7 @@
     <PictureObject Text="Рисунок"/>
     <SVGObject Text="SVG изображение"/>
     <TableObject Text="Таблица"/>
+    <Matrix Text="Матрица"/>
     <MatrixObject Text="Матрица"/>
     <AdvMatrixObject Text="Улучшенная матрица"/>
     <SubreportObject Text="Вложенный отчет"/>

@@ -67,10 +67,14 @@ Various report objects will allow your report to look exactly how you want it to
       <LogicalName>$(AssemblyName).Resources.%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
-  
+
+  <Import Project="..\UsedPackages.version" />
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.2" />
+
+    <!--For buildScript only (it can't implicitly restore System.Drawing.Common)-->
+    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)" PrivateAssets="All"/>
   </ItemGroup>
 
   <!--Source Link-->

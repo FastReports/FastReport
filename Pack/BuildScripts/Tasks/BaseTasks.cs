@@ -91,11 +91,11 @@ namespace CakeScript
         {
             if (String.IsNullOrWhiteSpace(outdir))
             {
-                outdir = Path.Combine(solutionDirectory, "..", "fr_nuget");
+                outdir = Path.Combine(solutionDirectory, "fr_nuget");
             }
             else if (!Path.IsPathRooted(outdir))
             {
-                outdir = Path.Combine(solutionDirectory, "..", outdir);
+                outdir = Path.Combine(solutionDirectory, outdir);
             }
 
             if (!Directory.Exists(outdir))
@@ -116,6 +116,7 @@ namespace CakeScript
             Information("|>  --vers= - change version");
             Information("|>  --solution-directory= - change solution directory");
             Information("|>  --solution-filename= - change solution file name");
+            Information("|>  --out-dir= - change output dir for packages");
             Information("");
             Information("OR: if you want to run 'Debug' mode, please add [Debug] attribute to your method");
 

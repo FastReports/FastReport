@@ -108,7 +108,7 @@ namespace FastReport
             RegisteredObjects.InternalAdd(typeof(TableCell), "", 214);
 
 #if !COMMUNITY
-            RegisteredObjects.AddCategory("ReportPage,Matrix", 142, 7, "Objects,MatrixObject");
+            RegisteredObjects.AddCategory("ReportPage,Matrix", 142, 7, "Objects,Matrix");
             RegisteredObjects.InternalAdd(typeof(MatrixObject), "ReportPage,Matrix", 142, 1);
             RegisteredObjects.InternalAdd(typeof(CrossViewObject), "ReportPage,Matrix", 247, 2);
 #else

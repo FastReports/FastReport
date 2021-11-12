@@ -5,7 +5,6 @@ using Cake.Core.IO;
 using Cake.Core.Diagnostics;
 using Cake.Core.Tooling;
 using Cake.Common.IO;
-using Cake.Incubator.Project;
 using Cake.Common.Solution.Project;
 using Path = System.IO.Path;
 
@@ -27,8 +26,6 @@ namespace CakeScript
         [DependsOn(nameof(PrepareNuget))]
         public void FastReportLocalization()
         {
-            string versionNum = version;
-
             string packDir = Path.Combine(solutionDirectory, "Pack");
             string packFRLocalizationDir = Path.Combine(packDir, "FastReport.Localization");
             string localizationDir = Path.Combine(solutionDirectory, "Localization");
@@ -67,14 +64,14 @@ namespace CakeScript
                 Description = "FastReport.Localization includes localization files for FastReport .NET, FastReport.Core, FastReport.CoreWin, FastReport.Mono and FastReport.OpenSource",
                 ProjectUrl = new Uri("https://www.fast-report.com/en/product/fast-report-net"),
                 Icon = FRLOGO192PNG,
-                IconUrl = new Uri("https://www.fast-report.com/download/images/frlogo-big.png"),
+                //IconUrl = new Uri("https://www.fast-report.com/download/images/frlogo-big.png"),
                 License = new NuSpecLicense { Type = "file", Value = MIT_LICENSE },
                 //LicenseUrl = new Uri(project.PackageLicenseUrl), // The licenseUrl and license elements cannot be used together.
                 Tags = new[] { "fastreport", "localization" , "frl"},
                 //FrameworkAssemblies = frameworkAssemblies,
             };
 
-            nuGetPackSettings.Version = versionNum;
+            nuGetPackSettings.Version = version;
             nuGetPackSettings.BasePath = tempDir;
             nuGetPackSettings.OutputDirectory = outdir;
             nuGetPackSettings.Files = packFiles;

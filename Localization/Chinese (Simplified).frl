@@ -97,6 +97,7 @@
     </Shapes>
     <PictureObject Text="图片"/>
     <TableObject Text="表格"/>
+    <Matrix Text="交叉表"/>
     <MatrixObject Text="交叉表"/>
     <SubreportObject Text="子报表"/>
     <BarcodeObject Text="条形码"/>

@@ -101,6 +101,7 @@
     </Shapes>
     <PictureObject Text="Poza"/>
     <TableObject Text="Tabel"/>
+    <Matrix Text="Matrice"/>
     <MatrixObject Text="Matrice"/>
     <SubreportObject Text="Subraport"/>
     <BarcodeObject Text="Cod de bara"/>

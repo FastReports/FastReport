@@ -110,6 +110,7 @@
     </Shapes>
     <PictureObject Text="Նկար"/>
     <TableObject Text="Աղյուսակ"/>
+    <Matrix Text="Մատրիցա"/>
     <MatrixObject Text="Մատրիցա"/>
     <SubreportObject Text="Ենթահաշվետվություն"/>
     <BarcodeObject Text="Բարկոդ"/>
