@@ -70,7 +70,7 @@ FastReport can be compiled from sources or installed from [NuGet packages](https
 
 ### Compilation
 
-1. Install latest .NET Core SDK for your OS from https://www.microsoft.com/net/download
+1. Install .NET 5 SDK for your OS from https://www.microsoft.com/net/download
 2. Follow the commands
 
 ```sh
