@@ -64,6 +64,10 @@ FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EM
 
 **PDF** export is available as a [plugin](https://github.com/FastReports/FastReport/tree/master/Extras/OpenSource/FastReport.OpenSource.Export.PdfSimple). You can see an example of its use [here](https://github.com/FastReports/FastReport/tree/master/Demos/OpenSource/PdfExport).  If this export is not enough for you and you need a full-featured PDF export with encryption, digital signing and fonts embedding - take a look at [FastReport .NET Core](https://fast-report.com/en/product/fast-report-net/).
 
+## Report Designer Community Edition
+
+To edit reports, we made a special report designer build - [FastReport Designer Community Edition](https://github.com/FastReports/FastReport/releases/latest). The program is intended for use in the Windows operating system and contains all the limitations of the Open Source version. We do not supply the source code of the editor because it is part of the commercial product [FastReport .NET](https://www.fast-report.com/en/product/fast-report-net/). Publishing this program is our good will and our wish. The MIT license does not cover its source code.
+
 ## Installation
 
 FastReport can be compiled from sources or installed from [NuGet packages](https://www.nuget.org/profiles/FastReports).
@@ -121,18 +125,20 @@ This project exists because of all the people who have contributed and continue 
  [@KirillKornienko](https://github.com/KirillKornienko), [@mandrookin](https://github.com/mandrookin), [@ekondur](https://github.com/ekondur), [@Gromozekaster](https://github.com/Gromozekaster), 
 [@daviddesmet](https://github.com/daviddesmet), [@mjftechnology](https://github.com/mjftechnology), [@jonny-xhl](https://github.com/jonny-xhl), [@radiodeer](https://github.com/radiodeer), [@Des1re7](https://github.com/Des1re7), [@araujofrancisco](https://github.com/araujofrancisco).
 
-
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
+## Documentation
+
+You can read the [FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/) on the github site or you can read the [documentation for the commercial product](https://www.fast-report.com/public_download/docs/FRNet/online/en/index.html), amending the functionality limitations.
+
 ## License
 
-Licensed under the MIT license. See [LICENSE.md](LICENSE.md) for details.
+Licensed under the MIT license. See [LICENSE.md](LICENSE.md) for details. The MIT license does not cover the FastReport Designer Community Edition.
 
 ## Resources
 
-- [FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/)
 - [FastReport Open Source Blog with Articles and How-Tos](https://opensource.fast-report.com/)
 - [The Feature Comparison Table for FastReport Open Source, FastReport Core, FastReport .NET](https://opensource.fast-report.com/p/the-feature-comparison-table-for.html "FastReport Open Source vs FastReport Core vs FastReport .NET")
 - [FastReport Core Online Demo](https://www.fast-report.com:2018 "Click to view FastReport Online Demo")
