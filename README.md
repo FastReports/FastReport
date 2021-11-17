@@ -131,7 +131,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Documentation
 
-You can read the [FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/) on the github site or you can read the [documentation for the commercial product](https://www.fast-report.com/public_download/docs/FRNet/online/en/index.html), amending the functionality limitations.
+You can read the [FastReport Open Source Documentation](https://fastreports.github.io/FastReport.Documentation/) on the github site or you can read the [documentation for the commercial product](https://www.fast-report.com/public_download/docs/FRNet/online/en/index.html), amending the [functionality limitations](https://opensource.fast-report.com/p/the-feature-comparison-table-for.html).
 
 ## License
 
