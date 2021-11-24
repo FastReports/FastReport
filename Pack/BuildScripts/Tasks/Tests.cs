@@ -42,20 +42,9 @@ namespace CakeScript
               .WithProperty("SolutionFileName", solutionFilename)
               .WithProperty("Version", versionNum));
 
-            DotNetCoreMSBuild(solutionFile, new DotNetCoreMSBuildSettings()
-              .SetConfiguration(config)
-              .WithTarget("Clean")
-              .WithProperty("SolutionDir", solutionDirectory)
-              .WithProperty("SolutionFileName", solutionFilename)
-              .WithProperty("Version", versionNum));
+            DotNetCoreClean(solutionFile);
 
-            DotNetCoreMSBuild(solutionFile, new DotNetCoreMSBuildSettings()
-              .SetConfiguration(config)
-              .WithTarget("Restore")
-              .WithProperty("SolutionDir", solutionDirectory)
-              .WithProperty("SolutionFileName", solutionFilename)
-              .WithProperty("Version", versionNum)
-            );
+            DotNetCoreRestore(solutionFile);
 
             DotNetCoreMSBuild(solutionFile, new DotNetCoreMSBuildSettings()
               .SetConfiguration(config)

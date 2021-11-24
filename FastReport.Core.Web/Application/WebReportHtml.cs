@@ -222,6 +222,7 @@ namespace FastReport.Web
                 // important container, it cuts off elements that are outside of the report page bounds
                 int pageWidth = (int)Math.Ceiling(GetReportPageWidthInPixels() * html.Zoom);
                 int pageHeight = (int)Math.Ceiling(GetReportPageHeightInPixels() * html.Zoom);
+                ReportMaxWidth = pageWidth;
                 sb.Insert(0, $@"<div style=""width:{pageWidth}px;height:{pageHeight}px;overflow:hidden;display:inline-block;"">");
                 sb.Append("</div>");
             }
@@ -714,7 +715,7 @@ namespace FastReport.Web
             }
         }
 
-        float GetReportPageWidthInPixels()
+        internal float GetReportPageWidthInPixels()
         {
             float _pageWidth = 0;
 
@@ -739,7 +740,7 @@ namespace FastReport.Web
             return _pageWidth;
         }
 
-        float GetReportPageHeightInPixels()
+        internal float GetReportPageHeightInPixels()
         {
             float _pageHeight = 0;
             if (SinglePage)

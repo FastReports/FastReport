@@ -27,13 +27,13 @@
 <!-- This group sets version used packages in Demos -->
 	<PropertyGroup>
         
-		<FRCoreVersion>2021.3.22</FRCoreVersion>
+		<FRCoreVersion>2021.4.15</FRCoreVersion>
 		
-		<FRCoreWebVersion>2021.3.22</FRCoreWebVersion>
+		<FRCoreWebVersion>2021.4.15</FRCoreWebVersion>
 		
-		<FROSVersion>2021.3.22</FROSVersion>
+		<FROSVersion>2021.4.15</FROSVersion>
 		
-		<FROSWebVersion>2021.3.22</FROSWebVersion>
+		<FROSWebVersion>2021.4.15</FROSWebVersion>
 		
     </PropertyGroup>
 

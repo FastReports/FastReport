@@ -2545,6 +2545,10 @@
       <FitAllColumsOnOnePage Text="Fit All Colums on One Page" />
       <FitAllRowsOnOnePage Text="Fit All Rows on One Page" />
       <GroupOnSeparateSheet Text="Groups on separate sheets"/>
+      <PictureProperties Text="Pictures properties"/>
+      <MoveAndModify Text="Move and modify along with the cell."/>
+      <MoveOnly Text="Move but not resize."/>
+      <Unchangeable Text="Do not move or resize."/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
@@ -2710,6 +2714,7 @@
       <HostError Text="Host cannot be empty."/>
       <SendingEmail Text="Sending email - {0} Kb"/>
       <EnableSSL Text="Enable SSL"/>
+      <NameAttachmentFile Text="Name attachment file:"/>
     </Email>
     <Dxf Text="Export to DXF">
       <File Text="DXF file"/>

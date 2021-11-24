@@ -208,6 +208,9 @@ namespace FastReport.Web
 #endif
         internal bool Canceled { get; set; } = false;
 
+        // for Tabs max-width
+        internal int ReportMaxWidth { get; set; } = 800;
+
         /// <summary>
         /// Shows sidebar with outline.
         /// Default value: true.
