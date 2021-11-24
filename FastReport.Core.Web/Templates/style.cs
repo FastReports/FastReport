@@ -266,7 +266,7 @@ namespace FastReport.Web
     background-color: #f1f1f1;
     display: table;
     width: {Toolbar.TabsPositionSettings};
-    max-width: 800px;
+    max-width: {ReportMaxWidth}px;
     box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 1;

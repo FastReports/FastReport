@@ -2296,6 +2296,10 @@
       <FitAllColumsOnOnePage Text="Все колонки на одной странице"/>
       <FitAllRowsOnOnePage Text="Все строки на одной странице"/>
       <GroupOnSeparateSheet Text="Группы на отдельных листах"/>
+      <PictureProperties Text="Свойства изображений"/>
+      <MoveAndModify Text="Перемещать и изменять вместе с ячейкой."/>
+      <MoveOnly Text="Перемещать, но не изменять размеры."/>
+      <Unchangeable Text="Не перемещать и не изменять размеры."/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>
@@ -2454,6 +2458,7 @@
       <HostError Text="Сервер не должен быть пустым."/>
       <SendingEmail Text="Отправка письма - {0} Кб"/>
       <EnableSSL Text="Использовать SSL"/>
+      <NameAttachmentFile Text="Имя прикрепляемого файла:"/>    
     </Email>
     <Dxf Text="Экспорт в DXF">
       <File Text="DXF формат"/>

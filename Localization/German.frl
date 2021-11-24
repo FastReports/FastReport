@@ -127,6 +127,7 @@
     <TableObject Text="Tabelle"/>
     <Matrix Text="Matrix"/>
     <MatrixObject Text="Matrix"/>
+    <AdvMatrixObject Text="Erweiterte Matrix"/>
     <SubreportObject Text="Unterbericht"/>
     <BarcodeObject Text="Barcode"/>
     <RichObject Text="Rich Text"/>
@@ -1732,6 +1733,46 @@
       <Message Text="Unbehandelte Abschaltung erkannt! Wollen Sie Bericht wiederherstellen?"/>
       <Restore Text="Wiederherstellen"/>
     </LoadAutoSave>
+    <AdvMatrixHeaderEditor Text="Kopf Editor">
+      <General Text="Allgemein">
+        <ItemType Text="Artikel Typ:"/>
+        <Simple Text="Einfach"/>
+        <Group Text="Gruppe"/>
+        <DisplayText Text="Anzeigen Text:"/>
+      </General>
+      <Sort Text="Sortieren">
+        <SortOrder Text="Sortierungsreihenfolge:"/>
+        <SortBy Text="Sortieren nach:"/>
+        <ItemValue Text="Artikel Wert"/>
+        <TotalValue Text="Gesamt Wert:"/>
+        <InteractiveSortBy Text="Interaktiv sortieren nach:"/>
+        <SortOrderToggledBy Text="Sortierungsreihenfolge:"/>
+        <Auto Text="Auto"/>
+      </Sort>
+      <Filter Text="Filter">
+        <Filter Text="Filter:"/>
+      </Filter>
+      <TopN Text="Top N">
+        <Count Text="Anzeigen der Top N Werte:"/>
+        <AdditionalItems Text="Zusätzliche Punkte:"/>
+        <TopNTotal Text="Top N Gesamt"/>
+        <Others Text="Andere"/>
+        <OthersTotal Text="Andere Gesamt"/>
+        <Create Text="Erzeugen von zusätzlichen Punkten in der Matrix-Vorlage für bessere Anpassung"/>
+      </TopN>
+      <Visibility Text="Sichtbarkeit">
+        <Visible Text="Sichtbar"/>
+        <VisibleExpression Text="Sichtbarkeit kann über einen Ausdruck festgelegt werden:"/>
+        <VisibleToggledBy Text="Sichtbarkeit:"/>
+      </Visibility>
+      <Other Text="Andere">
+        <Stepped Text="Gestaffeltes Layout"/>
+        <Merge Text="Mit einzelnem Unterpunkt zusammen führen"/>
+        <PageBreak Text="Seitenumbruch"/>
+        <ColSpan Text="Spaltenbreite (0 für Auto):"/>
+        <RowSpan Text="Zeilenhöhe (0 für Auto):"/>
+      </Other>
+    </AdvMatrixHeaderEditor>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -1849,6 +1890,57 @@
       <PercentRowTotal Text="Prozent von der Zeilensumme"/>
       <PercentGrandTotal Text="Prozent der Endsumme"/>
     </MatrixCell>
+    <AdvMatrixObject>
+      <Style Text="Style"/>
+      <Swap Text="Zeilen und Spalten tauschen"/>
+    </AdvMatrixObject>
+    <AdvMatrixCell>
+      <Function Text="Funktion">
+        <Sum Text="Summe"/>
+        <Min Text="Min"/>
+        <Max Text="Max"/>
+        <Avg Text="Mittelwert"/>
+        <Count Text="Anzahl"/>
+        <CountDistinct Text="Anzahl unterschiedlicher Werte"/>
+        <StDev Text="Standard Abweichung (StDev)"/>
+        <StDevP Text="Standard Abweichung von einer Bevölkerung (StDevP)"/>
+        <Var Text="Variante (Var)"/>
+        <VarP Text="Bevölkerungs Varianten (VarP)"/>
+        <First Text="Erster Wert"/>
+        <Last Text="Letzter Wert"/>
+        <ValuesList Text="Werte auflisten"/>
+      </Function>
+      <Percent Text="Prozent">
+        <None Text="Keine"/>
+        <PercentOfColumnTotal Text="% der Gesamt Spalten"/>
+        <PercentOfRowTotal Text="% der Gesamt Reihen"/>
+        <PercentOfGrandTotal Text="% der Gesamt Anzahl"/>
+        <PercentOfPreviousColumn Text="% der vorherigen Spalten"/>
+        <PercentOfPreviousRow Text="% der vorherigen Zeilen"/>
+      </Percent>
+      <Insert Text="Einfügen">
+        <Chart Text="Sparkline"/>
+        <Gauge Text="Fortschrittsanzeige"/>
+      </Insert>
+      <AggregateFunctions Text="Aggregatfunktion"/>
+      <SpecialFunctions Text="Spezial Funktionen"/>
+      <Properties Text="Eigenschaften"/>
+    </AdvMatrixCell>
+    <AdvMatrixHeader>
+      <CollapseButton Text="Button Weniger Anzeigen"/>
+      <SortButton Text="Sortieren button"/>
+      <AddTotal Text="Gesamtanzahl hinzufügen"/>
+      <Insert Text="Neuen Punkt einfügen">
+        <After Text="Dahinter"/>
+        <Before Text="Davor"/>
+        <Parent Text="Parent"/>
+        <Child Text="Child"/>
+      </Insert>
+      <Delete Text="Löschen">
+        <ThisItem Text="Ausgewähler Punkt"/>
+        <ItemTree Text="Gesamten Baum"/>
+      </Delete>
+    </AdvMatrixHeader>
     <GridControl>
       <EditColumns Text="Spalten bearbeiten"/>
     </GridControl>
@@ -1917,6 +2009,9 @@
       <BlueOrange Text="Blau und Orange"/>
       <OrangeWhite Text="Orange und Weiss"/>
     </Matrix>
+    <AdvMatrix>
+      <NewItems Text="Daten hierher ziehen um Spalten, Reihen und Zellen zu erzeugen"/>
+    </AdvMatrix>
     <Map>
       <Hint Text="&#13;&#10;Doppelklick auf Ebenen hinzuzufügen.&#13;&#10;&#13;&#10;Mit der linken Maustaste zu schwenken, Mausrad zoomen."/>
     </Map>

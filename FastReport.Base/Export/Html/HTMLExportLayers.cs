@@ -328,27 +328,45 @@ namespace FastReport.Export.Html
                         IGraphics g = htmlMeasureGraphics;
                         using (Font f = new Font(obj.Font.FontFamily, obj.Font.Size * DrawUtils.ScreenDpiFX, obj.Font.Style))
                         {
-                            RectangleF textRect = new RectangleF(obj.AbsLeft, obj.AbsTop, obj.Width, obj.Height);
+                            RectangleF textRect = new RectangleF(obj.AbsLeft + obj.Padding.Left, obj.AbsTop + obj.Padding.Top,
+                                obj.Width - obj.Padding.Left - obj.Padding.Right,
+                                obj.Height - obj.Padding.Top - obj.Padding.Bottom);
                             StringFormat format = obj.GetStringFormat(Report.GraphicCache, 0);
                             Brush textBrush = Report.GraphicCache.GetBrush(obj.TextColor);
                             AdvancedTextRenderer renderer = new AdvancedTextRenderer(obj.Text, g, f, textBrush, null,
                                 textRect, format, obj.HorzAlign, obj.VertAlign, obj.LineHeight, obj.Angle, obj.FontWidthRatio,
                                 obj.ForceJustify, obj.Wysiwyg, obj.HasHtmlTags, false, Zoom, Zoom, obj.InlineImageCache);
                             if (renderer.Paragraphs.Count > 0)
+                            {
                                 if (renderer.Paragraphs[0].Lines.Count > 0)
                                 {
                                     float height = renderer.Paragraphs[0].Lines[0].CalcHeight();
                                     if (height > obj.Height)
                                         top = -(height - obj.Height) / 2;
                                     else
+                                    {
                                         top = renderer.Paragraphs[0].Lines[0].Top - obj.AbsTop;
+                                        height = renderer.CalcHeight();
+
+                                        if (obj.VertAlign == VertAlign.Center)
+                                        {
+                                            top = (obj.Height - height - obj.Padding.Bottom + obj.Padding.Top) / 2;
+                                        }
+                                        else if (obj.VertAlign == VertAlign.Bottom)
+                                        {
+                                            // (float)(Math.Round(obj.Font.Size * 96 / 72) / 2
+                                            // necessary to compensate for paragraph offset error in GetSpanText method below
+                                            top = obj.Height - height - obj.Padding.Bottom - (float)(Math.Round(obj.Font.Size * 96 / 72) / 2);
+                                        }
+                                    }
                                 }
+                            }
                         }
                     }
 
                     LayerBack(Page, obj,
                         GetSpanText(obj, ExportUtils.HtmlString(obj.Text, obj.TextRenderType, Px(Math.Round(obj.Font.Size * 96 / 72))),
-                        top + obj.Padding.Top,
+                        top,
                         obj.Width - obj.Padding.Horizontal,
                         obj.ParagraphOffset));
                     break;
