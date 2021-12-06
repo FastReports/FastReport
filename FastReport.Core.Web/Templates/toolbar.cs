@@ -15,7 +15,7 @@ namespace FastReport.Web
                 )
                 return "";
 
-
+             
             var localization = new ToolbarLocalization(Res);
             var exports = Toolbar.Exports;
             var toolbarExportItem = $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"">
@@ -23,34 +23,34 @@ namespace FastReport.Web
         <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">" +
             (exports.ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">{localization.preparedTxt}</a>" : "")
 #if !OPENSOURCE
-            + (exports.ShowPdfExport ? $@"<a target=""_blank"" href=""{template_export_url("pdf")}"">{localization.pdfTxt}</a>" : "") +
-            (exports.ShowExcel2007Export ? $@"<a target=""_blank"" href=""{template_export_url("xlsx")}"">{localization.excel2007Txt}</a>" : "") +
-            (exports.ShowWord2007Export ? $@"<a target=""_blank"" href=""{template_export_url("docx")}"">{localization.word2007Txt}</a>" : "") +
-            (exports.ShowPowerPoint2007Export ? $@"<a target=""_blank"" href=""{template_export_url("pptx")}"">{localization.powerPoint2007Txt}</a>" : "") +
+          + (exports.ShowPdfExport ? $@"<a id=""PdfExport"" target=""_blank"" href=""{template_export_url("pdf")}"">{localization.pdfTxt}</a>":"") + (exports.EnableSettings  && exports.ShowPdfExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""pdf""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
+            (exports.ShowExcel2007Export ? $@"<a id=""XlsxExport"" target =""_blank"" href=""{template_export_url("xlsx")}"">{localization.excel2007Txt}</a>" : "") + (exports.EnableSettings && exports.ShowExcel2007Export ? $@"<button class=""fr-webreport-settings-btn"" data-path=""xlsx""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
+            (exports.ShowWord2007Export ? $@"<a id=""DocxExport"" target=""_blank"" href=""{template_export_url("docx")}"">{localization.word2007Txt}</a>" : "") + (exports.EnableSettings && exports.ShowWord2007Export ? $@"<button class=""fr-webreport-settings-btn"" data-path=""docx""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
+            (exports.ShowPowerPoint2007Export ? $@"<a id=""PptxExport"" target=""_blank"" href=""{template_export_url("pptx")}"">{localization.powerPoint2007Txt}</a>" : "") + (exports.EnableSettings && exports.ShowPowerPoint2007Export ? $@"<button class=""fr-webreport-settings-btn"" data-path=""pptx""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
             (exports.ShowTextExport ? $@"<a target=""_blank"" href=""{template_export_url("txt")}"">{localization.textTxt}</a>" : "") +
-            (exports.ShowRtfExport ? $@"<a target=""_blank"" href=""{template_export_url("rtf")}"">{localization.rtfTxt}</a>" : "") +
+            (exports.ShowRtfExport ? $@"<a id=""RtfExport"" target=""_blank"" href=""{template_export_url("rtf")}"">{localization.rtfTxt}</a>" : "") + (exports.EnableSettings && exports.ShowRtfExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""rtf""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
             (exports.ShowXpsExport ? $@"<a target=""_blank"" href=""{template_export_url("xps")}"">{localization.xpsTxt}</a>" : "") +
-            (exports.ShowOdsExport ? $@"<a target=""_blank"" href=""{template_export_url("ods")}"">{localization.odsTxt}</a>" : "") +
-            (exports.ShowOdtExport ? $@"<a target=""_blank"" href=""{template_export_url("odt")}"">{localization.odtTxt}</a>" : "") +
-            (exports.ShowXmlExcelExport ? $@"<a target=""_blank"" href=""{template_export_url("xml")}"">{localization.xmlTxt}</a>" : "") +
-            (exports.ShowDbfExport ? $@"<a target=""_blank"" href=""{template_export_url("dbf")}"">{localization.dbfTxt}</a>": "") +
+            (exports.ShowOdsExport ? $@"<a id=""OdsExport"" target=""_blank"" href=""{template_export_url("ods")}"">{localization.odsTxt}</a>" : "") + (exports.EnableSettings && exports.ShowOdsExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""ods""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
+            (exports.ShowOdtExport ? $@"<a id=""OdtExport"" target=""_blank"" href=""{template_export_url("odt")}"">{localization.odtTxt}</a>" : "") + (exports.EnableSettings && exports.ShowOdtExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""odt""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
+            (exports.ShowXmlExcelExport ? $@"<a id=""XmlExport"" target=""_blank"" href=""{template_export_url("xml")}"">{localization.xmlTxt}</a>" : "") + (exports.EnableSettings && exports.ShowXmlExcelExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""xml""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
+            (exports.ShowDbfExport ? $@"<a target=""_blank"" href=""{template_export_url("dbf")}"">{localization.dbfTxt}</a>" : "") +
             (exports.ShowCsvExport ? $@"<a target=""_blank"" href=""{template_export_url("csv")}"">{localization.csvTxt}</a>" : "") +
-            (exports.ShowSvgExport ? $@"<a target=""_blank"" href=""{template_export_url("svg")}"">{localization.svgTxt}</a>" : "") +
+            (exports.ShowSvgExport ? $@"<a id=""SvgExport"" target=""_blank"" href=""{template_export_url("svg")}"">{localization.svgTxt}</a>" : "") + (exports.EnableSettings && exports.ShowSvgExport? $@"<button class=""fr-webreport-settings-btn"" data-path=""svg""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
             (exports.ShowMhtExport ? $@"<a target=""_blank"" href=""{template_export_url("mht")}"">{localization.mhtTxt}</a>" : "") +
-            (exports.ShowExcel97Export ? $@"<a target=""_blank"" href=""{ template_export_url("xls")}"">{localization.excel97Txt}</a>" :"") +
+            (exports.ShowExcel97Export ? $@"<a target=""_blank"" href=""{ template_export_url("xls")}"">{localization.excel97Txt}</a>" : "") +
             //(exports.ShowEmailExport ? $@"<a target=""_blank"" href=""{ template_export_url("email")}"">{emailTxt}</a>" : "") +
             (exports.ShowHpglExport ? $@"<a target=""_blank"" href=""{ template_export_url("hpgl")}"">{localization.hpglTxt}</a>" : "") +
-            (exports.ShowHTMLExport ? $@"<a target=""_blank"" href=""{ template_export_url("html")}"">{localization.htmlTxt}</a>" : "") +
-            //(exports.ShowImageExport ? $@"<a target=""_blank"" href=""{ template_export_url("image")}"">{imageTxt}</a>" : "") +
+            (exports.ShowHTMLExport ? $@"<a id=""HtmlExport"" target=""_blank"" href=""{template_export_url("html")}"">{localization.htmlTxt}</a>" : "") + (exports.EnableSettings && exports.ShowHTMLExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""html""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") + 
+            //(exports.ShowImageExport? $@"<a id=""ImageExport"" target=""_blank"" href=""{template_export_url("image")}"">{localization.imageTxt}</a>" : "") + (exports.EnableSettings && exports.ShowImageExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""image""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "") +
             (exports.ShowJsonExport ? $@"<a target=""_blank"" href=""{ template_export_url("json")}"">{localization.jsonTxt}</a>" : "") +
-             (exports.ShowDxfExport ? $@"<a target=""_blank"" href=""{ template_export_url("dxf")}"">{localization.dxfTxt}</a>" : "") +
+            (exports.ShowDxfExport ? $@"<a target=""_blank"" href=""{ template_export_url("dxf")}"">{localization.dxfTxt}</a>" : "") +
             (exports.ShowLaTeXExport ? $@"<a target=""_blank"" href=""{ template_export_url("latex")}"">{localization.latexTxt}</a>" : "") +
             (exports.ShowPpmlExport ? $@"<a target=""_blank"" href=""{ template_export_url("ppml")}"">{localization.ppmlTxt}</a>" : "") +
             (exports.ShowPSExport ? $@"<a target=""_blank"" href=""{ template_export_url("ps")}"">{localization.psTxt}</a>" : "") +
             (exports.ShowXamlExport ? $@"<a target=""_blank"" href=""{ template_export_url("xaml")}"">{localization.xamlTxt}</a>" : "") +
-            (exports.ShowZplExport ? $@"<a target=""_blank"" href=""{ template_export_url("zpl")}"">{localization.zplTxt}</a>" : "") 
+            (exports.ShowZplExport ? $@"<a target=""_blank"" href=""{ template_export_url("zpl")}"">{localization.zplTxt}</a>" : "")
 #endif
-             +"</div></div>"
+             + "</div></div>"
             ;
             var toolbarPrintItem = $@" <div class=""fr-toolbar-item {template_FR}-toolbar-item"">
         <img src=""{template_resource_url("print.svg", "image/svg+xml")}"" title=""{localization.printTxt}"">
@@ -72,7 +72,7 @@ namespace FastReport.Web
 
             string templateToolbar = $@"
 <div class=""fr-toolbar {template_FR}-toolbar"">
-
+     
 {(Toolbar.ShowRefreshButton ? $@"<div class=""fr-toolbar-item fr-toolbar-pointer {template_FR}-toolbar-item {template_FR}-pointer"" onclick=""{template_FR}.refresh();"" title=""{localization.reloadTxt}"">
         <img src=""{template_resource_url("reload.svg", "image/svg+xml")}"">
     </div>" : "")}
@@ -108,7 +108,7 @@ namespace FastReport.Web
    
 
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
+        <input id=""CurrentPage"" class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
     </div>
 
     <div class=""fr-toolbar-item fr-toolbar-notbutton fr-toolbar-slash {template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"">
@@ -117,14 +117,14 @@ namespace FastReport.Web
 
 
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
+        <input id=""AllPages"" type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
     </div>
 
 {(Toolbar.ShowNextButton ? $@" <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('next');""")} title=""{localization.nextPageTxt}"">
         <img src=""{template_resource_url("angle-right.svg", "image/svg+xml")}"">
     </div>" : "")}
    
-{(Toolbar.ShowLastButton ? $@"   <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('last');""")} title=""{localization.lastPageTxt}"">
+{(Toolbar.ShowLastButton ? $@" <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('last');""")} title=""{localization.lastPageTxt}"">
         <img src=""{template_resource_url("angle-double-right.svg", "image/svg+xml")}"">
     </div>" : "")}
  
@@ -132,7 +132,6 @@ namespace FastReport.Web
 </div>
 
 {template_tabs()}
-
 ";
             return templateToolbar;
         }

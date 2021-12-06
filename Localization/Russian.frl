@@ -2418,6 +2418,7 @@
       <Layers Text="Слои"/>
       <EmbPic Text="Встроенные картинки"/>
       <Total Text="Всего"/>
+      <NotRotateLandscapePage Text="Не поворачивать альбомные страницы при печати"/>
       <First Text="&lt;&lt;"/>
       <Last Text="&gt;&gt;"/>
       <Prev Text="&lt;"/>

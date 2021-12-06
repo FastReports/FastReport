@@ -2067,6 +2067,8 @@ namespace FastReport.Utils
                     float ascent = ff.FontFamily.GetCellAscent(style.FontStyle);
                     baseLine = height * ascent / lineSpace;
                     descent = height - baseLine;
+                    if (style.BaseLine == HtmlTextRenderer.BaseLine.Subscript)
+                        descent += height * 0.45f;
                 }
             }
 

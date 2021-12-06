@@ -8,7 +8,7 @@ namespace FastReport.Web
 'use strict';
 
 var {template_FR} = {{
-
+       
     outline: function () {{
         var sizes = sessionStorage.getItem('fastreport-outline-split-sizes');
 
@@ -194,12 +194,59 @@ var {template_FR} = {{
             form: form
         }});
     }},
+    
+    getExportSettings: function () {{
+        this._getExportSettings();
+    }},
 
+    _getExportSettings: function (params, form) {{
+        var modalcontainer = this._findModalContainer();
+        const buttons = document.querySelectorAll('.fr-webreport-settings-btn');
+        const Overlay = document.querySelector('.modalcontainer-overlay');
+        var fileformat;
+        var that = this;
+        buttons.forEach((el) => {{
+        el.addEventListener('click', (e) => {{
+        fileformat = e.currentTarget.getAttribute('data-path');
+       
+        this._fetch({{
+            method: 'POST',
+            url: '{template_ROUTE_BASE_PATH}/exportsettings.getSettings?reportId={ID}&format='+ fileformat + (params || ''),
+            form: form,
+            onSuccess: function (xhr) {{
+                modalcontainer.innerHTML = xhr.responseText;
+                that._execModalScripts();
+                document.querySelector(`[data-target=${{fileformat}}]`).classList.add('modalcontainer--visible'); 
+                Overlay.classList.add('modalcontainer-overlay--visible');
+            }},
+
+        }});
+       }})
+      }});
+    }},
     _execScripts: function () {{
         var container = this._findContainer();
         var scripts = container.getElementsByTagName('script');
         for (var i = 0; i < scripts.length; i++) {{
             eval(scripts[i].text);
+        }}
+    
+    }},
+    _execModalScripts: function() {{
+        var includeContainer = this._findModalContainer();
+        var scripts = includeContainer.getElementsByTagName('script');
+        for(var i = 0; i<scripts.length; i++) {{
+            var script = document.createElement('script');
+            if(scripts[i].text) {{
+                script.text = scripts[i].text;
+            }} else {{
+                for(var j = 0; j<scripts[i].attributes.length; j++) {{
+                    if(scripts[i].attributes[j].name in HTMLScriptElement.prototype) {{
+                        script[scripts[i].attributes[j].name] = scripts[i].attributes[j].value;
+                    }}
+                }}
+            }}
+            scripts[i].parentNode.replaceChild(script, scripts[i]);
         }}
     }},
 
@@ -222,6 +269,10 @@ var {template_FR} = {{
         return document.getElementsByClassName('{template_FR}-container')[0];
     }},
 
+    _findModalContainer: function () {{
+        return document.getElementsByClassName('content-modalcontainer')[0];
+    }},
+    
 /*
     _findToolbar: function () {{
         return document.getElementsByClassName('{template_FR}-toolbar')[0];
@@ -347,5 +398,6 @@ var {template_FR} = {{
 
 }};
 ";
+   
     }
 }

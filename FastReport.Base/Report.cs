@@ -886,7 +886,7 @@ namespace FastReport
             }
         }
 
-        internal string GetReportName
+        public string GetReportName
         {
             get
             {

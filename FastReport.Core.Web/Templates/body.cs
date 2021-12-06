@@ -27,8 +27,7 @@ namespace FastReport.Web
     <div class=""{template_FR}-report"">
         {ReportBody()}
     </div>
-
-</div>
+    
 ";
         }
     }

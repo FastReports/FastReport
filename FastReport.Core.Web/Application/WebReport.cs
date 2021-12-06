@@ -25,6 +25,7 @@ namespace FastReport.Web
     public partial class WebReport
     {
         private string localizationFile;
+        private int numberNextTab = 1;
 
 #if DIALOGS
         internal Dialog Dialog {
@@ -51,7 +52,7 @@ namespace FastReport.Web
         /// </summary>
         public Report Report
         {
-            get => Tabs[CurrentTabIndex].Report;
+            get => Tabs[CurrentTabIndex].Report; 
             set => Tabs[CurrentTabIndex].Report = value;
         }
 
@@ -69,7 +70,7 @@ namespace FastReport.Web
             }
         }
 
-        internal WebRes Res { get; set; } = new WebRes();
+        internal IWebRes Res { get; set; } = new WebRes();
 
 
         /// <summary>
@@ -96,6 +97,12 @@ namespace FastReport.Web
             }
             set => currentTabIndex = value;
         }
+
+        /// <summary>
+        /// Shows different ReportPage in tabs.
+        /// Default value: false.
+        /// </summary>
+        public bool SplitReportPagesInTabs { get; set; } = false;
 
         /// <summary>
         /// Page index of current report
@@ -153,6 +160,14 @@ namespace FastReport.Web
         public bool Pictures { get; set; } = true;
         public bool EmbedPictures { get; set; } = false;
 
+        #region ExportMenuSettings
+
+        /// <summary>
+        /// ExportMenu settings
+        /// </summary>
+        public ExportMenuSettings ExportMenu{ get; set; } = ExportMenuSettings.Default;
+
+        #endregion
 
         #region ToolbarSettings
 
@@ -191,10 +206,9 @@ namespace FastReport.Web
 #endif
 
         [Obsolete("Please, use Toolbar.Position")]
-      
         public bool ShowBottomToolbar { get => Toolbar.ShowBottomToolbar; set => Toolbar.ShowBottomToolbar = value; }
 
-
+        [Obsolete("Please, use Toolbar.Color")]
         public Color ToolbarColor { get => Toolbar.Color; set => Toolbar.Color = value; }
 
         #endregion
@@ -295,6 +309,58 @@ namespace FastReport.Web
                     throw new Exception($"Unknown mode: {Mode}");
             }
         }
+        /// <summary>
+        /// Add report pages in tabs after load report
+        /// </summary>
+        internal void SplitReportPagesByTabs()
+        {
+            if (SplitReportPagesInTabs)
+            {
+                var report = Report;
+          
+                for (int pageN = 0; pageN < report.Pages.Count; pageN++)
+                {
+                    var page = report.Pages[pageN];
+
+                    if (page is ReportPage reportPage)
+                    {
+                        if (pageN == 0)
+                        {
+                            Tabs[0].Name = reportPage.Name;
+                            Tabs[0].MinPageIndex = 0;
+                            
+                            continue;
+                        }
+                      
+                        if (!reportPage.Visible)
+                            continue;
+                        int numberPage = 0;
+                        for (int i = 0; i < report.PreparedPages.Count; i++)
+                        {
+
+                            var preparedPage = report.PreparedPages.GetPage(i);
+                            if (preparedPage.OriginalComponent.Name == reportPage.Name)
+                            {
+                                numberPage = i;
+                                break;
+                            }
+                        }
+                      
+                        Tabs.Add(new ReportTab()
+                        {
+                            Closeable = false,
+                            CurrentPageIndex = numberPage,
+                            MinPageIndex = numberPage,
+                            Name = reportPage.Name,
+                            NeedParent = false,
+                            Report = report,
+                            ReportPrepared = true//,
+                        });
+                    }
+                }
+            }
+        }
+
 
         /// <summary>
         /// Force report to be removed from internal cache
@@ -315,8 +381,24 @@ namespace FastReport.Web
         /// </summary>
         public void NextPage()
         {
-            if (CurrentPageIndex < TotalPages - 1)
-                CurrentPageIndex++;
+            if (CurrentPageIndex >= TotalPages - 1)
+                return;
+
+            var curPageIndex = CurrentPageIndex + 1;
+            if (SplitReportPagesInTabs && Tabs.Count > 1)
+            {
+                if (curPageIndex == Tabs[numberNextTab].MinPageIndex)
+                {
+                    CurrentTabIndex++;
+
+                    if (numberNextTab < Tabs.Count - 1)
+                    {
+                        numberNextTab++;
+                    }
+                }
+            }
+
+            CurrentPageIndex = curPageIndex;
         }
 
         /// <summary>
@@ -324,8 +406,24 @@ namespace FastReport.Web
         /// </summary>
         public void PrevPage()
         {
-            if (CurrentPageIndex > 0)
-                CurrentPageIndex--;
+            if (CurrentPageIndex <= 0)
+                return;
+
+            var curPageIndex = CurrentPageIndex - 1;
+            if (SplitReportPagesInTabs && Tabs.Count > 1)
+            {
+                if (CurrentTab.MinPageIndex > curPageIndex)
+                {
+                    if (numberNextTab != 1 && CurrentTabIndex != numberNextTab)
+                    {
+                        numberNextTab--;
+                    }
+
+                    CurrentTabIndex--;
+                }
+            }
+
+            CurrentPageIndex = curPageIndex;
         }
 
         /// <summary>
@@ -333,6 +431,12 @@ namespace FastReport.Web
         /// </summary>
         public void FirstPage()
         {
+            if (SplitReportPagesInTabs && Tabs.Count > 1)
+            {
+                numberNextTab = 1;
+                CurrentTabIndex = 0;
+            }
+
             CurrentPageIndex = 0;
         }
 
@@ -341,6 +445,12 @@ namespace FastReport.Web
         /// </summary>
         public void LastPage()
         {
+            if (SplitReportPagesInTabs && Tabs.Count > 1)
+            {
+                numberNextTab = Tabs.Count - 1;
+                CurrentTabIndex = Tabs.Count - 1;
+            }
+
             CurrentPageIndex = TotalPages - 1;
         }
 
@@ -349,13 +459,41 @@ namespace FastReport.Web
         /// </summary>
         public void GotoPage(int value)
         {
-            if (value >= 0 && value < TotalPages)
-                CurrentPageIndex = value;
+            if (value < 0 || value >= TotalPages)
+                return;
+
+            if (SplitReportPagesInTabs && Tabs.Count > 1)
+            {
+                for(int i = 0; i < Tabs.Count; i++)
+                {
+                    // can be better
+                    if (Tabs[i].MinPageIndex <= value)
+                    {
+                        CurrentTabIndex = i;
+                        if (i != Tabs.Count - 1)
+                            numberNextTab = i + 1;
+                    }
+                    else break;
+                }
+            }
+
+            CurrentPageIndex = value;
         }
 
-#endregion
+        internal void SetTab(int value)
+        {
+            CurrentTabIndex = value;
+            if (CurrentTabIndex < Tabs.Count - 1)
+                numberNextTab = value + 1;
+            else
+                numberNextTab = value;
 
-#region Script Security
+            //CurrentPageIndex = CurrentTab.MinPageIndex;
+        }
+
+        #endregion
+
+        #region Script Security
 
         private static ScriptSecurity ScriptSecurity = null;
 

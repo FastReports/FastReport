@@ -352,10 +352,11 @@ namespace FastReport.Web
             string settab = request.Query["settab"].ToString();
             if (!settab.IsNullOrWhiteSpace())
             {
-                int i = 0;
-                if (int.TryParse(settab, out i))
+                if (int.TryParse(settab, out int i))
+                {
                     //if (i >= 0 && i < Tabs.Count)
-                    CurrentTabIndex = i;
+                    SetTab(i);
+                }
             }
 
             string closetab = request.Query["closetab"].ToString();

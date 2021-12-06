@@ -133,7 +133,7 @@ namespace FastReport.Barcode
             modules[3] = modules[1] * 2;
         }
 
-        private void DoLines(string data, IGraphics g, float zoom)
+        internal virtual void DoLines(string data, IGraphics g, float zoom)
         {
             using (Pen pen = new Pen(Color))
             {
@@ -196,7 +196,7 @@ namespace FastReport.Barcode
             }
         }
 
-        private string CheckSumModulo10(string data)
+        public string CheckSumModulo10(string data)
         {
             int sum = 0;
             int fak = data.Length;
@@ -358,7 +358,7 @@ namespace FastReport.Barcode
             return builder.ToString();
         }
 
-        internal float GetWidth(string code)
+        internal virtual float GetWidth(string code)
         {
             float result = 0;
             float w;

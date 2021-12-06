@@ -93,6 +93,7 @@ namespace FastReport.Export.Html
 
         private bool layers;
         private bool wysiwyg;
+        private bool notRotateLandscapePage;
         private MyRes res;
         private HtmlTemplates templates;
         private string targetPath;
@@ -417,6 +418,15 @@ namespace FastReport.Export.Html
             set { enableVectorObjects = value; }
         }
 
+        /// <summary>
+        /// Not rotate landscape page when print.
+        /// </summary>
+        public bool NotRotateLandscapePage
+        {
+            get { return notRotateLandscapePage; }
+            set { notRotateLandscapePage = value; }
+        }
+
         #endregion Public properties
 
         #region Private methods
@@ -687,6 +697,18 @@ namespace FastReport.Export.Html
                     singlePage = true;
                     subFolder = false;
                     navigator = false;
+                    if(ExportMode == ExportType.WebPrint)
+                    {
+                        NotRotateLandscapePage = true;
+                        for (int i = 0; i < Report.PreparedPages.Count; i++ )
+                        {
+                            if (!Report.PreparedPages.GetPage(i).Landscape)
+                            {
+                                NotRotateLandscapePage = false;
+                                break;
+                            }
+                        }
+                    }
                     if (format == HTMLExportFormat.HTML && !embedPictures)
                         pictures = false;
                 }
@@ -945,6 +967,7 @@ namespace FastReport.Export.Html
             writer.WriteBool("SubFolder", SubFolder);
             writer.WriteBool("Navigator", Navigator);
             writer.WriteBool("SinglePage", SinglePage);
+            writer.WriteBool("NotRotateLandscapePage", NotRotateLandscapePage);
         }
 
         /// <summary>
@@ -996,6 +1019,7 @@ namespace FastReport.Export.Html
             exportMode = ExportType.Export;
             res = new MyRes("Export,Html");
             embeddedImages = new Dictionary<string, string>();
+            notRotateLandscapePage = false;
         }
 
         /// <summary>
