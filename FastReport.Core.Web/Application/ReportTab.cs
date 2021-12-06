@@ -15,6 +15,7 @@ namespace FastReport.Web
         public Report Report { get; set; } = null;
         public bool ReportPrepared { get; set; } = false;
         public int CurrentPageIndex { get; set; } = 0;
+        public int MinPageIndex { get; set; } = 0;
         public bool Closeable { get; set; } = true;
         public bool NeedParent { get; set; } = false;
 

@@ -685,6 +685,10 @@ namespace FastReport.Barcode
             new BarcodeItem(typeof(BarcodeAztec), "Aztec"),
             new BarcodeItem(typeof(BarcodePlessey), "Plessey"),
             new BarcodeItem(typeof(BarcodeEAN128), "GS1-128 (UCC/EAN-128)"),
+            new BarcodeItem(typeof(BarcodeGS1Omnidirectional), "GS1 DataBar Omnidirectional"),
+            new BarcodeItem(typeof(BarcodeGS1Limited), "GS1 DataBar Limited"),
+            new BarcodeItem(typeof(BarcodeGS1Stacked), "GS1 DataBar Stacked"),
+            new BarcodeItem(typeof(BarcodeGS1StackedOmnidirectional), "GS1 DataBar Stacked Omnidirectional"),
             new BarcodeItem(typeof(BarcodePharmacode), "Pharmacode"),
             new BarcodeItem(typeof(BarcodeIntelligentMail), "Intelligent Mail (USPS)"),
             new BarcodeItem(typeof(BarcodeMaxiCode), "MaxiCode")

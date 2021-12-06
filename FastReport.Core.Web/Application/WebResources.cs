@@ -14,6 +14,8 @@ namespace FastReport.Web.Application
 
         string Get(string id);
 
+        string GetInternal(string id);
+
         void Root(string Section);
     }
 
@@ -58,6 +60,11 @@ namespace FastReport.Web.Application
             return result;
         }
 
+        public string GetInternal(string id)
+        {
+            return Get(id, locale);
+        }
+
         private string Get(string id, XmlDocument locale)
         {
             XmlItem xi = locale.Root;
@@ -71,10 +78,13 @@ namespace FastReport.Web.Application
             }
 
             // find 'id'
-            i = xi.Find(id);
-            if (i == -1)
-                return null;
-            xi = xi[i];
+            if(!string.IsNullOrEmpty(id))
+            {
+                i = xi.Find(id);
+                if (i == -1)
+                    return null;
+                xi = xi[i];
+            }
 
             return xi.GetProp("Text");
         }

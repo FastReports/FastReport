@@ -155,6 +155,336 @@ namespace FastReport.Web
     display: inline-block;
     font-size: 14px;
 }}
+.modalcontainer-overlay {{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    opacity: 0;
+    z-index: 2;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    align-content: flex-start;
+}}
+
+.modalcontainer {{
+    background-color: #fff;
+	width: 300px;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}}
+
+.modalcontainer-overlay--visible {{
+    opacity: 1;
+	visibility: visible;
+	transition: all 0.3s ease-in-out;
+}}
+
+.modalcontainer--visible {{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    width: auto;
+    height: auto;
+    margin-top: 4rem;
+    margin-left: 4rem;
+    padding: 0px 10px 50px 10px;
+    z-index: 4;
+    border-radius: 10px;
+    background-color: white;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial,Verdana sans-serif;
+}}
+////////////////////
+       POPUP
+///////////////////
+.fr-webreport-popup {{
+    min-width: 100%;
+    position: absolute;
+    min-height: 100%;
+    z-index: 3;
+    padding-bottom: 1rem;
+    background-color: #0000005c;
+    display: flex;
+    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}}
+
+.fr-webreport-popup-content {{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 2.5rem;
+    margin-left: 2.6rem;
+    padding: 0px 10px 50px 10px;
+    z-index: 4;
+    border-radius: 10px;
+    background-color: white;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial,Verdana sans-serif;
+}}
+
+.fr-webreport-popup-content-title {{
+    display: flex;
+    width: 100%;
+    background-color: {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
+    height: 2rem;
+    margin: 0;
+    border: 1px solid {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    border-radius: 1px 1px 0px 0px;
+    margin-bottom: 10px;
+    box-shadow: -0.05rem -0.6rem 0rem 0.6rem {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 16px {Toolbar.Exports.UserFontSettingsFamily};
+}}
+.fr-webreport-popup-content-title input {{
+    background-color: white;
+    border: 3px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    color: black;
+    max-height: 9.8px;
+    border-radius: 3px;
+}}
+.fr-webreport-popup-content-export-parameters {{
+    display: flex;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+    flex-direction: column;
+    border-bottom: 2px solid #00000024;
+    border-radius: 3px;
+    padding-bottom: 1rem;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 12px {Toolbar.Exports.UserFontSettingsFamily};
+}}
+
+.fr-webreport-popup-content-export-parameters-col {{
+    display: flex;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
+}}
+.custom-select{{
+    width:auto;
+    outline: none;
+    max-width: 170px;
+    min-width: 40px;
+    padding: 0px 5px;
+    appearance: none;
+    margin: 0px 5px 5px 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    border-radius: 3px;
+    height: 1.7rem;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
+}}
+.fr-webreport-popup-content-export-parameters-input {{
+    margin-left: 0.3rem;
+    margin-bottom: 0.3rem;
+    padding: 6px;
+    max-width: 160px;
+    outline: none;
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    min-width: inherit;
+    border-radius: 3px;
+    border: 2px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    font:  {Toolbar.Exports.UserFontSettingsStyle} 10px {Toolbar.Exports.UserFontSettingsFamily};
+}}
+.fr-webreport-popup-content-export-parameters-row {{
+    display: flex;
+    padding-top: 5px;
+    flex-direction: row;
+    align-items: flex-start;
+}}
+.fr-webreport-popup-content-export-parameters-slider {{
+    display: flex;
+    margin: 0rem 0rem 0rem 0.35rem;
+    background-color: transparent;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}}
+.fr-webreport-popup-content-export-parameters-slider span {{
+    color: black;
+    min-width: 128px;
+    font:{Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
+    font-weight: normal;
+    white-space: nowrap;
+}}
+input[type=range] {{
+    height: 1.7rem;
+    overflow: hidden;
+    -webkit-appearance: none;
+    margin-left: 0;
+    outline: none;
+    background-color: #424242;
+}}
+
+input[type=range]::-webkit-slider-runnable-track {{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #424242;
+    border-radius: 0px;
+}}
+input[type=range]::-webkit-slider-thumb {{
+    height: 100%;
+    width: 5%;
+    border-radius: 0px;
+    background: linear-gradient(gray,5%, {ColorTranslator.ToHtml(Toolbar.Exports.Color)});
+    cursor: pointer;
+    -webkit-appearance: none;
+    box-shadow: -100vw 0vw 0vw 100vw {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    margin-top: 0px;
+}}
+label{{
+     margin: 5px 0px;
+}}
+.fr-webreport-popup-content-export-parameters-col input[type=text] {{
+    background-color: white;
+    color: #000000;
+    border: 2px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    max-height: 11px;
+}}
+.fr-webreport-popup-content-export-parameters-button {{
+    margin-left: 0.3rem;
+    margin-bottom: 0.3rem;
+    padding: 6px;
+    outline: none;
+    background-color: #ffffff00; 
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    min-width: inherit;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
+    color:  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    border-radius: 3px;
+    border: 2px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+}}
+
+.fr-webreport-popup-content-buttons {{
+    display: flex;
+    padding-top: 1rem;
+    margin-bottom: -1.9rem;
+    width: 100%;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}}
+
+.fr-webreport-popup-content-btn-submit {{
+    outline: none;
+    border: none;
+    background-color:  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    border-radius: 3px;
+    width: 100px;
+    padding: 3px;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 14px {Toolbar.Exports.UserFontSettingsFamily};
+    color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
+}}
+.fr-webreport-popup-content-btn-submit:hover {{
+    transform: scale(1.015);
+}}
+.active:hover {{
+    transform: scale(1.015);
+}}
+.active {{
+    background-color: {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
+}}
+.fr-webreport-popup-content-export-parameters-button:hover {{
+    transform:scale(1.015);
+}}
+.fr-webreport-settings-btn {{
+    background-color: transparent;
+    color: transparent;
+    padding-left: 1rem;
+    margin-left: 230px;
+    display: flex;
+    float: right;
+    margin-top: -1.6rem;
+    outline: none;
+    padding-right: 1rem;
+    border: none;
+    position: relative;
+    z-index: 4;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-between;
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+}}
+.fr-webreport-settings-btn:hover{{
+    background-color: transparent;
+    color: transparent;
+    padding-left: 1rem;
+    margin-left: 230px;
+    display: flex;
+    float: right;
+    margin-top: -1.6rem;
+    outline: none;
+    padding-right: 1rem;
+    border: none;
+    position: relative;
+    z-index: 4;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-between;
+    transform: scale(1.1);
+    filter:alpha(opacity=0);
+    opacity: 0.8;
+}}
+.fr-webreport-settings-btn::-moz-focus-inner {{
+    background-color: transparent;
+    color: transparent;
+    padding-left: 1rem;
+    margin-left: 230px;
+    display: flex;
+    float: right;
+    margin-top: -1.6rem;
+    outline: none;
+    padding-right: 1rem;
+    border: none;
+    position: relative;
+    z-index: 4;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-between;
+}}
 
 /************************
     TOOLBAR NAVIGATION
@@ -203,7 +533,6 @@ namespace FastReport.Web
     cursor: default;
 }}
 
-
 /**************
     SPINNER
 **************/
@@ -219,8 +548,8 @@ namespace FastReport.Web
 .{template_FR}-spinner img {{
     width: 90px;
     height: 90px; 
-    left: calc(50% - 50px);
-    top: calc(50% - 50px);
+    left: calc(50%-50px);
+    top: calc(50%-50px);
     position: absolute;
     animation: {template_FR}-spin 1s infinite steps(8);
     opacity: 0.5;

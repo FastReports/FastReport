@@ -184,7 +184,7 @@ namespace FastReport.Export.Html
                 header.AppendLine("<style type=\"text/css\" media=\"print\"><!--");
                 header.Append("div." + pageStyleName + 
                     " { page-break-after: always; page-break-inside: avoid; ");
-                if (d.page.Landscape)
+                if (d.page.Landscape && !NotRotateLandscapePage)
                 {
                     header.Append("width:").Append(Px(maxHeight * Zoom).Replace(";", " !important;"))
                           .Append("transform: rotate(90deg); -webkit-transform: rotate(90deg)");

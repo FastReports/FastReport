@@ -80,7 +80,7 @@ namespace FastReport.Web
             hpglTxt = "HPGL";
             htmlTxt = "HTML";
             svgTxt = "SVG";
-            //imageTxt = "Image"; // Required modal window
+            imageTxt = "Image"; // Required modal window
             jsonTxt = "Json";
             ppmlTxt = "PPML";
             latexTxt = "Latex";
@@ -157,7 +157,7 @@ namespace FastReport.Web
             zplTxt = Res.Get("Zpl");
             mhtTxt = Res.Get("Mht");
             //emailTxt = Res.Get("Email"); // Required modal window
-            //imageTxt = Res.Get("Image"); // Required modal window
+            imageTxt = Res.Get("Image");
         }
 
     }

@@ -2,42 +2,22 @@
 using FastReport.Export.Html;
 using FastReport.Export.Image;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Web;
-#if  !OPENSOURCE
-using FastReport.Export.Csv;
-using FastReport.Export.Dbf;
-using FastReport.Export.Json;
-using FastReport.Export.Mht;
-using FastReport.Export.Odf;
-using FastReport.Export.OoXML;
-using FastReport.Export.Pdf;
-using FastReport.Export.Ppml;
-using FastReport.Export.PS;
-using FastReport.Export.RichText;
-using FastReport.Export.Svg;
-using FastReport.Export.Text;
-using FastReport.Export.XAML;
-using FastReport.Export.Xml;
-using FastReport.Export.BIFF8;
-using FastReport.Export.Email;
-using FastReport.Export.Hpgl;
-using FastReport.Export.LaTeX;
-using FastReport.Export.Zpl;
-using FastReport.Export.Dxf;
-
-
-#endif
+using System.Reflection;
 
 namespace FastReport.Web.Controllers
 {
     class ReportController : BaseController
     {
-#region Routes
+        #region Routes
 
         public ReportController()
         {
+
             RegisterHandler("/preview.getReport", async () =>
             {
                 if (!FindWebReport(out WebReport webReport))
@@ -56,8 +36,11 @@ namespace FastReport.Web.Controllers
                 else
 #endif
                 if (!webReport.ReportPrepared && Request.Query["skipPrepare"].ToString() != "yes")
-                        webReport.Report.Prepare();
+                {
+                    webReport.Report.Prepare();
 
+                    webReport.SplitReportPagesByTabs();
+                }
 
                 webReport.SetReportTab(Request);
                 webReport.SetReportPage(Request);
@@ -121,10 +104,39 @@ namespace FastReport.Web.Controllers
 
                 var exportFormat = Request.Query["exportFormat"].ToString().ToLower();
 
-                using (var export = GetExport(exportFormat))
+                var exportInfo = ExportsHelper.GetInfoFromExt(exportFormat);
+                using (var export = exportInfo.CreateExport())
                 using (var ms = new MemoryStream())
                 {
-                    if (exportFormat == "fpx")
+                    if (exportInfo.HaveSettings && Request.Query.Keys.Count > 2)
+                    {
+                        var exportProperties = exportInfo.ExportType?.
+                            GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                            .Where(property => property.CanWrite);
+
+                        if (exportProperties != null)
+                            foreach(var queryKey in Request.Query.Keys)
+                            {
+                                var existProp = exportProperties
+                                    .Where(prop => prop.Name == queryKey)
+                                    .FirstOrDefault();
+                                if (existProp != null)
+                                {
+                                    string propValue = Request.Query[queryKey];
+                                    object propValueConverted;
+                                    if (existProp.PropertyType.IsEnum)
+                                        propValueConverted = Enum.Parse(existProp.PropertyType, propValue);
+                                    else
+                                        propValueConverted = Convert.ChangeType(propValue, existProp.PropertyType);
+#if DEBUG
+                                    Console.WriteLine($"Export setting: {existProp}: {propValueConverted}");
+#endif
+                                    existProp.SetMethod.Invoke(export, new[] { propValueConverted });
+                                }
+                            }
+                    }
+
+                    if (exportInfo.Export == Exports.Prepared)
                         webReport.Report.SavePrepared(ms);
                     else if (export != null)
                         export.Export(webReport.Report, ms);
@@ -197,6 +209,66 @@ namespace FastReport.Web.Controllers
 
                 return new NotFoundResult();
             });
+
+            RegisterHandler("/exportsettings.getSettings", () =>
+            {
+                if (!FindWebReport(out WebReport webReport))
+                    return new NotFoundResult();
+
+                var format = Request.Query["format"];   // pdf
+
+                string msg = string.Empty;
+                switch (format)
+                {
+                    case "image":
+                        msg = webReport.template_ImageExportSettings();
+                        break;
+                    case "html":
+                        msg = webReport.template_HtmlExportSettings();
+                        break;
+#if !OPENSOURCE
+                    case "pdf":
+                        msg = webReport.template_PdfExportSettings();
+                        break;
+                    case "docx":
+                        msg = webReport.template_DocxExportSettings();
+                        break;
+                    case "xlsx":
+                        msg = webReport.template_XlsxExportSettings();
+                        break;
+                    case "ods":
+                        msg = webReport.template_OdsExportSettings();
+                        break;
+                    case "odt":
+                        msg = webReport.template_OdtExportSettings();
+                        break;
+                    case "svg":
+                        msg = webReport.template_SvgExportSettings();
+                        break;
+                    case "rtf":
+                        msg = webReport.template_RtfExportSettings();
+                        break;
+                    case "xml":
+                        msg = webReport.template_XmlExportSettings();
+                        break;
+                    case "pptx":
+                        msg = webReport.template_PptxExportSettings();
+                        break;
+#endif
+                }
+
+                if (msg != null)
+                {
+                    return new ContentResult()
+                    {
+                        StatusCode = (int)HttpStatusCode.OK,
+                        ContentType = "text/html",
+                        Content = msg,
+                    };
+                }
+                return new NotFoundResult();
+            });
+
         }
 
 #endregion
@@ -207,116 +279,6 @@ namespace FastReport.Web.Controllers
         {
             webReport = WebReportCache.Instance.Find(Request.Query["reportId"].ToString());
             return webReport != null;
-        }
-
-        ExportBase GetExport(string exportFormat)
-        {
-            ExportBase export = null;
-
-            switch (exportFormat)
-            {
-#if !OPENSOURCE
-                case "latex":
-                    export = new LaTeXExport();
-                    break;
-                case "xls":
-                    export = new Excel2003Document();
-                   break;
-                //case "email":
-                //    export = new EmailExport(); //Required modal window
-                //    break;
-                case "zpl":
-                    export = new ZplExport();
-                    break;
-                case "hpgl":
-                    export = new HpglExport();
-                    break;
-                case "pdf":
-                    export = new PDFExport();
-                    break;
-                case "rtf":
-                    export = new RTFExport();
-                    break;
-                case "mht":
-                    export = new MHTExport();
-                    break;
-                case "xml":
-                    export = new XMLExport();
-                    break;
-                case "xlsx":
-                    export = new Excel2007Export();
-                    break;
-                case "docx":
-                    export = new Word2007Export();
-                    break;
-                case "pptx":
-                    export = new PowerPoint2007Export();
-                    break;
-                case "ods":
-                    export = new ODSExport();
-                    break;
-                case "odt":
-                    export = new ODTExport();
-                    break;
-                case "xps":
-                    export = new XPSExport();
-                    break;
-                case "csv":
-                    export = new CSVExport();
-                    break;
-                case "dbf":
-                    export = new DBFExport();
-                    break;
-                case "txt":
-                    export = new TextExport();
-                    break;
-                case "xaml":
-                    export = new XAMLExport();
-                    break;
-                case "svg":
-                    export = new SVGExport();
-                    break;
-                case "ppml":
-                    export = new PPMLExport();
-                    break;
-                case "ps":
-                    export = new PSExport();
-                    break;
-                case "json":
-                    export = new JsonExport();
-                    break;
-                case "dxf":
-                    export = new DxfExport();
-                    break;
-#endif
-                case "html":
-                    export = new HTMLExport();
-                    break;    
-                case "bmp":
-                    export = new ImageExport() { ImageFormat = ImageExportFormat.Bmp };
-                    break;
-                case "gif":
-                    export = new ImageExport() { ImageFormat = ImageExportFormat.Gif };
-                    break;
-                case "jpg":
-                case "jpeg":
-                    export = new ImageExport() { ImageFormat = ImageExportFormat.Jpeg };
-                    break;
-                case "emf":
-                    export = new ImageExport() { ImageFormat = ImageExportFormat.Metafile };
-                    break;
-                case "png":
-                    export = new ImageExport() { ImageFormat = ImageExportFormat.Png };
-                    break;
-                case "tif":
-                case "tiff":
-                    export = new ImageExport() { ImageFormat = ImageExportFormat.Tiff };
-                    break;
-               
-            }
-           
-            return export;
-            
         }
 
         string Template_textedit_form(string text, string okText, string cancelText) => $@"

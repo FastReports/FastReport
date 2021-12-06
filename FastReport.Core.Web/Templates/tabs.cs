@@ -16,6 +16,7 @@ namespace FastReport.Web
 
                 for (int i = 0; i < Tabs.Count; i++)
                 {
+
                     //sb.Append("<div class=\"tabselector\">");
                     //sb.Append(string.Format("<input class=\"td tab {2}\" type=\"button\" name=\"tab1\" value=\"{0}\" title=\"{3}\" onclick=\"{1}\"/>",
                     //    GetTabName(i), GetNavRequest("settab", i.ToString()), i == CurrentTabIndex ? "tabselected" : "", fTabs[i].Name));
@@ -41,7 +42,6 @@ namespace FastReport.Web
 
                     sb.Append($@"</div>");
                 }
-
                 sb.Append($@"</div>");
             }
             return sb.ToString();
@@ -49,11 +49,15 @@ namespace FastReport.Web
 
         internal string GetCurrentTabName()
         {
+            if (SplitReportPagesInTabs)
+                return Report.GetReportName;
+
             return GetTabName(CurrentTabIndex);
         }
-
+      
         internal string GetTabName(int i)
         {
+
             if (String.IsNullOrEmpty(Tabs[i].Name))
             {
                 string s = Tabs[i].Report.ReportInfo.Name;
@@ -62,9 +66,11 @@ namespace FastReport.Web
                 if (String.IsNullOrEmpty(s))
                     s = (i + 1).ToString();
                 return s;
+            
             }
             else
                 return Tabs[i].Name;
         }
+
     }
 }
