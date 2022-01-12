@@ -377,6 +377,7 @@ namespace FastReport.Export.Html
         private FastString GetHtmlParagraph(HtmlTextRenderer renderer)
         {
             FastString sb = new FastString();
+
             foreach (HtmlTextRenderer.Paragraph paragraph in renderer.Paragraphs)
                 foreach (HtmlTextRenderer.Line line in paragraph.Lines)
                 {
@@ -433,7 +434,13 @@ namespace FastReport.Export.Html
                                             sb.Append("&gt;");
                                             break;
                                         case '\t':
-                                            sb.Append("&Tab;");
+                                            if (word.Type == HtmlTextRenderer.WordType.Tab)
+                                            {
+                                                sb.Append($"<span style=\"tab-size: {Math.Round(run.Left + run.Width)}px;\">&Tab;</span>");
+                                            }
+                                            else
+                                                sb.Append("&Tab;");
+
                                             break;
                                         default:
                                             sb.Append(ch);
@@ -515,36 +522,45 @@ namespace FastReport.Export.Html
                     if (Math.Abs(Height) * Zoom < 1 && Zoom > 0)
                         Height = 1 / Zoom;
 
-                    using (System.Drawing.Image image =
+                    int zoom = highQualitySVG ? 3 : 1;
+
+                    System.Drawing.Image image =
                         new Bitmap(
-                            (int)(Math.Abs(Math.Round(Width * Zoom))),
-                            (int)(Math.Abs(Math.Round(Height * Zoom)))
-                            )
-                          )
+                            (int)(Math.Abs(Math.Round(Width * Zoom * zoom))),
+                            (int)(Math.Abs(Math.Round(Height * Zoom * zoom)))
+                            );
                     {
-                        using (Graphics g = Graphics.FromImage(image))
+                        Graphics g = Graphics.FromImage(image);
                         {
                             if (obj is TextObjectBase)
-                                g.Clear(Color.White);
+                                g.Clear(Color.Transparent);
 
                             float Left = Width > 0 ? obj.AbsLeft : obj.AbsLeft + Width;
                             float Top = Height > 0 ? obj.AbsTop : obj.AbsTop + Height;
 
                             float dx = 0;
                             float dy = 0;
-                            g.TranslateTransform((-Left - dx) * Zoom, (-Top - dy) * Zoom);
+                            g.TranslateTransform((-Left - dx) * Zoom * zoom, (-Top - dy) * Zoom * zoom);
 
                             BorderLines oldLines = obj.Border.Lines;
                             obj.Border.Lines = BorderLines.None;
-                            obj.Draw(new FRPaintEventArgs(g, Zoom, Zoom, Report.GraphicCache));
+                            obj.Draw(new FRPaintEventArgs(g, Zoom + zoom - 1, Zoom + zoom - 1, Report.GraphicCache));
                             obj.Border.Lines = oldLines;
-                     
+
+                            Bitmap b = new Bitmap((int)Width, (int)Height);
+                            g = Graphics.FromImage(b);
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+
+                            g.DrawImage(image, 0, 0, (int)Width, (int)Height);
+                            image = b;
+                            g.Dispose();
                         }
 
                         if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
                             ExportUtils.SaveJpeg(image, PictureStream, 95);
                         else
                             image.Save(PictureStream, FPictureFormat);
+                        image.Dispose();
                     }
                     PictureStream.Position = 0;
 
