@@ -64,6 +64,35 @@ namespace FastReport.Engine
             }
         }
 
+        private bool CalcVisibleExpression(string expression)
+        {
+            bool result = true;
+
+            object expressionObj = null;
+            // Calculate expressions with TotalPages only on FinalPass.
+            if (!expression.Contains("TotalPages") || FinalPass)
+            {
+                expressionObj = Report.Calc(Code.CodeUtils.FixExpressionWithBrackets(expression));
+            }
+            if (expressionObj != null && expressionObj is bool)
+            {
+                if (!expression.Contains("TotalPages"))
+                {
+                    result = (bool)expressionObj;
+                }
+                else if (FirstPass)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = (bool)expressionObj;
+                }
+            }
+
+            return result;
+        }
+
         private void RunReportPages()
         {
 #if TIMETRIAL
@@ -74,6 +103,13 @@ namespace FastReport.Engine
             for (int i = 0; i < Report.Pages.Count; i++)
             {
                 ReportPage page = Report.Pages[i] as ReportPage;
+
+                // Calc and apply visible expression if needed.
+                if (!String.IsNullOrEmpty(page.VisibleExpression))
+                {
+                    page.Visible = CalcVisibleExpression(page.VisibleExpression);
+                }
+
                 if (page != null && page.Visible && page.Subreport == null)
                     RunReportPage(page);
                 if (Report.Aborted)

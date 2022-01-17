@@ -65,7 +65,7 @@ namespace FastReport.Web
     flex-direction: {Toolbar.RowOrColumn};
     /* flex-wrap: wrap; */
     width: auto;
-    height: {Toolbar.VerticalToolbarHeight}%;
+    height: {Toolbar.VerticalToolbarHeight}px;
     order:{Toolbar.TopOrBottom} ;
     position: relative;
     align-items: center;
@@ -496,13 +496,10 @@ label{{
     padding-right: 0px;
 }}
 .{template_FR}-toolbar-slash{{
-    height: 20px;
-    margin-top: -20px;
+    height: calc({Toolbar.Height}px * 0.68);
  }}
 .{template_FR}-toolbar-slash > img {{
     height: calc({Toolbar.Height}px * 0.44);
-    padding-top: calc({Toolbar.Height}px * 0.3);
-    padding-bottom: calc({Toolbar.Height}px * 0.26);
     transform: rotate({Toolbar.ToolbarSlash}deg);
     padding-left: 3px;
     padding-right: 3px;

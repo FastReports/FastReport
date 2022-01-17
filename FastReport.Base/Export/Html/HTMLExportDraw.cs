@@ -22,8 +22,6 @@ namespace FastReport.Export.Html
             FFontDesc.Append("font-size:").Append(Px(Math.Round(font.Size * 96 / 72)));
             if (LineHeight > 0)
                 FFontDesc.Append("line-height:").Append(Px(LineHeight)).Append(";");
-            else
-                FFontDesc.Append("line-height: 1.2;");
         }
 
         private void HTMLPadding(FastString PaddingDesc, Padding padding, float ParagraphOffset)

@@ -124,11 +124,13 @@
     <SharePointDataConnection Text="Подключение к SharePoint"/>
     <GoogleBigQueryDataConnection Text="Подключение к Google Big Query"/>
     <JsonDataConnection Text="База данных JSON"/>
+    <ESDataSourceConnection Text="Подключение к ElasticSearch"/>
     <CouchbaseDataConnection Text="Подключение к Couchbase"/>
     <MongoDBDataConnection Text="Подключение к MongoDB"/>
     <NosDbDataConnection Text="Подключение к NosDb"/>
     <RavenDBDataConnection Text="Подключение к RavenDB"/>
     <SqlAnywhereDataConnection Text="Подключение к SqlAnywhere"/>
+    <ClickHouseDataConnection Text="Подключение к ClickHouse"/>
     <Bands Text="Бэнды">
       <ReportTitle Text="Заголовок отчета"/>
       <ReportSummary Text="Подвал отчета"/>
@@ -1971,6 +1973,11 @@
       <Port Text="Порт:"/>
       <UseSsl Text="Использовать SSL"/>
     </MongoDB>
+    <Clickhouse>
+      <Server Text="Сервер"/>
+      <ServerPort Text="Порт:"/>
+      <Database Text="База данных"/>
+    </Clickhouse>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2300,6 +2307,7 @@
       <MoveAndModify Text="Перемещать и изменять вместе с ячейкой."/>
       <MoveOnly Text="Перемещать, но не изменять размеры."/>
       <Unchangeable Text="Не перемещать и не изменять размеры."/>
+      <ScaleInPercent Text="Установить масштаб в процентах:"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>
@@ -2418,6 +2426,7 @@
       <Layers Text="Слои"/>
       <EmbPic Text="Встроенные картинки"/>
       <Total Text="Всего"/>
+      <HighQualitySVG Text="Высокое качество SVG"/>
       <NotRotateLandscapePage Text="Не поворачивать альбомные страницы при печати"/>
       <First Text="&lt;&lt;"/>
       <Last Text="&gt;&gt;"/>
@@ -2439,6 +2448,7 @@
       <Density Text="Плотность"/>
       <FontScale Text="Масштаб шрифта"/>
       <PrintAsBitmap Text="Печатать как изображение"/>
+      <Version Text="Версия ZPL"/>
     </Zpl>
     <Email Text="Отправка e-mail">
       <Email Text="Письмо"/>

@@ -1418,6 +1418,11 @@ namespace FastReport
         /// </remarks>
         protected virtual object CalcExpression(string expression, Variant value)
         {
+            if (expression.ToLower() == "true" || expression.ToLower() == "false")
+            {
+                expression = expression.ToLower();
+            }
+
             // try to calculate the expression
             foreach (AssemblyDescriptor d in assemblies)
             {

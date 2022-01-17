@@ -11,7 +11,7 @@ namespace FastReport.ClickHouse
     {
         public ClickHouseAssemblyInitializer()
         {
-            RegisteredObjects.AddConnection(typeof(ClickHouseDataConnection),"ClickHouse");
+            RegisteredObjects.AddConnection(typeof(ClickHouseDataConnection));
         }
     }
 }

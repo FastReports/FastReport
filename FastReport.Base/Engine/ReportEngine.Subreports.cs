@@ -1,3 +1,4 @@
+using System;
 using FastReport.Preview;
 
 namespace FastReport.Engine
@@ -40,6 +41,13 @@ namespace FastReport.Engine
             for (int i = 0; i < originalObjectsCount; i++)
             {
                 SubreportObject subreport = parentBand.Objects[i] as SubreportObject;
+
+                // Apply visible expression if needed.
+                if (subreport != null && !String.IsNullOrEmpty(subreport.VisibleExpression))
+                {
+                    subreport.Visible = CalcVisibleExpression(subreport.VisibleExpression);
+                }
+
                 if (subreport != null && subreport.Visible && subreport.PrintOnParent)
                     RenderInnerSubreport(parentBand, subreport);
             }
@@ -60,6 +68,13 @@ namespace FastReport.Engine
                 for (int i = 0; i < parentBand.Objects.Count; i++)
                 {
                     SubreportObject subreport = parentBand.Objects[i] as SubreportObject;
+
+                    // Apply visible expression if needed.
+                    if (subreport != null && !String.IsNullOrEmpty(subreport.VisibleExpression))
+                    {
+                        subreport.Visible = CalcVisibleExpression(subreport.VisibleExpression);
+                    }
+
                     if (subreport != null && subreport.Visible && !subreport.PrintOnParent)
                     {
                         hasSubreports = true;

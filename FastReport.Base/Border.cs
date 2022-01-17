@@ -40,8 +40,13 @@ namespace FastReport
     /// <summary>
     /// Specifies a double line. 
     /// </summary>
-    Double
-  }
+    Double,
+
+    /// <summary>
+    /// Specifies a custom line. 
+    /// </summary>
+    Custom
+    }
 
   /// <summary>
   /// Specifies the sides of a border.

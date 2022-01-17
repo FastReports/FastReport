@@ -743,7 +743,6 @@ namespace FastReport.Table
             // generate unlimited page
             if (Report.Engine.UnlimitedHeight || Report.Engine.UnlimitedWidth)
             {
-                ReportPage page = Report.PreparedPages.GetPage(Report.Engine.CurPage);
                 if (Report.Engine.UnlimitedHeight)
                 {
                     bounds.Height = tableEndY;
@@ -752,7 +751,6 @@ namespace FastReport.Table
                 {
                     bounds.Width = tableEndX;
                 }
-                Report.PreparedPages.ModifyPage(Report.Engine.CurPage, page);
             }
 
             DataBand band = new DataBand();

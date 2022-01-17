@@ -150,7 +150,7 @@ namespace FastReport.Web
                 {
                     case Positions.Left:
                     case Positions.Right:
-                        return (Height * 2.5f).ToString("0.##", CultureInfo.InvariantCulture);
+                        return (Height * 11f).ToString("0.##", CultureInfo.InvariantCulture);
                     default:
                         return Height.ToString();
                 }
