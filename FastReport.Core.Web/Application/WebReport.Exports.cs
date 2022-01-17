@@ -10,7 +10,7 @@ namespace FastReport.Web
         /// <summary>
         /// Switch a visibility of prepared report export in toolbar
         /// </summary>
-        [Obsolete("Please, use Toolbar.Exports.ShowPreparedExport or set flag on Toolbar.Exports.ExportTypes")]
+        [Obsolete("Please, use Toolbar.Exports.ShowPreparedReport or set flag on Toolbar.Exports.ExportTypes")]
         public bool ShowPreparedReport { get => Toolbar.Exports.ShowPreparedReport; set => Toolbar.Exports.ShowPreparedReport = value; }
 #if !OPENSOURCE
         /// <summary>

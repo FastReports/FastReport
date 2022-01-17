@@ -958,6 +958,12 @@ namespace FastReport
               (PaperWidth - LeftMargin - RightMargin) * Units.Millimeters,
               (PaperHeight - TopMargin - BottomMargin) * Units.Millimeters);
 
+            // Fix System.OverflowException when drawing unlimited page without preparing.
+            if ((UnlimitedHeight || UnlimitedWidth) && !(IsRunning || IsPrinting))
+            {
+                pageRect = printableRect;
+            }
+
             DrawBackground(e, pageRect);
             Border.Draw(e, printableRect);
             if (Watermark.Enabled)

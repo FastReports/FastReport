@@ -984,7 +984,12 @@ namespace FastReport
 
             if (!String.IsNullOrEmpty(ExportableExpression))
             {
-                expressions.Add(Code.CodeUtils.FixExpressionWithBrackets(ExportableExpression));
+                string expression = Code.CodeUtils.FixExpressionWithBrackets(ExportableExpression);
+                if (expression.ToLower() == "true" || expression.ToLower() == "false")
+                {
+                    expression = expression.ToLower();
+                }
+                expressions.Add(expression);
             }
 
             return expressions.ToArray();
