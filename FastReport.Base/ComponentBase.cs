@@ -27,7 +27,6 @@ namespace FastReport
         private bool printable;
         private string printableExpression;
         private float width;
-        private float rightAnchorWidth;
 
         #endregion Fields
 
@@ -412,21 +411,6 @@ namespace FastReport
             }
         }
 
-        /// <summary>
-        /// Gets or sets the distance between right of the object and the right of a parent band.
-        /// </summary>
-        /// <remarks>
-        /// This property value is measured in the screen pixels.
-        /// This property is used only when page has unlimited width.
-        /// </remarks>
-        [DefaultValue(0.0f)]
-        [Browsable(false)]
-        public float RightAnchorWidth
-        {
-            get { return rightAnchorWidth; }
-            set { rightAnchorWidth = value; }
-        }
-
         #endregion Properties
 
         #region Constructors
@@ -443,7 +427,6 @@ namespace FastReport
             printableExpression = "";
             SetFlags(Flags.CanWriteBounds | Flags.HasGlobalName, true);
             tag = "";
-            rightAnchorWidth = 0.0f;
         }
 
         #endregion Constructors
@@ -505,11 +488,6 @@ namespace FastReport
             }
             if (Tag != c.Tag)
                 writer.WriteStr("Tag", Tag);
-            if (writer.SerializeTo == SerializeTo.Preview)
-            {
-                if (RightAnchorWidth != c.RightAnchorWidth)
-                    writer.WriteFloat("RightAnchorWidth", RightAnchorWidth);
-            }
         }
 
         #endregion Public Methods
@@ -529,12 +507,22 @@ namespace FastReport
 
             if (!String.IsNullOrEmpty(VisibleExpression))
             {
-                expressions.Add(Code.CodeUtils.FixExpressionWithBrackets(VisibleExpression));
+                string expression = Code.CodeUtils.FixExpressionWithBrackets(VisibleExpression);
+                if (expression.ToLower() == "true" || expression.ToLower() == "false")
+                {
+                    expression = expression.ToLower();
+                }
+                expressions.Add(expression);
             }
 
             if (!String.IsNullOrEmpty(PrintableExpression))
             {
-                expressions.Add(Code.CodeUtils.FixExpressionWithBrackets(PrintableExpression));
+                string expression = Code.CodeUtils.FixExpressionWithBrackets(PrintableExpression);
+                if (expression.ToLower() == "true" || expression.ToLower() == "false")
+                {
+                    expression = expression.ToLower();
+                }
+                expressions.Add(expression);
             }
 
             return expressions.ToArray();

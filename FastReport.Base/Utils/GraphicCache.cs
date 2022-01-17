@@ -150,7 +150,7 @@ namespace FastReport
         /// <returns>The <b>StringFormat</b> object.</returns>
         public StringFormat GetStringFormat(StringAlignment align, StringAlignment lineAlign,
           StringTrimming trimming, StringFormatFlags flags, float firstTab, FloatCollection tabWidth,
-          float defaultTab)
+          float defaultTab = 48)
         {
             int hash = align.GetHashCode() ^ (lineAlign.GetHashCode() << 2) ^ (trimming.GetHashCode() << 5) ^
               (flags.GetHashCode() << 16) ^ (100 - firstTab).GetHashCode() ^ tabWidth.GetHashCode();

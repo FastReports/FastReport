@@ -55,7 +55,9 @@ namespace FastReport.Data
       builder.Database = tbDatabase.Text;
       builder.UserID = tbUserName.Text;
       builder.Password = tbPassword.Text;
-      
+      if(FConnectionString == "")
+          builder.DataSource = "localhost";
+
       return builder.ToString();
     }
 

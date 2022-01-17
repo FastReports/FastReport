@@ -125,13 +125,14 @@
     <SharePointDataConnection Text="SharePoint connection"/>
     <GoogleBigQueryDataConnection Text="Google Big Query connection"/>
     <JsonDataConnection Text="JSON database"/>
-    <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)" />
-    <ESDataSourceConnection Text="ElasticSearch connection" />
+    <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)"/>
+    <ESDataSourceConnection Text="ElasticSearch connection"/>
     <CouchbaseDataConnection Text="Couchbase server"/>
     <MongoDBDataConnection Text="MongoDB connection"/>
     <NosDbDataConnection Text="NosDb connection"/>
     <RavenDBDataConnection Text="RavenDB connection"/>
     <SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
+    <ClickHouseDataConnection Text="ClickHouse connection"/>
     <Bands Text="Bands">
       <ReportTitle Text="Report Title"/>
       <ReportSummary Text="Report Summary"/>
@@ -2187,6 +2188,11 @@
       <Port Text="Port:"/>
       <UseSsl Text="Use SSL"/>
     </MongoDB>
+    <Clickhouse>
+      <Server Text="Server"/>
+      <ServerPort Text="Server port:"/>
+      <Database Text="Database"/>
+    </Clickhouse>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2549,6 +2555,7 @@
       <MoveAndModify Text="Move and modify along with the cell."/>
       <MoveOnly Text="Move but not resize."/>
       <Unchangeable Text="Do not move or resize."/>
+      <ScaleInPercent Text="Set scale in percent:"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
@@ -2672,6 +2679,7 @@
       <SubFolder Text="Sub-folder"/>
       <Navigator Text="Navigator"/>
       <Layers Text="Layers"/>
+      <HighQualitySVG Text="High quality SVG"/>
       <EmbPic Text="Embedding pictures"/>
       <Total Text="Total"/>
       <NotRotateLandscapePage Text="Don't rotate landscape pages when printing"/>
@@ -2695,6 +2703,7 @@
       <Density Text="Density"/>
       <FontScale Text="Font Scale"/>
       <PrintAsBitmap Text="Print As Bitmap"/>
+      <Version Text="Version of ZPL"/>
     </Zpl>
     <Email Text="Send E-mail">
       <Email Text="E-mail"/>

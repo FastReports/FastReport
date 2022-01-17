@@ -15,9 +15,19 @@ namespace FastReport.Data
     public partial class ClickHouseConnectionEditor : ConnectionEditorBase
     {
         private string FConnectionString;
+
         private void Localize()
         {
-            //for now is empty.
+            MyRes res = new MyRes("ConnectionEditors,Common");
+            lblUserName.Text = res.Get("UserName");
+            lblPassword.Text = res.Get("Password");
+            lblServer.Text = res.Get("Server");
+            lblDatabase.Text = res.Get("DatabaseName");
+
+            res = new MyRes("ConnectionEditors,ClickHouse");
+            gbServer.Text = res.Get("Server");
+            port.Text = res.Get("ServerPort");
+            gbDatabase.Text = res.Get("Database");
         }
 
         protected override string GetConnectionString()
