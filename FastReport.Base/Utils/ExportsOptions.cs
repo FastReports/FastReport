@@ -18,12 +18,29 @@ namespace FastReport.Utils
         /// </summary>
         public List<ExportsTreeNode> ExportsMenu
         {
-            get { return menuNodes; }
+            get
+            {
+                RemoveCloudsAndMessengersDuplicatesInMenuNodes();
+                return menuNodes;
+            }
         }
 
         private ExportsOptions()
         {
             menuNodes = new List<ExportsTreeNode>();
+        }
+
+        private void RemoveCloudsAndMessengersDuplicatesInMenuNodes()
+        {
+            int last = menuNodes.Count - 1;
+            for (int i = last; i >= 0; i--)
+            {
+                ExportsTreeNode node = menuNodes[i];
+                if (node.Name == "Cloud" || node.Name == "Messengers")
+                {
+                    menuNodes.Remove(node);
+                }
+            }
         }
 
         /// <summary>

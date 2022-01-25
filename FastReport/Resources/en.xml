@@ -59,6 +59,7 @@
     <TableManualBuildError Text="You can use TableObject.PrintRow, PrintColumn methods inside its ManualBuild event only."/>
     <Warning Text="Warning"/>
     <WarningSaveRDL Text="RDL format has some restrictions! This filter will save template's view only! Data sources and objects Barcode, Rich Text, CheckBox and Zip Code will not be saved! Some of properties of objects will not be saved! So you can loose some elements and properties of your template. Save however?"/>
+    <WarningMatrixOnRepeatedBand Text="It's not recommended to put {0} on {1}. The {0} in this case will be created every time when the band will be printed, which will lead to stack overflow."/>
     <WrongFileFormat Text="Cannot load the file. Unknown file format"/>
     <WrongListAndLabelFile Text="Cannot load the file. File is invalid or not a List and Label report."/>
     <WrongCrystalReportsFile Text="Cannot load the file. File is invalid or not a Crystal Reports report."/>
