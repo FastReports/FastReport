@@ -401,6 +401,7 @@ namespace FastReport.Export.Html
                     else sb.Append("white-space:pre;");
                     sb.Append("\">");
                     HtmlTextRenderer.StyleDescriptor styleDesc = null;
+                    float prevWidth = 0;
                     foreach (HtmlTextRenderer.Word word in line.Words)
                     {
                         foreach (HtmlTextRenderer.Run run in word.Runs)
@@ -436,7 +437,10 @@ namespace FastReport.Export.Html
                                         case '\t':
                                             if (word.Type == HtmlTextRenderer.WordType.Tab)
                                             {
-                                                sb.Append($"<span style=\"tab-size: {Math.Round(run.Left + run.Width)}px;\">&Tab;</span>");
+                                                if(layers)
+                                                    sb.Append($"<span style=\"tab-size: {Math.Round(prevWidth + run.Width)}px;\">&Tab;</span>");
+                                                else
+                                                    sb.Append($"<span style=\"tab-size: {Math.Round(run.Left + run.Width)}px;\">&Tab;</span>");
                                             }
                                             else
                                                 sb.Append("&Tab;");
@@ -447,7 +451,6 @@ namespace FastReport.Export.Html
                                             break;
                                     }
                                 }
-
                             }
                             else if (run is HtmlTextRenderer.RunImage)
                             {
@@ -474,6 +477,7 @@ namespace FastReport.Export.Html
                                 }
 
                             }
+                            prevWidth = run.Width;
                             //run.ToHtml(sb, true);
                         }
                     }

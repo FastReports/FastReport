@@ -1,3 +1,5 @@
+#undef FRCORE
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -50,9 +52,9 @@ namespace FastReport.Data
         protected override string GetConnectionStringWithLoginInfo(string userName, string password)
         {
 #if FRCORE
-            SqliteConnectionStringBuilder builder = new SqliteConnectionStringBuilder(ConnectionString);
+            var builder = new SqliteConnectionStringBuilder(ConnectionString);
 #else
-            SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder(ConnectionString);
+            var builder = new SQLiteConnectionStringBuilder(ConnectionString);
             builder.Password = password;
 #endif
 
