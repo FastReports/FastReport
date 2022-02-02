@@ -69,6 +69,7 @@ namespace FastReport.Data
         /// Gets or sets the certificate password.
         /// </summary>
         [Category("Data")]
+        [PasswordPropertyText(true)]
         public string Password
         {
             get

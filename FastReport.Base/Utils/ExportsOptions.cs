@@ -148,6 +148,14 @@ namespace FastReport.Utils
                 this.isExport = isExport;
             }
 
+            public ExportsTreeNode(string name, Type exportType, bool isExport, ObjectInfo tag)
+            {
+                this.name = name;
+                this.exportType = exportType;
+                this.isExport = isExport;
+                this.Tag = tag;
+            }
+
             public ExportsTreeNode(string name, int imageIndex, bool isExport)
             {
                 this.name = name;
@@ -161,6 +169,15 @@ namespace FastReport.Utils
                 this.exportType = exportType;
                 this.imageIndex = imageIndex;
                 this.isExport = isExport;
+            }
+
+            public ExportsTreeNode(string name, Type exportType, int imageIndex, bool isExport, ObjectInfo tag)
+            {
+                this.name = name;
+                this.exportType = exportType;
+                this.imageIndex = imageIndex;
+                this.isExport = isExport;
+                this.Tag = tag;
             }
 
             public ExportsTreeNode(string name, Type exportType, int imageIndex, bool enabled, bool isExport)
