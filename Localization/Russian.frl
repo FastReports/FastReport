@@ -116,6 +116,7 @@
     <MsSqlDataConnection Text="Подключение к MS SQL"/>
     <OdbcDataConnection Text="Подключение к ODBC"/>
     <FirebirdDataConnection Text="Подключение к Firebird "/>
+    <ExcelDataConnection Text="Подключение к Excel"/>
     <VistaDBDataConnection Text="Подключение к VistaDB"/>
     <PostgresDataConnection Text="Подключение к Postgres"/>
     <MySqlDataConnection Text="Подключение к MySQL"/>
@@ -1927,6 +1928,7 @@
       <Xsd Text="Файл схемы или URL:"/>
       <Xml Text="Файл данных или URL:"/>
     </Xml>
+    <Xlsx Text="Выберите файл .xlsx:"/>
     <Csv>
       <ConfigureDatabase Text="Настройка базы данных"/>
       <SelectFile Text="Выберите .csv файл (путь или url):"/>
