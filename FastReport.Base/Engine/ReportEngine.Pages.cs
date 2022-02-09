@@ -105,7 +105,7 @@ namespace FastReport.Engine
                 ReportPage page = Report.Pages[i] as ReportPage;
 
                 // Calc and apply visible expression if needed.
-                if (!String.IsNullOrEmpty(page.VisibleExpression))
+                if (page != null && !String.IsNullOrEmpty(page.VisibleExpression))
                 {
                     page.Visible = CalcVisibleExpression(page.VisibleExpression);
                 }

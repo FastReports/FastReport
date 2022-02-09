@@ -117,6 +117,7 @@
     <MsSqlDataConnection Text="MS SQL connection"/>
     <OdbcDataConnection Text="ODBC connection"/>
     <FirebirdDataConnection Text="Firebird connection"/>
+    <ExcelDataConnection Text="Excel connection"/>
     <VistaDBDataConnection Text="VistaDB connection"/>
     <PostgresDataConnection Text="Postgres connection"/>
     <MySqlDataConnection Text="MySQL connection"/>
@@ -2142,6 +2143,7 @@
       <Xsd Text="Schema file or URL:"/>
       <Xml Text="Data file or URL:"/>
     </Xml>
+    <Xlsx Text="Select .xlsx file:"/>
     <Csv>
       <ConfigureDatabase Text="Configure database"/>
       <SelectFile Text="Select .csv file (path or url):"/>
