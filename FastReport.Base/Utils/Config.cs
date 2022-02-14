@@ -523,8 +523,14 @@ namespace FastReport.Utils
 
         private static void LoadPluginsInCurrentFolder()
         {
+            string searchPattern = "FastReport.Data.*.dll";
+            if (string.IsNullOrWhiteSpace(ApplicationFolder) || (Directory.Exists(ApplicationFolder) == false))
+            {
+                Console.WriteLine($"Config ApplicationFolder is empty or invalid... can not load Plugins {searchPattern}");
+                return;
+            }
             // find all plugin-connector in current directory
-            var plugins = Directory.GetFiles(ApplicationFolder, "FastReport.Data.*.dll");
+            var plugins = Directory.GetFiles(ApplicationFolder, searchPattern);
 
             // initialize
             foreach(var pluginName in plugins)
