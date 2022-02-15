@@ -537,7 +537,9 @@ namespace FastReport.Utils
             string searchPattern = "FastReport.Data.*.dll";
             if (string.IsNullOrWhiteSpace(ApplicationFolder) || (Directory.Exists(ApplicationFolder) == false))
             {
-                Console.WriteLine($"Config ApplicationFolder is empty or invalid... can not load Plugins {searchPattern}");
+#if DEBUG                
+                Console.WriteLine($"Config ApplicationFolder ({ApplicationFolder}) is empty or invalid... can not load Plugins {searchPattern}");
+#endif                
                 return;
             }
             // find all plugin-connector in current directory
@@ -548,14 +550,29 @@ namespace FastReport.Utils
             {
                 try
                 {
+#if DEBUG
+                    Console.WriteLine($"try to load plugin {pluginName}");
+#endif                    
+#if NETCOREAPP
+                    Assembly assembly;
+                    if (AssemblyLoadContext.CurrentContextualReflectionContext != null)
+                    {
+                        assembly = AssemblyLoadContext.CurrentContextualReflectionContext.LoadFromAssemblyPath(pluginName);
+                    }
+                    else
+                    {
+                        assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(pluginName);
+                    }
+                    ProcessAssembly(assembly);
+#else                    
                     ProcessAssembly(Assembly.LoadFrom(pluginName));
+#endif
                 }
                 catch
                 {
                 }
             }
-
-
+            
         }
 
         private static void ProcessAssembly(Assembly a)
