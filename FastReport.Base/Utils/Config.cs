@@ -49,6 +49,7 @@ namespace FastReport.Utils
         private static FRPrivateFontCollection privateFontCollection = new FRPrivateFontCollection();
         internal static bool CleanupOnExit;
         private static CompilerSettings compilerSettings = new CompilerSettings();
+        private static string customApplicationFolder = "";
 
 
 
@@ -109,8 +110,18 @@ namespace FastReport.Utils
         /// </summary>
         public static string ApplicationFolder
         {
-            get { return AppDomain.CurrentDomain.BaseDirectory; }
+            get { return (string.IsNullOrWhiteSpace(customApplicationFolder) ? AppDomain.CurrentDomain.BaseDirectory : customApplicationFolder); }
         }
+        
+
+        /// <summary>
+        /// Gets and sets the custom application folder.
+        /// </summary>
+        public static string CustomApplicationFolder
+        {
+            get { return customApplicationFolder; }
+            set { customApplicationFolder = value; }
+        }        
 
         /// <summary>
         /// Gets an english culture information for localization purposes
