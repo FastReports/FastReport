@@ -110,19 +110,10 @@ namespace FastReport.Utils
         /// </summary>
         public static string ApplicationFolder
         {
+            set { customApplicationFolder = value; }
             get { return (string.IsNullOrWhiteSpace(customApplicationFolder) ? AppDomain.CurrentDomain.BaseDirectory : customApplicationFolder); }
         }
         
-
-        /// <summary>
-        /// Gets and sets the custom application folder.
-        /// </summary>
-        public static string CustomApplicationFolder
-        {
-            get { return customApplicationFolder; }
-            set { customApplicationFolder = value; }
-        }        
-
         /// <summary>
         /// Gets an english culture information for localization purposes
         /// </summary>
@@ -534,7 +525,7 @@ namespace FastReport.Utils
 
         private static void LoadPluginsInCurrentFolder()
         {
-            string searchPattern = "FastReport.Data.*.dll";
+            const string searchPattern = "FastReport.Data.*.dll";
             if (string.IsNullOrWhiteSpace(ApplicationFolder) || (Directory.Exists(ApplicationFolder) == false))
             {
 #if DEBUG                
