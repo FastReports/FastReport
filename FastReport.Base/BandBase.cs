@@ -549,6 +549,8 @@ namespace FastReport
             if (maxHeight < 0)
                 maxHeight = 0;
             Height = maxHeight;
+
+            Validator.ValidateIntersectionAllObjects(this);
         }
 
         internal void FixHeightWithComponentsShift(float deltaY)

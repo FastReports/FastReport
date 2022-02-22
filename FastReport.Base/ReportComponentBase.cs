@@ -134,6 +134,7 @@ namespace FastReport
         private string mouseDownEvent;
         private string mouseEnterEvent;
         private string mouseLeaveEvent;
+        private bool isIntersectingWithOtherObject;
         #endregion
 
         #region Properties
@@ -166,6 +167,17 @@ namespace FastReport
         {
             get { return exportable; }
             set { exportable = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that determines if the object is intersecting with other object.
+        /// </summary>
+        [DefaultValue(false)]
+        [Browsable(false)]
+        public bool IsIntersectingWithOtherObject
+        {
+            get { return isIntersectingWithOtherObject; }
+            set { isIntersectingWithOtherObject = value; }
         }
 
         /// <summary>
@@ -667,6 +679,7 @@ namespace FastReport
             Border = src.Border.Clone();
             Fill = src.Fill.Clone();
             Bookmark = src.Bookmark;
+            IsIntersectingWithOtherObject = src.IsIntersectingWithOtherObject;
             Hyperlink.Assign(src.Hyperlink);
             CanGrow = src.CanGrow;
             CanShrink = src.CanShrink;
@@ -755,6 +768,8 @@ namespace FastReport
         {
             if (Width < 0.01 || Height < 0.01)
                 return;
+            if (DrawIntersectBackground(e))
+                return;
             Fill.Draw(e, AbsBounds);
         }
 
@@ -794,6 +809,8 @@ namespace FastReport
             Hyperlink.Serialize(writer, c.Hyperlink);
             if (Bookmark != c.Bookmark)
                 writer.WriteStr("Bookmark", Bookmark);
+            if (IsIntersectingWithOtherObject != c.IsIntersectingWithOtherObject)
+                writer.WriteBool("IsIntersectedWithOtherObject", IsIntersectingWithOtherObject);
             if (writer.SerializeTo != SerializeTo.Preview)
             {
                 if (CanGrow != c.CanGrow)
@@ -1049,6 +1066,7 @@ namespace FastReport
             flagUseBorder = true;
             flagPreviewVisible = true;
             flagSerializeStyle = true;
+            isIntersectingWithOtherObject = false;
             shiftMode = ShiftMode.Always;
             style = "";
             evenStyle = "";

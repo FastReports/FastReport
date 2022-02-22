@@ -1576,6 +1576,7 @@
       <EditAfterInsert Text="Редактировать объект после вставки"/>
       <EventBandIndicator Text="Отображать индикатор на бэндах с событиями"/>
       <EventObjectIndicator Text="Отображать индикатор на объектах с событиями"/>
+      <EnableBacklightIntersectingObjects Text="Подсвечивать пересекающиеся объекты" />
       <ObjectsAppearance Text="Внешний вид объектов"/>
 	  <EnableBacklight Text="Подсвечивать активный бэнд"/>
 	  <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
