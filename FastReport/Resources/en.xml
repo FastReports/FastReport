@@ -1777,6 +1777,7 @@
       <EditAfterInsert Text="Edit after insert"/>
       <EventBandIndicator Text="Show indicator on bands with events" />
       <EventObjectIndicator Text="Show indicator on objects with events" />
+      <EnableBacklightIntersectingObjects Text="Backlight intersecting objects" />
       <ObjectsAppearance Text="Objects appearance"/>
       <EnableBacklight Text="Backlight active band"/>
       <SimplifyDBFields Text="Simplified display of DB fields"/>

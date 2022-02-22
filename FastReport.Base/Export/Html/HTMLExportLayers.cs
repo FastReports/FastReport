@@ -94,9 +94,10 @@ namespace FastReport.Export.Html
 
         private void ExportPageStylesLayers(FastString styles, int PageNumber)
         {
+            PrintPageStyle(styles);
             if (prevStyleListIndex < cssStyles.Count)
             {
-                styles.Append(HTMLGetStylesHeader());
+                styles.AppendLine(HTMLGetStylesHeader());
                 for (int i = prevStyleListIndex; i < cssStyles.Count; i++)
                     styles.Append(HTMLGetStyleHeader(i, PageNumber)).Append(cssStyles[i]).AppendLine("}");
                 styles.AppendLine(HTMLGetStylesFooter());

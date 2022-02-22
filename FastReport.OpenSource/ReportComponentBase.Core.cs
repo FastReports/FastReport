@@ -21,5 +21,15 @@ namespace FastReport
         {
           
         }
+
+        /// <summary>
+        /// Does nothing
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        protected bool DrawIntersectBackground(FRPaintEventArgs e)
+        {
+            return false;
+        }
     }
 }

@@ -176,23 +176,25 @@ namespace FastReport.Export.Html
 
         private string HTMLGetStylesHeader()
         {
-            FastString header = new FastString();
+            return "<style type=\"text/css\"><!-- ";
+        }
+
+        private void PrintPageStyle(FastString sb)
+        {
             if (singlePage && pageBreaks)
             {
-                header.AppendLine("<style type=\"text/css\" media=\"print\"><!--");
-                header.Append("div." + pageStyleName + 
-                    " { page-break-after: always; page-break-inside: avoid; ");
+                sb.AppendLine("<style type=\"text/css\" media=\"print\"><!--");
+                sb.Append("div.").Append(pageStyleName)
+                    .Append(" { page-break-after: always; page-break-inside: avoid; ");
                 if (d.page.Landscape && !NotRotateLandscapePage)
                 {
-                    header.Append("width:").Append(Px(maxHeight * Zoom).Replace(";", " !important;"))
+                    sb.Append("width:").Append(Px(maxHeight * Zoom).Replace(";", " !important;"))
                           .Append("transform: rotate(90deg); -webkit-transform: rotate(90deg)");
                 }
 
-                header.AppendLine("}")
+                sb.AppendLine("}")
                       .AppendLine("--></style>");
             }
-            header.AppendLine("<style type=\"text/css\"><!-- ");
-            return header.ToString();
         }
 
         private string HTMLGetStyleHeader(long index, long subindex)
