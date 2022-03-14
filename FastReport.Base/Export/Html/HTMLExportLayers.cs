@@ -4,6 +4,7 @@ using System.IO;
 using FastReport.Table;
 using FastReport.Utils;
 using System.Windows.Forms;
+using FastReport.Export;
 
 namespace FastReport.Export.Html
 {
@@ -137,6 +138,7 @@ namespace FastReport.Export.Html
                     {
                         onclick = "text_edit";
                     }
+           
                 }
 
                 // we need to adjust left, top, width and height values because borders take up space in html elements
@@ -202,9 +204,14 @@ namespace FastReport.Export.Html
         private string GetHref(ReportComponentBase obj)
         {
             string href = String.Empty;
-            if (!String.IsNullOrEmpty(obj.Hyperlink.Value))
+
+            if (GetHrefAdvMatrixButton(obj, href) != String.Empty)
+                href = GetHrefAdvMatrixButton(obj, href);
+
+            else if(!String.IsNullOrEmpty(obj.Hyperlink.Value))
             {
                 string hrefStyle = String.Empty;
+
                 if (obj is TextObject)
                 {
                     TextObject textObject = obj as TextObject;
@@ -213,6 +220,7 @@ namespace FastReport.Export.Html
                         !textObject.Font.Underline ? ";text-decoration:none" : String.Empty
                         );
                 }
+            
                 string url = EncodeURL(obj.Hyperlink.Value);
                 if (obj.Hyperlink.Kind == HyperlinkKind.URL)
                     href = String.Format("<a {0} href=\"{1}\"" + (obj.Hyperlink.OpenLinkInNewTab ? "target=\"_blank\"" : "") + ">", hrefStyle, obj.Hyperlink.Value);
@@ -268,10 +276,11 @@ namespace FastReport.Export.Html
                 style.Append("padding-left:").Append(Px((obj.Padding.Left) * Zoom));
             if (obj.Padding.Right != 0)
                 style.Append("padding-right:").Append(Px(obj.Padding.Right * Zoom));
-            if (top != 0)
-                style.Append("margin-top:").Append(Px(top * Zoom));
 
-            // we need to apply border width in order to position our div perfectly
+            if (top != 0)
+                    style.Append("margin-top:").Append(Px(top * Zoom));
+
+                // we need to apply border width in order to position our div perfectly
             float borderLeft;
             float borderRight;
             float borderTop;
@@ -352,9 +361,17 @@ namespace FastReport.Export.Html
                                         if (obj.VertAlign == VertAlign.Center)
                                         {
                                             top = (obj.Height - height - obj.Padding.Bottom + obj.Padding.Top) / 2;
+
+                                            if(top < 0)
+                                            {
+                                                if(obj.Height > height)
+                                                top = (obj.Height - height - obj.Padding.Bottom + obj.Padding.Top) / 2;
+                                                else
+                                                top = (height - obj.Height - obj.Padding.Bottom + obj.Padding.Top) / 2;
+                                            }
                                         }
                                         else if (obj.VertAlign == VertAlign.Bottom)
-                                        {
+                                        {                                         
                                             // (float)(Math.Round(obj.Font.Size * 96 / 72) / 2
                                             // necessary to compensate for paragraph offset error in GetSpanText method below
                                             top = obj.Height - height - obj.Padding.Bottom - (float)(Math.Round(obj.Font.Size * 96 / 72) / 2);
@@ -705,7 +722,7 @@ namespace FastReport.Export.Html
                         TableCell textcell = table[j, i];
 
                         textcell.Left = x;
-                        textcell.Top = y;
+                        textcell.Top = y;                      
 
                         // custom draw
                         CustomDrawEventArgs e = new CustomDrawEventArgs();
@@ -717,6 +734,7 @@ namespace FastReport.Export.Html
                         e.top = hPos + textcell.AbsTop;
                         e.width = textcell.Width;
                         e.height = textcell.Height;
+                        
                         OnCustomDraw(e);
                         if (e.done)
                         {
@@ -867,11 +885,15 @@ namespace FastReport.Export.Html
             ExportHTMLPageFinal(css, htmlPage, d, maxWidth, maxHeight);
         }
 
-        private void ExportBandLayers(Base band)
+        private void ExportBandLayers(BandBase band)
         {
-            LayerBack(htmlPage, band as ReportComponentBase, null);
+            LayerBack(htmlPage, band, null);
             foreach (Base c in band.ForEachAllConvectedObjects(this))
             {
+
+            if(ExportMode == ExportType.WebPreview)
+                SetExportableAdvMatrix(c);
+
                 if (c is ReportComponentBase && (c as ReportComponentBase).Exportable)
                 {
                     ReportComponentBase obj = c as ReportComponentBase;
@@ -916,10 +938,11 @@ namespace FastReport.Export.Html
                                     tableback.Top = table.AbsTop;
                                     float tableWidth = 0;
                                     float tableHeight = 0;
+                                  
                                     for (int i = 0; i < table.ColumnCount; i++)
                                         tableWidth += table[i, 0].Width;
                                     for (int i = 0; i < table.RowCount; i++)
-                                        tableHeight += table.Rows[i].Height;
+                                        tableHeight += table.Rows[i].Height;                         
                                     tableback.Width = (tableWidth < table.Width) ? tableWidth : table.Width;
                                     tableback.Height = tableHeight;
                                     LayerText(htmlPage, tableback);

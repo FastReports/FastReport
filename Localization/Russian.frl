@@ -413,6 +413,7 @@
         <Close Text="Закрыть"/>
         <Save Text="Сохранить"/>
         <SaveAs Text="Сохранить как..."/>
+        <SaveWithRandomData Text="Сохранить со случайными данными..."/>
         <SaveAll Text="Сохранить все"/>
         <PageSetup Text="Параметры страницы..."/>
         <PrinterSetup Text="Параметры принтера..."/>
@@ -2312,6 +2313,15 @@
       <MoveOnly Text="Перемещать, но не изменять размеры."/>
       <Unchangeable Text="Не перемещать и не изменять размеры."/>
       <ScaleInPercent Text="Установить масштаб в процентах:"/>
+      <PinnedCells Text="Закрепление ячеек"/>
+      <WithoutPinning Text="Без закрепления"/>
+      <FirstColumn Text="Первый столбец"/>
+      <FirstLine Text="Первая строка"/>
+      <OtherPinning Text="Другое закрепление"/>
+      <Columns Text="Столбцы:"/>
+      <Rows Text="Строки:"/>
+      <Basic Text="Основные"/>
+      <Other Text="Другие"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>

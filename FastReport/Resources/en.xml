@@ -418,6 +418,7 @@
         <Close Text="Close"/>
         <Save Text="Save"/>
         <SaveAs Text="Save As..."/>
+        <SaveWithRandomData Text="Save With Random Data..."/>
         <SaveAll Text="Save All"/>
         <PageSetup Text="Page Setup..."/>
         <PrinterSetup Text="Printer Setup..."/>
@@ -2560,6 +2561,15 @@
       <MoveOnly Text="Move but not resize."/>
       <Unchangeable Text="Do not move or resize."/>
       <ScaleInPercent Text="Set scale in percent:"/>
+      <PinnedCells Text="Pinned cells"/>
+      <WithoutPinning Text="Without pinning"/>
+      <FirstColumn Text="First column"/>
+      <FirstLine Text="First line"/>
+      <OtherPinning Text="Other Pinning"/>
+      <Columns Text="Columns:"/>
+      <Rows Text="Rows:"/>
+      <Basic Text="Basic"/>
+      <Other Text="Other"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>

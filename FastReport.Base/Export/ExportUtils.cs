@@ -700,5 +700,31 @@ namespace FastReport.Export
         {
             return String.Format(INVARIANT_CULTURE, formatString, objects);
         }
+
+        /// <summary>
+        /// Convert index to Excel column name.
+        /// </summary>
+        /// <param name="index"> Index of column</param>
+        /// <returns> Column name</returns>
+        public static string IndexToName(int index)
+        {
+
+            bool firstSymbol = false;
+            string result = "";
+
+            for (; index > 0; index /= 26)
+            {
+                if (index < 26 && result != "")
+                    firstSymbol = true;
+
+                var x = index % 26;
+                result = (char)(x + 'A' + (firstSymbol ? -1 : 0)) + result;
+            }
+
+            if (result == "")
+                result = "A";
+
+            return result;
+        }
     }
 }
