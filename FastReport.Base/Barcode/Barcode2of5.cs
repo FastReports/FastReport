@@ -187,6 +187,12 @@ namespace FastReport.Barcode
             WideBarRatio = 3F;
             PrintCheckSum = true;
         }
+
+        /// <inheritdoc />
+        public override string GetDefaultValue()
+        {
+            return "12345123456";
+        }
     }
 
     /// <summary>
@@ -238,6 +244,12 @@ namespace FastReport.Barcode
 
             BarcodeDeutscheLeitcode src = source as BarcodeDeutscheLeitcode;
             PrintCheckSum = src.PrintCheckSum;
+        }
+
+        /// <inheritdoc />
+        public override string GetDefaultValue()
+        {
+            return "1234512312312";
         }
 
         internal override string GetPattern()

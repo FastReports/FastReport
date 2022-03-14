@@ -980,7 +980,7 @@ namespace FastReport.Export.Html
             writer.WriteBool("NotRotateLandscapePage", NotRotateLandscapePage);
             writer.WriteBool("HighQualitySVG", HighQualitySVG);
         }
-
+       
         /// <summary>
         /// For internal use only.
         /// </summary>
@@ -1033,6 +1033,7 @@ namespace FastReport.Export.Html
             notRotateLandscapePage = false;
             highQualitySVG = false;
         }
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HTMLExport"/> class for WebPreview mode.

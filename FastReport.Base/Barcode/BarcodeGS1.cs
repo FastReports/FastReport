@@ -169,6 +169,12 @@ namespace FastReport.Barcode
                 }
             }
         }
+
+        /// <inheritdoc />
+        public override string GetDefaultValue()
+        {
+            return "(01)0000123456789";
+        }
     }
 
     /// <summary>

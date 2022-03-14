@@ -50,7 +50,7 @@ namespace FastReport.Export.PdfSimple
         }
 
         /// <inheritdoc/>
-        protected override void ExportBand(Base band)
+        protected override void ExportBand(BandBase band)
         {
             base.ExportBand(band);
             ExportObj(band);

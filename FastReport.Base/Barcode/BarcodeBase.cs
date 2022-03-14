@@ -99,5 +99,14 @@ namespace FastReport.Barcode
             text = "";
             color = Color.Black;
         }
+
+        /// <summary>
+        /// Get default value of this barcode
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetDefaultValue()
+        {
+            return "12345678";
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace FastReport.Web.Controllers
                 webReport.SetReportZoom(Request);
                 webReport.ProcessClick(Request);
 
+
                 var renderBody = Request.Query["renderBody"].ToString() == "yes";
                 return new ContentResult()
                 {

@@ -48,6 +48,12 @@ namespace FastReport.Barcode
             QuietZone = src.QuietZone;
         }
 
+        /// <inheritdoc />
+        public override string GetDefaultValue()
+        {
+            return "12345678901234567890";
+        }
+
         internal override void Serialize(FastReport.Utils.FRWriter writer, string prefix, BarcodeBase diff)
         {
             base.Serialize(writer, prefix, diff);

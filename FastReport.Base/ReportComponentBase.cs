@@ -289,6 +289,7 @@ namespace FastReport
         public Hyperlink Hyperlink
         {
             get { return hyperlink; }
+            set { hyperlink = value; }
         }
 
         /// <summary>

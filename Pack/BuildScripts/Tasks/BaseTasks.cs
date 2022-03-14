@@ -34,6 +34,7 @@ namespace CakeScript
           "SQLite",
           "ClickHouse",
           "Firebird",
+          "Excel",
         };
 
         public Program(string[] args)

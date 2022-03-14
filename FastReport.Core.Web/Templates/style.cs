@@ -669,7 +669,18 @@ label{{
 .{template_FR}-disabled {{
     opacity: 0.5;
 }}
-
+.datetimepicker > input[type=""date""]{{
+    background: url(""{template_resource_url("date-picker.svg", "image/svg+xml")}"") no-repeat;
+    background-size: 10px;
+    background-position: right 5px center;
+    background-origin: content-box, content-box;
+}}
+.datetimepicker > input[type=""date""]:disabled {{
+    background: url("""") no-repeat;
+}}
+input[type=date]::-webkit-calendar-picker-indicator {{
+    opacity: 0;
+}}
 /**************
     OUTLINE
 **************/
@@ -733,7 +744,6 @@ label{{
 .{template_FR}-outline-children {{
     padding-left: 20px;
 }}
-
 ";
     }
 }

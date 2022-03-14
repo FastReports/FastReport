@@ -33,9 +33,16 @@ namespace FastReport.Export.Html
         {
 
         }
+        partial void SetExportableAdvMatrix(Base c);
+       
 
+        private string GetHrefAdvMatrixButton(ReportComponentBase obj, string href)
+        {
+            return string.Empty;
+        }
+       
         /// <inheritdoc/>
-        protected override void ExportBand(Base band)
+        protected override void ExportBand(BandBase band)
         {
             if (ExportMode == ExportType.Export)
                 base.ExportBand(band);

@@ -172,6 +172,7 @@ namespace FastReport.Barcode
                 {
                     Type bartype = Barcodes.GetType(value);
                     Barcode = Activator.CreateInstance(bartype) as BarcodeBase;
+                    Text = barcode.GetDefaultValue();
                 }
             }
         }
@@ -475,8 +476,23 @@ namespace FastReport.Barcode
             }
             else
             {
-                e.Graphics.DrawString(errorText, DrawUtils.DefaultReportFont, Brushes.Red,
-                  new RectangleF(AbsLeft * e.ScaleX, AbsTop * e.ScaleY, Width * e.ScaleX, Height * e.ScaleY));
+                if (IsDesigning && text.StartsWith(Brackets.Split(',')[0]) && Text.EndsWith(Brackets.Split(',')[1]))
+                {
+                    try
+                    {
+                        barcode.text = barcode.GetDefaultValue();
+                        DrawBarcode(e);
+                        error = false;
+                    }
+                    catch
+                    {
+                        error = true;
+                    }
+                }
+
+                if (error)
+                    e.Graphics.DrawString(errorText, DrawUtils.DefaultReportFont, Brushes.Red,
+                        new RectangleF(AbsLeft * e.ScaleX, AbsTop * e.ScaleY, Width * e.ScaleX, Height * e.ScaleY));
             }
             DrawMarkers(e);
             Border.Draw(e, new RectangleF(AbsLeft, AbsTop, Width, Height));
@@ -624,7 +640,7 @@ namespace FastReport.Barcode
             AutoSize = true;
             DataColumn = "";
             Expression = "";
-            Text = "12345678";
+            Text = Barcode.GetDefaultValue();
             ShowText = true;
             Padding = new Padding();
             Zoom = 1;

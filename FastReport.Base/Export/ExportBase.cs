@@ -272,7 +272,7 @@ namespace FastReport.Export
                 proc.StartInfo.Arguments = $"/c \"{fileName}\"";
                 proc.StartInfo.CreateNoWindow = true;
 #else
-                proc.StartInfo.FileName = fileName;
+                proc.StartInfo = new System.Diagnostics.ProcessStartInfo(fileName) { UseShellExecute = true };
 #endif
                 proc.Start();
             }
@@ -356,9 +356,9 @@ namespace FastReport.Export
         /// This method is called for each band on exported page.
         /// </summary>
         /// <param name="band">Band, dispose after method compite.</param>
-        protected virtual void ExportBand(Base band)
+        protected virtual void ExportBand(BandBase band)
         {
-            (band as BandBase).UpdateWidth();
+            band.UpdateWidth();
         }
 
         /// <summary>
@@ -480,18 +480,19 @@ namespace FastReport.Export
                     float topShift = 0;
                     foreach (Base obj in ppage.GetPageItems(page, false))
                     {
+                        BandBase band = obj as BandBase;
                         if (shiftNonExportable && topShift != 0 && obj is BandBase &&
-                          !(obj is PageFooterBand) && !(obj as BandBase).PrintOnBottom)
+                          !(obj is PageFooterBand) && !band.PrintOnBottom)
                         {
-                            (obj as BandBase).Top -= topShift;
+                            band.Top -= topShift;
                         }
-                        if ((obj as BandBase).Exportable
+                        if (band.Exportable
                             || webPreview)
-                            ExportBand(obj);
+                            ExportBand(band);
                         else if (obj != null)
                         {
                             if (shiftNonExportable)
-                                topShift += (obj as BandBase).Height;
+                                topShift += band.Height;
                             obj.Dispose();
                         }
 
