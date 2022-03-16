@@ -251,6 +251,7 @@ namespace FastReport
         private object initializeData;
         private string initializeDataName;
         private object tag;
+        private ObjectCollection allNamedObjects;
 
         #endregion Fields
 
@@ -910,15 +911,20 @@ namespace FastReport
         {
             get
             {
-                ObjectCollection allObjects = AllObjects;
-                // data objects are not included into AllObjects list. Include named items separately.
-                foreach (Base c in Dictionary.AllObjects)
+                if (allNamedObjects == null)
                 {
-                    if (c is DataConnectionBase || c is DataSourceBase || c is Relation || c is CubeSourceBase)
-                        allObjects.Add(c);
+                    ObjectCollection allObjects = AllObjects;
+                    // data objects are not included into AllObjects list. Include named items separately.
+                    foreach (Base c in Dictionary.AllObjects)
+                    {
+                        if (c is DataConnectionBase || c is DataSourceBase || c is Relation || c is CubeSourceBase)
+                            allObjects.Add(c);
+                    }
+
+                    allNamedObjects = allObjects;
                 }
 
-                return allObjects;
+                return allNamedObjects;
             }
         }
 

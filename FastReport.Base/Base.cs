@@ -164,6 +164,7 @@ namespace FastReport
         private string alias;
         private Report report;
         private int zOrder;
+        private ObjectCollection allObjects;
         #endregion
 
         #region Properties
@@ -374,9 +375,14 @@ namespace FastReport
         {
             get
             {
-                ObjectCollection result = new ObjectCollection();
-                EnumObjects(this, result);
-                return result;
+                if (GetType().Name == nameof(Report) || allObjects == null || allObjects?.Count == 0)
+                {
+                    ObjectCollection result = new ObjectCollection();
+                    EnumObjects(this, result);
+                    allObjects = result;
+                }
+
+                return allObjects;
             }
         }
 
