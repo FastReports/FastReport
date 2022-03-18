@@ -375,8 +375,7 @@ namespace FastReport
             get
             {
                 ObjectCollection result = new ObjectCollection();
-                if (this is IParent)
-                    (this as IParent).GetChildObjects(result);
+                EnumObjects(this, result);
                 return result;
             }
         }
