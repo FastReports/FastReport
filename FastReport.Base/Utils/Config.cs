@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 namespace FastReport.Utils
 {
     /// <summary>
-    /// Contains some configuration properties and settings that will be applied to the FastReport .NET
+    /// Contains some configuration properties and settings that will be applied to the FastReport.Net
     /// environment, including Report, Designer and Preview components.
     /// </summary>
     public static partial class Config

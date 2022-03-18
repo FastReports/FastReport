@@ -317,6 +317,9 @@ namespace FastReport.Code
 
         public void AddExpressions()
         {
+            // speed up the case: lot of report objects (> 1000) and lot of data columns in the dictionary (> 10000). 
+            Report.Dictionary.CacheAllObjects = true;
+            
             InsertItem(Report.CodeHelper.BeginCalcExpression(), "");
 
             ObjectCollection allObjects = Report.AllObjects;
@@ -339,6 +342,7 @@ namespace FastReport.Code
             }
 
             InsertItem(Report.CodeHelper.EndCalcExpression(), "");
+            Report.Dictionary.CacheAllObjects = false;
         }
 
         public void AddFunctions()
