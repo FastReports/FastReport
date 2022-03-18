@@ -30,6 +30,8 @@ namespace FastReport.Data
     private TotalCollection totals;
     private CubeSourceCollection cubeSources;
     private List<RegDataItem> registeredItems;
+    private ObjectCollection cachedAllObjects;
+    private bool cacheAllObjects;
     #endregion
 
     #region Properties
@@ -712,6 +714,34 @@ namespace FastReport.Data
         source.ReRegisterData(this);
         ReRegisterData();
       }  
+    }
+    
+    internal bool CacheAllObjects
+    {
+      get { return cacheAllObjects; }
+      set
+      {
+        cacheAllObjects = value;
+        if (cacheAllObjects)
+        {
+          cachedAllObjects = base.AllObjects;
+        }
+        else
+        {
+          cachedAllObjects = null;
+        }
+      }
+    }
+    
+    ///<inheritdoc/>
+    public new ObjectCollection AllObjects
+    {
+      get
+      {
+        if (cachedAllObjects != null)
+          return cachedAllObjects;
+        return base.AllObjects;
+      }
     }
     #endregion
 

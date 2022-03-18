@@ -375,12 +375,9 @@ namespace FastReport
         {
             get
             {
-                if (GetType().Name == nameof(Report) || allObjects == null || allObjects?.Count == 0)
-                {
-                    ObjectCollection result = new ObjectCollection();
-                    EnumObjects(this, result);
-                    allObjects = result;
-                }
+                ObjectCollection result = new ObjectCollection();
+                EnumObjects(this, result);
+                allObjects = result;
 
                 return allObjects;
             }
