@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461;netcoreapp3.1</TargetFrameworks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>Fast Reports Inc.</Copyright>
+    <Company>Fast Reports Inc.</Company>
+    <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <Authors>Fast Reports Inc.</Authors>
+    <Product>FastReport.Data.Cassandra</Product>
+    <PackageId>FastReport.OpenSource.Data.Cassandra</PackageId>
+    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageTags>reporting, cassandra, connection, reports, core</PackageTags>
+    <Version>1.0.0</Version>
+    <Configurations>Debug;Release;</Configurations>
+    <AssemblyName>FastReport.Data.Cassandra</AssemblyName>
+    <RootNamespace>FastReport.Data</RootNamespace>
+    <Description>Represents a connection to Cassandra database for FastReport.OpenSource
+
+This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
+</Description>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+  <ItemGroup>
+	PackageReference Include="CassandraCSharpDriver" Version="3.17.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="CassandraConnectionEditor.cs" />
+    <Compile Remove="*.Designer.cs" />
+    <Compile Remove="*.DesignExt.cs" />
+    <EmbeddedResource Remove="CassandraConnectionEditor.resx" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework)=='net461'">
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+  </ItemGroup>
+
+</Project>

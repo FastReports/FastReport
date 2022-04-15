@@ -194,7 +194,7 @@ namespace FastReport.Export.Html
 
         private string EncodeURL(string value)
         {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if CROSSPLATFORM || COREWIN
             return System.Net.WebUtility.UrlEncode(value);
 #else
             return ExportUtils.HtmlURL(value);
@@ -205,10 +205,9 @@ namespace FastReport.Export.Html
         {
             string href = String.Empty;
 
-            if (GetHrefAdvMatrixButton(obj, href) != String.Empty)
-                href = GetHrefAdvMatrixButton(obj, href);
+            href = GetHrefAdvMatrixButton(obj, href);
 
-            else if(!String.IsNullOrEmpty(obj.Hyperlink.Value))
+            if(!String.IsNullOrEmpty(obj.Hyperlink.Value))
             {
                 string hrefStyle = String.Empty;
 

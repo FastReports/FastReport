@@ -1,5 +1,5 @@
 ﻿using System;
-#if NETSTANDARD || NETCOREAPP
+#if CROSSPLATFORM || COREWIN
 using FastReport.Code.CodeDom.Compiler;
 using FastReport.Code.CSharp;
 #else
@@ -36,7 +36,7 @@ namespace FastReport.Utils
                     parameters.ReferencedAssemblies.Add(asm);
                 }
 
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if CROSSPLATFORM || COREWIN
 
                 var mscorPath = compiler.GetReference("System.Private.CoreLib.dll").Display;
                 parameters.ReferencedAssemblies.Add(mscorPath);

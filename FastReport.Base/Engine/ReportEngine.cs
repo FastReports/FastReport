@@ -461,7 +461,7 @@ namespace FastReport.Engine
             return true;
         }
 
-        internal void RunPhase1(bool resetDataState = true)
+        internal void RunPhase1(bool resetDataState = true, bool webDialog = false)
         {
             date = SystemFake.DateTime.Now;
             Report.SetOperation(ReportOperation.Running);
@@ -471,7 +471,9 @@ namespace FastReport.Engine
             // This is necessary to keep data filtering settings alive
             if (resetDataState)
                 InitializeData();
-            Report.OnStartReport(EventArgs.Empty);
+            // don't call OnStartReport event again, if it's web dialog re-render
+            if(!webDialog)
+                Report.OnStartReport(EventArgs.Empty);
         }
 
         internal void RunPhase2(int? pagesLimit = null)

@@ -50,13 +50,9 @@ namespace FastReport.Utils
         public static ExportsOptions GetInstance()
         {
             if (instance == null)
-            {
-                return instance = new ExportsOptions();
-            }
-            else
-            {
-                return instance;
-            }
+                instance = new ExportsOptions();
+
+            return instance;
         }
 
         /// <summary>
@@ -69,13 +65,13 @@ namespace FastReport.Utils
             private const string EXPORT_ITEM_POSTFIX = ",File";
             private const string CATEGORY_PREFIX = "Export,ExportGroups,";
 
-            private string name;
-            private List<ExportsTreeNode> nodes = new List<ExportsTreeNode>();
-            private Type exportType = null;
-            private int imageIndex = -1;
+            private readonly string name;
+            private readonly List<ExportsTreeNode> nodes = new List<ExportsTreeNode>();
+            private readonly Type exportType = null;
+            private readonly int imageIndex = -1;
             private ObjectInfo tag = null;
             private bool enabled = true;
-            private bool isExport;
+            private readonly bool isExport;
 
             /// <summary>
             /// Gets the name.
@@ -142,51 +138,39 @@ namespace FastReport.Utils
             }
 
             public ExportsTreeNode(string name, Type exportType, bool isExport)
+                : this(name, isExport)
             {
-                this.name = name;
                 this.exportType = exportType;
-                this.isExport = isExport;
             }
 
-            public ExportsTreeNode(string name, Type exportType, bool isExport, ObjectInfo tag)
+            public ExportsTreeNode(string name, Type exportType, bool isExport, ObjectInfo tag) 
+                : this(name, exportType, isExport)
             {
-                this.name = name;
-                this.exportType = exportType;
-                this.isExport = isExport;
-                this.Tag = tag;
+                this.tag = tag;
             }
 
             public ExportsTreeNode(string name, int imageIndex, bool isExport)
+                : this(name, isExport)
             {
-                this.name = name;
                 this.imageIndex = imageIndex;
-                this.isExport = isExport;
             }
 
             public ExportsTreeNode(string name, Type exportType, int imageIndex, bool isExport)
+                : this(name, exportType, isExport)
             {
-                this.name = name;
-                this.exportType = exportType;
                 this.imageIndex = imageIndex;
-                this.isExport = isExport;
             }
 
             public ExportsTreeNode(string name, Type exportType, int imageIndex, bool isExport, ObjectInfo tag)
+                : this(name, exportType, imageIndex, isExport)
             {
-                this.name = name;
-                this.exportType = exportType;
-                this.imageIndex = imageIndex;
-                this.isExport = isExport;
-                this.Tag = tag;
+                this.tag = tag;
             }
 
             public ExportsTreeNode(string name, Type exportType, int imageIndex, bool enabled, bool isExport)
+                : this(name, exportType, imageIndex, isExport)
             {
-                this.name = name;
-                this.exportType = exportType;
-                this.imageIndex = imageIndex;
                 this.enabled = enabled;
-                this.isExport = isExport;
             }
         }
 
@@ -216,13 +200,12 @@ namespace FastReport.Utils
             while (queue.Count != 0)
             {
                 ExportsTreeNode node = queue.Dequeue();
+                ObjectInfo tag = null;
                 if (node.ExportType != null)
                 {
-                    RegisteredObjects.AddExport(node.ExportType, node.ToString(), node.ImageIndex);
+                    tag = RegisteredObjects.AddExport(node.ExportType, node.ToString(), node.ImageIndex);
                 }
-                List<ObjectInfo> list = new List<ObjectInfo>();
-                RegisteredObjects.Objects.EnumItems(list);
-                node.Tag = list[list.Count - 1];
+                node.Tag = tag;
                 foreach (ExportsTreeNode nextNode in node.Nodes)
                 {
                     queue.Enqueue(nextNode);

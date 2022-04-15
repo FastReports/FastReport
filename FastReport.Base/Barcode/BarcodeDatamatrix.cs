@@ -1021,7 +1021,7 @@ namespace FastReport.Barcode
       CodePage = 1252;
       PixelSize = 3;
             AutoEncode = true;
-#if NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP
+#if CROSSPLATFORM || COREWIN
             System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 #endif
     }

@@ -108,6 +108,7 @@
   <Folder Name="Charts" Core="false" Basic="false" Description="Reports with sample charts, and their combination with other features.">
     <Report File="About Microsoft Chart.frx" WebDemo="false"/>
     <Report File="Microsoft Chart Sample.frx"/>
+    <Report File="Series of Chart.frx" WebDemo="false"/>
     <Report File="Interactive Chart.frx"  WebDemo="false"/>
     <Report File="Sparkline.frx" />
   </Folder>

@@ -41,18 +41,19 @@ namespace FastReport.Utils
         private static bool FWebMode;
         private static bool preparedCompressed = true;
         private static bool disableHotkeys = false;
-        private static bool disableBacklight = false;
         private static bool enableScriptSecurity = false;
         private static ScriptSecurityProperties scriptSecurityProps = null;
         private static bool forbidLocalData = false;
         private static bool userSetsScriptSecurity = false;
-        private static FRPrivateFontCollection privateFontCollection = new FRPrivateFontCollection();
+        private static readonly FRPrivateFontCollection privateFontCollection = new FRPrivateFontCollection();
         internal static bool CleanupOnExit;
         private static CompilerSettings compilerSettings = new CompilerSettings();
+        private static string applicationFolder;
+        private static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
 
 
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if CROSSPLATFORM
         private static readonly bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 #endif
 
@@ -67,7 +68,7 @@ namespace FastReport.Utils
             get { return FIsRunningOnMono; }
         }
 
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if CROSSPLATFORM
         public static bool IsWindows
         {
             get { return isWindows; }
@@ -105,11 +106,20 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Gets the application folder.
+        /// Gets or sets the application folder.
         /// </summary>
         public static string ApplicationFolder
         {
-            get { return AppDomain.CurrentDomain.BaseDirectory; }
+            get 
+            { 
+                if(applicationFolder == null)
+                    return baseDirectory;
+                return applicationFolder;
+            }
+            set 
+            {
+                applicationFolder = value;
+            }
         }
 
         /// <summary>
@@ -291,7 +301,7 @@ namespace FastReport.Utils
 
             CheckWebMode();
 
-#if !NETSTANDARD
+#if !CROSSPLATFORM
             if (!WebMode)
                 LoadConfig();
 #endif
@@ -508,7 +518,8 @@ namespace FastReport.Utils
 
                 try
                 {
-                    ProcessAssembly(Assembly.LoadFrom(pluginName));
+                    var assembly = Assembly.LoadFrom(pluginName);
+                    ProcessAssembly(assembly);
                 }
                 catch
                 {
@@ -523,22 +534,25 @@ namespace FastReport.Utils
 
         private static void LoadPluginsInCurrentFolder()
         {
-            // find all plugin-connector in current directory
-            var plugins = Directory.GetFiles(ApplicationFolder, "FastReport.Data.*.dll");
-
-            // initialize
-            foreach(var pluginName in plugins)
+            var appFolder = ApplicationFolder;
+            if(!string.IsNullOrEmpty(appFolder))
             {
-                try
+                // find all plugin-connector in current directory
+                var plugins = Directory.GetFiles(appFolder, "FastReport.Data.*.dll");
+
+                // initialize
+                foreach (var pluginName in plugins)
                 {
-                    ProcessAssembly(Assembly.LoadFrom(pluginName));
-                }
-                catch
-                {
+                    try
+                    {
+                        var assembly = Assembly.LoadFrom(pluginName);
+                        ProcessAssembly(assembly);
+                    }
+                    catch
+                    {
+                    }
                 }
             }
-
-
         }
 
         private static void ProcessAssembly(Assembly a)

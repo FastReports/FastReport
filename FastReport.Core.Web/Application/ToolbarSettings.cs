@@ -21,7 +21,6 @@ namespace FastReport.Web
 #endif
 
 
-
         [Obsolete("Please, use Position")]
         public bool ShowBottomToolbar
         {
@@ -37,6 +36,9 @@ namespace FastReport.Web
             }
         }
 
+        /// <summary>
+        /// ExportMenu settings
+        /// </summary>
         public ExportMenuSettings Exports { get; set; } = ExportMenuSettings.Default;
 
         public bool ShowPrevButton { get; set; } = true;

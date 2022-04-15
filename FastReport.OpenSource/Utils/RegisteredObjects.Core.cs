@@ -6,20 +6,12 @@ namespace FastReport.Utils
     {
         #region Private Methods
 
-        /// <summary>
-        /// Does nothing
-        /// </summary>
-        /// <param name="image"></param>
-        /// <param name="imageIndex"></param>
-        partial void UpdateDesign(Bitmap image, int imageIndex);
+        partial void UpdateDesign(Bitmap image, int imageIndex, int buttonIndex = -1);
 
         /// <summary>
         /// Does nothing.
         /// </summary>
-        /// <param name="image"></param>
-        /// <param name="imageIndex"></param>
-        /// <param name="ButtonIndex"></param>
-        partial void UpdateDesign(Bitmap image, int imageIndex, int ButtonIndex);
+        partial void UpdateDesign(int flags, bool multiInsert, Bitmap image, int imageIndex, int buttonIndex = -1);
 
         #endregion Private Methods
     }

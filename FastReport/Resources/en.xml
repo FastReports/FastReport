@@ -118,6 +118,7 @@
     <OdbcDataConnection Text="ODBC connection"/>
     <FirebirdDataConnection Text="Firebird connection"/>
     <ExcelDataConnection Text="Excel connection"/>
+    <CassandraDataConnection Text="Cassandra connection"/>
     <VistaDBDataConnection Text="VistaDB connection"/>
     <PostgresDataConnection Text="Postgres connection"/>
     <MySqlDataConnection Text="MySQL connection"/>
@@ -308,6 +309,7 @@
     <XsdFile Text="XML schema definition file (*.xsd)|*.xsd"/>
     <XmlFile Text="XML file (*.xml)|*.xml"/>
     <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
+    <AccdbFile Text="MS Access 2007 database (*.accdb)|*.accdb"/>
     <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text file (*.rtf)|*.rtf"/>
     <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
@@ -2131,6 +2133,11 @@
       <UseSql Text="Use SQL Server Authentication"/>
       <SavePassword Text="Save my password"/>
     </MsSql>
+    <Cassandra>
+      <ContactPoints Text="ContactPoints(;):"/>
+      <Port Text="Port:"/>
+      <Keyspace Text="Keyspace:"/>
+    </Cassandra>
     <OleDb>
       <ConnectionString Text="Connection string:"/>
       <Build Text="Build..."/>
@@ -2145,6 +2152,9 @@
       <Xsd Text="Schema file or URL:"/>
       <Xml Text="Data file or URL:"/>
     </Xml>
+    <Access>
+      <Provider Text="Provider:"/>
+    </Access>
     <Xlsx Text="Select .xlsx file:"/>
     <Csv>
       <ConfigureDatabase Text="Configure database"/>
@@ -2533,6 +2543,7 @@
       <Default Text="Default"/>
       <OEM Text="OEM"/>
       <DataOnly Text="Data only"/>
+      <ExportType Text="Export types of data"/>
       <FieldNames Text="Field names (for example, Field1;Field2):"/>
     </Dbf>
     <Xml Text="Export to XML">
@@ -2570,6 +2581,7 @@
       <Rows Text="Rows:"/>
       <Basic Text="Basic"/>
       <Other Text="Other"/>
+      <ShowGridlines Text="Show gridlines"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
