@@ -130,11 +130,11 @@ namespace FastReport.Web.Controllers
         IActionResult GetConnectionTypes()
         {
             var names = new List<string>();
-            var objects = new List<ObjectInfo>();
-            RegisteredObjects.Objects.EnumItems(objects);
+            var objects = new List<DataConnectionInfo>();
+            RegisteredObjects.DataConnections.EnumItems(objects);
 
             foreach (var info in objects)
-                if (info.Object != null && info.Object.IsSubclassOf(typeof(DataConnectionBase)))
+                if (info.Object != null)
                     names.Add($@"""{info.Object.FullName}"":""{Res.TryGetBuiltin(info.Text)}""");
 
             return new ContentResult()
@@ -147,13 +147,12 @@ namespace FastReport.Web.Controllers
 
         IActionResult GetConnectionTables(string connectionType, string connectionString)
         {
-            var objects = new List<ObjectInfo>();
-            RegisteredObjects.Objects.EnumItems(objects);
+            var objects = new List<DataConnectionInfo>();
+            RegisteredObjects.DataConnections.EnumItems(objects);
             Type connType = null;
 
             foreach (var info in objects)
                 if (info.Object != null &&
-                    info.Object.IsSubclassOf(typeof(DataConnectionBase)) &&
                     info.Object.FullName == connectionType)
                 {
                     connType = info.Object;
@@ -256,13 +255,12 @@ namespace FastReport.Web.Controllers
             var connectionType = Request.Query["connectionType"].ToString();
             var connectionString = Request.Query["connectionString"].ToString();
 
-            var objects = new List<ObjectInfo>();
-            RegisteredObjects.Objects.EnumItems(objects);
+            var objects = new List<DataConnectionInfo>();
+            RegisteredObjects.DataConnections.EnumItems(objects);
             Type connType = null;
 
             foreach (var info in objects)
                 if (info.Object != null &&
-                    info.Object.IsSubclassOf(typeof(DataConnectionBase)) &&
                     info.Object.FullName == connectionType)
                 {
                     connType = info.Object;
@@ -347,13 +345,12 @@ namespace FastReport.Web.Controllers
         {
             var connectionType = Request.Query["connectionType"].ToString();
 
-            var objects = new List<ObjectInfo>();
-            RegisteredObjects.Objects.EnumItems(objects);
+            var objects = new List<DataConnectionInfo>();
+            RegisteredObjects.DataConnections.EnumItems(objects);
             Type connType = null;
 
             foreach (var info in objects)
                 if (info.Object != null &&
-                    info.Object.IsSubclassOf(typeof(DataConnectionBase)) &&
                     info.Object.FullName == connectionType)
                 {
                     connType = info.Object;

@@ -136,9 +136,7 @@ namespace FastReport
             RegisteredObjects.InternalAddExport(typeof(ImageExport), "Image", "Export,Image,File");
 
             // functions
-            RegisteredObjects.AddCategory("Functions", -1, "");
             StdFunctions.Register();
-
 
         }
     }

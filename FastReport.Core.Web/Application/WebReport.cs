@@ -160,15 +160,6 @@ namespace FastReport.Web
         public bool Pictures { get; set; } = true;
         public bool EmbedPictures { get; set; } = false;
 
-        #region ExportMenuSettings
-
-        /// <summary>
-        /// ExportMenu settings
-        /// </summary>
-        public ExportMenuSettings ExportMenu{ get; set; } = ExportMenuSettings.Default;
-
-        #endregion
-
         #region ToolbarSettings
 
         /// <summary>

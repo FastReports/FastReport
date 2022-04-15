@@ -138,7 +138,7 @@ namespace FastReport.Utils
             {
                 try
                 {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if CROSSPLATFORM
                     // TODO memory leaks image converter
                     return Image.FromStream(new MemoryStream(bytes));
 #else

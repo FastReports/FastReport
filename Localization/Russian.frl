@@ -117,6 +117,7 @@
     <OdbcDataConnection Text="Подключение к ODBC"/>
     <FirebirdDataConnection Text="Подключение к Firebird "/>
     <ExcelDataConnection Text="Подключение к Excel"/>
+     <CassandraDataConnection Text="Подключение к Cassandra"/>
     <VistaDBDataConnection Text="Подключение к VistaDB"/>
     <PostgresDataConnection Text="Подключение к Postgres"/>
     <MySqlDataConnection Text="Подключение к MySQL"/>
@@ -305,6 +306,7 @@
     <XsdFile Text="XML схема (*.xsd)|*.xsd"/>
     <XmlFile Text="XML данные (*.xml)|*.xml"/>
     <MdbFile Text="База данных MS Access (*.mdb)|*.mdb"/>
+    <AccdbFile Text="База данных MS Access 2007 (*.accdb)|*.accdb"/>
     <MdfFile Text="База данных Microsoft SQL Server (*.mdf)|*.mdf"/>
     <RtfFile Text="Форматированный текст (*.rtf)|*.rtf"/>
     <Images Text="Файлы картинок|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
@@ -1577,7 +1579,7 @@
       <EditAfterInsert Text="Редактировать объект после вставки"/>
       <EventBandIndicator Text="Отображать индикатор на бэндах с событиями"/>
       <EventObjectIndicator Text="Отображать индикатор на объектах с событиями"/>
-      <EnableBacklightIntersectingObjects Text="Подсвечивать пересекающиеся объекты" />
+      <EnableBacklightIntersectingObjects Text="Подсвечивать пересекающиеся объекты"/>
       <ObjectsAppearance Text="Внешний вид объектов"/>
 	  <EnableBacklight Text="Подсвечивать активный бэнд"/>
 	  <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
@@ -1916,6 +1918,11 @@
       <UseSql Text="Аутентификация MS SQL"/>
       <SavePassword Text="Сохранить пароль"/>
     </MsSql>
+    <Cassandra>
+      <ContactPoints Text="Адреса БД(;):"/>
+      <Port Text="Порт:"/>
+      <Keyspace Text="Пространство ключей:"/>
+    </Cassandra>
     <OleDb>
       <ConnectionString Text="Строка подключения"/>
       <Build Text="Создать..."/>
@@ -1930,6 +1937,9 @@
       <Xsd Text="Файл схемы или URL:"/>
       <Xml Text="Файл данных или URL:"/>
     </Xml>
+    <Access>
+      <Provider Text="Поставщик:"/>
+    </Access>
     <Xlsx Text="Выберите файл .xlsx:"/>
     <Csv>
       <ConfigureDatabase Text="Настройка базы данных"/>
@@ -2285,6 +2295,7 @@
       <Default Text="По умолчанию"/>
       <OEM Text="OEM"/>
       <DataOnly Text="Только данные"/>
+      <ExportType Text="Экспортировать типы данных"/>
       <FieldNames Text="Имена полей (например, Field1;Field2):"/>
     </Dbf>
     <Xml Text="Экспорт в XML">
@@ -2322,6 +2333,7 @@
       <Rows Text="Строки:"/>
       <Basic Text="Основные"/>
       <Other Text="Другие"/>
+      <ShowGridLines Text="Показать линии сетки"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>

@@ -768,7 +768,7 @@ namespace FastReport
                         return new SizeF(width, height);
                     }
                 }
-#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
+#if !CROSSPLATFORM
                 if (IsAdvancedRendererNeeded)
 #endif
                 {
@@ -786,7 +786,7 @@ namespace FastReport
                         height += Padding.Vertical + 1;
                     return new SizeF(width, height);
                 }
-#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
+#if !CROSSPLATFORM
                 else
                 {
                     if (FontWidthRatio != 1)

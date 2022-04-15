@@ -149,7 +149,7 @@ namespace FastReport.Code
             foreach (Assembly assembly in RegisteredObjects.Assemblies)
             {
                 string aLocation = assembly.Location;
-#if NETSTANDARD || NETCOREAPP
+#if CROSSPLATFORM || COREWIN
                 if (aLocation == "")
                 {
                     // try fix SFA in FastReport.Compat
@@ -167,7 +167,7 @@ namespace FastReport.Code
         {
             foreach (string s in Report.ReferencedAssemblies)
             {
-#if NETSTANDARD
+#if CROSSPLATFORM
                 // replace 
                 if (s == "System.Windows.Forms.dll")
                 {
@@ -200,7 +200,7 @@ namespace FastReport.Code
         private string GetFullAssemblyReference(string relativeReference, string defaultPath)
         {
             // in .NET Core we get the AssemblyReference in FR.Compat
-#if !(NETSTANDARD || NETCOREAPP)
+#if !(CROSSPLATFORM || COREWIN)
             if (relativeReference == null || relativeReference.Trim() == "")
                 return "";
 
@@ -446,7 +446,7 @@ namespace FastReport.Code
                 ScriptSecurityEventArgs ssea = new ScriptSecurityEventArgs(Report, scriptText.ToString(), Report.ReferencedAssemblies);
                 Config.OnScriptCompile(ssea);
 
-#if NETSTANDARD || NETCOREAPP
+#if CROSSPLATFORM || COREWIN
                 provider.BeforeEmitCompilation += Config.OnBeforeScriptCompilation;
 #endif
 
@@ -563,7 +563,7 @@ namespace FastReport.Code
                     try
                     {
                         // in .Net Core compiler will return other quotes
-#if NETSTANDARD || NETCOREAPP
+#if CROSSPLATFORM || COREWIN
                         const string quotes = "\'";
 #else
                         const string quotes = "\"";

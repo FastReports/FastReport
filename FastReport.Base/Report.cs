@@ -849,11 +849,11 @@ namespace FastReport
                     "System.Xml.dll",
 
                     "FastReport.Compat.dll",
-#if !NETSTANDARD
+#if !CROSSPLATFORM
                     "System.Windows.Forms.dll",
 #endif
 
-#if NETSTANDARD || NETCOREAPP
+#if CROSSPLATFORM || COREWIN
                     "System.Drawing.Primitives",
 #endif
 
@@ -875,7 +875,7 @@ namespace FastReport
             {
                 if (measureGraphics == null)
                 {
-#if NETSTANDARD2_0 || NETSTANDARD2_1 || MONO
+#if CROSSPLATFORM || MONO
                     measureBitmap = new Bitmap(1, 1);
                     measureGraphics = new GdiGraphics(measureBitmap);
 #else
@@ -2425,13 +2425,18 @@ namespace FastReport
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void PreparePhase1()
         {
+            bool webDialog = false;
             SetRunning(true);
             if (preparedPages != null)
+            {
+                // if prepared pages are set before => it's call method again => it's web dialog
+                webDialog = true;
                 preparedPages.Clear();
+            }
             SetPreparedPages(new Preview.PreparedPages(this));
             engine = new ReportEngine(this);
             Compile();
-            Engine.RunPhase1();
+            Engine.RunPhase1(true, webDialog);
         }
 
         /// <summary>

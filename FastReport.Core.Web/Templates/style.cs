@@ -419,10 +419,10 @@ label{{
 .fr-webreport-popup-content-btn-submit:hover {{
     transform: scale(1.015);
 }}
-.active:hover {{
+.{template_FR}-container .active:hover {{
     transform: scale(1.015);
 }}
-.active {{
+.{template_FR}-container .active {{
     background-color: {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
     color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
 }}

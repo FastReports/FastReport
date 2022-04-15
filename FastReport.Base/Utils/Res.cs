@@ -36,7 +36,7 @@ namespace FastReport.Utils
                 Report.EnsureInit();
                 string folder = Config.Root.FindItem("Language").GetProp("Folder");
                 // check the registry
-#if !(NETSTANDARD2_0 || NETSTANDARD2_1)
+#if !CROSSPLATFORM
                 if (String.IsNullOrEmpty(folder) && !Config.WebMode)
                 {
                     RegistryKey key = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("FastReports");

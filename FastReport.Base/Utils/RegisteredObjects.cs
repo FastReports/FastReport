@@ -9,7 +9,33 @@ using FastReport.Export;
 
 namespace FastReport.Utils
 {
-    public partial class FunctionInfo
+    public abstract class BaseObjectInfo<T> where T : BaseObjectInfo<T>
+    {
+        /// <summary>
+        /// Tooltip text.
+        /// </summary>
+        public abstract string Text { get; set; }
+
+        /// <summary>
+        /// List of subitems.
+        /// </summary>
+        public List<T> Items { get; }
+
+        /// <summary>
+        /// Enumerates all objects.
+        /// </summary>
+        /// <param name="list">List that will contain enumerated items.</param>
+        public abstract void EnumItems(ICollection<T> list);
+
+        internal abstract T FindOrCreate(string complexName);
+
+        protected BaseObjectInfo()
+        {
+            Items = new List<T>();
+        }
+    }
+
+    public class FunctionInfo : BaseObjectInfo<FunctionInfo>
     {
         #region Fields
         private string text;
@@ -42,7 +68,7 @@ namespace FastReport.Utils
         /// <summary>
         /// Tooltip text.
         /// </summary>
-        public string Text
+        public override string Text
         {
             get { return text; }
             set
@@ -66,13 +92,6 @@ namespace FastReport.Utils
             set;
         }
 
-        /// <summary>
-        /// List of subitems.
-        /// </summary>
-        public List<FunctionInfo> Items
-        {
-            get;
-        }
 #endregion
 
 #region Public Methods
@@ -80,7 +99,7 @@ namespace FastReport.Utils
         /// Enumerates all objects.
         /// </summary>
         /// <param name="list">List that will contain enumerated items.</param>
-        public void EnumItems(ICollection<FunctionInfo> list)
+        public override void EnumItems(ICollection<FunctionInfo> list)
         {
             list.Add(this);
             foreach (FunctionInfo item in Items)
@@ -90,14 +109,14 @@ namespace FastReport.Utils
         }
 
 #if !CATEGORY_OPTIMIZATION
-        internal FunctionInfo FindOrCreate(string complexName)
+        internal override FunctionInfo FindOrCreate(string complexName)
         {
             string[] itemNames = complexName.Split(new char[] { ',' });
             FunctionInfo root = this;
             foreach (string itemName in itemNames)
             {
                 FunctionInfo item = null;
-                foreach (FunctionInfo rootItem in root.Items)
+                foreach (var rootItem in root.Items)
                 {
                     if (rootItem.Name != "" && rootItem.Name == itemName)
                     {
@@ -145,28 +164,80 @@ namespace FastReport.Utils
 
         internal FunctionInfo()
         {
-            Items = new List<FunctionInfo>();
             Name = "";
         }
 
         internal FunctionInfo(string name, MethodInfo func, string text) : this()
         {
-            this.Name = name;
+            Name = name;
             Update(func, text);
+        }
+    }
+
+    public class DataConnectionInfo : BaseObjectInfo<DataConnectionInfo>
+    {
+        private string text;
+
+        /// <summary>
+        /// The registered data connection. This type is subclass of <see cref="DataConnectionBase"/>
+        /// </summary>
+        public Type Object { get; set; }
+
+        /// <summary>
+        /// Tooltip text.
+        /// </summary>
+        public override string Text
+        {
+            get { return text; }
+            set
+            {
+                text = value;
+                if (text == "")
+                {
+                    if (Object != null)
+                        text = "Objects," + Object.Name;
+                }
+            }
+        }
+
+        public override void EnumItems(ICollection<DataConnectionInfo> list)
+        {
+            list.Add(this);
+            foreach (var item in Items)
+            {
+                item.EnumItems(list);
+            }
+        }
+
+        internal void Update(Type obj, string text)
+        {
+            Object = obj;
+            Text = text;
+        }
+
+        internal override DataConnectionInfo FindOrCreate(string complexName)
+        {
+            DataConnectionInfo root = this;
+            var item = new DataConnectionInfo();
+            item.Text = complexName;
+            root.Items.Add(item);
+            return item;
+        }
+
+        public DataConnectionInfo()
+        {
         }
     }
 
     /// <summary>
     /// Holds the information about the registered object.
     /// </summary>
-    public partial class ObjectInfo
+    public partial class ObjectInfo : BaseObjectInfo<ObjectInfo>
     {
 #region Fields
         private string name;
-        private Object fObject;
+        private Type fObject;
         private string text;
-        private int flags;
-        private bool multiInsert;
         private bool enabled;
 #endregion
 
@@ -185,24 +256,24 @@ namespace FastReport.Utils
         /// </summary>
         public Type Object
         {
-            get { return fObject as Type; }
+            get { return fObject; }
             set { fObject = value; }
         }
 
         /// <summary>
         /// The registered function.
         /// </summary>
-        [Obsolete("Use RegisteredObjects.Functions")]
+        [Obsolete("Use RegisteredObjects.Functions", true)]
         public MethodInfo Function
         {
-            get { return fObject as MethodInfo; }
-            set { fObject = value; }
+            get { return null; }
+            set { }
         }
 
         /// <summary>
         /// Tooltip text.
         /// </summary>
-        public string Text
+        public override string Text
         {
             get { return text; }
             set
@@ -217,27 +288,6 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Flags that will be used to create an object instance in the designer.
-        /// </summary>
-        public int Flags
-        {
-            get { return flags; }
-            set { flags = value; }
-        }
-
-        /// <summary>
-        /// Indicates whether this object can be inserted several times simultaneously.
-        /// </summary>
-        /// <remarks>
-        /// This is applied to Line object only.
-        /// </remarks>
-        public bool MultiInsert
-        {
-            get { return multiInsert; }
-            set { multiInsert = value; }
-        }
-
-        /// <summary>
         /// Gets or sets the enabled flag for the object.
         /// </summary>
         public bool Enabled
@@ -246,13 +296,6 @@ namespace FastReport.Utils
             set { enabled = value; }
         }
 
-        /// <summary>
-        /// List of subitems.
-        /// </summary>
-        public List<ObjectInfo> Items
-        {
-            get;
-        }
 #endregion
 
 #region Public Methods
@@ -260,16 +303,16 @@ namespace FastReport.Utils
         /// Enumerates all objects.
         /// </summary>
         /// <param name="list">List that will contain enumerated items.</param>
-        public void EnumItems(ICollection<ObjectInfo> list)
+        public override void EnumItems(ICollection<ObjectInfo> list)
         {
             list.Add(this);
-            foreach (ObjectInfo item in Items)
+            foreach (var item in Items)
             {
                 item.EnumItems(list);
             }
         }
 
-        internal ObjectInfo FindOrCreate(string complexName)
+        internal override ObjectInfo FindOrCreate(string complexName)
         {
             string[] itemNames = complexName.Split(new char[] { ',' });
             ObjectInfo root = this;
@@ -296,35 +339,63 @@ namespace FastReport.Utils
             return root;
         }
 
-        internal void Update(Object obj, Bitmap image, int imageIndex, string text, int flags, bool multiInsert)
+        internal void Remove(string complexName)
+        {
+            string[] itemNames = complexName.Split(new char[] { ',' });
+            ObjectInfo root = this;
+            foreach (string itemName in itemNames)
+            {
+                ObjectInfo item = null;
+                for (int i = 0; i < root.Items.Count; i++)
+                {
+                    var rootItem = root.Items[i];
+
+                    if (rootItem.Name != "" && rootItem.Name == itemName)
+                    {
+                        item = rootItem;
+                        break;
+                    }
+                    if (rootItem.Text.Contains(itemName))
+                    {
+                        root.Items.RemoveAt(i);
+                        break;
+                    }
+                }
+                root = item;
+            }
+        }
+
+        internal void Update(Type obj, Bitmap image, int imageIndex, string text)
         {
             fObject = obj;
             UpdateDesign(image, imageIndex);
             Text = text;
-            Flags = flags;
-            MultiInsert = multiInsert;
         }
 
-        internal void Update(Object obj, Bitmap image, int imageIndex, int buttonIndex, string text, int flags,
+        internal void Update(Type obj, Bitmap image, int imageIndex, string text, int flags, bool multiInsert)
+        {
+            fObject = obj;
+            UpdateDesign(flags, multiInsert, image, imageIndex);
+            Text = text;
+        }
+
+        internal void Update(Type obj, Bitmap image, int imageIndex, int buttonIndex, string text, int flags,
             bool multiInsert)
         {
             fObject = obj;
-            UpdateDesign(image, imageIndex, buttonIndex);
+            UpdateDesign(flags, multiInsert, image, imageIndex, buttonIndex);
             Text = text;
-            Flags = flags;
-            MultiInsert = multiInsert;
         }
 
 #endregion
 
         internal ObjectInfo()
         {
-            Items = new List<ObjectInfo>();
             name = "";
             enabled = true;
         }
 
-        internal ObjectInfo(string name, Object obj, Bitmap image, int imageIndex, string text,
+        internal ObjectInfo(string name, Type obj, Bitmap image, int imageIndex, string text,
           int flags, bool multiInsert) : this()
         {
             this.name = name;
@@ -352,9 +423,9 @@ namespace FastReport.Utils
     public static partial class RegisteredObjects
     {
 #region Fields
-        private static Hashtable FTypes = new Hashtable();
-        private static ObjectInfo FObjects = new ObjectInfo();
-        private static Dictionary<Type, Dictionary<string, Delegate>> methodsDictionary
+        private static readonly Hashtable FTypes = new Hashtable();
+        private static readonly ObjectInfo FObjects = new ObjectInfo();
+        private static readonly Dictionary<Type, Dictionary<string, Delegate>> methodsDictionary
             = new Dictionary<Type, Dictionary<string, Delegate>>();
 #endregion
 
@@ -365,6 +436,19 @@ namespace FastReport.Utils
         public static ObjectInfo Objects
         {
             get { return FObjects; }
+        }
+
+        /// <summary>
+        /// Root object for all registered exports.
+        /// </summary>
+        public static ObjectInfo Exports { get; }
+
+        /// <summary>
+        /// Root object for all registered DataConnections
+        /// </summary>
+        public static DataConnectionInfo DataConnections
+        {
+            get;
         }
 
         /// <summary>
@@ -389,22 +473,38 @@ namespace FastReport.Utils
             FTypes[type.Name] = type;
         }
 
-        private static void InternalAdd(Object obj, string category, Bitmap image, int imageIndex, string text, int flags,
-            bool multiInsert)
+        private static void RemoveRegisteredType(Type type)
+        {
+            FTypes.Remove(type.Name);
+        }
+
+        private static ObjectInfo InternalAdd(Type obj, string category, Bitmap image, int imageIndex, string text)
+        {
+            ObjectInfo item = FObjects.FindOrCreate(category);
+            item.Update(obj, image, imageIndex, text);
+            if (obj != null)
+                RegisterType(obj);
+            return item;
+        }
+
+        private static ObjectInfo InternalAdd(Type obj, string category, Bitmap image, int imageIndex, string text,
+            int flags, bool multiInsert)
         {
             ObjectInfo item = FObjects.FindOrCreate(category);
             item.Update(obj, image, imageIndex, text, flags, multiInsert);
-            if (obj is Type)
-                RegisterType(obj as Type);
+            if (obj != null)
+                RegisterType(obj);
+            return item;
         }
 
-        private static void InternalAdd(Object obj, string category, Bitmap image, int imageIndex, int buttonIndex,
+        private static ObjectInfo InternalAdd(Type obj, string category, Bitmap image, int imageIndex, int buttonIndex,
             string text, int flags, bool multiInsert)
         {
             ObjectInfo item = FObjects.FindOrCreate(category);
             item.Update(obj, image, imageIndex, buttonIndex, text, flags, multiInsert);
-            if (obj is Type)
-                RegisterType(obj as Type);
+            if (obj != null)
+                RegisterType(obj);
+            return item;
         }
 
 #if CATEGORY_OPTIMIZATION
@@ -442,17 +542,17 @@ namespace FastReport.Utils
 
         internal static void AddReport(Type obj, int imageIndex)
         {
-            InternalAdd(obj, "", null, imageIndex, "", 0, false);
+            InternalAdd(obj, "", null, imageIndex, "");
         }
 
         internal static void AddPage(Type obj, string category, int imageIndex)
         {
-            InternalAdd(obj, category, null, imageIndex, "", 0, false);
+            InternalAdd(obj, category, null, imageIndex, "");
         }
 
         internal static void AddCategory(string category, int imageIndex, string text)
         {
-            InternalAdd(null, category, null, imageIndex, text, 0, false);
+            InternalAdd(null, category, null, imageIndex, text);
         }
 
         internal static void AddCategory(string category, int imageIndex, int buttonIndex, string text)
@@ -481,7 +581,7 @@ namespace FastReport.Utils
         /// </remarks>
         public static void AddCategory(string name, Bitmap image, string text)
         {
-            InternalAdd(null, name, image, -1, text, 0, false);
+            InternalAdd(null, name, image, -1, text);
         }
 
         /// <summary>
@@ -491,7 +591,7 @@ namespace FastReport.Utils
         /// <param name="text">Category text.</param>
         public static void AddExportCategory(string name, string text, int imageIndex = -1)
         {
-            InternalAdd(null, "ExportGroups," + name, null, imageIndex, text, 0, false);
+            PrivateAddExport(null, "ExportGroups," + name, text, null, imageIndex);
         }
 
         /// <summary>
@@ -513,16 +613,6 @@ namespace FastReport.Utils
             AddExport(obj, "", text);
         }
 
-        internal static void AddExport(Type obj, string text, int imageIndex)
-        {
-            InternalAdd(obj, "", null, imageIndex, text, 0, false);
-        }
-
-        internal static void AddExport(Type obj, string category, string text, int imageIndex)
-        {
-            InternalAdd(obj, "ExportGroups," + category + ",", null, imageIndex, text, 0, false);
-        }
-
         public static void AddExport(Type obj, string category, string text, Bitmap image = null)
         {
             if (!obj.IsSubclassOf(typeof(ExportBase)))
@@ -531,11 +621,30 @@ namespace FastReport.Utils
             InternalAddExport(obj, category, text, image);
         }
 
-        internal static void InternalAddExport(Type obj, string category, string text, Bitmap image = null)
+        internal static ObjectInfo AddExport(Type obj, string text, int imageIndex)
         {
-            InternalAdd(obj, "ExportGroups," + category + ",", image, -1, text, 0, false);
+            return PrivateAddExport(obj, "", text, null, imageIndex);
         }
 
+        internal static void AddExport(Type obj, string category, string text, int imageIndex)
+        {
+            PrivateAddExport(obj, "ExportGroups," + category + ",", text, null, imageIndex);
+        }
+
+        internal static void InternalAddExport(Type obj, string category, string text, Bitmap image = null)
+        {
+            PrivateAddExport(obj, "ExportGroups," + category + ",", text, image);
+        }
+
+        private static ObjectInfo PrivateAddExport(Type obj, string category, string text,
+            Bitmap image = null, int imageIndex = -1)
+        {
+            var item = Exports.FindOrCreate(category);
+            item.Update(obj, image, imageIndex, text);
+            if (obj != null)
+                RegisterType(obj);
+            return item;
+        }
 
         /// <summary>
         /// Registers custom data connection.
@@ -563,7 +672,14 @@ namespace FastReport.Utils
         internal static void InternalAddConnection(Type obj, string text = "")
         {
             if (!IsTypeRegistered(obj))
-                Add(obj, "", 0, text);
+                PrivateAddConnection(obj, text);
+        }
+
+        private static void PrivateAddConnection(Type obj, string text)
+        {
+            DataConnectionInfo item = DataConnections.FindOrCreate("");
+            item.Update(obj, text);
+            RegisterType(obj);
         }
 
         /// <summary>
@@ -669,14 +785,12 @@ namespace FastReport.Utils
         /// </example>
         public static void AddFunctionCategory(string category, string text)
         {
-            InternalAdd(null, "Functions," + category, null, 66, text, 0, false);
             PrivateAddFunction(null, "Functions," + category, text);
         }
 
 #if CATEGORY_OPTIMIZATION
         public static void AddFunctionCategory(string name, FunctionInfo category)
         {
-            InternalAdd(null, "Functions," + category, null, 66, name, 0, false);
             PrivateAddFunction(null, category, 66, name);
         }
 #endif
@@ -781,9 +895,15 @@ namespace FastReport.Utils
 
         internal static void InternalAddFunction(MethodInfo function, string category)
         {
-            InternalAdd(function, "Functions," + category + ",", null, 52, "", 0, false);
-            // new 
             PrivateAddFunction(function, "Functions," + category + ",");
+        }
+
+
+        public static void Remove(Type obj, string category)
+        {
+            FObjects.Remove(category + "," + obj.Name);
+            if (obj != null)
+                RemoveRegisteredType(obj);
         }
 
         internal static Type FindType(string typeName)
@@ -810,12 +930,40 @@ namespace FastReport.Utils
 
             List<ObjectInfo> list = new List<ObjectInfo>();
             FObjects.EnumItems(list);
-
             foreach (ObjectInfo item in list)
             {
                 if (item.Object == type)
                     return item;
             }
+
+            var export = FindExport(type);
+            return export;
+        }
+
+        public static ObjectInfo FindExport(Type type)
+        {
+            var exports = new List<ObjectInfo>();
+            Exports.EnumItems(exports);
+            foreach (ObjectInfo item in exports)
+            {
+                if (item.Object == type)
+                    return item;
+            }
+
+            return null;
+        }
+
+        public static DataConnectionInfo FindConnection(Type type)
+        {
+            if (type == null)
+                return null;
+
+            var dataConnections = new List<DataConnectionInfo>();
+            DataConnections.EnumItems(dataConnections);
+            foreach (var item in dataConnections)
+                if (item.Object == type)
+                    return item;
+
             return null;
         }
 
@@ -866,7 +1014,7 @@ namespace FastReport.Utils
                     return result;
             }
             if (inheritance)
-                return RegisteredObjects.GetMethod(type.BaseType, methodName, inheritance);
+                return GetMethod(type.BaseType, methodName, inheritance);
             return null;
         }
 
@@ -934,7 +1082,6 @@ namespace FastReport.Utils
                 .Replace("<", "&lt;").Replace(">", "&gt;").Replace("\t", "<br/>").ToString();
         }
 
-
 #endregion
 
         static RegisteredObjects()
@@ -944,6 +1091,8 @@ namespace FastReport.Utils
             Assemblies.Add(Assembly.GetExecutingAssembly());
 
             Functions = new FunctionInfo();
+            DataConnections = new DataConnectionInfo();
+            Exports = new ObjectInfo();
         }
     }
 

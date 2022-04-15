@@ -7,7 +7,7 @@ namespace FastReport.Utils
 {
     partial class DrawUtils
     {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if CROSSPLATFORM
         static IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, DrawingOptions drawingOptions)
         {
             return IntPtr.Zero;
