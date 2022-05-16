@@ -812,12 +812,19 @@ namespace FastReport
             }
 
             if ((CanGrow && maxHeight > Height) || (CanShrink && maxHeight < Height))
+            {
                 Height = maxHeight;
+
+                // avoid band growing out of page
+                ReportPage page = Page as ReportPage;
+                if (page != null && page.HeightInPixels > 0 && Bottom > page.HeightInPixels)
+                    Height = page.HeightInPixels - Top;
+            }
 
             // perform grow to bottom
             foreach (ReportComponentBase obj in Objects)
             {
-                if (obj.GrowToBottom)
+                if (obj.GrowToBottom || obj.Bottom > Height)
                     obj.Height = Height - obj.Top;
             }
 

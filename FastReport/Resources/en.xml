@@ -755,6 +755,46 @@
       <Color Text="Color:"/>
       <Hint Text="Choose the line style and choose the line to apply the style."/>
     </Border>
+    <CISWizardForm Text="Wizard for visualization of control (identification) signs">
+      <CIS Text="Сontrol (identification) sign"/>
+      <ProductGroup Text="Product group:"/>
+      <Data Text="Encoded data:"/>
+      <TypeBarcodes Text="Type of barcodes:"/>
+      <LeftMargin Text="Left margin"/>
+      <MethodСirculation Text="Method of release of products into circulation:"/>
+      <Country Text="Country:"/>
+      <ID Text="ID:"/>
+      <Size Text="Size:"/>
+      <PageProps Text="Page properties"/>
+      <Landscape Text="Landscape"/>
+      <MarginTop Text="Top:"/>
+      <MarginLeft Text="Left:"/>
+      <Margins Text="Margins:"/>
+      <Paper Text="Paper type:"/>
+      <PageWidth Text="Page width:"/>
+      <PageHeight Text="Page height:"/>
+      <CountColumns Text="Count columns:"/>
+      <CountRows Text="Count rows:"/>
+      <HorizontalPadding Text="Horizontal margin:"/>
+      <VerticalPadding Text="Vertical margin:"/>
+      <Border Text="Borders of sign"/>
+      <TransportPack Text="Tobacco, Transport packaging"/>
+      <Pack Text="Tobacco, Pack"/>
+      <Block Text="Tobacco, Block"/>
+      <Legprom Text="Light industry"/>
+      <Perfumes Text="Perfumes and eau de toilette"/>
+      <Footwear Text="Footwear"/>
+      <Fur Text="Fur coats"/>
+      <Photo Text="Photo"/>
+      <Tires Text="Tires"/>
+      <Medicines Text="Medicines"/>
+      <Dairy Text="Dairy products"/>
+      <Water Text="Packaged water"/>
+      <ImportProd Text="Import of products into the customs territory"/>
+      <ManufactureProd Text="Manufacture of products on the territory"/>
+      <Sample Text="Sample"/>
+      <Warning Text="Sings do not fit on the page!"/>
+    </CISWizardForm>
     <ChartEditor Text="Chart Editor">
       <Chart Text="Chart"/>
       <Add Text="Add..."/>
@@ -2442,6 +2482,7 @@
     <NewDataSource Text="New Data Source"/>
     <NewPage Text="New Report Page"/>
     <NewDialog Text="New Dialog Form"/>
+    <CISWizard Text="Visualization wizard of control (identification) signs"/>
     <FastM1nesweeper Text="Fast M1nesweeper"/>
   </Wizards>
   <Export>

@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Drawing;
 using System.Windows.Forms;
+using FastReport.Data;
 using FastReport.Table;
 
 namespace FastReport.Import.RDL
@@ -22,6 +23,7 @@ namespace FastReport.Import.RDL
         private string dataSetName;
         private bool firstRun;
         private XmlNode reportNode;
+        private string filename;
 
         #endregion // Fields
 
@@ -584,11 +586,40 @@ namespace FastReport.Import.RDL
         {
             component = ComponentsFactory.CreateSubreportObject(subreportNode.Attributes["Name"].Value, parent);
             ReportPage subPage = ComponentsFactory.CreateReportPage(Report);
-            DataBand subBand = ComponentsFactory.CreateDataBand(subPage);
-            subBand.Height = 2.0f * Utils.Units.Centimeters;
             (component as SubreportObject).ReportPage = subPage;
             XmlNodeList nodeList = subreportNode.ChildNodes;
-            LoadReportItem(nodeList);
+
+            string path = Path.GetDirectoryName(filename);
+            string reportName = String.Empty;
+            foreach (XmlNode node in nodeList)
+            {
+                if (node.Name == "ReportName")
+                    reportName = node.InnerText;
+            }
+            string subFilename = Path.Combine(path, reportName + ".rdl");
+            if (!File.Exists(subFilename))
+            {
+                subFilename = Path.Combine(path, reportName + ".rdlc");
+                if (!File.Exists(subFilename))
+                    subFilename = String.Empty;
+            }
+
+            if (!String.IsNullOrEmpty(subFilename))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(subFilename);
+                reportNode = doc.LastChild;
+                ReportPage tempPage = page;
+                page = subPage;
+                LoadReport(reportNode);
+                page = tempPage;
+            }
+            else
+            {
+                DataBand subBand = ComponentsFactory.CreateDataBand(subPage);
+                subBand.Height = 2.0f * Utils.Units.Centimeters;
+                LoadReportItem(nodeList);
+            }
         }
 
         partial void LoadChart(XmlNode chartNode);
@@ -765,6 +796,34 @@ namespace FastReport.Import.RDL
             }
         }
 
+        private void LoadParameters(XmlNode parametersNode)
+        {
+            foreach (XmlNode node in parametersNode.ChildNodes)
+            {
+                Parameter parameter = ComponentsFactory.CreateParameter(node.Attributes["Name"].Value, Report);
+                foreach (XmlNode subNode in node.ChildNodes)
+                {
+                    if (subNode.Name == "DataType")
+                    {
+                        Type type = Type.GetType("System." + subNode.InnerText);
+                        if (type != null)
+                            parameter.DataType = type;
+                        else if (subNode.InnerText == "Integer")
+                            parameter.DataType = typeof(Int32);
+                        else if (subNode.InnerText == "Float")
+                            parameter.DataType = typeof(float);
+                    }
+                    else if (subNode.Name == "Prompt")
+                    {
+                        parameter.Description = subNode.InnerText;
+                    }
+                    else if (subNode.Name == "DefaultValue")
+                    {
+                    }
+                }
+            }
+        }
+
         private XmlNode GetEmbededImageNode(string objectName)
         {
             foreach(XmlNode node in reportNode.ChildNodes)
@@ -803,8 +862,8 @@ namespace FastReport.Import.RDL
                 }
                 else if (node.Name == "Page")
                 {
-                    if(pageNbr > 0)
-                        page = ComponentsFactory.CreateReportPage(Report);                    
+                    if (pageNbr > 0)
+                        page = ComponentsFactory.CreateReportPage(Report);
                     LoadPage(node);
                     pageNbr++;
                 }
@@ -818,7 +877,7 @@ namespace FastReport.Import.RDL
                                 if (page == null)
                                     page = ComponentsFactory.CreateReportPage(Report);
                                 LoadBody(sectionItem);
-                            }    
+                            }
                             else if (sectionItem.Name == "Page")
                             {
                                 if (pageNbr > 0)
@@ -832,10 +891,15 @@ namespace FastReport.Import.RDL
                 {
                     defaultFontFamily = node.InnerText;
                 }
-                else if(node.Name == "DataSets")
+                else if (node.Name == "DataSets")
                 {
                     if (node.HasChildNodes)
                         dataSetName = node.FirstChild.Attributes["Name"].Value;
+                }
+                else if (node.Name == "ReportParameters")
+                {
+                    if (node.HasChildNodes)
+                        LoadParameters(node);
                 }
             }
             if (page == null)
@@ -852,6 +916,7 @@ namespace FastReport.Import.RDL
         /// <inheritdoc/>
         public override void LoadReport(Report report, string filename)
         {
+            this.filename = filename;
             Report = report;
             Report.Clear();
             XmlDocument doc = new XmlDocument();

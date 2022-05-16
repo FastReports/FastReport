@@ -308,7 +308,7 @@ namespace FastReport
             // perform grow to bottom
             foreach (ReportComponentBase obj in Objects)
             {
-                if (obj.GrowToBottom)
+                if (obj.GrowToBottom || obj.Bottom > Height)
                     obj.Height = Height - obj.Top;
             }
 
