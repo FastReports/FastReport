@@ -3,6 +3,7 @@ using FastReport.Matrix;
 using FastReport.Barcode;
 using FastReport.Gauge.Linear;
 using FastReport.Gauge.Simple;
+using FastReport.Data;
 
 namespace FastReport.Import
 {
@@ -472,5 +473,22 @@ namespace FastReport.Import
             return gauge;
         }
         #endregion // Objects
+
+        #region Dictionary Elements
+
+        /// <summary>
+        /// Creates a Parameter instance with specified name and parent.
+        /// </summary>
+        /// <param name="name">The name of the Parameter instance.</param>
+        /// <param name="report">The parent Report for the new Parameter.</param>
+        /// <returns>The Parameter instance.</returns>
+        public static Parameter CreateParameter(string name, Report report)
+        {
+            Parameter parameter = new Parameter(name);
+            report.Parameters.Add(parameter);
+            return parameter;
+        }
+
+        #endregion Dictionary Elements
     }
 }

@@ -745,6 +745,46 @@
       <Color Text="Цвет:"/>
       <Hint Text="Выберите тип линии и с помощью мыши укажите, к какой части рамки он относится."/>
     </Border>
+    <CISWizardForm Text="Мастер визуализации контрольных (идентификационных) знаков">
+      <CIS Text="Контрольный (идентификационный) знак"/>
+      <ProductGroup Text="Товарная группа:"/>
+      <Data Text="Кодируемые данные:"/>
+      <TypeBarcodes Text="Тип штрих-кодов:"/>
+      <LeftMargin Text="Отступ слева"/>
+      <MethodСirculation Text="Способ выпуска товара в оборот:"/>
+      <Country Text="Страна:"/>
+      <ID Text="Идентификатор:"/>
+      <Size Text="Размеры:"/>
+      <PageProps Text="Свойства страницы"/>
+      <Landscape Text="Альбомная ориентация"/>
+      <MarginTop Text="Сверху:"/>
+      <MarginLeft Text="Слева:"/>
+      <Margins Text="Отступы:"/>
+      <Paper Text="Тип бумаги:"/>
+      <PageWidth Text="Ширина страницы:"/>
+      <PageHeight Text="Высота страницы:"/>
+      <CountColumns Text="Количество столбцов:"/>
+      <CountRows Text="Количество строк:"/>
+      <HorizontalPadding Text="Горизонтальный отступ:"/>
+      <VerticalPadding Text="Вертикальный отступ:"/>
+      <Border Text="Границы знака"/>
+      <TransportPack Text="Табак, Транспортная упаковка"/>
+      <Pack Text="Табак, Пачка"/>
+      <Block Text="Табак, Блок"/>
+      <Legprom Text="Легпром"/>
+      <Perfumes Text="Духи и туалетная вода"/>
+      <Footwear Text="Обувь"/>
+      <Fur Text="Шубы"/>
+      <Photo Text="Фото"/>
+      <Tires Text="Шины и покрышки"/>
+      <Medicines Text="Лекарства"/>
+      <Dairy Text="Молочная продукция"/>
+      <Water Text="Упакованная вода"/>
+      <ImportProd Text="Ввоз товара на таможенную территорию"/>
+      <ManufactureProd Text="Производство товара на территории"/>
+      <Sample Text="Образец"/>
+      <Warning Text="Знаки не помещаются на странице!"/>
+    </CISWizardForm>
     <ChartEditor Text="Редактор диаграммы">
       <Chart Text="Диаграмма"/>
       <Add Text="Добавить..."/>
@@ -2194,6 +2234,7 @@
     <Label Text="Мастер этикеток"/>
     <NewDataSource Text="Новый источник данных"/>
     <NewPage Text="Новая страница отчета"/>
+    <CISWizard Text="Мастер визуализации контрольных (идентификационных) знаков"/>
     <NewDialog Text="Новая диалоговая форма"/>
   </Wizards>
   <Export>
