@@ -45,20 +45,9 @@ namespace CakeScript
             }
         }
 
-        public static Graph CreateTree(string startMethod)
-        {
-            if (startMethod is null)
-                throw new ArgumentNullException();
-
-            var method = Startup.GetMethod(startMethod);
-            return CreateTree(method);
-        }
-
         public static Graph CreateTree(MethodInfo startMethod)
         {
-            if (startMethod is null)
-                throw new ArgumentNullException();
-
+            ArgumentNullException.ThrowIfNull(startMethod, nameof(startMethod));
 
             var startTask = GetTask(startMethod);
 

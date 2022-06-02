@@ -165,25 +165,30 @@ namespace FastReport.Code
 
         private void AddReferencedAssemblies(IList assemblies, string defaultPath)
         {
-            foreach (string s in Report.ReferencedAssemblies)
+            for (int i = 0; i < Report.ReferencedAssemblies.Length; i++)
             {
+                string s = Report.ReferencedAssemblies[i];
+
 #if CROSSPLATFORM
-                // replace 
                 if (s == "System.Windows.Forms.dll")
-                {
-                    AddReferencedAssembly(assemblies, defaultPath, "FastReport.Compat");
-                    continue;
-                }
+                    s = "FastReport.Compat";
 #endif
                 // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
                 if (s.IndexOf("System.Windows.Forms.DataVisualization") != -1)
-                {
-                    AddReferencedAssembly(assemblies, defaultPath, "FastReport.DataVisualization");
-                    continue;
-                }
+                    s = "FastReport.DataVisualization";
+#if SKIA
+                if (s.IndexOf("FastReport.Compat") != -1)
+                    s = "FastReport.Compat.Skia";
+                if (s.IndexOf("FastReport.DataVisualization") != -1)
+                    s = "FastReport.DataVisualization.Skia";
+#endif
 
                 AddReferencedAssembly(assemblies, defaultPath, s);
             }
+
+#if SKIA
+            AddReferencedAssembly(assemblies, defaultPath, "FastReport.SkiaDrawing");
+#endif
 
             // these two required for "dynamic" type support
             AddReferencedAssembly(assemblies, defaultPath, "System.Core");

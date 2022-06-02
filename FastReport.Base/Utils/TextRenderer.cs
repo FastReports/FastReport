@@ -269,12 +269,7 @@ namespace FastReport.Utils
         private void AdjustParagraphLines()
         {
             // calculate text height
-            float height = 0;
-            height = CalcHeight();
-            /*foreach (Paragraph paragraph in Paragraphs)
-            {
-              height += paragraph.Lines.Count * LineHeight;
-            }*/
+            float height = CalcHeight();
 
             // calculate Y offset
             float offsetY = DisplayRect.Top;
@@ -1595,6 +1590,13 @@ namespace FastReport.Utils
                 }
                 else
                 {
+#if SKIA
+                    // we need actual height of a text because it may have font fallback with different metrics
+                    if (!string.IsNullOrEmpty(text))
+                    {
+                        return DrawUtils.MeasureString(Renderer.Graphics.Graphics, text, Renderer.Font, Renderer.Format).Height;
+                    }
+#endif
                     return Renderer.LineHeight;
                 }
             }

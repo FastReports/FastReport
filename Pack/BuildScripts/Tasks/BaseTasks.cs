@@ -37,6 +37,8 @@ namespace CakeScript
           "Excel",
         };
 
+        internal string SolutionFile => Path.Combine(solutionDirectory, solutionFilename);
+
         public Program(string[] args)
         {
             
@@ -80,7 +82,7 @@ namespace CakeScript
             if (String.IsNullOrWhiteSpace(solutionDirectory))
                 throw new FileNotFoundException($"File `{solutionFilename}` was not found!");
             solutionDirectory = Path.GetFullPath(solutionDirectory);
-            if (!solutionDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            if (!solutionDirectory.EndsWith(Path.DirectorySeparatorChar))
                 solutionDirectory += Path.DirectorySeparatorChar.ToString();
 
             Information($"solutionDirectory: {solutionDirectory}");
@@ -121,6 +123,14 @@ namespace CakeScript
             Information("");
             Information("OR: if you want to run 'Debug' mode, please add [Debug] attribute to your method");
 
+        }
+
+        internal string GetVersion()
+        {
+            string versionNum = version + "-" + config.ToLower();
+            if (IsRelease)
+                versionNum = version;
+            return versionNum;
         }
     }
 }

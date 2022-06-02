@@ -16,12 +16,10 @@ namespace FastReport.Utils
     {
 #if COMMUNITY
         const string CONFIG_NAME = "FastReport.Community.config";
-#else
-#if MONO
+#elif MONO
         const string CONFIG_NAME = "FastReport.Mono.config";
 #else
         const string CONFIG_NAME = "FastReport.config";
-#endif
 #endif
         #region Private Fields
 
@@ -298,6 +296,9 @@ namespace FastReport.Utils
         internal static void Init()
         {
             FIsRunningOnMono = Type.GetType("Mono.Runtime") != null;
+#if SKIA
+            Topten.RichTextKit.FontFallback.CharacterMatcher = characterMatcher;
+#endif
 
             CheckWebMode();
 
@@ -393,9 +394,9 @@ namespace FastReport.Utils
         }
 #endif
 
-#endregion Internal Methods
+        #endregion Internal Methods
 
-#region Private Methods
+        #region Private Methods
 
         private static string GetTempFileName()
         {
@@ -527,7 +528,7 @@ namespace FastReport.Utils
             }
 
             // For CoreWin
-#if NETCOREAPP
+#if COREWIN
             LoadPluginsInCurrentFolder();
 #endif
         }
@@ -604,7 +605,7 @@ namespace FastReport.Utils
         /// </summary>
         public class ScriptSecurityProperties
         {
-            private readonly string[] defaultStopList = new[]
+            private static readonly string[] defaultStopList = new[]
                 {
                     "GetType",
                     "typeof", 

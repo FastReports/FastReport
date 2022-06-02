@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace CakeScript
 {
@@ -11,11 +12,27 @@ namespace CakeScript
     {
         static readonly Dictionary<string, string> Args = new Dictionary<string, string>();
 
+        private static MethodInfo targetMethod;
+
+
+        public static bool IsTargetMethod 
+        {
+            get
+            {
+                var stackTrace = new StackTrace(false);
+                var frame = stackTrace.GetFrame(1);
+                var callMethod = frame.GetMethod();
+
+                bool result = callMethod == targetMethod;
+                return result;
+            }
+        }
+
         static public void Main(string[] args)
         {
             ParseArgs(args);
 
-            string target = string.Empty;
+            var target = string.Empty;
             if (Args.ContainsKey("target"))
             {
                 target = Args["target"];
@@ -23,12 +40,12 @@ namespace CakeScript
 #if DEBUG
             if(string.IsNullOrEmpty(target))
             {
-                var method = GetDebugTask();
-                if (method != null)
+                targetMethod = GetDebugTask();
+                if (targetMethod != null)
                 {
-                    var debugArgs = GetDebugArgs(method);
+                    var debugArgs = GetDebugArgs(targetMethod);
                     ParseArgs(debugArgs);
-                    var graph = Graph.CreateTree(method);
+                    var graph = Graph.CreateTree(targetMethod);
 
                     RunTree(graph, args);
                     return;
@@ -38,7 +55,9 @@ namespace CakeScript
 
             if (!string.IsNullOrEmpty(target))
             {
-                var graph = Graph.CreateTree(target);
+                targetMethod = GetMethod(target);
+
+                var graph = Graph.CreateTree(targetMethod);
 
                 RunTree(graph, args);
             }
@@ -61,6 +80,9 @@ namespace CakeScript
         {
             foreach (var argument in args)
             {
+                if (string.IsNullOrEmpty(argument))
+                    continue;
+
                 if (argument == "--tree")
                 {
                     ViewAllTasks();
@@ -125,13 +147,14 @@ namespace CakeScript
 
         private static void RunTaskWrapper(Graph.GraphTask sortedTask, object instance)
         {
-            Console.WriteLine("=============================");
+            const string separator = "=============================";
+            Console.WriteLine(separator);
             Console.WriteLine($"  {sortedTask.Name}");
 
             sortedTask.Method.Invoke(instance, Array.Empty<object>());
 
             Information($"  {sortedTask.Name} finished", ConsoleColor.Green);
-            Console.WriteLine("=============================");
+            Console.WriteLine(separator);
             Console.WriteLine();
         }
 
@@ -153,6 +176,8 @@ namespace CakeScript
             Console.ResetColor();
         }
 
+        public static void Warning(object info)
+            => Information(info, ConsoleColor.Yellow);
 
         public static bool HasArgument(string argument)
         {

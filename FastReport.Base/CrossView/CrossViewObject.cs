@@ -265,6 +265,7 @@ namespace FastReport.CrossView
       ResultTable.Border = Border.Clone();
       ResultTable.Fill = Fill.Clone();
       ResultTable.Bounds = Bounds;
+      ResultTable.PrintOnParent = PrintOnParent;
       ResultTable.RepeatHeaders = RepeatHeaders;
       ResultTable.RepeatRowHeaders = RepeatRowHeaders;
       ResultTable.RepeatColumnHeaders = RepeatColumnHeaders;

@@ -12,10 +12,7 @@
             }
         }
 
-        private void TranslateObjects(BandBase parentBand)
-        {
-	   // Avoid compilation errors
-        }
+        partial void TranslateObjects(BandBase parentBand);
 
         internal void TranslatedObjectsToBand(BandBase band)
         {

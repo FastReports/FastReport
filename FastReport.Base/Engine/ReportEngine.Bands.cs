@@ -215,7 +215,7 @@ namespace FastReport.Engine
             {
                 object expression = null;
                 // Calculate expressions with TotalPages only on FinalPass.
-                if (!obj.VisibleExpression.Contains("TotalPages") || FinalPass)
+                if (!obj.VisibleExpression.Contains("TotalPages") || (Report.DoublePass && FinalPass))
                 {
                     expression = Report.Calc(Code.CodeUtils.FixExpressionWithBrackets(obj.VisibleExpression));
                 }

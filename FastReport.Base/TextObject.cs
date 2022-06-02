@@ -768,7 +768,7 @@ namespace FastReport
                         return new SizeF(width, height);
                     }
                 }
-#if !CROSSPLATFORM
+#if SKIA || !CROSSPLATFORM
                 if (IsAdvancedRendererNeeded)
 #endif
                 {
@@ -786,7 +786,7 @@ namespace FastReport
                         height += Padding.Vertical + 1;
                     return new SizeF(width, height);
                 }
-#if !CROSSPLATFORM
+#if SKIA || !CROSSPLATFORM
                 else
                 {
                     if (FontWidthRatio != 1)

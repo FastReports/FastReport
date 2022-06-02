@@ -119,6 +119,7 @@
     <FirebirdDataConnection Text="Firebird connection"/>
     <ExcelDataConnection Text="Excel connection"/>
     <CassandraDataConnection Text="Cassandra connection"/>
+    <LinterDataConnection Text="LINTER connection"/>
     <VistaDBDataConnection Text="VistaDB connection"/>
     <PostgresDataConnection Text="Postgres connection"/>
     <MySqlDataConnection Text="MySQL connection"/>
@@ -348,6 +349,7 @@
     <XpsFile Text="XPS file (*.xps)|*.xps"/>
     <RdlFiles Text="RDL files (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
     <RdlFile Text="RDL file (*.rdl)|*.rdl"/>
+    <StimulSoftFile Text="StimulSoft file (*.mrt)|*.mrt"/>
     <RdlcFile Text="RDLC file (*.rdlc)|*.rdlc"/>
     <RptFile Text="Crystal Reports file (*.rpt)|*.rpt"/>
     <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>
@@ -2505,7 +2507,10 @@
       <Seamless Text="Seamless table"/>
       <ToMultipleFiles Text="Export to multiple files"/>
       <PrintOptimized Text="Print Optimized"/>
-	  <SplitPages Text="Split Pages"/>
+      <ExportAllTabs Text="Export all tabs"/>
+      <SplitPages Text="Split Pages"/>
+      <Localization Text="Locale export"/>
+      <UseDesigerLocale Text="Use designer locale"/>
     </Misc>
     <Editor Text="Exports Menu Editor">
         <ExportsMenu Text="Exports Menu"/>

@@ -15,9 +15,9 @@ using static CakeScript.CakeAPI;
 using static CakeScript.Startup;
 using Cake.Common.Tools.NuGet.Pack;
 using Cake.Common.Tools.MSBuild;
-using Cake.Common.Tools.DotNetCore.MSBuild;
-using Cake.Common.Tools.DotNetCore.Pack;
-using Cake.Common.Tools.DotNetCore.Test;
+using Cake.Common.Tools.DotNet.MSBuild;
+using Cake.Common.Tools.DotNet.Pack;
+using Cake.Common.Tools.DotNet.Test;
 #endregion
 
 
@@ -29,24 +29,22 @@ namespace CakeScript
         [DependsOn(nameof(Prepare))]
         public void Tests()
         {
-            string solutionFile = Path.Combine(solutionDirectory, solutionFilename);
+            string solutionFile = SolutionFile;
 
-            string versionNum = version + "-" + config.ToLower();
-            if (IsRelease)
-                versionNum = version;
+            string versionNum = GetVersion();
 
-            DotNetCoreMSBuild(solutionFile, new DotNetCoreMSBuildSettings()
+            DotNetMSBuild(solutionFile, new DotNetMSBuildSettings()
               .SetConfiguration(config)
               .WithTarget("CleanObjAndBin")
               .WithProperty("SolutionDir", solutionDirectory)
               .WithProperty("SolutionFileName", solutionFilename)
               .WithProperty("Version", versionNum));
 
-            DotNetCoreClean(solutionFile);
+            DotNetClean(solutionFile);
 
-            DotNetCoreRestore(solutionFile);
+            DotNetRestore(solutionFile);
 
-            DotNetCoreMSBuild(solutionFile, new DotNetCoreMSBuildSettings()
+            DotNetMSBuild(solutionFile, new DotNetMSBuildSettings()
               .SetConfiguration(config)
               .WithTarget("Build")
               .WithProperty("SolutionDir", solutionDirectory)
@@ -54,7 +52,7 @@ namespace CakeScript
               .WithProperty("Version", versionNum)
             );
 
-            DotNetCoreTest(solutionFile, new DotNetCoreTestSettings()
+            DotNetTest(solutionFile, new DotNetTestSettings()
             {
                 Configuration = config,
             });

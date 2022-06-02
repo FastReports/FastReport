@@ -39,6 +39,7 @@ namespace FastReport.Table
         private TableStyleCollection styles;
         private int fixedRows;
         private int fixedColumns;
+        private bool printOnParent;
         private float wrappedGap;
         private bool repeatHeaders;
         private bool repeatRowHeaders;
@@ -114,6 +115,21 @@ namespace FastReport.Table
                 return value;
             }
             set { fixedColumns = value; }
+        }
+
+
+        /// <summary>
+        /// Gets or sets the value that determines whether to print the dynamic table (or matrix) on its parent band directly.
+        /// </summary>
+        /// <remarks>
+        /// By default the dynamic table (matrix) is printed on its own band and is splitted on pages if necessary.
+        /// </remarks>
+        [DefaultValue(false)]
+        [Category("Layout")]
+        public bool PrintOnParent
+        {
+            get { return printOnParent; }
+            set { printOnParent = value; }
         }
 
         /// <summary>
@@ -448,6 +464,7 @@ namespace FastReport.Table
             TableBase src = source as TableBase;
             FixedRows = src.FixedRows;
             FixedColumns = src.FixedColumns;
+            PrintOnParent = src.PrintOnParent;
             RepeatHeaders = src.RepeatHeaders;
             RepeatRowHeaders = src.RepeatRowHeaders;
             RepeatColumnHeaders = src.RepeatColumnHeaders;
@@ -642,6 +659,8 @@ namespace FastReport.Table
                 writer.WriteInt("FixedRows", FixedRows);
             if (FixedColumns != c.FixedColumns)
                 writer.WriteInt("FixedColumns", FixedColumns);
+            if (PrintOnParent != c.PrintOnParent)
+                writer.WriteBool("PrintOnParent", PrintOnParent);
             if (RepeatHeaders != c.RepeatHeaders)
                 writer.WriteBool("RepeatHeaders", RepeatHeaders);
             if (RepeatRowHeaders != c.RepeatRowHeaders)

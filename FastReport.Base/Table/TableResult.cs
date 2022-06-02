@@ -351,6 +351,42 @@ namespace FastReport.Table
                 GeneratePagesWrapped();
         }
 
+        internal void AddToParent(Base parent)
+        {
+            // calculate cells' bounds
+            CalcBounds();
+            // manage duplicates
+            ProcessDuplicates();
+
+            // copy everything to regular table because TableResult is not suitable for this
+            TableBase cloneTable = new TableBase();
+            cloneTable.Assign(this);
+
+            foreach (TableColumn c in Columns)
+            {
+                TableColumn cloneColumn = new TableColumn();
+                cloneColumn.Assign(c);
+                cloneTable.Columns.Add(cloneColumn);
+            }
+
+            foreach (TableRow r in Rows)
+            {
+                TableRow cloneRow = new TableRow();
+                cloneRow.Assign(r);
+                cloneTable.Rows.Add(cloneRow);
+
+                for (int columnIndex = 0; columnIndex < ColumnCount; columnIndex++)
+                {
+                    TableCell cloneCell = new TableCell();
+                    // this is the point why we have to do the cloning manually. r[columnIndex] may return shared instance of TableCell.
+                    cloneCell.AssignAll(r[columnIndex]);
+                    cloneCell.Parent = cloneRow;
+                }
+            }
+
+            cloneTable.Parent = parent;
+        }
+
         internal void CalcBounds()
         {
             // allow row/column manipulation from a script

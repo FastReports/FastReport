@@ -24,6 +24,7 @@ namespace FastReport.Import.RDL
         private bool firstRun;
         private XmlNode reportNode;
         private string filename;
+        private float sectionWidth = 0.0f;
 
         #endregion // Fields
 
@@ -317,8 +318,6 @@ namespace FastReport.Import.RDL
             }
         }
 
-
-
         private void LoadReportItem(XmlNodeList nodeList)
         {
             foreach (XmlNode node in nodeList)
@@ -502,7 +501,6 @@ namespace FastReport.Import.RDL
                 (component as TextObject).Font = new Font(fontFamily, fontSize, style);
             (component as TextObject).TextColor = textBoxForeColor;
         }
-
 
         private string GetValue(string rdlValue)
         {
@@ -755,6 +753,7 @@ namespace FastReport.Import.RDL
         private void LoadPage(XmlNode pageNode)
         {
             XmlNodeList nodeList = pageNode.ChildNodes;
+            bool pageWidthLoaded = false;
             foreach (XmlNode node in nodeList)
             {
                 if (node.Name == "PageHeader")
@@ -772,6 +771,7 @@ namespace FastReport.Import.RDL
                 else if (node.Name == "PageWidth")
                 {
                     page.PaperWidth = UnitsConverter.SizeToMillimeters(node.InnerText);
+                    pageWidthLoaded = true;
                 }
                 else if (node.Name == "LeftMargin")
                 {
@@ -793,6 +793,11 @@ namespace FastReport.Import.RDL
                 {
                     LoadStyle(node);
                 }
+            }
+
+            if (!pageWidthLoaded && sectionWidth > 0)
+            {
+                page.PaperWidth = page.LeftMargin + sectionWidth + page.RightMargin;
             }
         }
 
@@ -884,6 +889,10 @@ namespace FastReport.Import.RDL
                                     page = ComponentsFactory.CreateReportPage(Report);
                                 LoadPage(sectionItem);
                                 pageNbr++;
+                            }
+                            else if (sectionItem.Name == "Width")
+                            {
+                                sectionWidth = UnitsConverter.SizeToMillimeters(sectionItem.InnerText);
                             }
                         }
                 }

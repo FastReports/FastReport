@@ -15,7 +15,6 @@ using static CakeScript.CakeAPI;
 using static CakeScript.Startup;
 using Cake.Common.Tools.NuGet.Pack;
 using Cake.Common.Tools.MSBuild;
-using Cake.Common.Tools.DotNetCore.MSBuild;
 #endregion
 
 

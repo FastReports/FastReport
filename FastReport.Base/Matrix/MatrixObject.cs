@@ -564,6 +564,7 @@ namespace FastReport.Matrix
             ResultTable.Border = Border.Clone();
             ResultTable.Fill = Fill.Clone();
             ResultTable.Bounds = Bounds;
+            ResultTable.PrintOnParent = PrintOnParent;
             ResultTable.RepeatHeaders = RepeatHeaders;
             ResultTable.RepeatRowHeaders = RepeatRowHeaders;
             ResultTable.RepeatColumnHeaders = RepeatColumnHeaders;
@@ -760,12 +761,12 @@ namespace FastReport.Matrix
             CreateResultTable();
             Visible = false;
 
-            if (parent != null)
+            if (parent != null && !PrintOnParent)
             {
                 parent.Height = Top;
                 parent.CanGrow = false;
                 parent.CanShrink = false;
-                parent.AfterPrint += new EventHandler(ResultTable.GeneratePages);
+                parent.AfterPrint += ResultTable.GeneratePages;
             }
         }
 
@@ -785,8 +786,10 @@ namespace FastReport.Matrix
         public override void OnAfterData(EventArgs e)
         {
             base.OnAfterData(e);
-
             Helper.FinishPrint();
+
+            if (PrintOnParent)
+                ResultTable.AddToParent(Parent);
         }
 
         /// <inheritdoc/>
@@ -796,8 +799,8 @@ namespace FastReport.Matrix
             if (!saveVisible || (parent != null && !parent.Visible))
                 return;
 
-            if (parent != null)
-                parent.AfterPrint -= new EventHandler(ResultTable.GeneratePages);
+            if (parent != null && !PrintOnParent)
+                parent.AfterPrint -= ResultTable.GeneratePages;
 
             DisposeResultTable();
             Visible = saveVisible;
