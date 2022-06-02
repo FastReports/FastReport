@@ -15,8 +15,8 @@ using static CakeScript.CakeAPI;
 using static CakeScript.Startup;
 using Cake.Common.Tools.NuGet.Pack;
 using Cake.Common.Tools.MSBuild;
-using Cake.Common.Tools.DotNetCore.MSBuild;
-using Cake.Common.Tools.DotNetCore.Pack;
+using Cake.Common.Tools.DotNet.MSBuild;
+using Cake.Common.Tools.DotNet.Pack;
 #endregion
 
 
@@ -35,24 +35,22 @@ namespace CakeScript
         [DependsOn(nameof(Prepare))]
         public void BuildOpenSource()
         {
-            string versionNum = version + "-" + config.ToLower();
-            if (IsRelease)
-                versionNum = version;
+            string versionNum = GetVersion();
 
-            foreach(var csproj in projects_OpenSource)
+            foreach (var csproj in projects_OpenSource)
             {
                 var proj_path = Path.Combine(solutionDirectory, csproj);
 
-                DotNetCoreClean(proj_path);
+                DotNetClean(proj_path);
             }
 
             foreach (var csproj in projects_OpenSource)
             {
                 var proj_path = Path.Combine(solutionDirectory, csproj);
 
-                DotNetCoreRestore(proj_path);
+                DotNetRestore(proj_path);
 
-                DotNetCoreMSBuild(proj_path, new DotNetCoreMSBuildSettings()
+                DotNetMSBuild(proj_path, new DotNetMSBuildSettings()
                   .SetConfiguration(config)
                   .WithTarget("Build")
                   .WithProperty("SolutionDir", solutionDirectory)
@@ -67,11 +65,9 @@ namespace CakeScript
         [DependsOn(nameof(PrepareNuget))]
         public void PackOpenSource()
         {
-            string versionNum = version + "-" + config.ToLower();
-            if (IsRelease)
-                versionNum = version;
+            string versionNum = GetVersion();
 
-            DotNetCorePackSettings settings = new DotNetCorePackSettings
+            DotNetPackSettings settings = new DotNetPackSettings
             {
                 Configuration = config,
                 NoBuild = true,
@@ -86,14 +82,14 @@ namespace CakeScript
                 settings.IncludeSource = true;
             }
 
-            settings.MSBuildSettings = new DotNetCoreMSBuildSettings()
+            settings.MSBuildSettings = new DotNetMSBuildSettings()
               .WithProperty("SolutionDir", solutionDirectory)
               .WithProperty("SolutionFileName", solutionFilename)
               .WithProperty("Version", versionNum);
 
             foreach (var proj in projects_OpenSource)
             {
-                DotNetCorePack(Path.Combine(solutionDirectory, proj), settings);
+                DotNetPack(Path.Combine(solutionDirectory, proj), settings);
             }
         }
 
@@ -102,7 +98,7 @@ namespace CakeScript
         [DependsOn(nameof(PrepareNuget))]
         public void PackOpenSourcePlugins()
         {
-            DotNetCorePackSettings settings = new DotNetCorePackSettings
+            DotNetPackSettings settings = new DotNetPackSettings
             {
                 Configuration = config,
                 NoRestore = true,
@@ -114,9 +110,9 @@ namespace CakeScript
             {
                 string proj_path = Path.Combine(pluginsDirPath, $"FastReport.Data.{proj}", $"FastReport.OpenSource.Data.{proj}.csproj");
 
-                DotNetCoreRestore(proj_path);
+                DotNetRestore(proj_path);
 
-                DotNetCorePack(proj_path, settings);
+                DotNetPack(proj_path, settings);
             }
         }
 

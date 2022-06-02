@@ -4,8 +4,10 @@
     <PropertyGroup>
 
         <FRCompatVersion>2021.3.1</FRCompatVersion>
+        <FRCompatSkiaVersion>2022.2.11-dev</FRCompatSkiaVersion>
 
         <FRDataVisualizationVersion>2021.3.0</FRDataVisualizationVersion>
+        <FRDataVisualizationSkiaVersion>2022.2.11-dev</FRDataVisualizationSkiaVersion>
 		
         <!-- Not available in Core3 -->
         <SystemDrawingCommonVersion>[4.6.1,)</SystemDrawingCommonVersion>
@@ -27,13 +29,13 @@
 <!-- This group sets version used packages in Demos -->
 	<PropertyGroup>
         
-		<FRCoreVersion>2022.1.11</FRCoreVersion>
+		<FRCoreVersion>2022.2.9</FRCoreVersion>
 		
-		<FRCoreWebVersion>2022.1.11</FRCoreWebVersion>
+		<FRCoreWebVersion>2022.2.9</FRCoreWebVersion>
 		
-		<FROSVersion>2022.1.11</FROSVersion>
+		<FROSVersion>2022.2.9</FROSVersion>
 		
-		<FROSWebVersion>2022.1.11</FROSWebVersion>
+		<FROSWebVersion>2022.2.9</FROSWebVersion>
 		
     </PropertyGroup>
 

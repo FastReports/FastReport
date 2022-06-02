@@ -810,8 +810,6 @@ namespace FastReport
             Hyperlink.Serialize(writer, c.Hyperlink);
             if (Bookmark != c.Bookmark)
                 writer.WriteStr("Bookmark", Bookmark);
-            if (IsIntersectingWithOtherObject != c.IsIntersectingWithOtherObject)
-                writer.WriteBool("IsIntersectedWithOtherObject", IsIntersectingWithOtherObject);
             if (writer.SerializeTo != SerializeTo.Preview)
             {
                 if (CanGrow != c.CanGrow)

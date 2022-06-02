@@ -30,6 +30,7 @@ namespace FastReport.Export
         private bool shiftNonExportable;
         private string saveInitialDirectory;
         private List<Stream> generatedStreams;
+        private bool exportTabs;
         protected bool webPreview;
 
         #region Properties
@@ -157,6 +158,15 @@ namespace FastReport.Export
         {
             get { return saveInitialDirectory; }
             set { saveInitialDirectory = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating that pages will exporting from all open tabs.
+        /// </summary>
+        public bool ExportAllTabs
+        {
+            get { return exportTabs; }
+            set { exportTabs = value; }
         }
 
         /// <summary>
@@ -393,6 +403,7 @@ namespace FastReport.Export
             writer.WriteValue("PageRange", PageRange);
             writer.WriteStr("PageNumbers", PageNumbers);
             writer.WriteBool("OpenAfterExport", OpenAfterExport);
+            writer.WriteBool("ExportAllTabs", ExportAllTabs);
         }
 
         /// <summary>
@@ -568,6 +579,7 @@ namespace FastReport.Export
             allowOpenAfter = true;
             zoom = 1;
             generatedFiles = new List<string>();
+            exportTabs = false;
             shiftNonExportable = false;
         }
     }

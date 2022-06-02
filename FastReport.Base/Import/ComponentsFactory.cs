@@ -175,6 +175,19 @@ namespace FastReport.Import
         }
 
         /// <summary>
+        /// Creates a GroupFooterBand instance in the cpecified GroupHeaderBand.
+        /// </summary>
+        /// <param name="groupHeaderBand">The GroupHeaderBand instance.</param>
+        /// <returns>The GroupFooterBand instance.</returns>
+        public static GroupFooterBand CreateGroupFooterBand(GroupHeaderBand groupHeaderBand)
+        {
+            GroupFooterBand groupFooter = new GroupFooterBand();
+            groupHeaderBand.GroupFooter = groupFooter;
+            groupFooter.CreateUniqueName();
+            return groupFooter;
+        }
+
+        /// <summary>
         /// Creates a ChildBand instance in the specified BandBase.
         /// </summary>
         /// <param name="parent">The BandBase instance.</param>
@@ -467,6 +480,36 @@ namespace FastReport.Import
         public static SimpleGauge CreateSimpleGauge(string name, Base parent)
         {
             SimpleGauge gauge = new SimpleGauge();
+            gauge.Name = name;
+            if ((parent as IParent).CanContain(gauge))
+                gauge.Parent = parent;
+            return gauge;
+        }
+
+        /// <summary>
+        /// Creates a RadialGauge instance with specified name and parent.
+        /// </summary>
+        /// <param name="name">The name of the RadialGauge instance.</param>
+        /// <param name="parent">The parent of the RadialGauge instance.</param>
+        /// <returns>The RadialGauge instance.</returns>
+        public static Gauge.Radial.RadialGauge CreateRadialGauge(string name, Base parent)
+        {
+            Gauge.Radial.RadialGauge gauge = new Gauge.Radial.RadialGauge();
+            gauge.Name = name;
+            if ((parent as IParent).CanContain(gauge))
+                gauge.Parent = parent;
+            return gauge;
+        }
+
+        /// <summary>
+        /// Creates a SimpleProgressGauge instance with specified name and parent.
+        /// </summary>
+        /// <param name="name">The name of the SimpleProgressGauge instance.</param>
+        /// <param name="parent">The parent of the SimpleProgressGauge instance.</param>
+        /// <returns>The SimpleProgressGauge instance.</returns>
+        public static Gauge.Simple.Progress.SimpleProgressGauge CreateSimpleProgressGauge(string name, Base parent)
+        {
+            Gauge.Simple.Progress.SimpleProgressGauge gauge = new Gauge.Simple.Progress.SimpleProgressGauge();
             gauge.Name = name;
             if ((parent as IParent).CanContain(gauge))
                 gauge.Parent = parent;

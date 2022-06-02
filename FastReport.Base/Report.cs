@@ -1283,7 +1283,7 @@ namespace FastReport
         {
             // create the class name
             string className = "";
-            string punctuation = " ~`!@#$%^&*()-=+[]{},.<>/?;:'\"\\|";
+            const string punctuation = " ~`!@#$%^&*()-=+[]{},.<>/?;:'\"\\|";
             foreach (char c in Path.GetFileNameWithoutExtension(fileName))
             {
                 if (!punctuation.Contains(c.ToString()))
@@ -1342,7 +1342,7 @@ namespace FastReport
 
             if (cachedObject is CachedDataItem)
             {
-                CachedDataItem cachedItem = cachedDataItems[expr] as CachedDataItem;
+                CachedDataItem cachedItem = cachedObject as CachedDataItem;
                 DataSourceBase data = cachedItem.dataSource;
                 Column column = cachedItem.column;
 

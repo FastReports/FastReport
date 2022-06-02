@@ -55,6 +55,7 @@ namespace FastReport.Table
         private int rowSpan;
         private ReportComponentCollection objects;
         private TableCellData cellData;
+        private int savedOriginalObjectsCount;
         #endregion
 
         #region Properties
@@ -356,6 +357,8 @@ namespace FastReport.Table
 
             if (Objects != null)
             {
+                savedOriginalObjectsCount = Objects.Count;
+
                 foreach (ReportComponentBase c in Objects)
                 {
                     c.SaveState();
@@ -372,7 +375,11 @@ namespace FastReport.Table
 
             if (Objects != null)
             {
-                for(int i = 0; i < Objects.Count; i++)
+                while (Objects.Count > savedOriginalObjectsCount)
+                {
+                    Objects[Objects.Count - 1].Dispose();
+                }
+                for (int i = 0; i < Objects.Count; i++)
                 {
                     ReportComponentBase c = Objects[i];
                     c.OnAfterPrint(EventArgs.Empty);
@@ -387,14 +394,17 @@ namespace FastReport.Table
             base.GetData();
             if (Table != null && Table.IsInsideSpan(this))
                 Text = "";
+            
             if (Objects != null)
             {
-                foreach (ReportComponentBase c in Objects)
+                for (int i = 0; i < savedOriginalObjectsCount; i++)
                 {
+                    ReportComponentBase c = Objects[i];
                     c.GetData();
                     c.OnAfterData();
                 }
             }
+
             OnAfterData();
         }
         #endregion
@@ -407,7 +417,7 @@ namespace FastReport.Table
             if (Table != null)
                 insideSpan = Table.IsInsideSpan(this);
 
-            return !insideSpan && child is ReportComponentBase && !(child is BandBase) && !(child is TableBase);
+            return !insideSpan && child is ReportComponentBase && !(child is BandBase) && child != Table;
         }
 
         /// <inheritdoc/>
@@ -435,6 +445,9 @@ namespace FastReport.Table
                 }
 
                 Objects.Add(child as ReportComponentBase);
+
+                if (child is TableBase)
+                    (child as TableBase).PrintOnParent = true;
             }
         }
 

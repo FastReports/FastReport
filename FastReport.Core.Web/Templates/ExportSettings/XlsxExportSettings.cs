@@ -86,7 +86,7 @@ namespace FastReport.Web
 <script> 
        {template_modalcontainerscript}
     //SLIDER//
-    var SliderOutputExcel = '3,09';
+    var SliderOutputExcel = '1';
     function Slider() {{
         var SliderRange = document.getElementsByName('SliderRange');
         var SliderValue = document.getElementsByName('SliderValue');
@@ -98,7 +98,7 @@ namespace FastReport.Web
     }}
     //XLSXEXPORT//
     var XlsxButtons;
-    var XlsxFontScaling = '&FontScale=3,09';
+    var XlsxFontScaling = '&FontScale=1';
     var XlsxOnPrintFit = '&PrintFit=NoScaling';
     var XlsxPageBreaks = false;
     var XlsxDataOnly = false;

@@ -117,7 +117,8 @@
     <OdbcDataConnection Text="Подключение к ODBC"/>
     <FirebirdDataConnection Text="Подключение к Firebird "/>
     <ExcelDataConnection Text="Подключение к Excel"/>
-     <CassandraDataConnection Text="Подключение к Cassandra"/>
+    <CassandraDataConnection Text="Подключение к Cassandra"/>
+    <LinterDataConnection Text="Подключение к ЛИНТЕР"/>
     <VistaDBDataConnection Text="Подключение к VistaDB"/>
     <PostgresDataConnection Text="Подключение к Postgres"/>
     <MySqlDataConnection Text="Подключение к MySQL"/>
@@ -345,6 +346,7 @@
     <XpsFile Text="Файл XPS (*.xps)|*.xps"/>
     <RdlFiles Text="Файлы RDL (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
     <RdlFile Text="Файл RDL (*.rdl)|*.rdl"/>
+    <StimulSoftFile Text="Файл StimulSoft (*.mrt)|*.mrt"/>
     <RdlcFile Text="Файл RDLC (*.rdlc)|*.rdlc"/>
     <RptFile Text="Файл Crystal Reports (*.rpt)|*.rpt"/>
     <ShpFile Text="Файл карты (*.shp)|*.shp"/>
@@ -1952,6 +1954,7 @@
       <Database Text="База данных"/>
       <DatabaseName Text="Имя базы данных:"/>
       <DatabaseFile Text="Файл базы данных:"/>
+      <DataSource Text="Источник данных"/>
     </Common>
     <MsSql>
       <UseWindows Text="Аутентификация Windows"/>
@@ -2257,7 +2260,10 @@
       <Seamless Text="Без разрывов таблицы"/>
       <ToMultipleFiles Text="Экспорт в несколько файлов"/>
       <PrintOptimized Text="Для печати"/>
+      <ExportAllTabs Text="Экспорт всех вкладок"/>
       <SplitPages Text="Разделить страницы"/>
+      <Localization Text="Экспорт языка"/>
+      <UseDesigerLocale Text="Использовать язык дизайнера"/>
     </Misc>
     <Editor Text="Редактор меню экспортов">
       <ExportsMenu Text="Меню"/>
