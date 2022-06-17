@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> 
 <Language Name="en">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} font must not be modified, embedded, or exchanged in any manner without first obtaining permission of the legal owner."/>
@@ -474,6 +474,7 @@
       </Window>
       <Help Text="Help">
         <Contents Text="Help Contents..."/>
+        <Account Text="Account..."/>
         <About Text="About..."/>
       </Help>
     </Menu>
@@ -2117,6 +2118,28 @@
       <Columns Text="Columns"/>
       <Rows Text="Rows"/>
     </FastM1nesweeper>
+    <AccountWindow Text="Account">
+      <WebBrowser Text="Authentication"/>
+      <Title Text="Account"/>
+      <SignIn Text="Sign In"/>
+      <NoAccount Text="No account?"/>
+      <Create Text="Create one!"/>
+      <Intro Text="Sign in to your Fast Reports ID account. Your account will be used to synchronize your settings between devices and for other personalization services."/>
+      <Testing Text="&#10;&#10;This feature is in beta!"/>
+      <Expires Text="Expires at {0}"/>
+      <Profile Text="Profile"/>
+      <SignOut Text="Sign Out"/>
+      <Message Text="Your account is used to sync your settings between devices and for other personalization services."/>
+      <SessionExpired Text="Session expired, sign in again!"/>
+    </AccountWindow>
+	<ServerWindow Text="Server">
+        <Server Text="Server"/>
+        <Caption Text="Server"/>
+        <ApiKeyword Text="Api key" />
+        <comboBoxServer Text="FastReport Cloud"/>
+        <comboBoxText Text="https://fastreport.cloud"/>
+        <comboBoxCustom Text="Custom server"/>
+	</ServerWindow>
     <AdvMatrixHeaderEditor Text="Header Editor">
       <General Text="General">
         <ItemType Text="Item type:"/>
@@ -2628,6 +2651,7 @@
       <Basic Text="Basic"/>
       <Other Text="Other"/>
       <ShowGridlines Text="Show gridlines"/>
+      <UseLocaleFormating Text="Use locale formatting of data"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>

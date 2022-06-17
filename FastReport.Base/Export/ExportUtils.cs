@@ -99,11 +99,19 @@ namespace FastReport.Export
             return false;
         }
 
-        internal static string GetExcelFormatSpecifier(FormatBase format)
+        internal static string GetExcelFormatSpecifier(FormatBase format, bool useLocale = false)
         {
             if (format is CurrencyFormat)
             {
                 NumberFormatInfo f = (format as CurrencyFormat).GetNumberFormatInfo();
+
+                if (useLocale)
+                {
+                    (format as CurrencyFormat).UseLocale = true;
+                    f = (format as CurrencyFormat).GetNumberFormatInfo();
+                    f.CurrencyDecimalDigits = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalDigits;
+                }
+                
                 string fm_str = "#,##0";
                 if (f.CurrencyDecimalDigits > 0)
                 {
@@ -148,6 +156,14 @@ namespace FastReport.Export
             else if (format is NumberFormat)
             {
                 NumberFormatInfo f = (format as NumberFormat).GetNumberFormatInfo();
+
+                if (useLocale)
+                {
+                    (format as NumberFormat).UseLocale = true;
+                    f = (format as NumberFormat).GetNumberFormatInfo();
+                    f.CurrencyDecimalDigits = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalDigits;
+                }
+
                 string fm_str = "#,##0";
                 if (f.NumberDecimalDigits > 0)
                 {
@@ -186,6 +202,13 @@ namespace FastReport.Export
             else if (format is PercentFormat)
             {
                 string pattern = "0";
+
+                if (useLocale)
+                {
+                    (format as PercentFormat).UseLocale = true;
+                    (format as PercentFormat).DecimalDigits = CultureInfo.CurrentCulture.NumberFormat.PercentDecimalDigits;
+                }
+
                 if ((format as PercentFormat).DecimalDigits > 0)
                 {
                     pattern += ".";

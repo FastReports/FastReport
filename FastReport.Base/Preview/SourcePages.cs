@@ -81,6 +81,11 @@ namespace FastReport.Preview
       pages.Add(CloneObjects(page, null) as ReportPage);
     }
 
+    public void RemoveLast()
+    {
+        pages.RemoveAt(pages.Count - 1);
+    }
+
     public void Clear()
     {
       while (pages.Count > 0)

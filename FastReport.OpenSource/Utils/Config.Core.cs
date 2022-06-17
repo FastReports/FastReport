@@ -54,6 +54,10 @@
 
         static partial void SaveExportOptions();
 
+        static partial void SaveAuthServiceUser();
+
+        static partial void RestoreAuthServiceUser();
+
         private static void RestoreExportOptions()
         {
             ExportsOptions options = ExportsOptions.GetInstance();

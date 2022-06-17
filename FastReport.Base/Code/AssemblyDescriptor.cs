@@ -17,6 +17,9 @@ using System.Collections.Concurrent;
 using FastReport.Data;
 using FastReport.Engine;
 using FastReport.Utils;
+#if SKIA
+using HMACSHA1 = FastReport.Utils.DetravHMACSHA1;
+#endif
 
 namespace FastReport.Code
 {
@@ -324,7 +327,7 @@ namespace FastReport.Code
         {
             // speed up the case: lot of report objects (> 1000) and lot of data columns in the dictionary (> 10000). 
             Report.Dictionary.CacheAllObjects = true;
-            
+
             InsertItem(Report.CodeHelper.BeginCalcExpression(), "");
 
             ObjectCollection allObjects = Report.AllObjects;
@@ -374,16 +377,16 @@ namespace FastReport.Code
         {
             if (needCompile)
             {
-                lock(compileLocker)
+                lock (compileLocker)
                 {
                     if (needCompile)
                         InternalCompile();
                 }
-            }    
+            }
         }
 
         private void InternalCompile()
-        {          
+        {
             // configure compiler options
             CompilerParameters cp = new CompilerParameters();
             AddFastReportAssemblies(cp.ReferencedAssemblies);   // 2
@@ -402,7 +405,7 @@ namespace FastReport.Code
             string errors = string.Empty;
             CompilerResults cr;
             bool exception = !InternalCompile(cp, out cr);
-            for (int i = 0; exception && i < RECOMPILE_COUNT ; i++)
+            for (int i = 0; exception && i < RECOMPILE_COUNT; i++)
             {
                 exception = !HandleCompileErrors(cp, cr, out errors);
             }
@@ -410,14 +413,16 @@ namespace FastReport.Code
             if (exception && errors != string.Empty)
                 throw new CompilerException(errors);
         }
-        
+
         private string GetAssemblyHash(CompilerParameters cp)
         {
             StringBuilder assemblyHashSB = new StringBuilder();
             foreach (string a in cp.ReferencedAssemblies)
                 assemblyHashSB.Append(a);
-            assemblyHashSB.Append(scriptText.ToString());
-            byte[] hash = null;
+            var script = scriptText.ToString();
+            assemblyHashSB.Append(script);
+            byte[] hash;
+
             using (HMACSHA1 hMACSHA1 = new HMACSHA1(Encoding.ASCII.GetBytes(shaKey)))
             {
                 hash = hMACSHA1.ComputeHash(Encoding.Unicode.GetBytes(assemblyHashSB.ToString()));
@@ -434,11 +439,12 @@ namespace FastReport.Code
 
             // find assembly in cache
             string assemblyHash = GetAssemblyHash(cp);
-            Assembly cachedAssembly = null;
+            Assembly cachedAssembly;
             if (FAssemblyCache.TryGetValue(assemblyHash, out cachedAssembly))
             {
                 Assembly = cachedAssembly;
-                InitInstance(Assembly.CreateInstance("FastReport.ReportScript"));
+                var reportScript = Assembly.CreateInstance("FastReport.ReportScript");
+                InitInstance(reportScript);
                 cr = null;
                 return true;
             }
@@ -465,7 +471,8 @@ namespace FastReport.Code
                 FAssemblyCache.TryAdd(assemblyHash, cr.CompiledAssembly);
 
                 Assembly = cr.CompiledAssembly;
-                InitInstance(Assembly.CreateInstance("FastReport.ReportScript"));
+                var reportScript = Assembly.CreateInstance("FastReport.ReportScript");
+                InitInstance(reportScript);
                 return true;
             }
         }
@@ -509,10 +516,10 @@ namespace FastReport.Code
             errors = string.Empty;
             List<string> additionalAssemblies = new List<string>(4);
             Regex regex;
-            
+
             if (Config.WebMode && Config.EnableScriptSecurity)
             {
-                for (int i=0; i < cr.Errors.Count; )
+                for (int i = 0; i < cr.Errors.Count;)
                 {
                     CompilerError ce = cr.Errors[i];
                     if (ce.ErrorNumber == "CS1685") // duplicate class
@@ -534,14 +541,14 @@ namespace FastReport.Code
                             message = message.Replace("{typeName}", typeName); //$"Please don't use the type {typeName}";
 
                         ce.ErrorText = message;
-                        
+
                     }
                     else if (ce.ErrorNumber == "CS0117") // user using a forbidden method
                     {
                         const string pattern = "[\"'](\\S+)[\"']";
                         regex = new Regex(pattern, RegexOptions.Compiled);
                         MatchCollection mathes = regex.Matches(ce.ErrorText);
-                        if(mathes.Count > 1)
+                        if (mathes.Count > 1)
                         {
                             string methodName = mathes[1].Value;
 
@@ -549,7 +556,7 @@ namespace FastReport.Code
                             string message = Res.TryGet(res);
                             if (string.Equals(res, message))
                                 message = "Please don't use the method " + methodName;
-                            else 
+                            else
                                 message = message.Replace("{methodName}", methodName); //$"Please don't use the method {methodName}";
 
                             ce.ErrorText = message;
@@ -586,7 +593,7 @@ namespace FastReport.Code
                 int line = GetScriptLine(ce.Line);
                 // error is inside own items
                 if (line == -1)
-                { 
+                {
                     string errObjName = GetErrorObjectName(ce.Line);
 
                     if (Config.CompilerSettings.ExceptionBehaviour != CompilerExceptionBehaviour.Default)
@@ -624,7 +631,7 @@ namespace FastReport.Code
                 }
             }
 
-            if(additionalAssemblies.Count > 0)  // need recompile
+            if (additionalAssemblies.Count > 0)  // need recompile
                 return ReCompile(cp, cr, additionalAssemblies);
 
             return false;

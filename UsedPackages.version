@@ -3,14 +3,14 @@
 <!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
     <PropertyGroup>
 
-        <FRCompatVersion>2021.3.1</FRCompatVersion>
-        <FRCompatSkiaVersion>2022.2.11-dev</FRCompatSkiaVersion>
+        <FRCompatVersion>2022.2.0</FRCompatVersion>
+        <FRCompatSkiaVersion>2022.2.12-dev</FRCompatSkiaVersion>
 
-        <FRDataVisualizationVersion>2021.3.0</FRDataVisualizationVersion>
-        <FRDataVisualizationSkiaVersion>2022.2.11-dev</FRDataVisualizationSkiaVersion>
+        <FRDataVisualizationVersion>2022.2.0</FRDataVisualizationVersion>
+        <FRDataVisualizationSkiaVersion>2022.2.12-dev</FRDataVisualizationSkiaVersion>
 		
         <!-- Not available in Core3 -->
-        <SystemDrawingCommonVersion>[4.6.1,)</SystemDrawingCommonVersion>
+        <SystemDrawingCommonVersion>[4.7.0,)</SystemDrawingCommonVersion>
 
         <!-- Not available in Core3 -->
         <SystemSecurityPermissionsVersion>[4.4.0,)</SystemSecurityPermissionsVersion>

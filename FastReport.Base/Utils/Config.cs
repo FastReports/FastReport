@@ -427,6 +427,7 @@ namespace FastReport.Utils
             SaveUIOptions();
             SavePreviewSettings();
             SaveCompilerSettings();
+            SaveAuthServiceUser();
 #if !COMMUNITY
             SaveExportOptions();
 #endif
@@ -492,6 +493,7 @@ namespace FastReport.Utils
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
                 RestorePreviewSettings();
+                RestoreAuthServiceUser();
                 RestoreCompilerSettings();
                 Res.LoadDefaultLocale();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
