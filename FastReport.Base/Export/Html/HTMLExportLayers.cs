@@ -568,19 +568,20 @@ namespace FastReport.Export.Html
                             obj.Draw(new FRPaintEventArgs(g, Zoom + zoom - 1, Zoom + zoom - 1, Report.GraphicCache));
                             obj.Border.Lines = oldLines;
                         }
-                        using (Bitmap b = new Bitmap((int)Width, (int)Height))
-                        {
-                            using (Graphics gr = Graphics.FromImage(b))
+                        if(Width > 0 && Height > 0)
+                            using (Bitmap b = new Bitmap((int)Width, (int)Height))
                             {
-                                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                                gr.DrawImage(image, 0, 0, (int)Width, (int)Height);
-                            }
+                                using (Graphics gr = Graphics.FromImage(b))
+                                {
+                                    gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                                    gr.DrawImage(image, 0, 0, (int)Width, (int)Height);
+                                }
 
-                            if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
-                                ExportUtils.SaveJpeg(b, PictureStream, 95);
-                            else
-                                b.Save(PictureStream, FPictureFormat);
-                        }
+                                if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
+                                    ExportUtils.SaveJpeg(b, PictureStream, 95);
+                                else
+                                    b.Save(PictureStream, FPictureFormat);
+                            }
                     }
                     PictureStream.Position = 0;
 

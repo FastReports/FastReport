@@ -287,10 +287,10 @@ namespace FastReport
         private FormatBase savedFormat;
         private InlineImageCache inlineImageCache;
         private ParagraphFormat paragraphFormat;
+        private bool preserveLastLineSpace;
         #endregion
 
         #region Properties
-
 
         /// <summary>
         /// Gets or sets a paragraph format for a new html rendering type, not for others rendering
@@ -696,6 +696,8 @@ namespace FastReport
         {
             get { return HorzAlign == HorzAlign.Justify || Wysiwyg || LineHeight != 0 || HasHtmlTags; }
         }
+
+        internal bool PreserveLastLineSpace { get { return preserveLastLineSpace; } set { preserveLastLineSpace = value; } }
 
         /// <summary>
         /// Cache for inline images
@@ -1118,14 +1120,40 @@ namespace FastReport
             return GetHtmlTextRenderer(Text, g, fontScale, scale, fontScale, textRect, format, false);
         }
 
-        internal HtmlTextRenderer GetHtmlTextRenderer(string text, IGraphics g, float formatScale, float scale, float fontScale, RectangleF textRect, StringFormat format, bool isPrinting)
+        internal HtmlTextRenderer GetHtmlTextRenderer(string text, IGraphics g, float formatScale, float scale, float fontScale, 
+            RectangleF textRect, StringFormat format, bool isPrinting)
         {
+#if true
+            HtmlTextRenderer.RendererContext context;
+            context.text = text;
+            context.g = g;
+            context.font = font.FontFamily;
+            context.size = font.Size;
+            context.style = font.Style; // no keep
+            context.color = TextColor; // no keep
+            context.underlineColor = textOutline.Color;
+            context.rect = textRect;
+            context.underlines = Underlines;
+            context.format = format; // no keep
+            context.horzAlign = horzAlign;
+            context.vertAlign = vertAlign;
+            context.paragraphFormat = ParagraphFormat.MultipleScale(formatScale);
+            context.forceJustify = ForceJustify;
+            context.scale = scale* 96f / DrawUtils.ScreenDpi;
+            context.fontScale = fontScale * 96f / DrawUtils.ScreenDpi;
+            context.cache = InlineImageCache;
+            context.isPrinting = isPrinting;
+            context.isDifferentTabPositions = TabPositions.Count > 0;
+            context.keepLastLineSpace = this.PreserveLastLineSpace;
+            return new HtmlTextRenderer(context);
+#else
             bool isDifferentTabPositions = TabPositions.Count > 0;
             return new HtmlTextRenderer(text, g, font.FontFamily, font.Size, font.Style, TextColor,
                       textOutline.Color, textRect, Underlines,
                       format, horzAlign, vertAlign, ParagraphFormat.MultipleScale(formatScale), ForceJustify,
                       scale * 96f / DrawUtils.ScreenDpi, fontScale * 96f / DrawUtils.ScreenDpi, InlineImageCache,
                       isPrinting, isDifferentTabPositions);
+#endif
         }
 
         /// <summary>
@@ -1474,9 +1502,9 @@ namespace FastReport
             Visible = c.Visible;
         }
 
-        #endregion
+#endregion
 
-        #region Report Engine
+#region Report Engine
         /// <inheritdoc/>
         public override string[] GetExpressions()
         {
@@ -1705,7 +1733,7 @@ namespace FastReport
                                 }
             }
         }
-        #endregion
+#endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TextObject"/> class with default settings.
@@ -1725,6 +1753,7 @@ namespace FastReport
             highlight = new ConditionCollection();
             FlagSerializeStyle = false;
             SetFlags(Flags.HasSmartTag, true);
+            preserveLastLineSpace =  false;
         }
     }
 }

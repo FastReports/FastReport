@@ -879,7 +879,7 @@ namespace FastReport
                     measureBitmap = new Bitmap(1, 1);
                     measureGraphics = new GdiGraphics(measureBitmap);
 #else
-                    measureGraphics = new GdiGraphics(Graphics.FromHwnd(IntPtr.Zero), false);
+                    measureGraphics = GdiGraphics.FromGraphics(Graphics.FromHwnd(IntPtr.Zero));
 #endif
                 }
                 return measureGraphics;

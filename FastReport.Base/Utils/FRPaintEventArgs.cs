@@ -70,7 +70,7 @@ namespace FastReport.Utils
         /// <param name="scaleY">Y scale factor.</param>
         /// <param name="cache">Cache that contains graphics objects.</param>
         public FRPaintEventArgs(Graphics g, float scaleX, float scaleY, GraphicCache cache) :
-            this(new GdiGraphics(g, false), scaleX, scaleY, cache)
+            this(GdiGraphics.FromGraphics(g), scaleX, scaleY, cache)
         {
         }
     }

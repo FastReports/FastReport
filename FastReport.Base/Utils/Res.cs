@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Reflection;
 using System.Globalization;
 using Microsoft.Win32;

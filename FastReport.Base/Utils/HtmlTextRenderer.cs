@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -8,6 +8,37 @@ namespace FastReport.Utils
 {
     public class HtmlTextRenderer : IDisposable
     {
+        #region Definitions
+        /// <summary>
+        /// Context of HTML rendering
+        /// It is better to put this structure instead of class' private fields. 
+        /// For future optimization. Then we can avoid constructor with dozen arguments
+        /// </summary>
+        public struct RendererContext
+        {
+            internal string text;
+            internal IGraphics g;
+            internal FontFamily font;
+            internal float size;
+            internal FontStyle style; // no keep
+            internal Color color; // no keep
+            internal Color underlineColor;
+            internal RectangleF rect;
+            internal bool underlines;
+            internal StringFormat format; // no keep
+            internal HorzAlign horzAlign;
+            internal VertAlign vertAlign;
+            internal ParagraphFormat paragraphFormat;
+            internal bool forceJustify;
+            internal float scale;
+            internal float fontScale;
+            internal InlineImageCache cache;
+            internal bool isPrinting;
+            internal bool isDifferentTabPositions;
+            internal bool keepLastLineSpace; // Classic objects need false, translated objects need true
+        }
+        #endregion
+
         #region Internal Fields
 
         public static readonly System.Globalization.CultureInfo CultureInfo = System.Globalization.CultureInfo.InvariantCulture;
@@ -42,6 +73,7 @@ namespace FastReport.Utils
         private FastString cacheString = new FastString(100);
         private bool isPrinting;
         private bool isDifferentTabPositions;
+        internal bool keepLastSpace = false;
 
         #endregion Private Fields
 
@@ -108,6 +140,76 @@ namespace FastReport.Utils
         ////float width_dotnet = 2.7f;
 
         #region Public Constructors
+       /// <summary>
+       ///  Contexted version of HTML renderer
+       /// </summary>
+       /// <param name="context"></param>
+        public HtmlTextRenderer(RendererContext context)
+        {
+            this.text = context.text;
+            this.graphics = context.g;
+            this.font = context.font;
+            this.size = context.size;
+            this.underlineColor = context.underlineColor;
+            this.displayRect = context.rect;
+            this.everUnderlines = context.underlines;
+            this.format = context.format;
+            this.horzAlign = context.horzAlign;
+            this.vertAlign = context.vertAlign;
+            this.paragraphFormat = context.paragraphFormat;
+            this.forceJustify = context.forceJustify;
+            this.scale = context.scale;
+            this.fontScale = context.fontScale;
+            this.cache = context.cache;
+            this.isPrinting = context.isPrinting;
+            this.isDifferentTabPositions = context.isDifferentTabPositions;
+            this.keepLastSpace = context.keepLastLineSpace;
+
+            paragraphs = new List<HtmlTextRenderer.Paragraph>();
+            rightToLeft = (context.format.FormatFlags & StringFormatFlags.DirectionRightToLeft) == StringFormatFlags.DirectionRightToLeft;
+            // Dispose it
+            this.format = StringFormat.GenericTypographic.Clone() as StringFormat;
+            if (RightToLeft)
+                this.format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+            float firstTab;
+            float[] tabs = context.format.GetTabStops(out firstTab);
+            this.format.SetTabStops(firstTab, tabs);
+            this.format.Alignment = StringAlignment.Near;
+            this.format.LineAlignment = StringAlignment.Near;
+            this.format.Trimming = StringTrimming.None;
+            this.format.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
+            //FFormat.DigitSubstitutionMethod = StringDigitSubstitute.User;
+            //FFormat.DigitSubstitutionLanguage = 0;
+            this.format.FormatFlags |= StringFormatFlags.NoClip | StringFormatFlags.FitBlackBox | StringFormatFlags.LineLimit;
+            //FFormat.FormatFlags |= StringFormatFlags.NoFontFallback;
+
+            backgrounds = new List<RectangleFColor>();
+            this.underlines = new List<LineFColor>();
+            strikeouts = new List<LineFColor>();
+            //FDisplayRect.Width -= width_dotnet * scale;
+
+            initalStyle = new StyleDescriptor(context.style, context.color, BaseLine.Normal, this.font, this.size * this.fontScale);
+            using (Font f = initalStyle.GetFont())
+            {
+                fontLineHeight = f.GetHeight(graphics.Graphics);
+            }
+
+
+            StringFormatFlags saveFlags = this.format.FormatFlags;
+            StringTrimming saveTrimming = this.format.Trimming;
+
+            // if word wrap is set, ignore trimming
+            if (WordWrap)
+                this.format.Trimming = StringTrimming.Word;
+
+            SplitToParagraphs(text);
+            AdjustParagraphLines();
+
+            // restore original values
+            displayRect = context.rect;
+            this.format.FormatFlags = saveFlags;
+            this.format.Trimming = saveTrimming;
+        }
 
         public HtmlTextRenderer(string text, IGraphics g, FontFamily font, float size,
                     FontStyle style, Color color, Color underlineColor, RectangleF rect, bool underlines,
@@ -238,7 +340,8 @@ namespace FastReport.Utils
                     height += lineSpacing = line.LineSpacing;
                 }
             }
-            height -= lineSpacing;
+            if(!keepLastSpace) // It looks like TextProcessors keep this value for every line. 
+                height -= lineSpacing;
 
             if (charsFit < 0)
                 charsFit = text.Length;
@@ -260,9 +363,9 @@ namespace FastReport.Utils
             return width;
         }
 
-        #endregion Public Methods
+#endregion Public Methods
 
-        #region Internal Methods
+#region Internal Methods
 
         /// <summary>
         /// Returns splited string
@@ -398,9 +501,9 @@ namespace FastReport.Utils
             graphics.Restore(state);
         }
 
-        #endregion Internal Methods
+#endregion Internal Methods
 
-        #region Private Methods
+#region Private Methods
 
         private void AdjustParagraphLines()
         {
@@ -1049,9 +1152,9 @@ namespace FastReport.Utils
             }
         }
 
-        #endregion Private Methods
+#endregion Private Methods
 
-        #region Public Enums
+#region Public Enums
 
         public enum WordType
         {
@@ -1060,9 +1163,9 @@ namespace FastReport.Utils
             Tab,
         }
 
-        #endregion Public Enums
+#endregion Public Enums
 
-        #region Internal Enums
+#region Internal Enums
 
         /// <summary>
         /// Represents character placement.
@@ -1074,20 +1177,20 @@ namespace FastReport.Utils
             Superscript
         }
 
-        #endregion Internal Enums
+#endregion Internal Enums
 
-        #region Public Structs
+#region Public Structs
 
         public struct CharWithIndex
         {
-            #region Public Fields
+#region Public Fields
 
             public char Char;
             public int Index;
 
-            #endregion Public Fields
+#endregion Public Fields
 
-            #region Public Constructors
+#region Public Constructors
 
             public CharWithIndex(char v, int fPosition)
             {
@@ -1095,7 +1198,7 @@ namespace FastReport.Utils
                 this.Index = fPosition;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
         }
 
 #if READONLY_STRUCTS
@@ -1104,7 +1207,7 @@ namespace FastReport.Utils
         public struct LineFColor
 #endif
         {
-            #region Public Fields
+#region Public Fields
 
             public readonly Color Color;
             public readonly float Left;
@@ -1112,9 +1215,9 @@ namespace FastReport.Utils
             public readonly float Top;
             public readonly float Width;
 
-            #endregion Public Fields
+#endregion Public Fields
 
-            #region Public Constructors
+#region Public Constructors
 
             public LineFColor(float left, float top, float right, float width, Color color)
             {
@@ -1145,7 +1248,7 @@ namespace FastReport.Utils
             {
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
         }
 
 #if READONLY_STRUCTS
@@ -1154,7 +1257,7 @@ namespace FastReport.Utils
         public struct RectangleFColor
 #endif
         {
-            #region Public Fields
+#region Public Fields
 
             public readonly Color Color;
             public readonly float Height;
@@ -1162,9 +1265,9 @@ namespace FastReport.Utils
             public readonly float Top;
             public readonly float Width;
 
-            #endregion Public Fields
+#endregion Public Fields
 
-            #region Public Constructors
+#region Public Constructors
 
             public RectangleFColor(float left, float top, float width, float height, Color color)
             {
@@ -1195,16 +1298,16 @@ namespace FastReport.Utils
             {
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
         }
 
-        #endregion Public Structs
+#endregion Public Structs
 
-        #region Public Classes
+#region Public Classes
 
         public class Line
         {
-            #region Private Fields
+#region Private Fields
 
             private float baseLine;
             private float height;
@@ -1217,9 +1320,9 @@ namespace FastReport.Utils
             private float width;
             private List<Word> words;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public float BaseLine
             {
@@ -1296,9 +1399,9 @@ namespace FastReport.Utils
                 get { return words; }
             }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public Line(HtmlTextRenderer renderer, Paragraph paragraph, int charIndex)
             {
@@ -1308,9 +1411,9 @@ namespace FastReport.Utils
                 originalCharIndex = charIndex;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Public Methods
+#region Public Methods
 
             public override string ToString()
             {
@@ -1318,9 +1421,9 @@ namespace FastReport.Utils
             }
 
 
-            #endregion Public Methods
+#endregion Public Methods
 
-            #region Internal Methods
+#region Internal Methods
 
             internal void AlignWords(HorzAlign align)
             {
@@ -1597,9 +1700,9 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Internal Methods
+#endregion Internal Methods
 
-            #region Private Methods
+#region Private Methods
 
             private float CalcWidth()
             {
@@ -1616,19 +1719,19 @@ namespace FastReport.Utils
                 return width;
             }
 
-            #endregion Private Methods
+#endregion Private Methods
         }
 
         public class Paragraph
         {
-            #region Private Fields
+#region Private Fields
 
             private List<Line> lines;
             private HtmlTextRenderer renderer;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public List<Line> Lines
             {
@@ -1640,9 +1743,9 @@ namespace FastReport.Utils
                 get { return renderer; }
             }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public Paragraph(HtmlTextRenderer renderer)
             {
@@ -1650,9 +1753,9 @@ namespace FastReport.Utils
                 this.renderer = renderer;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Public Methods
+#region Public Methods
 
             public override string ToString()
             {
@@ -1669,9 +1772,9 @@ namespace FastReport.Utils
                 return sb.ToString();
             }
 
-            #endregion Public Methods
+#endregion Public Methods
 
-            #region Internal Methods
+#region Internal Methods
 
             internal void AlignLines(bool forceJustify)
             {
@@ -1684,12 +1787,12 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Internal Methods
+#endregion Internal Methods
         }
 
         public abstract class Run
         {
-            #region Protected Fields
+#region Protected Fields
 
             protected float baseLine;
             protected int charIndex;
@@ -1704,9 +1807,9 @@ namespace FastReport.Utils
             protected float width;
             protected Word word;
 
-            #endregion Protected Fields
+#endregion Protected Fields
 
-            #region Public Properties
+#region Public Properties
 
             public float BaseLine
             {
@@ -1777,9 +1880,9 @@ namespace FastReport.Utils
                 set { word = value; }
             }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public Run(HtmlTextRenderer renderer, Word word, StyleDescriptor style, float left, int charIndex)
             {
@@ -1790,7 +1893,7 @@ namespace FastReport.Utils
                 this.charIndex = charIndex;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
             //public virtual void DrawBack(float top, float height)
             //{
@@ -1801,22 +1904,22 @@ namespace FastReport.Utils
             //    }
             //}
 
-            #region Public Methods
+#region Public Methods
 
             public abstract void Draw();
 
             public abstract Run Split(float availableWidth, out Run secondPart);
 
-            #endregion Public Methods
+#endregion Public Methods
 
-            #region Protected Methods
+#region Protected Methods
 
             protected Brush GetBackgroundBrush()
             {
                 return new SolidBrush(style.BackgroundColor);
             }
 
-            #endregion Protected Methods
+#endregion Protected Methods
 
             //public virtual void Draw(bool drawContents)
             //{
@@ -1846,20 +1949,20 @@ namespace FastReport.Utils
 
         public class RunImage : Run
         {
-            #region Private Fields
+#region Private Fields
 
             private Image image;
             private string src;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public Image Image { get { return image; } }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public RunImage(HtmlTextRenderer renderer, Word word, string src, StyleDescriptor style, float left, int charIndex, float img_width, float img_height) : base(renderer, word, style, left, charIndex)
             {
@@ -1898,9 +2001,9 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Public Methods
+#region Public Methods
 
             public override void Draw()
             //public override void Draw(bool drawContents)
@@ -1923,9 +2026,9 @@ namespace FastReport.Utils
                 return null;
             }
 
-            #endregion Public Methods
+#endregion Public Methods
 
-            #region Internal Methods
+#region Internal Methods
 
             public Bitmap GetBitmap(out float width, out float height)
             {
@@ -1975,7 +2078,7 @@ namespace FastReport.Utils
                 return bmp;
             }
 
-            #endregion Internal Methods
+#endregion Internal Methods
 
             //public override void ToHtml(FastString sb, bool download)
             //{
@@ -2021,20 +2124,20 @@ namespace FastReport.Utils
 
         public class RunText : Run
         {
-            #region Private Fields
+#region Private Fields
 
             private List<CharWithIndex> chars;
             private string text;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public string Text { get { return text; } }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public RunText(HtmlTextRenderer renderer, Word word, StyleDescriptor style, List<CharWithIndex> text, float left, int charIndex) : base(renderer, word, style, left, charIndex)
             {
@@ -2072,9 +2175,9 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Public Methods
+#region Public Methods
 
             public float CalcSpaceWidth(string text, Font ff)
             {
@@ -2164,9 +2267,9 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Public Methods
+#endregion Public Methods
 
-            #region Private Methods
+#region Private Methods
 
             private string GetString(List<CharWithIndex> str)
             {
@@ -2178,7 +2281,7 @@ namespace FastReport.Utils
                 return renderer.cacheString.ToString();
             }
 
-            #endregion Private Methods
+#endregion Private Methods
 
             //public override void ToHtml(FastString sb, bool download)
             //{
@@ -2215,7 +2318,7 @@ namespace FastReport.Utils
 
         public class Word
         {
-            #region Private Fields
+#region Private Fields
 
             private float baseLine;
             private float descent;
@@ -2225,9 +2328,9 @@ namespace FastReport.Utils
             private List<Run> runs;
             private WordType type;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public float BaseLine { get { return baseLine; } }
 
@@ -2257,9 +2360,9 @@ namespace FastReport.Utils
                 set { type = value; }
             }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public Word(HtmlTextRenderer renderer, Line line)
             {
@@ -2276,9 +2379,9 @@ namespace FastReport.Utils
                 this.type = type;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Internal Methods
+#region Internal Methods
 
             internal void CalcMetrics()
             {
@@ -2292,31 +2395,31 @@ namespace FastReport.Utils
                 height = baseLine + descent;
             }
 
-            #endregion Internal Methods
+#endregion Internal Methods
         }
 
-        #endregion Public Classes
+#endregion Public Classes
 
-        #region Internal Classes
+#region Internal Classes
 
         internal class SimpleFastReportHtmlElement
         {
-            #region Public Fields
+#region Public Fields
 
             public Dictionary<string, string> attributes;
             public bool isSelfClosed;
             public bool isEnd;
             public string name;
 
-            #endregion Public Fields
+#endregion Public Fields
 
-            #region Private Fields
+#region Private Fields
 
             private Dictionary<string, string> style;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public bool IsSelfClosed
             {
@@ -2359,9 +2462,9 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public SimpleFastReportHtmlElement(string name)
             {
@@ -2402,9 +2505,9 @@ namespace FastReport.Utils
                 this.attributes = attributes;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Public Methods
+#region Public Methods
 
             public override string ToString()
             {
@@ -2430,12 +2533,12 @@ namespace FastReport.Utils
                 return sb.ToString();
             }
 
-            #endregion Public Methods
+#endregion Public Methods
         }
 
         internal class SimpleFastReportHtmlReader
         {
-            #region Private Fields
+#region Private Fields
 
             private CharWithIndex @char;
             private SimpleFastReportHtmlElement element;
@@ -2444,9 +2547,9 @@ namespace FastReport.Utils
             private string substring;
             private string text;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public CharWithIndex Character
             {
@@ -2497,18 +2600,18 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public SimpleFastReportHtmlReader(string text)
             {
                 this.text = text;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Public Methods
+#region Public Methods
 
             public static bool IsCanBeCharacterInTagName(char c)
             {
@@ -2590,9 +2693,9 @@ namespace FastReport.Utils
                 return true;
             }
 
-            #endregion Public Methods
+#endregion Public Methods
 
-            #region Private Methods
+#region Private Methods
 
             private SimpleFastReportHtmlElement GetElement(string line, ref int index)
             {
@@ -2691,7 +2794,7 @@ namespace FastReport.Utils
                 return false;
             }
 
-            #endregion Private Methods
+#endregion Private Methods
         }
 
         /// <summary>
@@ -2699,7 +2802,7 @@ namespace FastReport.Utils
         /// </summary>
         public class StyleDescriptor
         {
-            #region Private Fields
+#region Private Fields
 
             private static readonly Color DefaultColor = Color.Transparent;
             private Color backgroundColor;
@@ -2709,9 +2812,9 @@ namespace FastReport.Utils
             private FontStyle fontStyle;
             private float size;
 
-            #endregion Private Fields
+#endregion Private Fields
 
-            #region Public Properties
+#region Public Properties
 
             public Color BackgroundColor
             {
@@ -2749,9 +2852,9 @@ namespace FastReport.Utils
                 set { size = value; }
             }
 
-            #endregion Public Properties
+#endregion Public Properties
 
-            #region Public Constructors
+#region Public Constructors
 
             public StyleDescriptor(FontStyle fontStyle, Color color, BaseLine baseLine, FontFamily font, float size)
             {
@@ -2773,9 +2876,9 @@ namespace FastReport.Utils
                 backgroundColor = styleDescriptor.backgroundColor;
             }
 
-            #endregion Public Constructors
+#endregion Public Constructors
 
-            #region Public Methods
+#region Public Methods
 
             public override bool Equals(object obj)
             {
@@ -2865,7 +2968,7 @@ namespace FastReport.Utils
                 }
             }
 
-            #endregion Public Methods
+#endregion Public Methods
         }
 
         private class OwnHashSet<T>
@@ -2916,9 +3019,9 @@ namespace FastReport.Utils
 #endif
             }
         }
-        #endregion Internal Classes
+#endregion Internal Classes
 
-        #region IDisposable Support
+#region IDisposable Support
 
         private bool disposedValue = false;
 
@@ -2941,7 +3044,7 @@ namespace FastReport.Utils
             Dispose(true);
         }
 
-        #endregion IDisposable Support
+#endregion IDisposable Support
     }
 
     /// <summary>

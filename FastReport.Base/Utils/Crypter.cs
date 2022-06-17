@@ -236,11 +236,11 @@ namespace FastReport.Utils
         /// </summary>
         [CLSCompliantAttribute(false)]
         public static ulong READ_SIZE = 16;
-        private static ulong C1 = 0x87c37b91114253d5L;
-        private static ulong C2 = 0x4cf5ad432745937fL;
+        private const ulong C1 = 0x87c37b91114253d5L;
+        private const ulong C2 = 0x4cf5ad432745937fL;
 
         private ulong length;
-        private uint seed = 0; // if want to start with a seed, create a constructor
+        private readonly uint seed = 0; // if want to start with a seed, create a constructor
         ulong h1;
         ulong h2;
 
@@ -311,7 +311,7 @@ namespace FastReport.Utils
             h1 = seed;
             this.length = 0L;
             int pos = 0;
-            int npos = 0;
+            int npos;
             ulong remaining = (ulong)bb.Length;
             // read 128 bits, 16 bytes, 2 longs in eacy cycle
 			while (remaining >= READ_SIZE) unchecked

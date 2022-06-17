@@ -468,8 +468,9 @@
         <CloseAll Text="Закрыть все"/>
       </Window>
       <Help Text="Справка">
-        <Contents Text="Содержание..."/>
-        <About Text="О программе..."/>
+		  <Contents Text="Содержание..."/>
+		  <About Text="О программе..."/>
+		  <Account Text="Учётная запись"/>
       </Help>
     </Menu>
     <ToolWindow>
@@ -1904,6 +1905,28 @@
       <Message Text="FastReport обнаружил некорректное завершение работы. Вы хотите восстановить несохраненный файл?"/>
       <Restore Text="Восстановить"/>
     </LoadAutoSave>
+    <AccountWindow Text="Account">
+      <WebBrowser Text="Аутентификация"/>
+      <Title Text="Учётная запись"/>
+      <SignIn Text="Войти"/>
+      <NoAccount Text="Нет учетной записи?"/>
+      <Create Text="Создать!"/>
+      <Intro Text="Войдите в свою учетную запись Fast Reports ID. Ваша учетная запись будет использоваться для синхронизации ваших настроек между устройствами и для работы других служб персонализации."/>
+      <Testing Text="&#10;&#10;Эта функциональность находится в стадии тестирования!"/>
+      <Expires Text="Действует до: {0}"/>
+      <Profile Text="Управление профилем"/>
+      <SignOut Text="Выйти"/>
+      <Message Text="Ваша учетная запись используется для синхронизации ваших настроек между устройствами и для других служб персонализации."/>
+      <SessionExpired Text="Сессия истекла, войдите повторно!"/>
+    </AccountWindow>
+	<ServerWindow Text="Сервер">
+        <Server Text="Сервер"/>
+        <ApiKeyword Text="Api ключ" />
+        <Caption Text="Сервер"/>
+        <comboBoxServer Text="МоиОтчеты Облако"/>
+        <comboBoxText Text="https://облако.моиотчеты.рф"/>
+        <comboBoxCustom Text="Другой сервер"/>
+	</ServerWindow>
     <AdvMatrixHeaderEditor Text="Свойства элемента">
       <General Text="Основные">
         <ItemType Text="Тип элемента:"/>
@@ -2381,6 +2404,7 @@
       <Basic Text="Основные"/>
       <Other Text="Другие"/>
       <ShowGridLines Text="Показать линии сетки"/>
+      <UseLocaleFormating Text="Использовать региональный формат данных"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>
