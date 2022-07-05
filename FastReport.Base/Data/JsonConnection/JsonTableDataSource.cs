@@ -320,7 +320,7 @@ namespace FastReport.Data.JsonConnection
         {
             // TODO TEST
             Column column = this;
-            string[] colAliases = alias.Split(new char[] { '.' });
+            string[] colAliases = alias.Split('.');
 
             foreach (string colAlias in colAliases)
             {

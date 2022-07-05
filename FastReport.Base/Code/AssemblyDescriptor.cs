@@ -47,7 +47,7 @@ namespace FastReport.Code
 
         private void InsertItem(string text, string objName)
         {
-            string[] lines = text.Split(new char[] { '\r' });
+            string[] lines = text.Split('\r');
             scriptText.Insert(insertPos, text);
             SourcePosition pos = new SourcePosition(objName, insertLine, insertLine + lines.Length - 2);
             sourcePositions.Add(pos);
@@ -708,7 +708,7 @@ namespace FastReport.Code
             }
             else
             {
-                string[] lines = scriptText.Substring(0, insertPos).Split(new char[] { '\r' });
+                string[] lines = scriptText.Substring(0, insertPos).Split('\r');
                 insertLine = lines.Length;
                 if (scriptText != Report.CodeHelper.EmptyScript())
                     needCompile = true;

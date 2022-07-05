@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Condition="Exists('$(MSBuildThisFileDirectory)..\$(MSBuildThisFile)')" Project="$(MSBuildThisFileDirectory)..\$(MSBuildThisFile)" />
+
+  <PropertyGroup>
+    <!--For correct 'obj' location with other projects in this directory-->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>$(MSBuildThisFileDirectory)obj\$(MSBuildProjectName)</MSBuildProjectExtensionsPath>
+  </PropertyGroup>
+
+</Project>

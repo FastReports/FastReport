@@ -12,7 +12,7 @@ namespace FastReport.Data
     {
       if (String.IsNullOrEmpty(complexName))
         return null;
-      string[] names = complexName.Split(new char[] { '.' });
+      string[] names = complexName.Split('.');
       return dictionary.FindByAlias(names[0]) as CubeSourceBase;
     }
   }

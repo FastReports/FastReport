@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 
 namespace FastReport.Code
@@ -20,7 +21,11 @@ namespace FastReport.Code
             if (assembly == null || assembly.Instance == null)
                 return null;
             if (methodInfo == null)
-                methodInfo = assembly.Instance.GetType().GetMethod(MethodName, BindingFlags.Instance | BindingFlags.NonPublic);
+            {
+                methodInfo = assembly.Instance.GetType().GetMethod(MethodName,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            }
+                
             if (methodInfo == null)
                 return null;
             return methodInfo.Invoke(assembly.Instance, parameters);

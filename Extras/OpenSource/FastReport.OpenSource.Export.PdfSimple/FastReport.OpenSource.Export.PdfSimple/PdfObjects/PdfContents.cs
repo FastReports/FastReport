@@ -58,7 +58,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
         /// <returns></returns>
         public PdfContents Append(float value)
         {
-            sb.Append(Convert.ToString(Math.Round(value, realPrecision), PdfNumeric.NUMBER_FORMAT_INFO));
+            sb.Append(ExportUtils.FloatToString(value, realPrecision));
             return this;
         }
 
@@ -69,7 +69,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
         /// <returns></returns>
         public PdfContents Append(double value)
         {
-            sb.Append(Convert.ToString(Math.Round(value, realPrecision), PdfNumeric.NUMBER_FORMAT_INFO));
+            sb.Append(ExportUtils.FloatToString(value, realPrecision));
             return this;
         }
 
@@ -80,7 +80,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
         /// <returns></returns>
         public PdfContents Append(int value)
         {
-            sb.Append(Convert.ToString(value, PdfNumeric.NUMBER_FORMAT_INFO));
+            sb.Append(value);
             return this;
         }
 
@@ -91,7 +91,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
         /// <returns></returns>
         public PdfContents Append(long value)
         {
-            sb.Append(Convert.ToString(value, PdfNumeric.NUMBER_FORMAT_INFO));
+            sb.Append(value);
             return this;
         }
 

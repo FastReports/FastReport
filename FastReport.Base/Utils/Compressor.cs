@@ -51,8 +51,7 @@ namespace FastReport.Utils
 
     public static string Compress(string source)
     {
-      UTF8Encoding encoding = new UTF8Encoding();
-      byte[] srcBytes = encoding.GetBytes(source);
+      byte[] srcBytes = Encoding.UTF8.GetBytes(source);
       byte[] compressedBytes = Compress(srcBytes);
       return Convert.ToBase64String(compressedBytes);
     }
@@ -79,8 +78,7 @@ namespace FastReport.Utils
     {
       byte[] srcBytes = Convert.FromBase64String(source);
       byte[] decompressedBytes = Compressor.Decompress(srcBytes);
-      UTF8Encoding encoding = new UTF8Encoding();
-      return encoding.GetString(decompressedBytes);
+      return Encoding.UTF8.GetString(decompressedBytes);
     }
 
     public static bool IsStreamCompressed(Stream stream)

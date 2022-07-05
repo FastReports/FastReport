@@ -130,7 +130,7 @@ namespace FastReport.Utils
       if (type == typeof(string[]))
       {
         value = value.Replace("\r\n", "\r");
-        return value.Split(new char[] { '\r' });
+        return value.Split('\r');
       }
 #if true //CROSSPLATFORM
             if (type == typeof(Font))

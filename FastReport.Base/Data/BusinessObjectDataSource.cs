@@ -56,7 +56,7 @@ namespace FastReport.Data
     /// <inheritdoc/>
     protected override object GetValue(string alias)
     {
-      string[] colAliases = alias.Split(new char[] { '.' });
+      string[] colAliases = alias.Split('.');
       Column column = this;
       
       foreach (string colAlias in colAliases)
@@ -156,7 +156,7 @@ namespace FastReport.Data
       // compatibility with old reports: try to use last part of ReferenceName as a value for PropName
       if (!String.IsNullOrEmpty(ReferenceName) && ReferenceName.Contains("."))
       {
-        string[] names = ReferenceName.Split(new char[] { '.' });
+        string[] names = ReferenceName.Split('.');
         PropName = names[names.Length - 1];
         ReferenceName = "";
       }

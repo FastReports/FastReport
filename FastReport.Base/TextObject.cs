@@ -987,7 +987,7 @@ namespace FastReport
         {
             // fixed issue 2823
             FirstTabOffset = ParagraphOffset;
-            string[] lines = text.Split(new char[] { '\n' });
+            string[] lines = text.Split('\n');
             for (int i = 0; i < lines.Length; i++)
             {
                 if (!lines[i].StartsWith("\t"))
@@ -1513,7 +1513,7 @@ namespace FastReport
 
             if (AllowExpressions && !String.IsNullOrEmpty(Brackets))
             {
-                string[] brackets = Brackets.Split(new char[] { ',' });
+                string[] brackets = Brackets.Split(',');
                 // collect expressions found in the text
                 expressions.AddRange(CodeUtils.GetExpressions(Text, brackets[0], brackets[1]));
             }
@@ -1577,7 +1577,7 @@ namespace FastReport
             {
                 if (!String.IsNullOrEmpty(Brackets))
                 {
-                    string[] brackets = Brackets.Split(new char[] { ',' });
+                    string[] brackets = Brackets.Split(',');
                     FindTextArgs args = new FindTextArgs();
                     args.Text = new FastString(Text);
                     args.OpenBracket = brackets[0];

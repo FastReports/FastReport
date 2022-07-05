@@ -31,7 +31,7 @@ namespace FastReport.Web.Controllers
                 if (!FindWebReport(out WebReport webReport))
                     return new NotFoundResult();
 
-                if (webReport.DesignerSaveMethod == null)
+                if (webReport.Designer.SaveMethod == null)
                 {
                     // old saving way by self-request
                     return webReport.DesignerSaveReport(Context);
@@ -46,7 +46,7 @@ namespace FastReport.Web.Controllers
                     int code = 200;
                     try
                     {
-                        msg = webReport.DesignerSaveMethod(webReport.ID, webReport.ReportFileName, report);
+                        msg = webReport.Designer.SaveMethod(webReport.ID, webReport.ReportFileName, report);
                     }
                     catch(Exception ex)
                     {
@@ -81,7 +81,7 @@ namespace FastReport.Web.Controllers
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     ContentType = "application/json",
-                    Content = webReport.DesignerConfig.IsNullOrWhiteSpace() ? "{}" : webReport.DesignerConfig,
+                    Content = webReport.Designer.Config.IsNullOrWhiteSpace() ? "{}" : webReport.Designer.Config,
                 };
             });
 

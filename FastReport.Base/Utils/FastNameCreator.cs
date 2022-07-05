@@ -25,7 +25,7 @@ namespace FastReport.Utils
   /// </example>
   public class FastNameCreator
   {
-    private Hashtable baseNames;
+    private readonly Hashtable baseNames;
 
     /// <summary>
     /// Creates the unique name for the given object.
@@ -67,7 +67,7 @@ namespace FastReport.Utils
           {
             // get number
             string baseName = objName.Substring(0, i + 1);
-            int num = 1;
+            int num;
             int.TryParse(objName.Substring(i + 1), out num);
             if (baseNames.ContainsKey(baseName))
             {

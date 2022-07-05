@@ -28,7 +28,7 @@ namespace CakeScript
             }
         }
 
-        static public void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             ParseArgs(args);
 
@@ -47,7 +47,7 @@ namespace CakeScript
                     ParseArgs(debugArgs);
                     var graph = Graph.CreateTree(targetMethod);
 
-                    RunTree(graph, args);
+                    await RunTree(graph, args);
                     return;
                 }
             }
@@ -59,7 +59,7 @@ namespace CakeScript
 
                 var graph = Graph.CreateTree(targetMethod);
 
-                RunTree(graph, args);
+                await RunTree(graph, args);
             }
             else
                 Program.Default();
@@ -134,24 +134,29 @@ namespace CakeScript
             throw new Exception($"Method with {methodName} name wasn't found!");
         }
 
-        private static void RunTree(Graph graph, string[] args)
+        private static async Task RunTree(Graph graph, string[] args)
         {
             var sortedTasks = graph.Run();
             var prog = new Program(args);
 
             foreach (var sortedTask in sortedTasks)
             {
-                RunTaskWrapper(sortedTask, prog);
+                await RunTaskWrapper(sortedTask, prog);
             }
         }
 
-        private static void RunTaskWrapper(Graph.GraphTask sortedTask, object instance)
+        private static async Task RunTaskWrapper(Graph.GraphTask sortedTask, object instance)
         {
             const string separator = "=============================";
             Console.WriteLine(separator);
             Console.WriteLine($"  {sortedTask.Name}");
 
-            sortedTask.Method.Invoke(instance, Array.Empty<object>());
+            var result = sortedTask.Method.Invoke(instance, Array.Empty<object>());
+
+            if(result is Task taskResult)
+            {
+                await taskResult.ConfigureAwait(false);
+            }
 
             Information($"  {sortedTask.Name} finished", ConsoleColor.Green);
             Console.WriteLine(separator);

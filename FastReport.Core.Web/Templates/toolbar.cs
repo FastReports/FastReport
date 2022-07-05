@@ -77,7 +77,7 @@ namespace FastReport.Web
         <img src=""{template_resource_url("reload.svg", "image/svg+xml")}"">
     </div>" : "")}
 
-{(Toolbar.Exports.Show ? $"{toolbarExportItem}" : "")}
+{(exports.Show ? $"{toolbarExportItem}" : "")}
 
 
 {(Toolbar.ShowPrint ? $"{toolbarPrintItem}" : "")}

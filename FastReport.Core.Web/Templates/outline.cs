@@ -23,7 +23,7 @@ namespace FastReport.Web
             return $@"
 <div class=""{template_FR}-outline"">
     <div class=""{template_FR}-outline-inner"">
-        {outline.ToString()}
+        {outline}
     </div>
 </div>
 

@@ -17,30 +17,37 @@ namespace FastReport.Web
 {
     partial class WebReport
     {
-        #region Public Properties
+        #region Designer Properties
+
+        /// <summary>
+        /// Designer settings
+        /// </summary>
+        public DesignerSettings Designer { get; set; } = DesignerSettings.Default; 
 
         /// <summary>
         /// Enable code editor in the Report Designer
         /// </summary>
-        public bool DesignScriptCode { get; set; } = false;
+        [Obsolete("DesignerScriptCode is obsolete, please use Designer.ScriptCode")]
+        public bool DesignScriptCode { get => Designer.ScriptCode; set => Designer.ScriptCode = value; }
 
         /// <summary>
         /// Gets or sets path to the Report Designer
         /// </summary>
+        [Obsolete("DesignerPath is obsolete, please use Designer.Path")]
+        public string DesignerPath { get => Designer.Path; set => Designer.Path = value; }
         
-        public string DesignerPath { get; set; } = "/WebReportDesigner/index.html";
-
         /// <summary>
         /// Gets or sets path to a folder for save designed reports
         /// If value is empty then designer posts saved report in variable ReportFile on call the DesignerSaveCallBack // TODO
         /// </summary>
-        public string DesignerSavePath { get; set; } = "";
+        [Obsolete("DesignerPath is obsolete, please use Designer.SavePath")]
+        public string DesignerSavePath { get => Designer.SavePath; set => Designer.SavePath = value; }
 
         /// <summary>
         /// Gets or sets path to callback page after Save from Designer
         /// </summary>
-        [Obsolete("DesignerSaveCallBack is obsolete, please use DesignerSaveMethod instead.")]
-        public string DesignerSaveCallBack { get; set; } = "";
+        [Obsolete("DesignerSaveCallBack is obsolete, please use Designer.SaveCallBack instead.")]
+        public string DesignerSaveCallBack { get => Designer.SaveCallBack; set => Designer.SaveCallBack = value; } 
 
         /// <summary>
         /// Callback method for saving an edited report by Online Designer
@@ -56,7 +63,8 @@ namespace FastReport.Web
         ///     return "OK";
         /// };
         /// </example>
-        public Func<string, string, string, string> DesignerSaveMethod { get; set; }
+        [Obsolete("DesignerSaveMethod is obsolete, please use Designer.SaveMethod instead.")]
+        public Func<string, string, string, string> DesignerSaveMethod { get => Designer.SaveMethod; set => Designer.SaveMethod = value; }
 
         /// <summary>
         /// Report name without extension
@@ -75,16 +83,17 @@ namespace FastReport.Web
         /// </summary>
         public string ReportFileName => $"{ReportName}.frx";
 
-
         /// <summary>
         /// Gets or sets the locale of Designer
         /// </summary>
-        public string DesignerLocale { get; set; } = "";
+        [Obsolete("DesignerLocale is obsolete, please use Designer.Locale")]
+        public string DesignerLocale { get => Designer.Locale; set => Designer.Locale = value; }
 
         /// <summary>
         /// Gets or sets the text of configuration of Online Designer
         /// </summary>
-        public string DesignerConfig { get; set; } = "";
+        [Obsolete("DesignerConfig is obsolete, please use Designer.Config")]
+        public string DesignerConfig { get => Designer.Config; set => Designer.Config = value; } 
 
         /// <summary>
         /// Gets or sets the request headers
@@ -141,7 +150,7 @@ namespace FastReport.Web
                     OnSaveDesignedReport(e);
                 }
 
-                if (!DesignerSaveCallBack.IsNullOrWhiteSpace())
+                if (!Designer.SaveCallBack.IsNullOrWhiteSpace())
                 {
                     string report = Report.SaveToString();
                     string reportFileName = ReportFileName;
@@ -162,7 +171,7 @@ namespace FastReport.Web
 
                     // TODO:
                     //uri.Path = webReport.ResolveUrl(webReport.DesignerSaveCallBack);
-                    uri.Path = DesignerSaveCallBack;
+                    uri.Path = Designer.SaveCallBack;
                     //var designerSaveCallBack = new Uri(DesignerSaveCallBack);
                     //if (!designerSaveCallBack.IsAbsoluteUri)
                     //{
@@ -201,9 +210,9 @@ namespace FastReport.Web
 
                         // TODO: why here??
                         // if save report in reports folder
-                        if (!String.IsNullOrEmpty(DesignerSavePath))
+                        if (!String.IsNullOrEmpty(Designer.SavePath))
                         {
-                            string savePath = WebUtils.MapPath(DesignerSavePath); // TODO: do we really need this?
+                            string savePath = WebUtils.MapPath(Designer.SavePath); // TODO: do we really need this?
                             if (Directory.Exists(savePath))
                             {
                                 File.WriteAllText(Path.Combine(savePath, reportFileName), report, Encoding.UTF8);
@@ -368,11 +377,11 @@ namespace FastReport.Web
             try
             {
                 var previewReport = new WebReport();
-                //previewReport.ID = webReport.ID + "-preview";
                 previewReport.Report = Report;
                 //previewReport.Prop.Assign(webReport.Prop);
                 //previewReport.CurrentTab = CurrentTab.Clone();
-                //previewReport.LocalizationFile = webReport.LocalizationFile;
+                previewReport.LocalizationFile = LocalizationFile;
+                previewReport.Toolbar = Toolbar;
                 //previewReport.Width = "880px";
                 //previewReport.Height = "770px";
                 //previewReport.Toolbar.EnableFit = true;
@@ -382,17 +391,7 @@ namespace FastReport.Web
                 previewReport.Report.ReportResourceString = reportString; // TODO
                 //previewReport.ReportFile = String.Empty;
                 previewReport.ReportResourceString = reportString; // TODO
-                //previewReport.Report.Prepare();
-                //StringBuilder sb = new StringBuilder();
-                //sb.Append("<script src=\"").Append(GetResourceTemplateUrl(context, "fr_util.js")).AppendLine("\" type=\"text/javascript\"></script>");
-                //HtmlTextWriter writer = new HtmlTextWriter(new StringWriter(sb, System.Globalization.CultureInfo.InvariantCulture));
-                //previewReport.ShowZoomButton = false;
-                //previewReport.PreviewMode = true;
                 previewReport.Mode = WebReportMode.Preview;
-                //previewReport.Page = null;
-                //previewReport.RenderControl(writer);
-                //string responseText = WebReportGlobals.ScriptsAsString() + previewReport.Toolbar.GetCss() + sb.ToString();
-                //context.Response.Write(responseText);
 
                 return new ContentResult()
                 {
@@ -445,10 +444,9 @@ namespace FastReport.Web
         HtmlString RenderDesigner()
         {
             //string designerPath = WebUtils.GetAppRoot(DesignerPath);
-            string designerLocale = DesignerLocale.IsNullOrWhiteSpace() ? "" : $"&lang={DesignerLocale}";
-
+            string designerLocale = Designer.Locale.IsNullOrWhiteSpace() ? "" : $"&lang={Designer.Locale}";
             return new HtmlString($@"
-<iframe src=""{DesignerPath}?uuid={ID}{WebUtils.GetARRAffinity()}{designerLocale}"" style=""border:none;"" width=""{Width}"" height=""{Height}"">
+<iframe src=""{Designer.Path}?uuid={ID}{WebUtils.GetARRAffinity()}{designerLocale}"" style=""border:none;"" width=""{Width}"" height=""{Height}"">
     <p style=""color:red"">ERROR: Browser does not support IFRAME!</p>
 </iframe >
 ");
@@ -466,7 +464,7 @@ namespace FastReport.Web
                 {
                     xml.Load(xmlStream);
 
-                    if (!DesignScriptCode)
+                    if (!Designer.ScriptCode)
                     {
                         xml.Root.SetProp("CodeRestricted", "true");
                         // cut script
@@ -524,7 +522,7 @@ namespace FastReport.Web
                 xml1.Load(xmlStream1);
                 xml2.Load(xmlStream2);
 
-                if (!DesignScriptCode)
+                if (!Designer.ScriptCode)
                 {
                     xml2.Root.SetProp("CodeRestricted", "");
                     // paste old script
@@ -606,15 +604,15 @@ namespace FastReport.Web
         //    try
         //    {
         //        string designerPath = WebUtils.GetAppRoot(context, webReport.DesignerPath);
-        //        string designerLocale = String.IsNullOrEmpty(webReport.DesignerLocale) ? "" : "&lang=" + webReport.DesignerLocale;
-        //        sb.Append(String.Format("<iframe src=\"{0}?uuid={1}{2}{3}\" style=\"border:none;\" width=\"{4}\" height=\"{5}\" >",
+        //        string designerLocale = String.IsNullOrEmpty(webReport.Designer.Locale) ? "" : "&lang=" + webReport.Designer.Locale;
+        //        sb.AppendFormat("<iframe src=\"{0}?uuid={1}{2}{3}\" style=\"border:none;\" width=\"{4}\" height=\"{5}\" >",
         //            designerPath, //0
         //            uuid, //1
         //            WebUtils.GetARRAffinity(), //2
         //            designerLocale, //3
         //            webReport.Width.ToString(), //4 
         //            webReport.Height.ToString() //5
-        //            ));
+        //            );
         //        sb.Append("<p style=\"color:red\">ERROR: Browser does not support IFRAME!</p>");
         //        sb.AppendLine("</iframe>");
 
@@ -666,7 +664,7 @@ namespace FastReport.Web
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<script>");
             sb.AppendLine("(function() {");
-            sb.AppendLine(String.Format("var div = document.querySelector('#{0}'),", ID));
+            sb.AppendLine($"var div = document.querySelector('#{ID}'),");
             sb.AppendLine("iframe,");
             sb.AppendLine("rect,");
             sb.AppendLine("e = document.documentElement,");

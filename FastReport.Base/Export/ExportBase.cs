@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using FastReport.Utils;
 using FastReport.Preview;
@@ -274,7 +275,7 @@ namespace FastReport.Export
         {
             try
             {
-                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                Process proc = new Process();
                 proc.EnableRaisingEvents = false;
 
 #if NETCOREAPP
@@ -282,7 +283,7 @@ namespace FastReport.Export
                 proc.StartInfo.Arguments = $"/c \"{fileName}\"";
                 proc.StartInfo.CreateNoWindow = true;
 #else
-                proc.StartInfo = new System.Diagnostics.ProcessStartInfo(fileName) { UseShellExecute = true };
+                proc.StartInfo = new ProcessStartInfo(fileName) { UseShellExecute = true };
 #endif
                 proc.Start();
             }
@@ -555,7 +556,8 @@ namespace FastReport.Export
             Directory.CreateDirectory(tempFolder);
             try
             {
-                Export(report, tempFolder + "/" + GetFileName(report) + GetFileExtension());
+                string filePath = Path.Combine(tempFolder, GetFileName(report) + GetFileExtension());
+                Export(report, filePath);
                 ZipArchive zip = new ZipArchive();
                 zip.AddDir(tempFolder);
                 zip.SaveToStream(stream);

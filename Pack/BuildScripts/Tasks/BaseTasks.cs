@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static CakeScript.Startup;
 using static CakeScript.CakeAPI;
+using Cake.Common.Tools.DotNet.MSBuild;
 
 namespace CakeScript
 {
@@ -105,6 +106,19 @@ namespace CakeScript
                 Directory.CreateDirectory(outdir);
 
             Information($"outdir: {outdir}");
+        }
+
+        [DependsOn(nameof(Prepare))]
+        public void Clean()
+        {
+            string solutionFile = SolutionFile;
+            DotNetMSBuild(solutionFile, new DotNetMSBuildSettings()
+              .SetConfiguration(config)
+              .WithTarget("CleanObjAndBin")
+              .WithProperty("SolutionDir", solutionDirectory)
+              .WithProperty("SolutionFileName", solutionFilename));
+
+            DotNetClean(solutionFile);
         }
 
         public static void Default()
