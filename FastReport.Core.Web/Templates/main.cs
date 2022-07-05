@@ -13,7 +13,7 @@ namespace FastReport.Web
 
         string template_render(bool renderBody)
         {
-                return $@"
+            return $@"
 <div class=""{template_FR}-container"">
    
     <style>
@@ -27,9 +27,9 @@ namespace FastReport.Web
         <img src=""{template_resource_url("spinner.svg", "image/svg+xml")}"">
     </div>
 
-        {template_toolbar(renderBody)}
+    {template_toolbar(renderBody)}
 
-        {template_body(renderBody)}
+    {template_body(renderBody)}
      
 {(Toolbar.Exports.EnableSettings ? template_modalcontainer() : "")}
  ";

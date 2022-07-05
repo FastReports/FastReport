@@ -23,7 +23,7 @@ namespace FastReport.Web
 
     internal class ScriptSecurity : IDisposable
     {
-        private IScriptChecker ScriptChecker;
+        private readonly IScriptChecker ScriptChecker;
 
         internal ScriptSecurity(IScriptChecker checker)
         {

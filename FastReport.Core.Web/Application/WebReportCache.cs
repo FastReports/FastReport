@@ -49,7 +49,7 @@ namespace FastReport.Web
             item.Timer = new Timer(state =>
             {
                 // clear reference to object
-                var _item = ((CacheItem)state);
+                var _item = (CacheItem)state;
                 _item.WebReport1 = null;
             },
             item, TimeSpan.FromMinutes(FastReportGlobal.FastReportOptions.CacheDuration), Timeout.InfiniteTimeSpan);

@@ -68,7 +68,7 @@ namespace FastReport.Export.Html
     {
         private string Px(double pixel)
         {
-            return String.Join(String.Empty, new String[] { Convert.ToString(Math.Round(pixel, 2), numberFormat), "px;" });
+            return String.Join(String.Empty, new String[] { ExportUtils.FloatToString(pixel), "px;" });
         }
 
         private string SizeValue(double value, double maxvalue, HtmlSizeUnits units)

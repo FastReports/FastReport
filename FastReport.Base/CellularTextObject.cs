@@ -209,7 +209,7 @@ namespace FastReport
             if (row >= table.RowCount)
                 return;
 
-            text = text.TrimEnd(new char[] { ' ' });
+            text = text.TrimEnd(' ');
             if (text.Length > table.ColumnCount)
                 text = text.Substring(0, table.ColumnCount);
 

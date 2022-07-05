@@ -203,7 +203,7 @@ namespace FastReport.Functions
             // make the result starting with letter and ending with space
             if (r.Length != 0)
                 r.Append(" ");
-            return r.ToString().TrimStart(new char[] { ' ' });
+            return r.ToString().TrimStart(' ');
 
 
         }

@@ -14,12 +14,14 @@ namespace FastReport.Web
 
         public static readonly Resources Instance;
         static readonly string AssemblyName;
+        static readonly Assembly _assembly;
 
         static Resources()
         {
             Instance = new Resources();
 
-            AssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+            _assembly = Assembly.GetExecutingAssembly();
+            AssemblyName = _assembly.GetName().Name;
         }
 
         private Resources()
@@ -37,7 +39,7 @@ namespace FastReport.Web
                 return value;
 
             var fullname = $"{AssemblyName}.Resources.{name}";
-            var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(fullname);
+            var resourceStream = _assembly.GetManifestResourceStream(fullname);
             if (resourceStream == null)
                 return null;
 
@@ -55,7 +57,7 @@ namespace FastReport.Web
                 return value;
 
             var fullname = $"{AssemblyName}.Resources.{name}";
-            var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(fullname);
+            var resourceStream = _assembly.GetManifestResourceStream(fullname);
             if (resourceStream == null)
                 return null;
 
@@ -73,7 +75,7 @@ namespace FastReport.Web
                 return value;
 
             var fullname = $"{AssemblyName}.Resources.{name}";
-            var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(fullname);
+            var resourceStream = _assembly.GetManifestResourceStream(fullname);
             if (resourceStream == null)
                 return null;
 

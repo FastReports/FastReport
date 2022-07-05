@@ -13,7 +13,7 @@ namespace FastReport.Data
       if (String.IsNullOrEmpty(complexName))
         return null;
       
-      string[] names = complexName.Split(new char[] { '.' });
+      string[] names = complexName.Split('.');
       DataSourceBase data = dictionary.FindByAlias(names[0]) as DataSourceBase;
       if (data == null)
         return null;
@@ -40,7 +40,7 @@ namespace FastReport.Data
       if (String.IsNullOrEmpty(complexName))
         return null;
 
-      string[] names = complexName.Split(new char[] { '.' });
+      string[] names = complexName.Split('.');
       // the first part of complex name is always datasource name.
       DataSourceBase data = dictionary.FindByAlias(names[0]) as DataSourceBase;
       
@@ -125,7 +125,7 @@ namespace FastReport.Data
     
     public static bool IsValidParameter(Dictionary dictionary, string complexName)
     {
-      string[] names = complexName.Split(new char[] { '.' });
+      string[] names = complexName.Split('.');
       Parameter par = dictionary.Parameters.FindByName(names[0]);
       if (par == null)
       {
@@ -151,7 +151,7 @@ namespace FastReport.Data
 
     public static Parameter GetParameter(Dictionary dictionary, string complexName)
     {
-      string[] names = complexName.Split(new char[] { '.' });
+      string[] names = complexName.Split('.');
       Parameter par = dictionary.Parameters.FindByName(names[0]);
       if (par == null)
       {
@@ -170,7 +170,7 @@ namespace FastReport.Data
 
     public static Parameter CreateParameter(Dictionary dictionary, string complexName)
     {
-      string[] names = complexName.Split(new char[] { '.' });
+      string[] names = complexName.Split('.');
       ParameterCollection parameters = dictionary.Parameters;
       Parameter par = null;
       

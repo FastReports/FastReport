@@ -75,11 +75,8 @@ namespace FastReport.Utils
         rm.Padding = PaddingMode.ISO10126;
         decryptor = rm.CreateDecryptor(pdb.GetBytes(16), pdb.GetBytes(16));
       }
-      // check "rij" signature
-      int byte1 = source.ReadByte();
-      int byte2 = source.ReadByte();
-      int byte3 = source.ReadByte();
-      if (byte1 == 114 && byte2 == 105 && byte3 == 106)
+      var encrypted = IsStreamEncryptedPrivate(source);
+      if (encrypted)
         return new CryptoStream(source, decryptor, CryptoStreamMode.Read);
       source.Position -= 3;
       return null;
@@ -92,14 +89,20 @@ namespace FastReport.Utils
     /// <returns><b>true</b> if stream is crypted.</returns>
     public static bool IsStreamEncrypted(Stream stream)
     {
-      // check "rij" signature
-      int byte1 = stream.ReadByte();
-      int byte2 = stream.ReadByte();
-      int byte3 = stream.ReadByte();
+        var result = IsStreamEncryptedPrivate(stream);
       stream.Position -= 3;
-      return byte1 == 114 && byte2 == 105 && byte3 == 106;
+      return result;
     }
-    
+
+        private static bool IsStreamEncryptedPrivate(Stream stream)
+        {
+            // check "rij" signature
+            int byte1 = stream.ReadByte();
+            int byte2 = stream.ReadByte();
+            int byte3 = stream.ReadByte();
+            return byte1 == 114 && byte2 == 105 && byte3 == 106;
+        }
+
     /// <summary>
     /// Encrypts the string using the default password.
     /// </summary>

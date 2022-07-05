@@ -276,7 +276,7 @@ namespace FastReport.Utils
 
         private static string Get(string id, XmlDocument locale)
         {
-            string[] categories = id.Split(new char[] { ',' });
+            string[] categories = id.Split(',');
             XmlItem xi = locale.Root;
             foreach (string category in categories)
             {
@@ -314,7 +314,7 @@ namespace FastReport.Utils
         /// </example>
         public static void Set(string id, string value)
         {
-            string[] categories = id.Split(new char[] { ',' });
+            string[] categories = id.Split(',');
             XmlItem xi = FLocale.Root;
             foreach (string category in categories)
             {

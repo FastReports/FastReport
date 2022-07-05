@@ -199,7 +199,7 @@ namespace FastReport.Utils
                 GraphicsUnit savedUnit = printerGraphics.PageUnit;
                 printerGraphics.PageUnit = GraphicsUnit.Point;
 
-                string s = "test string test string test string test string";
+                const string s = "test string test string test string test string";
                 float f1 = printerGraphics.MeasureString(s, DefaultReportFont).Width;
                 FMonoRendering = f1 > 200 ? MonoRendering.Pango : MonoRendering.Cairo;
 

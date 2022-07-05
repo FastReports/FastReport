@@ -11,8 +11,6 @@ namespace FastReport.Export.PdfSimple.PdfCore
     {
         #region Internal Fields
 
-        internal static readonly NumberFormatInfo NUMBER_FORMAT_INFO;
-
         #endregion Internal Fields
 
         #region Private Fields
@@ -74,13 +72,6 @@ namespace FastReport.Export.PdfSimple.PdfCore
 
         #region Public Constructors
 
-        static PdfNumeric()
-        {
-            NUMBER_FORMAT_INFO = new NumberFormatInfo();
-            NUMBER_FORMAT_INFO.NumberGroupSeparator = String.Empty;
-            NUMBER_FORMAT_INFO.NumberDecimalSeparator = ".";
-        }
-
         /// <summary>
         /// Initialize a new instance and set the real value with precision 2
         /// </summary>
@@ -124,7 +115,7 @@ namespace FastReport.Export.PdfSimple.PdfCore
             }
             else
             {
-                writer.Write(Convert.ToString(Math.Round(realValue, precision), NUMBER_FORMAT_INFO));
+                writer.Write(ExportUtils.FloatToString(realValue, precision));
             }
         }
 

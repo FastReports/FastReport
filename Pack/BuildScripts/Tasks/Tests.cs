@@ -27,20 +27,12 @@ namespace CakeScript
     {
 
         [DependsOn(nameof(Prepare))]
+        [DependsOn(nameof(Clean))]
         public void Tests()
         {
             string solutionFile = SolutionFile;
 
             string versionNum = GetVersion();
-
-            DotNetMSBuild(solutionFile, new DotNetMSBuildSettings()
-              .SetConfiguration(config)
-              .WithTarget("CleanObjAndBin")
-              .WithProperty("SolutionDir", solutionDirectory)
-              .WithProperty("SolutionFileName", solutionFilename)
-              .WithProperty("Version", versionNum));
-
-            DotNetClean(solutionFile);
 
             DotNetRestore(solutionFile);
 

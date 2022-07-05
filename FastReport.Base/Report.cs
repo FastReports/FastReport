@@ -1460,7 +1460,7 @@ namespace FastReport
             if (cachedItem != null)
                 return cachedItem.column;
 
-            string[] names = complexName.Split(new char[] { '.' });
+            string[] names = complexName.Split('.');
             cachedItem = cachedDataItems[names[0]] as CachedDataItem;
             DataSourceBase data = cachedItem != null ? cachedItem.dataSource : GetDataSource(names[0]);
 
@@ -1753,6 +1753,7 @@ namespace FastReport
             string[] assemblies = ReferencedAssemblies;
             Array.Resize(ref assemblies, assemblies.Length + 1);
             assemblies[assemblies.Length - 1] = assembly_name;
+            ReferencedAssemblies = assemblies;
         }
 
         /// <summary>
@@ -1768,6 +1769,7 @@ namespace FastReport
             {
                 assemblies[oldLength + i] = assembly_names[i];
             }
+            ReferencedAssemblies = assemblies;
         }
 
         /// <inheritdoc/>
@@ -2007,21 +2009,20 @@ namespace FastReport
             if (String.IsNullOrEmpty(s))
                 return;
 
+            byte[] buffer;
             int startIndex = s.IndexOf("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             if (startIndex != -1)
             {
-                UTF8Encoding encoding = new UTF8Encoding();
-                using (MemoryStream stream = new MemoryStream(encoding.GetBytes(s.Substring(startIndex))))
-                {
-                    Load(stream);
-                }
+                buffer = Encoding.UTF8.GetBytes(s.Substring(startIndex));
             }
             else
             {
-                using (MemoryStream stream = new MemoryStream(Convert.FromBase64String(s)))
-                {
-                    Load(stream);
-                }
+                buffer = Convert.FromBase64String(s);
+            }
+
+            using (MemoryStream stream = new MemoryStream(buffer))
+            {
+                Load(stream);
             }
         }
 
@@ -2041,8 +2042,7 @@ namespace FastReport
                 }
                 else
                 {
-                    UTF8Encoding encoding = new UTF8Encoding();
-                    return encoding.GetString(stream.ToArray());
+                    return Encoding.UTF8.GetString(stream.ToArray());
                 }
             }
         }

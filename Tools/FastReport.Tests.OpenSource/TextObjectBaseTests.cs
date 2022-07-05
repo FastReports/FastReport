@@ -28,7 +28,7 @@ namespace FastReport.Tests.Core
             textObject.Brackets = brackets;
             string text = "testTest";
 
-            string[] bracketsArr = textObject.Brackets.Split(new char[] { ',' });
+            string[] bracketsArr = textObject.Brackets.Split(',');
             string expected = bracketsArr[0] + text + bracketsArr[1];
 
             string textWithBrackets = textObject.GetTextWithBrackets(text);

@@ -111,7 +111,7 @@ namespace FastReport.Utils
 #if !CATEGORY_OPTIMIZATION
         internal override FunctionInfo FindOrCreate(string complexName)
         {
-            string[] itemNames = complexName.Split(new char[] { ',' });
+            string[] itemNames = complexName.Split(',');
             FunctionInfo root = this;
             foreach (string itemName in itemNames)
             {
@@ -314,7 +314,7 @@ namespace FastReport.Utils
 
         internal override ObjectInfo FindOrCreate(string complexName)
         {
-            string[] itemNames = complexName.Split(new char[] { ',' });
+            string[] itemNames = complexName.Split(',');
             ObjectInfo root = this;
             foreach (string itemName in itemNames)
             {
@@ -341,7 +341,7 @@ namespace FastReport.Utils
 
         internal void Remove(string complexName)
         {
-            string[] itemNames = complexName.Split(new char[] { ',' });
+            string[] itemNames = complexName.Split(',');
             ObjectInfo root = this;
             foreach (string itemName in itemNames)
             {

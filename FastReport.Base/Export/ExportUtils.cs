@@ -53,12 +53,11 @@ namespace FastReport.Export
                 return page.PaperHeight;
         }
 
-        public static string FloatToString(double value)
+
+        private static readonly NumberFormatInfo _provider;
+        public static string FloatToString(double value, int digits = 2)
         {
-            NumberFormatInfo provider = new NumberFormatInfo();
-            provider.NumberGroupSeparator = String.Empty;
-            provider.NumberDecimalSeparator = ".";
-            return Convert.ToString(Math.Round(value, 2), provider);
+            return Convert.ToString(Math.Round(value, digits), _provider);
         }
 
         internal static bool ParseTextToDecimal(string text, FormatBase format, out decimal value)
@@ -223,11 +222,7 @@ namespace FastReport.Export
 
         internal static string HTMLColor(Color color)
         {
-#if DOTNET_4
             return ColorTranslator.ToHtml(color);
-#else
-            return HTMLColorCode(color);
-#endif
         }
 
         internal static string HTMLColorCode(Color color)
@@ -277,8 +272,8 @@ namespace FastReport.Export
 
             if (textRenderType == TextRenderType.HtmlTags)
             {
-                string wingdings = "<font face=\"Wingdings\">";
-                string webdings = "<font face=\"Webdings\">";
+                const string wingdings = "<font face=\"Wingdings\">";
+                const string webdings = "<font face=\"Webdings\">";
                 int ind1 = 0, ind2 = 0;
                 if (text.Contains(wingdings))
                 {
@@ -505,7 +500,7 @@ namespace FastReport.Export
             long adler = 1L;
             using (DeflateStream compressor = new DeflateStream(dst, CompressionMode.Compress, true))
             {
-                int bufflength = 2048;
+                const int bufflength = 2048;
                 byte[] buff = new byte[bufflength];
                 int i;
                 while ((i = src.Read(buff, 0, bufflength)) > 0)
@@ -718,7 +713,7 @@ namespace FastReport.Export
             return cellReference.ToString();
         }
 
-        private static CultureInfo INVARIANT_CULTURE = CultureInfo.InvariantCulture;
+        private static readonly CultureInfo INVARIANT_CULTURE = CultureInfo.InvariantCulture;
         internal static string StringFormat(string formatString, params object[] objects)
         {
             return String.Format(INVARIANT_CULTURE, formatString, objects);
@@ -748,6 +743,14 @@ namespace FastReport.Export
                 result = "A";
 
             return result;
+        }
+
+        static ExportUtils()
+        {
+            var defaultProvider  = new NumberFormatInfo();
+            defaultProvider.NumberGroupSeparator = string.Empty;
+            defaultProvider.NumberDecimalSeparator = ".";
+            _provider = NumberFormatInfo.ReadOnly(defaultProvider);
         }
     }
 }

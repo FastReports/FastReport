@@ -25,7 +25,6 @@ namespace FastReport.Web
     public partial class WebReport
     {
         private string localizationFile;
-        private int numberNextTab = 1;
 
 #if DIALOGS
         internal Dialog Dialog {
@@ -74,37 +73,6 @@ namespace FastReport.Web
 
 
         /// <summary>
-        /// Active report tab
-        /// </summary>
-        public ReportTab CurrentTab
-        {
-            get => Tabs[CurrentTabIndex];
-            set => Tabs[CurrentTabIndex] = value;
-        }
-
-        /// <summary>
-        /// Active tab index
-        /// </summary>
-        public int CurrentTabIndex
-        {
-            get
-            {
-                if (currentTabIndex >= Tabs.Count)
-                    currentTabIndex = Tabs.Count - 1;
-                if (currentTabIndex < 0)
-                    currentTabIndex = 0;
-                return currentTabIndex;
-            }
-            set => currentTabIndex = value;
-        }
-
-        /// <summary>
-        /// Shows different ReportPage in tabs.
-        /// Default value: false.
-        /// </summary>
-        public bool SplitReportPagesInTabs { get; set; } = false;
-
-        /// <summary>
         /// Page index of current report
         /// </summary>
         public int CurrentPageIndex
@@ -136,11 +104,6 @@ namespace FastReport.Web
         /// Total prepared pages of current report
         /// </summary>
         public int TotalPages => Report?.PreparedPages?.Count ?? 0;
-
-        /// <summary>
-        /// List of report tabs
-        /// </summary>
-        public ReportTabCollection Tabs { get; } = new ReportTabCollection() { new ReportTab() { Report = new Report(), Closeable = false } };
 
         /// <summary>
         /// Switches beetwen Preview and Designer modes
@@ -202,6 +165,12 @@ namespace FastReport.Web
         [Obsolete("Please, use Toolbar.Color")]
         public Color ToolbarColor { get => Toolbar.Color; set => Toolbar.Color = value; }
 
+        /// <summary>
+        /// Toolbar height in pixels
+        /// </summary>
+        [Obsolete("Please, use Toolbar.Height")]
+        public int ToolbarHeight { get => Toolbar.Height; set => Toolbar.Height = value; }
+
         #endregion
 
         public float Zoom { get; set; } = 1.0f;
@@ -212,9 +181,6 @@ namespace FastReport.Web
             = false;
 #endif
         internal bool Canceled { get; set; } = false;
-
-        // for Tabs max-width
-        internal int ReportMaxWidth { get; set; } = 800;
 
         /// <summary>
         /// Shows sidebar with outline.
@@ -231,14 +197,7 @@ namespace FastReport.Web
         private string ReportPath { get; set; } = null;
         private string ReportResourceString { get; set; } = null;
 
-        /// <summary>
-        /// Toolbar height in pixels
-        /// </summary>
-        [Obsolete("Please, use Toolbar.Height")]
-        public int ToolbarHeight { get => Toolbar.Height; set => Toolbar.Height = value; }
-
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
-        int currentTabIndex;
         
 #endregion
 
@@ -300,58 +259,6 @@ namespace FastReport.Web
                     throw new Exception($"Unknown mode: {Mode}");
             }
         }
-        /// <summary>
-        /// Add report pages in tabs after load report
-        /// </summary>
-        internal void SplitReportPagesByTabs()
-        {
-            if (SplitReportPagesInTabs)
-            {
-                var report = Report;
-          
-                for (int pageN = 0; pageN < report.Pages.Count; pageN++)
-                {
-                    var page = report.Pages[pageN];
-
-                    if (page is ReportPage reportPage)
-                    {
-                        if (pageN == 0)
-                        {
-                            Tabs[0].Name = reportPage.Name;
-                            Tabs[0].MinPageIndex = 0;
-                            
-                            continue;
-                        }
-                      
-                        if (!reportPage.Visible)
-                            continue;
-                        int numberPage = 0;
-                        for (int i = 0; i < report.PreparedPages.Count; i++)
-                        {
-
-                            var preparedPage = report.PreparedPages.GetPage(i);
-                            if (preparedPage.OriginalComponent.Name == reportPage.Name)
-                            {
-                                numberPage = i;
-                                break;
-                            }
-                        }
-                      
-                        Tabs.Add(new ReportTab()
-                        {
-                            Closeable = false,
-                            CurrentPageIndex = numberPage,
-                            MinPageIndex = numberPage,
-                            Name = reportPage.Name,
-                            NeedParent = false,
-                            Report = report,
-                            ReportPrepared = true//,
-                        });
-                    }
-                }
-            }
-        }
-
 
         /// <summary>
         /// Force report to be removed from internal cache
@@ -469,17 +376,6 @@ namespace FastReport.Web
             }
 
             CurrentPageIndex = value;
-        }
-
-        internal void SetTab(int value)
-        {
-            CurrentTabIndex = value;
-            if (CurrentTabIndex < Tabs.Count - 1)
-                numberNextTab = value + 1;
-            else
-                numberNextTab = value;
-
-            //CurrentPageIndex = CurrentTab.MinPageIndex;
         }
 
         #endregion

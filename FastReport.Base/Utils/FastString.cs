@@ -142,7 +142,7 @@ namespace FastReport.Utils
         public FastString Clear()
         {
             //count = 0;
-            sb.Length = 0; //Clear();
+            sb.Clear();
             done = false;
             return this;
         }

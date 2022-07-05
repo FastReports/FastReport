@@ -67,7 +67,8 @@ namespace FastReport.Export.Html
                 width = line.Width * 3 * Zoom;
             else
                 width = line.Width * Zoom;
-            return Convert.ToString(Math.Round(width, 2), numberFormat) + "px;";
+
+            return ExportUtils.FloatToString(width) + "px;";
         }
 
         private void HTMLBorder(FastString BorderDesc, Border border)

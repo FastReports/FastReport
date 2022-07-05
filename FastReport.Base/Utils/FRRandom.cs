@@ -14,15 +14,15 @@ namespace FastReport.Utils
     {
         #region Fields
 
-        private Random random;
+        private readonly Random random;
 
-        private static char[] lowerLetters =
+        private static readonly char[] lowerLetters =
         {
           'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
           'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
         };
 
-        private static char[] upperLetters =
+        private static readonly char[] upperLetters =
         {
           'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
           'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -112,10 +112,7 @@ namespace FastReport.Utils
         public byte[] NextBytes(int number)
         {
             byte[] bytes = new byte[number];
-            for (int i = 0; i < number; i++)
-            {
-                bytes[i] = NextByte();
-            }
+            random.NextBytes(bytes);
             return bytes;
         }
 
@@ -207,7 +204,7 @@ namespace FastReport.Utils
 
             sb.Append(e);
 
-            decimal result = 0.0m;
+            decimal result;
             bool parsed = decimal.TryParse(sb.ToString(), NumberStyles.Float,
                 CultureInfo.InvariantCulture, out result);
             if (parsed)
@@ -260,7 +257,7 @@ namespace FastReport.Utils
                 }
             }
 
-            Int16 result = 0;
+            Int16 result;
             bool parsed = Int16.TryParse(sb.ToString(), out result);
             if (parsed)
                 return result;
@@ -302,7 +299,7 @@ namespace FastReport.Utils
                 }
             }
 
-            Int32 result = 0;
+            Int32 result;
             bool parsed = Int32.TryParse(sb.ToString(), out result);
             if (parsed)
                 return result;
@@ -344,7 +341,7 @@ namespace FastReport.Utils
                 }
             }
 
-            Int64 result = 0;
+            Int64 result;
             bool parsed = Int64.TryParse(sb.ToString(), out result);
             if (parsed)
                 return result;
@@ -382,7 +379,7 @@ namespace FastReport.Utils
                 }
             }
 
-            SByte result = 0;
+            SByte result;
             bool parsed = SByte.TryParse(sb.ToString(), out result);
             if (parsed)
                 return result;
@@ -453,7 +450,7 @@ namespace FastReport.Utils
                 }
             }
 
-            UInt16 result = 0;
+            UInt16 result;
             bool parsed = UInt16.TryParse(sb.ToString(), out result);
             if (parsed)
                 return result;
@@ -490,7 +487,7 @@ namespace FastReport.Utils
                 }
             }
 
-            UInt32 result = 0;
+            UInt32 result;
             bool parsed = UInt32.TryParse(sb.ToString(), out result);
             if (parsed)
                 return result;
@@ -528,7 +525,7 @@ namespace FastReport.Utils
                 }
             }
 
-            UInt64 result = 0;
+            UInt64 result;
             bool parsed = UInt64.TryParse(sb.ToString(), out result);
             if (parsed)
                 return result;
@@ -646,13 +643,12 @@ namespace FastReport.Utils
                             continue;
 
                         Type type = uniquesAndRelations[column.ColumnName].Type;
-                        FRRandomFieldValueCollection values = new FRRandomFieldValueCollection();
                         for (int r = 0; r < table.Rows.Count; r++)
                         {
                             object val = table.Rows[r][c];
                             if (val != null && !(val is System.DBNull) && !dict[column.ColumnName].ContainsOrigin(val))
                             {
-                                object randomVal = val;
+                                object randomVal;
                                 do
                                 {
                                     randomVal = GetRandomObject(val, type);
@@ -816,7 +812,7 @@ namespace FastReport.Utils
     {
         #region Fields
 
-        private List<FRRandomFieldValue> list;
+        private readonly List<FRRandomFieldValue> list;
 
         #endregion Fields
 

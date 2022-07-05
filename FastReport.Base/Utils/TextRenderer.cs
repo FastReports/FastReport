@@ -237,7 +237,7 @@ namespace FastReport.Utils
             StyleDescriptor style = new StyleDescriptor(Font.Style, BrushColor, BaseLine.Normal);
             if (HtmlTags)
                 text = text.Replace("<br>", "\r\n").Replace("<br/>", "\r\n").Replace("<br />", "\r\n");
-            string[] lines = text.Split(new char[] { '\n' });
+            string[] lines = text.Split('\n');
             int originalCharIndex = 0;
 
             foreach (string line in lines)
@@ -560,7 +560,7 @@ namespace FastReport.Utils
                             break;
                         }
 
-                        string textFit = text.Substring(0, charsFit).TrimEnd(new char[] { ' ' });
+                        string textFit = text.Substring(0, charsFit).TrimEnd(' ');
                         lines.Add(new Line(textFit, this, originalCharIndex));
                         text = text.Substring(charsFit)
                                         // Fix for linux system
@@ -1380,7 +1380,7 @@ namespace FastReport.Utils
                 hasTabs = text.Contains("\t");
 
                 // split text by spaces
-                string[] words = text.Split(new char[] { ' ' });
+                string[] words = text.Split(' ');
                 string textWithSpaces = "";
 
                 foreach (string word in words)
@@ -1391,7 +1391,7 @@ namespace FastReport.Utils
                     {
                         // split text by tabs
                         textWithSpaces += word;
-                        string[] tabWords = textWithSpaces.Split(new char[] { '\t' });
+                        string[] tabWords = textWithSpaces.Split('\t');
 
                         foreach (string word1 in tabWords)
                         {

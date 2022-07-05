@@ -18,12 +18,12 @@ namespace FastReport.Web
                 {
 
                     //sb.Append("<div class=\"tabselector\">");
-                    //sb.Append(string.Format("<input class=\"td tab {2}\" type=\"button\" name=\"tab1\" value=\"{0}\" title=\"{3}\" onclick=\"{1}\"/>",
-                    //    GetTabName(i), GetNavRequest("settab", i.ToString()), i == CurrentTabIndex ? "tabselected" : "", fTabs[i].Name));
+                    //sb.AppendFormat("<input class=\"td tab {2}\" type=\"button\" name=\"tab1\" value=\"{0}\" title=\"{3}\" onclick=\"{1}\"/>",
+                    //    GetTabName(i), GetNavRequest("settab", i.ToString()), i == CurrentTabIndex ? "tabselected" : "", fTabs[i].Name);
                     //if (ReportProperties.ShowTabCloseButton)
                     //{
-                    //    sb.Append(string.Format("<input class=\"td tabclose {2}\" type=\"button\" name=\"tab1c\" value=\"{0}\" title=\"{3}\" onclick=\"{1}\"/>",
-                    //        "X", GetNavRequest("closetab", i.ToString()), i == CurrentTabIndex ? "tabselected" : "", "X"));
+                    //    sb.AppendFormat("<input class=\"td tabclose {2}\" type=\"button\" name=\"tab1c\" value=\"{0}\" title=\"{3}\" onclick=\"{1}\"/>",
+                    //        "X", GetNavRequest("closetab", i.ToString()), i == CurrentTabIndex ? "tabselected" : "", "X");
                     //}
                     //sb.Append("</div>");
 
@@ -40,9 +40,9 @@ namespace FastReport.Web
                                          <img src=""{template_resource_url("close.svg", "image/svg+xml")}"">
                                      </a>");
 
-                    sb.Append($@"</div>");
+                    sb.Append("</div>");
                 }
-                sb.Append($@"</div>");
+                sb.Append("</div>");
             }
             return sb.ToString();
         }
