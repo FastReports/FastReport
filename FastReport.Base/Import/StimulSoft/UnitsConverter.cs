@@ -30,7 +30,7 @@ namespace FastReport.Import.StimulSoft
         }
 
         /// <summary>
-        /// Conver valut to PageUnits
+        /// Converts value to PageUnits.
         /// </summary>
         /// <param name="unitType"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace FastReport.Import.StimulSoft
         }
 
         /// <summary>
-        /// Conver valut to PageUnits
+        /// Converts value to PageUnits.
         /// </summary>
         /// <param name="unitType"></param>
         /// <returns></returns>
@@ -70,7 +70,71 @@ namespace FastReport.Import.StimulSoft
         }
 
         /// <summary>
-        /// Parse int value
+        /// Converts the PaperSize to width and height values of paper size in millimeters
+        /// </summary>
+        /// <param name="paperSize">The PaperSize value.</param>
+        /// <param name="page">The ReportPage instance.</param>
+        public static void ConvertPaperSize(string paperSize, ReportPage page)
+        {
+            if (page == null)
+                return;
+
+            float width = 210;
+            float height = 297;
+            switch (paperSize)
+            {
+                case "A4":
+                    width = 210;
+                    height = 297;
+                    break;
+                case "A3":
+                    width = 297;
+                    height = 420;
+                    break;
+                case "A5":
+                    width = 148;
+                    height = 210;
+                    break;
+                case "B4":
+                    width = 257;
+                    height = 364;
+                    break;
+                case "B5":
+                    width = 182;
+                    height = 257;
+                    break;
+                case "Legal":
+                    width = 216;
+                    height = 356;
+                    break;
+                case "Letter":
+                    width = 216;
+                    height = 279;
+                    break;
+                case "Tabloid":
+                    width = 432;
+                    height = 279;
+                    break;
+                case "Statement":
+                    width = 140;
+                    height = 216;
+                    break;
+                case "Executive":
+                    width = 184;
+                    height = 267;
+                    break;
+                default:
+                    width = 210;
+                    height = 297;
+                    break;
+            }
+
+            page.PaperWidth = width;
+            page.PaperHeight = height;
+        }
+
+        /// <summary>
+        /// Parse int value.
         /// </summary>
         /// <param name="strInt"></param>
         /// <returns></returns>

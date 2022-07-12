@@ -138,9 +138,7 @@ namespace FastReport
       float x1 = x + dx;
       float y1 = y + dy;
 
-      DashStyle[] styles = new DashStyle[] { 
-          DashStyle.Solid, DashStyle.Dash, DashStyle.Dot, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Solid };
-      Pen pen = e.Cache.GetPen(Border.Color, Border.Width * e.ScaleX, styles[(int)Border.Style]);
+      Pen pen = e.Cache.GetPen(Border.Color, Border.Width * e.ScaleX, Border.DashStyle);
       Brush brush = null;
       if (Fill is SolidFill)
         brush = e.Cache.GetBrush((Fill as SolidFill).Color);

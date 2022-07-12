@@ -4,6 +4,9 @@ using FastReport.Barcode;
 using FastReport.Gauge.Linear;
 using FastReport.Gauge.Simple;
 using FastReport.Data;
+#if !CROSSPLATFORM
+using System.CodeDom.Compiler;
+#endif
 
 namespace FastReport.Import
 {
@@ -12,6 +15,19 @@ namespace FastReport.Import
     /// </summary>
     public static partial class ComponentsFactory
     {
+        #region Private Methods
+
+        private static bool IsValidIdentifier(string identifier)
+        {
+#if !CROSSPLATFORM
+            if (!CodeGenerator.IsValidLanguageIndependentIdentifier(identifier))
+                return false;
+#endif
+            return true;
+        }
+
+        #endregion // Private Methods
+
         #region Pages
 
         /// <summary>
@@ -24,6 +40,22 @@ namespace FastReport.Import
             ReportPage page = new ReportPage();
             report.Pages.Add(page);
             page.CreateUniqueName();
+            return page;
+        }
+
+        /// <summary>
+        /// Creates a ReportPage instance in the specified Report with the cpecified name.
+        /// </summary>
+        /// <param name="name">The name of page.</param>
+        /// <param name="report">The Report instance.</param>
+        /// <returns>The ReportPage instance.</returns>
+        public static ReportPage CreateReportPage(string name, Report report)
+        {
+            ReportPage page = new ReportPage();
+            page.Name = name;
+            report.Pages.Add(page);
+            if (!IsValidIdentifier(page.Name))
+                page.CreateUniqueName();
             return page;
         }
 
@@ -243,6 +275,8 @@ namespace FastReport.Import
             text.Name = name;
             if ((parent as IParent).CanContain(text))
                 text.Parent = parent;
+            if (!IsValidIdentifier(text.Name))
+                text.CreateUniqueName();
             return text;
         }
 
@@ -258,6 +292,8 @@ namespace FastReport.Import
             picture.Name = name;
             if ((parent as IParent).CanContain(picture))
                 picture.Parent = parent;
+            if (!IsValidIdentifier(picture.Name))
+                picture.CreateUniqueName();
             return picture;
         }
 
@@ -273,6 +309,8 @@ namespace FastReport.Import
             line.Name = name;
             if ((parent as IParent).CanContain(line))
                 line.Parent = parent;
+            if (!IsValidIdentifier(line.Name))
+                line.CreateUniqueName();
             return line;
         }
 
@@ -288,6 +326,8 @@ namespace FastReport.Import
             shape.Name = name;
             if ((parent as IParent).CanContain(shape))
                 shape.Parent = parent;
+            if (!IsValidIdentifier(shape.Name))
+                shape.CreateUniqueName();
             return shape;
         }
 
@@ -303,6 +343,8 @@ namespace FastReport.Import
             polyLine.Name = name;
             if ((parent as IParent).CanContain(polyLine))
                 polyLine.Parent = parent;
+            if (!IsValidIdentifier(polyLine.Name))
+                polyLine.CreateUniqueName();
             return polyLine;
         }
 
@@ -318,6 +360,8 @@ namespace FastReport.Import
             polygon.Name = name;
             if ((parent as IParent).CanContain(polygon))
                 polygon.Parent = parent;
+            if (!IsValidIdentifier(polygon.Name))
+                polygon.CreateUniqueName();
             return polygon;
         }
 
@@ -333,6 +377,8 @@ namespace FastReport.Import
             subreport.Name = name;
             if ((parent as IParent).CanContain(subreport))
                 subreport.Parent = parent;
+            if (!IsValidIdentifier(subreport.Name))
+                subreport.CreateUniqueName();
             return subreport;
         }
 
@@ -348,6 +394,8 @@ namespace FastReport.Import
             container.Name = name;
             if ((parent as IParent).CanContain(container))
                 container.Parent = parent;
+            if (!IsValidIdentifier(container.Name))
+                container.CreateUniqueName();
             return container;
         }
 
@@ -363,6 +411,8 @@ namespace FastReport.Import
             checkBox.Name = name;
             if ((parent as IParent).CanContain(checkBox))
                 checkBox.Parent = parent;
+            if (!IsValidIdentifier(checkBox.Name))
+                checkBox.CreateUniqueName();
             return checkBox;
         }
 
@@ -378,6 +428,8 @@ namespace FastReport.Import
             html.Name = name;
             if ((parent as IParent).CanContain(html))
                 html.Parent = parent;
+            if (!IsValidIdentifier(html.Name))
+                html.CreateUniqueName();
             return html;
         }
 
@@ -393,6 +445,8 @@ namespace FastReport.Import
             table.Name = name;
             if ((parent as IParent).CanContain(table))
                 table.Parent = parent;
+            if (!IsValidIdentifier(table.Name))
+                table.CreateUniqueName();
             return table;
         }
 
@@ -408,6 +462,8 @@ namespace FastReport.Import
             matrix.Name = name;
             if ((parent as IParent).CanContain(matrix))
                 matrix.Parent = parent;
+            if (!IsValidIdentifier(matrix.Name))
+                matrix.CreateUniqueName();
             return matrix;
         }
 
@@ -423,6 +479,8 @@ namespace FastReport.Import
             barcode.Name = name;
             if ((parent as IParent).CanContain(barcode))
                 barcode.Parent = parent;
+            if (!IsValidIdentifier(barcode.Name))
+                barcode.CreateUniqueName();
             return barcode;
         }
 
@@ -438,6 +496,8 @@ namespace FastReport.Import
             zipCode.Name = name;
             if ((parent as IParent).CanContain(zipCode))
                 zipCode.Parent = parent;
+            if (!IsValidIdentifier(zipCode.Name))
+                zipCode.CreateUniqueName();
             return zipCode;
         }
 
@@ -453,6 +513,8 @@ namespace FastReport.Import
             cellularText.Name = name;
             if ((parent as IParent).CanContain(cellularText))
                 cellularText.Parent = parent;
+            if (!IsValidIdentifier(cellularText.Name))
+                cellularText.CreateUniqueName();
             return cellularText;
         }
 
@@ -468,6 +530,8 @@ namespace FastReport.Import
             gauge.Name = name;
             if ((parent as IParent).CanContain(gauge))
                 gauge.Parent = parent;
+            if (!IsValidIdentifier(gauge.Name))
+                gauge.CreateUniqueName();
             return gauge;
         }
 
@@ -483,6 +547,8 @@ namespace FastReport.Import
             gauge.Name = name;
             if ((parent as IParent).CanContain(gauge))
                 gauge.Parent = parent;
+            if (!IsValidIdentifier(gauge.Name))
+                gauge.CreateUniqueName();
             return gauge;
         }
 
@@ -498,6 +564,8 @@ namespace FastReport.Import
             gauge.Name = name;
             if ((parent as IParent).CanContain(gauge))
                 gauge.Parent = parent;
+            if (!IsValidIdentifier(gauge.Name))
+                gauge.CreateUniqueName();
             return gauge;
         }
 
@@ -513,6 +581,8 @@ namespace FastReport.Import
             gauge.Name = name;
             if ((parent as IParent).CanContain(gauge))
                 gauge.Parent = parent;
+            if (!IsValidIdentifier(gauge.Name))
+                gauge.CreateUniqueName();
             return gauge;
         }
         #endregion // Objects
