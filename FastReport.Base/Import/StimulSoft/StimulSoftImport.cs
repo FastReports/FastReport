@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using FastReport.Table;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using FastReport.Barcode;
 using FastReport.Utils;
 #if MSCHART
@@ -611,7 +612,6 @@ namespace FastReport.Import.StimulSoft
         {
             SubreportObject subreportObject = ComponentsFactory.CreateSubreportObject(xmlObject["Name"].InnerText, band);
             ReportPage page = ComponentsFactory.CreateReportPage(Report);
-            page.SetName(xmlObject["Name"].InnerText);
             LoadReportComponentBase(subreportObject, xmlObject);
 
             if (useAbsTop)
@@ -656,17 +656,26 @@ namespace FastReport.Import.StimulSoft
 
         private void LoadPage(XmlNode node)
         {
-            page = ComponentsFactory.CreateReportPage(Report);
-            page.Name = node["Name"].InnerText;
+            page = ComponentsFactory.CreateReportPage(node["Name"].InnerText, Report);
 
-            page.PaperWidth = UnitsConverter.ConvertFloat(node["PageWidth"].InnerText) * UnitsConverter.GetPixelsInUnit(unitType) / Units.Millimeters;
-            page.PaperHeight = UnitsConverter.ConvertFloat(node["PageHeight"].InnerText) * UnitsConverter.GetPixelsInUnit(unitType) / Units.Millimeters;
+            if (node["PageWidth"] != null && node["PageHeight"] != null)
+            {
+                page.PaperWidth = UnitsConverter.ConvertFloat(node["PageWidth"].InnerText) * UnitsConverter.GetPixelsInUnit(unitType) / Units.Millimeters;
+                page.PaperHeight = UnitsConverter.ConvertFloat(node["PageHeight"].InnerText) * UnitsConverter.GetPixelsInUnit(unitType) / Units.Millimeters;
+            }
+            else if (node["PaperSize"] != null)
+            {
+                UnitsConverter.ConvertPaperSize(node["PaperSize"].InnerText, page);
+            }
 
-            Padding pagePadding = ParsePageMargins(node["Margins"].InnerText);
-            page.LeftMargin = pagePadding.Left / Units.Millimeters;
-            page.TopMargin = pagePadding.Top / Units.Millimeters;
-            page.RightMargin = pagePadding.Right / Units.Millimeters;
-            page.BottomMargin = pagePadding.Bottom / Units.Millimeters;
+            if (node["Margins"] != null)
+            {
+                Padding pagePadding = ParsePageMargins(node["Margins"].InnerText);
+                page.LeftMargin = pagePadding.Left / Units.Millimeters;
+                page.TopMargin = pagePadding.Top / Units.Millimeters;
+                page.RightMargin = pagePadding.Right / Units.Millimeters;
+                page.BottomMargin = pagePadding.Bottom / Units.Millimeters;
+            }
 
             if (node["Columns"] != null)
                 page.Columns.Count = UnitsConverter.ConvertInt(node["Columns"].InnerText);
@@ -1315,6 +1324,59 @@ namespace FastReport.Import.StimulSoft
             return new RectangleF(marg[0], marg[1], marg[2], marg[3]);
         }
 
+        private void LoadReferencedAssemblies(XmlNode references)
+        {
+            foreach (XmlNode reference in references.ChildNodes)
+            {
+                bool exists = false;
+
+                if (String.IsNullOrEmpty(reference.InnerText))
+                    continue;
+
+                // Strip off any trailing ".dll" ".exe" if present.
+                string dllName = reference.InnerText;
+                if (string.Compare(reference.InnerText.Substring(reference.InnerText.Length - 4), ".dll", true) == 0 ||
+                  string.Compare(reference.InnerText.Substring(reference.InnerText.Length - 4), ".exe", true) == 0)
+                    dllName = reference.InnerText.Substring(0, reference.InnerText.Length - 4);
+
+                // See if the required assembly is already present in our current AppDomain
+                foreach (Assembly currAssembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    if (string.Compare(currAssembly.GetName().Name, dllName, true) == 0)
+                    {
+                        // Found it, return the location as the full reference.
+                        exists = true;
+                    }
+                }
+
+                // See if the required assembly is present in the ReferencedAssemblies but not yet loaded
+                foreach (AssemblyName assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
+                {
+                    if (string.Compare(assemblyName.Name, dllName, true) == 0)
+                    {
+                        // Found it, try to load assembly and return the location as the full reference.
+                        try
+                        {
+                            exists = true;
+                        }
+                        catch { }
+                    }
+                }
+
+                // Search assembly local and in current folder.
+                if (File.Exists(Path.Combine(Config.ApplicationFolder, reference.InnerText)) ||
+                    File.Exists(reference.InnerText))
+                {
+                    exists = true;
+                }
+
+                if (exists)
+                {
+                    Report.AddReferencedAssembly(reference.InnerText);
+                }
+            }
+        }
+
         private void LoadReportInfo()
         {
             unitType = UnitsConverter.ConverPageUnits(reportNode["ReportUnit"].InnerText);
@@ -1326,8 +1388,7 @@ namespace FastReport.Import.StimulSoft
             if(reportNode["ReportDescription"] != null)
                 Report.ReportInfo.Description = reportNode["ReportDescription"].InnerText;
 
-            foreach (XmlNode reference in reportNode["ReferencedAssemblies"].ChildNodes)
-                Report.AddReferencedAssembly(reference.InnerText);
+            LoadReferencedAssemblies(reportNode["ReferencedAssemblies"]);
         }
 
         private void LoadStyles()
