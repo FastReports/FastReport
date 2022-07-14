@@ -41,6 +41,23 @@ namespace FastReport.Data
     public event EventHandler Load;
 
     /// <summary>
+    /// Gets or sets alias of this object.
+    /// </summary>
+    /// <remarks>
+    /// Alias is a human-friendly name of this object. It may contain any symbols (including 
+    /// spaces and national symbols).
+    /// </remarks>
+    [Category("Design")]
+    public new string Alias
+    {
+        get { return base.Alias; }
+        set {
+                UpdateExpressions(base.Alias, value);
+                base.Alias = value;
+            }
+    }
+
+    /// <summary>
     /// Gets a number of data rows in this datasource.
     /// </summary>
     /// <remarks>
@@ -245,6 +262,7 @@ namespace FastReport.Data
     #endregion
 
     #region Private Methods
+
     private void GetChildRows(Relation relation)
     {
       // prepare consts
@@ -322,6 +340,45 @@ namespace FastReport.Data
         }  
       }
     }
+
+    private void UpdateExpressions(string oldAlias, string newAlias)
+    {
+        if (Report != null)
+        {
+            // Update expressions in components.
+            foreach (Base component in Report.AllObjects)
+            {
+                // Update Text in TextObject instances.
+                if (component is TextObject)
+                {
+                    TextObject text = component as TextObject;
+                    string bracket = text.Brackets.Split(new char[] { ',' })[0];
+                    if (String.IsNullOrEmpty(bracket))
+                    {
+                        bracket = "[";
+                    }
+                    text.Text = text.Text.Replace(bracket + oldAlias + ".", bracket + newAlias + ".");
+                }
+                // Update DataColumn in PictureObject instances.
+                else if (component is PictureObject)
+                {
+                    PictureObject picture = component as PictureObject;
+                    picture.DataColumn = picture.DataColumn.Replace(oldAlias + ".", newAlias + ".");
+                }
+                // Update Filter and Sort in DataBand instances.
+                else if (component is DataBand)
+                {
+                    DataBand data = component as DataBand;
+                    data.Filter = data.Filter.Replace("[" + oldAlias + ".", "[" + newAlias + ".");
+                    foreach (Sort sort in data.Sort)
+                    {
+                        sort.Expression = sort.Expression.Replace("[" + oldAlias + ".", "[" + newAlias + ".");
+                    }
+                }
+            }
+        }
+    }
+
     #endregion
 
     #region Protected Methods
