@@ -1624,8 +1624,9 @@
       <EventObjectIndicator Text="Отображать индикатор на объектах с событиями"/>
       <EnableBacklightIntersectingObjects Text="Подсвечивать пересекающиеся объекты"/>
       <ObjectsAppearance Text="Внешний вид объектов"/>
-	  <EnableBacklight Text="Подсвечивать активный бэнд"/>
-	  <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
+      <EnableBacklight Text="Подсвечивать активный бэнд"/>
+      <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
+      <DisableLastFormatting Text="Отключить использование последних настроек форматирования"/>
     </ReportPageOptions>
     <RichTextEditor Text="Редактор текста">
       <Open Text="Открыть файл"/>

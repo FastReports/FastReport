@@ -48,6 +48,7 @@ namespace FastReport.Utils
         private static CompilerSettings compilerSettings = new CompilerSettings();
         private static string applicationFolder;
         private static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        private static bool disableLastFormatting = false;
 
 
 
@@ -180,6 +181,15 @@ namespace FastReport.Utils
         {
             get { return disableHotkeys; }
             set { disableHotkeys =  value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating saving last formatting should be disabled.
+        /// </summary>
+        public static bool DisableLastFormatting
+        {
+            get { return disableLastFormatting; }
+            set { disableLastFormatting = value; }
         }
 
         /// <summary>
@@ -669,6 +679,7 @@ namespace FastReport.Utils
         {
             XmlItem xi = Root.FindItem("UIOptions");
             xi.SetProp("DisableHotkeys", Converter.ToString(DisableHotkeys));
+            xi.SetProp("DisableLastFormatting", Converter.ToString(DisableLastFormatting));
         }
 
         private static void RestoreUIOptions()
@@ -676,10 +687,17 @@ namespace FastReport.Utils
             RestoreRightToLeft();
 
             XmlItem xi = Root.FindItem("UIOptions");
+
             string disableHotkeysStringValue = xi.GetProp("DisableHotkeys");
             if (!String.IsNullOrEmpty(disableHotkeysStringValue))
             {
                 disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
+            }
+
+            string disableLastFormattingStringValue = xi.GetProp("DisableLastFormatting");
+            if (!String.IsNullOrEmpty(disableLastFormattingStringValue))
+            {
+                disableLastFormatting = disableLastFormattingStringValue.ToLower() != "false";
             }
         }
 

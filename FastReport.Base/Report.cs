@@ -989,7 +989,10 @@ namespace FastReport
                 // convert the relative path to absolute path (based on the main report path).
                 if (!Path.IsPathRooted(value))
                 {
-                    value = Path.GetFullPath(Path.GetDirectoryName(FileName) + Path.DirectorySeparatorChar + value);
+                    var fullPath = Path.GetFullPath(Path.GetDirectoryName(FileName));
+                    // since directory path separator for Win OS is  '\' and for Unix OS is '/'
+                    // we have to modify the incoming path string with actual for current OS path separator
+                    value = Path.Combine(fullPath, GetFixedSeparatedPath(value));
                 }
                 if (!File.Exists(value) && File.Exists(BaseReportAbsolutePath))
                 {
@@ -1011,6 +1014,11 @@ namespace FastReport
             }
             SetAncestor(true);
             baseReport = value;
+        }
+
+        private static string GetFixedSeparatedPath( string baseReport)
+        {
+            return baseReport.Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar);
         }
 
         private void GetDiff(object sender, DiffEventArgs e)

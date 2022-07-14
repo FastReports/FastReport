@@ -440,7 +440,7 @@ namespace FastReport
             //graphics.DrawImage(image, new PointF[] { upperLeft, upperRight, lowerLeft });
 
             DrawImage3Points(graphics, image, upperLeft, upperRight, lowerLeft);
-            image = null;
+            image.Dispose();
         }
 
         // This is analogue of graphics.DrawImage(image, PointF[] points) method. 

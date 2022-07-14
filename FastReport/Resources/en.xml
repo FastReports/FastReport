@@ -1821,12 +1821,13 @@
       <Structure Text="Structure"/>
       <Classic Text="Classic"/>
       <EditAfterInsert Text="Edit after insert"/>
-      <EventBandIndicator Text="Show indicator on bands with events" />
-      <EventObjectIndicator Text="Show indicator on objects with events" />
-      <EnableBacklightIntersectingObjects Text="Backlight intersecting objects" />
+      <EventBandIndicator Text="Show indicator on bands with events"/>
+      <EventObjectIndicator Text="Show indicator on objects with events"/>
+      <EnableBacklightIntersectingObjects Text="Backlight intersecting objects"/>
       <ObjectsAppearance Text="Objects appearance"/>
       <EnableBacklight Text="Backlight active band"/>
       <SimplifyDBFields Text="Simplified display of DB fields"/>
+      <DisableLastFormatting Text="Disable using of last formatting settings"/>
     </ReportPageOptions>
     <RichTextEditor Text="RichText Editor">
       <Open Text="Open"/>
