@@ -96,6 +96,11 @@
     </Swiss>
   </Messages>
   <Misc>
+    <Bytes Text="bytes"/>
+    <KB Text="KB"/>
+    <MB Text="MB"/>
+    <GB Text="GB"/>
+    <TB Text="TB"/>
     <ShortUnitsMm Text="mm"/>
     <ShortUnitsCm Text="cm"/>
     <ShortUnitsIn Text="in"/>
@@ -1653,6 +1658,12 @@
       <Note Text="Note: changes made will take effect on FastReport restart."/>
       <Fonts Text="Fonts"/>
       <ExportsEditor Text="Exports Menu"/>
+      <Version Text="Version:"/>
+      <Path Text="Path:"/>
+      <Date Text="Date created:"/>
+      <CompanyName Text="Company name:"/>
+      <Description Text="Description:"/>
+      <Size Text="Size:"/>
     </PluginsOptions>
     <PreviewPageSetup>
       <Apply Text="Apply to all pages and rebuild report"/>

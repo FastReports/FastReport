@@ -95,6 +95,11 @@
     </Swiss>
   </Messages>
   <Misc>
+    <Bytes Text="байт(а)"/>
+    <KB Text="КБ"/>
+    <MB Text="МБ"/>
+    <GB Text="ГБ"/>
+    <TB Text="ТБ"/>
     <ShortUnitsMm Text="мм"/>
     <ShortUnitsCm Text="см"/>
     <ShortUnitsIn Text="in"/>
@@ -1454,6 +1459,12 @@
       <Note Text="Внимание: изменения вступят в силу при следующем запуске программы."/>
       <Fonts Text="Шрифты"/>
       <ExportsEditor Text="Меню экспортов"/>
+      <Version Text="Версия:"/>
+      <Path Text="Путь:"/>
+      <Date Text="Дата создания:"/>
+      <CompanyName Text="Организация:"/>
+      <Description Text="Описание:"/>
+      <Size Text="Размер:"/>
     </PluginsOptions>
     <PreviewPageSetup>
       <Apply Text="Применить ко всем страницам и перестроить отчет"/>
