@@ -65,4 +65,76 @@ namespace FastReport.Utils
     /// </summary>
     public static float HundrethsOfInch = 0.96f;
   }
+
+    public static class FileSize
+    {
+        /// <summary>
+        /// File size units.
+        /// </summary>
+        public enum Units
+        {
+            /// <summary>
+            /// Bytes.
+            /// </summary>
+            Bytes,
+
+            /// <summary>
+            /// Kilobytes.
+            /// </summary>
+            KB,
+
+            /// <summary>
+            /// Megabytes.
+            /// </summary>
+            MB,
+
+            /// <summary>
+            /// Gigabytes.
+            /// </summary>
+            GB,
+
+            /// <summary>
+            /// Terobytes.
+            /// </summary>
+            TB
+        }
+
+        /// <summary>
+        /// Convert numbers to file size (example 1 MB).
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ConvertToString(long value)
+        {
+            int steps = 0;
+            float result = value;
+
+            while(result > 1024 - 1)
+            {
+                result /= 1024;
+                steps++;
+            }
+
+            return result.ToString("F2") + " " + GetUnits((Units)steps);
+        }
+
+        private static string GetUnits(Units units)
+        {
+            switch (units)
+            {
+                case Units.Bytes:
+                    return Res.Get("Misc,Bytes");
+                case Units.KB:
+                    return Res.Get("Misc,KB");
+                case Units.MB:
+                    return Res.Get("Misc,MB");
+                case Units.GB:
+                    return Res.Get("Misc,GB");
+                case Units.TB:
+                    return Res.Get("Misc,TB");
+                default:
+                    return Res.Get("Misc,Bytes");
+            }
+        }
+    }
 }
