@@ -569,12 +569,15 @@ namespace FastReport.Export.Html
                             obj.Border.Lines = oldLines;
                         }
                         if(Width > 0 && Height > 0)
-                            using (Bitmap b = new Bitmap((int)Width, (int)Height))
+                            using (Bitmap b = new Bitmap(
+                            (int)(Math.Abs(Math.Round(Width * Zoom * zoom))),
+                            (int)(Math.Abs(Math.Round(Height * Zoom * zoom)))
+                            ))
                             {
                                 using (Graphics gr = Graphics.FromImage(b))
                                 {
                                     gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                                    gr.DrawImage(image, 0, 0, (int)Width, (int)Height);
+                                    gr.DrawImage(image, 0, 0, (int)Width * Zoom * zoom, (int)Height * Zoom * zoom);
                                 }
 
                                 if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)

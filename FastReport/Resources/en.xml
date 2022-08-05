@@ -1106,6 +1106,9 @@
       <CSharp Text="C#"/>
       <VBNet Text="Visual Basic .NET"/>
     </CodePageOptions>
+    <FRXPageOptions Text="FRX page">
+      <Enable Text="Enable"/>
+    </FRXPageOptions>
     <ConfigureBands Text="Configure Bands">
       <Add Text="Add"/>
       <Delete Text="Delete"/>
@@ -1175,7 +1178,7 @@
       <Expressions Text="Expressions"/>
       <Add Text="Add"/>
       <Delete Text="Delete"/>
-      <Edit Text="Edit"/>      
+      <Edit Text="Edit"/>
     </ExpressionsEditor>
     <Fill Text="Fill Editor">
       <Solid Text="Solid"/>
@@ -1307,7 +1310,7 @@
       <HintReportPage Text="Specified page will be generated and opened in separate preview tab."/>
       <HintCustom Text="You should create &quot;Click&quot; event handler to define custom action."/>
       <ModifyAppearance Text="Modify the object's appearance so it will look like a clickable link"/>
-	  <OpenLinkInNewTab Text="Open link in new tab" />
+      <OpenLinkInNewTab Text="Open link in new tab" />
     </HyperlinkEditor>
     <LabelWizard Text="Label Wizard">
       <Hint Text="Select one of the predefined labels, or press &quot;Custom label...&quot; button to define own label size."/>
@@ -1807,8 +1810,8 @@
       <QualityRegular Text="Regular"/>
       <QualityClearType Text="ClearType"/>
       <QualityAntiAlias Text="AntiAlias"/>
-	    <QualitySingleBPP Text="SingleBPP"/>
-	    <QualitySingleBPPGridFit Text="SingleBPPGridFit"/>
+      <QualitySingleBPP Text="SingleBPP"/>
+      <QualitySingleBPPGridFit Text="SingleBPPGridFit"/>
       <PasswordError Text="Password does not match. Please retype again."/>
       <Recipients Text="Recipient(s) (for example, john@url.com):"/>
       <Subject Text="Subject:"/>
@@ -1919,12 +1922,12 @@
       <WordWrap Text="Word wrap"/>
       <ConfirmChanges Text="Text has been modified. Save changes?"/>
     </TextEditor>
-    <JsonEditor Text="Json Editor"> 
+    <JsonEditor Text="Json Editor">
       <Readonly Text="(readonly)"/>
       <Open Text="Open file"/>
       <Save Text="Save file"/>
       <FormatJson Text="Format JSON"/>
-      <Filter Text="json files (*.json)|*.json|txt files (*.txt)|*.txt|All files (*.*)|*.*"/>	
+      <Filter Text="json files (*.json)|*.json|txt files (*.txt)|*.txt|All files (*.*)|*.*"/>
     </JsonEditor>
     <TotalEditor Text="Edit Total">
       <TotalName Text="Total name:"/>
@@ -2047,68 +2050,68 @@
         <AlternativeProcedure2 Text="Alternative procedure 2"/>
         <Amount Text="Amount"/>
       </Swiss>
-	    <SberbankQr>
-	      <Name Text="Beneficiary's name"/>
-		    <PersonalAcc Text="Beneficiary account number"/>
-		    <BankName Text="Beneficiary bank name"/>
-		    <BIC Text="BIC"/>
-		    <CorrespAcc Text="Correspondent account"/>
-		    <Sum Text="Payment Amount"/>
-		    <Purpose Text="Payment purpose"/>
-		    <PayeeINN Text="Payee INN"/>
-		    <PayerINN Text="Payer INN"/>
-		    <DrawerStatus Text="Drafter status"/>
-		    <KPP Text="Payee KPP"/>
-		    <CBC Text="CBC"/>
-		    <OKTMO Text="OKTMO"/>
-		    <PayReason Text="Tax basis for payment"/>
-		    <TaxPeriod Text="Tax period"/>
-		    <DocNo Text="Document №"/>
-		    <DocDate Text="Document date"/>
-		    <TaxPaytKind Text="Payment type"/>
-		    <LastName Text="Payer's last name"/>
-		    <FirstName Text="Payer's first name"/>
-		    <MiddleName Text="Payer's middle name"/>
-		    <PayerAdress Text="Payer's address"/>
-		    <PersonalAccount Text="Payee's personal account"/>
-		    <DocIdx Text="Index of payment document"/>
-		    <PensAcc Text="Account number in the PFR [Pension Fund of the Russian Federation] - SNILS [Personal insurance policy number] system"/>
-		    <Contract Text="Contract number"/>
-		    <PersAcc Text="Account number in the organization 
+      <SberbankQr>
+        <Name Text="Beneficiary's name"/>
+        <PersonalAcc Text="Beneficiary account number"/>
+        <BankName Text="Beneficiary bank name"/>
+        <BIC Text="BIC"/>
+        <CorrespAcc Text="Correspondent account"/>
+        <Sum Text="Payment Amount"/>
+        <Purpose Text="Payment purpose"/>
+        <PayeeINN Text="Payee INN"/>
+        <PayerINN Text="Payer INN"/>
+        <DrawerStatus Text="Drafter status"/>
+        <KPP Text="Payee KPP"/>
+        <CBC Text="CBC"/>
+        <OKTMO Text="OKTMO"/>
+        <PayReason Text="Tax basis for payment"/>
+        <TaxPeriod Text="Tax period"/>
+        <DocNo Text="Document №"/>
+        <DocDate Text="Document date"/>
+        <TaxPaytKind Text="Payment type"/>
+        <LastName Text="Payer's last name"/>
+        <FirstName Text="Payer's first name"/>
+        <MiddleName Text="Payer's middle name"/>
+        <PayerAdress Text="Payer's address"/>
+        <PersonalAccount Text="Payee's personal account"/>
+        <DocIdx Text="Index of payment document"/>
+        <PensAcc Text="Account number in the PFR [Pension Fund of the Russian Federation] - SNILS [Personal insurance policy number] system"/>
+        <Contract Text="Contract number"/>
+        <PersAcc Text="Account number in the organization 
 		    (metering device accounting system)"/>
-		    <Flat Text="Apartment number"/>
-		    <Phone Text="Phone numbmer"/>
-		    <PayerIdType Text="Payee's identifying document type"/>
-		    <PayerIdNum Text="Payee's identifying document number"/>
-		    <ChildFio Text="Child's full name"/>
-		    <BirthDate Text="Birth date"/>
-		    <PaymTerm Text="The billing date/Instalment due"/>
-		    <PaymPeriod Text="Payment period"/>
-		    <Category Text="Payment type"/>
-		    <ServiceName Text="Service name / Metering device name"/>
-		    <CounterId Text="Metering device ID"/>
-		    <CounterVal Text="Metering device reading"/>
-		    <QuittId Text="Notice, accrual, invoice ID"/>
-		    <QuittDate Text="Notice/accrual/invoice/act date 
+        <Flat Text="Apartment number"/>
+        <Phone Text="Phone numbmer"/>
+        <PayerIdType Text="Payee's identifying document type"/>
+        <PayerIdNum Text="Payee's identifying document number"/>
+        <ChildFio Text="Child's full name"/>
+        <BirthDate Text="Birth date"/>
+        <PaymTerm Text="The billing date/Instalment due"/>
+        <PaymPeriod Text="Payment period"/>
+        <Category Text="Payment type"/>
+        <ServiceName Text="Service name / Metering device name"/>
+        <CounterId Text="Metering device ID"/>
+        <CounterVal Text="Metering device reading"/>
+        <QuittId Text="Notice, accrual, invoice ID"/>
+        <QuittDate Text="Notice/accrual/invoice/act date 
 		    (for GIBDD [The State Traffic Safety Inspectorate])"/>
-		    <InstNum Text="Facility (medical, educational) number"/>
-		    <ClassNum Text="Kindergarten group / school grade"/>
-		    <SpecFio Text="Full name of the service providing specialist (teacher)"/>
-		    <AddAmount Text="Insurance sum/additional service/fine"/>
-		    <RuleId Text="Act number (for GIBDD)"/>
-		    <ExecId Text="Enforcement proceeding ID"/>
-		    <RegType Text="Payment type code 
+        <InstNum Text="Facility (medical, educational) number"/>
+        <ClassNum Text="Kindergarten group / school grade"/>
+        <SpecFio Text="Full name of the service providing specialist (teacher)"/>
+        <AddAmount Text="Insurance sum/additional service/fine"/>
+        <RuleId Text="Act number (for GIBDD)"/>
+        <ExecId Text="Enforcement proceeding ID"/>
+        <RegType Text="Payment type code 
 		    (for example, for Rosreestr payments)"/>
-		    <UIN Text="Money transfer ID"/>
-		    <TechCode Text="Technical code, recommended to be filled by the service provider. 
+        <UIN Text="Money transfer ID"/>
+        <TechCode Text="Technical code, recommended to be filled by the service provider. 
 		    Can be used by the receiving organization in a data processing system."/>
-		    <ObligatoryProps Text="Obligatory details"/>
-		    <AdditionalProps Text="Additional details"/>
-		    <AnotherProps Text="Other details"/>
-		    <NotEnterDate Text="Don't enter date"/>
-      <Error Text="Not all the required banking details are filled in."/>
-      <Warning Text="Incorrect data in the fields:"/>
-	    </SberbankQr>
+        <ObligatoryProps Text="Obligatory details"/>
+        <AdditionalProps Text="Additional details"/>
+        <AnotherProps Text="Other details"/>
+        <NotEnterDate Text="Don't enter date"/>
+        <Error Text="Not all the required banking details are filled in."/>
+        <Warning Text="Incorrect data in the fields:"/>
+      </SberbankQr>
     </BarcodeEditor>
     <SavingPageOptions Text="Saving">
       <EnableAutoSave Text="Enable auto save every (minutes)"/>
@@ -2144,14 +2147,14 @@
       <Message Text="Your account is used to sync your settings between devices and for other personalization services."/>
       <SessionExpired Text="Session expired, sign in again!"/>
     </AccountWindow>
-	<ServerWindow Text="Server">
-        <Server Text="Server"/>
-        <Caption Text="Server"/>
-        <ApiKeyword Text="Api key" />
-        <comboBoxServer Text="FastReport Cloud"/>
-        <comboBoxText Text="https://fastreport.cloud"/>
-        <comboBoxCustom Text="Custom server"/>
-	</ServerWindow>
+    <ServerWindow Text="Server">
+      <Server Text="Server"/>
+      <Caption Text="Server"/>
+      <ApiKeyword Text="Api key" />
+      <comboBoxServer Text="FastReport Cloud"/>
+      <comboBoxText Text="https://fastreport.cloud"/>
+      <comboBoxCustom Text="Custom server"/>
+    </ServerWindow>
     <AdvMatrixHeaderEditor Text="Header Editor">
       <General Text="General">
         <ItemType Text="Item type:"/>

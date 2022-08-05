@@ -51,11 +51,6 @@ namespace FastReport.Utils
         private static bool disableLastFormatting = false;
 
 
-
-#if CROSSPLATFORM
-        private static readonly bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#endif
-
         #endregion Private Fields
 
         #region Public Properties
@@ -68,10 +63,7 @@ namespace FastReport.Utils
         }
 
 #if CROSSPLATFORM
-        public static bool IsWindows
-        {
-            get { return isWindows; }
-        }
+        public static bool IsWindows { get; } = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 #endif
 
 
