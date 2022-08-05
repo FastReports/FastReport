@@ -1096,6 +1096,9 @@
       <CSharp Text="C#"/>
       <VBNet Text="Visual Basic .NET"/>
     </CodePageOptions>
+    <FRXPageOptions Text="Страница &quot;FRX&quot;">
+      <Enable Text="Включить"/>
+    </FRXPageOptions>
     <ConfigureBands Text="Настройка бэндов">
       <Add Text="Добавить"/>
       <Delete Text="Удалить"/>
