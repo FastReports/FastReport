@@ -565,19 +565,19 @@ namespace FastReport.Export.Html
 
                             BorderLines oldLines = obj.Border.Lines;
                             obj.Border.Lines = BorderLines.None;
-                            obj.Draw(new FRPaintEventArgs(g, Zoom + zoom - 1, Zoom + zoom - 1, Report.GraphicCache));
+                            obj.Draw(new FRPaintEventArgs(g, Zoom * zoom, Zoom * zoom, Report.GraphicCache));
                             obj.Border.Lines = oldLines;
                         }
                         if(Width > 0 && Height > 0)
                             using (Bitmap b = new Bitmap(
-                            (int)(Math.Abs(Math.Round(Width * Zoom * zoom))),
-                            (int)(Math.Abs(Math.Round(Height * Zoom * zoom)))
+                            (int)(Math.Abs(Math.Round(Width * Zoom))),
+                            (int)(Math.Abs(Math.Round(Height * Zoom)))
                             ))
                             {
                                 using (Graphics gr = Graphics.FromImage(b))
                                 {
                                     gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                                    gr.DrawImage(image, 0, 0, (int)Width * Zoom * zoom, (int)Height * Zoom * zoom);
+                                    gr.DrawImage(image, 0, 0, (int)Width * Zoom, (int)Height * Zoom);
                                 }
 
                                 if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
@@ -612,6 +612,7 @@ namespace FastReport.Export.Html
                                 }        
                             }   
 #else
+
                             hash = Crypter.ComputeHash(PictureStream);
                             PictureStream.Position = 0;
 #endif

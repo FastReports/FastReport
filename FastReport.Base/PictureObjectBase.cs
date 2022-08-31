@@ -820,7 +820,7 @@ namespace FastReport
             {
                 if (ImageWidth == 0 || ImageHeight == 0)
                 {
-                    if (IsRunning)
+                    if (IsRunning && !IsPrinting)
                     {
                         Width = 0;
                         Height = 0;

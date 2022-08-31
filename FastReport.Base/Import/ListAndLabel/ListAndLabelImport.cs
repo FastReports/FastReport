@@ -413,7 +413,19 @@ namespace FastReport.Import.ListAndLabel
         ///<inheritdoc/>
         public override void LoadReport(Report report, string filename)
         {
-            textLL = File.ReadAllText(filename);
+            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                LoadReport(report, fs);
+            }
+        }
+
+        /// <inheritdoc />
+        public override void LoadReport(Report report, Stream content)
+        {
+            using(var sr = new StreamReader(content))
+            {
+                textLL = sr.ReadToEnd();
+            }
             isListAndLabelReport = CheckIsListAndLabelReport();
             if (isListAndLabelReport)
             {

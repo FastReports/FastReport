@@ -1,3 +1,5 @@
+using System.IO; 
+
 namespace FastReport.Import
 {
     /// <summary>
@@ -53,6 +55,16 @@ namespace FastReport.Import
         /// <param name="report">Report object.</param>
         /// <param name="filename">File name.</param>
         public virtual void LoadReport(Report report, string filename)
+        {
+            report.Clear();
+        }
+
+        /// <summary>
+        /// Loads the specified file into specified report from stream.
+        /// </summary>
+        /// <param name="report">Report object</param>
+        /// <param name="content">File stream</param>
+        public virtual void LoadReport(Report report, Stream content)
         {
             report.Clear();
         }

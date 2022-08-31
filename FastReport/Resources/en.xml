@@ -69,6 +69,13 @@
     <ErrorInHighlightCondition Text="Error in highlight condition"/>
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
+    <Validator>
+      <DuplicateName Text="Name already is used."/>
+      <IntersectedObjects Text="Object is intersected with other object."/>
+      <IncorrectSize Text="Object must have sizes more than zero."/>
+      <UnnamedObject Text="Object hasn't name."/>
+      <OutOfBounds Text="Object out beyond boundaries of parent."/>
+    </Validator>
     <Swiss>
       <SwissNullIban Text="Iban must not be null"/>
       <SwissNullCreditor Text="Creditor must not be null"/>
@@ -491,6 +498,11 @@
         <EventsTab Text="Events"/>
         <NObjectsSelected Text="{0} objects selected"/>
       </Properties>
+      <Validator Text="Validation">
+        <Name Text="Name"/>
+        <Message Text="Message"/>
+        <Refresh Text="Refresh"/>
+      </Validator>
       <ReportTree Text="Report Tree"/>
       <CollapseAll Text="Collapse all"/>
       <ExpandAll Text="Expand all"/>
@@ -2276,6 +2288,7 @@
       <HeaderKey Text="Header"/>
       <HeaderVal Text="Value"/>
       <ConfirmChanges Text="Json has been modified. Generate a new schema?" />
+      <SimpleStructure Text="Simple structure"/>
     </Json>
     <MongoDB>
       <Scheme Text="Scheme:"/>

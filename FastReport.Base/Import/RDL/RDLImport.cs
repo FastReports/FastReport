@@ -926,11 +926,19 @@ namespace FastReport.Import.RDL
         public override void LoadReport(Report report, string filename)
         {
             this.filename = filename;
+            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                LoadReport(report, fs);
+            }
+        }
+        /// <inheritdoc />
+        public override void LoadReport(Report report, Stream content)
+        {
             Report = report;
             Report.Clear();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filename);
-            reportNode = doc.LastChild;
+            XmlDocument document = new XmlDocument();
+            document.Load(content);
+            reportNode = document.LastChild;
             defaultFontFamily = "";
             page = null;
             LoadReport(reportNode);

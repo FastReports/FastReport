@@ -1,8 +1,10 @@
 ﻿using FastReport.Data.ElasticSearch;
 using FastReport.Data.JsonConnection.JsonParser;
+using FastReport.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace FastReport.Data.JsonConnection
 {
@@ -15,6 +17,8 @@ namespace FastReport.Data.JsonConnection
 
         private JsonArray _json;
         private bool updateSchema;
+        private bool simpleStructure;
+        private string tableData;
 
         #endregion Private Fields
 
@@ -23,6 +27,7 @@ namespace FastReport.Data.JsonConnection
         /// <summary>
         /// Gets or sets value for force update schema on init schema
         /// </summary>
+        [Browsable(false)]
         public bool UpdateSchema
         {
             get
@@ -32,6 +37,41 @@ namespace FastReport.Data.JsonConnection
             set
             {
                 updateSchema = value;
+            }
+        }
+        /// <summary>
+        /// Get or sets simplify mode for array types
+        /// </summary>
+        [Browsable(false)]
+        public bool SimpleStructure
+        {
+            get
+            {
+                return simpleStructure;
+            }
+
+            set
+            {
+                simpleStructure = value;
+            }
+        }
+
+        /// <inheritdoc />
+        [Browsable(false)]
+        public override string TableData
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(tableData))
+                {
+                    tableData = Json.ToString();
+                }
+                return tableData;
+            }
+
+            set
+            {
+                tableData = value;
             }
         }
 
@@ -45,7 +85,14 @@ namespace FastReport.Data.JsonConnection
             {
                 if (_json == null)
                 {
-                    _json = GetJson(Parent, this) as JsonArray;
+                    if (StoreData && !String.IsNullOrEmpty(tableData))
+                    {
+                        _json = JsonBase.FromString(tableData) as JsonArray;
+                    }
+                    else
+                    {
+                        _json = GetJson(Parent, this) as JsonArray;
+                    }
                     if (_json == null)
                         _json = new JsonArray();
                 }
@@ -101,13 +148,14 @@ namespace FastReport.Data.JsonConnection
         /// <inheritdoc/>
         public override void InitSchema()
         {
-            if (Columns.Count == 0 || UpdateSchema)
+            if (Columns.Count == 0 || UpdateSchema && !StoreData)
             {
+
                 if (Connection is JsonDataSourceConnection)
                 {
                     JsonDataSourceConnection con = Connection as JsonDataSourceConnection;
 
-                    InitSchema(this, con.JsonSchema);
+                    InitSchema(this, con.JsonSchema, con.SimpleStructure);
                 }
             }
             UpdateSchema = false;
@@ -117,7 +165,8 @@ namespace FastReport.Data.JsonConnection
         public override void LoadData(ArrayList rows)
         {
             Json = null;
-            if ( rows != null)
+            // JSON is calculated property, no problem with null
+            if (rows != null && Json != null)
             {
                 rows.Clear();
                 int count = Json.Count;
@@ -136,13 +185,25 @@ namespace FastReport.Data.JsonConnection
         {
             if (parentColumn is JsonTableDataSource)
             {
-                switch (column.PropName)
+                JsonTableDataSource jsonTableDataSource = parentColumn as JsonTableDataSource;
+                if (jsonTableDataSource.SimpleStructure)
                 {
-                    case "item":
-                        return (parentColumn as JsonTableDataSource).Json[(parentColumn as JsonTableDataSource).CurrentIndex];
+                    if (!String.IsNullOrEmpty(column.PropName))
+                    {
+                        var obj = (parentColumn as JsonTableDataSource).Json[(parentColumn as JsonTableDataSource).CurrentIndex];
+                        return (obj as JsonBase)[column.PropName];
+                    }
                 }
-                JsonTableDataSource source = column as JsonTableDataSource;
-                return source.Json;
+                else
+                {
+                    switch (column.PropName)
+                    {
+                        case "item":
+                            return (parentColumn as JsonTableDataSource).Json[(parentColumn as JsonTableDataSource).CurrentIndex];
+                    }
+                    JsonTableDataSource source = column as JsonTableDataSource;
+                    return source.Json;
+                }
             }
             if (parentColumn is Column && !String.IsNullOrEmpty(column.PropName))
             {
@@ -175,7 +236,7 @@ namespace FastReport.Data.JsonConnection
             return json;
         }
 
-        internal static void InitSchema(Column table, JsonSchema schema)
+        internal static void InitSchema(Column table, JsonSchema schema, bool simpleStructure)
         {
             List<Column> saveColumns = new List<Column>();
             switch (schema.Type)
@@ -191,7 +252,7 @@ namespace FastReport.Data.JsonConnection
                             c.PropName = kv.Key;
                             c.DataType = kv.Value.DataType;
                             c = UpdateColumn(table, c, saveColumns);
-                            InitSchema(c, kv.Value);
+                            InitSchema(c, kv.Value, simpleStructure);
                         }
                         else if (kv.Value.Type == "array")
                         {
@@ -201,7 +262,9 @@ namespace FastReport.Data.JsonConnection
                             c.PropName = kv.Key;
                             c.DataType = kv.Value.DataType;
                             c = UpdateColumn(table, c, saveColumns);
-                            InitSchema(c, kv.Value);
+
+                            InitSchema(c, kv.Value, simpleStructure);
+
                         }
                         else
                         {
@@ -218,6 +281,26 @@ namespace FastReport.Data.JsonConnection
 
                 case "array":
                     JsonSchema items = schema.Items;
+
+                    bool simpleArray = false;
+
+                    if (table is JsonTableDataSource)
+                    {
+                        JsonTableDataSource jsonTableDataSource = table as JsonTableDataSource;
+                        simpleArray = jsonTableDataSource.SimpleStructure =
+                            simpleStructure & items.Type == "object";
+                    }
+
+                    if (simpleArray)
+                    {
+                        // remake schema in simplify mode
+                        InitSchema(table, items, simpleStructure);
+                        // and return, no need to clear column data
+                        // in this case this method has no control to columns
+                        return;
+                    }
+
+
                     {
                         Column c = new Column();
                         c.Name = "index";
@@ -226,6 +309,8 @@ namespace FastReport.Data.JsonConnection
                         c.DataType = typeof(int);
                         UpdateColumn(table, c, saveColumns);
                     }
+
+
 
                     {
                         Column c;
@@ -254,7 +339,7 @@ namespace FastReport.Data.JsonConnection
                         c = UpdateColumn(table, c, saveColumns);
 
                         if (iSchema)
-                            InitSchema(c, items);
+                            InitSchema(c, items, simpleStructure);
                     }
 
                     {
@@ -265,6 +350,7 @@ namespace FastReport.Data.JsonConnection
                         c.DataType = typeof(JsonBase);
                         UpdateColumn(table, c, saveColumns);
                     }
+
                     break;
             }
 
@@ -280,7 +366,7 @@ namespace FastReport.Data.JsonConnection
 
         internal object GetJson(Base parentColumn, Column column)
         {
-            if(parentColumn is ESDataSourceConnection)
+            if (parentColumn is ESDataSourceConnection)
                 parentColumn = (parentColumn as ESDataSourceConnection).GetParentJTDSByName(column.Name);
             if (parentColumn is JsonDataSourceConnection)
             {
@@ -292,7 +378,19 @@ namespace FastReport.Data.JsonConnection
                 if (parentColumn.Parent is ESDataSourceConnection)
                     parentColumn.Parent = (parentColumn.Parent as ESDataSourceConnection).GetParentJTDSByName(parentColumn.Name);
                 JsonTableDataSource source = parentColumn as JsonTableDataSource;
-                return source.Json[source.CurrentRowNo] as object;
+
+                if (source.SimpleStructure)
+                {
+                    object parentJson = source.Json[source.CurrentRowNo];
+                    if (parentJson is JsonBase && !String.IsNullOrEmpty(column.PropName))
+                    {
+                        return (parentJson as JsonBase)[column.PropName];
+                    }
+                }
+                else
+                {
+                    return source.Json[source.CurrentRowNo] as object;
+                }
             }
             else if (parentColumn is Column)
             {
@@ -353,5 +451,17 @@ namespace FastReport.Data.JsonConnection
         }
 
         #endregion Private Methods
+
+
+        ///  <inheritdoc/>
+        public override void Serialize(FRWriter writer)
+        {
+            base.Serialize(writer);
+
+            if (SimpleStructure)
+            {
+                writer.WriteBool("SimpleStructure", SimpleStructure);
+            }
+        }
     }
 }

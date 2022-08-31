@@ -28,6 +28,7 @@ namespace FastReport.Data.JsonConnection
         private JsonArray jsonInternal = null;
         private JsonSchema jsonSchema = null;
         private string jsonSchemaString = "";
+        private bool simpleStructure;
 
         #endregion Private Fields
 
@@ -50,6 +51,14 @@ namespace FastReport.Data.JsonConnection
                 if (jsonSchema == null)
                     InitConnection();
                 return jsonSchema;
+            }
+        }
+
+        internal bool SimpleStructure
+        {
+            get
+            {
+                return simpleStructure;
             }
         }
 
@@ -182,6 +191,7 @@ namespace FastReport.Data.JsonConnection
         private void InitConnection(bool rebuildSchema)
         {
             JsonDataSourceConnectionStringBuilder builder = new JsonDataSourceConnectionStringBuilder(ConnectionString);
+            simpleStructure = builder.SimpleStructure;
             JsonBase obj = null;
             string jsonText = builder.Json.Trim();
             if (jsonText.Length > 0)

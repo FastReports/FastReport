@@ -397,6 +397,15 @@ namespace FastReport.Barcode
 
     private static void MakePadding(byte[] data, int position, int count)
     {
+      // set to ascii mode
+      if ((count > 0) && (position > 0))
+      {
+        if (data[position - 1] != 254)
+            data[position] = 254;
+        position++;
+        count--;
+      }
+
       //already in ascii mode
       if (count <= 0)
         return;
@@ -733,7 +742,7 @@ namespace FastReport.Barcode
         ptrIn = last0;
         encPtr = last1;
       }
-      if (encPtr / 3 * 2 > dataLength - 2)
+      if (encPtr / 3 * 2 > dataLength - 1)
       {
         return -1;
       }
@@ -744,8 +753,12 @@ namespace FastReport.Barcode
         data[dataOffset + ptrOut++] = (byte)(a / 256);
         data[dataOffset + ptrOut++] = (byte)a;
       }
-      data[ptrOut++] = (byte)254;
-      i = AsciiEncodation(text, ptrIn, textLength - ptrIn, data, ptrOut, dataLength - ptrOut);
+        i = 0;
+        if (textLength - ptrIn > 0)
+        {
+            data[ptrOut++] = (byte)254;
+            i = AsciiEncodation(text, ptrIn, textLength - ptrIn, data, ptrOut, dataLength - ptrOut);
+        }
       if (i < 0)
         return i;
       return ptrOut + i;
