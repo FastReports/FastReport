@@ -622,6 +622,12 @@ namespace FastReport
         }
 
         /// <inheritdoc/>
+        public override List<ValidationError> Validate()
+        {
+            return new List<ValidationError>();
+        }
+
+        /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
         {
             BandBase c = writer.DiffObject as BandBase;

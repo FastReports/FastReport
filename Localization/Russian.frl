@@ -69,6 +69,13 @@
     <ErrorInHighlightCondition Text="Ошибка в условном выделении"/>
     <FileNameEmpty Text="Пожалуйста, укажите имя файла."/>
     <SaveToAnotherFile Text="Хотите сохранить в другой файл?"/>
+    <Validator>
+      <DuplicateName Text="Имя уже используется."/>
+      <IntersectedObjects Text="Объект пересекается с другим объектом."/>
+      <IncorrectSize Text="Объект должен иметь размеры больше нулевых."/>
+      <UnnamedObject Text="Объект не имеет имени."/>
+      <OutOfBounds Text="Объект выходит за границы родительского элемента."/>
+    </Validator>
     <Swiss>
       <SwissNullIban Text="IBAN не должен быть null"/>
       <SwissNullCreditor Text="Плательщик не должен быть NULL"/>
@@ -473,9 +480,9 @@
         <CloseAll Text="Закрыть все"/>
       </Window>
       <Help Text="Справка">
-		  <Contents Text="Содержание..."/>
-		  <About Text="О программе..."/>
-		  <Account Text="Учётная запись"/>
+        <Contents Text="Содержание..."/>
+        <About Text="О программе..."/>
+        <Account Text="Учётная запись"/>
       </Help>
     </Menu>
     <ToolWindow>
@@ -486,6 +493,11 @@
         <EventsTab Text="События"/>
         <NObjectsSelected Text="{0} объектов выбрано"/>
       </Properties>
+      <Validator Text="Проверка">
+        <Name Text="Имя"/>
+        <Message Text="Сообщение"/>
+        <Refresh Text="Обновить"/>
+      </Validator>
       <ReportTree Text="Дерево отчета"/>
       <CollapseAll Text="Свернуть все"/>
       <ExpandAll Text="Развернуть все"/>
@@ -2062,6 +2074,7 @@
       <HeaderKey Text="Заголовок"/>
       <HeaderVal Text="Значение"/>
       <ConfirmChanges Text="Json был изменен. Перестроить схему JSON?" />
+      <SimpleStructure Text="Простая структура"/>
     </Json>
     <MongoDB>
       <Scheme Text="Схема:"/>

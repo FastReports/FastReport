@@ -1011,11 +1011,24 @@ namespace FastReport.Import.DevExpress
 
         #region Public Methods
 
+        /// <inheritdoc />
         public override void LoadReport(Report report, string filename)
+        {
+            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                LoadReport(report, fs);
+            }
+        }
+
+        /// <inheritdoc />
+        public override void LoadReport(Report report, Stream content)
         {
             Report = report;
             Report.Clear();
-            devText = File.ReadAllText(filename);
+            using(var sr = new StreamReader(content))
+            {
+                devText = sr.ReadToEnd();
+            }
             try
             {
                 devDoc = new System.Xml.XmlDocument();

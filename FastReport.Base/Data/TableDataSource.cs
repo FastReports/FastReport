@@ -126,7 +126,7 @@ namespace FastReport.Data
         /// This property is for internal use only.
         /// </remarks>
         [Browsable(false)]
-        public string TableData
+        public virtual string TableData
         {
             get
             {

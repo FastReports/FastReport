@@ -65,8 +65,10 @@ namespace FastReport.Export.Html
             float width;
             if (line.Style == LineStyle.Double)
                 width = line.Width * 3 * Zoom;
-            else
+            else if (layers)
                 width = line.Width * Zoom;
+            else
+                width = line.Width;
 
             return ExportUtils.FloatToString(width) + "px;";
         }

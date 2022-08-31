@@ -792,6 +792,29 @@ namespace FastReport
             return e.Graphics.IsVisible(objRect);
         }
 
+        /// <summary>
+        /// Validate this object.
+        /// </summary>
+        /// <returns>List of errors</returns>
+        public virtual List<ValidationError> Validate()
+        {
+            List<ValidationError> listError = new List<ValidationError>();
+
+            if (IsIntersectingWithOtherObject && !(Parent is ReportComponentBase && !Validator.RectContainInOtherRect((Parent as ReportComponentBase).AbsBounds, this.AbsBounds)))
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Warning, Res.Get("Messages,Validator,IntersectedObjects"), this));
+
+            if (Height <= 0 || Width <= 0)
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,IncorrectSize"), this));
+
+            if (Name == "")
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,UnnamedObject"), this));
+
+            if (Parent is ReportComponentBase && !Validator.RectContainInOtherRect((Parent as ReportComponentBase).AbsBounds, this.AbsBounds))
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,OutOfBounds"), this));
+
+            return listError;
+        }
+
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
         {
