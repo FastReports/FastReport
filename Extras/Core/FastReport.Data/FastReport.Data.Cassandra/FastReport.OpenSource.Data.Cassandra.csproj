@@ -24,7 +24,7 @@ This package will not be updated. The $(AssemblyName) package now includes a con
     <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
-	PackageReference Include="CassandraCSharpDriver" Version="3.17.1" />
+	  <PackageReference Include="CassandraCSharpDriver" Version="3.17.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="CassandraConnectionEditor.cs" />
