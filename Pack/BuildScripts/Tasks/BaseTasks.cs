@@ -36,6 +36,7 @@ namespace CakeScript
           "ClickHouse",
           "Firebird",
           "Excel",
+          "Cassandra"
         };
 
         internal string SolutionFile => Path.Combine(solutionDirectory, solutionFilename);

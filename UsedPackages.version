@@ -4,10 +4,10 @@
     <PropertyGroup>
 
         <FRCompatVersion>2022.2.0</FRCompatVersion>
-        <FRCompatSkiaVersion>2022.2.12-dev</FRCompatSkiaVersion>
+        <FRCompatSkiaVersion>2022.3.0</FRCompatSkiaVersion>
 
         <FRDataVisualizationVersion>2022.2.0</FRDataVisualizationVersion>
-        <FRDataVisualizationSkiaVersion>2022.2.12-dev</FRDataVisualizationSkiaVersion>
+        <FRDataVisualizationSkiaVersion>2022.3.0</FRDataVisualizationSkiaVersion>
 		
         <!-- Not available in Core3 -->
         <SystemDrawingCommonVersion>[4.7.0,)</SystemDrawingCommonVersion>

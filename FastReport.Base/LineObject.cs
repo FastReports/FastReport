@@ -168,6 +168,26 @@ namespace FastReport
         }
 
         /// <inheritdoc/>
+        public override List<ValidationError> Validate()
+        {
+            List<ValidationError> listError = new List<ValidationError>();
+
+            if (IsIntersectingWithOtherObject && !(Parent is ReportComponentBase && !Validator.RectContainInOtherRect((Parent as ReportComponentBase).AbsBounds, this.AbsBounds)))
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Warning, Res.Get("Messages,Validator,IntersectedObjects"), this));
+
+            if ((Height < 0 || Width < 0) && diagonal || (Height <= 0 && Width <= 0))
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,IncorrectSize"), this));
+
+            if (Name == "")
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,UnnamedObject"), this));
+
+            if (Parent is ReportComponentBase && !Validator.RectContainInOtherRect((Parent as ReportComponentBase).AbsBounds, this.AbsBounds))
+                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,OutOfBounds"), this));
+
+            return listError;
+        }
+
+        /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
         {
             Border.SimpleBorder = true;
