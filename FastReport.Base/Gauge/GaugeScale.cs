@@ -8,6 +8,9 @@ namespace FastReport.Gauge
     /// <summary>
     /// Represents a scale of a gauge.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class GaugeScale : Component
     {
         #region Fields

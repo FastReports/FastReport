@@ -374,6 +374,14 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Gets a value indicating whether Report is prepared
+        /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool IsPrepared
+        {
+            get { return PreparedPages != null && PreparedPages.Count != 0; }
+        }
+        /// <summary>
         /// Gets or sets the absolute path to the parent report.
         /// </summary>
         /// <remarks>

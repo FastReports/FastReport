@@ -7,6 +7,9 @@ using System.Drawing;
 namespace FastReport.Gauge.Simple.Progress
 {
     /// <inheritdoc />
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class SimpleProgressLabel : GaugeLabel
     { 
         private int decimals;

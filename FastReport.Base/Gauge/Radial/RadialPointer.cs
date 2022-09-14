@@ -8,6 +8,9 @@ namespace FastReport.Gauge.Radial
     /// <summary>
     /// Represents a linear pointer.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class RadialPointer : GaugePointer
     {
         #region Fields

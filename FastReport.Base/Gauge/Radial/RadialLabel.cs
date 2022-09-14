@@ -1,8 +1,12 @@
 ﻿using FastReport.Utils;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace FastReport.Gauge.Radial
 {
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     class RadialLabel : GaugeLabel
     {
         public RadialLabel(GaugeObject parent): base(parent)

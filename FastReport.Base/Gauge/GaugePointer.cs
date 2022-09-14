@@ -8,6 +8,9 @@ namespace FastReport.Gauge
     /// <summary>
     /// Represents a pointer of gauge.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class GaugePointer : Component
     {
 #region Fields

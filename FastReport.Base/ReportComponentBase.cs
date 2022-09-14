@@ -112,6 +112,7 @@ namespace FastReport
         private string evenStyle;
         private string hoverStyle;
         private StylePriority evenStylePriority;
+        private bool pageBreak;
         private PrintOn printOn;
         private string beforePrintEvent;
         private string afterPrintEvent;
@@ -416,6 +417,18 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Gets or sets a value that determines whether to insert the hard page break before processing this object.
+        /// </summary>
+        [Browsable(false)]
+        [DefaultValue(false)]
+        [Category("Behavior")]
+        public bool PageBreak
+        {
+            get { return pageBreak; }
+            set { pageBreak = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a value that determines where to print the object.
         /// </summary>
         /// <remarks>
@@ -690,6 +703,7 @@ namespace FastReport
             EvenStyle = src.EvenStyle;
             HoverStyle = src.HoverStyle;
             EvenStylePriority = src.EvenStylePriority;
+            PageBreak = src.PageBreak;
             PrintOn = src.PrintOn;
             BeforePrintEvent = src.BeforePrintEvent;
             AfterPrintEvent = src.AfterPrintEvent;
@@ -851,6 +865,8 @@ namespace FastReport
                     writer.WriteValue("EvenStylePriority", EvenStylePriority);
                 if (HoverStyle != c.HoverStyle)
                     writer.WriteStr("HoverStyle", HoverStyle);
+                if (PageBreak != c.PageBreak)
+                    writer.WriteBool("PageBreak", PageBreak);
                 if (PrintOn != c.PrintOn)
                     writer.WriteValue("PrintOn", PrintOn);
                 if (BeforePrintEvent != c.BeforePrintEvent)

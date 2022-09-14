@@ -12,7 +12,7 @@ namespace FastReport.Data.JsonConnection
     /// <summary>
     /// FastReport json connection
     /// </summary>
-    public partial class JsonDataSourceConnection : DataConnectionBase
+    public partial class JsonDataSourceConnection : DataConnectionBase, IJsonProviderSourceConnection
     {
         #region Public Fields
 
@@ -162,6 +162,12 @@ namespace FastReport.Data.JsonConnection
             return value;
         }
 
+        /// <inheritdoc/>
+        public JsonBase GetJson(TableDataSource tableDataSource)
+        {
+            return Json;
+        }
+
         #endregion Public Methods
 
         #region Protected Methods
@@ -284,6 +290,8 @@ namespace FastReport.Data.JsonConnection
                 jsonInternal = result;
             }
         }
+
+
 
         #endregion Private Methods
     }

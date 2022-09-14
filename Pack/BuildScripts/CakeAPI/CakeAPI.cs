@@ -29,7 +29,7 @@ using Cake.Common.Tools.DotNet;
 using Cake.Common.Tools.DotNet.MSBuild;
 using Cake.Common.Tools.NuGet.Restore;
 using Cake.Core.Annotations;
-
+using Cake.Common;
 
 namespace CakeScript;
 
@@ -143,6 +143,10 @@ static class CakeAPI
 
     public static string XmlPeek(FilePath filePath, string xpath)
         => Context.XmlPeek(filePath, xpath);
+
+    public static int StartProcess(FilePath fileName, ProcessSettings settings)
+        => Context.StartProcess(fileName, settings);
+
 
 #if FILEHELPERS
     public static FilePath[] ReplaceRegexInFiles(string globberPattern, string rxFindPattern, string replaceText)

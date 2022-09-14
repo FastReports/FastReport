@@ -15,11 +15,11 @@ namespace SPAWebReport.Controllers
             WebReport WebReport = new WebReport();
             WebReport.Width = "1000";
             WebReport.Height = "1000";
-            WebReport.Report.Load("App_Data/Master-Detail.frx"); //Загружаем отчет в объект WebReport
-            System.Data.DataSet dataSet = new System.Data.DataSet(); //Создаем источник данных
-            dataSet.ReadXml("App_Data/nwind.xml");  //Открываем базу данных xml
-            WebReport.Report.RegisterData(dataSet, "NorthWind"); //Регистрируем источник данных в отчете
-            ViewBag.WebReport = WebReport; //передаем отчет во View
+            WebReport.Report.Load("App_Data/Master-Detail.frx"); //Loading a report into a WebReport object
+            System.Data.DataSet dataSet = new System.Data.DataSet(); //Create a data source
+            dataSet.ReadXml("App_Data/nwind.xml");  //open xml database
+            WebReport.Report.RegisterData(dataSet, "NorthWind"); //Registering a data source in a report
+            ViewBag.WebReport = WebReport; //pass report to View
             return View();
         }
 

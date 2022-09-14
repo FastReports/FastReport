@@ -8,6 +8,9 @@ namespace FastReport.Gauge
     /// <summary>
     /// Represents a label of a gauge.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class GaugeLabel : Component
     {
         #region Private Fields

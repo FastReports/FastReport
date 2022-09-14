@@ -9,6 +9,9 @@ namespace FastReport.Gauge.Radial
     /// <summary>
     /// Represents a linear scale.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class RadialScale : GaugeScale
     {
         #region Fields

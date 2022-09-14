@@ -8,6 +8,9 @@ namespace FastReport.Gauge.Simple
     /// <summary>
     /// Represents a simple pointer.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class SimplePointer : GaugePointer
     {
         #region Fields

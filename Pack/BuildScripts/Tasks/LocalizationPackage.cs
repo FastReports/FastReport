@@ -25,7 +25,7 @@ namespace CakeScript
         [DependsOn(nameof(PrepareNuget))]
         public void FastReportLocalization()
         {
-            string packDir = Path.Combine(solutionDirectory, "Pack");
+            string packDir = PackDir;
             string packFRLocalizationDir = Path.Combine(packDir, "FastReport.Localization");
             string localizationDir = Path.Combine(solutionDirectory, "Localization");
 
