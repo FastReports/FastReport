@@ -42,6 +42,9 @@ namespace CakeScript
 
         internal string SolutionFile => Path.Combine(solutionDirectory, solutionFilename);
 
+        string PackDir => Path.Combine(solutionDirectory, "Pack");
+
+
         public Program(string[] args)
         {
             
