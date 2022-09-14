@@ -9,6 +9,9 @@ namespace FastReport.Gauge.Simple
     /// <summary>
     /// Represents a simple scale.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class SimpleScale : GaugeScale
     {
         #region Fields

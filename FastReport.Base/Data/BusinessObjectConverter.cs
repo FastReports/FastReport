@@ -255,6 +255,11 @@ namespace FastReport.Data
         }
       }
 
+      if (IsEnumerable(column.Name, column.DataType) && properties.Count == 0)
+      {
+        CreateListValueColumn(column);
+      }
+
       nestingLevel--;
     }
 

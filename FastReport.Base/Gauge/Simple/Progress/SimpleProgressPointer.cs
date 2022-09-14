@@ -1,6 +1,7 @@
 ﻿using FastReport.Utils;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.ComponentModel;
 
 namespace FastReport.Gauge.Simple.Progress
 {
@@ -21,6 +22,9 @@ namespace FastReport.Gauge.Simple.Progress
     }
 
     /// <inheritdoc />
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class SimpleProgressPointer : SimplePointer
     {
         private SimpleProgressPointerType type;

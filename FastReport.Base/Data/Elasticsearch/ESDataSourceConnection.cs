@@ -8,7 +8,7 @@ using System.Text;
 
 namespace FastReport.Data.ElasticSearch
 {
-    public partial class ESDataSourceConnection : DataConnectionBase
+    public partial class ESDataSourceConnection : DataConnectionBase, IJsonProviderSourceConnection
     {
         #region Private Fields
         private List<JsonDataSourceConnection> connectionCollection;
@@ -120,22 +120,6 @@ namespace FastReport.Data.ElasticSearch
             return Names.ToArray();
         }
 
-        public JsonDataSourceConnection GetParentJTDSByName(string name)
-        {
-            sourceConnectionStringBuilder = new ESDataSourceConnectionStringBuilder(ConnectionString);
-
-            if (tableNames == null)
-                tableNames = GetTableNames();
-            if (tableNames == null || !tableNames.Contains(name))
-                return null;
-
-            int countRec = GetRecCount(name);
-            JsonDataSourceConnectionStringBuilder connectionStringBuilder = new JsonDataSourceConnectionStringBuilder();
-            connectionStringBuilder.ConnectionString = 
-                $"Json={sourceConnectionStringBuilder.EndPoint}/{name}/_search?size={countRec};JsonShema=;Encoding=utf-8;";
-            connectionStringBuilder.Headers = sourceConnectionStringBuilder.Headers;
-            return new JsonDataSourceConnection() { ConnectionString = connectionStringBuilder.ToString() };
-        }
         #endregion
 
         #region Private Methods
@@ -187,6 +171,28 @@ namespace FastReport.Data.ElasticSearch
                 };
                 connectionCollection.Add(jsonData);
             }
+        }
+
+        public JsonBase GetJson(TableDataSource tableDataSource)
+        {
+            // I was move code to here
+            // Here it’s completely fail,
+            // I commented out the code with ElasticSearch,
+            // when you bring ElasticSearch into a separate plugin,
+            // then this will need to be corrected
+            sourceConnectionStringBuilder = new ESDataSourceConnectionStringBuilder(ConnectionString);
+
+            if (tableNames == null)
+                tableNames = GetTableNames();
+            if (tableNames == null || !tableNames.Contains(tableDataSource.Name))
+                return null;
+
+            int countRec = GetRecCount(tableDataSource.Name);
+            JsonDataSourceConnectionStringBuilder connectionStringBuilder = new JsonDataSourceConnectionStringBuilder();
+            connectionStringBuilder.ConnectionString =
+                $"Json={sourceConnectionStringBuilder.EndPoint}/{tableDataSource.Name}/_search?size={countRec};JsonShema=;Encoding=utf-8;";
+            connectionStringBuilder.Headers = sourceConnectionStringBuilder.Headers;
+            return (new JsonDataSourceConnection() { ConnectionString = connectionStringBuilder.ToString() }).Json;
         }
         #endregion
     }

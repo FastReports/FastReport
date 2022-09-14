@@ -568,23 +568,23 @@ namespace FastReport.Export.Html
                             obj.Draw(new FRPaintEventArgs(g, Zoom * zoom, Zoom * zoom, Report.GraphicCache));
                             obj.Border.Lines = oldLines;
                         }
-                        if(Width > 0 && Height > 0)
-                            using (Bitmap b = new Bitmap(
-                            (int)(Math.Abs(Math.Round(Width * Zoom))),
-                            (int)(Math.Abs(Math.Round(Height * Zoom)))
-                            ))
+                        
+                        using (Bitmap b = new Bitmap(
+                        (int)(Math.Abs(Math.Round(Width * Zoom))),
+                        (int)(Math.Abs(Math.Round(Height * Zoom)))
+                        ))
+                        {
+                            using (Graphics gr = Graphics.FromImage(b))
                             {
-                                using (Graphics gr = Graphics.FromImage(b))
-                                {
-                                    gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                                    gr.DrawImage(image, 0, 0, (int)Width * Zoom, (int)Height * Zoom);
-                                }
-
-                                if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
-                                    ExportUtils.SaveJpeg(b, PictureStream, 95);
-                                else
-                                    b.Save(PictureStream, FPictureFormat);
+                                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                                gr.DrawImage(image, 0, 0, (int)Math.Abs(Width) * Zoom, (int)Math.Abs(Height) * Zoom);
                             }
+
+                            if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
+                                ExportUtils.SaveJpeg(b, PictureStream, 95);
+                            else
+                                b.Save(PictureStream, FPictureFormat);
+                        }
                     }
                     PictureStream.Position = 0;
 

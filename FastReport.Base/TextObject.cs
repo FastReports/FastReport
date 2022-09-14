@@ -76,13 +76,17 @@ namespace FastReport
         /// <summary>
         /// Render with img tags, span etc. Experimental and unstable logic
         /// </summary>
-        HtmlParagraph
+        HtmlParagraph,
+        /// <summary>
+        /// Renders a text in a simplest way. For internal use only.
+        /// </summary>
+        Inline
     }
 
     /// <summary>
     /// The format of paragraph
     /// </summary>
-    [TypeConverterAttribute(typeof(TypeConverters.FRExpandableObjectConverter))]
+    [TypeConverter(typeof(TypeConverters.FRExpandableObjectConverter))]
     public class ParagraphFormat
     {
         private float firstLineIndent;
@@ -1198,6 +1202,9 @@ namespace FastReport
                 {
                     switch (TextRenderType)
                     {
+                        case TextRenderType.Inline:
+                            g.DrawString(text, font, textBrush, textRect.X, textRect.Y, StringFormat.GenericTypographic);
+                            break;
                         case TextRenderType.HtmlParagraph:
                             try
                             {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace FastReport.Engine
@@ -110,6 +111,57 @@ namespace FastReport.Engine
                 cloneBand.Dispose();
                 breakTo.Dispose();
             }
+        }
+
+        private bool BandHasHardPageBreaks(BandBase band)
+        {
+            foreach (var obj in band.Objects)
+            {
+                if ((obj as ReportComponentBase).PageBreak)
+                    return true;
+            }
+            return false;
+        }
+
+        private BandBase[] SplitHardPageBreaks(BandBase band)
+        {
+            List<BandBase> parts = new List<BandBase>();
+
+            BandBase cloneBand = null;
+            float offsetY = 0;
+
+            foreach (ReportComponentBase c in band.Objects)
+            {
+                if (c.PageBreak)
+                {
+                    if (cloneBand != null)
+                        cloneBand.Height = c.Top - offsetY;
+                    cloneBand = null;
+                    offsetY = c.Top;
+                }
+
+                if (cloneBand == null)
+                {
+                    cloneBand = Activator.CreateInstance(band.GetType()) as BandBase;
+                    cloneBand.Assign(band);
+                    cloneBand.SetRunning(true);
+                    if (c.PageBreak)
+                    {
+                        cloneBand.StartNewPage = true;
+                        cloneBand.FirstRowStartsNewPage = true;
+                    }
+                    parts.Add(cloneBand);
+                }
+
+                ReportComponentBase cloneObj = Activator.CreateInstance(c.GetType()) as ReportComponentBase;
+                cloneObj.AssignAll(c);
+                cloneObj.Top = c.Top - offsetY;
+                cloneObj.Parent = cloneBand;
+            }
+
+            if (cloneBand != null)
+                cloneBand.Height = band.Height - offsetY;
+            return parts.ToArray();
         }
 
         #endregion Private Methods

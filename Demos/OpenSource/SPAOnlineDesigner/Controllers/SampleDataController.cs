@@ -15,15 +15,15 @@ namespace SPAOnlineDesigner.Controllers
             WebReport WebReport = new WebReport();
             WebReport.Width = "1000";
             WebReport.Height = "1000";
-            WebReport.Report.Load("App_Data/Master-Detail.frx"); //Загружаем отчет в объект WebReport
-            System.Data.DataSet dataSet = new System.Data.DataSet(); //Создаем источник данных
-            dataSet.ReadXml("App_Data/nwind.xml");  //Открываем базу данных xml
-            WebReport.Report.RegisterData(dataSet, "NorthWind"); //Регистрируем источник данных в отчете
-            WebReport.Mode = WebReportMode.Designer; //Устанавливаем режим объекта веб отчет - отображение дизайнера
+            WebReport.Report.Load("App_Data/Master-Detail.frx"); //Loading a report into a WebReport object
+            System.Data.DataSet dataSet = new System.Data.DataSet(); //Create a data source
+            dataSet.ReadXml("App_Data/nwind.xml");  //open xml database
+            WebReport.Report.RegisterData(dataSet, "NorthWind"); //Registering a data source in a report
+            WebReport.Mode = WebReportMode.Designer; //Set the mode of the web report object - display designer
             WebReport.DesignerLocale = "en";
-            WebReport.DesignerPath = @"WebReportDesigner/index.html"; //Задаем URL онлайн дизайнера
-            WebReport.DesignerSaveCallBack = @"SampleData/SaveDesignedReport"; //Задаем URL представления для метода сохранения отчета
-            ViewBag.WebReport = WebReport; //передаем отчет во View
+            WebReport.DesignerPath = @"WebReportDesigner/index.html"; //Set the URL of the online designer
+            WebReport.DesignerSaveCallBack = @"SampleData/SaveDesignedReport"; //Set the view URL for the report save method
+            ViewBag.WebReport = WebReport; //pass report to View
             return View();
         }
 
@@ -32,13 +32,13 @@ namespace SPAOnlineDesigner.Controllers
         // call-back for save the designed report 
         public ActionResult SaveDesignedReport(string reportID, string reportUUID)
         {
-            ViewBag.Message = String.Format("Confirmed {0} {1}", reportID, reportUUID); //Задаем сообщение для представления
+            ViewBag.Message = String.Format("Confirmed {0} {1}", reportID, reportUUID); //Set the message for the view
 
-            Stream reportForSave = Request.Body; //Записываем в поток результат Post запроса
-            string pathToSave = @"App_Data/TestReport.frx"; //получаем путь для сохранения файла
-            using (FileStream file = new FileStream(pathToSave, FileMode.Create)) //Создаем файловый поток
+            Stream reportForSave = Request.Body; //We write the result of the Post request to the stream
+            string pathToSave = @"App_Data/TestReport.frx"; //Get the path to save the file
+            using (FileStream file = new FileStream(pathToSave, FileMode.Create)) //Create a file stream
             {
-                reportForSave.CopyTo(file); //Сохраняем результат запроса в файл
+                reportForSave.CopyTo(file); //Saving the query result to a file
             }
             return View();
         }

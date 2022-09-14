@@ -1,5 +1,4 @@
-﻿using FastReport.Data.ElasticSearch;
-using FastReport.Data.JsonConnection.JsonParser;
+﻿using FastReport.Data.JsonConnection.JsonParser;
 using FastReport.Utils;
 using System;
 using System.Collections;
@@ -366,17 +365,21 @@ namespace FastReport.Data.JsonConnection
 
         internal object GetJson(Base parentColumn, Column column)
         {
-            if (parentColumn is ESDataSourceConnection)
-                parentColumn = (parentColumn as ESDataSourceConnection).GetParentJTDSByName(column.Name);
-            if (parentColumn is JsonDataSourceConnection)
+            if(parentColumn is IJsonProviderSourceConnection)
             {
-                // return zero level json
-                return (parentColumn as JsonDataSourceConnection).Json;
+                return (parentColumn as IJsonProviderSourceConnection).GetJson(this);
             }
-            else if (parentColumn is JsonTableDataSource)
+            //if (parentColumn is ESDataSourceConnection)
+            //    parentColumn = (parentColumn as ESDataSourceConnection).GetParentJTDSByName(column.Name);
+            if (parentColumn is JsonTableDataSource)
             {
-                if (parentColumn.Parent is ESDataSourceConnection)
-                    parentColumn.Parent = (parentColumn.Parent as ESDataSourceConnection).GetParentJTDSByName(parentColumn.Name);
+                //if (parentColumn.Parent is ESDataSourceConnection)
+                //    parentColumn.Parent = (parentColumn.Parent as ESDataSourceConnection).GetParentJTDSByName(parentColumn.Name);
+                // Here it’s completely fail,
+                // I commented out the code with ElasticSearch,
+                // when you bring ElasticSearch into a separate plugin,
+                // then this will need to be corrected
+
                 JsonTableDataSource source = parentColumn as JsonTableDataSource;
 
                 if (source.SimpleStructure)

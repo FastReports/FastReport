@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.ComponentModel;
 using FastReport.Utils;
 
 namespace FastReport.Gauge.Linear
@@ -8,6 +9,9 @@ namespace FastReport.Gauge.Linear
     /// <summary>
     /// Represents a linear scale.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class LinearScale : GaugeScale
     {
         #region Fields

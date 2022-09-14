@@ -8,6 +8,9 @@ namespace FastReport.Gauge.Linear
     /// <summary>
     /// Represents a linear pointer.
     /// </summary>
+#if !DEBUG
+    [DesignTimeVisible(false)]
+#endif
     public class LinearPointer : GaugePointer
     {
         #region Fields

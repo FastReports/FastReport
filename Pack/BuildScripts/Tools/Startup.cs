@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using Cake.Core;
 
 namespace CakeScript
 {
@@ -151,11 +152,18 @@ namespace CakeScript
             Console.WriteLine(separator);
             Console.WriteLine($"  {sortedTask.Name}");
 
-            var result = sortedTask.Method.Invoke(instance, Array.Empty<object>());
-
-            if(result is Task taskResult)
+            try
             {
-                await taskResult.ConfigureAwait(false);
+                object result = sortedTask.Method.Invoke(instance, Array.Empty<object>());
+
+                if (result is Task taskResult)
+                {
+                    await taskResult.ConfigureAwait(false);
+                }
+            }
+            catch (CakeException e)
+            {
+                Environment.Exit(e.ExitCode);
             }
 
             Information($"  {sortedTask.Name} finished", ConsoleColor.Green);
@@ -171,7 +179,12 @@ namespace CakeScript
                 Console.WriteLine($"ID: {dep.Id}, VERSION: {dep.Version}, TFM: {dep.TargetFramework}");
             }
             else
-                Console.WriteLine(info.ToString());
+                Information(info.ToString());
+        }
+
+        public static void Information(string info)
+        {
+            Console.WriteLine(info);
         }
 
         public static void Information(object info, ConsoleColor color)
@@ -181,8 +194,21 @@ namespace CakeScript
             Console.ResetColor();
         }
 
+        public static void Information(string info, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Information(info);
+            Console.ResetColor();
+        }
+
         public static void Warning(object info)
             => Information(info, ConsoleColor.Yellow);
+
+        public static void Warning(string info)
+            => Information(info, ConsoleColor.Yellow);
+
+        public static void Error(string info)
+            => Information(info, ConsoleColor.Red);
 
         public static bool HasArgument(string argument)
         {

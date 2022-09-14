@@ -105,7 +105,19 @@ namespace FastReport.Engine
 
                 if (band.Visible)
                 {
-                    AddToPreparedPages(band);
+                    if (BandHasHardPageBreaks(band))
+                    {
+                        foreach (var b in SplitHardPageBreaks(band))
+                        {
+                            if (b.StartNewPage)
+                                EndColumn();
+                            AddToPreparedPages(b);
+                        }
+                    }
+                    else
+                    {
+                        AddToPreparedPages(band);
+                    }
                 }
             }
             finally
