@@ -1602,6 +1602,7 @@
       <Note Text="Замечание: если вы поменяете язык, весь скрипт будет очищен!"/>
       <RefAssemblies Text="Ссылки на сборки:"/>
       <Add Text="Добавить..."/>
+      <Remove Text="Удалить"/>
       <Password Text="Пароль:"/>
       <RetypePassword Text="Пароль еще раз:"/>
       <Inherited Text="Этот отчет наследован от базового отчета:"/>
@@ -2580,6 +2581,7 @@
       <Account Text="Настройки"/>
       <Address Text="Адрес:"/>
       <CC Text="Копия:"/>
+      <CCTooltip Text="Можно ввести несколько адресов, разделив их точкой с запятой.&#13;&#10;Например: name1@url.com; name2@url.com"/>
       <Subject Text="Тема:"/>
       <Message Text="Сообщение:"/>
       <Attachment Text="Вложение:"/>

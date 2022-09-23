@@ -91,6 +91,7 @@ namespace FastReport.Export.Image
         /// If this property is set to <b>false</b>, the export filter will produce one big image
         /// containing all exported pages. Be careful using this property with a big report
         /// because it may produce out of memory error.
+        /// And also when using Memory Stream and the value is true, an exception will be thrown.
         /// </remarks>
         public bool SeparateFiles
         {
@@ -381,8 +382,10 @@ namespace FastReport.Export.Image
             {
                 string extension = Path.GetExtension(FileName);
                 string fileName = Path.ChangeExtension(FileName, suffix + extension);
+
                 // empty suffix means that we should use the Stream that was created in the ExportBase
                 Stream stream = suffix == "" ? Stream : new FileStream(fileName, FileMode.Create);
+
                 if (suffix != "")
                     GeneratedFiles.Add(fileName);
 
@@ -443,6 +446,7 @@ namespace FastReport.Export.Image
             base.Start();
 
             //init
+            SeparateFiles = Stream is MemoryStream ? false : SeparateFiles;
             pageNumber = 0;
             height = 0;
             width = 0;
