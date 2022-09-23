@@ -527,7 +527,13 @@ namespace FastReport
         public float FontWidthRatio
         {
             get { return fontWidthRatio; }
-            set { fontWidthRatio = value; }
+            set 
+            {                                
+                if (value > 0) 
+                    fontWidthRatio = value;
+                else
+                    fontWidthRatio = 1;
+            }
         }
 
         /// <summary>

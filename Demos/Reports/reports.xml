@@ -32,7 +32,7 @@
     <Report File="CellularText.frx" Basic="false"/>
     <Report File="CheckBox.frx" Basic="false"/>
     <Report File="ZipCode.frx" Basic="false"/>
-    <Report File="Map.frx" Core="false" Basic="false"/>
+    <Report File="The USA Map.frx" Core="false" Basic="false"/>
     <Report File="Gauge.frx" Basic="false"/>
     <Report File="SVG.frx" Basic="false"/>
   </Folder>
@@ -113,13 +113,9 @@
     <Report File="Sparkline.frx" />
   </Folder>
   <Folder Name="Maps" Core="false" Basic="false" Description="Reports with sample maps, and their combination with other features.">
-    <Report File="World Map.frx"/>
     <Report File="The USA Map.frx"/>
-    <Report File="World Sales.frx"/>
     <Report File="Sales in the USA.frx"/>
     <Report File="Sales in Germany.frx"/>
-    <Report File="World Sales, Interactive.frx"/>
-    <Report File="World Sales by City.frx"/>
   </Folder>
   <Folder Name="Features" Description="Reports that demonstrate interesting and unusual features.">
     <Report File="Double Pass, Total Pages.frx"  WebDemo="false"/>
@@ -138,7 +134,7 @@
     <Report File="Print Copy Names.frx"  WebDemo="false"/>
     <Report File="Box.frx" Basic="false" WebDemo="false"/>
     <Report File="Unicode.frx" />
-	  <Report File="TextureFill.frx" />
+    <Report File="TextureFill.frx" />
     <Report File="Purchase Order.frx" Basic="false"  WebDemo="false"/>
   </Folder>
 </Reports>

@@ -1803,6 +1803,7 @@
       <Note Text="Note: if you change the language, entire script will be cleared!"/>
       <RefAssemblies Text="Referenced assemblies:"/>
       <Add Text="Add..."/>
+      <Remove Text="Remove"/>
       <Password Text="Password:"/>
       <RetypePassword Text="Retype password:"/>
       <Inherited Text="This report is inherited from base report:"/>
@@ -2834,6 +2835,7 @@
       <Account Text="Account"/>
       <Address Text="Address:"/>
       <CC Text="CC:"/>
+      <CCTooltip Text="You can enter multiple addresses by separating them with a semicolon.&#13;&#10;For example: name1@url.com; name2@url.com"/>
       <Subject Text="Subject:"/>
       <Message Text="Message:"/>
       <Attachment Text="Attachment:"/>
