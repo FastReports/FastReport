@@ -496,7 +496,7 @@
       <Validator Text="Проверка">
         <Name Text="Имя"/>
         <Message Text="Сообщение"/>
-        <Refresh Text="Обновить"/>
+        <Updating Text="Обновление"/>
       </Validator>
       <ReportTree Text="Дерево отчета"/>
       <CollapseAll Text="Свернуть все"/>

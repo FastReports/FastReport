@@ -501,7 +501,7 @@
       <Validator Text="Validation">
         <Name Text="Name"/>
         <Message Text="Message"/>
-        <Refresh Text="Refresh"/>
+        <Updating Text="Updating"/>
       </Validator>
       <ReportTree Text="Report Tree"/>
       <CollapseAll Text="Collapse all"/>
