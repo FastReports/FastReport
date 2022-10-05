@@ -69,7 +69,7 @@ namespace FastReport.Engine
 
             try
             {
-                PrepareBand(band, getData);
+                PrepareBand(band, getData); 
 
                 if (band.Visible)
                 {
