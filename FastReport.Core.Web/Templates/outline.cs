@@ -14,11 +14,11 @@ namespace FastReport.Web
             if (!Outline)
                 return "";
 
-            if ((Report.Engine?.OutlineXml?.Count ?? 0) == 0)
+            if ((Report.PreparedPages?.OutlineXml?.Count ?? 0) == 0)
                 return "";
 
             var outline = new StringBuilder();
-            BuildOutline(outline, Report.Engine.OutlineXml, true);
+            BuildOutline(outline, Report.PreparedPages.OutlineXml, true);
 
             return $@"
 <div class=""{template_FR}-outline"">

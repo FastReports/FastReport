@@ -38,7 +38,7 @@
     </EmbeddedResource>
   </ItemGroup>
   
-  <ItemGroup>
+  <ItemGroup> 
     <None Include="..\Pack\frlogo192.png">
       <Pack>True</Pack>
       <Visible>false</Visible>

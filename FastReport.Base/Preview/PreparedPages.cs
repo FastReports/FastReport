@@ -136,6 +136,14 @@ namespace FastReport.Preview
         }
 
         /// <summary>
+        /// Gets the XML for rendering the outline of the report
+        /// </summary>
+        public XmlItem OutlineXml 
+        {
+            get => outline.Xml;
+        }
+
+        /// <summary>
         /// Specifies an action that will be performed on <see cref="AddPage"/> method call.
         /// </summary>
         public AddPageAction AddPageAction
@@ -558,6 +566,7 @@ namespace FastReport.Preview
 
                     XmlItem outline = doc.Root.FindItem("outline");
                     Outline.Xml = outline;
+
 
                     XmlItem blobStore = doc.Root.FindItem("blobstore");
                     BlobStore.LoadDestructive(blobStore);

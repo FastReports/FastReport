@@ -48,7 +48,7 @@ namespace FastReport.Web.Controllers
                     {
                         msg = webReport.Designer.SaveMethod(webReport.ID, webReport.ReportFileName, report);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         code = 500;
                         msg = ex.Message;
@@ -114,6 +114,29 @@ namespace FastReport.Web.Controllers
             RegisterHandler("/designer.makeConnectionString", () =>
             {
                 return MakeConnectionString();
+            });
+
+            RegisterHandler("/designer.objects/mschart/template", () =>
+            {
+                string result;
+                var resourceName = Request.Query["name"].ToString();
+                var stream = ResourceLoader.GetStream("MSChart." + resourceName + ".xml");
+
+                try
+                {
+                    result = new StreamReader(stream).ReadToEnd();
+                }
+                catch(Exception ex)
+                {
+                    return new NotFoundResult();
+                };
+
+                return new ContentResult()
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    ContentType = "application/xml",
+                    Content = result
+                };
             });
         }
 
