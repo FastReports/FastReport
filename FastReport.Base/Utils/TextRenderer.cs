@@ -1563,8 +1563,7 @@ namespace FastReport.Utils
                     {
                         GraphicsPath path = new GraphicsPath();
                         path.AddString(Text, font.FontFamily, Convert.ToInt32(font.Style), Renderer.Graphics.DpiY * font.Size / 72, new PointF(Left - 1, Top - 1), Renderer.Format);
-                        Renderer.Graphics.FillPath(Renderer.Brush, path);
-                        Renderer.Graphics.DrawPath(Renderer.OutlinePen, path);
+                        Renderer.Graphics.FillAndDrawPath(Renderer.OutlinePen, Renderer.Brush, path);
                     }
 
                     if (disposeFont)
@@ -2076,8 +2075,7 @@ namespace FastReport.Utils
             {
                 GraphicsPath path = new GraphicsPath();
                 path.AddString(text, font.FontFamily, Convert.ToInt32(font.Style), g.DpiY * font.Size / 72, rect, format);
-                g.FillPath(brush, path);
-                g.DrawPath(outlinePen, path);
+                g.FillAndDrawPath(outlinePen, brush, path);
             }
 
             g.Restore(state);

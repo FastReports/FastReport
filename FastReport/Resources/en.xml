@@ -50,6 +50,7 @@
     <ParentError1 Text="Object of type {0} cannot contain objects"/>
     <Performance Text="Prepared in {0} ms"/>
     <PreparingData Text="Preparing data..."/>
+    <LoadingReport Text="Loading report..."/>
     <PrintingPage Text="Printing page {0}"/>
     <RenameAncestor Text="Could not rename {0}, it was introduced in the ancestor report"/>
     <SaveChanges Text="Save changes to {0}?"/>
@@ -2546,6 +2547,7 @@
       <AnalyzeObjects Text="Analyze objects"/>
       <SavePage Text="Save page"/>
       <Wysiwyg Text="Wysiwyg"/>
+      <UseFileStream Text="Use file stream"/>
       <PageBreaks Text="Page breaks"/>
       <OpenAfterExport Text="Open after export"/>
       <Pictures Text="Pictures"/>
@@ -2565,8 +2567,8 @@
       <UseDesigerLocale Text="Use designer locale"/>
     </Misc>
     <Editor Text="Exports Menu Editor">
-        <ExportsMenu Text="Exports Menu"/>
-        <DefaultMenu Text="Default Menu"/>
+      <ExportsMenu Text="Exports Menu"/>
+      <DefaultMenu Text="Default Menu"/>
     </Editor>
     <ExportGroups>
       <Office Text="Office"/>
@@ -2681,6 +2683,7 @@
       <Other Text="Other"/>
       <ShowGridlines Text="Show gridlines"/>
       <UseLocaleFormating Text="Use locale formatting of data"/>
+      <CurrencyToAccounting Text="Convert currency to accounting format"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>

@@ -330,22 +330,6 @@ namespace FastReport.Export
             this.Report.OnExportParameters(new ExportParametersEventArgs(this));
         }
 
-        /*
-        /// <summary>
-        /// This method is called for each exported page. Function is DEPERCATED!!!
-        /// </summary>
-        /// <param name="pageNo">Page number to export.</param>
-        /// <remarks>
-        /// To get a page, use the following code:
-        /// <code>
-        /// ReportPage page = Report.PreparedPages.GetPage(pageNo);
-        /// </code>
-        /// </remarks>
-        protected virtual void ExportPage(int pageNo)
-        {
-            //need to delete this
-        }*/
-
         /// <summary>
         /// This method is called at the start of exports of each page.
         /// </summary>
@@ -478,6 +462,35 @@ namespace FastReport.Export
             }
         }
 
+        public void InstantExportStart(Report report, Stream stream)
+        {
+            SetReport(report);
+            this.stream = stream;
+            GeneratedFiles.Clear();
+            if (!String.IsNullOrEmpty(FileName))
+                GeneratedFiles.Add(FileName);
+            Start();
+        }
+
+        public void InstantExportBeginPage(ReportPage page)
+        {
+            ExportPageBegin(page);
+        }
+
+        public void InstantExportExportBand(BandBase band)
+        {
+            ExportBand(band);
+        }
+
+        public void InstantExportEndPage(ReportPage page)
+        {
+            ExportPageEnd(page);
+        }
+
+        public void InstantExportFinish()
+        {
+            Finish();
+        }
         internal void ExportPageNew(int pageNo)
         {
             PreparedPage ppage = Report.PreparedPages.GetPreparedPage(pageNo);

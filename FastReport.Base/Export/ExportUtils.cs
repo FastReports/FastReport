@@ -98,7 +98,7 @@ namespace FastReport.Export
             return false;
         }
 
-        internal static string GetExcelFormatSpecifier(FormatBase format, bool useLocale = false)
+        internal static string GetExcelFormatSpecifier(FormatBase format, bool useLocale = false, bool currencyToAccounting = false)
         {
             if (format is CurrencyFormat)
             {
@@ -110,7 +110,7 @@ namespace FastReport.Export
                     f = (format as CurrencyFormat).GetNumberFormatInfo();
                     f.CurrencyDecimalDigits = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalDigits;
                 }
-                
+
                 string fm_str = "#,##0";
                 if (f.CurrencyDecimalDigits > 0)
                 {
@@ -124,32 +124,77 @@ namespace FastReport.Export
 
                 switch (f.CurrencyPositivePattern)
                 {
-                    case 0: positive_pattern = currency_symbol + fm_str; break;   //   $n 
-                    case 1: positive_pattern = fm_str + currency_symbol; break;  //   n$
-                    case 2: positive_pattern = currency_symbol + " " + fm_str; break;  //   $ n
-                    case 3: positive_pattern = fm_str + " " + currency_symbol; break;  //   n $
+                    case 0: positive_pattern = currency_symbol + fm_str; break;       // $n 
+                    case 1: positive_pattern = fm_str + currency_symbol; break;       // n$
+                    case 2: positive_pattern = currency_symbol + " " + fm_str; break; // $ n
+                    case 3: positive_pattern = fm_str + " " + currency_symbol; break; // n $
                 }
 
                 switch (f.CurrencyNegativePattern)
                 {
-                    case 0: negative_pattern = "(" + currency_symbol + fm_str + ")"; break; // ($n)
-                    case 1: negative_pattern = "-" + currency_symbol + fm_str; break; // -$n
-                    case 2: negative_pattern = currency_symbol + "-" + fm_str; break; // $-n
-                    case 3: negative_pattern = currency_symbol + fm_str + "-"; break; // $n-
-                    case 4: negative_pattern = "(" + currency_symbol + fm_str + ")"; break; // (n$)
-                    case 5: negative_pattern = "-" + fm_str + currency_symbol; break; // -n$
-                    case 6: negative_pattern = fm_str + "-" + currency_symbol; break; // n-$
-                    case 7: negative_pattern = fm_str + currency_symbol + "-"; break; // n$-
-                    case 8: negative_pattern = "-" + fm_str + " " + currency_symbol; break; // -n $
-                    case 9: negative_pattern = "-" + currency_symbol + " " + fm_str; break; // -$ n
-                    case 10: negative_pattern = fm_str + " " + currency_symbol + "-"; break; // n $-
-                    case 11: negative_pattern = currency_symbol + " " + fm_str + "-"; break; // $ n-
-                    case 12: negative_pattern = currency_symbol + " -" + fm_str; break; // $ -n
-                    case 13: negative_pattern = fm_str + "- " + currency_symbol; break; // n- $
+                    case 0: negative_pattern = "(" + currency_symbol + fm_str + ")"; break;        // ($n)
+                    case 1: negative_pattern = "-" + currency_symbol + fm_str; break;              // -$n
+                    case 2: negative_pattern = currency_symbol + "-" + fm_str; break;              // $-n
+                    case 3: negative_pattern = currency_symbol + fm_str + "-"; break;              // $n-
+                    case 4: negative_pattern = "(" + currency_symbol + fm_str + ")"; break;        // (n$)
+                    case 5: negative_pattern = "-" + fm_str + currency_symbol; break;              // -n$
+                    case 6: negative_pattern = fm_str + "-" + currency_symbol; break;              // n-$
+                    case 7: negative_pattern = fm_str + currency_symbol + "-"; break;              // n$-
+                    case 8: negative_pattern = "-" + fm_str + " " + currency_symbol; break;        // -n $
+                    case 9: negative_pattern = "-" + currency_symbol + " " + fm_str; break;        // -$ n
+                    case 10: negative_pattern = fm_str + " " + currency_symbol + "-"; break;       // n $-
+                    case 11: negative_pattern = currency_symbol + " " + fm_str + "-"; break;       // $ n-
+                    case 12: negative_pattern = currency_symbol + " -" + fm_str; break;            // $ -n
+                    case 13: negative_pattern = fm_str + "- " + currency_symbol; break;            // n- $
                     case 14: negative_pattern = "(" + currency_symbol + " " + fm_str + ")"; break; // ($ n)
                     case 15: negative_pattern = "(" + fm_str + " " + currency_symbol + ")"; break; // (n $)
                 }
 
+                if (currencyToAccounting)
+                {
+                    string financeSymbol = "";
+
+                    switch (f.CurrencySymbol)
+                    {
+                        case "₽":       financeSymbol = "[$₽-419]"; break;
+                        case "$":       financeSymbol = "[$$-409]"; break;
+                        case "\u20AC":  financeSymbol = "[$€-2]"; break;
+                        case "\u00A3":  financeSymbol = "[$£-809]"; break;
+                        case "\u20B9":  financeSymbol = "[$₹-4009]"; break;
+                    }
+
+                    switch (f.CurrencyPositivePattern)
+                    {
+                        case 0: positive_pattern = @"_-* " + financeSymbol + fm_str + "_-;"; break;       // $n 
+                        case 1: positive_pattern = @"_-* " + fm_str + financeSymbol + "_-;"; break;       // n$
+                        case 2: positive_pattern = @"_-* " + financeSymbol + " " + fm_str + "_-;"; break; // $ n
+                        case 3: positive_pattern = @"_-* " + fm_str + " "+ financeSymbol + "_-;"; break;  // n $
+                    }
+
+                    switch (f.CurrencyNegativePattern)
+                    {
+                        case 0: negative_pattern = @"_-* " + "(" + financeSymbol + fm_str + ")" + "_-;"; break;        // ($n)
+                        case 1: negative_pattern = @"_-* " + "-" + financeSymbol + fm_str + "_-;"; break;              // -$n
+                        case 2: negative_pattern = @"_-* " + financeSymbol + "-" + fm_str + "_-;"; break;              // $-n
+                        case 3: negative_pattern = @"_-* " + financeSymbol + fm_str + "-" + "_-;"; break;              // $n-
+                        case 4: negative_pattern = @"_-* " + "(" + fm_str + financeSymbol + ")" + "_-;"; break;        // (n$)
+                        case 5: negative_pattern = @"_-* " + "-" + fm_str + financeSymbol + "_-;"; break;              // -n$
+                        case 6: negative_pattern = @"_-* " + fm_str + "-" + financeSymbol + "_-;"; break;              // n-$
+                        case 7: negative_pattern = @"_-* " + fm_str + financeSymbol + "-" + "_-;"; break;              // n$-
+                        case 8: negative_pattern = @"_-* " + "-" + fm_str + " " + financeSymbol + "_-;"; break;        // -n $
+                        case 9: negative_pattern = @"_-* " + "-" + financeSymbol + " " + fm_str + "_-;"; break;        // -$ n
+                        case 10: negative_pattern = @"_-* " + fm_str + " " + financeSymbol + "-" + "_-;"; break;       // n $-
+                        case 11: negative_pattern = @"_-* " + financeSymbol + " " + fm_str + "-" + "_-;"; break;       // $ n-
+                        case 12: negative_pattern = @"_-* " + financeSymbol + " " + "-" + fm_str + "_-;"; break;       // $ -n
+                        case 13: negative_pattern = @"_-* " + fm_str + "- " + financeSymbol + "_-;"; break;            // n- $
+                        case 14: negative_pattern = @"_-* " + "(" + financeSymbol + " " + fm_str + ")" + "_-;"; break; // ($ n)
+                        case 15: negative_pattern = @"_-* " + "(" + fm_str + " " + financeSymbol + ")" + "_-;"; break; // (n $)
+                    }
+
+                    string financeFormat_Options = @"_-* &quot;-&quot;??\ " + financeSymbol + "_-;_-@_-";
+
+                    return positive_pattern + negative_pattern + financeFormat_Options;
+                }
                 return positive_pattern + ";" + negative_pattern;
             }
             else if (format is NumberFormat)
@@ -177,10 +222,10 @@ namespace FastReport.Export
                 switch (f.NumberNegativePattern)
                 {
                     case 0: negative_pattern = "(" + fm_str + ")"; break; // (n)
-                    case 1: negative_pattern = "-" + fm_str; break; // -n
-                    case 2: negative_pattern = "- " + fm_str; break; // - n
-                    case 3: negative_pattern = fm_str + "-"; break; // n-
-                    case 4: negative_pattern = fm_str + " -"; break; // n -
+                    case 1: negative_pattern = "-" + fm_str; break;       // -n
+                    case 2: negative_pattern = "- " + fm_str; break;      // - n
+                    case 3: negative_pattern = fm_str + "-"; break;       // n-
+                    case 4: negative_pattern = fm_str + " -"; break;      // n -
                 }
 
                 return positive_pattern + ";" + negative_pattern;

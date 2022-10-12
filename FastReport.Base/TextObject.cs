@@ -1267,11 +1267,9 @@ namespace FastReport
                                         }
                                         else //without. default
                                         {
-                                            g.FillPath(textBrush, path);
-                                            g.DrawPath(outlinePen, path);
+                                            g.FillAndDrawPath(outlinePen, textBrush, path);
                                         }
                                         g.Restore(state);
-
 
                                     }
                                 }

@@ -262,7 +262,7 @@ namespace FastReport.Gauge.Radial
             float y1 = y + dy;
 
             Pen pen = e.Cache.GetPen(Border.Color, Border.Width * e.ScaleX, Border.DashStyle);
-            Brush brush = null;
+            Brush brush;
             if (Fill is SolidFill)
                 brush = e.Cache.GetBrush((Fill as SolidFill).Color);
             else
@@ -272,12 +272,12 @@ namespace FastReport.Gauge.Radial
 
             if (type == RadialGaugeType.Circle)
             {
-                g.FillEllipse(brush, x, y, dx, dy);
-                g.DrawEllipse(pen, x, y, dx, dy);
+                g.FillAndDrawEllipse(pen, brush, x, y, dx, dy);
             }
             else if (type == RadialGaugeType.Semicircle)
             {
                 float semiOffset = (Width / 16f /2f + 2f) * semicircleOffsetRatio * e.ScaleY;
+                PointF[] points = new PointF[4];
                 if (position == RadialGaugePosition.Top)
                 {
                     g.FillPie(brush, x, y, dx, dy, -180, 180);
@@ -285,16 +285,10 @@ namespace FastReport.Gauge.Radial
 
                     PointF startPoint = RadialUtils.RotateVector(new PointF[] { new PointF(x + dx / 2, y), center }, -90 * RAD, center)[0];
                     
-                    PointF[] points = new PointF[4];
                     points[0] = new PointF(startPoint.X, startPoint.Y - 1 * e.ScaleY);
                     points[1] = new PointF(startPoint.X, startPoint.Y + semiOffset);
                     points[2] = new PointF(startPoint.X + dx, startPoint.Y + semiOffset);
                     points[3] = new PointF(startPoint.X + dx, startPoint.Y - 1 * e.ScaleY);
-                    GraphicsPath path = new GraphicsPath();
-                    path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
-          
                 }
                 else if(position == RadialGaugePosition.Bottom)
                 {
@@ -303,15 +297,10 @@ namespace FastReport.Gauge.Radial
 
                     PointF startPoint = RadialUtils.RotateVector(new PointF[] { new PointF(x + dx / 2, y), center }, 90 * RAD, center)[0];
 
-                    PointF[] points = new PointF[4];
                     points[0] = new PointF(startPoint.X, startPoint.Y + 1 * e.ScaleY);
                     points[1] = new PointF(startPoint.X, startPoint.Y - semiOffset);
                     points[2] = new PointF(startPoint.X - dx, startPoint.Y - semiOffset);
                     points[3] = new PointF(startPoint.X - dx, startPoint.Y + 1 * e.ScaleY);
-                    GraphicsPath path = new GraphicsPath();
-                    path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
                 }
                 else if (position == RadialGaugePosition.Left)
                 {
@@ -320,15 +309,10 @@ namespace FastReport.Gauge.Radial
 
                     PointF startPoint = RadialUtils.RotateVector(new PointF[] { new PointF(x + dx / 2, y), center }, 180 * RAD, center)[0];
 
-                    PointF[] points = new PointF[4];
                     points[0] = new PointF(startPoint.X - 1 * e.ScaleX, startPoint.Y);
                     points[1] = new PointF(startPoint.X + semiOffset, startPoint.Y);
                     points[2] = new PointF(startPoint.X + semiOffset, startPoint.Y - dy);
                     points[3] = new PointF(startPoint.X - 1 * e.ScaleX, startPoint.Y - dy);
-                    GraphicsPath path = new GraphicsPath();
-                    path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
                 }
                 else if (position == RadialGaugePosition.Right)
                 {
@@ -337,15 +321,17 @@ namespace FastReport.Gauge.Radial
 
                     PointF startPoint = RadialUtils.RotateVector(new PointF[] { new PointF(x + dx / 2, y), center }, -180 * RAD, center)[0];
                     
-                    PointF[] points = new PointF[4];
                     points[0] = new PointF(startPoint.X + 1 * e.ScaleX, startPoint.Y);
                     points[1] = new PointF(startPoint.X - semiOffset, startPoint.Y);
                     points[2] = new PointF(startPoint.X - semiOffset, startPoint.Y - dy);
                     points[3] = new PointF(startPoint.X + 1 * e.ScaleX, startPoint.Y - dy);
+                }
+
+                if(position != RadialGaugePosition.None)
+                {
                     GraphicsPath path = new GraphicsPath();
                     path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
+                    g.FillAndDrawPath(pen, brush, path);
                 }
             }
             else if (type == RadialGaugeType.Quadrant)
@@ -366,8 +352,7 @@ namespace FastReport.Gauge.Radial
                     points[4] = new PointF(startPoint.X + dx / 2 - 1 * e.ScaleX, y);
                     GraphicsPath path = new GraphicsPath();
                     path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
+                    g.FillAndDrawPath(pen, brush, path);
 
                 }
                 else if (RadialUtils.IsBottom(this) && RadialUtils.IsLeft(this))
@@ -385,10 +370,9 @@ namespace FastReport.Gauge.Radial
                     points[4] = new PointF(x + dx / 2 - 1 * e.ScaleX, y + dy);
                     GraphicsPath path = new GraphicsPath();
                     path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
+                    g.FillAndDrawPath(pen, brush, path);
                 }
-               else if (RadialUtils.IsTop(this) && RadialUtils.IsRight(this))
+                else if (RadialUtils.IsTop(this) && RadialUtils.IsRight(this))
                 {
                     g.FillPie(brush, x, y, dx, dy, -90, 90);
                     g.DrawArc(pen, x, y, dx, dy, -90, 90);
@@ -403,8 +387,7 @@ namespace FastReport.Gauge.Radial
                     points[4] = new PointF(x + dx / 2 + 1 * e.ScaleX, y);
                     GraphicsPath path = new GraphicsPath();
                     path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
+                    g.FillAndDrawPath(pen, brush, path);
                 }
                 else if (RadialUtils.IsBottom(this) && RadialUtils.IsRight(this))
                 {
@@ -421,8 +404,7 @@ namespace FastReport.Gauge.Radial
                     points[4] = new PointF(x + dx / 2 + 1 * e.ScaleX, y + dy);
                     GraphicsPath path = new GraphicsPath();
                     path.AddLines(points);
-                    g.FillPath(brush, path);
-                    g.DrawPath(pen, path);
+                    g.FillAndDrawPath(pen, brush, path);
                 }
             }
 

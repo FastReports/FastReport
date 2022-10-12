@@ -155,8 +155,7 @@ namespace FastReport
       switch (Shape)
       {
         case ShapeKind.Rectangle:
-          g.FillRectangle(brush, x, y, dx, dy);
-          g.DrawRectangle(pen, x, y, dx, dy);
+          g.FillAndDrawRectangle(pen, brush, x, y, dx, dy);
           break;
 
         case ShapeKind.RoundRectangle:
@@ -166,29 +165,25 @@ namespace FastReport
           else
             min = Math.Min(min, curve * e.ScaleX * 10);
           GraphicsPath gp = GetRoundRectPath(x, y, x1, y1, min);
-          g.FillPath(brush, gp);
-          g.DrawPath(pen, gp);
+          g.FillAndDrawPath(pen, brush, gp);
           gp.Dispose();
           break;
 
         case ShapeKind.Ellipse:
-          g.FillEllipse(brush, x, y, dx, dy);
-          g.DrawEllipse(pen, x, y, dx, dy);
+          g.FillAndDrawEllipse(pen, brush, x, y, dx, dy);
           break;
 
         case ShapeKind.Triangle:
           PointF[] triPoints = { 
             new PointF(x1, y1), new PointF(x, y1), new PointF(x + dx / 2, y), new PointF(x1, y1) };
-          g.FillPolygon(brush, triPoints);
-          g.DrawPolygon(pen, triPoints);
+          g.FillAndDrawPolygon(pen, brush, triPoints);
           break;
 
         case ShapeKind.Diamond:
           PointF[] diaPoints = { 
             new PointF(x + dx / 2, y), new PointF(x1, y + dy / 2), new PointF(x + dx / 2, y1),
             new PointF(x, y + dy / 2) };
-          g.FillPolygon(brush, diaPoints);
-          g.DrawPolygon(pen, diaPoints);
+          g.FillAndDrawPolygon(pen, brush, diaPoints);
           break;
       }
 
