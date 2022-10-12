@@ -116,8 +116,7 @@ namespace FastReport.Gauge.Simple
             width = (float)((Parent.Width - Parent.Border.Width - horizontalOffset * 2) * (Parent.Value - Parent.Minimum) / (Parent.Maximum - Parent.Minimum) * e.ScaleX);
 
             Brush brush = Fill.CreateBrush(new RectangleF(left, top, width, height), e.ScaleX, e.ScaleY);
-            g.FillRectangle(brush, left, top, width, height);
-            g.DrawRectangle(pen, left, top, width, height);
+            g.FillAndDrawRectangle(pen, brush, left, top, width, height);
         }
 
         internal virtual void DrawVert(FRPaintEventArgs e)
@@ -131,8 +130,7 @@ namespace FastReport.Gauge.Simple
             top = (Parent.AbsTop + Parent.Border.Width / 2 + Parent.Height - Parent.Border.Width - horizontalOffset) * e.ScaleY - height;
 
             Brush brush = Fill.CreateBrush(new RectangleF(left, top, width, height), e.ScaleX, e.ScaleY);
-            g.FillRectangle(brush, left, top, width, height);
-            g.DrawRectangle(pen, left, top, width, height);
+            g.FillAndDrawRectangle(pen, brush, left, top, width, height);
         }
 
         #endregion // Internal Methods

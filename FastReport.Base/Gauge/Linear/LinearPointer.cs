@@ -96,8 +96,7 @@ namespace FastReport.Gauge.Linear
             path.AddLines(p);
             path.AddLine(p[4], p[0]);
 
-            g.FillPath(brush, path);
-            g.DrawPath(pen, path);
+            g.FillAndDrawPath(pen, brush, path);
         }
 
         private void DrawVert(FRPaintEventArgs e)
@@ -134,8 +133,7 @@ namespace FastReport.Gauge.Linear
             path.AddLines(p);
             path.AddLine(p[4], p[0]);
 
-            g.FillPath(brush, path);
-            g.DrawPath(pen, path);
+            g.FillAndDrawPath(pen, brush, path);
         }
 
         #endregion // Private Methods
