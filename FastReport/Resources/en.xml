@@ -280,6 +280,7 @@
     <CrossViewObject Text="CrossView"/>
     <DigitalSignatureObject Text="Digital signature"/>
     <FastBI Text="FastReport Business Graphics">
+      <Bubble Text="Bubble chart"/>
       <TreeMap Text="TreeMap chart"/>
       <Sunburst Text="Sunburst chart"/>
       <Icicle Text="Icicle chart"/>
@@ -302,6 +303,7 @@
         <IcicleDirection Text="Direction"/>
         <SunburstForm Text="Sunburst editor form"/>
         <IcicleForm Text="Icicle editor form"/>
+        <BubbleForm Text="Bubble editor form"/>
         <TreeMapForm Text="TreeMap editor form"/>
       </Appearance>
     </FastBI>    
