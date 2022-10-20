@@ -1362,7 +1362,7 @@ namespace FastReport
                 DataSourceBase data = cachedItem.dataSource;
                 Column column = cachedItem.column;
 
-                object val = ConvertToColumnDataType(column.Value, column.DataType, false);
+                object val = ConvertToColumnDataType(column.Value, column.DataType, ConvertNulls);
 
                 if (CustomCalc != null)
                 {
@@ -1396,7 +1396,7 @@ namespace FastReport
         {
             if (val == null || val is DBNull)
             {
-                if (ConvertNulls || convertNulls)
+                if (convertNulls)
                     val = Converter.ConvertNull(dataType);
             }
             else

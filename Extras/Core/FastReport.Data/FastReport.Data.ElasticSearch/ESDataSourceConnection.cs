@@ -114,9 +114,10 @@ namespace FastReport.Data.ElasticSearch
                     respoce = reader.ReadToEnd();
             }
             List<string> Names = new List<string>();
-            object s = JsonBase.FromString(respoce).Keys;
+
             foreach (string name in JsonBase.FromString(respoce).Keys)
                 Names.Add(name);
+
             return Names.ToArray();
         }
 
@@ -184,15 +185,19 @@ namespace FastReport.Data.ElasticSearch
 
             if (tableNames == null)
                 tableNames = GetTableNames();
+
             if (tableNames == null || !tableNames.Contains(tableDataSource.Name))
                 return null;
 
             int countRec = GetRecCount(tableDataSource.Name);
             JsonDataSourceConnectionStringBuilder connectionStringBuilder = new JsonDataSourceConnectionStringBuilder();
+
             connectionStringBuilder.ConnectionString =
                 $"Json={sourceConnectionStringBuilder.EndPoint}/{tableDataSource.Name}/_search?size={countRec};JsonShema=;Encoding=utf-8;";
+
             connectionStringBuilder.Headers = sourceConnectionStringBuilder.Headers;
-            return (new JsonDataSourceConnection() { ConnectionString = connectionStringBuilder.ToString() }).Json;
+
+            return (new JsonDataSourceConnection() { ConnectionString = connectionStringBuilder.ToString() }).GetJson(tableDataSource);
         }
         #endregion
     }

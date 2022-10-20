@@ -50,7 +50,6 @@ namespace FastReport
             //RegisteredObjects.Add(typeof(Data.JsonConnection.JsonObjectDataSource), "", 0);
             //RegisteredObjects.Add(typeof(Data.JsonConnection.JsonArrayDataSource), "", 0);
             RegisteredObjects.InternalAddConnection(typeof(Data.JsonConnection.JsonDataSourceConnection));
-            RegisteredObjects.InternalAddConnection(typeof(Data.ElasticSearch.ESDataSourceConnection));
             // formats
             RegisteredObjects.InternalAdd(typeof(BooleanFormat), "", 0);
             RegisteredObjects.InternalAdd(typeof(CurrencyFormat), "", 0);

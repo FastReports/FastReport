@@ -278,6 +278,7 @@
     <CrossViewObject Text="CrossView"/>
     <DigitalSignatureObject Text="Цифровая подпись"/>
     <FastBI Text="Диаграммы FastBI">
+      <Bubble Text="Диаграмма Bubble"/>
       <TreeMap Text="Диаграмма TreeMap"/>
       <Sunburst Text="Диаграмма Sunburst"/>
       <Icicle Text="Диаграмма Icicle"/>
@@ -299,6 +300,7 @@
         <IcicleDirection Text="Направление"/>
         <SunburstForm Text="Редактор диаграммы Sunburst"/>
         <IcicleForm Text="Редактор диаграммы Icicle"/>
+        <BubbleForm Text="Редактор диаграммы Bubble"/>
         <TreeMapForm Text="Редактор диаграммы TreeMap"/>
       </Appearance>
     </FastBI>
