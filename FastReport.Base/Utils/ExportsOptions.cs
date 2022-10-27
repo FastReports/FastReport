@@ -172,6 +172,46 @@ namespace FastReport.Utils
             {
                 this.enabled = enabled;
             }
+
+            ///<inheritdoc/>
+            public override bool Equals(object obj)
+            {
+                if (obj is ExportsTreeNode)
+                {
+                    ExportsTreeNode Obj = obj as ExportsTreeNode;
+                    bool equalNodes = true;
+
+                    foreach (var node in Nodes)
+                        equalNodes &= node.ContainsIn(Obj.Nodes);
+
+                    return equalNodes && Obj.Name == Name && Obj.ImageIndex == ImageIndex && Obj.IsExport == isExport && Obj.ExportType == ExportType && Obj.Enabled == Enabled;
+                }
+                return base.Equals(obj);
+            }
+
+            /// <summary>
+            /// If it is equal node or its contained in node childnodes, it returns true, otherwise false.
+            /// </summary>
+            /// <param name="node"></param>
+            /// <returns></returns>
+            public bool ContainsIn(ExportsTreeNode node)
+            {
+                return this.Equals(node) || this.ContainsIn(node.Nodes);
+            }
+
+            /// <summary>
+            /// If it is contained in the list or in its elements, it returns true, otherwise false.
+            /// </summary>
+            /// <param name="nodes"></param>
+            /// <returns></returns>
+            public bool ContainsIn(List<ExportsTreeNode> nodes)
+            {
+                foreach (ExportsTreeNode n in nodes)
+                    if (this.Equals(n) || this.ContainsIn(n))
+                        return true;
+
+                return false;
+            }
         }
 
         /// <summary>

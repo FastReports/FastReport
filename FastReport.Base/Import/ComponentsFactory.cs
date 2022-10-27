@@ -240,7 +240,7 @@ namespace FastReport.Import
         public static OverlayBand CreateOverlayBand(ReportPage page)
         {
             OverlayBand overlay = new OverlayBand();
-            page.Bands.Add(overlay);
+            page.Overlay = overlay;
             overlay.CreateUniqueName();
             return overlay;
         }

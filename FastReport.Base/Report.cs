@@ -251,6 +251,7 @@ namespace FastReport
         private object initializeData;
         private string initializeDataName;
         private object tag;
+        private bool isLoadPrepared = false;
 
         #endregion Fields
 
@@ -510,6 +511,14 @@ namespace FastReport
         {
             get { return compressed; }
             set { compressed = value; }
+        }
+
+        /// <summary>
+        /// Returns a bool value depending on the .frx or .fpx report was loaded
+        /// </summary>
+        public bool IsLoadPrepared
+        {
+            get => isLoadPrepared;
         }
 
         /// <summary>
@@ -2587,6 +2596,7 @@ namespace FastReport
         /// <param name="fileName">File name to load form.</param>
         public void LoadPrepared(string fileName)
         {
+            isLoadPrepared = true;
             if (PreparedPages == null)
                 SetPreparedPages(new FastReport.Preview.PreparedPages(this));
             PreparedPages.Load(fileName);
@@ -2598,6 +2608,7 @@ namespace FastReport
         /// <param name="stream">Stream to load from.</param>
         public void LoadPrepared(Stream stream)
         {
+            isLoadPrepared = true;
             if (PreparedPages == null)
                 SetPreparedPages(new FastReport.Preview.PreparedPages(this));
             PreparedPages.Load(stream);

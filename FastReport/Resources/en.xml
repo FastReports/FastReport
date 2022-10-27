@@ -365,6 +365,7 @@
     <RdlFiles Text="RDL files (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
     <RdlFile Text="RDL file (*.rdl)|*.rdl"/>
     <StimulSoftFile Text="StimulSoft file (*.mrt)|*.mrt"/>
+    <JasperReportsFile Text="JasperReports file (*.jrxml)|*.jrxml"/>
     <RdlcFile Text="RDLC file (*.rdlc)|*.rdlc"/>
     <RptFile Text="Crystal Reports file (*.rpt)|*.rpt"/>
     <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>

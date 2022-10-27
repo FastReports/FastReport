@@ -233,13 +233,11 @@ namespace FastReport.Web
         public void LoadPrepared(string filename)
         {
             Report.LoadPrepared(filename);
-            ReportPrepared = true;
         }
 
         public void LoadPrepared(Stream stream)
         {
             Report.LoadPrepared(stream);
-            ReportPrepared = true;
         }
 
         internal HtmlString Render(bool renderBody)

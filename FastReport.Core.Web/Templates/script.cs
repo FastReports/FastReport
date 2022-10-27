@@ -96,8 +96,12 @@ var {template_FR} = {{
         this.goto(page);
     }},
 
-    refresh: function () {{
+    load: function () {{
         this._reload();
+    }},
+
+    refresh: function () {{
+        this._reload('&forceRefresh=yes');
     }},
 
     zoom: function (value) {{

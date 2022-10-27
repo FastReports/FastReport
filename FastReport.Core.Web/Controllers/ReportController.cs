@@ -35,7 +35,7 @@ namespace FastReport.Web.Controllers
                 }
                 else
 #endif
-                if (!webReport.ReportPrepared && Request.Query["skipPrepare"].ToString() != "yes")
+                if (!webReport.ReportPrepared && Request.Query["skipPrepare"].ToString() != "yes" || Request.Query["forceRefresh"].ToString() == "yes")
                 {
                     webReport.Report.Prepare();
 

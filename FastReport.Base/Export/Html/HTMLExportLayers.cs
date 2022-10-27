@@ -853,6 +853,8 @@ namespace FastReport.Export.Html
                     SolidFill fill = reportPage.Fill as SolidFill;
                     htmlPage.Append(" background-color:").
                         Append(fill.IsTransparent ? "transparent" : ExportUtils.HTMLColor(fill.Color));
+                    if (exportMode == ExportType.WebPrint)
+                        htmlPage.Append("color-adjust: exact !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important;");
                 }
                 else
                 {

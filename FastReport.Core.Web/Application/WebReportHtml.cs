@@ -641,7 +641,6 @@ namespace FastReport.Web
                     {
                         Name = paramValue,
                         Report = tabReport,
-                        ReportPrepared = true,
                         Closeable = true,
                         NeedParent = false
                     });
@@ -689,7 +688,6 @@ namespace FastReport.Web
                         {
                             Name = paramValue,
                             Report = tabReport,
-                            ReportPrepared = true,
                             Closeable = true,
                             NeedParent = true
                         });

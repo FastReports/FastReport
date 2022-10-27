@@ -56,8 +56,7 @@ namespace FastReport.OpenSource.Web.MVC.Controllers
                     "Hyperlinks, Bookmarks",
                     "Outline",
                     "Complex (Hyperlinks, Outline, TOC)",
-                    "Drill-Down Groups",
-                    "Mail Merge"
+                    "Drill-Down Groups"
                 },
             };
 

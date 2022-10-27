@@ -362,6 +362,7 @@
     <RdlFiles Text="Файлы RDL (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
     <RdlFile Text="Файл RDL (*.rdl)|*.rdl"/>
     <StimulSoftFile Text="Файл StimulSoft (*.mrt)|*.mrt"/>
+    <JasperReportsFile Text="Файл JasperReports (*.jrxml)|*.jrxml"/>
     <RdlcFile Text="Файл RDLC (*.rdlc)|*.rdlc"/>
     <RptFile Text="Файл Crystal Reports (*.rpt)|*.rpt"/>
     <ShpFile Text="Файл карты (*.shp)|*.shp"/>
