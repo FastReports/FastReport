@@ -46,6 +46,8 @@ namespace FastReport.OpenSource.MVC.Controllers
                     continue;
                 if (folderItem.GetProp("Core") == "false")
                     continue;
+                if (folderItem.GetProp("Name") == "Advanced Matrix")
+                    continue;
                 string culture = System.Globalization.CultureInfo.CurrentCulture.Name;
                 string text = folderItem.GetProp("Name-" + culture);
                 if (String.IsNullOrEmpty(text))
@@ -62,6 +64,8 @@ namespace FastReport.OpenSource.MVC.Controllers
                     if (reportItem.GetProp("WebDemo") == "false")
                         continue;
                     if (reportItem.GetProp("Core") == "false")
+                        continue;
+                    if (reportItem.GetProp("File") == "SVG.frx" || reportItem.GetProp("File") == "Interactive Matrix With Chart.frx")
                         continue;
 
                     string file = reportItem.GetProp("File");

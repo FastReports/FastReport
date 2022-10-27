@@ -15,7 +15,8 @@ namespace FastReport.Web
                 )
                 return "";
 
-             
+            Toolbar.ShowRefreshButton = Report.IsLoadPrepared ? false : true;
+
             var localization = new ToolbarLocalization(Res);
             var exports = Toolbar.Exports;
             var toolbarExportItem = $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"">

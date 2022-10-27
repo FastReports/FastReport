@@ -107,8 +107,7 @@ namespace FastReport.Web
                             MinPageIndex = numberPage,
                             Name = reportPage.Name,
                             NeedParent = false,
-                            Report = report,
-                            ReportPrepared = true//,
+                            Report = report//,
                         });
                     }
                 }

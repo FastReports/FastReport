@@ -77,7 +77,7 @@ namespace FastReport.Export.Html
         public string IndexTemplate
         {
             get { return indexTemplate; }
-            set { outlineTemplate = value; }
+            set { indexTemplate = value; }
         }
         #endregion
 

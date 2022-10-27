@@ -14,7 +14,7 @@ using FastReport.Matrix;
 namespace FastReport.Import.StimulSoft
 {
     /// <summary>
-    /// The DevExpress units converter.
+    /// The StimulSoft units converter.
     /// </summary>
     public static class UnitsConverter
     {

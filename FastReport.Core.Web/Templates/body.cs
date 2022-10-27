@@ -12,7 +12,7 @@ namespace FastReport.Web
 
     <script>
         setTimeout(function () {{
-            {template_FR}.refresh();
+            {template_FR}.load();
         }}, 100);
     </script>
 
