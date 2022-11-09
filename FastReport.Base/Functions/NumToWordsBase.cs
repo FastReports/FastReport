@@ -169,8 +169,7 @@ namespace FastReport.Functions
             }
             catch (KeyNotFoundException e)
             {
-                throw new Exception("Currency \"" + currencyName + "\" is not defined in the \"" + GetType().Name +
-                                    "\" converter.");
+                throw new Exception($"Currency \"{currencyName}\" is not defined in the \"{GetType().Name}\" converter.");
             }
             catch (NotImplementedException e)
             {

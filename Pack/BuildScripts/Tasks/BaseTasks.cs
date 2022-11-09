@@ -44,6 +44,7 @@ namespace CakeScript
 
         string PackDir => Path.Combine(solutionDirectory, "Pack");
 
+        internal string PluginsDir => Path.Combine(solutionDirectory, pluginsRelativePath);
 
         public Program(string[] args)
         {

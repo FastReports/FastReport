@@ -494,7 +494,7 @@ namespace FastReport.Export.Html
                                 }
 
                             }
-                            prevWidth = run.Width;
+                            prevWidth += run.Width;
                             //run.ToHtml(sb, true);
                         }
                     }

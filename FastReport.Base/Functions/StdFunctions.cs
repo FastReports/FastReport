@@ -1022,9 +1022,7 @@ namespace FastReport.Functions
         /// Converts a numeric value to a spanish string representation of that value.
         /// </summary>
         /// <param name="value">The numeric value to convert.</param>
-        /// <param name="male">True if the name is of male gender.</param>
         /// <param name="one">The name in singular form, for example "silla".</param>
-        /// <param name="two">The name in plural form, for example "Sillas".</param>
         /// <param name="many">The name in plural form, for example "Sillas".</param>
         /// <returns>The string representation of the specified value.</returns>
         public static string ToWordsSp(object value, string one, string many)
@@ -1057,9 +1055,7 @@ namespace FastReport.Functions
         /// Converts a numeric value to a persian string representation of that value.
         /// </summary>
         /// <param name="value">The numeric value to convert.</param>
-        /// <param name="male">True if the name is of male gender.</param>
         /// <param name="one">The name in singular form, for example "silla".</param>
-        /// <param name="two">The name in plural form, for example "Sillas".</param>
         /// <param name="many">The name in plural form, for example "Sillas".</param>
         /// <returns>The string representation of the specified value.</returns>
         public static string ToWordsPersian(object value, string one, string many)
@@ -1092,9 +1088,7 @@ namespace FastReport.Functions
         /// Converts a numeric value to a polish string representation of that value.
         /// </summary>
         /// <param name="value">The numeric value to convert.</param>
-        /// <param name="male">True if the name is of male gender.</param>
         /// <param name="one">The name in singular form, for example "silla".</param>
-        /// <param name="two">The name in plural form, for example "Sillas".</param>
         /// <param name="many">The name in plural form, for example "Sillas".</param>
         /// <returns>The string representation of the specified value.</returns>
         public static string ToWordsPl(object value, string one, string many)
