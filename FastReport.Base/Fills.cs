@@ -1142,7 +1142,6 @@ namespace FastReport
         /// <summary>
         /// Initializes the <see cref="TextureFill"/> class with specified image.
         /// </summary>
-        /// <param name="image"></param>
         public TextureFill(byte[] imageBytes, int width, int height, bool preserveAspectRatio, WrapMode wrapMode, int imageOffsetX, int imageOffsetY) : this(imageBytes)
         {
             PreserveAspectRatio = preserveAspectRatio;

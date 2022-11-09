@@ -30,6 +30,7 @@ using Cake.Common.Tools.DotNet.MSBuild;
 using Cake.Common.Tools.NuGet.Restore;
 using Cake.Core.Annotations;
 using Cake.Common;
+using Cake.Common.Tools.SignTool;
 
 namespace CakeScript;
 
@@ -115,6 +116,9 @@ static class CakeAPI
         => Context.ParseProject(project, configuration, platform);
 #endif
 
+    public static void CopyDirectory(DirectoryPath source, DirectoryPath destination)
+    => Context.CopyDirectory(source, destination);
+
     public static void CopyFiles(GlobPattern pattern, DirectoryPath targetDirectoryPath)
         => Context.CopyFiles(pattern, targetDirectoryPath);
 
@@ -147,6 +151,9 @@ static class CakeAPI
     public static int StartProcess(FilePath fileName, ProcessSettings settings)
         => Context.StartProcess(fileName, settings);
 
+
+    public static void Sign(string assembly, SignToolSignSettings settings)
+        => Context.Sign(assembly, settings);
 
 #if FILEHELPERS
     public static FilePath[] ReplaceRegexInFiles(string globberPattern, string rxFindPattern, string replaceText)

@@ -503,9 +503,11 @@
         <NObjectsSelected Text="{0} objects selected"/>
       </Properties>
       <Validator Text="Validation">
+        <Number Text="Number"/>
         <Name Text="Name"/>
         <Message Text="Message"/>
         <Updating Text="Updating"/>
+        <Type Text="Type"/>
       </Validator>
       <ReportTree Text="Report Tree"/>
       <CollapseAll Text="Collapse all"/>
@@ -2549,7 +2551,7 @@
       <OrderByCells Text="Order by cells"/>
       <AnalyzeObjects Text="Analyze objects"/>
       <SavePage Text="Save page"/>
-      <Wysiwyg Text="Wysiwyg"/>
+      <Wysiwyg Text="WYSIWYG"/>
       <UseFileStream Text="Use file stream"/>
       <PageBreaks Text="Page breaks"/>
       <OpenAfterExport Text="Open after export"/>
@@ -2671,9 +2673,9 @@
       <FitAllRowsOnOnePage Text="Fit All Rows on One Page" />
       <GroupOnSeparateSheet Text="Groups on separate sheets"/>
       <PictureProperties Text="Pictures properties"/>
-      <MoveAndModify Text="Move and modify along with the cell."/>
-      <MoveOnly Text="Move but not resize."/>
-      <Unchangeable Text="Do not move or resize."/>
+      <MoveAndModify Text="Move and modify along with the cell"/>
+      <MoveOnly Text="Move but not resize"/>
+      <Unchangeable Text="Do not move or resize"/>
       <ScaleInPercent Text="Set scale in percent:"/>
       <PinnedCells Text="Pinned cells"/>
       <WithoutPinning Text="Without pinning"/>

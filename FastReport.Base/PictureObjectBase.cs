@@ -786,7 +786,6 @@ namespace FastReport
         /// </summary>
         /// <param name="e"></param>
         /// <param name="drawRect"></param>
-        /// <param name="image"></param>
         internal virtual void DrawImageInternal(FRPaintEventArgs e, RectangleF drawRect)
         {
             bool rotate = Angle == 90 || Angle == 270;

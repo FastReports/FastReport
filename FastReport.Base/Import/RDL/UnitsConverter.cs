@@ -314,12 +314,12 @@ namespace FastReport.Import.RDL
             return PictureBoxSizeMode.Zoom;
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL GradientType to GradientStyle.
         /// </summary>
         /// <param name="gradientType">The RDL GradientType value.</param>
         /// <returns>The GradientStyle value.</returns>
-        /*public static GradientStyle ConvertGradientType(string gradientType)
+        public static GradientStyle ConvertGradientType(string gradientType)
         {
             if (gradientType == "LeftRight")
             {
@@ -352,12 +352,12 @@ namespace FastReport.Import.RDL
             return GradientStyle.None;
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL Chart.Type to SeriesChartType.
         /// </summary>
         /// <param name="chartType">The RDL Chart.Type value.</param>
         /// <returns>The SeriesChartType value.</returns>
-        /*public static SeriesChartType ConvertChartType(string chartType)
+        public static SeriesChartType ConvertChartType(string chartType)
         {
             if (chartType == "Area")
             {
@@ -386,12 +386,12 @@ namespace FastReport.Import.RDL
             return SeriesChartType.Column;
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL Chart.Palette to ChartColorPalette.
         /// </summary>
         /// <param name="chartPalette">The RDL Chart.Palette value.</param>
         /// <returns>The RDL ChartColorPalette value.</returns>
-        /*public static ChartColorPalette ConvertChartPalette(string chartPalette)
+        public static ChartColorPalette ConvertChartPalette(string chartPalette)
         {
             if (chartPalette == "EarthTones")
             {
@@ -420,12 +420,12 @@ namespace FastReport.Import.RDL
             return ChartColorPalette.None;
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL Chart.Legend.Position to Legend.Docking and Legend.Alignment.
         /// </summary>
         /// <param name="chartLegendPosition">The RDL Chart.Legend.Position value.</param>
         /// <param name="legend">The Legend instance to convert to.</param>
-        /*public static void ConvertChartLegendPosition(string chartLegendPosition, Legend legend)
+        public static void ConvertChartLegendPosition(string chartLegendPosition, Legend legend)
         {
             if (chartLegendPosition == "TopLeft")
             {
@@ -489,12 +489,12 @@ namespace FastReport.Import.RDL
             }
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL Chart.Legend.Layout to LegendStyle.
         /// </summary>
         /// <param name="chartLegendLayout">The RDL Chart.Legend.Layout value.</param>
         /// <returns>The LegendStyle value.</returns>
-        /*public static LegendStyle ConvertChartLegendLayout(string chartLegendLayout)
+        public static LegendStyle ConvertChartLegendLayout(string chartLegendLayout)
         {
             if (chartLegendLayout == "Table")
             {
@@ -507,12 +507,12 @@ namespace FastReport.Import.RDL
             return LegendStyle.Column;
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL BorderStyle to ChartDashStyle.
         /// </summary>
         /// <param name="borderStyle">The RDL BorderStyle value.</param>
         /// <returns>The ChartDashStyle value.</returns>
-        /*public static ChartDashStyle ConvertBorderStyleToChartDashStyle(string borderStyle)
+        public static ChartDashStyle ConvertBorderStyleToChartDashStyle(string borderStyle)
         {
             if (borderStyle == "Dotted")
             {
@@ -525,12 +525,12 @@ namespace FastReport.Import.RDL
             return ChartDashStyle.Solid;
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL Axis.Visible to AxisEnabled.
         /// </summary>
         /// <param name="axisVisible">The RDL Axis.Visible value.</param>
         /// <returns>The AxisEnabled value.</returns>
-        /*public static AxisEnabled ConvertAxisVisibleToAxisEnabled(string axisVisible)
+        public static AxisEnabled ConvertAxisVisibleToAxisEnabled(string axisVisible)
         {
             if (axisVisible.ToLower() == "true")
             {
@@ -543,12 +543,12 @@ namespace FastReport.Import.RDL
             return AxisEnabled.Auto;
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL TickMarkStyle to TickMarkStyle.
         /// </summary>
         /// <param name="tickMarkStyle">The RDL TickMarkStyle value.</param>
         /// <returns>The TickMarkStyle value.</returns>
-        /*public static TickMarkStyle ConvertTickMarkStyle(string tickMarkStyle)
+        public static TickMarkStyle ConvertTickMarkStyle(string tickMarkStyle)
         {
             if (tickMarkStyle == "Inside")
             {
@@ -565,12 +565,12 @@ namespace FastReport.Import.RDL
             return TickMarkStyle.None;
         }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Converts the RDL Shading to LightStyle.
         /// </summary>
         /// <param name="shading">The RDL Shading value.</param>
         /// <returns>The LightStyle value.</returns>
-        /*public static LightStyle ConvertShading(string shading)
+        public static LightStyle ConvertShading(string shading)
         {
             if (shading == "Simple")
             {

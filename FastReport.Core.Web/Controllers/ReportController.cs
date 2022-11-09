@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Reflection;
+using System.Globalization;
 
 namespace FastReport.Web.Controllers
 {
@@ -128,7 +129,7 @@ namespace FastReport.Web.Controllers
                                     if (existProp.PropertyType.IsEnum)
                                         propValueConverted = Enum.Parse(existProp.PropertyType, propValue);
                                     else
-                                        propValueConverted = Convert.ChangeType(propValue, existProp.PropertyType);
+                                        propValueConverted = Convert.ChangeType(propValue, existProp.PropertyType, CultureInfo.InvariantCulture);
 #if DEBUG
                                     Console.WriteLine($"Export setting: {existProp}: {propValueConverted}");
 #endif

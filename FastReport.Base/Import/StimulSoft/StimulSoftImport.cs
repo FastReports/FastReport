@@ -25,24 +25,24 @@ namespace FastReport.Import.StimulSoft
     /// </summary>
     public partial class StimulSoftImport : ImportBase
     {
-#region Fields
+        #region Fields
 
         private ReportPage page;
         private XmlNode reportNode;
         private PageUnits unitType;
         private float leftOffset;
-#endregion // Fields
+        #endregion // Fields
 
-#region Constructors
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StimulSoftImport"/> class.
         /// </summary>
         public StimulSoftImport() : base() { }
 
-#endregion // Constructors
+        #endregion // Constructors
 
-#region Private Methods
+        #region Private Methods
 
         private string RemovePrefix(string value)
         {
@@ -82,7 +82,7 @@ namespace FastReport.Import.StimulSoft
                 else if (useAbsTop)
                     SetAbsTop(PictureObject, parent);
 
-                if(xmlObject["Margins"] != null)
+                if (xmlObject["Margins"] != null)
                     PictureObject.Padding = ParseMargins(xmlObject["Margins"].InnerText);
 
                 if (xmlObject["File"] != null)
@@ -113,7 +113,7 @@ namespace FastReport.Import.StimulSoft
             CheckBoxObject checkBox = ComponentsFactory.CreateCheckBoxObject(xmlObject["Name"].InnerText, band);
             LoadReportComponentBase(checkBox, xmlObject);
 
-            if(band is TableCell)
+            if (band is TableCell)
             {
                 checkBox.Bounds = new RectangleF(1, 1, Math.Min(checkBox.Width, checkBox.Height) - 1, Math.Min(checkBox.Width, checkBox.Height) - 1);
             }
@@ -308,7 +308,7 @@ namespace FastReport.Import.StimulSoft
 
         private void LoadTable(BandBase band, XmlNode xmlObject, bool useAbsTop)
         {
-           
+
             TableObject table = ComponentsFactory.CreateTableObject(xmlObject["Name"].InnerText, band);
             LoadReportComponentBase(table, xmlObject);
 
@@ -321,7 +321,7 @@ namespace FastReport.Import.StimulSoft
                 rectangle.Offset(0, -band.Bounds.Top);
                 table.Bounds = rectangle;
             }
-            
+
             if (xmlObject["HeaderRowsCount"] != null)
             {
                 fixRows = UnitsConverter.ConvertInt(xmlObject["HeaderRowsCount"].InnerText);
@@ -340,7 +340,7 @@ namespace FastReport.Import.StimulSoft
             {
                 if (index % columnCount == 0)
                 {
-                    if(table.Rows.Count == fixRows) 
+                    if (table.Rows.Count == fixRows)
                     {
                         SubreportObject subreport = ComponentsFactory.CreateSubreportObject("SubReport_" + xmlObject["Name"].InnerText, band);
                         ReportPage page = ComponentsFactory.CreateReportPage(Report);
@@ -403,7 +403,7 @@ namespace FastReport.Import.StimulSoft
                     if (colSpan > columnCount)
                         colSpan = 1;
                 }
-                
+
                 if (rowSpan > 1 && colSpan > 1)
                 {
                     cellConteiner = table.Rows[table.Rows.Count - rowSpan][index % columnCount - colSpan + 1];
@@ -417,7 +417,7 @@ namespace FastReport.Import.StimulSoft
                     cellConteiner = row[index % columnCount - colSpan + 1];
                     cellConteiner.AssignAll(tableCell);
                     row[index % columnCount - colSpan + 1].ColSpan = colSpan;
-                    
+
                 }
                 else if (rowSpan > 1)
                 {
@@ -452,7 +452,7 @@ namespace FastReport.Import.StimulSoft
             LoadReportComponentBase(barcodeObject, xmlObject);
 
             barcodeObject.Brackets = "{,}";
-            if(xmlObject["Code"] != null)
+            if (xmlObject["Code"] != null)
                 barcodeObject.Text = xmlObject["Code"].InnerText;
 
             UnitsConverter.ConvertBarcodeSymbology(xmlObject["BarCodeType"].Attributes["type"].Value, barcodeObject);
@@ -517,7 +517,7 @@ namespace FastReport.Import.StimulSoft
             if (xmlObject["Text"] != null)
                 textObject.Text = xmlObject["Text"].InnerText;
 
-            if(xmlObject["Margins"] != null)
+            if (xmlObject["Margins"] != null)
                 textObject.Padding = ParseMargins(xmlObject["Margins"].InnerText);
 
             if (xmlObject["Font"] != null)
@@ -564,7 +564,7 @@ namespace FastReport.Import.StimulSoft
                 catch { }
             }
         }
-         
+
         private void LoadTextObject(BandBase band, XmlNode xmlObject, bool useAbsTop)
         {
             TextObject textObject = ComponentsFactory.CreateTextObject(xmlObject["Name"].InnerText, band);
@@ -689,7 +689,7 @@ namespace FastReport.Import.StimulSoft
             page.Tag = node["Guid"].InnerText;
 
             LoadBands(node, page);
-            LoadChildBands(node, page);    
+            LoadChildBands(node, page);
         }
 
         private void LoadReportObjects(XmlNode node, BandBase band)
@@ -718,7 +718,7 @@ namespace FastReport.Import.StimulSoft
                             if (item["Columns"] != null)
                                 (band as DataBand).Columns.Count = UnitsConverter.ConvertInt(item["Columns"].InnerText);
 
-                            if(item["ColumnWidth"] != null)
+                            if (item["ColumnWidth"] != null)
                                 (band as DataBand).Columns.Width = UnitsConverter.ConvertFloat(item["ColumnWidth"].InnerText) * UnitsConverter.GetPixelsInUnit(unitType);
 
                             if (item["ColumnGaps"] != null)
@@ -746,7 +746,7 @@ namespace FastReport.Import.StimulSoft
                     case "OverlayBand":
                         {
                             band = ComponentsFactory.CreateOverlayBand(page);
-                            
+
                             break;
                         }
                     case "ColumnHeaderBand":
@@ -761,7 +761,7 @@ namespace FastReport.Import.StimulSoft
                         {
                             band = ConvertToChildIfDuplicatedBand(typeof(ColumnFooterBand));
                             if (band == null)
-                                    band = ComponentsFactory.CreateColumnFooterBand(page);
+                                band = ComponentsFactory.CreateColumnFooterBand(page);
 
                             break;
                         }
@@ -776,7 +776,7 @@ namespace FastReport.Import.StimulSoft
                     case "PageFooterBand":
                         {
                             band = ConvertToChildIfDuplicatedBand(typeof(PageFooterBand));
-                            if(band == null)
+                            if (band == null)
                                 band = ComponentsFactory.CreatePageFooterBand(page);
 
                             break;
@@ -808,14 +808,14 @@ namespace FastReport.Import.StimulSoft
                                 dataBand.Bounds = rect;
                                 foreach (Base obj in page.AllObjects)
                                 {
-                                    if(obj is DataBand && obj != dataBand && (obj as DataBand).Bounds.Top + (obj as DataBand).Bounds.Height >= rect.Top)
+                                    if (obj is DataBand && obj != dataBand && (obj as DataBand).Bounds.Top + (obj as DataBand).Bounds.Height >= rect.Top)
                                     {
                                         page.RemoveChild(dataBand);
                                         dataBand = (DataBand)obj;
                                         break;
                                     }
                                 }
-                                
+
                                 LoadObject(dataBand, item, true);
                                 if (dataBand.ChildObjects.Count == 0)
                                     page.RemoveChild(dataBand);
@@ -1015,7 +1015,7 @@ namespace FastReport.Import.StimulSoft
                             break;
                         }
                     case "FooterBand":
-                        { 
+                        {
                             BandBase parent = GetParentDataBand(ParseRectangleF(item["ClientRectangle"].InnerText), page, false);
                             BandBase newBand;
                             if (parent is DataBand)
@@ -1056,7 +1056,7 @@ namespace FastReport.Import.StimulSoft
                 return;
 
             band.Bounds = ParseRectangleF(node["ClientRectangle"].InnerText);
-           
+
             if (node["Border"] != null)
                 band.Border = UnitsConverter.ConvertBorder(node["Border"].InnerText);
             if (node["Brush"] != null)
@@ -1099,17 +1099,17 @@ namespace FastReport.Import.StimulSoft
 
             if (node["Interaction"] != null)
             {
-                foreach(XmlNode hyperlink in node["Interaction"])
-                    if(hyperlink.Attributes["type"] != null)
-                    switch (RemovePrefix(hyperlink.Attributes["type"].Value))
-                    {
-                        case "DrillDownParameter":
-                            obj.Hyperlink.Expression = hyperlink["Expression"].InnerText;
-                            break;
-                    }
+                foreach (XmlNode hyperlink in node["Interaction"])
+                    if (hyperlink.Attributes["type"] != null)
+                        switch (RemovePrefix(hyperlink.Attributes["type"].Value))
+                        {
+                            case "DrillDownParameter":
+                                obj.Hyperlink.Expression = hyperlink["Expression"].InnerText;
+                                break;
+                        }
             }
 
-            if(node["Hyperlink"] != null && !node["Hyperlink"].InnerText.StartsWith("mailto"))
+            if (node["Hyperlink"] != null && !node["Hyperlink"].InnerText.StartsWith("mailto"))
             {
                 if (node["Hyperlink"].InnerText.StartsWith("#"))
                 {
@@ -1133,7 +1133,7 @@ namespace FastReport.Import.StimulSoft
             BandBase band = null;
             foreach (Base obj in page.AllObjects)
             {
-                if (obj.GetType() ==  type)
+                if (obj.GetType() == type)
                 {
                     band = ComponentsFactory.CreateChildBand(GetLastChild((BandBase)obj));
                     break;
@@ -1168,7 +1168,7 @@ namespace FastReport.Import.StimulSoft
         {
             GroupHeaderBand result = null;
             float offset = 10000;
-            
+
             foreach (ReportComponentBase obj in page.AllObjects)
                 if (obj is GroupHeaderBand && rect.Top - obj.Bottom > 0 && rect.Top - obj.Bottom < offset)
                 {
@@ -1222,19 +1222,19 @@ namespace FastReport.Import.StimulSoft
                     result = (DataBand)obj;
                     offset = obj.Top - rect.Bottom;
                 }
-  
+
             return result;
         }
 
         private List<XmlNode> SortNodeByTop(XmlNode node)
         {
             List<XmlNode> xmlNodeList = new List<XmlNode>();
-            if(node["Components"] != null) 
+            if (node["Components"] != null)
                 foreach (XmlNode childNode in node["Components"].ChildNodes)
                     xmlNodeList.Add(childNode);
 
             xmlNodeList = xmlNodeList.OrderBy(x => ParseRectangleF(x["ClientRectangle"].InnerText).Top).ToList();
-            
+
             return xmlNodeList;
         }
 
@@ -1264,7 +1264,7 @@ namespace FastReport.Import.StimulSoft
 
         private void ParseTextOptions(TextObject textObject, string data)
         {
-            if(data == null)
+            if (data == null)
             {
                 return;
             }
@@ -1385,7 +1385,7 @@ namespace FastReport.Import.StimulSoft
             Report.ScriptText += "/*" + reportNode["Script"].InnerText + "*/";
             Report.Alias = reportNode["ReportAlias"].InnerText;
 
-            if(reportNode["ReportDescription"] != null)
+            if (reportNode["ReportDescription"] != null)
                 Report.ReportInfo.Description = reportNode["ReportDescription"].InnerText;
 
             LoadReferencedAssemblies(reportNode["ReferencedAssemblies"]);
@@ -1443,7 +1443,7 @@ namespace FastReport.Import.StimulSoft
 
         private void LoadDataSource()
         {
-            foreach(XmlNode db in reportNode["Dictionary"]["Databases"])
+            foreach (XmlNode db in reportNode["Dictionary"]["Databases"])
             {
                 switch (RemovePrefix(db.Attributes["type"].Value))
                 {
@@ -1452,13 +1452,13 @@ namespace FastReport.Import.StimulSoft
                             XmlDataConnection connection = new XmlDataConnection();
                             XmlConnectionStringBuilder stringBuilder = new XmlConnectionStringBuilder();
 
-                            if(db["PathSchema"].InnerText != "")
+                            if (db["PathSchema"].InnerText != "")
                                 stringBuilder.XsdFile = db["PathSchema"].InnerText;
                             stringBuilder.XmlFile = db["PathData"].InnerText;
 
                             connection.Name = db["Name"].InnerText;
                             connection.Alias = db["Alias"].InnerText;
-                            connection.ConnectionString = stringBuilder.ToString(); 
+                            connection.ConnectionString = stringBuilder.ToString();
                             connection.CreateAllTables();
                             connection.Enabled = true;
 
@@ -1527,12 +1527,12 @@ namespace FastReport.Import.StimulSoft
         {
             foreach (XmlNode node in reportNode["Pages"].ChildNodes)
             {
-                if ( RemovePrefix(node.Attributes["type"].Value) == "Form")
+                if (RemovePrefix(node.Attributes["type"].Value) == "Form")
                     LoadDialogPage(node);
                 else
                     LoadPage(node);
             }
-                
+
             UpdateSubReportPage();
         }
 
@@ -1540,11 +1540,11 @@ namespace FastReport.Import.StimulSoft
 
         private void UpdateSubReportPage()
         {
-            foreach(Base obj in Report.AllObjects)
+            foreach (Base obj in Report.AllObjects)
             {
-                if(obj is SubreportObject)
+                if (obj is SubreportObject)
                 {
-                    foreach(ReportPage page in Report.Pages)
+                    foreach (ReportPage page in Report.Pages)
                     {
                         if (page.Tag == (obj as SubreportObject).Tag)
                             (obj as SubreportObject).ReportPage = page;
@@ -1553,22 +1553,30 @@ namespace FastReport.Import.StimulSoft
             }
         }
 
-#endregion // Private Methods
+        #endregion // Private Methods
 
-#region Public Methods
-            /// <inheritdoc/>
-            public override void LoadReport(Report report, string filename)
+        #region Public Methods
+        /// <inheritdoc/>
+        public override void LoadReport(Report report, string filename)
+        {
+            using (var stream = new FileStream(filename, FileMode.Open))
             {
-                Report = report;
-                Report.Clear();
-                System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
-                doc.Load(filename);
-                reportNode = doc.LastChild;
-                page = null;
-                leftOffset = 0;
-                LoadReport();
+                LoadReport(report, stream);
             }
+        }
+        /// <inheritdoc/>
+        public override void LoadReport(Report report, Stream stream)
+        {
+            Report = report;
+            Report.Clear();
+            System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+            doc.Load(stream);
+            reportNode = doc.LastChild;
+            page = null;
+            leftOffset = 0;
+            LoadReport();
+        }
 
-#endregion // Public Methods
+        #endregion // Public Methods
     }
 }

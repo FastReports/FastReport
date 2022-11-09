@@ -58,8 +58,6 @@ namespace FastReport.Gauge
             get { return color; }
             set
             {
-                if (value == null)
-                    throw new ArgumentNullException("LabelFill");
                 color = value;
             }
         }

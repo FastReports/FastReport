@@ -93,7 +93,7 @@ namespace CakeScript
             }
         }
 
-
+        [Obsolete]
         [DependsOn(nameof(BuildOpenSource))]
         [DependsOn(nameof(PrepareNuget))]
         public void PackOpenSourcePlugins()
@@ -105,7 +105,7 @@ namespace CakeScript
                 OutputDirectory = outdir
             };
 
-            string pluginsDirPath = Path.Combine(solutionDirectory, pluginsRelativePath);
+            string pluginsDirPath = PluginsDir;
             foreach (var proj in Plugins_Core)
             {
                 string proj_path = Path.Combine(pluginsDirPath, $"FastReport.Data.{proj}", $"FastReport.OpenSource.Data.{proj}.csproj");

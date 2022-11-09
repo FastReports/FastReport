@@ -498,9 +498,11 @@
         <NObjectsSelected Text="{0} объектов выбрано"/>
       </Properties>
       <Validator Text="Проверка">
+        <Number Text="Номер"/>
         <Name Text="Имя"/>
         <Message Text="Сообщение"/>
         <Updating Text="Обновление"/>
+        <Type Text="Тип"/>
       </Validator>
       <ReportTree Text="Дерево отчета"/>
       <CollapseAll Text="Свернуть все"/>
@@ -2302,7 +2304,7 @@
       <OrderByCells Text="Сортировка ячеек"/>
       <AnalyzeObjects Text="Анализ объектов"/>
       <SavePage Text="Сохранение страницы"/>
-      <Wysiwyg Text="Wysiwyg"/>
+      <Wysiwyg Text="WYSIWYG"/>
       <UseFileStream Text="Использовать файловый поток"/>
       <PageBreaks Text="Разрывы страниц"/>
       <OpenAfterExport Text="Открыть после экспорта"/>
@@ -2424,9 +2426,9 @@
       <FitAllRowsOnOnePage Text="Все строки на одной странице"/>
       <GroupOnSeparateSheet Text="Группы на отдельных листах"/>
       <PictureProperties Text="Свойства изображений"/>
-      <MoveAndModify Text="Перемещать и изменять вместе с ячейкой."/>
-      <MoveOnly Text="Перемещать, но не изменять размеры."/>
-      <Unchangeable Text="Не перемещать и не изменять размеры."/>
+      <MoveAndModify Text="Перемещать и изменять вместе с ячейкой"/>
+      <MoveOnly Text="Перемещать, но не изменять размеры"/>
+      <Unchangeable Text="Не перемещать и не изменять размеры"/>
       <ScaleInPercent Text="Установить масштаб в процентах:"/>
       <PinnedCells Text="Закрепление ячеек"/>
       <WithoutPinning Text="Без закрепления"/>
