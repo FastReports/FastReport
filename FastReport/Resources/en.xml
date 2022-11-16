@@ -434,12 +434,16 @@
       <File Text="File">
         <New Text="New..."/>
         <Open Text="Open..."/>
+        <OpenLocally Text="Open on this PC"/>
+        <OpenViaCloud Text="Open via Cloud"/>
         <Import Text="Import..."/>
         <Close Text="Close"/>
+        <SaveAs Text="Save as..."/>
         <Save Text="Save"/>
-        <SaveAs Text="Save As..."/>
+        <SaveLocal Text="Save to this PC"/>
         <SaveWithRandomData Text="Save With Random Data..."/>
         <SaveAll Text="Save All"/>
+        <SaveToCloud Text="Save to Cloud"/>
         <PageSetup Text="Page Setup..."/>
         <PrinterSetup Text="Printer Setup..."/>
         <Preview Text="Preview..."/>
@@ -494,6 +498,43 @@
         <About Text="About..."/>
       </Help>
     </Menu>
+    <ListViewForm>
+        <CaptionSaveMode Text="Save report on Cloud"/>
+        <CaptionOpenMode Text="Select report to download"/>
+        <Select Text="Select"/>
+        <Save Text="Save"/>
+        <Cancel Text="Cancel"/>
+        <Search Text="Search..."/>
+        <FileNameHeader Text="Name"/>
+        <DateModHeader Text="Date modifed"/>
+        <FileSizeHeader Text="Size"/>
+        <FileTypeHeader Text="Type"/>
+        <CreateFolder Text="Create folder"/>
+        <CopyPath Text="Copy path"/>
+        <Rename Text="Rename"/>
+        <Delete Text="Delete"/>
+        <Open Text="Open"/>
+        <AuthError Text="Error while authorization"/>
+        <AuthErrorCaption Text="Not authorized"/>
+        <OnLoadRename Text="Enter new name"/>
+        <OnLoadFolderName Text="Enter folder name"/>
+        <OnLoadName Text="Enter new name"/>
+        <NonExistingSelectedReport Text="Report with this name is not found!"/>
+        <EnterFolderName>
+            <Confirm Text="Confirm"/>
+            <Cancel Text="Cancel"/>
+            <EmptyName Text="Name cannot be empty!"/>
+            <ForbiddenName Text="A file name can`t contain any of the following charachter:"/>
+        </EnterFolderName>
+		<ErrorMessageBox>
+            <ErrorInApiOrServer Text="Error while connecting to the selected server. You may have specified an invalid server or API key"/>
+            <ErrorInSubscriptions Text="No subscriptions found on Your account."/>
+            <CaptionSubscriptions Text="Subscriptions error"/>
+            <Caption Text="Server connection error"/>
+            <InvalidPath Text="Unable to find the path '{0}'. Check the spelling and try again"/>
+            <CaptionNoPath Text="Invalid path"/>
+		</ErrorMessageBox>
+    </ListViewForm>
     <ToolWindow>
       <AutoHide Text="Auto-hide"/>
       <Close Text="Close"/>
@@ -555,7 +596,9 @@
       <MoreButtons Text="More buttons..."/>
       <Standard Text="Standard">
         <New Text="Add New Item"/>
-        <Open Text="Open Report (Ctrl+O)"/>
+        <Open Text="Open"/>
+        <OpenLocally Text="Open Report (Ctrl+O)"/>
+        <OpenViaCloud Text="Open Report via Cloud "/>
         <Save Text="Save Report (Ctrl+S)"/>
         <SaveAll Text="Save All (Ctrl+Shift+S)"/>
         <Preview Text="Preview (Ctrl+P)"/>
@@ -714,6 +757,8 @@
     <Print Text="Print (Ctrl+P)"/>
     <OpenText Text="Open"/>
     <Open Text="Open File"/>
+	<OpenLocal Text="Open on this PC"/>
+	<OpenViaCloud Text="Open via Cloud"/>
     <Save Text="Save File"/>
     <SaveText Text="Save"/>
     <SaveToCloud Text="Save to Cloud"/>
@@ -731,7 +776,8 @@
     <Prior Text="Prior Page"/>
     <Next Text="Next Page"/>
     <Last Text="Last Page"/>
-    <SaveNative Text="Prepared report"/>
+    <SaveNative Text="Save prepared report"/>
+	<SaveNativeLocally Text="Save locally"/>
     <FtpText Text="Save to FTP"/>
     <DropboxText Text="Save to Dropbox"/>
     <GoogleDriveText Text="Save to Google Drive"/>

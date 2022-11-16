@@ -24,16 +24,18 @@ namespace FastReport.Web
                         <div class=""fr-webreport-popup-content-title"">
                             {localizationPdf.Title}
                         </div>
-                            <label>{localizationPageSelector.PageRange}</label>
+                        {(Report.PreparedPages.Count != 1 ? $@"<label class=""fr-webreport-popup-content-export-parameters-page-range-title"">{localizationPageSelector.PageRange}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
-                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"" name=""OnAllClick"" onclick=""OnAllClick()"">
+                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"" name=""OnAllClick"" onclick=""OnAllClick()"">
                                 {localizationPageSelector.All}
                             </button>
+                        </div>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
                             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                                 {localizationPageSelector.First}
                             </button>
-                            <input name =""PageSelectorInput"" pattern=""[0-9,-\s]"" placeholder=""2, 5-132"" type=""text"" value="""" class=""fr-webreport-popup-content-export-parameters-input"" onchange=""OnInputClickPDF()"">
-                       </div>
+                            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+                        </div>" : "")}
                     </div>
                     <div class=""fr-webreport-popup-content-export-parameters"">
                         <label> {localizationPdf.Options}</label>
@@ -48,15 +50,19 @@ namespace FastReport.Web
                                 <option value=""PdfX_3"">PDF/X-3</option>
                                 <option value=""PdfX_4"">PDF/X-4</option>
                             </select>
-                            <div class=""fr-webreport-popup-content-export-parameters-col"">
+                        </div>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
+                        <div class=""fr-webreport-popup-content-export-parameters-col"">
                                 <button id=""PDFOnEmbeddedFonts"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                                     {localizationPdf.EmbeddedFonts}
                                 </button>
-                                <button  id=""PDFOnTextInCurves"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
-                                    {localizationPdf.TextInCurves}
-                                </button>
                                 <button id=""PDFOnInteractive"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                                     {localizationPdf.InteractiveForms}
+                                </button>
+                        </div>
+                        <div class=""fr-webreport-popup-content-export-parameters-col"">
+                                <button  id=""PDFOnTextInCurves"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
+                                    {localizationPdf.TextInCurves}
                                 </button>
                                 <button id=""PDFOnBackground"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                                     {localizationPdf.Background}
@@ -67,16 +73,29 @@ namespace FastReport.Web
                     <div class=""fr-webreport-popup-content-export-parameters"">
                         <label> {localizationPdf.Images}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-col"">
-                                <div style=""display:flex;"" class=""fr-webreport-popup-content-export-parameters-slider"">
-                                    <input type=""range"" min=""1"" max=""100"" value=""90"" name = ""SliderRange"" onchange = ""Slider()"">
-                                    <p>{localizationPdf.JpegQuality} <span name=""SliderValue"">90</span></p>
+                                <div style=""display:flex; font-weight: normal;"" class=""fr-webreport-popup-content-export-parameters-slider"">
+                                    <p>{localizationPdf.JpegQuality}</p>
+                                    <select class=""custom-select"" style=""margin-left: 10px;"" onchange = ""PDFJpegQualityFunc(this)"">
+                                        <option value = ""10"">10</option>
+                                        <option value = ""20"">20</option>
+                                        <option value = ""30"">30</option>
+                                        <option value = ""40"">40</option>
+                                        <option value = ""50"">50</option>
+                                        <option value = ""60"">60</option>
+                                        <option value = ""70"">70</option>
+                                        <option value = ""80"">80</option>
+                                        <option value = ""90"" selected>90</option>
+                                        <option value = ""100"">100</option>
+                                    </select>
                                 </div>   
                         </div>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
-                            <select class=""custom-select""  onchange=""PDFColorSpaceFunc(this)"">
-                                <option value=""RGB"" selected>RGB</option>
-                                <option value=""CMYK"">CMYK</option>
-                            </select>
+                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"" style=""margin-top: 5px;"" id = ""RGB"" name=""OnRgbClick"" onclick=""OnRgbClick()"">
+                                RGB
+                            </button>
+                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" style=""margin-top: 5px;"" id = ""CMYK"" name=""OnCmykClick"" onclick=""OnCmykClick()"">
+                                CMYK
+                            </button>
                             <select class=""custom-select"" onchange = ""PDFImageOptionFunc(this)"">
                                 <option value=""None"" selected>None</option>
                                 <option value=""PrintOptimized"">{localizationPdf.PrintOptimized}</option>
@@ -85,23 +104,12 @@ namespace FastReport.Web
                         </div>
                     </div>
                     <div class=""fr-webreport-popup-content-buttons"">
-                        <button class=""fr-webreport-popup-content-btn-submit"">{localizationPageSelector.LocalizedCancel}</button>
+                        <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
                         <button class=""fr-webreport-popup-content-btn-submit"" onclick=""PDFExport()"">OK</button>
                    </div>
                 </div>
 <script>
        {template_modalcontainerscript}
-     //SLIDER//
-    var SliderOutputPDF = '90';
-    function Slider() {{
-        var SliderRange = document.getElementsByName('SliderRange');
-        var SliderValue = document.getElementsByName('SliderValue');
-        for (var i = 0; i < SliderRange.length; i++) {{
-            SliderValue[i].innerHTML = SliderRange[i].value
-
-        }}
-        SliderOutputPDF = SliderRange[0].value;
-    }}
     //PDFEXPORT//
     var PDFCompilance = '&PdfCompliance=None';
     var PDFButtons = '&EmbeddingFonts=false&TextInCurves=false&InteractiveForms=false&Background=false';
@@ -115,6 +123,28 @@ namespace FastReport.Web
     var PDFOnInteractive = false;
     var PDFOnBackground = false;
 
+    function OnRgbClick(){{
+        let rgb = document.getElementById('RGB');
+        let cmyk = document.getElementById('CMYK');
+
+        if(!document.getElementById('RGB').classList.contains('activeButton')){{
+            cmyk.classList.remove('activeButton'); 
+            rgb.classList.add('activeButton');
+        }}
+            
+    }}
+
+    function OnCmykClick(){{
+        let rgb = document.getElementById('RGB');
+        let cmyk = document.getElementById('CMYK');
+
+        if(!document.getElementById('CMYK').classList.contains('activeButton')){{
+            rgb.classList.remove('activeButton');
+            cmyk.classList.add('activeButton');
+        }}
+            
+    }}
+
     function OnInputClickPDF() {{
        {template_pscustom}
     }}
@@ -123,9 +153,9 @@ namespace FastReport.Web
         PDFCompilance = '&PdfCompliance=' + PDFCompilanceOption.value;
     }}
 
-    function PDFColorSpaceFunc(select) {{
-        const ColorSpaceOption = select.querySelector(`option[value='${{select.value}}']`)
-        PDFColorSpace = '&PDFColorSpace=' + ColorSpaceOption.value;
+    function PDFJpegQualityFunc(select){{
+        const JpegQuality = select.querySelector(`option[value='${{select.value}}']`)
+        PDFJpegQuality = '&PDFJpegQuality=' + JpegQuality.value;
     }}
 
     function PDFImageOptionFunc(select) {{
@@ -146,25 +176,28 @@ namespace FastReport.Web
     }}
 
     function PDFExport() {{
-
-        PDFJpegQuality = '&PDFJpegQuality=' + SliderOutputPDF;
-
-        if (document.getElementById('PDFOnEmbeddedFonts').classList.contains('active')) {{
+        
+        if (document.getElementById('PDFOnEmbeddedFonts').classList.contains('activeButton')) {{
             PDFOnEmbeddedFonts = new Boolean(true);
         }}
         else {{ PDFOnEmbeddedFonts = false; }};
 
-        if (document.getElementById('PDFOnTextInCurves').classList.contains('active')) {{
+        if (document.getElementById('RGB').classList.contains('activeButton')){{
+            PDFColorSpace = '&PDFColorSpace=' + 'RGB';
+        }}
+        else {{ PDFColorSpace = '&PDFColorSpace=' + 'CMYK'; }}
+
+        if (document.getElementById('PDFOnTextInCurves').classList.contains('activeButton')) {{
             PDFOnTextInCurves = new Boolean(true);
         }}
         else {{ PDFOnTextInCurves = false; }};
 
-        if (document.getElementById('PDFOnInteractive').classList.contains('active')) {{
+        if (document.getElementById('PDFOnInteractive').classList.contains('activeButton')) {{
             PDFOnInteractive = new Boolean(true);
         }}
         else {{ PDFOnInteractive = false; }};
 
-        if (document.getElementById('PDFOnBackground').classList.contains('active')) {{
+        if (document.getElementById('PDFOnBackground').classList.contains('activeButton')) {{
             PDFOnBackground = new Boolean(true);
         }}
         else {{ PDFOnBackground = false; }};

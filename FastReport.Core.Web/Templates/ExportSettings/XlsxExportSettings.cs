@@ -23,47 +23,47 @@ namespace FastReport.Web
                         <div class=""fr-webreport-popup-content-title"">
                             {localizationXlsx.Title}
                         </div>
-                            <label>{localizationPageSelector.PageRange}</label>
+                        {(Report.PreparedPages.Count != 1 ? $@"<label class=""fr-webreport-popup-content-export-parameters-page-range-title"">{localizationPageSelector.PageRange}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
-                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"" name=""OnAllClick"" onclick=""OnAllClick()"">
+                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"" name=""OnAllClick"" onclick=""OnAllClick()"">
                                 {localizationPageSelector.All}
                             </button>
+                        </div>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
                             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                                 {localizationPageSelector.First}
                             </button>
-                            <input name=""PageSelectorInput""  onchange=""OnInputClickXLSX()""type=""text""class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2, 5-132""value="""" >
-                       </div>
+                            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+                        </div>" : "")}
                     </div>
                     <div class=""fr-webreport-popup-content-export-parameters"">
                         <label>{localizationXlsx.Options}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
                             <div class=""fr-webreport-popup-content-export-parameters-col"">
-                                <button id=""XlsxWysiwyg"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"">
+                                <button id=""XlsxWysiwyg"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
                                     Wysiwyg
                                 </button>
                                 <button id=""XlsxPageBreaks"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                                     {localizationXlsx.PageBreaks}
                                 </button>
-                            </div>
-                            <div class=""fr-webreport-popup-content-export-parameters-col"">
                                 <button id=""XlsxDataOnly"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                                     {localizationXlsx.DataOnly}
                                 </button>
+                            </div>
+                            <div class=""fr-webreport-popup-content-export-parameters-col"">
                                 <button id=""XlsxSeamless"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                                     {localizationXlsx.Seamless}
                                 </button>
-                            </div>
-                            <div class=""fr-webreport-popup-content-export-parameters-col"">
-                                <button id=""XlsxPrintOptimized"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"">
+                                <button id=""XlsxPrintOptimized"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
                                     {localizationXlsx.PrintOptimized}
                                 </button>
                                 <button id=""XlsxSplitPages"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                                     {localizationXlsx.SplitPages}
                                 </button>
                             </div>
-                        </div>
+                          </div>
                     </div>
-                    <div class=""fr-webreport-popup-content-export-parameters"">
+                    <div class=""fr-webreport-popup-content-export-parameters"" style=""padding-bottom: 0px;"">
                     <label>{localizationXlsx.PrintScaling}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-col"">   
                             <select class=""custom-select"" onchange=""XlsxOnPrintFitChangeFunc(this)"">
@@ -72,30 +72,31 @@ namespace FastReport.Web
                                 <option value=""FitAllColumsOnOnePage"">{localizationXlsx.FitAllColumsOnOnePage}</option>
                                 <option value=""FitAllRowsOnOnePage"">{localizationXlsx.FitAllRowsOnOnePage}</option>
                             </select>
-                            <div style=""display:flex;"" class=""fr-webreport-popup-content-export-parameters-slider"">
-                                <input type=""range"" min=""0.1"" step=""0.01"" max=""5.0"" value=""1.00"" name = ""SliderRange"" onchange = ""Slider()"">
-                                <p>{localizationXlsx.FontScale} <span name=""SliderValue"">1</span></p>
+                            <div class=""fr-webreport-popup-content-export-parameters-slider""  style=""display:flex; padding-left: 0.4rem;"">
+                                <p style=""font-weight: normal;"">{localizationXlsx.FontScale}</p>
+                                    <select class=""custom-select"" onchange = ""XlsxFontScalingFunc(this)"">
+                                        <option value = ""0.1"">0.1</option>
+                                        <option value = ""0.5"">0.5</option>
+                                        <option value = ""1"" selected>1</option>
+                                        <option value = ""1.5"">1.5</option>
+                                        <option value = ""2"">2</option>
+                                        <option value = ""2.5"">2.5</option>
+                                        <option value = ""3"">3</option>
+                                        <option value = ""3.5"">3.5</option>
+                                        <option value = ""4"">4</option>
+                                        <option value = ""4.5"">4.5</option>
+                                        <option value = ""5"">5</option>
+                                    </select>
                             </div>   
                         </div>
                     </div>
-                    <div class=""fr-webreport-popup-content-buttons"">
-                        <button class=""fr-webreport-popup-content-btn-submit"">{localizationPageSelector.LocalizedCancel}</button>
+                    <div class=""fr-webreport-popup-content-buttons"" style = ""margin-top: 8px;"">
+                        <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
                         <button class=""fr-webreport-popup-content-btn-submit"" onclick=""XLSXExport()"">OK</button>
                     </div>
                 </div>
 <script> 
        {template_modalcontainerscript}
-    //SLIDER//
-    var SliderOutputExcel = '1';
-    function Slider() {{
-        var SliderRange = document.getElementsByName('SliderRange');
-        var SliderValue = document.getElementsByName('SliderValue');
-        for (var i = 0; i < SliderRange.length; i++) {{
-            SliderValue[i].innerHTML = SliderRange[i].value
-
-        }}
-        SliderOutputExcel = SliderRange[0].value;
-    }}
     //XLSXEXPORT//
     var XlsxButtons;
     var XlsxFontScaling = '&FontScale=1';
@@ -106,6 +107,11 @@ namespace FastReport.Web
     var XlsxSeamless = false;
     var XlsxPrintOptimized = false;
     var XlsxSplitPages = false;
+
+    function XlsxFontScalingFunc(select){{
+        const XlsxFontScalingChange = select.querySelector(`option[value='${{select.value}}']`)
+        XlsxFontScaling = '&FontScale=' + XlsxFontScalingChange.value.replace('.', ',');
+    }}
 
     function XlsxOnPrintFitChangeFunc(select) {{
         const XlsxOnPrintFitChange = select.querySelector(`option[value='${{select.value}}']`)
@@ -118,30 +124,28 @@ namespace FastReport.Web
 
     function XLSXExport() {{
 
-        XlsxFontScaling = '&FontScale=' + SliderOutputExcel.replace('.', ',');
-
-        if (document.getElementById('XlsxWysiwyg').classList.contains('active')) {{
+        if (document.getElementById('XlsxWysiwyg').classList.contains('activeButton')) {{
             XlsxWysiwyg = new Boolean(true);
         }}
         else {{ XlsxWysiwyg = false; }};
 
-        if (document.getElementById('XlsxPageBreaks').classList.contains('active')) {{
+        if (document.getElementById('XlsxPageBreaks').classList.contains('activeButton')) {{
             XlsxPageBreaks = new Boolean(true);
         }}
         else {{ XlsxPageBreaks = false; }};
-        if (document.getElementById('XlsxDataOnly').classList.contains('active')) {{
+        if (document.getElementById('XlsxDataOnly').classList.contains('activeButton')) {{
             XlsxDataOnly = new Boolean(true);
         }}
         else {{ XlsxSeamless = false; }};
-        if (document.getElementById('XlsxSeamless').classList.contains('active')) {{
+        if (document.getElementById('XlsxSeamless').classList.contains('activeButton')) {{
             XlsxSeamless = new Boolean(true);
         }}
         else {{ XlsxPrintOptimized = false; }};
-        if (document.getElementById('XlsxPrintOptimized').classList.contains('active')) {{
+        if (document.getElementById('XlsxPrintOptimized').classList.contains('activeButton')) {{
             XlsxPrintOptimized = new Boolean(true);
         }}
         else {{ XlsxPrintOptimized = false; }};
-        if (document.getElementById('XlsxSplitPages').classList.contains('active')) {{
+        if (document.getElementById('XlsxSplitPages').classList.contains('activeButton')) {{
             XlsxSplitPages = new Boolean(true);
         }}
         else {{ XlsxSplitPages = false; }};

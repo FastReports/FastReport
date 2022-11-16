@@ -605,12 +605,12 @@ namespace FastReport.Web
 
         private void DoDetailedReport(ReportComponentBase obj)
         {
-            Report tabReport = new Report();
             if (obj != null)
             {
                 string fileName = obj.Hyperlink.DetailReportName;
                 if (File.Exists(fileName))
                 {
+                    Report tabReport = new Report();
                     tabReport.Load(fileName);
                     string paramName = obj.Hyperlink.ReportParameter;
                     string paramValue = obj.Hyperlink.Value;

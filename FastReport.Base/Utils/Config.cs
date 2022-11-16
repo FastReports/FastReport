@@ -319,14 +319,18 @@ namespace FastReport.Utils
             RestoreExportOptions();
 #endif
             LoadPlugins();
+            InitTextRenderingHint();
+        }
 
+        private static void InitTextRenderingHint()
+        {
             // init TextRenderingHint.SystemDefault
             // bug in .Net: if you use any other hint before SystemDefault, the SystemDefault will
             // look like SingleBitPerPixel
             using (Bitmap bmp = new Bitmap(1, 1))
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+                g.TextRenderingHint = TextRenderingHint.SystemDefault;
                 g.DrawString(" ", SystemFonts.DefaultFont, Brushes.Black, 0, 0);
             }
         }
@@ -537,28 +541,6 @@ namespace FastReport.Utils
 #endif
         }
 
-        private static void LoadPluginsInCurrentFolder()
-        {
-            var appFolder = ApplicationFolder;
-            if(!string.IsNullOrEmpty(appFolder))
-            {
-                // find all plugin-connector in current directory
-                var plugins = Directory.GetFiles(appFolder, "FastReport.Data.*.dll");
-
-                // initialize
-                foreach (var pluginName in plugins)
-                {
-                    try
-                    {
-                        var assembly = Assembly.LoadFrom(pluginName);
-                        ProcessAssembly(assembly);
-                    }
-                    catch
-                    {
-                    }
-                }
-            }
-        }
 
         private static void ProcessAssembly(Assembly a)
         {

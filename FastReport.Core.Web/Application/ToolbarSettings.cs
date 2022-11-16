@@ -54,9 +54,9 @@ namespace FastReport.Web
 #endif
         /// <summary>
         /// Use to change ToolbarColor,
-        /// Default value Color.LightGray
+        /// Default value Color.WhiteSmoke
         /// </summary>
-        public Color Color { get; set; } = Color.LightGray;
+        public Color Color { get; set; } = Color.WhiteSmoke;
         /// <summary>
         /// Use to change Toolbar DropDownMenuColor,
         /// Default value Color.White
@@ -74,14 +74,14 @@ namespace FastReport.Web
         public Positions Position { get; set; } = Positions.Top;
         /// <summary>
         /// Use to add Roundness to Toolbar,
-        /// Default value RoundnessEnum.None
+        /// Default value RoundnessEnum.High
         /// </summary>
-        public RoundnessEnum Roundness { get; set; } = RoundnessEnum.None;
+        public RoundnessEnum Roundness { get; set; } = RoundnessEnum.High;
         /// <summary>
         /// Use to change content position in Toolbar,
-        /// Default value ContentPositions.Left
+        /// Default value ContentPositions.Center
         /// </summary>
-        public ContentPositions ContentPosition { get; set; } = ContentPositions.Left;
+        public ContentPositions ContentPosition { get; set; } = ContentPositions.Center;
         /// <summary>
         /// Use to change Icons color in Toolbar,
         /// Default value IconColors.Black
@@ -89,9 +89,9 @@ namespace FastReport.Web
         public IconColors IconColor { get; set; } = IconColors.Black;
         /// <summary>
         /// Use to add Transparency in icon Toolbar,
-        /// Default value IconTransparencyEnum.Default
+        /// Default value IconTransparencyEnum.None
         /// </summary>
-        public IconTransparencyEnum IconTransperency { get; set; } = IconTransparencyEnum.Default;
+        public IconTransparencyEnum IconTransperency { get; set; } = IconTransparencyEnum.None;
         /// <summary>
         /// Use to change Font in Toolbar,
         /// Default value null
@@ -115,6 +115,11 @@ namespace FastReport.Web
                 }
             }
         }
+
+        internal string DropDownListPosition => Position == Positions.Bottom ? "bottom: 100%" : "";
+
+        internal string DropDownListBorder => Position == Positions.Bottom ? "12px 12px 0px 0px" : "0px 0px 12px 12px";
+
         internal int ToolbarNarrow
         {
             get
@@ -152,9 +157,9 @@ namespace FastReport.Web
                 {
                     case Positions.Left:
                     case Positions.Right:
-                        return (Height * 11f).ToString("0.##", CultureInfo.InvariantCulture);
+                        return "fit-content";
                     default:
-                        return Height.ToString();
+                        return Height.ToString() + "px";
                 }
             }
         }
@@ -197,7 +202,7 @@ namespace FastReport.Web
                 {
                     case Positions.Left:
                     case Positions.Right:
-                        return Height+10;
+                        return Height + 10;
                     default:
                         return 0;
                 }
@@ -241,6 +246,8 @@ namespace FastReport.Web
                         return "center";
                     case ContentPositions.Right:
                         return "flex-end";
+                    case ContentPositions.Left:
+                        return "flex-start";
                     default:
                         return "flex-start";
                 }
@@ -317,6 +324,8 @@ namespace FastReport.Web
             {
                 switch (IconTransperency)
                 {
+                    case IconTransparencyEnum.None:
+                        return "1";
                     case IconTransparencyEnum.Low:
                         return "0.9";
                     case IconTransparencyEnum.Medium:
@@ -336,7 +345,7 @@ namespace FastReport.Web
     }
     public enum IconTransparencyEnum
     {
-        Low, Medium, High, Default
+        Low, Medium, High, Default, None
     }
     public enum Positions
     {

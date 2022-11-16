@@ -1,4 +1,4 @@
-﻿using FastReport.Data.JsonConnection.JsonParser;
+﻿using FastReport.Utils.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,7 +13,7 @@ namespace FastReport
     {
         #region Private Fields
 
-        private static NumberFormatInfo format;
+        private static readonly NumberFormatInfo format;
 
         #endregion Private Fields
 
@@ -168,15 +168,15 @@ namespace FastReport
 
         internal void WriteValue(StringBuilder sb, object item, int indent)
         {
-            if (item is JsonBase)
+            if (item is JsonBase jsonBase)
             {
                 if (indent > 0)
                 {
-                    (item as JsonBase).WriteTo(sb, indent + 2);
+                    jsonBase.WriteTo(sb, indent + 2);
                 }
                 else
                 {
-                    (item as JsonBase).WriteTo(sb, 0);
+                    jsonBase.WriteTo(sb, 0);
                 }
             }
             else if (item is bool)
@@ -190,7 +190,7 @@ namespace FastReport
                     sb.Append("false");
                 }
             }
-            else if (IsNumber(sb, item))
+            else if (IsNumber(item))
             {
                 sb.Append(((IConvertible)item).ToString(format));
             }
@@ -556,7 +556,7 @@ namespace FastReport
             return sb.ToString();
         }
 
-        private bool IsNumber(StringBuilder sb, object item)
+        private static bool IsNumber(object item)
         {
             return item is float
                 || item is double

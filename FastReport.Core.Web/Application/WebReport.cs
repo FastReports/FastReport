@@ -198,8 +198,18 @@ namespace FastReport.Web
         private string ReportResourceString { get; set; } = null;
 
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
-        
-#endregion
+
+        internal string InlineStyle
+        {
+            get
+            {
+                if (Inline)
+                    return "inline-flex";
+                return "flex";
+            }
+        }
+
+        #endregion
 
         public WebReport()
         {

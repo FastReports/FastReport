@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FastReport.Data.JsonConnection.JsonParser
+namespace FastReport.Utils.Json
 {
     internal class JsonTextReader : IDisposable
     {
@@ -11,7 +11,7 @@ namespace FastReport.Data.JsonConnection.JsonParser
         private string jsonText;
         private Dictionary<string, string> pool = new Dictionary<string, string>();
         private int position;
-        private bool stringOptimization;
+        private readonly bool stringOptimization;
 
         #endregion Private Fields
 
@@ -59,7 +59,7 @@ namespace FastReport.Data.JsonConnection.JsonParser
 
         public JsonTextReader(string jsonText)
         {
-            stringOptimization = Utils.Config.IsStringOptimization;
+            stringOptimization = Config.IsStringOptimization;
 
             this.jsonText = jsonText;
             position = 0;
@@ -103,14 +103,7 @@ namespace FastReport.Data.JsonConnection.JsonParser
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Unexpected end of input json, wait for");
-            if (args.Length > 0)
-            {
-                sb.Append(" ").Append(args[0]);
-            }
-            for (int i = 1; i < args.Length; i++)
-            {
-                sb.Append(", ").Append(args[i]);
-            }
+            ArgsToStringBuilder(sb, args);
             return new FormatException(sb.ToString());
         }
 
@@ -123,14 +116,7 @@ namespace FastReport.Data.JsonConnection.JsonParser
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Json text at position ").Append(Position).Append(", unexpected symbol ").Append(Char).Append(", wait for");
-            if (args.Length > 0)
-            {
-                sb.Append(" ").Append(args[0]);
-            }
-            for (int i = 1; i < args.Length; i++)
-            {
-                sb.Append(", ").Append(args[i]);
-            }
+            ArgsToStringBuilder(sb, args);
             return new FormatException(sb.ToString());
         }
 
@@ -141,6 +127,18 @@ namespace FastReport.Data.JsonConnection.JsonParser
         internal string Substring(int startPos, int len)
         {
             return JsonText.Substring(startPos, len);
+        }
+
+        private static void ArgsToStringBuilder(StringBuilder sb, char[] args)
+        {
+            if (args.Length > 0)
+            {
+                sb.Append(' ').Append(args[0]);
+            }
+            for (int i = 1; i < args.Length; i++)
+            {
+                sb.Append(", ").Append(args[i]);
+            }
         }
 
         #endregion Internal Methods

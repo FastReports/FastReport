@@ -13,8 +13,8 @@ namespace FastReport.Web
     {
         private const string template_pscustom =
 @"      PageSelector = '&PageRange=PageNumbers&PageNumbers='+ PageSelectorInput[0].value;
-        OnFirst[0].classList.remove('active');
-        OnAll[0].classList.remove('active');";
+        OnFirst[0].classList.remove('activeButton');
+        OnAll[0].classList.remove('activeButton');";
 
         private const string template_modalcontainerscript =
 @"    var but = document.querySelectorAll('.fr-webreport-settings-btn');
@@ -56,7 +56,9 @@ namespace FastReport.Web
         activebtn.forEach((el) => {
             el.addEventListener('click', (e) => {
                 {
-                    el.classList.toggle('active');
+                    if(el.getAttribute('name') != 'OnRgbClick' && el.getAttribute('name') != 'OnCmykClick'){{
+                        el.classList.toggle('activeButton');
+                    }}
                 }
             });
         });
@@ -71,16 +73,16 @@ namespace FastReport.Web
                 PageSelectorInput[i].value = CurrentPage.value;
             }
             for (var i = 0; i < OnAll.length; i++) {
-                OnAll[i].classList.remove('active');
+                OnAll[i].classList.remove('activeButton');
             }
             PageSelectorInput[0].value = CurrentPage.value;
-            OnAll[0].classList.remove('active');
+            OnAll[0].classList.remove('activeButton');
             PageSelector = '&PageRange=PageNumbers&PageNumbers=' + CurrentPage.value;
         }
 
         function OnAllClick() {
             PageSelectorInput[0].value = '1 - ' + AllPages.value;
-            OnFirst[0].classList.remove('active');
+            OnFirst[0].classList.remove('activeButton');
             PageSelector = '&PageRange=All';
         }
         var PSFirst = '';

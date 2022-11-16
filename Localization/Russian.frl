@@ -430,11 +430,16 @@
       <File Text="Файл">
         <New Text="Новый..."/>
         <Open Text="Открыть..."/>
+        <OpenLocally Text="Открыть на этом ПК"/>
+        <OpenViaCloud Text="Открыть через Cloud"/>
         <Close Text="Закрыть"/>
+        <SaveMenu Text="Сохранить как..."/>
         <Save Text="Сохранить"/>
         <SaveAs Text="Сохранить как..."/>
+		<SaveLocal Text="Сохранить на этом ПК"/>
         <SaveWithRandomData Text="Сохранить со случайными данными..."/>
         <SaveAll Text="Сохранить все"/>
+        <SaveToCloud Text="Сохранить на Cloud"/>
         <PageSetup Text="Параметры страницы..."/>
         <PrinterSetup Text="Параметры принтера..."/>
         <Preview Text="Предварительный просмотр..."/>
@@ -489,6 +494,43 @@
         <Account Text="Учётная запись"/>
       </Help>
     </Menu>
+    <ListViewForm>
+        <CaptionSaveMode Text="Сохранить отчет на Cloud"/>
+        <CaptionOpenMode Text="Выберите отчет для загрузки"/>
+        <Select Text="Выбрать"/>
+        <Save Text="Сохранить"/>
+        <Cancel Text="Отмена"/>
+        <Search Text="Искать..."/>
+        <FileNameHeader Text="Имя"/>
+        <DateModHeader Text="Время изменения"/>
+        <FileSizeHeader Text="Размер"/>
+        <FileTypeHeader Text="Тип"/>
+        <CreateFolder Text="Создать папку"/>
+        <CopyPath Text="Скопировать путь"/>
+        <Rename Text="Переименовать"/>
+        <Delete Text="Удалить"/>
+        <Open Text="Открыть"/>
+        <AuthError Text="Ошибка при авторизации"/>
+        <AuthErrorCaption Text="Ошибка авторизации"/>
+        <OnLoadRename Text="Введите новое имя"/>
+        <OnLoadFolderName Text="Введите имя папки"/>
+        <OnLoadName Text="Введите имя"/>
+        <NonExistingSelectedReport Text="Отчет с таким именем не найден!"/>
+        <EnterFolderName>
+            <Confirm Text="Подтвердить"/>
+            <Cancel Text="Отмена"/>
+            <EmptyName Text="Название не может быть пустым!"/>
+            <ForbiddenName Text="Название не может содержать следующие символы:"/>
+        </EnterFolderName>
+		<ErrorMessageBox>
+            <ErrorInApiOrServer Text="Не удается подключиться к выбранному серверу. Возможно, Вы указали некорректный сервер или API ключ"/>
+            <ErrorInSubscriptions Text="На Вашем аккаунте отсутствуют подписки."/>
+            <CaptionSubscriptions Text="Ошибка поиска подписок"/>
+            <Caption Text="Ошибка подключения к серверу"/>
+            <InvalidPath Text="Невозможно перейти по '{0}'. Уточните путь и попробуйте снова"/>
+            <CaptionNoPath Text="Некорректный путь"/>
+		</ErrorMessageBox>
+    </ListViewForm>
     <ToolWindow>
       <AutoHide Text="Скрывать автоматически"/>
       <Close Text="Закрыть"/>
@@ -704,7 +746,10 @@
     <PrintText Text="Печать"/>
     <Print Text="Печать (Ctrl+P)"/>
     <OpenText Text="Открыть"/>
-    <Open Text="Открыть файл"/>
+    <OpenTip Text="Открыть файл"/>
+    <Open Text="Открыть файл "/>
+	<OpenLocal Text="Открыть файл на этом ПК"/>
+    <OpenViaCloud Text="Открыть файл через Cloud"/>
     <Save Text="Сохранить файл"/>
     <SaveText Text="Сохранить"/>
     <SaveToCloud Text="Сохранить в Облако"/>

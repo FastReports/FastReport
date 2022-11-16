@@ -23,33 +23,39 @@ namespace FastReport.Web
                         <div class=""fr-webreport-popup-content-title"">
                             {localizationXml.Title}
                         </div>
-                        <label>{localizationPageSelector.PageRange}</label>
+                        {(Report.PreparedPages.Count != 1 ? $@"<label class=""fr-webreport-popup-content-export-parameters-page-range-title"">{localizationPageSelector.PageRange}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
-                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"" name=""OnAllClick"" onclick=""OnAllClick()"">
+                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"" name=""OnAllClick"" onclick=""OnAllClick()"">
                                 {localizationPageSelector.All}
                             </button>
+                        </div>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
                             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                                 {localizationPageSelector.First}
                             </button>
-                            <input name =""PageSelectorInput""  onchange=""OnInputClickXML()""type=""text""class=""fr-webreport-popup-content-export-parameters-input"" pattern=""[0-9,-\s]"" placeholder=""2, 5-132""value="""" >
-                       </div>
+                            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+                        </div>" : "")}
                     </div>
                     <div class=""fr-webreport-popup-content-export-parameters"">  
                         <label>{localizationXml.Options}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
-                            <button id=""XmlWysiwyg"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
-                                Wysiwyg
-                            </button>
-                            <button id=""XmlPageBreaks"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
-                                {localizationXml.PageBreaks}
-                            </button>
-                            <button id=""XmlDataOnly"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
-                                {localizationXml.DataOnly}
-                            </button>
+                            <div class=""fr-webreport-popup-content-export-parameters-col"">
+                                <button id=""XmlWysiwyg"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
+                                    Wysiwyg
+                                </button>
+                                <button id=""XmlDataOnly"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
+                                    {localizationXml.DataOnly}
+                                </button>
+                            </div>
+                            <div class=""fr-webreport-popup-content-export-parameters-col"">
+                                <button id=""XmlPageBreaks"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
+                                    {localizationXml.PageBreaks}
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class=""fr-webreport-popup-content-buttons"">
-                        <button class=""fr-webreport-popup-content-btn-submit"">{localizationPageSelector.LocalizedCancel}</button>
+                        <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
                         <button class=""fr-webreport-popup-content-btn-submit"" onclick=""XMLExport()"">OK</button>
                     </div>
                 </div>
@@ -65,17 +71,17 @@ namespace FastReport.Web
      {template_pscustom}
     }}
     function XMLExport() {{
-        if (document.getElementById('XmlWysiwyg').classList.contains('active')) {{
+        if (document.getElementById('XmlWysiwyg').classList.contains('activeButton')) {{
             XmlWysiwyg = new Boolean(true);
         }}
         else {{ XmlWysiwyg = false; }};
 
-        if (document.getElementById('XmlPageBreaks').classList.contains('active')) {{
+        if (document.getElementById('XmlPageBreaks').classList.contains('activeButton')) {{
             XmlPageBreaks = new Boolean(true);
         }}
         else {{ XmlPageBreaks = false; }};
 
-        if (document.getElementById('XmlDataOnly').classList.contains('active')) {{
+        if (document.getElementById('XmlDataOnly').classList.contains('activeButton')) {{
             XmlDataOnly = new Boolean(true);
         }}
         else {{ XmlDataOnly = false; }};
