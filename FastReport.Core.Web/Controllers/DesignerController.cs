@@ -1,5 +1,7 @@
-﻿using FastReport.Data;
+﻿using FastReport;
+using FastReport.Data;
 using FastReport.Utils;
+using FastReport.Utils.Json;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -126,17 +129,34 @@ namespace FastReport.Web.Controllers
                 {
                     result = new StreamReader(stream).ReadToEnd();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return new NotFoundResult();
                 };
-
+              
                 return new ContentResult()
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     ContentType = "application/xml",
                     Content = result
                 };
+            });
+
+            RegisterHandler("/designer.getComponentProperties", () =>
+            {
+                var componentName = Request.Query["name"].ToString();
+                string responseJson = GetComponentProperties(componentName);
+
+                if (responseJson.IsNullOrEmpty())
+                    return new NotFoundResult();
+                else
+                    return new ContentResult()
+                    {
+                        StatusCode = (int)HttpStatusCode.OK,
+                        ContentType = "application/json",
+                        Content = responseJson
+                    };
+
             });
         }
 
@@ -452,6 +472,70 @@ namespace FastReport.Web.Controllers
             }
         }
 
-        #endregion
+        string GetComponentProperties(string componentName)
+        {
+            if (ComponentInformationCache.ComponentPropertiesCache.TryGetValue(componentName, out string componentPropertiesJson))
+                return componentPropertiesJson;
+
+            var prefixes = new string[]
+            {
+                "", "SVG.", "MSChart.", "Dialog.", "AdvMatrix.", "Table.", "Barcode.", "Map.", "CrossView.", "Matrix.",
+                "Gauge.Simple.", "Gauge.Radial.", "Gauge.Linear.", "Gauge.Simple.Progress."
+            };
+            Type type = null;
+
+            foreach (var prefix in prefixes)
+            {
+                type = ComponentInformationCache.Assembly.GetType("FastReport." + prefix + componentName);
+                if (type != null)
+                    break;
+            }
+
+            if (type is null || !type.IsPublic)
+                return null;
+
+            var jsonObject = new JsonObject();
+
+            // Doesn't return collections because they don't have a setter (Example - TextObject.Highlight)
+            foreach (var property in type.GetProperties())
+            {
+                if (!property.CanWrite) continue;
+
+                var isVisible = true;
+                var defaultValue = "null";
+                var category = "Misc";
+
+                foreach (var attribute in property.GetCustomAttributes())
+                    switch (attribute)
+                    {
+                        case CategoryAttribute categoryAttribute:
+                            category = categoryAttribute.Category;
+                            break;
+                        case DefaultValueAttribute defaultValueAttribute:
+                            defaultValue = defaultValueAttribute.Value.ToString();
+                            break;
+                        case BrowsableAttribute browsableAttribute:
+                            isVisible = browsableAttribute.Browsable;
+                            break;
+                    }
+
+                if (isVisible)
+                    jsonObject[$@"{category}:{property.Name}"] = defaultValue;
+            }
+
+            componentPropertiesJson = jsonObject.ToString();
+
+            ComponentInformationCache.ComponentPropertiesCache.Add(componentName, componentPropertiesJson);
+
+            return componentPropertiesJson;
+        }
     }
+}
+
+#endregion
+
+static class ComponentInformationCache
+{
+    internal static readonly Dictionary<string, string> ComponentPropertiesCache = new Dictionary<string, string>();
+    internal static readonly Assembly Assembly = typeof(Report).Assembly;
 }

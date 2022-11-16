@@ -12,9 +12,10 @@ namespace FastReport.Web
     {(Width.IsNullOrWhiteSpace() ? "" : $"width: {Width};")}
     {(Height.IsNullOrWhiteSpace() ? "" : $"height: {Height};")}
     background-color: white;
-    display: {(Inline ? "inline-" : "")}flex;
+    display: {InlineStyle};
     flex-direction: {Toolbar.Vertical};
     position: relative;
+    align-items: {Toolbar.Content};
 }}
 
 .{template_FR}-container * {{
@@ -60,18 +61,18 @@ namespace FastReport.Web
     flex-shrink: 1;
     font:{Toolbar.UserFontSettings};
     background-color: {ColorTranslator.ToHtml(Toolbar.Color)};
-    {(Tabs.Count > 1 ? "" : "box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);")}
+    /* {(Tabs.Count > 1 ? "" : "box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);")} */
     display: flex;
     flex-direction: {Toolbar.RowOrColumn};
     /* flex-wrap: wrap; */
-    width: auto;
-    height: {Toolbar.VerticalToolbarHeight}px;
+    width: fit-content;
+    height: {Toolbar.VerticalToolbarHeight};
     order:{Toolbar.TopOrBottom} ;
     position: relative;
     align-items: center;
     justify-content:{Toolbar.Content};
     z-index: 2;
-    border-radius:{Toolbar.ToolbarRoundness}px;
+    border-radius: {Toolbar.ToolbarRoundness}px;
     /*min-width: intrinsic;
     min-width: -moz-max-content;
     min-width: -webkit-max-content;
@@ -90,18 +91,21 @@ namespace FastReport.Web
 }}
 
 .{template_FR}-toolbar-item > img {{
-    height: calc({Toolbar.Height}px * 0.7);
+    height: calc({Toolbar.Height}px * 0.5);
     padding-top: calc({Toolbar.Height}px * 0.15);
     padding-bottom: calc({Toolbar.Height}px * 0.15);
     padding-left: calc({Toolbar.Height}px * 0.25);
     padding-right: calc({Toolbar.Height}px * 0.25);
     opacity: {Toolbar.TransparencyIcon};
     display: block;
-    filter:invert({Toolbar.ColorIcon})
+    filter:invert({Toolbar.ColorIcon});
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
 }}
 
 .{template_FR}-toolbar-item:hover > img {{
-    opacity: 1;
+    opacity: 0.5;
 }}
 
 .{template_FR}-toolbar-notbutton:hover {{
@@ -109,7 +113,7 @@ namespace FastReport.Web
 }}
 
 .{template_FR}-toolbar-notbutton:hover > img {{
-    opacity: 0.5;
+    opacity: 1;
 }}
 
 /**********************
@@ -120,11 +124,12 @@ namespace FastReport.Web
     display: none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     background-color: {ColorTranslator.ToHtml(Toolbar.DropDownMenuColor)};
-    min-width: 120px;
+    min-width: 50px;
     z-index: 2;
     position: absolute;
     {Toolbar.DropDownMenuPosition}
     white-space: nowrap;
+    border-radius: {Toolbar.DropDownListBorder};
 }}
 
 .{template_FR}-toolbar-item:hover > .{template_FR}-toolbar-dropdown-content {{
@@ -145,15 +150,13 @@ namespace FastReport.Web
 
 .{template_FR}-toolbar-dropdown-content > a:hover {{
     background-color: {ColorTranslator.ToHtml(Toolbar.DropDownMenuColor)};
-    opacity:0.5;
+    opacity: 0.5;
     cursor: pointer;
+    border-radius: 0px 0px 10px 10px;
 }}
 
 .{template_FR}-zoom-selected {{
-    width: 14px;
-    opacity: 0.6;
-    display: inline-block;
-    font-size: 14px;
+    font-weight: bold;
 }}
 .modalcontainer-overlay {{
     position: absolute;
@@ -192,14 +195,15 @@ namespace FastReport.Web
     display: flex;
     width: fit-content;
     height: fit-content;
-    width: auto;
+    witdh: auto;
+    min-width: 348px;
     height: auto;
     margin-top: 4rem;
     margin-left: 4rem;
-    padding: 0px 10px 50px 10px;
+    padding: 0px 9px 50px 9px;
     z-index: 4;
-    border-radius: 10px;
-    background-color: white;
+    border-radius: 30px 30px 12px 12px;
+    background-color: #EFEFEF;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: center;
@@ -246,21 +250,25 @@ namespace FastReport.Web
 .fr-webreport-popup-content-title {{
     display: flex;
     width: 100%;
-    background-color: {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
-    color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
-    height: 2rem;
-    margin: 0;
-    border: 1px solid {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
-    border-radius: 1px 1px 0px 0px;
+    background-color: #35363A;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0rem -0.1rem 0rem 0.6rem #35363A;
+    margin-top: 10px; 
     margin-bottom: 10px;
-    box-shadow: -0.05rem -0.6rem 0rem 0.6rem {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
     align-items: center;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: center;
     font: {Toolbar.Exports.UserFontSettingsStyle} 16px {Toolbar.Exports.UserFontSettingsFamily};
+    border-radius: 12px 12px 0px 0px;
 }}
+
+.fr-webreport-popup-content-export-parameters-page-range-title{{
+    margin-top: 25px;
+}}
+
 .fr-webreport-popup-content-title input {{
     background-color: white;
     border: 3px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
@@ -268,19 +276,24 @@ namespace FastReport.Web
     max-height: 9.8px;
     border-radius: 3px;
 }}
+
+button{{
+    text-align: left;
+}}
+
 .fr-webreport-popup-content-export-parameters {{
     display: flex;
     width: 100%;
     -ms-flex-wrap: wrap;
     flex-direction: column;
-    border-bottom: 2px solid #00000024;
     border-radius: 3px;
     padding-bottom: 1rem;
     align-content: flex-start;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
-    font: {Toolbar.Exports.UserFontSettingsStyle} 12px {Toolbar.Exports.UserFontSettingsFamily};
+    font: {Toolbar.Exports.UserFontSettingsStyle} 14px {Toolbar.Exports.UserFontSettingsFamily};
+    font-weight: bold;
 }}
 
 .fr-webreport-popup-content-export-parameters-col {{
@@ -294,51 +307,59 @@ namespace FastReport.Web
     width:auto;
     outline: none;
     max-width: 170px;
-    min-width: 40px;
-    padding: 0px 5px;
-    appearance: none;
-    margin: 0px 5px 5px 5px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 2px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    min-width: 20px;
+    border: none;
+    margin: 5px 5px 5px 5px;
     border-radius: 3px;
-    height: 1.7rem;
-    font: {Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
+    height: 25px;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 12px {Toolbar.Exports.UserFontSettingsFamily};
+    font-size: 11px;
+    overflow: hidden;
+    background: #ffffff url(/_fr/resources.getResource?resourceName=select-arrow.svg&contentType=image%2Fsvg%2Bxml) no-repeat;
+    background-position: calc(100% - 10px) center;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    padding:0 30px 0 10px !important;
+    -webkit-padding-end: 30px !important;
+    -webkit-padding-start: 10px !important;
 }}
 .fr-webreport-popup-content-export-parameters-input {{
     margin-left: 0.3rem;
     margin-bottom: 0.3rem;
     padding: 6px;
-    max-width: 160px;
+    max-width: 70px;
+    height: 8px;
     outline: none;
     border: none;
     margin-left: 5px;
     margin-right: 5px;
     min-width: inherit;
-    border-radius: 3px;
-    border: 2px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
-    font:  {Toolbar.Exports.UserFontSettingsStyle} 10px {Toolbar.Exports.UserFontSettingsFamily};
+    border-radius: 4px;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 10px {Toolbar.Exports.UserFontSettingsFamily};
 }}
 .fr-webreport-popup-content-export-parameters-row {{
     display: flex;
     padding-top: 5px;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: flex-start;
 }}
 .fr-webreport-popup-content-export-parameters-slider {{
     display: flex;
     margin: 0rem 0rem 0rem 0.35rem;
     background-color: transparent;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     align-content: center;
     flex-direction: row;
 }}
+
 .fr-webreport-popup-content-export-parameters-slider span {{
     color: black;
     min-width: 128px;
-    font:{Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
+    font: {Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
     font-weight: normal;
     white-space: nowrap;
 }}
@@ -369,6 +390,7 @@ input[type=range]::-webkit-slider-thumb {{
     box-shadow: -100vw 0vw 0vw 100vw {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
     margin-top: 0px;
 }}
+
 label{{
      margin: 5px 0px;
 }}
@@ -379,29 +401,28 @@ label{{
     max-height: 11px;
 }}
 .fr-webreport-popup-content-export-parameters-button {{
-    margin-left: 0.3rem;
-    margin-bottom: 0.3rem;
-    padding: 6px;
-    outline: none;
-    background-color: #ffffff00; 
+    padding: 5px;
+    outline: none; 
     border: none;
     margin-left: 5px;
     margin-right: 5px;
-    min-width: inherit;
+    min-width: inherit; 
     font: {Toolbar.Exports.UserFontSettingsStyle} 11px {Toolbar.Exports.UserFontSettingsFamily};
-    color:  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
-    border-radius: 3px;
-    border: 2px solid  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    color: black;
+    background: url(/_fr/resources.getResource?resourceName=button.svg&contentType=image%2Fsvg%2Bxml) no-repeat;
+    background-position: 0px center;
+    padding-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
 }}
 
 .fr-webreport-popup-content-buttons {{
     display: flex;
-    padding-top: 1rem;
-    margin-bottom: -1.9rem;
+    margin-bottom: -2.3rem;
     width: 100%;
     flex-wrap: nowrap;
     align-content: center;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
 }}
@@ -409,26 +430,43 @@ label{{
 .fr-webreport-popup-content-btn-submit {{
     outline: none;
     border: none;
-    background-color:  {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+    background-color: #DD4433;
     border-radius: 3px;
-    width: 100px;
     padding: 3px;
     font: {Toolbar.Exports.UserFontSettingsStyle} 14px {Toolbar.Exports.UserFontSettingsFamily};
     color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
+    min-width: 70px;
+    width: fit-content;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
 }}
+
+.fr-webreport-popup-content-btn-cancel{{
+    padding: 3px;
+    background-color: #D9D9D9;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 14px {Toolbar.Exports.UserFontSettingsFamily};
+    min-width: 70px;
+    width: fit-content;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: black;
+    text-align: center;
+}}
+
 .fr-webreport-popup-content-btn-submit:hover {{
     transform: scale(1.015);
 }}
-.{template_FR}-container .active:hover {{
-    transform: scale(1.015);
+
+.{template_FR}-container .activeButton {{
+    background: url(/_fr/resources.getResource?resourceName=button-active.svg&contentType=image%2Fsvg%2Bxml) no-repeat;
+    background-position: 0px center;
+    vertical-align: middle;
 }}
-.{template_FR}-container .active {{
-    background-color: {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
-    color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
-}}
-.fr-webreport-popup-content-export-parameters-button:hover {{
-    transform:scale(1.015);
-}}
+
+
 .fr-webreport-settings-btn {{
     background-color: transparent;
     color: transparent;
@@ -446,7 +484,7 @@ label{{
     align-content: space-around;
     justify-content: space-between;
     filter:alpha(opacity=50);
-    opacity: 0.5;
+    opacity: 1;
 }}
 .fr-webreport-settings-btn:hover{{
     background-color: transparent;
@@ -466,7 +504,8 @@ label{{
     justify-content: space-between;
     transform: scale(1.1);
     filter:alpha(opacity=0);
-    opacity: 0.8;
+    opacity: 0.5;
+    cursor: pointer;
 }}
 .fr-webreport-settings-btn::-moz-focus-inner {{
     background-color: transparent;
@@ -494,32 +533,40 @@ label{{
     transform: rotate({Toolbar.ToolbarNarrow}deg);
     padding-left: 0px;
     padding-right: 0px;
+    height: calc({Toolbar.Height}px * 0.35);
+    padding-top: 9px;
+    margin: 5px 10px 0px;
 }}
+
 .{template_FR}-toolbar-slash{{
-    height: calc({Toolbar.Height}px * 0.68);
  }}
+
 .{template_FR}-toolbar-slash > img {{
-    height: calc({Toolbar.Height}px * 0.44);
-    transform: rotate({Toolbar.ToolbarSlash}deg);
-    padding-left: 3px;
-    padding-right: 3px;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: calc({Toolbar.Height}px * 0.35);
+    padding-top: 9px;
+    margin: 5px 0px 0px;
+    padding-right: 5px;
+    padding-left: 5px;
 }}
 
 .{template_FR}-toolbar-item > input {{
-    font-family: Arial,sans-serif;
+    font: {Toolbar.Exports.UserFontSettingsStyle} 12px {Toolbar.Exports.UserFontSettingsFamily};
     font-size: calc({Toolbar.Height}px * 0.35);
     text-align: center;
     border: 0;
     background: #fbfbfb;
     border-radius:{Toolbar.ToolbarRoundness}px;
     height: calc({Toolbar.Height}px * 0.68);
-    width: 2.5em;
+    width: 3.5em;
     margin-top: calc({Toolbar.Height}px * 0.17);
     margin-bottom: calc({Toolbar.Height}px * 0.15);
     margin-left: calc({Toolbar.Height}px * 0.1);
     margin-right: calc({Toolbar.Height}px * 0.1);
     padding: 0;
     display: block;
+    border-radius: 5px;
 }}
 
 .{template_FR}-toolbar-item > input:hover:not([readonly]) {{
@@ -595,9 +642,11 @@ label{{
     max-width: {ReportMaxWidth}px;
     box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);
     position: relative;
+    border-radius: 9px;
     z-index: 1;
     {Toolbar.TabsPositionSettings}
 }}
+
 
 .{template_FR}-tabs .{template_FR}-tab {{
     float: left;
@@ -610,6 +659,7 @@ label{{
     margin-top: 2px;
     margin-right: 2px;
     height: 24px;
+    border-radius: 9px;
 }}
 
 .{template_FR}-tabs .{template_FR}-tab-title {{
@@ -625,6 +675,10 @@ label{{
     float: left;
     margin-top: 6px;
     margin-right: 6px;
+}}
+
+.{template_FR}-tabs .{template_FR}-tab-close img{{
+    border-radius: 10px;
 }}
 
 .{template_FR}-tabs .{template_FR}-tab:hover {{

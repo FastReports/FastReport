@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FastReport.Data.JsonConnection.JsonParser
+namespace FastReport.Utils.Json
 {
     internal class JsonSchema
     {

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FastReport.Data.JsonConnection.JsonParser
+namespace FastReport.Utils.Json
 {
-    internal class JsonObject : JsonBase, IEnumerable<KeyValuePair<string, object>>
+    public class JsonObject : JsonBase, IEnumerable<KeyValuePair<string, object>>
     {
         #region Private Fields
 
-        private Dictionary<string, object> dict = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> dict = new Dictionary<string, object>();
 
         #endregion Private Fields
 
@@ -83,12 +83,12 @@ namespace FastReport.Data.JsonConnection.JsonParser
 
         public override void WriteTo(StringBuilder sb, int indent)
         {
-            sb.Append("{");
+            sb.Append('{');
             bool notFirst = false;
             foreach (KeyValuePair<string, object> kv in dict)
             {
                 if (notFirst)
-                    sb.Append(",");
+                    sb.Append(',');
                 if (indent > 0)
                 {
                     sb.AppendLine();
@@ -100,7 +100,7 @@ namespace FastReport.Data.JsonConnection.JsonParser
                 if (indent > 0)
                     sb.Append(": ");
                 else
-                    sb.Append(":");
+                    sb.Append(':');
                 WriteValue(sb, kv.Value, indent);
                 notFirst = true;
             }
@@ -110,7 +110,7 @@ namespace FastReport.Data.JsonConnection.JsonParser
                 for (int i = 2; i < indent; i++)
                     sb.Append(' ');
             }
-            sb.Append("}");
+            sb.Append('}');
         }
 
         #endregion Public Methods

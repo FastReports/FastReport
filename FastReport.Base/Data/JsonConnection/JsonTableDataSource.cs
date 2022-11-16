@@ -1,5 +1,5 @@
-﻿using FastReport.Data.JsonConnection.JsonParser;
-using FastReport.Utils;
+﻿using FastReport.Utils;
+using FastReport.Utils.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;

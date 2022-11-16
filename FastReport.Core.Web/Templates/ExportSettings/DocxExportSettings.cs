@@ -25,28 +25,30 @@ namespace FastReport.Web
                             {localizationDocx.Title}
                         </div>
 
-                        <label>{localizationPageSelector.PageRange}</label>
+                        {(Report.PreparedPages.Count != 1 ? $@"<label class=""fr-webreport-popup-content-export-parameters-page-range-title"">{localizationPageSelector.PageRange}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
-                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"" name=""OnAllClick"" onclick=""OnAllClick()"">
+                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"" name=""OnAllClick"" onclick=""OnAllClick()"">
                                 {localizationPageSelector.All}
                             </button>
+                        </div>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
                             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                                 {localizationPageSelector.First}
                             </button>
-                            <input name =""PageSelectorInput""  onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2, 5-132""value="""" >
-                        </div>
+                            <input name =""PageSelectorInput"" style=""margin-top: 2px;""  onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+                        </div>" : "")}
                     </div>
 
                     <div class=""fr-webreport-popup-content-export-parameters"">
                         <label>{localizationDocx.Options}</label>
                         <div class=""fr-webreport-popup-content-export-parameters-row"">
                             <div class=""fr-webreport-popup-content-export-parameters-col"">
-                                <button id=""DocxWysiwyg"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"">
+                                <button id=""DocxWysiwyg"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
                                     Wysiwyg
                                 </button>
                             </div>
                             <div class=""fr-webreport-popup-content-export-parameters-col"">
-                                <button id=""DocxPrintOptimized"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"">
+                                <button id=""DocxPrintOptimized"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
                                     {localizationDocx.PrintOptimized}
                                 </button>
                             </div>
@@ -56,16 +58,16 @@ namespace FastReport.Web
                                     {localizationDocx.DoNotExpandShiftReturn}
                             </button>
                         </div>
-                        <div class=""fr-webreport-popup-content-export-parameters-col"">
-                            <div class=""fr-webreport-popup-content-export-parameters-row"">
-                                <span style=""margin-left: 0.5rem;align-self: center;font-size: 12px;margin-bottom: 0.5rem;"">{localizationDocx.RowHeightIs}</span>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
+                            <div class=""fr-webreport-popup-content-export-parameters-col"">
+                                <span style=""margin-left: 0.5rem;font-size: 12px; font-weight: normal; margin-top: 11px;"">{localizationDocx.RowHeightIs}</span>
+                                <span style=""margin-left: 0.5rem;font-size: 12px; font-weight: normal; margin-top: 18px;"">{localizationDocx.Options}</span>
+                            </div>       
+                            <div class=""fr-webreport-popup-content-export-parameters-col"">
                                 <select class=""custom-select"" onchange=""DocxRowHeightsFunc(this)"">
                                     <option value=""Exactly"" selected>{localizationDocx.Exactly}</option>
                                     <option value=""Minimum"">{localizationDocx.Minimum}</option>
                                 </select>
-                            </div>
-                            <div class=""fr-webreport-popup-content-export-parameters-row"">
-                                <span style=""margin-left: 0.5rem;align-self: center;font-size: 12px;margin-bottom: 0.5rem;"">{localizationDocx.Options}</span>
                                 <select class=""custom-select""  onchange=""DocxOnRenderModeFunc(this)"">
                                     <option value=""table"">{localizationDocx.Table}</option>
                                     <option value=""layers"" selected>{localizationDocx.Layers}</option>
@@ -75,7 +77,7 @@ namespace FastReport.Web
                         </div>
                     </div>
                     <div class=""fr-webreport-popup-content-buttons"">
-                        <button class=""fr-webreport-popup-content-btn-submit"">{localizationPageSelector.LocalizedCancel}</button>
+                        <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
                         <button class=""fr-webreport-popup-content-btn-submit"" onclick=""DOCXExport()"">OK</button>
                     </div>
                 </div>
@@ -103,15 +105,15 @@ namespace FastReport.Web
         DocxOnRenderMode = '&PrintFit=' + DocxOnRenderModeChange.value;
     }}
     function DOCXExport() {{
-        if (document.getElementById('DocxPrintOptimized').classList.contains('active')) {{
+        if (document.getElementById('DocxPrintOptimized').classList.contains('activeButton')) {{
             DocxPrintOptimized = new Boolean(true);
         }}
         else {{ DocxPrintOptimized = false; }};
-        if (document.getElementById('DocxDoNotExpandShiftReturn').classList.contains('active')) {{
+        if (document.getElementById('DocxDoNotExpandShiftReturn').classList.contains('activeButton')) {{
             DocxDoNotExpandShiftReturn = new Boolean(true);
         }}
         else {{ DocxDoNotExpandShiftReturn = false; }};
-        if (document.getElementById('DocxWysiwyg').classList.contains('active')) {{
+        if (document.getElementById('DocxWysiwyg').classList.contains('activeButton')) {{
             DocxWysiwyg = new Boolean(true);
         }}
         else {{ DocxWysiwyg = false; }};

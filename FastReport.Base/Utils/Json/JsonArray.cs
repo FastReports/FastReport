@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FastReport.Data.JsonConnection.JsonParser
+namespace FastReport.Utils.Json
 {
     internal class JsonArray : JsonBase, IEnumerable<object>
     {
         #region Private Fields
 
-        private List<object> array = new List<object>();
+        private readonly List<object> array = new List<object>();
 
         #endregion Private Fields
 
@@ -80,13 +80,13 @@ namespace FastReport.Data.JsonConnection.JsonParser
 
         public override void WriteTo(StringBuilder sb, int indent)
         {
-            sb.Append("[");
+            sb.Append('[');
 
             bool notFirst = false;
             foreach (object item in array)
             {
                 if (notFirst)
-                    sb.Append(",");
+                    sb.Append(',');
                 if (indent > 0)
                 {
                     sb.AppendLine();
@@ -102,7 +102,7 @@ namespace FastReport.Data.JsonConnection.JsonParser
                 for (int i = 2; i < indent; i++)
                     sb.Append(' ');
             }
-            sb.Append("]");
+            sb.Append(']');
         }
 
         #endregion Public Methods

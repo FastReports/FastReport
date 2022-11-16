@@ -1,5 +1,4 @@
-﻿using FastReport.Data.JsonConnection;
-using FastReport.Data.JsonConnection.JsonParser;
+﻿using FastReport.Utils.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +7,7 @@ using Xunit;
 namespace FastReport.Tests.OpenSource.Data
 {
 
-    public class JsonConnectionTests
+    public class JsonParserTests
     {
 
         [Fact]

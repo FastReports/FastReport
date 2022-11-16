@@ -23,16 +23,18 @@ namespace FastReport.Web
                         <div class=""fr-webreport-popup-content-title"">
                             {localizationSvg.Title}
                         </div>
-                        <label>{localizationPageSelector.PageRange}</label>
-                        <div class=""fr-webreport-popup-content-export-parameters-row"">  
-                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"" name=""OnAllClick"" onclick=""OnAllClick()"">
+                        {(Report.PreparedPages.Count != 1 ? $@"<label class=""fr-webreport-popup-content-export-parameters-page-range-title"">{localizationPageSelector.PageRange}</label>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
+                            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"" name=""OnAllClick"" onclick=""OnAllClick()"">
                                 {localizationPageSelector.All}
                             </button>
+                        </div>
+                        <div class=""fr-webreport-popup-content-export-parameters-row"">
                             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                                 {localizationPageSelector.First}
                             </button>
-                            <input name =""PageSelectorInput""  onchange=""OnInputClickSVG()""type=""text""class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]"" placeholder=""2, 5-132""value="""" >
-                            </div>
+                            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+                        </div>" : "")}
                     </div>
 
                     <div class=""fr-webreport-popup-content-export-parameters"">
@@ -44,7 +46,7 @@ namespace FastReport.Web
                                 <option value=""Jpeg"" selected>Jpeg</option>
                             </select>
                         <div class=""fr-webreport-popup-content-export-parameters-col"">
-                            <button id=""SVGEmbedPictures"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button active"">
+                            <button id=""SVGEmbedPictures"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
                                 {localizationSvg.EmbPic}
                             </button>
                             <button id=""SVGOnHasMultipleFilesClick"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
@@ -54,7 +56,7 @@ namespace FastReport.Web
                         </div>
                     </div>
                     <div class=""fr-webreport-popup-content-buttons"">
-                        <button class=""fr-webreport-popup-content-btn-submit"">{localizationPageSelector.LocalizedCancel}</button>
+                        <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
                         <button class=""fr-webreport-popup-content-btn-submit"" onclick=""SVGExport()"">OK</button>
                     </div>
                 </div>
@@ -75,12 +77,12 @@ namespace FastReport.Web
         else {{ SVGImageFormat = '&ImageFormat=' + ImageFormatOption.value; }}
     }}
     function SVGExport() {{
-        if (document.getElementById('SVGEmbedPictures').classList.contains('active')) {{
+        if (document.getElementById('SVGEmbedPictures').classList.contains('activeButton')) {{
             SVGEmbedPictures = new Boolean(true);
         }}
         else {{ SVGEmbedPictures = false; }};
 
-        if (document.getElementById('SVGOnHasMultipleFilesClick').classList.contains('active')) {{
+        if (document.getElementById('SVGOnHasMultipleFilesClick').classList.contains('activeButton')) {{
             SVGHasMultiplyFiles = new Boolean(true);
         }}
         else {{ SVGHasMultiplyFiles = false; }};

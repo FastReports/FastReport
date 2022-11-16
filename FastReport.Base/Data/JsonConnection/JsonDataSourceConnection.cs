@@ -1,4 +1,4 @@
-﻿using FastReport.Data.JsonConnection.JsonParser;
+﻿using FastReport.Utils.Json;
 using System;
 using System.Data;
 using System.Data.Common;
