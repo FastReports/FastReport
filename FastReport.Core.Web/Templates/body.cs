@@ -9,13 +9,11 @@ namespace FastReport.Web
             if (!renderBody)
                 return $@"
 <div class=""{template_FR}-body"" style=""min-height:250px;min-width:250px;"">
-
     <script>
         setTimeout(function () {{
             {template_FR}.load();
         }}, 100);
     </script>
-
 </div>
 ";
 
@@ -27,7 +25,6 @@ namespace FastReport.Web
     <div class=""{template_FR}-report"">
         {ReportBody()}
     </div>
-    
 ";
         }
     }
