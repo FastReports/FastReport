@@ -322,7 +322,7 @@ namespace FastReport.Export.Html
                         {
                             top = obj.Height - htmlTextRenderer.CalcHeight();
                         }
-                        FastString sb = GetHtmlParagraph(htmlTextRenderer);
+                        FastString sb = GetHtmlParagraph(htmlTextRenderer, obj.Left);
 
                         LayerBack(Page, obj,
                         GetSpanText(obj, sb,
@@ -391,7 +391,7 @@ namespace FastReport.Export.Html
 
         }
 
-        private FastString GetHtmlParagraph(HtmlTextRenderer renderer)
+        private FastString GetHtmlParagraph(HtmlTextRenderer renderer, float Left)
         {
             FastString sb = new FastString();
 
@@ -492,9 +492,8 @@ namespace FastReport.Export.Html
 
                                     }
                                 }
-
                             }
-                            prevWidth += run.Width;
+                            prevWidth = run.Left + run.Width - Left;
                             //run.ToHtml(sb, true);
                         }
                     }

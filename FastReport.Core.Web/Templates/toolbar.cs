@@ -117,7 +117,6 @@ namespace FastReport.Web
         <img src=""{template_resource_url("angle-left.svg", "image/svg+xml")}"">
     </div>" : "")}
    
-
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
         <input id=""CurrentPage"" style=""margin-right: 0px;"" class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
     </div>
@@ -125,7 +124,6 @@ namespace FastReport.Web
     <div class=""fr-toolbar-item fr-toolbar-notbutton fr-toolbar-slash {template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"">
         <img src=""{template_resource_url("slash.svg", "image/svg+xml")}"">
     </div>
-
 
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
         <input id=""AllPages"" style=""margin-left: 0px;"" type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
