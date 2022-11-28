@@ -929,6 +929,13 @@ namespace FastReport
 
         #region Report Engine
         /// <summary>
+        /// Resets the data from the previous report run.
+        /// </summary>
+        public virtual void ResetData()
+        {
+        }
+
+        /// <summary>
         /// Initializes the object before running a report.
         /// </summary>
         /// <remarks>

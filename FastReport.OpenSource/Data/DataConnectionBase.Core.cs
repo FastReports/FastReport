@@ -13,6 +13,7 @@ namespace FastReport.Data
         /// <param name="tableNames"></param>
         partial void FilterTables(List<string> tableNames);
 
+
         /// <summary>
         /// Does nothing
         /// </summary>

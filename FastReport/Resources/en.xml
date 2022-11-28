@@ -447,6 +447,7 @@
         <PageSetup Text="Page Setup..."/>
         <PrinterSetup Text="Printer Setup..."/>
         <Preview Text="Preview..."/>
+        <PreviewCloud Text="Web preview"/>
         <SelectLanguage Text="Select Language..."/>
         <Exit Text="Exit"/>
       </File>
@@ -488,6 +489,7 @@
         <ShowData Text="Show Data Window"/>
         <Add Text="Add Data Source..."/>
         <Choose Text="Choose Report Data..."/>
+        <Upload Text="Upload data source to server..."/>
       </Data>
       <Window Text="Window">
         <CloseAll Text="Close All"/>
@@ -520,6 +522,12 @@
         <OnLoadFolderName Text="Enter folder name"/>
         <OnLoadName Text="Enter new name"/>
         <NonExistingSelectedReport Text="Report with this name is not found!"/>
+        <ReportWasModified Text="Report`s been already modified. Are you sure you want to overwrite this file?"/>
+        <ReportWasModifiedCaption Text="Report was modifed"/>
+        <ReportWasNotFound Text="Report was deleted. Do you want to save file?"/>
+        <ReportWasNotFoundCaption Text="Report was deleted"/>
+        <RootFolderTemplates Text="Templates"/>
+        <RootFolderReports Text="Reports"/>
         <EnterFolderName>
             <Confirm Text="Confirm"/>
             <Cancel Text="Cancel"/>
@@ -533,8 +541,23 @@
             <Caption Text="Server connection error"/>
             <InvalidPath Text="Unable to find the path '{0}'. Check the spelling and try again"/>
             <CaptionNoPath Text="Invalid path"/>
+            <Error404 Text="The selected file does not exist on the server. Check that the data is correct and try again"/>
+            <Error404Caption Text="File is not found"/>
 		</ErrorMessageBox>
     </ListViewForm>
+    <CloudDataSourceForm>
+        <TypeConnection Text="Type"/>
+        <NameConnection Text="Name"/>
+        <StatusConnection Text="Status"/>
+        <StatusConnected Text="Connected"/>
+        <StatusError Text="Error"/>
+        <StatusUpdating Text="Updating"/>
+        <Caption Text="Select connection"/>
+        <SelectSources Text="Select data source for your report from corporate server"/>
+        <SelectUpload Text="Select available connection to upload it to corporate server"/>
+        <NotFoundSources Text="No available data connections"/>
+        <PluginNotAdded Text="Impossible to unload data source. Probably the plugin, corresponding to the connection, is not added"/>
+    </CloudDataSourceForm>
     <ToolWindow>
       <AutoHide Text="Auto-hide"/>
       <Close Text="Close"/>
@@ -566,6 +589,8 @@
         <Merge Text="Merge Dictionary..."/>
         <NewDataSource Text="New Data Source..."/>
         <SortDataSources Text="Sort Data Sources"/>
+        <UploadDataSource Text="Upload Data Source to server"/>
+        <UploadChangesDataSource Text="Update connection on Cloud"/>
         <SortDataFields Text="Sort Data Fields"/>
         <CopyDataSource Text="Copy Data Source"/>
         <NewRelation Text="New Relation..."/>
@@ -602,6 +627,7 @@
         <Save Text="Save Report (Ctrl+S)"/>
         <SaveAll Text="Save All (Ctrl+Shift+S)"/>
         <Preview Text="Preview (Ctrl+P)"/>
+        <PreviewCloud Text="Web preview"/>
         <NewPage Text="New Report Page"/>
         <CopyPage Text="Copy Report Page"/>
         <NewDialog Text="New Dialog"/>
@@ -748,6 +774,7 @@
       <Show Text="Show on startup"/>
       <Open Text="Open a Recent Item"/>
       <New Text="Create New"/>
+      <Account Text="Account"/>
     </Welcome>
   </Designer>
   <Preview Text="Preview">
@@ -757,7 +784,7 @@
     <Print Text="Print (Ctrl+P)"/>
     <OpenText Text="Open"/>
     <Open Text="Open File"/>
-	<OpenLocal Text="Open on this PC"/>
+    <OpenLocal Text="Open on this PC"/>
 	<OpenViaCloud Text="Open via Cloud"/>
     <Save Text="Save File"/>
     <SaveText Text="Save"/>
@@ -777,7 +804,7 @@
     <Next Text="Next Page"/>
     <Last Text="Last Page"/>
     <SaveNative Text="Save prepared report"/>
-	<SaveNativeLocally Text="Save locally"/>
+    <SaveNativeLocally Text="Save locally"/>
     <FtpText Text="Save to FTP"/>
     <DropboxText Text="Save to Dropbox"/>
     <GoogleDriveText Text="Save to Google Drive"/>
@@ -1230,6 +1257,18 @@
       <Wait Text="Retrieving database information"/>
       <AddQuery Text="Add SQL query..."/>
       <CheckAll Text="Check all"/>
+      <CloudDataSources Text="Select connection from server"/>
+      <MessageBox>
+        <SuccessText Text="The data source has been successfully uploaded to the server!"/>
+        <SuccessCaption Text="Upload successful"/>
+        <SuccessUpdateText Text="The data source has been successfully updated!"/>
+        <SuccessUpdateCaption Text="Update successful"/>
+        <ErrorText Text="Error when uploading the data source"/>
+        <ErrorCaption Text="Error"/>
+        <ErrorInvalidID Text="Id of the Cloud data source is invalid. Probably the data source doesn`t exist on server. Check the data and try again."/>
+        <Error404 Text="Selected data source is not presented in your subscription. Check the data and try again."/>
+      </MessageBox>
+      <ChangeParameters Text="Changing procedure parameters "/>
     </DataWizard>
     <DialogPageOptions Text="Dialog form"/>
     <Exception Text="Exception">
@@ -1821,6 +1860,7 @@
       <AddColumn Text="Add Calculated Column"/>
       <AddParameter Text="Add Parameter"/>
       <Delete Text="Delete"/>
+      <DuplicateName Text="Item with such name already exists."/>
     </QueryWizard>
     <RelationEditor Text="Edit Relation">
       <ParentTable Text="Parent table:"/>
@@ -2217,7 +2257,7 @@
       <Caption Text="Server"/>
       <ApiKeyword Text="Api key" />
       <comboBoxServer Text="FastReport Cloud"/>
-      <comboBoxText Text="https://fastreport.cloud"/>
+      <DefaultServerHost Text="https://fastreport.cloud"/>
       <comboBoxCustom Text="Custom server"/>
     </ServerWindow>
     <AdvMatrixHeaderEditor Text="Header Editor">

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net452</TargetFrameworks>
+        <TargetFrameworks>$(NetFrameworkMinimum)</TargetFrameworks>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -37,18 +37,6 @@
         <Reference Include="System.Drawing" />
         <Reference Include="System.Windows.Forms" />
         <Reference Include="System.Xml" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Update="MongoDBConnectionEditor.cs" />
-        <Compile Update="MongoDBConnectionEditor.Designer.cs">
-            <DependentUpon>MongoDBConnectionEditor.cs</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Update="MongoDBConnectionEditor.resx">
-            <DependentUpon>MongoDBConnectionEditor.cs</DependentUpon>
-            <SubType>Designer</SubType>
-        </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="MongoDB.Driver" Version="2.13.0" />

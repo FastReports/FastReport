@@ -190,6 +190,7 @@ namespace FastReport.Data.JsonConnection
                     if (!String.IsNullOrEmpty(column.PropName))
                     {
                         var obj = (parentColumn as JsonTableDataSource).Json[(parentColumn as JsonTableDataSource).CurrentIndex];
+
                         return (obj as JsonBase)[column.PropName];
                     }
                 }
@@ -369,22 +370,15 @@ namespace FastReport.Data.JsonConnection
             {
                 return (parentColumn as IJsonProviderSourceConnection).GetJson(this);
             }
-            //if (parentColumn is ESDataSourceConnection)
-            //    parentColumn = (parentColumn as ESDataSourceConnection).GetParentJTDSByName(column.Name);
+
             if (parentColumn is JsonTableDataSource)
             {
-                //if (parentColumn.Parent is ESDataSourceConnection)
-                //    parentColumn.Parent = (parentColumn.Parent as ESDataSourceConnection).GetParentJTDSByName(parentColumn.Name);
-                // Here it’s completely fail,
-                // I commented out the code with ElasticSearch,
-                // when you bring ElasticSearch into a separate plugin,
-                // then this will need to be corrected
 
                 JsonTableDataSource source = parentColumn as JsonTableDataSource;
 
                 if (source.SimpleStructure)
                 {
-                    object parentJson = source.Json[source.CurrentRowNo];
+                    object parentJson = source.Json[source.CurrentIndex];
                     if (parentJson is JsonBase && !String.IsNullOrEmpty(column.PropName))
                     {
                         return (parentJson as JsonBase)[column.PropName];
@@ -392,7 +386,7 @@ namespace FastReport.Data.JsonConnection
                 }
                 else
                 {
-                    return source.Json[source.CurrentRowNo] as object;
+                    return source.Json[source.CurrentIndex] as object;
                 }
             }
             else if (parentColumn is Column)

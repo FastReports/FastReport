@@ -431,18 +431,19 @@
         <New Text="Новый..."/>
         <Open Text="Открыть..."/>
         <OpenLocally Text="Открыть на этом ПК"/>
-        <OpenViaCloud Text="Открыть через Cloud"/>
+        <OpenViaCloud Text="Открыть через Облако"/>
         <Close Text="Закрыть"/>
         <SaveMenu Text="Сохранить как..."/>
         <Save Text="Сохранить"/>
         <SaveAs Text="Сохранить как..."/>
-		<SaveLocal Text="Сохранить на этом ПК"/>
+        <SaveLocal Text="Сохранить на этом ПК"/>
         <SaveWithRandomData Text="Сохранить со случайными данными..."/>
         <SaveAll Text="Сохранить все"/>
-        <SaveToCloud Text="Сохранить на Cloud"/>
+        <SaveToCloud Text="Сохранить в Облако"/>
         <PageSetup Text="Параметры страницы..."/>
         <PrinterSetup Text="Параметры принтера..."/>
         <Preview Text="Предварительный просмотр..."/>
+        <PreviewCloud Text="Предварительный веб-просмотр"/>
         <SelectLanguage Text="Выберите язык..."/>
         <Exit Text="Выход"/>
       </File>
@@ -484,6 +485,7 @@
         <ShowData Text="Показать окно данных"/>
         <Add Text="Новый источник данных..."/>
         <Choose Text="Выбрать данные для отчета..."/>
+        <Upload Text="Загрузить источник данных на сервер..."/>
       </Data>
       <Window Text="Окно">
         <CloseAll Text="Закрыть все"/>
@@ -495,7 +497,7 @@
       </Help>
     </Menu>
     <ListViewForm>
-        <CaptionSaveMode Text="Сохранить отчет на Cloud"/>
+        <CaptionSaveMode Text="Сохранить отчет в Облако"/>
         <CaptionOpenMode Text="Выберите отчет для загрузки"/>
         <Select Text="Выбрать"/>
         <Save Text="Сохранить"/>
@@ -516,6 +518,12 @@
         <OnLoadFolderName Text="Введите имя папки"/>
         <OnLoadName Text="Введите имя"/>
         <NonExistingSelectedReport Text="Отчет с таким именем не найден!"/>
+        <ReportWasModified Text="Отчет уже был изменен. Вы уверены, что хотите перезаписать этот файл?"/>
+        <ReportWasModifiedCaption Text="Отчет был изменен"/>
+        <ReportWasNotFound Text="Отчет был удален. Вы хотите сохранить файл?"/>
+        <ReportWasNotFoundCaption Text="Отчет был удален"/>
+        <RootFolderTemplates Text="Шаблоны"/>
+        <RootFolderReports Text="Отчеты"/>
         <EnterFolderName>
             <Confirm Text="Подтвердить"/>
             <Cancel Text="Отмена"/>
@@ -529,8 +537,23 @@
             <Caption Text="Ошибка подключения к серверу"/>
             <InvalidPath Text="Невозможно перейти по '{0}'. Уточните путь и попробуйте снова"/>
             <CaptionNoPath Text="Некорректный путь"/>
+            <Error404 Text="Выбранный файл не существует на сервере. Проверьте корректность данных и попробуйте снова"/>
+            <Error404Caption Text="Файл не найден"/>
 		</ErrorMessageBox>
     </ListViewForm>
+    <CloudDataSourceForm>
+        <TypeConnection Text="Тип"/>
+        <NameConnection Text="Имя"/>
+        <StatusConnection Text="Статус"/>
+        <StatusConnected Text="Подключено"/>
+        <StatusError Text="Ошибка"/>
+        <StatusUpdating Text="Обновление"/>
+        <Caption Text="Выберите подключение"/>
+        <SelectSources Text="Выберите соединение к данным для вашего отчета с корпоративного сервера"/>
+        <SelectUpload Text="Выберите доступное соединение, чтобы загрузить его на корпоративный сервер"/>
+        <NotFoundSources Text="Нет доступных подключений"/>
+        <PluginNotAdded Text="Невозможно загрузить источник данных. Вероятно, не подключен плагин, соответствующий этому подключению"/>
+    </CloudDataSourceForm>
     <ToolWindow>
       <AutoHide Text="Скрывать автоматически"/>
       <Close Text="Закрыть"/>
@@ -562,6 +585,9 @@
         <Merge Text="Объединить словари..."/>
         <NewDataSource Text="Новый источник данных..."/>
         <SortDataSources Text="Сортировать источники данных"/>
+        <UploadDataSource Text="Загрузить на корпоративный сервер"/>
+        <UploadChangesDataSource Text="Обновить подключение на Облаке"/>
+        <CopyDataSource Text="Скопировать источник данных"/>
         <SortDataFields Text="Сортировать поля данных"/>
         <NewRelation Text="Новая связь..."/>
         <NewParameter Text="Новый параметр..."/>
@@ -595,6 +621,7 @@
         <Save Text="Сохранить отчет (Ctrl+S)"/>
         <SaveAll Text="Сохранить все (Ctrl+Shift+S)"/>
         <Preview Text="Предварительный просмотр (Ctrl+P)"/>
+        <PreviewCloud Text="Предварительный веб-просмотр"/>
         <NewPage Text="Новая страница отчета"/>
         <CopyPage Text="Копировать страницу отчета"/>
         <NewDialog Text="Новый диалог"/>
@@ -738,6 +765,7 @@
       <Show Text="Открывать при запуске"/>
       <Open Text="Открыть недавний отчет"/>
       <New Text="Создать новый"/>
+      <Account Text="Учетная запись"/>
     </Welcome>
   </Designer>
   <Preview Text="Предварительный просмотр">
@@ -748,8 +776,8 @@
     <OpenText Text="Открыть"/>
     <OpenTip Text="Открыть файл"/>
     <Open Text="Открыть файл "/>
-	<OpenLocal Text="Открыть файл на этом ПК"/>
-    <OpenViaCloud Text="Открыть файл через Cloud"/>
+    <OpenLocal Text="Открыть файл на этом ПК"/>
+    <OpenViaCloud Text="Открыть файл через Облако"/>
     <Save Text="Сохранить файл"/>
     <SaveText Text="Сохранить"/>
     <SaveToCloud Text="Сохранить в Облако"/>
@@ -768,6 +796,7 @@
     <Next Text="Следующая страница"/>
     <Last Text="Последняя страница"/>
     <SaveNative Text="Готовый отчет"/>
+    <SaveNativeLocally Text="Сохранить на этом ПК"/>
     <FtpText Text="Сохранить на FTP"/>
     <DropboxText Text="Сохранить в Dropbox"/>
     <GoogleDriveText Text="Сохранить в Диск Google"/>
@@ -1219,6 +1248,18 @@
       <Wait Text="Подключение к базе данных"/>
       <AddQuery Text="Добавить SQL запрос..."/>
       <CheckAll Text="Выбрать все"/>
+      <CloudDataSources Text="Выбрать подключение с сервера"/>
+      <MessageBox>
+        <SuccessText Text="Источник данных успешно загружен на сервер!"/>
+        <SuccessCaption Text="Загрузка успешна"/>
+        <SuccessUpdateText Text="Источник данных был успешно обновлен!"/>
+        <SuccessUpdateCaption Text="Обновление успешно"/>
+        <ErrorText Text="Ошибка при загрузке источника данных"/>
+        <ErrorCaption Text="Ошибка"/>
+        <ErrorInvalidID Text="Некорретный Id источника данных. Вероятно источник данных отсутствует на сервере. Проверьте данные и попробуйте снова."/>
+        <Error404 Text="Выбранного источника данных не существует в текущей подписке. Проверьте данные и попробуйте снова."/>
+      </MessageBox>
+      <ChangeParameters Text="Изменение параметров процедуры "/>
     </DataWizard>
     <DialogPageOptions Text="Диалоговая форма"/>
     <Exception Text="Ошибка">
@@ -1619,6 +1660,7 @@
       <AddColumn Text="Добавить вычисляемое поле"/>
       <AddParameter Text="Добавить параметр"/>
       <Delete Text="Удалить"/>
+      <DuplicateName Text="Элемент с таким именем уже существует."/>
     </QueryWizard>
     <RelationEditor Text="Редактор связи">
       <ParentTable Text="Главная таблица:"/>
@@ -2003,7 +2045,7 @@
         <ApiKeyword Text="Api ключ" />
         <Caption Text="Сервер"/>
         <comboBoxServer Text="МоиОтчеты Облако"/>
-        <comboBoxText Text="https://облако.моиотчеты.рф"/>
+        <DefaultServerHost Text="https://облако.моиотчеты.рф"/>
         <comboBoxCustom Text="Другой сервер"/>
 	</ServerWindow>
     <AdvMatrixHeaderEditor Text="Свойства элемента">

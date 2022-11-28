@@ -41,7 +41,7 @@ namespace FastReport.Data
     /// objects are still accessible in the "Data|Choose Data Source..." menu.
     /// </remarks>
     [Browsable(false)]
-    public bool Enabled
+    public virtual bool Enabled
     {
       get { return enabled; }
       set { enabled = value; }

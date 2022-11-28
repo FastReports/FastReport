@@ -1,0 +1,21 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>FastReport.Data.OracleODPCore</Product>
+    <AssemblyName>FastReport.Data.OracleODPCore</AssemblyName>
+
+  </PropertyGroup>
+
+  <Import Project="..\Connections.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="[2.18.3,)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

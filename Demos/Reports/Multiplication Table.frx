@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print multiple Table rows and columns with a script. To do this:&#13;&#10;- select the Table object;&#13;&#10;- go to &quot;Properties&quot; window and click the &quot;Events&quot; button to view a list of available events;&#13;&#10;- doubleclick the &quot;ManualBuild&quot; event;&#13;&#10;- you will see an empty event handler. You need to print rows using TableObject.PrintRow method; in each row, you must also print all columns (using PrintColumns method). See the script's code for more details.&#13;&#10;When you run a report, the Table will repeat its rows and columns and fill them with data. Note that cell spans are handled automatically." ReportInfo.Created="05/16/2008 00:05:30" ReportInfo.Modified="01/21/2019 11:38:02" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print multiple Table rows and columns with a script. To do this:&#13;&#10;- select the Table object;&#13;&#10;- go to &quot;Properties&quot; window and click the &quot;Events&quot; button to view a list of available events;&#13;&#10;- doubleclick the &quot;ManualBuild&quot; event;&#13;&#10;- you will see an empty event handler. You need to print rows using TableObject.PrintRow method; in each row, you must also print all columns (using PrintColumns method). See the script's code for more details.&#13;&#10;When you run a report, the Table will repeat its rows and columns and fill them with data. Note that cell spans are handled automatically." ReportInfo.Created="05/16/2008 00:05:30" ReportInfo.Modified="11/21/2022 14:19:22" ReportInfo.CreatorVersion="1.0.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,30 +64,30 @@ namespace FastReport
 }
 </ScriptText>
   <Dictionary/>
-  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9">
-    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="34.31" CanGrow="true">
-      <TextObject Name="Text11" Width="1047.06" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="28.35" CanGrow="true">
+      <TextObject Name="Text11" Width="1047.06" Height="28.35" Anchor="Top, Left, Right" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Microsoft JhengHei, 8pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="38.31" Width="1047.06" Height="317.81">
+    <DataBand Name="Data1" Top="32.39" Width="1047.06" Height="317.81">
       <TableObject Name="Table1" Top="5.96" Width="189" Height="302.4" ManualBuildEvent="Table1_ManualBuild">
         <TableColumn Name="Column1" Width="94.5"/>
         <TableColumn Name="Column2" Width="94.5"/>
         <TableRow Name="Row1" Height="113.4">
-          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="255, 192, 128" Text="The multiplication table" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 20pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Text="The multiplication table" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 20pt, style=Bold" ColSpan="2"/>
           <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
         </TableRow>
         <TableRow Name="Row2" Height="94.5">
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 20pt"/>
-          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill.Color="255, 192, 128" Text="[x]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 20pt, style=Bold"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="198, 188, 255" Fill.Color="198, 188, 247" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 20pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="198, 188, 255" Fill.Color="198, 188, 247" Text="[x]" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 20pt, style=Bold"/>
         </TableRow>
         <TableRow Name="Row3" Height="94.5">
-          <TableCell Name="Cell11" Border.Lines="All" Border.Color="White" Fill.Color="255, 192, 128" Text="[y]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 20pt, style=Bold"/>
-          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="255, 224, 192" Text="[x * y]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 20pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="198, 188, 255" Fill.Color="198, 188, 247" Text="[y]" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 20pt, style=Bold"/>
+          <TableCell Name="Cell12" Border.Lines="Right, Bottom" Border.Style="Dash" Text="[x * y]" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 20pt"/>
         </TableRow>
       </TableObject>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="360.12" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="354.24" Width="1047.06" Height="28.35">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Underline"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

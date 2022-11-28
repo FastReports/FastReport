@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print a Master-detail report using the Table object. In this example the Table object is used to print both master and detail rows. It does not differ much from the &quot;Row Datasource&quot; example.&#13;&#10;See the &quot;ManualBuild&quot; event handler for more details." ReportInfo.Created="01/17/2008 20:40:24" ReportInfo.Modified="01/21/2019 12:27:49" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print a Master-detail report using the Table object. In this example the Table object is used to print both master and detail rows. It does not differ much from the &quot;Row Datasource&quot; example.&#13;&#10;See the &quot;ManualBuild&quot; event handler for more details." ReportInfo.Created="01/17/2008 20:40:24" ReportInfo.Modified="11/21/2022 14:19:58" ReportInfo.CreatorVersion="1.0.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ namespace FastReport
 {
   public class ReportScript
   {
+    private int firstLineColumn;
 
     private void Table1_ManualBuild(object sender, EventArgs e)
     {
@@ -65,7 +66,35 @@ namespace FastReport
         
         // go next data source row
         masterData.Next();
+        
+        firstLineColumn = 0;
       }
+    }
+    private void Cell6_AfterData(object sender, EventArgs e)
+    {
+      TableCell cell = sender as TableCell;
+      if (firstLineColumn % 2 == 0) 
+      {
+        cell.FillColor = Color.FromArgb(222,236,223);
+      }
+      else
+      {
+        cell.FillColor = Color.FromArgb(232,244,233);
+      }
+      firstLineColumn++;
+    }
+    private void Cell7_AfterData(object sender, EventArgs e)
+    {
+      TableCell cell = sender as TableCell;
+      if (firstLineColumn % 2 == 0) 
+      {
+        cell.FillColor = Color.FromArgb(232,244,233);
+      }
+      else
+      {
+        cell.FillColor = Color.FromArgb(222,236,223);
+      }
+      firstLineColumn++;
     }
   }
 }
@@ -92,56 +121,56 @@ namespace FastReport
     </TableDataSource>
     <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID" Enabled="true"/>
   </Dictionary>
-  <ReportPage Name="Page1">
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
-      <TextObject Name="Text2" Top="37.8" Width="718.2" Height="28.35" Text="PRODUCTS BY CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text2" Top="37.8" Width="718.2" Height="28.35" Text="PRODUCTS BY CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Microsoft JhengHei, 8pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="70.15" Width="718.2" Height="145.17">
+    <DataBand Name="Data1" Top="70.19" Width="718.2" Height="145.17">
       <TableObject Name="Table1" Left="9.45" Top="3.42" Width="699.3" Height="141.75" ManualBuildEvent="Table1_ManualBuild">
         <TableColumn Name="Column1" Width="321.3"/>
         <TableColumn Name="Column2" Width="189"/>
         <TableColumn Name="Column3" Width="189"/>
         <TableRow Name="Row5" Height="37.8">
-          <TableCell Name="Cell17" Fill.Color="Brown" Text="[Categories.CategoryName]" VertAlign="Center" Font="Tahoma, 16pt" TextFill.Color="White" ColSpan="3"/>
-          <TableCell Name="Cell18" Fill.Color="Gray" TextFill.Color="White"/>
-          <TableCell Name="Cell19" Fill.Color="Gray" TextFill.Color="White"/>
+          <TableCell Name="Cell17" Text="[Categories.CategoryName]" VertAlign="Center" Font="Microsoft JhengHei, 16pt" ColSpan="3"/>
+          <TableCell Name="Cell18" Fill.Color="Gray" Font="Arial, 10pt" TextFill.Color="White"/>
+          <TableCell Name="Cell19" Fill.Color="Gray" Font="Arial, 10pt" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row4">
-          <TableCell Name="Cell14" Fill.Color="Brown" Text=" [Categories.Description]" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White" ColSpan="3"/>
-          <TableCell Name="Cell15" Fill.Color="Gray" TextFill.Color="White"/>
-          <TableCell Name="Cell16" Fill.Color="Gray" TextFill.Color="White"/>
+          <TableCell Name="Cell14" Text=" [Categories.Description]" VertAlign="Center" Font="Microsoft JhengHei, 8pt" ColSpan="3"/>
+          <TableCell Name="Cell15" Fill.Color="Gray" Font="Arial, 10pt" TextFill.Color="White"/>
+          <TableCell Name="Cell16" Fill.Color="Gray" Font="Arial, 10pt" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row6" Height="9.45">
-          <TableCell Name="Cell20"/>
-          <TableCell Name="Cell21"/>
-          <TableCell Name="Cell22"/>
+          <TableCell Name="Cell20" Font="Arial, 10pt"/>
+          <TableCell Name="Cell21" Font="Arial, 10pt"/>
+          <TableCell Name="Cell22" Font="Arial, 10pt"/>
         </TableRow>
         <TableRow Name="Row1">
-          <TableCell Name="Cell1" Border.Lines="All" Border.Color="LightGray" Fill="Glass" Fill.Color="Brown" Fill.Blend="0.47" Fill.Hatch="false" Text="Product name" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
-          <TableCell Name="Cell2" Border.Lines="All" Border.Color="LightGray" Fill="Glass" Fill.Color="Brown" Fill.Blend="0.47" Fill.Hatch="false" Text="Unit price" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
-          <TableCell Name="Cell3" Border.Lines="All" Border.Color="LightGray" Fill="Glass" Fill.Color="Brown" Fill.Blend="0.47" Fill.Hatch="false" Text="Units in stock" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell1" Border.Color="Transparent" Text="Product name" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell2" Border.Color="Transparent" Text="Unit price" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell3" Border.Color="Transparent" Text="Units in stock" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
         </TableRow>
         <TableRow Name="Row2">
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="LightGray" Text="[Products.ProductName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell7" Border.Lines="All" Border.Color="LightGray" Text="[Products.UnitPrice]" Padding="0, 0, 5, 0" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell8" Border.Lines="All" Border.Color="LightGray" Text="[Products.UnitsInStock]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell6" Border.Color="Transparent" AfterDataEvent="Cell6_AfterData" Text="[Products.ProductName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
+          <TableCell Name="Cell7" Border.Color="Transparent" AfterDataEvent="Cell7_AfterData" Text="[Products.UnitPrice]" Padding="0, 0, 5, 0" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
+          <TableCell Name="Cell8" Border.Color="Transparent" AfterDataEvent="Cell6_AfterData" Text="[Products.UnitsInStock]" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
         </TableRow>
         <TableRow Name="Row3">
-          <TableCell Name="Cell11" Border.Lines="All" Border.Color="LightGray" Fill.Color="Brown" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell12" Border.Lines="All" Border.Color="LightGray" Fill.Color="Brown" Text="Total:" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
-          <TableCell Name="Cell13" Border.Lines="All" Border.Color="LightGray" Fill.Color="Brown" Text="[Sum(Cell8)]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell11" Border.Color="Transparent" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell12" Border.Color="Transparent" Text="TOTAL:" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell13" Border.Color="Transparent" Text="[Sum(Cell8)]" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
         </TableRow>
         <TableRow Name="Row7">
-          <TableCell Name="Cell23"/>
-          <TableCell Name="Cell24"/>
-          <TableCell Name="Cell25"/>
+          <TableCell Name="Cell23" Font="Arial, 10pt"/>
+          <TableCell Name="Cell24" Font="Arial, 10pt"/>
+          <TableCell Name="Cell25" Font="Arial, 10pt"/>
         </TableRow>
       </TableObject>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="219.32" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text1" Left="614.25" Top="9.45" Width="94.5" Height="18.9" Text="[PageN]" HorzAlign="Right" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="219.4" Width="718.2" Height="28.35">
+      <TextObject Name="Text1" Left="614.25" Top="9.45" Width="94.5" Height="18.9" Text="[PageN]" HorzAlign="Right" Font="Microsoft JhengHei, 8pt"/>
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Underline"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

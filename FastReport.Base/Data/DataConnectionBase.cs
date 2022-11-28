@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Drawing.Design;
+using System.Linq;
 using FastReport.Data.JsonConnection;
 using FastReport.Utils;
 
@@ -27,6 +28,7 @@ namespace FastReport.Data
         private DataSet dataSet;
         private TableCollection tables;
         private bool isSqlBased;
+        private bool canContainProcedures;
         private string connectionString;
         private string connectionStringExpression;
         private bool loginPrompt;
@@ -48,7 +50,7 @@ namespace FastReport.Data
                 return dataSet;
             }
         }
-
+        
         /// <summary>
         /// Gets a collection of data tables in this connection.
         /// </summary>
@@ -161,6 +163,8 @@ namespace FastReport.Data
             get { return commandTimeout; }
             set { commandTimeout = value; }
         }
+
+        internal List<XmlItem> TablesStructure { get; set; }
         #endregion
 
         #region Private Methods
@@ -338,6 +342,9 @@ namespace FastReport.Data
             tableNames.AddRange(GetTableNames());
             FilterTables(tableNames);
 
+            List<string> procedureNames = new List<string>();
+            procedureNames.AddRange(GetProcedureNames());
+
             // remove tables with tablename that does not exist in the connection.
             for (int i = 0; i < Tables.Count; i++)
             {
@@ -363,6 +370,7 @@ namespace FastReport.Data
                 }
             }
 
+            int tableNumber = 0;
             // now create tables that are not created yet.
             foreach (string tableName in tableNames)
             {
@@ -377,7 +385,14 @@ namespace FastReport.Data
                 }
                 if (!found)
                 {
-                    TableDataSource table = new TableDataSource();
+                    TableDataSource table = null;
+                    if (procedureNames.Contains(tableName))
+                    {
+                        table = CreateProcedure(tableName);
+                    }
+                    else
+                        table = new TableDataSource();
+
                     string fixedTableName = tableName.Replace(".", "_").Replace("[", "").Replace("]", "").Replace("\"", "");
                     if (Report != null)
                     {
@@ -389,12 +404,17 @@ namespace FastReport.Data
 
                     table.TableName = tableName;
                     table.Connection = this;
-                    table.Enabled = false;
+                    if (TablesStructure != null)
+                    {
+                        table.Enabled = TablesStructure[tableNumber].Properties.Where(prop => prop.Key == "Enabled").Select(res => res.Value).First() == "true";
+                    }
 
                     Tables.Add(table);
+                    tableNumber++;
                 }
             }
 
+            initSchema = true;
             // init table schema
             if (initSchema)
             {
@@ -403,6 +423,50 @@ namespace FastReport.Data
                     table.InitSchema();
                 }
             }
+        }
+
+        /// <summary>
+        /// Create the stored procedure.
+        /// </summary>
+        public virtual TableDataSource CreateProcedure(string tableName)
+        {
+            ProcedureDataSource table = new ProcedureDataSource();
+            table.SelectCommand = tableName;
+            DbConnection conn = GetConnection();
+            DataTable shemaParametrs;
+            try
+            {
+                OpenConnection(conn);
+                shemaParametrs = conn.GetSchema("PROCEDURE_PARAMETRS", new string[] { null, null, tableName });
+                foreach (DataRow row in shemaParametrs.Rows)
+                {
+                    ParameterDirection direction = ParameterDirection.Input;
+                    switch (row["PARAMETER_MODE"].ToString())
+                    {
+                        case "IN":
+                            direction = ParameterDirection.Input;
+                            break;
+                        case "INOUT":
+                            direction = ParameterDirection.InputOutput;
+                            break;
+                        case "OUT":
+                            direction = ParameterDirection.Output;
+                            break;
+                    }
+                    table.Parameters.Add(new ProcedureParameter()
+                    {
+                        Name = row["PARAMETER_NAME"].ToString(),
+                        DataType = Convert.ToInt32(row["DATA_TYPE"].ToString()),
+                        Direction = direction
+                    });
+                }
+            }
+            finally
+            {
+                DisposeConnection(conn);
+            }
+
+            return table;
         }
 
         /// <summary>
@@ -448,6 +512,38 @@ namespace FastReport.Data
             List<string> list = new List<string>();
             GetDBObjectNames("TABLE", list);
             GetDBObjectNames("VIEW", list);
+            if(canContainProcedures)
+                list.AddRange(GetProcedureNames());
+            return list.ToArray();
+        }
+
+        /// <summary>
+        /// Gets an array of table names available in the database.
+        /// </summary>
+        /// <returns>An array of strings.</returns>
+        public virtual string[] GetProcedureNames()
+        {
+            List<string> list = new List<string>();
+            DataTable schema = null;
+            DbConnection conn = GetConnection();
+
+            if (conn != null)
+            {
+                try
+                {
+                    OpenConnection(conn);
+                    schema = conn.GetSchema("PROCEDURE");
+                    foreach (DataRow row in schema.Rows)
+                    {
+                        list.Add(row["PROCEDURE_NAME"].ToString());
+                    }
+                }
+                finally
+                {
+                    DisposeConnection(conn);
+                }
+            }
+
             return list.ToArray();
         }
 
@@ -648,12 +744,16 @@ namespace FastReport.Data
             {
                 OpenConnection(conn);
 
+                TableDataSource dataSource = FindTableDataSource(table);
+
                 // prepare select command
-                selectCommand = PrepareSelectCommand(selectCommand, table.TableName, conn);
+                if (!(dataSource is ProcedureDataSource))
+                    selectCommand = PrepareSelectCommand(selectCommand, table.TableName, conn);
 
                 // read the table schema
                 using (DbDataAdapter adapter = GetAdapter(selectCommand, conn, parameters))
                 {
+                    adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ? CommandType.StoredProcedure : CommandType.Text;
                     adapter.SelectCommand.CommandTimeout = CommandTimeout;
                     adapter.FillSchema(table, SchemaType.Source);
                 }
@@ -683,15 +783,37 @@ namespace FastReport.Data
             {
                 OpenConnection(conn);
 
+                TableDataSource dataSource = FindTableDataSource(table);
+
                 // prepare select command
-                selectCommand = PrepareSelectCommand(selectCommand, table.TableName, conn);
+                if (!(dataSource is ProcedureDataSource))
+                    selectCommand = PrepareSelectCommand(selectCommand, table.TableName, conn);
 
                 // read the table
                 using (DbDataAdapter adapter = GetAdapter(selectCommand, conn, parameters))
                 {
+                    adapter.SelectCommand.CommandType = FindTableDataSource(table) is ProcedureDataSource ? CommandType.StoredProcedure : CommandType.Text;
                     adapter.SelectCommand.CommandTimeout = CommandTimeout;
                     table.Clear();
                     adapter.Fill(table);
+
+                    if(canContainProcedures)
+                        foreach (DbParameter dp in adapter.SelectCommand.Parameters)
+                        {
+                            if (dp.Direction != ParameterDirection.Input)
+                            {
+                                foreach (CommandParameter cp in dataSource.Parameters)
+                                {
+                                    if (cp.Name == dp.ParameterName)
+                                    {
+                                        cp.Value = dp.Value;
+                                        Parameter parameter = Report.GetParameter(dataSource.Name + "_" + cp.Name);
+                                        if (parameter != null)
+                                            parameter.Value = dp.Value;
+                                    }
+                                }
+                            }
+                        }
                 }
             }
             finally
@@ -806,7 +928,7 @@ namespace FastReport.Data
                 writer.WriteBool("LoginPrompt", true);
             if (CommandTimeout != 30)
                 writer.WriteInt("CommandTimeout", CommandTimeout);
-
+            SerializeDesignExt(writer);
             if (writer.SaveChildren)
             {
                 foreach (TableDataSource c in Tables)
@@ -833,8 +955,11 @@ namespace FastReport.Data
             connectionString = "";
             connectionStringExpression = "";
             IsSqlBased = true;
+            canContainProcedures = true;
             commandTimeout = 30;
             SetFlags(Flags.CanEdit, true);
         }
+
+        partial void SerializeDesignExt(FRWriter writer);
     }
 }

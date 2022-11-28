@@ -5,7 +5,7 @@
     </PropertyGroup>
   
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <TargetFrameworks>$(TargetFrameworks);net40</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks);net462</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(VisualStudioVersion)' >= '16'">
@@ -32,7 +32,7 @@
     <Configurations>Debug;Release</Configurations>
     <AssemblyName>FastReport</AssemblyName>
     <RootNamespace>FastReport</RootNamespace>
-    <Description>FastReport Open Source is an open source reporting solution for .Net Core and .Net Framework 4.x. 
+    <Description>FastReport Open Source is an open source reporting solution for .Net Core and .Net Framework. 
 Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 30 types of barcodes, table object, shapes, line, PolyLine, Polygon and many more.</Description>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 
@@ -51,7 +51,7 @@ Various report objects will allow your report to look exactly how you want it to
     <DefineConstants>$(DefineConstants);DEBUG;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'!='net40'">
+  <PropertyGroup Condition="'$(TargetFramework)'!='net462'">
     <DefineConstants>$(DefineConstants);CROSSPLATFORM</DefineConstants>
   </PropertyGroup>
 
@@ -81,7 +81,7 @@ Various report objects will allow your report to look exactly how you want it to
 
   <Import Project="..\FastReport.Base\FastReport.Base.csproj" />
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net40'">
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)'=='.NETFramework'">
     <Reference Include="Accessibility" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -109,7 +109,7 @@ Various report objects will allow your report to look exactly how you want it to
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\Pack\$(MSBuildProjectName)\**\*.*">
+    <None Include="..\Pack\$(MSBuildProjectName)\**">
       <Visible>false</Visible>
       <Pack>True</Pack>
       <PackagePath></PackagePath>

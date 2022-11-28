@@ -1,0 +1,22 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>FastReport.Data.Excel</Product>
+    <AssemblyName>FastReport.Data.Excel</AssemblyName>
+
+  </PropertyGroup>
+
+  <Import Project="..\Connections.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.11.3" />
+    <PackageReference Include="SpreadsheetLight" Version="3.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

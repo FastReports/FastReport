@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print month names instead of month numbers. To do this:&#13;&#10;- select the matrix item that contains the month data column;&#13;&#10;- go to the Properties window, click the &quot;Events&quot; button and create an event handler for the &quot;BeforePrint&quot; event;&#13;&#10;- in the event handler, set the cell's Text based on cell's Value. See this example's event handler for details." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="09/16/2015 13:05:04" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print month names instead of month numbers. To do this:&#13;&#10;- select the matrix item that contains the month data column;&#13;&#10;- go to the Properties window, click the &quot;Events&quot; button and create an event handler for the &quot;BeforePrint&quot; event;&#13;&#10;- in the event handler, set the cell's Text based on cell's Value. See this example's event handler for details." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="11/21/2022 14:22:43" ReportInfo.CreatorVersion="1.0.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,13 +39,13 @@ namespace FastReport
       <Column Name="Revenue" DataType="System.Decimal"/>
     </TableDataSource>
   </Dictionary>
-  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9">
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="85.05" CanGrow="true">
-      <TextObject Name="Text11" Width="1047.06" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text1" Top="47.25" Width="1048.95" Height="28.35" Text="REVENUE BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Width="1047.06" Height="28.35" Anchor="Top, Left, Right" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Microsoft JhengHei, 8pt"/>
+      <TextObject Name="Text1" Top="47.25" Width="1048.95" Height="28.35" Text="REVENUE BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 14pt, style=Bold"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="89.05" Width="1047.06" Height="83.42">
-      <MatrixObject Name="Matrix1" Top="5.13" Width="173.36" Height="68.84" FixedRows="2" FixedColumns="1" DataSource="MatrixDemo" Style="Orange">
+    <DataBand Name="Data1" Top="89.09" Width="1047.06" Height="83.42">
+      <MatrixObject Name="Matrix1" Top="5.13" Width="196.66" Height="74.08" FixedRows="2" FixedColumns="1" DataSource="MatrixDemo" Style="Orange">
         <MatrixColumns>
           <Header Expression="[MatrixDemo.Year]"/>
           <Header Expression="[MatrixDemo.Month]"/>
@@ -56,38 +56,38 @@ namespace FastReport
         <MatrixCells>
           <Cell Expression="[MatrixDemo.Revenue]"/>
         </MatrixCells>
-        <TableColumn Name="Column1" Width="45.08" AutoSize="true"/>
-        <TableColumn Name="Column2" Width="58.86" AutoSize="true"/>
-        <TableColumn Name="Column3" Width="32.89" AutoSize="true"/>
-        <TableColumn Name="Column4" Width="36.53" AutoSize="true"/>
-        <TableRow Name="Row1" Height="17.21" AutoSize="true">
-          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Name" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" RowSpan="2"/>
-          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" ColSpan="2"/>
-          <TableCell Name="Cell7"/>
-          <TableCell Name="Cell10" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" RowSpan="2"/>
+        <TableColumn Name="Column1" Width="48.21" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="60.23" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="44.11" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="44.11" AutoSize="true"/>
+        <TableRow Name="Row1" Height="18.52" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Fill.Color="241, 185, 168" Text="Name" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Fill.Color="241, 185, 168" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell7" Fill.Color="241, 185, 168" Font="Microsoft JhengHei, 10pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All" Fill.Color="241, 185, 168" Text="TOTAL" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold" RowSpan="2"/>
         </TableRow>
-        <TableRow Name="Row2" Height="17.21" AutoSize="true">
-          <TableCell Name="Cell3"/>
-          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" BeforePrintEvent="Cell4_BeforePrint" Text="[Month]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell11"/>
+        <TableRow Name="Row2" Height="18.52" AutoSize="true">
+          <TableCell Name="Cell3" Fill.Color="241, 185, 168" Font="Microsoft JhengHei, 10pt, style=Bold"/>
+          <TableCell Name="Cell4" Border.Lines="All" Fill.Color="241, 185, 168" BeforePrintEvent="Cell4_BeforePrint" Text="[Month]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell8" Border.Lines="All" Fill.Color="241, 185, 168" Text="TOTAL" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell11" Fill.Color="241, 185, 168" Font="Microsoft JhengHei, 10pt, style=Bold"/>
         </TableRow>
-        <TableRow Name="Row5" Height="17.21" AutoSize="true">
-          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <TableRow Name="Row5" Height="18.52" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Fill.Color="241, 185, 168" Text="[Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
         </TableRow>
-        <TableRow Name="Row6" Height="17.21" AutoSize="true">
-          <TableCell Name="Cell13" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell14" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell15" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell16" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        <TableRow Name="Row6" Height="18.52" AutoSize="true">
+          <TableCell Name="Cell13" Border.Lines="All" Fill.Color="241, 185, 168" Text="TOTAL" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell14" Border.Lines="All" Fill.Color="241, 185, 168" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell15" Border.Lines="All" Fill.Color="241, 185, 168" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
+          <TableCell Name="Cell16" Border.Lines="All" Fill.Color="241, 185, 168" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
         </TableRow>
       </MatrixObject>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="176.47" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="176.55" Width="1047.06" Height="28.35">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Underline"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

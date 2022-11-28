@@ -1,0 +1,21 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>FastReport.Data.Postgres</Product>
+    <AssemblyName>FastReport.Data.Postgres</AssemblyName>
+
+  </PropertyGroup>
+
+  <Import Project="..\Connections.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="[3.2.7,)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

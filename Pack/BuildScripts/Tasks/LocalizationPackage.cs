@@ -46,7 +46,7 @@ namespace CakeScript
             Information($"{Environment.NewLine}FastReport.Localization pack...", ConsoleColor.DarkMagenta);
 
             var packFiles = new[] {
-                //new NuSpecContent{Source = Path.Combine(packDir, "FastReport .NET-license.md"), Target = ""},
+                //new NuSpecContent{Source = Path.Combine(packDir, NET_LICENSE), Target = ""},
                 new NuSpecContent{Source = Path.Combine(packDir, FRLOGO192PNG), Target = ""},
                 new NuSpecContent{Source = Path.Combine(packDir, MIT_LICENSE), Target = ""},
                 new NuSpecContent{Source = Path.Combine(packFRLocalizationDir, "**", "*.*"), Target = ""},

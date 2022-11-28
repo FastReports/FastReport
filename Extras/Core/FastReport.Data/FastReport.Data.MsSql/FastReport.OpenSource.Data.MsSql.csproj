@@ -1,40 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Copyright>Fast Reports Inc.</Copyright>
-		<Company>Fast Reports Inc.</Company>
+    <TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum)</TargetFrameworks>
 		<PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-		<PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-		<Authors>Fast Reports Inc.</Authors>
-		<Product>FastReport.Data.MsSql</Product>
-		<PackageId>FastReport.OpenSource.Data.MsSql</PackageId>
-		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
 		<PackageTags>reporting, mssql, connection, reports, core</PackageTags>
 		<Version>1.0.0</Version>
 		<Configurations>Debug;Release;</Configurations>
-		<AssemblyName>FastReport.Data.MsSql</AssemblyName>
 		<Description>Represents a connection to MS SQL database for FastReport.OpenSource
 
 This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
 </Description>
-		<RootNamespace>FastReport.Data</RootNamespace>
 		<PackageReleaseNotes></PackageReleaseNotes>
-	</PropertyGroup>
+    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+    
+    <Crossplatform>true</Crossplatform>
+  </PropertyGroup>
+  
+  <Import Project="Shared.props" />
 
-	<PropertyGroup>
-		<DefineConstants>FRCORE;</DefineConstants>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="System.Data.SqlClient" Version="4.4.3" />
-	</ItemGroup>
-
-        <ItemGroup>
+  <ItemGroup>
 		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
 	</ItemGroup>
-
-
 </Project>
