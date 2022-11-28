@@ -1,50 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net461;netcoreapp3.1</TargetFrameworks>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Copyright>Fast Reports Inc.</Copyright>
-		<Company>Fast Reports Inc.</Company>
+		<TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum);netcoreapp3.1</TargetFrameworks>
 		<PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-		<PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-		<Authors>Fast Reports Inc.</Authors>
-		<Product>FastReport.Data.OracleODPCore</Product>
-		<PackageId>FastReport.OpenSource.Data.OracleODPCore</PackageId>
-		<PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
 		<PackageTags>reporting, oracle, core, connection, reports</PackageTags>
 		<Version>1.0.0</Version>
 		<Configurations>Debug;Release;</Configurations>
-		<AssemblyName>FastReport.Data.OracleODPCore</AssemblyName>
-		<RootNamespace>FastReport.Data</RootNamespace>
 		<Description>Represents a connection to Oracle database for FastReport.OpenSource.
 		
 This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
 </Description>
 		<PackageReleaseNotes></PackageReleaseNotes>
-        <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
-	</PropertyGroup>
+    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+    
+    <Crossplatform>true</Crossplatform>
+  </PropertyGroup>
+  
+  <Import Project="Shared.props" />
 
-	<PropertyGroup>
-		<DefineConstants>FRCORE;</DefineConstants>
-	</PropertyGroup>
-
-    <ItemGroup>
+  <ItemGroup>
 		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
-	</ItemGroup>
-	
-	<ItemGroup>
-		<PackageReference Include="Oracle.ManagedDataAccess.Core" Version="[2.18.3,)" />
-	</ItemGroup>
-
-	<ItemGroup >
-		<Compile Remove="OracleConnectionEditor.cs" />
-		<Compile Remove="OracleConnectionEditor.Designer.cs" />
-		<Compile Remove="OracleConnectionEditor.resx" />
-		<Compile Remove="OracleConnectionEditor.DesignExt.cs" />
-	</ItemGroup>
-	<ItemGroup >
-		<EmbeddedResource Remove="OracleConnectionEditor.resx" />
 	</ItemGroup>
 </Project>

@@ -1,60 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net45;net452;netcoreapp3.1</TargetFrameworks>
-        <SignAssembly>false</SignAssembly>
-        <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Copyright>Fast Reports Inc.</Copyright>
-        <Company>Fast Reports Inc.</Company>
-        <PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-        <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-        <Authors>Fast Reports Inc.</Authors>
-        <Product>FastReport.Data.MongoDB</Product>
-        <PackageId>FastReport.OpenSource.Data.MongoDB</PackageId>
-        <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
-        <PackageTags>reporting, MongoDB, connection, reports</PackageTags>
-        <Version>1.0.0</Version>
-        <Configurations>Debug;Release;</Configurations>
-        <AssemblyName>FastReport.Data.MongoDB</AssemblyName>
-        <RootNamespace>FastReport.Data</RootNamespace>
-        <Description>Represents a connection to MongoDB database for FastReport.OpenSource.
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum);netcoreapp3.1</TargetFrameworks>
+    <PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageTags>reporting, MongoDB, connection, reports</PackageTags>
+    <Version>1.0.0</Version>
+    <Configurations>Debug;Release;</Configurations>
+    <Description>Represents a connection to MongoDB database for FastReport.OpenSource.
 
 This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
 </Description>
-        <PackageReleaseNotes>fixed a bug with wrong database name</PackageReleaseNotes>
-        <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-        <DefineConstants>FRCORE;</DefineConstants>
-    </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='net45'">
-    <PackageReference Include="MongoDB.Bson" Version="2.7.3" />
-    <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.7.3" />
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+    
+    <Crossplatform>true</Crossplatform>
+  </PropertyGroup>
+  
+  <Import Project="Shared.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'!='net45'">
-    <PackageReference Include="MongoDB.Bson" Version="[2.11.0,)" />
-    <PackageReference Include="MongoDB.Driver" Version="[2.11.0,)" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="[2.11.0,)" />
-  </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Remove="MongoDBConnectionEditor.cs" />
-        <Compile Remove="MongoDBConnectionEditor.Designer.cs" />
-        <Compile Remove="MongoDBConnectionEditor.resx" />
-        <Compile Remove="MongoDBDataConnection.DesignExt.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Remove="MongoDBConnectionEditor.resx" />
-    </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)'=='net45' Or '$(TargetFramework)'=='net452'">
-        <Reference Include="System" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Design" />
-        <Reference Include="System.Drawing" />
-        <Reference Include="System.Windows.Forms" />
-        <Reference Include="System.Xml" />
-    </ItemGroup>
 </Project>

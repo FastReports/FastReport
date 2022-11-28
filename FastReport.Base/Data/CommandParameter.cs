@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using FastReport.Utils;
 using System.Drawing.Design;
+using System.Data;
 
 namespace FastReport.Data
 {
@@ -11,7 +12,7 @@ namespace FastReport.Data
   public class CommandParameter : Base
   {
     private enum ParamValue { Uninitialized }
-    
+
     #region Fields
     private int dataType;
     private int size;
@@ -19,6 +20,7 @@ namespace FastReport.Data
     private string defaultValue;
     private object value;
     private object lastValue;
+    private ParameterDirection direction;
     #endregion
 
     #region Properties
@@ -28,7 +30,7 @@ namespace FastReport.Data
     [TypeConverter(typeof(FastReport.TypeConverters.ParameterDataTypeConverter))]
     [Category("Data")]
     [Editor("FastReport.TypeEditors.ParameterDataTypeEditor, FastReport", typeof(UITypeEditor))]
-    public int DataType
+    public virtual int DataType
     {
       get { return dataType; }
       set { dataType = value; }
@@ -42,10 +44,20 @@ namespace FastReport.Data
     /// </remarks>
     [DefaultValue(0)]
     [Category("Data")]
-    public int Size
+    public virtual int Size
     {
       get { return size; }
       set { size = value; }
+    }
+    
+    /// <summary>
+    /// Gets or set type of parameter.
+    /// </summary>
+    [BrowsableAttribute(false)]
+    public virtual ParameterDirection Direction
+    {
+        get { return direction; }
+        set { direction = value; }
     }
 
     /// <summary>
@@ -57,7 +69,7 @@ namespace FastReport.Data
     /// </remarks>
     [Category("Data")]
     [Editor("FastReport.TypeEditors.ExpressionEditor, FastReport", typeof(UITypeEditor))]
-    public string Expression
+    public virtual string Expression
     {
       get { return expression; }
       set { expression = value; }
@@ -70,7 +82,7 @@ namespace FastReport.Data
     /// This value is used when you designing a report. Also it is used when report is running
     /// in case if you don't provide a value for the <see cref="Expression"/> property.
     /// </remarks>
-    public string DefaultValue
+    public virtual string DefaultValue
     {
       get { return defaultValue; }
       set 
@@ -139,6 +151,21 @@ namespace FastReport.Data
         writer.WriteStr("Expression", Expression);
       if (DefaultValue != c.DefaultValue)
         writer.WriteStr("DefaultValue", DefaultValue);
+      if (Direction != c.Direction)
+        writer.WriteValue("Direction", Direction);
+    }
+
+    /// <inheritdoc/>
+    public override void Assign(Base source)
+    {
+        base.Assign(source);
+        CommandParameter src= source as CommandParameter;
+        Name = src.Name;
+        DataType = src.DataType;
+        Size = src.Size;
+        Value = src.Value;
+        Expression = src.Expression;
+        DefaultValue = src.DefaultValue;
     }
 
     /// <inheritdoc/>

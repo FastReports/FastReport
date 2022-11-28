@@ -2487,7 +2487,7 @@ namespace FastReport
         }
 
         /// <summary>
-        ///  Refresh prepared report after intercative actions.
+        ///  Refresh prepared report after interactive actions.
         /// </summary>
         public void InteractiveRefresh()
         {

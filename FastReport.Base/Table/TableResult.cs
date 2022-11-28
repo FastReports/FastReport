@@ -438,7 +438,7 @@ namespace FastReport.Table
                     rowsFit = GetRowsFit(startRow, freeSpace);
                 }
                 // avoid the infinite loop if there is not enough space for one row
-                if (startRow > 0 && rowsFit == 0)
+                if (rowsFit == 0)
                     rowsFit = 1;
 
                 int saveCurPage = engine.CurPage;

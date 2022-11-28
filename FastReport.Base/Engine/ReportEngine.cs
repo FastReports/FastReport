@@ -329,6 +329,11 @@ namespace FastReport.Engine
                 if (c is DataComponentBase)
                     (c as DataComponentBase).InitializeComponent();
             }
+            foreach (Base c in Report.AllObjects)
+            {
+                if (c is ReportComponentBase obj)
+                    obj.ResetData();
+            }
         }
 
         private void InitializeSecondPassData()

@@ -1,41 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net461;netcoreapp3.1</TargetFrameworks>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Copyright>Fast Reports Inc.</Copyright>
-    <Company>Fast Reports Inc.</Company>
+		<TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum);netcoreapp3.1</TargetFrameworks>
     <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
-    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
-    <Authors>Fast Reports Inc.</Authors>
-    <Product>FastReport.Data.ElasticSearch</Product>
-    <PackageId>FastReport.OpenSource.Data.ElasticSearch</PackageId>
-    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
     <PackageTags>reporting, elasticsearch, connection, reports, core</PackageTags>
     <Version>1.0.0</Version>
     <Configurations>Debug;Release;</Configurations>
-    <AssemblyName>FastReport.Data.ElasticSearch</AssemblyName>
-    <RootNamespace>FastReport.Data</RootNamespace>
     <Description>Represents a connection to ElasticSearch database for FastReport.OpenSource
 
 This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
 </Description>
     <PackageReleaseNotes></PackageReleaseNotes>
+
+    <Crossplatform>true</Crossplatform>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="ESConnectionEditor.cs" />
-    <Compile Remove="*.Designer.cs" />
-    <Compile Remove="*.DesignExt.cs" />
-    <EmbeddedResource Remove="ESConnectionEditor.resx" />
-  </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework)=='net461'">
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
+  
+  <Import Project="Shared.props" />
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
   </ItemGroup>

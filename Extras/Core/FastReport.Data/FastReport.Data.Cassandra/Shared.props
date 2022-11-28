@@ -1,0 +1,21 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>FastReport.Data.Cassandra</Product>
+    <AssemblyName>FastReport.Data.Cassandra</AssemblyName>
+
+  </PropertyGroup>
+
+  <Import Project="..\Connections.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="CassandraCSharpDriver" Version="3.17.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

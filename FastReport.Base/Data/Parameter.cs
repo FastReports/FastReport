@@ -183,6 +183,8 @@ namespace FastReport.Data
     {
       base.Serialize(writer);
       writer.WriteValue("DataType", DataType);
+      if (String.IsNullOrEmpty(Expression))
+        writer.WriteStr("AsString", AsString);
       if (!String.IsNullOrEmpty(Expression))
         writer.WriteStr("Expression", Expression);
       if (!String.IsNullOrEmpty(Description))

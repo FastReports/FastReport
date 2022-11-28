@@ -1,0 +1,21 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>FastReport.Data.RavenDB</Product>
+    <AssemblyName>FastReport.Data.RavenDB</AssemblyName>
+
+  </PropertyGroup>
+
+  <Import Project="..\Connections.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="RavenDB.Client" Version="4.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

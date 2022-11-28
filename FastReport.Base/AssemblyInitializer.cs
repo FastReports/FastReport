@@ -34,10 +34,12 @@ namespace FastReport
             // data items
             RegisteredObjects.InternalAdd(typeof(Column), "", 0);
             RegisteredObjects.InternalAdd(typeof(CommandParameter), "", 0);
+            RegisteredObjects.InternalAdd(typeof(ProcedureParameter), "", 0);
             RegisteredObjects.InternalAdd(typeof(Relation), "", 0);
             RegisteredObjects.InternalAdd(typeof(Parameter), "", 0);
             RegisteredObjects.InternalAdd(typeof(Total), "", 0);
             RegisteredObjects.InternalAdd(typeof(TableDataSource), "", 0);
+            RegisteredObjects.InternalAdd(typeof(ProcedureDataSource), "", 0);
             RegisteredObjects.InternalAdd(typeof(ViewDataSource), "", 0);
             RegisteredObjects.InternalAdd(typeof(BusinessObjectDataSource), "", 0);
             RegisteredObjects.InternalAdd(typeof(SliceCubeSource), "", 0);

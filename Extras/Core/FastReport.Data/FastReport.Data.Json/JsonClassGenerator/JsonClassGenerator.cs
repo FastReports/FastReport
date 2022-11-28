@@ -39,7 +39,7 @@ namespace FastReport.JsonClassGenerator
         public bool ExamplesInDocumentation { get; set; }
 
 #if !FRCORE
-        private PluralizationService pluralizationService = PluralizationService.CreateService(new CultureInfo("en-us"));
+        private readonly PluralizationService pluralizationService = PluralizationService.CreateService(new CultureInfo("en-us"));
 #endif
 
         private bool used = false;

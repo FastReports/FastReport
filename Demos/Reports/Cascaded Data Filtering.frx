@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to implement the cascaded filter. When you select an employee, the orders list will be refreshed. To do this:&#13;&#10;- put two comboboxes on a form, EmployeesComboBox and OrdersComboBox;&#13;&#10;- connect EmployeesComboBox to Employees.FirstName data column via its DataColumn property;&#13;&#10;- connect OrdersComboBox to Orders.OrderID data column;&#13;&#10;- select EmployeesComboBox and set its DetailControl property to OrdersComboBox. &#13;&#10;That's all, you don't need to write any code!" ReportInfo.Created="03/19/2009 00:41:35" ReportInfo.Modified="05/27/2020 20:00:06" ReportInfo.CreatorVersion="2020.3.3.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to implement the cascaded filter. When you select an employee, the orders list will be refreshed. To do this:&#13;&#10;- put two comboboxes on a form, EmployeesComboBox and OrdersComboBox;&#13;&#10;- connect EmployeesComboBox to Employees.FirstName data column via its DataColumn property;&#13;&#10;- connect OrdersComboBox to Orders.OrderID data column;&#13;&#10;- select EmployeesComboBox and set its DetailControl property to OrdersComboBox. &#13;&#10;That's all, you don't need to write any code!" ReportInfo.Created="03/19/2009 00:41:35" ReportInfo.Modified="11/21/2022 14:31:31" ReportInfo.CreatorVersion="1.0.0.0">
   <Dictionary>
     <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
       <Column Name="EmployeeID" DataType="System.Int32"/>
@@ -65,39 +65,39 @@
   </Dictionary>
   <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="56.7" CanGrow="true">
-      <TextObject Name="Text12" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/afd51" CanGrow="true" CanShrink="true" Text="Learn about various report objects on the Fast Reports Academy channel" Padding="4, 4, 4, 4" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
-      <TextObject Name="Text14" Top="28.35" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text12" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Cursor="Hand" Hyperlink.Value="http://fast.report/afd51" CanGrow="true" CanShrink="true" Text="Learn about various report objects on the Fast Reports Academy channel" Padding="4, 4, 4, 4" Font="Microsoft JhengHei, 10pt, style=Bold, Underline"/>
+      <TextObject Name="Text14" Top="28.35" Width="718.2" Height="28.35" Anchor="Top, Left, Right" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Microsoft JhengHei, 8pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="59.9" Width="718.2" Height="47.25" Fill.Color="Coral" DataSource="Employees">
-      <TextObject Name="Text1" Left="9.45" Width="538.65" Height="47.25" Text="[Employees.FirstName] [Employees.LastName]" VertAlign="Center" Font="Tahoma, 16pt, style=Bold" TextFill.Color="White"/>
-      <DataBand Name="Data2" Top="110.35" Width="718.2" Height="37.8" Fill.Color="LightSalmon" DataSource="Orders">
-        <TextObject Name="Text2" Left="9.45" Top="9.45" Width="132.3" Height="18.9" Text="Order ID: [Orders.OrderID]" Font="Tahoma, 10pt"/>
-        <TextObject Name="Text3" Left="160.65" Top="9.45" Width="198.45" Height="18.9" Text="Date: [Orders.OrderDate]" Format="Date" Format.Format="d" Font="Tahoma, 10pt"/>
-        <DataBand Name="Data3" Top="151.35" Width="718.2" Height="37.8" Fill.Color="MistyRose" DataSource="Order Details">
-          <TextObject Name="Text4" Left="28.35" Top="9.45" Width="207.9" Height="18.9" Text="[Order Details.Products.ProductName]" Font="Tahoma, 8pt"/>
-          <TextObject Name="Text5" Left="245.7" Top="9.45" Width="94.5" Height="18.9" Text="[Order Details.UnitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Tahoma, 8pt"/>
-          <TextObject Name="Text6" Left="359.1" Top="9.45" Width="37.8" Height="18.9" Text="[Order Details.Quantity]" Font="Tahoma, 8pt"/>
+    <DataBand Name="Data1" Top="60.74" Width="718.2" Height="47.25" Fill.Color="Coral" DataSource="Employees">
+      <TextObject Name="Text1" Left="9.45" Width="538.65" Height="47.25" Text="[Employees.FirstName] [Employees.LastName]" VertAlign="Center" Font="Microsoft JhengHei, 16pt, style=Bold" TextFill.Color="White"/>
+      <DataBand Name="Data2" Top="112.03" Width="718.2" Height="37.8" Fill.Color="LightSalmon" DataSource="Orders">
+        <TextObject Name="Text2" Left="9.45" Top="9.45" Width="132.3" Height="18.9" Text="Order ID: [Orders.OrderID]" Font="Microsoft JhengHei, 10pt"/>
+        <TextObject Name="Text3" Left="160.65" Top="9.45" Width="198.45" Height="18.9" Text="Date: [Orders.OrderDate]" Format="Date" Format.Format="d" Font="Microsoft JhengHei, 10pt"/>
+        <DataBand Name="Data3" Top="153.87" Width="718.2" Height="37.8" Fill.Color="MistyRose" DataSource="Order Details">
+          <TextObject Name="Text4" Left="28.35" Top="9.45" Width="207.9" Height="18.9" Text="[Order Details.Products.ProductName]" Font="Microsoft JhengHei, 8pt"/>
+          <TextObject Name="Text5" Left="245.7" Top="9.45" Width="94.5" Height="18.9" Text="[Order Details.UnitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Microsoft JhengHei, 8pt"/>
+          <TextObject Name="Text6" Left="359.1" Top="9.45" Width="37.8" Height="18.9" Text="[Order Details.Quantity]" Font="Microsoft JhengHei, 8pt"/>
           <TextObject Name="Text7" Left="340.2" Top="9.45" Width="18.9" Height="18.9" Text="x" HorzAlign="Center" Font="Tahoma, 8pt"/>
-          <TextObject Name="Text8" Left="415.8" Top="9.45" Width="75.6" Height="18.9" Text="[[Order Details.UnitPrice] * [Order Details.Quantity]]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Tahoma, 8pt"/>
+          <TextObject Name="Text8" Left="415.8" Top="9.45" Width="75.6" Height="18.9" Text="[[Order Details.UnitPrice] * [Order Details.Quantity]]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Microsoft JhengHei, 8pt"/>
           <TextObject Name="Text9" Left="396.9" Top="9.45" Width="18.9" Height="18.9" Text="=" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" Font="Tahoma, 8pt"/>
         </DataBand>
       </DataBand>
     </DataBand>
-    <ReportSummaryBand Name="ReportSummary1" Top="192.35" Width="718.2" Height="37.8" Fill.Color="LightSalmon">
-      <TextObject Name="Text10" Left="415.8" Top="9.45" Width="75.6" Height="18.9" Text="[OrderTotal]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text11" Left="311.85" Top="9.45" Width="85.05" Height="18.9" Text="Total:" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Tahoma, 8pt"/>
+    <ReportSummaryBand Name="ReportSummary1" Top="195.71" Width="718.2" Height="37.8" Fill.Color="LightSalmon">
+      <TextObject Name="Text10" Left="415.8" Top="9.45" Width="75.6" Height="18.9" Text="[OrderTotal]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Microsoft JhengHei, 8pt"/>
+      <TextObject Name="Text11" Left="311.85" Top="9.45" Width="85.05" Height="18.9" Text="Total:" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Microsoft JhengHei, 8pt"/>
     </ReportSummaryBand>
-    <PageFooterBand Name="PageFooter1" Top="233.35" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text13" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="237.55" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text13" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Underline"/>
     </PageFooterBand>
   </ReportPage>
-  <DialogPage Name="Form1" Width="298" Height="174" AcceptButton="btnOk" CancelButton="btnCancel" Font="Tahoma, 8pt">
-    <ButtonControl Name="btnCancel" Left="205" Top="107" Anchor="Bottom, Right" Width="75" Height="23" Font="Tahoma, 8pt" TabIndex="0" Text="Cancel" DialogResult="Cancel"/>
-    <ButtonControl Name="btnOk" Left="122" Top="107" Anchor="Bottom, Right" Width="75" Height="23" Font="Tahoma, 8pt" TabIndex="1" Text="OK" DialogResult="OK"/>
+  <DialogPage Name="Form1" AcceptButton="btnOk" CancelButton="btnCancel" AutoScaleDimensions="96, 96" ClientSize="282, 135">
+    <ButtonControl Name="btnCancel" Left="205" Top="107" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="0" Text="Cancel" DialogResult="Cancel"/>
+    <ButtonControl Name="btnOk" Left="122" Top="107" Anchor="Bottom, Right" Font="Tahoma, 8pt" TabIndex="1" Text="OK" DialogResult="OK"/>
     <LabelControl Name="Label1" Left="12" Top="40" Width="57" Height="13" Font="Tahoma, 8pt" TabIndex="3" Text="Employee:"/>
-    <ComboBoxControl Name="EmployeesComboBox" Left="92" Top="36" Width="185" Height="21" Font="Tahoma, 8pt" TabIndex="4" AutoFilter="false" DataColumn="Employees.FirstName" DetailControl="OrdersComboBox" DropDownStyle="DropDownList" DropDownWidth="185" ItemHeight="13" ItemsText="Anne&#13;&#10;Andrew&#13;&#10;Janet&#13;&#10;Margaret&#13;&#10;Steven&#13;&#10;Michael&#13;&#10;Robert&#13;&#10;Laura&#13;&#10;Nancy" SelectedIndexChangedEvent="EmployeesComboBox_SelectedIndexChanged"/>
+    <ComboBoxControl Name="EmployeesComboBox" Left="92" Top="36" Width="185" Font="Tahoma, 8pt" TabIndex="4" AutoFilter="false" DataColumn="Employees.FirstName" DetailControl="OrdersComboBox" DropDownStyle="DropDownList" DropDownWidth="185" ItemHeight="13" ItemsText="Anne&#13;&#10;Andrew&#13;&#10;Janet&#13;&#10;Margaret&#13;&#10;Steven&#13;&#10;Michael&#13;&#10;Robert&#13;&#10;Laura&#13;&#10;Nancy" SelectedIndexChangedEvent="EmployeesComboBox_SelectedIndexChanged"/>
     <LabelControl Name="Label2" Left="12" Top="72" Width="53" Height="13" Font="Tahoma, 8pt" TabIndex="6" Text="Order ID:"/>
-    <ComboBoxControl Name="OrdersComboBox" Left="92" Top="68" Width="89" Height="21" Font="Tahoma, 8pt" TabIndex="7" AutoFill="false" DataColumn="Orders.OrderID" DropDownStyle="DropDownList" DropDownWidth="89" ItemHeight="13" ItemsText="10255&#13;&#10;10263&#13;&#10;10324&#13;&#10;10331&#13;&#10;10386&#13;&#10;10411&#13;&#10;10475&#13;&#10;10501&#13;&#10;10506&#13;&#10;10538&#13;&#10;10557&#13;&#10;10566&#13;&#10;10577&#13;&#10;10586&#13;&#10;10646&#13;&#10;10672&#13;&#10;10687&#13;&#10;10705&#13;&#10;10736&#13;&#10;10745&#13;&#10;10750&#13;&#10;10771&#13;&#10;10782&#13;&#10;10799&#13;&#10;10828&#13;&#10;10829&#13;&#10;10837&#13;&#10;10849&#13;&#10;10853&#13;&#10;10871&#13;&#10;10889&#13;&#10;10893&#13;&#10;10905&#13;&#10;10942&#13;&#10;10951&#13;&#10;10953&#13;&#10;10963&#13;&#10;10970&#13;&#10;10978&#13;&#10;11016&#13;&#10;11017&#13;&#10;11022&#13;&#10;11058"/>
+    <ComboBoxControl Name="OrdersComboBox" Left="92" Top="68" Width="89" Font="Tahoma, 8pt" TabIndex="7" AutoFill="false" DataColumn="Orders.OrderID" DropDownStyle="DropDownList" DropDownWidth="89" ItemHeight="13" ItemsText="10255&#13;&#10;10263&#13;&#10;10324&#13;&#10;10331&#13;&#10;10386&#13;&#10;10411&#13;&#10;10475&#13;&#10;10501&#13;&#10;10506&#13;&#10;10538&#13;&#10;10557&#13;&#10;10566&#13;&#10;10577&#13;&#10;10586&#13;&#10;10646&#13;&#10;10672&#13;&#10;10687&#13;&#10;10705&#13;&#10;10736&#13;&#10;10745&#13;&#10;10750&#13;&#10;10771&#13;&#10;10782&#13;&#10;10799&#13;&#10;10828&#13;&#10;10829&#13;&#10;10837&#13;&#10;10849&#13;&#10;10853&#13;&#10;10871&#13;&#10;10889&#13;&#10;10893&#13;&#10;10905&#13;&#10;10942&#13;&#10;10951&#13;&#10;10953&#13;&#10;10963&#13;&#10;10970&#13;&#10;10978&#13;&#10;11016&#13;&#10;11017&#13;&#10;11022&#13;&#10;11058"/>
     <LabelControl Name="Label3" Left="12" Top="12" Width="259" Height="13" Font="Tahoma, 8pt" TabIndex="8" Text="Select an employee and order ID to view order items"/>
   </DialogPage>
 </Report>
