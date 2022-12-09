@@ -1,6 +1,7 @@
 ﻿using FastReport.Format;
 using FastReport.Utils;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
@@ -713,7 +714,11 @@ namespace FastReport.Export
             return null;
         }
 
-        internal static void SaveJpeg(System.Drawing.Image image, Stream buff, int quality)
+        /// <summary>
+        /// For developers only
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public static void SaveJpeg(System.Drawing.Image image, Stream buff, int quality)
         {
             ImageCodecInfo ici = ExportUtils.GetCodec("image/jpeg");
             EncoderParameters ep = new EncoderParameters();

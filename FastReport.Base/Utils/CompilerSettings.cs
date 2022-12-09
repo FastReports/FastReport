@@ -71,6 +71,14 @@ namespace FastReport.Utils
             set { exceptionBehaviour = value; }
         }
 
+        /// <summary>
+        /// Get or sets number of recompiles
+        /// </summary>
+        /// <remarks>
+        /// Report compiler can try to fix compilation errors and recompile your report again. This property sets the number of such attempts.
+        /// </remarks>
+        public int RecompileCount { get; set; } = 1;
+
         #endregion Properties
 
         #region Constructors

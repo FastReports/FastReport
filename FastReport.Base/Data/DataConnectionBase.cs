@@ -134,6 +134,16 @@ namespace FastReport.Data
         }
 
         /// <summary>
+        /// Gets or sets a value indicates if this connection can contain procedures.
+        /// </summary>
+        [Browsable(false)]
+        public bool CanContainProcedures
+        {
+            get { return canContainProcedures; }
+            set { canContainProcedures = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether a login dialog appears immediately before opening a connection.
         /// </summary>
         /// <remarks>
@@ -343,7 +353,8 @@ namespace FastReport.Data
             FilterTables(tableNames);
 
             List<string> procedureNames = new List<string>();
-            procedureNames.AddRange(GetProcedureNames());
+            if (canContainProcedures)
+                procedureNames.AddRange(GetProcedureNames());
 
             // remove tables with tablename that does not exist in the connection.
             for (int i = 0; i < Tables.Count; i++)
@@ -955,7 +966,7 @@ namespace FastReport.Data
             connectionString = "";
             connectionStringExpression = "";
             IsSqlBased = true;
-            canContainProcedures = true;
+            canContainProcedures = false;
             commandTimeout = 30;
             SetFlags(Flags.CanEdit, true);
         }
