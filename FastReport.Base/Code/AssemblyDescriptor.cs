@@ -35,8 +35,6 @@ namespace FastReport.Code
         private readonly static object compileLocker;
         private readonly string currentFolder;
 
-        private const int RECOMPILE_COUNT = 1;
-
         public Assembly Assembly { get; private set; }
 
         public object Instance { get; private set; }
@@ -135,7 +133,7 @@ namespace FastReport.Code
             return args.Text.ToString();
         }
 
-        private bool ContainsAssembly(IEnumerable assemblies, string assembly)
+        private bool ContainsAssembly(StringCollection assemblies, string assembly)
         {
             string asmName = Path.GetFileName(assembly);
             foreach (string a in assemblies)
@@ -147,7 +145,7 @@ namespace FastReport.Code
             return false;
         }
 
-        private void AddFastReportAssemblies(IList assemblies)
+        private void AddFastReportAssemblies(StringCollection assemblies)
         {
             foreach (Assembly assembly in RegisteredObjects.Assemblies)
             {
@@ -166,7 +164,7 @@ namespace FastReport.Code
             }
         }
 
-        private void AddReferencedAssemblies(IList assemblies, string defaultPath)
+        private void AddReferencedAssemblies(StringCollection assemblies, string defaultPath)
         {
             for (int i = 0; i < Report.ReferencedAssemblies.Length; i++)
             {
@@ -198,7 +196,7 @@ namespace FastReport.Code
             AddReferencedAssembly(assemblies, defaultPath, "Microsoft.CSharp");
         }
 
-        private void AddReferencedAssembly(IList assemblies, string defaultPath, string assemblyName)
+        private void AddReferencedAssembly(StringCollection assemblies, string defaultPath, string assemblyName)
         {
             string location = GetFullAssemblyReference(assemblyName, defaultPath);
             if (location != "" && !ContainsAssembly(assemblies, location))
@@ -405,10 +403,13 @@ namespace FastReport.Code
             string errors = string.Empty;
             CompilerResults cr;
             bool exception = !InternalCompile(cp, out cr);
-            for (int i = 0; exception && i < RECOMPILE_COUNT; i++)
+            for (int i = 0; exception && i < Config.CompilerSettings.RecompileCount; i++)
             {
-                exception = !HandleCompileErrors(cp, cr, out errors);
+                exception = !TryRecompile(cp, ref cr);
             }
+
+            if (cr != null)
+                HandleCompileErrors(cr, out errors);
 
             if (exception && errors != string.Empty)
                 throw new CompilerException(errors);
@@ -483,7 +484,7 @@ namespace FastReport.Code
             string[] parts = error.Split('\"');
             if (parts.Length == 3)
             {
-                string[] expressions = (text as Base).GetExpressions();
+                string[] expressions = text.GetExpressions();
                 foreach (string expr in expressions)
                 {
                     if (expr.Contains(parts[1]))
@@ -510,11 +511,9 @@ namespace FastReport.Code
         /// <summary>
         /// Handle compile errors
         /// </summary>
-        /// <returns>Returns <b>true</b> if all errors were handled</returns>
-        private bool HandleCompileErrors(CompilerParameters cp, CompilerResults cr, out string errors)
+        private void HandleCompileErrors(CompilerResults cr, out string errors)
         {
             errors = string.Empty;
-            List<string> additionalAssemblies = new List<string>(4);
             Regex regex;
 
             if (Config.WebMode && Config.EnableScriptSecurity)
@@ -569,27 +568,6 @@ namespace FastReport.Code
 
             foreach (CompilerError ce in cr.Errors)
             {
-                if (ce.ErrorNumber == "CS0012") // missing reference on assembly
-                {
-                    // try to add reference
-                    try
-                    {
-                        // in .Net Core compiler will return other quotes
-#if CROSSPLATFORM || COREWIN
-                        const string quotes = "\'";
-#else
-                        const string quotes = "\"";
-#endif
-                        const string pattern = quotes + @"(\S{1,}),";
-                        regex = new Regex(pattern, RegexOptions.Compiled);
-                        string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without quotes and , symbols
-                        if (!additionalAssemblies.Contains(assemblyName))
-                            additionalAssemblies.Add(assemblyName);
-                        continue;
-                    }
-                    catch { }
-                }
-
                 int line = GetScriptLine(ce.Line);
                 // error is inside own items
                 if (line == -1)
@@ -620,36 +598,63 @@ namespace FastReport.Code
                     }
                     else
                     {
-                        errors += String.Format("({0}): " + Res.Get("Messages,Error") + " {1}: {2}", new object[] { errObjName, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
+                        errors += $"({errObjName}): {Res.Get("Messages,Error")} {ce.ErrorNumber}: {ce.ErrorText}\r\n";
                         ErrorMsg(errObjName, ce);
                     }
                 }
                 else
                 {
-                    errors += String.Format("({0},{1}): " + Res.Get("Messages,Error") + " {2}: {3}", new object[] { line, ce.Column, ce.ErrorNumber, ce.ErrorText }) + "\r\n";
+                    errors += $"({line},{ce.Column}): {Res.Get("Messages,Error")} {ce.ErrorNumber}: {ce.ErrorText}\r\n";
                     ErrorMsg(ce, line);
                 }
             }
-
-            if (additionalAssemblies.Count > 0)  // need recompile
-                return ReCompile(cp, cr, additionalAssemblies);
-
-            return false;
         }
 
         /// <summary>
         /// Returns true if recompilation is successful
         /// </summary>
-        private bool ReCompile(CompilerParameters cp, CompilerResults cr, IList additionalAssemblies)
+        private bool TryRecompile(CompilerParameters cp, ref CompilerResults cr)
         {
-            // try to load missing assemblies
-            foreach (string assemblyName in additionalAssemblies)
+            List<string> additionalAssemblies = new List<string>(4);
+
+            foreach (CompilerError ce in cr.Errors)
             {
-                AddReferencedAssembly(cp.ReferencedAssemblies, currentFolder, assemblyName);
+                if (ce.ErrorNumber == "CS0012") // missing reference on assembly
+                {
+                    // try to add reference
+                    try
+                    {
+                        // in .Net Core compiler will return other quotes
+#if CROSSPLATFORM || COREWIN
+                        const string quotes = "\'";
+#else
+                        const string quotes = "\"";
+#endif
+                        const string pattern = quotes + @"(\S{1,}),";
+                        Regex regex = new Regex(pattern, RegexOptions.Compiled);
+                        string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without quotes and , symbols
+                        if (!additionalAssemblies.Contains(assemblyName))
+                            additionalAssemblies.Add(assemblyName);
+                        continue;
+                    }
+                    catch { }
+                }
             }
 
-            return InternalCompile(cp, out cr);
+            if (additionalAssemblies.Count > 0)  // need recompile
+            {
+                // try to load missing assemblies
+                foreach (string assemblyName in additionalAssemblies)
+                {
+                    AddReferencedAssembly(cp.ReferencedAssemblies, currentFolder, assemblyName);
+                }
+
+                return InternalCompile(cp, out cr);
+            }
+
+            return false;
         }
+
 
         public void InitInstance(object instance)
         {
@@ -664,7 +669,7 @@ namespace FastReport.Code
 
         public object CalcExpression(string expr, Variant value)
         {
-            FastReport.Code.ExpressionDescriptor expressionDescriptor = Expressions[expr] as FastReport.Code.ExpressionDescriptor;
+            ExpressionDescriptor expressionDescriptor = Expressions[expr] as ExpressionDescriptor;
             if (expressionDescriptor != null)
                 return expressionDescriptor.Invoke(new object[] { expr, value });
             else

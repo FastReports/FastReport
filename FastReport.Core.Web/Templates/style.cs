@@ -77,6 +77,9 @@ namespace FastReport.Web
     min-width: -moz-max-content;
     min-width: -webkit-max-content;
     min-width: max-content;*/
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }}
 
 .{template_FR}-toolbar-item {{
