@@ -106,52 +106,25 @@ namespace FastReport.Web.Controllers
 
                 var exportFormat = Request.Query["exportFormat"].ToString().ToLower();
 
-                var exportInfo = ExportsHelper.GetInfoFromExt(exportFormat);
-                using (var export = exportInfo.CreateExport())
-                using (var ms = new MemoryStream())
+                // skip extra key/value pairs
+                var exportParams = Request.Query.Where(pair => pair.Key != "exportFormat" && pair.Key != "reportId").ToArray();
+
+                using (MemoryStream exportStream = new MemoryStream())
                 {
-                    if (exportInfo.HaveSettings && Request.Query.Keys.Count > 2)
+                    try
                     {
-                        var exportProperties = exportInfo.ExportType?.
-                            GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                            .Where(property => property.CanWrite);
-
-                        if (exportProperties != null)
-                            foreach(var queryKey in Request.Query.Keys)
-                            {
-                                var existProp = exportProperties
-                                    .Where(prop => prop.Name == queryKey)
-                                    .FirstOrDefault();
-                                if (existProp != null)
-                                {
-                                    string propValue = Request.Query[queryKey];
-                                    object propValueConverted;
-                                    if (existProp.PropertyType.IsEnum)
-                                        propValueConverted = Enum.Parse(existProp.PropertyType, propValue);
-                                    else
-                                        propValueConverted = Convert.ChangeType(propValue, existProp.PropertyType, CultureInfo.InvariantCulture);
-#if DEBUG
-                                    Console.WriteLine($"Export setting: {existProp}: {propValueConverted}");
-#endif
-                                    existProp.SetMethod.Invoke(export, new[] { propValueConverted });
-                                }
-                            }
+                        webReport.ExportReport(exportStream, exportFormat, exportParams);
                     }
-
-                    if (exportInfo.Export == Exports.Prepared)
-                        webReport.Report.SavePrepared(ms);
-                    else if (export != null)
-                        export.Export(webReport.Report, ms);
-                    else
+                    catch (UnsupportedExportException)
+                    {
                         return new UnsupportedMediaTypeResult();
-
-                    ms.Position = 0;
+                    }
 
                     var filename = webReport.GetCurrentTabName();
                     if (filename.IsNullOrWhiteSpace())
                         filename = "report";
 
-                    return new FileContentResult(ms.ToArray(), "application/octet-stream")
+                    return new FileContentResult(exportStream.ToArray(), "application/octet-stream")
                     {
                         FileDownloadName = $"{filename}.{exportFormat}"
                     };

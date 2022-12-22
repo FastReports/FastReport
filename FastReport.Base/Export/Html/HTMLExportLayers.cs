@@ -553,8 +553,13 @@ namespace FastReport.Export.Html
                     {
                         using (Graphics g = Graphics.FromImage(image))
                         {
+#if MSCHART
+                            if (obj is TextObjectBase || obj is FastReport.MSChart.MSChartObject)
+                                g.Clear(GetClearColor(obj));
+#else
                             if (obj is TextObjectBase)
                                 g.Clear(GetClearColor(obj));
+#endif
 
                             float Left = Width > 0 ? obj.AbsLeft : obj.AbsLeft + Width;
                             float Top = Height > 0 ? obj.AbsTop : obj.AbsTop + Height;

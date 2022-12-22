@@ -16,7 +16,7 @@ namespace FastReport.Web.Application
 
         string GetInternal(string id);
 
-        void Root(string Section);
+        void Root(string section);
     }
 
     internal class WebRes : IWebRes
@@ -90,16 +90,16 @@ namespace FastReport.Web.Application
         }
 
 
-        public void Root(string Section)
+        public void Root(string section)
         {
-            categories = Section.Split(',');
+            categories = section.Split(',');
         }
 
-        public WebRes(string Section = "")
+        public WebRes(string section = "")
         {
             locale = builtinLocale;
-
-            Root(Section);
+             
+            Root(section);
         }
 
         static WebRes()

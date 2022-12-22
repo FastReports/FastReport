@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This example shows how to insert a page break before the employee &quot;Janet Leverling&quot; so it will be printed on a new page.&#13;&#10;This example does not differ materially from the &quot;Column Datasource&quot; example. It demonstrates how to handle page breaks from a script. To do this:&#13;&#10;- use Table object's &quot;PageBreak&quot; method to insert a page break before row or column that you intend to print using the PrintRow(s) or PrintColumn(s) methods." ReportInfo.Created="01/17/2008 20:54:09" ReportInfo.Modified="11/21/2022 14:19:13" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This example shows how to insert a page break before the employee &quot;Janet Leverling&quot; so it will be printed on a new page.&#13;&#10;This example does not differ materially from the &quot;Column Datasource&quot; example. It demonstrates how to handle page breaks from a script. To do this:&#13;&#10;- use Table object's &quot;PageBreak&quot; method to insert a page break before row or column that you intend to print using the PrintRow(s) or PrintColumn(s) methods." ReportInfo.Created="01/17/2008 20:54:09" ReportInfo.Modified="01/21/2019 11:36:09" ReportInfo.CreatorVersion="2019.1.9.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -77,43 +77,43 @@ namespace FastReport
       <Column Name="ReportsTo" DataType="System.Int32"/>
     </TableDataSource>
   </Dictionary>
-  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
-      <TextObject Name="Text1" Top="37.8" Width="718.2" Height="28.35" Text="EMPLOYEES" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 14pt, style=Bold"/>
-      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Microsoft JhengHei, 8pt"/>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="73.82" CanGrow="true">
+      <TextObject Name="Text1" Top="37.8" Width="718.2" Height="28.35" Text="EMPLOYEES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="70.19" Width="718.2" Height="215.57">
-      <TableObject Name="Table1" Left="9.45" Top="7.67" Width="292.95" Height="198.45" Border.Lines="All" Border.Width="2" FixedColumns="1" ManualBuildEvent="Table1_ManualBuild">
+    <DataBand Name="Data1" Top="77.82" Width="718.2" Height="215.57">
+      <TableObject Name="Table1" Left="9.45" Top="7.67" Width="292.95" Height="198.45" Border.Lines="All" Border.Color="LightGray" Border.Width="2" FixedColumns="1" ManualBuildEvent="Table1_ManualBuild">
         <TableColumn Name="Column1" Width="85.05"/>
         <TableColumn Name="Column2" MinWidth="141.75" Width="141.75" AutoSize="true"/>
         <TableColumn Name="Column3"/>
         <TableRow Name="Row1">
-          <TableCell Name="Cell1" Border.Lines="All" Fill.Color="209, 190, 223" Text="Name" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
-          <TableCell Name="Cell2" Border.Lines="All" Border.LeftLine.Width="2" Border.RightLine.Width="2" Text="[Employees.FirstName] [Employees.LastName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
-          <TableCell Name="Cell23" Border.Lines="All" Text="Total:&#13;&#10;[Count(Cell2)]" HorzAlign="Center" VertAlign="Center" Font="Microsoft JhengHei, 8pt" RowSpan="4"/>
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="LightGray" Text="Name" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" Text="[Employees.FirstName] [Employees.LastName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell23" Text="Total:&#13;&#10;[Count(Cell2)]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" RowSpan="4"/>
         </TableRow>
         <TableRow Name="Row2">
-          <TableCell Name="Cell6" Border.Lines="All" Fill.Color="209, 190, 223" Text="Title" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
-          <TableCell Name="Cell7" Border.Lines="All" Border.LeftLine.Width="2" Border.RightLine.Width="2" Text="[Employees.Title]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
-          <TableCell Name="Cell24" Font="Arial, 10pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="LightGray" Text="Title" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" Text="[Employees.Title]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell24"/>
         </TableRow>
         <TableRow Name="Row3">
-          <TableCell Name="Cell11" Border.Lines="All" Fill.Color="209, 190, 223" Text="Phone" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
-          <TableCell Name="Cell12" Border.Lines="All" Border.LeftLine.Width="2" Border.RightLine.Width="2" Text="[Employees.HomePhone]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt"/>
-          <TableCell Name="Cell25" Font="Arial, 10pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="LightGray" Text="Phone" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" Text="[Employees.HomePhone]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell25"/>
         </TableRow>
         <TableRow Name="Row5" Height="141.75">
-          <TableCell Name="Cell21" Border.Lines="All" Fill.Color="209, 190, 223" Text="Photo" Padding="5, 0, 0, 0" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Bold"/>
-          <TableCell Name="Cell22" Border.Lines="All" Border.LeftLine.Width="2" Border.RightLine.Width="2" VertAlign="Center" Font="Tahoma, 8pt">
+          <TableCell Name="Cell21" Border.Lines="All" Border.Color="LightGray" Text="Photo" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="All" Border.LeftLine.Color="LightGray" Border.LeftLine.Width="2" Border.TopLine.Color="LightGray" Border.RightLine.Color="LightGray" Border.RightLine.Width="2" Border.BottomLine.Color="LightGray" VertAlign="Center" Font="Tahoma, 8pt">
             <PictureObject Name="Picture1" Left="9.45" Top="9.45" Width="122.85" Height="122.85" DataColumn="Employees.Photo"/>
           </TableCell>
-          <TableCell Name="Cell26" Font="Arial, 10pt"/>
+          <TableCell Name="Cell26"/>
         </TableRow>
       </TableObject>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="289.8" Width="718.2" Height="28.35">
-      <TextObject Name="Text2" Left="614.25" Top="9.45" Width="94.5" Height="18.9" Text="[PageN]" HorzAlign="Right" Font="Microsoft JhengHei, 8pt"/>
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Microsoft JhengHei, 8pt, style=Underline"/>
+    <PageFooterBand Name="PageFooter1" Top="297.39" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text2" Left="614.25" Top="9.45" Width="94.5" Height="18.9" Text="[PageN]" HorzAlign="Right" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/en/product/fast-report-net/" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>
