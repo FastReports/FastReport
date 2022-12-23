@@ -15,8 +15,7 @@ namespace FastReport.Web
                 )
                 return "";
 
-            Toolbar.ShowRefreshButton = Report.IsLoadPrepared ? false : true;
-
+            var showRefreshButton = Toolbar.ShowRefreshButton && !Report.IsLoadPrepared;
             var localization = new ToolbarLocalization(Res);
             var exports = Toolbar.Exports;
             var toolbarExportItem = $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"">
@@ -84,7 +83,7 @@ namespace FastReport.Web
             string templateToolbar = $@"
 <div class=""fr-toolbar {template_FR}-toolbar"">
      
-{(Toolbar.ShowRefreshButton ? $@"<div class=""fr-toolbar-item fr-toolbar-pointer {template_FR}-toolbar-item {template_FR}-pointer"" onclick=""{template_FR}.refresh();"" title=""{localization.reloadTxt}"">
+{(showRefreshButton ? $@"<div class=""fr-toolbar-item fr-toolbar-pointer {template_FR}-toolbar-item {template_FR}-pointer"" onclick=""{template_FR}.refresh();"" title=""{localization.reloadTxt}"">
         <img src=""{template_resource_url("reload.svg", "image/svg+xml")}"">
     </div>" : "")}
 
