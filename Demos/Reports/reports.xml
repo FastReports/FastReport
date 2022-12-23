@@ -115,7 +115,6 @@
   <Folder Name="Maps" Core="false" Basic="false" Description="Reports with sample maps, and their combination with other features.">
     <Report File="The USA Map.frx"/>
     <Report File="Sales in the USA.frx"/>
-    <Report File="Sales in Germany.frx"/>
   </Folder>
   <Folder Name="Features" Description="Reports that demonstrate interesting and unusual features.">
     <Report File="Double Pass, Total Pages.frx"  WebDemo="false"/>

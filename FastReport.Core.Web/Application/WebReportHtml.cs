@@ -8,7 +8,11 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
-#if  !OPENSOURCE
+using System.Collections.Generic;
+using Microsoft.Extensions.Primitives;
+using System.Linq;
+using System.Globalization;
+#if !OPENSOURCE
 using FastReport.AdvMatrix;
 using FastReport.Export.Pdf;
 #endif
@@ -17,8 +21,8 @@ namespace FastReport.Web
 {
     public partial class WebReport
     {
-#region Internal Methods
 
+        #region Internal Methods
 #if  !OPENSOURCE
         public IActionResult PrintPdf()
         {
@@ -409,6 +413,53 @@ namespace FastReport.Web
                 }
             }
         }
+
+        internal void ExportReport(Stream stream, string exportFormat, IEnumerable<KeyValuePair<string, StringValues>> exportParameters)
+        {
+            var exportInfo = ExportsHelper.GetInfoFromExt(exportFormat);
+            ExportReport(stream, exportInfo, exportParameters);
+        }
+
+        internal void ExportReport(Stream stream, ExportsHelper.ExportInfo exportInfo, IEnumerable<KeyValuePair<string, StringValues>> exportParameters)
+        {
+            using (var export = exportInfo.CreateExport())
+            {
+                if (exportInfo.HaveSettings && exportParameters.Any())
+                {
+                    var availableProperties = exportInfo.Properties;
+
+                    if (availableProperties != null)
+                        foreach (var exportParameter in exportParameters)
+                        {
+                            var existProp = availableProperties
+                                .Where(prop => prop.Name == exportParameter.Key)
+                                .FirstOrDefault();
+                            if (existProp != null)
+                            {
+                                string propValue = exportParameter.Value;
+                                object propValueConverted;
+                                if (existProp.PropertyType.IsEnum)
+                                    propValueConverted = Enum.Parse(existProp.PropertyType, propValue);
+                                else
+                                    propValueConverted = Convert.ChangeType(propValue, existProp.PropertyType, CultureInfo.InvariantCulture);
+
+                                System.Diagnostics.Debug.WriteLine($"Export setting: {existProp}: {propValueConverted}");
+                                existProp.SetMethod.Invoke(export, new[] { propValueConverted });
+                            }
+                        }
+                }
+
+                if (exportInfo.Export == Exports.Prepared)
+                    Report.SavePrepared(stream);
+                else if (export != null)
+                    export.Export(Report, stream);
+                else
+                    throw new UnsupportedExportException();
+
+                stream.Position = 0;
+            }
+        }
+
 
         #endregion
 

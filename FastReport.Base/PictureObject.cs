@@ -90,7 +90,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets or sets the expansion of image.
+        /// Gets or sets the extension of image.
         /// </summary>
         [Category("Data")]
         public virtual ImageFormat ImageFormat

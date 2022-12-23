@@ -4,6 +4,7 @@ using System.Linq;
 using FastReport.Export;
 using FastReport.Export.Html;
 using FastReport.Export.Image;
+using System.Reflection;
 #if !OPENSOURCE
 using FastReport.Export.Csv;
 using FastReport.Export.OoXML;
@@ -139,6 +140,11 @@ namespace FastReport.Web
             public readonly Exports Export;
             public readonly Type ExportType;
             public readonly bool HaveSettings;
+
+            public PropertyInfo[] Properties
+                => ExportType?.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                            .Where(property => property.CanWrite)
+                            .ToArray();
 
             public ExportBase CreateExport()
             {
