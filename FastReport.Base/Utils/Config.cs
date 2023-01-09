@@ -499,9 +499,9 @@ namespace FastReport.Utils
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
                 RestorePreviewSettings();
-                RestoreAuthServiceUser();
                 RestoreCompilerSettings();
                 Res.LoadDefaultLocale();
+                RestoreAuthServiceUser();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }
             if (!configLoaded)

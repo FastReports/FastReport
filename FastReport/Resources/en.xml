@@ -501,8 +501,8 @@
       </Help>
     </Menu>
     <ListViewForm>
-        <CaptionSaveMode Text="Save report on Cloud"/>
-        <CaptionOpenMode Text="Select report to download"/>
+        <CaptionSaveMode Text="Save to Cloud"/>
+        <CaptionOpenMode Text="Open via Cloud"/>
         <Select Text="Select"/>
         <Save Text="Save"/>
         <Cancel Text="Cancel"/>
@@ -518,8 +518,6 @@
         <Open Text="Open"/>
         <AuthError Text="Error while authorization"/>
         <AuthErrorCaption Text="Not authorized"/>
-        <OnLoadRename Text="Enter new name"/>
-        <OnLoadFolderName Text="Enter folder name"/>
         <OnLoadName Text="Enter new name"/>
         <NonExistingSelectedReport Text="Report with this name is not found!"/>
         <ReportWasModified Text="Report`s been already modified. Are you sure you want to overwrite this file?"/>
@@ -529,15 +527,21 @@
         <RootFolderTemplates Text="Templates"/>
         <RootFolderReports Text="Reports"/>
         <EnterFolderName>
-            <Confirm Text="Confirm"/>
+            <OnLoadRename Text="Enter new name"/>
+            <OnLoadFolderName Text="Enter folder name"/>
+            <CreateDirectory Text="Create directory"/>
+            <Rename Text="Rename"/>
+            <Confirm Text="Ok"/>
             <Cancel Text="Cancel"/>
             <EmptyName Text="Name cannot be empty!"/>
             <ForbiddenName Text="A file name can`t contain any of the following charachter:"/>
         </EnterFolderName>
 		<ErrorMessageBox>
             <ErrorInApiOrServer Text="Error while connecting to the selected server. You may have specified an invalid server or API key"/>
-            <ErrorInSubscriptions Text="No subscriptions found on Your account."/>
+            <ErrorInSubscriptions Text="No valid subscriptions found on Your account."/>
+            <ErrorInSubscriptions402 Text="The selected subscription has expired. Please update your workspace"/>
             <CaptionSubscriptions Text="Subscriptions error"/>
+            <CaptionSubscriptions402 Text="Subscription is expired"/>
             <Caption Text="Server connection error"/>
             <InvalidPath Text="Unable to find the path '{0}'. Check the spelling and try again"/>
             <CaptionNoPath Text="Invalid path"/>
@@ -2797,15 +2801,15 @@
     </Xaml>
     <Svg Text="Export to SVG">
       <File Text="SVG file"/>
-	  <EmbPic Text="Embedding pictures"/>
+      <EmbPic Text="Embedding pictures"/>
     </Svg>
     <Ppml Text="Export to PPML">
       <File Text="PPML file"/>
     </Ppml>
     <PS Text="Export to PostScript">
       <File Text="PostScript file"/>
-	  <PagesInDiffFiles Text="Pages in different files"/>
-	  <SaveImagesSeparately Text="Save images separately"/>
+      <PagesInDiffFiles Text="Pages in different files"/>
+      <SaveImagesSeparately Text="Save images separately"/>
     </PS>
     <Xps Text="Export to XPS">
       <File Text="Microsoft XPS file"/>
@@ -2945,6 +2949,8 @@
       <SendingEmail Text="Sending email - {0} Kb"/>
       <EnableSSL Text="Enable SSL"/>
       <NameAttachmentFile Text="Name attachment file:"/>
+      <SuccessfulEmailSending Text="The email has been sent successfully"/>
+      <ErrorEmailSending Text="The email has not been sent"/>
     </Email>
     <Dxf Text="Export to DXF">
       <File Text="DXF file"/>
