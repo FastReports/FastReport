@@ -780,25 +780,26 @@ namespace FastReport
                         return new SizeF(width, height);
                     }
                 }
-#if SKIA || !CROSSPLATFORM
-                if (IsAdvancedRendererNeeded)
-#endif
+#if CROSSPLATFORM
+                if (IsAdvancedRendererNeeded || !Config.IsWindows)
                 {
-                    if (width == 0)
-                        width = 100000;
-                    AdvancedTextRenderer renderer = new AdvancedTextRenderer(Text, g, font, Brushes.Black, Pens.Black,
-                      new RectangleF(0, 0, width, 100000), GetStringFormat(report.GraphicCache, 0),
-                      HorzAlign, VertAlign, LineHeight, Angle, FontWidthRatio, false, Wysiwyg, HasHtmlTags, false, 96f / DrawUtils.ScreenDpi,
-                      96f / DrawUtils.ScreenDpi, InlineImageCache);
-                    float height = renderer.CalcHeight();
-                    width = renderer.CalcWidth();
+#else
+                if (IsAdvancedRendererNeeded) { 
+#endif
+                        if (width == 0)
+                            width = 100000;
+                        AdvancedTextRenderer renderer = new AdvancedTextRenderer(Text, g, font, Brushes.Black, Pens.Black,
+                            new RectangleF(0, 0, width, 100000), GetStringFormat(report.GraphicCache, 0),
+                            HorzAlign, VertAlign, LineHeight, Angle, FontWidthRatio, false, Wysiwyg, HasHtmlTags, false, 96f / DrawUtils.ScreenDpi,
+                            96f / DrawUtils.ScreenDpi, InlineImageCache);
+                        float height = renderer.CalcHeight();
+                        width = renderer.CalcWidth();
 
-                    width += Padding.Horizontal + 1;
-                    if (LineHeight == 0)
-                        height += Padding.Vertical + 1;
-                    return new SizeF(width, height);
+                        width += Padding.Horizontal + 1;
+                        if (LineHeight == 0)
+                            height += Padding.Vertical + 1;
+                        return new SizeF(width, height);
                 }
-#if SKIA || !CROSSPLATFORM
                 else
                 {
                     if (FontWidthRatio != 1)
@@ -808,7 +809,6 @@ namespace FastReport
                     size.Height += Padding.Vertical + 1;
                     return size;
                 }
-#endif
             }
             finally
             {

@@ -497,8 +497,8 @@
       </Help>
     </Menu>
     <ListViewForm>
-        <CaptionSaveMode Text="Сохранить отчет в Облако"/>
-        <CaptionOpenMode Text="Выберите отчет для загрузки"/>
+        <CaptionSaveMode Text="Сохранить в Облако"/>
+        <CaptionOpenMode Text="Открыть через Облако"/>
         <Select Text="Выбрать"/>
         <Save Text="Сохранить"/>
         <Cancel Text="Отмена"/>
@@ -514,8 +514,6 @@
         <Open Text="Открыть"/>
         <AuthError Text="Ошибка при авторизации"/>
         <AuthErrorCaption Text="Ошибка авторизации"/>
-        <OnLoadRename Text="Введите новое имя"/>
-        <OnLoadFolderName Text="Введите имя папки"/>
         <OnLoadName Text="Введите имя"/>
         <NonExistingSelectedReport Text="Отчет с таким именем не найден!"/>
         <ReportWasModified Text="Отчет уже был изменен. Вы уверены, что хотите перезаписать этот файл?"/>
@@ -525,15 +523,21 @@
         <RootFolderTemplates Text="Шаблоны"/>
         <RootFolderReports Text="Отчеты"/>
         <EnterFolderName>
-            <Confirm Text="Подтвердить"/>
+            <OnLoadRename Text="Введите новое имя"/>
+            <OnLoadFolderName Text="Введите имя папки"/>
+            <CreateDirectory Text="Создать директорию"/>
+            <Rename Text="Переименовать"/>
+            <Confirm Text="Ок"/>
             <Cancel Text="Отмена"/>
             <EmptyName Text="Название не может быть пустым!"/>
             <ForbiddenName Text="Название не может содержать следующие символы:"/>
         </EnterFolderName>
 		<ErrorMessageBox>
             <ErrorInApiOrServer Text="Не удается подключиться к выбранному серверу. Возможно, Вы указали некорректный сервер или API ключ"/>
-            <ErrorInSubscriptions Text="На Вашем аккаунте отсутствуют подписки."/>
+            <ErrorInSubscriptions Text="На Вашем аккаунте отсутствуют действующие подписки."/>
+            <ErrorInSubscriptions402 Text="Выбранная подписка просрочена. Пожалуйста, обновите рабочее пространство"/>
             <CaptionSubscriptions Text="Ошибка поиска подписок"/>
+            <CaptionSubscriptions402 Text="Подписка просрочена"/>
             <Caption Text="Ошибка подключения к серверу"/>
             <InvalidPath Text="Невозможно перейти по '{0}'. Уточните путь и попробуйте снова"/>
             <CaptionNoPath Text="Некорректный путь"/>
@@ -2691,7 +2695,9 @@
       <HostError Text="Сервер не должен быть пустым."/>
       <SendingEmail Text="Отправка письма - {0} Кб"/>
       <EnableSSL Text="Использовать SSL"/>
-      <NameAttachmentFile Text="Имя прикрепляемого файла:"/>    
+      <NameAttachmentFile Text="Имя прикрепляемого файла:"/>
+      <SuccessfulEmailSending Text="Письмо успешно отправлено"/>
+      <ErrorEmailSending Text="Письмо не отправлено"/>
     </Email>
     <Dxf Text="Экспорт в DXF">
       <File Text="DXF формат"/>

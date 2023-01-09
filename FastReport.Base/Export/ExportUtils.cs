@@ -350,7 +350,7 @@ namespace FastReport.Export
                 }
                 else if (text[i] == '<' && textRenderType == TextRenderType.HtmlTags && crlf == CRLF.odt)
                     i += text.IndexOf('>', i) - i;
-                else if (i < text.Length - 1 && text[i] == '\r' && text[i + 1] == '\n')
+                else if (i < text.Length - 1 && (text[i] == '\r' && text[i + 1] == '\n' || text[i] == '\t'))
                 {
                     if (crlf == CRLF.xml)
                         Result.Append("&#10;");
@@ -358,6 +358,9 @@ namespace FastReport.Export
                         Result.Append("<text:line-break />");
                     else
                     {
+                        if((i==0 && text[i] == '\r' && text[i + 1] == '\n'))
+                            Result.Append($"<p style=\"margin-top:{fontSize}margin-bottom:0px\"></p>");
+
                         if (lineBreakCount == 0)
                             Result.Append("<p style=\"margin-top:0px;margin-bottom:0px;\"></p>");
                         else
