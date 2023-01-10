@@ -91,7 +91,7 @@
       <DiagonalLine Text="Linea diagonale"/>
       <Rectangle Text="Rettangolo"/>
       <RoundRectangle Text="Rettangolo smussato"/>
-      <Ellipse Text="Ellissre"/>
+      <Ellipse Text="Ellisse"/>
       <Triangle Text="Triangolo"/>
       <Diamond Text="Rombo"/>
     </Shapes>
@@ -100,7 +100,7 @@
     <Matrix Text="Matrice"/>
     <MatrixObject Text="Matrice"/>
     <SubreportObject Text="Subreport"/>
-    <BarcodeObject Text="Cadice a barre"/>
+    <BarcodeObject Text="Codice a barre"/>
     <RichObject Text="Ricco testo"/>
     <CheckBoxObject Text="casella di controllo"/>
     <ButtonControl Text="Bottone"/>
