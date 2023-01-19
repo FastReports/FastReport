@@ -762,6 +762,7 @@
       <EditReport Text="Edit report settings"/>
       <SelectData Text="Select data"/>
       <EditData Text="Edit data"/>
+      <FRXChange Text="FRX changed"/>
     </UndoRedo>
     <StartPage Text="Start Page"/>
     <Untitled Text="Untitled.frx"/>

@@ -101,26 +101,6 @@ namespace FastReport.Data
       }
     }
 
-    internal void MoveUp(Parameter par)
-    {
-      int order = IndexOf(par);
-      if (order > 0)
-      {
-        RemoveAt(order);
-        Insert(order - 1, par);
-      }
-    }
-
-    internal void MoveDown(Parameter par)
-    {
-      int order = IndexOf(par);
-      if (order != -1 && order < Count - 1)
-      {
-        RemoveAt(order);
-        Insert(order + 1, par);
-      }
-    }
-
     /// <summary>
     /// Initializes a new instance of the <see cref="ParameterCollection"/> class with default settings.
     /// </summary>

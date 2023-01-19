@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.IO.Compression;
+using System.Reflection;
 
 namespace FastReport.Utils
 {
@@ -21,14 +18,14 @@ namespace FastReport.Utils
         /// <returns>Stream object.</returns>
         public static Stream GetStream(string assembly, string resource)
         {
-            string assembly_full_name = assembly;
-#if MONO
-	  assembly_full_name += ".Mono";
-#endif
+            string assembly_name = assembly;
+            if (assembly == "FastReport")
+                assembly_name = typeof(ResourceLoader).Assembly.GetName().Name;
+
             foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
             {
                 AssemblyName name = new AssemblyName(a.FullName);
-                if (name.Name == assembly_full_name)
+                if (name.Name == assembly_name)
                 {
                     return a.GetManifestResourceStream(assembly + ".Resources." + resource);
                 }

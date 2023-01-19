@@ -17,7 +17,11 @@ namespace FastReport.Utils
 #if COMMUNITY
         const string CONFIG_NAME = "FastReport.Community.config";
 #elif MONO
+#if WPF
+        const string CONFIG_NAME = "FastReport.WPF.config";
+#else
         const string CONFIG_NAME = "FastReport.Mono.config";
+#endif
 #else
         const string CONFIG_NAME = "FastReport.config";
 #endif
@@ -319,7 +323,9 @@ namespace FastReport.Utils
             RestoreExportOptions();
 #endif
             LoadPlugins();
+#if !SKIA
             InitTextRenderingHint();
+#endif
         }
 
         private static void InitTextRenderingHint()

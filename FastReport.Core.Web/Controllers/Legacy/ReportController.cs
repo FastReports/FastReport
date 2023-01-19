@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Reflection;
 using System.Globalization;
+using FastReport.Web.Cache;
 
 namespace FastReport.Web.Controllers
 {
@@ -256,7 +257,7 @@ namespace FastReport.Web.Controllers
             return webReport != null;
         }
 
-        string Template_textedit_form(string text, string okText, string cancelText) => $@"
+        internal static string Template_textedit_form(string text, string okText, string cancelText) => $@"
 <!DOCTYPE html>
 <html>
 <head>

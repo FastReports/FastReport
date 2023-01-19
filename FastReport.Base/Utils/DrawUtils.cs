@@ -67,7 +67,11 @@ namespace FastReport.Utils
                             break;
 
                         default:
+#if WPF
+                            FDefaultFont = new Font("Segoe UI", 8.5f);
+#else
                             FDefaultFont = new Font("Tahoma", 8);
+#endif
                             break;
                     }
                 }
@@ -138,7 +142,11 @@ namespace FastReport.Utils
                             break;
 
                         default:
+#if WPF
+                            FDefault96Font = new Font("Segoe UI", 8.5f * sz);
+#else
                             FDefault96Font = new Font("Tahoma", 8 * sz);
+#endif
                             break;
                     }
                 }

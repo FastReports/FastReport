@@ -21,7 +21,7 @@ namespace FastReport.Web
 
     }
 
-    internal class ScriptSecurity : IDisposable
+    internal sealed class ScriptSecurity : IDisposable
     {
         private readonly IScriptChecker ScriptChecker;
 
@@ -60,7 +60,7 @@ namespace FastReport.Web
         bool IsValid(Language lang, string reportScript, string[] references, Report report);
     }
 
-    internal class ScriptChecker : IScriptChecker
+    internal sealed class ScriptChecker : IScriptChecker
     {
         public bool IsValid(Language lang, string reportScript, string[] references, Report report)
         {

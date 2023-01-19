@@ -866,8 +866,12 @@ namespace FastReport
                     "System.Xml.dll",
 
                     "FastReport.Compat.dll",
-#if !CROSSPLATFORM
+#if !CROSSPLATFORM && !WPF
                     "System.Windows.Forms.dll",
+#endif
+
+#if WPF
+                    "WinForms.WPF.dll",
 #endif
 
 #if CROSSPLATFORM || COREWIN
