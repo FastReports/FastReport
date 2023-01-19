@@ -2,6 +2,8 @@
 using FastReport.Data;
 using FastReport.Utils;
 using FastReport.Utils.Json;
+using FastReport.Web.Cache;
+
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

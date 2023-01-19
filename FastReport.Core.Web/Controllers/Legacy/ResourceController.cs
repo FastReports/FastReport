@@ -17,7 +17,7 @@ namespace FastReport.Web.Controllers
             RegisterHandler("/resources.getResource", async () =>
             {
                 var resourceName = Request.Query["resourceName"].ToString();
-                var resource = await Resources.Instance.GetBytes(resourceName);
+                var resource = await InternalResourceLoader.Instance.GetBytesAsync(resourceName);
                 if (resource == null)
                     return new NotFoundResult();
 

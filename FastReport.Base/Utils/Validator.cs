@@ -147,30 +147,29 @@ namespace FastReport.Utils
                 }
 
                 bool duplicateName;
-                for (int i = 0; i < report.AllObjects.Count - 1; i++)
+                var objects = report.AllObjects;
+                for (int i = 0; i < objects.Count - 1; i++)
                 {
                     duplicateName = false;
-                    for (int j = i + 1; j < report.AllObjects.Count; j++)
+                    for (int j = i + 1; j < objects.Count; j++)
                     {
                         if (token.IsCancellationRequested)
                             return null;
 
-                        if (report.AllObjects[j] is ReportComponentBase && report.AllObjects[i].Name == report.AllObjects[j].Name)
+                        if (objects[j] is ReportComponentBase && objects[i].Name == objects[j].Name)
                         {
-                            listError.Add(new ValidationError(report.AllObjects[j].Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,DuplicateName"), (ReportComponentBase)report.AllObjects[j]));
+                            listError.Add(new ValidationError(objects[j].Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,DuplicateName"), (ReportComponentBase)objects[j]));
                             duplicateName = true;
                         }
                     }
-                    if (report.AllObjects[i] is ReportComponentBase && duplicateName)
-                        listError.Add(new ValidationError(report.AllObjects[i].Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,DuplicateName"), (ReportComponentBase)report.AllObjects[i]));
+                    if (objects[i] is ReportComponentBase && duplicateName)
+                        listError.Add(new ValidationError(objects[i].Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,DuplicateName"), (ReportComponentBase)objects[i]));
                 }
             }
-            catch (Exception e)
+            catch
             {
-                if (token.IsCancellationRequested)
-                    return null;
-                else
-                    throw e;
+                // validator should not crash the app
+                return null;
             }
             return listError.Distinct().ToList();
         }

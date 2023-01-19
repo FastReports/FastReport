@@ -753,6 +753,7 @@
       <EditReport Text="Изменение настроек отчета"/>
       <SelectData Text="Выбор данных"/>
       <EditData Text="Редактирование данных"/>
+      <FRXChange Text="Изменение FRX"/>
     </UndoRedo>
     <StartPage Text="Стартовая страница"/>
     <Untitled Text="Безымянный.frx"/>

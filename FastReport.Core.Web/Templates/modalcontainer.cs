@@ -1,11 +1,8 @@
-﻿using FastReport.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Web;
-using FastReport.Web.Application.Localizations;
-using FastReport.Web.Controllers;
 
 namespace FastReport.Web
 {

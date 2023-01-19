@@ -28,7 +28,7 @@ namespace FastReport.Web
 </div>
 
 <script>
-    (function(){{{Resources.Instance.GetContentSync("split.min.js")}}}).call({template_FR});
+    (function(){{{InternalResourceLoader.Instance.GetContent("split.min.js")}}}).call({template_FR});
     {template_FR}.outline();
 </script>
 ";

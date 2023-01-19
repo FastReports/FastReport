@@ -19,7 +19,7 @@ namespace FastReport.Web.Application
         void Root(string section);
     }
 
-    internal class WebRes : IWebRes
+    internal sealed class WebRes : IWebRes
     {
         //private XmlItem root;
         private string[] categories;

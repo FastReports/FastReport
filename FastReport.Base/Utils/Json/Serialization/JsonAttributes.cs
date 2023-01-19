@@ -2,7 +2,7 @@
 
 namespace FastReport.Utils.Json.Serialization
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Enum, 
+    [AttributeUsage(AttributeTargets.Property, 
         AllowMultiple = false)]
     public class JsonPropertyAttribute : Attribute
     {
