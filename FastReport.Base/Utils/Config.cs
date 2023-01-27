@@ -431,6 +431,8 @@ namespace FastReport.Utils
             return systemTempFolder;
         }
 
+        static partial void SaveConnectionStringVisible();
+
         private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
         {
             FDoc.Root.Name = "Config";
@@ -440,6 +442,7 @@ namespace FastReport.Utils
             SavePreviewSettings();
             SaveCompilerSettings();
             SaveAuthServiceUser();
+            SaveConnectionStringVisible();
 #if !COMMUNITY
             SaveExportOptions();
 #endif
@@ -467,6 +470,8 @@ namespace FastReport.Utils
                 }
             }
         }
+
+        static partial void RestoreConnectionStringVisible();
 
         private static void LoadConfig()
         {
@@ -508,6 +513,7 @@ namespace FastReport.Utils
                 RestoreCompilerSettings();
                 Res.LoadDefaultLocale();
                 RestoreAuthServiceUser();
+                RestoreConnectionStringVisible();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }
             if (!configLoaded)

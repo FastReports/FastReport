@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FastReport.Web.Application
 {
-    internal interface IWebRes
+    internal interface IWebRes : IDisposable
     {
         void LoadLocale(string fileName);
 
@@ -93,6 +93,12 @@ namespace FastReport.Web.Application
         public void Root(string section)
         {
             categories = section.Split(',');
+        }
+
+        public void Dispose()
+        {
+            if (locale != builtinLocale)
+                locale.Dispose();
         }
 
         public WebRes(string section = "")

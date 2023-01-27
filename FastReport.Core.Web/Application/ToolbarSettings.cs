@@ -49,6 +49,13 @@ namespace FastReport.Web
         public bool ShowZoomButton { get; set; } = true;
         public bool ShowPrint { get; set; } = true;
         public bool PrintInHtml { get; set; } = true;
+        /// <summary>
+        /// If enabled, the toolbar will follow the scrolling of the report.
+        /// </summary>
+        /// <remarks>
+        /// Default value: false
+        /// </remarks>
+        public bool Sticky { get; set; } = false;
 #if !OPENSOURCE
         public bool PrintInPdf { get; set; } = true;
 #endif
@@ -115,6 +122,66 @@ namespace FastReport.Web
                 }
             }
         }
+        
+        internal string StickyToolbarTags 
+        { 
+            get
+            {
+                if (Sticky)
+                {
+                    string tags = "position: sticky; position: -webkit-sticky; ";
+                    if(TopOrBottom == -1)
+                    {
+                        if (Position == Positions.Left || Position == Positions.Right) 
+                        {
+                            if (ContentPosition == ContentPositions.Right)
+                                tags += "bottom: 10px; left: 10px; right: 10px;";
+                            else if (ContentPosition == ContentPositions.Center)
+                                tags += "top: 10px; bottom: 10px; left: 10px; right: 10px;";
+                        }
+                        else
+                            tags += "top: 10px; left: 10px; right: 10px;";
+                    }
+                    else
+                        tags += "bottom: 10px; left: 10px; right: 10px;";
+                    return tags;
+                }
+                else
+                    return "";
+            }
+        }
+
+        internal string StickyToolbarTabsTags
+        {
+            get
+            {
+                if (Sticky)
+                {
+                    int paddingVertical = Height + 10;
+                    float paddingHorizontal = Height * 1.55f + 10;
+                    string tags = "position: sticky; position: -webkit-sticky; ";
+                    if (TopOrBottom == -1)
+                    {
+                        if (Position == Positions.Left || Position == Positions.Right)
+                        {
+                            if (ContentPosition == ContentPositions.Right)
+                                tags += $@"bottom: {paddingVertical}px; left: {paddingHorizontal}px; right: {paddingHorizontal}px;";
+                            else if (ContentPosition == ContentPositions.Center)
+                                tags += $@"top: {paddingVertical}px; bottom: {paddingVertical}px; left: {paddingHorizontal}px; right: {paddingHorizontal}px;";
+                        }
+                        else
+                            tags += $@"top: {paddingVertical}px; left: 10px; right: 10px;";
+                    }
+                    else
+                        tags += $@"bottom: {paddingVertical}px; left: 10px; right: 10px;";
+                    return tags;
+                }
+                else
+                    return "";
+            }
+        }
+
+        internal string ModalContainerPosition => Sticky ? "position: fixed;" : "";
 
         internal string DropDownListPosition => Position == Positions.Bottom ? "bottom: 100%" : "";
 

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Common;
 using System.Drawing.Design;
 using System.Linq;
+using System.Reflection;
 using FastReport.Data.JsonConnection;
 using FastReport.Utils;
 
@@ -85,6 +86,7 @@ namespace FastReport.Data
         /// </code>
         /// </example>
         [Category("Data")]
+        [Browsable(true)]
         public string ConnectionString
         {
             get
@@ -93,7 +95,10 @@ namespace FastReport.Data
                     return Report.Calc(ConnectionStringExpression).ToString();
                 return connectionString;
             }
-            set { SetConnectionString(Crypter.DecryptString(value)); }
+            set
+            {
+                SetConnectionString(Crypter.DecryptString(value));
+            }
         }
 
         /// <summary>
@@ -178,6 +183,7 @@ namespace FastReport.Data
         #endregion
 
         #region Private Methods
+
         private void GetDBObjectNames(string name, List<string> list)
         {
             DataTable schema = null;
@@ -215,6 +221,7 @@ namespace FastReport.Data
             }
             return null;
         }
+
         #endregion
 
         #region Protected Methods
@@ -349,6 +356,8 @@ namespace FastReport.Data
         public virtual void CreateAllTables(bool initSchema)
         {
             List<string> tableNames = new List<string>();
+            List<string> oldTableNames = new List<string>();
+
             tableNames.AddRange(GetTableNames());
             FilterTables(tableNames);
 
@@ -360,6 +369,9 @@ namespace FastReport.Data
             for (int i = 0; i < Tables.Count; i++)
             {
                 TableDataSource table = Tables[i];
+
+                oldTableNames.Add(table.Name);
+
                 bool found = !String.IsNullOrEmpty(table.SelectCommand);
                 // skip tables with non-empty selectcommand
                 if (!found)
@@ -419,6 +431,10 @@ namespace FastReport.Data
                     {
                         table.Enabled = TablesStructure[tableNumber].Properties.Where(prop => prop.Key == "Enabled").Select(res => res.Value).First() == "true";
                     }
+
+                    foreach (string enumTables in oldTableNames)
+                        if (!String.Equals(enumTables, table.Name))
+                            table.Enabled = false;
 
                     Tables.Add(table);
                     tableNumber++;
@@ -955,6 +971,9 @@ namespace FastReport.Data
         {
             return new string[] { ConnectionStringExpression };
         }
+
+        partial void SetConnectionStringBrowsableAttribute();
+
         #endregion
 
         /// <summary>
@@ -969,6 +988,7 @@ namespace FastReport.Data
             canContainProcedures = false;
             commandTimeout = 30;
             SetFlags(Flags.CanEdit, true);
+            SetConnectionStringBrowsableAttribute();
         }
 
         partial void SerializeDesignExt(FRWriter writer);

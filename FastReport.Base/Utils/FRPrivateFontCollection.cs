@@ -12,9 +12,11 @@ namespace FastReport.Utils
     /// </summary>
     public class FRPrivateFontCollection
     {
-        private PrivateFontCollection collection = TypeConverters.FontConverter.PrivateFontCollection;
+        private readonly PrivateFontCollection collection = TypeConverters.FontConverter.PrivateFontCollection;
         private Dictionary<string, string> FontFiles = new Dictionary<string, string>();
         private Dictionary<string, MemoryFont> MemoryFonts = new Dictionary<string, MemoryFont>();
+
+        internal PrivateFontCollection Collection { get { return collection; } }
 
         /// <summary>
         /// Gets the array of FontFamily objects associated with this collection.
@@ -65,6 +67,13 @@ namespace FastReport.Utils
                 FontFiles.Add(fontName, filename);
         }
 
+#if SKIA
+        public void AddFontFromStream(Stream stream)
+        {
+            collection.AddFont(stream);
+        }
+#endif
+
         /// <summary>
         /// Adds a font contained in system memory to this collection.
         /// </summary>
@@ -80,8 +89,9 @@ namespace FastReport.Utils
 
         private struct MemoryFont
         {
-            public IntPtr Memory;
-            public int Length;
+            public readonly IntPtr Memory;
+            public readonly int Length;
+
             public MemoryFont(IntPtr memory, int length)
             {
                 Memory = memory;
