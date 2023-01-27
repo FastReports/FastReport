@@ -28,9 +28,7 @@ namespace FastReport.Web
         private string localizationFile;
 
 #if DIALOGS
-        internal Dialog Dialog {
-            get;
-        }
+        internal Dialog Dialog { get; }
 #endif
 
 #region Public Properties
@@ -70,7 +68,7 @@ namespace FastReport.Web
             }
         }
 
-        internal IWebRes Res { get; set; } = new WebRes();
+        internal IWebRes Res { get; } = new WebRes();
 
 
         /// <summary>
@@ -267,6 +265,21 @@ namespace FastReport.Web
                 default:
                     throw new Exception($"Unknown mode: {Mode}");
             }
+        }
+
+        internal void InternalDispose()
+        {
+            //foreach(var picture in PictureCache.Values)
+            //{
+            //    ArrayPool<byte>.Shared.Return(picture);
+            //}
+            PictureCache.Clear();
+
+            foreach(var tab in Tabs)
+            {
+                tab.Report.Dispose();
+            }
+            Res.Dispose();
         }
 
         /// <summary>

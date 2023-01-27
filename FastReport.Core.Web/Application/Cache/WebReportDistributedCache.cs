@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using Microsoft.Extensions.Options;
+using System.Diagnostics;
 
 namespace FastReport.Web.Cache
 {
@@ -18,17 +17,28 @@ namespace FastReport.Web.Cache
     {
 
         private readonly IDistributedCache _cache;
+        private readonly DistributedCacheEntryOptions _cacheEntryOptions;
 
         private static readonly IFormatter _bf = new BinaryFormatter();
 
         public WebReportDistributedCache(IDistributedCache cache)
         {
             _cache = cache;
+            _cacheEntryOptions = new DistributedCacheEntryOptions()
+            {
+                SlidingExpiration = FastReportGlobal.FastReportOptions.CacheOptions.CacheDuration
+            };
         }
 
         public void Add(WebReport webReport)
         {
-            _cache.Set(webReport.ID, WebReportToBytes(webReport));
+            if(_cache.Get(webReport.ID) != null)
+            {
+                Debug.WriteLine($"WebReport with '{webReport.ID}' id was added before, but someone is trying to rewrite it");
+                return;
+            }
+
+            _cache.Set(webReport.ID, WebReportToBytes(webReport), _cacheEntryOptions);
         }
 
         public void Touch(string id)

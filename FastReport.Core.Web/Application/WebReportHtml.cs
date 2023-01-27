@@ -650,11 +650,11 @@ namespace FastReport.Web
             if (!String.IsNullOrEmpty(objectName))
             {
                 ReportComponentBase obj = Report.FindObject(objectName) as ReportComponentBase;
-                DoDetailedReport(obj);
+                DoDetailedReport(obj, paramValue);
             }
         }
 
-        private void DoDetailedReport(ReportComponentBase obj)
+        private void DoDetailedReport(ReportComponentBase obj, string value)
         {
             if (obj != null)
             {
@@ -664,7 +664,7 @@ namespace FastReport.Web
                     Report tabReport = new Report();
                     tabReport.Load(fileName);
                     string paramName = obj.Hyperlink.ReportParameter;
-                    string paramValue = obj.Hyperlink.Value;
+                    string paramValue = string.IsNullOrEmpty(obj.Hyperlink.Value) ? value : obj.Hyperlink.Value;
 
                     Data.Parameter param = tabReport.Parameters.FindByName(paramName);
                     if (param != null && param.ChildObjects.Count > 0)

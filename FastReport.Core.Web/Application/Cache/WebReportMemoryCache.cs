@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace FastReport.Web.Cache
 {
@@ -33,17 +34,20 @@ namespace FastReport.Web.Cache
 
         public void Add(WebReport webReport)
         {
+            if(_cache.TryGetValue(webReport.ID, out _))
+            {
+                Debug.WriteLine($"WebReport with '{webReport.ID}' id was added before, but someone is trying to rewrite it");
+                return;
+            }
+
             _cache.Set(webReport.ID, webReport, _memoryCacheEntryOptions);
         }
 
         private static void EvictionCallback(object key, object value, EvictionReason reason, object state)
         {
-            // TODO: Dispose WebReport->Report resources
-            //if(reason == EvictionReason.Expired)
-            //{
-            //    var webReport = value as WebReport;
-            //    //webReport.Dispose();
-            //}
+            var webReport = value as WebReport;
+            webReport.InternalDispose();
+            //GC.Collect();
         }
 
         public void Touch(string id)

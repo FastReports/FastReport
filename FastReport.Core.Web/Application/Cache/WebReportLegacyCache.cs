@@ -12,7 +12,7 @@ namespace FastReport.Web.Cache
     internal sealed class WebReportLegacyCache : IWebReportCache
     {
 
-        sealed class CacheItem
+        sealed class CacheItem : IDisposable
         {
             internal Timer Timer;
             internal WebReport WebReport;
@@ -23,16 +23,30 @@ namespace FastReport.Web.Cache
                 WebReport = webReport;
                 WeakReference = new WeakReference<WebReport>(WebReport);
             }
+
+            public void Dispose()
+            {
+                Timer.Dispose();
+                WebReport.InternalDispose();
+                WebReport = null;
+            }
         }
 
         readonly List<CacheItem> cache = new List<CacheItem>();
 
         public void Add(WebReport webReport)
         {
-            Clean();
-
             if (webReport == null)
                 throw new ArgumentNullException(nameof(webReport));
+
+            Clean();
+
+            // try to find webReport with the same key
+            if(FindPrivate(webReport.ID) != null)
+            {
+                Debug.WriteLine($"WebReport with '{webReport.ID}' id was added before, but someone is trying to rewrite it");
+                return;
+            }
 
             var item = new CacheItem(webReport);
 
@@ -58,28 +72,34 @@ namespace FastReport.Web.Cache
         {
             Clean();
 
-            return FindPrivate(id)?.WebReport;
+            return FindWithReferesh(id)?.WebReport;
         }
 
-        private CacheItem FindPrivate(string id)
+        private CacheItem FindWithReferesh(string id)
         {
-            return cache.Find(item =>
+            var cacheItem = FindPrivate(id);
+            if (cacheItem != null)
             {
-                if (item.WeakReference.TryGetTarget(out WebReport target) && target.ID == id)
+                if(cacheItem.WeakReference.TryGetTarget(out WebReport target))
                 {
                     // refresh item
-                    item.WebReport = target;
-                    item.Timer.Change(FastReportGlobal.FastReportOptions.CacheOptions.CacheDuration, Timeout.InfiniteTimeSpan);
-                    return true;
+                    cacheItem.WebReport = target;
+                    cacheItem.Timer.Change(FastReportGlobal.FastReportOptions.CacheOptions.CacheDuration, Timeout.InfiniteTimeSpan);
                 }
-                return false;
-            });
+            }
+            return cacheItem;
         }
 
         public void Remove(WebReport webReport)
         {
             var cacheItem = FindPrivate(webReport.ID);
             cache.Remove(cacheItem);
+            cacheItem.Dispose();
+        }
+
+        private CacheItem FindPrivate(string id)
+        {
+            return cache.Find(item => item.WeakReference.TryGetTarget(out WebReport target) && target.ID == id);
         }
 
         private void Clean()

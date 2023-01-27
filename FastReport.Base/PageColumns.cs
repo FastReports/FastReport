@@ -112,7 +112,7 @@ namespace FastReport
     
     internal PageColumns(ReportPage page)
     {
-            this.page = page;
+      this.page = page;
       positions = new FloatCollection();
       Count = 1;
     }

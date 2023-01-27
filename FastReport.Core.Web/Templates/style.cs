@@ -80,6 +80,7 @@ namespace FastReport.Web
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+    {Toolbar.StickyToolbarTags}
 }}
 
 .{template_FR}-toolbar-item {{
@@ -213,6 +214,7 @@ namespace FastReport.Web
     align-items: center;
     flex-direction: column;
     font-family: Arial,Verdana sans-serif;
+    {Toolbar.ModalContainerPosition}
 }}
 ////////////////////
        POPUP
@@ -647,6 +649,7 @@ label{{
     position: relative;
     border-radius: 9px;
     z-index: 1;
+    {Toolbar.StickyToolbarTabsTags}
     {Toolbar.TabsPositionSettings}
 }}
 

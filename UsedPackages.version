@@ -4,7 +4,7 @@
     <PropertyGroup>
 
         <FRCompatVersion>2023.1.0</FRCompatVersion>
-        <FRCompatSkiaVersion>2023.1.0</FRCompatSkiaVersion>
+        <FRCompatSkiaVersion>2023.1.6</FRCompatSkiaVersion>
 
         <FRDataVisualizationVersion>2023.1.0</FRDataVisualizationVersion>
         <FRDataVisualizationSkiaVersion>2023.1.0</FRDataVisualizationSkiaVersion>

@@ -267,7 +267,7 @@ namespace FastReport.Engine
             }
             else
             {
-                CurX = 0;
+                CurX = page.Columns.Positions[0] * Units.Millimeters;
             }
 
             // start column event
@@ -327,7 +327,7 @@ namespace FastReport.Engine
             }
             else
             {
-                curX = curColumn == 0 ? 0 : page.Columns.Positions[curColumn] * Units.Millimeters;
+                curX = page.Columns.Positions[curColumn] * Units.Millimeters;
             }
 
             if (CurColumn == 0)
@@ -369,7 +369,7 @@ namespace FastReport.Engine
             }
             else
             {
-                CurX = 0;
+                CurX = page.Columns.Positions[0] * Units.Millimeters;
             }
 
             CurY = 0;
