@@ -2001,12 +2001,6 @@ namespace FastReport
                 }
 
                 reader.Read(this);
-
-                foreach (Base c in AllObjects)
-                {
-                    if (c is BandBase)
-                        Validator.ValidateIntersectionAllObjects(c as BandBase);
-                }
             }
         }
 

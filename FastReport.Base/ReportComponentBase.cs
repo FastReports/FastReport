@@ -135,7 +135,6 @@ namespace FastReport
         private string mouseDownEvent;
         private string mouseEnterEvent;
         private string mouseLeaveEvent;
-        private bool isIntersectingWithOtherObject;
         #endregion
 
         #region Properties
@@ -168,17 +167,6 @@ namespace FastReport
         {
             get { return exportable; }
             set { exportable = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets a value that determines if the object is intersecting with other object.
-        /// </summary>
-        [DefaultValue(false)]
-        [Browsable(false)]
-        public bool IsIntersectingWithOtherObject
-        {
-            get { return isIntersectingWithOtherObject; }
-            set { isIntersectingWithOtherObject = value; }
         }
 
         /// <summary>
@@ -693,7 +681,6 @@ namespace FastReport
             Border = src.Border.Clone();
             Fill = src.Fill.Clone();
             Bookmark = src.Bookmark;
-            IsIntersectingWithOtherObject = src.IsIntersectingWithOtherObject;
             Hyperlink.Assign(src.Hyperlink);
             CanGrow = src.CanGrow;
             CanShrink = src.CanShrink;
@@ -783,8 +770,6 @@ namespace FastReport
         {
             if (Width < 0.01 || Height < 0.01)
                 return;
-            if (DrawIntersectBackground(e))
-                return;
             Fill.Draw(e, AbsBounds);
         }
 
@@ -813,9 +798,6 @@ namespace FastReport
         public virtual List<ValidationError> Validate()
         {
             List<ValidationError> listError = new List<ValidationError>();
-
-            if (IsIntersectingWithOtherObject && !(Parent is ReportComponentBase && !Validator.RectContainInOtherRect((Parent as ReportComponentBase).AbsBounds, this.AbsBounds)))
-                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Warning, Res.Get("Messages,Validator,IntersectedObjects"), this));
 
             if (Height <= 0 || Width <= 0)
                 listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,IncorrectSize"), this));
@@ -1111,7 +1093,6 @@ namespace FastReport
             flagUseBorder = true;
             flagPreviewVisible = true;
             flagSerializeStyle = true;
-            isIntersectingWithOtherObject = false;
             shiftMode = ShiftMode.Always;
             style = "";
             evenStyle = "";

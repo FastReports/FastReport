@@ -13,13 +13,13 @@
         <SystemDrawingCommonVersion>[4.7.0,)</SystemDrawingCommonVersion>
 
         <!-- Not available in Core3 -->
-        <SystemSecurityPermissionsVersion>[4.4.0,)</SystemSecurityPermissionsVersion>
+        <SystemSecurityPermissionsVersion>[4.5.0,)</SystemSecurityPermissionsVersion>
         
         <!-- Not available in Core3 -->
-        <SystemSecurityCryptographyPkcsVersion>4.5.2</SystemSecurityCryptographyPkcsVersion>
+        <SystemSecurityCryptographyPkcsVersion>4.7.0</SystemSecurityCryptographyPkcsVersion>
 
         <!-- Not available in Core3 -->
-        <SystemTextEncodingCodePagesVersion>4.5.1</SystemTextEncodingCodePagesVersion>
+        <SystemTextEncodingCodePagesVersion>4.7.0</SystemTextEncodingCodePagesVersion>
 
         <!-- Not available in Core3 -->
         <MicrosoftCSharpVersion>4.7.0</MicrosoftCSharpVersion>

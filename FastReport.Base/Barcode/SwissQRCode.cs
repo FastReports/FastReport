@@ -265,30 +265,29 @@ namespace FastReport.Barcode
         {
             twoLetterCodes = ValidTwoLetterCodes();
             MyRes res = new MyRes("Messages,Swiss");
-            MyRes resForms = new MyRes("Forms,BarcodeEditor,Swiss");
             //Pattern extracted from https://qr-validation.iso-payments.ch as explained in https://github.com/codebude/QRCoder/issues/97
             string charsetPattern = @"^([a-zA-Z0-9\.,;:'\ \+\-/\(\)?\*\[\]\{\}\\`´~ ]|[!""#%&<>÷=@_$£]|[àáâäçèéêëìíîïñòóôöùúûüýßÀÁÂÄÇÈÉÊËÌÍÎÏÒÓÔÖÙÚÛÜÑ])*$";
 
             this.adrType = addressType;
 
             if (string.IsNullOrEmpty(name))
-                throw new SwissQrCodeContactException(String.Format(res.Get("SwissEmptyProperty"), resForms.Get("Name")));
+                throw new SwissQrCodeContactException(String.Format(res.Get("SwissEmptyProperty"), res.Get("SwissPropName")));
             if (name.Length > 70)
-                throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), resForms.Get("Name"), 71));
+                throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), res.Get("SwissPropName"), 71));
             if (!Regex.IsMatch(name, charsetPattern))
-                throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), resForms.Get("Name")) + charsetPattern);
+                throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), res.Get("SwissPropName")) + charsetPattern);
             this.name = name;
 
             if (AddressType.StructuredAddress == this.adrType)
             {
                 if (!string.IsNullOrEmpty(streetOrAddressline1) && (streetOrAddressline1.Length > 70))
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), resForms.Get("Street"), 71));
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), res.Get("SwissPropStreet"), 71));
                 if (!string.IsNullOrEmpty(streetOrAddressline1) && !Regex.IsMatch(streetOrAddressline1, charsetPattern))
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), resForms.Get("Street")) + charsetPattern);
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), res.Get("SwissPropStreet")) + charsetPattern);
                 this.streetOrAddressline1 = streetOrAddressline1;
 
                 if (!string.IsNullOrEmpty(houseNumberOrAddressline2) && houseNumberOrAddressline2.Length > 16)
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), resForms.Get("HouseNumber"), 71));
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), res.Get("SwissPropHouseNumber"), 71));
                 this.houseNumberOrAddressline2 = houseNumberOrAddressline2;
             }
             else
@@ -311,19 +310,19 @@ namespace FastReport.Barcode
             if (AddressType.StructuredAddress == this.adrType)
             {
                 if (string.IsNullOrEmpty(zipCode))
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissEmptyProperty"), resForms.Get("ZipCode")));
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissEmptyProperty"), res.Get("SwissPropZipCode")));
                 if (zipCode.Length > 16)
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), resForms.Get("ZipCode"), 17));
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), res.Get("SwissPropZipCode"), 17));
                 if (!Regex.IsMatch(zipCode, charsetPattern))
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), resForms.Get("ZipCode")) + charsetPattern);
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), res.Get("SwissPropZipCode")) + charsetPattern);
                 this.zipCode = zipCode;
 
                 if (string.IsNullOrEmpty(city))
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissEmptyProperty"), resForms.Get("City")));
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissEmptyProperty"), res.Get("SwissPropCity")));
                 if (city.Length > 35)
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), resForms.Get("City"), 36));
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), res.Get("SwissPropCity"), 36));
                 if (!Regex.IsMatch(city, charsetPattern))
-                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), resForms.Get("City")) + charsetPattern);
+                    throw new SwissQrCodeContactException(String.Format(res.Get("SwissPatternError"), res.Get("SwissPropCity")) + charsetPattern);
                 this.city = city;
             }
             else

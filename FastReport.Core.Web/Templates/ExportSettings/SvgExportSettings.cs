@@ -32,7 +32,7 @@ namespace FastReport.Web
             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                 {localizationPageSelector.First}
             </button>
-            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickSVG()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
         </div>" : "")}
     </div>
 

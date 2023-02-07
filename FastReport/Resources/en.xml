@@ -97,10 +97,15 @@
       <SwissLengthMore Text="{0}} must be shorter than {0} chars"/>
       <SwissPatternError Text="{0} must match the following pattern:"/>
       <SwissAddressLine2Error Text="Address line 2 must be provided for combined addresses (address line-based addresses)."/>
-      <SwissCountryTwoLetters Text="Country must be a valid two letter country code as defined by  ISO 3166-1, but it isn't."/>
+      <SwissCountryTwoLetters Text="Country must be a valid two letter country code as defined by ISO 3166-1, but it isn't."/>
       <SwissIbanNotValid Text="The IBAN entered isn't valid."/>
       <SwissQRIbanNotValid Text="The QR-IBAN entered isn't valid."/>
       <SwissQRStartNotValid Text="The IBAN must start with CH or LI"/>
+      <SwissPropName Text="Name"/>
+      <SwissPropStreet Text="Street"/>
+      <SwissPropHouseNumber Text="House Nr"/>
+      <SwissPropZipCode Text="Zip Code"/>
+      <SwissPropCity Text="City"/>
     </Swiss>
   </Messages>
   <Misc>
@@ -433,21 +438,21 @@
     <Menu>
       <File Text="File">
         <New Text="New..."/>
-        <Open Text="Open..."/>
-        <OpenLocally Text="Open on this PC"/>
-        <OpenViaCloud Text="Open via Cloud"/>
-        <Import Text="Import..."/>
+        <Open Text="Open"/>
+        <OpenLocally Text="Open on this PC..."/>
+        <OpenViaCloud Text="Open via Cloud..."/>
+        <Import Text="Import"/>
         <Close Text="Close"/>
-        <SaveAs Text="Save as..."/>
+        <SaveAs Text="Save as"/>
         <Save Text="Save"/>
-        <SaveLocal Text="Save to this PC"/>
+        <SaveLocal Text="Save to this PC..."/>
         <SaveWithRandomData Text="Save With Random Data..."/>
         <SaveAll Text="Save All"/>
-        <SaveToCloud Text="Save to Cloud"/>
+        <SaveToCloud Text="Save to Cloud..."/>
         <PageSetup Text="Page Setup..."/>
         <PrinterSetup Text="Printer Setup..."/>
         <Preview Text="Preview..."/>
-        <PreviewCloud Text="Web preview"/>
+        <PreviewCloud Text="Web Preview..."/>
         <SelectLanguage Text="Select Language..."/>
         <Exit Text="Exit"/>
       </File>
@@ -483,13 +488,14 @@
         <Bands Text="Configure Bands..."/>
         <Styles Text="Styles..."/>
         <GroupExpert Text="Group Expert..."/>
+        <Validate Text="Validate Report"/>
         <Options Text="Options..."/>
       </Report>
       <Data Text="Data">
         <ShowData Text="Show Data Window"/>
         <Add Text="Add Data Source..."/>
         <Choose Text="Choose Report Data..."/>
-        <Upload Text="Upload data source to server..."/>
+        <Upload Text="Upload Data Source to Server..."/>
       </Data>
       <Window Text="Window">
         <CloseAll Text="Close All"/>
@@ -566,18 +572,16 @@
       <AutoHide Text="Auto-hide"/>
       <Close Text="Close"/>
       <Properties Text="Properties">
+        <Categorized Text="Categorized"/>
+        <Alphabetical Text="Alphabetical"/>
         <PropertiesTab Text="Properties"/>
         <EventsTab Text="Events"/>
+        <Filter Text="Object specific properties"/>
         <NObjectsSelected Text="{0} objects selected"/>
       </Properties>
-      <Validator Text="Validation">
-        <Number Text="Number"/>
-        <Name Text="Name"/>
-        <Message Text="Message"/>
-        <Updating Text="Updating"/>
-        <Type Text="Type"/>
-      </Validator>
-      <ReportTree Text="Report Tree"/>
+      <ReportTree Text="Report Tree">
+        <Sync Text="Sync with selected object"/>
+      </ReportTree>
       <CollapseAll Text="Collapse all"/>
       <ExpandAll Text="Expand all"/>
       <Dictionary Text="Data">
@@ -587,13 +591,13 @@
         <Totals Text="Totals"/>
         <Functions Text="Functions"/>
         <DialogControls Text="Dialogue controls"/>
-        <New Text="New Dictionary..."/>
+        <New Text="New Dictionary"/>
         <Open Text="Open Dictionary..."/>
         <Save Text="Save Dictionary..."/>
         <Merge Text="Merge Dictionary..."/>
         <NewDataSource Text="New Data Source..."/>
         <SortDataSources Text="Sort Data Sources"/>
-        <UploadDataSource Text="Upload Data Source to server"/>
+        <UploadDataSource Text="Upload Data Source to server..."/>
         <UploadChangesDataSource Text="Update connection on Cloud"/>
         <SortDataFields Text="Sort Data Fields"/>
         <CopyDataSource Text="Copy Data Source"/>
@@ -614,6 +618,10 @@
         <CubeSources Text="Cube Sources"/>
       </Dictionary>
       <Messages Text="Messages">
+        <Errors Text="Errors: {0}"/>
+        <Warnings Text="Warnings: {0}"/>
+        <Refresh Text="Refresh"/>
+        <Close Text="Close"/>
         <Description Text="Description"/>
         <Line Text="Line"/>
         <Column Text="Column"/>
@@ -2142,26 +2150,26 @@
       <WifiHidden Text="Wi-Fi network is hidden"/>
       <Save Text="Save"/>
       <Cancel Text="Cancel"/>
-      <Swiss>
-        <Iban Text="Iban"/>
-        <IbanType Text="Iban type"/>
-        <Name Text="Name"/>
-        <HouseNumber Text="House number"/>
-        <Reference Text="Reference"/>
+      <Swiss Text="Swiss QR">
+        <Iban Text="IBAN"/>
+        <IbanType Text="Type"/>
+        <Amount Text="Amount"/>
+        <Currency Text="Currency"/>
         <Creditor Text="Creditor"/>
+        <Name Text="Name"/>
+        <StreetNr Text="Street / Nr:"/>
+        <ZipCityCountry Text="Zip / City / Country:"/>
+        <Debitor Text="Debitor"/>
+        <AdditionalInformation Text="Additional information"/>
+        <Reference Text="Reference"/>
         <Type Text="Type"/>
         <TextType Text="Text type"/>
-        <Debitor Text="Debitor"/>
-        <AdditionalInformation Text="Additional Information"/>
-        <UnstructuredMessage Text="Unstructured Message"/>
+        <Message Text="Message"/>
         <BillInformation Text="Bill Information"/>
-        <Currency Text="Currency"/>
-        <AlternativeProcedure1 Text="Alternative procedure 1"/>
-        <AlternativeProcedure2 Text="Alternative procedure 2"/>
-        <Amount Text="Amount"/>
+        <AlternativeProcedure Text="Alternative procedure"/>
       </Swiss>
-      <SberbankQr>
-        <Name Text="Beneficiary's name"/>
+      <SberbankQr Text="Sberbank QR">
+        <Name Text="Beneficiary name"/>
         <PersonalAcc Text="Beneficiary account number"/>
         <BankName Text="Beneficiary bank name"/>
         <BIC Text="BIC"/>
