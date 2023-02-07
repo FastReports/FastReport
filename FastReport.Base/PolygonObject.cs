@@ -56,8 +56,10 @@ namespace FastReport
 
             using (GraphicsPath path = getPolygonPath(pen, e.ScaleX, e.ScaleY))
             {
-                if(polygonSelectionMode == PolygonSelectionMode.MoveAndScale)
-                e.Graphics.FillAndDrawPath(pen, brush, path);
+                if (polygonSelectionMode == PolygonSelectionMode.MoveAndScale)
+                    e.Graphics.FillAndDrawPath(pen, brush, path);
+                else
+                    e.Graphics.DrawPath(pen, path);
             }
         }
 

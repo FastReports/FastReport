@@ -356,7 +356,6 @@ namespace FastReport.Data
         public virtual void CreateAllTables(bool initSchema)
         {
             List<string> tableNames = new List<string>();
-            List<string> oldTableNames = new List<string>();
 
             tableNames.AddRange(GetTableNames());
             FilterTables(tableNames);
@@ -369,8 +368,6 @@ namespace FastReport.Data
             for (int i = 0; i < Tables.Count; i++)
             {
                 TableDataSource table = Tables[i];
-
-                oldTableNames.Add(table.Name);
 
                 bool found = !String.IsNullOrEmpty(table.SelectCommand);
                 // skip tables with non-empty selectcommand
@@ -427,14 +424,12 @@ namespace FastReport.Data
 
                     table.TableName = tableName;
                     table.Connection = this;
+                    table.Enabled = false;
+
                     if (TablesStructure != null)
                     {
                         table.Enabled = TablesStructure[tableNumber].Properties.Where(prop => prop.Key == "Enabled").Select(res => res.Value).First() == "true";
                     }
-
-                    foreach (string enumTables in oldTableNames)
-                        if (!String.Equals(enumTables, table.Name))
-                            table.Enabled = false;
 
                     Tables.Add(table);
                     tableNumber++;

@@ -172,10 +172,7 @@ namespace FastReport
         {
             List<ValidationError> listError = new List<ValidationError>();
 
-            if (IsIntersectingWithOtherObject && !(Parent is ReportComponentBase && !Validator.RectContainInOtherRect((Parent as ReportComponentBase).AbsBounds, this.AbsBounds)))
-                listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Warning, Res.Get("Messages,Validator,IntersectedObjects"), this));
-
-            if ((Height < 0 || Width < 0) && diagonal || (Height <= 0 && Width <= 0))
+            if (Height == 0 && Width == 0)
                 listError.Add(new ValidationError(Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,IncorrectSize"), this));
 
             if (Name == "")

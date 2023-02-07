@@ -35,85 +35,56 @@ namespace FastReport.Utils
     /// </summary>
     public static class Validator
     {
-        /// <summary>
-        /// Check all objects on band, do they intersect or not.
-        /// </summary>
-        /// <param name="band">Band that should be checked.</param>
-        /// <param name="token">Token for cancelling method if it execute in thread.</param>
-        /// <returns>Returns <b>true</b> if band has intersecting objects. Otherwise <b>false</b>.</returns>
-        static public bool ValidateIntersectionAllObjects(BandBase band, CancellationToken token = default)
+        private static void NormalizeBounds(ref RectangleF bounds)
         {
-            bool result = false;
-            try
+            if (bounds.Width < 0)
             {
-                foreach (ReportComponentBase component in band.Objects)
+                bounds.X = bounds.Right;
+                bounds.Width = -bounds.Width;
+            }
+            if (bounds.Height < 0)
+            {
+                bounds.Y = bounds.Bottom;
+                bounds.Height = -bounds.Height;
+            }
+        }
+
+        internal static void GetIntersectingObjects(List<ReportComponentBase> list, BandBase band)
+        {
+            int n = band.Objects.Count;
+            for (int i = 0; i < n; i++)
+            {
+                var bounds = band.Objects[i].Bounds;
+                if (bounds.Width < 0 || bounds.Height < 0)
+                    NormalizeBounds(ref bounds);
+
+                // compensate for inaccuracy of designer's grid fit
+                bounds.Inflate(-0.01f, -0.01f);
+
+                for (int j = 0; j < n; j++)
                 {
-                    if (token.IsCancellationRequested)
-                        return false;
+                    var bounds1 = band.Objects[j].Bounds;
+                    if (bounds1.Width < 0 || bounds1.Height < 0)
+                        NormalizeBounds(ref bounds1);
 
-                    component.IsIntersectingWithOtherObject = false;
-                    if (!band.Bounds.Contains(GetReducedRect(component.AbsBounds)))
+                    if (i != j && bounds.IntersectsWith(bounds1))
                     {
-                        component.IsIntersectingWithOtherObject = true;
-                        result = true;
-                    }
-                }
-
-                for (int i = 0; i < band.Objects.Count; i++)
-                {
-                    for (int j = i + 1; j < band.Objects.Count; j++)
-                    {
-                        if (token.IsCancellationRequested)
-                            return false;
-
-                        if (band.Objects[i].Bounds.IntersectsWith(GetReducedRect(band.Objects[j].Bounds)))
-                        {
-                            result = true;
-                            band.Objects[i].IsIntersectingWithOtherObject = true;
-                            band.Objects[j].IsIntersectingWithOtherObject = true;
-                        }
+                        list.Add(band.Objects[i]);
+                        break;
                     }
                 }
             }
-            catch (Exception e)
-            {
-                if (token.IsCancellationRequested)
-                    return false;
-                else
-                    throw e;
-            }
-
-            return result;
         }
 
-        /// <summary>
-        /// Starting new task with validating band. For stoping task use <b>ValidateBandToken</b>.
-        /// </summary>
-        /// <param name="band"></param>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        static public Task<bool> ValidateIntersectionAllObjectsAsync(BandBase band, CancellationToken token)
+        internal static bool RectContainInOtherRect(RectangleF parent, RectangleF child)
         {
-            return Task.Factory.StartNew(() => 
-            { 
-                return ValidateIntersectionAllObjects(band, token); 
-            }, token);
-        }
+            NormalizeBounds(ref parent);
+            NormalizeBounds(ref child);
 
-        /// <summary>
-        /// Check child rectangle on contains in parent rectangle.
-        /// </summary>
-        /// <param name="parent"></param>
-        /// <param name="child"></param>
-        /// <returns></returns>
-        static public bool RectContainInOtherRect(RectangleF parent, RectangleF child)
-        {
-            return parent.Contains(GetReducedRect(child));
-        }
+            // compensate for inaccuracy of designer's grid fit
+            child.Inflate(-0.01f, -0.01f);
 
-        private static RectangleF GetReducedRect(RectangleF rect)
-        {
-            return new RectangleF(rect.X + 0.01f, rect.Y + 0.01f, rect.Width - 0.02f, rect.Height - 0.02f);
+            return parent.Contains(child);
         }
 
         /// <summary>
@@ -123,7 +94,7 @@ namespace FastReport.Utils
         /// <param name="checkIntersectObj">Need set false if enabled backlight intersecting objects and report is designing.</param>
         /// <param name="token">Token for cancelling method if it execute in thread.</param>
         /// <returns>List of errors.</returns>
-        static public List<ValidationError> ValidateReport(Report report, bool checkIntersectObj = true, CancellationToken token = default)
+        public static List<ValidationError> ValidateReport(Report report, bool checkIntersectObj = true, CancellationToken token = default)
         {
             if (report == null)
                 return null;
@@ -138,11 +109,18 @@ namespace FastReport.Utils
                         if (token.IsCancellationRequested)
                             return null;
 
-                        if (c is BandBase && checkIntersectObj)
-                            ValidateIntersectionAllObjects(c as BandBase, token);
-
-                        if (c is ReportComponentBase)
-                            listError.AddRange((c as ReportComponentBase).Validate());
+                        if (c is BandBase band && checkIntersectObj)
+                        {
+                            List<ReportComponentBase> intersectingObjects = new List<ReportComponentBase>();
+                            GetIntersectingObjects(intersectingObjects, band);
+                            foreach (var obj in intersectingObjects)
+                            {
+                                listError.Add(new ValidationError(obj.Name, ValidationError.ErrorLevel.Warning, Res.Get("Messages,Validator,IntersectedObjects"), obj));
+                            }
+                        }
+                        
+                        if (c is ReportComponentBase comp)
+                            listError.AddRange(comp.Validate());
                     }
                 }
 

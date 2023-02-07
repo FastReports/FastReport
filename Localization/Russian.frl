@@ -81,8 +81,8 @@
       <SwissNullIban Text="IBAN не должен быть null"/>
       <SwissNullCreditor Text="Плательщик не должен быть NULL"/>
       <SwissNullReference Text="Ссылка не должна быть NULL"/>
-      <SwissNullCurrency Text="Валюта не должны быть NULL"/>
-      <SwissAmountLength Text="Длинна суммы (включая дробь) должна быть короче 13 символов"/>
+      <SwissNullCurrency Text="Валюта не должна быть NULL"/>
+      <SwissAmountLength Text="Длина суммы (включая дробь) должна быть короче 13 символов"/>
       <SwissQRIban Text="Если используется QR-IBAN, вы должны выбрать QRR в качестве ссылочного типа!"/>
       <SwissNonQRIban Text="Если используется не QR-IBAN, вы должны выбрать SCOR или NON в качестве ссылочного типа!"/>
       <SwissAltProcedureLength Text="Информационный блок альтернативной процедуры 1 должен быть короче 101 символа"/>
@@ -100,6 +100,11 @@
       <SwissIbanNotValid Text="Введенный недействительный IBAN "/>
       <SwissQRIbanNotValid Text="Введенный недействительный QR-IBAN "/>
       <SwissQRStartNotValid Text="IBAN должен начинаться символов CH или LI"/>
+      <SwissPropName Text="Имя"/>
+      <SwissPropStreet Text="Улица"/>
+      <SwissPropHouseNumber Text="Дом"/>
+      <SwissPropZipCode Text="Индекс"/>
+      <SwissPropCity Text="Город"/>
     </Swiss>
   </Messages>
   <Misc>
@@ -429,21 +434,21 @@
     <Menu>
       <File Text="Файл">
         <New Text="Новый..."/>
-        <Open Text="Открыть..."/>
-        <OpenLocally Text="Открыть на этом ПК"/>
-        <OpenViaCloud Text="Открыть через Облако"/>
+        <Open Text="Открыть"/>
+        <OpenLocally Text="Открыть на этом ПК..."/>
+        <OpenViaCloud Text="Открыть через Облако..."/>
+        <Import Text="Импорт"/>
         <Close Text="Закрыть"/>
-        <SaveMenu Text="Сохранить как..."/>
         <Save Text="Сохранить"/>
-        <SaveAs Text="Сохранить как..."/>
-        <SaveLocal Text="Сохранить на этом ПК"/>
+        <SaveAs Text="Сохранить как"/>
+        <SaveLocal Text="Сохранить на этом ПК..."/>
         <SaveWithRandomData Text="Сохранить со случайными данными..."/>
         <SaveAll Text="Сохранить все"/>
-        <SaveToCloud Text="Сохранить в Облако"/>
+        <SaveToCloud Text="Сохранить в Облако..."/>
         <PageSetup Text="Параметры страницы..."/>
         <PrinterSetup Text="Параметры принтера..."/>
         <Preview Text="Предварительный просмотр..."/>
-        <PreviewCloud Text="Предварительный веб-просмотр"/>
+        <PreviewCloud Text="Предварительный веб-просмотр..."/>
         <SelectLanguage Text="Выберите язык..."/>
         <Exit Text="Выход"/>
       </File>
@@ -479,6 +484,7 @@
         <Bands Text="Настроить бэнды..."/>
         <Styles Text="Стили..."/>
         <GroupExpert Text="Мастер группировки..."/>
+        <Validate Text="Проверить отчет"/>
         <Options Text="Свойства..."/>
       </Report>
       <Data Text="Данные">
@@ -562,18 +568,16 @@
       <AutoHide Text="Скрывать автоматически"/>
       <Close Text="Закрыть"/>
       <Properties Text="Свойства">
+        <Categorized Text="По категориям"/>
+        <Alphabetical Text="По алфавиту"/>
         <PropertiesTab Text="Свойства"/>
         <EventsTab Text="События"/>
+        <Filter Text="Специфичные для объекта свойства"/>
         <NObjectsSelected Text="{0} объектов выбрано"/>
       </Properties>
-      <Validator Text="Проверка">
-        <Number Text="Номер"/>
-        <Name Text="Имя"/>
-        <Message Text="Сообщение"/>
-        <Updating Text="Обновление"/>
-        <Type Text="Тип"/>
-      </Validator>
-      <ReportTree Text="Дерево отчета"/>
+      <ReportTree Text="Дерево отчета">
+        <Sync Text="Синхронизировать с выбранным объектом"/>
+      </ReportTree>
       <CollapseAll Text="Свернуть все"/>
       <ExpandAll Text="Развернуть все"/>
       <Dictionary Text="Данные">
@@ -583,13 +587,13 @@
         <Totals Text="Итоги"/>
         <Functions Text="Функции"/>
         <DialogControls Text="Элементы управления"/>
-        <New Text="Новый словарь данных..."/>
+        <New Text="Новый словарь данных"/>
         <Open Text="Открыть словарь данных..."/>
         <Save Text="Сохранить словарь данных..."/>
         <Merge Text="Объединить словари..."/>
         <NewDataSource Text="Новый источник данных..."/>
         <SortDataSources Text="Сортировать источники данных"/>
-        <UploadDataSource Text="Загрузить на корпоративный сервер"/>
+        <UploadDataSource Text="Загрузить на корпоративный сервер..."/>
         <UploadChangesDataSource Text="Обновить подключение на Облаке"/>
         <CopyDataSource Text="Скопировать источник данных"/>
         <SortDataFields Text="Сортировать поля данных"/>
@@ -610,6 +614,10 @@
         <CubeSources Text="Источники Cube"/>
       </Dictionary>
       <Messages Text="Сообщения">
+        <Errors Text="Ошибки: {0}"/>
+        <Warnings Text="Предупреждения: {0}"/>
+        <Refresh Text="Обновить"/>
+        <Close Text="Закрыть"/>
         <Description Text="Текст"/>
         <Line Text="Строка"/>
         <Column Text="Колонка"/>
@@ -1866,8 +1874,8 @@
         <Pack2 Text="Visual Studio"/>
       </IconPack>
       <Ribbon Text="Использовать новый Ribbon-интерфейс"/>
-      <Welcome Text="Откывать окно приветствия при запуске"/>
-      <RightToLeft Text="Интерфейс Справа Налево:">
+      <Welcome Text="Открывать окно приветствия при запуске"/>
+      <RightToLeft Text="Интерфейс справа налево:">
         <Auto Text="Авто"/>
         <No Text="Нет"/>
         <Yes Text="Да"/>
@@ -1902,7 +1910,7 @@
       <PictureOnTop Text="Картинка на переднем плане"/>
       <ApplyToAll Text="Применить ко всем страницам"/>
     </WatermarkEditor>
-    <BarcodeEditor Text="Редактор баркодов">
+    <BarcodeEditor Text="Редактор штрихкода">
       <Text Text="Текст"/>
       <vCard Text="vCard"/>
       <URI Text="URI"/>
@@ -1940,89 +1948,88 @@
       <NetworkName Text="Имя сети"/>
       <Password Text="Пароль"/>
       <WifiHidden Text="Скрытая сеть Wi-Fi"/>
-      <Save Text="Сохранить"/>
-      <Cancel Text="Отмена"/>
-      <Swiss>
+      <Swiss Text="Swiss QR">
         <Iban Text="IBAN"/>
-        <IbanType Text="Тип IBAN'a"/>
-        <Name Text="Имя"/>
-        <HouseNumber Text="Номер дома"/>
+        <IbanType Text="Тип"/>
+        <Amount Text="Сумма"/>
+        <Currency Text="Валюта"/>
+        <Creditor Text="Получатель"/>
+        <Name Text="Имя:"/>
+        <StreetNr Text="Улица / Номер:"/>
+        <ZipCityCountry Text="Индекс / Город / Страна:"/>
+        <Debitor Text="Плательщик"/>
+        <AdditionalInformation Text="Дополнительная информация"/>
         <Reference Text="Ссылка"/>
-        <Creditor Text="Плательщик"/>
         <Type Text="Тип"/>
         <TextType Text="Тип текста"/>
-        <Debitor Text="Должник"/>
-        <AdditionalInformation Text="Добавочная информация"/>
-        <UnstructuredMessage Text="Сообщение"/>
+        <Message Text="Сообщение"/>
         <BillInformation Text="Информация о счете"/>
-        <Currency Text="Валюта"/>
-        <AlternativeProcedure1 Text="Альтернативная операция 1"/>
-        <AlternativeProcedure2 Text="Альтернативная операция 2"/>
-        <Amount Text="Сумма"/>
+        <AlternativeProcedure Text="Альтернативная процедура"/>
       </Swiss>
-	  <SberbankQr>
-	    <Name Text="Наименование получателя"/>
-		<PersonalAcc Text="Номер счета получателя платежа "/>
-		<BankName Text="Наименование банка получателя платежа"/>
-		<BIC Text="БИК"/>
-		<CorrespAcc Text="Номер кор./сч. банка получателя платежа"/>
-		<Sum Text="Сумма платежа"/>
-		<Purpose Text="Наименование платежа (назначение)"/>
-		<PayeeINN Text="ИНН получателя платежа"/>
-		<PayerINN Text="ИНН плательщика"/>
-		<DrawerStatus Text="Статус составителя платежного документа"/>
-		<KPP Text="КПП получателя платежа"/>
-		<CBC Text="КБК"/>
-		<OKTMO Text="OKTMO"/>
-		<PayReason Text="Основание налогового платежа"/>
-		<TaxPeriod Text="Налоговый период"/>
-		<DocNo Text="Номер документа"/>
-		<DocDate Text="Дата документа"/>
-		<TaxPaytKind Text="Тип платежа"/>
-		<LastName Text="Фамилия плательщика"/>
-		<FirstName Text="Имя плательщика"/>
-		<MiddleName Text="Отчество плательщика"/>
-		<PayerAdress Text="Адрес плательщика"/>
-		<PersonalAccount Text="Лицевой счет бюджетного получателя"/>
-		<DocIdx Text="Индекс платежного документа"/>
-		<PensAcc Text="№ лицевого счета в системе персонифицированного учета 
-		в ПФР - СНИЛС"/>
-		<Contract Text="Номер договора"/>
-		<PersAcc Text="Номер лицевого счета плательщика в 
-		организации (в системе учета ПУ)"/>
-		<Flat Text="Номер квартиры"/>
-		<Phone Text="Номер телефона"/>
-		<PayerIdType Text="Вид ДУЛ плательщика"/>
-		<PayerIdNum Text="Номер ДУЛ плательщика"/>
-		<ChildFio Text="ФИО ребенка/учащегося"/>
-		<BirthDate Text="Дата рождения"/>
-		<PaymTerm Text="Срок платежа/дата выставления счета"/>
-		<PaymPeriod Text="Период оплаты"/>
-		<Category Text="Вид платежа"/>
-		<ServiceName Text="Код услуги/название прибора учета"/>
-		<CounterId Text="Номер прибора учета"/>
-		<CounterVal Text="Показание прибора учета"/>
-		<QuittId Text="Номер извещения, начисления, счета"/>
-		<QuittDate Text="Дата извещения/начисления/счета/постановления 
-		(для ГИБДД)"/>
-		<InstNum Text="Номер учреждения (образовательного, медицинского)"/>
-		<ClassNum Text="Номер группы детсада/класса школы"/>
-		<SpecFio Text="ФИО преподавателя, специалиста, оказывающего услугу"/>
-		<AddAmount Text="Сумма страховки/дополнительной услуги/Сумма пени (в копейках)"/>
-		<RuleId Text="Номер постановления (для ГИБДД)"/>
-		<ExecId Text="Номер исполнительного производства"/>
-		<RegType Text="Код вида платежа (например, для платежей в адрес Росреестра)"/>
-		<UIN Text=" Уникальный идентификатор начисления"/>
-		<TechCode Text="Технический код, рекомендуемый для заполнения поставщиком услуг. 
-		Может использоваться принимающей организацией для вызова 
-		соответствующей обрабатывающей ИТ-системы."/>
-		<ObligatoryProps Text="Обязательные реквизиты"/>
-		<AdditionalProps Text="Дополнительные реквизиты"/>
-		<AnotherProps Text="Другие"/>
-		<NotEnterDate Text="Не указывать дату"/>
-      <Error Text="Не все необходимые банковские реквизиты заполнены."/>
-      <Warning Text="Некорректные данные в полях:"/>
-	  </SberbankQr>
+      <SberbankQr Text="Сбербанк QR">
+        <Enable Text="True"/>
+        <Name Text="Наименование получателя"/>
+        <PersonalAcc Text="Номер счета получателя платежа "/>
+        <BankName Text="Наименование банка получателя платежа"/>
+        <BIC Text="БИК"/>
+        <CorrespAcc Text="Номер кор./сч. банка получателя платежа"/>
+        <Sum Text="Сумма платежа"/>
+        <Purpose Text="Наименование платежа (назначение)"/>
+        <PayeeINN Text="ИНН получателя платежа"/>
+        <PayerINN Text="ИНН плательщика"/>
+        <DrawerStatus Text="Статус составителя платежного документа"/>
+        <KPP Text="КПП получателя платежа"/>
+        <CBC Text="КБК"/>
+        <OKTMO Text="OKTMO"/>
+        <PayReason Text="Основание налогового платежа"/>
+        <TaxPeriod Text="Налоговый период"/>
+        <DocNo Text="Номер документа"/>
+        <DocDate Text="Дата документа"/>
+        <TaxPaytKind Text="Тип платежа"/>
+        <LastName Text="Фамилия плательщика"/>
+        <FirstName Text="Имя плательщика"/>
+        <MiddleName Text="Отчество плательщика"/>
+        <PayerAdress Text="Адрес плательщика"/>
+        <PersonalAccount Text="Лицевой счет бюджетного получателя"/>
+        <DocIdx Text="Индекс платежного документа"/>
+        <PensAcc Text="№ лицевого счета в системе персонифицированного учета 
+        в ПФР - СНИЛС"/>
+        <Contract Text="Номер договора"/>
+        <PersAcc Text="Номер лицевого счета плательщика в 
+        организации (в системе учета ПУ)"/>
+        <Flat Text="Номер квартиры"/>
+        <Phone Text="Номер телефона"/>
+        <PayerIdType Text="Вид ДУЛ плательщика"/>
+        <PayerIdNum Text="Номер ДУЛ плательщика"/>
+        <ChildFio Text="ФИО ребенка/учащегося"/>
+        <BirthDate Text="Дата рождения"/>
+        <PaymTerm Text="Срок платежа/дата выставления счета"/>
+        <PaymPeriod Text="Период оплаты"/>
+        <Category Text="Вид платежа"/>
+        <ServiceName Text="Код услуги/название прибора учета"/>
+        <CounterId Text="Номер прибора учета"/>
+        <CounterVal Text="Показание прибора учета"/>
+        <QuittId Text="Номер извещения, начисления, счета"/>
+        <QuittDate Text="Дата извещения/начисления/счета/постановления 
+        (для ГИБДД)"/>
+        <InstNum Text="Номер учреждения (образовательного, медицинского)"/>
+        <ClassNum Text="Номер группы детсада/класса школы"/>
+        <SpecFio Text="ФИО преподавателя, специалиста, оказывающего услугу"/>
+        <AddAmount Text="Сумма страховки/дополнительной услуги/Сумма пени (в копейках)"/>
+        <RuleId Text="Номер постановления (для ГИБДД)"/>
+        <ExecId Text="Номер исполнительного производства"/>
+        <RegType Text="Код вида платежа (например, для платежей в адрес Росреестра)"/>
+        <UIN Text=" Уникальный идентификатор начисления"/>
+        <TechCode Text="Технический код, рекомендуемый для заполнения поставщиком услуг. 
+        Может использоваться принимающей организацией для вызова 
+        соответствующей обрабатывающей ИТ-системы."/>
+        <ObligatoryProps Text="Обязательные реквизиты"/>
+        <AdditionalProps Text="Дополнительные реквизиты"/>
+        <AnotherProps Text="Другие"/>
+        <NotEnterDate Text="Не указывать дату"/>
+        <Error Text="Не все необходимые банковские реквизиты заполнены."/>
+        <Warning Text="Некорректные данные в полях:"/>
+      </SberbankQr>
     </BarcodeEditor>
     <SavingPageOptions Text="Сохранение">
       <EnableAutoSave Text="Включить автосохранение каждые (минут)"/>
