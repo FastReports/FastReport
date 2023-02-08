@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Language Name="pt" Author="Isaque Pinheiro &lt;isaquesp@gmail.com&gt; | Siegmar Gieseler &lt;easylob@gmail.com&gt;">
+<Language Name="pt-BR" Author="Isaque Pinheiro &lt;isaquesp@gmail.com&gt; | Siegmar Gieseler &lt;easylob@gmail.com&gt;">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} a fonte não pode ser alterada, incorporada ou transferida de qualquer forma sem primeiro ter obtida a permissão do detentor dos direitos autorais."/>
     <FontMayNotBeSubsettedPriorToEmbedding Text="{0} a fonte não pode ser empacotada antes de ser incorporada no documento."/>

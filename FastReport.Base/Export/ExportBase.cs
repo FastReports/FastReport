@@ -292,24 +292,6 @@ namespace FastReport.Export
             }
         }
 
-        private void SaveSettings()
-        {
-            XmlItem root = Config.Root.FindItem("Preview").FindItem("Exports").FindItem(ClassName);
-            using (FRWriter writer = new FRWriter(root))
-            {
-                root.Clear();
-                writer.Write(this);
-            }
-        }
-
-        private void RestoreSettings()
-        {
-            XmlItem root = Config.Root.FindItem("Preview").FindItem("Exports").FindItem(ClassName);
-            using (FRReader reader = new FRReader(null, root))
-            {
-                reader.Read(this);
-            }
-        }
         #endregion
 
         #region Protected Methods

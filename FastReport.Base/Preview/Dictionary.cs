@@ -148,10 +148,10 @@ namespace FastReport.Preview
       baseNames = new Hashtable();
     }
 
-    private class DictionaryItem
+    private sealed class DictionaryItem
     {
-      private string sourceName;
-      private Base originalComponent;
+      private readonly string sourceName;
+      private readonly Base originalComponent;
       
       public string SourceName
       {
