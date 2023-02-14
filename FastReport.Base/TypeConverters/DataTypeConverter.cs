@@ -30,13 +30,18 @@ namespace FastReport.TypeConverters
         /// <inheritdoc/>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value is string)
-            {
-                string val = (string)value;
-                if (!val.StartsWith("System."))
+            string val = (string)value;
+
+                if (value is string && !val.StartsWith("System."))
+                {
                     val = "System." + val;
-                return Type.GetType(val);
-            }
+
+                    if (Type.GetType(val) != null)
+                        return Type.GetType(val);
+                    else
+                        return null;
+                }
+
             return base.ConvertFrom(context, culture, value);
         }
 

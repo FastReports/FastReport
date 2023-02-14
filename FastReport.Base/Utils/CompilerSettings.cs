@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Globalization;
 
 namespace FastReport.Utils
 {
@@ -78,6 +79,30 @@ namespace FastReport.Utils
         /// Report compiler can try to fix compilation errors and recompile your report again. This property sets the number of such attempts.
         /// </remarks>
         public int RecompileCount { get; set; } = 1;
+
+#if CROSSPLATFORM || COREWIN
+        // sets by user
+        private CultureInfo cultureInfo;
+
+        /// <summary>
+        /// Sets culture for compiler
+        /// </summary>
+        public CultureInfo CultureInfo
+        {
+            get
+            {
+                if(cultureInfo == null)
+                {
+                    return Res.CurrentCulture;
+                }
+                return cultureInfo;
+            }
+            set
+            {
+                cultureInfo = value;
+            }
+        }
+#endif
 
         #endregion Properties
 

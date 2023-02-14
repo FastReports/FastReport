@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FastReport.Web
@@ -90,7 +91,7 @@ namespace FastReport.Web
             return buffer;
         }
 
-        public async ValueTask<byte[]> GetBytesAsync(string name)
+        public async ValueTask<byte[]> GetBytesAsync(string name, CancellationToken cancellationToken = default)
         {
             if (cache2.TryGetValue(name, out byte[] value))
                 return value;
@@ -101,7 +102,7 @@ namespace FastReport.Web
                 return null;
 
             var buffer = new byte[resourceStream.Length];
-            await resourceStream.ReadAsync(buffer, 0, buffer.Length);
+            await resourceStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
             cache2[name] = buffer;
             return buffer;
         }

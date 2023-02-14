@@ -12,6 +12,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Buffers;
+using System.ComponentModel;
 
 namespace FastReport.Web
 {
@@ -28,12 +29,14 @@ namespace FastReport.Web
         /// Enable code editor in the Report Designer
         /// </summary>
         [Obsolete("DesignerScriptCode is obsolete, please use Designer.ScriptCode")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DesignScriptCode { get => Designer.ScriptCode; set => Designer.ScriptCode = value; }
 
         /// <summary>
         /// Gets or sets path to the Report Designer
         /// </summary>
         [Obsolete("DesignerPath is obsolete, please use Designer.Path")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string DesignerPath { get => Designer.Path; set => Designer.Path = value; }
         
         /// <summary>
@@ -41,12 +44,14 @@ namespace FastReport.Web
         /// If value is empty then designer posts saved report in variable ReportFile on call the DesignerSaveCallBack // TODO
         /// </summary>
         [Obsolete("DesignerPath is obsolete, please use Designer.SavePath")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string DesignerSavePath { get => Designer.SavePath; set => Designer.SavePath = value; }
 
         /// <summary>
         /// Gets or sets path to callback page after Save from Designer
         /// </summary>
         [Obsolete("DesignerSaveCallBack is obsolete, please use Designer.SaveCallBack instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string DesignerSaveCallBack { get => Designer.SaveCallBack; set => Designer.SaveCallBack = value; } 
 
         /// <summary>
@@ -64,6 +69,7 @@ namespace FastReport.Web
         /// };
         /// </example>
         [Obsolete("DesignerSaveMethod is obsolete, please use Designer.SaveMethod instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Func<string, string, string, string> DesignerSaveMethod { get => Designer.SaveMethod; set => Designer.SaveMethod = value; }
 
         /// <summary>
@@ -87,12 +93,14 @@ namespace FastReport.Web
         /// Gets or sets the locale of Designer
         /// </summary>
         [Obsolete("DesignerLocale is obsolete, please use Designer.Locale")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string DesignerLocale { get => Designer.Locale; set => Designer.Locale = value; }
 
         /// <summary>
         /// Gets or sets the text of configuration of Online Designer
         /// </summary>
         [Obsolete("DesignerConfig is obsolete, please use Designer.Config")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string DesignerConfig { get => Designer.Config; set => Designer.Config = value; } 
 
         /// <summary>
@@ -112,7 +120,7 @@ namespace FastReport.Web
         /// <summary>
         /// Runs on designed report save
         /// </summary>
-        public void OnSaveDesignedReport(SaveDesignedReportEventArgs e)
+        private void OnSaveDesignedReport(SaveDesignedReportEventArgs e)
         {
             SaveDesignedReport?.Invoke(this, e);
         }

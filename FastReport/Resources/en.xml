@@ -506,68 +506,6 @@
         <About Text="About..."/>
       </Help>
     </Menu>
-    <ListViewForm>
-        <CaptionSaveMode Text="Save to Cloud"/>
-        <CaptionOpenMode Text="Open via Cloud"/>
-        <Select Text="Select"/>
-        <Save Text="Save"/>
-        <Cancel Text="Cancel"/>
-        <Search Text="Search..."/>
-        <FileNameHeader Text="Name"/>
-        <DateModHeader Text="Date modifed"/>
-        <FileSizeHeader Text="Size"/>
-        <FileTypeHeader Text="Type"/>
-        <CreateFolder Text="Create folder"/>
-        <CopyPath Text="Copy path"/>
-        <Rename Text="Rename"/>
-        <Delete Text="Delete"/>
-        <Open Text="Open"/>
-        <AuthError Text="Error while authorization"/>
-        <AuthErrorCaption Text="Not authorized"/>
-        <OnLoadName Text="Enter new name"/>
-        <NonExistingSelectedReport Text="Report with this name is not found!"/>
-        <ReportWasModified Text="Report`s been already modified. Are you sure you want to overwrite this file?"/>
-        <ReportWasModifiedCaption Text="Report was modifed"/>
-        <ReportWasNotFound Text="Report was deleted. Do you want to save file?"/>
-        <ReportWasNotFoundCaption Text="Report was deleted"/>
-        <RootFolderTemplates Text="Templates"/>
-        <RootFolderReports Text="Reports"/>
-        <EnterFolderName>
-            <OnLoadRename Text="Enter new name"/>
-            <OnLoadFolderName Text="Enter folder name"/>
-            <CreateDirectory Text="Create directory"/>
-            <Rename Text="Rename"/>
-            <Confirm Text="Ok"/>
-            <Cancel Text="Cancel"/>
-            <EmptyName Text="Name cannot be empty!"/>
-            <ForbiddenName Text="A file name can`t contain any of the following charachter:"/>
-        </EnterFolderName>
-		<ErrorMessageBox>
-            <ErrorInApiOrServer Text="Error while connecting to the selected server. You may have specified an invalid server or API key"/>
-            <ErrorInSubscriptions Text="No valid subscriptions found on Your account."/>
-            <ErrorInSubscriptions402 Text="The selected subscription has expired. Please update your workspace"/>
-            <CaptionSubscriptions Text="Subscriptions error"/>
-            <CaptionSubscriptions402 Text="Subscription is expired"/>
-            <Caption Text="Server connection error"/>
-            <InvalidPath Text="Unable to find the path '{0}'. Check the spelling and try again"/>
-            <CaptionNoPath Text="Invalid path"/>
-            <Error404 Text="The selected file does not exist on the server. Check that the data is correct and try again"/>
-            <Error404Caption Text="File is not found"/>
-		</ErrorMessageBox>
-    </ListViewForm>
-    <CloudDataSourceForm>
-        <TypeConnection Text="Type"/>
-        <NameConnection Text="Name"/>
-        <StatusConnection Text="Status"/>
-        <StatusConnected Text="Connected"/>
-        <StatusError Text="Error"/>
-        <StatusUpdating Text="Updating"/>
-        <Caption Text="Select connection"/>
-        <SelectSources Text="Select data source for your report from corporate server"/>
-        <SelectUpload Text="Select available connection to upload it to corporate server"/>
-        <NotFoundSources Text="No available data connections"/>
-        <PluginNotAdded Text="Impossible to unload data source. Probably the plugin, corresponding to the connection, is not added"/>
-    </CloudDataSourceForm>
     <ToolWindow>
       <AutoHide Text="Auto-hide"/>
       <Close Text="Close"/>
@@ -1199,6 +1137,19 @@
         <RangeBar Text="Range Bar"/>
       </Series>
     </ChartGallery>
+    <CloudDataSourceForm>
+        <TypeConnection Text="Type"/>
+        <NameConnection Text="Name"/>
+        <StatusConnection Text="Status"/>
+        <StatusConnected Text="Connected"/>
+        <StatusError Text="Error"/>
+        <StatusUpdating Text="Updating"/>
+        <Caption Text="Select connection"/>
+        <SelectSources Text="Select data source for your report from corporate server"/>
+        <SelectUpload Text="Select available connection to upload it to corporate server"/>
+        <NotFoundSources Text="No available data connections"/>
+        <PluginNotAdded Text="Impossible to unload data source. Probably the plugin, corresponding to the connection, is not added"/>
+    </CloudDataSourceForm>
     <CodePageOptions Text="Code page">
       <EnableCodeCompletion Text="Enable code completion"/>
       <EnableVirtualSpace Text="Enable virtual space"/>
@@ -1625,6 +1576,55 @@
         <Label149 Text="landscape - Laser Tag"/>
       </Labels>
     </LabelWizard>
+    <ListViewForm>
+        <CaptionSaveMode Text="Save to Cloud"/>
+        <CaptionOpenMode Text="Open via Cloud"/>
+        <Select Text="Select"/>
+        <Save Text="Save"/>
+        <Cancel Text="Cancel"/>
+        <Search Text="Search..."/>
+        <FileNameHeader Text="Name"/>
+        <DateModHeader Text="Date modifed"/>
+        <FileSizeHeader Text="Size"/>
+        <FileTypeHeader Text="Type"/>
+        <CreateFolder Text="Create folder"/>
+        <CopyPath Text="Copy path"/>
+        <Rename Text="Rename"/>
+        <Delete Text="Delete"/>
+        <Open Text="Open"/>
+        <AuthError Text="Error while authorization"/>
+        <AuthErrorCaption Text="Not authorized"/>
+        <OnLoadName Text="Enter new name"/>
+        <NonExistingSelectedReport Text="Report with this name is not found!"/>
+        <ReportWasModified Text="Report`s been already modified. Are you sure you want to overwrite this file?"/>
+        <ReportWasModifiedCaption Text="Report was modifed"/>
+        <ReportWasNotFound Text="Report was deleted. Do you want to save file?"/>
+        <ReportWasNotFoundCaption Text="Report was deleted"/>
+        <RootFolderTemplates Text="Templates"/>
+        <RootFolderReports Text="Reports"/>
+        <EnterFolderName>
+            <OnLoadRename Text="Enter new name"/>
+            <OnLoadFolderName Text="Enter folder name"/>
+            <CreateDirectory Text="Create directory"/>
+            <Rename Text="Rename"/>
+            <Confirm Text="Ok"/>
+            <Cancel Text="Cancel"/>
+            <EmptyName Text="Name cannot be empty!"/>
+            <ForbiddenName Text="A file name cannot contain any of the following charachter:"/>
+        </EnterFolderName>
+        <ErrorMessageBox>
+            <ErrorInApiOrServer Text="Error while connecting to the selected server. You may have specified an invalid server or API key"/>
+            <ErrorInSubscriptions Text="No valid subscriptions found on Your account."/>
+            <ErrorInSubscriptions402 Text="The selected subscription has expired. Please update your workspace"/>
+            <CaptionSubscriptions Text="Subscriptions error"/>
+            <CaptionSubscriptions402 Text="Subscription is expired"/>
+            <Caption Text="Server connection error"/>
+            <InvalidPath Text="Unable to find the path '{0}'. Check the spelling and try again"/>
+            <CaptionNoPath Text="Invalid path"/>
+            <Error404 Text="The selected file does not exist on the server. Check that the data is correct and try again"/>
+            <Error404Caption Text="File is not found"/>
+        </ErrorMessageBox>
+    </ListViewForm>
     <MapEditor Text="Edit Map">
       <Map Text="Map"/>
       <Layer Text="Layer"/>

@@ -454,15 +454,18 @@ namespace FastReport.Code
             // compile report scripts
             using (CodeDomProvider provider = Report.CodeHelper.GetCodeProvider())
             {
-
-                ScriptSecurityEventArgs ssea = new ScriptSecurityEventArgs(Report, scriptText.ToString(), Report.ReferencedAssemblies);
+                string script = scriptText.ToString();
+                ScriptSecurityEventArgs ssea = new ScriptSecurityEventArgs(Report, script, Report.ReferencedAssemblies);
                 Config.OnScriptCompile(ssea);
 
 #if CROSSPLATFORM || COREWIN
                 provider.BeforeEmitCompilation += Config.OnBeforeScriptCompilation;
-#endif
 
-                cr = provider.CompileAssemblyFromSource(cp, scriptText.ToString());
+                // in .NET Core we use cultureInfo to represent errors
+                cr = provider.CompileAssemblyFromSource(cp, script, Config.CompilerSettings.CultureInfo);
+#else
+                cr = provider.CompileAssemblyFromSource(cp, script);
+#endif
                 Assembly = null;
                 Instance = null;
 
@@ -744,7 +747,7 @@ namespace FastReport.Code
             compileLocker = new object();
         }
 
-        private class SourcePosition
+        private sealed class SourcePosition
         {
             public readonly string sourceObject;
             public readonly int start;
