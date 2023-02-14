@@ -22,6 +22,7 @@ namespace FastReport.Utils
     public static partial class Res
     {
         private static Dictionary<CultureInfo, XmlDocument> LocalesCache { get; }
+        internal static CultureInfo CurrentCulture { get; private set; }
 
         private static XmlDocument FLocale;
         private static XmlDocument FBuiltinLocale;
@@ -85,8 +86,21 @@ namespace FastReport.Utils
             {
                 FLocale.Load(stream);
                 CultureInfo enCulture = CultureInfo.GetCultureInfo("en");
+                CurrentCulture = enCulture;
                 if (!LocalesCache.ContainsKey(enCulture))
                     LocalesCache.Add(enCulture, FLocale);
+            }
+        }
+
+        private static void SetCurrentCulture()
+        {
+            try
+            {
+                CurrentCulture = CultureInfo.GetCultureInfo(LocaleName);
+            }
+            catch
+            {
+
             }
         }
 
@@ -102,9 +116,10 @@ namespace FastReport.Utils
             {
                 FLocale = new XmlDocument();
                 FLocale.Load(fileName);
+                SetCurrentCulture();
             }
             else
-                FLocale = FBuiltinLocale;
+                LoadEnglishLocale();
         }
 
         /// <summary>
@@ -117,12 +132,14 @@ namespace FastReport.Utils
         {
             if (culture == CultureInfo.InvariantCulture)
             {
+                CurrentCulture = culture;
                 FLocale = FBuiltinLocale;
                 return;
             }
 
             if (LocalesCache.ContainsKey(culture))
             {
+                CurrentCulture = culture;
                 FLocale = LocalesCache[culture];
                 return;
             }
@@ -133,6 +150,7 @@ namespace FastReport.Utils
             {
                 if (LocalesCache.ContainsKey(parent))
                 {
+                    CurrentCulture = parent;
                     FLocale = LocalesCache[parent];
                     return;
                 }
@@ -141,6 +159,7 @@ namespace FastReport.Utils
                 if (parent.Parent != CultureInfo.InvariantCulture)
                     if (LocalesCache.ContainsKey(parent.Parent))
                     {
+                        CurrentCulture = parent.Parent;
                         FLocale = LocalesCache[parent.Parent];
                         return;
                     }
@@ -170,6 +189,7 @@ namespace FastReport.Utils
 
                 var newLocale = new XmlDocument();
                 newLocale.Load(localeFile);
+                CurrentCulture = culture;
                 FLocale = newLocale;
                 LocalesCache.Add(culture, newLocale);
             }
@@ -208,6 +228,8 @@ namespace FastReport.Utils
 
             FLocale = new XmlDocument();
             FLocale.Load(stream);
+
+            SetCurrentCulture();
         }
 
         /// <summary>
@@ -215,6 +237,7 @@ namespace FastReport.Utils
         /// </summary>
         public static void LoadEnglishLocale()
         {
+            CurrentCulture = CultureInfo.GetCultureInfo("en");
             FLocale = FBuiltinLocale;
         }
     

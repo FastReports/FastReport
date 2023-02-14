@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using FastReport.Utils;
 using System.Drawing.Design;
+using System.Drawing.Printing;
 
 namespace FastReport
 {
@@ -87,6 +88,10 @@ namespace FastReport
         private string startPageEvent;
         private string finishPageEvent;
         private string manualBuildEvent;
+        private int firstPageSource;
+        private int otherPagesSource;
+        private int lastPageSource;
+        private Duplex duplex;
 
         private bool unlimitedHeight;
         private bool printOnRollPaper;
@@ -679,6 +684,80 @@ namespace FastReport
             set { manualBuildEvent = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the paper source for the first printed page.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This property represents the paper source (printer tray) that will be used when printing
+        /// the first page. To set the source for other pages, use
+        /// <see cref="LastPageSource"/> and <see cref="OtherPagesSource"/> properties.
+        /// </para>
+        /// <para>
+        /// Note: This property uses the <b>raw</b> number of the paper source.
+        /// </para>
+        /// </remarks>
+        [DefaultValue(7)]
+        [Category("Print")]
+        public int FirstPageSource
+        {
+            get { return firstPageSource; }
+            set { firstPageSource = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the paper source for all printed pages except the first one.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This property represents the paper source (printer tray) that will be used when printing
+        /// all pages except the first one and the last one. To set source for first and last pages, use 
+        /// <see cref="FirstPageSource"/> and <see cref="LastPageSource"/> properties.
+        /// </para>
+        /// <para>
+        /// Note: This property uses the <b>raw</b> number of the paper source.
+        /// </para>
+        /// </remarks>
+        [DefaultValue(7)]
+        [Category("Print")]
+        public int OtherPagesSource
+        {
+            get { return otherPagesSource; }
+            set { otherPagesSource = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the paper source for the last printed page.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This property represents the paper source (printer tray) that will be used when printing
+        /// the last page. To set the source for other pages, use
+        /// <see cref="FirstPageSource"/> and <see cref="OtherPagesSource"/> properties.
+        /// </para>
+        /// <para>
+        /// Note: This property uses the <b>raw</b> number of the paper source.
+        /// </para>
+        /// </remarks>
+        [DefaultValue(7)]
+        [Category("Print")]
+        public int LastPageSource
+        {
+            get { return lastPageSource; }
+            set { lastPageSource = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the printer duplex mode that will be used when printing this page.
+        /// </summary>
+        [DefaultValue(Duplex.Default)]
+        [Category("Print")]
+        public Duplex Duplex
+        {
+            get { return duplex; }
+            set { duplex = value; }
+        }
+
         internal bool IsManualBuild
         {
             get { return !String.IsNullOrEmpty(manualBuildEvent) || ManualBuild != null; }
@@ -856,7 +935,10 @@ namespace FastReport
             RightMargin = src.RightMargin;
             BottomMargin = src.BottomMargin;
             MirrorMargins = src.MirrorMargins;
-            AssignPreview(src);
+            FirstPageSource = src.FirstPageSource;
+            OtherPagesSource = src.OtherPagesSource;
+            LastPageSource = src.LastPageSource;
+            Duplex = src.Duplex;
             Columns.Assign(src.Columns);
             Guides.Assign(src.Guides);
             Border = src.Border.Clone();
@@ -904,7 +986,6 @@ namespace FastReport
                 writer.WriteFloat("BottomMargin", BottomMargin);
             if (MirrorMargins != c.MirrorMargins)
                 writer.WriteBool("MirrorMargins", MirrorMargins);
-            WritePreview(writer, c);
             Columns.Serialize(writer, c.Columns);
             if (Guides.Count > 0)
                 writer.WriteValue("Guides", Guides);
@@ -941,6 +1022,14 @@ namespace FastReport
                 writer.WriteFloat("UnlimitedHeightValue", UnlimitedHeightValue);
             if (FloatDiff(UnlimitedWidthValue, c.UnlimitedWidthValue))
                 writer.WriteFloat("UnlimitedWidthValue", UnlimitedWidthValue);
+            if (FloatDiff(LastPageSource, c.LastPageSource))
+                writer.WriteFloat("LastPageSource", LastPageSource);
+            if (FloatDiff(FirstPageSource, c.FirstPageSource))
+                writer.WriteFloat("FirstPageSource", FirstPageSource);
+            if (FloatDiff(OtherPagesSource, c.OtherPagesSource))
+                writer.WriteFloat("OtherPageSource", OtherPagesSource);
+            if (Duplex.ToString() != c.Duplex.ToString())
+                writer.WriteStr("Duplex", Duplex.ToString());
         }
 
         /// <inheritdoc/>

@@ -8,6 +8,7 @@ using System.Linq;
 using FastReport.Web.Controllers;
 using FastReport.Web.Application;
 using System.Drawing;
+using System.ComponentModel;
 using FastReport.Web.Cache;
 
 namespace FastReport.Web
@@ -131,43 +132,57 @@ namespace FastReport.Web
 
 
         [Obsolete("Please, use Toolbar.Show")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowToolbar { get => Toolbar.Show; set => Toolbar.Show = value; }
         [Obsolete("Please, use Toolbar.ShowPrevButton")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowPrevButton { get => Toolbar.ShowPrevButton; set => Toolbar.ShowPrevButton = value; }
         [Obsolete("Please, use Toolbar.ShowNextButton")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowNextButton { get => Toolbar.ShowNextButton; set => Toolbar.ShowNextButton = value; }
         [Obsolete("Please, use Toolbar.ShowFirstButton")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowFirstButton { get => Toolbar.ShowFirstButton; set => Toolbar.ShowFirstButton = value; }
         [Obsolete("Please, use Toolbar.ShowLastButton")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowLastButton { get => Toolbar.ShowLastButton; set => Toolbar.ShowLastButton = value; }
 
         [Obsolete("Please, use Toolbar.Exports.Show")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowExports { get => Toolbar.Exports.Show; set => Toolbar.Exports.Show = value; }
 
         [Obsolete("Please, use Toolbar.ShowRefreshButton")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowRefreshButton { get => Toolbar.ShowRefreshButton; set => Toolbar.ShowRefreshButton = value; }
         [Obsolete("Please, use Toolbar.ShowZoomButton")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowZoomButton { get => Toolbar.ShowZoomButton; set => Toolbar.ShowZoomButton = value; }
 
         [Obsolete("Please, use Toolbar.ShowPrint")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowPrint { get => Toolbar.ShowPrint; set => Toolbar.ShowPrint = value; }
         [Obsolete("Please, use Toolbar.PrintInHtml")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PrintInHtml { get => Toolbar.PrintInHtml; set => Toolbar.PrintInHtml = value; }
 #if !OPENSOURCE
         [Obsolete("Please, use Toolbar.PrintInPdf")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PrintInPdf { get => Toolbar.PrintInPdf; set => Toolbar.PrintInPdf = value; }
 #endif
 
         [Obsolete("Please, use Toolbar.Position")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowBottomToolbar { get => Toolbar.ShowBottomToolbar; set => Toolbar.ShowBottomToolbar = value; }
 
         [Obsolete("Please, use Toolbar.Color")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ToolbarColor { get => Toolbar.Color; set => Toolbar.Color = value; }
 
         /// <summary>
         /// Toolbar height in pixels
         /// </summary>
         [Obsolete("Please, use Toolbar.Height")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int ToolbarHeight { get => Toolbar.Height; set => Toolbar.Height = value; }
 
         #endregion

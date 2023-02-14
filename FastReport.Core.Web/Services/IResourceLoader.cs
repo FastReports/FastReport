@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FastReport.Web
@@ -38,8 +39,9 @@ namespace FastReport.Web
         /// Asynchronously returns the requested resource as byte array.
         /// </summary>
         /// <param name="name">Requested resource name</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Byte array of requested resource. If the resource is not found - returns null</returns>
-        ValueTask<byte[]> GetBytesAsync(string name);
+        ValueTask<byte[]> GetBytesAsync(string name, CancellationToken cancellationToken = default);
 
     }
 }
