@@ -38,6 +38,7 @@ namespace FastReport.Data
             }
         }
 
+        /// <inheritdoc/>
         public override string[] GetTableNames()
         {
             List<string> list = new List<string>();
@@ -83,11 +84,13 @@ namespace FastReport.Data
             return list.ToArray();
         }
 
+        /// <inheritdoc/>
         public override string QuoteIdentifier(string value, DbConnection connection)
         {
             return value;
         }
 
+        /// <inheritdoc/>
         protected override string GetConnectionStringWithLoginInfo(string userName, string password)
         {
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(ConnectionString);
@@ -98,11 +101,19 @@ namespace FastReport.Data
             return builder.ToString();
         }
 
+        /// <inheritdoc/>
         public override Type GetConnectionType()
         {
             return typeof(NpgsqlConnection);
         }
 
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(NpgsqlDbType);
+        }
+
+        /// <inheritdoc/>
         public override DbDataAdapter GetAdapter(string selectCommand, DbConnection connection,
           CommandParameterCollection parameters)
         {
