@@ -123,7 +123,7 @@ This project exists because of all the people who have contributed and continue 
 
 [@ATZ-FR](https://github.com/ATZ-FR), [@Detrav](https://github.com/Detrav), [@fediachov](https://github.com/fediachov), [@8VAid8](https://github.com/8VAid8), 
  [@KirillKornienko](https://github.com/KirillKornienko), [@mandrookin](https://github.com/mandrookin), [@ekondur](https://github.com/ekondur), [@Gromozekaster](https://github.com/Gromozekaster), 
-[@daviddesmet](https://github.com/daviddesmet), [@mjftechnology](https://github.com/mjftechnology), [@jonny-xhl](https://github.com/jonny-xhl), [@radiodeer](https://github.com/radiodeer), [@Des1re7](https://github.com/Des1re7), [@araujofrancisco](https://github.com/araujofrancisco).
+[@daviddesmet](https://github.com/daviddesmet), [@mjftechnology](https://github.com/mjftechnology), [@jonny-xhl](https://github.com/jonny-xhl), [@radiodeer](https://github.com/radiodeer), [@Des1re7](https://github.com/Des1re7), [@araujofrancisco](https://github.com/araujofrancisco), [@conqu1stador](https://github.com/conqu1stador), [@pietro29](https://github.com/pietro29).
 
 ## Contributing
 
