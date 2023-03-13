@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource.MVC.3.1", "FastReport.OpenSource.MVC.3.1.csproj", "{8B31C484-671A-4A3E-A5AA-A8AFC8462C89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B31C484-671A-4A3E-A5AA-A8AFC8462C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B31C484-671A-4A3E-A5AA-A8AFC8462C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B31C484-671A-4A3E-A5AA-A8AFC8462C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B31C484-671A-4A3E-A5AA-A8AFC8462C89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFDB90B7-7FA2-4CF9-B6E6-175C83E41D75}
+	EndGlobalSection
+EndGlobal

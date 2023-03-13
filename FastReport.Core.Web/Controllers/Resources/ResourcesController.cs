@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FastReport.Web.Services;
+using Microsoft.AspNetCore.Mvc;
 
 using System;
 using System.Collections.Generic;

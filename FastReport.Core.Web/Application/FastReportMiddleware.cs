@@ -1,4 +1,5 @@
-﻿using FastReport.Web.Controllers;
+﻿#if !WASM
+using FastReport.Web.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -64,3 +65,4 @@ namespace FastReport.Web
         }
     }
 }
+#endif

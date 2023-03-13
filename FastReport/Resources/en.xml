@@ -70,6 +70,7 @@
     <ErrorInHighlightCondition Text="Error in highlight condition"/>
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
+    <RemoveFromRecentFiles Text="Remove the file from recent files list?"/>
     <Validator>
       <DuplicateName Text="Name already is used."/>
       <IntersectedObjects Text="Object is intersected with other object."/>
@@ -438,14 +439,13 @@
     <Menu>
       <File Text="File">
         <New Text="New..."/>
-        <Open Text="Open"/>
-        <OpenLocally Text="Open on this PC..."/>
-        <OpenViaCloud Text="Open via Cloud..."/>
-        <Import Text="Import"/>
+        <Open Text="Open..."/>
+        <OpenPage Text="Open page..."/>
+        <OpenViaCloud Text="Open from Cloud..."/>
+        <RecentFiles Text="Recent Files"/>
         <Close Text="Close"/>
-        <SaveAs Text="Save as"/>
         <Save Text="Save"/>
-        <SaveLocal Text="Save to this PC..."/>
+        <SaveAs Text="Save as..."/>
         <SaveWithRandomData Text="Save With Random Data..."/>
         <SaveAll Text="Save All"/>
         <SaveToCloud Text="Save to Cloud..."/>
@@ -509,6 +509,9 @@
     <ToolWindow>
       <AutoHide Text="Auto-hide"/>
       <Close Text="Close"/>
+      <DockToTop Text="Dock {0} to top"/>
+      <DockToBottom Text="Dock {0} to bottom"/>
+      <DockToOtherSide Text="Dock {0} to other side"/>
       <Properties Text="Properties">
         <Categorized Text="Categorized"/>
         <Alphabetical Text="Alphabetical"/>
@@ -573,7 +576,7 @@
         <New Text="Add New Item"/>
         <Open Text="Open"/>
         <OpenLocally Text="Open Report (Ctrl+O)"/>
-        <OpenViaCloud Text="Open Report via Cloud "/>
+        <OpenViaCloud Text="Open Report from Cloud "/>
         <Save Text="Save Report (Ctrl+S)"/>
         <SaveAll Text="Save All (Ctrl+Shift+S)"/>
         <Preview Text="Preview (Ctrl+P)"/>
@@ -735,12 +738,13 @@
     <Print Text="Print (Ctrl+P)"/>
     <OpenText Text="Open"/>
     <Open Text="Open File"/>
-    <OpenLocal Text="Open on this PC"/>
-	<OpenViaCloud Text="Open via Cloud"/>
+    <OpenLocal Text="Open..."/>
+    <OpenViaCloud Text="Open from Cloud..."/>
     <Save Text="Save File"/>
     <SaveText Text="Save"/>
-    <SaveToCloud Text="Save to Cloud"/>
-    <SaveToCloudText Text="Save to Cloud"/>
+    <SaveNative Text="Prepared report"/>
+    <SaveLocal Text="Save..."/>
+    <SaveToCloud Text="Save to Cloud..."/>
     <Search Text="Search"/>
     <Email Text="Send by E-mail"/>
     <Find Text="Find Text"/>
@@ -754,8 +758,6 @@
     <Prior Text="Prior Page"/>
     <Next Text="Next Page"/>
     <Last Text="Last Page"/>
-    <SaveNative Text="Save prepared report"/>
-    <SaveNativeLocally Text="Save locally"/>
     <FtpText Text="Save to FTP"/>
     <DropboxText Text="Save to Dropbox"/>
     <GoogleDriveText Text="Save to Google Drive"/>
@@ -778,6 +780,7 @@
       <ReportItems Text="Report items:"/>
       <Games Text="Games:"/>
     </AddNewItem>
+	  <OpenPage Text="Choose page"/>
     <AdvancedConnectionProperties Text="Advanced Properties"/>
     <AskPassword Text="Password">
       <Password Text="This report is password protected.&#13;&#10;&#13;&#10;Please enter the password:"/>
@@ -1578,7 +1581,7 @@
     </LabelWizard>
     <ListViewForm>
         <CaptionSaveMode Text="Save to Cloud"/>
-        <CaptionOpenMode Text="Open via Cloud"/>
+        <CaptionOpenMode Text="Open from Cloud"/>
         <Select Text="Select"/>
         <Save Text="Save"/>
         <Cancel Text="Cancel"/>
@@ -1600,6 +1603,7 @@
         <ReportWasModifiedCaption Text="Report was modifed"/>
         <ReportWasNotFound Text="Report was deleted. Do you want to save file?"/>
         <ReportWasNotFoundCaption Text="Report was deleted"/>
+        <ConfirmDelete Text="Delete {0} ?"/>
         <RootFolderTemplates Text="Templates"/>
         <RootFolderReports Text="Reports"/>
         <EnterFolderName>
@@ -1607,10 +1611,10 @@
             <OnLoadFolderName Text="Enter folder name"/>
             <CreateDirectory Text="Create directory"/>
             <Rename Text="Rename"/>
-            <Confirm Text="Ok"/>
+            <Confirm Text="OK"/>
             <Cancel Text="Cancel"/>
             <EmptyName Text="Name cannot be empty!"/>
-            <ForbiddenName Text="A file name cannot contain any of the following charachter:"/>
+            <ForbiddenName Text="A file name cannot contain any of the following characters:"/>
         </EnterFolderName>
         <ErrorMessageBox>
             <ErrorInApiOrServer Text="Error while connecting to the selected server. You may have specified an invalid server or API key"/>
@@ -1959,7 +1963,7 @@
       <ObjectsAppearance Text="Objects appearance"/>
       <EnableBacklight Text="Backlight active band"/>
       <SimplifyDBFields Text="Simplified display of DB fields"/>
-      <DisableLastFormatting Text="Disable using of last formatting settings"/>
+      <ApplyLastFormat Text="Apply last format to new objects"/>
     </ReportPageOptions>
     <RichTextEditor Text="RichText Editor">
       <Open Text="Open"/>
@@ -1968,6 +1972,7 @@
       <Superscript Text="Superscript"/>
       <Bullets Text="Bullets"/>
       <ConfirmChanges Text="Text has been modified. Save changes?"/>
+      <Invoke Text="Doubleclick to edit RichText"/>
     </RichTextEditor>
     <SearchReplace Text="Find and Replace">
       <Find Text="Find what:"/>
@@ -2073,7 +2078,7 @@
         <Pack1 Text="Classic"/>
         <Pack2 Text="Visual Studio"/>
       </IconPack>
-      <Ribbon Text="Use the new Ribbon interface"/>
+      <Ribbon Text="Use the Ribbon interface"/>
       <Welcome Text="Show welcome window on startup"/>
       <RightToLeft Text="Right to Left user interface:">
         <Auto Text="Auto"/>
@@ -2252,6 +2257,7 @@
       <Rows Text="Rows"/>
     </FastM1nesweeper>
     <AccountWindow Text="Account">
+      <AuthServer Text="https://id.fast-report.com"/>
       <WebBrowser Text="Authentication"/>
       <Title Text="Account"/>
       <SignIn Text="Sign In"/>
@@ -2682,7 +2688,7 @@
       <DataBase Text="Data Base"/>
       <Print Text="Print"/>
       <Other Text="Other"/>
-      <Cloud Text="Cloud"/>
+      <Cloud Text="Storage"/>
       <Messengers Text="Messengers"/>
     </ExportGroups>
     <Image Text="Export to Image">

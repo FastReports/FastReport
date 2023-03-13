@@ -1,6 +1,6 @@
 ﻿#if DIALOGS
 using FastReport.Web.Cache;
-
+using FastReport.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 using System;
@@ -12,34 +12,27 @@ namespace FastReport.Web.Controllers
 {
     public sealed class DialogController : ApiControllerBase
     {
+        private readonly IReportService _reportService;
 
-        public DialogController()
+        public DialogController(IReportService reportService)
         {
+            _reportService = reportService;
         }
-
-        public sealed class DialogChangeParams
-        {
-            public string ReportId { get; set; }
-        }
-
 
         [HttpPost]
         [Route("/_fr/dialog")]
-        public IActionResult TouchDialog([FromQuery] DialogChangeParams query)
+        public IActionResult TouchDialog([FromQuery] string reportId)
         {
-            if (!TryFindWebReport(query.ReportId, out WebReport webReport))
+            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
                 return new NotFoundResult();
 
-            webReport.Dialogs(Request);
+            var dialogParams = new DialogParams();
+            dialogParams.ParseRequest(Request);
+
+            webReport.Dialogs(dialogParams);
+
             return Ok();
         }
-
-        bool TryFindWebReport(string reportId, out WebReport webReport)
-        {
-            webReport = WebReportCache.Instance.Find(reportId);
-            return webReport != null;
-        }
-
     }
 }
 #endif

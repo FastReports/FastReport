@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -21,13 +22,13 @@ namespace FastReport.Web.Cache
             public CacheItem(WebReport webReport)
             {
                 WebReport = webReport;
-                WeakReference = new WeakReference<WebReport>(WebReport);
+                WeakReference = new WeakReference<WebReport>(webReport);
             }
 
             public void Dispose()
             {
                 Timer.Dispose();
-                WebReport.InternalDispose();
+                WebReport?.InternalDispose();
                 WebReport = null;
             }
         }
@@ -72,10 +73,10 @@ namespace FastReport.Web.Cache
         {
             Clean();
 
-            return FindWithReferesh(id)?.WebReport;
+            return FindWithRefresh(id)?.WebReport;
         }
 
-        private CacheItem FindWithReferesh(string id)
+        private CacheItem FindWithRefresh(string id)
         {
             var cacheItem = FindPrivate(id);
             if (cacheItem != null)
@@ -104,7 +105,20 @@ namespace FastReport.Web.Cache
 
         private void Clean()
         {
-            int removed = cache.RemoveAll(item => !item.WeakReference.TryGetTarget(out WebReport _));
+            int removed = cache.RemoveAll(item =>
+            {
+                if (item == null)
+                    return true;
+
+                var weakReference = item.WeakReference;
+                if (weakReference == null)
+                {
+                    item.Dispose();
+                    return true;
+                }
+
+                return !item.WeakReference.TryGetTarget(out WebReport _);
+            });
             Debug.WriteLineIf(removed > 0, $"Removed from cache: {removed}");
         }
 

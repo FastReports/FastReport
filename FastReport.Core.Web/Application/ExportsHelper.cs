@@ -105,7 +105,7 @@ namespace FastReport.Web
             throw new NotImplementedException();
         }
 
-#if BLAZOR
+#if BLAZOR && !WASM
         internal static string GetHref(WebReport webReport)
         {
             string href = webReport.template_export_url(GetExtFromExportType(webReport.ExportType));

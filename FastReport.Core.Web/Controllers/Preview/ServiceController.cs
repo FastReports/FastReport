@@ -1,5 +1,5 @@
 ﻿using FastReport.Web.Cache;
-
+using FastReport.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 using System;
@@ -13,9 +13,13 @@ namespace FastReport.Web.Controllers
 {
     public sealed class ServiceController : ApiControllerBase
     {
+        private readonly IReportService _reportService;
+        private readonly ITextEditService _textEditService;
 
-        public ServiceController()
+        public ServiceController(IReportService reportService, ITextEditService textEditService)
         {
+            _reportService = reportService;
+            _textEditService = textEditService;
         }
 
         public sealed class PrintReportParams
@@ -29,51 +33,24 @@ namespace FastReport.Web.Controllers
         [Route("/_fr/preview.textEditForm")]
         public IActionResult TextEditForm([FromQuery] PrintReportParams query)
         {
-            if (!TryFindWebReport(query.ReportId, out WebReport webReport))
+            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
                 return new NotFoundResult();
 
-            var click = query.Click;
-            if (!click.IsNullOrWhiteSpace())
+            var result = _textEditService.GetTemplateTextEditForm(query.Click, webReport);
+
+            if (result != null)
             {
-                var @params = click.Split(',');
-                if (@params.Length == 4)
+                return new ContentResult()
                 {
-                    if (int.TryParse(@params[1], out var pageN) &&
-                        float.TryParse(@params[2], out var left) &&
-                        float.TryParse(@params[3], out var top))
-                    {
-                        string result = null;
-
-                        webReport.Report.FindClickedObject<TextObject>(@params[0], pageN, left, top,
-                            (textObject, reportPage, _pageN) =>
-                            {
-                                webReport.Res.Root("Buttons");
-                                string okText = webReport.Res.Get("Ok");
-                                string cancelText = webReport.Res.Get("Cancel");
-                                result = ReportController.Template_textedit_form(textObject.Text, okText, cancelText);
-                            });
-
-                        if (result != null)
-                        {
-                            return new ContentResult()
-                            {
-                                StatusCode = (int)HttpStatusCode.OK,
-                                ContentType = "text/html",
-                                Content = result,
-                            };
-                        }
-                    }
-                }
+                    StatusCode = (int)HttpStatusCode.OK,
+                    ContentType = "text/html",
+                    Content = result,
+                };
             }
-
-            return new NotFoundResult();
+            else
+            {
+                return new NotFoundResult();
+            }
         }
-
-        bool TryFindWebReport(string reportId, out WebReport webReport)
-        {
-            webReport = WebReportCache.Instance.Find(reportId);
-            return webReport != null;
-        }
-
     }
 }

@@ -9,9 +9,10 @@ namespace FastReport.Web
     {
         string template_tabs()
         {
-            StringBuilder sb = new StringBuilder();
             if (Tabs.Count > 1)
             {
+                StringBuilder sb = new StringBuilder(64);
+
                 sb.Append($@"<div class=""{template_FR}-tabs"">");
 
                 for (int i = 0; i < Tabs.Count; i++)
@@ -43,34 +44,9 @@ namespace FastReport.Web
                     sb.Append("</div>");
                 }
                 sb.Append("</div>");
+                return sb.ToString();
             }
-            return sb.ToString();
+            return string.Empty;
         }
-
-        internal string GetCurrentTabName()
-        {
-            if (SplitReportPagesInTabs)
-                return Report.GetReportName;
-
-            return GetTabName(CurrentTabIndex);
-        }
-      
-        internal string GetTabName(int i)
-        {
-
-            if (String.IsNullOrEmpty(Tabs[i].Name))
-            {
-                string s = Tabs[i].Report.ReportInfo.Name;
-                if (String.IsNullOrEmpty(s))
-                    s = Path.GetFileNameWithoutExtension(Tabs[i].Report.FileName);
-                if (String.IsNullOrEmpty(s))
-                    s = (i + 1).ToString();
-                return s;
-            
-            }
-            else
-                return Tabs[i].Name;
-        }
-
     }
 }

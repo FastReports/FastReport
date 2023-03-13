@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
-using FastReport.Export;
 
 namespace FastReport.Web
 {
@@ -35,8 +31,10 @@ namespace FastReport.Web
 
             if (Path.IsPathRooted(path))
                 return path;
-
+#if !WASM
             return Path.Combine(FastReportGlobal.HostingEnvironment.ContentRootPath, path);
+#endif
+            return string.Empty;
         }
 
         internal static string ToUrl(params string[] segments)
@@ -67,40 +65,6 @@ namespace FastReport.Web
         //        path.Replace("~/", ""));
         //}
 
-        internal static void CopyCookies(WebRequest request, HttpContext context)
-        {
-            CookieContainer cookieContainer = new CookieContainer();
-            UriBuilder uri = new UriBuilder
-            {
-                Scheme = context.Request.Scheme,
-                Host = context.Request.Host.Host
-            };
-
-            string ARRAffinity = GetWebsiteInstanceId();
-            if (!String.IsNullOrEmpty(ARRAffinity))
-                cookieContainer.Add(uri.Uri, new Cookie("ARRAffinity", ARRAffinity));
-
-            foreach (string key in context.Request.Cookies.Keys)
-                cookieContainer.Add(uri.Uri, new Cookie(key, WebUtility.UrlEncode(context.Request.Cookies[key])));
-
-            HttpWebRequest req = (HttpWebRequest)request;
-            req.CookieContainer = cookieContainer;
-        }
-
-        internal static string GetARRAffinity()
-        {
-            string id = GetWebsiteInstanceId();
-            if (!String.IsNullOrEmpty(id))
-                return String.Concat("&ARRAffinity=", id);
-            else
-                return String.Empty;
-        }
-
-        internal static string GetWebsiteInstanceId()
-        {
-            return Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID");
-        }
-
         internal static void Write(Stream stream, string value)
         {
             byte[] buf = Encoding.UTF8.GetBytes(value);
@@ -119,7 +83,7 @@ namespace FastReport.Web
                 }
             return isPng;
         }
-        #endregion
+#endregion
     }
 
 #if DESIGNER

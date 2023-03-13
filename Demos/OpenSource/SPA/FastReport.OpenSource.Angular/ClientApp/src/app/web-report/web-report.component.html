@@ -1,0 +1,13 @@
+<div class="header">
+  <h1>Web Report</h1>
+  <span class="stack">by Angular & ASP.NET Core</span>
+  <a href="http://www.fast-report.com/en/product/fast-report-net/" target="_blank">
+    <img class="fr-logo" alt="FR logo" src="./assets/logo.png">
+  </a>
+</div>
+<button class="btn btn-primary" (click)="renderWebReport()">Show report</button>
+<p></p>
+<p></p>
+<div *ngIf="showReport">
+  <iframe height="1000px" width="1000px" id="report" [src]="url | safeUrl: 'resourceUrl'"> </iframe>
+</div>

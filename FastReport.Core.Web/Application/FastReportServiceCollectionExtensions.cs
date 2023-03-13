@@ -1,10 +1,4 @@
 ﻿using FastReport.Web;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using System;
 using System.ComponentModel;
@@ -13,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class FastReportServiceCollectionExtensions
+    public static partial class FastReportServiceCollectionExtensions
     {
-        [EditorBrowsable(EditorBrowsableState.Never)]   // TODO
+        /// <summary>
+        /// Adds FastReport services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection
+        /// </summary>
+        /// <param name="services"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IServiceCollection AddFastReport(this IServiceCollection services)
         {
             if (services == null)
@@ -23,30 +21,18 @@ namespace Microsoft.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(services));
             }
 
-            FastReport.Utils.Config.WebMode = true;
-
-            var manager = GetServiceFromCollection<ApplicationPartManager>(services);
-            if(manager != null)
-            {
-                var curAssembly = typeof(FastReportServiceCollectionExtensions).Assembly;
-                var frAssembly = manager.ApplicationParts.FirstOrDefault(apPart => apPart.Name == curAssembly.GetName().Name);
-                if (frAssembly == null)
-                {
-                    // Register this assembly as part of user application
-                    var assemblyPart = new AssemblyPart(curAssembly);
-                    manager.ApplicationParts.Add(assemblyPart);
-                }
-
-                // Then we can use new controllers
-                FastReportOptions.UseNewControllers = true;
-
-                services.TryAddSingleton<IResourceLoader, InternalResourceLoader>();
-            }
+            var options = new WebReportOptions();
+            AddFastReportPrivate(services, options);
 
             return services;
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]   // TODO
+        /// <summary>
+        /// Adds FastReport services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="setupAction"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IServiceCollection AddFastReport(this IServiceCollection services, Action<WebReportOptions> setupAction)
         {
             if (services == null)
@@ -59,14 +45,27 @@ namespace Microsoft.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(setupAction));
             }
 
-            AddFastReport(services);
+            var options = new WebReportOptions();
+            setupAction(options);
+            AddFastReportPrivate(services, options);
 
             return services;
         }
 
-        private static T GetServiceFromCollection<T>(IServiceCollection services)
+        private static void AddFastReportPrivate(IServiceCollection services, WebReportOptions options)
         {
-            return (T)(services.LastOrDefault((ServiceDescriptor d) => d.ServiceType == typeof(T))?.ImplementationInstance);
+            FastReport.Utils.Config.WebMode = true;
+
+#if !WASM
+            ConfigureApplicationPart(services, options);
+#else
+            AddWasmServices(services, options);
+#endif
+        }
+
+        private static ServiceDescriptor GetServiceDescriptorFromCollection<T>(IServiceCollection services)
+        {
+            return services.LastOrDefault((ServiceDescriptor d) => d.Lifetime == ServiceLifetime.Singleton && d.ServiceType == typeof(T));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using FastReport.Web.Cache;
-
+using FastReport.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 using System;
@@ -12,9 +12,11 @@ namespace FastReport.Web.Controllers
     [Route("/_fr/preview.getPicture")]
     public sealed class GetPictureController : ApiControllerBase
     {
+        private readonly IReportService _reportService;
 
-        public GetPictureController()
+        public GetPictureController(IReportService reportService)
         {
+            _reportService = reportService;
         }
 
         public sealed class GetPictureParams
@@ -28,7 +30,7 @@ namespace FastReport.Web.Controllers
         [HttpGet]
         public IActionResult GetPicture([FromQuery] GetPictureParams query)
         {
-            if (!TryFindWebReport(query.ReportId, out WebReport webReport))
+            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
                 return new NotFoundResult();
 
             var pictureId = query.PictureId.TrimStart('=');
@@ -40,12 +42,5 @@ namespace FastReport.Web.Controllers
 
             return new NotFoundResult();
         }
-
-        bool TryFindWebReport(string reportId, out WebReport webReport)
-        {
-            webReport = WebReportCache.Instance.Find(reportId);
-            return webReport != null;
-        }
-
     }
 }

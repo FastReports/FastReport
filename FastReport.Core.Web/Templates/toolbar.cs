@@ -117,7 +117,7 @@ namespace FastReport.Web
     </div>" : "")}
    
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input id=""CurrentPage"" style=""margin-right: 0px;"" class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
+        <input id=""CurrentPage"" style=""{(Toolbar.Position == Positions.Top && Toolbar.Position == Positions.Bottom ? "margin-left: 0px;" : "")}"" class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
     </div>
 
     <div class=""fr-toolbar-item fr-toolbar-notbutton fr-toolbar-slash {template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"">
@@ -125,7 +125,7 @@ namespace FastReport.Web
     </div>
 
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input id=""AllPages"" style=""margin-left: 0px;"" type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
+        <input id=""AllPages"" style=""{(Toolbar.Position == Positions.Top && Toolbar.Position == Positions.Bottom ? "margin-left: 0px;" : "")}"" type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
     </div>
 
 {(Toolbar.ShowNextButton ? $@" <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('next');""")} title=""{localization.nextPageTxt}"">

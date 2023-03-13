@@ -79,6 +79,14 @@ namespace FastReport.Gauge
                 {
                     this.value = value;
                 }
+                else if (value < minimum)
+                {
+                    this.value = minimum;
+                }
+                else if (value > maximum)
+                {
+                    this.value = maximum;
+                }
             }
         }
 

@@ -32,8 +32,8 @@ namespace FastReport.Web
             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                 {localizationPageSelector.First}
             </button>
-            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickODS()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
-        </div>" : "")}
+            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" id=""PageSelector"" onchange=""OnInputClickODS()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+</div>" : "")}
     </div>
     <div class=""fr-webreport-popup-content-export-parameters"">
         <label> {localizationOdf.Options}</label>
@@ -59,7 +59,7 @@ namespace FastReport.Web
     </div>
         <div class=""fr-webreport-popup-content-buttons"">
             <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
-            <button class=""fr-webreport-popup-content-btn-submit"" onclick=""ODSExport()"">OK</button>
+            <button class=""fr-webreport-popup-content-btn-submit"" onclick=""ODSExport()"" id=""okButton"">OK</button>
         </div>
 </div>
 <script>
@@ -78,6 +78,7 @@ function OdsOnComplianceChangeFunc(select) {{
     OdsOnCompliance = '&OdfCompliance=' + OdsOnComplianceChange.value;
 }}
 function ODSExport() {{
+    {validation}
 
     if (document.getElementById('OdsWysiwyg').classList.contains('activeButton')) {{
         OdsWysiwyg = new Boolean(true);

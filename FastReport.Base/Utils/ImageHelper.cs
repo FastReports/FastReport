@@ -14,7 +14,8 @@ namespace FastReport.Utils
                 return null;
 
             Bitmap image = new Bitmap(source.Width, source.Height);
-            image.SetResolution(source.HorizontalResolution, source.VerticalResolution);
+            if (!Config.IsRunningOnMono) // mono fw bug workaround
+                image.SetResolution(source.HorizontalResolution, source.VerticalResolution);
             using (Graphics g = Graphics.FromImage(image))
             {
                 g.DrawImageUnscaled(source, 0, 0);

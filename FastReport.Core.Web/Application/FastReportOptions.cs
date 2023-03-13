@@ -1,8 +1,10 @@
-﻿using FastReport.Web.Cache;
-
+﻿#if !WASM
+using FastReport.Web.Cache;
 using Microsoft.AspNetCore.Http;
+#endif
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace FastReport.Web
@@ -23,6 +25,7 @@ namespace FastReport.Web
         /// </summary>
         public string RouteBasePath { get; set; } = "/_fr";
 
+#if !WASM
         /// <summary>
         /// A function that determines who can access API.
         /// It should return true when the request client has access, false for a 401 to be returned.
@@ -30,11 +33,7 @@ namespace FastReport.Web
         /// </summary>
         public Func<HttpRequest, bool> Authorize { get; set; } = null;
 
-
-
         public CacheOptions CacheOptions { get; set; } = new CacheOptions();
-
-
 
         /// <summary>
         /// Reports' lifetime in minutes.
@@ -42,12 +41,15 @@ namespace FastReport.Web
         /// Default value: "15".
         /// </summary>
         [Obsolete("Please, use CacheOptions.CacheDuration")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int CacheDuration { get => CacheOptions.CacheDuration.Minutes; set => CacheOptions.CacheDuration = TimeSpan.FromMinutes(value); }
+
+#endif
 
         /// <summary>
         /// Enable or disable the multiple instances environment.
         /// Default value: "false".
         /// </summary>
-        //public bool CloudEnvironmet { get; set; } = false;
+        //public bool CloudEnvironment { get; set; } = false;
     }
 }

@@ -1,0 +1,27 @@
+﻿@model HomeModel
+
+<div class="title">
+    <a href="/"><span>FastReport.Web</span><span style="opacity:0.35"> for OpenSource | .NET Core 3.1</span></a>
+    <a href="http://www.fast-report.com/en/product/fast-report-net/">
+        <img class="fr-logo" alt="FR logo" src="./logo.png">
+    </a>
+</div>
+
+<div class="menu">
+    <a href="http://www.fast-report.com/en/product/fast-report-net/">About FastReport.Net</a>
+    <a href="http://www.fast-report.com/en/download/fast-report-net/">Download Demo</a>
+    <a href="http://www.fast-report.com/en/buy/#!/.Net%20%28MS%20Visual%20Studio%29/FastReport.Net/">Buy FastReport.Net</a>
+</div>
+
+<div class="container">
+    <div class="reports">
+        @foreach (var item in Model.ReportsList.Select((value, i) => new { value, i }))
+        {
+            <a href="@item.i">@item.value</a>
+        }
+    </div>
+    <div class="webreport">
+        @await Model.WebReport.Render()
+    </div>
+    <footer>&copy; @DateTime.Now.Year - Fast Reports, Inc.</footer>
+</div>

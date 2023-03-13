@@ -193,6 +193,7 @@ namespace FastReport.Web
     opacity: 1;
 	visibility: visible;
 	transition: all 0.3s ease-in-out;
+    {Toolbar.Exports.FixedContainerPosition}
 }}
 
 .modalcontainer--visible {{
@@ -214,6 +215,7 @@ namespace FastReport.Web
     align-items: center;
     flex-direction: column;
     font-family: Arial,Verdana sans-serif;
+    {Toolbar.Exports.FixedContainerTags}
     {Toolbar.ModalContainerPosition}
 }}
 ////////////////////
@@ -343,6 +345,20 @@ button{{
     border-radius: 4px;
     font: {Toolbar.Exports.UserFontSettingsStyle} 10px {Toolbar.Exports.UserFontSettingsFamily};
 }}
+
+.input-error
+{{
+    animation: shake 0.2s ease-in-out 0s 2;
+    box-shadow: 0 0 0.5em red;
+}}
+
+@keyframes shake {{
+  0% {{ margin-left: 0rem; }}
+  25% {{ margin-left: 0.5rem; }}
+  75% {{ margin-left: -0.5rem; }}
+  100% {{ margin-left: 0rem; }}
+}}
+
 .fr-webreport-popup-content-export-parameters-row {{
     display: flex;
     padding-top: 5px;
@@ -528,6 +544,11 @@ label{{
     flex-direction: row;
     align-content: space-around;
     justify-content: space-between;
+}}
+
+.fr-webreport-popup-disabled-button{{
+    background-color: #D9D9D9;
+    cursor: default;
 }}
 
 /************************

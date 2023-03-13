@@ -35,7 +35,7 @@ namespace FastReport.Utils
         {
             get
             {
-                if (FDpiFX == 0)
+                if (FDpiFX == 0f)
                     FDpiFX = 96f / DrawUtils.ScreenDpi;
                 return FDpiFX;
             }
@@ -59,18 +59,18 @@ namespace FastReport.Utils
                     switch (System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
                     {
                         case "ja":
-                            FDefaultFont = new Font("MS UI Gothic", 9);
+                            FDefaultFont = CreateFont("MS UI Gothic", 9);
                             break;
 
                         case "zh":
-                            FDefaultFont = new Font("SimSun", 9);
+                            FDefaultFont = CreateFont("SimSun", 9);
                             break;
 
                         default:
 #if WPF
-                            FDefaultFont = new Font("Segoe UI", 8.5f);
+                            FDefaultFont = CreateFont("Segoe UI", 8.5f);
 #else
-                            FDefaultFont = new Font("Tahoma", 8);
+                            FDefaultFont = CreateFont("Tahoma", 8);
 #endif
                             break;
                     }
@@ -88,15 +88,15 @@ namespace FastReport.Utils
                     switch (System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
                     {
                         case "ja":
-                            FDefaultReportFont = new Font("MS UI Gothic", 9);
+                            FDefaultReportFont = CreateFont("MS UI Gothic", 9);
                             break;
 
                         case "zh":
-                            FDefaultReportFont = new Font("SimSun", 9);
+                            FDefaultReportFont = CreateFont("SimSun", 9);
                             break;
 
                         default:
-                            FDefaultReportFont = new Font("Arial", 10);
+                            FDefaultReportFont = CreateFont("Arial", 10);
                             break;
                     }
                 }
@@ -109,7 +109,7 @@ namespace FastReport.Utils
             get
             {
                 if (FDefaultTextObjectFont == null)
-                    FDefaultTextObjectFont = new Font("Arial", 10);
+                    FDefaultTextObjectFont = CreateFont("Arial", 10);
                 return FDefaultTextObjectFont;
             }
         }
@@ -119,7 +119,11 @@ namespace FastReport.Utils
             get
             {
                 if (FFixedFont == null)
-                    FFixedFont = new Font("Courier New", 10);
+#if WPF
+                    FFixedFont = CreateFont("Consolas", 9);
+#else
+                    FFixedFont = CreateFont("Courier New", 10);
+#endif
                 return FFixedFont;
             }
         }
@@ -134,24 +138,42 @@ namespace FastReport.Utils
                     switch (System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
                     {
                         case "ja":
-                            FDefault96Font = new Font("MS UI Gothic", 9 * sz);
+                            FDefault96Font = CreateFont("MS UI Gothic", 9 * sz);
                             break;
 
                         case "zh":
-                            FDefault96Font = new Font("SimSun", 9 * sz);
+                            FDefault96Font = CreateFont("SimSun", 9 * sz);
                             break;
 
                         default:
 #if WPF
-                            FDefault96Font = new Font("Segoe UI", 8.5f * sz);
+                            FDefault96Font = CreateFont("Segoe UI", 8.5f * sz);
 #else
-                            FDefault96Font = new Font("Tahoma", 8 * sz);
+                            FDefault96Font = CreateFont("Tahoma", 8 * sz);
 #endif
                             break;
                     }
                 }
                 return FDefault96Font;
             }
+        }
+
+        internal static Font CreateFont(string familyName, float emSize,
+            FontStyle style = FontStyle.Regular,
+            GraphicsUnit unit = GraphicsUnit.Point,
+            byte gdiCharSet = 1,
+            bool gdiVerticalFont = false)
+        {
+            Font font = new Font(familyName, emSize, style, unit, gdiCharSet, gdiVerticalFont);
+
+#if SKIA
+            if (font.Name != familyName)
+            {
+                // font family not found in installed fonts, search in the user fonts
+                font = new Font(familyName, emSize, style, unit, gdiCharSet, gdiVerticalFont, Config.PrivateFontCollection.Collection);
+            }
+#endif
+            return font;
         }
 
         public static SizeF MeasureString(string text)
@@ -200,7 +222,7 @@ namespace FastReport.Utils
             FloodFill(bmp, x, y + 1, color, replacementColor);
         }
 
-        internal static MonoRendering GetMonoRendering(Graphics printerGraphics)
+        internal static MonoRendering GetMonoRendering(IGraphics printerGraphics)
         {
             if (FMonoRendering == MonoRendering.Undefined)
             {
@@ -215,7 +237,5 @@ namespace FastReport.Utils
             }
             return FMonoRendering;
         }
-
-        
     }
 }

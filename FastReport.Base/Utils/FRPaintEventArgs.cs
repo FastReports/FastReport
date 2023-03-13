@@ -10,10 +10,10 @@ namespace FastReport.Utils
     /// </summary>
     public class FRPaintEventArgs
     {
-        private IGraphics graphics;
-        private float scaleX;
-        private float scaleY;
-        private GraphicCache cache;
+        private readonly IGraphics graphics;
+        private readonly float scaleX;
+        private readonly float scaleY;
+        private readonly GraphicCache cache;
 
         /// <summary>
         /// Gets a <b>Graphics</b> object to draw on.

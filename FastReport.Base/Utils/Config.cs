@@ -42,7 +42,6 @@ namespace FastReport.Utils
         private static bool FStringOptimization = true;
         private static bool FWebMode;
         private static bool preparedCompressed = true;
-        private static bool disableHotkeys = false;
         private static bool enableScriptSecurity = false;
         private static ScriptSecurityProperties scriptSecurityProps = null;
         private static bool forbidLocalData = false;
@@ -52,7 +51,6 @@ namespace FastReport.Utils
         private static CompilerSettings compilerSettings = new CompilerSettings();
         private static string applicationFolder;
         private static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        private static bool disableLastFormatting = false;
 
 
         #endregion Private Fields
@@ -61,15 +59,16 @@ namespace FastReport.Utils
         /// <summary>
         /// Gets a value indicating that the Mono runtime is used.
         /// </summary>
-        public static bool IsRunningOnMono
+        internal static bool IsRunningOnMono
         {
             get { return FIsRunningOnMono; }
         }
 
 #if CROSSPLATFORM
-        public static bool IsWindows { get; } = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#endif
+        internal static bool IsWindows { get; } = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
+        internal static bool IsWasm { get; } = RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));// (int)RuntimeInformation.ProcessArchitecture == 4;  // Architecture.Wasm = 4;
+#endif
 
 
         /// <summary>
@@ -168,24 +167,6 @@ namespace FastReport.Utils
         {
             get { return FRightToLeft; }
             set { FRightToLeft = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether hotkeys should be disabled.
-        /// </summary>
-        public static bool DisableHotkeys
-        {
-            get { return disableHotkeys; }
-            set { disableHotkeys =  value; }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating saving last formatting should be disabled.
-        /// </summary>
-        public static bool DisableLastFormatting
-        {
-            get { return disableLastFormatting; }
-            set { disableLastFormatting = value; }
         }
 
         /// <summary>
@@ -565,9 +546,8 @@ namespace FastReport.Utils
 
         private static void RestoreDefaultLanguage()
         {
-            XmlItem xi = Root.FindItem("Designer").FindItem("Code");
-            string defaultLanguage = xi.GetProp("DefaultScriptLanguage");
-            ReportSettings.DefaultLanguage = defaultLanguage == Language.Vb.ToString() ? Language.Vb : Language.CSharp;
+            var storage = new StorageService("Designer,Code");
+            ReportSettings.DefaultLanguage = storage.GetEnum("DefaultScriptLanguage", Language.CSharp);
         }
 
         private static void RestoreRightToLeft()
@@ -661,58 +641,18 @@ namespace FastReport.Utils
 
         }
 
-        private static void SaveUIOptions()
-        {
-            XmlItem xi = Root.FindItem("UIOptions");
-            xi.SetProp("DisableHotkeys", Converter.ToString(DisableHotkeys));
-            xi.SetProp("DisableLastFormatting", Converter.ToString(DisableLastFormatting));
-        }
-
-        private static void RestoreUIOptions()
-        {
-            RestoreRightToLeft();
-
-            XmlItem xi = Root.FindItem("UIOptions");
-
-            string disableHotkeysStringValue = xi.GetProp("DisableHotkeys");
-            if (!String.IsNullOrEmpty(disableHotkeysStringValue))
-            {
-                disableHotkeys = disableHotkeysStringValue.ToLower() != "false";
-            }
-
-            string disableLastFormattingStringValue = xi.GetProp("DisableLastFormatting");
-            if (!String.IsNullOrEmpty(disableLastFormattingStringValue))
-            {
-                disableLastFormatting = disableLastFormattingStringValue.ToLower() != "false";
-            }
-        }
-
         private static void SaveCompilerSettings()
         {
-            XmlItem xi = Root.FindItem("CompilerSettings");
-            xi.SetProp("Placeholder", CompilerSettings.Placeholder);
-            xi.SetProp("ExceptionBehaviour", Converter.ToString(CompilerSettings.ExceptionBehaviour));
+            var storage = new StorageService("CompilerSettings");
+            storage.SetStr("Placeholder", CompilerSettings.Placeholder);
+            storage.SetEnum("ExceptionBehaviour", CompilerSettings.ExceptionBehaviour);
         }
 
         private static void RestoreCompilerSettings()
         {
-            XmlItem xi = Root.FindItem("CompilerSettings");
-            CompilerSettings.Placeholder = xi.GetProp("Placeholder");
-
-            string exceptionBehaviour = xi.GetProp("ExceptionBehaviour");
-            if (!String.IsNullOrEmpty(exceptionBehaviour))
-            {
-                try
-                {
-                    CompilerSettings.ExceptionBehaviour =
-                        (CompilerExceptionBehaviour)Converter.FromString(typeof(CompilerExceptionBehaviour),
-                        exceptionBehaviour);
-                }
-                catch
-                {
-                    CompilerSettings.ExceptionBehaviour = CompilerExceptionBehaviour.Default;
-                }
-            }
+            var storage = new StorageService("CompilerSettings");
+            CompilerSettings.Placeholder = storage.GetStr("Placeholder");
+            CompilerSettings.ExceptionBehaviour = storage.GetEnum("ExceptionBehaviour", CompilerExceptionBehaviour.Default);
         }
 
 #endregion Private Methods

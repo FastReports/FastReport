@@ -1,0 +1,13 @@
+<div class="header">
+  <h1>Online Designer </h1>
+  <span class="stack">by Angular & ASP.NET Core</span>
+  <a href="http://www.fast-report.com/en/product/fast-report-net/" target="_blank">
+    <img class="fr-logo" alt="FR logo" src="./assets/logo.png">
+  </a>
+</div>
+<button class="btn btn-primary" (click)="Clicked()">Show Online Designer</button>
+<p></p>
+<p></p>
+
+<div *ngIf="flag" [innerHTML]="html | safeUrl: 'html'"></div>
+

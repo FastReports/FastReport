@@ -1,0 +1,1 @@
+.cstn .add{color:green}.cstn .remove{color:maroon}.cstn .add,.cstn .remove{float:right;margin-right:3px;padding:0 5px}.cstn .add:hover,.cstn .remove:hover{-webkit-box-shadow:3px 0 6px -4px rgba(31,73,125,.8),-3px 0 8px -4px rgba(31,73,125,.8);box-shadow:3px 0 6px -4px rgba(31,73,125,.8),-3px 0 8px -4px rgba(31,73,125,.8)}.parameters>.rt-node>.rt-content>.remove{display:none}

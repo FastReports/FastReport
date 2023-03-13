@@ -212,9 +212,12 @@ namespace FastReport.Code
             if(!isTypeSuffixesInitialized)
                 InitializeTypeSuffixes();
             string optionalParamString = " = ";
-            if (par.DefaultValue.GetType().IsEnum)
-                optionalParamString += par.DefaultValue.GetType().Name + ".";
-            optionalParamString += par.DefaultValue.ToString();
+            if (par.DefaultValue != null)
+            {
+                if (par.DefaultValue.GetType().IsEnum)
+                    optionalParamString += par.DefaultValue.GetType().Name + ".";
+                optionalParamString += par.DefaultValue.ToString();
+            }
             if (TypeHasSuffix(par.ParameterType))
                 optionalParamString += GetTypeSuffix(par.ParameterType, lang);
             return optionalParamString;

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>DataFromArray</AssemblyName>
+  </PropertyGroup>
+
+	<Import Project="..\..\..\..\UsedPackages.version" />
+	<ItemGroup>
+		<PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include ="..\..\_Shared\Utils.cs" />
+	</ItemGroup>
+</Project>

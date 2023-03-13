@@ -112,7 +112,33 @@ namespace FastReport.Web
             }
         }
 
-#region Navigation
+        internal string GetCurrentTabName()
+        {
+            if (SplitReportPagesInTabs)
+                return Report.GetReportName;
+
+            return GetTabName(CurrentTabIndex);
+        }
+
+        internal string GetTabName(int i)
+        {
+
+            if (String.IsNullOrEmpty(Tabs[i].Name))
+            {
+                string s = Tabs[i].Report.ReportInfo.Name;
+                if (String.IsNullOrEmpty(s))
+                    s = Path.GetFileNameWithoutExtension(Tabs[i].Report.FileName);
+                if (String.IsNullOrEmpty(s))
+                    s = (i + 1).ToString();
+                return s;
+
+            }
+            else
+                return Tabs[i].Name;
+        }
+
+
+        #region Navigation
 
         internal void SetTab(int value)
         {

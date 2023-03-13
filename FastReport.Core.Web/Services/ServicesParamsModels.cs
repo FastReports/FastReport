@@ -1,0 +1,127 @@
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text;
+
+namespace FastReport.Web.Services
+{
+    public class SaveReportResponseModel
+    {
+        public int Code { get; set; }
+        public string Msg { get; set; }
+        public bool IsError { get; set; }
+    }
+
+    public class SaveReportServiceParams
+    {
+        public Stream RequestBody { get; set; }
+        public string Scheme { get; set; }
+        public string Host { get; set; }
+        public int? Port { get; set; }
+        public IRequestCookieCollection Cookies { get; set; }
+
+        public static SaveReportServiceParams ParseRequest(HttpRequest request)
+        {
+            var @params = new SaveReportServiceParams()
+            {
+                Scheme = request.Scheme,
+                Host = request.Host.Host,
+                Port = request.Host.Port,
+                RequestBody = request.Body,
+                Cookies = request.Cookies
+            };
+
+            return @params;
+        }
+    }
+
+    #region GetReportServiceParams
+    public class GetReportServiceParams
+    {
+        public ClickParams ClickParams { get; set; }
+        public DialogParams DialogParams { get; set; }
+        public ReportTabParams ReportTabParams { get; set; }
+        public ReportPageParams ReportPageParams { get; set; }
+        public string RenderBody { get; set; }
+        public string SkipPrepare { get; set; }
+        public string ForceRefresh { get; set; }
+        public string Zoom { get; set; }
+
+        public void ParseRequest(HttpRequest request)
+        {
+            Zoom = request.Query["zoom"].ToString();
+
+            DialogParams = new DialogParams();
+
+            ReportPageParams = new ReportPageParams
+            {
+                GoTo = request.Query["goto"].ToString(),
+                Bookmark = request.Query["bookmark"].ToString(),
+                DetailedReport = request.Query["detailed_report"].ToString(),
+                DetailedPage = request.Query["detailed_page"].ToString()
+            };
+
+            ReportTabParams = new ReportTabParams
+            {
+                SetTab = request.Query["settab"].ToString(),
+                CloseTab = request.Query["closetab"].ToString()
+            };
+
+            ClickParams = new ClickParams
+            {
+                Click = request.Query["click"].ToString(),
+                CheckBoxClick = request.Query["checkbox_click"].ToString(),
+                TextEdit = request.Query["text_edit"].ToString(),
+                AdvMatrixClick = request.Query["advmatrix_click"].ToString()
+            };
+
+            if (!ClickParams.TextEdit.IsNullOrEmpty())
+                ClickParams.Text = request.Form["text"].ToString();
+
+            DialogParams.ParseRequest(request);
+        }
+    }
+
+    public class ClickParams
+    {
+        public string Click { get; set; }
+        public string CheckBoxClick { get; set; }
+        public string TextEdit { get; set; }
+        public string Text { get; set; }
+        public string AdvMatrixClick { get; set; }
+    }
+
+    public class DialogParams
+    {
+        public string DialogN { get; set; }
+        public string DialogControlName { get; set; }
+        public string DialogEventName { get; set; }
+        public string DialogData { get; set; }
+
+        public void ParseRequest(HttpRequest request)
+        {
+            DialogN = request.Query["dialog"].ToString();
+            DialogControlName = request.Query["control"].ToString();
+            DialogEventName = request.Query["event"].ToString();
+            DialogData = request.Query["data"].ToString();
+        }
+    }
+
+    public class ReportTabParams
+    {
+        public string SetTab { get; set; }
+        public string CloseTab { get; set; }
+    }
+
+    public class ReportPageParams
+    {
+        public string GoTo { get; set; }
+        public string Bookmark { get; set; }
+        public string DetailedReport { get; set; }
+        public string DetailedPage { get; set; }
+    }
+    #endregion
+}

@@ -305,6 +305,14 @@ namespace FastReport.Code
             return result;
         }
 
+        public override string GetPropertySignature(PropertyInfo info, bool fullForm)
+        {
+            string result = GetEquivalentKeyword(info.PropertyType.Name) + " " + info.Name;
+            if (fullForm)
+                result += " { <font color=\"Blue\"> get;" + (info.CanWrite ? " set;" : "") + "</font> }";
+            return result;
+        }
+
         public override CodeDomProvider GetCodeProvider()
         {
             return new VBCodeProvider();

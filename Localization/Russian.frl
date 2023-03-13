@@ -70,6 +70,7 @@
     <ErrorInHighlightCondition Text="Ошибка в условном выделении"/>
     <FileNameEmpty Text="Пожалуйста, укажите имя файла."/>
     <SaveToAnotherFile Text="Хотите сохранить в другой файл?"/>
+    <RemoveFromRecentFiles Text="Удалить файл из списка открытых файлов?"/>
     <Validator>
       <DuplicateName Text="Имя уже используется."/>
       <IntersectedObjects Text="Объект пересекается с другим объектом."/>
@@ -434,14 +435,13 @@
     <Menu>
       <File Text="Файл">
         <New Text="Новый..."/>
-        <Open Text="Открыть"/>
-        <OpenLocally Text="Открыть на этом ПК..."/>
-        <OpenViaCloud Text="Открыть через Облако..."/>
-        <Import Text="Импорт"/>
+        <Open Text="Открыть..."/>
+        <OpenPage Text="Открыть страницу..."/>
+        <OpenViaCloud Text="Открыть из Облака..."/>
+        <RecentFiles Text="Недавние файлы"/>
         <Close Text="Закрыть"/>
         <Save Text="Сохранить"/>
-        <SaveAs Text="Сохранить как"/>
-        <SaveLocal Text="Сохранить на этом ПК..."/>
+        <SaveAs Text="Сохранить как..."/>
         <SaveWithRandomData Text="Сохранить со случайными данными..."/>
         <SaveAll Text="Сохранить все"/>
         <SaveToCloud Text="Сохранить в Облако..."/>
@@ -499,12 +499,15 @@
       <Help Text="Справка">
         <Contents Text="Содержание..."/>
         <About Text="О программе..."/>
-        <Account Text="Учётная запись"/>
+        <Account Text="Учётная запись..."/>
       </Help>
     </Menu>
     <ToolWindow>
       <AutoHide Text="Скрывать автоматически"/>
       <Close Text="Закрыть"/>
+      <DockToTop Text="Переместить {0} наверх"/>
+      <DockToBottom Text="Переместить {0} вниз"/>
+      <DockToOtherSide Text="Переместить {0} на другую сторону"/>
       <Properties Text="Свойства">
         <Categorized Text="По категориям"/>
         <Alphabetical Text="По алфавиту"/>
@@ -725,14 +728,14 @@
     <PrintText Text="Печать"/>
     <Print Text="Печать (Ctrl+P)"/>
     <OpenText Text="Открыть"/>
-    <OpenTip Text="Открыть файл"/>
-    <Open Text="Открыть файл "/>
-    <OpenLocal Text="Открыть файл на этом ПК"/>
-    <OpenViaCloud Text="Открыть файл через Облако"/>
+    <Open Text="Открыть файл"/>
+    <OpenLocal Text="Открыть..."/>
+    <OpenViaCloud Text="Открыть из Облака..."/>
     <Save Text="Сохранить файл"/>
     <SaveText Text="Сохранить"/>
-    <SaveToCloud Text="Сохранить в Облако"/>
-    <SaveToCloudText Text="Сохранить в Облако"/>
+    <SaveNative Text="Готовый отчет"/>
+    <SaveLocal Text="Сохранить..."/>
+    <SaveToCloud Text="Сохранить в Облако..."/>
     <Search Text="Поиск"/>
     <Email Text="Отправить по E-mail"/>
     <Find Text="Найти текст"/>
@@ -746,8 +749,6 @@
     <Prior Text="Предыдущая страница"/>
     <Next Text="Следующая страница"/>
     <Last Text="Последняя страница"/>
-    <SaveNative Text="Готовый отчет"/>
-    <SaveNativeLocally Text="Сохранить на этом ПК"/>
     <FtpText Text="Сохранить на FTP"/>
     <DropboxText Text="Сохранить в Dropbox"/>
     <GoogleDriveText Text="Сохранить в Диск Google"/>
@@ -769,6 +770,7 @@
       <Reports Text="Типы отчетов:"/>
       <ReportItems Text="Элементы отчета:"/>
     </AddNewItem>
+	  <OpenPage Text="Выберите страницу"/>
     <AdvancedConnectionProperties Text="Расширенные свойства"/>
     <AskPassword Text="Пароль">
       <Password Text="Этот отчет защищен паролем.&#13;&#10;&#13;&#10;Пожалуйста, введите пароль:"/>
@@ -1380,7 +1382,7 @@
     </LabelWizard>
     <ListViewForm>
         <CaptionSaveMode Text="Сохранить в Облако"/>
-        <CaptionOpenMode Text="Открыть через Облако"/>
+        <CaptionOpenMode Text="Открыть из Облака"/>
         <Select Text="Выбрать"/>
         <Save Text="Сохранить"/>
         <Cancel Text="Отмена"/>
@@ -1402,6 +1404,7 @@
         <ReportWasModifiedCaption Text="Отчет был изменен"/>
         <ReportWasNotFound Text="Отчет был удален. Вы хотите сохранить файл?"/>
         <ReportWasNotFoundCaption Text="Отчет был удален"/>
+        <ConfirmDelete Text="Удалить {0} ?"/>
         <RootFolderTemplates Text="Шаблоны"/>
         <RootFolderReports Text="Отчеты"/>
         <EnterFolderName>
@@ -1409,7 +1412,7 @@
             <OnLoadFolderName Text="Введите имя папки"/>
             <CreateDirectory Text="Создать директорию"/>
             <Rename Text="Переименовать"/>
-            <Confirm Text="Ок"/>
+            <Confirm Text="ОК"/>
             <Cancel Text="Отмена"/>
             <EmptyName Text="Название не может быть пустым!"/>
             <ForbiddenName Text="Название не может содержать следующие символы:"/>
@@ -1759,7 +1762,7 @@
       <ObjectsAppearance Text="Внешний вид объектов"/>
       <EnableBacklight Text="Подсвечивать активный бэнд"/>
       <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
-      <DisableLastFormatting Text="Отключить использование последних настроек форматирования"/>
+      <ApplyLastFormat Text="Применять последний формат к новым объектам"/>
     </ReportPageOptions>
     <RichTextEditor Text="Редактор текста">
       <Open Text="Открыть файл"/>
@@ -1768,6 +1771,7 @@
       <Superscript Text="Верхний индекс"/>
       <Bullets Text="Список"/>
       <ConfirmChanges Text="Текст был изменен. Сохранить изменения?"/>
+      <Invoke Text="Сделайте двойной щелчок для редактирования текста"/>
     </RichTextEditor>
     <SearchReplace Text="Поиск и замена">
       <Find Text="Найти:"/>
@@ -1873,7 +1877,7 @@
         <Pack1 Text="Классические"/>
         <Pack2 Text="Visual Studio"/>
       </IconPack>
-      <Ribbon Text="Использовать новый Ribbon-интерфейс"/>
+      <Ribbon Text="Использовать Ribbon-интерфейс"/>
       <Welcome Text="Открывать окно приветствия при запуске"/>
       <RightToLeft Text="Интерфейс справа налево:">
         <Auto Text="Авто"/>
@@ -1885,7 +1889,7 @@
       <Reset Text="Сброс настроек"/>
     </UIOptions>
     <WatermarkEditor Text="Водяной знак">
-      <Enabled Text="Разрешить"/>
+      <Enabled Text="Включить"/>
       <Text Text="Текст"/>
       <TextItems Text="СЕКРЕТНО,КОПИЯ,ОРИГИНАЛ,ОБРАЗЕЦ,СРОЧНО"/>
       <Rotation Text="Поворот"/>
@@ -2038,9 +2042,10 @@
       <Message Text="FastReport обнаружил некорректное завершение работы. Вы хотите восстановить несохраненный файл?"/>
       <Restore Text="Восстановить"/>
     </LoadAutoSave>
-    <AccountWindow Text="Account">
+    <AccountWindow Text="Учетная запись">
+      <AuthServer Text="https://id.быстрыеотчеты.рф"/>
       <WebBrowser Text="Аутентификация"/>
-      <Title Text="Учётная запись"/>
+      <Title Text="Учетная запись"/>
       <SignIn Text="Войти"/>
       <NoAccount Text="Нет учетной записи?"/>
       <Create Text="Создать!"/>
@@ -2435,7 +2440,7 @@
       <DataBase Text="База данных"/>
       <Print Text="Печать"/>
       <Other Text="Другое"/>
-      <Cloud Text="Облако"/>
+      <Cloud Text="Хранилище"/>
       <Messengers Text="Мессенджер"/>
     </ExportGroups>
     <Image Text="Экспорт в рисунок">
