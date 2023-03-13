@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Microsoft.AspNetCore.Html;
 using System.Threading.Tasks;
 using System.Linq;
-using FastReport.Web.Controllers;
 using FastReport.Web.Application;
 using System.Drawing;
 using System.ComponentModel;
+#if !WASM
 using FastReport.Web.Cache;
+#endif
 
 namespace FastReport.Web
 {
@@ -209,7 +209,7 @@ namespace FastReport.Web
         // TODO
         private string ReportFile { get; set; } = null;
         private string ReportPath { get; set; } = null;
-        private string ReportResourceString { get; set; } = null;
+        internal string ReportResourceString { get; set; } = null;
 
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
 
@@ -229,7 +229,9 @@ namespace FastReport.Web
         {
             string path = WebUtils.MapPath(LocalizationFile);
             Res.LoadLocale(path);
+#if !WASM
             WebReportCache.Instance.Add(this);
+#endif
 #if DIALOGS
             Dialog = new Dialog(this);
 #endif
@@ -241,19 +243,6 @@ namespace FastReport.Web
         }
 
 
-        public HtmlString RenderSync()
-        {
-            return Task.Run(() => Render()).Result;
-        }
-
-        public async Task<HtmlString> Render()
-        {
-            if (Report == null)
-                throw new Exception("Report is null");
-
-            return Render(false);
-        }
-
         public void LoadPrepared(string filename)
         {
             Report.LoadPrepared(filename);
@@ -264,23 +253,6 @@ namespace FastReport.Web
             Report.LoadPrepared(stream);
         }
 
-        internal HtmlString Render(bool renderBody)
-        {
-            switch (Mode)
-            {
-#if DIALOGS
-                case WebReportMode.Dialog:
-#endif
-                case WebReportMode.Preview:
-                    return new HtmlString(template_render(renderBody));
-#if DESIGNER
-                case WebReportMode.Designer:
-                    return RenderDesigner();
-#endif
-                default:
-                    throw new Exception($"Unknown mode: {Mode}");
-            }
-        }
 
         internal void InternalDispose()
         {
@@ -302,7 +274,9 @@ namespace FastReport.Web
         /// </summary>
         public void RemoveFromCache()
         {
+#if !WASM
             WebReportCache.Instance.Remove(this);
+#endif
         }
 
         // TODO

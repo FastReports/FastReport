@@ -32,8 +32,8 @@ namespace FastReport.Web
             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                 {localizationPageSelector.First}
             </button>
-            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickSVG()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
-        </div>" : "")}
+            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" id=""PageSelector"" onchange=""OnInputClickSVG()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" > 
+</div>" : "")}
     </div>
 
     <div class=""fr-webreport-popup-content-export-parameters"">
@@ -56,7 +56,7 @@ namespace FastReport.Web
     </div>
     <div class=""fr-webreport-popup-content-buttons"">
         <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
-        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""SVGExport()"">OK</button>
+        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""SVGExport()"" id=""okButton"">OK</button>
     </div>
 </div>
 <script>
@@ -76,6 +76,8 @@ function SVGImageFormatFunc(select) {{
     else {{ SVGImageFormat = '&ImageFormat=' + ImageFormatOption.value; }}
 }}
 function SVGExport() {{
+    {validation}    
+
     if (document.getElementById('SVGEmbedPictures').classList.contains('activeButton')) {{
         SVGEmbedPictures = new Boolean(true);
     }}

@@ -11,11 +11,6 @@ namespace FastReport.Data
 {
     public partial class PostgresDataConnection
     {
-        public override Type GetParameterType()
-        {
-            return typeof(NpgsqlDbType);
-        }
-
         public override string GetConnectionId()
         {
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(ConnectionString);

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+	<Import Project="..\..\..\..\UsedPackages.version" />
+	<ItemGroup>
+		<PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
+		<PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSWebVersion)" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.1" />
+	</ItemGroup>
+
+</Project>

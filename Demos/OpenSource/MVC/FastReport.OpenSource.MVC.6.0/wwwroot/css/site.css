@@ -1,0 +1,96 @@
+﻿body {
+    margin: 0px;
+    padding: 20px;
+    width: intrinsic;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: space-between;
+    align-items: center;
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-size: 42px;
+    font-weight: 100;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.title > a {
+    color: black;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu {
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 60px;
+    box-shadow: 0px 2px 20px -2px rgba(0, 0, 0, 0.2);
+}
+
+.menu > a {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 3px 24px 5px 24px;
+    color: white;
+    white-space: nowrap;
+}
+
+.menu > a:hover {
+    background-color: rgb(239, 67, 67);
+    box-shadow: 0px 2px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    display: flex;
+}
+
+.reports {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.reports > a {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-size: 17px;
+    text-decoration: none;
+    padding: 3px 24px 4px 24px;
+    color: black;
+}
+
+.reports > a:hover {
+    background-color: rgb(54, 173, 244);
+    box-shadow: 0px 2px 10px -2px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.webreport {
+    padding-left: 20px;
+    padding-right: 24px;
+}
+
+footer {
+    text-align: center;
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-size: 13px;
+    padding-top: 15px;
+    margin-top: 20px;
+    opacity: 0.6;
+    border-top: 1px solid lightgray;
+}
+
+.fr-logo {
+    margin-left: 265px;
+    margin-top: 0px;
+    height: 64px;
+}

@@ -20,7 +20,7 @@ namespace FastReport.Utils
             }
         }
 
-        private Report _report;
+        private readonly Report _report;
 
         /// <summary>
         /// Gets the report.
@@ -34,7 +34,7 @@ namespace FastReport.Utils
             }
         }
 
-        private string _reportScript;
+        private readonly string _reportScript;
 
         /// <summary>
         /// Gets the report script.
@@ -48,7 +48,7 @@ namespace FastReport.Utils
             }
         }
 
-        private string[] _references;
+        private readonly string[] _references;
 
         /// <summary>
         /// Gets the references of script.

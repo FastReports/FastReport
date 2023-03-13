@@ -32,8 +32,8 @@ namespace FastReport.Web
             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                 {localizationPageSelector.First}
             </button>
-            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" onchange=""OnInputClickXLSX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
-        </div>" : "")}
+            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" id=""PageSelector"" onchange=""OnInputClickXLSX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
+</div>" : "")}
     </div>
     <div class=""fr-webreport-popup-content-export-parameters"">
         <label>{localizationXlsx.Options}</label>
@@ -91,7 +91,7 @@ namespace FastReport.Web
     </div>
     <div class=""fr-webreport-popup-content-buttons"" style = ""margin-top: 8px;"">
         <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
-        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""XLSXExport()"">OK</button>
+        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""XLSXExport()"" id=""okButton"">OK</button>
     </div>
 </div>
 <script> 
@@ -122,6 +122,7 @@ function OnInputClickXLSX() {{
 }}
 
 function XLSXExport() {{
+    {validation}
 
     if (document.getElementById('XlsxWysiwyg').classList.contains('activeButton')) {{
         XlsxWysiwyg = new Boolean(true);

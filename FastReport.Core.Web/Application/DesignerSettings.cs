@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Web
 {
@@ -41,6 +43,28 @@ namespace FastReport.Web
         /// };
         /// </example>
         public Func<string, string, string, string> SaveMethod { get; set; }
+
+        /// <summary>
+        /// Async callback method for saving an edited report by Online Designer
+        /// <example>
+        /// <code>
+        ///webReport.Designer.SaveMethodAsync = async (reportID, filename, report, token) =>
+        ///{
+        ///    string webRootPath = _hostingEnvironment.WebRootPath;
+        ///
+        ///    string pathToSave = Path.Combine(webRootPath, "DesignedReports", "AsyncReports", filename);
+        ///
+        ///    if (!Directory.Exists(pathToSave))
+        ///        Directory.CreateDirectory(Path.GetDirectoryName(pathToSave));
+        ///        
+        ///    await System.IO.File.WriteAllTextAsync(pathToSave, report, token);
+        ///       
+        ///    return "OK";
+        ///};
+        /// </code>
+        /// </example>
+        /// </summary>
+        public Func<string, string, string, CancellationToken , Task<string>> SaveMethodAsync { get; set; }
 
         /// <summary>
         /// Gets or sets path to a folder for save designed reports

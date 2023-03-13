@@ -34,8 +34,9 @@ namespace FastReport.Web
             <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
                 {localizationPageSelector.First}
             </button>
-            <input name =""PageSelectorInput"" style=""margin-top: 2px;""  onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >
-        </div>" : "")}
+            <input name =""PageSelectorInput"" id=""PageSelector"" style=""margin-top: 2px;""  onchange=""OnInputClickDOCX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" >  
+        </div>
+        " : "")}
     </div>
 
     <div class=""fr-webreport-popup-content-export-parameters"">
@@ -77,7 +78,7 @@ namespace FastReport.Web
     </div>
     <div class=""fr-webreport-popup-content-buttons"">
         <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
-        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""DOCXExport()"">OK</button>
+        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""DOCXExport()"" id=""okButton"">OK</button>
     </div>
 </div>
 
@@ -94,6 +95,7 @@ var DocxDoNotExpandShiftReturn = false;
 function OnInputClickDOCX() {{
    {template_pscustom}
 }}
+
 function DocxRowHeightsFunc(select) {{
     const DocxRowHeightsChange = select.querySelector(`option[value='${{select.value}}']`)
     DocxRowHeights = '&RowHeightIs=' + DocxRowHeightsChange.value + '&MatrixBased=false';
@@ -103,6 +105,8 @@ function DocxOnRenderModeFunc(select) {{
     DocxOnRenderMode = '&PrintFit=' + DocxOnRenderModeChange.value;
 }}
 function DOCXExport() {{
+    {validation}
+
     if (document.getElementById('DocxPrintOptimized').classList.contains('activeButton')) {{
         DocxPrintOptimized = new Boolean(true);
     }}

@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Http;
+using FastReport.Web.Services;
 
 namespace FastReport.Web.Controllers
 {

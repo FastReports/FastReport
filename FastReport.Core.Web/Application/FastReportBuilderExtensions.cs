@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !WASM
+using System;
 using FastReport.Web;
 using Microsoft.AspNetCore.Routing;
 using System.Net.Http;
@@ -11,6 +12,15 @@ namespace Microsoft.AspNetCore.Builder
     {
         public static IApplicationBuilder UseFastReport(this IApplicationBuilder app, Action<FastReportOptions> setupAction = null)
         {
+            var options = new FastReportOptions();
+            setupAction?.Invoke(options);
+
+            FastReportGlobal.FastReportOptions = options;
+            if (FastReportGlobal.InternalCacheOptions != null && FastReportGlobal.InternalCacheOptions.IsChangedByUser)
+            {
+                FastReportGlobal.FastReportOptions.CacheOptions = FastReportGlobal.InternalCacheOptions;
+            }
+
             if (FastReportOptions.UseNewControllers)
             {
                 Debug.WriteLine("Application is using new controllers");
@@ -18,8 +28,6 @@ namespace Microsoft.AspNetCore.Builder
             }
             // fallback
 
-            var options = new FastReportOptions();
-            setupAction?.Invoke(options);
 
             FastReport.Utils.Config.WebMode = true;
 
@@ -29,9 +37,10 @@ namespace Microsoft.AspNetCore.Builder
 #else
             FastReportGlobal.HostingEnvironment = (IHostingEnvironment)app.ApplicationServices.GetService(typeof(IHostingEnvironment));
 #endif
-            FastReportGlobal.FastReportOptions = options;
+
 
             return app.UseMiddleware<FastReportMiddleware>();
         }
     }
 }
+#endif

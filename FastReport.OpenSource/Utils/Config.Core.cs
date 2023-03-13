@@ -48,6 +48,10 @@
         /// </summary>
         static partial void SaveUIStyle();
 
+        static partial void SaveUIOptions();
+
+        static partial void RestoreUIOptions();
+
         static partial void RestorePreviewSettings();
 
         static partial void SavePreviewSettings();

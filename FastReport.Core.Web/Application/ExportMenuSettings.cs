@@ -5,12 +5,19 @@ namespace FastReport.Web
 {
     public class ExportMenuSettings
     {
-     
+
+#if WASM
+        /// <summary>
+        /// Show Exports menu. Not supported in Wasm at the moment
+        /// </summary>
+        public bool Show { get => false; set => throw new NotSupportedException("Not supported in Wasm at the moment"); }
+#else
         /// <summary>
         /// Show Exports menu
         /// </summary>
         public bool Show { get; set; } = true;
-        
+#endif
+
         /// <summary>
         /// Used to set exports in toolbar.
         /// </summary>
@@ -33,6 +40,13 @@ namespace FastReport.Web
         /// </summary>
         public bool EnableSettings { get; set; } = false;
 
+        /// <summary>
+        /// If enabled, the container with the settings will be fixed on the screen and will be in the foreground.
+        /// </summary>
+        /// <remarks>
+        /// Default value: false
+        /// </remarks>
+        public bool PinnedSettingsPosition { get; set; } = false;
         internal string UserFontSettingsStyle
         {
             get
@@ -45,6 +59,16 @@ namespace FastReport.Web
                     return "";
             }
 
+        }
+
+        internal string FixedContainerPosition
+        {
+            get => PinnedSettingsPosition ? "position: fixed; top: 0; left: 0;" : "";
+        }
+
+        internal string FixedContainerTags
+        {
+            get => PinnedSettingsPosition ? "position : fixed; top: 40%; left: 40%; transform: translate(-50%, -50%);" : "";
         }
 
         internal string UserFontSettingsFamily

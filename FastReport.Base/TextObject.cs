@@ -780,12 +780,13 @@ namespace FastReport
                         return new SizeF(width, height);
                     }
                 }
-#if CROSSPLATFORM
+#if CROSSPLATFORM && !SKIA
+                // in FR.Core we use AdvancedTextRenderer only if needed (IsAdvancedRendererNeeded) or if it's not Windows
                 if (IsAdvancedRendererNeeded || !Config.IsWindows)
-                {
 #else
-                if (IsAdvancedRendererNeeded) { 
+                if (IsAdvancedRendererNeeded)
 #endif
+                {
                         if (width == 0)
                             width = 100000;
                         AdvancedTextRenderer renderer = new AdvancedTextRenderer(Text, g, font, Brushes.Black, Pens.Black,

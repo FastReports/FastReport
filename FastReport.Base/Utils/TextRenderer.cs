@@ -47,25 +47,25 @@ namespace FastReport.Utils
     public class AdvancedTextRenderer
     {
         #region Fields
-        private List<Paragraph> paragraphs;
-        private string text;
-        private IGraphics graphics;
-        private Font font;
-        private Brush brush;
-        private Pen outlinePen;
-        private RectangleF displayRect;
-        private StringFormat format;
-        private HorzAlign horzAlign;
-        private VertAlign vertAlign;
-        private float lineHeight;
-        private float fontLineHeight;
-        private int angle;
-        private float widthRatio;
-        private bool forceJustify;
-        private bool wysiwyg;
-        private bool htmlTags;
-        private bool pDFMode;
-        private float spaceWidth;
+        private readonly List<Paragraph> paragraphs;
+        private readonly string text;
+        private readonly IGraphics graphics;
+        private readonly Font font;
+        private readonly Brush brush;
+        private readonly Pen outlinePen;
+        private readonly RectangleF displayRect;
+        private readonly StringFormat format;
+        private readonly HorzAlign horzAlign;
+        private readonly VertAlign vertAlign;
+        private readonly float lineHeight;
+        private readonly float fontLineHeight;
+        private readonly int angle;
+        private readonly float widthRatio;
+        private readonly bool forceJustify;
+        private readonly bool wysiwyg;
+        private readonly bool htmlTags;
+        private readonly bool pDFMode;
+        private readonly float spaceWidth;
         private float scale;
         private InlineImageCache cache;
         private float fontScale;
@@ -412,7 +412,7 @@ namespace FastReport.Utils
             if (this.lineHeight == 0)
             {
                 this.lineHeight = fontLineHeight;
-                if (isPrinting && Config.IsRunningOnMono && DrawUtils.GetMonoRendering(g.Graphics) == MonoRendering.Pango)
+                if (isPrinting && Config.IsRunningOnMono && DrawUtils.GetMonoRendering(g) == MonoRendering.Pango)
                 {
                     // we need this in order to fix inconsistent line spacing when print using Pango rendering
                     this.lineHeight = fontLineHeight * 1.33f;
@@ -472,10 +472,10 @@ namespace FastReport.Utils
         public class Paragraph
         {
             #region Fields
-            private List<Line> lines;
-            private AdvancedTextRenderer renderer;
-            private string text;
-            private int originalCharIndex;
+            private readonly List<Line> lines;
+            private readonly AdvancedTextRenderer renderer;
+            private readonly string text;
+            private readonly int originalCharIndex;
             #endregion
 
             #region Properties
@@ -1112,15 +1112,15 @@ namespace FastReport.Utils
         public class Line
         {
             #region Fields
-            private List<Word> words;
-            private string text;
-            private bool hasTabs;
-            private Paragraph paragraph;
+            private readonly List<Word> words;
+            private readonly string text;
+            private readonly bool hasTabs;
+            private readonly Paragraph paragraph;
             private float top;
             private float width;
-            private int originalCharIndex;
-            private List<RectangleF> underlines;
-            private List<RectangleF> strikeouts;
+            private readonly int originalCharIndex;
+            private readonly List<RectangleF> underlines;
+            private readonly List<RectangleF> strikeouts;
             #endregion
 
             #region Properties
@@ -1443,8 +1443,8 @@ namespace FastReport.Utils
         public class Word
         {
             #region Fields
-            private List<Run> runs;
-            protected string text;
+            private readonly List<Run> runs;
+            private readonly string text;
             private float left;
             private float width;
             internal Line line;
@@ -1751,11 +1751,11 @@ namespace FastReport.Utils
         public class Run
         {
             #region Fields
-            protected string text;
-            private StyleDescriptor style;
-            protected Word word;
+            protected readonly string text;
+            private readonly StyleDescriptor style;
+            protected readonly Word word;
             private float left;
-            protected float width;
+            protected readonly float width;
             protected float lineHeight;
             protected float fontLineHeight;
             private float baseLine;

@@ -8,17 +8,52 @@ namespace FastReport.Web
 {
     partial class WebReport
     {
+        private const string validation = @"    
+    var pageRange = document.getElementById('PageSelector').value;
+    var validationRegex = new RegExp(""^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$"");
+
+    if(!validationRegex.test(pageRange) && pageRange !== """"){
+        return;
+    }";
+
         private const string template_pscustom =
-@"  PageSelector = '&PageRange=PageNumbers&PageNumbers='+ PageSelectorInput[0].value;
-    OnFirst[0].classList.remove('activeButton');
-    OnAll[0].classList.remove('activeButton');";
+@"    const pageRange = input.value.trim();
+      const validationRegex = /^(\s*\d+\s*-\s*\d+\s*,?|\s*\d+\s*,?)+$/;
+      let isError = false;
+      let numbers = [];
+
+      if (pageRange) {
+        numbers = pageRange.match(/(-\d+|\d+)(,\d+)*(\.\d+)*/g) || [];
+        numbers = numbers.map(n => Number(n.replace(/,/g, '')));
+        numbers.forEach(elem => {
+          if (elem > AllPages.value) {
+            isError = true;
+          }
+        });
+      }
+
+      if (validationRegex.test(pageRange) || pageRange === """") {
+        PageSelector = `&PageRange=PageNumbers&PageNumbers=${PageSelectorInput[0].value}`;
+        OnFirst[0].classList.remove('activeButton');
+        OnAll[0].classList.remove('activeButton');
+        input.classList.remove('input-error');
+        okButton.classList.remove(""fr-webreport-popup-disabled-button"");
+        okButton.disabled = isError;
+      } else {
+        input.classList.add('input-error');
+        okButton.classList.add(""fr-webreport-popup-disabled-button"");
+        okButton.disabled = true;
+  }
+";
 
         private const string template_modalcontainerscript =
-@"   var but = document.querySelectorAll('.fr-webreport-settings-btn');
+@" var but = document.querySelectorAll('.fr-webreport-settings-btn');
    var modalOverlay = document.querySelector('.modalcontainer-overlay');
    var modalBtnsSubmit = document.querySelectorAll('.fr-webreport-popup-content-btn-submit');
    var activebtn = document.querySelectorAll('.fr-webreport-popup-content-export-parameters-button');          
    var modals = document.querySelectorAll('.modalcontainer');
+   var okButton = document.getElementById('okButton');
+   var input = document.getElementById('PageSelector');
 
         modalBtnsSubmit.forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -75,12 +110,18 @@ namespace FastReport.Web
         PageSelectorInput[0].value = CurrentPage.value;
         OnAll[0].classList.remove('activeButton');
         PageSelector = '&PageRange=PageNumbers&PageNumbers=' + CurrentPage.value;
+        okButton.disabled = false;
+        okButton.classList.remove(""fr-webreport-popup-disabled-button"");
+        input.classList.remove('input-error');
     }
 
     function OnAllClick() {
         PageSelectorInput[0].value = '1 - ' + AllPages.value;
         OnFirst[0].classList.remove('activeButton');
         PageSelector = '&PageRange=All';
+        okButton.disabled = false;
+        okButton.classList.remove(""fr-webreport-popup-disabled-button"");
+        input.classList.remove('input-error');
     }
     var PSFirst = '';
     var PSLast = ''

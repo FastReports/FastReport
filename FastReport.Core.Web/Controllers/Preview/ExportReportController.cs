@@ -1,5 +1,5 @@
 ﻿using FastReport.Web.Cache;
-
+using FastReport.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 using System;
@@ -7,15 +7,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace FastReport.Web.Controllers
 {
     public sealed class ExportReportController : ApiControllerBase
     {
+        private readonly IReportService _reportService;
+        private readonly IExportsService _exportsService;
 
-        public ExportReportController()
+        public ExportReportController(IReportService reportService, IExportsService exportsService)
         {
+            _reportService = reportService;
+            _exportsService = exportsService;
         }
 
         public sealed class ExportReportParams
@@ -29,35 +34,30 @@ namespace FastReport.Web.Controllers
         [Route("/_fr/preview.exportReport")]
         public IActionResult ExportReport([FromQuery] ExportReportParams query)
         {
-            if (!TryFindWebReport(query.ReportId, out WebReport webReport))
+            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
                 return new NotFoundResult();
-
-            var exportFormat = query.ExportFormat.ToLower();
 
             // TODO:
             // skip extra key/value pairs
-            var exportParams = Request.Query.Where(pair => pair.Key != "exportFormat" && pair.Key != "reportId").ToArray();
+            var exportFormat = query.ExportFormat.ToLower();
+            var exportParams = Request.Query.Where(pair => pair.Key != "exportFormat" && pair.Key != "reportId")
+                .Select(item => new KeyValuePair<string, string>(item.Key, item.Value)).ToArray();
+            byte[] file;
+            string filename;
 
-            using (MemoryStream exportStream = new MemoryStream())
+            try
             {
-                try
-                {
-                    webReport.ExportReport(exportStream, exportFormat, exportParams);
-                }
-                catch (UnsupportedExportException)
-                {
-                    return new UnsupportedMediaTypeResult();
-                }
-
-                var filename = webReport.GetCurrentTabName();
-                if (filename.IsNullOrWhiteSpace())
-                    filename = "report";
-
-                return new FileContentResult(exportStream.ToArray(), "application/octet-stream")
-                {
-                    FileDownloadName = $"{filename}.{exportFormat}"
-                };
+                file = _exportsService.ExportReport(webReport, exportParams, exportFormat, out filename);
             }
+            catch(Exception ex)
+            {
+                return new UnsupportedMediaTypeResult();
+            }
+    
+            return new FileContentResult(file, "application/octet-stream")
+            {
+                FileDownloadName = $"{filename}.{exportFormat}"
+            };
         }
 
         public sealed class ExportSettingsParams
@@ -70,50 +70,12 @@ namespace FastReport.Web.Controllers
 
         [HttpPost]
         [Route("/_fr/exportsettings.getSettings")]
-        public IActionResult ExportReport([FromQuery] ExportSettingsParams query)
+        public IActionResult GetExportSettings([FromQuery] ExportSettingsParams query)
         {
-            if (!TryFindWebReport(query.ReportId, out WebReport webReport))
+            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
                 return new NotFoundResult();
-
-            string msg = string.Empty;
-            switch (query.Format)
-            {
-                case "image":
-                    msg = webReport.template_ImageExportSettings();
-                    break;
-                case "html":
-                    msg = webReport.template_HtmlExportSettings();
-                    break;
-#if !OPENSOURCE
-                case "pdf":
-                    msg = webReport.template_PdfExportSettings();
-                    break;
-                case "docx":
-                    msg = webReport.template_DocxExportSettings();
-                    break;
-                case "xlsx":
-                    msg = webReport.template_XlsxExportSettings();
-                    break;
-                case "ods":
-                    msg = webReport.template_OdsExportSettings();
-                    break;
-                case "odt":
-                    msg = webReport.template_OdtExportSettings();
-                    break;
-                case "svg":
-                    msg = webReport.template_SvgExportSettings();
-                    break;
-                case "rtf":
-                    msg = webReport.template_RtfExportSettings();
-                    break;
-                case "xml":
-                    msg = webReport.template_XmlExportSettings();
-                    break;
-                case "pptx":
-                    msg = webReport.template_PptxExportSettings();
-                    break;
-#endif
-            }
+            
+            var msg = _exportsService.GetExportSettings(webReport, query.Format);
 
             if (msg != null)
             {
@@ -126,13 +88,5 @@ namespace FastReport.Web.Controllers
             }
             return new NotFoundResult();
         }
-
-
-        bool TryFindWebReport(string reportId, out WebReport webReport)
-        {
-            webReport = WebReportCache.Instance.Find(reportId);
-            return webReport != null;
-        }
-
     }
 }

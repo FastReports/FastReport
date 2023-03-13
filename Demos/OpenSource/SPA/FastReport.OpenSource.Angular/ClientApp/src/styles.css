@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  margin-top: 25px;
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.fr-logo {
+  margin-top: 15px;
+  margin-left: 50px;
+  height: 64px;
+}
+
+.header {
+  display: flex;
+  height: 50px;
+  width: 91.9rem;
+  background-color: white;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: space-between;
+  align-items: center;
+}
+
+.stack {
+  font-size: 25pt;
+  font-weight: lighter;
+  margin-left: 10px;
+  margin-top: -3px;
+  color: #0366d6;
+  border-color: #0366d6;
+}

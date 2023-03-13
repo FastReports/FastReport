@@ -275,9 +275,11 @@ namespace FastReport.Export.Html
                 style.Append("padding-left:").Append(Px((obj.Padding.Left) * Zoom));
             if (obj.Padding.Right != 0)
                 style.Append("padding-right:").Append(Px(obj.Padding.Right * Zoom));
-
+            if (obj.Padding.Top != 0)
+                style.Append("padding-top:").Append(Px(obj.Padding.Top * Zoom));
+            // if the vertical alignment is not equal to "at the top edge"
             if (top != 0)
-                    style.Append("margin-top:").Append(Px(top * Zoom));
+                style.Append("margin-top:").Append(Px((top - obj.Padding.Top) * Zoom));
 
                 // we need to apply border width in order to position our div perfectly
             float borderLeft;

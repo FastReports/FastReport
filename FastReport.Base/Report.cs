@@ -15,6 +15,8 @@ using System.Drawing.Text;
 using System.IO;
 using System.Security;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport
 {
@@ -1265,19 +1267,43 @@ namespace FastReport
 
             if (needCompile)
             {
-                AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
-                assemblies.Clear();
-                assemblies.Add(descriptor);
-                descriptor.AddObjects();
-                descriptor.AddExpressions();
-                descriptor.AddFunctions();
-                descriptor.Compile();
+                using(AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText))
+                {
+                    assemblies.Clear();
+                    assemblies.Add(descriptor);
+                    descriptor.AddObjects();
+                    descriptor.AddExpressions();
+                    descriptor.AddFunctions();
+                    descriptor.Compile();
+                }
             }
             else
             {
                 InternalInit();
             }
         }
+
+#if ASYNC
+        internal async Task CompileAsync(CancellationToken token)
+        {
+            FillDataSourceCache();
+
+            if (needCompile)
+            {
+                AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
+                assemblies.Clear();
+                assemblies.Add(descriptor);
+                descriptor.AddObjects();
+                descriptor.AddExpressions();
+                descriptor.AddFunctions();
+                await descriptor.CompileAsync(token);
+            }
+            else
+            {
+                InternalInit();
+            }
+        }
+#endif
 
         /// <summary>
         /// Initializes the report's fields.
@@ -1459,13 +1485,15 @@ namespace FastReport
 
             // expression not found. Probably it was added after the start of the report.
             // Compile new assembly containing this expression.
-            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, CodeHelper.EmptyScript());
-            assemblies.Add(descriptor);
-            descriptor.AddObjects();
-            descriptor.AddSingleExpression(expression);
-            descriptor.AddFunctions();
-            descriptor.Compile();
-            return descriptor.CalcExpression(expression, value);
+            using (AssemblyDescriptor descriptor = new AssemblyDescriptor(this, CodeHelper.EmptyScript()))
+            {
+                assemblies.Add(descriptor);
+                descriptor.AddObjects();
+                descriptor.AddSingleExpression(expression);
+                descriptor.AddFunctions();
+                descriptor.Compile();
+                return descriptor.CalcExpression(expression, value);
+            }
         }
 
         /// <summary>
@@ -2355,6 +2383,53 @@ namespace FastReport
         {
             return Prepare(false);
         }
+
+#if ASYNC
+        /// <summary>
+        /// Prepares the report asynchronously.
+        /// </summary>
+        /// <param name="token">Cancellation token</param>
+        /// <returns><b>true</b> if report was prepared succesfully.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)] // TODO
+        public Task<bool> PrepareAsync(CancellationToken token = default)
+        {
+            return PrepareAsync(false, token);
+        }
+
+        private async Task<bool> PrepareAsync(bool append, CancellationToken token = default)
+        {
+            SetRunning(true);
+            try
+            {
+                if (PreparedPages == null || !append)
+                {
+                    ClearPreparedPages();
+
+                    SetPreparedPages(new Preview.PreparedPages(this));
+                }
+                engine = new ReportEngine(this);
+
+                if (!Config.WebMode)
+                    StartPerformanceCounter();
+
+                try
+                {
+                    await CompileAsync(token).ConfigureAwait(false);
+                    return Engine.Run(true, append, true);
+                }
+                finally
+                {
+                    if (!Config.WebMode)
+                        StopPerformanceCounter();
+                }
+            }
+            finally
+            {
+                SetRunning(false);
+            }
+        }
+
+#endif
 
         /// <summary>
         /// Prepares the report.

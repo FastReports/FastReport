@@ -1,22 +1,18 @@
-﻿using FastReport.Web.Cache;
-
+﻿using FastReport.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 
 namespace FastReport.Web.Controllers
 {
     [Route("/_fr/preview.printReport")]
     public sealed class PrintReportController : ApiControllerBase
     {
+        private readonly IReportService _reportService;
+        private readonly IPrintService _printService;
 
-        public PrintReportController()
+        public PrintReportController(IReportService reportService, IPrintService printService)
         {
+            _printService = printService;
+            _reportService = reportService;
         }
 
         public sealed class PrintReportParams
@@ -29,28 +25,26 @@ namespace FastReport.Web.Controllers
         [HttpGet]
         public IActionResult PrintReport([FromQuery] PrintReportParams query)
         {
-            if (!TryFindWebReport(query.ReportId, out WebReport webReport))
+            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
                 return new NotFoundResult();
 
             var printMode = query.PrintMode.ToLower();
-            switch (printMode)
+            var response = _printService.PrintReport(webReport, printMode);
+
+            if (!(response is null))
             {
-                case "html":
-                    return webReport.PrintHtml();
+                switch (printMode)
+                {
+                    case "html":
+                        return new FileContentResult(response, "text/html");
 #if !OPENSOURCE
-                case "pdf":
-                    return webReport.PrintPdf();
+                    case "pdf":
+                        return new FileContentResult(response, "application/pdf");
 #endif
+                }
             }
 
             return new UnsupportedMediaTypeResult();
         }
-
-        bool TryFindWebReport(string reportId, out WebReport webReport)
-        {
-            webReport = WebReportCache.Instance.Find(reportId);
-            return webReport != null;
-        }
-
     }
 }

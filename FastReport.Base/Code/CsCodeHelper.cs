@@ -18,11 +18,22 @@ namespace FastReport.Code
     internal partial class CsCodeHelper : CodeHelperBase
     {
         #region Private Methods
-        private string GetEquivalentKeyword(string s)
+        private string GetEquivalentKeyword(string s, bool fullForm)
         {
+            string fontKeywordBegin = "<font color=\"Blue\">";
+            string fontTypeBegin = "<font color=\"DarkCyan\">";
+            string fontEnd = "</font>";
             if (s.EndsWith("[]"))
-                return GetEquivalentKeyword1(s.Substring(0, s.Length - 2)) + "[]";
-            return GetEquivalentKeyword1(s);
+            {
+                string word = s.Substring(0, s.Length - 2);
+                string keyword = GetEquivalentKeyword1(word);
+                return fullForm ? (keyword == word ? fontTypeBegin : fontKeywordBegin) + keyword + "[]" + fontEnd : keyword + "[]";
+            }
+            else
+            {
+                string keyword = GetEquivalentKeyword1(s);
+                return fullForm ? (keyword == s ? fontTypeBegin : fontKeywordBegin) + keyword + fontEnd : keyword;
+            }
         }
 
         private string GetEquivalentKeyword1(string s)
@@ -59,6 +70,8 @@ namespace FastReport.Code
                     return "decimal";
                 case "Boolean":
                     return "bool";
+                case "Void":
+                    return "void";
             }
             return s;
         }
@@ -224,11 +237,9 @@ namespace FastReport.Code
 
         public override string GetMethodSignature(MethodInfo info, bool fullForm)
         {
-            string result = info.Name + "(";
-            string fontBegin = "<font color=\"Blue\">";
-            string fontEnd = "</font>";
+            string result = fullForm ? "<font color=\"#74531F\">" + info.Name + "</font>(" : info.Name + "(";
             if (fullForm)
-                result = fontBegin + GetEquivalentKeyword(info.ReturnType.Name) + fontEnd + " " + result;
+                result = GetEquivalentKeyword(info.ReturnType.Name, fullForm) + " " + result;
 
             System.Reflection.ParameterInfo[] pars = info.GetParameters();
             foreach (System.Reflection.ParameterInfo par in pars)
@@ -240,8 +251,8 @@ namespace FastReport.Code
                 object[] attr = par.GetCustomAttributes(typeof(ParamArrayAttribute), false);
                 if (attr.Length > 0)
                     paramType = "params ";
-                paramType += GetEquivalentKeyword(par.ParameterType.Name);
-                result += (fullForm ? fontBegin : "") + paramType + (fullForm ? fontEnd : "");
+                paramType += GetEquivalentKeyword(par.ParameterType.Name, fullForm);
+                result += paramType;
                 result += (fullForm ? " " + par.Name : "");
 #if DOTNET_4
                 if (par.IsOptional && fullForm)
@@ -310,6 +321,13 @@ namespace FastReport.Code
             return result;
         }
 
+        public override string GetPropertySignature(PropertyInfo info, bool fullForm)
+        {
+            string result = GetEquivalentKeyword(info.PropertyType.Name, fullForm) + " " + info.Name;
+            if (fullForm)
+                result += " {<font color=\"Blue\"> get;" + (info.CanWrite ? " set;" : "") + "</font> }";
+            return result;
+        }
 
         public override CodeDomProvider GetCodeProvider()
         {

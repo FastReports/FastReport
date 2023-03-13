@@ -31,6 +31,7 @@ using Cake.Common.Tools.NuGet.Restore;
 using Cake.Core.Annotations;
 using Cake.Common;
 using Cake.Common.Tools.SignTool;
+using Cake.Common.Tools.DotNet.Build;
 
 namespace CakeScript;
 
@@ -77,6 +78,9 @@ static class CakeAPI
 
     public static void DotNetRestore(string root, DotNetRestoreSettings settings)
         => Context.DotNetRestore(root, settings);
+
+    public static void DotNetBuild(string projectOrDirectory, DotNetBuildSettings settings)
+        => Context.DotNetBuild(projectOrDirectory, settings);
 
     public static void DotNetPack(string project, DotNetPackSettings packSettings)
         => Context.DotNetPack(project, packSettings);

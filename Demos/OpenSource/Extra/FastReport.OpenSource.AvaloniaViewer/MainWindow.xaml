@@ -1,0 +1,38 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Viewer.MainWindow"
+        Title="Report Viewer" Height="900" Width="800" SizeToContent="Width" CanResize="false" >
+  <Grid>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#AA000000" Height="40">
+      <Button Name="Open" Margin="5" Background="Transparent">
+        <Image Source="Resources/001.ico"></Image>
+      </Button>
+      <Button Name="First" Click="FirstClick" Margin="5" Background="Transparent">
+         <Image Source="Resources/frst.png"></Image>
+      </Button>
+      <Button Name="Prev" Click="Prev_Click" Margin="5" Background="Transparent">
+         <Image Source="Resources/prr.png"></Image>
+      </Button>
+      <TextBox Name="PageNumber" Height="30" Margin="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" KeyDown="PageNumber_KeyDown"/>
+      <Button Name="Next" Click="Next_Click" Margin="5" Background="Transparent">
+          <Image Source="Resources/nxt.png"></Image>
+      </Button>
+      <Button Name="Last" Click="Last_Click" Margin="5" Background="Transparent">
+          <Image Source="Resources/lst.png"></Image>
+      </Button>
+      <Button Name="ZoomIn" Click="Zoom_in_Click" Margin="5" Background="Transparent">
+        +
+      </Button>
+      <Button Name="ZoomOut" Click="Zoom_out_Click" Margin="5" Background="Transparent">
+        -
+      </Button>
+     </StackPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Visible"
+                   HorizontalScrollBarVisibility="Visible" Margin="0,37,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="800" >
+        <Image Name="img" RenderTransformOrigin="0.5,0.5" Stretch="None" />
+     </ScrollViewer>
+      <TextBlock Margin="350,7,0,0" FontSize="18">
+          Selected prepared report (*.fpx) in Reports folder
+      </TextBlock>
+  </Grid>
+</Window>
