@@ -3,6 +3,8 @@
 <!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
     <PropertyGroup>
 
+        <FRCompatVersionNET>2022.3.2</FRCompatVersionNET>
+
         <FRCompatVersion>2023.1.8</FRCompatVersion>
         <FRCompatSkiaVersion>2023.1.8</FRCompatSkiaVersion>
 
@@ -29,13 +31,13 @@
 <!-- This group sets version used packages in Demos -->
 	<PropertyGroup>
         
-		<FRCoreVersion>2023.1.13</FRCoreVersion>
+		<FRCoreVersion>2023.2.0</FRCoreVersion>
 		
-		<FRCoreWebVersion>2023.1.13</FRCoreWebVersion>
+		<FRCoreWebVersion>2023.2.0</FRCoreWebVersion>
 		
-		<FROSVersion>2023.1.13</FROSVersion>
+		<FROSVersion>2023.2.0</FROSVersion>
 		
-		<FROSWebVersion>2023.1.13</FROSWebVersion>
+		<FROSWebVersion>2023.2.0</FROSWebVersion>
 		
     </PropertyGroup>
 
