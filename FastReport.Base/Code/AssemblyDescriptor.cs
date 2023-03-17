@@ -418,9 +418,14 @@ namespace FastReport.Code
 
                 if (needCompile)
                 {
-                    //await Task.Run(token => InternalCompileAsync(token), token);
-                    await InternalCompileAsync(token);
-                    semaphoreSlim.Release();
+                    try
+                    {
+                        await InternalCompileAsync(token);
+                    }
+                    finally
+                    {
+                        semaphoreSlim.Release();
+                    }
                 }
             }
         }
