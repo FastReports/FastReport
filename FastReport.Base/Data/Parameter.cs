@@ -78,7 +78,7 @@ namespace FastReport.Data
         {
             get
             {
-                if (!String.IsNullOrEmpty(Expression) && Report != null && Report.IsRunning)
+                if (!String.IsNullOrEmpty(Expression) && !Expression.Contains("[" + Name + "]") && Report != null && Report.IsRunning)
                     value = Report.Calc(Expression);
                 return value;
             }
