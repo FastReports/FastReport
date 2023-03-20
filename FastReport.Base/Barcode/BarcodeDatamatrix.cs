@@ -24,7 +24,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.ComponentModel;
-using FastReport.Utils;
 
 namespace FastReport.Barcode
 {
@@ -277,7 +276,7 @@ namespace FastReport.Barcode
     private DatamatrixEncoding encoding;
     private int codePage;
     private int pixelSize;
-        private bool autoEncode;
+    private bool autoEncode;
     #endregion
 
     #region Properties
@@ -325,11 +324,15 @@ namespace FastReport.Barcode
       set { pixelSize = value; }
     }
 
-        [DefaultValue(true)]
-        public bool AutoEncode {
-            get { return autoEncode; }
-            set { autoEncode = value; }
-        }
+    /// <summary>
+    /// Gets or sets the value AutoEncode.
+    /// </summary>
+    [DefaultValue(true)]
+    public bool AutoEncode
+    {
+        get { return autoEncode; }
+        set { autoEncode = value; }
+    }
     #endregion
 
     #region Private Methods
@@ -397,18 +400,9 @@ namespace FastReport.Barcode
 
     private static void MakePadding(byte[] data, int position, int count)
     {
-      // set to ascii mode
-      if ((count > 0) && (position > 0))
-      {
-        if (data[position - 1] != 254)
-            data[position] = 254;
-        position++;
-        count--;
-      }
-
       //already in ascii mode
       if (count <= 0)
-        return;
+      return;
       data[position++] = (byte)129;
       while (--count > 0)
       {
@@ -568,111 +562,83 @@ namespace FastReport.Barcode
 
     private static int EdifactEncodation(byte[] text, int textOffset, int textLength, byte[] data, int dataOffset, int dataLength)
     {
-        int ptrIn, ptrOut, edi, pedi, c;
-        if (textLength == 0)
-            return 0;
-        ptrIn = 0;
-        ptrOut = 0;
-        edi = 0;
-        pedi = 18;
-        bool ascii = true;
-        for (; ptrIn < textLength; ++ptrIn)
+      int ptrIn, ptrOut, edi, pedi, c;
+      if (textLength == 0)
+        return 0;
+      ptrIn = 0;
+      ptrOut = 0;
+      edi = 0;
+      pedi = 18;
+      bool ascii = true;
+      for (; ptrIn < textLength; ++ptrIn)
+      {
+        c = text[ptrIn + textOffset] & 0xff;
+        if (((c & 0xe0) == 0x40 || (c & 0xe0) == 0x20) && c != '_')
         {
-            c = text[ptrIn + textOffset] & 0xff;
-            if (((c & 0xe0) == 0x40 || (c & 0xe0) == 0x20) && c != '_')
-            {
-                if (ascii)
-                {
-                    if (ptrOut + 1 > dataLength)
-                        break;
-                    data[dataOffset + ptrOut++] = (byte)240;
-                    ascii = false;
-                }
-                c &= 0x3f;
-                edi |= c << pedi;
-                if (pedi == 0)
-                {
-                    if (ptrOut + 3 > dataLength)
-                        break;
-                    data[dataOffset + ptrOut++] = (byte)(edi >> 16);
-                    data[dataOffset + ptrOut++] = (byte)(edi >> 8);
-                    data[dataOffset + ptrOut++] = (byte)edi;
-                    edi = 0;
-                    pedi = 18;
-                }
-                else
-                    pedi -= 6;
-            }
-            else
-            {
-                if (!ascii)
-                {
-                    edi |= ('_' & 0x3f) << pedi;
-                    if (ptrOut + 3 - pedi / 8 > dataLength)
-                        break;
-                    data[dataOffset + ptrOut++] = (byte)(edi >> 16);
-                    if (pedi <= 12)
-                        data[dataOffset + ptrOut++] = (byte)(edi >> 8);
-                    if (pedi <= 6)
-                        data[dataOffset + ptrOut++] = (byte)edi;
-                    ascii = true;
-                    pedi = 18;
-                    edi = 0;
-                }
-                if (c > 127)
-                {
-                    if (ptrOut >= dataLength)
-                        break;
-                    data[dataOffset + ptrOut++] = (byte)235;
-                    c -= 128;
-                }
-                if (ptrOut >= dataLength)
-                    break;
-                data[dataOffset + ptrOut++] = (byte)(c + 1);
-            }
+          if (ascii)
+          {
+            if (ptrOut + 1 > dataLength)
+              break;
+            data[dataOffset + ptrOut++] = (byte)240;
+            ascii = false;
+          }
+          c &= 0x3f;
+          edi |= c << pedi;
+          if (pedi == 0)
+          {
+            if (ptrOut + 3 > dataLength)
+              break;
+            data[dataOffset + ptrOut++] = (byte)(edi >> 16);
+            data[dataOffset + ptrOut++] = (byte)(edi >> 8);
+            data[dataOffset + ptrOut++] = (byte)edi;
+            edi = 0;
+            pedi = 18;
+          }
+          else
+            pedi -= 6;
         }
-        if (ptrIn != textLength)
-            return -1;
-        int dataSize = int.MaxValue;
-        for (int i = 0; i < dmSizes.Length; ++i)
+        else
         {
-            if (dmSizes[i].dataSize >= dataOffset + ptrOut + (3 - pedi / 6))
-            {
-                dataSize = dmSizes[i].dataSize;
-                break;
-            }
-        }
-
-        if (dataSize - dataOffset - ptrOut <= 2 && pedi >= 6)
-        {
-            //have to write up to 2 bytes and up to 2 symbols
-            if (pedi <= 12)
-            {
-                byte val = (byte)((edi >> 18) & 0x3F);
-                if ((val & 0x20) == 0)
-                    val |= 0x40;
-                data[dataOffset + ptrOut++] = (byte)(val + 1);
-            }
-            if (pedi <= 6)
-            {
-                byte val = (byte)((edi >> 12) & 0x3F);
-                if ((val & 0x20) == 0)
-                    val |= 0x40;
-                data[dataOffset + ptrOut++] = (byte)(val + 1);
-            }
-        }
-        else if (!ascii)
-        {
+          if (!ascii)
+          {
             edi |= ('_' & 0x3f) << pedi;
-            if (ptrOut + 3 - pedi / 8 > dataLength)
-                return -1;
+            if (ptrOut + (3 - pedi / 8) > dataLength)
+              break;
             data[dataOffset + ptrOut++] = (byte)(edi >> 16);
             if (pedi <= 12)
-                data[dataOffset + ptrOut++] = (byte)(edi >> 8);
+              data[dataOffset + ptrOut++] = (byte)(edi >> 8);
             if (pedi <= 6)
-                data[dataOffset + ptrOut++] = (byte)edi;
+              data[dataOffset + ptrOut++] = (byte)edi;
+            ascii = true;
+            pedi = 18;
+            edi = 0;
+          }
+          if (c > 127)
+          {
+            if (ptrOut >= dataLength)
+              break;
+            data[dataOffset + ptrOut++] = (byte)235;
+            c -= 128;
+          }
+          if (ptrOut >= dataLength)
+            break;
+          data[dataOffset + ptrOut++] = (byte)(c + 1);
         }
-        return ptrOut;
+      }
+      if (ptrIn != textLength)
+        return -1;
+      if (!ascii)
+      {
+        edi |= ('_' & 0x3f) << pedi;
+        if (ptrOut + (3 - pedi / 8) > dataLength)
+          return -1;
+        data[dataOffset + ptrOut++] = (byte)(edi >> 16);
+        if (pedi <= 12)
+          data[dataOffset + ptrOut++] = (byte)(edi >> 8);
+        if (pedi <= 6)
+          data[dataOffset + ptrOut++] = (byte)edi;
+      }
+      return ptrOut;
     }
 
     private static int C40OrTextEncodation(byte[] text, int textOffset, int textLength, byte[] data, int dataOffset, int dataLength, bool c40)
@@ -753,12 +719,14 @@ namespace FastReport.Barcode
         data[dataOffset + ptrOut++] = (byte)(a / 256);
         data[dataOffset + ptrOut++] = (byte)a;
       }
-        i = 0;
-        if (textLength - ptrIn > 0)
-        {
-            data[ptrOut++] = (byte)254;
-            i = AsciiEncodation(text, ptrIn, textLength - ptrIn, data, ptrOut, dataLength - ptrOut);
-        }
+
+      i = 0;
+      if (textLength - ptrIn > 0)
+      {
+          data[ptrOut++] = (byte)254;
+          i = AsciiEncodation(text, ptrIn, textLength - ptrIn, data, ptrOut, dataLength - ptrOut);
+      }
+
       if (i < 0)
         return i;
       return ptrOut + i;
@@ -853,13 +821,13 @@ namespace FastReport.Barcode
 
     private string ReplaceControlCodes(string text)
     {
-            if(AutoEncode)
-            {
-                if (text.StartsWith("&1;"))
-                    text = ((char)232).ToString() + text.Remove(0, 3);
-                text = text.Replace("&1;", ((char)0x1d).ToString());
-            }
-            return text;
+      if (AutoEncode)
+        {
+            if (text.StartsWith("&1;"))
+                text = ((char)232).ToString() + text.Remove(0, 3);
+            text = text.Replace("&1;", ((char)0x1d).ToString());
+        }
+        return text;
     }
     
     private void Generate(String text)
@@ -942,7 +910,7 @@ namespace FastReport.Barcode
       Encoding = src.Encoding;
       CodePage = src.CodePage;
       PixelSize = src.PixelSize;
-            AutoEncode = src.AutoEncode;
+      AutoEncode = src.AutoEncode;
     }
 
     internal override void Serialize(FastReport.Utils.FRWriter writer, string prefix, BarcodeBase diff)
@@ -950,16 +918,16 @@ namespace FastReport.Barcode
       base.Serialize(writer, prefix, diff);
       BarcodeDatamatrix c = diff as BarcodeDatamatrix;
 
-            if (c == null || SymbolSize != c.SymbolSize)
-                writer.WriteValue(prefix + "SymbolSize", SymbolSize);
-            if (c == null || Encoding != c.Encoding)
-                writer.WriteValue(prefix + "Encoding", Encoding);
-            if (c == null || CodePage != c.CodePage)
-                writer.WriteInt(prefix + "CodePage", CodePage);
-            if (c == null || PixelSize != c.PixelSize)
-                writer.WriteInt(prefix + "PixelSize", PixelSize);
-            if (c == null || AutoEncode != c.AutoEncode)
-                writer.WriteBool(prefix + "AutoEncode", AutoEncode);
+      if (c == null || SymbolSize != c.SymbolSize)
+        writer.WriteValue(prefix + "SymbolSize", SymbolSize);
+      if (c == null || Encoding != c.Encoding)
+        writer.WriteValue(prefix + "Encoding", Encoding);
+      if (c == null || CodePage != c.CodePage)
+        writer.WriteInt(prefix + "CodePage", CodePage);
+      if (c == null || PixelSize != c.PixelSize)
+        writer.WriteInt(prefix + "PixelSize", PixelSize);
+      if (c == null || AutoEncode != c.AutoEncode)
+        writer.WriteBool(prefix + "AutoEncode", AutoEncode);
     }
 
     internal override void Initialize(string text, bool showText, int angle, float zoom)
@@ -977,8 +945,8 @@ namespace FastReport.Barcode
         width = dmParams.width;
         height = dmParams.height;
       }
-
-            Generate(base.text);
+      
+      Generate(base.text);
     }
 
     internal override SizeF CalcBounds()
@@ -989,13 +957,13 @@ namespace FastReport.Barcode
 
     internal override string StripControlCodes(string data)
     {
-            if(AutoEncode)
-            {
-                if (data.StartsWith("&1;"))
-                    data = data.Remove(0, 3);
-                data = data.Replace("&1;", " ");
-            }
-            return data;
+        if (AutoEncode)
+        {
+            if (data.StartsWith("&1;"))
+                data = data.Remove(0, 3);
+            data = data.Replace("&1;", " ");
+        }
+      return data;
     }
 
     internal override void Draw2DBarcode(IGraphics g, float kx, float ky)
@@ -1003,10 +971,8 @@ namespace FastReport.Barcode
       if (image == null)
         return;
       
-      Brush light = Brushes.White;
-      Brush dark = new SolidBrush(Color);
       int stride = (width + 7) / 8;
-
+      
       for (int k = 0; k < height; ++k)
       {
         int p = k * stride;
@@ -1015,14 +981,11 @@ namespace FastReport.Barcode
           int b = image[p + (j / 8)] & 0xff;
           b <<= j % 8;
 
-          Brush brush = /*(b & 0x80) == 0 ? light :*/ dark;
-          if ((b & 0x80) != 0)
-            g.FillRectangle(brush, j * PixelSize * kx, k * PixelSize * ky,
+          Brush brush = (b & 0x80) == 0 ? Brushes.White : Brushes.Black;
+          g.FillRectangle(brush, j * PixelSize * kx, k * PixelSize * ky,
             PixelSize * kx, PixelSize * ky);
         }
       }
-
-      dark.Dispose();
     }
     #endregion
 
@@ -1033,10 +996,10 @@ namespace FastReport.Barcode
     {
       CodePage = 1252;
       PixelSize = 3;
-            AutoEncode = true;
-#if CROSSPLATFORM || COREWIN
-            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-#endif
+      AutoEncode = true;
+      #if CROSSPLATFORM || COREWIN
+      System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+      #endif
     }
 
 
