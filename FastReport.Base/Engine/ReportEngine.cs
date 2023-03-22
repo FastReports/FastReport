@@ -403,6 +403,27 @@ namespace FastReport.Engine
             OnStateChanged(Report, EngineState.ReportFinished);
         }
 
+        private void LimitPreparedPages()
+        {
+            // limit the prepared pages
+            if (Report.MaxPages > 0)
+            {
+                while (PreparedPages.Count > Report.MaxPages)
+                {
+                    PreparedPages.RemovePage(PreparedPages.Count - 1);
+                }
+            }
+
+            // Limit the prepared pages again because pagesLimit has better priority than Report.MaxPages.
+            if (pagesLimit > 0)
+            {
+                while (PreparedPages.Count > pagesLimit)
+                {
+                    PreparedPages.RemovePage(PreparedPages.Count - 1);
+                }
+            }
+        }
+
         #endregion Private Methods
 
         #region Internal Methods
@@ -426,42 +447,11 @@ namespace FastReport.Engine
             {
                 if (runDialogs && !RunDialogs())
                     return false;
-
-                Config.ReportSettings.OnStartProgress(Report);
-                PrepareToFirstPass(append);
-                RunReportPages(page);
-
-                ResetLogicalPageNumber();
-                if (Report.DoublePass && !Report.Aborted)
-                {
-                    finalPass = true;
-                    PrepareToSecondPass();
-                    RunReportPages(page);
-                }
+                RunPhase2(append, page);
             }
             finally
             {
-                Report.OnFinishReport(EventArgs.Empty);
-                Config.ReportSettings.OnFinishProgress(Report);
-                Report.SetOperation(ReportOperation.None);
-
-                // limit the prepared pages
-                if (Report.MaxPages > 0)
-                {
-                    while (PreparedPages.Count > Report.MaxPages)
-                    {
-                        PreparedPages.RemovePage(PreparedPages.Count - 1);
-                    }
-                }
-
-                // Limit the prepared pages again because pagesLimit has better priority than Report.MaxPages.
-                if (pagesLimit > 0)
-                {
-                    while (PreparedPages.Count > pagesLimit)
-                    {
-                        PreparedPages.RemovePage(PreparedPages.Count - 1);
-                    }
-                }
+                RunFinished();
             }
             return true;
         }
@@ -477,8 +467,23 @@ namespace FastReport.Engine
             if (resetDataState)
                 InitializeData();
             // don't call OnStartReport event again, if it's web dialog re-render
-            if(!webDialog)
+            if (!webDialog)
                 Report.OnStartReport(EventArgs.Empty);
+        }
+
+        internal void RunPhase2(bool append, ReportPage page)
+        {
+            Config.ReportSettings.OnStartProgress(Report);
+            PrepareToFirstPass(append);
+            RunReportPages(page);
+
+            ResetLogicalPageNumber();
+            if (Report.DoublePass && !Report.Aborted)
+            {
+                finalPass = true;
+                PrepareToSecondPass();
+                RunReportPages(page);
+            }
         }
 
         internal void RunPhase2(int? pagesLimit = null)
@@ -487,42 +492,20 @@ namespace FastReport.Engine
                 this.pagesLimit = pagesLimit.Value;
             try
             {
-                Config.ReportSettings.OnStartProgress(Report);
-                PrepareToFirstPass(false);
-                RunReportPages();
-
-                ResetLogicalPageNumber();
-                if (Report.DoublePass && !Report.Aborted)
-                {
-                    finalPass = true;
-                    PrepareToSecondPass();
-                    RunReportPages();
-                }
+                RunPhase2(false, null);
             }
             finally
             {
-                Report.OnFinishReport(EventArgs.Empty);
-                Config.ReportSettings.OnFinishProgress(Report);
-                Report.SetOperation(ReportOperation.None);
-
-                // limit the prepared pages
-                if (Report.MaxPages > 0)
-                {
-                    while (PreparedPages.Count > Report.MaxPages)
-                    {
-                        PreparedPages.RemovePage(PreparedPages.Count - 1);
-                    }
-                }
-
-                // Limit the prepared pages again because pagesLimit has better priority than Report.MaxPages.
-                if (pagesLimit > 0)
-                {
-                    while (PreparedPages.Count > pagesLimit)
-                    {
-                        PreparedPages.RemovePage(PreparedPages.Count - 1);
-                    }
-                }
+                RunFinished();
             }
+        }
+
+        internal void RunFinished()
+        {
+            Report.OnFinishReport(EventArgs.Empty);
+            Config.ReportSettings.OnFinishProgress(Report);
+            Report.SetOperation(ReportOperation.None);
+            LimitPreparedPages();
         }
 
         #endregion Internal Methods

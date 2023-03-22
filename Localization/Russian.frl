@@ -195,7 +195,13 @@
     <AdvMatrixObject Text="Улучшенная матрица"/>
     <SubreportObject Text="Вложенный отчет"/>
     <ContainerObject Text="Контейнер"/>
-    <BarcodeObject Text="Штрихкод"/>
+    <BarcodeObject Text="Штрихкод">
+      <TwoD Text="Двумерные"/>
+      <EANUPC Text="EAN/UPC"/>
+      <Post Text="Почтовые"/>
+      <GS1 Text="GS1"/>
+      <Others Text="Прочие"/>
+    </BarcodeObject>
     <RichObject Text="Форматированный текст"/>
     <MSChartObject Text="Диаграмма MS Chart"/>
     <TeeChartObject Text="Диаграмма Steema TeeChart"/>
@@ -491,7 +497,7 @@
         <ShowData Text="Показать окно данных"/>
         <Add Text="Новый источник данных..."/>
         <Choose Text="Выбрать данные для отчета..."/>
-        <Upload Text="Загрузить источник данных на сервер..."/>
+        <Upload Text="Загрузить источник данных в Облако..."/>
       </Data>
       <Window Text="Окно">
         <CloseAll Text="Закрыть все"/>
@@ -534,8 +540,8 @@
         <Merge Text="Объединить словари..."/>
         <NewDataSource Text="Новый источник данных..."/>
         <SortDataSources Text="Сортировать источники данных"/>
-        <UploadDataSource Text="Загрузить на корпоративный сервер..."/>
-        <UploadChangesDataSource Text="Обновить подключение на Облаке"/>
+        <UploadDataSource Text="Загрузить в Облако..."/>
+        <UploadChangesDataSource Text="Обновить подключение в Облаке"/>
         <CopyDataSource Text="Скопировать источник данных"/>
         <SortDataFields Text="Сортировать поля данных"/>
         <NewRelation Text="Новая связь..."/>
@@ -1138,8 +1144,8 @@
         <StatusError Text="Ошибка"/>
         <StatusUpdating Text="Обновление"/>
         <Caption Text="Выберите подключение"/>
-        <SelectSources Text="Выберите соединение к данным для вашего отчета с корпоративного сервера"/>
-        <SelectUpload Text="Выберите доступное соединение, чтобы загрузить его на корпоративный сервер"/>
+        <SelectSources Text="Выберите соединение к данным для вашего отчета из Облака"/>
+        <SelectUpload Text="Выберите доступное соединение, чтобы загрузить его в Облако"/>
         <NotFoundSources Text="Нет доступных подключений"/>
         <PluginNotAdded Text="Невозможно загрузить источник данных. Вероятно, не подключен плагин, соответствующий этому подключению"/>
     </CloudDataSourceForm>
@@ -1214,7 +1220,7 @@
       <Wait Text="Подключение к базе данных"/>
       <AddQuery Text="Добавить SQL запрос..."/>
       <CheckAll Text="Выбрать все"/>
-      <CloudDataSources Text="Выбрать подключение с сервера"/>
+      <CloudDataSources Text="Выбрать подключение с Облака"/>
       <MessageBox>
         <SuccessText Text="Источник данных успешно загружен на сервер!"/>
         <SuccessCaption Text="Загрузка успешна"/>
@@ -1222,7 +1228,7 @@
         <SuccessUpdateCaption Text="Обновление успешно"/>
         <ErrorText Text="Ошибка при загрузке источника данных"/>
         <ErrorCaption Text="Ошибка"/>
-        <ErrorInvalidID Text="Некорретный Id источника данных. Вероятно источник данных отсутствует на сервере. Проверьте данные и попробуйте снова."/>
+        <ErrorInvalidID Text="Некорретный Id источника данных. Вероятно, источник данных отсутствует на сервере. Проверьте данные и попробуйте снова."/>
         <Error404 Text="Выбранного источника данных не существует в текущей подписке. Проверьте данные и попробуйте снова."/>
       </MessageBox>
       <ChangeParameters Text="Изменение параметров процедуры "/>

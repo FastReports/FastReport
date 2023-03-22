@@ -174,6 +174,8 @@ namespace FastReport.Preview
               }
             }
         }
+
+        internal event EventHandler PageAdded;
         #endregion
 
         #region Private Methods
@@ -247,6 +249,7 @@ namespace FastReport.Preview
                 AddPageAction = AddPageAction.WriteOver;
                 CurPage = Count - 1;
                 Report.Engine.IncLogicalPageNumber();
+                PageAdded?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -633,6 +636,11 @@ namespace FastReport.Preview
         internal void ClearPageCache()
         {
             pageCache.Clear();
+        }
+
+        internal void RemovePageCache(int index)
+        {
+            pageCache.Remove(index);
         }
         #endregion
 
