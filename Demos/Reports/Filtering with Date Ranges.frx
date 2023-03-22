@@ -92,6 +92,6 @@ namespace FastReport
     <DateTimePickerControl Name="DateTimePicker2" Left="104" Top="260" Width="200" Height="20" Font="Tahoma, 8pt" TabIndex="3" DataColumn="Orders.OrderDate" FilterOperation="LessThanOrEqual" Value="2015-12-31"/>
     <LabelControl Name="Label1" Left="104" Top="172" Width="67" Height="13" Font="Tahoma, 8pt" TabIndex="4" Text="Range from:"/>
     <LabelControl Name="Label2" Left="104" Top="236" Width="21" Height="13" Font="Tahoma, 8pt" TabIndex="5" Text="to:"/>
-    <LabelControl Name="Label3" Left="12" Top="12" Width="400" Height="149" Font="Tahoma, 8.25pt" TabIndex="6" Text="Label" AutoSize="false"/>
+    <LabelControl Name="Label3" Left="12" Top="12" Width="400" Height="149" Font="Tahoma, 8pt" TabIndex="6" Text="Label" AutoSize="false"/>
   </DialogPage>
 </Report>

@@ -197,7 +197,13 @@
     <AdvMatrixObject Text="Advanced Matrix"/>
     <SubreportObject Text="Subreport"/>
     <ContainerObject Text="Container"/>
-    <BarcodeObject Text="Barcode"/>
+    <BarcodeObject Text="Barcode">
+      <TwoD Text="Two-dimensional"/>
+      <EANUPC Text="EAN/UPC"/>
+      <Post Text="Post"/>
+      <GS1 Text="GS1"/>
+      <Others Text="Others"/>
+    </BarcodeObject>
     <RichObject Text="Rich Text"/>
     <MSChartObject Text="MS Chart"/>
     <TeeChartObject Text="Steema TeeChart"/>
@@ -495,7 +501,7 @@
         <ShowData Text="Show Data Window"/>
         <Add Text="Add Data Source..."/>
         <Choose Text="Choose Report Data..."/>
-        <Upload Text="Upload Data Source to Server..."/>
+        <Upload Text="Upload Data Source to Cloud..."/>
       </Data>
       <Window Text="Window">
         <CloseAll Text="Close All"/>
@@ -538,7 +544,7 @@
         <Merge Text="Merge Dictionary..."/>
         <NewDataSource Text="New Data Source..."/>
         <SortDataSources Text="Sort Data Sources"/>
-        <UploadDataSource Text="Upload Data Source to server..."/>
+        <UploadDataSource Text="Upload Data Source to Cloud..."/>
         <UploadChangesDataSource Text="Update connection on Cloud"/>
         <SortDataFields Text="Sort Data Fields"/>
         <CopyDataSource Text="Copy Data Source"/>
@@ -1148,8 +1154,8 @@
         <StatusError Text="Error"/>
         <StatusUpdating Text="Updating"/>
         <Caption Text="Select connection"/>
-        <SelectSources Text="Select data source for your report from corporate server"/>
-        <SelectUpload Text="Select available connection to upload it to corporate server"/>
+        <SelectSources Text="Select data source for your report from Cloud"/>
+        <SelectUpload Text="Select available connection to upload it to Cloud"/>
         <NotFoundSources Text="No available data connections"/>
         <PluginNotAdded Text="Impossible to unload data source. Probably the plugin, corresponding to the connection, is not added"/>
     </CloudDataSourceForm>
@@ -1224,7 +1230,7 @@
       <Wait Text="Retrieving database information"/>
       <AddQuery Text="Add SQL query..."/>
       <CheckAll Text="Check all"/>
-      <CloudDataSources Text="Select connection from server"/>
+      <CloudDataSources Text="Select connection from Cloud"/>
       <MessageBox>
         <SuccessText Text="The data source has been successfully uploaded to the server!"/>
         <SuccessCaption Text="Upload successful"/>
