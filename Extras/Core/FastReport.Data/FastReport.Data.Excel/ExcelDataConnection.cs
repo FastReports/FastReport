@@ -4,11 +4,54 @@ using System.Data.Common;
 using SpreadsheetLight;
 using System.Data;
 using DocumentFormat.OpenXml.Spreadsheet;
+using FastReport.Utils;
+using System.ComponentModel;
 
 namespace FastReport.Data
 {
     public partial class ExcelDataConnection : DataConnectionBase
     {
+
+        #region Properties
+        /// <summary>
+        /// Gets or sets the path to .xlsx file.
+        /// </summary>
+        [Category("Data")]
+        public string ExcelFile
+        {
+            get
+            {
+                ExcelConnectionStringBuilder builder = new ExcelConnectionStringBuilder(ConnectionString);
+                return builder.ExcelFile;
+            }
+            set
+            {
+                ExcelConnectionStringBuilder builder = new ExcelConnectionStringBuilder(ConnectionString);
+                builder.ExcelFile = value;
+                ConnectionString = builder.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value indicating that field names should be loaded from the first string of the file.
+        /// </summary>
+        [Category("Data")]
+        public bool FieldNamesInFirstString
+        {
+            get
+            {
+                ExcelConnectionStringBuilder builder = new ExcelConnectionStringBuilder(ConnectionString);
+                return builder.FieldNamesInFirstString;
+            }
+            set
+            {
+                ExcelConnectionStringBuilder builder = new ExcelConnectionStringBuilder(ConnectionString);
+                builder.FieldNamesInFirstString = value;
+                ConnectionString = builder.ToString();
+            }
+        }
+        #endregion Properties
+
         SLDocument document;
 
         /// <inheritdoc/>
@@ -79,12 +122,15 @@ namespace FastReport.Data
         public override void FillTableSchema(DataTable table, string selectCommand, CommandParameterCollection parameters)
         {
             document.SelectWorksheet(table.TableName);
+            string columnName;
 
             for (int i = 1; i <= document.GetWorksheetStatistics().EndColumnIndex; i++)
             {
-                string columnName = IndexToName(i - 1);
+                if (FieldNamesInFirstString)
+                    columnName = document.GetCellValueAsString(1, i);
+                else
+                    columnName = IndexToName(i - 1);
                 table.Columns.Add(columnName, GetTypeColumn(i));
-
             }
         }
 
@@ -96,6 +142,11 @@ namespace FastReport.Data
 
             for (int y = 1; y <= document.GetWorksheetStatistics().EndRowIndex; y++)
             {
+                if (FieldNamesInFirstString)
+                {
+                    y = 2;
+                    FieldNamesInFirstString = false;
+                } 
                 DataRow row = table.NewRow();
                 List<object> rowItems = new List<object>();
                 for (int x = 1; x <= document.GetWorksheetStatistics().EndColumnIndex; x++)
@@ -197,7 +248,8 @@ namespace FastReport.Data
 
         private void InitConnection()
         {
-            document = new SLDocument(ConnectionString);
+            //document = new SLDocument(ConnectionString);
+            document = new SLDocument(ExcelFile);
         }
     }
 }

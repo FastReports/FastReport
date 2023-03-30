@@ -12,11 +12,16 @@ namespace FastReport.Data
         private void Localize()
         {
             gbSelect.Text = Res.Get("ConnectionEditors,Common,Database");
+            cbxFieldNames.Text = Res.Get("ConnectionEditors,Excel,FieldNames");
+            lblSelectXlsx.Text = Res.Get("ConnectionEditors,Xlsx");
         }
 
         protected override string GetConnectionString()
         {
-            return tbExcelFile.Text;
+            ExcelConnectionStringBuilder builder = new ExcelConnectionStringBuilder();
+            builder.ExcelFile = tbExcelFile.Text;
+            builder.FieldNamesInFirstString = cbxFieldNames.Checked;
+            return builder.ToString();
         }
 
         private void TbExcelFile_ButtonClick(object sender, EventArgs e)

@@ -19,17 +19,23 @@
   <Messages>
     <AccessingData Text="Datenzugriff..."/>
     <Attention Text="Achtung"/>
+    <BarcodeFewError Text="Die Anzahl der Ziffern ist geringer als das zulässige Minimum."/>
+    <BarcodeManyError Text="Die Anzahl der Ziffern ist größer als das zulässige Maximum."/>
+    <BarcodeLengthMismatch Text="Nichtübereinstimmung der Zeichenanzahl."/>
     <CantFindObject Text="Objekt wurde nicht gefunden"/>
     <CantLoadReport Text="Bericht wurde nicht geladen {0}"/>
     <CantSaveReport Text="Bericht wurde nicht gespeichert. Die Datei kann schreibgeschützt sein. "/>
+    <ChangePicture Text="Möchten Sie das aktuelle Bild ändern?"/>
     <ClassError Text="die Hauptklasse des Berichts wurde im ReportScript nicht gefunden"/>
     <Confirmation Text="Bestätigen"/>
     <DataNotInitialized Text="Datenquelle ist noch nicht initialisiert."/>
     <DecompressError Text="Datei kann nicht extrahiert werden"/>
     <DecryptError Text="Erkennungsfehler: Falsches Passwort"/>
     <DelegateError Text="{0} soll zwei Argumente haben: 'sender' und 'e'"/>
+    <CompilerError Text="Das Berichtsskript ist ungültig"/>
     <DeleteAncestor Text="Löschenfehler. {0} kann im Ausgangsbericht verwendet werden"/>
     <DuplicateName Text="Objektname {0} schon existiert"/>
+    <GroupHeaderHasNoGroupCondition Text="Der Gruppenkopf {0} hat keine Gruppenbedingung"/>
     <DuplicateStyle Text="Stil mit diesem Namen ist schon vorhanden"/>
     <Error Text="Fehler"/>
     <EventError Text="Fehler im Quellcode, Events Handler kann nicht erzeugt werden"/>
@@ -39,10 +45,12 @@
     <Information Text="Information"/>
     <MatrixError Text="{0}: Matrix-Objekt muss mindestens aus einer Spalte oder Zeile bestehen"/>
     <MatrixValueError Text="Zahl der hinzufügenden Werten ist ungleich zum MatrixData.Cells.Count (muss {0} sein)"/>
+    <MatrixLayoutError Text="Es ist unmöglich, zwei Matrizen mit demselben Layout.Left-Wert auf einem Band zu platzieren."/>
     <ParentError Text="Objekt vom Typ {0} kann keine Objekte vom Typ {1} enthalten"/>
     <ParentError1 Text="Objekt vom Typ {0} kann keine Objekte enthalten"/>
     <Performance Text="Erstellungsdauer {0} ms"/>
     <PreparingData Text="Vorbereitung der Daten..."/>
+    <LoadingReport Text="Bericht wird geladen..."/>
     <PrintingPage Text="Druck der Seite {0}"/>
     <RenameAncestor Text="Fehler beim Umbenennen. {0} ist im Ausgangsbericht bereits vorhanden"/>
     <SaveChanges Text="Änderungen in {0} speichern?"/>
@@ -52,15 +60,60 @@
     <TableManualBuildError Text="TableObjekten PrintRow und PrintColumn können nur in ManualBuild verwendet werden!"/>
     <Warning Text="Warnung"/>
     <WarningSaveRDL Text="RDL-Format hat Einschränkungen! Dieser Filter speichert nur die Berichtsansicht! Datenquellen und Berichts Objekte wie Barcodes, Rich Text, CheckBox und Zip Code können Ihre Einstellungen verlieren! Trotzdem speichern?"/>
+    <WarningMatrixOnRepeatedBand Text="Es wird nicht empfohlen, {0} auf {1} zu setzen. In diesem Fall wird {0} jedes Mal erstellt, wenn das Band gedruckt wird, was zu einem Stapelüberlauf führt."/>
     <WrongFileFormat Text="Datei kann nicht geöffnet werden. Unbekanntes Dateiformat"/>
+    <WrongListAndLabelFile Text="Die Datei kann nicht gelesen werden. Die Datei ist beschädigt oder kein „List and Label“ Bericht."/>
+    <WrongCrystalReportsFile Text="Die Datei kann nicht gelesen werden. Die Datei ist beschädigt oder kein Crystal Reports Bericht."/>
     <InvalidBarcode1 Text="Der Barcode muss mit  '&amp;A;', '&amp;B;' oder '&amp;C;'  Sequenzen beginnen"/>
     <InvalidBarcode2 Text="Ungültiges Kennzeichen im Eingabe-Code"/>
     <ErrorInExpression Text="Fehler in der Expression"/>
     <ErrorInHighlightCondition Text="Fehler in der Highlights Zustand"/>
     <FileNameEmpty Text="Bitte geben Sie den richtigen Dateinamen ein."/>
     <SaveToAnotherFile Text="Möchten Sie in einer anderen Datei speichern?"/>
+    <Validator>
+      <DuplicateName Text="Der Name wird bereits verwendet."/>
+      <IntersectedObjects Text="Das Objekt wird von einem anderen Objekt überschnitten."/>
+      <IncorrectSize Text="Die Objektgröße muss größer als Null sein."/>
+      <UnnamedObject Text="Das Objekt hat keinen Namen."/>
+      <OutOfBounds Text="Das Objekt geht über die Grenzen des übergeordneten Elements hinaus."/>
+    </Validator>
+    <Swiss>
+      <SwissNullIban Text="Die IBAN darf nicht null sein."/>
+      <SwissNullCreditor Text="Der Empfänger darf nicht NULL sein"/>
+      <SwissNullReference Text="Die Referenz darf nicht NULL sein "/>
+      <SwissNullCurrency Text="Die Währung darf nicht NULL sein"/>
+      <SwissAmountLength Text="Der Betrag (einschließlich der Dezimalstellen) muss kürzer als 13 Stellen sein"/>
+      <SwissQRIban Text="Wenn QR-IBAN verwendet wird, müssen Sie QRR als Referenztyp auswählen!"/>
+      <SwissNonQRIban Text="Wenn kein QR-IBAN verwendet wird, müssen Sie entweder SCOR oder NON als Referenztyp wählen!"/>
+      <SwissAltProcedureLength Text="Der Informationsblock des Alternativverfahrens 1 muss kürzer als 101 Zeichen lang sein"/>
+      <SwissUnstructBillLength Text="Die Meldung und die Rechnungsinformationen müssen insgesamt kürzer als 141 Zeichen lang sein"/>
+      <SwissRefTypeNon Text="Die Referenz ist nur erlaubt, wenn der Referenztyp nicht NON ist"/>
+      <SwissRefTextTypeNon Text="Sie müssen den Referenztexttyp festlegen, wenn ein Referenztext vorhanden ist"/>
+      <SwissRefQRLength Text="QR-Referenzen müssen kürzer als 28 Zeichen lang sein"/>
+      <SwissRefQRNotOnlyDigits Text="Die QR-Referenz darf nur aus Ziffern bestehen"/>
+      <SwissRefQRCheckSum Text="Die QR- Referenz ist ungültig. Prüfsummenfehler"/>
+      <SwissRefISOLength Text="Creditor References  (ISO 11649) müssen kürzer als 26 Zeichen lang sein"/>
+      <SwissEmptyProperty Text="{0} darf nicht leer sein"/>
+      <SwissLengthMore Text="muss kürzer als {0} Zeichen lang sein"/>
+      <SwissPatternError Text="{0} muss der folgenden Vorlage entsprechen:"/>
+      <SwissAddressLine2Error Text="Bei kombinierten Adressen (adresszeilenbasierte Adressen) muss die Adresszeile 2 angegeben werden."/>
+      <SwissCountryTwoLetters Text="Das Land muss ein gültiger zweistelliger Ländercode gemäß ISO 3166-1 sein."/>
+      <SwissIbanNotValid Text="Die eingegebene IBAN ist ungültig."/>
+      <SwissQRIbanNotValid Text="Die eingegebene QR-IBAN ist ungültig."/>
+      <SwissQRStartNotValid Text="Die IBAN muss mit CH oder LI beginnen"/>
+      <SwissPropName Text="Name"/>
+      <SwissPropStreet Text="Strasse"/>
+      <SwissPropHouseNumber Text="Hausnummer"/>
+      <SwissPropZipCode Text="Postleitzahl"/>
+      <SwissPropCity Text="Stadt"/>
+    </Swiss>
   </Messages>
   <Misc>
+    <Bytes Text="Bytes"/>
+    <KB Text="KB"/>
+    <MB Text="MB"/>
+    <GB Text="GB"/>
+    <TB Text="TB"/>
     <ShortUnitsMm Text="mm"/>
     <ShortUnitsCm Text="cm"/>
     <ShortUnitsIn Text="in"/>
@@ -76,11 +129,15 @@
     <ReportPage Text="Seite"/>
     <DialogPage Text="Formular"/>
     <XmlDataConnection Text="XML Datenbank"/>
+    <CsvDataConnection Text="CSV-Datenbank"/>
     <OleDbDataConnection Text="OLE Database-Verbindung"/>
     <MsAccessDataConnection Text="MS Access-Verbindung"/>
     <MsSqlDataConnection Text="MS SQL-Verbindung"/>
     <OdbcDataConnection Text="ODBC-Verbindung"/>
     <FirebirdDataConnection Text="Firebird-Verbindung"/>
+    <ExcelDataConnection Text="Verbindung mit Excel"/>
+    <CassandraDataConnection Text="Verbindung mit Cassandra"/>
+    <LinterDataConnection Text="Verbindung mit LINTER"/>
     <VistaDBDataConnection Text="VistaDB-Verbindung"/>
     <PostgresDataConnection Text="Postgres-Verbindung"/>
     <MySqlDataConnection Text="MySQL-Verbindung"/>
@@ -90,6 +147,14 @@
     <SharePointDataConnection Text="Verbindung mit SharePoint"/>
     <GoogleBigQueryDataConnection Text="Verbindung mit Google Big Query"/>
     <JsonDataConnection Text="JSON Databank"/>
+    <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)"/>
+    <ESDataSourceConnection Text="Verbindung mit ElasticSearch"/>
+    <CouchbaseDataConnection Text="Verbindung mit Couchbase"/>
+    <MongoDBDataConnection Text="Verbindung mit MongoDB"/>
+    <NosDbDataConnection Text="Verbindung mit NosDb"/>
+    <RavenDBDataConnection Text="Verbindung mit RavenDB"/>
+    <SqlAnywhereDataConnection Text="Verbindung mit SqlAnywhere"/>
+    <ClickHouseDataConnection Text="Verbindung mit ClickHouse"/>
     <Bands Text="Bereiche">
       <ReportTitle Text="Berichtstitel"/>
       <ReportSummary Text="Berichtsfuß"/>
@@ -124,14 +189,17 @@
       <Octagon Text="Octagon"/>
     </Shapes>
     <PictureObject Text="Bild"/>
+    <SVGObject Text="SVG-Bild"/>
     <TableObject Text="Tabelle"/>
     <Matrix Text="Matrix"/>
     <MatrixObject Text="Matrix"/>
     <AdvMatrixObject Text="Erweiterte Matrix"/>
     <SubreportObject Text="Unterbericht"/>
+    <ContainerObject Text="Container"/>
     <BarcodeObject Text="Barcode"/>
     <RichObject Text="Rich Text"/>
     <MSChartObject Text="MS Diagramm"/>
+    <TeeChartObject Text="Steema TeeChart"/>
     <ZipCodeObject Text="Postleitzahl"/>
     <CellularTextObject Text="Zellförmiger Text"/>
     <CheckBoxObject Text="CheckBox"/>
@@ -160,7 +228,90 @@
     <Gauge Text="Gauge">
       <Linear Text="Linear-Messgerät"/>
       <Simple Text="Einfache-Messgerät"/>
+      <Radial Text="Radialmessgerät"/>
+      <SimpleProgress Text="Einfache Fortschrittsanzeige"/>
+      <GaugeForms Text="Messgerät bearbeiten">
+        <LinearGauge Text="Linearmessgeräteditor"/>
+        <SimpleGauge Text="Einfacher Messgeräteditor"/>
+        <SimpleProgressGauge Text="Einfacher Fortschrittsmesser-Editor"/>
+        <RadialGauge Text="Radialmessgerät-Editor"/>
+        <PageGeneral Text="Allgemein">
+          <Expression Text="Ausdruck..."/>
+          <Border Text="Grenze..."/>
+          <Fill Text="Füllen..."/>
+          <LinearInverdted Text="Umgekehrten:"/>
+          <Type Text="Art:"/>
+          <Position Text="Position:"/>
+        </PageGeneral>
+        <PageScale Text="Skala">
+          <TabTicks Text="Ticken">
+            <MajorTicks Text="Wichtige Zecken">
+              <Width Text="Breite:"/>
+              <Color Text="Farbig:"/>
+            </MajorTicks>
+            <MinorTicks Text="Kleinere Häkchen">
+              <Width Text="Breite:"/>
+              <Color Text="Farbig:"/>
+            </MinorTicks>
+          </TabTicks>
+          <TabText Text="Text">
+            <Font Text="Schriftart:"/>
+            <TextFill Text="Text ausfüllen"/>
+          </TabText>
+          <Subscales Text="Subskalen">
+            <FirstSubscale Text="Erste Teilskala">
+              <Enabled Text="Aktiviert:"/>
+              <ShowCaption Text="Beschriftung anzeigen:"/>
+            </FirstSubscale>
+            <SecondSubscale Text="Zweite Unterskala">
+              <Enabled Text="Aktiviert:"/>
+              <ShowCaption Text="Beschriftung anzeigen:"/>
+            </SecondSubscale>
+          </Subscales>
+        </PageScale>
+        <PagePointer Text="Zeiger">
+          <BorderColor Text="Rahmenfarbe:"/>
+          <PointerFill Text="Zeigerfüllung"/>
+          <LabelPointerType Text="Art:"/>
+        </PagePointer>
+        <PageLabel Text="Etikett">
+          <LabelColor Text="Etikettenfarbe:"/>
+          <Font Text="Schriftart:"/>
+          <Text Text="Text:"/>
+          <Decimals Text="Decimals:"/>
+        </PageLabel>
+      </GaugeForms>
     </Gauge>
+    <CrossViewObject Text="CrossView"/>
+    <DigitalSignatureObject Text="Digitale Signatur"/>
+    <FastBI Text="FastReport Business Graphics">
+      <Bubble Text="Das Bubble-Chart"/>
+      <TreeMap Text="Das Treemap-Chart"/>
+      <Sunburst Text="Das Sunburst-Chart"/>
+      <Icicle Text="Das Icicle-Chart"/>
+      <Gantt Text="Das Gantt-Chart"/>
+      <Data Text="Daten">
+        <ValueColumn Text="Wertspalte"/>
+        <RootText Text="Wurzeltext"/>
+        <DataSource Text="Datenquelle"/>
+        <MaxDepth Text="Maximale Tiefe"/>
+        <TextColumns Text="Textspalten"/>
+        <Add Text="Hinzufügen"/>
+        <Delete Text="Löschen"/>
+        <Edit Text="Bearbeiten"/>
+      </Data>
+      <Appearance Text="Aussehen">
+        <Palette Text="Farbpalette"/>
+        <StartAngle Text="Startwinkel"/>
+        <TextDirection Text="Textrichtung"/>
+        <LayoutMode Text="Layout Modus"/>
+        <IcicleDirection Text="Richtung"/>
+        <SunburstForm Text="Sunburst-Editor-Formular"/>
+        <IcicleForm Text="Icicle - Editor-Formular"/>
+        <BubbleForm Text="Bubble- Editor-Formular"/>
+        <TreeMapForm Text="TreeMap- Editor-Formular"/>
+      </Appearance>
+    </FastBI>
   </Objects>
   <Functions>
     <Math Text="Mathematische"/>
@@ -179,9 +330,11 @@
     <XsdFile Text="XML Schemadefinitions-Datei (*.xsd)|*.xsd"/>
     <XmlFile Text="XML Datei (*.xml)|*.xml"/>
     <MdbFile Text="MS Access Datenbank (*.mdb)|*.mdb"/>
+    <AccdbFile Text="MS Access 2007 Datenbank (*.accdb)|*.accdb"/>
     <MdfFile Text="Microsoft SQL Server Datenbank (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text Datei (*.rtf)|*.rtf"/>
     <Images Text="Bilder Datei|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <AllImages Text="Bilder Datei|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
     <Assembly Text="Ausführbare Datei (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Druckerdatei (*.prn)|*.prn"/>
     <BmpFile Text="Bitmap Image-Datei (*.bmp)|*.bmp"/>
@@ -193,7 +346,9 @@
     <HtmlFile Text="HTML Datei (*.html)|*.html"/>
     <MhtFile Text="Web-archive Datei (*.mht)|*.mht"/>
     <OdtFile Text="Open Office Writer Datei (*.odt)|*.odt"/>
+    <XodtFile Text="My Office Text  Datei (*.xodt)|*.xodt"/>
     <OdsFile Text="Open Office Calc Datei (*.ods)|*.ods"/>
+    <XodsFile Text="My Office Table Datei (*.xods)|*.xods"/>
     <PdfFile Text="Adobe Acrobat Datei (*.pdf)|*.pdf"/>
     <TxtFile Text="Textdatei (*.txt)|*.txt"/>
     <CsvFile Text="Kommagetrennte Werte (*.csv)|*.csv"/>
@@ -214,6 +369,8 @@
     <XpsFile Text="XPS-Datei (*.xps)|*.xps"/>
     <RdlFiles Text="RDL-Dateien (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
     <RdlFile Text="RDL-Datei (*.rdl)|*.rdl"/>
+    <StimulSoftFile Text="StimulSoft-Datei (*.mrt)|*.mrt"/>
+    <JasperReportsFile Text="JasperReports-Datei (*.jrxml)|*.jrxml"/>
     <RdlcFile Text="RDLC-Datei (*.rdlc)|*.rdlc"/>
     <RptFile Text="Crystal Reports Datei (*.rpt)|*.rpt"/>
     <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>
@@ -222,6 +379,11 @@
     <ListAndLabelFiles Text="List und Label Datei (*.rpt)|*.rpt"/>
     <DevExpressFiles Text="DevExpress Datei (*.repx)|*.repx"/>
     <JsonFile Text="JSON Datei (*.json,*.txt)|*.json;*.txt"/>
+    <LaTeXFile Text="TeX-Datei (*.tex)|*.tex"/>
+    <ZplFile Text="ZPL Datei (*.zpl)|*.zpl"/>
+    <DxfFile Text="DXF Datei (*.dxf)|*.dxf"/>
+    <HpglFile Text="Hpgl (plt) Datei (*.plt)|*.plt"/>
+    <AllFiles Text="Alle Dateien (*.*)|*.*"/>
   </FileFilters>
   <Formats>
     <Date1 Text="d"/>
@@ -235,6 +397,7 @@
     <Time2 Text="T"/>
     <Time3 Text="hh:mm tt"/>
     <Time4 Text="HH:mm"/>
+    <Time5 Text="mm:ss"/>
     <BooleanF1 Text="False"/>
     <BooleanF2 Text="Nein"/>
     <BooleanF3 Text="Aus"/>
@@ -275,13 +438,18 @@
       <File Text="Datei">
         <New Text="Neu..."/>
         <Open Text="Öffnen..."/>
+        <OpenViaCloud Text="Aus der Cloud öffnen..."/>
+        <RecentFiles Text="Letzte Dateien"/>
         <Close Text="Schließen"/>
         <Save Text="Speichern"/>
         <SaveAs Text="Speichern unter..."/>
+        <SaveWithRandomData Text="Mit Zufallsdaten speichern..."/>
         <SaveAll Text="Alles speichern"/>
+        <SaveToCloud Text="In der Cloud speichern..."/>
         <PageSetup Text="Seiteneinstellungen..."/>
         <PrinterSetup Text="Druckereinstellungen..."/>
         <Preview Text="Vorschau..."/>
+        <PreviewCloud Text="Web-Vorschau…"/>
         <SelectLanguage Text="Sprache auswählen..."/>
         <Exit Text="Beenden"/>
       </File>
@@ -292,6 +460,8 @@
         <Copy Text="Kopieren"/>
         <Paste Text="Einfügen"/>
         <Delete Text="Löschen"/>
+        <NewPage Text="Neue Seite"/>
+        <CopyPage Text="Seite kopieren"/>
         <DeletePage Text="Seite löschen"/>
         <SelectAll Text="Alles auswählen"/>
         <Group Text="Gruppieren"/>
@@ -315,18 +485,21 @@
         <Bands Text="Bereiche definieren..."/>
         <Styles Text="Stile..."/>
         <GroupExpert Text="Gruppenverwaltung..."/>
+        <Validate Text="Bericht validieren"/>
         <Options Text="Optionen..."/>
       </Report>
       <Data Text="Daten">
         <ShowData Text="Datenfenster anzeigen"/>
         <Add Text="Datenquelle hinzufügen..."/>
         <Choose Text="Berichtsdaten auswählen..."/>
+        <Upload Text="Datenquelle auf den Server hochladen..."/>
       </Data>
       <Window Text="Fenster">
         <CloseAll Text="Alles schließen"/>
       </Window>
       <Help Text="Hilfe">
         <Contents Text="Inhalt"/>
+        <Account Text="Konto…"/>
         <About Text="Info..."/>
       </Help>
     </Menu>
@@ -334,11 +507,18 @@
       <AutoHide Text="Automatisch ausblenden"/>
       <Close Text="Schließen"/>
       <Properties Text="Eigenschaften">
+        <Categorized Text="Kategorisiert"/>
+        <Alphabetical Text="Alphabetisch"/>
         <PropertiesTab Text="Eigenschaften"/>
         <EventsTab Text="Ereignisse"/>
+        <Filter Text="Objektspezifische Eigenschaften"/>
         <NObjectsSelected Text="{0} Objekte ausgewählt"/>
       </Properties>
-      <ReportTree Text="Berichtsbaum"/>
+      <ReportTree Text="Berichtsbaum">
+        <Sync Text="Mit ausgewähltem Objekt synchronisieren"/>
+      </ReportTree>
+      <CollapseAll Text="Alle ausblenden"/>
+      <ExpandAll Text="Alle einblenden"/>
       <Dictionary Text="Daten">
         <DataSources Text="Datenquellen"/>
         <Parameters Text="Parameter"/>
@@ -351,6 +531,11 @@
         <Save Text="Wörterbuch speichern..."/>
         <Merge Text="Wörterbuch zusammenführen..."/>
         <NewDataSource Text="Neue Datenquelle..."/>
+        <SortDataSources Text="Datenquellen sortieren"/>
+        <UploadDataSource Text="Datenquelle auf den Unternehmensserver hochladen..."/>
+        <UploadChangesDataSource Text="Verbindung in der Cloud aktualisieren"/>
+        <SortDataFields Text="Datenfelder sortieren"/>
+        <CopyDataSource Text="Datenquelle kopieren"/>
         <NewRelation Text="Neue Beziehung..."/>
         <NewParameter Text="Neuer Parameter..."/>
         <NewTotal Text="Neue Summe..."/>
@@ -360,10 +545,18 @@
         <Delete Text="Löschen"/>
         <DeleteAlias Text="Alias löschen"/>
         <View Text="Daten anzeigen..."/>
+        <ViewJson Text="Json anzeigen..."/>
         <DuplicateName Text="Eintrag mit diesem Namen existiert bereits."/>
         <NRows Text="{0} Zeile(n)"/>
+        <RowMofNRows Text="Zeile {0} von {1}"/>
+        <RowsKtoLofNRows Text="Zeilen {0} - {1} von {2}"/>
+        <CubeSources Text="Cube -Quellen"/>
       </Dictionary>
       <Messages Text="Meldungen">
+        <Errors Text="Fehler: {0}"/>
+        <Warnings Text="Warnungen: {0}"/>
+        <Refresh Text="Aktualisieren"/>
+        <Close Text="Schließen"/>
         <Description Text="Beschreibung"/>
         <Line Text="Zeile"/>
         <Column Text="Spalte"/>
@@ -376,10 +569,14 @@
       <Standard Text="Standard">
         <New Text="Neu"/>
         <Open Text="Öffnen"/>
+        <OpenLocally Text="Bericht öffnen (Ctrl+O)"/>
+        <OpenViaCloud Text="Bericht aus der Cloud öffnen"/>
         <Save Text="Speichern"/>
         <SaveAll Text="Alles speichern (Ctrl+Shift+S)"/>
         <Preview Text="Vorschau"/>
+        <PreviewCloud Text="Web-Vorschau"/>
         <NewPage Text="Neue Seite"/>
+        <CopyPage Text="Berichtsseite kopieren"/>
         <NewDialog Text="Neuer Dialog"/>
         <DeletePage Text="Seite löschen"/>
         <PageSetup Text="Seite einrichten"/>
@@ -464,10 +661,12 @@
         <WholePage Text="Ganze Seite"/>
       </Zoom>
       <Polygon Text="Polygon">
+        <MoveScale Text="Verschieben und skalieren"/>
         <Pointer Text="Polygon"/>
         <AddPointToStart Text="Neue Linie zum Start"/>
         <AddPointToEnd Text="Neue Linie zum Ende"/>
         <AddPoint Text="Neuer Punkt für Linie"/>
+        <Bezier Text="Punkt zur Linie hinzufügen"/>
         <RemovePoint Text="Punkt löschen"/>
       </Polygon>
     </Toolbar>
@@ -505,6 +704,7 @@
       <EditReport Text="Berichtseinstellungen bearbeiten"/>
       <SelectData Text="Daten auswählen"/>
       <EditData Text="Daten bearbeiten"/>
+      <FRXChange Text="FRX ändern"/>
     </UndoRedo>
     <StartPage Text="Startseite"/>
     <Untitled Text="Unbenannt.frx"/>
@@ -521,6 +721,7 @@
       <Show Text="Beim Start zeigen"/>
       <Open Text="Zuletzt verwendet"/>
       <New Text="Neu erstellen"/>
+      <Account Text="Konto"/>
     </Welcome>
   </Designer>
   <Preview Text="Vorschau">
@@ -528,22 +729,28 @@
     <Design Text="Berichts Design"/>
     <PrintText Text="Drucken"/>
     <Print Text="Drucken (Ctrl+P)"/>
+    <OpenText Text="Öffnen"/>
     <Open Text="Datei eröffnen"/>
+    <OpenLocal Text="Öffnen..."/>
+    <OpenViaCloud Text="Aus der Cloud öffnen..."/>
     <Save Text="Datei speichern"/>
     <SaveText Text="Speichern"/>
+    <SaveNative Text="Vorbereiteter Bericht..."/>
+    <SaveLocal Text="Speichern..."/>
     <SaveToCloud Text="Zur Wolke"/>
-    <SaveToCloudText Text="Zur Wolke"/>
+    <Search Text="Suchen"/>
     <Email Text="Als E-mail schicken"/>
     <Find Text="Suchen"/>
     <Outline Text="Rahmen"/>
     <PageSetup Text="Seite einrichten"/>
     <Edit Text="Seite bearbeiten"/>
+    <CopyPage Text="Seite kopieren"/>
+    <DeletePage Text="Seite löschen"/>
     <Watermark Text="Wasserzeichen"/>
     <First Text="Erste Seite"/>
     <Prior Text="Vorherige Seite"/>
     <Next Text="Nächste Seite"/>
     <Last Text="Letzte Seite"/>
-    <SaveNative Text="Vorbereiteter Bericht..."/>
     <FtpText Text="Speichern auf FTP"/>
     <DropboxText Text="Zu Dropbox"/>
     <GoogleDriveText Text="Zu Google Drive"/>
@@ -564,6 +771,7 @@
       <Add Text="Hinzufügen"/>
       <Reports Text="Berichtsvorlagen:"/>
       <ReportItems Text="Berichtseinträge:"/>
+      <Games Text="Spiele:"/>
     </AddNewItem>
     <AdvancedConnectionProperties Text="Erweiterte Eigenschaften"/>
     <AskPassword Text="Kennwort">
@@ -576,6 +784,7 @@
     <BaseReportWizard>
       <SelectDataSourcePage Text="Datenquelle auswählen"/>
       <SelectDataSource Text="Verfügbare Datenquelle auswählen oder neue Datenquelle erstellen:"/>
+      <OpenDataDictionary Text="Datenwörterbuchdatei öffnen..."/>
       <CreateNewDatasource Text="Neue Datenquelle erstellen..."/>
       <SelectColumnsPage Text="Datenspalte auswählen"/>
       <SelectColumns Text="Wählen Sie die Spalte, die im Bericht angezeigt werden soll."/>
@@ -591,6 +800,46 @@
       <Color Text="Farbe:"/>
       <Hint Text="Wählen Sie einen Stil und eine Linie für weitere Verwendung."/>
     </Border>
+    <CISWizardForm Text="Assistent für die Visualisierung von Kontrollzeichen (Identifikationszeichen)">
+      <CIS Text="Kontrollzeichen (Identifikationszeichen)"/>
+      <ProductGroup Text="Produktgruppe:"/>
+      <Data Text="Verschlüsselte Daten:"/>
+      <TypeBarcodes Text="Art der Barcodes:"/>
+      <LeftMargin Text="Linker Einzug"/>
+      <MethodСirculation Text="Methode der Überführung von Produkten in den Verkehr"/>
+      <Country Text="Land:"/>
+      <ID Text="ID:"/>
+      <Size Text="Abmessungen:"/>
+      <PageProps Text="Seiteneigenschaften"/>
+      <Landscape Text="Querformat"/>
+      <MarginTop Text="Oben:"/>
+      <MarginLeft Text="Links:"/>
+      <Margins Text="Einzüge:"/>
+      <Paper Text="Papiertyp:"/>
+      <PageWidth Text="Seitenbreite:"/>
+      <PageHeight Text="Seitenhöhe:"/>
+      <CountColumns Text="Anzahl der Spalten:"/>
+      <CountRows Text="Anzahl der Zeilen:"/>
+      <HorizontalPadding Text="Horizontaler Einzug:"/>
+      <VerticalPadding Text="Vertikaler Einzug:"/>
+      <Border Text="Zeichengrenzen"/>
+      <TransportPack Text="Tabak, Transportverpackung"/>
+      <Pack Text="Tabak, Schachtel"/>
+      <Block Text="Tabak, Block"/>
+      <Legprom Text="Leichtindustrie"/>
+      <Perfumes Text="Parfüm und Eau de Toilette"/>
+      <Footwear Text="Schuhe"/>
+      <Fur Text="Pelzmäntel"/>
+      <Photo Text="Photo"/>
+      <Tires Text="Reifen"/>
+      <Medicines Text="Medikamente"/>
+      <Dairy Text="Molkereiprodukte"/>
+      <Water Text="Abgepacktes Wasser"/>
+      <ImportProd Text="Einfuhr von Produkten in das Zollgebiet"/>
+      <ManufactureProd Text="Herstellung von Produkten auf dem Gebiet"/>
+      <Sample Text="Muster"/>
+      <Warning Text="Die Zeichen passen nicht auf die Seite!"/>
+    </CISWizardForm>
     <ChartEditor Text="Diagramm Editor">
       <Chart Text="Diagramm"/>
       <Add Text="Hinzufügen..."/>
@@ -626,6 +875,7 @@
           <ColorColumn Text="Farbenspalte:"/>
           <SeriesSort Text="Seriensortierung:"/>
           <AlignXValues Text="X-Werte ausrichten"/>
+          <ForceAutoSeries Text="Gewaltsam"/>
         </Data>
         <Appearance Text="Aussehen">
           <Template Text="Vorlage:"/>
@@ -882,6 +1132,19 @@
         <RangeBar Text="Bereichs Balken"/>
       </Series>
     </ChartGallery>
+    <CloudDataSourceForm>
+      <TypeConnection Text="Typ"/>
+      <NameConnection Text="Name"/>
+      <StatusConnection Text="Status"/>
+      <StatusConnected Text="Verbunden"/>
+      <StatusError Text="Fehler"/>
+      <StatusUpdating Text="Aktualisierung"/>
+      <Caption Text="Verbindung auswählen"/>
+      <SelectSources Text="Wählen Sie die Datenverbindung für Ihren Bericht vom Unternehmensserver aus"/>
+      <SelectUpload Text="Wählen Sie eine verfügbare Verbindung zum Hochladen auf den Unternehmensserver"/>
+      <NotFoundSources Text="Keine Verbindungen verfügbar"/>
+      <PluginNotAdded Text="Die Datenquelle kann nicht geladen werden. Das Plugin, das dieser Verbindung entspricht, ist wahrscheinlich nicht verbunden"/>
+    </CloudDataSourceForm>
     <CodePageOptions Text="Codepage">
       <EnableCodeCompletion Text="Auto Codenabschluß"/>
       <EnableVirtualSpace Text="Virtuelle Leerzeichen aktivieren"/>
@@ -889,7 +1152,13 @@
       <AllowOutlining Text="Umrisse erlauben"/>
       <LineNumbers Text="Zeilennummern"/>
       <TabSize Text="Tabulator-Größe"/>
+      <DefaultScriptLanguage Text="Standard-Skriptsprache"/>
+      <CSharp Text="C#"/>
+      <VBNet Text="Visual Basic .NET"/>
     </CodePageOptions>
+    <FRXPageOptions Text="FRX-Seite">
+      <Enable Text="Aktivieren"/>
+    </FRXPageOptions>
     <ConfigureBands Text="Bereiche konfigurieren">
       <Add Text="Hinzufügen"/>
       <Delete Text="Löschen"/>
@@ -927,6 +1196,13 @@
       <Filter Text="Filter"/>
       <Expression Text="Filtersformel"/>
     </DataBandEditor>
+    <DataBandColumnEditor Text="Datenband-Spalten-Editor">
+      <Columns Text="Spalten"/>
+      <Count Text="Anzahl"/>
+      <Layout Text="Layout"/>
+      <MinRowCount Text="Minimale Zeilenanzahl"/>
+      <Width Text="Breite"/>
+    </DataBandColumnEditor>
     <DataWizard Text="Daten Assistent">
       <Page1 Text="Datenbank wählen"/>
       <WhichData Text="Wie soll der Bericht mit der Datenbank verbindet werden?"/>
@@ -939,6 +1215,19 @@
       <WhichTables Text="Welche Tabellen sollen im Bericht verwendet werden?"/>
       <Wait Text="Abruf von Datenbank-Informationen"/>
       <AddQuery Text="SQL Abfrage hinzufügen..."/>
+      <CheckAll Text="Alle auswählen"/>
+      <CloudDataSources Text="Verbindung vom Server auswählen"/>
+      <MessageBox>
+        <SuccessText Text="Die Datenquelle wurde erfolgreich auf den Server hochgeladen!"/>
+        <SuccessCaption Text="Der Hochladevorgang war erfolgreich"/>
+        <SuccessUpdateText Text="Die Datenquelle wurde erfolgreich aktualisiert!"/>
+        <SuccessUpdateCaption Text="Der Aktualisierungsvorgang war erfolgreich"/>
+        <ErrorText Text="Fehler beim Hochladen der Datenquelle"/>
+        <ErrorCaption Text="Fehler"/>
+        <ErrorInvalidID Text="Falsche Datenquellen-ID. Die Datenquelle ist wahrscheinlich nicht auf dem Server verfügbar. Überprüfen Sie die Daten und versuchen Sie es erneut."/>
+        <Error404 Text="Die ausgewählte Datenquelle ist im aktuellen Abonnement nicht vorhanden. Überprüfen Sie die Daten und versuchen Sie es erneut."/>
+      </MessageBox>
+      <ChangeParameters Text="Änderung der Verfahrensparameter"/>
     </DataWizard>
     <DialogPageOptions Text="Dialog-Formular"/>
     <Exception Text="Ausnahmefehler">
@@ -947,12 +1236,26 @@
       <Copy Text="In die Zwischenablage kopieren"/>
     </Exception>
     <ExpressionEditor Text="Ausdruck bearbeiten"/>
+    <ExpressionsEditor Text="Ausdrucks-Editor">
+      <Expressions Text="Ausdrücke"/>
+      <Add Text="Hinzufügen"/>
+      <Delete Text="Löschen"/>
+      <Edit Text="Bearbeiten"/>
+    </ExpressionsEditor>
     <Fill Text="Erfüllungseditor">
       <Solid Text="Solide"/>
       <LinearGradient Text="Linearer Verlauf"/>
       <PathGradient Text="Pfadverlauf"/>
       <Hatch Text="Schraffieren"/>
       <Glass Text="Glass"/>
+      <Texture Text="Textur"/>
+      <ChooseImage Text="Bild auswählen"/>
+      <PreserveAspectRatio Text="Beibehaltung der Proportionen"/>
+      <ImageSize Text="Bildgröße"/>
+      <ImageWidth Text="Breite"/>
+      <ImageHeight Text="Höhe"/>
+      <WrapMode Text="Wrap Mode"/>
+      <ImageOffset Text="Bildversatz "/>
       <Colors Text="Farben"/>
       <Color Text="Farbe"/>
       <StartColor Text="Start"/>
@@ -993,6 +1296,19 @@
       <FalseText Text="Text für Wert &quot;Falsch&quot;:"/>
       <TrueText Text="Text für Wert &quot;Richtig&quot;:"/>
     </FormatEditor>
+    <FontsPageOptions Text="Schriftarten einrichten">
+      <FormName Text="Schriftarten einrichten"/>
+      <Fonts Text="Schriftarten"/>
+      <Font Text="Schriftart"/>
+      <SettingsFor Text="Fenstereinstellungen"/>
+      <FormElement Text="Formularelement"/>
+      <DefaultButton Text="Standardmäßig"/>
+      <Size Text="Größe"/>
+      <Italic Text="Kursiv"/>
+      <Bold Text="Fett"/>
+      <Sample Text="Beispiel"/>
+      <CancelButton Text="Abbrechen"/>
+    </FontsPageOptions>
     <GridControlColumnsEditor Text="Spalten bearbeiten">
       <Columns Text="Spalten"/>
       <Properties Text="Eigenschaften"/>
@@ -1056,6 +1372,7 @@
       <HintReportPage Text="Angegebene Seite wird erzeugt und in separater Registerkarte angezeigt."/>
       <HintCustom Text="Sie sollten einen &quot;Click&quot;-Event-Handler erstellen, um benutzerdefinierte Aktionen zu bestimmen."/>
       <ModifyAppearance Text="Transformation der Objektsaussicht zum Linksstandard"/>
+      <OpenLinkInNewTab Text="Link in einer neuen Registerkarte öffnen"/>
     </HyperlinkEditor>
     <LabelWizard Text="Label-Assistent">
       <Hint Text="Wählen Sie einen stardardisierten Label oder drücken Sie &quot;Erstellen...&quot; für die Erstellung vom Ihren eiginen Lebel."/>
@@ -1254,6 +1571,56 @@
         <Label149 Text="Querformat - Laser-Aufkleber"/>
       </Labels>
     </LabelWizard>
+    <ListViewForm>
+      <CaptionSaveMode Text="In der Cloud speichern"/>
+      <CaptionOpenMode Text="Aus der Cloud öffnen"/>
+      <Select Text="Auswählen"/>
+      <Save Text="Speichern"/>
+      <Cancel Text="Abbrechen"/>
+      <Search Text="Suchen…"/>
+      <FileNameHeader Text="Name"/>
+      <DateModHeader Text="Zeit der Änderung"/>
+      <FileSizeHeader Text="Größe"/>
+      <FileTypeHeader Text="Typ"/>
+      <CreateFolder Text="Ordner erstellen"/>
+      <CopyPath Text="Pfad kopieren"/>
+      <Rename Text="Umbenennen"/>
+      <Delete Text="Löschen"/>
+      <Open Text="Öffnen"/>
+      <AuthError Text="Fehler bei der Autorisierung"/>
+      <AuthErrorCaption Text="Nicht autorisiert"/>
+      <OnLoadName Text="Einen Neuen Namen eingeben"/>
+      <NonExistingSelectedReport Text="Bericht mit diesem Namen wurde nicht gefunden!"/>
+      <ReportWasModified Text="Der Bericht ist bereits geändert worden. Sind Sie sicher, dass Sie diese Datei überschreiben wollen?"/>
+      <ReportWasModifiedCaption Text="Der Bericht wurde geändert"/>
+      <ReportWasNotFound Text="Der Bericht wurde gelöscht. Möchten Sie die Datei speichern?"/>
+      <ReportWasNotFoundCaption Text="Der Bericht wurde gelöscht"/>
+      <ConfirmDelete Text="Löschen {0} ?"/>
+      <RootFolderTemplates Text="Vorlagen"/>
+      <RootFolderReports Text="Berichte"/>
+      <EnterFolderName>
+        <OnLoadRename Text="Einen neuen Namen eingeben"/>
+        <OnLoadFolderName Text="Ordnernamen eingeben"/>
+        <CreateDirectory Text="Verzeichnis erstellen"/>
+        <Rename Text="Umbenennen"/>
+        <Confirm Text="OK"/>
+        <Cancel Text="Abbrechen"/>
+        <EmptyName Text="Der Name darf nicht leer sein!"/>
+        <ForbiddenName Text="Ein Dateiname darf keines der folgenden Zeichen enthalten:"/>
+      </EnterFolderName>
+      <ErrorMessageBox>
+        <ErrorInApiOrServer Text="Die Verbindung zum ausgewählten Server konnte nicht hergestellt werden. Möglicherweise haben Sie einen ungültigen Server oder API-Schlüssel angegeben."/>
+        <ErrorInSubscriptions Text="Keine gültigen Abonnements in Ihrem Konto gefunden."/>
+        <ErrorInSubscriptions402 Text="Das ausgewählte Abonnement ist abgelaufen. Bitte aktualisieren Sie Ihren Arbeitsbereich"/>
+        <CaptionSubscriptions Text="Fehler bei der Abonnementsuche"/>
+        <CaptionSubscriptions402 Text="Das Abonnement ist abgelaufen"/>
+        <Caption Text="Server-Verbindungsfehler"/>
+        <InvalidPath Text="Der Pfad '{0}' kann nicht gefunden werden. Überprüfen Sie die Schreibweise und versuchen Sie es erneut"/>
+        <CaptionNoPath Text="Falscher Pfad"/>
+        <Error404 Text="Die ausgewählte Datei existiert nicht auf dem Server. Überprüfen Sie, ob die Daten korrekt sind und versuchen Sie es erneut"/>
+        <Error404Caption Text="Datei wurde nicht gefunden"/>
+      </ErrorMessageBox>
+    </ListViewForm>
     <MapEditor Text="Edit Map">
       <Map Text="Karte"/>
       <Layer Text="Schicht"/>
@@ -1330,6 +1697,13 @@
         </Labels>
       </LayerEditorControl>
     </MapEditor>
+    <OutlineEditor Text="Outline-Editor">
+      <Enabled Text="Aktiviert"/>
+      <Style Text="Stil:"/>
+      <Width Text="Dicke:"/>
+      <Color Text="Farbe:"/>
+      <DrawBehind Text="Zeichnen hinter dem Text"/>
+    </OutlineEditor>
     <PageSetup Text="Seite einrichten">
       <Paper Text="Papier"/>
       <Custom Text="Benutzerdefiniert"/>
@@ -1347,6 +1721,7 @@
       <Source Text="Quelle"/>
       <FirstPage Text="Erste Seite:"/>
       <OtherPages Text="Andere Seiten:"/>
+      <LastPage Text="Für die letzte Seite:"/>
       <Columns Text="Spalten"/>
       <Count Text="Anzahl:"/>
       <ColumnWidth Text="Breite:"/>
@@ -1388,12 +1763,22 @@
       <AspectRatio Text="Proportionen speichern"/>
       <Grayscale Text="Graustufen"/>
       <Monochrome Text="s/w"/>
+      <MinX Text="Min. X:"/>
+      <MinY Text="Min. Y:"/>
     </PictureEditorAdvanced>
     <PluginsOptions Text="Plugins">
       <Hint Text="Liste von allen installierten FastReport Plugins:"/>
       <Add Text="Hinzufügen"/>
       <Remove Text="Löschen"/>
       <Note Text="Hinweis: Änderungen werden erst nach dem Neustart von FastReport aktiviert."/>
+      <Fonts Text="Schriftarten"/>
+      <ExportsEditor Text="Exporte Menü "/>
+      <Version Text="Version:"/>
+      <Path Text="Pfad:"/>
+      <Date Text="Erstellungsdatum:"/>
+      <CompanyName Text="Unternehmen:"/>
+      <Description Text="Beschreibung:"/>
+      <Size Text="Größe:"/>
     </PluginsOptions>
     <PreviewPageSetup>
       <Apply Text="Für alle Seiten übernehmen und Bericht neu generieren"/>
@@ -1435,6 +1820,8 @@
       <PagesOnSheet8 Text="8 Seiten"/>
       <Print Text="Drucken"/>
       <Error Text="Ungültiger Druckbereich."/>
+      <CmdCommand Text="Befehl"/>
+      <CmdDescription Text="Um die Datei 'report1.fpx report2.fpx ... reportN.fpx' durch Ihre eigenen Berichte zu ersetzen, kopieren Sie den folgenden Befehl:"/>
     </PrinterSetup>
     <QueryBuilder Text="Query-Builder">
       <Designer Text="Designer"/>
@@ -1465,6 +1852,8 @@
         <Like Text="Ähnlich"/>
         <NotLike Text="Nicht ähnlich"/>
       </Where>
+      <QueryIsCorrupted Text="Die SQL-Abfrage kann mit dem Query Builder nicht bearbeitet werden. Bei der weiteren Bearbeitung kann die SQL-Abfrage teilweise oder vollständig verloren gehen.&#13;&#10;Möchten Sie fortfahren?"/>
+      <QueryIsCorruptedTitle Text="Warnung!"/>
     </QueryBuilder>
     <QueryWizard Text="Abfrage-Assistent">
       <Page1 Text="Name festlegen"/>
@@ -1480,6 +1869,7 @@
       <AddColumn Text="Berechnete Spalten hinzufügen"/>
       <AddParameter Text="Parameter hinzufügen"/>
       <Delete Text="Löschen"/>
+      <DuplicateName Text="Ein Element mit diesem Namen existiert bereits."/>
     </QueryWizard>
     <RelationEditor Text="Relation bearbeiten">
       <ParentTable Text="Vorgänger-Tabelle:"/>
@@ -1514,6 +1904,7 @@
       <Note Text="Hinweis: Wenn die Sprache geändert wird, wird das Script gelöscht!"/>
       <RefAssemblies Text="Compilelinks:"/>
       <Add Text="Hinzufügen..."/>
+      <Remove Text="Löschen"/>
       <Password Text="Kennwort:"/>
       <RetypePassword Text="Kennwort wiederholen:"/>
       <Inherited Text="Dieser Bericht ist ein Nachgänger vom:"/>
@@ -1533,6 +1924,8 @@
       <QualityRegular Text="Regelmäßig"/>
       <QualityClearType Text="ClearType"/>
       <QualityAntiAlias Text="AntiAlias"/>
+      <QualitySingleBPP Text="SingleBPP"/>
+      <QualitySingleBPPGridFit Text="SingleBPPGridFit"/>
       <PasswordError Text="Kennwort stimmt nicht überein! Bitte geben Sie das Passwort erneut ein."/>
       <Recipients Text="Empfänger (z.B. john@url.com):"/>
       <Subject Text="Betreff:"/>
@@ -1556,6 +1949,13 @@
       <Structure Text="Strukturiert"/>
       <Classic Text="Klassisch"/>
       <EditAfterInsert Text="Bearbeiten nach Einfügen"/>
+      <EventBandIndicator Text="Indikator für Bands mit Ereignissen anzeigen"/>
+      <EventObjectIndicator Text="Indikator für Objekte mit Ereignissen anzeigen"/>
+      <EnableBacklightIntersectingObjects Text="Überlappende Objekte hervorheben"/>
+      <ObjectsAppearance Text="Erscheinungsbild der Objekte"/>
+      <EnableBacklight Text="Aktives Band hervorheben"/>
+      <SimplifyDBFields Text="Vereinfachte Anzeige von Datenbankfeldnamen"/>
+      <ApplyLastFormat Text="Letztes Format auf neue Objekte anwenden"/>
     </ReportPageOptions>
     <RichTextEditor Text="RichText-Editor">
       <Open Text="Öffnen"/>
@@ -1563,7 +1963,8 @@
       <Subscript Text="Tiefgestellt"/>
       <Superscript Text="Hochgestellt"/>
       <Bullets Text="Aufzählungszeichen"/>
-      <Confirm Text="Text wurde geändert. Änderungen speichern?"/>
+      <ConfirmChanges Text="Der Text wurde geändert. Möchten Sie die Änderungen speichern?"/>
+      <Invoke Text="Doppelklick zum Bearbeiten von RichText"/>
     </RichTextEditor>
     <SearchReplace Text="Suchen und ersetzen">
       <Find Text="Suchen nach:"/>
@@ -1634,7 +2035,15 @@
     </Style>
     <TextEditor Text="Text bearbeiten">
       <WordWrap Text="Zeilenumbruch"/>
+      <ConfirmChanges Text="Der Text wurde geändert. Möchten Sie die Änderungen speichern?"/>
     </TextEditor>
+    <JsonEditor Text="Json Editor">
+      <Readonly Text="(schreibgeschützt)"/>
+      <Open Text="Datei öffnen"/>
+      <Save Text="Datei speichern"/>
+      <FormatJson Text="JSON formatieren"/>
+      <Filter Text="json-Dateien (*.json)|*.json|Txt-Dateien (*.txt)|*.txt|Alle Dateien (*.*)|*.*"/>
+    </JsonEditor>
     <TotalEditor Text="Summeneditor">
       <TotalName Text="Name:"/>
       <Total Text="Summe:"/>
@@ -1652,12 +2061,25 @@
       <Max Text="Max"/>
       <Avg Text="Durchschnitt"/>
       <Count Text="Anzahl"/>
+      <CountDistinct Text="Anzahl der unterschiedlichen"/>
       <Custom Text="Benutzerdefiniert"/>
     </TotalEditor>
     <UIOptions Text="Anwenderoberfläche">
       <Appearance Text="Design:"/>
+      <IconPack Text="Symbole:">
+        <Pack1 Text="Klassisch"/>
+        <Pack2 Text="Visual Studio"/>
+      </IconPack>
       <Ribbon Text="Neues Ribbon Interface verwenden"/>
       <Welcome Text="Willkommen Fenster beim Start zeigen"/>
+      <RightToLeft Text="Benutzerschnittstelle von rechts nach links:">
+        <Auto Text="Auto"/>
+        <No Text="Nein "/>
+        <Yes Text="Ja"/>
+      </RightToLeft>
+      <DisableHotkeys Text="Hotkeys deaktivieren"/>
+      <Restart Text="* Neustart erforderlich"/>
+      <Reset Text="Konfiguration zurücksetzen"/>
     </UIOptions>
     <WatermarkEditor Text="Wasserzeichen">
       <Enabled Text="Aktiv"/>
@@ -1725,6 +2147,82 @@
       <WifiHidden Text="Wi-Fi-Netzwerk ist ausgeblendet"/>
       <Save Text="OK"/>
       <Cancel Text="Abbrechen"/>
+      <Swiss Text="Swiss QR">
+        <Iban Text="IBAN"/>
+        <IbanType Text="Typ"/>
+        <Amount Text="Betrag"/>
+        <Currency Text="Währung"/>
+        <Creditor Text="Empfänger"/>
+        <Name Text="Name:"/>
+        <StreetNr Text="Straße / Nr.:"/>
+        <ZipCityCountry Text="Postleitzahl / Stadt / Land:"/>
+        <Debitor Text="Zahler"/>
+        <AdditionalInformation Text="Zusätzliche Informationen"/>
+        <Reference Text="Referenz"/>
+        <Type Text="Typ"/>
+        <TextType Text="Texttyp"/>
+        <Message Text="Meldung"/>
+        <BillInformation Text="Rechnungsinformationen"/>
+        <AlternativeProcedure Text="Alternativverfahren"/>
+      </Swiss>
+      <SberbankQr Text="Sberbank QR">
+        <Name Text="Name des Zahlungsempfängers"/>
+        <PersonalAcc Text="Kontonummer des Zahlungsempfängers"/>
+        <BankName Text="Bank des Zahlungsempfängers"/>
+        <BIC Text="BIC"/>
+        <CorrespAcc Text="Korrespondenzkonto des Zahlungsempfängers"/>
+        <Sum Text="Zahlungsbetrag"/>
+        <Purpose Text="Zahlungszweck"/>
+        <PayeeINN Text="Steuer-ID des Zahlungsempfängers"/>
+        <PayerINN Text="Steuer-ID des Zahlers"/>
+        <DrawerStatus Text="Status des Ausstellers"/>
+        <KPP Text="KPP des Zahlungsempfängers"/>
+        <CBC Text="Kode der Budgetgliederung"/>
+        <OKTMO Text="OKTMO"/>
+        <PayReason Text="Grundlage der Steuerzahlung"/>
+        <TaxPeriod Text="Steuerzeitraum"/>
+        <DocNo Text="Belegnummer"/>
+        <DocDate Text="Belegdatum"/>
+        <TaxPaytKind Text="Zahlungsart"/>
+        <LastName Text="Familienname des Zahlers"/>
+        <FirstName Text="Vorname des Zahlers"/>
+        <MiddleName Text="Vatersname des Zahlers"/>
+        <PayerAdress Text="Anschrift des Zahlers"/>
+        <PersonalAccount Text="Persönliches Konto des Zahlungsempfängers"/>
+        <DocIdx Text="Index des Zahlungsbelegs"/>
+        <PensAcc Text="Persönliches Konto-Nr. im Personenerfassungssystem des Rentenfonds der Russischen Föderation - Versicherungsnummer des individuellen persönlichen Kontos"/>
+        <Contract Text="Vertragsnummer"/>
+        <PersAcc Text="Persönliches Konto-Nr. des Zahlers im Unternehmen (im Erfassungssystem von Messgeräten)"/>
+        <Flat Text="Wohnungsnummer"/>
+        <Phone Text="Telefonnummer"/>
+        <PayerIdType Text="Art des Ausweisdokuments des Zahlers"/>
+        <PayerIdNum Text="Nummer des Ausweisdokuments des Zahlers"/>
+        <ChildFio Text="Name des Kindes/Schülers"/>
+        <BirthDate Text="Geburtsdatum"/>
+        <PaymTerm Text="Zahlungsfrist/Rechnungsdatum"/>
+        <PaymPeriod Text="Zahlungszeitraum"/>
+        <Category Text="Zahlungsart"/>
+        <ServiceName Text="Servicecode/Bezeichnung des Messgeräts"/>
+        <CounterId Text="Messgerät-ID"/>
+        <CounterVal Text="Anzeige des Messgeräts"/>
+        <QuittId Text="Nummer der Ankündigung, Zurechnung und Rechnung"/>
+        <QuittDate Text="Datum der Ankündigung/ Zurechnung/Rechnung/Verordnung (für staatliche Inspektion der Straßenverkehrssicherheit)"/>
+        <InstNum Text="Nummer der (Gesundheits-, Bildungs-) Einrichtung"/>
+        <ClassNum Text="Kindergartengruppe / Schulklasse"/>
+        <SpecFio Text="Name der Lehrkraft, der Fachkraft, die die Dienstleistung erbringt"/>
+        <AddAmount Text="Versicherungssumme/Zusatzleistung/Geldstrafe (in Kopeken)"/>
+        <RuleId Text="Nummer der Verordnung (für staatliche Inspektion der Straßenverkehrssicherheit)"/>
+        <ExecId Text="Nummer des Vollstreckungsverfahrens"/>
+        <RegType Text="Code der Zahlungsart (z.B. für Zahlungen an den Föderalen Dienst für staatliche Registrierung, Kataster und Kartographie"/>
+        <UIN Text="Überweisungs-ID"/>
+        <TechCode Text="Ein technischer Code, der vom Dienstanbieter ausgefüllt werden sollte. Kann von dem empfangenden Unternehmen verwendet werden, um das entsprechende IT-Verarbeitungssystem aufzurufen."/>
+        <ObligatoryProps Text="Verbindliche Angaben"/>
+        <AdditionalProps Text="Zusätzliche Angaben"/>
+        <AnotherProps Text="Sonstiges"/>
+        <NotEnterDate Text="Kein Datum angeben"/>
+        <Error Text="Es sind nicht alle erforderlichen Bankdaten ausgefüllt."/>
+        <Warning Text="Falsche Daten in den Feldern:"/>
+      </SberbankQr>
     </BarcodeEditor>
     <SavingPageOptions Text="Speichern">
       <EnableAutoSave Text="Aktivieren Sie automatisches Speichern in jeden (Minuten)"/>
@@ -1733,6 +2231,29 @@
       <Message Text="Unbehandelte Abschaltung erkannt! Wollen Sie Bericht wiederherstellen?"/>
       <Restore Text="Wiederherstellen"/>
     </LoadAutoSave>
+    <FastM1nesweeper Text="Fast M1nesweeper"/>
+    <AccountWindow Text="Konto">
+      <WebBrowser Text="Authentifizierung"/>
+      <Title Text="Konto"/>
+      <SignIn Text="Anmelden"/>
+      <NoAccount Text="Kein Konto?"/>
+      <Create Text="Erstellen!"/>
+      <Intro Text="Melden Sie sich bei Ihrem Fast Reports ID-Konto an. Ihr Konto wird für die Synchronisierung Ihrer Einstellungen zwischen Geräten und für andere Personalisierungsdienste verwendet."/>
+      <Testing Text="Diese Funktion ist in der Beta-Phase!"/>
+      <Expires Text="Gültig bis: {0}"/>
+      <Profile Text="Profilmanagement"/>
+      <SignOut Text="Abmelden"/>
+      <Message Text="Ihr Konto wird für die Synchronisierung Ihrer Einstellungen zwischen Geräten und für andere Personalisierungsdienste verwendet."/>
+      <SessionExpired Text="Die Sitzung ist abgelaufen, melden Sie sich erneut an!"/>
+    </AccountWindow>
+    <ServerWindow Text="Server">
+      <Server Text="Server"/>
+      <Caption Text="Server"/>
+      <ApiKeyword Text="API-Schlüssel"/>
+      <comboBoxServer Text="FastReport Cloud"/>
+      <DefaultServerHost Text="https://fastreport.cloud"/>
+      <comboBoxCustom Text="Weiterer Server"/>
+    </ServerWindow>
     <AdvMatrixHeaderEditor Text="Kopf Editor">
       <General Text="Allgemein">
         <ItemType Text="Artikel Typ:"/>
@@ -1783,12 +2304,19 @@
       <Database Text="Verbindung zur Datenbank"/>
       <DatabaseName Text="Datenbankname:"/>
       <DatabaseFile Text="Datenbank Datei:"/>
+      <DataSource Text="Datenquelle"/>
+      <OnlyUrlException Text="Es muss ein Link in der Verbindung sein!"/>
     </Common>
     <MsSql>
       <UseWindows Text="Windows Authentifizierung benutzen"/>
       <UseSql Text="SQL-Server Authentifizierung benutzen"/>
       <SavePassword Text="Kennwort speichern"/>
     </MsSql>
+    <Cassandra>
+      <ContactPoints Text="Datenbankadressen (;):"/>
+      <Port Text="Port:"/>
+      <Keyspace Text="Schlüsselbereich:"/>
+    </Cassandra>
     <OleDb>
       <ConnectionString Text="Connection String:"/>
       <Build Text="Erstellen..."/>
@@ -1803,9 +2331,63 @@
       <Xsd Text="Schema-Datei:"/>
       <Xml Text="Daten Datei:"/>
     </Xml>
+    <Access>
+      <Provider Text="Anbieter:"/>
+    </Access>
+    <Xlsx Text="Wählen Sie eine .xlsx-Datei aus:"/>
+    <Csv>
+      <ConfigureDatabase Text="Datenbank konfigurieren"/>
+      <SelectFile Text="Wählen Sie eine .csv -Datei aus (Pfad bzw.URL):"/>
+      <Codepage Text="Code:"/>
+      <Separator Text="Begrenzungssymbol:"/>
+      <FieldNames Text="Feldnamen in der ersten Zeile"/>
+      <RemoveQuotes Text="Anführungszeichen löschen"/>
+      <ConvertTypes Text="Feldtypen konvertieren"/>
+      <NumberFormat Text="Zahlenformat:"/>
+      <CurrencyFormat Text="Währungsformat:"/>
+      <DateTimeFormat Text="Datumsformat:"/>
+      <FilePreview Text="Dateivorschau:"/>
+      <DataPreview Text="Datenvorschau:"/>
+      <Codepages>
+        <Default Text="Standard"/>
+        <ASCII Text="ASCII"/>
+        <UTF8 Text="UTF8"/>
+        <UTF7 Text="UTF7"/>
+        <UTF32 Text="UTF32"/>
+        <Unicode Text="Unicode"/>
+        <BigEndianUnicode Text="Big Endian Unicode"/>
+      </Codepages>
+      <Separators>
+        <Semicolon Text=";"/>
+        <Comma Text=","/>
+        <Space Text="Leerzeichen"/>
+        <Tab Text="Tab"/>
+        <Other Text="Sonstiges"/>
+      </Separators>
+    </Csv>
     <Json>
       <Path Text="Katalog für Datei oder URL"/>
+      <Settings Text="Verbindungseinstellungen"/>
+      <Encoding Text="Verschlüsselung"/>
+      <Input Text="Json oder URL"/>
+      <Schema Text="Json Schema"/>
+      <RequestHeaders Text="Anforderungsheader"/>
+      <HeaderKey Text="Kopfzeile"/>
+      <HeaderVal Text="Wert"/>
+      <ConfirmChanges Text="Json wurde geändert. Soll ein neues JSON Schema generiert werden?"/>
+      <SimpleStructure Text="Einfache Struktur"/>
     </Json>
+    <MongoDB>
+      <Scheme Text="Schema:"/>
+      <Host Text="Host:"/>
+      <Port Text="Port:"/>
+      <UseSsl Text="SSL verwenden"/>
+    </MongoDB>
+    <Clickhouse>
+      <Server Text="Server"/>
+      <ServerPort Text="Server-Port:"/>
+      <Database Text="Datenbank"/>
+    </Clickhouse>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -1816,6 +2398,7 @@
       <CanShrink Text="Kann schrumpfen"/>
       <GrowToBottom Text="Wachsen nach unten"/>
       <Hyperlink Text="Hyperlink"/>
+      <Style Text="Stil"/>
     </ReportComponent>
     <BreakableComponent>
       <CanBreak Text="Kann umbrechen"/>
@@ -1829,6 +2412,7 @@
       <AddDetailDataBand Text="Detail-Datenbereich hinzufügen"/>
       <KeepTogether Text="Zusammenhalten"/>
       <KeepDetail Text="Details zusammenhalten"/>
+      <ColumnsEditor Text="Spalteneditor"/>
     </DataBand>
     <HeaderBand>
       <RepeatOnEveryPage Text="Auf jeder Seite wiederholen"/>
@@ -1855,6 +2439,7 @@
       <AutoWidth Text="Automatische Breite"/>
       <WordWrap Text="Zeilenumbruch"/>
       <AllowExpressions Text="Ausdrücke erlauben"/>
+      <HideZeros Text="Nullen ausblenden"/>
     </TextObject>
     <SubreportObject>
       <PrintOnParent Text="Druck auf dem Vorgänger"/>
@@ -2015,6 +2600,10 @@
     <Map>
       <Hint Text="&#13;&#10;Doppelklick auf Ebenen hinzuzufügen.&#13;&#10;&#13;&#10;Mit der linken Maustaste zu schwenken, Mausrad zoomen."/>
     </Map>
+    <CrossView>
+      <SetSource Text="FastCube-Quelle auswählen"/>
+      <FillData Text="Matrix wird ausgefüllt…"/>
+    </CrossView>
   </ComponentsMisc>
   <Wizards>
     <BlankReport Text="leerer Bericht"/>
@@ -2024,6 +2613,8 @@
     <NewDataSource Text="Neue Datenquelle"/>
     <NewPage Text="Neue Berichtsseite"/>
     <NewDialog Text="Neuer Dialog"/>
+    <CISWizard Text="Assistent für die Visualisierung von Kontrollzeichen (Identifikationszeichen)"/>
+    <FastM1nesweeper Text="Fast M1nesweeper"/>
   </Wizards>
   <Export>
     <Misc>
@@ -2032,6 +2623,7 @@
       <AnalyzeObjects Text="Objekte analysieren"/>
       <SavePage Text="Seite speichern"/>
       <Wysiwyg Text="Wysiwyg"/>
+      <UseFileStream Text="Dateistrom verwenden"/>
       <PageBreaks Text="Seitenumbrüche"/>
       <OpenAfterExport Text="Nach Export öffnen"/>
       <Pictures Text="Bilder"/>
@@ -2041,12 +2633,34 @@
       <SaveFile Text="Datei wird gespeichert"/>
       <TableBased Text="Tabelle"/>
       <LayerBased Text="Ebenen"/>
+      <ParagraphBased Text="Paragraphen"/>
       <Seamless Text="Ohne Tabellen Umbruch"/>
       <ToMultipleFiles Text="Export in multiple Dateien"/>
+      <PrintOptimized Text="Zum Drucken"/>
+      <ExportAllTabs Text="Exportieren aller Registerkarten"/>
+      <SplitPages Text="Seiten aufteilen"/>
+      <Localization Text="Sprachenexport"/>
+      <UseDesigerLocale Text="Designer-Sprachumgebung verwenden"/>
     </Misc>
+    <Editor Text="Exporte Menü Editor">
+      <ExportsMenu Text="Exporte Menü"/>
+      <DefaultMenu Text="Standardmäßig"/>
+    </Editor>
+    <ExportGroups>
+      <Office Text="Office"/>
+      <XML Text="XML"/>
+      <Web Text="Web"/>
+      <Image Text="Bilder"/>
+      <DataBase Text="Datenbank"/>
+      <Print Text="Drucken"/>
+      <Other Text="Sonstiges"/>
+      <Cloud Text="Speicher"/>
+      <Messengers Text="Messenger"/>
+    </ExportGroups>
     <Image Text="Exportieren nach Grafik">
       <File Text="Bilddatei"/>
       <ImageFormat Text="Format:"/>
+      <ImageParceFormatException Text="Das Bild kann nicht in das ausgewählte Format konvertiert werden."/>
       <Resolution Text="Auflösung:"/>
       <Quality Text="Jpeg Qualität:"/>
       <SeparateFiles Text="Separate Datei für jede Seite"/>
@@ -2061,6 +2675,9 @@
     </Image>
     <RichText Text="Im Rich Text exportieren">
       <File Text="Rich Text Datei"/>
+      <RTFObjectAs Text="RTF Objekt als"/>
+      <Picture Text="Bild"/>
+      <EmbeddedRTF Text="Eingebettete RTF"/>
     </RichText>
     <Text Text="Zum Text/Matrix Drucker exportieren">
       <File Text="Text Datei/Matrix Drucker"/>
@@ -2093,6 +2710,8 @@
       <Unicode Text="Unicode"/>
       <OEM Text="OEM"/>
       <DataOnly Text="nur Daten"/>
+      <NoQuotes Text="Anführungszeichen deaktivieren"/>
+      <EscapeQuotes Text="Anführungszeichen entkommen"/>
     </Csv>
     <Dbf Text="In DBF exportieren">
       <File Text="DBF-Tabelle"/>
@@ -2100,11 +2719,15 @@
       <Default Text="Standard"/>
       <OEM Text="OEM"/>
       <DataOnly Text="nur Daten"/>
+      <ExportType Text="Datentypen exportieren"/>
       <FieldNames Text="Datenfeldnamen (zum Beispiel, Feld1; Feld2):"/>
     </Dbf>
     <Xml Text="Export in XML">
       <File Text="XML (Excel) Tabelle"/>
     </Xml>
+    <Odf>
+      <Compliance Text="ODF-Richtlinie"/>
+    </Odf>
     <Odt Text="Export im OpenOffice Writer">
       <File Text="OpenOffice Writer"/>
     </Odt>
@@ -2113,12 +2736,45 @@
     </Ods>
     <Xlsx Text="Export im Excel 2007 Format">
       <File Text="Excel 2007-Datei"/>
+      <FontScale Text="Schriftart- Skalierung"/>
+      <PrintScaling Text="Druckskalierung"/>
+      <NoScaling Text="Keine Skalierung"/>
+      <FitSheetOnOnePage Text="Alles auf einer Seite"/>
+      <FitAllColumsOnOnePage Text="Alle Spalten auf einer Seite"/>
+      <FitAllRowsOnOnePage Text="Alle Zeilen auf einer Seite"/>
+      <GroupOnSeparateSheet Text="Gruppen auf separaten Blättern"/>
+      <PictureProperties Text="Bildeigenschaften"/>
+      <MoveAndModify Text="Mit der Zelle verschieben und verändern"/>
+      <MoveOnly Text="Verschieben, aber nicht die Größe ändern"/>
+      <Unchangeable Text="Nicht verschieben bzw. Größe ändern"/>
+      <ScaleInPercent Text="Skalierung in Prozent festlegen:"/>
+      <PinnedCells Text="Fixieren von Zellen"/>
+      <WithoutPinning Text="Ohne Fixieren"/>
+      <FirstColumn Text="Erste Spalte"/>
+      <FirstLine Text="Erste Zeile"/>
+      <OtherPinning Text="Anderes Fixieren"/>
+      <Columns Text="Spalten:"/>
+      <Rows Text="Zeilen:"/>
+      <Basic Text="Grundlegend"/>
+      <Other Text="Weitere"/>
+      <ShowGridlines Text="Rasterlinie anzeigen"/>
+      <UseLocaleFormating Text="Regionales Datenformat verwenden"/>
+      <CurrencyToAccounting Text="Währungsformat in ein Finanzformat konvertieren"/>
     </Xlsx>
+    <Xls Text="Export nach Excel 97">
+      <File Text="Excel 97 Format"/>
+      <HideGridLines Text="Rasterlinie ausblenden"/>
+    </Xls>
     <Pptx Text="Export im PowerPoint 2007">
       <File Text="PowerPoint 2007-Datei"/>
     </Pptx>
     <Docx Text="Export im Microsoft Word 2007">
       <File Text="Microsoft Word 2007-Datei"/>
+      <RowHeight Text="Höhe der Tabellenzeilen"/>
+      <Exactly Text="Exakt"/>
+      <Minimum Text="Minimum"/>
+      <DoNotExpandShiftReturn Text="Weiches Trennzeichen nicht ausweiten"/>
+      <DisableSectionBreak Text="Keine Abschnittsumbrüche bei Seitenumbrüchen einfügen"/>
     </Docx>
     <Xaml Text="Export im XAML Format">
       <File Text="XAML-Datei"/>
@@ -2126,12 +2782,15 @@
     </Xaml>
     <Svg Text="Export im SVG Format">
       <File Text="SVG-Datei"/>
+      <EmbPic Text="Eingebettete Bilder"/>
     </Svg>
     <Ppml Text="Export in PPML">
       <File Text="PPML Datei"/>
     </Ppml>
     <PS Text="Export in PostScript">
       <File Text="PostScript Datei"/>
+      <PagesInDiffFiles Text="Seiten in verschiedenen Dateien"/>
+      <SaveImagesSeparately Text="Bilder separat speichern"/>
     </PS>
     <Xps Text="Export im XPS Format">
       <File Text="Microsoft XPS-Datei"/>
@@ -2139,11 +2798,17 @@
     <Pdf Text="Export im PDF Format">
       <File Text="Adobe Acrobat"/>
       <Export Text="Export"/>
-      <Compressed Text="Komprimiert"/>
+      <PDFCompliance Text="PDF-Standard:"/>
       <EmbeddedFonts Text="Mit den Schriften"/>
-      <TextInCurves Text="Text durch Kurven"/>
       <Background Text="Hintergrund"/>
+      <TextInCurves Text="Text durch Kurven"/>
+      <Images Text="Bilder "/>
+      <ColorSpace Text="Farbraummodell:"/>
+      <OriginalResolution Text="Originalauflösung"/>
       <PrintOptimized Text="Optimiert drucken"/>
+      <JpegCompression Text="Jpeg Komprimierung"/>
+      <JpegQuality Text="Jpeg Qualität"/>
+      <InteractiveForms Text="Interaktive Formulare"/>
       <Information Text="Informationen"/>
       <DocumentInformation Text="Dokumenten Informationen"/>
       <Title Text="Titel"/>
@@ -2170,16 +2835,38 @@
       <FitWindow Text="Am Fenster anpassen"/>
       <CenterWindow Text="Fenster zentrieren"/>
       <PrintScaling Text="Skalierung drucken"/>
-      <PrintAfterOpenOfDocument Text="Nach Dokuments Eröffnung drucken"/>
       <Outline Text="Umriß"/>
-      <Compliance Text="Kompatibilität"/>
-      <PDFACompliance Text="PDF/A Kompatibilität"/>
-      <JpegQuality Text="Jpeg Qualität"/>
       <InitialZoom Text="Zoom initiieren:"/>
       <ActualSize Text="Actuelle Größe"/>
       <FitPage Text="Seite anpassen"/>
       <FitWidth Text="Breite anpassen"/>
       <Default Text="Default"/>
+      <VectorGraphics Text="Vektorgrafik">
+        <GradientQuality Text="Gradienten-Qualität"/>
+        <ExportAsImage Text="Export als Bild"/>
+        <LowQuality Text="Geringe Qualität"/>
+        <MediumQuality Text="Mittlere Qualität"/>
+        <HighQuality Text="Hohe Qualität"/>
+        <GradientInterpolation Text="Gradient Interpolation:"/>
+        <Curves Text="Kurven"/>
+        <CurvesInterpolation Text="Kurveninterpolation"/>
+        <TextInterpolation Text="Textinterpolation:"/>
+        <Disabled Text="Deaktiviert"/>
+        <SvgAsPicture Text="Svg als Bild"/>
+      </VectorGraphics>
+      <DigitalSignature Text="Digitale Signatur">
+        <SignInformation Text="Informationen zur Unterschrift"/>
+        <SignDocument Text="Dokument unterschreiben"/>
+        <Location Text="Standort"/>
+        <Reason Text="Grund"/>
+        <ContactInfo Text="Kontaktangaben"/>
+        <CertificateInformation Text="Informationen zum Zertifikat"/>
+        <CertificatePath Text="Pfad zum Zertifikat"/>
+        <CertificatePassword Text="Zertifikat-Passwort"/>
+        <CertificateSavePassword Text="Passwort speichern"/>
+        <CertificateSavePasswordWarning Text="Achtung!!! Das Speichern des Passworts kann nicht sicher sein!"/>
+        <ClickToChangeThePassword Text="Klicken Sie, um das Passwort zu ändern"/>
+      </DigitalSignature>
     </Pdf>
     <Html Text="Export in HTML">
       <File Text="HTML Datei"/>
@@ -2189,8 +2876,10 @@
       <SubFolder Text="Unterordner"/>
       <Navigator Text="Navigator"/>
       <Layers Text="Ebenen"/>
+      <HighQualitySVG Text="SVG in hoher Qualität"/>
       <EmbPic Text="Integrierte Bilder"/>
       <Total Text="Summe"/>
+      <NotRotateLandscapePage Text="Drehen Sie die Seiten im Querformat beim Drucken nicht."/>
       <First Text="&lt;&lt;"/>
       <Last Text="&gt;&gt;"/>
       <Prev Text="&lt;"/>
@@ -2202,11 +2891,23 @@
     <Json Text="Export in Json">
       <File Text="Json Datei"/>
     </Json>
+    <LaTeX Text="LaTeX-Export">
+      <File Text="LaTeX-Datei"/>
+    </LaTeX>
+    <Zpl Text="ZPL-Export">
+      <File Text="ZPL Format"/>
+      <PrinterSettings Text="Druckeinstellungen"/>
+      <Density Text="Dirchte"/>
+      <FontScale Text="Schriftart- Skalierung"/>
+      <PrintAsBitmap Text="Als Bild drucken"/>
+      <Version Text="ZPL Version"/>
+    </Zpl>
     <Email Text="E-Mail senden">
       <Email Text="E-Mail"/>
       <Account Text="Konto"/>
       <Address Text="Adresse:"/>
       <CC Text="CC:"/>
+      <CCTooltip Text="Mehrere Adressen können eingegeben werden, die durch Semikolon getrennt sind.&#13;&#10;Zum Beispiel: name1@url.com; name2@url.com&#13;&#10;"/>
       <Subject Text="Betreff:"/>
       <Message Text="Nachricht:"/>
       <Attachment Text="Anhang:"/>
@@ -2221,7 +2922,23 @@
       <HostError Text="Host darf nicht leer sein!"/>
       <SendingEmail Text="E-Mail wird versendet - {0} Kb"/>
       <EnableSSL Text="SSL aktivieren"/>
+      <NameAttachmentFile Text="Name der angehängten Datei:"/>
+      <SuccessfulEmailSending Text="Die E-Mail wurde erfolgreich gesendet"/>
+      <ErrorEmailSending Text="Die E-Mail wurde nicht gesendet"/>
     </Email>
+    <Dxf Text="DXF-Export">
+      <File Text="DXF-Datei"/>
+      <FillMode Text="Füllmodus:"/>
+      <FillModeBorder Text="Nur Rahmen"/>
+      <FillModeSolid Text="Ungeteilt"/>
+      <BarcodesGap Text="Lücke in den Barcodes (mm)"/>
+    </Dxf>
+    <Hpgl Text="Export nach Hpgl (plt)">
+      <File Text="Hpgl (plt) Format"/>
+      <FillMode Text="Füllmodus:"/>
+      <FillModeSolid Text="Ungeteilt"/>
+      <FillModeBorder Text="Nur Rahmen"/>
+    </Hpgl>
   </Export>
   <Cloud>
     <CloudStorage Text="Zur Wolke">
@@ -2242,6 +2959,7 @@
       <ServerConnectionFiledError Text="Verbindung mit dem angegebenen Server fehlgeschlagen."/>
       <ServerNotFoundError Text="Der angegebene Server wurde nicht gefunden."/>
       <AccessDeniedError Text="Zugriff verweigert. Benutzername oder Kennwort ungültig."/>
+      <SaveSuccess Text="Der Speicherungsvorgang ist abgeschlossen."/>
     </Ftp>
     <Box Text="Zum Box">
       <Name Text="Box"/>
@@ -2252,8 +2970,7 @@
     <Dropbox Text="Zum Dropbox">
       <Name Text="Dropbox"/>
       <ApplicationInfoDialog Text="Anwendungsinformationen"/>
-      <ApplicationKey Text="Anwendungs Key:"/>
-      <ApplicationSecret Text="Anwendungs ​​Secret:"/>
+      <AccessToken Text="Zugangstoken"/>
       <File Text="Datei"/>
       <Proxy Text="Proxy"/>
       <FileType Text="Dateityp:"/>
@@ -2291,6 +3008,41 @@
       <PortError Text="Port sollte numerisch sein."/>
     </SkyDrive>
   </Cloud>
+  <Messaging>
+    <MessengerForm Text="Bericht senden">
+      <File Text="Datei "/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="Dateityp:"/>
+      <Settings Text="Einstellungen:"/>
+      <Server Text="Server:"/>
+      <Username Text="Benutzemame:"/>
+      <Password Text="Passwort:"/>
+      <PortError Text="Die Portnummer muss ein numerischer Wert sein"/>
+    </MessengerForm>
+    <Xmpp Text="Bericht über XMPP senden">
+      <Name Text="XMPP"/>
+      <JidFrom Text="Jabber ID:"/>
+      <Password Text="Passwort:"/>
+      <JidTo Text="Senden an:"/>
+      <CloudWarning Text="Achtung! Die Datei wird in die FastReport Cloud hochgeladen. Der Benutzer erhält einen Link zum Herunterladen der Datei."/>
+      <Errors>
+        <InvalidJidOrPassword Text="Falsche Jabber-ID oder falsches Passwort!"/>
+        <UnableToUploadFile Text="Die Datei konnte nicht in die Cloud hochgeladen werden!"/>
+      </Errors>
+    </Xmpp>
+    <Telegram Text="Bericht über Telegram senden">
+      <Name Text="Telegram"/>
+      <SenderPhone Text="Telefonnummer des Senders"/>
+      <Password Text="Telegramm-Passwort"/>
+      <CodeToAuthenticate Text="Authentifizierungscode"/>
+      <RecipientPhone Text="Telefonnummer des Empfängers"/>
+      <SignOut Text="Abmelden"/>
+      <Errors>
+        <InvalidSenderPhoneOrPassword Text="Falsche Telefonnummer des Senders oder falsches Passwort!"/>
+        <UnableToUploadFile Text="Die Datei kann nicht in die Cloud hochgeladen werden!"/>
+      </Errors>
+    </Telegram>
+  </Messaging>
   <Web>
     <Print Text="Drucken"/>
     <PrintFromBrowser Text="Drucken aus dem Browser"/>
@@ -2306,6 +3058,11 @@
     <Last Text="Zur letzten Seite"/>
     <EnterPage Text="Geben Sie die Seitennummer ein"/>
     <TotalPages Text="Anzahl Seiten (nur lesen)"/>
+    <Back Text="Zurück"/>
+    <ScriptSecurity>
+      <ForbiddenType Text="Bitte verwenden Sie nicht den Typ {typeName}"/>
+      <ForbiddenMethod Text="Bitte verwenden Sie nicht das Verfahren {methodName}"/>
+    </ScriptSecurity>
   </Web>
   <Properties>
     <Categories>

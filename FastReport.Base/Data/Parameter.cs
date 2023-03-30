@@ -104,7 +104,7 @@ namespace FastReport.Data
             set
             {
                 Expression = "";
-                this.value = Convert.ChangeType(value, DataType);
+                if (value != "") this.value = Convert.ChangeType(value, DataType);
             }
         }
 

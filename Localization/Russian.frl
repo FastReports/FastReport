@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Language Name="ru" Author="Alexander Tsyganenko &lt;tz@fast-report.com&gt;;Alexander Fediashov &lt;fediachov@fast-report.com&gt;">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} шрифт не может быть изменён, встроен или передан любым способом без первоначального получения разрешения от правообладателя."/>
@@ -70,7 +70,7 @@
     <ErrorInHighlightCondition Text="Ошибка в условном выделении"/>
     <FileNameEmpty Text="Пожалуйста, укажите имя файла."/>
     <SaveToAnotherFile Text="Хотите сохранить в другой файл?"/>
-    <RemoveFromRecentFiles Text="Удалить файл из списка открытых файлов?"/>
+    <RemoveFromRecentFiles Text="Удалить файл из списка недавно открытых файлов?"/>
     <Validator>
       <DuplicateName Text="Имя уже используется."/>
       <IntersectedObjects Text="Объект пересекается с другим объектом."/>
@@ -90,13 +90,14 @@
       <SwissUnstructBillLength Text="Сообщение и информация о счете должны быть короче 141 символа в сумме."/>
       <SwissRefTypeNon Text="Ссылка разрешена, только когда тип ссылки не NON"/>
       <SwissRefTextTypeNon Text="Вы должны установить тип текста ссылки при наличии текста ссылки"/>
-      <SwissRefQRLength Text="&#13;&#10;QR-ссылки должны быть короче 28 символов"/>
+      <SwissRefQRLength Text="QR-ссылки должны быть короче 28 символов"/>
       <SwissRefQRNotOnlyDigits Text="QR-ссылка должна быть только из цифр"/>
       <SwissRefQRCheckSum Text="QR-ссылка недействительна. Ошибка контрольной суммы"/>
       <SwissRefISOLength Text="Ссылка на плательщиков (ISO 11649) должна быть короче, чем 26 символов"/>
       <SwissEmptyProperty Text="{0} не может быть пустым"/>
       <SwissLengthMore Text="должна быть короче {0} символов"/>
       <SwissPatternError Text="{0} должна соответствовать шаблону:"/>
+      <SwissAddressLine2Error Text="Адресная строка 2 должна быть предусмотрена для комбинированных адресов (адреса на основе адресной строки)."/>
       <SwissCountryTwoLetters Text="Страна должна быть действительным двухбуквенным кодом страны, как определено в ISO 3166-1"/>
       <SwissIbanNotValid Text="Введенный недействительный IBAN "/>
       <SwissQRIbanNotValid Text="Введенный недействительный QR-IBAN "/>
@@ -147,6 +148,7 @@
     <SharePointDataConnection Text="Подключение к SharePoint"/>
     <GoogleBigQueryDataConnection Text="Подключение к Google Big Query"/>
     <JsonDataConnection Text="База данных JSON"/>
+    <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)"/>
     <ESDataSourceConnection Text="Подключение к ElasticSearch"/>
     <CouchbaseDataConnection Text="Подключение к Couchbase"/>
     <MongoDBDataConnection Text="Подключение к MongoDB"/>
@@ -208,6 +210,7 @@
     <ZipCodeObject Text="Почтовый индекс"/>
     <CellularTextObject Text="Текст в ячейках"/>
     <CheckBoxObject Text="Флажок"/>
+    <OtherDialogControls Text="Прочие (не для Web)"/>
     <ButtonControl Text="Button"/>
     <CheckBoxControl Text="CheckBox"/>
     <CheckedListBoxControl Text="CheckedListBox"/>
@@ -289,11 +292,12 @@
     </Gauge>
     <CrossViewObject Text="CrossView"/>
     <DigitalSignatureObject Text="Цифровая подпись"/>
-    <FastBI Text="Диаграммы FastBI">
+    <FastBI Text="FastReport Business Graphics">
       <Bubble Text="Диаграмма Bubble"/>
       <TreeMap Text="Диаграмма TreeMap"/>
       <Sunburst Text="Диаграмма Sunburst"/>
       <Icicle Text="Диаграмма Icicle"/>
+      <Gantt Text="Диаграмма Ганта"/>
       <Data Text="Данные">
         <ValueColumn Text="Колонка данных"/>
         <RootText Text="Текст корня"/>
@@ -504,16 +508,13 @@
       </Window>
       <Help Text="Справка">
         <Contents Text="Содержание..."/>
-        <About Text="О программе..."/>
         <Account Text="Учётная запись..."/>
+        <About Text="О программе..."/>
       </Help>
     </Menu>
     <ToolWindow>
       <AutoHide Text="Скрывать автоматически"/>
       <Close Text="Закрыть"/>
-      <DockToTop Text="Переместить {0} наверх"/>
-      <DockToBottom Text="Переместить {0} вниз"/>
-      <DockToOtherSide Text="Переместить {0} на другую сторону"/>
       <Properties Text="Свойства">
         <Categorized Text="По категориям"/>
         <Alphabetical Text="По алфавиту"/>
@@ -540,10 +541,10 @@
         <Merge Text="Объединить словари..."/>
         <NewDataSource Text="Новый источник данных..."/>
         <SortDataSources Text="Сортировать источники данных"/>
-        <UploadDataSource Text="Загрузить в Облако..."/>
-        <UploadChangesDataSource Text="Обновить подключение в Облаке"/>
-        <CopyDataSource Text="Скопировать источник данных"/>
+        <UploadDataSource Text="Загрузить на корпоративный сервер..."/>
+        <UploadChangesDataSource Text="Обновить подключение на Облаке"/>
         <SortDataFields Text="Сортировать поля данных"/>
+        <CopyDataSource Text="Скопировать источник данных"/>
         <NewRelation Text="Новая связь..."/>
         <NewParameter Text="Новый параметр..."/>
         <NewTotal Text="Новый итог..."/>
@@ -576,7 +577,7 @@
       <MoreButtons Text="Больше кнопок..."/>
       <Standard Text="Стандартная">
         <New Text="Новый..."/>
-        <Open Text="Открыть отчет (Ctrl+O)"/>
+        <Open Text="Открыть"/>
         <Save Text="Сохранить отчет (Ctrl+S)"/>
         <SaveAll Text="Сохранить все (Ctrl+Shift+S)"/>
         <Preview Text="Предварительный просмотр (Ctrl+P)"/>
@@ -667,10 +668,12 @@
         <WholePage Text="Страница целиком"/>
       </Zoom>
       <Polygon Text="Многоугольник">
+        <MoveScale Text="Перемещение и масштабирование"/>
         <Pointer Text="Мышь"/>
         <AddPointToStart Text="Добавить новую линию в начало"/>
         <AddPointToEnd Text="Добавить новую линию в конец"/>
         <AddPoint Text="Добавить новую точку на линию"/>
+        <Bezier Text="Добавить точку к линии"/>
         <RemovePoint Text="Удалить точку"/>
       </Polygon>
     </Toolbar>
@@ -775,8 +778,8 @@
       <Add Text="Создать"/>
       <Reports Text="Типы отчетов:"/>
       <ReportItems Text="Элементы отчета:"/>
+      <Games Text="Игры:"/>
     </AddNewItem>
-	  <OpenPage Text="Выберите страницу"/>
     <AdvancedConnectionProperties Text="Расширенные свойства"/>
     <AskPassword Text="Пароль">
       <Password Text="Этот отчет защищен паролем.&#13;&#10;&#13;&#10;Пожалуйста, введите пароль:"/>
@@ -1137,17 +1140,17 @@
       </Series>
     </ChartGallery>
     <CloudDataSourceForm>
-        <TypeConnection Text="Тип"/>
-        <NameConnection Text="Имя"/>
-        <StatusConnection Text="Статус"/>
-        <StatusConnected Text="Подключено"/>
-        <StatusError Text="Ошибка"/>
-        <StatusUpdating Text="Обновление"/>
-        <Caption Text="Выберите подключение"/>
-        <SelectSources Text="Выберите соединение к данным для вашего отчета из Облака"/>
-        <SelectUpload Text="Выберите доступное соединение, чтобы загрузить его в Облако"/>
-        <NotFoundSources Text="Нет доступных подключений"/>
-        <PluginNotAdded Text="Невозможно загрузить источник данных. Вероятно, не подключен плагин, соответствующий этому подключению"/>
+      <TypeConnection Text="Тип"/>
+      <NameConnection Text="Имя"/>
+      <StatusConnection Text="Статус"/>
+      <StatusConnected Text="Подключено"/>
+      <StatusError Text="Ошибка"/>
+      <StatusUpdating Text="Обновление"/>
+      <Caption Text="Выберите подключение"/>
+      <SelectSources Text="Выберите соединение к данным для вашего отчета с корпоративного сервера"/>
+      <SelectUpload Text="Выберите доступное соединение, чтобы загрузить его на корпоративный сервер"/>
+      <NotFoundSources Text="Нет доступных подключений"/>
+      <PluginNotAdded Text="Невозможно загрузить источник данных. Вероятно, не подключен плагин, соответствующий этому подключению"/>
     </CloudDataSourceForm>
     <CodePageOptions Text="Страница &quot;Код&quot;">
       <EnableCodeCompletion Text="Автозавершение кода"/>
@@ -1220,7 +1223,7 @@
       <Wait Text="Подключение к базе данных"/>
       <AddQuery Text="Добавить SQL запрос..."/>
       <CheckAll Text="Выбрать все"/>
-      <CloudDataSources Text="Выбрать подключение с Облака"/>
+      <CloudDataSources Text="Выбрать подключение с сервера"/>
       <MessageBox>
         <SuccessText Text="Источник данных успешно загружен на сервер!"/>
         <SuccessCaption Text="Загрузка успешна"/>
@@ -1228,7 +1231,7 @@
         <SuccessUpdateCaption Text="Обновление успешно"/>
         <ErrorText Text="Ошибка при загрузке источника данных"/>
         <ErrorCaption Text="Ошибка"/>
-        <ErrorInvalidID Text="Некорретный Id источника данных. Вероятно, источник данных отсутствует на сервере. Проверьте данные и попробуйте снова."/>
+        <ErrorInvalidID Text="Некорретный Id источника данных. Вероятно источник данных отсутствует на сервере. Проверьте данные и попробуйте снова."/>
         <Error404 Text="Выбранного источника данных не существует в текущей подписке. Проверьте данные и попробуйте снова."/>
       </MessageBox>
       <ChangeParameters Text="Изменение параметров процедуры "/>
@@ -1240,6 +1243,12 @@
       <Copy Text="Копир. в буфер"/>
     </Exception>
     <ExpressionEditor Text="Редактор выражения"/>
+    <ExpressionsEditor Text="Редактировать выражения">
+      <Expressions Text="Выражения"/>
+      <Add Text="Добавить"/>
+      <Delete Text="Удалить"/>
+      <Edit Text="Редактировать"/>
+    </ExpressionsEditor>
     <Fill Text="Редактор заливки">
       <Solid Text="Сплошная"/>
       <LinearGradient Text="Градиент"/>
@@ -1387,54 +1396,54 @@
       <Delete Text="Удалить"/>
     </LabelWizard>
     <ListViewForm>
-        <CaptionSaveMode Text="Сохранить в Облако"/>
-        <CaptionOpenMode Text="Открыть из Облака"/>
-        <Select Text="Выбрать"/>
-        <Save Text="Сохранить"/>
-        <Cancel Text="Отмена"/>
-        <Search Text="Искать..."/>
-        <FileNameHeader Text="Имя"/>
-        <DateModHeader Text="Время изменения"/>
-        <FileSizeHeader Text="Размер"/>
-        <FileTypeHeader Text="Тип"/>
-        <CreateFolder Text="Создать папку"/>
-        <CopyPath Text="Скопировать путь"/>
+      <CaptionSaveMode Text="Сохранить в Облако"/>
+      <CaptionOpenMode Text="Открыть из Облака"/>
+      <Select Text="Выбрать"/>
+      <Save Text="Сохранить"/>
+      <Cancel Text="Отмена"/>
+      <Search Text="Искать..."/>
+      <FileNameHeader Text="Имя"/>
+      <DateModHeader Text="Время изменения"/>
+      <FileSizeHeader Text="Размер"/>
+      <FileTypeHeader Text="Размер"/>
+      <CreateFolder Text="Создать папку"/>
+      <CopyPath Text="Скопировать путь"/>
+      <Rename Text="Переименовать"/>
+      <Delete Text="Удалить"/>
+      <Open Text="Открыть"/>
+      <AuthError Text="Ошибка при авторизации"/>
+      <AuthErrorCaption Text="Ошибка авторизации"/>
+      <OnLoadName Text="Введите имя"/>
+      <NonExistingSelectedReport Text="Отчет с таким именем не найден!"/>
+      <ReportWasModified Text="Отчет уже был изменен. Вы уверены, что хотите перезаписать этот файл?"/>
+      <ReportWasModifiedCaption Text="Отчет был изменен"/>
+      <ReportWasNotFound Text="Отчет был удален. Вы хотите сохранить файл?"/>
+      <ReportWasNotFoundCaption Text="Отчет был удален"/>
+      <ConfirmDelete Text="Удалить {0} ?"/>
+      <RootFolderTemplates Text="Шаблоны"/>
+      <RootFolderReports Text="Отчеты"/>
+      <EnterFolderName>
+        <OnLoadRename Text="Введите новое имя"/>
+        <OnLoadFolderName Text="Введите имя папки"/>
+        <CreateDirectory Text="Создать директорию"/>
         <Rename Text="Переименовать"/>
-        <Delete Text="Удалить"/>
-        <Open Text="Открыть"/>
-        <AuthError Text="Ошибка при авторизации"/>
-        <AuthErrorCaption Text="Ошибка авторизации"/>
-        <OnLoadName Text="Введите имя"/>
-        <NonExistingSelectedReport Text="Отчет с таким именем не найден!"/>
-        <ReportWasModified Text="Отчет уже был изменен. Вы уверены, что хотите перезаписать этот файл?"/>
-        <ReportWasModifiedCaption Text="Отчет был изменен"/>
-        <ReportWasNotFound Text="Отчет был удален. Вы хотите сохранить файл?"/>
-        <ReportWasNotFoundCaption Text="Отчет был удален"/>
-        <ConfirmDelete Text="Удалить {0} ?"/>
-        <RootFolderTemplates Text="Шаблоны"/>
-        <RootFolderReports Text="Отчеты"/>
-        <EnterFolderName>
-            <OnLoadRename Text="Введите новое имя"/>
-            <OnLoadFolderName Text="Введите имя папки"/>
-            <CreateDirectory Text="Создать директорию"/>
-            <Rename Text="Переименовать"/>
-            <Confirm Text="ОК"/>
-            <Cancel Text="Отмена"/>
-            <EmptyName Text="Название не может быть пустым!"/>
-            <ForbiddenName Text="Название не может содержать следующие символы:"/>
-        </EnterFolderName>
-        <ErrorMessageBox>
-            <ErrorInApiOrServer Text="Не удается подключиться к выбранному серверу. Возможно, Вы указали некорректный сервер или API ключ"/>
-            <ErrorInSubscriptions Text="На Вашем аккаунте отсутствуют действующие подписки."/>
-            <ErrorInSubscriptions402 Text="Выбранная подписка просрочена. Пожалуйста, обновите рабочее пространство"/>
-            <CaptionSubscriptions Text="Ошибка поиска подписок"/>
-            <CaptionSubscriptions402 Text="Подписка просрочена"/>
-            <Caption Text="Ошибка подключения к серверу"/>
-            <InvalidPath Text="Невозможно перейти по '{0}'. Уточните путь и попробуйте снова"/>
-            <CaptionNoPath Text="Некорректный путь"/>
-            <Error404 Text="Выбранный файл не существует на сервере. Проверьте корректность данных и попробуйте снова"/>
-            <Error404Caption Text="Файл не найден"/>
-        </ErrorMessageBox>
+        <Confirm Text="ОК"/>
+        <Cancel Text="Отмена"/>
+        <EmptyName Text="Название не может быть пустым!"/>
+        <ForbiddenName Text="Название не может содержать следующие символы:"/>
+      </EnterFolderName>
+      <ErrorMessageBox>
+        <ErrorInApiOrServer Text="Не удается подключиться к выбранному серверу. Возможно, Вы указали некорректный сервер или API ключ"/>
+        <ErrorInSubscriptions Text="На Вашем аккаунте отсутствуют действующие подписки."/>
+        <ErrorInSubscriptions402 Text="Выбранная подписка просрочена. Пожалуйста, обновите рабочее пространство"/>
+        <CaptionSubscriptions Text="Ошибка поиска подписок"/>
+        <CaptionSubscriptions402 Text="Подписка просрочена"/>
+        <Caption Text="Ошибка подключения к серверу"/>
+        <InvalidPath Text="Невозможно перейти по '{0}'. Уточните путь и попробуйте снова"/>
+        <CaptionNoPath Text="Некорректный путь"/>
+        <Error404 Text="Выбранный файл не существует на сервере. Проверьте корректность данных и попробуйте снова"/>
+        <Error404Caption Text="Файл не найден"/>
+      </ErrorMessageBox>
     </ListViewForm>
     <MapEditor Text="Редактор карты">
       <Map Text="Карта"/>
@@ -1635,6 +1644,8 @@
       <PagesOnSheet8 Text="8 страниц"/>
       <Print Text="Печать"/>
       <Error Text="Диапазон страниц задан неверно."/>
+      <CmdCommand Text="Команда"/>
+      <CmdDescription Text="Чтобы заменить 'report1.fpx report2.fpx ... reportN.fpx'  вашими собственными отчетами, то скопируйте следующую команду:"/>
     </PrinterSetup>
     <QueryBuilder Text="Конструктор запроса">
       <Designer Text="Дизайнер"/>
@@ -1958,6 +1969,8 @@
       <NetworkName Text="Имя сети"/>
       <Password Text="Пароль"/>
       <WifiHidden Text="Скрытая сеть Wi-Fi"/>
+      <Save Text="Сохранить"/>
+      <Cancel Text="Отменить"/>
       <Swiss Text="Swiss QR">
         <Iban Text="IBAN"/>
         <IbanType Text="Тип"/>
@@ -1977,7 +1990,6 @@
         <AlternativeProcedure Text="Альтернативная процедура"/>
       </Swiss>
       <SberbankQr Text="Сбербанк QR">
-        <Enable Text="True"/>
         <Name Text="Наименование получателя"/>
         <PersonalAcc Text="Номер счета получателя платежа "/>
         <BankName Text="Наименование банка получателя платежа"/>
@@ -2002,11 +2014,9 @@
         <PayerAdress Text="Адрес плательщика"/>
         <PersonalAccount Text="Лицевой счет бюджетного получателя"/>
         <DocIdx Text="Индекс платежного документа"/>
-        <PensAcc Text="№ лицевого счета в системе персонифицированного учета 
-        в ПФР - СНИЛС"/>
+        <PensAcc Text="№ лицевого счета в системе персонифицированного учета &#13;&#10;        в ПФР - СНИЛС"/>
         <Contract Text="Номер договора"/>
-        <PersAcc Text="Номер лицевого счета плательщика в 
-        организации (в системе учета ПУ)"/>
+        <PersAcc Text="Номер лицевого счета плательщика в &#13;&#10;        организации (в системе учета ПУ)"/>
         <Flat Text="Номер квартиры"/>
         <Phone Text="Номер телефона"/>
         <PayerIdType Text="Вид ДУЛ плательщика"/>
@@ -2020,8 +2030,7 @@
         <CounterId Text="Номер прибора учета"/>
         <CounterVal Text="Показание прибора учета"/>
         <QuittId Text="Номер извещения, начисления, счета"/>
-        <QuittDate Text="Дата извещения/начисления/счета/постановления 
-        (для ГИБДД)"/>
+        <QuittDate Text="Дата извещения/начисления/счета/постановления &#13;&#10;        (для ГИБДД)"/>
         <InstNum Text="Номер учреждения (образовательного, медицинского)"/>
         <ClassNum Text="Номер группы детсада/класса школы"/>
         <SpecFio Text="ФИО преподавателя, специалиста, оказывающего услугу"/>
@@ -2030,9 +2039,7 @@
         <ExecId Text="Номер исполнительного производства"/>
         <RegType Text="Код вида платежа (например, для платежей в адрес Росреестра)"/>
         <UIN Text=" Уникальный идентификатор начисления"/>
-        <TechCode Text="Технический код, рекомендуемый для заполнения поставщиком услуг. 
-        Может использоваться принимающей организацией для вызова 
-        соответствующей обрабатывающей ИТ-системы."/>
+        <TechCode Text="Технический код, рекомендуемый для заполнения поставщиком услуг. &#13;&#10;        Может использоваться принимающей организацией для вызова &#13;&#10;        соответствующей обрабатывающей ИТ-системы."/>
         <ObligatoryProps Text="Обязательные реквизиты"/>
         <AdditionalProps Text="Дополнительные реквизиты"/>
         <AnotherProps Text="Другие"/>
@@ -2049,7 +2056,6 @@
       <Restore Text="Восстановить"/>
     </LoadAutoSave>
     <AccountWindow Text="Учетная запись">
-      <AuthServer Text="https://id.быстрыеотчеты.рф"/>
       <WebBrowser Text="Аутентификация"/>
       <Title Text="Учетная запись"/>
       <SignIn Text="Войти"/>
@@ -2063,14 +2069,14 @@
       <Message Text="Ваша учетная запись используется для синхронизации ваших настроек между устройствами и для других служб персонализации."/>
       <SessionExpired Text="Сессия истекла, войдите повторно!"/>
     </AccountWindow>
-	<ServerWindow Text="Сервер">
-        <Server Text="Сервер"/>
-        <ApiKeyword Text="Api ключ" />
-        <Caption Text="Сервер"/>
-        <comboBoxServer Text="МоиОтчеты Облако"/>
-        <DefaultServerHost Text="https://облако.моиотчеты.рф"/>
-        <comboBoxCustom Text="Другой сервер"/>
-	</ServerWindow>
+    <ServerWindow Text="Сервер">
+      <Server Text="Сервер"/>
+      <Caption Text="Сервер"/>
+      <ApiKeyword Text="Api ключ"/>
+      <comboBoxServer Text="МоиОтчеты Облако"/>
+      <DefaultServerHost Text="https://облако.моиотчеты.рф"/>
+      <comboBoxCustom Text="Другой сервер"/>
+    </ServerWindow>
     <AdvMatrixHeaderEditor Text="Свойства элемента">
       <General Text="Основные">
         <ItemType Text="Тип элемента:"/>
@@ -2122,6 +2128,7 @@
       <DatabaseName Text="Имя базы данных:"/>
       <DatabaseFile Text="Файл базы данных:"/>
       <DataSource Text="Источник данных"/>
+      <OnlyUrlException Text="В подключении должна быть ссылка!"/>
     </Common>
     <MsSql>
       <UseWindows Text="Аутентификация Windows"/>
@@ -2190,7 +2197,7 @@
       <RequestHeaders Text="Заголовки запроса"/>
       <HeaderKey Text="Заголовок"/>
       <HeaderVal Text="Значение"/>
-      <ConfirmChanges Text="Json был изменен. Перестроить схему JSON?" />
+      <ConfirmChanges Text="Json был изменен. Перестроить схему JSON?"/>
       <SimpleStructure Text="Простая структура"/>
     </Json>
     <MongoDB>
@@ -2405,8 +2412,9 @@
     <Label Text="Мастер этикеток"/>
     <NewDataSource Text="Новый источник данных"/>
     <NewPage Text="Новая страница отчета"/>
-    <CISWizard Text="Мастер визуализации контрольных (идентификационных) знаков"/>
     <NewDialog Text="Новая диалоговая форма"/>
+    <CISWizard Text="Мастер визуализации контрольных (идентификационных) знаков"/>
+    <FastM1nesweeper Text="Fast M1nesweeper"/>
   </Wizards>
   <Export>
     <Misc>
@@ -2549,7 +2557,7 @@
       <Rows Text="Строки:"/>
       <Basic Text="Основные"/>
       <Other Text="Другие"/>
-      <ShowGridLines Text="Показать линии сетки"/>
+      <ShowGridlines Text="Показать линии сетки"/>
       <UseLocaleFormating Text="Использовать региональный формат данных"/>
       <CurrencyToAccounting Text="Преобразовывать денежный формат в финансовый"/>
     </Xlsx>
@@ -2668,9 +2676,9 @@
       <SubFolder Text="Отдельная папка для файлов"/>
       <Navigator Text="Навигатор"/>
       <Layers Text="Слои"/>
+      <HighQualitySVG Text="Высокое качество SVG"/>
       <EmbPic Text="Встроенные картинки"/>
       <Total Text="Всего"/>
-      <HighQualitySVG Text="Высокое качество SVG"/>
       <NotRotateLandscapePage Text="Не поворачивать альбомные страницы при печати"/>
       <First Text="&lt;&lt;"/>
       <Last Text="&gt;&gt;"/>
@@ -2773,8 +2781,8 @@
       <Password Text="Пароль:"/>
       <PortError Text="Номер порта должен быть числовым."/>
     </Dropbox>
-    <FastCloud Text="Сохранить в FastCloud">
-      <Name Text="FastCloud"/>
+    <FastCloud Text="Сохранить в МоиОтчеты Облако">
+      <Name Text="МоиОтчеты Облако"/>
       <UserDetails Text="Информация о пользователе"/>
       <Email Text="Email:"/>
       <UserPassword Text="Пароль:"/>
@@ -2816,7 +2824,7 @@
       <JidFrom Text="Jabber ID:"/>
       <Password Text="Пароль:"/>
       <JidTo Text="Кому отправить:"/>
-      <CloudWarning Text="Внимание! Файл будет загружен в облако FastReport Cloud. Пользователь получит ссылку на скачивание файла."/>
+      <CloudWarning Text="Внимание! Файл будет загружен в МоиОтчеты Облако. Пользователь получит ссылку на скачивание файла."/>
       <Errors>
         <InvalidJidOrPassword Text="Неверный Jabber ID или пароль!"/>
         <UnableToUploadFile Text="Не удалось загрузить файл в облако!"/>
@@ -2852,8 +2860,8 @@
     <TotalPages Text="Всего страниц (не редактируется)"/>
     <Back Text="Назад"/>
     <ScriptSecurity>
-        <ForbiddenType Text="Пожалуйста, не используйте тип {typeName}"/>
-        <ForbiddenMethod Text="Пожалуйста, не используйте метод {methodName}"/>
+      <ForbiddenType Text="Пожалуйста, не используйте тип {typeName}"/>
+      <ForbiddenMethod Text="Пожалуйста, не используйте метод {methodName}"/>
     </ScriptSecurity>
   </Web>
   <Properties>

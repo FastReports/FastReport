@@ -45,8 +45,8 @@ namespace FastReport.Data
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
                 builder.CsvFile = value;
-                ConnectionString = builder.ToString();
-            }
+				CheckForChangeConnection(builder, ConnectionString);
+			}
         }
 
         /// <summary>
@@ -223,15 +223,27 @@ namespace FastReport.Data
         {
             DataSet dataset = base.CreateDataSet();
             CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
-            List<string> rawLines = CsvUtils.ReadLines(builder);
+			RelatedPathCheck(builder);
+			List<string> rawLines = CsvUtils.ReadLines(builder);
             DataTable table = CsvUtils.CreateDataTable(builder, rawLines);
             if (table != null)
                 dataset.Tables.Add(table);
             return dataset;
         }
 
-        /// <inheritdoc/>
-        protected override void SetConnectionString(string value)
+		/// <summary>
+		/// Checking a relative path relative to a file
+		/// </summary>
+		protected void RelatedPathCheck(CsvConnectionStringBuilder builder)
+		{
+			if (Report != null)
+				if (!String.IsNullOrEmpty(Report.FileName))
+					if (!File.Exists(builder.CsvFile) && !Path.GetDirectoryName(Report.FileName).Equals(Path.GetDirectoryName(builder.CsvFile)))
+						builder.CsvFile = Path.Combine(Path.GetDirectoryName(Report.FileName), builder.CsvFile);
+		}
+
+		/// <inheritdoc/>
+		protected override void SetConnectionString(string value)
         {
             DisposeDataSet();
             base.SetConnectionString(value);

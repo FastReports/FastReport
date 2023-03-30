@@ -210,6 +210,7 @@
     <ZipCodeObject Text="Zip Code"/>
     <CellularTextObject Text="Cellular Text"/>
     <CheckBoxObject Text="CheckBox"/>
+    <OtherDialogControls Text="Other controls (not for Web)"/>
     <ButtonControl Text="Button"/>
     <CheckBoxControl Text="CheckBox"/>
     <CheckedListBoxControl Text="CheckedListBox"/>
@@ -2337,7 +2338,11 @@
       <DatabaseFile Text="Database file:"/>
       <DataSource Text="Data source"/>
       <OnlyUrlException Text="There must be a link in the connection!"/>
+      <ErrorUrlException Text="The specified path does not contain the file you are looking for!"/>
     </Common>
+    <Excel>
+      <FieldNames Text="Column names in the first row"/>
+    </Excel>
     <MsSql>
       <UseWindows Text="Use Windows Authentication"/>
       <UseSql Text="Use SQL Server Authentication"/>

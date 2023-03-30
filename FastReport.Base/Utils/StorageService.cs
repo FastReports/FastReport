@@ -93,7 +93,7 @@ namespace FastReport.Utils
         /// <returns>The value associated with a key, or default value.</returns>
         public float GetFloat(string key, float defaultValue = 0)
         {
-            if (float.TryParse(GetStr(key).Replace(',', '.'), out float val))
+            if (float.TryParse(GetStr(key).Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out float val))
                 return val;
             return defaultValue;
         }

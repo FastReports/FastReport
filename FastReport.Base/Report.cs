@@ -873,7 +873,7 @@ namespace FastReport
 #endif
 
 #if WPF
-                    "WinForms.WPF.dll",
+                    "FastReport.Forms.WPF.dll",
 #endif
 
 #if CROSSPLATFORM || COREWIN
