@@ -337,7 +337,7 @@ namespace FastReport.Data
         {
           Column c = column.Columns[i];
           // delete columns with empty descriptors, except the "Value" columns
-          if (c.PropDescriptor == null && c.PropName != "Value")
+          if (c.PropDescriptor == null && !c.Calculated && c.PropName != "Value")
           {
             column.Columns.RemoveAt(i);
             i--;
