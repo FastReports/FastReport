@@ -69,6 +69,7 @@ namespace FastReport.Utils
         private float scale;
         private InlineImageCache cache;
         private float fontScale;
+        private bool hasLineHeight;
         #endregion
 
         #region Properties
@@ -155,6 +156,11 @@ namespace FastReport.Utils
         public bool HtmlTags
         {
             get { return htmlTags; }
+        }
+
+        public bool HasLineHeight
+        {
+            get { return hasLineHeight; }
         }
 
         public float TabSize
@@ -394,6 +400,7 @@ namespace FastReport.Utils
           bool forceJustify, bool wysiwyg, bool htmlTags, bool pdfMode,
           float scale, float fontScale, InlineImageCache cache, bool isPrinting = false)
         {
+            hasLineHeight = lineHeight != 0;
             this.cache = cache;
             this.scale = scale;
             this.fontScale = fontScale;
@@ -409,7 +416,7 @@ namespace FastReport.Utils
             this.vertAlign = vertAlign;
             this.lineHeight = lineHeight;
             fontLineHeight = font.GetHeight(g.Graphics);
-            if (this.lineHeight == 0)
+            if (!hasLineHeight)
             {
                 this.lineHeight = fontLineHeight;
                 if (isPrinting && Config.IsRunningOnMono && DrawUtils.GetMonoRendering(g) == MonoRendering.Pango)
@@ -1591,9 +1598,11 @@ namespace FastReport.Utils
                 {
 #if SKIA
                     // we need actual height of a text because it may have font fallback with different metrics
-                    if (!string.IsNullOrEmpty(text))
+                    if (!string.IsNullOrEmpty(text) && !Renderer.HasLineHeight)
                     {
-                        return DrawUtils.MeasureString(Renderer.Graphics.Graphics, text, Renderer.Font, Renderer.Format).Height;
+                        var stringHeight = DrawUtils.MeasureString(Renderer.Graphics.Graphics, text, Renderer.Font, Renderer.Format).Height;
+
+                        return Renderer.FontLineHeight > stringHeight ? Renderer.FontLineHeight : stringHeight;
                     }
 #endif
                     return Renderer.LineHeight;

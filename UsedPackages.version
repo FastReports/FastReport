@@ -11,6 +11,10 @@
         <FRDataVisualizationVersion>2023.1.0</FRDataVisualizationVersion>
         <FRDataVisualizationSkiaVersion>2023.1.0</FRDataVisualizationSkiaVersion>
 		
+        <FRFormsWPFVersion>2023.1.0</FRFormsWPFVersion>
+        <FRCompatWPFVersion>2023.1.0</FRCompatWPFVersion>
+        <FRDataVisualizationWPFVersion>2023.1.0</FRDataVisualizationWPFVersion>
+
         <!-- Not available in Core3 -->
         <SystemDrawingCommonVersion>[4.7.0,)</SystemDrawingCommonVersion>
 

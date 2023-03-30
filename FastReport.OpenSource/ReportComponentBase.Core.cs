@@ -14,12 +14,15 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Does nothing
+        /// Copies event handlers from another similar object.
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="source">The object to copy handlers from.</param>
         public virtual void AssignPreviewEvents(Base source)
         {
-          
+            ReportComponentBase src = source as ReportComponentBase;
+            if (src == null)
+                return;
+            Click = src.Click;
         }
 
         /// <summary>

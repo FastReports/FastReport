@@ -424,7 +424,7 @@ namespace FastReport.Data
 
                     table.TableName = tableName;
                     table.Connection = this;
-                    table.Enabled = false;
+                    table.Enabled = true;
 
                     if (TablesStructure != null)
                     {
