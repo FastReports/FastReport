@@ -719,11 +719,17 @@ namespace FastReport.Table
         {
             foreach (TableColumn column in Columns)
             {
+                // Apply visible expression if needed.
+                if (serializingToPreview && !String.IsNullOrEmpty(column.VisibleExpression))
+                    column.Visible = CalcVisibleExpression(column.VisibleExpression);
                 if (!serializingToPreview || column.Visible)
                     list.Add(column);
             }
             foreach (TableRow row in Rows)
             {
+                // Apply visible expression if needed.
+                if (serializingToPreview && !String.IsNullOrEmpty(row.VisibleExpression))
+                    row.Visible = CalcVisibleExpression(row.VisibleExpression);
                 if (!serializingToPreview || row.Visible)
                     list.Add(row);
             }

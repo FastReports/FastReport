@@ -528,6 +528,40 @@ namespace FastReport
             return expressions.ToArray();
         }
 
+        /// <summary>
+        /// Caclulates visible expression value.
+        /// </summary>
+        /// <param name="expression">The expression to calculate.</param>
+        /// <returns>The result of calculation.</returns>
+        public bool CalcVisibleExpression(string expression)
+        {
+            bool result = true;
+
+            object expressionObj = null;
+            // Calculate expressions with TotalPages only on FinalPass.
+            if (!expression.Contains("TotalPages") || (Report.DoublePass && Report.Engine.FinalPass))
+            {
+                expressionObj = Report.Calc(Code.CodeUtils.FixExpressionWithBrackets(expression));
+            }
+            if (expressionObj != null && expressionObj is bool)
+            {
+                if (!expression.Contains("TotalPages"))
+                {
+                    result = (bool)expressionObj;
+                }
+                else if (Report.Engine.FirstPass)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = (bool)expressionObj;
+                }
+            }
+
+            return result;
+        }
+
         #endregion Report Engine
     }
 }

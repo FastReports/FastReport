@@ -119,7 +119,7 @@ namespace FastReport.Data
     public static bool IsSimpleColumn(Dictionary dictionary, string complexName)
     {
       Column column = GetColumn(dictionary, complexName);
-      return column != null && column.Parent is DataSourceBase && 
+      return column != null && column.Parent is DataSourceBase && column.Enabled &&
         (column.Parent as DataSourceBase).FullName + "." + column.Alias == complexName;
     }
     

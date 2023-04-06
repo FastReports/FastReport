@@ -119,7 +119,7 @@ function DOCXExport() {{
         DocxWysiwyg = new Boolean(true);
     }}
     else {{ DocxWysiwyg = false; }};
-    DocxButtons = ('&PrintOptimized=' + DocxPrintOptimized + '&DoNotExpandShiftReturn=' + DocxDoNotExpandShiftReturn + '&Wysiwyg=' + DocxWysiwyg);
+    DocxButtons = ('&PrintOptimized=' + DocxPrintOptimized + '&DoNotExpandShiftReturn=' + DocxDoNotExpandShiftReturn + '&Wysiwyg=' + DocxWysiwyg + DocxRowHeights + DocxOnRenderMode );
 
     window.location.href = DocxExport.href + DocxButtons + PageSelector;
 }}

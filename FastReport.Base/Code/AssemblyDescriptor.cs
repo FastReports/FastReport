@@ -292,6 +292,11 @@ namespace FastReport.Code
                     return;
             }
 
+            // generate an error if a column that has been disabled is used
+            Column column = DataHelper.GetColumn(Report.Dictionary, expr);
+            if (column != null && !column.Enabled)
+                expr += "Disable";
+
             // handle complex expressions, relations
             ExpressionDescriptor descriptor = new ExpressionDescriptor(this);
             Expressions.Add(expression, descriptor);

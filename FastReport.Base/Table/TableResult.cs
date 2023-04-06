@@ -719,6 +719,9 @@ namespace FastReport.Table
             {
                 for (int i = 0; i < FixedColumns; i++)
                 {
+                    // Apply visible expression if needed.
+                    if (!String.IsNullOrEmpty(Columns[i].VisibleExpression))
+                        Columns[i].Visible = CalcVisibleExpression(Columns[i].VisibleExpression);
                     if (Columns[i].Visible)
                         ColumnsToSerialize.Add(Columns[i]);
                 }
@@ -733,6 +736,9 @@ namespace FastReport.Table
             float tableEndX = Columns[0].Width;
             for (int i = startColumn; i < startColumn + columnsFit; i++)
             {
+                // Apply visible expression if needed.
+                if (!String.IsNullOrEmpty(Columns[i].VisibleExpression))
+                    Columns[i].Visible = CalcVisibleExpression(Columns[i].VisibleExpression);
                 if (Columns[i].Visible)
                 {
                     ColumnsToSerialize.Add(Columns[i]);
@@ -746,6 +752,9 @@ namespace FastReport.Table
             {
                 for (int i = 0; i < FixedRows; i++)
                 {
+                    // Apply visible expression if needed.
+                    if (!String.IsNullOrEmpty(Rows[i].VisibleExpression))
+                        Rows[i].Visible = CalcVisibleExpression(Rows[i].VisibleExpression);
                     if (Rows[i].Visible)
                         RowsToSerialize.Add(Rows[i]);
                 }
@@ -760,6 +769,9 @@ namespace FastReport.Table
             float tableEndY = Rows[0].Top;
             for (int i = startRow; i < startRow + rowsFit; i++)
             {
+                // Apply visible expression if needed.
+                if (!String.IsNullOrEmpty(Rows[i].VisibleExpression))
+                    Rows[i].Visible = CalcVisibleExpression(Rows[i].VisibleExpression);
                 if (Rows[i].Visible)
                 {
                     RowsToSerialize.Add(Rows[i]);
