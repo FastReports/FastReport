@@ -411,7 +411,10 @@ namespace FastReport.Data
                         table = CreateProcedure(tableName);
                     }
                     else
+                    {
                         table = new TableDataSource();
+                        table.Enabled = true;
+                    }
 
                     string fixedTableName = tableName.Replace(".", "_").Replace("[", "").Replace("]", "").Replace("\"", "");
                     if (Report != null)
@@ -424,7 +427,6 @@ namespace FastReport.Data
 
                     table.TableName = tableName;
                     table.Connection = this;
-                    table.Enabled = true;
 
                     if (TablesStructure != null)
                     {
@@ -453,6 +455,7 @@ namespace FastReport.Data
         public virtual TableDataSource CreateProcedure(string tableName)
         {
             ProcedureDataSource table = new ProcedureDataSource();
+            table.Enabled = true;
             table.SelectCommand = tableName;
             DbConnection conn = GetConnection();
             DataTable shemaParametrs;
@@ -467,9 +470,11 @@ namespace FastReport.Data
                     {
                         case "IN":
                             direction = ParameterDirection.Input;
+                            table.Enabled = false;
                             break;
                         case "INOUT":
                             direction = ParameterDirection.InputOutput;
+                            table.Enabled = false;
                             break;
                         case "OUT":
                             direction = ParameterDirection.Output;
@@ -778,6 +783,12 @@ namespace FastReport.Data
                     adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ? CommandType.StoredProcedure : CommandType.Text;
                     adapter.SelectCommand.CommandTimeout = CommandTimeout;
                     adapter.FillSchema(table, SchemaType.Source);
+                }
+
+                foreach(Column column in dataSource.Columns)
+                {
+                    if (!column.Enabled)
+                        table.Columns.Remove(column.Name);
                 }
             }
             finally

@@ -45,7 +45,7 @@ namespace FastReport.Engine
                 // Apply visible expression if needed.
                 if (subreport != null && !String.IsNullOrEmpty(subreport.VisibleExpression))
                 {
-                    subreport.Visible = CalcVisibleExpression(subreport.VisibleExpression);
+                    subreport.Visible = subreport.CalcVisibleExpression(subreport.VisibleExpression);
                 }
 
                 if (subreport != null && subreport.Visible && subreport.PrintOnParent)
@@ -72,7 +72,7 @@ namespace FastReport.Engine
                     // Apply visible expression if needed.
                     if (subreport != null && !String.IsNullOrEmpty(subreport.VisibleExpression))
                     {
-                        subreport.Visible = CalcVisibleExpression(subreport.VisibleExpression);
+                        subreport.Visible = subreport.CalcVisibleExpression(subreport.VisibleExpression);
                     }
 
                     if (subreport != null && subreport.Visible && !subreport.PrintOnParent)
