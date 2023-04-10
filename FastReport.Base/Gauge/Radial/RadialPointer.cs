@@ -173,24 +173,10 @@ namespace FastReport.Gauge.Radial
         #region Public Methods
 
         /// <inheritdoc/>
-        public override void Assign(GaugePointer src)
-        {
-            base.Assign(src);
-
-            RadialPointer s = src as RadialPointer;
-        }
-
-        /// <inheritdoc/>
         public override void Draw(FRPaintEventArgs e)
         {
             base.Draw(e);
             DrawHorz(e);
-        }
-
-        /// <inheritdoc/>
-        public override void Serialize(FRWriter writer, string prefix, GaugePointer diff)
-        {
-            base.Serialize(writer, prefix, diff);
         }
 
         #endregion // Public Methods

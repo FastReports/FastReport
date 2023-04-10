@@ -233,7 +233,7 @@ namespace FastReport.Web
             }
         }
 
-        void DoHtmlPage(StringBuilder sb, HTMLExport html, int pageN)
+        internal void DoHtmlPage(StringBuilder sb, HTMLExport html, int pageN)
         {
             if (html.PreparedPages[pageN].PageText == null)
             {
@@ -250,7 +250,7 @@ namespace FastReport.Web
                 sb.Append(html.PreparedPages[pageN].CSSText);
                 sb.Append(html.PreparedPages[pageN].PageText);
 
-                if (!EmbedPictures)
+                if (!html.EmbedPictures)
                     CacheHtmlPictures(html, pageN);
             }
         }

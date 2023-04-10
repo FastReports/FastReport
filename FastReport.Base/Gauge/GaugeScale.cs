@@ -85,7 +85,7 @@ namespace FastReport.Gauge
         public GaugeScale(GaugeObject parent)
         {
             this.parent = parent;
-            font = new Font("Arial", 8.0f);
+            font = DrawUtils.DefaultReportFont;
             TextFill = new SolidFill(Color.Black);
             majorTicks = new ScaleTicks();
             minorTicks = new ScaleTicks();
@@ -102,7 +102,7 @@ namespace FastReport.Gauge
         public virtual void Assign(GaugeScale src)
         {
             Font = src.Font;
-            TextFill = src.TextFill;
+            TextFill = src.TextFill.Clone();
         }
 
         /// <summary>

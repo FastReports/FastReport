@@ -22,7 +22,7 @@ namespace FastReport.Export.Html
         /// Draw any custom controls.
         /// </summary>
         /// <param name="e"></param>
-        public void OnCustomDraw(CustomDrawEventArgs e)
+        private void OnCustomDraw(CustomDrawEventArgs e)
         {
             if (CustomDraw != null)
             {
@@ -95,8 +95,8 @@ namespace FastReport.Export.Html
         private bool wysiwyg;
         private bool notRotateLandscapePage;
         private bool highQualitySVG;
-        private MyRes res;
-        private HtmlTemplates templates;
+        private readonly MyRes res;
+        private readonly HtmlTemplates templates;
         private string targetPath;
         private string targetIndexPath;
         private string targetFileName;
@@ -135,9 +135,8 @@ namespace FastReport.Export.Html
         private bool pageBreaks;
         private bool print;
         private bool preview;
-        private List<string> cssStyles;
+        private readonly List<string> cssStyles;
         private float hPos;
-        private NumberFormatInfo numberFormat;
         private string pageStyleName;
 
         private bool saveStreams;
@@ -153,8 +152,8 @@ namespace FastReport.Export.Html
         private HTMLData d;
         private IGraphics htmlMeasureGraphics;
         private float maxWidth, maxHeight;
-        private FastString css;
-        private FastString htmlPage;
+        private readonly FastString css = new FastString();
+        private readonly FastString htmlPage = new FastString();
         private float leftMargin, topMargin;
         private bool enableMargins = false;
         private ExportType exportMode;
@@ -374,7 +373,7 @@ namespace FastReport.Export.Html
         }
 
         /// <summary>
-        ///  Gets or sets the Wysiwyg quality of export
+        ///  Gets or sets the WYSIWYG quality of export
         /// </summary>
         public bool Wysiwyg
         {
@@ -588,9 +587,9 @@ namespace FastReport.Export.Html
         private void ExportHTMLIndex(Stream stream)
         {
             ExportUtils.Write(stream, String.Format(templates.IndexTemplate,
-                new object[] { documentTitle, ExportUtils.HtmlURL(navFileName),
+                documentTitle, ExportUtils.HtmlURL(navFileName),
                         ExportUtils.HtmlURL(targetFileName +
-                        (singlePage ? ".main" : "1") + ".html") }));
+                        (singlePage ? ".main" : "1") + ".html")));
         }
 
         private void ExportHTMLNavigator(Stream stream)
@@ -600,16 +599,16 @@ namespace FastReport.Export.Html
             //  {4} first caption {5} previous caption {6} next caption {7} last caption
             //  {8} total caption
             ExportUtils.Write(stream, String.Format(templates.NavigatorTemplate,
-                new object[] { pagesCount.ToString(),
+                pagesCount.ToString(),
                         documentTitle, (singlePage ? "0" : "1"),
                         prefix, res.Get("First"), res.Get("Prev"),
-                        res.Get("Next"), res.Get("Last"), res.Get("Total") }));
+                        res.Get("Next"), res.Get("Last"), res.Get("Total")));
         }
 
         private void Init()
         {
             htmlMeasureGraphics = Report.MeasureGraphics;
-            cssStyles = new List<string>();
+            cssStyles.Clear();
             hPos = 0;
             count = Report.PreparedPages.Count;
             pagesCount = 0;
@@ -1024,9 +1023,7 @@ namespace FastReport.Export.Html
             print = false;
             preview = false;
             saveStreams = false;
-            numberFormat = new NumberFormatInfo();
-            numberFormat.NumberGroupSeparator = String.Empty;
-            numberFormat.NumberDecimalSeparator = ".";
+            cssStyles = new List<string>();
             exportMode = ExportType.Export;
             res = new MyRes("Export,Html");
             embeddedImages = new Dictionary<string, string>();
@@ -1062,7 +1059,7 @@ namespace FastReport.Export.Html
         public ReportComponentBase reportObject;
 
         /// <summary>
-        /// Resulting successfull drawing flag.
+        /// Resulting successful drawing flag.
         /// </summary>
         public bool done = false;
 

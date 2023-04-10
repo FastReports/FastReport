@@ -2,6 +2,7 @@
 using FastReport.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Diagnostics;
 using System.Net;
 
 namespace FastReport.Web.Controllers
@@ -74,7 +75,7 @@ namespace FastReport.Web.Controllers
                 if (!ReportService.Instance.TryFindWebReport(Request.Query["reportId"].ToString(), out WebReport webReport))
                     return new NotFoundResult();
 
-                string receivedReportString = await ReportDesignerService.Instance.GetPOSTReportAsync(Context.Request.Body);
+                string receivedReportString = await ReportDesignerService.Instance.GetPOSTReportAsync(Request.Body);
                 string response = default;
                 
                 try
@@ -97,6 +98,34 @@ namespace FastReport.Web.Controllers
                     ContentType = "text/html",
                     Content = response,
                 };
+            });
+
+            RegisterHandler("/designer.objects/preview", async () =>
+            {
+                if (!ReportService.Instance.TryFindWebReport(Request.Query["reportId"].ToString(), out WebReport webReport))
+                    return new NotFoundResult();
+
+                try
+                {
+                    var reportObj = await ReportDesignerService.Instance.GetPOSTReportAsync(Request.Body);
+
+                    var response = DesignerUtilsService.Instance.DesignerObjectPreview(webReport, reportObj);
+                    return new ContentResult()
+                    {
+                        StatusCode = (int)HttpStatusCode.OK,
+                        ContentType = "text/html",
+                        Content = response
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new ContentResult()
+                    {
+                        StatusCode = (int)HttpStatusCode.InternalServerError,
+                        ContentType = "text/html",
+                        Content = webReport.Debug ? ex.Message : "",
+                    };
+                }
             });
 
             RegisterHandler("/designer.getConfig", () =>

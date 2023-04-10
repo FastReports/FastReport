@@ -2568,6 +2568,30 @@ namespace FastReport
             InternalRefresh();
         }
 
+        /// <summary>
+        /// Serialize report object from string
+        /// </summary>
+        /// <returns>Serialized report object from string</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ReportComponentBase Xml(string xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            using (TextReader reader = new StringReader(xml))
+            {
+                doc.WriteHeader = false;
+                doc.ReadHeader = true;
+                doc.Load(reader);
+                
+            }
+            using (FRReader reader = new FRReader(this, doc.Root))
+            {
+                
+                reader.DeserializeFrom = SerializeTo.Clipboard;
+                return reader.Read() as ReportComponentBase;
+            }
+        }
+
+
         internal void InternalRefresh()
         {
             SetRunning(true);

@@ -27,7 +27,6 @@ namespace FastReport.Gauge.Simple
         /// </summary>
         public SimpleGauge() : base()
         {
-            InitializeComponent();
             Value = 75;
             Scale = new SimpleScale(this);
             Pointer = new SimplePointer(this);

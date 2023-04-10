@@ -90,8 +90,8 @@ namespace FastReport.Web.Controllers
             if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
                 return new NotFoundResult();
 
-            string receivedReportString = await _reportDesignerService.GetPOSTReportAsync(HttpContext.Request.Body);
-            string response = default;
+            string receivedReportString = await _reportDesignerService.GetPOSTReportAsync(Request.Body);
+            string response;
 
             try
             {

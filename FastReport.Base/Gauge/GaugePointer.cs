@@ -91,7 +91,7 @@ namespace FastReport.Gauge
         /// <param name="src">The GaugePointer instance to copy the contents from.</param>
         public virtual void Assign(GaugePointer src)
         {
-            Fill = src.Fill;
+            Fill = src.Fill.Clone();
             BorderWidth = src.BorderWidth;
             BorderColor = src.BorderColor;
         }
