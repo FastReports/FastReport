@@ -12,7 +12,7 @@ namespace FastReport.Web.Controllers
 {
     abstract class BaseController
     {
-        public readonly struct Handler
+        internal readonly struct Handler
         {
             //public HttpMethod Method;
             public readonly TemplateMatcher RouteTemplate;
@@ -32,8 +32,8 @@ namespace FastReport.Web.Controllers
         //public readonly string RouteBasePath;
 
         protected HttpContext Context { get; private set; }
-        protected HttpRequest Request { get; private set; }
-        protected HttpResponse Response { get; private set; }
+        protected HttpRequest Request => Context.Request;
+        protected HttpResponse Response => Context.Response;
         //protected RouteValueDictionary RouteValues { get; private set; }
 
         private readonly List<Handler> handlers = new List<Handler>();
@@ -90,8 +90,6 @@ namespace FastReport.Web.Controllers
 
                 // setup values for action
                 Context = httpContext;
-                Request = httpContext.Request;
-                Response = httpContext.Response;
                 //RouteValues = routeValues;
 
                 IActionResult actionResult = null;
@@ -119,8 +117,6 @@ namespace FastReport.Web.Controllers
 
                 // clear values after action
                 Context = null;
-                Request = null;
-                Response = null;
                 //RouteValues = null;
 
                 return true;

@@ -295,7 +295,7 @@ namespace FastReport
     /// an equivalent <see cref="System.Boolean"/> value.
     /// </summary>
     public bool ToBoolean() {
-      if (_value == null) return false;
+      if (_value == null || _value.ToString() == "") return false;
       if (this.Type == typeof(System.Boolean))
         return (bool)_value;
       return CBln(_value);
@@ -316,7 +316,7 @@ namespace FastReport
     /// to an equivalent 8-bit unsigned integer.
     /// </summary>
     public byte ToByte() {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.Byte))
         return (byte)_value;
@@ -349,7 +349,7 @@ namespace FastReport
     /// to an equivalent 16-bit signed integer.
     /// </summary>
     public short ToInt16() {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.Int16))
         return (short)_value;
@@ -382,7 +382,7 @@ namespace FastReport
     /// to an equivalent 32-bit signed integer.
     /// </summary>
     public int ToInt32() {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.Int32))
         return (int)_value;
@@ -415,7 +415,7 @@ namespace FastReport
     /// to an equivalent 64-bit signed integer.
     /// </summary>
     public long ToInt64() {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.Int64))
         return (long)_value;
@@ -448,7 +448,7 @@ namespace FastReport
     /// to an equivalent double-precision floating-point number.
     /// </summary>
     public double ToDouble() {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.Double))
         return (double)_value;
@@ -482,7 +482,7 @@ namespace FastReport
     /// to an equivalent single-precision floating-point number.
     /// </summary>
     public float ToSingle() {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.Single))
         return (float)_value;
@@ -515,7 +515,7 @@ namespace FastReport
     /// an equivalent Decimal number.
     /// </summary>
     public decimal ToDecimal() {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.Decimal))
         return (decimal)_value;
@@ -550,7 +550,7 @@ namespace FastReport
     [CLSCompliant(false)]
     public sbyte ToSByte()
     {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.SByte))
         return (sbyte)_value;
@@ -587,7 +587,7 @@ namespace FastReport
     [CLSCompliant(false)]
     public ushort ToUInt16()
     {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.UInt16))
         return (ushort)_value;
@@ -624,7 +624,7 @@ namespace FastReport
     [CLSCompliant(false)]
     public uint ToUInt32()
     {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.UInt32))
         return (uint)_value;
@@ -661,7 +661,7 @@ namespace FastReport
     [CLSCompliant(false)]
     public ulong ToUInt64()
     {
-      if (_value == null) return 0;
+      if (_value == null || _value.ToString() == "") return 0;
       Type tt = this.Type;
       if (tt == typeof(System.UInt64))
         return (ulong)_value;
@@ -696,7 +696,7 @@ namespace FastReport
     /// an equivalent DateTime.
     /// </summary>
     public DateTime ToDateTime() {
-      if (_value == null) return DateTime.MinValue;
+      if (_value == null || _value.ToString() == "") return DateTime.MinValue;
       Type tt = this.Type;
       if (tt == typeof(System.DateTime))
         return (DateTime)_value;
@@ -727,7 +727,7 @@ namespace FastReport
     /// an equivalent TimeSpan.
     /// </summary>
     public TimeSpan ToTimeSpan() {
-      if (_value == null) return TimeSpan.MinValue;
+      if (_value == null || _value.ToString() == "") return TimeSpan.MinValue;
       Type tt = this.Type;
       if (tt == typeof(System.TimeSpan))
         return (TimeSpan)_value;
@@ -783,7 +783,7 @@ namespace FastReport
     /// to an equivalent Unicode character.
     /// </summary>
     public char ToChar() {
-      if (_value == null) return (char)0;
+      if (_value == null || _value.ToString() == "") return (char)0;
       Type tt = this.Type;
       if (tt == typeof(System.Char))
         return (char)_value;
@@ -1522,7 +1522,7 @@ namespace FastReport
     /// <returns></returns>
     public override string ToString()
     {
-        if (_value == null) return "";
+        if (_value == null || _value.ToString() == "") return "";
         return this.String;
     }
     /// <summary>

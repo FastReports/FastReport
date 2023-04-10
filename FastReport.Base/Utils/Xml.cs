@@ -453,7 +453,8 @@ namespace FastReport.Utils
     {
         private bool autoIndent;
         private bool writeHeader;
-        private XmlItem root;
+        private readonly XmlItem root;
+        private bool readHeader = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether is necessary to indent the document
@@ -473,6 +474,16 @@ namespace FastReport.Utils
             get { return writeHeader; }
             set { writeHeader = value; }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether is necessary to read xml header.
+        /// </summary>
+        public bool ReadHeader
+        {
+            get { return readHeader; }
+            set { readHeader = value; }
+        }
+
 
         /// <summary>
         /// Gets the root node of the document.
@@ -524,6 +535,16 @@ namespace FastReport.Utils
             root.Clear();
             rd.Read(root);
         }
+
+
+        public void Load(TextReader reader)
+        {
+            XmlReader rd = new XmlReader(reader);
+            rd.IsReadHeader = ReadHeader;
+            root.Clear();
+            rd.Read(root);
+        }
+
 
         /// <summary>
         /// Saves the document to a file.
@@ -578,13 +599,27 @@ namespace FastReport.Utils
 
     internal class XmlReader
     {
-        private StreamReader reader;
-        private Stream stream;
+        private readonly TextReader reader;
         private string lastName;
         private enum ReadState { FindLeft, FindRight, FindComment, FindCloseItem, Done }
         private enum ItemState { Begin, End, Complete }
         private int symbolInBuffer;
         Dictionary<string, string> stringPool;
+        private bool isReadHeader = true;
+
+        public bool IsReadHeader
+        {
+            get
+            {
+                return isReadHeader;
+            }
+            set
+            {
+                isReadHeader = value;
+            }
+        }
+
+
         private ItemState ReadItem(XmlItem item)
         {
             FastString builder;
@@ -843,11 +878,14 @@ namespace FastReport.Utils
 
         private void ReadHeader()
         {
-            using (XmlItem item = new XmlItem())
+            if (isReadHeader)
             {
-                ReadItem(item);
-                if (item.Name.IndexOf("?xml") != 0)
-                    RaiseException();
+                using (XmlItem item = new XmlItem())
+                {
+                    ReadItem(item);
+                    if (item.Name.IndexOf("?xml") != 0)
+                        RaiseException();
+                }
             }
         }
 
@@ -858,9 +896,15 @@ namespace FastReport.Utils
         }
 
         public XmlReader(Stream stream)
+            : this(new StreamReader(stream, Encoding.UTF8))
         {
-            this.stream = stream;
-            reader = new StreamReader(this.stream, Encoding.UTF8);
+
+        }
+
+
+        public XmlReader(TextReader reader)
+        {
+            this.reader = reader;
             if (Config.IsStringOptimization)
                 stringPool = new Dictionary<string, string>();
             lastName = "";

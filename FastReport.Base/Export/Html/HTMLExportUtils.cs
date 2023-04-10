@@ -66,7 +66,7 @@ namespace FastReport.Export.Html
 
     public partial class HTMLExport : ExportBase
     {
-        private string Px(double pixel)
+        private static string Px(double pixel)
         {
             return String.Join(String.Empty, new String[] { ExportUtils.FloatToString(pixel), "px;" });
         }

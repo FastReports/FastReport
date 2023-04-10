@@ -14,16 +14,6 @@ namespace FastReport.Gauge.Radial
             Parent = parent as RadialGauge;
         }
 
-        public override void Assign(GaugeLabel src)
-        {
-            base.Assign(src);
-        }
-
-        public override void Serialize(FRWriter writer, string prefix, GaugeLabel diff)
-        {
-            base.Serialize(writer, prefix, diff);
-        }
-
         public override void Draw(FRPaintEventArgs e)
         {
             if ((Parent as RadialGauge).Type == RadialGaugeType.Circle)

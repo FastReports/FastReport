@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace FastReport.Web.Services
@@ -32,5 +33,7 @@ namespace FastReport.Web.Services
         /// <param name="report">Report, the functions of which are to be obtained</param>
         /// <returns>Returns a string with the report functions</returns>
         string GetFunctions(Report report);
+
+        string DesignerObjectPreview(WebReport webReport, string reportObj);
     }
 }

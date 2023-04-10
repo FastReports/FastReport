@@ -1,10 +1,14 @@
 ﻿using FastReport.Utils;
 using FastReport.Utils.Json;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
@@ -120,6 +124,32 @@ namespace FastReport.Web.Services
             ComponentInformationCache.ComponentPropertiesCache.Add(componentName, componentPropertiesJson);
 
             return componentPropertiesJson;
+        }
+
+        public string DesignerObjectPreview(WebReport webReport, string reportObj)
+        {
+            var sb = new StringBuilder();
+            using (var report = new Report())
+            {
+                var obj = report.Xml(reportObj);
+                //obj.SetReport(report);
+
+                using (var html = new Export.Html.HTMLExport(true))
+                {
+                    html.StylePrefix = obj.Name.Trim();
+                    html.SetReport(report);
+                    html.ExportReportObject(obj);
+                    sb.Append("<div>");
+                    //sb.Append("<div ")
+                    //    .Append(" style=\"position:relative;")
+                    //    .Append(" width:").Append(Px(maxWidth * Zoom + 3))
+                    //    .Append(" height:").Append(Px(maxHeight * Zoom))
+                    //    .Append("\">");
+                    webReport.DoHtmlPage(sb, html, 0);
+                }
+            }
+
+            return sb.ToString();
         }
     }
 

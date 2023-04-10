@@ -515,6 +515,9 @@
     <ToolWindow>
       <AutoHide Text="Скрывать автоматически"/>
       <Close Text="Закрыть"/>
+      <DockToTop Text="Переместить {0} наверх"/>
+      <DockToBottom Text="Переместить {0} вниз"/>
+      <DockToOtherSide Text="Переместить {0} на другую сторону"/>
       <Properties Text="Свойства">
         <Categorized Text="По категориям"/>
         <Alphabetical Text="По алфавиту"/>
@@ -578,6 +581,8 @@
       <Standard Text="Стандартная">
         <New Text="Новый..."/>
         <Open Text="Открыть"/>
+        <OpenLocally Text="Открыть Отчет (Ctrl+O)"/>
+        <OpenViaCloud Text="Открыть Отчет из Облака"/>
         <Save Text="Сохранить отчет (Ctrl+S)"/>
         <SaveAll Text="Сохранить все (Ctrl+Shift+S)"/>
         <Preview Text="Предварительный просмотр (Ctrl+P)"/>
@@ -780,6 +785,7 @@
       <ReportItems Text="Элементы отчета:"/>
       <Games Text="Игры:"/>
     </AddNewItem>
+    <OpenPage Text="Выберите страницу"/>
     <AdvancedConnectionProperties Text="Расширенные свойства"/>
     <AskPassword Text="Пароль">
       <Password Text="Этот отчет защищен паролем.&#13;&#10;&#13;&#10;Пожалуйста, введите пароль:"/>
@@ -2056,6 +2062,7 @@
       <Restore Text="Восстановить"/>
     </LoadAutoSave>
     <AccountWindow Text="Учетная запись">
+      <AuthServer Text="https://id.быстрыеотчеты.рф"/>
       <WebBrowser Text="Аутентификация"/>
       <Title Text="Учетная запись"/>
       <SignIn Text="Войти"/>
@@ -2129,7 +2136,11 @@
       <DatabaseFile Text="Файл базы данных:"/>
       <DataSource Text="Источник данных"/>
       <OnlyUrlException Text="В подключении должна быть ссылка!"/>
+      <ErrorUrlException Text="По указанному пути отсутствует искомый файл!"/>
     </Common>
+    <Excel>
+      <FieldNames Text="Имена столбцов в первой строке"/>
+    </Excel>
     <MsSql>
       <UseWindows Text="Аутентификация Windows"/>
       <UseSql Text="Аутентификация MS SQL"/>

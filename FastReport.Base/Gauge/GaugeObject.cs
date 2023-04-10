@@ -10,7 +10,7 @@ namespace FastReport.Gauge
     /// <summary>
     /// Represents a gauge object.
     /// </summary>
-    public partial class GaugeObject : ReportComponentBase, ICloneable
+    public partial class GaugeObject : ReportComponentBase
     {
         #region Fields
 
@@ -310,9 +310,11 @@ namespace FastReport.Gauge
         /// Clone Gauge Object
         /// </summary>
         /// <returns> clone of this object</returns>
-        public object Clone()
+        public GaugeObject Clone()
         {
-            return this.MemberwiseClone();
+            var clone = Activator.CreateInstance(this.GetType()) as GaugeObject;
+            clone.Assign(this);
+            return clone;
         }
 
         #endregion // Public Methods
