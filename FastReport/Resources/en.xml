@@ -191,6 +191,7 @@
     </Shapes>
     <PictureObject Text="Picture"/>
     <SVGObject Text="SVG Document"/>
+    <RFIDLabel Text="RFID Label"/>
     <TableObject Text="Table"/>
     <Matrix Text="Matrix"/>
     <MatrixObject Text="Matrix"/>
@@ -1232,6 +1233,9 @@
       <AddQuery Text="Add SQL query..."/>
       <CheckAll Text="Check all"/>
       <CloudDataSources Text="Select connection from Cloud"/>
+      <Page3 Text="Choose procedures"/>
+      <WhichProcedures Text="Which procedures you want in your report?"/>
+      <CheckAllProcedures Text="Check all procedures without input parameters"/>
       <MessageBox>
         <SuccessText Text="The data source has been successfully uploaded to the server!"/>
         <SuccessCaption Text="Upload successful"/>
@@ -1972,6 +1976,34 @@
       <SimplifyDBFields Text="Simplified display of DB fields"/>
       <ApplyLastFormat Text="Apply last format to new objects"/>
     </ReportPageOptions>
+    <RFIDLabelEditor Text="RFID Label editor">
+      <ReservedBank Text="Reserved bank"/>
+      <AccessPassword Text="Access password"/>
+      <AccessPassWriteMode Text="Access password access mode"/>
+      <KillPassword Text="Kill password"/>
+      <KillPassWriteMode Text="Kill password access mode"/>
+      <DataFormat Text="Data format"/>
+      <TIDBank Text="Tag ID bank"/>
+      <TID Text="Tag ID"/>
+      <EPCBank Text="EPC bank"/>
+      <EPCBankFullName Text="Electronic product code (EPC) bank"/>
+      <EPCFormat Text="EPC format"/>
+      <EPC Text="EPC data"/>
+      <EPCBankMode Text="EPC bank access mode"/>
+      <UseAdjust Text="Use adjust bits"/>
+      <RewriteEPC Text="Rewrite EPC bank"/>
+      <UserBank Text="User bank"/>
+      <UserData Text="User data"/>
+      <UserBankMode Text="User bank access mode"/>
+      <StartPermalock Text="Start section of permalock"/>
+      <CountPermalock Text="Count of permalock sections"/>
+      <Other Text="Other"/>
+      <AdaptiveAntenna Text="Adaptive antenna"/>
+      <ReadPower Text="Read power"/>
+      <WritePower Text="Write power"/>
+      <ErrorHandleMode Text="Error handle mode"/>
+      <DataColumn Text="Data column"/>
+    </RFIDLabelEditor>
     <RichTextEditor Text="RichText Editor">
       <Open Text="Open"/>
       <Save Text="Save"/>

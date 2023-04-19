@@ -141,6 +141,7 @@ namespace FastReport
             RegisteredObjects.Add(typeof(SimpleProgressGauge), "ReportPage,Gauge", 140, "Objects,Gauge,SimpleProgress", 0, false);
 
             RegisteredObjects.InternalAdd(typeof(HtmlObject), "ReportPage", 246, 18);
+            RegisteredObjects.InternalAdd(typeof(RFIDLabel), "ReportPage", 265, 19);
 
             // exports
             RegisteredObjects.InternalAddExport(typeof(ImageExport), "Image", "Export,Image,File");
