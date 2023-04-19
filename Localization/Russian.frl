@@ -192,6 +192,7 @@
     <PictureObject Text="Рисунок"/>
     <SVGObject Text="SVG изображение"/>
     <TableObject Text="Таблица"/>
+    <RFIDLabel Text="RFID-метка"/>
     <Matrix Text="Матрица"/>
     <MatrixObject Text="Матрица"/>
     <AdvMatrixObject Text="Улучшенная матрица"/>
@@ -544,8 +545,8 @@
         <Merge Text="Объединить словари..."/>
         <NewDataSource Text="Новый источник данных..."/>
         <SortDataSources Text="Сортировать источники данных"/>
-        <UploadDataSource Text="Загрузить на корпоративный сервер..."/>
-        <UploadChangesDataSource Text="Обновить подключение на Облаке"/>
+        <UploadDataSource Text="Загрузить в Облако..."/>
+        <UploadChangesDataSource Text="Обновить подключение в Облаке"/>
         <SortDataFields Text="Сортировать поля данных"/>
         <CopyDataSource Text="Скопировать источник данных"/>
         <NewRelation Text="Новая связь..."/>
@@ -580,9 +581,7 @@
       <MoreButtons Text="Больше кнопок..."/>
       <Standard Text="Стандартная">
         <New Text="Новый..."/>
-        <Open Text="Открыть"/>
-        <OpenLocally Text="Открыть Отчет (Ctrl+O)"/>
-        <OpenViaCloud Text="Открыть Отчет из Облака"/>
+        <Open Text="Открыть отчет (Ctrl+O)"/>
         <Save Text="Сохранить отчет (Ctrl+S)"/>
         <SaveAll Text="Сохранить все (Ctrl+Shift+S)"/>
         <Preview Text="Предварительный просмотр (Ctrl+P)"/>
@@ -1153,8 +1152,8 @@
       <StatusError Text="Ошибка"/>
       <StatusUpdating Text="Обновление"/>
       <Caption Text="Выберите подключение"/>
-      <SelectSources Text="Выберите соединение к данным для вашего отчета с корпоративного сервера"/>
-      <SelectUpload Text="Выберите доступное соединение, чтобы загрузить его на корпоративный сервер"/>
+      <SelectSources Text="Выберите соединение к данным для вашего отчета из Облака"/>
+      <SelectUpload Text="Выберите доступное соединение, чтобы загрузить его в Облако"/>
       <NotFoundSources Text="Нет доступных подключений"/>
       <PluginNotAdded Text="Невозможно загрузить источник данных. Вероятно, не подключен плагин, соответствующий этому подключению"/>
     </CloudDataSourceForm>
@@ -1229,7 +1228,10 @@
       <Wait Text="Подключение к базе данных"/>
       <AddQuery Text="Добавить SQL запрос..."/>
       <CheckAll Text="Выбрать все"/>
-      <CloudDataSources Text="Выбрать подключение с сервера"/>
+      <CloudDataSources Text="Выбрать подключение с Облака"/>
+      <Page3 Text="Выберите процедуры"/>
+      <WhichProcedures Text="Какие процедуры вы хотите использовать в отчете?"/>
+      <CheckAllProcedures Text="Выбрать все процедуры без входных параметров"/>
       <MessageBox>
         <SuccessText Text="Источник данных успешно загружен на сервер!"/>
         <SuccessCaption Text="Загрузка успешна"/>
@@ -1237,7 +1239,7 @@
         <SuccessUpdateCaption Text="Обновление успешно"/>
         <ErrorText Text="Ошибка при загрузке источника данных"/>
         <ErrorCaption Text="Ошибка"/>
-        <ErrorInvalidID Text="Некорретный Id источника данных. Вероятно источник данных отсутствует на сервере. Проверьте данные и попробуйте снова."/>
+        <ErrorInvalidID Text="Некорретный Id источника данных. Вероятно, источник данных отсутствует на сервере. Проверьте данные и попробуйте снова."/>
         <Error404 Text="Выбранного источника данных не существует в текущей подписке. Проверьте данные и попробуйте снова."/>
       </MessageBox>
       <ChangeParameters Text="Изменение параметров процедуры "/>
@@ -1411,7 +1413,7 @@
       <FileNameHeader Text="Имя"/>
       <DateModHeader Text="Время изменения"/>
       <FileSizeHeader Text="Размер"/>
-      <FileTypeHeader Text="Размер"/>
+      <FileTypeHeader Text="Тип"/>
       <CreateFolder Text="Создать папку"/>
       <CopyPath Text="Скопировать путь"/>
       <Rename Text="Переименовать"/>
@@ -1787,6 +1789,34 @@
       <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
       <ApplyLastFormat Text="Применять последний формат к новым объектам"/>
     </ReportPageOptions>
+      <RFIDLabelEditor Text="Редактор RFID-меток">
+      <ReservedBank Text="Зарезервированный банк данных"/>
+      <AccessPassword Text="Пароль доступа"/>
+      <AccessPassWriteMode Text="Режим доступа к паролю доступа"/>
+      <KillPassword Text="Пароль уничтожения"/>
+      <KillPassWriteMode Text="Режим доступа к паролю уничтожения"/>
+      <DataFormat Text="Формат данных"/>
+      <TIDBank Text="Банк идентификатора метки"/>
+      <TID Text="Идентификатор метки"/>
+      <EPCBank Text="Банк ЭКП"/>
+      <EPCBankFullName Text="Банк электронного кода продукта (ЭКП)"/>
+      <EPCFormat Text="ЭКП формат"/>
+      <EPC Text="Электронный код продукта"/>
+      <EPCBankMode Text="Режим доступа к ЭКП"/>
+      <UseAdjust Text="Использовать выравнивание битов"/>
+      <RewriteEPC Text="Перезаписать банк ЭКП" />
+      <UserBank Text="Банк пользователя"/>
+      <UserData Text="Пользовательские данные"/>
+      <UserBankMode Text="Режим доступа к пользовательским данным"/>
+      <StartPermalock Text="Начальный раздел постоянной блокировки"/>
+      <CountPermalock Text="Количество секций постоянной блокировки"/>
+      <Other Text="Прочее"/>
+      <AdaptiveAntenna Text="Адаптивная антенна"/>
+      <ReadPower Text="Мощность считывания"/>
+      <WritePower Text="Мощность записи"/>
+      <ErrorHandleMode Text="Режим обработки ошибок"/>
+      <DataColumn Text="Столбец данных"/>
+    </RFIDLabelEditor>
     <RichTextEditor Text="Редактор текста">
       <Open Text="Открыть файл"/>
       <Save Text="Сохранить файл"/>
@@ -1996,6 +2026,7 @@
         <AlternativeProcedure Text="Альтернативная процедура"/>
       </Swiss>
       <SberbankQr Text="Сбербанк QR">
+        <Enable Text="True"/>
         <Name Text="Наименование получателя"/>
         <PersonalAcc Text="Номер счета получателя платежа "/>
         <BankName Text="Наименование банка получателя платежа"/>
