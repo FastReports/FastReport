@@ -240,7 +240,7 @@ namespace FastReport.Web.Services
             }
 
             result.Msg = "";
-            return null;
+            return result;
         }
 
         public async Task<string> DesignerMakePreviewAsync(WebReport webReport, string receivedReportString)
