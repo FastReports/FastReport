@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using FastReport.Data.ConnectionEditors;
 using FastReport.Forms;
 using FastReport.Utils;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace FastReport.Data
 {

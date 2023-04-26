@@ -1,6 +1,6 @@
 ﻿using System;
 using FastReport.Data.ConnectionEditors;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace FastReport.Data
 {
