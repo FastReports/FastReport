@@ -110,6 +110,20 @@ namespace FastReport.Export.PdfSimple
                 AddImageWatermark(page);
             if (page.Watermark.Enabled && !page.Watermark.ShowTextOnTop)
                 AddTextWatermark(page);
+
+            // page borders
+            if (page.Border.Lines != BorderLines.None)
+            {
+                using (TextObject pageBorder = new TextObject())
+                {
+                    pageBorder.Border = page.Border;
+                    pageBorder.Left = 0;
+                    pageBorder.Top = 0;
+                    pageBorder.Width = (ExportUtils.GetPageWidth(page) - page.LeftMargin - page.RightMargin) * PdfWriter.PDF_PAGE_DIVIDER / PdfWriter.PDF_DIVIDER;
+                    pageBorder.Height = (ExportUtils.GetPageHeight(page) - page.TopMargin - page.BottomMargin) * PdfWriter.PDF_PAGE_DIVIDER / PdfWriter.PDF_DIVIDER;
+                    ExportObj(pageBorder);
+                }
+            }
         }
 
         /// <inheritdoc/>

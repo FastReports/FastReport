@@ -13,6 +13,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
         #region Internal Fields
 
         internal const float PDF_PAGE_DIVIDER = 2.8346400000000003f;
+        internal const float PDF_DIVIDER = 0.75f;
 
         #endregion Internal Fields
 

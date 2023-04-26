@@ -73,6 +73,9 @@ namespace FastReport.Export.Image
         private float zoomY;
         private System.Drawing.Drawing2D.GraphicsState state;
 
+        const float DIVIDER = 0.75f;
+        const float PAGE_DIVIDER = 2.8346400000000003f; // mm to point
+
         #region Properties
         /// <summary>
         /// Gets or sets the image format.
@@ -536,6 +539,20 @@ namespace FastReport.Export.Image
                 AddImageWatermark(page);
             if (page.Watermark.Enabled && !page.Watermark.ShowTextOnTop)
                 AddTextWatermark(page);
+
+            // page borders
+            if (page.Border.Lines != BorderLines.None)
+            {
+                using (TextObject pageBorder = new TextObject())
+                {
+                    pageBorder.Border = page.Border;
+                    pageBorder.Left = 0;
+                    pageBorder.Top = 0;
+                    pageBorder.Width = (ExportUtils.GetPageWidth(page) - page.LeftMargin - page.RightMargin) * PAGE_DIVIDER / DIVIDER;
+                    pageBorder.Height = (ExportUtils.GetPageHeight(page) - page.TopMargin - page.BottomMargin) * PAGE_DIVIDER / DIVIDER;
+                    ExportObj(pageBorder);
+                }
+            }
         }
 
         /// <inheritdoc/>

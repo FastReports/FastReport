@@ -33,7 +33,8 @@ namespace FastReport.Web
         /// Params: reportID, report file name, report, out - message
         /// </summary>
         /// <example>
-        /// webReport.DesignerSaveMethod = (string reportID, string filename, string report) =>
+        /// <code>
+        /// webReport.Designer.SaveMethod = (string reportID, string filename, string report) =>
         /// {
         ///     string webRootPath = _hostingEnvironment.WebRootPath;
         ///     string pathToSave = Path.Combine(webRootPath, filename);
@@ -41,6 +42,7 @@ namespace FastReport.Web
         ///     
         ///     return "OK";
         /// };
+        /// </code>
         /// </example>
         public Func<string, string, string, string> SaveMethod { get; set; }
 
@@ -53,12 +55,10 @@ namespace FastReport.Web
         ///    string webRootPath = _hostingEnvironment.WebRootPath;
         ///
         ///    string pathToSave = Path.Combine(webRootPath, "DesignedReports", "AsyncReports", filename);
-        ///
         ///    if (!Directory.Exists(pathToSave))
         ///        Directory.CreateDirectory(Path.GetDirectoryName(pathToSave));
         ///        
         ///    await System.IO.File.WriteAllTextAsync(pathToSave, report, token);
-        ///       
         ///    return "OK";
         ///};
         /// </code>
