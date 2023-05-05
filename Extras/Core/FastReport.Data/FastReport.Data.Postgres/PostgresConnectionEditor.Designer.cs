@@ -1,33 +1,33 @@
 namespace FastReport.Data
 {
-  partial class PostgresConnectionEditor
-  {
-    /// <summary> 
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    /// <summary> 
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
+    partial class PostgresConnectionEditor
     {
-      if (disposing && (components != null))
-      {
-        components.Dispose();
-      }
-      base.Dispose(disposing);
-    }
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-    #region Component Designer generated code
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-    /// <summary> 
-    /// Required method for Designer support - do not modify 
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.btnAdvanced = new System.Windows.Forms.Button();
             this.gbDatabase = new System.Windows.Forms.GroupBox();
             this.cbxDatabase = new System.Windows.Forms.ComboBox();
@@ -160,7 +160,7 @@ namespace FastReport.Data
             // enableSystemSchemasCb
             // 
             this.enableSystemSchemasCb.AutoSize = true;
-            this.enableSystemSchemasCb.Location = new System.Drawing.Point(23, 225);
+            this.enableSystemSchemasCb.Location = new System.Drawing.Point(8, 225);
             this.enableSystemSchemasCb.Name = "enableSystemSchemasCb";
             this.enableSystemSchemasCb.Size = new System.Drawing.Size(139, 17);
             this.enableSystemSchemasCb.TabIndex = 4;
@@ -185,22 +185,22 @@ namespace FastReport.Data
             this.ResumeLayout(false);
             this.PerformLayout();
 
-    }
+        }
 
-    #endregion
+        #endregion
 
-    private System.Windows.Forms.Button btnAdvanced;
-    private System.Windows.Forms.GroupBox gbDatabase;
-    private System.Windows.Forms.Label lblDatabase;
-    private System.Windows.Forms.TextBox tbPassword;
-    private System.Windows.Forms.TextBox tbUserName;
-    private System.Windows.Forms.Label lblPassword;
-    private System.Windows.Forms.Label lblUserName;
-    private FastReport.Controls.LabelLine label1;
-    private System.Windows.Forms.GroupBox gbServer;
-    private System.Windows.Forms.ComboBox cbxDatabase;
-    private System.Windows.Forms.Label lblServer;
-    private System.Windows.Forms.TextBox tbServer;
+        private System.Windows.Forms.Button btnAdvanced;
+        private System.Windows.Forms.GroupBox gbDatabase;
+        private System.Windows.Forms.Label lblDatabase;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.TextBox tbUserName;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblUserName;
+        private FastReport.Controls.LabelLine label1;
+        private System.Windows.Forms.GroupBox gbServer;
+        private System.Windows.Forms.ComboBox cbxDatabase;
+        private System.Windows.Forms.Label lblServer;
+        private System.Windows.Forms.TextBox tbServer;
         private System.Windows.Forms.CheckBox enableSystemSchemasCb;
     }
 }

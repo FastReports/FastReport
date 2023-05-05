@@ -28,191 +28,164 @@ namespace FastReport.Data
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new FastReport.Controls.LabelLine();
-            this.gbServer = new System.Windows.Forms.GroupBox();
-            this.tbPort = new System.Windows.Forms.TextBox();
-            this.port = new System.Windows.Forms.Label();
-            this.lblServer = new System.Windows.Forms.Label();
-            this.tbServer = new System.Windows.Forms.TextBox();
-            this.tbUserName = new System.Windows.Forms.TextBox();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.gbDatabase = new System.Windows.Forms.GroupBox();
-            this.lblDatabase = new System.Windows.Forms.Label();
-            this.tbDatabase = new System.Windows.Forms.TextBox();
-            this.gbServer.SuspendLayout();
-            this.gbDatabase.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(12, 428);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(310, 26);
-            this.label1.TabIndex = 2;
+            gbServer = new System.Windows.Forms.GroupBox();
+            tbPort = new System.Windows.Forms.TextBox();
+            port = new System.Windows.Forms.Label();
+            lblServer = new System.Windows.Forms.Label();
+            tbServer = new System.Windows.Forms.TextBox();
+            tbUserName = new System.Windows.Forms.TextBox();
+            tbPassword = new System.Windows.Forms.TextBox();
+            lblUserName = new System.Windows.Forms.Label();
+            lblPassword = new System.Windows.Forms.Label();
+            gbDatabase = new System.Windows.Forms.GroupBox();
+            lblDatabase = new System.Windows.Forms.Label();
+            tbDatabase = new System.Windows.Forms.TextBox();
+            gbServer.SuspendLayout();
+            gbDatabase.SuspendLayout();
+            SuspendLayout();
             // 
             // gbServer
             // 
-            this.gbServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbServer.Controls.Add(this.tbPort);
-            this.gbServer.Controls.Add(this.port);
-            this.gbServer.Controls.Add(this.lblServer);
-            this.gbServer.Controls.Add(this.tbServer);
-            this.gbServer.Controls.Add(this.tbUserName);
-            this.gbServer.Controls.Add(this.tbPassword);
-            this.gbServer.Controls.Add(this.lblUserName);
-            this.gbServer.Controls.Add(this.lblPassword);
-            this.gbServer.Location = new System.Drawing.Point(12, 25);
-            this.gbServer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbServer.Name = "gbServer";
-            this.gbServer.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbServer.Size = new System.Drawing.Size(310, 240);
-            this.gbServer.TabIndex = 4;
-            this.gbServer.TabStop = false;
-            this.gbServer.Text = "Server";
+            gbServer.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            gbServer.Controls.Add(tbPort);
+            gbServer.Controls.Add(port);
+            gbServer.Controls.Add(lblServer);
+            gbServer.Controls.Add(tbServer);
+            gbServer.Controls.Add(tbUserName);
+            gbServer.Controls.Add(tbPassword);
+            gbServer.Controls.Add(lblUserName);
+            gbServer.Controls.Add(lblPassword);
+            gbServer.Location = new System.Drawing.Point(8, 4);
+            gbServer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            gbServer.Name = "gbServer";
+            gbServer.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            gbServer.Size = new System.Drawing.Size(320, 180);
+            gbServer.TabIndex = 4;
+            gbServer.TabStop = false;
+            gbServer.Text = "Server";
             // 
             // tbPort
             // 
-            this.tbPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPort.Location = new System.Drawing.Point(138, 114);
-            this.tbPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbPort.Name = "tbPort";
-            this.tbPort.Size = new System.Drawing.Size(152, 26);
-            this.tbPort.TabIndex = 6;
+            tbPort.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tbPort.Location = new System.Drawing.Point(110, 86);
+            tbPort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            tbPort.Name = "tbPort";
+            tbPort.Size = new System.Drawing.Size(198, 23);
+            tbPort.TabIndex = 6;
             // 
             // port
             // 
-            this.port.AutoSize = true;
-            this.port.Location = new System.Drawing.Point(18, 120);
-            this.port.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.port.Name = "port";
-            this.port.Size = new System.Drawing.Size(91, 20);
-            this.port.TabIndex = 5;
-            this.port.Text = "Server port:";
+            port.AutoSize = true;
+            port.Location = new System.Drawing.Point(12, 90);
+            port.Name = "port";
+            port.Size = new System.Drawing.Size(67, 15);
+            port.TabIndex = 5;
+            port.Text = "Server port:";
             // 
             // lblServer
             // 
-            this.lblServer.AutoSize = true;
-            this.lblServer.Location = new System.Drawing.Point(18, 31);
-            this.lblServer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblServer.Name = "lblServer";
-            this.lblServer.Size = new System.Drawing.Size(103, 20);
-            this.lblServer.TabIndex = 4;
-            this.lblServer.Text = "Server name:";
+            lblServer.AutoSize = true;
+            lblServer.Location = new System.Drawing.Point(12, 23);
+            lblServer.Name = "lblServer";
+            lblServer.Size = new System.Drawing.Size(75, 15);
+            lblServer.TabIndex = 4;
+            lblServer.Text = "Server name:";
             // 
             // tbServer
             // 
-            this.tbServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbServer.Location = new System.Drawing.Point(18, 62);
-            this.tbServer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbServer.Name = "tbServer";
-            this.tbServer.Size = new System.Drawing.Size(272, 26);
-            this.tbServer.TabIndex = 0;
+            tbServer.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tbServer.Location = new System.Drawing.Point(12, 46);
+            tbServer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            tbServer.Name = "tbServer";
+            tbServer.Size = new System.Drawing.Size(296, 23);
+            tbServer.TabIndex = 0;
             // 
             // tbUserName
             // 
-            this.tbUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUserName.Location = new System.Drawing.Point(138, 155);
-            this.tbUserName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(152, 26);
-            this.tbUserName.TabIndex = 1;
+            tbUserName.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tbUserName.Location = new System.Drawing.Point(110, 116);
+            tbUserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            tbUserName.Name = "tbUserName";
+            tbUserName.Size = new System.Drawing.Size(198, 23);
+            tbUserName.TabIndex = 1;
             // 
             // tbPassword
             // 
-            this.tbPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPassword.Location = new System.Drawing.Point(138, 192);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(152, 26);
-            this.tbPassword.TabIndex = 2;
-            this.tbPassword.UseSystemPasswordChar = true;
+            tbPassword.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tbPassword.Location = new System.Drawing.Point(110, 144);
+            tbPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new System.Drawing.Size(198, 23);
+            tbPassword.TabIndex = 2;
+            tbPassword.UseSystemPasswordChar = true;
             // 
             // lblUserName
             // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(18, 162);
-            this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(91, 20);
-            this.lblUserName.TabIndex = 0;
-            this.lblUserName.Text = "User name:";
+            lblUserName.AutoSize = true;
+            lblUserName.Location = new System.Drawing.Point(12, 119);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new System.Drawing.Size(66, 15);
+            lblUserName.TabIndex = 0;
+            lblUserName.Text = "User name:";
             // 
             // lblPassword
             // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(18, 198);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(82, 20);
-            this.lblPassword.TabIndex = 1;
-            this.lblPassword.Text = "Password:";
+            lblPassword.AutoSize = true;
+            lblPassword.Location = new System.Drawing.Point(12, 148);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new System.Drawing.Size(60, 15);
+            lblPassword.TabIndex = 1;
+            lblPassword.Text = "Password:";
             // 
             // gbDatabase
             // 
-            this.gbDatabase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbDatabase.Controls.Add(this.lblDatabase);
-            this.gbDatabase.Controls.Add(this.tbDatabase);
-            this.gbDatabase.Location = new System.Drawing.Point(12, 288);
-            this.gbDatabase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbDatabase.Name = "gbDatabase";
-            this.gbDatabase.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbDatabase.Size = new System.Drawing.Size(310, 117);
-            this.gbDatabase.TabIndex = 5;
-            this.gbDatabase.TabStop = false;
-            this.gbDatabase.Text = "Database";
+            gbDatabase.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            gbDatabase.Controls.Add(lblDatabase);
+            gbDatabase.Controls.Add(tbDatabase);
+            gbDatabase.Location = new System.Drawing.Point(8, 192);
+            gbDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            gbDatabase.Name = "gbDatabase";
+            gbDatabase.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            gbDatabase.Size = new System.Drawing.Size(320, 88);
+            gbDatabase.TabIndex = 5;
+            gbDatabase.TabStop = false;
+            gbDatabase.Text = "Database";
             // 
             // lblDatabase
             // 
-            this.lblDatabase.AutoSize = true;
-            this.lblDatabase.Location = new System.Drawing.Point(18, 31);
-            this.lblDatabase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDatabase.Name = "lblDatabase";
-            this.lblDatabase.Size = new System.Drawing.Size(83, 20);
-            this.lblDatabase.TabIndex = 3;
-            this.lblDatabase.Text = "Database:";
+            lblDatabase.AutoSize = true;
+            lblDatabase.Location = new System.Drawing.Point(12, 23);
+            lblDatabase.Name = "lblDatabase";
+            lblDatabase.Size = new System.Drawing.Size(58, 15);
+            lblDatabase.TabIndex = 3;
+            lblDatabase.Text = "Database:";
             // 
             // tbDatabase
             // 
-            this.tbDatabase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDatabase.Location = new System.Drawing.Point(18, 62);
-            this.tbDatabase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbDatabase.Name = "tbDatabase";
-            this.tbDatabase.Size = new System.Drawing.Size(272, 26);
-            this.tbDatabase.TabIndex = 0;
+            tbDatabase.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tbDatabase.Location = new System.Drawing.Point(12, 46);
+            tbDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            tbDatabase.Name = "tbDatabase";
+            tbDatabase.Size = new System.Drawing.Size(296, 23);
+            tbDatabase.TabIndex = 0;
             // 
             // ClickHouseConnectionEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gbDatabase);
-            this.Controls.Add(this.gbServer);
-            this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(0, 0);
-            this.Name = "ClickHouseConnectionEditor";
-            this.Size = new System.Drawing.Size(336, 480);
-            this.gbServer.ResumeLayout(false);
-            this.gbServer.PerformLayout();
-            this.gbDatabase.ResumeLayout(false);
-            this.gbDatabase.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            Controls.Add(gbDatabase);
+            Controls.Add(gbServer);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MinimumSize = new System.Drawing.Size(0, 0);
+            Name = "ClickHouseConnectionEditor";
+            Size = new System.Drawing.Size(336, 290);
+            gbServer.ResumeLayout(false);
+            gbServer.PerformLayout();
+            gbDatabase.ResumeLayout(false);
+            gbDatabase.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
-        private FastReport.Controls.LabelLine label1;
         private System.Windows.Forms.GroupBox gbServer;
         private System.Windows.Forms.Label lblServer;
         private System.Windows.Forms.TextBox tbServer;

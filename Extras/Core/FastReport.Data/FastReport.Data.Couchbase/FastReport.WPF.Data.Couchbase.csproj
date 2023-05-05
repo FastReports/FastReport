@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>FastReport.WPF.Data.Couchbase</PackageId>
+    <PackageTags>reporting, Couchbase, connection, reports</PackageTags>
+    <Version>1.0.0</Version>
+    <Description>Represents a connection to Couchbase database for FastReport.WPF</Description>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+  
+  <Import Project="Shared.props" />
+  <Import Project="..\WPF.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\FastReport.Data.Json\FastReport.WPF.Data.Json.csproj" />
+  </ItemGroup>
+
+</Project>

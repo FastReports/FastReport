@@ -16,6 +16,7 @@ namespace FastReport
         private bool updatingLayout;
         private string beforeLayoutEvent;
         private string afterLayoutEvent;
+        private int savedOriginalObjectsCount;
         #endregion
 
         #region Properties
@@ -191,6 +192,7 @@ namespace FastReport
         public override void SaveState()
         {
             base.SaveState();
+            savedOriginalObjectsCount = Objects.Count;
             SetRunning(true);
             SetDesigning(false);
 
@@ -207,6 +209,10 @@ namespace FastReport
         public override void RestoreState()
         {
             base.RestoreState();
+            while (Objects.Count > savedOriginalObjectsCount)
+            {
+                Objects[Objects.Count - 1].Dispose();
+            }
             SetRunning(false);
 
             foreach (ReportComponentBase obj in Objects)
@@ -221,8 +227,9 @@ namespace FastReport
         public override void GetData()
         {
             base.GetData();
-            foreach (ReportComponentBase obj in Objects)
-            {
+            var objArray = Objects.ToArray();
+            foreach(ReportComponentBase obj in objArray)
+            { 
                 obj.GetData();
                 obj.OnAfterData();
 

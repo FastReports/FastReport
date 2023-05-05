@@ -582,9 +582,7 @@
       <MoreButtons Text="More buttons..."/>
       <Standard Text="Standard">
         <New Text="Add New Item"/>
-        <Open Text="Open"/>
-        <OpenLocally Text="Open Report (Ctrl+O)"/>
-        <OpenViaCloud Text="Open Report from Cloud "/>
+        <Open Text="Open Report (Ctrl+O)"/>
         <Save Text="Save Report (Ctrl+S)"/>
         <SaveAll Text="Save All (Ctrl+Shift+S)"/>
         <Preview Text="Preview (Ctrl+P)"/>
