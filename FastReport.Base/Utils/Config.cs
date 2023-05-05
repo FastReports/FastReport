@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace FastReport.Utils
 {
@@ -265,6 +266,22 @@ namespace FastReport.Utils
         }
 
         #endregion Public Properties
+
+        #region Public Methods
+        /// <summary>
+        /// Warms up the Roslyn compiler asynchronously.
+        /// </summary>
+        /// <remarks>
+        /// Call this method at an application start to warm up the Roslyn compiler (used in NetCore).
+        /// </remarks>
+        public static async void CompilerWarmup()
+        {
+            await Task.Run(() =>
+            {
+                new Report() { ScriptText = "using System; namespace FastReport { public class ReportScript {\r\n} }" }.Compile();
+            });
+        }
+        #endregion
 
         #region Internal Methods
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-<!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource & FastReport.Core3 -->
+<!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource, FastReport.Core3, FastReport.WPF -->
     <PropertyGroup>
 
         <FRCompatVersionNET>2022.3.2</FRCompatVersionNET>
@@ -11,6 +11,9 @@
         <FRDataVisualizationVersion>2023.1.0</FRDataVisualizationVersion>
         <FRDataVisualizationSkiaVersion>2023.1.0</FRDataVisualizationSkiaVersion>
 		
+	<!-- WPF -->
+        <FRWPFVersion>2023.1.0</FRWPFVersion>
+        <FRWPFRoslynPadVersion>2023.1.0</FRWPFRoslynPadVersion>
         <FRFormsWPFVersion>2023.1.0</FRFormsWPFVersion>
         <FRCompatWPFVersion>2023.1.0</FRCompatWPFVersion>
         <FRDataVisualizationWPFVersion>2023.1.0</FRDataVisualizationWPFVersion>

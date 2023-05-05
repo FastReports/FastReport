@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>FastReport.WPF.Data.Firebird</PackageId>
+    <PackageTags>reporting, Firebird, connection, reports</PackageTags>
+    <Version>1.0.0</Version>
+    <Description>Represents a connection to Firebird database for FastReport.WPF</Description>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+  
+  <Import Project="Shared.props" />
+  <Import Project="..\WPF.props" />
+
+</Project>

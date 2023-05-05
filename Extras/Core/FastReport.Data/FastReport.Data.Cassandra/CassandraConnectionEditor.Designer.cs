@@ -70,7 +70,7 @@ namespace FastReport.Data.Cassandra
             // 
             // tbHostName
             // 
-            this.tbHostName.Location = new System.Drawing.Point(144, 25);
+            this.tbHostName.Location = new System.Drawing.Point(138, 25);
             this.tbHostName.Name = "tbHostName";
             this.tbHostName.Size = new System.Drawing.Size(170, 22);
             this.tbHostName.TabIndex = 1;
@@ -86,7 +86,7 @@ namespace FastReport.Data.Cassandra
             // 
             // tbClusterName
             // 
-            this.tbPassword.Location = new System.Drawing.Point(144, 125);
+            this.tbPassword.Location = new System.Drawing.Point(138, 125);
             this.tbPassword.Name = "tbClusterName";
             this.tbPassword.Size = new System.Drawing.Size(170, 22);
             this.tbPassword.TabIndex = 1;
@@ -102,7 +102,7 @@ namespace FastReport.Data.Cassandra
             // 
             // tbPassword
             // 
-            this.tbKeyspace.Location = new System.Drawing.Point(144, 75);
+            this.tbKeyspace.Location = new System.Drawing.Point(138, 75);
             this.tbKeyspace.Name = "tbPassword";
             this.tbKeyspace.Size = new System.Drawing.Size(170, 22);
             this.tbKeyspace.TabIndex = 1;
@@ -118,7 +118,7 @@ namespace FastReport.Data.Cassandra
             // 
             // tbUsername
             // 
-            this.tbPort.Location = new System.Drawing.Point(144, 50);
+            this.tbPort.Location = new System.Drawing.Point(138, 50);
             this.tbPort.Name = "tbUsername";
             this.tbPort.Size = new System.Drawing.Size(170, 22);
             this.tbPort.TabIndex = 1;
@@ -138,7 +138,7 @@ namespace FastReport.Data.Cassandra
             // 
             // tbPort
             // 
-            this.tbUsername.Location = new System.Drawing.Point(144, 100);
+            this.tbUsername.Location = new System.Drawing.Point(138, 100);
             this.tbUsername.Name = "tbPort";
             this.tbUsername.Size = new System.Drawing.Size(170, 22);
             this.tbUsername.TabIndex = 1;

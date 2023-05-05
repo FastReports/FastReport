@@ -47,16 +47,16 @@
             // 
             this.gbDatabase.Controls.Add(this.tbDatabase);
             this.gbDatabase.Controls.Add(this.lblDatabase);
-            this.gbDatabase.Location = new System.Drawing.Point(15, 12);
+            this.gbDatabase.Location = new System.Drawing.Point(8, 12);
             this.gbDatabase.Name = "gbDatabase";
-            this.gbDatabase.Size = new System.Drawing.Size(308, 66);
+            this.gbDatabase.Size = new System.Drawing.Size(320, 66);
             this.gbDatabase.TabIndex = 0;
             this.gbDatabase.TabStop = false;
             this.gbDatabase.Text = "Database";
             // 
             // tbDatabase
             // 
-            this.tbDatabase.Location = new System.Drawing.Point(6, 33);
+            this.tbDatabase.Location = new System.Drawing.Point(12, 33);
             this.tbDatabase.Name = "tbDatabase";
             this.tbDatabase.Size = new System.Drawing.Size(296, 20);
             this.tbDatabase.TabIndex = 0;
@@ -64,7 +64,7 @@
             // lblDatabase
             // 
             this.lblDatabase.AutoSize = true;
-            this.lblDatabase.Location = new System.Drawing.Point(6, 17);
+            this.lblDatabase.Location = new System.Drawing.Point(12, 17);
             this.lblDatabase.Name = "lblDatabase";
             this.lblDatabase.Size = new System.Drawing.Size(86, 13);
             this.lblDatabase.TabIndex = 0;
@@ -72,7 +72,7 @@
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(114, 93);
+            this.tbPassword.Location = new System.Drawing.Point(120, 93);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(188, 20);
             this.tbPassword.TabIndex = 2;
@@ -81,7 +81,7 @@
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(6, 70);
+            this.lblUserName.Location = new System.Drawing.Point(12, 70);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(62, 13);
             this.lblUserName.TabIndex = 0;
@@ -89,7 +89,7 @@
             // 
             // tbUserName
             // 
-            this.tbUserName.Location = new System.Drawing.Point(114, 67);
+            this.tbUserName.Location = new System.Drawing.Point(120, 67);
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(188, 20);
             this.tbUserName.TabIndex = 1;
@@ -97,7 +97,7 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(6, 96);
+            this.lblPassword.Location = new System.Drawing.Point(12, 96);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(57, 13);
             this.lblPassword.TabIndex = 0;
@@ -111,35 +111,28 @@
             this.gbServer.Controls.Add(this.lblUserName);
             this.gbServer.Controls.Add(this.tbUserName);
             this.gbServer.Controls.Add(this.lblPassword);
-            this.gbServer.Location = new System.Drawing.Point(15, 84);
+            this.gbServer.Location = new System.Drawing.Point(8, 84);
             this.gbServer.Name = "gbServer";
-            this.gbServer.Size = new System.Drawing.Size(308, 126);
+            this.gbServer.Size = new System.Drawing.Size(320, 126);
             this.gbServer.TabIndex = 1;
             this.gbServer.TabStop = false;
             this.gbServer.Text = "Server";
             // 
             // tbHost
             // 
-            this.tbHost.Location = new System.Drawing.Point(9, 41);
+            this.tbHost.Location = new System.Drawing.Point(12, 41);
             this.tbHost.Name = "tbHost";
-            this.tbHost.Size = new System.Drawing.Size(293, 20);
+            this.tbHost.Size = new System.Drawing.Size(296, 20);
             this.tbHost.TabIndex = 0;
             // 
             // lblHost
             // 
             this.lblHost.AutoSize = true;
-            this.lblHost.Location = new System.Drawing.Point(6, 25);
+            this.lblHost.Location = new System.Drawing.Point(12, 25);
             this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(33, 13);
             this.lblHost.TabIndex = 0;
             this.lblHost.Text = "Host:";
-            // 
-            // labelLine1
-            // 
-            this.labelLine1.Location = new System.Drawing.Point(15, 216);
-            this.labelLine1.Name = "labelLine1";
-            this.labelLine1.Size = new System.Drawing.Size(308, 16);
-            this.labelLine1.TabIndex = 0;
             // 
             // CouchbaseConnectionEditor
             // 
@@ -149,7 +142,7 @@
             this.Controls.Add(this.gbServer);
             this.Controls.Add(this.labelLine1);
             this.Name = "CouchbaseConnectionEditor";
-            this.Size = new System.Drawing.Size(336, 237);
+            this.Size = new System.Drawing.Size(336, 218);
             this.gbDatabase.ResumeLayout(false);
             this.gbDatabase.PerformLayout();
             this.gbServer.ResumeLayout(false);
