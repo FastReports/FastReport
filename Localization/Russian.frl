@@ -766,6 +766,8 @@
     <DropboxText Text="Сохранить в Dropbox"/>
     <GoogleDriveText Text="Сохранить в Диск Google"/>
     <SkyDriveText Text="Сохранить в SkyDrive"/>
+    <Uploading Text="Загрузка"/>
+    <UploadDone Text="Загрузка завершена"/>
   </Preview>
   <Forms>
     <About Text="О программе">
@@ -2849,6 +2851,17 @@
       <Password Text="Пароль:"/>
       <PortError Text="Номер порта должен быть числовым."/>
     </SkyDrive>
+    <S3 Text="Сохранить в S3">
+      <Name Text="Simple Storage Service"/>
+      <ClientInfoDialog Text="Авторизация в S3"/>
+      <AccessKeyId Text="Идентификатор ключа доступа:"/>
+      <SecretAccessKey Text="Секретный ключ доступа:"/>
+      <Region Text="Регион:"/>
+      <Host Text="Хост:"/>
+      <Bucket Text="Бакет:"/>
+      <FileName Text="Имя файла:"/>
+      <MissingBuckets Text="Бакеты отсутствуют"/>
+    </S3>
   </Cloud>
   <Messaging>
     <MessengerForm Text="Отправить отчет">

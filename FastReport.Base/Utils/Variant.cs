@@ -240,7 +240,7 @@ namespace FastReport
           tt == typeof(decimal));
       }
     }
-    private static char decimalSep = ((float)1.1).ToString().ToCharArray()[1];
+    private static readonly char decimalSep = ((float)1.1).ToString().ToCharArray()[1];
     /// <summary>
     /// Returns true if the <see cref="Value"/> property
     /// is a numeric intrinsic value or else can be parsed into

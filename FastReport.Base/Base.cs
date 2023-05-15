@@ -144,8 +144,18 @@ namespace FastReport
         InterceptsPreviewMouseEvents = 16384
     }
 
+    [Flags]
+    internal enum ObjectState : byte
+    {
+        None = 0,
+        IsAncestor = 0x01,
+        IsDesigning = 0x02,
+        IsPrinting = 0x04,
+        IsRunning = 0x08,
+    }
+
     /// <summary>
-    /// Represents the root class of the FastReport object's hierarhy.
+    /// Represents the root class of the FastReport object's hierarchy.
     /// </summary>
     [ToolboxItem(false)]
     public abstract partial class Base : Component, IFRSerializable
@@ -156,10 +166,7 @@ namespace FastReport
         private Flags flags;
         private Base parent;
         private string baseName;
-        private bool isAncestor;
-        private bool isDesigning;
-        private bool isPrinting;
-        private bool isRunning;
+        private ObjectState objectState;
         private Base originalComponent;
         private string alias;
         private Report report;
@@ -412,7 +419,7 @@ namespace FastReport
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsAncestor
         {
-            get { return isAncestor; }
+            get { return GetObjectState(ObjectState.IsAncestor); }
         }
 
         /// <summary>
@@ -421,7 +428,7 @@ namespace FastReport
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsDesigning
         {
-            get { return isDesigning; }
+            get { return GetObjectState(ObjectState.IsDesigning); }
         }
 
         /// <summary>
@@ -430,7 +437,7 @@ namespace FastReport
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsPrinting
         {
-            get { return isPrinting; }
+            get { return GetObjectState(ObjectState.IsPrinting); }
         }
 
         /// <summary>
@@ -439,7 +446,7 @@ namespace FastReport
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsRunning
         {
-            get { return isRunning; }
+            get { return GetObjectState(ObjectState.IsRunning); }
         }
 
         /// <summary>
@@ -614,24 +621,37 @@ namespace FastReport
                 this.flags &= ~flags;
         }
 
+        private bool GetObjectState(ObjectState state)
+        {
+            return (objectState & state) > 0;
+        }
+
+        private void SetObjectState(ObjectState state, bool value)
+        {
+            if (value)
+                this.objectState |= state;
+            else
+                this.objectState &= ~state;
+        }
+
         internal void SetAncestor(bool value)
         {
-            isAncestor = value;
+            SetObjectState(ObjectState.IsAncestor, value);
         }
 
         internal void SetDesigning(bool value)
         {
-            isDesigning = value;
+            SetObjectState(ObjectState.IsDesigning, value);
         }
 
         internal void SetPrinting(bool value)
         {
-            isPrinting = value;
+            SetObjectState(ObjectState.IsPrinting, value);
         }
 
         internal void SetRunning(bool value)
         {
-            isRunning = value;
+            SetObjectState(ObjectState.IsRunning, value);
         }
 
         /// <summary>
@@ -798,8 +818,8 @@ namespace FastReport
             Base c = writer.DiffObject as Base;
             if (writer.SerializeTo != SerializeTo.Preview)
             {
-                // in the preview mode we don't need to write ItemName and Name properties. Alias is wriiten instead.
-                writer.ItemName = isAncestor &&
+                // in the preview mode we don't need to write ItemName and Name properties. Alias is written instead.
+                writer.ItemName = IsAncestor &&
                   (writer.SerializeTo == SerializeTo.Report || writer.SerializeTo == SerializeTo.Undo) ?
                   "inherited" : ClassName;
                 if (Name != "")
@@ -954,10 +974,10 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets a value indicating whether the object has the specified parent in its parent hierarhy.
+        /// Gets a value indicating whether the object has the specified parent in its parent hierarchy.
         /// </summary>
         /// <param name="obj">Parent object to check.</param>
-        /// <returns>Returns <b>true</b> if the object has given parent in its parent hierarhy.</returns>
+        /// <returns>Returns <b>true</b> if the object has given parent in its parent hierarchy.</returns>
         public bool HasParent(Base obj)
         {
             Base parent = Parent;
@@ -1121,11 +1141,11 @@ namespace FastReport
         public ObjectCollection ForEachAllConvectedObjects(object sender)
         {
             ObjectCollection list = new ObjectCollection();
-            EnumAllConvectedObjects(sender, this, list, 0);
+            EnumAllConvertedObjects(sender, this, list, 0);
             return list;
         }
 
-        private void EnumAllConvectedObjects(object sender, Base c, ObjectCollection list, int convertValue)
+        private void EnumAllConvertedObjects(object sender, Base c, ObjectCollection list, int convertValue)
         {
 
             if (c != this)
@@ -1135,7 +1155,7 @@ namespace FastReport
                     if (convertValue < 10)
                     {
                         foreach (Base b in c.GetConvertedObjects())
-                            EnumAllConvectedObjects(sender, b, list, convertValue + 1);
+                            EnumAllConvertedObjects(sender, b, list, convertValue + 1);
                         return;
 
                     }
@@ -1143,7 +1163,7 @@ namespace FastReport
                 list.Add(c);
             }
             foreach (Base obj in c.ChildObjects)
-                EnumAllConvectedObjects(sender, obj, list, convertValue);
+                EnumAllConvertedObjects(sender, obj, list, convertValue);
         }
 
         #endregion

@@ -1,5 +1,7 @@
 ﻿using FastReport.Utils;
 
+using System;
+
 namespace FastReport
 {
     partial class Report
@@ -43,6 +45,11 @@ namespace FastReport
         /// Does nothing
         /// </summary>
         partial void DisposeDesign();
+
+        partial void StartPerformanceCounter();
+
+        partial void StopPerformanceCounter();
+
 
         #endregion Private Methods
     }

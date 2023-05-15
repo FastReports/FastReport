@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Drawing;
 using FastReport.Data;
 using FastReport.Export;
+using System.Linq;
 
 namespace FastReport.Utils
 {
@@ -95,6 +96,7 @@ namespace FastReport.Utils
 #endregion
 
 #region Public Methods
+
         /// <summary>
         /// Enumerates all objects.
         /// </summary>
@@ -160,7 +162,20 @@ namespace FastReport.Utils
             Text = text;
         }
 
-#endregion
+        internal FunctionInfo Find(string identifier)
+        {
+            var list = new List<FunctionInfo>();
+            RegisteredObjects.Functions.EnumItems(list);
+
+            foreach (FunctionInfo info in list)
+            {
+                if (info.Function != null && info.Text.Contains(identifier))
+                    return info;
+            }
+            return null;
+        }
+
+        #endregion
 
         internal FunctionInfo()
         {

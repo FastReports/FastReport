@@ -374,7 +374,7 @@ namespace FastReport.Data
         /// </summary>
         /// <param name="data">The object to register.</param>
         /// <param name="name">The name of the object.</param>
-        /// <param name="enabled">Determines wheter to enable the object or not.</param>
+        /// <param name="enabled">Determines whether to enable the object or not.</param>
         /// <remarks>
         /// This method is for internal use only.
         /// </remarks>

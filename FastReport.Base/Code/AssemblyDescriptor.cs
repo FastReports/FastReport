@@ -100,7 +100,7 @@ namespace FastReport.Code
             return errorLine;
         }
 
-        private string ReplaceDataItems(string expression)
+        internal static string ReplaceDataItems(Report report, string expression)
         {
             FindTextArgs args = new FindTextArgs();
             args.Text = new FastString(expression);
@@ -113,22 +113,22 @@ namespace FastReport.Code
                 if (expression == null)
                     break;
 
-                if (DataHelper.IsValidColumn(Report.Dictionary, expression))
+                if (DataHelper.IsValidColumn(report.Dictionary, expression))
                 {
-                    Type type = DataHelper.GetColumnType(Report.Dictionary, expression);
-                    expression = Report.CodeHelper.ReplaceColumnName(expression, type);
+                    Type type = DataHelper.GetColumnType(report.Dictionary, expression);
+                    expression = report.CodeHelper.ReplaceColumnName(expression, type);
                 }
-                else if (DataHelper.IsValidParameter(Report.Dictionary, expression))
+                else if (DataHelper.IsValidParameter(report.Dictionary, expression))
                 {
-                    expression = Report.CodeHelper.ReplaceParameterName(DataHelper.GetParameter(Report.Dictionary, expression));
+                    expression = report.CodeHelper.ReplaceParameterName(DataHelper.GetParameter(report.Dictionary, expression));
                 }
-                else if (DataHelper.IsValidTotal(Report.Dictionary, expression))
+                else if (DataHelper.IsValidTotal(report.Dictionary, expression))
                 {
-                    expression = Report.CodeHelper.ReplaceTotalName(expression);
+                    expression = report.CodeHelper.ReplaceTotalName(expression);
                 }
                 else
                 {
-                    expression = "[" + ReplaceDataItems(expression) + "]";
+                    expression = "[" + ReplaceDataItems(report, expression) + "]";
                 }
 
                 args.Text = args.Text.Remove(args.StartIndex, args.EndIndex - args.StartIndex);
@@ -306,7 +306,7 @@ namespace FastReport.Code
                 expr = "[" + expr + "]";
             else
                 expr = expression;
-            string expressionCode = ReplaceDataItems(expr);
+            string expressionCode = ReplaceDataItems(Report, expr);
             InsertItem(Report.CodeHelper.AddExpression(expression, expressionCode), source == null ? "" : source.Name);
             needCompile = true;
         }

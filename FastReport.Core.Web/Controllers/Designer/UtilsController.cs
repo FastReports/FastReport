@@ -99,7 +99,7 @@ namespace FastReport.Web.Controllers
             };
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/_fr/designer.objects/preview")]
         public async Task<IActionResult> GetDesignerObjectPreview(string reportId)
         {
