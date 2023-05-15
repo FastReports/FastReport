@@ -10,13 +10,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Security;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FastReport
 {
@@ -246,8 +250,8 @@ namespace FastReport
         private bool storeInResources;
         private PermissionSet scriptRestrictions;
         private ReportOperation operation;
-        private int tickCount;
         private bool needCompile;
+        private bool scriptChanged = false;
         private bool needRefresh;
         private bool initializing;
         private object initializeData;
@@ -434,7 +438,11 @@ namespace FastReport
         public string ScriptText
         {
             get { return scriptText; }
-            set { scriptText = value; }
+            set 
+            { 
+                scriptText = value;
+                scriptChanged = scriptText != codeHelper.EmptyScript();
+            }
         }
 
         /// <summary>
@@ -458,7 +466,10 @@ namespace FastReport
                 else
                     codeHelper = new VbCodeHelper(this);
                 if (needClear)
+                {
                     scriptText = codeHelper.EmptyScript();
+                    scriptChanged = false;
+                }
             }
         }
 
@@ -1055,16 +1066,6 @@ namespace FastReport
             }
         }
 
-        private void StartPerformanceCounter()
-        {
-            tickCount = Environment.TickCount;
-        }
-
-        private void StopPerformanceCounter()
-        {
-            tickCount = Environment.TickCount - tickCount;
-        }
-
         private void ClearReportProperties()
         {
             ReportInfo.Clear();
@@ -1077,7 +1078,9 @@ namespace FastReport
             {
                 ScriptLanguage = Language.CSharp;
             }
-            ScriptText = codeHelper.EmptyScript();
+            // not property, only field!
+            scriptText = codeHelper.EmptyScript();
+            scriptChanged = false;
             BaseReport = "";
             BaseReportAbsolutePath = "";
             DoublePass = false;
@@ -1091,9 +1094,12 @@ namespace FastReport
             ClearDesign();
             Styles.Clear();
             Styles.Name = "";
-            ReferencedAssemblies = DefaultAssemblies;
+            referencedAssemblies = DefaultAssemblies;
             StartReportEvent = "";
             FinishReportEvent = "";
+#if REFLECTION_EMIT_COMPILER
+            _cachedParsedExpressions.Clear();
+#endif
             needCompile = true;
         }
 
@@ -1265,9 +1271,20 @@ namespace FastReport
         {
             FillDataSourceCache();
 
+#if REFLECTION_EMIT_COMPILER
+            if (Config.CompilerSettings.ReflectionEmitCompiler)
+            {
+                SetIsCompileNeeded();
+                if (!IsCompileNeeded)
+                    return;
+            }
+#endif
+
             if (needCompile)
             {
-                using(AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText))
+                Debug.WriteLine("Compile...");
+
+                using (AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText))
                 {
                     assemblies.Clear();
                     assemblies.Add(descriptor);
@@ -1287,6 +1304,15 @@ namespace FastReport
         internal async Task CompileAsync(CancellationToken token)
         {
             FillDataSourceCache();
+
+#if REFLECTION_EMIT_COMPILER
+            if (Config.CompilerSettings.ReflectionEmitCompiler)
+            {
+                SetIsCompileNeeded();
+                if (!IsCompileNeeded)
+                    return;
+            }
+#endif
 
             if (needCompile)
             {
@@ -1482,6 +1508,12 @@ namespace FastReport
                 if (d.ContainsExpression(expression))
                     return d.CalcExpression(expression, value);
             }
+
+#if REFLECTION_EMIT_COMPILER
+            if (Config.CompilerSettings.ReflectionEmitCompiler)
+                if (TryReflectionEmit(expression, value, out object returnValue))
+                    return returnValue;
+#endif
 
             // expression not found. Probably it was added after the start of the report.
             // Compile new assembly containing this expression.

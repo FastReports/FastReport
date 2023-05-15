@@ -33,6 +33,9 @@
         <!-- Not available in Core3 -->
         <MicrosoftCSharpVersion>4.7.0</MicrosoftCSharpVersion>
 
+        <!-- Not available in Core3 -->
+        <SystemReflectionEmitLightweightVersion>4.7.0</SystemReflectionEmitLightweightVersion>
+
     </PropertyGroup>
 	
 <!-- This group sets version used packages in Demos -->

@@ -768,6 +768,8 @@
     <DropboxText Text="Save to Dropbox"/>
     <GoogleDriveText Text="Save to Google Drive"/>
     <SkyDriveText Text="Save to OneDrive"/>
+    <Uploading Text="Uploading"/>
+    <UploadDone Text="Upload done"/>
   </Preview>
   <Forms>
     <About Text="About">
@@ -3089,6 +3091,17 @@
       <Password Text="Password:"/>
       <PortError Text="Port should be numeric."/>
     </SkyDrive>
+    <S3 Text="Save to S3">
+      <Name Text="Simple Storage Service"/>
+      <ClientInfoDialog Text="Authorization in S3"/>
+      <AccessKeyId Text="Access key id:"/>
+      <SecretAccessKey Text="Secret access key:"/>
+      <Region Text="Region:"/>
+      <Host Text="Host:"/>
+      <Bucket Text="Bucket:"/>
+      <FileName Text="File name:"/>
+      <MissingBuckets Text="Missing buckets"/>
+    </S3>
   </Cloud>
   <Messaging>
     <MessengerForm Text="Send Report">

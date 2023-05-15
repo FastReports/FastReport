@@ -600,6 +600,9 @@ namespace FastReport
             }
         }
 
+        [Browsable(false)]
+        protected internal virtual bool IsCompilationNeeded => false;
+
         /// <summary>
         /// Gets or sets an object's cursor shape.
         /// </summary>

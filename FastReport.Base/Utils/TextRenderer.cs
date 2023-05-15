@@ -65,7 +65,7 @@ namespace FastReport.Utils
         private readonly bool wysiwyg;
         private readonly bool htmlTags;
         private readonly bool pDFMode;
-        private readonly float spaceWidth;
+        private float spaceWidth;
         private float scale;
         private InlineImageCache cache;
         private float fontScale;
@@ -206,7 +206,14 @@ namespace FastReport.Utils
 
         internal float SpaceWidth
         {
-            get { return spaceWidth; }
+            get 
+            { 
+                if (spaceWidth < 0)
+                {
+                    spaceWidth = CalculateSpaceSize(graphics, font);
+                }
+                return spaceWidth; 
+            }
         }
 
         /// <summary>
@@ -274,15 +281,12 @@ namespace FastReport.Utils
 
         private void AdjustParagraphLines()
         {
-            // calculate text height
-            float height = CalcHeight();
-
             // calculate Y offset
             float offsetY = DisplayRect.Top;
             if (VertAlign == VertAlign.Center)
-                offsetY += (DisplayRect.Height - height) / 2;
+                offsetY += (DisplayRect.Height - CalcHeight()) / 2;
             else if (VertAlign == VertAlign.Bottom)
-                offsetY += (DisplayRect.Height - height) - 1;
+                offsetY += (DisplayRect.Height - CalcHeight()) - 1;
 
             for (int i = 0; i < Paragraphs.Count; i++)
             {
@@ -431,7 +435,7 @@ namespace FastReport.Utils
             this.wysiwyg = wysiwyg;
             this.htmlTags = htmlTags;
             pDFMode = pdfMode;
-            spaceWidth = CalculateSpaceSize(g, font);// g.MeasureString(" ", font).Width;
+            this.spaceWidth = -1;
 
             StringFormatFlags saveFlags = Format.FormatFlags;
             StringTrimming saveTrimming = Format.Trimming;
@@ -1596,7 +1600,8 @@ namespace FastReport.Utils
                 }
                 else
                 {
-#if SKIA
+// not needed anymore; skia now uses metrics of original font in case of font fallback
+/*#if SKIA
                     // we need actual height of a text because it may have font fallback with different metrics
                     if (!string.IsNullOrEmpty(text) && !Renderer.HasLineHeight)
                     {
@@ -1604,7 +1609,7 @@ namespace FastReport.Utils
 
                         return Renderer.FontLineHeight > stringHeight ? Renderer.FontLineHeight : stringHeight;
                     }
-#endif
+#endif*/
                     return Renderer.LineHeight;
                 }
             }
@@ -1890,7 +1895,7 @@ namespace FastReport.Utils
                 {
                     if (spaceWidth < 0)
                     {
-                        spaceWidth = CalculateSpaceSize(Renderer.Graphics, GetFont());// Renderer.Graphics.MeasureString(" ", GetFont()).Width;
+                        spaceWidth = CalculateSpaceSize(Renderer.Graphics, GetFont());
                     }
                     return spaceWidth;
                 }

@@ -1601,6 +1601,11 @@ namespace FastReport
                         if (expression == null)
                             break;
 
+                        //if (!Report.IsCompileNeeded)
+                        //{
+                        //    expression = Text;
+                        //}
+
                         string formattedValue = CalcAndFormatExpression(expression, expressionIndex);
 
                         args.Text.Remove(args.StartIndex, args.EndIndex - args.StartIndex);

@@ -80,6 +80,14 @@ namespace FastReport.Utils
         /// </remarks>
         public int RecompileCount { get; set; } = 1;
 
+
+#if REFLECTION_EMIT_COMPILER
+        /// <summary>
+        /// Enables faster compiler if the report script hasn't been changed
+        /// </summary>
+        public bool ReflectionEmitCompiler { get; set; } = false;
+#endif
+
 #if CROSSPLATFORM || COREWIN
         // sets by user
         private CultureInfo cultureInfo;
@@ -104,7 +112,7 @@ namespace FastReport.Utils
         }
 #endif
 
-        #endregion Properties
+#endregion Properties
 
         #region Constructors
 
