@@ -136,7 +136,7 @@
     <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text 文件 (*.rtf)|*.rtf"/>
-    <Images Text="圖片檔|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="圖片檔|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Printer 文件 (*.prn)|*.prn"/>
     <BmpFile Text="Bitmap image (*.bmp)|*.bmp"/>

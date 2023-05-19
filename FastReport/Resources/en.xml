@@ -71,6 +71,7 @@
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
     <RemoveFromRecentFiles Text="Remove the file from recent files list?"/>
+    <ImageLoadException Text="The image is corrupted or a plugin that supports this format is not installed"/>
     <Validator>
       <DuplicateName Text="Name already is used."/>
       <IntersectedObjects Text="Object is intersected with other object."/>
@@ -342,7 +343,7 @@
     <AccdbFile Text="MS Access 2007 database (*.accdb)|*.accdb"/>
     <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text file (*.rtf)|*.rtf"/>
-    <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <AllImages Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Printer file (*.prn)|*.prn"/>

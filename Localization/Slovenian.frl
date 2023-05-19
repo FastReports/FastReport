@@ -160,7 +160,7 @@
     <MdbFile Text="MS Accessova baza (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server baza (*.mdf)|*.mdf"/>
     <RtfFile Text="Datoteka z obogatenim besedilom (*.rtf)|*.rtf"/>
-    <Images Text="Slikovne datoteke|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Slikovne datoteke|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Tiskalnikova datoteka (*.prn)|*.prn"/>
     <BmpFile Text="Bitna slika (*.bmp)|*.bmp"/>

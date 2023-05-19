@@ -146,7 +146,7 @@
     <MdbFile Text="MS Access Veritabanı (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server  Veritabanı (*.mdf)|*.mdf"/>
     <RtfFile Text="Metin Dosyası (*.rtf)|*.rtf"/>
-    <Images Text="Resim Dosyası|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Resim Dosyası|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Derleme Dosyası (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Dosya Yazdır (*.prn)|*.prn"/>
     <BmpFile Text="Bitmap Resim Dosyası (*.bmp)|*.bmp"/>

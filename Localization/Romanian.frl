@@ -150,7 +150,7 @@
     <MdbFile Text="Baza de date MS Access (*.mdb)|*.mdb"/>
     <MdfFile Text="Baza de date Microsoft SQL Serve (*.mdf)|*.mdf"/>
     <RtfFile Text="Fisier Rich Text (*.rtf)|*.rtf"/>
-    <Images Text="Fisier imagine|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Fisier imagine|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Fisier de listareare (*.prn)|*.prn"/>
     <BmpFile Text="Imagine bitmap (*.bmp)|*.bmp"/>

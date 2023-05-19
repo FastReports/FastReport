@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace FastReport.Utils
 {
@@ -188,5 +189,16 @@ namespace FastReport.Utils
           : base(String.Format(Res.Get("Messages,GroupHeaderHasNoGroupCondition"), name))
         {
         }       
+    }
+
+    /// <summary>
+    /// The exception that is thrown when the image cannot be loaded.
+    /// </summary>
+    public class ImageLoadException : FileLoadException
+    {
+        internal ImageLoadException(Exception ex)
+          : base(Res.Get("Messages,ImageLoadException"), ex)
+        {
+        }
     }
 }

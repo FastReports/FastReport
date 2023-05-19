@@ -150,7 +150,7 @@
     <MdbFile Text="База даних MS Access (*.mdb)|*.mdb"/>
     <MdfFile Text="База даних Microsoft SQL Server (*.mdf)|*.mdf"/>
     <RtfFile Text="Форматований текст (*.rtf)|*.rtf"/>
-    <Images Text="Файли зображень|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Файли зображень|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Збірка (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Файл друку (*.prn)|*.prn"/>
     <BmpFile Text="Растрове зображення (*.bmp)|*.bmp"/>

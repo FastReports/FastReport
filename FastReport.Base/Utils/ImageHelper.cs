@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -6,9 +8,65 @@ using System.Net;
 
 namespace FastReport.Utils
 {
-    internal static class ImageHelper
+    /// <summary>
+    /// Interface allows to load images with custom format or custom type
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public interface IImageHelperLoader
     {
-        public static Bitmap CloneBitmap(Image source)
+        /// <summary>
+        /// Returns true if image can be loaded
+        /// </summary>
+        /// <param name="imageData"></param>
+        /// <returns></returns>
+        bool CanLoad(byte[] imageData);
+        /// <summary>
+        /// Returns true if image can be loaded
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        bool CanLoad(string fileName);
+        /// <summary>
+        /// Try to load the image, must not throw exception!
+        /// </summary>
+        /// <param name="imageData"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryLoad(byte[] imageData, out Image result);
+        /// <summary>
+        /// Try to load the image, must not throw exception!
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryLoad(string fileName, out Image result);
+    }
+
+    /// <summary>
+    /// Internal calss for image processing
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class ImageHelper
+    {
+        private readonly static object _customLoadersLocker = new object();
+        private readonly static List<IImageHelperLoader> _customLoaders = new List<IImageHelperLoader>();
+        
+        /// <summary>
+        /// Register a new custom loader
+        /// </summary>
+        /// <param name="imageHelperLoader"></param>
+        public static void Register(IImageHelperLoader imageHelperLoader)
+        {
+            lock (_customLoadersLocker)
+            {
+                foreach (var loader in _customLoaders)
+                    if (loader == imageHelperLoader)
+                        return;
+
+                 _customLoaders.Add(imageHelperLoader);                
+            }
+        }
+        internal static Bitmap CloneBitmap(Image source)
         {
             if (source == null)
                 return null;
@@ -26,12 +84,12 @@ namespace FastReport.Utils
             //      return source.Clone() as Bitmap;
         }
 
-        public static void Save(Image image, Stream stream)
+        internal static void Save(Image image, Stream stream)
         {
             Save(image, stream, image.GetImageFormat());
         }
 
-        public static void Save(Image image, string fileName, ImageFormat format)
+        internal static void Save(Image image, string fileName, ImageFormat format)
         {
             using (FileStream stream = new FileStream(fileName, FileMode.Create))
             {
@@ -39,7 +97,7 @@ namespace FastReport.Utils
             }
         }
 
-        public static void Save(Image image, Stream stream, ImageFormat format)
+        internal static void Save(Image image, Stream stream, ImageFormat format)
         {
             if (image == null)
                 return;
@@ -67,7 +125,7 @@ namespace FastReport.Utils
             }
         }
 
-        public static bool SaveAndConvert(Image image, Stream stream, ImageFormat format)
+        internal static bool SaveAndConvert(Image image, Stream stream, ImageFormat format)
         {
             if (image == null)
                 return false;
@@ -126,13 +184,18 @@ namespace FastReport.Utils
             return false;
         }
 
-        public static byte[] Load(string fileName)
+        internal static byte[] Load(string fileName)
         {
             if (!String.IsNullOrEmpty(fileName))
                 return File.ReadAllBytes(fileName);
             return null;
         }
 
+        /// <summary>
+        /// Load the image from bytes, Internal only method
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static Image Load(byte[] bytes)
         {
             if (bytes != null && bytes.Length > 0)
@@ -149,6 +212,18 @@ namespace FastReport.Utils
                 }
                 catch
                 {
+                    if (_customLoaders.Count > 0)
+                    {
+                        lock (_customLoadersLocker)
+                        {
+                            foreach (var loader in _customLoaders)
+                            {
+                                if (loader.CanLoad(bytes) && loader.TryLoad(bytes, out Image result))
+                                    return result;
+                            }
+                        }
+                    }
+
                     Bitmap errorBmp = new Bitmap(10, 10);
                     using (Graphics g = Graphics.FromImage(errorBmp))
                     {
@@ -161,7 +236,7 @@ namespace FastReport.Utils
             return null;
         }
 
-        public static byte[] LoadURL(string url)
+        internal static byte[] LoadURL(string url)
         {
             if (!String.IsNullOrEmpty(url))
             {
@@ -174,7 +249,7 @@ namespace FastReport.Utils
             return null;
         }
 
-        public static Bitmap GetTransparentBitmap(Image source, float transparency)
+        internal static Bitmap GetTransparentBitmap(Image source, float transparency)
         {
             if (source == null)
                 return null;
@@ -205,7 +280,7 @@ namespace FastReport.Utils
             return image;
         }
 
-        public static Bitmap GetGrayscaleBitmap(Image source)
+        internal static Bitmap GetGrayscaleBitmap(Image source)
         {
             Bitmap grayscaleBitmap = new Bitmap(source.Width, source.Height, source.PixelFormat);
 
@@ -243,7 +318,7 @@ namespace FastReport.Utils
         /// <param name="output">The output stream</param>
         /// <param name="preserveAspectRatio">Preserve the aspect ratio</param>
         /// <returns>Wether or not the icon was succesfully generated</returns>
-        public static bool SaveAsIcon(Image image, Stream output, bool preserveAspectRatio = false)
+        internal static bool SaveAsIcon(Image image, Stream output, bool preserveAspectRatio = false)
         {
             int size = 256;
             float width = size, height = size;
@@ -311,6 +386,30 @@ namespace FastReport.Utils
 
             return true;
         }
+
+        internal static Image LoadFromFile(string fileName)
+        {
+            try
+            {
+                return Image.FromFile(fileName);
+            }
+            catch (Exception ex)
+            {
+                if (_customLoaders.Count > 0)
+                {
+                    lock (_customLoadersLocker)
+                    {
+                        foreach (var loader in _customLoaders)
+                        {
+                            if (loader.CanLoad(fileName) && loader.TryLoad(fileName, out Image result))
+                                return result;
+                        }
+                    }
+                }
+
+                throw new ImageLoadException(ex);
+            }
+        }
     }
 
     public static class ImageExtension
@@ -351,7 +450,7 @@ namespace FastReport.Utils
             {
                 format = ImageFormat.Bmp;
             }
-            else if (ImageFormat.Wmf.Equals(bitmap.RawFormat)) 
+            else if (ImageFormat.Wmf.Equals(bitmap.RawFormat))
             {
                 format = ImageFormat.Wmf;
             }

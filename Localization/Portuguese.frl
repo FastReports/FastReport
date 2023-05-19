@@ -142,7 +142,7 @@
     <MdbFile Text="Base de dados MS Access (*.mdb)|*.mdb"/>
     <MdfFile Text="Base de dados Microsoft SQL Server (*.mdf)|*.mdf"/>
     <RtfFile Text="Texto formatado (*.rtf)|*.rtf"/>
-    <Images Text="Imagens|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Imagens|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Ficheiro de impressão (*.prn)|*.prn"/>
     <BmpFile Text="Imagem BMP (*.bmp)|*.bmp"/>

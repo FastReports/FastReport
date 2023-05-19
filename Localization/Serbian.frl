@@ -134,7 +134,7 @@
     <MdbFile Text="MS Access baza podataka (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server baza podataka (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text datoteka (*.rtf)|*.rtf"/>
-    <Images Text="Datoteke slika|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Datoteke slika|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Datoteka štampača  (*.prn)|*.prn"/>
     <BmpFile Text="Bitmap slika (*.bmp)|*.bmp"/>
