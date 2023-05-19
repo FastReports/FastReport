@@ -6,93 +6,96 @@ using System.IO;
 
 namespace FastReport.Utils
 {
-  /// <summary>
-  /// Contains methods used to crypt/decrypt a data.
-  /// </summary>
-  public static class Crypter
-  {
-    private static string FDefaultPassword = typeof(Crypter).FullName;
-    
     /// <summary>
-    /// Sets the password that is used to crypt connection strings stored in a report.
+    /// Contains methods used to crypt/decrypt a data.
     /// </summary>
-    /// <remarks>
-    /// See the <see cref="FastReport.Data.DataConnectionBase.ConnectionString"/> property for more details.
-    /// </remarks>
-    public static string DefaultPassword
+    public static class Crypter
     {
-      set { FDefaultPassword = value; }
-    }
-    
-    /// <summary>
-    /// Crypts a stream using specified password.
-    /// </summary>
-    /// <param name="dest">The destination stream that will receive the crypted data.</param>
-    /// <param name="password">The password.</param>
-    /// <returns>The stream that you need to write to.</returns>
-    /// <remarks>
-    /// Pass the stream you need to write to, to the <b>dest</b> parameter. Write your data to the 
-    /// stream that this method returns. When you close this stream, the <b>dest</b> stream will be
-    /// closed too and contains the crypted data.
-    /// </remarks>
-    public static Stream Encrypt(Stream dest, string password)
-    {
-      ICryptoTransform encryptor = null;
-#if DOTNET_4
-      using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
-#else
-      PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt"));
-#endif
-      {
-        RijndaelManaged rm = new RijndaelManaged();
-        rm.Padding = PaddingMode.ISO10126;
-        encryptor = rm.CreateEncryptor(pdb.GetBytes(16), pdb.GetBytes(16));
-      }
-      // write "rij" signature
-      dest.Write(new byte[] { 114, 105, 106 }, 0, 3);
-      return new CryptoStream(dest, encryptor, CryptoStreamMode.Write);
-    }
+        private const string RIJ = "rij";
 
-    /// <summary>
-    /// Decrypts a stream using specified password.
-    /// </summary>
-    /// <param name="source">Stream that contains crypted data.</param>
-    /// <param name="password">The password.</param>
-    /// <returns>The stream that contains decrypted data.</returns>
-    /// <remarks>
-    /// You should read from the stream that this method returns.
-    /// </remarks>
-    public static Stream Decrypt(Stream source, string password)
-    {
-      ICryptoTransform decryptor = null;
-#if DOTNET_4
-      using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
-#else
-      PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt"));
-#endif
-      {
-        RijndaelManaged rm = new RijndaelManaged();
-        rm.Padding = PaddingMode.ISO10126;
-        decryptor = rm.CreateDecryptor(pdb.GetBytes(16), pdb.GetBytes(16));
-      }
-      var encrypted = IsStreamEncryptedPrivate(source);
-      if (encrypted)
-        return new CryptoStream(source, decryptor, CryptoStreamMode.Read);
-      source.Position -= 3;
-      return null;
-    }
+        private static string FDefaultPassword = typeof(Crypter).FullName;
     
-    /// <summary>
-    /// Checks if the stream contains a crypt signature.
-    /// </summary>
-    /// <param name="stream">Stream to check.</param>
-    /// <returns><b>true</b> if stream is crypted.</returns>
-    public static bool IsStreamEncrypted(Stream stream)
-    {
-        var result = IsStreamEncryptedPrivate(stream);
-      stream.Position -= 3;
-      return result;
-    }
+        /// <summary>
+        /// Sets the password that is used to crypt connection strings stored in a report.
+        /// </summary>
+        /// <remarks>
+        /// See the <see cref="FastReport.Data.DataConnectionBase.ConnectionString"/> property for more details.
+        /// </remarks>
+        public static string DefaultPassword
+        {
+            set { FDefaultPassword = value; }
+        }
+    
+        /// <summary>
+        /// Crypts a stream using specified password.
+        /// </summary>
+        /// <param name="dest">The destination stream that will receive the crypted data.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>The stream that you need to write to.</returns>
+        /// <remarks>
+        /// Pass the stream you need to write to, to the <b>dest</b> parameter. Write your data to the 
+        /// stream that this method returns. When you close this stream, the <b>dest</b> stream will be
+        /// closed too and contains the crypted data.
+        /// </remarks>
+        public static Stream Encrypt(Stream dest, string password)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                ICryptoTransform encryptor = null;
+                using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
+                {
+                    aes.Padding = PaddingMode.ISO10126;
+                    encryptor = aes.CreateEncryptor(pdb.GetBytes(16), pdb.GetBytes(16));
+                }
+                // write "rij" signature
+                dest.Write(new byte[] { 114, 105, 106 }, 0, 3);
+                return new CryptoStream(dest, encryptor, CryptoStreamMode.Write);
+            }
+        }
+
+        /// <summary>
+        /// Decrypts a stream using specified password.
+        /// </summary>
+        /// <param name="source">Stream that contains crypted data.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>The stream that contains decrypted data.</returns>
+        /// <remarks>
+        /// You should read from the stream that this method returns.
+        /// </remarks>
+        public static Stream Decrypt(Stream source, string password)
+        {
+            var encrypted = IsStreamEncryptedPrivate(source);
+            if (encrypted)
+                return DecryptPrivate(source, password);
+            source.Position -= 3;
+            return null;
+        }
+
+        private static Stream DecryptPrivate(Stream source, string password)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                ICryptoTransform decryptor = null;
+                using (PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, Encoding.UTF8.GetBytes("Salt")))
+                {
+                    aes.Padding = PaddingMode.ISO10126;
+                    decryptor = aes.CreateDecryptor(pdb.GetBytes(16), pdb.GetBytes(16));
+                }
+                return new CryptoStream(source, decryptor, CryptoStreamMode.Read);
+            }
+        }
+
+        /// <summary>
+        /// Checks if the stream contains a crypt signature.
+        /// </summary>
+        /// <param name="stream">Stream to check.</param>
+        /// <returns><b>true</b> if stream is crypted.</returns>
+        public static bool IsStreamEncrypted(Stream stream)
+        {
+            var result = IsStreamEncryptedPrivate(stream);
+            stream.Position -= 3;
+            return result;
+        }
 
         private static bool IsStreamEncryptedPrivate(Stream stream)
         {
@@ -103,73 +106,79 @@ namespace FastReport.Utils
             return byte1 == 114 && byte2 == 105 && byte3 == 106;
         }
 
-    /// <summary>
-    /// Encrypts the string using the default password.
-    /// </summary>
-    /// <param name="data">String to encrypt.</param>
-    /// <returns>The encrypted string.</returns>
-    /// <remarks>
-    /// The password used to encrypt a string can be set via <see cref="DefaultPassword"/> property.
-    /// You also may use the <see cref="EncryptString(string, string)"/> method if you want to
-    /// specify another password.
-    /// </remarks>
-    public static string EncryptString(string data)
-    {
-      return EncryptString(data, FDefaultPassword);
-    }
-
-    /// <summary>
-    /// Encrypts the string using specified password.
-    /// </summary>
-    /// <param name="data">String to encrypt.</param>
-    /// <param name="password">The password.</param>
-    /// <returns>The encrypted string.</returns>
-    public static string EncryptString(string data, string password)
-    {
-      if (String.IsNullOrEmpty(data) || String.IsNullOrEmpty(password))
-        return data;
-
-      using (MemoryStream stream = new MemoryStream())
-      {
-        using (Stream cryptedStream = Encrypt(stream, password))
+        internal static bool IsStringEncrypted(string data)
         {
-          byte[] bytes = Encoding.UTF8.GetBytes(data);
-          cryptedStream.Write(bytes, 0, bytes.Length);
-        }  
+            // check "rij" signature
+            return data.StartsWith(RIJ);
+        }
+
+        /// <summary>
+        /// Encrypts the string using the default password.
+        /// </summary>
+        /// <param name="data">String to encrypt.</param>
+        /// <returns>The encrypted string.</returns>
+        /// <remarks>
+        /// The password used to encrypt a string can be set via <see cref="DefaultPassword"/> property.
+        /// You also may use the <see cref="EncryptString(string, string)"/> method if you want to
+        /// specify another password.
+        /// </remarks>
+        public static string EncryptString(string data)
+        {
+          return EncryptString(data, FDefaultPassword);
+        }
+
+        /// <summary>
+        /// Encrypts the string using specified password.
+        /// </summary>
+        /// <param name="data">String to encrypt.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>The encrypted string.</returns>
+        public static string EncryptString(string data, string password)
+        {
+            if (String.IsNullOrEmpty(data) || String.IsNullOrEmpty(password))
+            return data;
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                using (Stream cryptedStream = Encrypt(stream, password))
+                {
+                    byte[] bytes = Encoding.UTF8.GetBytes(data);
+                    cryptedStream.Write(bytes, 0, bytes.Length);
+                }  
           
-        return "rij" + Convert.ToBase64String(stream.ToArray());
-      }
-    }
+                return RIJ + Convert.ToBase64String(stream.ToArray());
+            }
+        }
 
-    /// <summary>
-    /// Decrypts the string using the default password.
-    /// </summary>
-    /// <param name="data">String to decrypt.</param>
-    /// <returns>The decrypted string.</returns>
-    /// <remarks>
-    /// The password used to decrypt a string can be set via <see cref="DefaultPassword"/> property.
-    /// You also may use the <see cref="DecryptString(string, string)"/> method if you want to
-    /// specify another password.
-    /// </remarks>
-    public static string DecryptString(string data)
-    {
-      return DecryptString(data, FDefaultPassword);
-    }
+        /// <summary>
+        /// Decrypts the string using the default password.
+        /// </summary>
+        /// <param name="data">String to decrypt.</param>
+        /// <returns>The decrypted string.</returns>
+        /// <remarks>
+        /// The password used to decrypt a string can be set via <see cref="DefaultPassword"/> property.
+        /// You also may use the <see cref="DecryptString(string, string)"/> method if you want to
+        /// specify another password.
+        /// </remarks>
+        public static string DecryptString(string data)
+        {
+          return DecryptString(data, FDefaultPassword);
+        }
 
-    /// <summary>
-    /// Decrypts the string using specified password.
-    /// </summary>
-    /// <param name="data">String to decrypt.</param>
-    /// <param name="password">The password.</param>
-    /// <returns>The decrypted string.</returns>
-    public static string DecryptString(string data, string password)
-    {
-      if (String.IsNullOrEmpty(data) || String.IsNullOrEmpty(password) || !data.StartsWith("rij"))
-        return data;
+        /// <summary>
+        /// Decrypts the string using specified password.
+        /// </summary>
+        /// <param name="data">String to decrypt.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>The decrypted string.</returns>
+        public static string DecryptString(string data, string password)
+        {
+            if (String.IsNullOrEmpty(data) || String.IsNullOrEmpty(password) || !IsStringEncrypted(data))
+                return data;
 
-      data = data.Substring(3);
-      using (Stream stream = Converter.FromString(typeof(Stream), data) as Stream)
-      {
+            data = data.Substring(3);
+            using (Stream stream = Converter.FromString(typeof(Stream), data) as Stream)
+            {
                 using (Stream decryptedStream = Decrypt(stream, password))
                 {
                     byte[] bytes = new byte[data.Length];
@@ -187,39 +196,39 @@ namespace FastReport.Utils
             }
         }
 
-    /// <summary>
-    /// Computes hash of specified stream. Initial position in stream will be saved.
-    /// </summary>
-    /// <param name="input">Initial stream</param>
-    /// <returns></returns>
-    public static string ComputeHash(Stream input)
-    {
-        byte[] buff = new byte[input.Length];
-        input.Read(buff, 0, buff.Length);
-        return ComputeHash(buff);
-    }
+        /// <summary>
+        /// Computes hash of specified stream. Initial position in stream will be saved.
+        /// </summary>
+        /// <param name="input">Initial stream</param>
+        /// <returns></returns>
+        public static string ComputeHash(Stream input)
+        {
+            byte[] buff = new byte[input.Length];
+            input.Read(buff, 0, buff.Length);
+            return ComputeHash(buff);
+        }
 
-    /// <summary>
-    /// Computes hash of specified array. 
-    /// </summary>
-    /// <param name="input">Initial array</param>
-    /// <returns></returns>
-    public static string ComputeHash(byte[] input)
-    {
-        byte[] hash = new Murmur3().ComputeHash(input);        
-        return BitConverter.ToString(hash).Replace("-", String.Empty);
-    }
+        /// <summary>
+        /// Computes hash of specified array. 
+        /// </summary>
+        /// <param name="input">Initial array</param>
+        /// <returns></returns>
+        public static string ComputeHash(byte[] input)
+        {
+            byte[] hash = new Murmur3().ComputeHash(input);        
+            return BitConverter.ToString(hash).Replace("-", String.Empty);
+        }
 
-    /// <summary>
-    /// Computes hash of specified array. 
-    /// </summary>
-    /// <param name="input">Initial array</param>
-    /// <returns></returns>
-    public static string ComputeHash(string input)
-    {
-        return ComputeHash(Encoding.UTF8.GetBytes(input));
+        /// <summary>
+        /// Computes hash of specified array. 
+        /// </summary>
+        /// <param name="input">Initial array</param>
+        /// <returns></returns>
+        public static string ComputeHash(string input)
+        {
+            return ComputeHash(Encoding.UTF8.GetBytes(input));
+        }
     }
-  }
 
     /// <summary>
     /// MurmurHash is a non-cryptographic hash function suitable for general hash-based lookup. 

@@ -333,7 +333,7 @@
     <AccdbFile Text="MS Access 2007 Datenbank (*.accdb)|*.accdb"/>
     <MdfFile Text="Microsoft SQL Server Datenbank (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text Datei (*.rtf)|*.rtf"/>
-    <Images Text="Bilder Datei|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Bilder Datei|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <AllImages Text="Bilder Datei|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
     <Assembly Text="Ausführbare Datei (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Druckerdatei (*.prn)|*.prn"/>

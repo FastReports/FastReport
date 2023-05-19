@@ -242,7 +242,7 @@
     <MdbFile Text="Βάση Δεδομένων MS Access (*.mdb)|*.mdb"/>
     <MdfFile Text="Βάση Δεδομένων Microsoft SQL Server"/>
     <RtfFile Text="Αρχείο Εμπλουτισμένου Κειμένου (*.rtf)|*.rtf"/>
-    <Images Text="Αρχεία Εικόνων|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf "/>
+    <Images Text="Αρχεία Εικόνων|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <AllImages Text="Αρχεία εικόνας|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
     <Assembly Text="Δυαδικά αρχεία (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Αρχείο Εκτύπωσης (*.prn)|*.prn"/>

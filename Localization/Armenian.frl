@@ -160,7 +160,7 @@
     <MdbFile Text="MS Access հենք (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server հենքեր (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text ֆայլ (*.rtf)|*.rtf"/>
-    <Images Text="Նկար ֆայլեր |*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Նկար ֆայլեր |*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Տպելու համար ֆայլ (*.prn)|*.prn"/>
     <BmpFile Text="Bitmap նկար (*.bmp)|*.bmp"/>

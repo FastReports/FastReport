@@ -239,7 +239,7 @@
     <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text file (*.rtf)|*.rtf"/>
-    <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <AllImages Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Printer file (*.prn)|*.prn"/>

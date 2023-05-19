@@ -1,0 +1,45 @@
+﻿<Project>
+  <PropertyGroup>
+    <RootNamespace>FastReport.Plugins</RootNamespace>
+
+    <Copyright>Fast Reports Inc.</Copyright>
+    <Company>Fast Reports Inc.</Company>
+    <Authors>Fast Reports Inc.</Authors>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)../../FastReport.Plugins.snk</AssemblyOriginatorKeyFile>
+
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Crossplatform)=='true'">
+    <DefineConstants>$(DefineConstants);FRCORE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(Crossplatform)=='true'">
+    <Compile Remove="**\*.Designer.cs" />
+    <Compile Remove="**\*.DesignExt.cs" />
+    <Compile Remove="**\*ConnectionEditor.cs" />
+    <EmbeddedResource Remove="**\*.resx" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='$(NetFrameworkMinimum)'">
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

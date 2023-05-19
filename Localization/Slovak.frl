@@ -150,7 +150,7 @@
     <MdbFile Text="MS Access databáza (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server databáza (*.mdf)|*.mdf"/>
     <RtfFile Text="Formátovaný text (*.rtf)|*.rtf"/>
-    <Images Text="Obrázky |*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Obrázky |*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Tlačové súbory (*.prn)|*.prn"/>
     <BmpFile Text="Rastrový obrázok (*.bmp)|*.bmp"/>

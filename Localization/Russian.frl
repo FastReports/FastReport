@@ -71,6 +71,7 @@
     <FileNameEmpty Text="Пожалуйста, укажите имя файла."/>
     <SaveToAnotherFile Text="Хотите сохранить в другой файл?"/>
     <RemoveFromRecentFiles Text="Удалить файл из списка недавно открытых файлов?"/>
+    <ImageLoadException Text="Изображение повреждено или не установлен плагин поддерживающий этот формат"/>
     <Validator>
       <DuplicateName Text="Имя уже используется."/>
       <IntersectedObjects Text="Объект пересекается с другим объектом."/>
@@ -342,7 +343,7 @@
     <AccdbFile Text="База данных MS Access 2007 (*.accdb)|*.accdb"/>
     <MdfFile Text="База данных Microsoft SQL Server (*.mdf)|*.mdf"/>
     <RtfFile Text="Форматированный текст (*.rtf)|*.rtf"/>
-    <Images Text="Файлы картинок|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Файлы картинок|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <AllImages Text="Файлы картинок|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
     <Assembly Text="Сборка (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Файл печати (*.prn)|*.prn"/>

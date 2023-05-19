@@ -538,7 +538,7 @@ namespace FastReport.Utils
                     int linesFit = 0;
                     // END: The fix for linux and core app a264aae5-193b-4e5c-955c-0818de3ca01b
                     Renderer.Graphics.MeasureString(text, Renderer.Font,
-                      new SizeF(Renderer.DisplayRect.Width - left, Renderer.FontLineHeight * 1.25f), 
+                      new SizeF(Renderer.DisplayRect.Width - left, Renderer.FontLineHeight * 1.25f),
                       Renderer.Format, out charsFit, out linesFit);
                     return charsFit + tabFit;
                 }
@@ -2411,15 +2411,15 @@ namespace FastReport.Utils
                             return image;
                         if (stream != null)
                         {
-                            MemoryStream ms = new MemoryStream(stream);
-                            image = Bitmap.FromStream(ms);
+
+                            image = ImageHelper.Load(stream);
                             return image;
                         }
                         if (base64 != null)
                         {
                             this.stream = Convert.FromBase64String(base64);
-                            MemoryStream ms = new MemoryStream(stream);
-                            image = Bitmap.FromStream(ms);
+
+                            image = ImageHelper.Load(stream);
                             return image;
                         }
                     }
@@ -2479,8 +2479,7 @@ namespace FastReport.Utils
                 base64 = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAFdJREFUOE9jbGlq+c9AIqipq2GEawEZQAo4dvgYqoXD0QAGhv9ATyKCBY1PXBjANKEbBjSWOANA9mPRDBImzgCKXECVMMCTsojzwtAzAOQvUjCJmRe/cgDt6ZAkZx23LwAAAABJRU5ErkJggg==";
                 src = "data:image/png;base64," + base64;
                 stream = Convert.FromBase64String(base64);
-                using (MemoryStream ms = new MemoryStream(stream))
-                    image = Bitmap.FromStream(ms);
+                image = ImageHelper.Load(stream);
                 return image;
             }
 

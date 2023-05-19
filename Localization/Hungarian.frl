@@ -157,7 +157,7 @@
     <MdbFile Text="MS Access adatbázis(*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server adatbázis (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text fájl (*.rtf)|*.rtf"/>
-    <Images Text="Kép fájlok|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="Kép fájlok|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Kompilálás (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="Nyomtató fájl (*.prn)|*.prn"/>
     <BmpFile Text="Bitmap kép (*.bmp)|*.bmp"/>

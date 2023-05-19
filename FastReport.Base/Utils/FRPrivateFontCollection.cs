@@ -10,7 +10,7 @@ namespace FastReport.Utils
     /// <summary>
     /// A wrapper around PrivateFontCollection.
     /// </summary>
-    public class FRPrivateFontCollection
+    public partial class FRPrivateFontCollection
     {
         private readonly PrivateFontCollection collection = TypeConverters.FontConverter.PrivateFontCollection;
         private Dictionary<string, string> FontFiles = new Dictionary<string, string>();
@@ -59,12 +59,32 @@ namespace FastReport.Utils
         /// Adds a font from the specified file to this collection.
         /// </summary>
         /// <param name="filename">A System.String that contains the file name of the font to add.</param>
-        public void AddFontFile(string filename)
+        /// <returns>true if the font is registered by application.</returns>
+        public bool AddFontFile(string filename)
         {
-            collection.AddFontFile(filename);
-            string fontName = Families[Families.Length - 1].Name;
-            if (!FontFiles.ContainsKey(fontName))
-                FontFiles.Add(fontName, filename);
+            bool success = false;
+            if(File.Exists(filename))
+            {
+                if (!FontFiles.ContainsValue(filename))
+                {
+                    collection.AddFontFile(filename);
+                    RegisterFontInternal(filename);
+                    success = true;
+                }
+#if DEBUG // Not so important information           
+                else
+                {
+                    Console.WriteLine("Font file '{0}' already present in collection", filename);
+                }
+#endif
+            }
+#if DEBUG
+            else
+            {
+                Console.WriteLine("Font file '{0}' not found", filename);
+            }
+#endif
+            return success;
         }
 
 #if SKIA

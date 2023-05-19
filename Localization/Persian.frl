@@ -149,7 +149,7 @@
     <MdbFile Text="فایل MS Access (*.mdb)|*.mdb"/>
     <MdfFile Text="فایل  Microsoft SQL Server databases (*.mdf)|*.mdf"/>
     <RtfFile Text="فایل Rich Text(*.rtf)|*.rtf"/>
-    <Images Text="فایل های تصویر|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf"/>
+    <Images Text="فایل های تصویر|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="اسمبلی (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="فایل چاپگر (*.prn)|*.prn"/>
     <BmpFile Text="تصویر Bitmap (*.bmp)|*.bmp"/>
