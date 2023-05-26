@@ -70,10 +70,10 @@ namespace FastReport.Barcode
       new Code93("/", "112131"),
       new Code93("+", "113121"),
       new Code93("%", "211131"),
-      new Code93("[", "121221"),     // only used for Extended Code 93
-      new Code93("]", "312111"),     // only used for Extended Code 93}
-      new Code93("{", "311121"),     // only used for Extended Code 93}
-      new Code93("}", "122211")      // only used for Extended Code 93}
+      new Code93("[", "121221"),     // ($) only used for Extended Code 93
+      new Code93("]", "312111"),     // (%) only used for Extended Code 93}
+      new Code93("{", "311121"),     // (/) only used for Extended Code 93}
+      new Code93("}", "122211")      // (+) only used for Extended Code 93}
     };
 
     /// <inheritdoc/>
@@ -129,7 +129,7 @@ namespace FastReport.Barcode
           weightK++;
 
           if (weightK > 15)
-            weightC = 1;
+            weightK = 1;
         };
 
         checkK += checkC;
@@ -157,8 +157,8 @@ namespace FastReport.Barcode
       "[H", "[I", "[J", "[K", "[L", "[M", "[N", "[O",
       "[P", "[Q", "[R", "[S", "[T", "[U", "[V", "[W",
       "[X", "[Y", "[Z", "]A", "]B", "]C", "]D", "]E",
-      " ", "{A", "{B", "{C", "{D", "{E", "{F", "{G",
-      "{H", "{I", "{J", "{K", "{L", "{M", "{N", "{O",
+      " ", "{A", "{B", "{C", "$", "%", "{F", "{G",
+      "{H", "{I", "{J", "+", "{L", "-", ".", "{O",
       "0",  "1",  "2",  "3",  "4",  "5",  "6",  "7",
       "8",  "9", "{Z", "]F", "]G", "]H", "]I", "]J",
       "]V",  "A",  "B",  "C",  "D",  "E",  "F",  "G",

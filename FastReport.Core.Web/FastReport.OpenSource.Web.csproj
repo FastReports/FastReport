@@ -9,7 +9,7 @@
     <DefineConstants>OPENSOURCE;</DefineConstants>
     <Version>1.0.0</Version>
     <PackageLicenseFile>FastReport MIT license.md</PackageLicenseFile>
-    <Configurations>Debug;Release;Demo</Configurations>
+    <Configurations>Debug;Release</Configurations>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>

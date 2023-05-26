@@ -268,7 +268,7 @@ namespace FastReport.Web.Services
 
         public string GetDesignerReport(WebReport webReport)
         {
-            string reportString = webReport.Report.SaveToString();
+            string reportString = SaveToString(webReport.Report);
             string report = CutRestricted(webReport, reportString);
 
             if (report.IndexOf("inherited") != -1)
@@ -320,6 +320,20 @@ namespace FastReport.Web.Services
             return report;
         }
 
+        private static string SaveToString(Report report)
+        {
+            string password = report.Password;
+            try
+            {
+                report.Password = string.Empty;
+                return report.SaveToString();
+            }
+            finally
+            {
+                report.Password = password;
+            }
+        }
+
         string CutRestricted(WebReport webReport, string xmlString)
         {
             using (MemoryStream xmlStream = new MemoryStream())
@@ -353,6 +367,21 @@ namespace FastReport.Web.Services
                                     item.SetProp("ConnectionString", String.Empty);
                                 }
                             }
+                        }
+                    }
+
+                    // delete password (for loading passworded webreport in web-designer)
+                    var password = xml.Root.FindItem(nameof(Report.Password));
+                    {
+                        if (password != null)
+                        {
+
+                            if (!String.IsNullOrEmpty(xml.Root.GetProp("Password")))
+                            {
+                                xml.Root.RemoveProp("Password");
+                            }
+
+                            xml.Root.Items.Remove(xml.Root.FindItem("Password"));
                         }
                     }
 

@@ -413,7 +413,9 @@ namespace FastReport.Data
                     else
                     {
                         table = new TableDataSource();
-                        table.Enabled = true;
+                        // Enabled = false is used to ensure that when creating a connection,
+                        // none of the tables in the list of tables will be selected by default
+                        table.Enabled = false;
                     }
 
                     string fixedTableName = tableName.Replace(".", "_").Replace("[", "").Replace("]", "").Replace("\"", "");

@@ -146,7 +146,7 @@ namespace FastReport.Export.Html
 
         private const string BODY_BEGIN = "</head>\r\n<body bgcolor=\"#FFFFFF\" text=\"#000000\">";
         private const string BODY_END = "</body>";
-        private const string PRINT_JS = "<script language=\"javascript\" type=\"text/javascript\"> parent.focus(); parent.print();</script>";
+        private const string PRINT_JS = "<script language=\"javascript\" type=\"text/javascript\"> parent.focus(); parent.print(); window.addEventListener('afterprint', function(event) { window.close(); })</script>";
         private const string NBSP = "&nbsp;";
         private int currentPage = 0;
         private HTMLData d;
@@ -397,8 +397,6 @@ namespace FastReport.Export.Html
         {
             get { return printPageData; }
         }
-
-        
 
         /// <summary>
         /// Enable or disable saving streams in GeneratedStreams collection.

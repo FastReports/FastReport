@@ -5,11 +5,11 @@
 
         <FRCompatVersionNET>2022.3.2</FRCompatVersionNET>
 
-        <FRCompatVersion>2023.1.8</FRCompatVersion>
-        <FRCompatSkiaVersion>2023.1.8</FRCompatSkiaVersion>
+        <FRCompatVersion>[2023.1.8]</FRCompatVersion>
+        <FRCompatSkiaVersion>[2023.2.0]</FRCompatSkiaVersion>
 
-        <FRDataVisualizationVersion>2023.1.0</FRDataVisualizationVersion>
-        <FRDataVisualizationSkiaVersion>2023.1.0</FRDataVisualizationSkiaVersion>
+        <FRDataVisualizationVersion>[2023.1.0]</FRDataVisualizationVersion>
+        <FRDataVisualizationSkiaVersion>[2023.2.0]</FRDataVisualizationSkiaVersion>
 		
 	<!-- WPF -->
         <FRWPFVersion>2023.1.0</FRWPFVersion>
