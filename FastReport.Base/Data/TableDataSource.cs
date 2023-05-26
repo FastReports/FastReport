@@ -201,6 +201,8 @@ namespace FastReport.Data
             c.Name = column.ColumnName;
             c.Alias = column.Caption;
             c.DataType = column.DataType;
+            // Enabled = false is used to ensure that all table fields were not selected by default when creating a connection.
+            c.Enabled = false;
             c.SetBindableControlType(c.DataType);
             return c;
         }

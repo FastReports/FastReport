@@ -217,7 +217,7 @@ namespace FastReport.Barcode
                 }
             }
             else
-                text = "&C;&1;" + text.Replace("(", "&A;").Replace(")", "").Replace(" ", "").Substring(3);
+                text = "&C;&1;" + text.Replace("(", "&A;").Replace(")", "").Replace(" ", "");
 
             string result = base.GetPattern();
             text = snapshot;
