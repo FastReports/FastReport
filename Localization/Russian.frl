@@ -72,6 +72,7 @@
     <SaveToAnotherFile Text="Хотите сохранить в другой файл?"/>
     <RemoveFromRecentFiles Text="Удалить файл из списка недавно открытых файлов?"/>
     <ImageLoadException Text="Изображение повреждено или не установлен плагин поддерживающий этот формат"/>
+    <FRXPageError Text="Ошибка на странице FRX. Изменения были отменены."/>
     <Validator>
       <DuplicateName Text="Имя уже используется."/>
       <IntersectedObjects Text="Объект пересекается с другим объектом."/>
@@ -1230,11 +1231,10 @@
       <WhichTables Text="Какие таблицы вы хотите использовать в отчете?"/>
       <Wait Text="Подключение к базе данных"/>
       <AddQuery Text="Добавить SQL запрос..."/>
-      <CheckAll Text="Выбрать все"/>
       <CloudDataSources Text="Выбрать подключение с Облака"/>
-      <Page3 Text="Выберите процедуры"/>
-      <WhichProcedures Text="Какие процедуры вы хотите использовать в отчете?"/>
-      <CheckAllProcedures Text="Выбрать все процедуры без входных параметров"/>
+      <Tables Text="Таблицы"/>
+      <Procedures Text="Процедуры"/>
+      <Queries Text="Запросы"/>
       <MessageBox>
         <SuccessText Text="Источник данных успешно загружен на сервер!"/>
         <SuccessCaption Text="Загрузка успешна"/>
