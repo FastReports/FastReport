@@ -132,14 +132,14 @@ namespace FastReport.Utils
         value = value.Replace("\r\n", "\r");
         return value.Split('\r');
       }
-#if true //CROSSPLATFORM
-            if (type == typeof(Font))
-            {
-                return new TypeConverters.FontConverter().ConvertFromInvariantString(value);
-            }
-#endif
-      if (type == typeof(Color))
-        return new ColorConverter().ConvertFromInvariantString(value);
+        if (type == typeof(Font))
+        {
+            Font font = new TypeConverters.FontConverter().ConvertFromInvariantString(value) as Font;
+            return Config.PrivateFontCollection.CheckFamily(font);
+        }
+
+        if (type == typeof(Color))
+            return new ColorConverter().ConvertFromInvariantString(value);
       return TypeDescriptor.GetConverter(type).ConvertFromInvariantString(value);
     }
 

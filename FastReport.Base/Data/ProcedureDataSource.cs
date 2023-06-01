@@ -7,57 +7,64 @@ namespace FastReport.Data
     /// </summary>
     public partial class ProcedureDataSource : TableDataSource
     {
-        /// <inheritdoc/>
-        public override bool Enabled
+        internal string DisplayNameWithParams
         {
-            get => base.Enabled;
-            set
+            get
             {
-                base.Enabled = value;
-                if (value)
+                if (Parameters != null)
                 {
-                    if (Parameters != null && Report != null)
+                    string paramsStr = "";
+                    foreach (CommandParameter parameter in Parameters)
                     {
-                        if (Connection != null)
-                            Connection.FillTable(this);
-                        foreach (CommandParameter parameter in Parameters)
-                        {
-                            if (parameter.Direction == ParameterDirection.Input)
-                                continue;
-                            Report.SetParameterValue(Name + "_" + parameter.Name, parameter.Value);
-                            ReportDesignerSetModified();
-                        }
+                        if (parameter.Direction == ParameterDirection.Input || parameter.Direction == ParameterDirection.InputOutput)
+                            paramsStr += parameter.Name + ", ";
                     }
+                    if (paramsStr.EndsWith(", "))
+                        paramsStr = paramsStr.Substring(0, paramsStr.Length - 2);
+                    if (paramsStr != "")
+                        return Name + " (" + paramsStr + ")";
                 }
-                else
+                return Name;
+            }
+        }
+
+        /// <inheritdoc/>
+        public override void InitSchema()
+        {
+            base.InitSchema();
+
+            if (Parameters != null)
+            {
+                foreach (CommandParameter parameter in Parameters)
                 {
-                    if (Parameters != null && Report != null)
-                        foreach (CommandParameter parameter in Parameters)
+                    if (parameter.Direction == ParameterDirection.Input)
+                        continue;
+
+                    var column = Columns.FindByName(parameter.Name);
+                    if (column == null)
+                    {
+                        column = new Column
                         {
-                            if (parameter.Direction == ParameterDirection.Input)
-                                continue;
-                            Report.Parameters.Remove(Report.GetParameter(Name + "_" + parameter.Name));
-                            ReportDesignerSetModified();
-                        }
+                            Name = parameter.Name,
+                            DataType = typeof(Variant)
+                        };
+                        Columns.Add(column);
+                    }
+                    column.Tag = parameter;
                 }
             }
         }
 
         /// <inheritdoc/>
-        public override string Name
+        protected override object GetValue(Column column)
         {
-            get => base.Name;
-            set
+            if (column.Tag is CommandParameter parameter)
             {
-                if (Enabled && Parameters != null && Report != null)
-                    foreach (CommandParameter parameter in Parameters)
-                    {
-                        Parameter param = Report.GetParameter(Name + "_" + parameter.Name);
-                        if (param != null)
-                            param.Name = value + "_" + parameter.Name;
-                    }
-                base.Name = value;
+                return parameter.Value;
             }
+
+            return base.GetValue(column);
         }
+
     }
 }

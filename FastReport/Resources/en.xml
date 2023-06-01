@@ -72,6 +72,7 @@
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
     <RemoveFromRecentFiles Text="Remove the file from recent files list?"/>
     <ImageLoadException Text="The image is corrupted or a plugin that supports this format is not installed"/>
+    <FRXPageError Text="Error on the FRX page. The changes have been canceled."/>
     <Validator>
       <DuplicateName Text="Name already is used."/>
       <IntersectedObjects Text="Object is intersected with other object."/>
@@ -1232,11 +1233,10 @@
       <WhichTables Text="Which tables you want in your report?"/>
       <Wait Text="Retrieving database information"/>
       <AddQuery Text="Add SQL query..."/>
-      <CheckAll Text="Check all"/>
       <CloudDataSources Text="Select connection from Cloud"/>
-      <Page3 Text="Choose procedures"/>
-      <WhichProcedures Text="Which procedures you want in your report?"/>
-      <CheckAllProcedures Text="Check all procedures without input parameters"/>
+      <Tables Text="Tables"/>
+      <Procedures Text="Procedures"/>
+      <Queries Text="Queries"/>
       <MessageBox>
         <SuccessText Text="The data source has been successfully uploaded to the server!"/>
         <SuccessCaption Text="Upload successful"/>

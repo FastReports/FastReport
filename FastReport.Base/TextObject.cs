@@ -1335,8 +1335,10 @@ namespace FastReport
             {
                 WordWrap = false;
                 float width = CalcSize().Width;
-                if ((Anchor & AnchorStyles.Right) != 0)
+                if ((Anchor & AnchorStyles.Right) != 0 || HorzAlign == HorzAlign.Right)
                     Left = Right - width;
+                if (HorzAlign == HorzAlign.Center)
+                    Left += Width / 2 - width / 2;
                 Width = width;
             }
             TextObject c = writer.DiffObject as TextObject;
