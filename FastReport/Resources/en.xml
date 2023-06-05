@@ -1845,23 +1845,18 @@
     </PrinterSetup>
     <QueryBuilder Text="Query Builder">
       <Designer Text="Designer"/>
-      <Sql Text="SQL"/>
       <Result Text="Result"/>
-      <Select Text="Select"/>
-      <Joins Text="Joins"/>
-      <Group Text="Group"/>
+      <Run Text="Run SQL"/>
       <Name Text="Name"/>
       <Alias Text="Alias"/>
       <Filter Text="Filter"/>
+      <Group Text="Group"/>
       <Order Text="Order"/>
       <Func Text="Func"/>
-      <Editor Text="Editor"/>
-      <Delete Text="Delete"/>
-      <Change Text="Change"/>
-      <JoinEditor Text="Join Editor"/>
-      <Tables Text="Tables:"/>
+      <Joins Text="Join"/>
       <Condition Text="Condition"/>
-      <InputAlias Text="Input an alias for the table:"/>
+      <Delete Text="Delete"/>
+      <InputAlias Text="Set an alias for the table:"/>
       <Where>
         <Equal Text="Equal"/>
         <NotEqual Text="Not equal"/>
@@ -1872,6 +1867,7 @@
         <Like Text="Like"/>
         <NotLike Text="Not like"/>
       </Where>
+      <Hint Text="Drag tables here"/>
       <QueryIsCorrupted Text="SQL query cannot be edited using Query Builder. With further processing SQL query may be partially or completely lost.&#13;&#10;Do you want to continue?"/>
       <QueryIsCorruptedTitle Text="Warning!"/>
     </QueryBuilder>

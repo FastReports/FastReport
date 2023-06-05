@@ -1660,23 +1660,18 @@
     </PrinterSetup>
     <QueryBuilder Text="Конструктор запроса">
       <Designer Text="Дизайнер"/>
-      <Sql Text="Текст запроса"/>
       <Result Text="Результат"/>
-      <Select Text="Выбор"/>
-      <Joins Text="Связи"/>
-      <Group Text="Группировка"/>
+      <Run Text="Выполнить"/>
       <Name Text="Имя"/>
       <Alias Text="Алиас"/>
       <Filter Text="Фильтр"/>
+      <Group Text="Группировка"/>
       <Order Text="Сортировка"/>
       <Func Text="Функция"/>
-      <Editor Text="Редактор"/>
+      <Joins Text="Связь"/>
+      <Condition Text="Условие"/>
       <Delete Text="Удалить"/>
-      <Change Text="Изменить"/>
-      <JoinEditor Text="Редактор связи"/>
-      <Tables Text="Таблицы:"/>
-      <Condition Text="Условие:"/>
-      <InputAlias Text="Введите алиас для таблицы:"/>
+      <InputAlias Text="Укажите алиас для таблицы:"/>
       <Where>
         <Equal Text="Равно"/>
         <NotEqual Text="Не равно"/>
@@ -1687,6 +1682,7 @@
         <Like Text="Похоже на"/>
         <NotLike Text="Не похоже на"/>
       </Where>
+      <Hint Text="Перетащите таблицы сюда"/>
       <QueryIsCorrupted Text="SQL запрос не может быть отредактирован с помощью Query Builder. При дальнейшей обработке SQL запрос может быть частично или полностью потерян.&#13;&#10;Вы хотите продолжить?"/>
       <QueryIsCorruptedTitle Text="Предупреждение!"/>
     </QueryBuilder>
