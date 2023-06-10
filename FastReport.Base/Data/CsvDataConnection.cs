@@ -45,8 +45,8 @@ namespace FastReport.Data
             {
                 CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
                 builder.CsvFile = value;
-				CheckForChangeConnection(builder, ConnectionString);
-			}
+                ConnectionString = builder.ToString();
+            }
         }
 
         /// <summary>
