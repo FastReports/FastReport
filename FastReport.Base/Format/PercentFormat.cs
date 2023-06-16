@@ -160,25 +160,20 @@ namespace FastReport.Format
             if (value is Variant)
                 value = ((Variant)value).Value;
 
-            return String.Format(GetNumberFormatInfo(), "{0:p}", new object[] { value });
+            return String.Format(GetNumberFormatInfo(), "{0:p}", value);
         }
 
         internal NumberFormatInfo GetNumberFormatInfo()
         {
-            NumberFormatInfo info = new NumberFormatInfo();
+            NumberFormatInfo info;
             if (UseLocale)
             {
-                NumberFormatInfo cultureFormat = CultureInfo.CurrentCulture.NumberFormat;
+                info = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
                 info.PercentDecimalDigits = DecimalDigits;
-                info.PercentDecimalSeparator = cultureFormat.PercentDecimalSeparator;
-                info.PercentGroupSizes = cultureFormat.PercentGroupSizes;
-                info.PercentGroupSeparator = cultureFormat.PercentGroupSeparator;
-                info.PercentSymbol = cultureFormat.PercentSymbol;
-                info.PercentPositivePattern = cultureFormat.PercentPositivePattern;
-                info.PercentNegativePattern = cultureFormat.PercentNegativePattern;
             }
             else
             {
+                info = new NumberFormatInfo();
                 info.PercentDecimalDigits = DecimalDigits;
                 info.PercentDecimalSeparator = DecimalSeparator;
                 info.PercentGroupSizes = new int[] { 3 };

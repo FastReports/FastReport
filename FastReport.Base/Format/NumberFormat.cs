@@ -118,23 +118,20 @@ namespace FastReport.Format
             if (value is Variant)
                 value = ((Variant)value).Value;
 
-            return String.Format(GetNumberFormatInfo(), "{0:n}", new object[] { value });
+            return String.Format(GetNumberFormatInfo(), "{0:n}", value);
         }
 
         internal NumberFormatInfo GetNumberFormatInfo()
         {
-            NumberFormatInfo info = new NumberFormatInfo();
+            NumberFormatInfo info;
             if (UseLocale)
             {
-                NumberFormatInfo cultureFormat = CultureInfo.CurrentCulture.NumberFormat;
+                info = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
                 info.NumberDecimalDigits = DecimalDigits;
-                info.NumberDecimalSeparator = cultureFormat.NumberDecimalSeparator;
-                info.NumberGroupSizes = cultureFormat.NumberGroupSizes;
-                info.NumberGroupSeparator = cultureFormat.NumberGroupSeparator;
-                info.NumberNegativePattern = cultureFormat.NumberNegativePattern;
             }
             else
             {
+                info = new NumberFormatInfo();
                 info.NumberDecimalDigits = DecimalDigits;
                 info.NumberDecimalSeparator = DecimalSeparator;
                 info.NumberGroupSizes = new int[] { 3 };

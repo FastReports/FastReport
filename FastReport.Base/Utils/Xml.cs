@@ -871,7 +871,7 @@ namespace FastReport.Utils
             return false;
         }
 
-        private void RaiseException()
+        private static void RaiseException()
         {
             throw new FileFormatException();
         }
@@ -883,7 +883,7 @@ namespace FastReport.Utils
                 using (XmlItem item = new XmlItem())
                 {
                     ReadItem(item);
-                    if (item.Name.IndexOf("?xml") != 0)
+                    if (!item.Name.StartsWith("?xml"))
                         RaiseException();
                 }
             }

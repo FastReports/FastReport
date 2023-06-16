@@ -2,13 +2,14 @@ using FastReport.Engine;
 using FastReport.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
 namespace FastReport.Preview
 {
-    internal class PreparedPage : IDisposable
+    internal partial class PreparedPage : Component
     {
         #region Fields
 
@@ -17,7 +18,7 @@ namespace FastReport.Preview
         private SizeF pageSize;
         private long tempFilePosition;
         private bool uploaded;
-        private PreparedPagePosprocessor posprocessor;
+        private PreparedPagePostprocessor postprocessor;
 
         #endregion Fields
 
@@ -128,6 +129,9 @@ namespace FastReport.Preview
                 {
                     reader.Read(obj, item);
                 }
+
+                if (obj is TextObject txt)
+                    ProcessText(txt);
             }
 
             if (readChildren)
@@ -188,15 +192,15 @@ namespace FastReport.Preview
                     page.Dispose();
                     page = ReadPage(null, xmlItem, true, reader);
                     page.SetReport(preparedPages.Report);
-                    posprocessor = new PreparedPagePosprocessor();
-                    posprocessor.Postprocess(page);
-                    posprocessor = null;
+                    postprocessor = new PreparedPagePostprocessor();
+                    postprocessor.Postprocess(page);
+                    postprocessor = null;
                 }
                 else
                 {
                     page.SetReport(preparedPages.Report);
-                    posprocessor = new PreparedPagePosprocessor();
-                    posprocessor.PostprocessUnlimited(this, page);
+                    postprocessor = new PreparedPagePostprocessor();
+                    postprocessor.PostprocessUnlimited(this, page);
                 }
             }
             if (page.MirrorMargins && (index + 1) % 2 == 0)
@@ -210,7 +214,7 @@ namespace FastReport.Preview
 
         internal void EndGetPage(ReportPage page)
         {
-            if (posprocessor != null) posprocessor = null;
+            if (postprocessor != null) postprocessor = null;
             if (page != null)
                 page.Dispose();
             ClearUploadedXml();
@@ -250,7 +254,7 @@ namespace FastReport.Preview
                         else
                             using (Base obj = ReadObject(page, xmlItem[i], true, reader))
                             {
-                                using (Base obj2 = posprocessor.PostProcessBandUnlimitedPage(obj))
+                                using (Base obj2 = postprocessor.PostProcessBandUnlimitedPage(obj))
                                     yield return obj2;
                             }
                     }
@@ -369,7 +373,7 @@ namespace FastReport.Preview
                 page = ReadPage(null, xmlItem, true, reader);
             }
             page.SetReport(preparedPages.Report);
-            new PreparedPagePosprocessor().Postprocess(page);
+            new PreparedPagePostprocessor().Postprocess(page);
             ClearUploadedXml();
             return page;
         }
@@ -489,9 +493,11 @@ namespace FastReport.Preview
             return false;
         }
 
-        public void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            xmlItem.Dispose();
+            if (disposing)
+                xmlItem.Dispose();
+            base.Dispose(disposing);
         }
 
         #endregion Public Methods

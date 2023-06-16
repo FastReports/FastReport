@@ -1937,6 +1937,7 @@
         <Yes Text="Да"/>
       </RightToLeft>
       <DisableHotkeys Text="Отключить горячие клавиши"/>
+      <UseCompactMenu Text="Использовать компактную строку меню"/>
       <Restart Text="* Требуется перезапуск"/>
       <Reset Text="Сброс настроек"/>
     </UIOptions>

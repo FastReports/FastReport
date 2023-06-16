@@ -297,10 +297,8 @@ namespace FastReport.Export
 
         internal static string TruncReturns(string Str)
         {
-            int l;
-            l = Str.Length;
-            if ((l > 1) && (Str.Substring(l - 2, 2) == "\r\n"))
-                return Str.Substring(0, l - 2);
+            if (Str.EndsWith("\r\n"))
+                return Str.Substring(0, Str.Length - 2);
             else
                 return Str;
         }
@@ -427,11 +425,11 @@ namespace FastReport.Export
                 if (length > 73)
                 {
                     length = 0;
-                    sb.Append("=").AppendLine();
+                    sb.Append('=').AppendLine();
                 }
                 if (c < 9 || c == 61 || c > 126)
                 {
-                    sb.Append("=").Append(XCONV[(c >> 4)].ToString()).Append(XCONV[(c & 0xF)].ToString());
+                    sb.Append('=').Append(XCONV[c >> 4]).Append(XCONV[c & 0xF]);
                     length += 3;
                 }
                 else

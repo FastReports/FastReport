@@ -1,147 +1,143 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 
 namespace FastReport.Preview
 {
-  internal class PreparedPagePosprocessor
-  {
-    private Dictionary<string, List<TextObjectBase>> duplicates;
-    private Dictionary<int, Base> bands;
-    int iBand;
-
-    private void ProcessDuplicates(TextObjectBase obj)
+    internal class PreparedPagePostprocessor
     {
-      if (duplicates.ContainsKey(obj.Name))
-      {
-        List<TextObjectBase> list = duplicates[obj.Name];
-        TextObjectBase lastObj = list[list.Count - 1];
+        private Dictionary<string, List<TextObjectBase>> duplicates;
+        private Dictionary<int, Base> bands;
+        int iBand;
 
-        bool isDuplicate = true;
-        // compare Text
-        if (obj.Text != lastObj.Text)
-          isDuplicate = false;
-        else
+        private void ProcessDuplicates(TextObjectBase obj)
         {
-          float lastObjBottom = (lastObj.Parent as ReportComponentBase).Bottom;
-          float objTop = (obj.Parent as ReportComponentBase).Top;
-          if (Math.Abs(objTop - lastObjBottom) > 0.5f)
-            isDuplicate = false;
+            if (duplicates.ContainsKey(obj.Name))
+            {
+                List<TextObjectBase> list = duplicates[obj.Name];
+                TextObjectBase lastObj = list[list.Count - 1];
+
+                bool isDuplicate = true;
+                // compare Text
+                if (obj.Text != lastObj.Text)
+                    isDuplicate = false;
+                else
+                {
+                    float lastObjBottom = (lastObj.Parent as ReportComponentBase).Bottom;
+                    float objTop = (obj.Parent as ReportComponentBase).Top;
+                    if (Math.Abs(objTop - lastObjBottom) > 0.5f)
+                        isDuplicate = false;
+                }
+
+                if (isDuplicate)
+                {
+                    list.Add(obj);
+                }
+                else
+                {
+                    // close duplicates
+                    CloseDuplicates(list);
+                    // add new obj
+                    list.Clear();
+                    list.Add(obj);
+                }
+            }
+            else
+            {
+                List<TextObjectBase> list = new List<TextObjectBase>();
+                list.Add(obj);
+                duplicates.Add(obj.Name, list);
+            }
         }
 
-        if (isDuplicate)
+        private void CloseDuplicates()
         {
-          list.Add(obj);
+            foreach (List<TextObjectBase> list in duplicates.Values)
+            {
+                CloseDuplicates(list);
+            }
         }
-        else
+
+        private void CloseDuplicates(List<TextObjectBase> list)
         {
-          // close duplicates
-          CloseDuplicates(list);
-          // add new obj
-          list.Clear();
-          list.Add(obj);
+            if (list.Count == 0)
+                return;
+
+            Duplicates duplicates = list[0].Duplicates;
+            switch (duplicates)
+            {
+                case Duplicates.Clear:
+                    CloseDuplicatesClear(list);
+                    break;
+                case Duplicates.Hide:
+                    CloseDuplicatesHide(list);
+                    break;
+                case Duplicates.Merge:
+                    CloseDuplicatesMerge(list);
+                    break;
+            }
         }
-      }
-      else
-      {
-        List<TextObjectBase> list = new List<TextObjectBase>();
-        list.Add(obj);
-        duplicates.Add(obj.Name, list);
-      }
-    }
 
-    private void CloseDuplicates()
-    {
-      foreach (List<TextObjectBase> list in duplicates.Values)
-      {
-        CloseDuplicates(list);
-      }
-    }
+        private void CloseDuplicatesClear(List<TextObjectBase> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (i > 0)
+                    list[i].Text = "";
+            }
+        }
 
-    private void CloseDuplicates(List<TextObjectBase> list)
-    {
-      if (list.Count == 0)
-        return;
+        private void CloseDuplicatesHide(List<TextObjectBase> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (i > 0)
+                    list[i].Dispose();
+            }
+        }
 
-      Duplicates duplicates = list[0].Duplicates;
-      switch (duplicates)
-      {
-        case Duplicates.Clear:
-          CloseDuplicatesClear(list);
-          break;
-        case Duplicates.Hide:
-          CloseDuplicatesHide(list);
-          break;
-        case Duplicates.Merge:
-          CloseDuplicatesMerge(list);
-          break;
-      }
-    }
+        private void CloseDuplicatesMerge(List<TextObjectBase> list)
+        {
+            float top = list[0].AbsTop;
 
-    private void CloseDuplicatesClear(List<TextObjectBase> list)
-    {
-      for (int i = 0; i < list.Count; i++)
-      {
-        if (i > 0)
-          list[i].Text = "";
-      }
-    }
+            // dispose all objects except the last one
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                list[i].Dispose();
+            }
 
-    private void CloseDuplicatesHide(List<TextObjectBase> list)
-    {
-      for (int i = 0; i < list.Count; i++)
-      {
-        if (i > 0)
-          list[i].Dispose();
-      }
-    }
+            // stretch the last object
+            TextObjectBase lastObj = list[list.Count - 1];
+            float delta = lastObj.AbsTop - top;
+            lastObj.Top -= delta;
+            lastObj.Height += delta;
+        }
 
-    private void CloseDuplicatesMerge(List<TextObjectBase> list)
-    {
-      float top = list[0].AbsTop;
-      
-      // dispose all objects except the last one
-      for (int i = 0; i < list.Count - 1; i++)
-      {
-        list[i].Dispose();
-      }
-
-      // stretch the last object
-      TextObjectBase lastObj = list[list.Count - 1];
-      float delta = lastObj.AbsTop - top;
-      lastObj.Top -= delta;
-      lastObj.Height += delta;
-    }
-
-    public void Postprocess(ReportPage page)
-    {
-      page.ExtractMacros();
-      ObjectCollection allObjects = page.AllObjects;
-      for (int i = 0; i < allObjects.Count; i++)
-      {
-        Base c = allObjects[i];
+        public void Postprocess(ReportPage page)
+        {
+            page.ExtractMacros();
+            ObjectCollection allObjects = page.AllObjects;
+            for (int i = 0; i < allObjects.Count; i++)
+            {
+                Base c = allObjects[i];
                 if (c.Report == null)
                     c.SetReport(page.Report);
-        c.ExtractMacros();
-        
-        if (c is BandBase)
-          (c as BandBase).UpdateWidth();
+                c.ExtractMacros();
 
-        if (c is TextObjectBase && (c as TextObjectBase).Duplicates != Duplicates.Show)
-        {
-          ProcessDuplicates(c as TextObjectBase);
+                if (c is BandBase band)
+                    band.UpdateWidth();
+
+                if (c is TextObjectBase txt && txt.Duplicates != Duplicates.Show)
+                    ProcessDuplicates(txt);
+            }
+
+            CloseDuplicates();
         }
-      }
 
-      CloseDuplicates();
-    }
-
-        public PreparedPagePosprocessor()
+        public PreparedPagePostprocessor()
         {
             duplicates = new Dictionary<string, List<TextObjectBase>>();
             bands = new Dictionary<int, Base>();
             iBand = 0;
-
         }
 
         public void PostprocessUnlimited(PreparedPage preparedPage, ReportPage page)
@@ -151,16 +147,18 @@ namespace FastReport.Preview
             foreach (Base b in preparedPage.GetPageItems(page, true))
             {
                 foreach (Base c in b.AllObjects)
-                    if (c is TextObjectBase && (c as TextObjectBase).Duplicates != Duplicates.Show)
+                {
+                    if (c is TextObjectBase txt && txt.Duplicates != Duplicates.Show)
                     {
-                        ProcessDuplicates(c as TextObjectBase);
-                        flag = true;//flag for keep in dictionary
+                        ProcessDuplicates(txt);
+                        flag = true; //flag for keep in dictionary
                     }
+                }
                 i++;
                 if (flag)
                 {
                     b.ExtractMacros();
-                    bands[i-1] = b;
+                    bands[i - 1] = b;
                 }
                 else
                 {
@@ -172,7 +170,7 @@ namespace FastReport.Preview
 
         public Base PostProcessBandUnlimitedPage(Base band)
         {
-            if(bands.ContainsKey(iBand))
+            if (bands.ContainsKey(iBand))
             {
                 Base replaceBand = bands[iBand];
                 Base parent = band.Parent;
