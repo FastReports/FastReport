@@ -407,7 +407,7 @@ namespace FastReport.Export
 
                 try
                 {
-                    for (int i = 0; i < GetPagesCount(pages); i++)
+                    for (int i = 0; i < pages.Count; i++)
                     {
                         if (ShowProgress)
                         {

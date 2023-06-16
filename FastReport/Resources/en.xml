@@ -2122,6 +2122,7 @@
         <Yes Text="Yes"/>
       </RightToLeft>
       <DisableHotkeys Text="Disable hotkeys"/>
+      <UseCompactMenu Text="Use compact menu"/>
       <Restart Text="* Restart required"/>
       <Reset Text="Reset config"/>
     </UIOptions>
