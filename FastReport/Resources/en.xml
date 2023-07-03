@@ -463,6 +463,7 @@
         <PrinterSetup Text="Printer Setup..."/>
         <Preview Text="Preview..."/>
         <PreviewCloud Text="Web Preview..."/>
+        <Preview1 Text="Preview"/>
         <SelectLanguage Text="Select Language..."/>
         <Exit Text="Exit"/>
       </File>
@@ -676,11 +677,9 @@
       </Zoom>
       <Polygon Text="Polygon">
         <MoveScale Text="Move and scale"/>
-        <Pointer Text="Pointer"/>        
-        <AddPointToStart Text="Add new line to start"/>
-        <AddPointToEnd Text="Add new line to end"/>
-        <AddPoint Text="Add point to line"/>
-        <Bezier Text="Add point to line"/>
+        <Pointer Text="Select point"/>        
+        <AddPoint Text="Add point"/>
+        <Bezier Text="Add bezier"/>
         <RemovePoint Text="Remove point"/>
       </Polygon>
     </Toolbar>

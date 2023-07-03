@@ -462,6 +462,7 @@
         <PrinterSetup Text="Параметры принтера..."/>
         <Preview Text="Предварительный просмотр..."/>
         <PreviewCloud Text="Предварительный веб-просмотр..."/>
+        <Preview1 Text="Просмотр"/>
         <SelectLanguage Text="Выберите язык..."/>
         <Exit Text="Выход"/>
       </File>
@@ -588,8 +589,8 @@
         <SaveAll Text="Сохранить все (Ctrl+Shift+S)"/>
         <Preview Text="Предварительный просмотр (Ctrl+P)"/>
         <PreviewCloud Text="Предварительный веб-просмотр"/>
-        <NewPage Text="Новая страница отчета"/>
-        <CopyPage Text="Копировать страницу отчета"/>
+        <NewPage Text="Новая страница"/>
+        <CopyPage Text="Копировать страницу"/>
         <NewDialog Text="Новый диалог"/>
         <DeletePage Text="Удалить страницу"/>
         <PageSetup Text="Настройки страницы"/>
@@ -638,7 +639,7 @@
         <SelectStyle Text="Выберите стиль"/>
         <NoStyle Text="Нет стиля"/>
       </Style>
-      <Layout Text="Выравнивание">
+      <Layout Text="Разметка">
         <AlignToGrid Text="Выровнять по сетке"/>
         <Left Text="Выровнять левые края"/>
         <Center Text="Выровнять по горизонтали по центру"/>
@@ -673,13 +674,11 @@
         <PageWidth Text="По ширине"/>
         <WholePage Text="Страница целиком"/>
       </Zoom>
-      <Polygon Text="Многоугольник">
-        <MoveScale Text="Перемещение и масштабирование"/>
-        <Pointer Text="Мышь"/>
-        <AddPointToStart Text="Добавить новую линию в начало"/>
-        <AddPointToEnd Text="Добавить новую линию в конец"/>
-        <AddPoint Text="Добавить новую точку на линию"/>
-        <Bezier Text="Добавить точку к линии"/>
+      <Polygon Text="Полигон">
+        <MoveScale Text="Выбрать объект"/>
+        <Pointer Text="Выбрать точку"/>
+        <AddPoint Text="Добавить точку"/>
+        <Bezier Text="Добавить кривую"/>
         <RemovePoint Text="Удалить точку"/>
       </Polygon>
     </Toolbar>
@@ -1929,7 +1928,7 @@
         <Pack1 Text="Классические"/>
         <Pack2 Text="Visual Studio"/>
       </IconPack>
-      <Ribbon Text="Использовать Ribbon-интерфейс"/>
+      <Ribbon Text="Ribbon интерфейс"/>
       <Welcome Text="Открывать окно приветствия при запуске"/>
       <RightToLeft Text="Интерфейс справа налево:">
         <Auto Text="Авто"/>
@@ -1937,7 +1936,7 @@
         <Yes Text="Да"/>
       </RightToLeft>
       <DisableHotkeys Text="Отключить горячие клавиши"/>
-      <UseCompactMenu Text="Использовать компактную строку меню"/>
+      <UseCompactMenu Text="Компактная строка меню"/>
       <Restart Text="* Требуется перезапуск"/>
       <Reset Text="Сброс настроек"/>
     </UIOptions>
