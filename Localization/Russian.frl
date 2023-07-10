@@ -2616,6 +2616,7 @@
       <Minimum Text="Минимум"/>
       <DoNotExpandShiftReturn Text="Не расширять мягкий перенос"/>
       <DisableSectionBreak Text="Не добавлять разрывы разделов при разрывах страниц"/>
+      <Bookmarks Text="Добавить закладку на каждую страницу"/>
     </Docx>
     <Xaml Text="Экспорт в XAML">
       <File Text="Файл XAML"/>

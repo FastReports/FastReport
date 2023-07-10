@@ -2849,6 +2849,7 @@
       <Minimum Text="Minimum"/>
       <DoNotExpandShiftReturn Text="Do not expand shift return"/>
       <DisableSectionBreak Text="Do not add section breaks on page breaks"/>
+      <Bookmarks Text="Add bookmark to each page"/>
     </Docx>
     <Xaml Text="Export to XAML">
       <File Text="XAML file"/>

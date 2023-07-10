@@ -8,8 +8,9 @@ namespace FastReport.Web
 {
     partial class WebReport
     {
-        private const string validation = @"    
-    var pageRange = document.getElementById('PageSelector').value;
+        private const string validation = @"
+    var pageSelector = document.getElementById('PageSelector');
+    var pageRange = pageSelector ? pageSelector.value : '';
     var validationRegex = new RegExp(""^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$"");
 
     if(!validationRegex.test(pageRange) && pageRange !== """"){
