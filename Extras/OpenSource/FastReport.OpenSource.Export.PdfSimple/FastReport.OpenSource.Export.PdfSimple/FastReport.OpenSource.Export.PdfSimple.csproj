@@ -23,7 +23,13 @@
     <PackageTags>reporting, reports, pdf, core</PackageTags>
     <Version>1.0.0</Version>
     <Configurations>Debug;Release</Configurations>
-    <Description>Pdf export for FastReport.OpenSource</Description>
+    <Description>
+      FastReport Open Source provides a free report generator for .NET/.NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
+      
+      FastReport is written in C# and it is compatible with .NET Standard 2.0 and higher. Extendable FastReport architecture allows creating your own objects, export filters, wizards, and DB engines.
+      
+      PDF export is available as a plugin. You can see an example of its use here. If this export is not enough for you and you need a full-featured PDF export with encryption, digital signing and fonts embedding - take a look at FastReport .NET Core.
+    </Description>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

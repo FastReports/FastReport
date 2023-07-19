@@ -296,7 +296,7 @@ namespace FastReport.Utils
                 word.Runs.Add(r);
                 width += r.Width;
                 if (width > displayRect.Width)
-                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
             }
             else
             {
@@ -309,7 +309,7 @@ namespace FastReport.Utils
                 word.Runs.Add(r);
                 width += r.Width;
                 if (width > displayRect.Width)
-                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
             }
         }
 
@@ -731,7 +731,7 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
                                 }
                                 currentWord.Add(reader.Character);
                                 word = new Word(this, line, WordType.WhiteSpace);
@@ -750,7 +750,7 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
                                 }
                             }
                             else
@@ -803,7 +803,7 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
                                 }
                             }
                             else
@@ -835,7 +835,7 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
                                 }
                             }
                             else
@@ -875,7 +875,7 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
                                 }
                                 currentWord.Add(reader.Character);
                                 word = new Word(this, line, WordType.Normal);
@@ -1028,7 +1028,7 @@ namespace FastReport.Utils
                                     word.Runs.Add(r);
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
                                 }
                                 break;
                         }
@@ -1067,8 +1067,9 @@ namespace FastReport.Utils
         /// <param name="wordCharIndex">the index of start last word in this line</param>
         /// <param name="availableWidth">width to place words</param>
         /// <param name="newWidth">ref to current line width</param>
+        /// <param name="currentWord">ref to current word</param>
         /// <returns></returns>
-        private Line WrapLine(Paragraph paragraph, Line line, int wordCharIndex, float availableWidth, ref float newWidth)
+        private Line WrapLine(Paragraph paragraph, Line line, int wordCharIndex, float availableWidth, ref float newWidth, ref Word currentWord)
         {
             if (line.Words.Count == 0)
             {
@@ -1084,6 +1085,7 @@ namespace FastReport.Utils
                 Word newWord = new Word(word.Renderer, line, word.Type);
                 line.Words.Clear();
                 line.Words.Add(newWord);
+                currentWord = newWord;
                 foreach (Run run in word.Runs)
                 {
                     width += run.Width;
@@ -1095,12 +1097,14 @@ namespace FastReport.Utils
                     else
                     {
                         Run secondPart = run;
+                        int step = 0;
                         while (secondPart != null)
                         {
                             Run firstPart = secondPart.Split(availableWidth - secondPart.Left, out secondPart);
                             if (firstPart != null)
                             {
-                                //newWord.Runs.Clear();
+                                if (step > 0)
+                                    newWord.Runs.Clear();
                                 newWord.Runs.Add(firstPart);
                                 firstPart.Word = newWord;
                             }
@@ -1118,6 +1122,7 @@ namespace FastReport.Utils
                                 line.Words.Add(newWord);
                                 secondPart.Left = 0;
                                 width = secondPart.Width;
+                                currentWord = newWord;
                                 if (width < availableWidth)
                                 {
                                     secondPart.Word = newWord;
@@ -1125,9 +1130,12 @@ namespace FastReport.Utils
                                     secondPart = null;
                                 }
                             }
+                            step++;
                         }
                     }
                 }
+
+                newWidth = width;
                 return line;
             }
             else
@@ -1150,7 +1158,9 @@ namespace FastReport.Utils
                     r.Left = newWidth;
                     newWidth += r.Width;
                 }
-                return result;
+
+                //perhaps need to continue the breakdown
+                return WrapLine(paragraph, result, wordCharIndex, availableWidth, ref newWidth, ref currentWord);
             }
         }
 
@@ -2234,7 +2244,7 @@ namespace FastReport.Utils
                     r = new RunText(renderer, word, style, list, left, charIndex);
                     if (r.Width > availableWidth)
                     {
-                        if (point == 1)
+                        if (point == 1 && left == 0)
                         {
                             // Single char width is less than availableWidth
                             // Give up splitting

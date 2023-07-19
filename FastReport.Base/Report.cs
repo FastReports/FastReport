@@ -253,6 +253,7 @@ namespace FastReport
         private bool needCompile;
         private bool scriptChanged = false;
         private bool needRefresh;
+        private bool isParameterChanged = false;
         private bool initializing;
         private object initializeData;
         private string initializeDataName;
@@ -386,7 +387,7 @@ namespace FastReport
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsPrepared
         {
-            get { return PreparedPages != null && PreparedPages.Count != 0; }
+            get { return !isParameterChanged && PreparedPages != null && PreparedPages.Count != 0; }
         }
         /// <summary>
         /// Gets or sets the absolute path to the parent report.
@@ -1677,6 +1678,8 @@ namespace FastReport
                 par.Value = value;
                 par.Expression = "";
             }
+
+            isParameterChanged = true;
         }
 
         /// <summary>
@@ -2501,6 +2504,7 @@ namespace FastReport
                 try
                 {
                     Compile();
+                    isParameterChanged = false;
                     return Engine.Run(true, append, true);
                 }
                 finally
