@@ -130,6 +130,18 @@ namespace FastReport.Engine
             CurY = 0;
             curColumn = 0;
 
+            // Disable columns of page when page has DataBand with columns and these columns has "across then down" layout.
+            // Without this fix, columns of page will be printed over columns of band when pages more than one.
+            if (page.Columns.Count > 1)
+            {
+                foreach (BandBase band in page.Bands)
+                {
+                    if (band is DataBand && (band as DataBand).Columns.Count > 1 &&
+                        (band as DataBand).Columns.Layout == ColumnLayout.AcrossThenDown)
+                        page.Columns.Count = 1;
+                }
+            }
+
             if (page.ResetPageNumber)
                 ResetLogicalPageNumber();
 
@@ -291,7 +303,7 @@ namespace FastReport.Engine
             if (curColumn >= page.Columns.Count)
                 curColumn = 0;
 
-            // apply Right to Left layot if needed
+            // apply Right to Left layout if needed
             if (Config.RightToLeft)
             {
                 curX = page.Columns.Positions[page.Columns.Count - curColumn - 1] * Units.Millimeters;

@@ -23,8 +23,11 @@
 
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>../FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
-    <Description>FastReport Open Source is an open source reporting solution for .Net Core and .Net Framework 4.x. 
-Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 25 types of barcodes, table object, shapes, line, PolyLine, Polygon and many more.</Description>
+    <Description>
+      FastReport Open Source provides a free report generator for .NET/.NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
+      FastReport is written in C# and it is compatible with .NET Standard 2.0 and higher. Extendable FastReport architecture allows creating your own objects, export filters, wizards, and DB engines.
+      FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. PDF export is available as a plugin.
+    </Description>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
   </PropertyGroup>
 

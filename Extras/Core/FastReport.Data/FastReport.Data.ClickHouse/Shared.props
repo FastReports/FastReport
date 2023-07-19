@@ -6,7 +6,11 @@
   </PropertyGroup>
 
   <Import Project="..\Connections.props" />
-  
+
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="ClickHouse.Client" Version="3.0.0.357" />
   </ItemGroup>

@@ -32,8 +32,23 @@
     <Configurations>Debug;Release</Configurations>
     <AssemblyName>FastReport</AssemblyName>
     <RootNamespace>FastReport</RootNamespace>
-    <Description>FastReport Open Source is an open source reporting solution for .Net Core and .Net Framework. 
-Various report objects will allow your report to look exactly how you want it to: 13 types of bands, 30 types of barcodes, table object, shapes, line, PolyLine, Polygon and many more.</Description>
+    <Description>
+      FastReport Open Source provides a free report generator for .NET/.NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
+      FastReport is written in C# and it is compatible with .NET Standard 2.0 and higher. Extendable FastReport architecture allows creating your own objects, export filters, wizards, and DB engines.
+      - FastReport is a band-oriented report generator. There are 13 types of bands available: Report Title, Report Summary, Page Header, Page Footer, Column Header, Column Footer, Data Header, Data, Data Footer, Group Header, Group Footer, Child, and Overlay. In addition, sub-reports are fully supported.
+      - A wide range of band types allows creating any kind of report: list, master-detail, group, multi-column, master-detail-detail and many more.
+      - Wide range of available report objects: text, picture, line, shape, barcode, matrix, table, checkbox.
+      - Reports can consist of several design pages, which allows reports to contain a cover, the data and a back cover, all in one file.
+      - The Table object allows building a tabular report with variable number of rows and/or columns, just like in MS Excel. Aggregate functions are also available.
+      - Powerful, fully configurable Matrix object that can be used to print pivot tables.
+      - Report inheritance. For creating many reports with common elements such as titles, logos or footers you can place all the common elements in a base report and inherit all other reports from this base.
+      Data Sources:
+      - You can get data from XML, CSV, JSON, MS SQL, MySQL, Oracle, Postgres, MongoDB, Couchbase, Raven DB, SQLite.
+      - FastReport has the ability to get data from business objects of IEnumerable type.
+      - Report can contain data sources (tables, queries, DB connections).
+      - Thus, you can not only use application-defined datasets but also connect to any database and use tables and queries directly within the report.
+      FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. PDF export is available as a plugin.
+    </Description>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

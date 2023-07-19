@@ -181,7 +181,7 @@ namespace FastReport.Export.Html
             float ParagraphOffset)
         {
             FastString style = new FastString();
-            style.Append("display:block;border:0;width:").Append(Px(width * Zoom));
+            style.Append("display:block;border:0;white-space: pre-wrap;width:").Append(Px(width * Zoom));
             if (ParagraphOffset != 0)
                 style.Append("text-indent:").Append(Px(ParagraphOffset * Zoom));
             if (obj.Padding.Left != 0)
