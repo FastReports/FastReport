@@ -6,7 +6,11 @@
   </PropertyGroup>
 
   <Import Project="..\Connections.props" />
-  
+
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="[2.11.0,)" />
     <PackageReference Include="MongoDB.Driver" Version="[2.11.0,)" />

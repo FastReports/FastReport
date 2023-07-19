@@ -752,10 +752,15 @@ namespace FastReport
         public void AddLastToFooter(BreakableComponent breakTo)
         {
             float maxTop = (AllObjects[0] as ComponentBase).Top;
-            foreach (ComponentBase obj in AllObjects)
-                if (obj.Top > maxTop && !(obj is DataFooterBand))
-                    maxTop = obj.Top;
-
+            for (int i = 0; i < AllObjects.Count; i++)
+            {
+                if (AllObjects[i] is ComponentBase)
+                {
+                    ComponentBase obj = AllObjects[i] as ComponentBase;
+                         if (obj.Top > maxTop && !(obj is DataFooterBand))
+                            maxTop = obj.Top;
+                }
+            }
             float breakLine = maxTop;
 
             List<ReportComponentBase> pasteList = new List<ReportComponentBase>();
@@ -796,15 +801,18 @@ namespace FastReport
             float maxBottom = 0;
 
             for (int i = itemsBefore; i < breakTo.AllObjects.Count; i++)
-                if ((breakTo.AllObjects[i] as ComponentBase).Top < minTop && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
-                    minTop = (breakTo.AllObjects[i] as ComponentBase).Top;
+                if (breakTo.AllObjects[i] is ComponentBase)
+                    if ((breakTo.AllObjects[i] as ComponentBase).Top < minTop && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
+                        minTop = (breakTo.AllObjects[i] as ComponentBase).Top;
 
             for (int i = itemsBefore; i < breakTo.AllObjects.Count; i++)
-                if ((breakTo.AllObjects[i] as ComponentBase).Bottom > maxBottom && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
+				if (breakTo.AllObjects[i] is ComponentBase)
+					if ((breakTo.AllObjects[i] as ComponentBase).Bottom > maxBottom && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
                     maxBottom = (breakTo.AllObjects[i] as ComponentBase).Bottom;
 
             for (int i = 0; i < itemsBefore; i++)
-                (breakTo.AllObjects[i] as ComponentBase).Top += maxBottom - minTop;
+				if (breakTo.AllObjects[i] is ComponentBase)
+					(breakTo.AllObjects[i] as ComponentBase).Top += maxBottom - minTop;
 
             breakTo.Height += maxBottom - minTop;
 
