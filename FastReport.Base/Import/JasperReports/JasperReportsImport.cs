@@ -144,8 +144,8 @@ namespace FastReport.Import.JasperReports
         private SubreportObject LoadTable(IParent band, XmlNode xmlObject)
         {
             SubreportObject table = ComponentsFactory.CreateSubreportObject("", (Base)band);
+            table.BaseName += "_Table";
             LoadReportComponentBase(table, xmlObject);
-            table.Name += "_Table";
             ReportPage page = ComponentsFactory.CreateReportPage(Report);
             page.CreateUniqueName();
 
@@ -227,6 +227,9 @@ namespace FastReport.Import.JasperReports
                         LoadPadding(obj as PictureObjectBase, cell, true);
                     else if (obj is TextObjectBase)
                         LoadPadding(obj as TextObjectBase, cell, true);
+
+                    if (obj == null)
+                        continue;
 
                     if (cell.Attributes["style"] != null)
                         ApplyStyleByName(obj, cell.Attributes["style"].Value);
