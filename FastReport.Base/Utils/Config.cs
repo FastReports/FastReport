@@ -317,10 +317,10 @@ namespace FastReport.Utils
                 scriptSecurityProps = new ScriptSecurityProperties();
             }
 
+            LoadPlugins();
 #if !COMMUNITY
             RestoreExportOptions();
 #endif
-            LoadPlugins();
 #if !SKIA
             InitTextRenderingHint();
 #endif
@@ -437,7 +437,6 @@ namespace FastReport.Utils
             FDoc.AutoIndent = true;
             SaveUIStyle();
             SaveUIOptions();
-            SavePreviewSettings();
             SaveCompilerSettings();
             SaveAuthServiceUser();
             SaveConnectionStringVisible();
@@ -507,7 +506,6 @@ namespace FastReport.Utils
                 RestoreUIStyle();
                 RestoreDefaultLanguage();
                 RestoreUIOptions();
-                RestorePreviewSettings();
                 RestoreCompilerSettings();
                 Res.LoadDefaultLocale();
                 RestoreAuthServiceUser();

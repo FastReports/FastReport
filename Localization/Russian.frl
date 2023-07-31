@@ -2488,7 +2488,7 @@
       <DefaultMenu Text="По умолчанию"/>
     </Editor>
     <ExportGroups>
-      <Office Text="Office"/>
+      <Office Text="Офис"/>
       <XML Text="XML"/>
       <Web Text="Веб"/>
       <Image Text="Изображения"/>
