@@ -52,21 +52,13 @@
 
         static partial void RestoreUIOptions();
 
-        static partial void RestorePreviewSettings();
-
-        static partial void SavePreviewSettings();
-
         static partial void SaveExportOptions();
 
         static partial void SaveAuthServiceUser();
 
         static partial void RestoreAuthServiceUser();
 
-        private static void RestoreExportOptions()
-        {
-            ExportsOptions options = ExportsOptions.GetInstance();
-            options.RestoreExportOptions();
-        }
+        static partial void RestoreExportOptions();
 
         #endregion Private Methods
 

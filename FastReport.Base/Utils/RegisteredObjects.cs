@@ -600,34 +600,27 @@ namespace FastReport.Utils
         }
 
         /// <summary>
-        /// Register Export category.
+        /// Obsolete. Use <see cref="ExportsOptions"/> api instead.
         /// </summary>
-        /// <param name="name">Category name.</param>
-        /// <param name="text">Category text.</param>
+        [Obsolete]
         public static void AddExportCategory(string name, string text, int imageIndex = -1)
         {
             PrivateAddExport(null, "ExportGroups," + name, text, null, imageIndex);
         }
 
         /// <summary>
-        /// Registers a new export filter.
+        /// Obsolete. Use <see cref="ExportsOptions"/> api instead.
         /// </summary>
-        /// <param name="obj">Type of export filter.</param>
-        /// <param name="text">Text for export filter's menu item.</param>
-        /// <remarks>
-        /// The <b>obj</b> must be of <see cref="ExportBase"/> type.
-        /// </remarks>
-        /// <example>
-        /// <code>
-        /// // register own export filter
-        /// RegisteredObjects.AddExport(typeof(MyExport), "My Export");
-        /// </code>
-        /// </example>
+        [Obsolete]
         public static void AddExport(Type obj, string text)
         {
             AddExport(obj, "", text);
         }
 
+        /// <summary>
+        /// Obsolete. Use <see cref="ExportsOptions"/> api instead.
+        /// </summary>
+        [Obsolete]
         public static void AddExport(Type obj, string category, string text, Bitmap image = null)
         {
             if (!obj.IsSubclassOf(typeof(ExportBase)))
@@ -641,18 +634,12 @@ namespace FastReport.Utils
             return PrivateAddExport(obj, "", text, null, imageIndex);
         }
 
-        internal static void AddExport(Type obj, string category, string text, int imageIndex)
-        {
-            PrivateAddExport(obj, "ExportGroups," + category + ",", text, null, imageIndex);
-        }
-
         internal static void InternalAddExport(Type obj, string category, string text, Bitmap image = null)
         {
             PrivateAddExport(obj, "ExportGroups," + category + ",", text, image);
         }
 
-        private static ObjectInfo PrivateAddExport(Type obj, string category, string text,
-            Bitmap image = null, int imageIndex = -1)
+        private static ObjectInfo PrivateAddExport(Type obj, string category, string text, Bitmap image = null, int imageIndex = -1)
         {
             var item = Exports.FindOrCreate(category);
             item.Update(obj, image, imageIndex, text);
