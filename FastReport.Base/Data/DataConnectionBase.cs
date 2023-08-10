@@ -92,7 +92,11 @@ namespace FastReport.Data
             get
             {
                 if (Report != null && Report.IsRunning && !String.IsNullOrEmpty(ConnectionStringExpression))
-                    return Report.Calc(ConnectionStringExpression).ToString();
+                {
+                    string value = (string)Report.Calc(ConnectionStringExpression);
+                    if(!string.IsNullOrEmpty(value))
+                        return value;
+                }
                 return connectionString;
             }
             set

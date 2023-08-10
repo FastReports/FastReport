@@ -126,10 +126,10 @@ namespace FastReport
                 result.FormatFlags = flags;
                 float[] tabStops = new float[64];
                 // fixed issue 2823
-                tabStops[0] = firstTab;
+                tabStops[0] = firstTab < 0 ? 0 : firstTab;
                 for (int i = 1; i < 64; i++)
                 {
-                    tabStops[i] = tabWidth;
+                    tabStops[i] = tabWidth < 0 ? 0 : tabWidth;
                 }
                 result.SetTabStops(0, tabStops);
                 stringFormats[hash] = result;
@@ -164,15 +164,15 @@ namespace FastReport
                 result.FormatFlags = flags;
                 float[] tabStops = new float[64];
                 // fixed issue 2823
-                tabStops[0] = firstTab;
+                tabStops[0] = firstTab < 0 ? 0 : firstTab;
                 for (int i = 1; i < 64; i++)
                 {
                     if (i > tabWidth.Count)
                     {
-                        tabStops[i] = defaultTab;
+                        tabStops[i] = defaultTab < 0 ? 0 : defaultTab;
                         continue;
                     }
-                    tabStops[i] = tabWidth[i - 1];
+                    tabStops[i] = tabWidth[i - 1] < 0 ? 0 : tabWidth[i - 1];
                 }
                 result.SetTabStops(0, tabStops);
                 stringFormats[hash] = result;

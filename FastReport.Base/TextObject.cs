@@ -95,7 +95,7 @@ namespace FastReport
         private bool skipFirstLineIndent;
 
         /// <summary>
-        /// The first line on each paragraph, not effect if value less then  0
+        /// The first line on each paragraph.
         /// </summary>
         [Browsable(true)]
         [DefaultValue(0f)]
@@ -103,7 +103,7 @@ namespace FastReport
         public float FirstLineIndent
         {
             get { return firstLineIndent; }
-            set { if (value >= 0) firstLineIndent = value; }
+            set { firstLineIndent = value; }
         }
 
         /// <summary>
@@ -432,7 +432,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets or sets a collection of TAB symbol positions, in pixels.
+        /// Gets or sets a collection of TAB symbol positions, in pixels. Negative values will not affect this property.
         /// </summary>
         /// <remarks>Use collection methods to add or remove TAB positions.</remarks>
         public FloatCollection TabPositions
@@ -548,7 +548,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Gets or sets the offset of the first TAB symbol.
+        /// Gets or sets the offset of the first TAB symbol. Negative value will not affect this property.
         /// </summary>
         [DefaultValue(0f)]
         [Category("Appearance")]
@@ -556,18 +556,18 @@ namespace FastReport
         public float FirstTabOffset
         {
             get { return firstTabOffset; }
-            set { firstTabOffset = value; }
+            set { if (value >= 0) firstTabOffset = value; }
         }
 
         /// <summary>
-        /// Gets or sets the width of TAB symbol, in pixels.
+        /// Gets or sets the width of TAB symbol, in pixels. Negative values will not affect this property.
         /// </summary>
         [DefaultValue(58f)]
         [Category("Appearance")]
         public float TabWidth
         {
             get { return tabWidth; }
-            set { tabWidth = value; }
+            set { if(value >= 0) tabWidth = value; }
         }
 
         /// <summary>
@@ -775,8 +775,9 @@ namespace FastReport
                         width = htmlRenderer.CalcWidth();
 
                         width += Padding.Horizontal + 1;
-                        if (LineHeight == 0)
+                        if (LineHeight == 0 || this.PreserveLastLineSpace)
                             height += Padding.Vertical + 1;
+
                         return new SizeF(width, height);
                     }
                 }
@@ -1094,6 +1095,7 @@ namespace FastReport
             AutoShrinkMinSize = src.AutoShrinkMinSize;
             ParagraphOffset = src.ParagraphOffset;
             inlineImageCache = src.inlineImageCache;
+            PreserveLastLineSpace = src.PreserveLastLineSpace;
             paragraphFormat.Assign(src.paragraphFormat);
         }
 
@@ -1400,7 +1402,7 @@ namespace FastReport
                     writer.Write(Highlight);
             }
 
-            if (ParagraphFormat.FirstLineIndent > 0)
+            if (ParagraphFormat.FirstLineIndent != 0)
                 writer.WriteFloat("ParagraphFormat.FirstLineIndent", ParagraphFormat.FirstLineIndent);
             if (ParagraphFormat.LineSpacing > 0)
                 writer.WriteFloat("ParagraphFormat.LineSpacing", ParagraphFormat.LineSpacing);

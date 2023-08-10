@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.ComponentModel;
 using FastReport.Utils;
-using System.Drawing.Drawing2D;
 
 namespace FastReport.Barcode
 {
@@ -99,7 +97,7 @@ namespace FastReport.Barcode
             set { trim = value; }
         }
 
-        private string Code
+        internal string Code
         {
             get
             {
@@ -424,7 +422,7 @@ namespace FastReport.Barcode
                     bmp.SetResolution(96, 96);
                     using (Graphics g = Graphics.FromImage(bmp))
                     {
-                        txtWidth = g.MeasureString(text, FFont, 100000).Width;
+                        txtWidth = g.MeasureString(text, Font, 100000).Width;
                     }
                 }
 
@@ -455,9 +453,9 @@ namespace FastReport.Barcode
             barArea.Height = height / zoom;
             if (showText)
             {
-                barArea.Height -= 14;
+                barArea.Height -= Font.SizeInPoints * PX_IN_PT;
                 if (textUp)
-                    barArea.Y = 14;
+                    barArea.Y = Font.SizeInPoints * PX_IN_PT;
             }
             drawArea.Height = height / zoom;
 
@@ -480,10 +478,11 @@ namespace FastReport.Barcode
                         break;
                 }
 
-                g.TranslateTransform(barArea.Left * zoom, 0);
-                DoLines(pattern, g, zoom);
                 if (showText)
                     DrawText(g, text);
+
+                g.TranslateTransform(barArea.Left * zoom, 0);
+                DoLines(pattern, g, zoom);
             }
             finally
             {
@@ -503,9 +502,8 @@ namespace FastReport.Barcode
 
             // when we print, .Net automatically scales the font. However, we need to handle this process.
             // Downscale the font to the screen resolution, then scale by required value (Zoom).
-            float fontZoom = 14f / (int)g.MeasureString(s, FFont).Height * zoom;
-            Font font = small ? FSmallFont : FFont;
-            using (Font drawFont = new Font(font.FontFamily, font.Size * fontZoom, font.Style))
+            float fontZoom = Font.SizeInPoints * PX_IN_PT / (int)g.MeasureString(s, Font).Height * zoom;
+            using (Font drawFont = new Font(Font.FontFamily, (Font.Size - (small ? 2 : 0)) * fontZoom, Font.Style))
             {
                 SizeF size = g.MeasureString(s, drawFont);
                 size.Width /= zoom;

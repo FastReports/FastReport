@@ -7,14 +7,14 @@ using FastReport.Utils;
 
 namespace FastReport.Barcode
 {
-  /// <summary>
-  /// The base class for EAN barcodes.
-  /// </summary>
-  public abstract class BarcodeEAN : LinearBarcodeBase
-  {
-    // Pattern for Barcode EAN Charset C
-    // S1   L1   S2   L2
-    internal static string[] tabelle_EAN_C = {
+    /// <summary>
+    /// The base class for EAN barcodes.
+    /// </summary>
+    public abstract class BarcodeEAN : LinearBarcodeBase
+    {
+        // Pattern for Barcode EAN Charset C
+        // S1   L1   S2   L2
+        internal static string[] tabelle_EAN_C = {
       "7150",    // 0 
       "6160",    // 1 
       "6061",    // 2 
@@ -27,9 +27,9 @@ namespace FastReport.Barcode
       "7051"     // 9 
     };
 
-    // Pattern for Barcode EAN Charset A
-    // L1   S1   L2   S2
-    internal static string[] tabelle_EAN_A = {  
+        // Pattern for Barcode EAN Charset A
+        // L1   S1   L2   S2
+        internal static string[] tabelle_EAN_A = {
       "2605",    //0 
       "1615",    //1 
       "1516",    //2 
@@ -42,9 +42,9 @@ namespace FastReport.Barcode
       "2506"     //9 
     };
 
-    // Pattern for Barcode EAN Zeichensatz B}
-    //L1   S1   L2   S2
-    internal static string[] tabelle_EAN_B = {
+        // Pattern for Barcode EAN Zeichensatz B}
+        //L1   S1   L2   S2
+        internal static string[] tabelle_EAN_B = {
       "0517",    // 0 
       "0616",    // 1 
       "1606",    // 2 
@@ -57,64 +57,110 @@ namespace FastReport.Barcode
       "1507"     // 9 
     };
 
+        internal override SizeF CalcBounds()
+        {
+            float barWidth = GetWidth(Code);
+            float extra1 = 0;
+            float extra2 = 0;
+
+            if (showText)
+            {
+                float txtWidth = 0;
+                using (Bitmap bmp = new Bitmap(1, 1))
+                {
+                    bmp.SetResolution(96, 96);
+                    using (Graphics g = Graphics.FromImage(bmp))
+                    {
+                        txtWidth = g.MeasureString(text, Font, 100000).Width;
+
+                        if (barWidth < txtWidth)
+                        {
+                            extra1 = (txtWidth - barWidth) / 2 + 2;
+                            extra2 = extra1;
+                        }
+
+                        if (this.extra1 != 0)
+                            extra1 = g.MeasureString("0", Font).Width;
+                        if (this.extra2 != 0)
+                            extra2 = g.MeasureString("0", Font).Width;
+                    }
+                }
+            }
+            else
+            {
+                if (this.extra1 != 0)
+                    extra1 = this.extra1;
+                if (this.extra2 != 0)
+                    extra2 = this.extra2;
+            }
+
+            drawArea = new RectangleF(0, 0, barWidth + extra1 + extra2, 0);
+            barArea = new RectangleF(extra1, 0, barWidth, 0);
+
+            return new SizeF(drawArea.Width * 1.25f, 0);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodeEAN"/> class with default settings.
+        /// </summary>
+        public BarcodeEAN()
+        {
+            ratioMin = 2;
+            ratioMax = 3;
+        }
+    }
+
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="BarcodeEAN"/> class with default settings.
+    /// Generates the EAN8 barcode.
     /// </summary>
-    public BarcodeEAN()
+    public class BarcodeEAN8 : BarcodeEAN
     {
-      ratioMin = 2;
-      ratioMax = 3;
+        internal override void DrawText(IGraphics g, string barData)
+        {
+            // parts of pattern: 3 + 16 + 5 + 16 + 3
+            float x1 = barArea.Left + GetWidth(pattern.Substring(0, 3));
+            float x2 = GetWidth(pattern.Substring(0, 3 + 16 + 1));
+            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(0, 4), Font).Width);
+            DrawString(g, x1, x2, barData.Substring(0, 4));
+
+            x1 = GetWidth(pattern.Substring(0, 3 + 16 + 5 - 1));
+            x1 += barArea.Left;
+            x2 = GetWidth(pattern.Substring(0, 3 + 16 + 5 + 16));
+            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(4, 4), Font).Width) + barArea.Left;
+            DrawString(g, x1, x2, barData.Substring(4, 4));
+        }
+
+        internal override string GetPattern()
+        {
+            text = DoCheckSumming(text, 8);
+
+            string result = "A0A";   // Startcode
+
+            for (int i = 0; i <= 3; i++)
+            {
+                result += tabelle_EAN_A[CharToInt(text[i])];
+            }
+
+            result += "0A0A0";   // Center Guard Pattern
+
+            for (int i = 4; i <= 7; i++)
+            {
+                result += tabelle_EAN_C[CharToInt(text[i])];
+            }
+
+            result += "A0A";   // Stopcode
+            return result;
+        }
     }
-  }
 
-
-  /// <summary>
-  /// Generates the EAN8 barcode.
-  /// </summary>
-  public class BarcodeEAN8 : BarcodeEAN
-  {
-    internal override void DrawText(IGraphics g, string barData)
+    /// <summary>
+    /// Generates the EAN13 barcode.
+    /// </summary>
+    public class BarcodeEAN13 : BarcodeEAN
     {
-      // parts of pattern: 3 + 16 + 5 + 16 + 3
-      float x1 = GetWidth(pattern.Substring(0, 3));
-      float x2 = GetWidth(pattern.Substring(0, 3 + 16 + 1));
-      DrawString(g, x1, x2, barData.Substring(0, 4));
-
-      x1 = GetWidth(pattern.Substring(0, 3 + 16 + 5 - 1));
-      x2 = GetWidth(pattern.Substring(0, 3 + 16 + 5 + 16));
-      DrawString(g, x1, x2, barData.Substring(4, 4));
-    }
-
-    internal override string GetPattern()
-    {
-      text = DoCheckSumming(text, 8);
-
-      string result = "A0A";   // Startcode
-
-      for (int i = 0; i <= 3; i++)
-      {
-        result += tabelle_EAN_A[CharToInt(text[i])];
-      }
-      
-      result += "0A0A0";   // Center Guard Pattern
-
-      for (int i = 4; i <= 7; i++)
-      {
-        result += tabelle_EAN_C[CharToInt(text[i])];
-      }
-      
-      result += "A0A";   // Stopcode
-      return result;
-    }
-  }
-
-  /// <summary>
-  /// Generates the EAN13 barcode.
-  /// </summary>
-  public class BarcodeEAN13 : BarcodeEAN
-  {
-    //Zuordung der Paraitaetsfolgen f¹r EAN13
-    private static string[,] tabelle_ParityEAN13 = {
+        //Zuordung der Paraitaetsfolgen f¹r EAN13
+        private static string[,] tabelle_ParityEAN13 = {
       {"A", "A", "A", "A", "A", "A"},    // 0 
       {"A", "A", "B", "A", "B", "B"},    // 1 
       {"A", "A", "B", "B", "A", "B"},    // 2 
@@ -127,67 +173,70 @@ namespace FastReport.Barcode
       {"A", "B", "B", "A", "B", "A"}     // 9 
     };
 
-    internal override void DrawText(IGraphics g, string barData)
-    {
-      DrawString(g, -8, -2, barData.Substring(0, 1));
-
-      // parts of pattern: 3 + 24 + 5 + 24 + 3
-      float x1 = GetWidth(pattern.Substring(0, 3));
-      float x2 = GetWidth(pattern.Substring(0, 3 + 24 + 1));
-      DrawString(g, x1, x2, barData.Substring(1, 6));
-
-      x1 = GetWidth(pattern.Substring(0, 3 + 24 + 5 - 1));
-      x2 = GetWidth(pattern.Substring(0, 3 + 24 + 5 + 24));
-      DrawString(g, x1, x2, barData.Substring(7, 6));
-    }
-
-    internal override string GetPattern()
-    {
-      int LK;
-      text = DoCheckSumming(text, 13);
-      string tmp = text;
-      LK = CharToInt(tmp[0]);
-      tmp = tmp.Substring(1, 12);
-
-      string result = "A0A";   // Startcode
-
-      for (int i = 0; i <= 5; i++)
-      {
-        int idx = CharToInt(tmp[i]);
-
-        switch (tabelle_ParityEAN13[LK, i])
+        internal override void DrawText(IGraphics g, string barData)
         {
-          case "A":
-            result += tabelle_EAN_A[idx];
-            break;
-          case "B":
-            result += tabelle_EAN_B[idx];
-            break;
-          case "C":
-            result += tabelle_EAN_C[idx];
-            break;
+            DrawString(g, -8, g.MeasureString(barData.Substring(0, 1), Font).Width, barData.Substring(0, 1));
+
+            // parts of pattern: 3 + 24 + 5 + 24 + 3
+            float x1 = GetWidth(pattern.Substring(0, 3)) + barArea.Left + g.MeasureString(barData.Substring(0, 1), Font).Width;
+            float x2 = GetWidth(pattern.Substring(0, 3 + 24 + 1));
+            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(1, 6), Font).Width);
+            DrawString(g, x1, x2, barData.Substring(1, 6));
+
+            x1 = GetWidth(pattern.Substring(0, 3 + 24 + 5 - 1));
+            x1 += barArea.Left + g.MeasureString(barData.Substring(0, 1), Font).Width;
+            x2 = GetWidth(pattern.Substring(0, 3 + 24 + 5 + 24));
+            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(7, 6), Font).Width);
+            DrawString(g, x1, x2, barData.Substring(7, 6));
         }
-      }
 
-      result += "0A0A0";   //Center Guard Pattern
+        internal override string GetPattern()
+        {
+            int LK;
+            text = DoCheckSumming(text, 13);
+            string tmp = text;
+            LK = CharToInt(tmp[0]);
+            tmp = tmp.Substring(1, 12);
 
-      for (int i = 6; i < 12; i++)
-      {
-        result += tabelle_EAN_C[CharToInt(tmp[i])];
-      }  
+            string result = "A0A";   // Startcode
 
-      result += "A0A";   // Stopcode
-      return result;
+            for (int i = 0; i <= 5; i++)
+            {
+                int idx = CharToInt(tmp[i]);
+
+                switch (tabelle_ParityEAN13[LK, i])
+                {
+                    case "A":
+                        result += tabelle_EAN_A[idx];
+                        break;
+                    case "B":
+                        result += tabelle_EAN_B[idx];
+                        break;
+                    case "C":
+                        result += tabelle_EAN_C[idx];
+                        break;
+                }
+            }
+
+            result += "0A0A0";   //Center Guard Pattern
+
+            for (int i = 6; i < 12; i++)
+            {
+                result += tabelle_EAN_C[CharToInt(tmp[i])];
+            }
+
+            result += "A0A";   // Stopcode
+            return result;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodeEAN13"/> class with default settings.
+        /// </summary>
+        public BarcodeEAN13()
+        {
+            extra1 = 8;
+        }
     }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BarcodeEAN13"/> class with default settings.
-    /// </summary>
-    public BarcodeEAN13()
-    {
-      extra1 = 8;
-    }
-  }
 
     /// <summary>
     /// Generates the GS1-128 (formerly known as UCC-128 or EAN-128) barcode.

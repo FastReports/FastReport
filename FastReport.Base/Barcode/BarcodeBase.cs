@@ -11,12 +11,14 @@ namespace FastReport.Barcode
     [TypeConverter(typeof(FastReport.TypeConverters.BarcodeConverter))]
     public abstract class BarcodeBase
     {
+        public readonly float PX_IN_PT = 1.69f;
         #region Fields
         internal string text;
         internal int angle;
         internal bool showText;
         internal float zoom;
         private Color color;
+        private Font font;
         #endregion
 
         #region Properties
@@ -37,6 +39,16 @@ namespace FastReport.Barcode
             get { return color; }
             set { color = value; }
         }
+
+        /// <summary>
+        /// Gets or sets the font of barcode.
+        /// </summary>
+        public Font Font
+        {
+            get { return font; }
+            set { font = value; }
+        }
+
         #endregion
 
         #region Public Methods
@@ -58,6 +70,7 @@ namespace FastReport.Barcode
         public virtual void Assign(BarcodeBase source)
         {
             Color = source.Color;
+            Font = source.Font;
         }
 
         internal virtual void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
@@ -66,6 +79,8 @@ namespace FastReport.Barcode
                 writer.WriteStr("Barcode", Name);
             if (diff.Color != Color)
                 writer.WriteValue(prefix + "Color", Color);
+            if (diff.Font != Font)
+                writer.WriteValue(prefix + "Font", Font);
         }
 
         internal virtual void Initialize(string text, bool showText, int angle, float zoom)
@@ -98,6 +113,7 @@ namespace FastReport.Barcode
         {
             text = "";
             color = Color.Black;
+            Font = new Font("Arial", 8);
         }
 
         /// <summary>
