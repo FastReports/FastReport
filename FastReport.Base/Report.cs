@@ -1464,8 +1464,6 @@ namespace FastReport
             {
                 if (convertNulls)
                     val = Converter.ConvertNull(dataType);
-                else if (dataType.IsValueType)
-                    return null;
             }
             else
             {
