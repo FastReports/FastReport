@@ -160,13 +160,8 @@ namespace FastReport
         public override string ReplaceColumnName(string name, Type type)
         {
             string typeName = GetTypeDeclaration(type);
-            bool needSaveNulls = !Report.ConvertNulls && type.IsValueType;
-
-            if (needSaveNulls && Nullable.GetUnderlyingType(type) == null)
-                typeName += "?";
-
-            string result = "((" + typeName + ")Report.GetColumnValue" + (needSaveNulls ? "Nullable" : "");
-            result += "(\"" + name + "\"" + "))";
+            string result = "((" + typeName + ")Report.GetColumnValue(\"" + name + "\"";
+            result += "))";
             return result;
         }
 
