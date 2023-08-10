@@ -1514,7 +1514,7 @@ namespace FastReport.Barcode
 
     internal override SizeF CalcBounds()
     {
-      int textAdd = showText ? 18 : 0;
+      int textAdd = showText ? (int)(Font.SizeInPoints * PX_IN_PT) : 0;
       return new SizeF(bitColumns * PixelSize.Width, codeRows * PixelSize.Height + textAdd);
     }
     
@@ -1544,7 +1544,7 @@ namespace FastReport.Barcode
     /// <summary>
     /// Initializes a new instance of the <see cref="BarcodePDF417"/> class with default settings.
     /// </summary>
-    public BarcodePDF417()
+    public BarcodePDF417() : base()
     {
       outBits = null;
       bytes = new byte[0];

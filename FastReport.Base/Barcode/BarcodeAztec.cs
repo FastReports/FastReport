@@ -44,7 +44,7 @@ namespace FastReport.Barcode
 
         internal override SizeF CalcBounds()
         {
-            int textAdd = showText ? 18 : 0;
+            int textAdd = showText ? (int)(Font.SizeInPoints * PX_IN_PT) : 0;
             return new SizeF(matrix.Width * PIXEL_SIZE, matrix.Height * PIXEL_SIZE + textAdd);
         }
 

@@ -423,12 +423,12 @@ namespace FastReport.Barcode
             float bearerWidth = WideBarRatio * 2 * zoom;
             using (Pen pen = new Pen(Color, bearerWidth))
             {
-                float x0 = displayRect.Left;
-                float x01 = displayRect.Left + bearerWidth / 2;
+                float x0 = displayRect.Left + (displayRect.Width - barArea.Width * zoom) / 2;
+                float x01 = displayRect.Left + bearerWidth / 2 + (displayRect.Width - barArea.Width * zoom) / 2;
                 float y0 = displayRect.Top;
                 float y01 = displayRect.Top + bearerWidth / 2;
-                float x1 = displayRect.Left + displayRect.Width;
-                float x11 = displayRect.Left + displayRect.Width - bearerWidth / 2;
+                float x1 = displayRect.Left + displayRect.Width - (displayRect.Width - barArea.Width * zoom) / 2;
+                float x11 = displayRect.Left + displayRect.Width - bearerWidth / 2 - (displayRect.Width - barArea.Width * zoom) / 2;
                 float y1 = displayRect.Top + barArea.Bottom * zoom;
                 float y11 = displayRect.Top + barArea.Bottom * zoom - bearerWidth / 2;
 

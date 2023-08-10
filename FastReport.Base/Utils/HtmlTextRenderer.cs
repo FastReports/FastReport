@@ -283,7 +283,7 @@ namespace FastReport.Utils
 
         #region Public Methods
 
-        public void AddUnknownWord(List<CharWithIndex> w, Paragraph paragraph, StyleDescriptor style, int charIndex, ref Line line, ref Word word, ref float width)
+        public void AddUnknownWord(List<CharWithIndex> w, Paragraph paragraph, StyleDescriptor style, int charIndex, ref Line line, ref Word word, ref float width, ref int tabIndex)
         {
             if (w[0].Char == ' ')
             {
@@ -296,7 +296,7 @@ namespace FastReport.Utils
                 word.Runs.Add(r);
                 width += r.Width;
                 if (width > displayRect.Width)
-                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
             }
             else
             {
@@ -309,7 +309,7 @@ namespace FastReport.Utils
                 word.Runs.Add(r);
                 width += r.Width;
                 if (width > displayRect.Width)
-                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                    line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
             }
         }
 
@@ -439,7 +439,6 @@ namespace FastReport.Utils
             IGraphicsState state = graphics.Save();
             //RectangleF rect = new RectangleF(FDisplayRect.Location, SizeF.Add(FDisplayRect.Size, new SizeF(width_dotnet, 0)));
             //FGraphics.SetClip(rect, CombineMode.Intersect);
-            graphics.SetClip(displayRect, CombineMode.Intersect);
 
             // reset alignment
             //StringAlignment saveAlign = FFormat.Alignment;
@@ -731,7 +730,7 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
                                 }
                                 currentWord.Add(reader.Character);
                                 word = new Word(this, line, WordType.WhiteSpace);
@@ -750,14 +749,14 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
                                 }
                             }
                             else
                             {
                                 if (currentWord.Count > 0)
                                 {
-                                    AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width);
+                                    AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width, ref tabIndex);
                                 }
                             }
                             charIndex = reader.LastPosition;
@@ -803,14 +802,14 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
                                 }
                             }
                             else
                             {
                                 if (currentWord.Count > 0)
                                 {
-                                    AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width);
+                                    AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width, ref tabIndex);
                                 }
                             }
                             charIndex = reader.Position;
@@ -835,14 +834,14 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
                                 }
                             }
                             else
                             {
                                 if (currentWord.Count > 0)
                                 {
-                                    AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width);
+                                    AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width, ref tabIndex);
                                 }
                             }
                             charIndex = reader.Position;
@@ -875,7 +874,7 @@ namespace FastReport.Utils
                                     currentWord.Clear();
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
                                 }
                                 currentWord.Add(reader.Character);
                                 word = new Word(this, line, WordType.Normal);
@@ -989,7 +988,7 @@ namespace FastReport.Utils
 
                         if (currentWord.Count > 0)
                         {
-                            AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width);
+                            AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width, ref tabIndex);
                             currentWord.Clear();
                             charIndex = reader.LastPosition;
                         }
@@ -1014,7 +1013,7 @@ namespace FastReport.Utils
 
                                     if (currentWord.Count > 0)
                                     {
-                                        AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width);
+                                        AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width, ref tabIndex);
                                         currentWord.Clear();
                                     }
                                     if (word == null || word.Type != WordType.Normal)
@@ -1028,7 +1027,7 @@ namespace FastReport.Utils
                                     word.Runs.Add(r);
                                     width += r.Width;
                                     if (width > displayRect.Width)
-                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word);
+                                        line = WrapLine(paragraph, line, charIndex, displayRect.Width, ref width, ref word, ref tabIndex);
                                 }
                                 break;
                         }
@@ -1038,7 +1037,7 @@ namespace FastReport.Utils
 
             if (currentWord.Count > 0)
             {
-                AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width);
+                AddUnknownWord(currentWord, paragraph, style, charIndex, ref line, ref word, ref width, ref tabIndex);
             }
         }
 
@@ -1069,7 +1068,7 @@ namespace FastReport.Utils
         /// <param name="newWidth">ref to current line width</param>
         /// <param name="currentWord">ref to current word</param>
         /// <returns></returns>
-        private Line WrapLine(Paragraph paragraph, Line line, int wordCharIndex, float availableWidth, ref float newWidth, ref Word currentWord)
+        private Line WrapLine(Paragraph paragraph, Line line, int wordCharIndex, float availableWidth, ref float newWidth, ref Word currentWord, ref int tabIndex)
         {
             if (line.Words.Count == 0)
             {
@@ -1143,6 +1142,10 @@ namespace FastReport.Utils
             {
                 return line;
             }
+            else if(newWidth <= availableWidth)
+            {
+                return line;
+            }
             else
             {
                 Word lastWord = line.Words[line.Words.Count - 1];
@@ -1150,6 +1153,24 @@ namespace FastReport.Utils
                 Line result = new Line(this, paragraph, wordCharIndex);
                 paragraph.Lines.Add(result);
                 newWidth = 0;
+                if (line.Words.Count > 2 && line.Words[line.Words.Count - 2].Type == WordType.Tab)
+                {
+                    Word tabWord = line.Words[line.Words.Count - 2];
+                    line.Words.RemoveAt(line.Words.Count - 2);
+                    float width2 = GetTabPosition(newWidth);
+                    if (isDifferentTabPositions)
+                    {
+                        width2 = GetTabPosition(newWidth, 0);
+                    }
+                    if (width2 < newWidth) width2 = newWidth;
+
+                    tabIndex = 1;
+                    result.Words.Add(tabWord);
+                    tabWord.Line = result;
+                    tabWord.Runs[0].Left = 0;
+                    tabWord.Runs[0].Width = width2 - newWidth;
+                    newWidth = width2;
+                }
                 result.Words.Add(lastWord);
                 lastWord.Line = result;
 
@@ -1160,7 +1181,7 @@ namespace FastReport.Utils
                 }
 
                 //perhaps need to continue the breakdown
-                return WrapLine(paragraph, result, wordCharIndex, availableWidth, ref newWidth, ref currentWord);
+                return WrapLine(paragraph, result, wordCharIndex, availableWidth, ref newWidth, ref currentWord, ref tabIndex);
             }
         }
 
@@ -1565,6 +1586,13 @@ namespace FastReport.Utils
                     case LineSpacingType.Exactly:
                         lineSpacing = renderer.paragraphFormat.LineSpacing - height;
                         break;
+                }
+
+
+                if (lineSpacing < 0)
+                {
+                    // There is a rune in the line with a larger font size than the start font. Line spacing is not needed
+                    lineSpacing = 0; 
                 }
             }
 
@@ -2206,11 +2234,11 @@ namespace FastReport.Utils
                     //if (drawContents)
                     //{
                     //#if DEBUG
-                    //                    SizeF size = FRenderer.FGraphics.MeasureString(FText, font, int.MaxValue, FRenderer.FFormat);
-                    //                    if (FRenderer.RightToLeft)
-                    //                        FRenderer.FGraphics.DrawRectangle(Pens.Red, Left - size.Width, Top, size.Width, size.Height);
-                    //                    else
-                    //                        FRenderer.FGraphics.DrawRectangle(Pens.Red, Left, Top, size.Width, size.Height);
+                    //SizeF size = renderer.graphics.MeasureString(text, font, int.MaxValue, renderer.format);
+                    //if (renderer.RightToLeft)
+                    //    renderer.graphics.DrawRectangle(Pens.Red, Left - size.Width, Top, size.Width, size.Height);
+                    //else
+                    //    renderer.graphics.DrawRectangle(Pens.Red, Left, Top, size.Width, size.Height);
                     //#endif
                     renderer.graphics.DrawString(text, font, brush, Left, Top, renderer.format);
                 }

@@ -228,7 +228,20 @@ namespace FastReport.Data.JsonConnection
 
                     using (var response = req.GetResponse() as HttpWebResponse)
                     {
-                        var encoding = Encoding.GetEncoding(response.CharacterSet);
+                        Encoding encoding = Encoding.UTF8;
+
+                        try
+                        {
+                            encoding = Encoding.GetEncoding(response.CharacterSet);
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                encoding = Encoding.GetEncoding(builder.Encoding);
+                            }
+                            catch { }
+                        }
 
                         using (var responseStream = response.GetResponseStream())
                         using (var reader = new System.IO.StreamReader(responseStream, encoding))
