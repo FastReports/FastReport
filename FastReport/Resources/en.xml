@@ -2834,6 +2834,7 @@
       <ShowGridlines Text="Show gridlines"/>
       <UseLocaleFormating Text="Use locale formatting of data"/>
       <CurrencyToAccounting Text="Convert currency to accounting format"/>
+      <GeneralToText Text="Convert general to text format"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>

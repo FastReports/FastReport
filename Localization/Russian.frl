@@ -2601,6 +2601,7 @@
       <ShowGridlines Text="Показать линии сетки"/>
       <UseLocaleFormating Text="Использовать региональный формат данных"/>
       <CurrencyToAccounting Text="Преобразовывать денежный формат в финансовый"/>
+      <GeneralToText Text="Преобразовывать общий формат в текстовый"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>
