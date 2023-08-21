@@ -593,15 +593,13 @@ namespace FastReport
             return text;
         }
 
-
-
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                Parent = null;
                 Clear();
+                Parent = null;
             }
             base.Dispose(disposing);
         }
@@ -888,7 +886,7 @@ namespace FastReport
         {
             bool saveAncestor = source.IsAncestor;
             source.SetAncestor(false);
-            
+
             try
             {
                 using (XmlItem xml = new XmlItem())
