@@ -5,6 +5,7 @@ using FastReport.Export;
 using FastReport.Export.Html;
 using FastReport.Export.Image;
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 #if !OPENSOURCE
 using FastReport.Export.Csv;
 using FastReport.Export.OoXML;
@@ -138,6 +139,7 @@ namespace FastReport.Web
         {
             public readonly string Extension;
             public readonly Exports Export;
+            [DynamicallyAccessedMembers(LinkerFlags.ExportTypeMembers)]
             public readonly Type ExportType;
             public readonly bool HaveSettings;
 
@@ -154,7 +156,7 @@ namespace FastReport.Web
                     return null;
             }
 
-            public ExportInfo(string extension, Exports export, Type exportType, bool haveSettings)
+            public ExportInfo(string extension, Exports export, [DynamicallyAccessedMembers(LinkerFlags.ExportTypeMembers)] Type exportType, bool haveSettings)
             {
                 Extension = extension;
                 ExportType = exportType;

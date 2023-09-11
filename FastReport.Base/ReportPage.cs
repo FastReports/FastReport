@@ -153,7 +153,7 @@ namespace FastReport
         /// Gets or sets the raw index of a paper size.
         /// </summary>
         /// <remarks>
-        /// This property stores the RawKind value of a selected papersize. It is used to distiguish
+        /// This property stores the RawKind value of a selected papersize. It is used to distinguish
         /// between several papers with the same size (for ex. "A3" and "A3 with no margins") used in some
         /// printer drivers. 
         /// <para/>It is not obligatory to set this property. FastReport will select the
@@ -281,6 +281,12 @@ namespace FastReport
             {
                 if (landscape != value)
                 {
+                    landscape = value;
+                    if (IsDeserializing)
+                    {
+                        return;
+                    }
+
                     float e = paperWidth;
                     paperWidth = paperHeight;
                     paperHeight = e;
@@ -305,7 +311,6 @@ namespace FastReport
                         bottomMargin = m2;
                     }
                 }
-                landscape = value;
             }
         }
 

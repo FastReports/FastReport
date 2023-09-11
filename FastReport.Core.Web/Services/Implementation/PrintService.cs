@@ -1,4 +1,5 @@
 ﻿using FastReport.Export.Html;
+using FastReport.Web.Infrastructure;
 #if !OPENSOURCE
 using FastReport.Export.Pdf;
 #endif
@@ -11,8 +12,6 @@ namespace FastReport.Web.Services
 {
     internal sealed class PrintService : IPrintService
     {
-        [Obsolete]
-        internal static PrintService Instance { get; } = new PrintService();
 
         public byte[] PrintReport(WebReport webReport, string printMode)
         {

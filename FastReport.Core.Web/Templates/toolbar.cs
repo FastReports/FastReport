@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FastReport.Web
@@ -20,7 +21,7 @@ namespace FastReport.Web
             var exports = Toolbar.Exports;
             var toolbarExportItem = $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"">
         <img src=""{template_resource_url("save.svg", "image/svg+xml")}"" title=""{localization.saveTxt}"">
-        <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">" 
+        <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">"
           + (exports.ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">{localization.preparedTxt}</a>" : "")
 #if !OPENSOURCE
           + (exports.ShowPdfExport ? $@"<a id=""PdfExport"" target=""_blank"" href=""{template_export_url("pdf")}"">{localization.pdfTxt}</a>":"")
@@ -32,7 +33,7 @@ namespace FastReport.Web
           + (exports.ShowPowerPoint2007Export ? $@"<a id=""PptxExport"" target=""_blank"" href=""{template_export_url("pptx")}"">{localization.powerPoint2007Txt}</a>" : "")
           + (exports.EnableSettings && exports.ShowPowerPoint2007Export ? $@"<button class=""fr-webreport-settings-btn"" data-path=""pptx""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "")
           + (exports.ShowTextExport ? $@"<a target=""_blank"" href=""{template_export_url("txt")}"">{localization.textTxt}</a>" : "")
-          + (exports.ShowRtfExport ? $@"<a id=""RtfExport"" target=""_blank"" href=""{template_export_url("rtf")}"">{localization.rtfTxt}</a>" : "") 
+          + (exports.ShowRtfExport ? $@"<a id=""RtfExport"" target=""_blank"" href=""{template_export_url("rtf")}"">{localization.rtfTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowRtfExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""rtf""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "")
           + (exports.ShowXpsExport ? $@"<a target=""_blank"" href=""{template_export_url("xps")}"">{localization.xpsTxt}</a>" : "")
           + (exports.ShowOdsExport ? $@"<a id=""OdsExport"" target=""_blank"" href=""{template_export_url("ods")}"">{localization.odsTxt}</a>" : "")
@@ -79,6 +80,8 @@ namespace FastReport.Web
             var selectedZoom2 = $@"<div>";
             var isFirstPage = CurrentPageIndex == 0;
             var isLastPage = CurrentPageIndex >= TotalPages - 1;
+            var isSinglePage = SinglePage || TotalPages < 2;
+            var customButtons = string.Join("", Toolbar.Elements.Select(x => x.Render(template_FR)));
 
             string templateToolbar = $@"
 <div class=""fr-toolbar {template_FR}-toolbar"">
@@ -104,10 +107,7 @@ namespace FastReport.Web
             <a onclick=""{template_FR}.zoom(50);"">{(currentZoom == 50 ? selectedZoom1 : selectedZoom2)}50%</div></a>
             <a onclick=""{template_FR}.zoom(25);"">{(currentZoom == 25 ? selectedZoom1 : selectedZoom2)}25%</div></a>
         </div>
-    </div>" : "")}
-  
-
-{((SinglePage || TotalPages < 2) ? "" : $@"
+    </div>" : "")}" + $@"
  {(Toolbar.ShowFirstButton ? $@"<div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isFirstPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isFirstPage ? "" : $@"onclick=""{template_FR}.goto('first');""")} title=""{localization.firstPageTxt}"">
         <img src=""{template_resource_url("angle-double-left.svg", "image/svg+xml")}"">
     </div>" : "")}
@@ -117,15 +117,15 @@ namespace FastReport.Web
     </div>" : "")}
    
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input id=""CurrentPage"" style=""{(Toolbar.Position == Positions.Top && Toolbar.Position == Positions.Bottom ? "margin-left: 0px;" : "")}"" class=""{template_FR}-current-page-input"" type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
+        <input id=""CurrentPage"" style=""{(Toolbar.Position == Positions.Top && Toolbar.Position == Positions.Bottom ? "margin-left: 0px;" : "")} {(isSinglePage ? $@"opacity: 0.5" : "")}"" class=""{template_FR}-current-page-input"" {(isSinglePage ? $@"readonly=""readonly""" : "")} type=""text"" value=""{((CurrentPageIndex + 1) > TotalPages ? TotalPages : (CurrentPageIndex + 1))}"" onchange=""{template_FR}.goto(document.getElementsByClassName('{template_FR}-current-page-input')[0].value);"" title=""{localization.currentPageTxt}"">
     </div>
 
-    <div class=""fr-toolbar-item fr-toolbar-notbutton fr-toolbar-slash {template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"">
+    <div class=""fr-toolbar-item fr-toolbar-notbutton fr-toolbar-slash {template_FR}-toolbar-item {template_FR}-toolbar-notbutton {template_FR}-toolbar-slash"" style=""{(isSinglePage ? $@"opacity: 0.5" : "")}"">
         <img src=""{template_resource_url("slash.svg", "image/svg+xml")}"">
     </div>
 
     <div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton"">
-        <input id=""AllPages"" style=""{(Toolbar.Position == Positions.Top && Toolbar.Position == Positions.Bottom ? "margin-left: 0px;" : "")}"" type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
+        <input id=""AllPages"" style=""{(Toolbar.Position == Positions.Top && Toolbar.Position == Positions.Bottom ? "margin-left: 0px;" : "")} {(isSinglePage ? $@"opacity: 0.5" : "")}"" type=""text"" value=""{TotalPages}"" readonly=""readonly"" title=""{localization.totalPagesTxt}"">
     </div>
 
 {(Toolbar.ShowNextButton ? $@" <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('next');""")} title=""{localization.nextPageTxt}"">
@@ -135,8 +135,7 @@ namespace FastReport.Web
 {(Toolbar.ShowLastButton ? $@" <div class=""fr-toolbar-item fr-toolbar-narrow {template_FR}-toolbar-item {template_FR}-toolbar-narrow {(isLastPage ? $"{template_FR}-toolbar-notbutton {template_FR}-disabled" : $"{template_FR}-pointer")}"" {(isLastPage ? "" : $@"onclick=""{template_FR}.goto('last');""")} title=""{localization.lastPageTxt}"">
         <img src=""{template_resource_url("angle-double-right.svg", "image/svg+xml")}"" style = ""padding-right: 10px;"">
     </div>" : "")}
- 
-")}
+{customButtons}
 </div>
 
 {template_tabs()}

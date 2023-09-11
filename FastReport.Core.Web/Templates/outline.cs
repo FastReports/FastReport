@@ -29,7 +29,7 @@ namespace FastReport.Web
 </div>
 
 <script>
-    (function(){{{InternalResourceLoader.Instance.GetContent("split.min.js")}}}).call({template_FR});
+    (function(){{{ResourceLoader.GetContent("split.min.js")}}}).call({template_FR});
     {template_FR}.outline();
 </script>
 ";

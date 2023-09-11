@@ -32,7 +32,7 @@ namespace FastReport.Web.Services
         /// </summary>
         /// <param name="isError">Returns a bool variable which means whether the error is returned or not</param>
         /// <returns>Returns JSON with connected tables</returns>
-        string GetConnectionTables(string connectionType, string connectionString, out bool isError);
+        string GetConnectionTables(string connectionType, string connectionString);
 
         /// <summary>
         /// Returns the list of connection types

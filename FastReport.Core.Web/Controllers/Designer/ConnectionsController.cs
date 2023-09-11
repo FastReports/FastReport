@@ -10,97 +10,66 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.Encodings.Web;
+using FastReport.Web.Infrastructure;
+using Microsoft.AspNetCore.Http;
 
 namespace FastReport.Web.Controllers
 {
-    public sealed class ConnectionsController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IConnectionsService _connectionsService;
-
-        public ConnectionsController(IConnectionsService connectionsService)
-        {
-            _connectionsService = connectionsService;
-        }
-
         public sealed class ConnectionsParams
         {
             public string ConnectionType { get; set; }
             public string ConnectionString { get; set; }
         }
 
-        [HttpGet]
-        [Route("/_fr/designer.getConnectionTypes")]
-        public IActionResult GetConnectionTypes()
+        [HttpGet("/designer.getConnectionTypes")]
+        public static IResult GetConnectionTypes(IConnectionsService connectionsService)
         {
-            var response = _connectionsService.GetConnectionTypes();
+            var response = connectionsService.GetConnectionTypes();
+            var content = "{" + string.Join(",", response.ToArray()) + "}";
 
-            return new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "application/json",
-                Content = "{" + String.Join(",", response.ToArray()) + "}",
-            };
+            return Results.Content(content, "application/json");
         }
 
-        [HttpGet]
-        [Route("/_fr/designer.getConnectionTables")]
-        public IActionResult GetConnectionTables([FromQuery] ConnectionsParams query)
+        [HttpGet("/designer.getConnectionTables")]
+        public static IResult GetConnectionTables([FromQuery] ConnectionsParams query,
+            IConnectionsService connectionsService)
         {
-            var response = _connectionsService.GetConnectionTables(query.ConnectionType, query.ConnectionString, out bool isError);
+            try
+            {
+                var response = connectionsService.GetConnectionTables(query.ConnectionType, query.ConnectionString);
 
-            return isError ? new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.InternalServerError,
-                ContentType = "text/plain",
-                Content = response,
+                return Results.Content(response, "application/xml");
             }
-            : new ContentResult()
+            catch (Exception ex)
             {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "application/xml",
-                Content = response
-            };
+                return Results.BadRequest(ex.Message);
+            }
         }
 
-        [HttpPost]
-        [Route("/_fr/designer.makeConnectionString")]
-        public IActionResult MakeConnectionString(string connectionType)
+        [HttpPost("/designer.makeConnectionString")]
+        public static IResult MakeConnectionString(string connectionType,
+            IConnectionsService connectionsService,
+            HttpRequest request)
         {
-            var form = Request.Form;
-            var response = _connectionsService.CreateConnectionStringJSON(connectionType, form, out bool isError);
+            var form = request.Form;
+            var response = connectionsService.CreateConnectionStringJSON(connectionType, form, out var isError);
 
-            return isError ? new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.InternalServerError,
-                ContentType = "text/plain",
-                Content = response,
-            }
-            : new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "application/xml",
-                Content = response
-            };  
+            return isError
+                ? Results.Content(response, "text/plain")
+                : Results.Content(response, "application/xml");
         }
 
-        [HttpGet]
-        [Route("/_fr/designer.getConnectionStringProperties")]
-        public IActionResult GetConnectionStringProperties([FromQuery] ConnectionsParams query)
+        [HttpGet("/designer.getConnectionStringProperties")]
+        public static IResult GetConnectionStringProperties([FromQuery] ConnectionsParams query,
+            IConnectionsService connectionsService)
         {
-            var response = _connectionsService.GetConnectionStringPropertiesJSON(query.ConnectionType, query.ConnectionString, out bool isError);
+            var response = connectionsService.GetConnectionStringPropertiesJSON(query.ConnectionType, query.ConnectionString, out var isError);
 
-            return isError ? new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.InternalServerError,
-                ContentType = "text/plain",
-                Content = response,
-            }
-            : new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "application/xml",
-                Content = response
-            };
+            return isError
+                ? Results.Content(response, "text/plain")
+                : Results.Content(response, "application/xml");
         }
     }
 }

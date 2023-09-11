@@ -1,11 +1,8 @@
-﻿using System;
+﻿using FastReport.Web.Toolbar;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 using System.Drawing;
-using System.Globalization;
+using System.Linq;
 
 namespace FastReport.Web
 {
@@ -47,12 +44,16 @@ namespace FastReport.Web
         public bool ShowLastButton { get; set; } = true;
         public bool ShowRefreshButton { get; set; } = true;
         public bool ShowZoomButton { get; set; } = true;
+
 #if WASM
         /// <summary>
         /// Show Print menu. Not supported in Wasm at the moment
         /// </summary>
         public bool ShowPrint { get => false; set => throw new NotSupportedException("Not supported in Wasm at the moment"); }
 #else
+        /// <summary>
+        /// Show Print menu
+        /// </summary>
         public bool ShowPrint { get; set; } = true;
 #endif
 
@@ -115,6 +116,33 @@ namespace FastReport.Web
         public Font FontSettings { get; set; } = null;
 
         public int Height { get; set; } = 40;
+
+        internal List<ToolbarElement> Elements { get; set; } = new List<ToolbarElement>();
+
+        /// <summary>
+        /// Adds an item to the toolbar
+        /// </summary>
+        /// <param name="element">Any inheritor of ToolbarElement. Can be a TolbarButton, ToolbarSelect, or ToolbarInput</param>
+        public void InsertToolbarElement(ToolbarElement element)
+        {
+            if (Elements.Any(x => x.Name == element.Name)) return;
+
+            var index = Elements.FindIndex(x => x.Position > element.Position);
+
+            if (index < 0 || element.Position == -1)
+            {
+                if (Elements.Count != 0)
+                    element.Position = Elements.Max(x => x.Position) + 1;
+                else
+                    element.Position = 0;
+
+                Elements.Add(element);
+            }
+            else
+            {
+                Elements.Insert(index, element);
+            }
+        }
 
         internal int ToolbarSlash
         {

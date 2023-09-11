@@ -12,11 +12,11 @@ namespace FastReport.Utils
         private void RegisterFontInternal(string filename)
         {
             string fontName = Families[Families.Length - 1].Name;
-            if (!FontFiles.ContainsKey(fontName))
-                FontFiles.Add(fontName, filename);
+            if (!_fonts.ContainsKey(fontName))
+                _fonts.Add(fontName, new FontFromFile(filename));
 #if DEBUG
             else
-                Console.WriteLine("Font \"{0}\" already present in collection.\n Files:\n  {1}\n  {2}\n", fontName, FontFiles[fontName], filename);
+                Console.WriteLine("Font \"{0}\" already present in collection.\n Files:\n  {1}\n  {2}\n", fontName, _fonts[fontName], filename);
 #endif
         }
 

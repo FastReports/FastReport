@@ -3,7 +3,7 @@
 namespace FastReport.Web.Cache
 {
     /// <summary>
-    /// For backward compability
+    /// For backward compatibility
     /// </summary>
     internal static class WebReportCache
     {
@@ -13,17 +13,15 @@ namespace FastReport.Web.Cache
         {
             get
             {
-                if (_instance == null)
-                {
-                    if (FastReportGlobal.FastReportOptions.CacheOptions.UseLegacyWebReportCache)
-                        _instance = new WebReportLegacyCache();
-                    else
-                        _instance = new WebReportMemoryCache(new MemoryCache(new MemoryCacheOptions()));
-
-                }
                 return _instance;
             }
+            internal set
+            {
+                _instance = value;
+            }
         }
+
+        internal static MemoryCache GetDefaultMemoryCache() => new MemoryCache(new MemoryCacheOptions());
 
     }
 

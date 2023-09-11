@@ -1,56 +1,44 @@
-﻿using FastReport.Web.Cache;
+﻿using FastReport.Web.Infrastructure;
 using FastReport.Web.Services;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
+using System.Net.Mime;
 
 namespace FastReport.Web.Controllers
 {
-    public sealed class ServiceController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IReportService _reportService;
-        private readonly ITextEditService _textEditService;
 
-        public ServiceController(IReportService reportService, ITextEditService textEditService)
-        {
-            _reportService = reportService;
-            _textEditService = textEditService;
-        }
-
-        public sealed class PrintReportParams
+        internal sealed class TextEditParams
         {
             public string ReportId { get; set; }
 
             public string Click { get; set; }
         }
 
-        [HttpGet]
-        [Route("/_fr/preview.textEditForm")]
-        public IActionResult TextEditForm([FromQuery] PrintReportParams query)
+
+        [HttpGet("/preview.textEditForm")]
+        public static IResult TextEditForm([FromQuery] TextEditParams query,
+            IReportService _reportService,
+            ITextEditService _textEditService,
+            HttpRequest request)
         {
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
             if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
-                return new NotFoundResult();
+                return Results.NotFound();
 
             var result = _textEditService.GetTemplateTextEditForm(query.Click, webReport);
 
             if (result != null)
             {
-                return new ContentResult()
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    ContentType = "text/html",
-                    Content = result,
-                };
+                return Results.Content(result, MediaTypeNames.Text.Html);
             }
             else
-            {
-                return new NotFoundResult();
-            }
+                return Results.NotFound();
         }
     }
 }

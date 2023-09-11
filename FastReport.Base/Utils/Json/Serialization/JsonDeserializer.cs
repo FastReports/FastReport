@@ -24,6 +24,13 @@ namespace FastReport.Utils.Json.Serialization
             return instance;
         }
 
+        public static object Deserialize(string json, Type type)
+        {
+            var instance = CreateInstance(type);
+            DeserializeProperties(instance, json);
+            return instance;
+        }
+
         private static object Deserialize(JsonBase jsonBase, Type type)
         {
             var instance = CreateInstance(type);

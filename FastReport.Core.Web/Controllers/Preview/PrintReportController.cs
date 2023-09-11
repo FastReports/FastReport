@@ -1,50 +1,55 @@
-﻿using FastReport.Web.Services;
+﻿using FastReport.Web.Infrastructure;
+using FastReport.Web.Services;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
+using System.Net;
 
 namespace FastReport.Web.Controllers
 {
-    [Route("/_fr/preview.printReport")]
-    public sealed class PrintReportController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IReportService _reportService;
-        private readonly IPrintService _printService;
 
-        public PrintReportController(IReportService reportService, IPrintService printService)
-        {
-            _printService = printService;
-            _reportService = reportService;
-        }
-
-        public sealed class PrintReportParams
+        internal sealed class PrintReportParams
         {
             public string ReportId { get; set; }
 
             public string PrintMode { get; set; }
         }
 
-        [HttpGet]
-        public IActionResult PrintReport([FromQuery] PrintReportParams query)
+
+        [HttpGet("/preview.printReport")]
+        public static IResult PrintReport([FromQuery] PrintReportParams query,
+            IReportService reportService,
+            IPrintService printService,
+            HttpRequest request)
         {
-            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
+            if (!reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
+                return Results.NotFound();
 
             var printMode = query.PrintMode.ToLower();
-            var response = _printService.PrintReport(webReport, printMode);
+            var response = printService.PrintReport(webReport, printMode);
 
             if (!(response is null))
             {
                 switch (printMode)
                 {
                     case "html":
-                        return new FileContentResult(response, "text/html");
+                        return Results.File(response,
+                            contentType: "text/html");
 #if !OPENSOURCE
                     case "pdf":
-                        return new FileContentResult(response, "application/pdf");
+                        return Results.File(response,
+                            contentType: "application/pdf");
 #endif
                 }
             }
 
-            return new UnsupportedMediaTypeResult();
+            return Results.StatusCode((int)HttpStatusCode.UnsupportedMediaType);
         }
     }
 }

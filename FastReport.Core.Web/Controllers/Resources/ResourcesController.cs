@@ -1,42 +1,36 @@
-﻿using FastReport.Web.Services;
+﻿using FastReport.Web.Infrastructure;
+using FastReport.Web.Services;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FastReport.Web.Controllers
 {
-    [Route("/_fr/resources.getResource")]
-    public sealed class ResourcesController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IResourceLoader _resourceLoader;
-
-        public ResourcesController(IResourceLoader resourceLoader)
+        internal sealed class GetResourceParams
         {
-            _resourceLoader = resourceLoader;
+            public string ResourceName { get; set; }
+
+            public string ContentType { get; set; }
         }
 
-        public sealed class GetResourceParams
+        [HttpGet("/resources.getResource")]
+        public static async Task<IResult> GetResource([FromQuery] GetResourceParams query,
+            IResourceLoader resourceLoader,
+            CancellationToken cancellationToken)
         {
-            public string resourceName { get; set; }
-
-            public string contentType { get; set; }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetResource([FromQuery] GetResourceParams query)
-        {
-            var resource = await _resourceLoader.GetBytesAsync(query.resourceName);
+            var resource = await resourceLoader.GetBytesAsync(query.ResourceName, cancellationToken);
             if (resource == null)
-                return new NotFoundResult();
+                return Results.NotFound();
 
-            if (query.contentType.IsNullOrWhiteSpace())
-                query.contentType = "application/octet-stream";
+            if (query.ContentType.IsNullOrWhiteSpace())
+                query.ContentType = "application/octet-stream";
 
-            return new FileContentResult(resource, query.contentType);
+            return Results.File(resource, query.ContentType);
         }
 
     }

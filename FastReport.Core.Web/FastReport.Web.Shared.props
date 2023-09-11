@@ -8,6 +8,8 @@
     <Company>Fast Reports Inc.</Company>
     <Copyright>Fast Reports Inc.</Copyright>
 
+    <LangVersion>9.0</LangVersion>
+
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>frlogo192.png</PackageIcon>
     <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>

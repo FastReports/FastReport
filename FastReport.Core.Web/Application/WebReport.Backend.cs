@@ -5,14 +5,16 @@ using System.Text;
 using Microsoft.AspNetCore.Html;
 using System.Threading.Tasks;
 using System.Linq;
-using FastReport.Web.Application;
-using System.Drawing;
+using FastReport.Web.Cache;
+using FastReport.Web.Services;
 
 namespace FastReport.Web
 {
 
     public partial class WebReport
     {
+        internal static IResourceLoader ResourceLoader { get; set; }
+
 
         public HtmlString RenderSync()
         {
@@ -45,5 +47,14 @@ namespace FastReport.Web
                     throw new Exception($"Unknown mode: {Mode}");
             }
         }
+
+        /// <summary>
+        /// Force report to be removed from internal cache
+        /// </summary>
+        public void RemoveFromCache()
+        {
+            WebReportCache.Instance?.Remove(this);
+        }
+
     }
 }

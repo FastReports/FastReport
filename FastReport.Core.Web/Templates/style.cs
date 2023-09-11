@@ -28,6 +28,7 @@ namespace FastReport.Web
     overflow: hidden;
     width: 100%;
     height: 100%;
+    margin-top: 20px;
 }}
 
 .{template_FR}-report {{
@@ -36,6 +37,10 @@ namespace FastReport.Web
     display: flex;
     flex-direction: {Toolbar.RowOrColumn};
     align-items: flex-start;
+}}
+
+.{template_FR}-spinner[style*=""display:none""] ~ .{template_FR}-toolbar ~ .{template_FR}-body {{
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }}
 
 /***********
@@ -118,6 +123,10 @@ namespace FastReport.Web
 
 .{template_FR}-toolbar-notbutton:hover > img {{
     opacity: 1;
+}}
+
+.{template_FR}-toolbar-image{{
+    width: calc({Toolbar.Height}px * 0.5);
 }}
 
 /**********************

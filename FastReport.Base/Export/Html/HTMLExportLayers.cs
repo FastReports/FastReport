@@ -143,7 +143,7 @@ namespace FastReport.Export.Html
                         EncodeURL(obj.Hyperlink.ReportParameter),
                         EncodeURL(obj.Hyperlink.Value));
                     string onClick = String.Format(OnClickTemplate, ReportID, "detailed_report", url);
-                    href = String.Format("<a {0} href=\"#\" onclick=\"{1}\">", hrefStyle, onClick);
+                    href = String.Format("<a {0} onclick=\"{1}\">", hrefStyle, onClick);
                 }
                 else if (obj.Hyperlink.Kind == HyperlinkKind.DetailPage)
                 {
@@ -152,7 +152,7 @@ namespace FastReport.Export.Html
                         EncodeURL(obj.Hyperlink.ReportParameter),
                         EncodeURL(obj.Hyperlink.Value));
                     string onClick = String.Format(OnClickTemplate, ReportID, "detailed_page", url);
-                    href = String.Format("<a {0} href=\"#\" onclick=\"{1}\">", hrefStyle, onClick);
+                    href = String.Format("<a {0} onclick=\"{1}\">", hrefStyle, onClick);
                 }
                 else if (SinglePage)
                 {
@@ -170,7 +170,7 @@ namespace FastReport.Export.Html
                         onClick = String.Format(OnClickTemplate, ReportID, "goto", url);
 
                     if (onClick != String.Empty)
-                        href = String.Format("<a {0} href=\"#\" onclick=\"{1}\">", hrefStyle, onClick);
+                        href = String.Format("<a {0} onclick=\"{1}\">", hrefStyle, onClick);
                 }
             }
             return href;

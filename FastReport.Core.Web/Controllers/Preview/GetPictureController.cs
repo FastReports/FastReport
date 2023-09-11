@@ -1,46 +1,40 @@
-﻿using FastReport.Web.Cache;
+﻿using FastReport.Web.Infrastructure;
 using FastReport.Web.Services;
-using Microsoft.AspNetCore.Mvc;
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FastReport.Web.Controllers
 {
-    [Route("/_fr/preview.getPicture")]
-    public sealed class GetPictureController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IReportService _reportService;
-
-        public GetPictureController(IReportService reportService)
-        {
-            _reportService = reportService;
-        }
-
-        public sealed class GetPictureParams
+        internal sealed class GetPictureParams
         {
             public string ReportId { get; set; }
 
             public string PictureId { get; set; }
-
         }
 
-        [HttpGet]
-        public IActionResult GetPicture([FromQuery] GetPictureParams query)
+
+        [HttpGet("/preview.getPicture")]
+        public static IResult GetPicture([FromQuery] GetPictureParams query,
+            IReportService reportService,
+            HttpRequest request)
         {
-            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
+            if (!reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
+                return Results.NotFound();
 
             var pictureId = query.PictureId.TrimStart('=');
             if (webReport.PictureCache.TryGetValue(pictureId, out byte[] value))
             {
                 string imgType = WebUtils.IsPng(value) ? "image/png" : "image/svg+xml";
-                return new FileContentResult(value, imgType);
+                return Results.File(value, imgType);
             }
 
-            return new NotFoundResult();
+            return Results.NotFound();
         }
     }
 }

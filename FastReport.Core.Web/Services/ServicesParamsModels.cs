@@ -50,13 +50,20 @@ namespace FastReport.Web.Services
         public string ForceRefresh { get; set; }
         public string Zoom { get; set; }
 
-        public void ParseRequest(HttpRequest request)
+        public static GetReportServiceParams ParseRequest(HttpRequest request)
         {
-            Zoom = request.Query["zoom"].ToString();
+            var reportServiceParams = new GetReportServiceParams
+            {
+                SkipPrepare = request.Query["skipPrepare"].ToString(),
+                ForceRefresh = request.Query["forceRefresh"].ToString(),
+                RenderBody = request.Query["renderBody"].ToString(),
+            };
 
-            DialogParams = new DialogParams();
+            reportServiceParams.Zoom = request.Query["zoom"].ToString();
 
-            ReportPageParams = new ReportPageParams
+            reportServiceParams.DialogParams = new DialogParams();
+
+            reportServiceParams.ReportPageParams = new ReportPageParams
             {
                 GoTo = request.Query["goto"].ToString(),
                 Bookmark = request.Query["bookmark"].ToString(),
@@ -64,13 +71,13 @@ namespace FastReport.Web.Services
                 DetailedPage = request.Query["detailed_page"].ToString()
             };
 
-            ReportTabParams = new ReportTabParams
+            reportServiceParams.ReportTabParams = new ReportTabParams
             {
                 SetTab = request.Query["settab"].ToString(),
                 CloseTab = request.Query["closetab"].ToString()
             };
 
-            ClickParams = new ClickParams
+            reportServiceParams.ClickParams = new ClickParams
             {
                 Click = request.Query["click"].ToString(),
                 CheckBoxClick = request.Query["checkbox_click"].ToString(),
@@ -78,10 +85,11 @@ namespace FastReport.Web.Services
                 AdvMatrixClick = request.Query["advmatrix_click"].ToString()
             };
 
-            if (!ClickParams.TextEdit.IsNullOrEmpty())
-                ClickParams.Text = request.Form["text"].ToString();
+            if (!reportServiceParams.ClickParams.TextEdit.IsNullOrEmpty())
+                reportServiceParams.ClickParams.Text = request.Form["text"].ToString();
 
-            DialogParams.ParseRequest(request);
+            reportServiceParams.DialogParams.ParseRequest(request);
+            return reportServiceParams;
         }
     }
 

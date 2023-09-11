@@ -17,7 +17,7 @@ namespace FastReport.Web.Cache
 
         private readonly MemoryCacheEntryOptions _memoryCacheEntryOptions;
 
-        public WebReportMemoryCache(IMemoryCache cache)
+        public WebReportMemoryCache(IMemoryCache cache, CacheOptions cacheOptions)
         {
             _cache = cache;
 
@@ -27,7 +27,7 @@ namespace FastReport.Web.Cache
             };
             _memoryCacheEntryOptions = new MemoryCacheEntryOptions
             {
-                SlidingExpiration = FastReportGlobal.FastReportOptions.CacheOptions.CacheDuration,
+                SlidingExpiration = cacheOptions.CacheDuration,
             };
             _memoryCacheEntryOptions.PostEvictionCallbacks.Add(callback);
         }

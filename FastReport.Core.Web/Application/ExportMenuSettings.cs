@@ -6,17 +6,10 @@ namespace FastReport.Web
     public class ExportMenuSettings
     {
 
-#if WASM
-        /// <summary>
-        /// Show Exports menu. Not supported in Wasm at the moment
-        /// </summary>
-        public bool Show { get => false; set => throw new NotSupportedException("Not supported in Wasm at the moment"); }
-#else
         /// <summary>
         /// Show Exports menu
         /// </summary>
         public bool Show { get; set; } = true;
-#endif
 
         /// <summary>
         /// Used to set exports in toolbar.

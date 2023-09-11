@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if !WASM
+using FastReport.Web.Infrastructure;
+#endif
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;

@@ -1,66 +1,59 @@
-﻿using FastReport.Web.Cache;
+﻿using FastReport.Web.Infrastructure;
 using FastReport.Web.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+using System.Net.Mime;
+using System.Threading.Tasks;
 
 namespace FastReport.Web.Controllers
 {
-    public sealed class GetReportController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IReportService _reportService;
 
-        public GetReportController(IReportService reportService)
+        [HttpPost("/preview.getReport")]
+        public static IResult GetReport([FromQuery] string reportId,
+            IReportService reportService,
+            HttpRequest request)
         {
-            _reportService = reportService;
-        }
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
 
-        public sealed class GetReportParams
-        {
-            public string ReportId { get; set; }
+            if (!reportService.TryFindWebReport(reportId, out WebReport webReport))
+                return Results.NotFound();
 
-            public string RenderBody { get; set; }
+            var query = GetReportServiceParams.ParseRequest(request);
 
-            //public bool RenderBody { get; set; } = false;
-
-            public string SkipPrepare { get; set; }
-
-            public string ForceRefresh { get; set; }
-
-        }
-
-        [HttpPost]
-        [Route("/_fr/preview.getReport")]
-        public IActionResult GetReport(string reportId, [FromQuery] GetReportServiceParams query)
-        {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
-
-            query.ParseRequest(Request);
-
-            string render = _reportService.GetReport(webReport, query);
+            string render = reportService.GetReport(webReport, query);
 
             if (render.IsNullOrEmpty())
-                return new OkResult();
+                return Results.Ok();
 
-            return new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "text/html",
-                Content = render,
-            };
+            return Results.Content(render,
+                contentType: MediaTypeNames.Text.Html);
         }
 
-        [HttpPost]
-        [Route("/_fr/preview.touchReport")]
-        public IActionResult TouchReport(string reportId)
+
+        [HttpPost("/preview.touchReport")]
+        public static IResult TouchReport(string reportId, IReportService reportService)
         {
-            _reportService.Touch(reportId);
-            return Ok();
+            reportService.Touch(reportId);
+            return Results.Ok();
         }
+
+
+        [HttpPost("/preview.toolbarElementClick")]
+        public static async Task<IResult> GetReportAfterElementClick(string reportId, string elementId, IReportService reportService,
+            string inputValue = default)
+        {
+            if (!reportService.TryFindWebReport(reportId, out WebReport webReport))
+                return Results.NotFound();
+
+            var updatedWebreport = await reportService.InvokeCustomElementAction(webReport, elementId, inputValue);
+
+            return Results.Content(updatedWebreport,
+                contentType: MediaTypeNames.Text.Html);
+        }
+
     }
 }

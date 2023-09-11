@@ -10,6 +10,7 @@ using System.Linq;
 using System.Globalization;
 using FastReport.Web.Services;
 using FastReport.Export.Html;
+using FastReport.Web.Infrastructure;
 
 namespace FastReport.Web
 {

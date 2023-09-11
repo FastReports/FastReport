@@ -13,8 +13,6 @@ namespace FastReport.Web.Services
 {
     internal sealed class ConnectionService : IConnectionsService
     {
-        [Obsolete]
-        internal static ConnectionService Instance { get; } = new ConnectionService();
 
         public string GetConnectionStringPropertiesJSON(string connectionType, string connectionString, out bool isError)
         {
@@ -162,8 +160,13 @@ namespace FastReport.Web.Services
             }
         }
 
-        public string GetConnectionTables(string connectionType, string connectionString, out bool isError)
+        public string GetConnectionTables(string connectionType, string connectionString)
         {
+            if (!IsConnectionStringValid(connectionString, out var errorMsg))
+            {
+                throw new Exception(errorMsg);
+            }
+
             var objects = new List<DataConnectionInfo>();
             RegisteredObjects.DataConnections.EnumItems(objects);
             Type connType = null;
@@ -198,23 +201,30 @@ namespace FastReport.Web.Services
                             writer.Save(ms);
                             ms.Position = 0;
 
-                            isError = false;
                             return Encoding.UTF8.GetString(ms.ToArray());
                         }
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
-                    isError = true;
-                    return ex.ToString();
+                    throw new Exception("Error in creating tables. Please verify your connection string.");
                 }
             }
-            else
+
+            throw new Exception("Connection type not found");
+
+        }
+
+        private static bool IsConnectionStringValid(string connectionString, out string errorMsg)
+        {
+            if (string.IsNullOrEmpty(connectionString))
             {
-                isError = true;
-                return "Connection type not found";
+                errorMsg = "Connection string is null or empty";
+                return false;
             }
 
+            errorMsg = string.Empty;
+            return true;
         }
 
         public List<string> GetConnectionTypes()

@@ -19,14 +19,14 @@ namespace FastReport.Web.Cache
         private readonly IDistributedCache _cache;
         private readonly DistributedCacheEntryOptions _cacheEntryOptions;
 
-        private static readonly IFormatter _bf = new BinaryFormatter();
+        //private static readonly IFormatter _bf = new BinaryFormatter();
 
-        public WebReportDistributedCache(IDistributedCache cache)
+        public WebReportDistributedCache(IDistributedCache cache, CacheOptions cacheOptions)
         {
             _cache = cache;
             _cacheEntryOptions = new DistributedCacheEntryOptions()
             {
-                SlidingExpiration = FastReportGlobal.FastReportOptions.CacheOptions.CacheDuration
+                SlidingExpiration = cacheOptions.CacheDuration
             };
         }
 
@@ -66,19 +66,22 @@ namespace FastReport.Web.Cache
 
         private static byte[] WebReportToBytes(WebReport value)
         {
-            var ms = new MemoryStream();
-            _bf.Serialize(ms, value);
-            return ms.ToArray();
+            throw new NotImplementedException();
+
+            //var ms = new MemoryStream();
+            //_bf.Serialize(ms, value);
+            //return ms.ToArray();
         }
 
         private static WebReport BytesToWebReport(byte[] value)
         {
-            using (var ms = new MemoryStream(value, false))
-            {
-                var obj = _bf.Deserialize(ms);
-                var webReport = obj as WebReport;
-                return webReport;
-            }
+            throw new NotImplementedException();
+            //using (var ms = new MemoryStream(value, false))
+            //{
+            //    var obj = _bf.Deserialize(ms);
+            //    var webReport = obj as WebReport;
+            //    return webReport;
+            //}
         }
     }
 

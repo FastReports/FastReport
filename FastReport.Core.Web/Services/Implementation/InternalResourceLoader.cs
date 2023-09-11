@@ -1,5 +1,4 @@
-﻿using FastReport.Web.Services;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -16,10 +15,6 @@ namespace FastReport.Web.Services
     /// </summary>
     internal sealed class InternalResourceLoader : IResourceLoader
     {
-        #region Singletone
-
-        [Obsolete]
-        public static readonly InternalResourceLoader Instance = new InternalResourceLoader();
 
         static readonly string AssemblyName;
         static readonly Assembly _assembly;
@@ -30,11 +25,6 @@ namespace FastReport.Web.Services
             AssemblyName = _assembly.GetName().Name;
         }
 
-        public InternalResourceLoader()
-        {
-        }
-
-        #endregion
 
         readonly ConcurrentDictionary<string, string> cache1 = new ConcurrentDictionary<string, string>();
         readonly ConcurrentDictionary<string, byte[]> cache2 = new ConcurrentDictionary<string, byte[]>();
