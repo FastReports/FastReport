@@ -15,6 +15,11 @@ namespace FastReport.Utils.Json.Serialization
             return JsonDeserializer.Deserialize<T>(json);
         }
 
+        public static object Deserialize(string json, Type type)
+        {
+            return JsonDeserializer.Deserialize(json, type);
+        }
+
         public static string Serialize<T>(T instance)
         {
             return JsonSerializer.Serialize(instance);

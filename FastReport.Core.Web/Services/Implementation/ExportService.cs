@@ -9,8 +9,6 @@ namespace FastReport.Web.Services
 {
     internal sealed class ExportService : IExportsService
     {
-        [Obsolete]
-        internal static ExportService Instance { get; } = new ExportService();
 
         public byte[] ExportReport(WebReport webReport, KeyValuePair<string, string>[] exportParams, string exportFormat, out string filename) 
         {

@@ -57,7 +57,7 @@ namespace Microsoft.Extensions.DependencyInjection
             FastReport.Utils.Config.WebMode = true;
 
 #if !WASM
-            ConfigureApplicationPart(services, options);
+            AddServices(services, options);
 #else
             AddWasmServices(services, options);
 #endif

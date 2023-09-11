@@ -130,23 +130,6 @@ namespace FastReport
             DrawDesign(e);
         }
 
-        /// <inheritdoc/>
-        public override void ApplyStyle(Style style)
-        {
-            base.ApplyStyle(style);
-        }
-
-        /// <inheritdoc/>
-        public override void SaveStyle()
-        {
-            base.SaveStyle();
-        }
-
-        /// <inheritdoc/>
-        public override void RestoreStyle()
-        {
-            base.RestoreStyle();
-        }
 
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)

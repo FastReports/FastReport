@@ -15,8 +15,6 @@ namespace FastReport.Web.Services
 {
     internal sealed class ReportDesignerService : IReportDesignerService
     {
-        [Obsolete]
-        internal static ReportDesignerService Instance { get; } = new ReportDesignerService();
 
         public async Task<string> GetPOSTReportAsync(Stream requestBody, CancellationToken cancellationToken = default)
         {
@@ -57,8 +55,6 @@ namespace FastReport.Web.Services
                 // save by using a Func
 
                 string report = await GetPOSTReportAsync(@params.RequestBody);
-                report = FixLandscapeProperty(report);
-                result.Msg = string.Empty;
                 result.Code = 200;
                 try
                 {
@@ -94,7 +90,6 @@ namespace FastReport.Web.Services
             {
                 // paste restricted back in report before save
                 string restrictedReport = PasteRestricted(webReport, reportString);
-                restrictedReport = FixLandscapeProperty(restrictedReport);
                 webReport.Report.LoadFromString(restrictedReport);
 
                 webReport.OnSaveDesignedReport();
@@ -256,10 +251,8 @@ namespace FastReport.Web.Services
             //previewReport.Toolbar.EnableFit = true;
             //previewReport.Layers = true;
             string reportString = PasteRestricted(webReport, receivedReportString);
-            reportString = FixLandscapeProperty(reportString);
             previewReport.Report.ReportResourceString = reportString; // TODO
             //previewReport.ReportFile = String.Empty;
-            previewReport.ReportResourceString = reportString; // TODO
             previewReport.Mode = WebReportMode.Preview;
             previewReport.Report.PreparedPages?.Clear();
 
@@ -476,31 +469,6 @@ namespace FastReport.Web.Services
                 xml2.Dispose();
             }
             return xmlString;
-        }
-
-        private static string FixLandscapeProperty(string reportString)
-        {
-            int indexOfLandscape = reportString.IndexOf(nameof(ReportPage.Landscape));
-            if (indexOfLandscape != -1)
-            {
-                // Landscape="~"
-                int lastIndexOfLandscapeValue =
-                    reportString.IndexOf('"', indexOfLandscape + nameof(ReportPage.Landscape).Length + 2, 10);
-
-                var indexOfPage = reportString.IndexOf(nameof(ReportPage), 0, indexOfLandscape);
-                int startposition = indexOfPage + nameof(ReportPage).Length + 1;
-                if (indexOfLandscape == startposition)
-                    return reportString;
-
-                StringBuilder sb = new StringBuilder(reportString);
-                var property = reportString.Substring(indexOfLandscape, lastIndexOfLandscapeValue - indexOfLandscape + 2);
-
-                sb.Remove(indexOfLandscape, property.Length);
-
-                sb.Insert(startposition, property);
-                reportString = sb.ToString();
-            }
-            return reportString;
         }
 
         private static void CopyCookies(HttpWebRequest request, SaveReportServiceParams @params)

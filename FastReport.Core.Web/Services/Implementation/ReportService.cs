@@ -6,13 +6,20 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
+using FastReport.Web.Toolbar;
 
 namespace FastReport.Web.Services
 {
     internal sealed class ReportService : IReportService
     {
-        [Obsolete]
-        internal static ReportService Instance { get; } = new ReportService();
+
+        private readonly IWebReportCache _cache;
+
+        public ReportService(IWebReportCache webReportCache)
+        {
+            _cache = webReportCache;
+        }
 
         public string GetReport(WebReport webReport, GetReportServiceParams @params)
         {
@@ -47,20 +54,62 @@ namespace FastReport.Web.Services
             return webReport.Render(renderBodyBool).ToString();
         }
 
-        public async Task<string> GetReportAsync(WebReport webReport, GetReportServiceParams @params, CancellationToken cancellationToken = default)
+        public Task<string> GetReportAsync(WebReport webReport, GetReportServiceParams @params, CancellationToken cancellationToken = default)
         {
-            return await Task.FromResult(GetReport(webReport, @params));
+            return Task.FromResult(GetReport(webReport, @params));
         }
+
+        public async Task<string> InvokeCustomElementAction(WebReport webReport, string elementId, string inputValue)
+        {
+            var element = webReport.Toolbar.Elements.FirstOrDefault(e =>
+            {
+                switch (e)
+                {
+                    case ToolbarButton button:
+                        return button.ID.ToString() == elementId;
+                    case ToolbarInput input:
+                        return input.ID.ToString() == elementId;
+                    case ToolbarSelect select:
+                        return select.Items.Any(i => i.ID.ToString() == elementId);
+                    default:
+                        return false;
+                }
+            });
+
+            switch (element)
+            {
+                case ToolbarSelect toolbarSelect:
+                    {
+                        var item = toolbarSelect.Items.FirstOrDefault(i => i.ID.ToString() == elementId);
+
+                        if (item?.OnClickAction is ElementClickAction elementAction)
+                            await elementAction.OnClickAction(webReport);
+                        break;
+                    }
+                case ToolbarButton button:
+                    {
+                        if (button.OnClickAction is ElementClickAction elementAction && elementAction.OnClickAction != null)
+                            await elementAction.OnClickAction(webReport);
+                        break;
+                    }
+                case ToolbarInput input when input.OnChangeAction is ElementChangeAction elementAction:
+                    await elementAction.OnChangeAction(webReport, inputValue);
+                    break;
+            }
+
+            return webReport.Render(true).ToString();
+        }
+
 
         public bool TryFindWebReport(string reportId, out WebReport webReport)
         {
-            webReport = WebReportCache.Instance.Find(reportId);
+            webReport = _cache.Find(reportId);
             return webReport != null;
         }
 
         public void Touch(string reportId)
         {
-            WebReportCache.Instance.Touch(reportId);
+            _cache.Touch(reportId);
         }
     }
 }

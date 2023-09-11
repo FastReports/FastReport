@@ -44,5 +44,13 @@ namespace FastReport.Web.Services
         /// </summary>
         /// <param name="reportId">Report ID</param>
         void Touch(string reportId);
+
+        /// <summary>
+        /// Returns the report after clicking on an element with id = elementId
+        /// </summary>
+        /// <param name="webReport">Report to which the action applies</param>
+        /// <param name="elementId">ID of the clicked item</param>
+        /// <returns>Updated WebReport</returns>
+        Task<string> InvokeCustomElementAction(WebReport webReport, string elementId, string inputValue);
     }
 }

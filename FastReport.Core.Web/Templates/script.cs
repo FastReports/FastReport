@@ -136,6 +136,29 @@ var {template_FR} = {{
         this._reload('&skipPrepare=yes&' + kind + '=' + value);
     }},
 
+    customMethodInvoke: function(elementId, inputValue){{
+        var that = this;
+        var body = this._findBody();
+        var container = this._findContainer();
+
+        this._fetch({{
+            method: 'POST',
+            url: '{template_ROUTE_BASE_PATH}/preview.toolbarElementClick?reportId={ID}&elementId=' + elementId + '&inputValue=' + inputValue,
+            onSend: function () {{
+                that._activateSpinner();
+            }},
+            onSuccess: function (xhr) {{
+                container.outerHTML = xhr.responseText;
+                that._execScripts();
+            }},
+            onError: function (xhr) {{
+                that._placeError(xhr, body);
+                that._deactivateSpinner();
+            }}
+        }});
+    }},
+
+
     settab: function (tab) {{
         this._reload('&skipPrepare=yes&settab=' + tab);
     }},

@@ -28,7 +28,6 @@ namespace FastReport.Utils
 #endif
         #region Private Fields
 
-        private static readonly CultureInfo engCultureInfo = new CultureInfo("en-US");
         private static readonly XmlDocument FDoc = new XmlDocument();
 
         private static readonly string version = typeof(Report).Assembly.GetName().Version.ToString(3);
@@ -115,14 +114,6 @@ namespace FastReport.Utils
             {
                 applicationFolder = value;
             }
-        }
-
-        /// <summary>
-        /// Gets an english culture information for localization purposes
-        /// </summary>
-        public static CultureInfo EngCultureInfo
-        {
-            get { return engCultureInfo; }
         }
 
         /// <summary>

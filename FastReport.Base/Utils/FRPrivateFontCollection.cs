@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Drawing.Text;
 using System.Drawing;
+using System.Linq;
 
 namespace FastReport.Utils
 {
@@ -13,8 +14,9 @@ namespace FastReport.Utils
     public partial class FRPrivateFontCollection
     {
         private readonly PrivateFontCollection collection = TypeConverters.FontConverter.PrivateFontCollection;
-        private Dictionary<string, string> FontFiles = new Dictionary<string, string>();
-        private Dictionary<string, MemoryFont> MemoryFonts = new Dictionary<string, MemoryFont>();
+
+        private readonly Dictionary<string, DictionaryFont> _fonts = new Dictionary<string, DictionaryFont>();
+
 
         internal PrivateFontCollection Collection { get { return collection; } }
 
@@ -30,7 +32,7 @@ namespace FastReport.Utils
         /// <returns>true if the font is contained in this collection.</returns>
         public bool HasFont(string fontName)
         {
-            return FontFiles.ContainsKey(fontName) || MemoryFonts.ContainsKey(fontName);
+            return _fonts.ContainsKey(fontName);
         }
 
         /// <summary>
@@ -40,18 +42,11 @@ namespace FastReport.Utils
         /// <returns>Either FileStream or MemoryStream containing font data.</returns>
         public Stream GetFontStream(string fontName)
         {
-            if (FontFiles.ContainsKey(fontName))
+            if (_fonts.TryGetValue(fontName, out var font))
             {
-                return new FileStream(FontFiles[fontName], FileMode.Open, FileAccess.Read);
+                return font.GetFontStream();
             }
-            else if (MemoryFonts.ContainsKey(fontName))
-            {
-                MemoryFont font = MemoryFonts[fontName];
-                byte[] buffer = new byte[font.Length];
-                Marshal.Copy(font.Memory, buffer, 0, font.Length);
-                return new MemoryStream(buffer);
-            }
-
+            
             return null;
         }
 
@@ -65,7 +60,8 @@ namespace FastReport.Utils
             bool success = false;
             if(File.Exists(filename))
             {
-                if (!FontFiles.ContainsValue(filename))
+                // if (!FontFiles.ContainsValue(filename))
+                if (!_fonts.Values.OfType<FontFromFile>().Any(fontFile => fontFile._filepath == filename))
                 {
                     collection.AddFontFile(filename);
                     RegisterFontInternal(filename);
@@ -91,6 +87,24 @@ namespace FastReport.Utils
         public void AddFontFromStream(Stream stream)
         {
             collection.AddFont(stream);
+            stream.Position = 0;
+
+            var fontFamily = Families[Families.Length - 1];
+            string fontName = fontFamily.Name;
+
+            var isBold = fontFamily.IsStyleAvailable(FontStyle.Bold);
+            // every time is false
+            //var isItalic = fontFamily.IsStyleAvailable(FontStyle.Italic);
+
+            fontName = fontName + (isBold ? "-B" : "") /*+ (isItalic ? "-I" : "")*/;
+
+            if (!_fonts.ContainsKey(fontName))
+            {
+                var ms = new MemoryStream();
+                stream.CopyTo(ms);
+                ms.Position = 0;
+                _fonts.Add(fontName, new FontFromStream(ms));
+            }
         }
 #endif
 
@@ -103,21 +117,71 @@ namespace FastReport.Utils
         {
             collection.AddMemoryFont(memory, length);
             string fontName = Families[Families.Length - 1].Name;
-            if (!FontFiles.ContainsKey(fontName))
-                MemoryFonts.Add(fontName, new MemoryFont(memory, length));
+            if (!_fonts.ContainsKey(fontName))
+                _fonts.Add(fontName, new MemoryFont(memory, length));
         }
 
-        private struct MemoryFont
+        private abstract class DictionaryFont
         {
-            public readonly IntPtr Memory;
-            public readonly int Length;
+            public abstract Stream GetFontStream();
+        }
+
+        private sealed class FontFromFile : DictionaryFont
+        {
+            internal readonly string _filepath;
+
+            public FontFromFile(string filepath)
+            {
+                _filepath = filepath;
+            }
+
+            public override Stream GetFontStream()
+            {
+                return new FileStream(_filepath, FileMode.Open, FileAccess.Read);
+            }
+
+            public override string ToString()
+            {
+                return _filepath;
+            }
+        }
+
+        private sealed class FontFromStream : DictionaryFont
+        {
+            private readonly Stream _stream;
+
+            public FontFromStream(Stream stream)
+            {
+                _stream = stream;
+            }
+
+            public override Stream GetFontStream()
+            {
+                var newStream = new MemoryStream();
+                _stream.CopyTo(newStream);
+                _stream.Position = 0;
+                newStream.Position = 0;
+                return newStream;
+            }
+        }
+
+        private sealed class MemoryFont : DictionaryFont
+        {
+            private readonly IntPtr Memory;
+            private readonly int Length;
 
             public MemoryFont(IntPtr memory, int length)
             {
                 Memory = memory;
                 Length = length;
             }
-        }
 
+            public override Stream GetFontStream()
+            {
+                byte[] buffer = new byte[Length];
+                Marshal.Copy(Memory, buffer, 0, Length);
+                return new MemoryStream(buffer);
+            }
+        }
     }
 }

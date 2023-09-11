@@ -1,92 +1,84 @@
-﻿using FastReport.Web.Cache;
+﻿using FastReport.Web.Infrastructure;
 using FastReport.Web.Services;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
+using System.Net.Mime;
 
 namespace FastReport.Web.Controllers
 {
-    public sealed class ExportReportController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IReportService _reportService;
-        private readonly IExportsService _exportsService;
-
-        public ExportReportController(IReportService reportService, IExportsService exportsService)
-        {
-            _reportService = reportService;
-            _exportsService = exportsService;
-        }
-
-        public sealed class ExportReportParams
+        internal sealed class ExportReportParams
         {
             public string ReportId { get; set; }
 
             public string ExportFormat { get; set; }
         }
 
-        [HttpGet]
-        [Route("/_fr/preview.exportReport")]
-        public IActionResult ExportReport([FromQuery] ExportReportParams query)
+        //[Authorize]
+        [HttpGet("/preview.exportReport")]
+        public static IResult ExportReport([FromQuery] ExportReportParams query,
+            IReportService reportService,
+            IExportsService exportsService,
+            HttpRequest request)
         {
-            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
+            if (!reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
+                return Results.NotFound();
 
             // TODO:
             // skip extra key/value pairs
             var exportFormat = query.ExportFormat.ToLower();
-            var exportParams = Request.Query.Where(pair => pair.Key != "exportFormat" && pair.Key != "reportId")
+            var exportParams = request.Query.Where(pair => pair.Key != "exportFormat" && pair.Key != "reportId")
                 .Select(item => new KeyValuePair<string, string>(item.Key, item.Value)).ToArray();
             byte[] file;
             string filename;
 
             try
             {
-                file = _exportsService.ExportReport(webReport, exportParams, exportFormat, out filename);
+                file = exportsService.ExportReport(webReport, exportParams, exportFormat, out filename);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                return new UnsupportedMediaTypeResult();
+                return Results.StatusCode((int)HttpStatusCode.UnsupportedMediaType);
             }
-    
-            return new FileContentResult(file, "application/octet-stream")
-            {
-                FileDownloadName = $"{filename}.{exportFormat}"
-            };
+
+            return Results.File(file,
+                contentType: MediaTypeNames.Application.Octet,
+                fileDownloadName: $"{filename}.{exportFormat}");
         }
 
-        public sealed class ExportSettingsParams
+
+        internal sealed class ExportSettingsParams
         {
             public string ReportId { get; set; }
 
             public string Format { get; set; }
         }
 
-
-        [HttpPost]
-        [Route("/_fr/exportsettings.getSettings")]
-        public IActionResult GetExportSettings([FromQuery] ExportSettingsParams query)
+        [HttpPost("/exportsettings.getSettings")]
+        public static IResult GetExportSettings([FromQuery] ExportSettingsParams query,
+            IReportService reportService,
+            IExportsService exportsService)
         {
-            if (!_reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
-                return new NotFoundResult();
-            
-            var msg = _exportsService.GetExportSettings(webReport, query.Format);
+            if (!reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
+                return Results.NotFound();
+
+            var msg = exportsService.GetExportSettings(webReport, query.Format);
 
             if (msg != null)
             {
-                return new ContentResult()
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    ContentType = "text/html",
-                    Content = msg,
-                };
+                return Results.Content(msg, MediaTypeNames.Text.Html);
             }
-            return new NotFoundResult();
+            return Results.NotFound();
         }
     }
 }

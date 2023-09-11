@@ -8,7 +8,6 @@ namespace FastReport.Web.Services
 {
     internal sealed class TextEditService : ITextEditService
     {
-        internal static TextEditService Instance { get; } = new TextEditService();
 
         public string GetTemplateTextEditForm(string click, WebReport webReport)
         {

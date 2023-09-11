@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using FastReport.Web.Infrastructure;
+
+using System.Net;
 
 namespace FastReport.Web
 {

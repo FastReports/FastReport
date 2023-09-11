@@ -1,118 +1,80 @@
 ﻿#if DESIGNER
 using FastReport.Web.Services;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
+using FastReport.Web.Infrastructure;
+using Microsoft.AspNetCore.Http;
+using System.Net.Mime;
 
 namespace FastReport.Web.Controllers
 {
-    public sealed class DesignerReportController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IReportService _reportService;
-        private readonly IReportDesignerService _reportDesignerService;
-
-        public DesignerReportController(IReportService reportService, IReportDesignerService reportDesignerService)
+        [HttpGet("/designer.getReport")]
+        public static IResult GetReport(string reportId,
+            HttpRequest request, 
+            IReportDesignerService reportDesignerService,
+            IReportService reportService)
         {
-            _reportService = reportService;
-            _reportDesignerService = reportDesignerService;
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
+            if (!reportService.TryFindWebReport(reportId, out WebReport webReport))
+                return Results.NotFound();
+
+            var report = reportDesignerService.GetDesignerReport(webReport);
+
+            return Results.Content(report, "text/html");
         }
 
-        [HttpGet]
-        [Route("/_fr/designer.getReport")]
-        public IActionResult GetReport(string reportId)
+        [HttpPost("/designer.saveReport")]
+        public static async Task<IResult> SaveReport(string reportId,  HttpRequest request, IReportService reportService, IReportDesignerService reportDesignerService)
         {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
 
-            var report = _reportDesignerService.GetDesignerReport(webReport);
+            if (!reportService.TryFindWebReport(reportId, out var webReport))
+                return Results.NotFound();
 
-            return new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "text/html",
-                Content = report,
-            };
-        }
-
-        [HttpPost]
-        [Route("/_fr/designer.saveReport")]
-        public async Task<IActionResult> SaveReport(string reportId)
-        {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
-
-            string contentType = "text/html";
-
-            var saveReportParams = SaveReportServiceParams.ParseRequest(Request);
-
-            var result = await _reportDesignerService.SaveReportAsync(webReport, saveReportParams);
+            const string contentType = "text/html";
+            var saveReportParams = SaveReportServiceParams.ParseRequest(request);
+            var result = await reportDesignerService.SaveReportAsync(webReport, saveReportParams);
 
             if (webReport.Designer.SaveMethod == null)
             {
-                if (result.Msg.IsNullOrEmpty())
-                {
-                    return new ContentResult()
-                    {
-                        ContentType = contentType,
-                        StatusCode = result.Code,
-                    };
-                }
-                else
-                {
-                    return new ContentResult()
-                    {
-                        ContentType = contentType,
-                        StatusCode = result.Code,
-                        Content = result.Msg
-                    };
-                }
+                return result.Msg.IsNullOrEmpty()
+                    ? Results.Ok()
+                    : Results.Content(result.Msg, contentType);
             }
-            else
-            {
-                return new ContentResult()
-                {
-                    StatusCode = result.Code,
-                    ContentType = "text/html",
-                    Content = result.Msg
-                };
-            }
+
+            return Results.Content(result.Msg, contentType);
         }
 
-        [HttpPost]
-        [Route("/_fr/designer.previewReport")]
-        public async Task<IActionResult> GetPreviewReport(string reportId)
+        [HttpPost("/designer.previewReport")]
+        public static async Task<IResult> GetPreviewReport(string reportId, HttpRequest request, IReportService reportService, IReportDesignerService reportDesignerService)
         {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
 
-            string receivedReportString = await _reportDesignerService.GetPOSTReportAsync(Request.Body);
+            if (!reportService.TryFindWebReport(reportId, out var webReport))
+                return Results.NotFound();
+
+            var receivedReportString = await reportDesignerService.GetPOSTReportAsync(request.Body);
             string response;
 
             try
             {
-                response = await _reportDesignerService.DesignerMakePreviewAsync(webReport, receivedReportString);
+                response = await reportDesignerService.DesignerMakePreviewAsync(webReport, receivedReportString);
             }
             catch (Exception ex)
             {
-                return new ContentResult()
-                {
-                    StatusCode = (int)HttpStatusCode.InternalServerError,
-                    ContentType = "text/html",
-                    Content = ex.Message
-                };
+                return Results.BadRequest(ex.Message);
             }
 
-            return new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "text/html",
-                Content = response,
-            };
+            return Results.Content(response, MediaTypeNames.Text.Html);
         }
     }
 }

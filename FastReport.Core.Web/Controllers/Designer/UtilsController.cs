@@ -1,135 +1,94 @@
 ﻿#if DESIGNER
 using FastReport.Web.Services;
+
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Net;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
+using FastReport.Web.Infrastructure;
+using Microsoft.AspNetCore.Http;
+using System.Net.Mime;
 
 namespace FastReport.Web.Controllers
 {
-    public sealed class UtilsController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IDesignerUtilsService _designerUtilsService;
-        private readonly IReportDesignerService _reportDesignerService;
-        private readonly IReportService _reportService;
-
-        public UtilsController(IDesignerUtilsService designerUtilsService, IReportService reportService,
-            IReportDesignerService reportDesignerService)
-        {
-            _designerUtilsService = designerUtilsService;
-            _reportService = reportService;
-            _reportDesignerService = reportDesignerService;
-        }
-
-        #region Routes
-        [HttpGet]
-        [Route("/_fr/designer.objects/mschart/template")]
-        public IActionResult GetMSChartTemplate(string name)
+        [HttpGet("/designer.objects/mschart/template")]
+        public static IResult GetMSChartTemplate(string name, IDesignerUtilsService designerUtilsService)
         {
             string response;
 
             try
             {
-                response = _designerUtilsService.GetMSChartTemplateXML(name);
+                response = designerUtilsService.GetMSChartTemplateXML(name);
             }
             catch (Exception ex)
             {
-                return new NotFoundResult();
+                return Results.NotFound();
             }
 
-            return new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "application/xml",
-                Content = response
-            };
+            return Results.Content(response, "application/xml");
         }
 
-        [HttpGet]
-        [Route("/_fr/designer.getComponentProperties")]
-        public IActionResult GetComponentProperties(string name)
+        [HttpGet("/designer.getComponentProperties")]
+        public static IResult GetComponentProperties(string name, IDesignerUtilsService designerUtilsService)
         {
-            string response = _designerUtilsService.GetPropertiesJSON(name);
+            var response = designerUtilsService.GetPropertiesJSON(name);
 
-            if (response.IsNullOrEmpty())
-                return new NotFoundResult();
-            else
-                return new ContentResult()
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    ContentType = "application/json",
-                    Content = response
-                };
+            return response.IsNullOrEmpty()
+                ? Results.NotFound()
+                : Results.Content(response, "application/json");
         }
 
-        [HttpGet]
-        [Route("/_fr/designer.getConfig")]
-        public IActionResult GetConfig(string reportId)
+        [HttpGet("/designer.getConfig")]
+        public static IResult GetConfig(string reportId, IReportService reportService)
         {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!reportService.TryFindWebReport(reportId, out var webReport))
+                return Results.NotFound();
 
-            return new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "application/json",
-                Content = webReport.Designer.Config.IsNullOrWhiteSpace() ? "{}" : webReport.Designer.Config,
-            };
+            var content = webReport.Designer.Config.IsNullOrWhiteSpace() ? "{}" : webReport.Designer.Config;
+
+            return Results.Content(content, "application/json");
         }
 
-        [HttpGet]
-        [Route("/_fr/designer.getFunctions")]
-        public IActionResult GetFunctions(string reportId)
+        [HttpGet("/designer.getFunctions")]
+        public static IResult GetFunctions(string reportId,
+            IReportService reportService, 
+            IDesignerUtilsService designerUtilsService)
         {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!reportService.TryFindWebReport(reportId, out var webReport))
+                return Results.NotFound();
 
-            var buff = _designerUtilsService.GetFunctions(webReport.Report);
+            var buff = designerUtilsService.GetFunctions(webReport.Report);
 
-            return new ContentResult()
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                ContentType = "application/xml",
-                Content = buff,
-            };
+            return Results.Content(buff, "application/xml");
         }
 
-        [HttpPost]
-        [Route("/_fr/designer.objects/preview")]
-        public async Task<IActionResult> GetDesignerObjectPreview(string reportId)
+        [HttpPost("/designer.objects/preview")]
+        public static async Task<IResult> GetDesignerObjectPreview(string reportId, 
+            IReportService reportService, 
+            IReportDesignerService reportDesignerService,
+            IDesignerUtilsService designerUtilsService,
+            HttpRequest request)
         {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!reportService.TryFindWebReport(reportId, out var webReport))
+                return Results.NotFound();
 
             try
             {
-                var reportObj = await _reportDesignerService.GetPOSTReportAsync(Request.Body);
+                var reportObj = await reportDesignerService.GetPOSTReportAsync(request.Body);
+                var response = designerUtilsService.DesignerObjectPreview(webReport, reportObj);
 
-                var response = _designerUtilsService.DesignerObjectPreview(webReport, reportObj);
-                return new ContentResult()
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    ContentType = "text/html",
-                    Content = response
-                };
+                return Results.Content(response, MediaTypeNames.Text.Html);
             }
             catch (Exception ex)
             {
-                return new ContentResult()
-                {
-                    StatusCode = (int)HttpStatusCode.InternalServerError,
-                    ContentType = "text/html",
-                    Content = webReport.Debug ? ex.Message : "",
-                };
+                var content = webReport.Debug ? ex.Message : "";
+
+                return Results.BadRequest(content); 
             }
 
         }
-        #endregion
     }
 }
 #endif

@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FastReport.Web.Infrastructure;
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace FastReport.Web.Controllers
 {
-    [ApiController]
-    public abstract class ApiControllerBase : ControllerBase
+    internal static partial class Controllers
     {
+        private static bool IsAuthorized(HttpRequest request) => FastReportGlobal.FastReportOptions.CheckAuthorization(request);
 
     }
 }

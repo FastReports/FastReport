@@ -1,37 +1,32 @@
 ﻿#if DIALOGS
-using FastReport.Web.Cache;
+using FastReport.Web.Infrastructure;
 using FastReport.Web.Services;
-using Microsoft.AspNetCore.Mvc;
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FastReport.Web.Controllers
 {
-    public sealed class DialogController : ApiControllerBase
+    static partial class Controllers
     {
-        private readonly IReportService _reportService;
 
-        public DialogController(IReportService reportService)
+        [HttpPost("/dialog")]
+        public static IResult TouchDialog([FromQuery] string reportId,
+            IReportService reportService,
+            HttpRequest request)
         {
-            _reportService = reportService;
-        }
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
 
-        [HttpPost]
-        [Route("/_fr/dialog")]
-        public IActionResult TouchDialog([FromQuery] string reportId)
-        {
-            if (!_reportService.TryFindWebReport(reportId, out WebReport webReport))
-                return new NotFoundResult();
+            if (!reportService.TryFindWebReport(reportId, out WebReport webReport))
+                return Results.NotFound();
 
             var dialogParams = new DialogParams();
-            dialogParams.ParseRequest(Request);
+            dialogParams.ParseRequest(request);
 
             webReport.Dialogs(dialogParams);
 
-            return Ok();
+            return Results.Ok();
         }
     }
 }

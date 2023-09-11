@@ -106,7 +106,7 @@ namespace FastReport.Web
         public int TotalPages => Report?.PreparedPages?.Count ?? 0;
 
         /// <summary>
-        /// Switches beetwen Preview and Designer modes
+        /// Switches between Preview and Designer modes
         /// </summary>
         public WebReportMode Mode { get; set; } = WebReportMode.Preview;
 
@@ -206,11 +206,6 @@ namespace FastReport.Web
 
 #region Non-public
 
-        // TODO
-        private string ReportFile { get; set; } = null;
-        private string ReportPath { get; set; } = null;
-        internal string ReportResourceString { get; set; } = null;
-
         internal readonly Dictionary<string, byte[]> PictureCache = new Dictionary<string, byte[]>();
 
         internal string InlineStyle
@@ -230,7 +225,7 @@ namespace FastReport.Web
             string path = WebUtils.MapPath(LocalizationFile);
             Res.LoadLocale(path);
 #if !WASM
-            WebReportCache.Instance.Add(this);
+            WebReportCache.Instance?.Add(this);
 #endif
 #if DIALOGS
             Dialog = new Dialog(this);
@@ -267,16 +262,6 @@ namespace FastReport.Web
                 tab.Report.Dispose();
             }
             Res.Dispose();
-        }
-
-        /// <summary>
-        /// Force report to be removed from internal cache
-        /// </summary>
-        public void RemoveFromCache()
-        {
-#if !WASM
-            WebReportCache.Instance.Remove(this);
-#endif
         }
 
         // TODO

@@ -148,10 +148,11 @@ namespace FastReport
     internal enum ObjectState : byte
     {
         None = 0,
-        IsAncestor = 0x01,
-        IsDesigning = 0x02,
-        IsPrinting = 0x04,
-        IsRunning = 0x08,
+        IsAncestor = 1,
+        IsDesigning = 2,
+        IsPrinting = 4,
+        IsRunning = 8,
+        IsDeserializing = 16,
     }
 
     /// <summary>
@@ -448,6 +449,17 @@ namespace FastReport
         {
             get { return GetObjectState(ObjectState.IsRunning); }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether the object is currently processed by the report engine.
+        /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        internal bool IsDeserializing
+        {
+            get { return GetObjectState(ObjectState.IsDeserializing); }
+            set { SetObjectState(ObjectState.IsDeserializing, value); }
+        }
+
 
         /// <summary>
         /// Gets an original component for this object.
@@ -867,10 +879,18 @@ namespace FastReport
         /// <param name="reader">Reader object.</param>
         public virtual void Deserialize(FRReader reader)
         {
-            reader.ReadProperties(this);
-            while (reader.NextItem())
+            try
             {
-                DeserializeSubItems(reader);
+                IsDeserializing = true;
+                reader.ReadProperties(this);
+                while (reader.NextItem())
+                {
+                    DeserializeSubItems(reader);
+                }
+            }
+            finally
+            {
+                IsDeserializing = false;
             }
         }
 

@@ -12,17 +12,30 @@ namespace FastReport.Web.Cache
     /// </summary>
     internal sealed class WebReportLegacyCache : IWebReportCache
     {
+        public WebReportLegacyCache(CacheOptions cacheOptions)
+        {
+            _cacheOptions = cacheOptions;
+        }
 
         sealed class CacheItem : IDisposable
         {
-            internal Timer Timer;
+            internal readonly Timer Timer;
             internal WebReport WebReport;
             internal readonly WeakReference<WebReport> WeakReference;
 
-            public CacheItem(WebReport webReport)
+            public CacheItem(WebReport webReport, TimeSpan dueTime)
             {
                 WebReport = webReport;
                 WeakReference = new WeakReference<WebReport>(webReport);
+                Timer = new Timer(TimerAction, this, dueTime, Timeout.InfiniteTimeSpan);
+            }
+
+            private static void TimerAction(object state)
+            {
+                // clear reference to object
+                var _item = (CacheItem)state;
+                Debug.WriteLine($"Timer action! {_item.WebReport.ID} is null now!");
+                _item.WebReport = null;
             }
 
             public void Dispose()
@@ -33,7 +46,8 @@ namespace FastReport.Web.Cache
             }
         }
 
-        readonly List<CacheItem> cache = new List<CacheItem>();
+        private readonly List<CacheItem> cache = new List<CacheItem>();
+        private readonly CacheOptions _cacheOptions;
 
         public void Add(WebReport webReport)
         {
@@ -49,16 +63,7 @@ namespace FastReport.Web.Cache
                 return;
             }
 
-            var item = new CacheItem(webReport);
-
-            item.Timer = new Timer(state =>
-            {
-                // clear reference to object
-                var _item = (CacheItem)state;
-                Debug.WriteLine($"Timer action! {_item.WebReport.ID} is null now!");
-                _item.WebReport = null;
-            },
-            item, FastReportGlobal.FastReportOptions.CacheOptions.CacheDuration, Timeout.InfiniteTimeSpan);
+            var item = new CacheItem(webReport, _cacheOptions.CacheDuration);
 
             cache.Add(item);
         }
@@ -85,7 +90,7 @@ namespace FastReport.Web.Cache
                 {
                     // refresh item
                     cacheItem.WebReport = target;
-                    cacheItem.Timer.Change(FastReportGlobal.FastReportOptions.CacheOptions.CacheDuration, Timeout.InfiniteTimeSpan);
+                    cacheItem.Timer.Change(_cacheOptions.CacheDuration, Timeout.InfiniteTimeSpan);
                 }
             }
             return cacheItem;

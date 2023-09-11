@@ -85,7 +85,15 @@ namespace FastReport.Utils
             using (Stream stream = ResourceLoader.GetStream("en.xml"))
             {
                 FLocale.Load(stream);
-                CultureInfo enCulture = CultureInfo.GetCultureInfo("en");
+                CultureInfo enCulture;
+                try
+                {
+                    enCulture = CultureInfo.GetCultureInfo("en");
+                }
+                catch   // InvariantGlobalization mod fix (#939)
+                {
+                    enCulture = CultureInfo.InvariantCulture;
+                }
                 CurrentCulture = enCulture;
                 if (!LocalesCache.ContainsKey(enCulture))
                     LocalesCache.Add(enCulture, FLocale);

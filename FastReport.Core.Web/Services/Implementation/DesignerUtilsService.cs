@@ -17,8 +17,6 @@ namespace FastReport.Web.Services
 {
     internal sealed class DesignerUtilsService : IDesignerUtilsService
     {
-        [Obsolete]
-        internal static DesignerUtilsService Instance { get; } = new DesignerUtilsService();
 
         public string GetMSChartTemplateXML(string templateName)
         {
