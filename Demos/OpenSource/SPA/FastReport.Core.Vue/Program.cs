@@ -14,6 +14,7 @@ namespace Demo.SPA.Vue
             builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
             builder.Services.AddSingleton<DataSetService>();
             builder.Services.AddCors();
+            builder.Services.AddFastReport();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

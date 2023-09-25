@@ -26,17 +26,15 @@ namespace FastReport.Barcode
 
         internal override void DrawText(IGraphics g, string barData)
         {
-            DrawString(g, -8, g.MeasureString("0", Font).Width, "0", true);
+            DrawString(g, -8, -2, "0", true);
 
             // parts of pattern: 3 + 24 + 6
-            float x1 = GetWidth(pattern.Substring(0, 3)) + barArea.Left + g.MeasureString("0", Font).Width;
+            float x1 = GetWidth(pattern.Substring(0, 3));
             float x2 = GetWidth(pattern.Substring(0, 3 + 24));
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(0, 6), Font).Width / zoom);
             DrawString(g, x1, x2, barData.Substring(0, 6));
 
-            x1 = drawArea.Right - g.MeasureString(barData.Substring(6, 1), Font).Width + 7;
+            x1 = GetWidth(pattern) + 1;
             x2 = x1 + 7;
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(6, 1), Font).Width);
             DrawString(g, x1, x2, barData.Substring(6, 1), true);
         }
 
@@ -110,22 +108,19 @@ namespace FastReport.Barcode
     {
         internal override void DrawText(IGraphics g, string barData)
         {
-            DrawString(g, -8, g.MeasureString(barData.Substring(0, 1), Font).Width, barData.Substring(0, 1), true);
+            DrawString(g, -8, -2, barData.Substring(0, 1), true);
 
             // parts of pattern: 7 + 20 + 5 + 20 + 7
-            float x1 = GetWidth(pattern.Substring(0, 7)) + barArea.Left + g.MeasureString(barData.Substring(0, 1), Font).Width;
+            float x1 = GetWidth(pattern.Substring(0, 7));
             float x2 = GetWidth(pattern.Substring(0, 7 + 20));
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(1, 5), Font).Width );
             DrawString(g, x1, x2, barData.Substring(1, 5));
 
-            x1 = GetWidth(pattern.Substring(0, 7 + 20 + 5)) + barArea.Left + g.MeasureString(barData.Substring(0, 1), Font).Width;
+            x1 = GetWidth(pattern.Substring(0, 7 + 20 + 5));
             x2 = GetWidth(pattern.Substring(0, 7 + 20 + 5 + 20));
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(6, 5), Font).Width);
             DrawString(g, x1, x2, barData.Substring(6, 5));
 
-            x1 = drawArea.Right - g.MeasureString(barData.Substring(11, 1), Font).Width + 7;
+            x1 = GetWidth(pattern) + 1;
             x2 = x1 + 7;
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(11, 1), Font).Width);
             DrawString(g, x1, x2, barData.Substring(11, 1), true);
         }
 

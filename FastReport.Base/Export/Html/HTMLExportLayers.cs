@@ -309,13 +309,18 @@ namespace FastReport.Export.Html
         private FastString GetHtmlParagraph(HtmlTextRenderer renderer)
         {
             FastString sb = new FastString();
-
+            bool isFirstLine;
             foreach (HtmlTextRenderer.Paragraph paragraph in renderer.Paragraphs)
+            {
+                isFirstLine = true;
                 foreach (HtmlTextRenderer.Line line in paragraph.Lines)
                 {
                     if (sb == null) sb = new FastString();
+
                     sb.Append("<span style=\"");
                     sb.Append("display:block;");
+                    if (isFirstLine)
+                        sb.Append($"text-indent:{Math.Floor(renderer.ParagraphFormat.FirstLineIndent)}px;");
                     if (line.Top + line.Height > renderer.DisplayRect.Bottom)
                         sb.Append("height:").Append(Math.Max(renderer.DisplayRect.Bottom - line.Top, 0).ToString(HtmlTextRenderer.CultureInfo)).Append("px;");
                     else
@@ -326,7 +331,8 @@ namespace FastReport.Export.Html
                             sb.Append("margin-bottom:").Append(line.LineSpacing.ToString(HtmlTextRenderer.CultureInfo)).Append("px;");
                         }
                     }
-                    sb.Append("overflow:hidden;");
+                    if (!isFirstLine)
+                        sb.Append("overflow:hidden;");
                     sb.Append("line-height:").Append(line.Height.ToString(HtmlTextRenderer.CultureInfo)).Append("px;");
                     if (line.HorzAlign == HorzAlign.Justify)
                         sb.Append("text-align-last:justify;");
@@ -369,7 +375,7 @@ namespace FastReport.Export.Html
                                         case '\t':
                                             if (word.Type == HtmlTextRenderer.WordType.Tab)
                                             {
-                                                if(layers)
+                                                if (layers)
                                                     sb.Append($"<span style=\"tab-size: {Math.Round(prevWidth + run.Width)}px;\">&Tab;</span>");
                                                 else
                                                     sb.Append($"<span style=\"tab-size: {Math.Round(run.Left + run.Width)}px;\">&Tab;</span>");
@@ -417,7 +423,10 @@ namespace FastReport.Export.Html
                         styleDesc.ToHtml(sb, true);
                     else sb.Append("<br/>");
                     sb.Append("</span>");
+
+                    isFirstLine = false;
                 }
+            }
             return sb;
         }
 

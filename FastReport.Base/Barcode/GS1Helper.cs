@@ -117,7 +117,7 @@ namespace FastReport.Barcode
 
         static int FindAIIndex(string code, int index)
         {
-            int ñodeLen, maxLen, result;
+            int codeLen, maxLen, result;
             result = -1;
 
             if (index == -1)
@@ -126,15 +126,15 @@ namespace FastReport.Barcode
             if (code[index] != '(')
                 return result;
 
-            ñodeLen = code.Length - index;
-            if (ñodeLen < 3)
+            codeLen = code.Length - index;
+            if (codeLen < 3)
                 return result;
 
             for (int i = 0; i < AICodes.Count; i++)
             {
                 result = -1;
                 maxLen = AICodes[i].numAI.Length;
-                if (maxLen > ñodeLen)
+                if (maxLen > codeLen)
                     continue;
 
                 for (int j = 0; j < maxLen; j++)

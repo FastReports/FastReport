@@ -2599,6 +2599,7 @@
       <Basic Text="Основные"/>
       <Other Text="Другие"/>
       <ShowGridlines Text="Показать линии сетки"/>
+      <UngroupSheets Text="Разгруппировать листы"/>
       <UseLocaleFormating Text="Использовать региональный формат данных"/>
       <CurrencyToAccounting Text="Преобразовывать денежный формат в финансовый"/>
       <GeneralToText Text="Преобразовывать общий формат в текстовый"/>

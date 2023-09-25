@@ -57,49 +57,6 @@ namespace FastReport.Barcode
       "1507"     // 9 
     };
 
-        internal override SizeF CalcBounds()
-        {
-            float barWidth = GetWidth(Code);
-            float extra1 = 0;
-            float extra2 = 0;
-
-            if (showText)
-            {
-                float txtWidth = 0;
-                using (Bitmap bmp = new Bitmap(1, 1))
-                {
-                    bmp.SetResolution(96, 96);
-                    using (Graphics g = Graphics.FromImage(bmp))
-                    {
-                        txtWidth = g.MeasureString(text, Font, 100000).Width;
-
-                        if (barWidth < txtWidth)
-                        {
-                            extra1 = (txtWidth - barWidth) / 2 + 2;
-                            extra2 = extra1;
-                        }
-
-                        if (this.extra1 != 0)
-                            extra1 = g.MeasureString("0", Font).Width;
-                        if (this.extra2 != 0)
-                            extra2 = g.MeasureString("0", Font).Width;
-                    }
-                }
-            }
-            else
-            {
-                if (this.extra1 != 0)
-                    extra1 = this.extra1;
-                if (this.extra2 != 0)
-                    extra2 = this.extra2;
-            }
-
-            drawArea = new RectangleF(0, 0, barWidth + extra1 + extra2, 0);
-            barArea = new RectangleF(extra1, 0, barWidth, 0);
-
-            return new SizeF(drawArea.Width * 1.25f, 0);
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BarcodeEAN"/> class with default settings.
         /// </summary>
@@ -119,15 +76,12 @@ namespace FastReport.Barcode
         internal override void DrawText(IGraphics g, string barData)
         {
             // parts of pattern: 3 + 16 + 5 + 16 + 3
-            float x1 = barArea.Left + GetWidth(pattern.Substring(0, 3));
+            float x1 = GetWidth(pattern.Substring(0, 3));
             float x2 = GetWidth(pattern.Substring(0, 3 + 16 + 1));
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(0, 4), Font).Width);
             DrawString(g, x1, x2, barData.Substring(0, 4));
 
             x1 = GetWidth(pattern.Substring(0, 3 + 16 + 5 - 1));
-            x1 += barArea.Left;
             x2 = GetWidth(pattern.Substring(0, 3 + 16 + 5 + 16));
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(4, 4), Font).Width) + barArea.Left;
             DrawString(g, x1, x2, barData.Substring(4, 4));
         }
 
@@ -175,18 +129,15 @@ namespace FastReport.Barcode
 
         internal override void DrawText(IGraphics g, string barData)
         {
-            DrawString(g, -8, g.MeasureString(barData.Substring(0, 1), Font).Width, barData.Substring(0, 1));
+            DrawString(g, -8, -2, barData.Substring(0, 1));
 
             // parts of pattern: 3 + 24 + 5 + 24 + 3
-            float x1 = GetWidth(pattern.Substring(0, 3)) + barArea.Left + g.MeasureString(barData.Substring(0, 1), Font).Width;
+            float x1 = GetWidth(pattern.Substring(0, 3));
             float x2 = GetWidth(pattern.Substring(0, 3 + 24 + 1));
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(1, 6), Font).Width);
             DrawString(g, x1, x2, barData.Substring(1, 6));
 
             x1 = GetWidth(pattern.Substring(0, 3 + 24 + 5 - 1));
-            x1 += barArea.Left + g.MeasureString(barData.Substring(0, 1), Font).Width;
             x2 = GetWidth(pattern.Substring(0, 3 + 24 + 5 + 24));
-            x2 = (float)Math.Max(x2, g.MeasureString(barData.Substring(7, 6), Font).Width);
             DrawString(g, x1, x2, barData.Substring(7, 6));
         }
 
