@@ -11,7 +11,6 @@ namespace FastReport.Barcode
     [TypeConverter(typeof(FastReport.TypeConverters.BarcodeConverter))]
     public abstract class BarcodeBase
     {
-        public readonly float PX_IN_PT = 1.69f;
         #region Fields
         internal string text;
         internal int angle;
@@ -19,6 +18,8 @@ namespace FastReport.Barcode
         internal float zoom;
         private Color color;
         private Font font;
+
+        private static readonly Font DefaultFont = new Font("Arial", 8);
         #endregion
 
         #region Properties
@@ -101,6 +102,11 @@ namespace FastReport.Barcode
             return data;
         }
 
+        /// <summary>
+        /// Draws a barcode.
+        /// </summary>
+        /// <param name="g">The graphic surface.</param>
+        /// <param name="displayRect">Display rectangle.</param>
         public virtual void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
         }
@@ -113,7 +119,7 @@ namespace FastReport.Barcode
         {
             text = "";
             color = Color.Black;
-            Font = new Font("Arial", 8);
+            Font = DefaultFont;
         }
 
         /// <summary>

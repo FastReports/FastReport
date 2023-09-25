@@ -17,6 +17,8 @@ partial class Program
     const string tfmCore30 = ".NETCoreApp3.0";
     const string tfmCore31 = ".NETCoreApp3.1";
     const string tfmNet5win7 = "net5.0-windows7.0";
+    const string tfmNet6win7 = "net6.0-windows7.0";
+    const string tfmNet6 = "net6.0";
 
     const string tfmNet40 = "net40";
     const string tfmNet45 = "net45";

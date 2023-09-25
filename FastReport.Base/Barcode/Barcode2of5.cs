@@ -417,6 +417,7 @@ namespace FastReport.Barcode
             DrawVerticalBearerBars = src.DrawVerticalBearerBars;
         }
 
+        /// <inheritdoc/>
         public override void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
             base.DrawBarcode(g, displayRect);

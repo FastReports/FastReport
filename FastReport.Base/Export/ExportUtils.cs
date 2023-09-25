@@ -348,7 +348,7 @@ namespace FastReport.Export
                 }
                 else if (text[i] == '<' && textRenderType == TextRenderType.HtmlTags && crlf == CRLF.odt)
                     i += text.IndexOf('>', i) - i;
-                else if (i < text.Length - 1 && (text[i] == '\r' && text[i + 1] == '\n' || text[i] == '\t'))
+                else if (i < text.Length - 1 && (text[i] == '\r' && text[i + 1] == '\n'))
                 {
                     if (crlf == CRLF.xml)
                         Result.Append("&#10;");
@@ -408,7 +408,7 @@ namespace FastReport.Export
                     else if (text[i] == '>' && textRenderType == TextRenderType.Default)
                         Result.Append("&gt;");
                     else if (text[i] == '\t' && excel2007)
-                        continue;
+                        Result.Append("&#9;");
                     else
                         Result.Append(text[i]);
                 }
