@@ -190,17 +190,17 @@
     <RptFile Text="Crystal Riport fájlok (*.rpt)|*.rpt"/>
   </FileFilters>
   <Formats>
-    <Date1 Text="n"/>
-    <Date2 Text="N"/>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
     <Date3 Text="f"/>
     <Date4 Text="F"/>
-    <Date5 Text="HH/nn/ee"/>
-    <Date6 Text="HHHH nn, eeee"/>
-    <Date7 Text="HHHH eeee"/>
-    <Time1 Text="i"/>
-    <Time2 Text="I"/>
-    <Time3 Text="oo:pp tt"/>
-    <Time4 Text="OO:pp"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MMMM dd, yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
     <BooleanF1 Text="Hamis"/>
     <BooleanF2 Text="Nem"/>
     <BooleanF3 Text="Kikapcsol"/>
