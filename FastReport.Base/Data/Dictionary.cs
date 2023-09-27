@@ -735,7 +735,18 @@ namespace FastReport.Data
                 {
                     Base my = FindByName(c.Name);
                     if (my != null)
+                    {
+                        foreach (PageBase page in Report.Pages)
+                        {
+                            if (page is ReportPage)
+                                foreach (BandBase band in (page as ReportPage).Bands)
+                                {
+                                    if (band is DataBand && (band as DataBand).DataSource != null && (my.AllObjects.Contains((band as DataBand).DataSource) || (band as DataBand).DataSource == my))
+                                        (band as DataBand).DataSource = (DataSourceBase)clone.FindByName((band as DataBand).DataSource.Name);
+                                }
+                        }
                         my.Dispose();
+                    }
                     c.Parent = this;
                 }
 
