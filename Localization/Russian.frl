@@ -37,6 +37,7 @@
     <DuplicateName Text="Объект с именем {0} уже существует"/>
     <GroupHeaderHasNoGroupCondition Text="В заголовке группы {0} отсутствует условие группировки"/>
     <DuplicateStyle Text="Стиль с таким именем уже существует."/>
+    <EmptyDataEntryField Text="Заполните все поля ввода данных"/>
     <Error Text="Ошибка"/>
     <EventError Text="Невозможно создать обработчик события из-за ошибок в скрипте отчета"/>
     <ExportingPage Text="Экспортируется страница {0} из {1}"/>
@@ -2584,6 +2585,7 @@
       <FitAllColumsOnOnePage Text="Все колонки на одной странице"/>
       <FitAllRowsOnOnePage Text="Все строки на одной странице"/>
       <GroupOnSeparateSheet Text="Группы на отдельных листах"/>
+      <ForEachGroup Text="Все группы"/>
       <PictureProperties Text="Свойства изображений"/>
       <MoveAndModify Text="Перемещать и изменять вместе с ячейкой"/>
       <MoveOnly Text="Перемещать, но не изменять размеры"/>
@@ -2744,6 +2746,7 @@
       <PrinterSettings Text="Настройки печати"/>
       <Density Text="Плотность"/>
       <FontScale Text="Масштаб шрифта"/>
+      <BarcodeScale Text="Масштаб штрих-кода"/>
       <PrintAsBitmap Text="Печатать как изображение"/>
       <Version Text="Версия ZPL"/>
     </Zpl>
