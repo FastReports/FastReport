@@ -37,6 +37,7 @@
     <DuplicateName Text="Object with name {0} already exists"/>
     <GroupHeaderHasNoGroupCondition Text="{0} has no group condition"/>
     <DuplicateStyle Text="Style witch such name already exists"/>
+    <EmptyDataEntryField Text="Fill in all data entry fields"/>
     <Error Text="Error"/>
     <EventError Text="Could not create event handler due to errors in source code"/>
     <ExportingPage Text="Exporting page {0} of {1}"/>
@@ -2817,6 +2818,7 @@
       <FitAllColumsOnOnePage Text="Fit All Colums on One Page" />
       <FitAllRowsOnOnePage Text="Fit All Rows on One Page" />
       <GroupOnSeparateSheet Text="Groups on separate sheets"/>
+      <ForEachGroup Text="All groups"/>
       <PictureProperties Text="Pictures properties"/>
       <MoveAndModify Text="Move and modify along with the cell"/>
       <MoveOnly Text="Move but not resize"/>
@@ -2984,6 +2986,7 @@
       <PrinterSettings Text="Printer Settings"/>
       <Density Text="Density"/>
       <FontScale Text="Font Scale"/>
+      <BarcodeScale Text="Barcode Scale"/>
       <PrintAsBitmap Text="Print As Bitmap"/>
       <Version Text="Version of ZPL"/>
     </Zpl>
