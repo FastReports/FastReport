@@ -702,7 +702,7 @@ namespace FastReport.Barcode.QRCode
         private string br = "\r\n";
         private string alternativeProcedure1, alternativeProcedure2;
         private Iban iban;
-        private decimal? amount;
+        private string amount;
         private Contact creditor, ultimateCreditor, debitor;
         private Currency currency;
         private Reference reference;
@@ -712,7 +712,7 @@ namespace FastReport.Barcode.QRCode
         public Iban _Iban { get { return iban; } set { iban = value; } }
         public Contact Creditor { get { return creditor; } set { creditor = value; } }
         public Contact Debitor { get { return debitor; } set { debitor = value; } }
-        public Decimal? Amount { get { return amount; } }
+        public string Amount { get { return amount; } }
         public Currency _Currency { get { return currency; } set { currency = value; } }
         public Reference _Reference { get { return reference; } set { reference = value; } }
         public AdditionalInformation _AdditionalInformation { get { return additionalInformation; } set { additionalInformation = value; } }
@@ -741,8 +741,10 @@ namespace FastReport.Barcode.QRCode
             this.creditor = parameters.Creditor;
             this.additionalInformation = parameters.AdditionalInformation != null ? parameters.AdditionalInformation : new AdditionalInformation(null, null);
 
-            if (parameters.Amount != null && parameters.Amount.ToString().Length > 12)
-                throw new SwissQrCodeException(res.Get("SwissAmountLength"));
+            if (!String.IsNullOrEmpty(parameters.Amount))
+                if (!parameters.Amount.StartsWith("[") || !parameters.Amount.EndsWith("]"))
+                    if (parameters.Amount.Length > 12)
+                        throw new SwissQrCodeException(res.Get("SwissAmountLength"));
             this.amount = parameters.Amount;
 
             this.currency = parameters.Currency.Value;
@@ -772,16 +774,12 @@ namespace FastReport.Barcode.QRCode
             }
             string[] datas = datass.Split('\r');
 
-            List<string> vs = new List<string>();
-
             int counter = 3;
-
-            string infoString = "";
 
             this.iban = new Iban(datas[counter]);
             counter++;
-            infoString = "";
 
+            string infoString = "";
             for (int i = counter; i < counter + 7; i++)
             {
                 infoString += datas[i] + '\r';
@@ -800,7 +798,9 @@ namespace FastReport.Barcode.QRCode
                 this.ultimateCreditor = new Contact(infoString);
             }
             counter += 7;
-            this.amount = datas[counter] == String.Empty ? amount = null : Decimal.Parse(datas[counter].Replace('.', ','));
+            if (!datas[counter].StartsWith("[") || !datas[counter].EndsWith("]"))
+                amount = datas[counter] == String.Empty ? amount = null : Decimal.Parse(datas[counter].Replace('.', ',')).ToString();
+            else amount = datas[counter] == String.Empty ? amount = null : datas[counter];
             counter++;
 
             switch (datas[counter])
@@ -839,10 +839,12 @@ namespace FastReport.Barcode.QRCode
             {
                 if (reference.ChecksumMod10(reference.ReferenceText))
                     reference._ReferenceTextType = Reference.ReferenceTextType.QrReference;
-                else if (Regex.IsMatch(reference.ReferenceText, @"^[0-9]+$"))
+                else if (Regex.IsMatch(reference.ReferenceText, "^[a-zA-Z0-9 ]+$")) 
                     reference._ReferenceTextType = Reference.ReferenceTextType.CreditorReferenceIso11649;
             }
 
+            if (!iban._Iban.StartsWith("[") || !iban._Iban.EndsWith("]"))
+                iban = new Iban(iban._Iban, iban.TypeIban);
 
 
             counter += 2;
@@ -894,11 +896,12 @@ namespace FastReport.Barcode.QRCode
             //SwissQrCodePayload += (amount != null ? amount.ToString().Replace(",", ".") : string.Empty) + br; //Amt
             if (amount != null)
             {
-                string strAmount = amount.ToString();
-                if (!strAmount.Contains("."))
-                    strAmount = amount.ToString().Replace(",", ".");
-                else
-                    strAmount += ".00";
+                string strAmount = amount;
+                if (!strAmount.StartsWith("[") || !strAmount.EndsWith("]"))
+                    if (!strAmount.Contains("."))
+                        strAmount = amount.ToString().Replace(",", ".");
+                    else
+                        strAmount += ".00";
                 SwissQrCodePayload += strAmount;
             }
             else
