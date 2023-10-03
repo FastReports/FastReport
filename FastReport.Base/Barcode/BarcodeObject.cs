@@ -628,6 +628,14 @@ namespace FastReport.Barcode
                 {
                 }
             }
+
+            // without the second condition Text.StartsWith("SPC") the method will be executed for any QR
+            // according to my observations, this does not break anything
+
+            if (Barcode is BarcodeQR/* && Text.StartsWith("SPC")*/)
+            {               
+                QRData.Parse(Text);                
+            }
         }
         #endregion
 

@@ -1,6 +1,7 @@
 ﻿using FastReport.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace FastReport.Barcode
@@ -17,7 +18,7 @@ namespace FastReport.Barcode
         private Reference reference;
         private AdditionalInformation additionalInformation;
         private Contact debitor;
-        private decimal? amount;
+        private string amount;
         private string alternativeProcedure1;
         private string alternativeProcedure2;
         #endregion
@@ -56,7 +57,7 @@ namespace FastReport.Barcode
         /// <summary>
         /// Amount
         /// </summary>
-        public decimal? Amount { get { return amount; } set { amount = value; } }
+        public string Amount { get { return amount; } set { amount = value; } }
 
         /// <summary>
         /// Optional command for alternative processing mode - line 1
@@ -154,17 +155,19 @@ namespace FastReport.Barcode
             this.referenceType = referenceType;
             this.referenceTextType = referenceTextType;
 
-            if (referenceType == ReferenceType.NON && reference != null)
+            string referenceCleaned = reference?.Replace(" ", "");
+
+            if (referenceType == ReferenceType.NON && referenceCleaned != null)
                 throw new SwissQrCodeException(res.Get("SwissRefTypeNon"));
-            if (referenceType != ReferenceType.NON && reference != null && referenceTextType == null)
+            if (referenceType != ReferenceType.NON && referenceCleaned != null && referenceTextType == null)
                 throw new SwissQrCodeException(res.Get("SwissRefTextTypeNon"));
-            if (referenceTextType == ReferenceTextType.QrReference && reference != null && (reference.Length > 27))
+            if (referenceTextType == ReferenceTextType.QrReference && referenceCleaned != null && (referenceCleaned.Length > 27))
                 throw new SwissQrCodeException(res.Get("SwissRefQRLength"));
-            if (referenceTextType == ReferenceTextType.QrReference && reference != null && !Regex.IsMatch(reference, @"^[0-9]+$"))
+            if (referenceTextType == ReferenceTextType.QrReference && referenceCleaned != null && !Regex.IsMatch(referenceCleaned, @"^[0-9]+$"))
                 throw new SwissQrCodeException(res.Get("SwissRefQRNotOnlyDigits"));
-            if (referenceTextType == ReferenceTextType.QrReference && reference != null && !ChecksumMod10(reference))
+            if (referenceTextType == ReferenceTextType.QrReference && referenceCleaned != null && !ChecksumMod10(referenceCleaned))
                 throw new SwissQrCodeException(res.Get("SwissRefQRCheckSum"));
-            if (referenceTextType == ReferenceTextType.CreditorReferenceIso11649 && reference != null && (reference.Length > 25))
+            if (referenceTextType == ReferenceTextType.CreditorReferenceIso11649 && referenceCleaned != null && (referenceCleaned.Length > 25))
                 throw new SwissQrCodeException(res.Get("SwissRefISOLength"));
 
             this.reference = reference;
@@ -210,16 +213,20 @@ namespace FastReport.Barcode
         {
             if (string.IsNullOrEmpty(digits) || digits.Length < 2)
                 return false;
-            int[] mods = new int[] { 0, 9, 4, 6, 8, 2, 7, 1, 3, 5 };
 
+            if(digits.Any(char.IsLetter))
+                return false;
+
+            int[] mods = new int[] { 0, 9, 4, 6, 8, 2, 7, 1, 3, 5 };
+            string digitsClean = digits.Replace(" ", "");
             int remainder = 0;
-            for (int i = 0; i < digits.Length - 1; i++)
+            for (int i = 0; i < digitsClean.Length - 1; i++)
             {
-                int num = Convert.ToInt32(digits[i]) - 48;
+                int num = Convert.ToInt32(digitsClean[i]) - 48;
                 remainder = mods[(num + remainder) % 10];
             }
             int checksum = (10 - remainder) % 10;
-            return checksum == Convert.ToInt32(digits[digits.Length - 1]) - 48;
+            return checksum == Convert.ToInt32(digitsClean[digitsClean.Length - 1]) - 48;
         }
     }
 
@@ -330,9 +337,9 @@ namespace FastReport.Barcode
                 this.zipCode = this.city = string.Empty;
             }
 
-            if (!IsValidTwoLetterCode(country))
-                throw new SwissQrCodeContactException(res.Get("SwissCountryTwoLetters"));
-
+            if (!country.StartsWith("[") || !country.EndsWith("]"))
+                if (!IsValidTwoLetterCode(country))
+                    throw new SwissQrCodeContactException(res.Get("SwissCountryTwoLetters"));
             this.country = country;
         }
 
@@ -412,9 +419,9 @@ namespace FastReport.Barcode
     public class Iban
     {
         private string iban;
-        private IbanType? ibanType;
+        private IbanType ibanType;
 
-        public IbanType? TypeIban { get { return ibanType; } set { ibanType = value; } }
+        public IbanType TypeIban { get { return ibanType; } set { ibanType = value; } }
         public string _Iban { get { return iban; } set { iban = value; } }
 
         /// <summary>
@@ -447,7 +454,7 @@ namespace FastReport.Barcode
 
         public override string ToString()
         {
-            return iban.Replace("-", "").Replace("\n", "").Replace(" ", "");
+            return iban.Replace("-", " ").Replace("\n", " ");
         }
 
         public enum IbanType
