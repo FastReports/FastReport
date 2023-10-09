@@ -6,10 +6,10 @@
         <FRCompatVersionNET>[2023.3.0]</FRCompatVersionNET>
 
         <FRCompatVersion>[2023.3.0]</FRCompatVersion>
-        <FRCompatSkiaVersion>[2023.3.0]</FRCompatSkiaVersion>
+        <FRCompatSkiaVersion>[2023.3.4]</FRCompatSkiaVersion>
 
         <FRDataVisualizationVersion>[2023.3.0]</FRDataVisualizationVersion>
-        <FRDataVisualizationSkiaVersion>[2023.3.0]</FRDataVisualizationSkiaVersion>
+        <FRDataVisualizationSkiaVersion>[2023.3.4]</FRDataVisualizationSkiaVersion>
 		
         <!-- WPF -->
         <FRWPFVersion>2023.3.0</FRWPFVersion>
