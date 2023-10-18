@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -72,6 +73,10 @@ namespace FastReport.Export.Image
         private float zoomX;
         private float zoomY;
         private System.Drawing.Drawing2D.GraphicsState state;
+        private string imageExtensionFormat;
+        private string documentTitle;
+
+        private bool saveStreams;
 
         const float DIVIDER = 0.75f;
         const float PAGE_DIVIDER = 2.8346400000000003f; // mm to point
@@ -210,6 +215,16 @@ namespace FastReport.Export.Image
         {
             get { return ImageFormat == ImageExportFormat.Tiff && MultiFrameTiff; }
         }
+
+        /// <summary>
+        /// Enable or disable saving streams in GeneratedStreams collection.
+        /// </summary>
+        public bool SaveStreams
+        {
+            get { return saveStreams; }
+            set { saveStreams = value; }
+        }
+
         #endregion
 
         #region Private Methods
@@ -220,11 +235,24 @@ namespace FastReport.Export.Image
                 return CreateMetafile(suffix);
             return new Bitmap(width, height);
         }
+        private void GeneratedUpdate(string filename, Stream stream)
+        {
+            int i = GeneratedFiles.IndexOf(filename);
+            if (i == -1)
+            {
+                GeneratedFiles.Add(filename);
+                GeneratedStreams.Add(stream);
+            }
+            else
+            {
+                GeneratedStreams[i] = stream;
+            }
+        }
 
         private System.Drawing.Image CreateMetafile(string suffix)
         {
             string extension = Path.GetExtension(FileName);
-            string fileName = Path.ChangeExtension(FileName, suffix + extension);
+            string targetFileName = Path.ChangeExtension(FileName, suffix + extension);
 
             System.Drawing.Image image;
             using (Bitmap bmp = new Bitmap(1, 1))
@@ -235,9 +263,9 @@ namespace FastReport.Export.Image
                     image = new Metafile(Stream, hdc);
                 else
                 {
-                    image = new Metafile(fileName, hdc);
-                    if (!GeneratedFiles.Contains(fileName))
-                        GeneratedFiles.Add(fileName);
+                    image = new Metafile(targetFileName, hdc);
+                    if (!GeneratedFiles.Contains(targetFileName))
+                        GeneratedFiles.Add(targetFileName);
                 }
                 g.ReleaseHdc(hdc);
             }
@@ -383,17 +411,31 @@ namespace FastReport.Export.Image
             }
             else if (ImageFormat != ImageExportFormat.Metafile)
             {
-                string extension = Path.GetExtension(FileName);
-                string fileName = Path.ChangeExtension(FileName, suffix + extension);
+                Stream stream;
+                string targetFileName;
+                if (saveStreams)
+                {
+                    targetFileName = Path.ChangeExtension(documentTitle + suffix, imageExtensionFormat);
+                    stream = new MemoryStream();
+                }
+                else
+                {
+                    string extension = Path.GetExtension(FileName);
+                    targetFileName = Path.ChangeExtension(FileName, suffix + extension);
 
-                // empty suffix means that we should use the Stream that was created in the ExportBase
-                Stream stream = suffix == "" ? Stream : new FileStream(fileName, FileMode.Create);
+                    // empty suffix means that we should use the Stream that was created in the ExportBase
+                    stream = suffix == "" ? Stream : new FileStream(targetFileName, FileMode.Create);
 
-                if (suffix != "")
-                    GeneratedFiles.Add(fileName);
+                    if (suffix != "")
+                    {
+                        GeneratedFiles.Add(targetFileName);
+                    }
+                }
 
                 if (ImageFormat == ImageExportFormat.Jpeg)
+                {
                     ExportUtils.SaveJpeg(image, stream, JpegQuality);
+                }
                 else if (ImageFormat == ImageExportFormat.Tiff && MonochromeTiff)
                 {
                     // handle monochrome tiff separately
@@ -426,7 +468,9 @@ namespace FastReport.Export.Image
                     image.Save(stream, format);
                 }
 
-                if (suffix != "")
+                if (saveStreams)
+                    GeneratedUpdate(targetFileName, stream);
+                else if (suffix != "")
                     stream.Dispose();
             }
 
@@ -450,6 +494,7 @@ namespace FastReport.Export.Image
 
             //init
             SeparateFiles = Stream is MemoryStream ? false : SeparateFiles;
+            GeneratedStreams = new List<Stream>();
             pageNumber = 0;
             height = 0;
             width = 0;
@@ -462,6 +507,13 @@ namespace FastReport.Export.Image
             curOriginY = 0;
             firstPage = true;
 
+            if (saveStreams)
+            {
+                imageExtensionFormat = ImageFormat.ToString();
+                separateFiles = true;
+                documentTitle = (!String.IsNullOrEmpty(Report.ReportInfo.Name) ?
+                    Report.ReportInfo.Name : "");
+            }
             if (!SeparateFiles && !IsMultiFrameTiff)
             {
                 // create one big image. To do this, calculate max width and sum of pages height
@@ -510,7 +562,7 @@ namespace FastReport.Export.Image
             else
                 g = Graphics.FromImage(image);
 
-            state = g.Save(); 
+            state = g.Save();
 
             g.FillRegion(Brushes.Transparent, new Region(new RectangleF(0, curOriginY, width, height)));
             if (bigImage != null && curOriginY + height * 2 > bigImage.Height)
@@ -663,6 +715,7 @@ namespace FastReport.Export.Image
             Resolution = 96;
             jpegQuality = 100;
             monochromeTiffCompression = EncoderValue.CompressionCCITT4;
+            saveStreams = false;
         }
     }
 }
