@@ -19,6 +19,7 @@ namespace FastReport.Web
 
         internal const string ONCHANGE = "onchange";
 
+        internal const string ONBLUR = "onblur";
 
         public const string DEFAULT_DATE_PICKER_FORMAT = "yyyy-MM-dd";
 

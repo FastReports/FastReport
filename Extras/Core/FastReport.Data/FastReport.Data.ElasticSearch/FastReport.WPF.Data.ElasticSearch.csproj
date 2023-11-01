@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <PackageId>FastReport.WPF.Data.ElasticSearch</PackageId>
-    <PackageTags>reporting, ElasticSearch, connection, reports</PackageTags>
-    <Version>1.0.0</Version>
-    <Description>Represents a connection to ElasticSearch database for FastReport.WPF</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <TargetFrameworks>$(NetFrameworkMinimum);net6.0-windows7.0</TargetFrameworks>
   </PropertyGroup>
   
   <Import Project="Shared.props" />
   <Import Project="..\WPF.props" />
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\FastReport.WPF\FastReport.WPF.csproj" />
+	</ItemGroup>
 </Project>

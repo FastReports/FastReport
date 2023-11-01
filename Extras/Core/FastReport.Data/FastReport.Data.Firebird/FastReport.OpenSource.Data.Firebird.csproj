@@ -1,15 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 		<TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum);netcoreapp3.1</TargetFrameworks>
-    <PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageTags>reporting, Firebird, connection, reports</PackageTags>
-    <Version>1.0.0</Version>
-    <Configurations>Debug;Release;</Configurations>
-    <Description>Represents a connection to Firebird data for FastReport.OpenSource.
-
-This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
-</Description>
-    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
 
     <Crossplatform>true</Crossplatform>
   </PropertyGroup>

@@ -1,24 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum);netcoreapp3.1</TargetFrameworks>
-		<PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-		<PackageId>FastReport.OpenSource.Data.SQLite</PackageId>
-		<PackageTags>reporting, SQLite, connection, reports</PackageTags>
-		<Version>1.0.0</Version>
-		<Configurations>Debug;Release;</Configurations>
-		<Description>Represents a connection to SQLite database for FastReport.OpenSource.
-		
-This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
-</Description>
-		<PackageReleaseNotes></PackageReleaseNotes>
-    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
-
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum);netcoreapp3.1</TargetFrameworks>
     <Crossplatform>true</Crossplatform>
   </PropertyGroup>
   
   <Import Project="Shared.props" />
-	
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
-	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+  </ItemGroup>
 </Project>

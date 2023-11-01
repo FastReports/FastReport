@@ -1,22 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
-    <PackageId>FastReport.WPF.Data.Json</PackageId>
-    <PackageTags>reporting, Json, connection, reports</PackageTags>
-    <Version>1.0.0</Version>
-    <Description>Represents a connection to Json data for FastReport.WPF</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <TargetFrameworks>$(NetFrameworkMinimum);net6.0-windows7.0</TargetFrameworks>
   </PropertyGroup>
   
+  <Import Project="Shared.props" />
+  <Import Project="..\WPF.props" />
+
   <PropertyGroup>
     <DefineConstants>FRCORE;</DefineConstants>
   </PropertyGroup>
-
-  <Import Project="Shared.props" />
-  <Import Project="..\WPF.props" />
 
   <ItemGroup Condition="'$(TargetFramework)'=='$(NetFrameworkMinimum)'">
     <Reference Include="System.Data.Entity.Design" />
   </ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\FastReport.WPF\FastReport.WPF.csproj" />
+	</ItemGroup>
 </Project>

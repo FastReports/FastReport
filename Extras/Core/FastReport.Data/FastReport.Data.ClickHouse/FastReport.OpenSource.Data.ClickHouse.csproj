@@ -1,15 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;netstandard2.1;netcoreapp2.2;netcoreapp3.1</TargetFrameworks>
-    <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-net/license</PackageLicenseUrl>
-    <PackageTags>reporting, ClickHouse, connection, reports</PackageTags>
-    <Version>1.0.0</Version>
-    <Configurations>Debug;Release;</Configurations>
-    <Description>Represents a connection to ClickHouse database for FastReport.OpenSource.
-
-This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
-</Description>
+    <TargetFrameworks>net472;netstandard2.1;netcoreapp3.1</TargetFrameworks>
 
     <Crossplatform>true</Crossplatform>
   </PropertyGroup>
