@@ -43,6 +43,7 @@ namespace FastReport.Web.Services
                 htmlExport.Preview = true;
                 htmlExport.SubFolder = false;
                 htmlExport.EmbedPictures = webReport.EmbedPictures;
+                htmlExport.EnableMargins = webReport.EnableMargins;
                 //htmlExport.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, controller.RouteBasePath, ID, "picture") + "/";
                 htmlExport.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={webReport.ID}&pictureId=");
                 htmlExport.ExportMode = HTMLExport.ExportType.WebPrint;

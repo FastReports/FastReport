@@ -1,27 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">  
-	<PropertyGroup>
+  <PropertyGroup>
     <TargetFrameworks>$(NetFrameworkMinimum);netstandard2.0;netcoreapp3.1</TargetFrameworks>
-		<PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-		<RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
-		<Product>FastReport.Data.Postgres</Product>
-		<PackageId>FastReport.OpenSource.Data.Postgres</PackageId>
-		<PackageTags>reporting, postgres, connection, reports</PackageTags>
-		<Version>1.0.0</Version>
-		<Configurations>Debug;Release;</Configurations>
-		<AssemblyName>FastReport.Data.Postgres</AssemblyName>
-		<Description>Represents a connection to PostgreSQL database for FastReport.OpenSource.
-
-This package will not be updated. The $(AssemblyName) package now includes a connector for all versions of the FastReport product: FastReport .NET, FastReport.Core, FastReport.OpenSource, FastReport.CoreWin (.Net Core 3.1 and .Net 5 Windows).
-</Description>
-		<PackageReleaseNotes>added system schemas filter</PackageReleaseNotes>
-
     <Crossplatform>true</Crossplatform>
-	</PropertyGroup>
+  </PropertyGroup>
 
   <Import Project="Shared.props" />
 
-	<ItemGroup>
-		<!-- <PackageReference Include="Npgsql" Version="[3.2.7,)" /> -->
-		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+  </ItemGroup>
 </Project>

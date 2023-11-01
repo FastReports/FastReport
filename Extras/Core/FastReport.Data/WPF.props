@@ -1,9 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
     <UseWindowsForms>false</UseWindowsForms>
-    <!-- TODO: check license -->
     <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-wpf/license</PackageLicenseUrl>
     <Configurations>Debug;Release;</Configurations>
   </PropertyGroup>
@@ -23,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(FastReportWPFProj)" Condition="Exists('$(FastReportWPFProj)')" />
-    <PackageReference Include="$(FastReportWPFPackage)" Version="$(FRWPFVersion)" Condition="!Exists('$(FastReportWPFProj)')" />
+    <!-- <ProjectReference Include="$(FastReportWPFProj)" Condition="Exists('$(FastReportWPFProj)')" /> -->
+    <!-- <PackageReference Include="$(FastReportWPFPackage)" Version="$(FRWPFVersion)" Condition="!Exists('$(FastReportWPFProj)')" /> -->
 
     <ProjectReference Include="$(FastReportFormsWPFProj)" Condition="Exists('$(FastReportFormsWPFProj)')">
       <PrivateAssets>compile</PrivateAssets>
