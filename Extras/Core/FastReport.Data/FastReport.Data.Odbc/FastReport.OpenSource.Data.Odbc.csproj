@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;$(NetFrameworkMinimum)</TargetFrameworks>
+    <Crossplatform>true</Crossplatform>
+  </PropertyGroup>
+  
+  <Import Project="Shared.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+  </ItemGroup>
+</Project>

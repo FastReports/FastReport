@@ -16,6 +16,7 @@ namespace FastReport.Barcode
         internal int angle;
         internal bool showText;
         internal float zoom;
+        internal bool showMarker;
         private Color color;
         private Font font;
 
@@ -90,6 +91,15 @@ namespace FastReport.Barcode
             this.showText = showText;
             this.angle = (angle / 90 * 90) % 360;
             this.zoom = zoom;
+        }
+
+        internal virtual void Initialize(string text, bool showText, int angle, float zoom, bool showMarker)
+        {
+            this.text = text;
+            this.showText = showText;
+            this.angle = (angle / 90 * 90) % 360;
+            this.zoom = zoom;
+            this.showMarker = showMarker;
         }
 
         internal virtual SizeF CalcBounds()

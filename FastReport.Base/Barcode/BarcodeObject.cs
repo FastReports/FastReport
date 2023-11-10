@@ -75,7 +75,6 @@ namespace FastReport.Barcode
             Right
         }
 
-
         #region Fields
         private int angle;
         private bool autoSize;
@@ -94,6 +93,7 @@ namespace FastReport.Barcode
         private bool asBitmap;
         private Alignment horzAlign;
         private RectangleF origRect;
+        private bool showMarker;
         #endregion
 
         #region Properties
@@ -320,12 +320,24 @@ namespace FastReport.Barcode
             get { return asBitmap; }
             set { asBitmap = value; }
         }
+
+        /// <summary>
+        /// Gets or sets values for hiding or showing barcode markers
+        /// </summary>
+        [DefaultValue(true)]
+        [Category("Appearance")]
+        public bool ShowMarker
+        {
+            get { return showMarker; }
+            set { showMarker = value; }
+        }
+
         #endregion
 
         #region Private Methods
         private void SetBarcodeProperties()
         {
-            barcode.Initialize(Text, ShowText, Angle, Zoom);
+            barcode.Initialize(Text, ShowText, Angle, Zoom, ShowMarker);
         }
 
         private void DrawBarcode(FRPaintEventArgs e)
@@ -443,6 +455,7 @@ namespace FastReport.Barcode
             AllowExpressions = src.AllowExpressions;
             AsBitmap = src.AsBitmap;
             HorzAlign = src.HorzAlign;
+            ShowMarker = src.ShowMarker;
         }
 
         /// <inheritdoc/>
@@ -532,6 +545,8 @@ namespace FastReport.Barcode
                 writer.WriteBool("AsBitmap", AsBitmap);
             if (HorzAlign != c.HorzAlign)
                 writer.WriteValue("HorzAlign", HorzAlign);
+            if (ShowMarker != c.ShowMarker)
+                writer.WriteValue("ShowMarker", ShowMarker);
             Barcode.Serialize(writer, "Barcode.", c.Barcode);
         }
 
@@ -650,6 +665,7 @@ namespace FastReport.Barcode
             Expression = "";
             Text = Barcode.GetDefaultValue();
             ShowText = true;
+            ShowMarker = true;
             Padding = new Padding();
             Zoom = 1;
             HideIfNoData = true;
@@ -658,9 +674,7 @@ namespace FastReport.Barcode
             Brackets = "[,]";
             SetFlags(Flags.HasSmartTag, true);
         }
-
     }
-
 
     internal static class Barcodes
     {

@@ -27,7 +27,7 @@ namespace FastReport.Barcode
                 g.FillRectangle(Brushes.White, width / 2 - width / 100f * 4, top / 2 - top / 100 * 1.5f, width / 100f * 8, top / 100 * 3);
                 g.FillRectangle(Brushes.White, width / 2 - width / 100f * 1.5f, top / 2 - top / 100 * 4, width / 100f * 3, top / 100 * 8);
             }
-            if (text.StartsWith("ST"))
+            if (showMarker && text.StartsWith("ST"))
             {
                 using (Pen skyBluePen = new Pen(Brushes.Black))
                 {

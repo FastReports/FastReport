@@ -43,9 +43,9 @@ namespace FastReport.Barcode
             Mode = 4;
         }
 
-        internal override void Initialize(string text, bool showText, int angle, float zoom)
+        internal override void Initialize(string text, bool showText, int angle, float zoom, bool showMarker)
         {
-            base.Initialize(text, showText, angle, zoom);
+            base.Initialize(text, showText, angle, zoom, showMarker);
 
             maxiCodeImpl = new MaxiCodeImpl(base.text);
             maxiCodeImpl.setMode(Mode);
