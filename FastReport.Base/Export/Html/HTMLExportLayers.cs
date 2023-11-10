@@ -6,6 +6,7 @@ using FastReport.Utils;
 using System.Windows.Forms;
 using FastReport.Export;
 using System.ComponentModel;
+using System.Drawing.Text;
 
 namespace FastReport.Export.Html
 {
@@ -477,13 +478,17 @@ namespace FastReport.Export.Html
                     {
                         using (Graphics g = Graphics.FromImage(image))
                         {
+                            var needClear = obj is TextObjectBase
 #if MSCHART
-                            if (obj is TextObjectBase || obj is FastReport.MSChart.MSChartObject)
-                                g.Clear(GetClearColor(obj));
-#else
-                            if (obj is TextObjectBase)
-                                g.Clear(GetClearColor(obj));
+                                            || obj is MSChart.MSChartObject
 #endif
+                                            || obj is Gauge.GaugeObject;
+
+                            if (needClear)
+                            {
+                                g.Clear(Color.Transparent);
+                                g.TextRenderingHint = TextRenderingHint.AntiAlias;
+                            }
 
                             float Left = Width > 0 ? obj.AbsLeft : obj.AbsLeft + Width;
                             float Top = Height > 0 ? obj.AbsTop : obj.AbsTop + Height;
@@ -553,42 +558,6 @@ namespace FastReport.Export.Html
                 }
             }
             return result;
-        }
-
-        // Method to get background color of parent to fix an issue with blurred rotated text. g.Clear(Color.Transparent) - reason.
-        private Color GetClearColor(ReportComponentBase obj)
-        {
-            var color = Color.Transparent;
-            ReportComponentBase tempObj = obj;
-
-            if (obj.Parent is BandBase && obj.Band.Fill.IsTransparent)
-            {
-                color = Color.White;
-            }
-            else if (obj.Parent is BandBase)
-            {
-                color = obj.Band.FillColor;
-            }
-            else
-            {
-                var i = 0;
-                while (tempObj != null && tempObj.Fill.IsTransparent && !(tempObj.Parent is BandBase) && i < 10)
-                {
-                    i++;
-                    tempObj = tempObj.Parent as ReportComponentBase;
-                    
-                    if (tempObj != null && !tempObj.Fill.IsTransparent)
-                    {
-                        color = tempObj.FillColor;
-                        break;
-                    }
-
-                    if (tempObj?.Parent is BandBase)
-                        color = Color.White;
-                }
-            }
-
-            return color;
         }
 
         private void LayerPicture(FastString Page, ReportComponentBase obj, FastString text)

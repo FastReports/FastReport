@@ -1059,6 +1059,15 @@ namespace FastReport
             }
 
             DrawBackground(e, pageRect);
+
+            if (UnlimitedHeight || UnlimitedWidth)
+            {
+                printableRect = new RectangleF(pageRect.Left + LeftMargin * Units.Millimeters,
+                    pageRect.Top + TopMargin * Units.Millimeters,
+                    pageRect.Width - (LeftMargin + RightMargin) * Units.Millimeters,
+                    pageRect.Height - (TopMargin + BottomMargin) * Units.Millimeters);
+            }
+
             Border.Draw(e, printableRect);
             if (Watermark.Enabled)
             {

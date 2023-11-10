@@ -134,6 +134,7 @@
     <DialogPage Text="Form"/>
     <XmlDataConnection Text="XML database"/>
     <CsvDataConnection Text="CSV database"/>
+    <GoogleSheetsDataConnection Text="Google Sheets database"/>
     <OleDbDataConnection Text="OLE DB connection"/>
     <MsAccessDataConnection Text="MS Access connection"/>
     <MsSqlDataConnection Text="MS SQL connection"/>
@@ -2122,6 +2123,7 @@
         <Yes Text="Yes"/>
       </RightToLeft>
       <DisableHotkeys Text="Disable hotkeys"/>
+      <ShowProgress Text="Show progress window"/>
       <UseCompactMenu Text="Use compact menu"/>
       <Restart Text="* Restart required"/>
       <Reset Text="Reset config"/>
@@ -2356,6 +2358,19 @@
         <RowSpan Text="Row span (0 for auto):"/>
       </Other>
     </AdvMatrixHeaderEditor>
+    <SignInGoogle>
+      <Caption Text="Sign in Google API"/>
+      <SignInGoogleApi Text="Sign in Google API with OAuth 2.0"/>
+      <SignInApiKey Text="Sign in Google API with API key"/>
+      <ClientId Text="Client id"/>
+      <ClientSecret Text="Client secret"/>
+      <PathToFile Text="Path to .json file"/>
+      <ApiKey Text="API key"/>
+      <CheckPathToJson Text="Check .json file"/>
+      <SignIn Text="Sign in"/>
+      <OnConnection Text="Connection successful"/>
+      <OffConnection Text="Connection failed"/>
+    </SignInGoogle>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -2454,6 +2469,17 @@
       <ServerPort Text="Server port:"/>
       <Database Text="Database"/>
     </Clickhouse>
+    <GoogleSheets>
+      <ConfigureDatabase Text="Select database file"/>
+      <SelectSheetsId Text="Select sheetsId or URL adress: "/>
+      <TableName Text="Write table name: "/>
+      <StartColumnIndex Text="Start column index"/>
+      <EndColumnIndex Text="End column index"/>
+      <FieldNames Text="Field names in first string"/>
+      <AllTable Text="Entire table"/>
+      <SignIn Text="Sign in"/>
+      <FailedToLogin Text="Account login failed"/>
+    </GoogleSheets>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>

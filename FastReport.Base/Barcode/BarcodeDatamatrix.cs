@@ -1066,9 +1066,9 @@ namespace FastReport.Barcode
                 writer.WriteBool(prefix + "AutoEncode", AutoEncode);
         }
 
-        internal override void Initialize(string text, bool showText, int angle, float zoom)
+        internal override void Initialize(string text, bool showText, int angle, float zoom, bool showMarker)
         {
-            base.Initialize(text, showText, angle, zoom);
+            base.Initialize(text, showText, angle, zoom, showMarker);
 
             if (SymbolSize == DatamatrixSymbolSize.Auto)
             {

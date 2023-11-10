@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Language Name="ru" Author="Alexander Tsyganenko &lt;tz@fast-report.com&gt;;Alexander Fediashov &lt;fediachov@fast-report.com&gt;">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} шрифт не может быть изменён, встроен или передан любым способом без первоначального получения разрешения от правообладателя."/>
@@ -134,6 +134,7 @@
     <DialogPage Text="Диалог"/>
     <XmlDataConnection Text="База данных XML"/>
     <CsvDataConnection Text="База данных CSV"/>
+    <GoogleSheetsDataConnection Text="База данных Google Sheets"/>
     <OleDbDataConnection Text="Подключение к OLE DB"/>
     <MsAccessDataConnection Text="Подключение к MS Access"/>
     <MsSqlDataConnection Text="Подключение к MS SQL"/>
@@ -1937,6 +1938,7 @@
         <Yes Text="Да"/>
       </RightToLeft>
       <DisableHotkeys Text="Отключить горячие клавиши"/>
+      <ShowProgress Text="Показывать окно прогресса"/>
       <UseCompactMenu Text="Компактная строка меню"/>
       <Restart Text="* Требуется перезапуск"/>
       <Reset Text="Сброс настроек"/>
@@ -2155,6 +2157,19 @@
         <RowSpan Text="Объединение строк (0 - авто):"/>
       </Other>
     </AdvMatrixHeaderEditor>
+    <SignInGoogle>
+      <Caption Text="Вход в Google API"/>
+      <SignInGoogleApi Text="Вход в Google API через OAuth 2.0"/>
+      <SignInApiKey Text="Вход в Google API через API key"/>
+      <ClientId Text="Идентификатор клиента"/>
+      <ClientSecret Text="Секрет клиента"/>
+      <PathToFile Text="Путь к .json файлу"/>
+      <ApiKey Text="API ключ"/>
+      <CheckPathToJson Text="Подключение с помощью .json-файла"/>
+      <SignIn Text="Вход"/>
+      <OnConnection Text="Подключение выполнено успешно"/>
+      <OffConnection Text="Подключение провалено"/>
+    </SignInGoogle>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -2253,6 +2268,17 @@
       <ServerPort Text="Порт:"/>
       <Database Text="База данных"/>
     </Clickhouse>
+    <GoogleSheets>
+      <ConfigureDatabase Text="Настройка базы данных"/>
+      <SelectSheetsId Text="Вставьте идентификатор таблицы или URL адрес: "/>
+      <TableName Text="Напишите имя таблицы (необязательно): "/>
+      <StartColumnIndex Text="Начальный индекс таблицы"/>
+      <EndColumnIndex Text="Конечный индекс таблицы"/>
+      <FieldNames Text="Имена полей в первой строке"/>
+      <AllTable Text="Выбрать всю таблицу"/>
+      <SignIn Text="Вход"/>
+      <FailedToLogin Text="Вход в аккаунт не выполнен"/>
+    </GoogleSheets>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
