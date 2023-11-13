@@ -5,6 +5,11 @@ using System.Runtime.InteropServices;
 using System.Drawing.Text;
 using System.Drawing;
 using System.Linq;
+#if SKIA
+using static SkiaSharp.HarfBuzz.SKShaper;
+using System.Diagnostics;
+using FastReport.Fonts;
+#endif
 
 namespace FastReport.Utils
 {
@@ -14,7 +19,6 @@ namespace FastReport.Utils
     public partial class FRPrivateFontCollection
     {
         private readonly PrivateFontCollection collection = TypeConverters.FontConverter.PrivateFontCollection;
-
         private readonly Dictionary<string, DictionaryFont> _fonts = new Dictionary<string, DictionaryFont>();
 
 
@@ -86,34 +90,44 @@ namespace FastReport.Utils
 #if SKIA
         public void AddFontFromStream(Stream stream)
         {
+            using (FontStream fs = new FontStream(stream))
+            {
+                FontType font_type = TrueTypeCollection.CheckFontType(fs);
+                IList<TrueTypeFont> list = TrueTypeCollection.AddFontData(font_type, fs);
+                foreach (var ttf in list)
+                {
+                    if (!_fonts.ContainsKey(ttf.FastName))
+                    {
+                        stream.Position = 0;
+                        var ms = new MemoryStream();
+                        stream.CopyTo(ms);
+                        ms.Position = 0;
+                        _fonts.Add(ttf.FastName, new FontFromStream(ms));
+                    }
+                    else
+                        Console.WriteLine("Font {0} already registered\n", ttf.FastName);
+                }
+                fs.LeaveOpen = true;
+            }
+
+            stream.Position = 0;
             collection.AddFont(stream);
             stream.Position = 0;
-
-            var fontFamily = Families[Families.Length - 1];
-            string fontName = fontFamily.Name;
-
-            var isBold = fontFamily.IsStyleAvailable(FontStyle.Bold);
-            // every time is false
-            //var isItalic = fontFamily.IsStyleAvailable(FontStyle.Italic);
-
-            fontName = fontName + (isBold ? "-B" : "") /*+ (isItalic ? "-I" : "")*/;
-
-            if (!_fonts.ContainsKey(fontName))
-            {
-                var ms = new MemoryStream();
-                stream.CopyTo(ms);
-                ms.Position = 0;
-                _fonts.Add(fontName, new FontFromStream(ms));
-            }
         }
+    
+        public void AddTempFontStream(Stream stream)
+        {
+
+        }
+
 #endif
 
-        /// <summary>
-        /// Adds a font contained in system memory to this collection.
-        /// </summary>
-        /// <param name="memory">The memory address of the font to add.</param>
-        /// <param name="length">The memory length of the font to add.</param>
-        public void AddMemoryFont(IntPtr memory, int length)
+                        /// <summary>
+                        /// Adds a font contained in system memory to this collection.
+                        /// </summary>
+                        /// <param name="memory">The memory address of the font to add.</param>
+                        /// <param name="length">The memory length of the font to add.</param>
+                        public void AddMemoryFont(IntPtr memory, int length)
         {
             collection.AddMemoryFont(memory, length);
             string fontName = Families[Families.Length - 1].Name;
