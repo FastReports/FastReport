@@ -508,6 +508,10 @@ namespace FastReport.Export
                     }
                     ExportPageEnd(page);
                 }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
                 finally
                 {
                     ppage.EndGetPage(page);

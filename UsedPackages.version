@@ -3,9 +3,9 @@
 <!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource, FastReport.CoreWin, FastReport.WPF -->
     <PropertyGroup>
 
-        <FRCompatVersionNET>[2023.3.0]</FRCompatVersionNET>
+        <FRCompatVersionNET>[2023.3.1]</FRCompatVersionNET>
 
-        <FRCompatVersion>[2023.3.0]</FRCompatVersion>
+        <FRCompatVersion>[2023.3.1]</FRCompatVersion>
         <FRCompatSkiaVersion>[2023.3.4]</FRCompatSkiaVersion>
 
         <FRDataVisualizationVersion>[2023.3.0]</FRDataVisualizationVersion>
@@ -15,7 +15,7 @@
         <FRWPFVersion>2023.3.0</FRWPFVersion>
         <FRWPFRoslynPadVersion>2023.3.0</FRWPFRoslynPadVersion>
         <FRFormsWPFVersion>2023.2.1</FRFormsWPFVersion>
-        <FRCompatWPFVersion>2023.3.0</FRCompatWPFVersion>
+        <FRCompatWPFVersion>2023.3.1</FRCompatWPFVersion>
         <FRDataVisualizationWPFVersion>2023.3.0</FRDataVisualizationWPFVersion>
 
         <!-- Not available in Core3 -->
