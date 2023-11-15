@@ -134,8 +134,37 @@ namespace FastReport.Utils
       }
         if (type == typeof(Font))
         {
-            Font font = new TypeConverters.FontConverter().ConvertFromInvariantString(value) as Font;
-            return Config.PrivateFontCollection.CheckFamily(font);
+                Font font;
+
+#if FRCORE || COREWIN
+                // This patch made for "Wix Madefor Text" font
+                // We manually parse font description and create font
+
+                String[] fontNameFields = value.Split(',');
+                if (Config.PrivateFontCollection.HasFont(fontNameFields[0]))
+                {
+                    FontFamily fontFamily = new FontFamily(fontNameFields[0], Config.PrivateFontCollection.Collection);
+                    fontNameFields[1] = fontNameFields[1].Replace("pt", "");
+                    float size = float.Parse(fontNameFields[1]);
+                    if(fontNameFields.Length == 3)
+                    {
+                        fontNameFields[2] = fontNameFields[2].Replace("style=", "");
+                        FontStyle style = ((FontStyle)Enum.Parse(typeof(FontStyle), fontNameFields[2]));
+                        font = new Font(fontFamily, size, style);
+                    }
+                    else
+                    {
+                        font = new Font(fontFamily, size);
+                    }
+                }
+                else
+#endif
+                {
+                    font = new TypeConverters.FontConverter().ConvertFromInvariantString(value) as Font;
+                    font = Config.PrivateFontCollection.CheckFamily(font);
+                }
+
+                return font;
         }
 
         if (type == typeof(Color))
