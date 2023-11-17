@@ -1,3 +1,4 @@
+using FastReport.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ namespace FastReport.Preview
     internal class PreparedPagePostprocessor
     {
         private Dictionary<string, List<TextObjectBase>> duplicates;
+        private Dictionary<string, List<TextObject>> mergedTextObjects;
         private Dictionary<int, Base> bands;
         int iBand;
 
@@ -112,6 +114,111 @@ namespace FastReport.Preview
             lastObj.Height += delta;
         }
 
+        private void CollectMergedTextObjects(TextObject obj)
+        {
+            if (mergedTextObjects.ContainsKey(obj.Band.Name))
+            {
+                List<TextObject> list = mergedTextObjects[obj.Band.Name];
+                list.Add(obj);
+            }
+            else
+            {
+                List<TextObject> list = new List<TextObject>() { obj };
+                mergedTextObjects.Add(obj.Band.Name, list);
+            }
+        }
+
+        private void MergeTextObjects
+            ()
+        {
+            foreach (var band in mergedTextObjects)
+            {
+                band.Value.Sort(delegate (TextObject txt, TextObject txt2)
+                {
+                    if (txt.AbsLeft.CompareTo(txt2.AbsLeft) == 0)
+                        return txt.AbsTop.CompareTo(txt2.AbsTop);
+
+                    return txt.AbsLeft.CompareTo(txt2.AbsLeft);
+                });
+
+                //Vertical merge
+                MergeTextObjectsInBand(band.Value);
+
+                //May be horizontal merge
+                MergeTextObjectsInBand(band.Value);
+            }
+        }
+
+        private void MergeTextObjectsInBand(List<TextObject> band)
+        {
+            for (int i = 0; i < band.Count; i++)
+            {
+                for (int j = i + 1; j < band.Count; j++)
+                {
+                    if (Merge(band[j], band[i]))
+                    {
+                        TextObject removeObj = band[j];
+                        band.Remove(removeObj);
+                        removeObj.Dispose();
+                        if(j > 0)
+                            j--;
+                    }
+                }
+            }
+        }
+
+        private bool Merge(TextObject obj, TextObject obj2)
+        {
+            if (obj2.Text != obj.Text)
+                return false;
+
+            var bounds = obj.AbsBounds;
+            if (bounds.Width < 0 || bounds.Height < 0)
+                Validator.NormalizeBounds(ref bounds);
+
+            var bounds2 = obj2.AbsBounds;
+            if (bounds2.Width < 0 || bounds2.Height < 0)
+                Validator.NormalizeBounds(ref bounds2);
+
+            if (obj.MergeMode.HasFlag(MergeMode.Vertical) && obj2.MergeMode.HasFlag(MergeMode.Vertical)
+                && IsEqualWithInaccuracy(bounds2.Width, bounds.Width) && IsEqualWithInaccuracy(bounds2.Left, bounds.Left))
+            {
+                if (IsEqualWithInaccuracy(bounds2.Bottom, bounds.Top))
+                {
+                    obj2.Height += bounds.Height;
+                    return true;
+                }
+                else if (IsEqualWithInaccuracy(bounds2.Top, bounds.Bottom))
+                {
+                    obj2.Height += bounds.Height;
+                    obj2.Top -= bounds.Height;
+                    return true;
+                }
+            }
+            else if (obj.MergeMode.HasFlag(MergeMode.Horizontal) && obj2.MergeMode.HasFlag(MergeMode.Horizontal)
+                && IsEqualWithInaccuracy(bounds2.Height, bounds.Height) && IsEqualWithInaccuracy(bounds2.Top, bounds.Top))
+            {
+                if (IsEqualWithInaccuracy(bounds2.Right, bounds.Left))
+                {
+                    obj2.Width += bounds.Width;
+                    return true;
+                }
+                else if (IsEqualWithInaccuracy(bounds2.Left, bounds.Right))
+                {
+                    obj2.Width += bounds.Width;
+                    obj2.Left -= bounds.Width;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsEqualWithInaccuracy(float value1, float value2)
+        {
+            return Math.Abs(value1 - value2) < 0.01;
+        }
+
         public void Postprocess(ReportPage page)
         {
             page.ExtractMacros();
@@ -128,14 +235,19 @@ namespace FastReport.Preview
 
                 if (c is TextObjectBase txt && txt.Duplicates != Duplicates.Show)
                     ProcessDuplicates(txt);
+
+                if (c is TextObject text && text.MergeMode != MergeMode.None)
+                    CollectMergedTextObjects(text);
             }
 
+            MergeTextObjects();
             CloseDuplicates();
         }
 
         public PreparedPagePostprocessor()
         {
             duplicates = new Dictionary<string, List<TextObjectBase>>();
+            mergedTextObjects = new Dictionary<string, List<TextObject>>();
             bands = new Dictionary<int, Base>();
             iBand = 0;
         }
@@ -153,6 +265,11 @@ namespace FastReport.Preview
                         ProcessDuplicates(txt);
                         flag = true; //flag for keep in dictionary
                     }
+                    if (c is TextObject text && text.MergeMode != MergeMode.None)
+                    {
+                        CollectMergedTextObjects(text);
+                        flag = true;
+                    }
                 }
                 i++;
                 if (flag)
@@ -165,6 +282,8 @@ namespace FastReport.Preview
                     b.Dispose();
                 }
             }
+
+            MergeTextObjects();
             CloseDuplicates();
         }
 

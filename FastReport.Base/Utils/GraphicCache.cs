@@ -163,6 +163,7 @@ namespace FastReport
                 result.Trimming = trimming;
                 result.FormatFlags = flags;
                 float[] tabStops = new float[64];
+                float sumWidth = firstTab;
                 // fixed issue 2823
                 tabStops[0] = firstTab < 0 ? 0 : firstTab;
                 for (int i = 1; i < 64; i++)
@@ -170,9 +171,14 @@ namespace FastReport
                     if (i > tabWidth.Count)
                     {
                         tabStops[i] = defaultTab < 0 ? 0 : defaultTab;
+                        //tab stops have static positions we need to go back to them
+                        if (sumWidth % defaultTab != 0)
+                            tabStops[i] = defaultTab - sumWidth % defaultTab;
+                        sumWidth += tabStops[i];
                         continue;
                     }
                     tabStops[i] = tabWidth[i - 1] < 0 ? 0 : tabWidth[i - 1];
+                    sumWidth += tabStops[i];
                 }
                 result.SetTabStops(0, tabStops);
                 stringFormats[hash] = result;

@@ -35,6 +35,7 @@ namespace FastReport.Gauge.Radial
     /// Radial Gauge position types
     /// </summary>
     [Flags]
+    [TypeConverter(typeof(FastReport.TypeConverters.FlagConverter))]
     public enum RadialGaugePosition
     {
         /// <summary>

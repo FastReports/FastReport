@@ -246,6 +246,29 @@ namespace FastReport
     }
 
     /// <summary>
+    ///  Specifies the behavior of the <b>MergeMode</b> feature of <b>TextObject</b>.
+    /// </summary>
+    [TypeConverter(typeof(FastReport.TypeConverters.FlagConverter))]
+    [Flags]
+    public enum MergeMode
+    {
+        /// <summary>
+        /// Merge is disabled.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Allows horizontal merging.
+        /// </summary>
+        Horizontal = 1,
+
+        /// <summary>
+        /// Allows vertical merging.
+        /// </summary>
+        Vertical = 2,
+    }
+
+    /// <summary>
     /// Represents the Text object that may display one or several text lines.
     /// </summary>
     /// <remarks>
@@ -261,6 +284,7 @@ namespace FastReport
     public partial class TextObject : TextObjectBase
     {
         #region Fields
+        private MergeMode mergeMode;
         private bool autoWidth;
         private HorzAlign horzAlign;
         private VertAlign vertAlign;
@@ -688,8 +712,6 @@ namespace FastReport
             set { textRenderType = value; }
         }
 
-
-
         /// <summary>
         /// Gets or sets the paragraph offset, in pixels. For HtmlParagraph use ParagraphFormat.FirstLineIndent.
         /// </summary>
@@ -721,6 +743,18 @@ namespace FastReport
                     inlineImageCache = new InlineImageCache();
                 return inlineImageCache;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the text should be merged with other nearby text objects.
+        /// </summary>
+        [DefaultValue(MergeMode.None)]
+        [Category("Behavior")]
+        [Editor("FastReport.TypeEditors.FlagsEditor, FastReport", typeof(UITypeEditor))]
+        public MergeMode MergeMode
+        {
+            get { return mergeMode; }
+            set { mergeMode = value; }
         }
         #endregion
 
@@ -1097,6 +1131,7 @@ namespace FastReport
             inlineImageCache = src.inlineImageCache;
             PreserveLastLineSpace = src.PreserveLastLineSpace;
             paragraphFormat.Assign(src.paragraphFormat);
+            MergeMode = src.MergeMode;
         }
 
         /// <summary>
@@ -1394,6 +1429,8 @@ namespace FastReport
                 writer.WriteFloat("ParagraphOffset", ParagraphOffset);
             if (ForceJustify != c.ForceJustify)
                 writer.WriteBool("ForceJustify", ForceJustify);
+            if (MergeMode != c.MergeMode)
+                writer.WriteValue("MergeMode", MergeMode);
             if (writer.SerializeTo != SerializeTo.Preview)
             {
                 if (Style != c.Style)

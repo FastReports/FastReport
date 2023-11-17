@@ -142,7 +142,6 @@ namespace FastReport
             set { grayscaleHash = value; }
         }
 
-
         /// <summary>
         /// Gets or sets the color of the image that will be treated as transparent.
         /// </summary>
@@ -180,8 +179,6 @@ namespace FastReport
             }
         }
 
-
-
         /// <summary>
         /// Gets or sets a value indicating that the image should be tiled.
         /// </summary>
@@ -192,8 +189,6 @@ namespace FastReport
             get { return tile; }
             set { tile = value; }
         }
-
-        
 
         /// <summary>
         /// Gets or sets a value indicating that the image stored in the <see cref="Image"/> 
@@ -210,15 +205,6 @@ namespace FastReport
             get { return shouldDisposeImage; }
             set { shouldDisposeImage = value; }
         }
-
-
-
-
-
-
-
-
-
 
         /// <summary>
         /// Gets or sets a bitmap transparent image
@@ -314,6 +300,38 @@ namespace FastReport
                 }
             }
         }
+
+#if MONO
+        private GraphicsPath GetRoundRectPath(RectangleF rectangleF, float radius)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            if (radius < 1)
+                radius = 1;
+            gp.AddLine(rectangleF.X + radius, rectangleF.Y, rectangleF.Width + rectangleF.X - radius, rectangleF.Y);
+            gp.AddArc(rectangleF.Width + rectangleF.X - radius - 1, rectangleF.Y, radius + 1, radius + 1, 270, 90);
+            gp.AddLine(rectangleF.Width + rectangleF.X, rectangleF.Y + radius, rectangleF.Width + rectangleF.X, rectangleF.Height + rectangleF.Y - radius);
+            gp.AddArc(rectangleF.Width + rectangleF.X - radius - 1, rectangleF.Height + rectangleF.Y - radius - 1, radius + 1, radius + 1, 0, 90);
+            gp.AddLine(rectangleF.Width + rectangleF.X - radius, rectangleF.Height + rectangleF.Y, rectangleF.X + radius, rectangleF.Height + rectangleF.Y);
+            gp.AddArc(rectangleF.X, rectangleF.Height + rectangleF.Y - radius - 1, radius + 1, radius + 1, 90, 90);
+            gp.AddLine(rectangleF.X, rectangleF.Height + rectangleF.Y - radius, rectangleF.X, rectangleF.Y + radius);
+            gp.AddArc(rectangleF.X, rectangleF.Y, radius, radius, 180, 90);
+            gp.CloseFigure();
+            return gp;
+        }
+#else
+        private GraphicsPath GetRoundRectPath(RectangleF rectangleF, float radius)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            if (radius < 1)
+                radius = 1;
+            gp.AddArc(rectangleF.Width + rectangleF.X - radius - 1, rectangleF.Y, radius + 1, radius + 1, 270, 90);
+            gp.AddArc(rectangleF.Width + rectangleF.X - radius - 1, rectangleF.Height + rectangleF.Y - radius - 1, radius + 1, radius + 1, 0, 90);
+            gp.AddArc(rectangleF.X, rectangleF.Height + rectangleF.Y - radius - 1, radius + 1, radius + 1, 90, 90);
+            gp.AddArc(rectangleF.X, rectangleF.Y, radius, radius, 180, 90);
+            gp.CloseFigure();
+            return gp;
+        }
+#endif
         #endregion
 
         #region Protected Methods
@@ -373,12 +391,16 @@ namespace FastReport
               drawWidth,
               drawHeight);
 
+            GraphicsPath path = new GraphicsPath();
             IGraphicsState state = g.Save();
             try
             {
                 //if (Config.IsRunningOnMono) // strange behavior of mono - we need to reset clip before we set new one
-                    g.ResetClip();
-                g.SetClip(drawRect);
+                g.ResetClip();
+
+                EstablishImageForm(path, drawLeft, drawTop, drawWidth, drawHeight);
+
+                g.SetClip(path, CombineMode.Replace);
                 Report report = Report;
                 if (report != null && report.SmoothGraphics)
                 {
@@ -411,6 +433,8 @@ namespace FastReport
             finally
             {
                 g.Restore(state);
+                g.ResetClip();
+                path.Dispose();
             }
 
             if (IsPrinting)
@@ -552,17 +576,6 @@ namespace FastReport
             }
         }
 
-
-
-
-
-        
-        //static int number = 0;
-
-        
-
-
-
         /// <summary>
         /// Loads image
         /// </summary>
@@ -602,9 +615,56 @@ namespace FastReport
         {
             imageIndex = -1;
         }
+
+        /// <summary>
+        /// The shape of the image is set using GraphicsPath
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="drawLeft"></param>
+        /// <param name="drawTop"></param>
+        /// <param name="drawWidth"></param>
+        /// <param name="drawHeight"></param>
+        public void EstablishImageForm(GraphicsPath path, float drawLeft, float drawTop, float drawWidth, float drawHeight)
+        {
+            RectangleF drawRect = new RectangleF(
+              drawLeft,
+              drawTop,
+              drawWidth,
+              drawHeight);
+
+            switch (Shape)
+            {
+                case ShapeKind.Rectangle:
+                    path.AddRectangle(drawRect);
+                    break;
+                case ShapeKind.RoundRectangle:
+                    float min = Math.Min(drawWidth, drawHeight) / 4;
+                    path.AddPath(GetRoundRectPath(drawRect, min), false);
+                    break;
+                case ShapeKind.Ellipse:
+                    path.AddEllipse(drawLeft, drawTop, drawWidth, drawHeight);
+                    break;
+                case ShapeKind.Triangle:
+                    PointF[] triPoints =
+                    {
+                            new PointF(drawLeft + drawWidth, drawTop + drawHeight), new PointF(drawLeft, drawTop + drawHeight),
+                            new PointF(drawLeft + drawWidth / 2, drawTop), new PointF(drawLeft + drawWidth, drawTop + drawHeight)
+                     };
+                    path.AddPolygon(triPoints);
+                    break;
+                case ShapeKind.Diamond:
+                    PointF[] diaPoints =
+                    {
+                            new PointF(drawLeft + drawWidth / 2, drawTop), new PointF(drawLeft + drawWidth, drawTop + drawHeight / 2),
+                            new PointF(drawLeft + drawWidth / 2, drawTop + drawHeight), new PointF(drawLeft, drawTop + drawHeight / 2)
+                    };
+                    path.AddPolygon(diaPoints);
+                    break;
+            }
+        }
 #endregion
 
-#region Report Engine
+        #region Report Engine
 
 
         /// <inheritdoc/>
