@@ -18,6 +18,7 @@ namespace FastReport
     /// Specifies a set of actions that cannot be performed on the object in the design mode.
     /// </summary>
     [Flags]
+    [TypeConverter(typeof(FastReport.TypeConverters.FlagConverter))]
     public enum Restrictions
     {
         /// <summary>
@@ -60,6 +61,7 @@ namespace FastReport
     /// Specifies a set of actions that can be performed on the object in the design mode.
     /// </summary>
     [Flags]
+    [TypeConverter(typeof(FastReport.TypeConverters.FlagConverter))]
     public enum Flags
     {
         /// <summary>

@@ -439,7 +439,7 @@ namespace FastReport.Utils
             IGraphicsState state = graphics.Save();
             //RectangleF rect = new RectangleF(FDisplayRect.Location, SizeF.Add(FDisplayRect.Size, new SizeF(width_dotnet, 0)));
             //FGraphics.SetClip(rect, CombineMode.Intersect);
-
+            graphics.SetClip(displayRect, CombineMode.Intersect);
             // reset alignment
             //StringAlignment saveAlign = FFormat.Alignment;
             //StringAlignment saveLineAlign = FFormat.LineAlignment;
@@ -695,7 +695,7 @@ namespace FastReport.Utils
             Stack<SimpleFastReportHtmlElement> elements = new Stack<SimpleFastReportHtmlElement>();
             SimpleFastReportHtmlReader reader = new SimpleFastReportHtmlReader(this.text);
             List<CharWithIndex> currentWord = new List<CharWithIndex>();
-            float width = paragraphFormat.SkipFirstLineIndent ? 0 : paragraphFormat.FirstLineIndent;
+            float width = paragraphFormat.SkipFirstLineIndent ? 0 : GetStartPosition(true);
             Paragraph paragraph = new Paragraph(this);
             int charIndex = 0;
             int tabIndex = 0;
@@ -763,7 +763,6 @@ namespace FastReport.Utils
 
                             word = new Word(this, line, WordType.Tab);
 
-
                             Run tabRun = new RunText(this, word, style, new List<CharWithIndex>(new CharWithIndex[] { reader.Character }), width, charIndex);
                             word.Runs.Add(tabRun);
                             float width2 = GetTabPosition(width);
@@ -785,6 +784,13 @@ namespace FastReport.Utils
                                     width2 = GetTabPosition(width, tabIndex);
                                 }
                             }
+                            // decrease by (DrawUtils.ScreenDpi / 96f) repeats the work of the Word, if the next tab position is a pixel further than the left indent,
+                            // then the tab stop occurs in the tab position, otherwise the stop will be in the place of the left indentation
+                            if (width < -paragraphFormat.FirstLineIndent && width2 - (DrawUtils.ScreenDpi / 96f) > -paragraphFormat.FirstLineIndent)
+                            {
+                                width2 = -paragraphFormat.FirstLineIndent;
+                            }
+
                             tabIndex++;
                             line.Words.Add(word);
                             tabRun.Width = width2 - width;
@@ -819,7 +825,7 @@ namespace FastReport.Utils
                             //word.Runs.Add(runText);
                             line = new Line(this, paragraph, charIndex);
                             word = null;
-                            width = 0;
+                            width = GetStartPosition();
                             currentWord.Clear();
                             paragraph.Lines.Add(line);
                             break;
@@ -850,7 +856,7 @@ namespace FastReport.Utils
                             paragraphs.Add(paragraph);
                             line = new Line(this, paragraph, charIndex);
                             word = null;
-                            width = paragraphFormat.FirstLineIndent;
+                            width = GetStartPosition(true);
                             paragraph.Lines.Add(line);
                             break;
 
@@ -1119,7 +1125,7 @@ namespace FastReport.Utils
                                 paragraph.Lines.Add(line);
                                 newWord = new Word(newWord.Renderer, line, newWord.Type);
                                 line.Words.Add(newWord);
-                                secondPart.Left = 0;
+                                secondPart.Left = GetStartPosition();
                                 width = secondPart.Width;
                                 currentWord = newWord;
                                 if (width < availableWidth)
@@ -1152,11 +1158,12 @@ namespace FastReport.Utils
                 line.Words.RemoveAt(line.Words.Count - 1);
                 Line result = new Line(this, paragraph, wordCharIndex);
                 paragraph.Lines.Add(result);
-                newWidth = 0;
-                if (line.Words.Count > 2 && line.Words[line.Words.Count - 2].Type == WordType.Tab)
+                newWidth = GetStartPosition();
+
+                if (line.Words.Count > 1 && line.Words[line.Words.Count - 1].Type == WordType.Tab)
                 {
-                    Word tabWord = line.Words[line.Words.Count - 2];
-                    line.Words.RemoveAt(line.Words.Count - 2);
+                    Word tabWord = line.Words[line.Words.Count - 1];
+                    line.Words.RemoveAt(line.Words.Count - 1);
                     float width2 = GetTabPosition(newWidth);
                     if (isDifferentTabPositions)
                     {
@@ -1167,7 +1174,7 @@ namespace FastReport.Utils
                     tabIndex = 1;
                     result.Words.Add(tabWord);
                     tabWord.Line = result;
-                    tabWord.Runs[0].Left = 0;
+                    tabWord.Runs[0].Left = GetStartPosition();
                     tabWord.Runs[0].Width = width2 - newWidth;
                     newWidth = width2;
                 }
@@ -1183,6 +1190,24 @@ namespace FastReport.Utils
                 //perhaps need to continue the breakdown
                 return WrapLine(paragraph, result, wordCharIndex, availableWidth, ref newWidth, ref currentWord, ref tabIndex);
             }
+        }
+
+        /// <summary>
+        /// Get start position of line. 
+        /// </summary>
+        /// <param name="isNewParagraph">
+        /// if this parameter is true, the starting position of the line in the new paragraph will be returned
+        /// </param>
+        /// <returns></returns>
+        private float GetStartPosition(bool isNewParagraph = false)
+        {
+            // if we have a back indent, we take it as zero and shift all the initial positions of the text in the lines by the size of this indent.
+            if (isNewParagraph && paragraphFormat.FirstLineIndent > 0)
+                return paragraphFormat.FirstLineIndent;
+
+            if (paragraphFormat.FirstLineIndent < 0 && !isNewParagraph)
+                return -paragraphFormat.FirstLineIndent;
+            return 0;
         }
 
         #endregion Private Methods
@@ -2236,9 +2261,9 @@ namespace FastReport.Utils
                     //#if DEBUG
                     //SizeF size = renderer.graphics.MeasureString(text, font, int.MaxValue, renderer.format);
                     //if (renderer.RightToLeft)
-                    //    renderer.graphics.DrawRectangle(Pens.Red, Left - size.Width, Top, size.Width, size.Height);
+                    //   renderer.graphics.DrawRectangle(Pens.Red, Left - size.Width, Top, size.Width, size.Height);
                     //else
-                    //    renderer.graphics.DrawRectangle(Pens.Red, Left, Top, size.Width, size.Height);
+                    //    renderer.graphics.DrawRectangle(Pens.Red, Left, Top, Width, Height);
                     //#endif
                     renderer.graphics.DrawString(text, font, brush, Left, Top, renderer.format);
                 }

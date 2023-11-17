@@ -35,7 +35,7 @@ namespace FastReport.Utils
     /// </summary>
     public static class Validator
     {
-        private static void NormalizeBounds(ref RectangleF bounds)
+        internal static void NormalizeBounds(ref RectangleF bounds)
         {
             if (bounds.Width < 0)
             {

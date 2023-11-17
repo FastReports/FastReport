@@ -92,6 +92,7 @@ namespace FastReport
         private bool showErrorImage;
         private PictureBoxSizeMode sizeModeInternal;
         private ImageAlign imageAlign;
+        private ShapeKind shape;
 
         #endregion Private Fields
 
@@ -333,6 +334,17 @@ namespace FastReport
             set { imageAlign = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a shape kind.
+        /// </summary>
+        [DefaultValue(ShapeKind.Rectangle)]
+        [Category("Appearance")]
+        public ShapeKind Shape
+        {
+            get { return shape; }
+            set { shape = value; }
+        }
+
 
         #endregion Public Properties
 
@@ -358,6 +370,7 @@ namespace FastReport
         public PictureObjectBase()
         {
             sizeModeInternal = PictureBoxSizeMode.Zoom;
+            shape = ShapeKind.Rectangle;
             padding = new Padding();
             imageLocation = "";
             dataColumn = "";
@@ -387,6 +400,7 @@ namespace FastReport
                 Grayscale = src.Grayscale;
                 ShowErrorImage = src.ShowErrorImage;
                 ImageAlign = src.ImageAlign;
+                Shape = src.Shape;
             }
         }
 
@@ -668,8 +682,6 @@ namespace FastReport
             lowerLeft.Y += offsetY;
         }
 
-        
-
         /// <summary>
         /// Loads image
         /// </summary>
@@ -776,6 +788,8 @@ namespace FastReport
                 writer.WriteBool("ShowErrorImage", ShowErrorImage);
             if (ImageAlign != ImageAlign.None)
                 writer.WriteValue("ImageAlign", ImageAlign);
+            if (Shape != c.Shape)
+                writer.WriteValue("Shape", Shape);
         }
 
         #endregion Public Methods

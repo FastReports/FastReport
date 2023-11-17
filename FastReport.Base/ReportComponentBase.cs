@@ -34,6 +34,7 @@ namespace FastReport
     /// Specifies where to print an object.
     /// </summary>
     [Flags]
+    [TypeConverter(typeof(FastReport.TypeConverters.FlagConverter))]
     public enum PrintOn
     {
         /// <summary>
