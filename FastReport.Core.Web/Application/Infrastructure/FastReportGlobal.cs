@@ -8,12 +8,12 @@ namespace FastReport.Web.Infrastructure
 {
     internal static class FastReportGlobal
     {
-#if BLAZOR
         internal static IWebHostEnvironment HostingEnvironment = null;
-#else
-        internal static IHostingEnvironment HostingEnvironment = null;
-#endif
         internal static FastReportOptions FastReportOptions = new FastReportOptions();
+
+#if !WASM
+        internal static EmailExportOptions InternalEmailExportOptions = null;
+#endif
 
     }
 }

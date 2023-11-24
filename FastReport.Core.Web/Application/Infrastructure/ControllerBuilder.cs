@@ -251,11 +251,7 @@ namespace FastReport.Web.Infrastructure
                 {
                     Debug.Assert(result.GetType() != typeof(IActionResult));
 
-#if NETCOREAPP3_1_OR_GREATER
                     string content = System.Text.Json.JsonSerializer.Serialize(result);
-#else
-                    string content = result.ToString();
-#endif
                     var contentResult = Results.Content(content, "text/json");
                     return contentResult.ExecuteAsync(httpContext);
                 }
@@ -304,10 +300,8 @@ namespace FastReport.Web.Infrastructure
                     if (request.Headers.TryGetValue(paramName, out var headerValue))
                         return ParseToType(headerValue, paramType);
 
-#if NETCOREAPP3_1_OR_GREATER
                     if (request.RouteValues.TryGetValue(paramName, out var routeValue))
                         return ParseToType(routeValue, paramType);
-#endif
 
                     if (request.Form.TryGetValue(paramName, out var formValue))
                         return ParseToType(formValue, paramType);
@@ -362,7 +356,6 @@ namespace FastReport.Web.Infrastructure
                     parameters.Add(func);
                     return true;
                 }
-#if NETCOREAPP3_1_OR_GREATER    // not available in .Net Core 2
                 else if (attribute is FromRouteAttribute fromRoute)
                 {
                     string name = fromRoute.Name ?? parameterInfo.Name;
@@ -381,7 +374,6 @@ namespace FastReport.Web.Infrastructure
                     parameters.Add(func);
                     return true;
                 }
-#endif
                 else if (attribute is FromServicesAttribute)
                 {
                     parameters.Add((httpContext) =>

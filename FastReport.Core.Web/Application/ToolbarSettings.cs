@@ -45,17 +45,10 @@ namespace FastReport.Web
         public bool ShowRefreshButton { get; set; } = true;
         public bool ShowZoomButton { get; set; } = true;
 
-#if WASM
-        /// <summary>
-        /// Show Print menu. Not supported in Wasm at the moment
-        /// </summary>
-        public bool ShowPrint { get => false; set => throw new NotSupportedException("Not supported in Wasm at the moment"); }
-#else
         /// <summary>
         /// Show Print menu
         /// </summary>
         public bool ShowPrint { get; set; } = true;
-#endif
 
         public bool PrintInHtml { get; set; } = true;
         /// <summary>

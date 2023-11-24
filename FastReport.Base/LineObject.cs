@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using FastReport.Utils;
+using System.Linq;
 
 namespace FastReport
 {
@@ -22,6 +23,7 @@ namespace FastReport
         private bool diagonal;
         private CapSettings startCap;
         private CapSettings endCap;
+        private FloatCollection dashPattern;
         #endregion
 
         #region Properties
@@ -58,6 +60,20 @@ namespace FastReport
             get { return endCap; }
             set { endCap = value; }
         }
+
+        /// <summary>
+        /// Gets or sets collection of values for custom dash pattern.
+        /// </summary>
+        /// <remarks>
+        /// Each element should be a non-zero positive number. 
+        /// If the number is negative or zero, that number is replaced by one.
+        /// </remarks>
+        [Category("Appearance")]
+        public FloatCollection DashPattern
+        {
+            get { return dashPattern; }
+            set { dashPattern = value; }
+        }
         #endregion
 
         #region Public Methods
@@ -70,6 +86,7 @@ namespace FastReport
             Diagonal = src.Diagonal;
             StartCap.Assign(src.StartCap);
             EndCap.Assign(src.EndCap);
+            DashPattern.Assign(src.DashPattern);
         }
 
         /// <inheritdoc/>
@@ -92,6 +109,8 @@ namespace FastReport
             }
 
             Pen pen = e.Cache.GetPen(Border.Color, Border.Width * e.ScaleX, Border.DashStyle);
+
+            DrawUtils.SetPenDashPatternOrStyle(DashPattern, pen, Border);
 
             float width = Width;
             float height = Height;
@@ -195,6 +214,8 @@ namespace FastReport
                 writer.WriteBool("Diagonal", Diagonal);
             StartCap.Serialize("StartCap", writer, c.StartCap);
             EndCap.Serialize("EndCap", writer, c.EndCap);
+            if (DashPattern?.Count > 0)
+                writer.WriteValue("DashPattern", DashPattern);
         }
         #endregion
 
@@ -207,6 +228,7 @@ namespace FastReport
             endCap = new CapSettings();
             FlagSimpleBorder = true;
             FlagUseFill = false;
+            dashPattern = new FloatCollection();
         }
     }
 }

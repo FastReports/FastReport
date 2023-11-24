@@ -26,6 +26,7 @@ using FastReport.Export.Ppml;
 using FastReport.Export.PS;
 using FastReport.Export.Json;
 using FastReport.Export.Dxf;
+using FastReport.Export.Email;
 #endif
 
 namespace FastReport.Web
@@ -62,6 +63,8 @@ namespace FastReport.Web
                 new ExportInfo("ps", Exports.PS, typeof(PSExport), false),
                 new ExportInfo("json", Exports.Json, typeof(JsonExport), false),
                 new ExportInfo("dxf", Exports.Dxf, typeof(DxfExport), false),
+                new ExportInfo("email", Exports.Email, typeof(EmailExport), true),
+
 #endif
                 new ExportInfo("html", Exports.HTML, typeof(HTMLExport), true),
                 //new ExportInfo("png", Exports.Image, typeof(ImageExport), true),

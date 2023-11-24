@@ -76,7 +76,7 @@ namespace FastReport.Web
             csvTxt = "CSV file";
             dxfTxt = "DXF file";
             excel97Txt = "MS Office Excel 97-2003";
-            //emailTxt = "Email"; // Required modal window
+            emailTxt = "Email"; // Required modal window
             hpglTxt = "HPGL";
             htmlTxt = "HTML";
             svgTxt = "SVG";
@@ -156,7 +156,7 @@ namespace FastReport.Web
             xamlTxt = Res.Get("Xaml");
             zplTxt = Res.Get("Zpl");
             mhtTxt = Res.Get("Mht");
-            //emailTxt = Res.Get("Email"); // Required modal window
+            emailTxt = Res.Get("Email"); // Required modal window
             imageTxt = Res.Get("Image");
         }
 

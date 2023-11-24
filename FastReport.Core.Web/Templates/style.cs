@@ -834,6 +834,107 @@ input[type=date]::-webkit-calendar-picker-indicator {{
 .{template_FR}-outline-children {{
     padding-left: 20px;
 }}
+
+/*******************
+
+    EMAIL EXPORT
+
+*******************/
+.fr-notification {{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex; 
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.5s;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}}
+
+.fr-notification-content {{
+    display: flex; 
+    align-items: center;
+}}
+
+.fr-notification-content img {{
+    margin-right: 10px;
+}}
+
+.fr-notification.positive {{
+    background-color: #44cc44;
+}}
+
+.fr-required-star {{
+    color: red;
+}}
+
+
+.fr-notification.negative {{
+    background-color: #cc4444;
+}}
+
+
+.fr-email-export-form {{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}}
+
+.fr-email-export-field {{
+    display: flex;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+}}
+
+.fr-email-export-input{{
+    width: 244px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background: #FFF;
+    display: flex;
+    margin-left: 30px;
+    font-size: 12px;
+}}
+
+.fr-email-export-textarea{{
+    margin - left: 10px;
+    width: 244px;
+    height: 146px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    resize: none;
+    font-size: 12px;
+}}
+
+.fr-email-export-select{{
+    overflow: hidden;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    background: #ffffff url(/_fr/resources.getResource?resourceName=select-arrow.svg&contentType=image%2Fsvg%2Bxml) no-repeat;
+    background-position: calc(100% - 10px) center;
+    margin - left: 10px;
+    width: 244px;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+}}
+
+.fr-email-export-label{{
+    font-weight: normal;
+    font-size: 12px;
+}}
 ";
     }
 }

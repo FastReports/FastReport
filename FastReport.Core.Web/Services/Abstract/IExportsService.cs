@@ -25,5 +25,14 @@ namespace FastReport.Web.Services
         /// <param name="format">Export format. Like "pdf", "html", "image", etc.</param>
         /// <returns>Returns an HTML string with the export settings container of the selected format. If the format is not found, it returns an empty string.</returns>
         string GetExportSettings(WebReport webReport, string format);
+
+#if !OPENSOURCE
+        /// <summary>
+        /// Creates an email export, assigns parameters to it and sends the email
+        /// </summary>
+        /// <param name="webReport">WebReport to be sent</param>
+        /// <param name="emailExportParameters">Email export settings</param>
+        void ExportEmail(WebReport webReport, EmailExportParams emailExportParameters);
+#endif
     }
 }

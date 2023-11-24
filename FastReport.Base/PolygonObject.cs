@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using FastReport.Utils;
 
 namespace FastReport
@@ -53,6 +54,8 @@ namespace FastReport
                 brush = e.Cache.GetBrush((Fill as SolidFill).Color);
             else
                 brush = Fill.CreateBrush(new RectangleF(x, y, dx, dy), e.ScaleX, e.ScaleY);
+
+            DrawUtils.SetPenDashPatternOrStyle(DashPattern, pen, Border);
 
             using (GraphicsPath path = getPolygonPath(pen, e.ScaleX, e.ScaleY))
             {

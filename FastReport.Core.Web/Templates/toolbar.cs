@@ -48,7 +48,7 @@ namespace FastReport.Web
           + (exports.EnableSettings && exports.ShowSvgExport? $@"<button class=""fr-webreport-settings-btn"" data-path=""svg""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "")
           + (exports.ShowMhtExport ? $@"<a target=""_blank"" href=""{template_export_url("mht")}"">{localization.mhtTxt}</a>" : "")
           + (exports.ShowExcel97Export ? $@"<a target=""_blank"" href=""{ template_export_url("xls")}"">{localization.excel97Txt}</a>" : "")
-          //(exports.ShowEmailExport ? $@"<a target=""_blank"" href=""{ template_export_url("email")}"">{emailTxt}</a>" : "") +
+          + (exports.ShowEmailExport ? $@"<a id=""EmailExport"" target=""_blank"" onclick=""{template_FR}.showEmailExportModal();"">{localization.emailTxt}</a>" : "")
           + (exports.ShowHpglExport ? $@"<a target=""_blank"" href=""{ template_export_url("hpgl")}"">{localization.hpglTxt}</a>" : "")
           + (exports.ShowHTMLExport ? $@"<a id=""HtmlExport"" target=""_blank"" href=""{template_export_url("html")}"">{localization.htmlTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowHTMLExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""html""><img style=""height:20px;"" src=""{template_resource_url("settings.svg", "image/svg+xml")}""/></button>" : "")

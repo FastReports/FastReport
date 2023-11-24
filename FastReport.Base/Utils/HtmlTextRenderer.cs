@@ -437,9 +437,10 @@ namespace FastReport.Utils
         {
             // set clipping
             IGraphicsState state = graphics.Save();
-            //RectangleF rect = new RectangleF(FDisplayRect.Location, SizeF.Add(FDisplayRect.Size, new SizeF(width_dotnet, 0)));
-            //FGraphics.SetClip(rect, CombineMode.Intersect);
-            graphics.SetClip(displayRect, CombineMode.Intersect);
+            RectangleF dRect = displayRect;
+            // round x and y to an integer to avoid clipping the characters of the first line
+            dRect.Inflate(displayRect.Left % 1, displayRect.Top % 1);
+            graphics.SetClip(dRect, CombineMode.Intersect);
             // reset alignment
             //StringAlignment saveAlign = FFormat.Alignment;
             //StringAlignment saveLineAlign = FFormat.LineAlignment;

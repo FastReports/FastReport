@@ -11,7 +11,7 @@ namespace FastReport.Utils
         private string path;
         private XmlItem root;
 
-        private XmlItem Root
+        internal XmlItem Root
         {
             get
             {
