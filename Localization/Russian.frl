@@ -134,7 +134,6 @@
     <DialogPage Text="Диалог"/>
     <XmlDataConnection Text="База данных XML"/>
     <CsvDataConnection Text="База данных CSV"/>
-    <GoogleSheetsDataConnection Text="База данных Google Sheets"/>
     <OleDbDataConnection Text="Подключение к OLE DB"/>
     <MsAccessDataConnection Text="Подключение к MS Access"/>
     <MsSqlDataConnection Text="Подключение к MS SQL"/>
@@ -1942,6 +1941,7 @@
       <UseCompactMenu Text="Компактная строка меню"/>
       <Restart Text="* Требуется перезапуск"/>
       <Reset Text="Сброс настроек"/>
+      <Shortcut Text="Сочетания клавиш"/>
     </UIOptions>
     <WatermarkEditor Text="Водяной знак">
       <Enabled Text="Включить"/>
@@ -2157,19 +2157,36 @@
         <RowSpan Text="Объединение строк (0 - авто):"/>
       </Other>
     </AdvMatrixHeaderEditor>
-    <SignInGoogle>
-      <Caption Text="Вход в Google API"/>
-      <SignInGoogleApi Text="Вход в Google API через OAuth 2.0"/>
-      <SignInApiKey Text="Вход в Google API через API key"/>
-      <ClientId Text="Идентификатор клиента"/>
-      <ClientSecret Text="Секрет клиента"/>
-      <PathToFile Text="Путь к .json файлу"/>
-      <ApiKey Text="API ключ"/>
-      <CheckPathToJson Text="Подключение с помощью .json-файла"/>
-      <SignIn Text="Вход"/>
-      <OnConnection Text="Подключение выполнено успешно"/>
-      <OffConnection Text="Подключение провалено"/>
-    </SignInGoogle>
+    <ShortcutsList Text="Список сочетаний клавиш">
+      <Cut Text="Вырезать"/>
+      <Copy Text="Копировать"/>
+      <Redo Text="Повторить"/>
+      <Undo Text="Отменить"/>
+      <Paste Text="Вставить"/>
+      <NewPage Text="Создать новую страницу"/>
+      <Find Text="Найти"/>
+      <Replace Text="Заменить"/>
+      <Contents Text="Показать содержимое справки"/>
+      <Open Text="Открыть"/>
+      <Save Text="Сохранить"/>
+      <SaveAs Text="Сохранить как"/>
+      <SaveAll Text="Сохранить все"/>
+      <Preview Text="Предварительный просмотр"/>
+      <Bold Text="Установить жирный стиль"/>
+      <Italic Text="Установить курсивный стиль"/>
+      <Underline Text="Установить стиль подчеркивания"/>
+      <File Text="Работа с файлами"/>
+      <Editing Text="Редактирование"/>
+      <Help Text="Помощь"/>
+      <Default Text="По умолчанию"/>
+      <Command Text="Команда"/>
+      <Info Text="Для изменения сочетания клавиш необходимо два раза кликнуть на нужный, либо выбрать и нажать Enter."/>
+      <Shortcut Text="Сочетание клавиш"/>
+    </ShortcutsList>
+    <ShortcutEditor Text="Редактор сочетаний клавиш">
+      <NeedInputShortcut Text="Установите сочетание клавиш:"/>
+      <UnsupportedShortcut Text="Неподдерживаемое сочетание клавиш"/>
+    </ShortcutEditor>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -2268,17 +2285,6 @@
       <ServerPort Text="Порт:"/>
       <Database Text="База данных"/>
     </Clickhouse>
-    <GoogleSheets>
-      <ConfigureDatabase Text="Настройка базы данных"/>
-      <SelectSheetsId Text="Вставьте идентификатор таблицы или URL адрес: "/>
-      <TableName Text="Напишите имя таблицы (необязательно): "/>
-      <StartColumnIndex Text="Начальный индекс таблицы"/>
-      <EndColumnIndex Text="Конечный индекс таблицы"/>
-      <FieldNames Text="Имена полей в первой строке"/>
-      <AllTable Text="Выбрать всю таблицу"/>
-      <SignIn Text="Вход"/>
-      <FailedToLogin Text="Вход в аккаунт не выполнен"/>
-    </GoogleSheets>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2339,17 +2345,22 @@
       <RepeatHeaders Text="Повторять заголовки на новой странице"/>
     </TableObject>
     <TableRow>
-      <InsertAbove Text="Вставить строку выше"/>
-      <InsertBelow Text="Вставить строку ниже"/>
+      <InsertAbove Text="Вставить строку сверху"/>
+      <InsertBelow Text="Вставить строку снизу"/>
       <AutoSize Text="Авторазмер"/>
     </TableRow>
     <TableColumn>
-      <InsertToLeft Text="Вставить колонку левее"/>
-      <InsertToRight Text="Вставить колонку правее"/>
+      <InsertToLeft Text="Вставить столбец слева"/>
+      <InsertToRight Text="Вставить столбец справа"/>
     </TableColumn>
     <TableCell>
       <Merge Text="Объединить ячейки"/>
       <Split Text="Разбить ячейку"/>
+      <RemoveRow Text="Удалить всю строку"/>
+      <RemoveColumn Text="Удалить весь столбец"/>
+      <Insert Text="Вставить"/>
+      <Remove Text="Удалить"/>
+      <Styles Text="Стили"/>
     </TableCell>
     <MatrixObject>
       <CellsSideBySide Text="Ячейки одной строкой"/>

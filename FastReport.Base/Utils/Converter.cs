@@ -12,10 +12,8 @@ namespace FastReport.Utils
   /// <summary>
   /// Contains methods that peform string to object and vice versa conversions.
   /// </summary>
-  public static class Converter
+  public static partial class Converter
   {
-
-        
     /// <summary>
     /// Converts an object to a string.
     /// </summary>

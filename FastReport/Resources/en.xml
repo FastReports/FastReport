@@ -134,7 +134,6 @@
     <DialogPage Text="Form"/>
     <XmlDataConnection Text="XML database"/>
     <CsvDataConnection Text="CSV database"/>
-    <GoogleSheetsDataConnection Text="Google Sheets database"/>
     <OleDbDataConnection Text="OLE DB connection"/>
     <MsAccessDataConnection Text="MS Access connection"/>
     <MsSqlDataConnection Text="MS SQL connection"/>
@@ -2127,6 +2126,7 @@
       <UseCompactMenu Text="Use compact menu"/>
       <Restart Text="* Restart required"/>
       <Reset Text="Reset config"/>
+      <Shortcut Text="Keyboard shortcuts"/>
     </UIOptions>
     <WatermarkEditor Text="Watermark">
       <Enabled Text="Enabled"/>
@@ -2358,19 +2358,36 @@
         <RowSpan Text="Row span (0 for auto):"/>
       </Other>
     </AdvMatrixHeaderEditor>
-    <SignInGoogle>
-      <Caption Text="Sign in Google API"/>
-      <SignInGoogleApi Text="Sign in Google API with OAuth 2.0"/>
-      <SignInApiKey Text="Sign in Google API with API key"/>
-      <ClientId Text="Client id"/>
-      <ClientSecret Text="Client secret"/>
-      <PathToFile Text="Path to .json file"/>
-      <ApiKey Text="API key"/>
-      <CheckPathToJson Text="Check .json file"/>
-      <SignIn Text="Sign in"/>
-      <OnConnection Text="Connection successful"/>
-      <OffConnection Text="Connection failed"/>
-    </SignInGoogle>
+    <ShortcutsList Text="List of keyboard shortcuts">
+      <Cut Text="Cut"/>
+      <Copy Text="Copy"/>
+      <Redo Text="Redo"/>
+      <Undo Text="Undo"/>
+      <Paste Text="Paste"/>
+      <NewPage Text="Create new page"/>
+      <Find Text="Find"/>
+      <Replace Text="Replace"/>
+      <Contents Text="Show help contents"/>
+      <Open Text="Open"/>
+      <Save Text="Save"/>
+      <SaveAs Text="Save as"/>
+      <SaveAll Text="Save all"/>
+      <Preview Text="Preview"/>
+      <Bold Text="Set bold style "/>
+      <Italic Text="Set italic style"/>
+      <Underline Text="Set underline style"/>
+      <File Text="Working with files"/>
+      <Editing Text="Editing"/>
+      <Help Text="Help"/>
+      <Default Text="Default"/>
+      <Info Text="To change the keyboard shortcut, you need to double-click on the desired one, or select and press Enter."/>
+      <Command Text="Command"/>
+      <Shortcut Text="Keyboard shortcut"/>
+    </ShortcutsList>
+    <ShortcutEditor Text="Keyboard shortcut editor">
+      <NeedInputShortcut Text="Set the keyboard shortcut:"/>
+      <UnsupportedShortcut Text="Unsupported keyboard shortcut"/>
+    </ShortcutEditor>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -2469,17 +2486,6 @@
       <ServerPort Text="Server port:"/>
       <Database Text="Database"/>
     </Clickhouse>
-    <GoogleSheets>
-      <ConfigureDatabase Text="Select database file"/>
-      <SelectSheetsId Text="Select sheetsId or URL adress: "/>
-      <TableName Text="Write table name: "/>
-      <StartColumnIndex Text="Start column index"/>
-      <EndColumnIndex Text="End column index"/>
-      <FieldNames Text="Field names in first string"/>
-      <AllTable Text="Entire table"/>
-      <SignIn Text="Sign in"/>
-      <FailedToLogin Text="Account login failed"/>
-    </GoogleSheets>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2540,17 +2546,22 @@
       <RepeatHeaders Text="Repeat Headers"/>
     </TableObject>
     <TableRow>
-      <InsertAbove Text="Insert Row Above"/>
-      <InsertBelow Text="Insert Row Below"/>
+      <InsertAbove Text="Insert row above"/>
+      <InsertBelow Text="Insert row below"/>
       <AutoSize Text="Auto Size"/>
     </TableRow>
     <TableColumn>
-      <InsertToLeft Text="Insert Column to Left"/>
-      <InsertToRight Text="Insert Column to Right"/>
+      <InsertToLeft Text="Insert column on the left"/>
+      <InsertToRight Text="Insert column on the right"/>
     </TableColumn>
     <TableCell>
       <Merge Text="Merge Cells"/>
       <Split Text="Split Cell"/>
+      <RemoveRow Text="Remove the entire line"/>
+      <RemoveColumn Text="Remove the entire column"/>
+      <Insert Text="Insert"/>
+      <Remove Text="Remove"/>
+      <Styles Text="Style"/>
     </TableCell>
     <MatrixObject>
       <CellsSideBySide Text="Cells Side by Side"/>

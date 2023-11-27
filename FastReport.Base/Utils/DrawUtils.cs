@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Linq;
 
 namespace FastReport.Utils
 {
@@ -236,6 +237,37 @@ namespace FastReport.Utils
                 printerGraphics.PageUnit = savedUnit;
             }
             return FMonoRendering;
+        }
+
+
+        /// <summary>
+        /// The method adjusts the dotted line style for the <see cref="Pen"/> in a graphical context.
+        /// </summary>
+        /// <param name="dashPattern">Collection of values for custom dash pattern.</param>
+        /// <param name="pen">Pen for lines.</param>
+        /// <param name="border">Border around the report object.</param>
+        /// <remarks>
+        /// If a <c>DashPattern</c> pattern is specified and contains elements, the method checks each element.
+        /// If the element is less than or equal to 0, it is replaced by 1.<br/>
+        /// Then the resulting array of patterns is converted to the <see cref="float"/> type and set as a dotted line pattern for the <see cref="Pen"/>.<br/>
+        /// If the pattern is empty or not specified,
+        /// the method sets the style of the dotted line of the <see cref="Pen"/> equal to the style of the dotted line of the <see cref="Border"/> object.
+        ///</remarks>
+        internal static void SetPenDashPatternOrStyle(FloatCollection dashPattern, Pen pen, Border border)
+        {
+            if (dashPattern?.Count > 0)
+            {
+                for (int i = 0; i < dashPattern.Count; i++)
+                {
+                    if (dashPattern[i] <= 0)
+                        dashPattern[i] = 1;
+                }
+                pen.DashPattern = dashPattern.Cast<float>().ToArray();
+            }
+            else
+            {
+                pen.DashStyle = border.DashStyle;
+            }
         }
     }
 }

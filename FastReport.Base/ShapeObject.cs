@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using FastReport.Utils;
+using System.Linq;
 
 namespace FastReport
 {
@@ -49,9 +50,24 @@ namespace FastReport
         #region Fields
         private ShapeKind shape;
         private float curve;
+        private FloatCollection dashPattern;
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Gets or sets collection of values for custom dash pattern.
+        /// </summary>
+        /// <remarks>
+        /// Each element should be a non-zero positive number. 
+        /// If the number is negative or zero, that number is replaced by one.
+        /// </remarks>
+        [Category("Appearance")]
+        public FloatCollection DashPattern
+        {
+            get { return dashPattern; }
+            set { dashPattern = value; }
+        }
+
         /// <summary>
         /// Gets or sets a shape kind.
         /// </summary>
@@ -103,6 +119,7 @@ namespace FastReport
             ShapeObject src = source as ShapeObject;
             Shape = src.Shape;
             Curve = src.Curve;
+            DashPattern.Assign(src.DashPattern);
         }
 
         /// <inheritdoc/>
@@ -120,6 +137,9 @@ namespace FastReport
             float y1 = y + dy;
 
             Pen pen = e.Cache.GetPen(Border.Color, Border.Width * e.ScaleX, Border.DashStyle);
+
+            DrawUtils.SetPenDashPatternOrStyle(DashPattern, pen, Border);
+
             Brush brush = null;
             if (Fill is SolidFill)
                 brush = e.Cache.GetBrush((Fill as SolidFill).Color);
@@ -188,6 +208,8 @@ namespace FastReport
                 writer.WriteValue("Shape", Shape);
             if (Curve != c.Curve)
                 writer.WriteFloat("Curve", Curve);
+            if (DashPattern?.Count > 0)
+                writer.WriteValue("DashPattern", DashPattern);
         }
         #endregion
 
@@ -198,6 +220,7 @@ namespace FastReport
         {
             shape = ShapeKind.Rectangle;
             FlagSimpleBorder = true;
+            dashPattern = new FloatCollection();
         }
     }
 }

@@ -222,6 +222,56 @@ var {template_FR} = {{
         }});
     }},
     
+    showEmailExportModal: function() {{
+        var modalcontainer = this._findModalContainer();
+        const emailExportLink = document.getElementById('emailexport');
+        const buttons = document.querySelectorAll('.fr-webreport-settings-btn');
+        const Overlay = document.querySelector('.modalcontainer-overlay');
+        var that = this;
+
+        this._fetch({{
+            method: 'POST',
+            url: '{template_ROUTE_BASE_PATH}/exportsettings.getSettings?reportId={ID}&format=email',
+            onSuccess: function (xhr) {{
+                modalcontainer.innerHTML = xhr.responseText;
+                that._execModalScripts();
+                document.querySelector(`[data-target=email]`).classList.add('modalcontainer--visible');
+                Overlay.classList.add('modalcontainer-overlay--visible');
+            }},
+        }})
+    }},
+
+showPopup: function (message, isSuccess) {{
+    var popup = document.createElement(""div"");
+    popup.className = ""fr-notification"";
+    if (isSuccess) {{
+        popup.classList.add(""positive"");
+    }} else {{
+        popup.classList.add(""negative"");
+    }}
+
+    var content = document.createElement(""div"");
+    content.className = ""fr-notification-content"";
+
+    var image = document.createElement(""img"");
+    image.src = ""/_fr/resources.getResource?resourceName=notification-bell.svg&contentType=image%2Fsvg%2Bxml"";
+
+    var text = document.createElement(""div"");
+    text.innerText = message;
+
+    content.appendChild(image);
+    content.appendChild(text);
+    popup.appendChild(content);
+    document.body.appendChild(popup);
+
+    setTimeout(function () {{
+        popup.style.opacity = ""0"";
+        setTimeout(function () {{
+            popup.remove();
+        }}, 500);
+    }}, 2000);
+}},
+
     getExportSettings: function () {{
         this._getExportSettings();
     }},
@@ -246,11 +296,11 @@ var {template_FR} = {{
                 document.querySelector(`[data-target=${{fileformat}}]`).classList.add('modalcontainer--visible'); 
                 Overlay.classList.add('modalcontainer-overlay--visible');
             }},
-
         }});
        }})
       }});
     }},
+
     _execScripts: function () {{
         var container = this._findContainer();
         var scripts = container.getElementsByTagName('script');
