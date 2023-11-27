@@ -217,6 +217,10 @@ namespace FastReport.Table
         }
         #endregion
 
+        #region Private Methods
+        partial void InitTag();
+        #endregion
+
         #region Public Methods
         /// <inheritdoc/>
         public override void Assign(Base source)
@@ -487,6 +491,7 @@ namespace FastReport.Table
         {
             manualBuildEvent = "";
             manualBuildAutoSpans = true;
+            InitTag();
         }
     }
 }

@@ -230,17 +230,24 @@ namespace FastReport.Web
             get => GetExport(Exports.Hpgl);
             set => SetExport(value, Exports.Hpgl);
         }
-        //public bool ShowEmailExport
-        //{
-        //    get => (ExportTypes & Exports.Email) > 0;
-        //    set
-        //    {
-        //        if (value)
-        //            ExportTypes |= Exports.Email;
-        //        else
-        //            ExportTypes &= ~Exports.Email;
-        //    }
-        //}
+
+#if !WASM
+        /// <summary>
+        /// Switches visibility the Email export in toolbar.
+        /// </summary>
+        public bool ShowEmailExport
+        {
+            get => GetExport(Exports.Email);
+            set
+            {
+                if (Infrastructure.FastReportGlobal.InternalEmailExportOptions is null)
+                    throw new Exception("Please add your account information when registering for services. Use services.AddFastReport(options => options.EmailExportOptions = new EmailExportOptions() {...} )");
+
+                SetExport(value, Exports.Email);
+            }
+        }
+#endif
+
         /// <summary>
         /// Switches visibility the DXF export in toolbar.
         /// </summary>
@@ -359,7 +366,7 @@ namespace FastReport.Web
         Mht = 8192,
         HTML = 16384,
         Hpgl = 32768,
-        //Email = 65536,
+        Email = 65536,
         Dxf = 131_072,
         Json = 262_144,
         LaTeX = 524_288,

@@ -32,7 +32,9 @@ namespace FastReport.TypeConverters
                 string[] values = (value as string).Split(',');
                 foreach (string s in values)
                 {
-                    result.Add((float)Converter.FromString(typeof(float), s));
+                    float f;
+                    if (float.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out f))
+                        result.Add(f);
                 }
                 return result;
             }

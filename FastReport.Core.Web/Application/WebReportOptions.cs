@@ -11,10 +11,13 @@ namespace FastReport.Web
 {
     public sealed class WebReportOptions
     {
-
 #if !WASM
         public CacheOptions CacheOptions { get; set; } = new CacheOptions();
 
+        /// <summary>
+        /// SMTP server settings for sending the report by e-mail
+        /// </summary>
+        public EmailExportOptions EmailExportOptions { get; set; } = null;
 #else
         /// <summary>
         /// Used to access .NET libraries to compile the report script

@@ -40,11 +40,7 @@ namespace Microsoft.AspNetCore.Builder
             WebReportCache.Instance = serviceProvider.GetService<IWebReportCache>();
 
             // TODO: find better way to share global objects
-#if BLAZOR
             FastReportGlobal.HostingEnvironment = serviceProvider.GetService<IWebHostEnvironment>();
-#else
-            FastReportGlobal.HostingEnvironment = serviceProvider.GetService<IHostingEnvironment>();
-#endif
             WebReport.ResourceLoader = serviceProvider.GetService<IResourceLoader>();
 
             return options;

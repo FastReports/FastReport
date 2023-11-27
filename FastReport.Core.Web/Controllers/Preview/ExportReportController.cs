@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FastReport.Web.Controllers
 {
@@ -56,6 +59,40 @@ namespace FastReport.Web.Controllers
                 fileDownloadName: $"{filename}.{exportFormat}");
         }
 
+#if !OPENSOURCE
+        [HttpPost("/preview.sendEmail")]
+        public static async Task<IResult> SendEmail([FromQuery] string reportId,
+            IReportService reportService,
+            IExportsService exportsService,
+            HttpRequest request)
+        {
+            if (!reportService.TryFindWebReport(reportId, out var webReport))
+                return Results.NotFound();
+
+            try
+            {
+                var form = await request.ReadFormAsync();
+
+                var emailExportParams = new EmailExportParams
+                {
+                    Address = form["Address"],
+                    Subject = form["Subject"],
+                    MessageBody = form["MessageBody"],
+                    ExportFormat = form["ExportFormat"],
+                    NameAttachmentFile = form["NameAttachmentFile"]
+                };
+
+                exportsService.ExportEmail(webReport, emailExportParams);
+            }
+            catch (Exception e)
+            {
+                return Results.BadRequest(e.Message);
+            }
+
+            return Results.Ok();
+        }
+
+#endif
 
         internal sealed class ExportSettingsParams
         {

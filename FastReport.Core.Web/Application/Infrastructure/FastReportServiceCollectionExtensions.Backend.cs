@@ -52,6 +52,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 }
             }
 
+            FastReportGlobal.InternalEmailExportOptions = options.EmailExportOptions;
+
             services.TryAddSingleton<IResourceLoader, InternalResourceLoader>();
             services.TryAddSingleton<IDesignerUtilsService, DesignerUtilsService>();
             services.TryAddSingleton<IReportService, ReportService>();
