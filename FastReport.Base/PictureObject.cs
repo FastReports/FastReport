@@ -434,7 +434,11 @@ namespace FastReport
             {
                 g.Restore(state);
                 g.ResetClip();
+#if !SKIA
                 path.Dispose();
+#else
+                path = null;
+#endif    
             }
 
             if (IsPrinting)
