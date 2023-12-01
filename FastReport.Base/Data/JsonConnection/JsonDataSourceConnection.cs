@@ -220,6 +220,7 @@ namespace FastReport.Data.JsonConnection
                     ServicePointManager.Expect100Continue = true;
                     ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                     var req = WebRequest.Create(jsonText);
+                    req.Timeout = CommandTimeout * 1000;
 
                     foreach (var header in builder.Headers)
                     {

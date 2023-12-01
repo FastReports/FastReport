@@ -195,6 +195,9 @@ namespace FastReport.Export.Html
             if (top != 0)
                 style.Append("margin-top:").Append(Px((top - obj.Padding.Top) * Zoom));
 
+            if (obj is TextObject textObject && !textObject.WordWrap)
+                style.Append("overflow: hidden; text-wrap: nowrap;");
+
                 // we need to apply border width in order to position our div perfectly
             float borderLeft;
             float borderRight;
