@@ -1,6 +1,8 @@
 ﻿using FastReport.Utils;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -704,7 +706,7 @@ namespace FastReport.Barcode.QRCode
         private Iban iban;
         private string amount;
         private Contact creditor, ultimateCreditor, debitor;
-        private Currency currency;
+        private string currency;
         private Reference reference;
         private AdditionalInformation additionalInformation;
         private MyRes res;
@@ -713,7 +715,7 @@ namespace FastReport.Barcode.QRCode
         public Contact Creditor { get { return creditor; } set { creditor = value; } }
         public Contact Debitor { get { return debitor; } set { debitor = value; } }
         public string Amount { get { return amount; } }
-        public Currency _Currency { get { return currency; } set { currency = value; } }
+        public string _Currency { get { return currency; } set { currency = value; } }
         public Reference _Reference { get { return reference; } set { reference = value; } }
         public AdditionalInformation _AdditionalInformation { get { return additionalInformation; } set { additionalInformation = value; } }
         public string AlternativeProcedure1 { get { return alternativeProcedure1; } set { alternativeProcedure1 = value; } }
@@ -743,11 +745,53 @@ namespace FastReport.Barcode.QRCode
 
             if (!String.IsNullOrEmpty(parameters.Amount))
                 if (!parameters.Amount.StartsWith("[") || !parameters.Amount.EndsWith("]"))
-                    if (parameters.Amount.Length > 12)
-                        throw new SwissQrCodeException(res.Get("SwissAmountLength"));
+                {
+                    //Amount has to use . as decimal separator in any case. See https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf page 27.
+                    decimal.TryParse(parameters.Amount, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal decAmount);
+                    decimal roundedAmount = decimal.Round(decAmount, 2, MidpointRounding.AwayFromZero);
+
+                    // if the parameters.Amount contains "0", or "0.", or ".0"
+                    if (Regex.IsMatch(parameters.Amount, @"^0(\.0+)?$"))
+                    {
+                        roundedAmount = 0m;
+                    }
+                    else
+                    {
+                        // If the rounded number is less than or equal to 0, then set it to the minimum allowed value
+                        if (roundedAmount <= 0)
+                        {
+                            roundedAmount = 0.01m;
+                        }
+
+                        // If the rounded number is greater than 999999999.99, then set it to the maximum allowed value
+                        if (roundedAmount > 999999999.99m)
+                        {
+                            roundedAmount = 999999999.99m;
+                        }
+                    }
+
+                    parameters.Amount = roundedAmount.ToString("0.00", CultureInfo.InvariantCulture);
+
+                    // in theory, this check is no longer needed
+                    // if (parameters.Amount.Length > 12)
+                    //    throw new SwissQrCodeException(res.Get("SwissAmountLength"));
+                }
             this.amount = parameters.Amount;
 
-            this.currency = parameters.Currency.Value;
+            switch (parameters.Currency)
+            {
+                case nameof(Currency.EUR):
+                    parameters.Currency = Currency.EUR.ToString();
+                    break;
+                case nameof(Currency.CHF):
+                    parameters.Currency = Currency.CHF.ToString();
+                    break;
+                default:
+                    if (!parameters.Currency.StartsWith("[") || !parameters.Currency.EndsWith("]"))
+                        parameters.Currency = Currency.EUR.ToString();
+                    break;
+            }
+            this.currency = parameters.Currency;
             this.debitor = parameters.Debitor;
 
             if (iban.IsQrIban && parameters.Reference.RefType != Reference.ReferenceType.QRR)
@@ -799,17 +843,30 @@ namespace FastReport.Barcode.QRCode
             }
             counter += 7;
             if (!datas[counter].StartsWith("[") || !datas[counter].EndsWith("]"))
-                amount = datas[counter] == String.Empty ? amount = null : Decimal.Parse(datas[counter].Replace('.', ',')).ToString();
+            {
+                //Amount has to use . as decimal separator in any case. See https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf page 27.
+                string invariantSeparator = CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator;
+                string clearQRSwissAmount = datas[counter].Replace(",", invariantSeparator).Replace("/", invariantSeparator);
+
+                decimal.TryParse(clearQRSwissAmount, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal decAmount);
+                amount = datas[counter] == String.Empty ? amount = null : decAmount.ToString(CultureInfo.InvariantCulture);
+            }
             else amount = datas[counter] == String.Empty ? amount = null : datas[counter];
             counter++;
 
             switch (datas[counter])
             {
-                case "EUR":
-                    this.currency = Currency.EUR;
+                case nameof(Currency.EUR):
+                    this.currency = Currency.EUR.ToString();
                     break;
-                case "CHF":
-                    this.currency = Currency.CHF;
+                case nameof(Currency.CHF):
+                    this.currency = Currency.CHF.ToString();
+                    break;
+                default:
+                    if (datas[counter].StartsWith("[") && datas[counter].EndsWith("]"))
+                        currency = datas[counter];
+                    else 
+                        currency = Currency.EUR.ToString();
                     break;
             }
             counter++;
@@ -837,10 +894,20 @@ namespace FastReport.Barcode.QRCode
                 iban.TypeIban = Iban.IbanType.Iban;
             if (!String.IsNullOrEmpty(reference.ReferenceText))
             {
-                if (reference.ChecksumMod10(reference.ReferenceText))
-                    reference._ReferenceTextType = Reference.ReferenceTextType.QrReference;
-                else if (Regex.IsMatch(reference.ReferenceText, "^[a-zA-Z0-9 ]+$")) 
-                    reference._ReferenceTextType = Reference.ReferenceTextType.CreditorReferenceIso11649;
+                if (reference.ReferenceText.StartsWith("[") && reference.ReferenceText.EndsWith("]"))
+                {
+                    if (reference.RefType == Reference.ReferenceType.QRR)
+                        reference._ReferenceTextType = Reference.ReferenceTextType.QrReference;
+                    else
+                        reference._ReferenceTextType = Reference.ReferenceTextType.CreditorReferenceIso11649;
+                }
+                else
+                {
+                    if (reference.ChecksumMod10(reference.ReferenceText))
+                        reference._ReferenceTextType = Reference.ReferenceTextType.QrReference;
+                    else if (Regex.IsMatch(reference.ReferenceText, "^[a-zA-Z0-9 ]+$"))
+                        reference._ReferenceTextType = Reference.ReferenceTextType.CreditorReferenceIso11649;
+                }
             }
 
             if (!iban._Iban.StartsWith("[") || !iban._Iban.EndsWith("]"))
@@ -892,18 +959,8 @@ namespace FastReport.Barcode.QRCode
 
 
             //CcyAmtDate "logical" element
-            //Amoutn has to use . as decimal seperator in any case. See https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf page 27.
-            //SwissQrCodePayload += (amount != null ? amount.ToString().Replace(",", ".") : string.Empty) + br; //Amt
             if (amount != null)
-            {
-                string strAmount = amount;
-                if (!strAmount.StartsWith("[") || !strAmount.EndsWith("]"))
-                    if (!strAmount.Contains("."))
-                        strAmount = amount.ToString().Replace(",", ".");
-                    else
-                        strAmount += ".00";
-                SwissQrCodePayload += strAmount;
-            }
+                SwissQrCodePayload += amount;
             else
                 SwissQrCodePayload += string.Empty;
             SwissQrCodePayload += br;
@@ -922,7 +979,17 @@ namespace FastReport.Barcode.QRCode
 
             //RmtInf "logical" element
             SwissQrCodePayload += reference.RefType.ToString() + br; //Tp
-            SwissQrCodePayload += (!string.IsNullOrEmpty(reference.ReferenceText) ? reference.ReferenceText : string.Empty) + br; //Ref
+            if (!string.IsNullOrEmpty(reference.ReferenceText))
+            {
+                if (reference.ReferenceText.StartsWith("[") && reference.ReferenceText.EndsWith("]"))
+                    SwissQrCodePayload += reference.ReferenceText + br;
+                else
+                    SwissQrCodePayload += new string(reference.ReferenceText.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpper() + br; //Ref
+            }
+            else
+            {
+                SwissQrCodePayload += string.Empty + br; //Ref
+            }
 
 
             //AddInf "logical" element

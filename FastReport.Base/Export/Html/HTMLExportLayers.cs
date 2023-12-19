@@ -489,7 +489,7 @@ namespace FastReport.Export.Html
 
                             if (needClear)
                             {
-                                g.Clear(Color.Transparent);
+                                g.Clear(imageFormat == ImageFormat.Bmp ? Color.White : Color.Transparent);
                                 g.TextRenderingHint = TextRenderingHint.AntiAlias;
                             }
 

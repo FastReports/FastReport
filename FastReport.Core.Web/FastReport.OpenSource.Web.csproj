@@ -19,7 +19,7 @@
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
   
-  <Import Project="FastReport.Web.Shared.props"/>
+  <Import Project="FastReport.Web.Shared.props" />
 
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>../FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
@@ -47,7 +47,7 @@
   <Import Project="..\UsedPackages.version" />
   <ItemGroup>
     <!--For buildScript only (it can't implicitly restore System.Drawing.Common)-->
-    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)" PrivateAssets="All"/>
+    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)" PrivateAssets="All" />
   </ItemGroup>
 
   <!--Source Link-->

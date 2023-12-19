@@ -91,14 +91,15 @@
       <SwissNonQRIban Text="If non QR-IBAN is used, you have to choose either SCOR or NON as reference type!"/>
       <SwissAltProcedureLength Text="Alternative procedure information block 1 must be shorter than 101 chars"/>
       <SwissUnstructBillLength Text="Unstructured message and bill information must be shorter than 141 chars in total/combined."/>
-      <SwissRefTypeNon Text="Reference is only allowed when referenceType not equals NON"/>
+      <SwissRefTypeNon Text="Reference is only allowed when Type not equals NON"/>
+      <SwissRefTypeNotNon Text="Reference cannot be empty if the Type is QRR or SCOR"/>
       <SwissRefTextTypeNon Text="You have to set an ReferenceTextType when using the reference text"/>
       <SwissRefQRLength Text="QR-references have to be shorter than 28 chars"/>
       <SwissRefQRNotOnlyDigits Text="QR-reference must exist out of digits only"/>
       <SwissRefQRCheckSum Text="QR-references is invalid. Checksum error"/>
       <SwissRefISOLength Text="Creditor references (ISO 11649) have to be shorter than 26 chars"/>
       <SwissEmptyProperty Text="{0} must not be empty"/>
-      <SwissLengthMore Text="{0}} must be shorter than {0} chars"/>
+      <SwissLengthMore Text="{0} must be shorter than {1} chars"/>
       <SwissPatternError Text="{0} must match the following pattern:"/>
       <SwissAddressLine2Error Text="Address line 2 must be provided for combined addresses (address line-based addresses)."/>
       <SwissCountryTwoLetters Text="Country must be a valid two letter country code as defined by ISO 3166-1, but it isn't."/>
@@ -110,6 +111,8 @@
       <SwissPropHouseNumber Text="House Nr"/>
       <SwissPropZipCode Text="Zip Code"/>
       <SwissPropCity Text="City"/>
+      <SwissPropUnstructuredMessage Text="Message"/>
+      <SwissPropBillInformation Text="Bill information"/>
     </Swiss>
   </Messages>
   <Misc>

@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource.Plugi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource.Data.Odbc", "Extras\Core\FastReport.Data\FastReport.Data.Odbc\FastReport.OpenSource.Data.Odbc.csproj", "{7C97A904-620B-49A5-9000-41452DA11BB3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Compat", "FastReport.Compat\src\FastReport.Compat\FastReport.Compat.csproj", "{00AF18F4-89D0-434A-82C2-C8A8A43F008C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Academic|Any CPU = Academic|Any CPU
@@ -210,6 +212,12 @@ Global
 		{7C97A904-620B-49A5-9000-41452DA11BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C97A904-620B-49A5-9000-41452DA11BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C97A904-620B-49A5-9000-41452DA11BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AF18F4-89D0-434A-82C2-C8A8A43F008C}.Academic|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AF18F4-89D0-434A-82C2-C8A8A43F008C}.Academic|Any CPU.Build.0 = Debug|Any CPU
+		{00AF18F4-89D0-434A-82C2-C8A8A43F008C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AF18F4-89D0-434A-82C2-C8A8A43F008C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AF18F4-89D0-434A-82C2-C8A8A43F008C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AF18F4-89D0-434A-82C2-C8A8A43F008C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;$(CustomTargetFrameworks)</TargetFrameworks>
+    <DefineConstants>$(DefineConstants);NETCOREWIN</DefineConstants>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>FastReport.Compat</AssemblyName>
+    <PackageId>$(AssemblyName)</PackageId>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(VisualStudioVersion)' >= '16'">
+    <TargetFrameworks>$(TargetFrameworks);netcoreapp3.0;net5.0-windows7.0;</TargetFrameworks>
+  </PropertyGroup>
+
+  <!--Explicit import Directory.Build.props (for old-style csproj)-->
+  <Import Project="..\Directory.Build.props" Condition="'$(UsingMicrosoftNETSdk)' != 'true'"/>
+
+  <PropertyGroup Condition="'$(TargetFramework)'!='netcoreapp3.0'">
+    <OutputPath>$(BaseOutputPath)\lib</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'!='net462'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
+    <OutDir>$(BaseOutputPath)\build\$(TargetFramework)\lib\Win</OutDir>
+  </PropertyGroup>
+
+  <Import Project="$(SlnDir)\UsedPackages.version"/>
+  <ItemGroup Condition="'$(TargetFramework)'!='net462'">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(CodeAnalysisCSharpVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="$(CodeAnalysisVisualBasicVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="$(SourceCode)\WindowsForms\**"/>
+    <Compile Remove="$(SourceCode)\DotNetClasses\UITypeEditor.cs"/>
+  </ItemGroup>
+  
+</Project>

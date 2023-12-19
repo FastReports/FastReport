@@ -19,7 +19,7 @@
         <FRDataVisualizationWPFVersion>2024.1.0</FRDataVisualizationWPFVersion>
 
         <!-- Not available in Core3 -->
-        <SystemDrawingCommonVersion>[4.7.0,)</SystemDrawingCommonVersion>
+        <SystemDrawingCommonVersion>[4.7.3,)</SystemDrawingCommonVersion>
 
         <!-- Not available in Core3 -->
         <SystemSecurityPermissionsVersion>[4.5.0,)</SystemSecurityPermissionsVersion>
