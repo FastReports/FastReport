@@ -92,14 +92,15 @@
       <SwissAltProcedureLength Text="Информационный блок альтернативной процедуры 1 должен быть короче 101 символа"/>
       <SwissUnstructBillLength Text="Сообщение и информация о счете должны быть короче 141 символа в сумме."/>
       <SwissRefTypeNon Text="Ссылка разрешена, только когда тип ссылки не NON"/>
+      <SwissRefTypeNotNon Text="Ссылка не может быть пустой если тип ссылки QRR или SCOR"/>
       <SwissRefTextTypeNon Text="Вы должны установить тип текста ссылки при наличии текста ссылки"/>
       <SwissRefQRLength Text="QR-ссылки должны быть короче 28 символов"/>
       <SwissRefQRNotOnlyDigits Text="QR-ссылка должна быть только из цифр"/>
       <SwissRefQRCheckSum Text="QR-ссылка недействительна. Ошибка контрольной суммы"/>
       <SwissRefISOLength Text="Ссылка на плательщиков (ISO 11649) должна быть короче, чем 26 символов"/>
-      <SwissEmptyProperty Text="{0} не может быть пустым"/>
-      <SwissLengthMore Text="должна быть короче {0} символов"/>
-      <SwissPatternError Text="{0} должна соответствовать шаблону:"/>
+      <SwissEmptyProperty Text="Поле {0} не может быть пустым"/>
+      <SwissLengthMore Text="Поле {0} должно быть короче {1} символов"/>
+      <SwissPatternError Text="Поле {0} должно соответствовать шаблону:"/>
       <SwissAddressLine2Error Text="Адресная строка 2 должна быть предусмотрена для комбинированных адресов (адреса на основе адресной строки)."/>
       <SwissCountryTwoLetters Text="Страна должна быть действительным двухбуквенным кодом страны, как определено в ISO 3166-1"/>
       <SwissIbanNotValid Text="Введенный недействительный IBAN "/>
@@ -110,6 +111,8 @@
       <SwissPropHouseNumber Text="Дом"/>
       <SwissPropZipCode Text="Индекс"/>
       <SwissPropCity Text="Город"/>
+      <SwissPropUnstructuredMessage Text="Сообщение"/>
+      <SwissPropBillInformation Text="Информация о счете"/>
     </Swiss>
   </Messages>
   <Misc>

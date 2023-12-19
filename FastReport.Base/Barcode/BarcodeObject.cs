@@ -644,12 +644,33 @@ namespace FastReport.Barcode
                 }
             }
 
-            // without the second condition Text.StartsWith("SPC") the method will be executed for any QR
-            // according to my observations, this does not break anything
+            if (Barcode is BarcodeQR)
+            {
+                //QRData.Parse(Text);
 
-            if (Barcode is BarcodeQR/* && Text.StartsWith("SPC")*/)
-            {               
-                QRData.Parse(Text);                
+                //QRSwiss qRSwiss = new QRSwiss(Text);
+                //Text = qRSwiss.Pack();
+
+                QRData qr = QRData.Parse(Text);
+
+                if (qr is QRSwiss)
+                {
+                    QRSwiss _qr = qr as QRSwiss;
+
+                    QRSwissParameters parameters = new QRSwissParameters();
+                    parameters.Iban = _qr._Iban;
+                    parameters.Creditor = _qr.Creditor;
+                    parameters.Reference = _qr._Reference;
+                    parameters.AlternativeProcedure1 = _qr.AlternativeProcedure1;
+                    parameters.AlternativeProcedure2 = _qr.AlternativeProcedure2;
+                    parameters.AdditionalInformation = _qr._AdditionalInformation;
+                    parameters.Amount = _qr.Amount;
+                    parameters.Currency = _qr._Currency;
+                    parameters.Debitor = _qr.Debitor;
+                    QRSwiss swissQR = new QRSwiss(parameters);
+
+                    Text = swissQR.Pack();
+                }
             }
         }
         #endregion

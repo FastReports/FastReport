@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 
 using System.Net.Mime;
 using System.Threading.Tasks;
+using FastReport.Utils;
 
 namespace FastReport.Web.Controllers
 {
     static partial class Controllers
     {
+        private const string INVALID_REPORT_MESSAGE = "Error loading report: The report structure is invalid.";
 
         [HttpPost("/preview.getReport")]
         public static IResult GetReport([FromQuery] string reportId,
@@ -24,13 +26,23 @@ namespace FastReport.Web.Controllers
 
             var query = GetReportServiceParams.ParseRequest(request);
 
-            string render = reportService.GetReport(webReport, query);
+            try
+            {
+                string render = reportService.GetReport(webReport, query);
 
-            if (render.IsNullOrEmpty())
-                return Results.Ok();
+                if (render.IsNullOrEmpty())
+                    return Results.Ok();
 
-            return Results.Content(render,
-                contentType: MediaTypeNames.Text.Html);
+                return Results.Content(render,
+                    contentType: MediaTypeNames.Text.Html);
+            }
+            catch (CompilerException e)
+            {
+                if (webReport.Debug)
+                    return Results.BadRequest(e.Message);
+                else
+                    return Results.BadRequest(INVALID_REPORT_MESSAGE);
+            }
         }
 
 

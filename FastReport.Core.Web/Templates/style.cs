@@ -43,6 +43,29 @@ namespace FastReport.Web
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }}
 
+.fr-form-header {{
+    padding: 5px;
+    padding-left: 12px;
+    font: 14px Verdana,Arial sans-serif Regular;
+    min-height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-bottom: solid 1px lightgray;
+    vertical-align: middle;
+    text-align: -webkit-match-parent;
+    height: 30px;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+}}
+
+.{template_FR}-body:has(.fr-dialog-form) {{
+    width: fit-content;
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}}
+
 /***********
     SPLIT
 ************/

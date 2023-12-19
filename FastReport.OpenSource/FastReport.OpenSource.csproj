@@ -108,8 +108,7 @@
 
 
   <ItemGroup>
-    <EmbeddedResource Include="..\FastReport\Resources\**"
-                      Exclude="..\FastReport\Resources\Ribbon\**;..\FastReport\Resources\MSChart\**;..\FastReport\Resources\Images\**;..\FastReport\Resources\**\*.cur;..\FastReport\Resources\**\*.frx;..\FastReport\Resources\*.png;..\FastReport\Resources\labels.dat;..\FastReport\Resources\Pdf\**;..\FastReport\Resources\SVG\**;..\FastReport\Resources\OoXML\**;">
+    <EmbeddedResource Include="..\FastReport\Resources\**" Exclude="..\FastReport\Resources\Ribbon\**;..\FastReport\Resources\MSChart\**;..\FastReport\Resources\Images\**;..\FastReport\Resources\**\*.cur;..\FastReport\Resources\**\*.frx;..\FastReport\Resources\*.png;..\FastReport\Resources\labels.dat;..\FastReport\Resources\Pdf\**;..\FastReport\Resources\SVG\**;..\FastReport\Resources\OoXML\**;">
       <Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </EmbeddedResource>
   </ItemGroup>

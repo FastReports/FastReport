@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+<!-- This group sets version used packages in FastReport.Compat and package -->
+    <PropertyGroup>
+        <FastReportSkiaDrawingVersion Condition="$(FastReportSkiaDrawingVersion) == ''">2024.1.0</FastReportSkiaDrawingVersion>
+
+        <FRFormsWPFVersion Condition="$(FRFormsWPFVersion) == ''">2024.1.0</FRFormsWPFVersion>
+
+        <SystemDrawingCommonVersion>[4.7.0,)</SystemDrawingCommonVersion>
+
+        <CodeAnalysisCSharpVersion>[3.3.1,)</CodeAnalysisCSharpVersion>
+
+        <CodeAnalysisVisualBasicVersion>[3.3.1,)</CodeAnalysisVisualBasicVersion>
+		
+    </PropertyGroup>
+	
+</Project>

@@ -100,6 +100,9 @@ static class CakeAPI
     public static void NuGetRestore(FilePath targetFilePath)
         => Context.NuGetRestore(targetFilePath);
 
+    public static void NuGetRestore(FilePath targetFilePath, NuGetRestoreSettings settings)
+        => Context.NuGetRestore(targetFilePath, settings);
+
     public static bool DirectoryExists(DirectoryPath path)
         => Context.DirectoryExists(path);
 
