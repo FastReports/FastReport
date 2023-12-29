@@ -832,7 +832,7 @@ namespace FastReport
                         width = renderer.CalcWidth();
 
                         width += Padding.Horizontal + 1;
-                        if (LineHeight == 0)
+                        //if (LineHeight == 0)
                             height += Padding.Vertical + 1;
                         return new SizeF(width, height);
                 }

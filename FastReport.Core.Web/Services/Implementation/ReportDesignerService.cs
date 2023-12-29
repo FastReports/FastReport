@@ -443,7 +443,9 @@ namespace FastReport.Web.Services
                         if (!String.IsNullOrEmpty(connectionString))
                         {
                             var item2 = dictionary2.FindItem(item1.Name);
-                            if (item2 != null)
+                            var newConnectionString = item2.GetProp("ConnectionString");
+
+                            if (item2 != null && newConnectionString.IsNullOrEmpty())
                             {
                                 item2.SetProp("ConnectionString", connectionString);
                             }

@@ -58,6 +58,11 @@ namespace FastReport.Format
         {
             if (value is Variant)
                 value = ((Variant)value).Value;
+
+            //If value is "00:00:00"() and it can be converted to DateTime
+            if (value is TimeSpan && DateTime.TryParse(value.ToString(), out DateTime dateTime))
+                return String.Format("{0:" + Format + "}", dateTime);
+
             return String.Format("{0:" + Format + "}", value);
         }
 

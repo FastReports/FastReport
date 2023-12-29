@@ -6,7 +6,7 @@
 
         <FRFormsWPFVersion Condition="$(FRFormsWPFVersion) == ''">2024.1.0</FRFormsWPFVersion>
 
-        <SystemDrawingCommonVersion>[4.7.0,)</SystemDrawingCommonVersion>
+        <SystemDrawingCommonVersion>[4.7.3,)</SystemDrawingCommonVersion>
 
         <CodeAnalysisCSharpVersion>[3.3.1,)</CodeAnalysisCSharpVersion>
 

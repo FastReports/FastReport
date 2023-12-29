@@ -1826,7 +1826,7 @@
       <Superscript Text="Верхний индекс"/>
       <Bullets Text="Список"/>
       <ConfirmChanges Text="Текст был изменен. Сохранить изменения?"/>
-      <Invoke Text="Сделайте двойной щелчок для редактирования текста"/>
+      <Invoke Text="Сделайте двойной щелчок для выбора файла RTF"/>
     </RichTextEditor>
     <SearchReplace Text="Поиск и замена">
       <Find Text="Найти:"/>
@@ -2656,6 +2656,7 @@
     <Docx Text="Экспорт в Microsoft Word 2007">
       <File Text="Microsoft Word 2007 формат"/>
       <RowHeight Text="Высота строк таблицы"/>
+      <SaveRowHeight Text="Сохранить высоту строки"/>
       <Exactly Text="Точно"/>
       <Minimum Text="Минимум"/>
       <DoNotExpandShiftReturn Text="Не расширять мягкий перенос"/>

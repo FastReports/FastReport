@@ -2011,7 +2011,7 @@
       <Superscript Text="Superscript"/>
       <Bullets Text="Bullets"/>
       <ConfirmChanges Text="Text has been modified. Save changes?"/>
-      <Invoke Text="Doubleclick to edit RichText"/>
+      <Invoke Text="Double click to select an RTF file"/>
     </RichTextEditor>
     <SearchReplace Text="Find and Replace">
       <Find Text="Find what:"/>
@@ -2889,6 +2889,7 @@
     <Docx Text="Export to Microsoft Word 2007">
       <File Text="Microsoft Word 2007 file"/>
       <RowHeight Text="Row height is"/>
+      <SaveRowHeight Text="Save row height"/>
       <Exactly Text="Exactly"/>
       <Minimum Text="Minimum"/>
       <DoNotExpandShiftReturn Text="Do not expand shift return"/>
