@@ -12,9 +12,9 @@
         <FRDataVisualizationSkiaVersion>[2024.1.0]</FRDataVisualizationSkiaVersion>
 		
         <!-- WPF -->
-        <FRWPFVersion>2024.1.0</FRWPFVersion>
-        <FRWPFRoslynPadVersion>2024.1.0</FRWPFRoslynPadVersion>
-        <FRFormsWPFVersion>2024.1.0</FRFormsWPFVersion>
+        <FRWPFVersion>2024.1.2</FRWPFVersion>
+        <FRWPFRoslynPadVersion>2024.1.2</FRWPFRoslynPadVersion>
+        <FRFormsWPFVersion>2024.1.2</FRFormsWPFVersion>
         <FRCompatWPFVersion>2024.1.0</FRCompatWPFVersion>
         <FRDataVisualizationWPFVersion>2024.1.0</FRDataVisualizationWPFVersion>
 

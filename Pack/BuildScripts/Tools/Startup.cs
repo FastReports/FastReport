@@ -81,7 +81,7 @@ namespace CakeScript
         {
             foreach (var argument in args)
             {
-                if (string.IsNullOrEmpty(argument))
+                if (string.IsNullOrEmpty(argument) || !argument.StartsWith("--"))
                     continue;
 
                 if (argument == "--tree")
