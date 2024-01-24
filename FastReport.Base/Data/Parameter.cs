@@ -59,10 +59,10 @@ namespace FastReport.Data
         public Type DataType
         {
             get { return dataType; }
-            set 
-            { 
+            set
+            {
                 if (value != null)
-                    dataType = value; 
+                    dataType = value;
             }
         }
 

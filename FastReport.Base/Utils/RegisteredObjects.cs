@@ -45,7 +45,7 @@ namespace FastReport.Utils
 #endif
         #endregion
 
-#region Properties
+        #region Properties
         /// <summary>
         /// Name of object or category.
         /// </summary>
@@ -93,9 +93,9 @@ namespace FastReport.Utils
             set;
         }
 
-#endregion
+        #endregion
 
-#region Public Methods
+        #region Public Methods
 
         /// <summary>
         /// Enumerates all objects.
@@ -249,14 +249,14 @@ namespace FastReport.Utils
     /// </summary>
     public partial class ObjectInfo : BaseObjectInfo<ObjectInfo>
     {
-#region Fields
+        #region Fields
         private string name;
         private Type fObject;
         private string text;
         private bool enabled;
-#endregion
+        #endregion
 
-#region Properties
+        #region Properties
         /// <summary>
         /// Name of object or category.
         /// </summary>
@@ -311,9 +311,9 @@ namespace FastReport.Utils
             set { enabled = value; }
         }
 
-#endregion
+        #endregion
 
-#region Public Methods
+        #region Public Methods
         /// <summary>
         /// Enumerates all objects.
         /// </summary>
@@ -402,7 +402,7 @@ namespace FastReport.Utils
             Text = text;
         }
 
-#endregion
+        #endregion
 
         internal ObjectInfo()
         {
@@ -437,14 +437,14 @@ namespace FastReport.Utils
     /// </example>
     public static partial class RegisteredObjects
     {
-#region Fields
+        #region Fields
         private static readonly Hashtable FTypes = new Hashtable();
         private static readonly ObjectInfo FObjects = new ObjectInfo();
         private static readonly Dictionary<Type, Dictionary<string, Delegate>> methodsDictionary
             = new Dictionary<Type, Dictionary<string, Delegate>>();
-#endregion
+        #endregion
 
-#region Properties
+        #region Properties
         /// <summary>
         /// Root object for all registered objects.
         /// </summary>
@@ -479,9 +479,9 @@ namespace FastReport.Utils
             get;
         }
 
-#endregion
+        #endregion
 
-#region Private Methods
+        #region Private Methods
 
         private static void RegisterType(Type type)
         {
@@ -536,9 +536,9 @@ namespace FastReport.Utils
         }
 #endif
 
-#endregion
+        #endregion
 
-#region Public Methods
+        #region Public Methods
         /// <summary>
         /// Checks whether the specified type is registered already.
         /// </summary>
@@ -1084,7 +1084,7 @@ namespace FastReport.Utils
                 .Replace("<", "&lt;").Replace(">", "&gt;").Replace("\t", "<br/>").ToString();
         }
 
-#endregion
+        #endregion
 
         static RegisteredObjects()
         {

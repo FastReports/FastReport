@@ -57,7 +57,7 @@ namespace FastReport.Import.RDL
                     Base tempParent = parent;
                     ComponentBase tempComponent = component;
                     parent = (component as TableObject).GetCellData(col, row).Cell;
-					LoadReportItems(node);
+                    LoadReportItems(node);
                     component = tempComponent;
                     parent = tempParent;
                 }
@@ -554,7 +554,7 @@ namespace FastReport.Import.RDL
                             else if (bodyChild.Name == "TablixRows")
                             {
                                 tableRowsNode = node.Clone();
-							}
+                            }
                 }
             }
             LoadTableColumns(tableColumnsNode);

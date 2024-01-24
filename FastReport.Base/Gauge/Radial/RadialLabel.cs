@@ -9,7 +9,7 @@ namespace FastReport.Gauge.Radial
 #endif
     class RadialLabel : GaugeLabel
     {
-        public RadialLabel(GaugeObject parent): base(parent)
+        public RadialLabel(GaugeObject parent) : base(parent)
         {
             Parent = parent as RadialGauge;
         }

@@ -193,7 +193,7 @@ namespace FastReport
                     IGraphics g = e.Graphics;
                     float x = AbsLeft + CenterX;
                     float y = AbsTop + CenterY;
-                    if(pointsCollection.Count == 1)
+                    if (pointsCollection.Count == 1)
                     {
                         x += pointsCollection[0].X;
                         y += pointsCollection[0].Y;
@@ -339,7 +339,7 @@ namespace FastReport
 
                     bool haveToCalculate = false;
 
-                    
+
                     PolyPoint p_1 = null;
                     PolyPoint p_2 = null;
 
@@ -380,7 +380,7 @@ namespace FastReport
                         if (p_2 == null)
                             p_2 = GetPseudoPoint(point, prev);
 
-                       
+
                         // now calculate extrema
 
                         // x
@@ -432,7 +432,7 @@ namespace FastReport
                                     bottom = y;
                             }
                         }
-                        
+
 
                     }
                 }
@@ -457,7 +457,7 @@ namespace FastReport
             }
         }
 
-        private float RecalculateBounds_Delta(float p_0,float p_1, float p_2, float p_3)
+        private float RecalculateBounds_Delta(float p_0, float p_1, float p_2, float p_3)
         {
             return p_1 * p_1 - p_0 * p_2 - p_1 * p_2 + p_2 * p_2 + p_0 * p_3 - p_1 * p_3;
         }
@@ -903,7 +903,7 @@ namespace FastReport
                 PolyPointCollection result = new PolyPointCollection();
 
                 result.points = new List<PolyPoint>();
-                foreach(PolyPoint point in points)
+                foreach (PolyPoint point in points)
                 {
                     result.points.Add(point.Clone());
                 }

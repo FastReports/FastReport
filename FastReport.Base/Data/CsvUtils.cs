@@ -100,54 +100,54 @@ namespace FastReport.Data
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             WebRequest request;
             WebResponse response = null;
-			Uri uri = new Uri(builder.CsvFile);
+            Uri uri = new Uri(builder.CsvFile);
 
-			try
-			{
-				// fix for datafile in current folder
-				if (File.Exists(builder.CsvFile))
-				{
-					builder.CsvFile = Path.GetFullPath(builder.CsvFile);
+            try
+            {
+                // fix for datafile in current folder
+                if (File.Exists(builder.CsvFile))
+                {
+                    builder.CsvFile = Path.GetFullPath(builder.CsvFile);
 
-					if (uri.IsFile)
-					{
-						if (Config.ForbidLocalData)
-							throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-						request = (FileWebRequest)WebRequest.Create(uri);
-						request.Timeout = 5000;
-						response = (FileWebResponse)request.GetResponse();
-					}
-				}
+                    if (uri.IsFile)
+                    {
+                        if (Config.ForbidLocalData)
+                            throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+                        request = (FileWebRequest)WebRequest.Create(uri);
+                        request.Timeout = 5000;
+                        response = (FileWebResponse)request.GetResponse();
+                    }
+                }
 
-				else if (uri.OriginalString.StartsWith("http"))
-				{
-					request = (HttpWebRequest)WebRequest.Create(uri);
-					request.Timeout = 5000;
-					response = (HttpWebResponse)request.GetResponse();
-				}
-				else if (uri.OriginalString.StartsWith("ftp"))
-				{
-					request = (FtpWebRequest)WebRequest.Create(uri);
-					request.Timeout = 5000;
-					response = (FtpWebResponse)request.GetResponse();
-				}
-				else
-				{
-					throw new NullReferenceException(Res.Get("ConnectionEditors,Common,ErrorUrlException"));
-				}
-			}
+                else if (uri.OriginalString.StartsWith("http"))
+                {
+                    request = (HttpWebRequest)WebRequest.Create(uri);
+                    request.Timeout = 5000;
+                    response = (HttpWebResponse)request.GetResponse();
+                }
+                else if (uri.OriginalString.StartsWith("ftp"))
+                {
+                    request = (FtpWebRequest)WebRequest.Create(uri);
+                    request.Timeout = 5000;
+                    response = (FtpWebResponse)request.GetResponse();
+                }
+                else
+                {
+                    throw new NullReferenceException(Res.Get("ConnectionEditors,Common,ErrorUrlException"));
+                }
+            }
 
-			catch (NullReferenceException ex)
-			{
-				throw ex;
-			}
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
 
-			catch (Exception e)
-			{
-				throw e;
-			}
+            catch (Exception e)
+            {
+                throw e;
+            }
 
-			if (response == null)
+            if (response == null)
                 return null;
 
             List<string> lines = new List<string>();

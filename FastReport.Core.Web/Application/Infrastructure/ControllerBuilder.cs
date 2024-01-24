@@ -14,12 +14,16 @@ using Microsoft.AspNetCore.Routing;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.IO;
+using System.Text.Json;
 
 namespace FastReport.Web.Infrastructure
 {
     internal static partial class ControllerBuilder
     {
         private static ControllerExecutor _executor;
+
+        private static readonly JsonSerializerOptions _serializerOptions = new() { PropertyNameCaseInsensitive = true };
 
         public static MethodInfo[] GetControllerMethods()
         {
@@ -338,6 +342,19 @@ namespace FastReport.Web.Infrastructure
                     parameters.Add(func);
                     return true;
                 }
+                else if (attribute is FromBodyAttribute)
+                {
+                    func = (httpContext) =>
+                    {
+                        using var reader = new StreamReader(httpContext.Request.Body);
+                        var requestBody = reader.ReadToEndAsync().GetAwaiter().GetResult();
+
+                        return JsonSerializer.Deserialize(requestBody, paramType, _serializerOptions);
+                    };
+
+                    parameters.Add(func);
+                    return true;
+                }
                 else if (attribute is FromHeaderAttribute fromHeader)
                 {
                     string name = fromHeader.Name ?? parameterInfo.Name;
@@ -401,6 +418,7 @@ namespace FastReport.Web.Infrastructure
 
             return result;
         }
+
 
         private static object DeserializeFromCollection(IQueryCollection dictionary, Type paramType)
         {

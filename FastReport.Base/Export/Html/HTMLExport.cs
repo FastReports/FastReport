@@ -704,10 +704,10 @@ namespace FastReport.Export.Html
                     singlePage = true;
                     subFolder = false;
                     navigator = false;
-                    if(ExportMode == ExportType.WebPrint)
+                    if (ExportMode == ExportType.WebPrint)
                     {
                         NotRotateLandscapePage = true;
-                        for (int i = 0; i < Report.PreparedPages.Count; i++ )
+                        for (int i = 0; i < Report.PreparedPages.Count; i++)
                         {
                             if (!Report.PreparedPages.GetPage(i).Landscape)
                             {
@@ -977,7 +977,7 @@ namespace FastReport.Export.Html
             writer.WriteBool("NotRotateLandscapePage", NotRotateLandscapePage);
             writer.WriteBool("HighQualitySVG", HighQualitySVG);
         }
-       
+
         /// <summary>
         /// For internal use only.
         /// </summary>
@@ -1028,7 +1028,7 @@ namespace FastReport.Export.Html
             notRotateLandscapePage = false;
             highQualitySVG = false;
         }
-        
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HTMLExport"/> class for WebPreview mode.

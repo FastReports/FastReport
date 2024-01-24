@@ -18,7 +18,7 @@ namespace FastReport.Import.StimulSoft
     /// </summary>
     public static class UnitsConverter
     {
-#region Public Methods
+        #region Public Methods
 
         /// <summary>
         /// Converts value to Boolean.
@@ -64,7 +64,7 @@ namespace FastReport.Import.StimulSoft
                     return PageUnits.Inches;
                 case "HundredthsOfInch":
                     return PageUnits.HundrethsOfInch;
-                default: 
+                default:
                     return PageUnits.Millimeters;
             }
         }
@@ -168,9 +168,9 @@ namespace FastReport.Import.StimulSoft
             {
                 if (str.Contains("["))
                 {
-                    string[] rgb = str.Replace("[", "").Replace("]","").Split(':');
+                    string[] rgb = str.Replace("[", "").Replace("]", "").Split(':');
 
-                    if(rgb.Length > 3)
+                    if (rgb.Length > 3)
                         return Color.FromArgb(ConvertInt(rgb[0]), ConvertInt(rgb[1]), ConvertInt(rgb[2]), ConvertInt(rgb[3]));
 
                     return Color.FromArgb(ConvertInt(rgb[0]), ConvertInt(rgb[1]), ConvertInt(rgb[2]));
@@ -184,7 +184,7 @@ namespace FastReport.Import.StimulSoft
 
                     return Color.FromArgb(ConvertInt(rgb[0]), ConvertInt(rgb[1]), ConvertInt(rgb[2]));
                 }
-                else 
+                else
                     return Color.FromName(str);
             }
             return Color.Black;
@@ -503,7 +503,7 @@ namespace FastReport.Import.StimulSoft
                     return customFormat;
             }
 
-            return new GeneralFormat();    
+            return new GeneralFormat();
         }
 
 
@@ -515,11 +515,11 @@ namespace FastReport.Import.StimulSoft
         public static string ConvertRTF(string rtfStimulsoft)
         {
             string result = rtfStimulsoft.Replace("__LP__", "{").Replace("__RP__", "}");
-            for(int i = 0; i < result.Length; i++)
+            for (int i = 0; i < result.Length; i++)
             {
-                if(result[i] == '_')
+                if (result[i] == '_')
                     try
-                    {   
+                    {
                         result = result.Replace(result.Substring(i, 7), ((char)Int16.Parse(result.Substring(i + 2, 4), NumberStyles.AllowHexSpecifier)).ToString());
                     }
                     catch { }
@@ -582,7 +582,7 @@ namespace FastReport.Import.StimulSoft
                     return CheckedSymbol.Cross;
                 case "DotRectangle":
                     return CheckedSymbol.Fill;
-                default: 
+                default:
                     return CheckedSymbol.Check;
             }
         }
@@ -775,7 +775,7 @@ namespace FastReport.Import.StimulSoft
         /// <returns></returns>
         public static SeriesChartType ConvertChartType(string value)
         {
-            switch (value) 
+            switch (value)
             {
                 case "Stimulsoft.Report.Chart.StiPieSeries":
                     return SeriesChartType.Pie;
@@ -862,6 +862,6 @@ namespace FastReport.Import.StimulSoft
             }
             return ContentAlignment.TopLeft;
         }
-#endregion // Public Methods
+        #endregion // Public Methods
     }
 }

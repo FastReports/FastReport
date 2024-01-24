@@ -4,10 +4,10 @@ using System.ComponentModel;
 
 namespace FastReport
 {
-  /// <summary>
-  /// This class represents a header of the data band.
-  /// </summary>
-  public class DataHeaderBand : HeaderFooterBandBase
-  {
-  }
+    /// <summary>
+    /// This class represents a header of the data band.
+    /// </summary>
+    public class DataHeaderBand : HeaderFooterBandBase
+    {
+    }
 }

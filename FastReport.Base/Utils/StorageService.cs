@@ -65,7 +65,7 @@ namespace FastReport.Utils
         /// <param name="defaultValue">Default value.</param>
         /// <returns>The value associated with a key, or default value.</returns>
         public bool GetBool(string key, bool defaultValue = false)
-        { 
+        {
             string value = GetStr(key);
             if (!string.IsNullOrEmpty(value))
                 return value == "1" || value.ToLower() == "true";

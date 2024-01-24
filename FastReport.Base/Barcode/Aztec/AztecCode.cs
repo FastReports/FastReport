@@ -16,61 +16,61 @@
 
 namespace FastReport.Barcode.Aztec
 {
-   /// <summary>
-   /// Aztec 2D code representation
-   /// </summary>
-   /// <author>Rustam Abdullaev</author>
-   internal sealed class AztecCode
-   {
-       private bool is_Compact;
-       private int size;
-       private int layers;
-       private int codeWords;
-       private BitMatrix matrix;
+    /// <summary>
+    /// Aztec 2D code representation
+    /// </summary>
+    /// <author>Rustam Abdullaev</author>
+    internal sealed class AztecCode
+    {
+        private bool is_Compact;
+        private int size;
+        private int layers;
+        private int codeWords;
+        private BitMatrix matrix;
 
-      /// <summary>
-      /// Compact or full symbol indicator
-      /// </summary>
-      public bool isCompact 
-      {
-          get { return is_Compact; }
-          set { is_Compact = value; }
-      }
+        /// <summary>
+        /// Compact or full symbol indicator
+        /// </summary>
+        public bool isCompact
+        {
+            get { return is_Compact; }
+            set { is_Compact = value; }
+        }
 
-      /// <summary>
-      /// Size in pixels (width and height)
-      /// </summary>
-      public int Size 
-      {
-          get { return size; }
-          set { size = value; }
-      }
+        /// <summary>
+        /// Size in pixels (width and height)
+        /// </summary>
+        public int Size
+        {
+            get { return size; }
+            set { size = value; }
+        }
 
-      /// <summary>
-      /// Number of levels
-      /// </summary>
-      public int Layers 
-      {
-          get { return layers; }
-          set { layers = value; }
-      }
+        /// <summary>
+        /// Number of levels
+        /// </summary>
+        public int Layers
+        {
+            get { return layers; }
+            set { layers = value; }
+        }
 
-      /// <summary>
-      /// Number of data codewords
-      /// </summary>
-      public int CodeWords 
-      {
-          get { return codeWords; }
-          set { codeWords = value; }
-      }
+        /// <summary>
+        /// Number of data codewords
+        /// </summary>
+        public int CodeWords
+        {
+            get { return codeWords; }
+            set { codeWords = value; }
+        }
 
-      /// <summary>
-      /// The symbol image
-      /// </summary>
-      public BitMatrix Matrix 
-      {
-          get { return matrix; }
-          set { matrix = value; }
-      }
-   }
+        /// <summary>
+        /// The symbol image
+        /// </summary>
+        public BitMatrix Matrix
+        {
+            get { return matrix; }
+            set { matrix = value; }
+        }
+    }
 }

@@ -1,9 +1,11 @@
 ﻿using FastReport.Data;
 using FastReport.Utils;
+using FastReport.Web.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -160,7 +162,7 @@ namespace FastReport.Web.Services
             }
         }
 
-        public string GetConnectionTables(string connectionType, string connectionString)
+        public string GetConnectionTables(string connectionType, string connectionString, List<CustomViewModel> customViews)
         {
             if (!IsConnectionStringValid(connectionString, out var errorMsg))
             {
@@ -187,8 +189,24 @@ namespace FastReport.Web.Services
                     using (var writer = new FRWriter())
                     {
                         conn.ConnectionString = connectionString;
-                        conn.CreateAllTables(true);
 
+                        if (FastReportGlobal.AllowCustomSqlQueries)
+                        {
+                            foreach (var view in customViews)
+                            {
+                                var source = new TableDataSource
+                                {
+                                    Table = new DataTable(),
+                                    TableName = view.TableName,
+                                    SelectCommand = view.SqlQuery
+                                };
+
+                                conn.Tables.Add(source);
+                                conn.DataSet.Tables.Add(source.Table);
+                            }
+                        }
+
+                        conn.CreateAllTables(true);
                         foreach (TableDataSource c in conn.Tables)
                             c.Enabled = true;
 

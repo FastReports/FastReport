@@ -315,7 +315,7 @@ namespace FastReport.Data
             if (source != null)
             {
                 source.Reference = cubeLink;
-//                source.InitSchema();
+                //                source.InitSchema();
             }
             else
             {
@@ -325,7 +325,7 @@ namespace FastReport.Data
                 source.Name = CreateUniqueName(referenceName);
                 source.Alias = CreateUniqueAlias(source.Alias);
                 source.Enabled = enabled;
-//                source.InitSchema();
+                //                source.InitSchema();
                 dictionary.CubeSources.Add(source);
                 AddBaseWithChiledToDictonary(source);
             }

@@ -5,19 +5,19 @@ using System.Collections.Generic;
 
 namespace FastReport.Functions
 {
-  internal class NumToWordsEnGb : NumToWordsEn
-  {
-    private static WordInfo milliards = new WordInfo("milliard");
-    private static WordInfo trillions = new WordInfo("billion");
-
-    protected override WordInfo GetMilliards()
+    internal class NumToWordsEnGb : NumToWordsEn
     {
-      return milliards;
-    }
+        private static WordInfo milliards = new WordInfo("milliard");
+        private static WordInfo trillions = new WordInfo("billion");
 
-    protected override WordInfo GetTrillions()
-    {
-      return trillions;
+        protected override WordInfo GetMilliards()
+        {
+            return milliards;
+        }
+
+        protected override WordInfo GetTrillions()
+        {
+            return trillions;
+        }
     }
-  }
 }

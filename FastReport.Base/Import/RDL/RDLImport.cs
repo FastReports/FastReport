@@ -86,96 +86,96 @@ namespace FastReport.Import.RDL
 
         private void LoadBorder(XmlNode borderNode)
         {
-			XmlNodeList nodeList = borderNode.ChildNodes;
-			string border = ""; 
+            XmlNodeList nodeList = borderNode.ChildNodes;
+            string border = "";
 
-			if (borderNode.Name == "TopBorder")
-			{
+            if (borderNode.Name == "TopBorder")
+            {
                 border = "Top";
-			}
-			else if (borderNode.Name == "BottomBorder")
-			{
-				border = "Bottom";
-			}
-			else if (borderNode.Name == "LeftBorder")
-			{
-				border = "Left";
-			}
-			else if (borderNode.Name == "RightBorder")
-			{
-				border = "Right";
-			}
+            }
+            else if (borderNode.Name == "BottomBorder")
+            {
+                border = "Bottom";
+            }
+            else if (borderNode.Name == "LeftBorder")
+            {
+                border = "Left";
+            }
+            else if (borderNode.Name == "RightBorder")
+            {
+                border = "Right";
+            }
             else
             {
                 border = "default";
             }
 
-            foreach(XmlNode node in nodeList)
+            foreach (XmlNode node in nodeList)
             {
                 if (node.Name == "Color")
                 {
                     LoadBorderColor(node, border);
-				}
+                }
                 else if (node.Name == "Style")
                 {
-					LoadBorderStyle(node, border);
+                    LoadBorderStyle(node, border);
                 }
                 else if (node.Name == "Width")
                 {
                     LoadBorderWidth(node, border);
-				}
+                }
             }
-		}
+        }
 
-		private void LoadBorderStyle(XmlNode borderStyleNode, string border)
+        private void LoadBorderStyle(XmlNode borderStyleNode, string border)
         {
             XmlNodeList nodeList = borderStyleNode.ChildNodes;
-			foreach (XmlNode node in nodeList)
-			{
-			    if (node.InnerText != "None")
+            foreach (XmlNode node in nodeList)
+            {
+                if (node.InnerText != "None")
                 {
-					if (border == "Default")
-					{
-						if (component is ReportComponentBase)
-						{
-							(component as ReportComponentBase).Border.Lines = BorderLines.All;
-							(component as ReportComponentBase).Border.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
-						}
-					}
-					else if (border == "Top")
-					{
-						if (component is ReportComponentBase)
-						{
-							(component as ReportComponentBase).Border.Lines |= BorderLines.Top;
-							(component as ReportComponentBase).Border.TopLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
-						}
-					}
-					else if (border == "Left")
-					{
-						if (component is ReportComponentBase)
-						{
-							(component as ReportComponentBase).Border.Lines |= BorderLines.Left;
-							(component as ReportComponentBase).Border.LeftLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
-						}
-					}
-					else if (border == "Right")
-					{
-						if (component is ReportComponentBase)
-						{
-							(component as ReportComponentBase).Border.Lines |= BorderLines.Right;
-							(component as ReportComponentBase).Border.RightLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
-						}
-					}
-					else if (border == "Bottom")
-					{
-						if (component is ReportComponentBase)
-						{
-							(component as ReportComponentBase).Border.Lines |= BorderLines.Bottom;
-							(component as ReportComponentBase).Border.BottomLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
-						}
-					}
-				}
-			}
+                    if (border == "Default")
+                    {
+                        if (component is ReportComponentBase)
+                        {
+                            (component as ReportComponentBase).Border.Lines = BorderLines.All;
+                            (component as ReportComponentBase).Border.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
+                        }
+                    }
+                    else if (border == "Top")
+                    {
+                        if (component is ReportComponentBase)
+                        {
+                            (component as ReportComponentBase).Border.Lines |= BorderLines.Top;
+                            (component as ReportComponentBase).Border.TopLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
+                        }
+                    }
+                    else if (border == "Left")
+                    {
+                        if (component is ReportComponentBase)
+                        {
+                            (component as ReportComponentBase).Border.Lines |= BorderLines.Left;
+                            (component as ReportComponentBase).Border.LeftLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
+                        }
+                    }
+                    else if (border == "Right")
+                    {
+                        if (component is ReportComponentBase)
+                        {
+                            (component as ReportComponentBase).Border.Lines |= BorderLines.Right;
+                            (component as ReportComponentBase).Border.RightLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
+                        }
+                    }
+                    else if (border == "Bottom")
+                    {
+                        if (component is ReportComponentBase)
+                        {
+                            (component as ReportComponentBase).Border.Lines |= BorderLines.Bottom;
+                            (component as ReportComponentBase).Border.BottomLine.Style = UnitsConverter.ConvertBorderStyle(node.InnerText);
+                        }
+                    }
+                }
+            }
         }
 
         private void LoadBorderWidth(XmlNode borderWidthNode, string border)
@@ -233,10 +233,10 @@ namespace FastReport.Import.RDL
             XmlNodeList nodeList = styleNode.ChildNodes;
             foreach (XmlNode node in nodeList)
             {
-				if (node.Name.EndsWith("Border"))
-				{
-					LoadBorder(node);
-				}
+                if (node.Name.EndsWith("Border"))
+                {
+                    LoadBorder(node);
+                }
                 else if (node.Name == "BackgroundColor")
                 {
                     if (component is ShapeObject)
@@ -439,10 +439,10 @@ namespace FastReport.Import.RDL
 
         private bool RectangleExistReportItem(XmlNodeList reportItemsNode)
         {
-            foreach(XmlNode node in reportItemsNode)
+            foreach (XmlNode node in reportItemsNode)
             {
-                if(node.Name == "ReportItems")
-                    foreach(XmlNode itemNode in node)
+                if (node.Name == "ReportItems")
+                    foreach (XmlNode itemNode in node)
                     {
                         switch (itemNode.Name)
                         {
@@ -523,8 +523,8 @@ namespace FastReport.Import.RDL
                     style = style | FontStyle.Italic;
                 else if (styleChild.Name == "TextDecoration" && styleChild.InnerText == "Underline")
                     style = style | FontStyle.Underline;
-                else if(styleChild.Name == "Color")
-                   textBoxForeColor = ColorTranslator.FromHtml(styleChild.InnerText);
+                else if (styleChild.Name == "Color")
+                    textBoxForeColor = ColorTranslator.FromHtml(styleChild.InnerText);
 
             }
             if (fontFamily == string.Empty)
@@ -604,7 +604,8 @@ namespace FastReport.Import.RDL
                 //if (node.Name == "Source")
                 //{
                 //}
-                /*else */if (node.Name == "Value")
+                /*else */
+                if (node.Name == "Value")
                 {
                     if (File.Exists(node.InnerText))
                     {
@@ -869,9 +870,9 @@ namespace FastReport.Import.RDL
 
         private XmlNode GetEmbededImageNode(string objectName)
         {
-            foreach(XmlNode node in reportNode.ChildNodes)
+            foreach (XmlNode node in reportNode.ChildNodes)
             {
-                if(node.Name == "EmbeddedImages")
+                if (node.Name == "EmbeddedImages")
                 {
                     foreach (XmlNode embededImage in node.ChildNodes)
                     {

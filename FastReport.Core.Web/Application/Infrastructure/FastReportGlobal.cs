@@ -13,6 +13,7 @@ namespace FastReport.Web.Infrastructure
 
 #if !WASM
         internal static EmailExportOptions InternalEmailExportOptions = null;
+        internal static bool AllowCustomSqlQueries = false;
 #endif
 
     }

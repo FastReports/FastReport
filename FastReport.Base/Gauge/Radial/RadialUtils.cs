@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace FastReport.Gauge.Radial
 {
-     internal class RadialUtils
+    internal class RadialUtils
     {
         public static Font GetFont(FRPaintEventArgs e, GaugeObject gauge, Font font)
         {
@@ -25,23 +25,23 @@ namespace FastReport.Gauge.Radial
             return rotatedVector;
         }
 
-         public static bool IsTop(GaugeObject radialGauge)
+        public static bool IsTop(GaugeObject radialGauge)
         {
             return ((radialGauge as RadialGauge).Position & RadialGaugePosition.Top) != 0;
         }
-         public static bool IsBottom(GaugeObject radialGauge)
+        public static bool IsBottom(GaugeObject radialGauge)
         {
             return ((radialGauge as RadialGauge).Position & RadialGaugePosition.Bottom) != 0;
         }
-         public static bool IsLeft(GaugeObject radialGauge)
+        public static bool IsLeft(GaugeObject radialGauge)
         {
             return ((radialGauge as RadialGauge).Position & RadialGaugePosition.Left) != 0;
         }
-         public static bool IsRight(GaugeObject radialGauge)
+        public static bool IsRight(GaugeObject radialGauge)
         {
             return ((radialGauge as RadialGauge).Position & RadialGaugePosition.Right) != 0;
         }
-         public static bool IsSemicircle(GaugeObject radialGauge)
+        public static bool IsSemicircle(GaugeObject radialGauge)
         {
             return ((radialGauge as RadialGauge).Type & RadialGaugeType.Semicircle) != 0;
         }

@@ -60,7 +60,7 @@ namespace FastReport.Utils
         private string name;
         private string value;
         private XmlProperty[] properties;
-        
+
         /// <summary>
         /// Gets a number of children in this node.
         /// </summary>
@@ -390,7 +390,7 @@ namespace FastReport.Utils
                 properties = null;
                 return true;
             }
-            
+
             if (properties[properties.Length - 1].Key == key)
             {
                 Array.Resize<XmlProperty>(ref properties, properties.Length - 1);
@@ -970,7 +970,7 @@ namespace FastReport.Utils
             // value
             if (item.Count == 0 && item.Value != "")
             {
-                sb.Append(Converter.ToXml(item.Value,false));
+                sb.Append(Converter.ToXml(item.Value, false));
                 sb.Append("</");
                 sb.Append(item.Name);
                 sb.Append(">");

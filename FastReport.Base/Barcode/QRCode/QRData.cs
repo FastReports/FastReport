@@ -224,9 +224,9 @@ namespace FastReport.Barcode.QRCode
     {
         char Separator = '|';
 
-        private string FormatIdentifier="ST";
+        private string FormatIdentifier = "ST";
         public string VersionStandart = "0001";
-        public string Encoding="2";
+        public string Encoding = "2";
 
         #region necessary payment details 
         public string Name;
@@ -299,45 +299,45 @@ namespace FastReport.Barcode.QRCode
             result += Separator + "BankName=" + BankName;
             result += Separator + "BIC=" + BIC;
             result += Separator + "CorrespAcc=" + CorrespAcc;
-            if (!String.IsNullOrWhiteSpace(Sum))  result += Separator + "Sum=" + Sum;
+            if (!String.IsNullOrWhiteSpace(Sum)) result += Separator + "Sum=" + Sum;
             if (!String.IsNullOrWhiteSpace(Purpose)) result += Separator + "Purpose=" + Purpose;
             if (!String.IsNullOrWhiteSpace(PayeeINNB)) result += Separator + "PayeeINN=" + PayeeINNB;
             if (!String.IsNullOrWhiteSpace(PayerINN)) result += Separator + "PayerINN=" + PayerINN;
             if (!String.IsNullOrWhiteSpace(DrawerStatus)) result += Separator + "DrawerStatus=" + DrawerStatus;
-            if (!String.IsNullOrWhiteSpace(KPP)) result += Separator+ "KPP=" + KPP;
-            if(!String.IsNullOrWhiteSpace(CBC)) result += Separator+"CBC="+CBC;
+            if (!String.IsNullOrWhiteSpace(KPP)) result += Separator + "KPP=" + KPP;
+            if (!String.IsNullOrWhiteSpace(CBC)) result += Separator + "CBC=" + CBC;
             if (!String.IsNullOrWhiteSpace(OKTMO)) result += Separator + "OKTMO=" + OKTMO;
-            if (!String.IsNullOrWhiteSpace(PaytReason)) result += Separator + "PaytReason="+PaytReason;
-            if (!String.IsNullOrWhiteSpace(TaxPeriod)) result += Separator +"TaxPeriod="+TaxPeriod;
-            if (!String.IsNullOrWhiteSpace(DocNo)) result += Separator +"DocNo="+DocNo;
+            if (!String.IsNullOrWhiteSpace(PaytReason)) result += Separator + "PaytReason=" + PaytReason;
+            if (!String.IsNullOrWhiteSpace(TaxPeriod)) result += Separator + "TaxPeriod=" + TaxPeriod;
+            if (!String.IsNullOrWhiteSpace(DocNo)) result += Separator + "DocNo=" + DocNo;
             if (DocDate != DateTime.MinValue)
             {
                 result += Separator + "DocDate=" + DocDate.ToString("MM.dd.yyyy");
             }
             if (!String.IsNullOrWhiteSpace(TaxPaytKind)) result += Separator + "TaxPaytKind=" + TaxPaytKind;
             if (!String.IsNullOrWhiteSpace(LastName)) result += Separator + "LastName=" + LastName;
-            if (!String.IsNullOrWhiteSpace(FirstName)) result += Separator +"FirstName="+FirstName;
-            if (!String.IsNullOrWhiteSpace(MiddleName)) result += Separator +"MiddleName="+MiddleName;
-            if (!String.IsNullOrWhiteSpace(PayerAddress)) result += Separator +"PayerAddress="+PayerAddress;
-            if (!String.IsNullOrWhiteSpace(PersonalAccount)) result += Separator +"PersonalAccount="+PersonalAccount;
-            if (!String.IsNullOrWhiteSpace(DocIdx)) result += Separator + "DocIdx="+DocIdx;
-            if (!String.IsNullOrWhiteSpace(PensAcc)) result += Separator +"PensAcc="+PensAcc;
-            if (!String.IsNullOrWhiteSpace(Contract)) result += Separator +"Contract="+Contract;
-            if (!String.IsNullOrWhiteSpace(PersAccp)) result += Separator +"PersAcc="+PersAccp;
-            if (!String.IsNullOrWhiteSpace(Flat)) result += Separator +"Flat="+Flat;
-            if (!String.IsNullOrWhiteSpace(Phone)) result += Separator + "Phone=" + Phone; 
-            if (!String.IsNullOrWhiteSpace(PayerIdType)) result += Separator +"PayerIdType="+PayerIdType;
-            if (!String.IsNullOrWhiteSpace(PayerIdNum)) result += Separator +"PayerIdNum="+PayerIdNum;
-            if (!String.IsNullOrWhiteSpace(ChildFio)) result += Separator +"ChildFio="+ChildFio;
+            if (!String.IsNullOrWhiteSpace(FirstName)) result += Separator + "FirstName=" + FirstName;
+            if (!String.IsNullOrWhiteSpace(MiddleName)) result += Separator + "MiddleName=" + MiddleName;
+            if (!String.IsNullOrWhiteSpace(PayerAddress)) result += Separator + "PayerAddress=" + PayerAddress;
+            if (!String.IsNullOrWhiteSpace(PersonalAccount)) result += Separator + "PersonalAccount=" + PersonalAccount;
+            if (!String.IsNullOrWhiteSpace(DocIdx)) result += Separator + "DocIdx=" + DocIdx;
+            if (!String.IsNullOrWhiteSpace(PensAcc)) result += Separator + "PensAcc=" + PensAcc;
+            if (!String.IsNullOrWhiteSpace(Contract)) result += Separator + "Contract=" + Contract;
+            if (!String.IsNullOrWhiteSpace(PersAccp)) result += Separator + "PersAcc=" + PersAccp;
+            if (!String.IsNullOrWhiteSpace(Flat)) result += Separator + "Flat=" + Flat;
+            if (!String.IsNullOrWhiteSpace(Phone)) result += Separator + "Phone=" + Phone;
+            if (!String.IsNullOrWhiteSpace(PayerIdType)) result += Separator + "PayerIdType=" + PayerIdType;
+            if (!String.IsNullOrWhiteSpace(PayerIdNum)) result += Separator + "PayerIdNum=" + PayerIdNum;
+            if (!String.IsNullOrWhiteSpace(ChildFio)) result += Separator + "ChildFio=" + ChildFio;
             if (BirthDate != DateTime.MinValue)
             {
-                result+=Separator+"BirthDate="+BirthDate.ToString("MM.dd.yyyy");
+                result += Separator + "BirthDate=" + BirthDate.ToString("MM.dd.yyyy");
             }
-            if (PaymTerm!=DateTime.MinValue)
+            if (PaymTerm != DateTime.MinValue)
             {
-                result+=Separator+"PaymTerm="+PaymTerm.ToString("MM.dd.yyyy");
+                result += Separator + "PaymTerm=" + PaymTerm.ToString("MM.dd.yyyy");
             }
-            if (!String.IsNullOrWhiteSpace(PaymPeriod)) result += Separator +"PaymPeriod="+PaymPeriod;
+            if (!String.IsNullOrWhiteSpace(PaymPeriod)) result += Separator + "PaymPeriod=" + PaymPeriod;
             if (!String.IsNullOrWhiteSpace(Category)) result += Separator + "Category=" + Category;
             if (!String.IsNullOrWhiteSpace(ServiceName)) result += Separator + "ServiceName=" + ServiceName;
             if (!String.IsNullOrWhiteSpace(CounterId)) result += Separator + "CounterId=" + CounterId;
@@ -345,7 +345,7 @@ namespace FastReport.Barcode.QRCode
             if (!String.IsNullOrWhiteSpace(QuittId)) result += Separator + "QuittId=" + QuittId;
             if (QuittDate != DateTime.MinValue)
             {
-                result+=Separator+"QuittDate="+QuittDate.ToString("MM.dd.yyyy");
+                result += Separator + "QuittDate=" + QuittDate.ToString("MM.dd.yyyy");
             }
             if (!String.IsNullOrWhiteSpace(InstNum)) result += Separator + "InstNum=" + InstNum;
             if (!String.IsNullOrWhiteSpace(ClassNum)) result += Separator + "ClassNum=" + ClassNum;
@@ -356,15 +356,15 @@ namespace FastReport.Barcode.QRCode
             if (!String.IsNullOrWhiteSpace(RegType)) result += Separator + "RegType=" + RegType;
             if (!String.IsNullOrWhiteSpace(UIN)) result += Separator + "UIN=" + UIN;
             if (!String.IsNullOrWhiteSpace(TechCode)) result += Separator + "TechCode=" + TechCode;
-                return result;
+            return result;
         }
         public override void Unpack(string data)
         {
             data = RetrieveServiceData(data);
             string[] splitedString = data.Split(Separator);
-            foreach(string str in splitedString)
+            foreach (string str in splitedString)
             {
-                string[] splitedStr = str.Split(new string[] { "=" }, 2,StringSplitOptions.RemoveEmptyEntries);
+                string[] splitedStr = str.Split(new string[] { "=" }, 2, StringSplitOptions.RemoveEmptyEntries);
                 switch (splitedStr[0])
                 {
                     case "Name":
@@ -810,13 +810,8 @@ namespace FastReport.Barcode.QRCode
 
         public override void Unpack(string data)
         {
-            string[] datasWithR = data.Split('\n');
-            string datass = "";
-            foreach (string s in datasWithR)
-            {
-                datass += s;
-            }
-            string[] datas = datass.Split('\r');
+            string[] separators = { "\r\n", "\n" };
+            string[] datas = data.Split(separators, StringSplitOptions.None);
 
             int counter = 3;
 
@@ -865,7 +860,7 @@ namespace FastReport.Barcode.QRCode
                 default:
                     if (datas[counter].StartsWith("[") && datas[counter].EndsWith("]"))
                         currency = datas[counter];
-                    else 
+                    else
                         currency = Currency.EUR.ToString();
                     break;
             }
@@ -919,7 +914,9 @@ namespace FastReport.Barcode.QRCode
             infoString = String.Empty;
             for (int i = counter; i < counter + 3; i++)
             {
-                infoString += datas[i] + '\r';
+                // this condition is necessary for the case when there are no more data after the EPD trailer, including empty lines
+                if (i < datas.Length)
+                    infoString += datas[i] + '\r';
             }
             this.additionalInformation = new AdditionalInformation(infoString);
             counter += 3;
@@ -1002,10 +999,10 @@ namespace FastReport.Barcode.QRCode
                 SwissQrCodePayload += alternativeProcedure1.Replace("\n", "") + br; //AltPmt
             if (!string.IsNullOrEmpty(alternativeProcedure2))
                 SwissQrCodePayload += alternativeProcedure2.Replace("\n", "") + br; //AltPmt
-
-            //S-QR specification 2.0, chapter 4.2.3
-            if (SwissQrCodePayload.EndsWith(br))
-                SwissQrCodePayload = SwissQrCodePayload.Remove(SwissQrCodePayload.Length - br.Length);
+           
+            // removes all unnecessary \r\n at the end of the string,
+            // according to https://www.six-group.com/dam/download/banking-services/standardization/qr-bill/ig-qr-bill-v2.3-en.pdf section 4.1.4 (page 31)
+            SwissQrCodePayload = SwissQrCodePayload.TrimEnd(br.ToCharArray());
 
             return SwissQrCodePayload;
         }

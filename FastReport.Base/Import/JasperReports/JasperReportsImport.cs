@@ -63,13 +63,14 @@ namespace FastReport.Import.JasperReports
                     PictureObject.SizeMode = UnitsConverter.ConvertImageSizeMode(xmlObject.Attributes["scaleImage"].Value);
                 }
 
-                if (xmlObject["imageExpression"] != null) {
+                if (xmlObject["imageExpression"] != null)
+                {
                     if (!xmlObject["imageExpression"].InnerText.StartsWith("http") && xmlObject["imageExpression"].InnerText.Contains("."))
                         PictureObject.ImageLocation = FolderPath + "\\" + (xmlObject["imageExpression"].InnerText).Replace("\"", "");
                     else
                         PictureObject.ImageLocation = (xmlObject["imageExpression"].InnerText).Replace("\"", "");
                 }
-                
+
                 return PictureObject;
             }
         }
@@ -207,7 +208,7 @@ namespace FastReport.Import.JasperReports
 
                     if (obj is PictureObjectBase)
                         LoadPadding(obj as PictureObjectBase, cell, true);
-                    else if(obj is TextObjectBase)
+                    else if (obj is TextObjectBase)
                         LoadPadding(obj as TextObjectBase, cell, true);
 
                     if (cell.Attributes["style"] != null)
@@ -217,7 +218,7 @@ namespace FastReport.Import.JasperReports
 
                     obj.Left += xData;
                     xData += obj.Width;
-                    
+
                 }
                 else if (cell.Name.Contains("columnHeader"))
                 {
@@ -277,7 +278,7 @@ namespace FastReport.Import.JasperReports
             foreach (XmlNode node in xmlObject.ChildNodes)
             {
                 // it's need for skip other users component
-                switch(node.Name.ToLower().Remove(0, node.Name.IndexOf(':') + 1))
+                switch (node.Name.ToLower().Remove(0, node.Name.IndexOf(':') + 1))
                 {
                     case "ean8":
                     case "ean128":
@@ -369,10 +370,10 @@ namespace FastReport.Import.JasperReports
 
             if (xmlObject["textElement"] != null)
             {
-                if(xmlObject["textElement"].Attributes["textAlignment"] != null)
+                if (xmlObject["textElement"].Attributes["textAlignment"] != null)
                     textObject.HorzAlign = UnitsConverter.ConvertTextAlignmentToHorzAlign(xmlObject["textElement"].Attributes["textAlignment"].Value);
 
-                if(xmlObject["textElement"].Attributes["verticalAlignment"] != null)
+                if (xmlObject["textElement"].Attributes["verticalAlignment"] != null)
                     textObject.VertAlign = UnitsConverter.ConvertTextAlignmentToVertAlign(xmlObject["textElement"].Attributes["verticalAlignment"].Value);
 
                 if (xmlObject["textElement"]["font"] != null)
@@ -393,7 +394,7 @@ namespace FastReport.Import.JasperReports
                     if (xmlObject["textElement"]["paragraph"].HasChildNodes)
                     {
                         foreach (XmlNode node2 in xmlObject["textElement"]["paragraph"].ChildNodes)
-                            if(node2.Attributes["position"] != null)
+                            if (node2.Attributes["position"] != null)
                                 textObject.TabPositions.Add(UnitsConverter.ConvertInt(node2.Attributes["position"].Value));
                     }
                 }
@@ -415,8 +416,8 @@ namespace FastReport.Import.JasperReports
         {
             LineObject lineObject = ComponentsFactory.CreateLineObject("", (Base)band);
             LoadReportComponentBase(lineObject, xmlObject);
-            
-           lineObject.Diagonal = true;
+
+            lineObject.Diagonal = true;
 
             return lineObject;
         }
@@ -723,7 +724,7 @@ namespace FastReport.Import.JasperReports
                 }
                 else if (item.Name == "summary")
                 {
-                    PageFooterBand  band = (PageFooterBand)CheckDuplicatedBand(typeof(PageFooterBand));
+                    PageFooterBand band = (PageFooterBand)CheckDuplicatedBand(typeof(PageFooterBand));
                     if (item["band"].Attributes["height"] != null && !(reportNode.Attributes["isSummaryNewPage"] != null && UnitsConverter.ConvertBool(reportNode.Attributes["isSummaryNewPage"].Value)))
                     {
                         if (band == null)
@@ -772,7 +773,7 @@ namespace FastReport.Import.JasperReports
         {
             obj.CreateUniqueName();
 
-            if (node["reportElement"] != null) 
+            if (node["reportElement"] != null)
             {
                 if (node["reportElement"].Attributes["x"] != null && node["reportElement"].Attributes["y"] != null &&
                     node["reportElement"].Attributes["width"] != null && node["reportElement"].Attributes["height"] != null)
@@ -800,7 +801,7 @@ namespace FastReport.Import.JasperReports
             if (node.Attributes["hyperlinkType"] != null)
             {
                 string hyperlink = "";
-                if(node["hyperlinkAnchorExpression"] != null)
+                if (node["hyperlinkAnchorExpression"] != null)
                     hyperlink = SwapBarackets((node["hyperlinkAnchorExpression"].InnerText));
                 if (node["hyperlinkReferenceExpression"] != null)
                     hyperlink = SwapBarackets((node["hyperlinkReferenceExpression"].InnerText));
@@ -953,7 +954,7 @@ namespace FastReport.Import.JasperReports
         }
 
         private Font ParseFont(XmlNode font)
-        { 
+        {
             float size = 10;
             if (font.Attributes["size"] != null)
                 size = UnitsConverter.ConvertFloat(font.Attributes["size"].Value);
@@ -976,8 +977,8 @@ namespace FastReport.Import.JasperReports
                 fontStyle |= FontStyle.Strikeout;
             }
 
-            if(font.Attributes["fontName"] == null)
-                return new Font(DrawUtils.DefaultReportFont.FontFamily, size, fontStyle); 
+            if (font.Attributes["fontName"] == null)
+                return new Font(DrawUtils.DefaultReportFont.FontFamily, size, fontStyle);
 
             return new Font(font.Attributes["fontName"].Value, size, fontStyle);
         }
@@ -986,7 +987,7 @@ namespace FastReport.Import.JasperReports
         {
             foreach (XmlNode node in reportNode)
             {
-                if (node.Name == "style") 
+                if (node.Name == "style")
                 {
                     Style newStyle = ComponentsFactory.CreateStyle(node.Attributes["name"].Value, Report);
 
@@ -1010,7 +1011,7 @@ namespace FastReport.Import.JasperReports
                         newStyle.Fill = new SolidFill(UnitsConverter.ConvertColor(node.Attributes["backcolor"].Value));
                         newStyle.ApplyFill = true;
                     }
-                    if (node.Attributes["fontName"] != null || node.Attributes["size"] != null || node.Attributes["isBold"] != null 
+                    if (node.Attributes["fontName"] != null || node.Attributes["size"] != null || node.Attributes["isBold"] != null
                         || node.Attributes["isItalic"] != null || node.Attributes["isUnderline"] != null || node.Attributes["isStrikeThrough"] != null)
                     {
                         newStyle.Font = ParseFont(node);
@@ -1038,7 +1039,7 @@ namespace FastReport.Import.JasperReports
             lastNestedGroup = null;
             page = null;
 
-            if(reportNode.Attributes["name"] != null)
+            if (reportNode.Attributes["name"] != null)
                 Report.SetName(reportNode.Attributes["name"].InnerText);
 
             LoadStyles();
@@ -1049,7 +1050,7 @@ namespace FastReport.Import.JasperReports
                 if (UnitsConverter.ConvertBool(reportNode.Attributes["isTitleNewPage"].Value))
                 {
                     page.Name = "Tittle";
-                    foreach(XmlNode node in reportNode.ChildNodes)
+                    foreach (XmlNode node in reportNode.ChildNodes)
                     {
                         if (node.Name == "title")
                         {

@@ -122,7 +122,7 @@ namespace FastReport.Functions
             currencyList.Add("PLN", new CurrencyInfo(
               new WordInfo(true, "złoty", "zlote", "złotych"),
               new WordInfo(false, "grosz", "grosze", "groszy")));
-    
+
         }
     }
 }

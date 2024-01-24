@@ -52,7 +52,7 @@ namespace FastReport.Barcode
 
             foreach (char c in binary)
             {
-                switch(c)
+                switch (c)
                 {
                     case '0':
                         result.Append("5");

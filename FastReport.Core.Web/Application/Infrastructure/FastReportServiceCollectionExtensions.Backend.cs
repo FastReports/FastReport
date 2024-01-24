@@ -53,6 +53,7 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             FastReportGlobal.InternalEmailExportOptions = options.EmailExportOptions;
+            FastReportGlobal.AllowCustomSqlQueries = options.AllowCustomSqlQueries;
 
             services.TryAddSingleton<IResourceLoader, InternalResourceLoader>();
             services.TryAddSingleton<IDesignerUtilsService, DesignerUtilsService>();

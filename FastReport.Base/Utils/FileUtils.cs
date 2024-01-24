@@ -5,35 +5,35 @@ using System.IO;
 
 namespace FastReport.Utils
 {
-  internal static class FileUtils
-  {
-    public static string GetRelativePath(string absPath, string baseDirectoryPath)
+    internal static class FileUtils
     {
-      char[] separators = { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
-      baseDirectoryPath = Path.GetFullPath(baseDirectoryPath);
-      absPath = Path.GetFullPath(absPath);
-      baseDirectoryPath = baseDirectoryPath.TrimEnd(separators);
-      
-      string[] bPath = baseDirectoryPath.Split(separators);
-      string[] aPath = absPath.Split(separators);
-      int indx = 0;
-      while (indx < Math.Min(bPath.Length, aPath.Length))
-      {
-        if (String.Compare(aPath[indx], bPath[indx], true) != 0)
-          break;
-        indx++;  
-      }
-      // no matches, return absPath
-      if (indx == 0)
-        return absPath;
+        public static string GetRelativePath(string absPath, string baseDirectoryPath)
+        {
+            char[] separators = { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+            baseDirectoryPath = Path.GetFullPath(baseDirectoryPath);
+            absPath = Path.GetFullPath(absPath);
+            baseDirectoryPath = baseDirectoryPath.TrimEnd(separators);
 
-      string result = "";
-      for (int i = indx; i < bPath.Length; i++)
-      {
-        result += ".." + Path.DirectorySeparatorChar;
-      }
-      result += String.Join(Path.DirectorySeparatorChar.ToString(), aPath, indx, aPath.Length - indx);
-      return result;
+            string[] bPath = baseDirectoryPath.Split(separators);
+            string[] aPath = absPath.Split(separators);
+            int indx = 0;
+            while (indx < Math.Min(bPath.Length, aPath.Length))
+            {
+                if (String.Compare(aPath[indx], bPath[indx], true) != 0)
+                    break;
+                indx++;
+            }
+            // no matches, return absPath
+            if (indx == 0)
+                return absPath;
+
+            string result = "";
+            for (int i = indx; i < bPath.Length; i++)
+            {
+                result += ".." + Path.DirectorySeparatorChar;
+            }
+            result += String.Join(Path.DirectorySeparatorChar.ToString(), aPath, indx, aPath.Length - indx);
+            return result;
+        }
     }
-  }
 }

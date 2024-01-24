@@ -6,14 +6,14 @@ using System.Collections;
 
 namespace FastReport.Data
 {
-  internal static class CubeHelper
-  {
-    public static CubeSourceBase GetCubeSource(Dictionary dictionary, string complexName)
+    internal static class CubeHelper
     {
-      if (String.IsNullOrEmpty(complexName))
-        return null;
-      string[] names = complexName.Split('.');
-      return dictionary.FindByAlias(names[0]) as CubeSourceBase;
+        public static CubeSourceBase GetCubeSource(Dictionary dictionary, string complexName)
+        {
+            if (String.IsNullOrEmpty(complexName))
+                return null;
+            string[] names = complexName.Split('.');
+            return dictionary.FindByAlias(names[0]) as CubeSourceBase;
+        }
     }
-  }
 }

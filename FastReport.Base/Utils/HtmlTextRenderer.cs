@@ -324,7 +324,6 @@ namespace FastReport.Utils
             charsFit = -1;
             float height = 0;
             float displayHeight = displayRect.Height;
-
             float lineSpacing = 0;
 
             foreach (Paragraph paragraph in paragraphs)
@@ -1149,7 +1148,7 @@ namespace FastReport.Utils
             {
                 return line;
             }
-            else if(newWidth <= availableWidth)
+            else if (newWidth <= availableWidth)
             {
                 return line;
             }
@@ -1618,7 +1617,7 @@ namespace FastReport.Utils
                 if (lineSpacing < 0)
                 {
                     // There is a rune in the line with a larger font size than the start font. Line spacing is not needed
-                    lineSpacing = 0; 
+                    lineSpacing = 0;
                 }
             }
 

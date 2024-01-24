@@ -112,7 +112,7 @@ namespace FastReport.Utils
         }
 #endif
 
-#endregion Properties
+        #endregion Properties
 
         #region Constructors
 

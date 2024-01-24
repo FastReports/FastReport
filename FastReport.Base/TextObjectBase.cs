@@ -460,7 +460,7 @@ namespace FastReport
             }
             catch (Exception e)
             {
-                throw new Exception(Name + ": " + Res.Get("Messages,ErrorInExpression") + ": " + expression, 
+                throw new Exception(Name + ": " + Res.Get("Messages,ErrorInExpression") + ": " + expression,
                     e.InnerException == null ? e : e.InnerException);
             }
         }

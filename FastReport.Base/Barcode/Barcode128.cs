@@ -6,25 +6,25 @@ using FastReport.Utils;
 
 namespace FastReport.Barcode
 {
-  /// <summary>
-  /// Generates the Code128 barcode.
-  /// </summary>
-  /// <remarks>
-  /// This barcode supports three code pages: A, B and C. You need to set appropriate code page
-  /// in the barcode text, or use the auto encode feature. See the <see cref="AutoEncode"/> property
-  /// for more details.
-  /// </remarks>
-  /// <example>This example shows how to configure the BarcodeObject to display Code128 barcode.
-  /// <code>
-  /// BarcodeObject barcode;
-  /// ...
-  /// barcode.Barcode = new Barcode128();
-  /// (barcode.Barcode as Barcode128).AutoEncode = false;
-  /// </code>
-  /// </example>
-  public class Barcode128 : LinearBarcodeBase
-  {
-    #region Fields
+    /// <summary>
+    /// Generates the Code128 barcode.
+    /// </summary>
+    /// <remarks>
+    /// This barcode supports three code pages: A, B and C. You need to set appropriate code page
+    /// in the barcode text, or use the auto encode feature. See the <see cref="AutoEncode"/> property
+    /// for more details.
+    /// </remarks>
+    /// <example>This example shows how to configure the BarcodeObject to display Code128 barcode.
+    /// <code>
+    /// BarcodeObject barcode;
+    /// ...
+    /// barcode.Barcode = new Barcode128();
+    /// (barcode.Barcode as Barcode128).AutoEncode = false;
+    /// </code>
+    /// </example>
+    public class Barcode128 : LinearBarcodeBase
+    {
+        #region Fields
 #if READONLY_STRUCTS
         private readonly struct Code128
 #else
@@ -37,7 +37,7 @@ namespace FastReport.Barcode
             public readonly string c;
 #pragma warning restore FR0006 // Field name of struct must be longer than 2 characters.
             public readonly string data;
-      
+
             public Code128(string a, string b, string c, string data)
             {
                 this.a = a;
@@ -47,7 +47,7 @@ namespace FastReport.Barcode
             }
         }
 
-    private static Code128[] tabelle_128 = {
+        private static Code128[] tabelle_128 = {
       new Code128(" ", " ", "00", "212222"),
       new Code128("!", "!", "01", "222122"),
       new Code128("\"", "\"", "02", "222221"),
@@ -156,439 +156,439 @@ namespace FastReport.Barcode
       new Code128(" ", " ", "  ", "211232")      // START C
     };
 
-    private enum Encoding { A, B, C, AorB, None }
-    private bool autoEncode;
-    #endregion
+        private enum Encoding { A, B, C, AorB, None }
+        private bool autoEncode;
+        #endregion
 
-    #region Properties
-    /// <summary>
-    /// Gets or sets a value that determines whether the barcode should automatically 
-    /// use appropriate encoding.
-    /// </summary>
-    /// <remarks>
-    /// You may use this property to encode data automatically. If you set it to <b>false</b>, 
-    /// you must specify the code page inside the data string. The following control codes are available:
-    /// <list type="table">
-    ///   <listheader>
-    ///     <term>Sequence</term>
-    ///     <description>Code128 control code</description>
-    ///   </listheader>
-    ///   <item>
-    ///     <term>&amp;A;</term>
-    ///     <description>START A / CODE A</description>
-    ///   </item>
-    ///   <item>
-    ///     <term>&amp;B;</term>
-    ///     <description>START B / CODE B</description>
-    ///   </item>
-    ///   <item>
-    ///     <term>&amp;C;</term>
-    ///     <description>START C / CODE C</description>
-    ///   </item>
-    /// </list>
-    ///   <item>
-    ///     <term>&amp;S;</term>
-    ///     <description>SHIFT</description>
-    ///   </item>
-    ///   <item>
-    ///     <term>&amp;1;</term>
-    ///     <description>FNC1</description>
-    ///   </item>
-    ///   <item>
-    ///     <term>&amp;2;</term>
-    ///     <description>FNC2</description>
-    ///   </item>
-    ///   <item>
-    ///     <term>&amp;3;</term>
-    ///     <description>FNC3</description>
-    ///   </item>
-    ///   <item>
-    ///     <term>&amp;4;</term>
-    ///     <description>FNC4</description>
-    ///   </item>
-    /// </remarks>
-    /// <example>The following example shows how to specify control codes:
-    /// <code>
-    /// BarcodeObject barcode;
-    /// barcode.Barcode = new Barcode128();
-    /// (barcode.Barcode as Barcode128).AutoEncode = false;
-    /// barcode.Text = "&amp;C;1234&amp;A;ABC";
-    /// </code>
-    /// </example>
-    [DefaultValue(true)]
-    public bool AutoEncode
-    {
-      get { return autoEncode; }
-      set { autoEncode = value; }
-    }
-
-    /// <inheritdoc/>
-    public override bool IsNumeric
-    {
-      get { return false; }
-    }
-    #endregion
-
-    #region Private Methods
-    private bool IsDigit(char c)
-    {
-      return c >= '0' && c <= '9';
-    }
-    
-    private bool IsFourOrMoreDigits(string code, int index, out int numDigits)
-    {
-      numDigits = 0;
-      if (IsDigit(code[index]) && index + 4 < code.Length)
-      {
-        while (index + numDigits < code.Length && IsDigit(code[index + numDigits]))
+        #region Properties
+        /// <summary>
+        /// Gets or sets a value that determines whether the barcode should automatically 
+        /// use appropriate encoding.
+        /// </summary>
+        /// <remarks>
+        /// You may use this property to encode data automatically. If you set it to <b>false</b>, 
+        /// you must specify the code page inside the data string. The following control codes are available:
+        /// <list type="table">
+        ///   <listheader>
+        ///     <term>Sequence</term>
+        ///     <description>Code128 control code</description>
+        ///   </listheader>
+        ///   <item>
+        ///     <term>&amp;A;</term>
+        ///     <description>START A / CODE A</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>&amp;B;</term>
+        ///     <description>START B / CODE B</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>&amp;C;</term>
+        ///     <description>START C / CODE C</description>
+        ///   </item>
+        /// </list>
+        ///   <item>
+        ///     <term>&amp;S;</term>
+        ///     <description>SHIFT</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>&amp;1;</term>
+        ///     <description>FNC1</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>&amp;2;</term>
+        ///     <description>FNC2</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>&amp;3;</term>
+        ///     <description>FNC3</description>
+        ///   </item>
+        ///   <item>
+        ///     <term>&amp;4;</term>
+        ///     <description>FNC4</description>
+        ///   </item>
+        /// </remarks>
+        /// <example>The following example shows how to specify control codes:
+        /// <code>
+        /// BarcodeObject barcode;
+        /// barcode.Barcode = new Barcode128();
+        /// (barcode.Barcode as Barcode128).AutoEncode = false;
+        /// barcode.Text = "&amp;C;1234&amp;A;ABC";
+        /// </code>
+        /// </example>
+        [DefaultValue(true)]
+        public bool AutoEncode
         {
-          numDigits++;
-        }
-      }
-      
-      return numDigits >= 4;
-    }
-
-    private int FindCodeA(char c)
-    {
-      for (int i = 0; i < tabelle_128.Length; i++)
-      {
-        if (c == tabelle_128[i].a[0])
-          return i;
-      }
-
-      return -1;
-    }
-
-    private int FindCodeB(char c)
-    {
-      for (int i = 0; i < tabelle_128.Length; i++)
-      {
-        if (c == tabelle_128[i].b[0])
-          return i;
-      }
-
-      return -1;
-    }
-
-    private int FindCodeC(string c)
-    {
-      for (int i = 0; i < tabelle_128.Length; i++)
-      {
-        if (c == tabelle_128[i].c)
-          return i;
-      }
-
-      return -1;
-    }
-
-    // Returns a group of characters with the same encoding. Updates encoding and index parameters.
-    private string GetNextPortion(string code, ref int index, ref Encoding encoding)
-    {
-      if (index >= code.Length)
-        return "";
-
-      string result = "";
-        
-      // determine the first character encoding
-      int aIndex = FindCodeA(code[index]);
-      int bIndex = FindCodeB(code[index]);
-      Encoding firstCharEncoding = Encoding.A;
-      if (aIndex == -1 && bIndex != -1)
-        firstCharEncoding = Encoding.B;
-      else if (aIndex != -1 && bIndex != -1)
-        firstCharEncoding = Encoding.AorB;
-      // if we have four or more digits in the current position, use C encoding.
-      int numDigits = 0;
-      if (IsFourOrMoreDigits(code, index, out numDigits))
-        firstCharEncoding = Encoding.C;
-
-      // if encoding = C, we have found the group, just return it.
-      if (firstCharEncoding == Encoding.C)
-      {
-        // we need digit pairs, so round it to even value
-        numDigits = (numDigits / 2) * 2;
-        result = code.Substring(index, numDigits);
-        index += numDigits;
-        encoding = Encoding.C;
-        return "&C;" + result;
-      }
-
-      // search for next characters with the same encoding. Calculate numChars with the same encoding.
-      int numChars = 1;
-      while (index + numChars < code.Length)
-      {
-        // same as above...
-        aIndex = FindCodeA(code[index + numChars]);
-        bIndex = FindCodeB(code[index + numChars]);
-        Encoding nextCharEncoding = Encoding.A;
-        if (aIndex == -1 && bIndex != -1)
-          nextCharEncoding = Encoding.B;
-        else if (aIndex != -1 && bIndex != -1)
-          nextCharEncoding = Encoding.AorB;
-        if (IsFourOrMoreDigits(code, index + numChars, out numDigits))
-          nextCharEncoding = Encoding.C;
-
-        // switch to particular encoding from AorB
-        if (nextCharEncoding != Encoding.C && nextCharEncoding != firstCharEncoding)
-        {
-          if (firstCharEncoding == Encoding.AorB)
-            firstCharEncoding = nextCharEncoding;
-          else if (nextCharEncoding == Encoding.AorB)
-            nextCharEncoding = firstCharEncoding;  
+            get { return autoEncode; }
+            set { autoEncode = value; }
         }
 
-        if (firstCharEncoding != nextCharEncoding)
-          break;
-        numChars++;  
-      }
-
-      // give precedence to B encoding
-      if (firstCharEncoding == Encoding.AorB)
-        firstCharEncoding = Encoding.B;
-      
-      string prefix = firstCharEncoding == Encoding.A ? "&A;" : "&B;";
-      // if we have only one character, use SHIFT code to switch encoding. Do not change current encoding.
-      if (encoding != firstCharEncoding && 
-        numChars == 1 &&
-        (encoding == Encoding.A || encoding == Encoding.B) && 
-        (firstCharEncoding == Encoding.A || firstCharEncoding == Encoding.B))
-        prefix = "&S;";
-      else
-        encoding = firstCharEncoding;  
-
-      result = prefix + code.Substring(index, numChars);
-      index += numChars;
-      return result;
-    }
-    
-    private string StripControlCodes(string code, bool stripFNCodes)
-    {
-      string result = "";
-      int index = 0;
-
-      while (index < code.Length)
-      {
-        string nextChar = GetNextChar(code, ref index, Encoding.None);
-        if (nextChar != "&A;" && nextChar != "&B;" && nextChar != "&C;" && nextChar != "&S;")
+        /// <inheritdoc/>
+        public override bool IsNumeric
         {
-          if (!stripFNCodes || (nextChar != "&1;" && nextChar != "&2;" && nextChar != "&3;" && nextChar != "&4;"))
-            result += nextChar;
-        }  
-      }
-
-      return result;
-    }
-
-    private string Encode(string code)
-    {
-      code = StripControlCodes(code, false);
-      string result = "";
-      int index = 0;
-      Encoding encoding = Encoding.None;
-      
-      while (index < code.Length)
-      {
-        result += GetNextPortion(code, ref index, ref encoding);
-      }
-      
-      return result;
-    }
-
-    private string GetNextChar(string code, ref int index, Encoding encoding)
-    {
-      if (index >= code.Length)
-        return "";
-
-      string result = "";
-
-      // check special codes:
-      // "&A;" means START A / CODE A
-      // "&B;" means START B / CODE B
-      // "&C;" means START C / CODE C
-      // "&S;" means SHIFT
-      // "&1;" means FNC1
-      // "&2;" means FNC2
-      // "&3;" means FNC3
-      // "&4;" means FNC4
-      
-      if (code[index] == '&' && index + 2 < code.Length && code[index + 2] == ';')
-      {
-        char c = code[index + 1].ToString().ToUpper()[0];
-        if (c == 'A' || c == 'B' || c == 'C' || c == 'S' || c == '1' || c == '2' || c == '3' || c == '4')
-        {
-          index += 3;
-          return "&" + c + ";";
+            get { return false; }
         }
-      }
-      
-      // if encoding is C, get next two chars
-      if (encoding == Encoding.C && index + 1 < code.Length)
-      {
-        result = code.Substring(index, 2);
-        index += 2;
-        return result;
-      }
-      
-      result = code.Substring(index, 1);
-      index++;
-      return result;
-    }
-    #endregion
+        #endregion
 
-    #region Protected Methods
-    internal override string StripControlCodes(string data)
-    {
-      return StripControlCodes(data, true);
-    }
-
-    internal override string GetPattern()
-    {
-      string code = text;
-      if (AutoEncode)
-        code = Encode(code);
-      
-      // get first char to determine encoding
-      Encoding encoding = Encoding.None;
-      int index = 0;
-      string nextChar = GetNextChar(code, ref index, encoding);
-      int checksum = 0;
-      string startCode = "";
-      
-      // setup encoding
-      switch (nextChar)
-      {
-        case "&A;":
-          encoding = Encoding.A;
-          checksum = 103;
-          startCode = tabelle_128[103].data;
-          break;
-
-        case "&B;":
-          encoding = Encoding.B;
-          checksum = 104;
-          startCode = tabelle_128[104].data;
-          break;
-
-        case "&C;":
-          encoding = Encoding.C;
-          checksum = 105;
-          startCode = tabelle_128[105].data;
-          break;
-          
-        default:
-          throw new Exception(Res.Get("Messages,InvalidBarcode1"));
-      }
-      
-      string result = startCode;    // Startcode
-      int codeword_pos = 1;
-
-      while (index < code.Length)
-      {
-        nextChar = GetNextChar(code, ref index, encoding);
-        int idx = 0;
-
-        switch (nextChar)
+        #region Private Methods
+        private bool IsDigit(char c)
         {
-          case "&A;":
-            encoding = Encoding.A;
-            idx = 101;
-            break;
+            return c >= '0' && c <= '9';
+        }
 
-          case "&B;":
-            encoding = Encoding.B;
-            idx = 100;
-            break;
+        private bool IsFourOrMoreDigits(string code, int index, out int numDigits)
+        {
+            numDigits = 0;
+            if (IsDigit(code[index]) && index + 4 < code.Length)
+            {
+                while (index + numDigits < code.Length && IsDigit(code[index + numDigits]))
+                {
+                    numDigits++;
+                }
+            }
 
-          case "&C;":
-            encoding = Encoding.C;
-            idx = 99;
-            break;
+            return numDigits >= 4;
+        }
 
-          case "&S;":
-            if (encoding == Encoding.A)
-              encoding = Encoding.B;
+        private int FindCodeA(char c)
+        {
+            for (int i = 0; i < tabelle_128.Length; i++)
+            {
+                if (c == tabelle_128[i].a[0])
+                    return i;
+            }
+
+            return -1;
+        }
+
+        private int FindCodeB(char c)
+        {
+            for (int i = 0; i < tabelle_128.Length; i++)
+            {
+                if (c == tabelle_128[i].b[0])
+                    return i;
+            }
+
+            return -1;
+        }
+
+        private int FindCodeC(string c)
+        {
+            for (int i = 0; i < tabelle_128.Length; i++)
+            {
+                if (c == tabelle_128[i].c)
+                    return i;
+            }
+
+            return -1;
+        }
+
+        // Returns a group of characters with the same encoding. Updates encoding and index parameters.
+        private string GetNextPortion(string code, ref int index, ref Encoding encoding)
+        {
+            if (index >= code.Length)
+                return "";
+
+            string result = "";
+
+            // determine the first character encoding
+            int aIndex = FindCodeA(code[index]);
+            int bIndex = FindCodeB(code[index]);
+            Encoding firstCharEncoding = Encoding.A;
+            if (aIndex == -1 && bIndex != -1)
+                firstCharEncoding = Encoding.B;
+            else if (aIndex != -1 && bIndex != -1)
+                firstCharEncoding = Encoding.AorB;
+            // if we have four or more digits in the current position, use C encoding.
+            int numDigits = 0;
+            if (IsFourOrMoreDigits(code, index, out numDigits))
+                firstCharEncoding = Encoding.C;
+
+            // if encoding = C, we have found the group, just return it.
+            if (firstCharEncoding == Encoding.C)
+            {
+                // we need digit pairs, so round it to even value
+                numDigits = (numDigits / 2) * 2;
+                result = code.Substring(index, numDigits);
+                index += numDigits;
+                encoding = Encoding.C;
+                return "&C;" + result;
+            }
+
+            // search for next characters with the same encoding. Calculate numChars with the same encoding.
+            int numChars = 1;
+            while (index + numChars < code.Length)
+            {
+                // same as above...
+                aIndex = FindCodeA(code[index + numChars]);
+                bIndex = FindCodeB(code[index + numChars]);
+                Encoding nextCharEncoding = Encoding.A;
+                if (aIndex == -1 && bIndex != -1)
+                    nextCharEncoding = Encoding.B;
+                else if (aIndex != -1 && bIndex != -1)
+                    nextCharEncoding = Encoding.AorB;
+                if (IsFourOrMoreDigits(code, index + numChars, out numDigits))
+                    nextCharEncoding = Encoding.C;
+
+                // switch to particular encoding from AorB
+                if (nextCharEncoding != Encoding.C && nextCharEncoding != firstCharEncoding)
+                {
+                    if (firstCharEncoding == Encoding.AorB)
+                        firstCharEncoding = nextCharEncoding;
+                    else if (nextCharEncoding == Encoding.AorB)
+                        nextCharEncoding = firstCharEncoding;
+                }
+
+                if (firstCharEncoding != nextCharEncoding)
+                    break;
+                numChars++;
+            }
+
+            // give precedence to B encoding
+            if (firstCharEncoding == Encoding.AorB)
+                firstCharEncoding = Encoding.B;
+
+            string prefix = firstCharEncoding == Encoding.A ? "&A;" : "&B;";
+            // if we have only one character, use SHIFT code to switch encoding. Do not change current encoding.
+            if (encoding != firstCharEncoding &&
+              numChars == 1 &&
+              (encoding == Encoding.A || encoding == Encoding.B) &&
+              (firstCharEncoding == Encoding.A || firstCharEncoding == Encoding.B))
+                prefix = "&S;";
             else
-              encoding = Encoding.A;
-            idx = 98;
-            break;
-            
-          case "&1;":
-            idx = 102;
-            break;
-            
-          case "&2;":
-            idx = 97;
-            break;
-            
-          case "&3;":
-            idx = 96;
-            break;
-            
-          case "&4;":
-            idx = encoding == Encoding.A ? 101 : 100;
-            break;
-            
-          default:
-            if (encoding == Encoding.A)
-              idx = FindCodeA(nextChar[0]);
-            else if (encoding == Encoding.B)
-              idx = FindCodeB(nextChar[0]);
-            else
-              idx = FindCodeC(nextChar);
-            break;  
+                encoding = firstCharEncoding;
+
+            result = prefix + code.Substring(index, numChars);
+            index += numChars;
+            return result;
         }
 
-        if (idx < 0)
-          throw new Exception(Res.Get("Messages,InvalidBarcode2"));
-
-        result += tabelle_128[idx].data;
-        checksum += idx * codeword_pos;
-        codeword_pos++;
-
-        // switch encoding back after the SHIFT
-        if (nextChar == "&S;")
+        private string StripControlCodes(string code, bool stripFNCodes)
         {
-          if (encoding == Encoding.A)
-            encoding = Encoding.B;
-          else
-            encoding = Encoding.A;
-        }    
-      }
-      
-      checksum = checksum % 103;
-      result += tabelle_128[checksum].data;
+            string result = "";
+            int index = 0;
 
-      // stop code
-      result += "2331112";
-      return DoConvert(result);
-    }
-    #endregion
-    
-    #region Public Methods
-    /// <inheritdoc/>
-    public override void Assign(BarcodeBase source)
-    {
-      base.Assign(source);
-      AutoEncode = (source as Barcode128).AutoEncode;
-    }
+            while (index < code.Length)
+            {
+                string nextChar = GetNextChar(code, ref index, Encoding.None);
+                if (nextChar != "&A;" && nextChar != "&B;" && nextChar != "&C;" && nextChar != "&S;")
+                {
+                    if (!stripFNCodes || (nextChar != "&1;" && nextChar != "&2;" && nextChar != "&3;" && nextChar != "&4;"))
+                        result += nextChar;
+                }
+            }
 
-    internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
-    {
-      base.Serialize(writer, prefix, diff);
-      Barcode128 c = diff as Barcode128;
+            return result;
+        }
 
-      if (c == null || AutoEncode != c.AutoEncode)
-        writer.WriteBool(prefix + "AutoEncode", AutoEncode);
-    }
-    #endregion
+        private string Encode(string code)
+        {
+            code = StripControlCodes(code, false);
+            string result = "";
+            int index = 0;
+            Encoding encoding = Encoding.None;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Barcode128"/> class with default settings.
-    /// </summary>
-    public Barcode128()
-    {
-      AutoEncode = true;
+            while (index < code.Length)
+            {
+                result += GetNextPortion(code, ref index, ref encoding);
+            }
+
+            return result;
+        }
+
+        private string GetNextChar(string code, ref int index, Encoding encoding)
+        {
+            if (index >= code.Length)
+                return "";
+
+            string result = "";
+
+            // check special codes:
+            // "&A;" means START A / CODE A
+            // "&B;" means START B / CODE B
+            // "&C;" means START C / CODE C
+            // "&S;" means SHIFT
+            // "&1;" means FNC1
+            // "&2;" means FNC2
+            // "&3;" means FNC3
+            // "&4;" means FNC4
+
+            if (code[index] == '&' && index + 2 < code.Length && code[index + 2] == ';')
+            {
+                char c = code[index + 1].ToString().ToUpper()[0];
+                if (c == 'A' || c == 'B' || c == 'C' || c == 'S' || c == '1' || c == '2' || c == '3' || c == '4')
+                {
+                    index += 3;
+                    return "&" + c + ";";
+                }
+            }
+
+            // if encoding is C, get next two chars
+            if (encoding == Encoding.C && index + 1 < code.Length)
+            {
+                result = code.Substring(index, 2);
+                index += 2;
+                return result;
+            }
+
+            result = code.Substring(index, 1);
+            index++;
+            return result;
+        }
+        #endregion
+
+        #region Protected Methods
+        internal override string StripControlCodes(string data)
+        {
+            return StripControlCodes(data, true);
+        }
+
+        internal override string GetPattern()
+        {
+            string code = text;
+            if (AutoEncode)
+                code = Encode(code);
+
+            // get first char to determine encoding
+            Encoding encoding = Encoding.None;
+            int index = 0;
+            string nextChar = GetNextChar(code, ref index, encoding);
+            int checksum = 0;
+            string startCode = "";
+
+            // setup encoding
+            switch (nextChar)
+            {
+                case "&A;":
+                    encoding = Encoding.A;
+                    checksum = 103;
+                    startCode = tabelle_128[103].data;
+                    break;
+
+                case "&B;":
+                    encoding = Encoding.B;
+                    checksum = 104;
+                    startCode = tabelle_128[104].data;
+                    break;
+
+                case "&C;":
+                    encoding = Encoding.C;
+                    checksum = 105;
+                    startCode = tabelle_128[105].data;
+                    break;
+
+                default:
+                    throw new Exception(Res.Get("Messages,InvalidBarcode1"));
+            }
+
+            string result = startCode;    // Startcode
+            int codeword_pos = 1;
+
+            while (index < code.Length)
+            {
+                nextChar = GetNextChar(code, ref index, encoding);
+                int idx = 0;
+
+                switch (nextChar)
+                {
+                    case "&A;":
+                        encoding = Encoding.A;
+                        idx = 101;
+                        break;
+
+                    case "&B;":
+                        encoding = Encoding.B;
+                        idx = 100;
+                        break;
+
+                    case "&C;":
+                        encoding = Encoding.C;
+                        idx = 99;
+                        break;
+
+                    case "&S;":
+                        if (encoding == Encoding.A)
+                            encoding = Encoding.B;
+                        else
+                            encoding = Encoding.A;
+                        idx = 98;
+                        break;
+
+                    case "&1;":
+                        idx = 102;
+                        break;
+
+                    case "&2;":
+                        idx = 97;
+                        break;
+
+                    case "&3;":
+                        idx = 96;
+                        break;
+
+                    case "&4;":
+                        idx = encoding == Encoding.A ? 101 : 100;
+                        break;
+
+                    default:
+                        if (encoding == Encoding.A)
+                            idx = FindCodeA(nextChar[0]);
+                        else if (encoding == Encoding.B)
+                            idx = FindCodeB(nextChar[0]);
+                        else
+                            idx = FindCodeC(nextChar);
+                        break;
+                }
+
+                if (idx < 0)
+                    throw new Exception(Res.Get("Messages,InvalidBarcode2"));
+
+                result += tabelle_128[idx].data;
+                checksum += idx * codeword_pos;
+                codeword_pos++;
+
+                // switch encoding back after the SHIFT
+                if (nextChar == "&S;")
+                {
+                    if (encoding == Encoding.A)
+                        encoding = Encoding.B;
+                    else
+                        encoding = Encoding.A;
+                }
+            }
+
+            checksum = checksum % 103;
+            result += tabelle_128[checksum].data;
+
+            // stop code
+            result += "2331112";
+            return DoConvert(result);
+        }
+        #endregion
+
+        #region Public Methods
+        /// <inheritdoc/>
+        public override void Assign(BarcodeBase source)
+        {
+            base.Assign(source);
+            AutoEncode = (source as Barcode128).AutoEncode;
+        }
+
+        internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
+        {
+            base.Serialize(writer, prefix, diff);
+            Barcode128 c = diff as Barcode128;
+
+            if (c == null || AutoEncode != c.AutoEncode)
+                writer.WriteBool(prefix + "AutoEncode", AutoEncode);
+        }
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Barcode128"/> class with default settings.
+        /// </summary>
+        public Barcode128()
+        {
+            AutoEncode = true;
+        }
     }
-  }
 }

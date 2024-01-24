@@ -198,7 +198,7 @@ namespace FastReport.Utils
             if (parts.Length > 1)
             {
                 sb.Append(".");
-                sb.Append(NextDigits(parts[1].Length -1));
+                sb.Append(NextDigits(parts[1].Length - 1));
                 sb.Append(NextDigit(1, 9));
             }
 
@@ -356,7 +356,7 @@ namespace FastReport.Utils
         public SByte RandomizeSByte(SByte source)
         {
             StringBuilder sb = new StringBuilder();
-            
+
             int length = source.ToString(CultureInfo.InvariantCulture).Length;
             if (source < 0)
             {

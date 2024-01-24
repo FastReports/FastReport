@@ -206,13 +206,13 @@ namespace FastReport.Utils
 
         internal float SpaceWidth
         {
-            get 
-            { 
+            get
+            {
                 if (spaceWidth < 0)
                 {
                     spaceWidth = CalculateSpaceSize(graphics, font);
                 }
-                return spaceWidth; 
+                return spaceWidth;
             }
         }
 
@@ -1600,16 +1600,16 @@ namespace FastReport.Utils
                 }
                 else
                 {
-// not needed anymore; skia now uses metrics of original font in case of font fallback
-/*#if SKIA
-                    // we need actual height of a text because it may have font fallback with different metrics
-                    if (!string.IsNullOrEmpty(text) && !Renderer.HasLineHeight)
-                    {
-                        var stringHeight = DrawUtils.MeasureString(Renderer.Graphics.Graphics, text, Renderer.Font, Renderer.Format).Height;
+                    // not needed anymore; skia now uses metrics of original font in case of font fallback
+                    /*#if SKIA
+                                        // we need actual height of a text because it may have font fallback with different metrics
+                                        if (!string.IsNullOrEmpty(text) && !Renderer.HasLineHeight)
+                                        {
+                                            var stringHeight = DrawUtils.MeasureString(Renderer.Graphics.Graphics, text, Renderer.Font, Renderer.Format).Height;
 
-                        return Renderer.FontLineHeight > stringHeight ? Renderer.FontLineHeight : stringHeight;
-                    }
-#endif*/
+                                            return Renderer.FontLineHeight > stringHeight ? Renderer.FontLineHeight : stringHeight;
+                                        }
+                    #endif*/
                     return Renderer.LineHeight;
                 }
             }

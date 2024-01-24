@@ -14,7 +14,7 @@ namespace FastReport.Utils
         private const string RIJ = "rij";
 
         private static string FDefaultPassword = typeof(Crypter).FullName;
-    
+
         /// <summary>
         /// Sets the password that is used to crypt connection strings stored in a report.
         /// </summary>
@@ -25,7 +25,7 @@ namespace FastReport.Utils
         {
             set { FDefaultPassword = value; }
         }
-    
+
         /// <summary>
         /// Crypts a stream using specified password.
         /// </summary>
@@ -124,7 +124,7 @@ namespace FastReport.Utils
         /// </remarks>
         public static string EncryptString(string data)
         {
-          return EncryptString(data, FDefaultPassword);
+            return EncryptString(data, FDefaultPassword);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace FastReport.Utils
         public static string EncryptString(string data, string password)
         {
             if (String.IsNullOrEmpty(data) || String.IsNullOrEmpty(password))
-            return data;
+                return data;
 
             using (MemoryStream stream = new MemoryStream())
             {
@@ -144,8 +144,8 @@ namespace FastReport.Utils
                 {
                     byte[] bytes = Encoding.UTF8.GetBytes(data);
                     cryptedStream.Write(bytes, 0, bytes.Length);
-                }  
-          
+                }
+
                 return RIJ + Convert.ToBase64String(stream.ToArray());
             }
         }
@@ -162,7 +162,7 @@ namespace FastReport.Utils
         /// </remarks>
         public static string DecryptString(string data)
         {
-          return DecryptString(data, FDefaultPassword);
+            return DecryptString(data, FDefaultPassword);
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace FastReport.Utils
         /// <returns></returns>
         public static string ComputeHash(byte[] input)
         {
-            byte[] hash = new Murmur3().ComputeHash(input);        
+            byte[] hash = new Murmur3().ComputeHash(input);
             return BitConverter.ToString(hash).Replace("-", String.Empty);
         }
 
@@ -258,52 +258,52 @@ namespace FastReport.Utils
 
         private void MixBody(ulong k1, ulong k2)
         {
-			unchecked 
-			{ 
-	            h1 ^= MixKey1(k1);
-				h1 = (h1 << 27) | (h1 >> 37);
-	            h1 += h2;
-	            h1 = h1* 5 + 0x52dce729;
-	            h2 ^= MixKey2(k2);
-				h2 = (h2 << 31) | (h2 >> 33);
-	            h2 += h1;
-	            h2 = h2* 5 + 0x38495ab5;
-			}
+            unchecked
+            {
+                h1 ^= MixKey1(k1);
+                h1 = (h1 << 27) | (h1 >> 37);
+                h1 += h2;
+                h1 = h1 * 5 + 0x52dce729;
+                h2 ^= MixKey2(k2);
+                h2 = (h2 << 31) | (h2 >> 33);
+                h2 += h1;
+                h2 = h2 * 5 + 0x38495ab5;
+            }
         }
 
         private static ulong MixKey1(ulong k1)
         {
-			unchecked 
-			{ 
-	            k1 *= C1;
-	            k1 = (k1 << 31) | (k1 >> 33);
-	            k1 *= C2;
-			}
+            unchecked
+            {
+                k1 *= C1;
+                k1 = (k1 << 31) | (k1 >> 33);
+                k1 *= C2;
+            }
             return k1;
         }
 
         private static ulong MixKey2(ulong k2)
         {
-			unchecked 
-			{ 
-	            k2 *= C2;
-	            k2 = (k2 << 33) | (k2 >> 31);
-	            k2 *= C1;
-			}
+            unchecked
+            {
+                k2 *= C2;
+                k2 = (k2 << 33) | (k2 >> 31);
+                k2 *= C1;
+            }
             return k2;
         }
 
         private static ulong MixFinal(ulong k)
         {
-			unchecked 
-			{ 
-	            // avalanche bits
-	            k ^= k >> 33;
-	            k *= 0xff51afd7ed558ccdL;
-	            k ^= k >> 33;
-	            k *= 0xc4ceb9fe1a85ec53L;
-	            k ^= k >> 33;
-			}
+            unchecked
+            {
+                // avalanche bits
+                k ^= k >> 33;
+                k *= 0xff51afd7ed558ccdL;
+                k ^= k >> 33;
+                k *= 0xc4ceb9fe1a85ec53L;
+                k ^= k >> 33;
+            }
             return k;
         }
 
@@ -326,18 +326,18 @@ namespace FastReport.Utils
             int npos;
             ulong remaining = (ulong)bb.Length;
             // read 128 bits, 16 bytes, 2 longs in eacy cycle
-			while (remaining >= READ_SIZE) unchecked
-            {
-                npos = pos;
-                ulong k1 = (uint)(bb[npos++] | bb[npos++] << 8 | bb[npos++] << 16 | bb[npos++] << 24);
-                pos += 8;
-                npos = pos;
-                ulong k2 = (uint)(bb[npos++] | bb[npos++] << 8 | bb[npos++] << 16 | bb[npos++] << 24);
-                pos += 8;
-                length += READ_SIZE;
-                remaining -= READ_SIZE;
-                MixBody(k1, k2);
-            }
+            while (remaining >= READ_SIZE) unchecked
+                {
+                    npos = pos;
+                    ulong k1 = (uint)(bb[npos++] | bb[npos++] << 8 | bb[npos++] << 16 | bb[npos++] << 24);
+                    pos += 8;
+                    npos = pos;
+                    ulong k2 = (uint)(bb[npos++] | bb[npos++] << 8 | bb[npos++] << 16 | bb[npos++] << 24);
+                    pos += 8;
+                    length += READ_SIZE;
+                    remaining -= READ_SIZE;
+                    MixBody(k1, k2);
+                }
             // if the input MOD 16 != 0
             if (remaining > 0)
                 ProcessBytesRemaining(bb, remaining, pos);
@@ -414,17 +414,17 @@ namespace FastReport.Utils
         {
             get
             {
-				unchecked
-				{
-					h1 ^= length;
-					h2 ^= length;
-					h1 += h2;
-					h2 += h1;
-					h1 = Murmur3.MixFinal(h1);
-					h2 = Murmur3.MixFinal(h2);
-					h1 += h2;
-					h2 += h1;
-				}
+                unchecked
+                {
+                    h1 ^= length;
+                    h2 ^= length;
+                    h1 += h2;
+                    h2 += h1;
+                    h1 = Murmur3.MixFinal(h1);
+                    h2 = Murmur3.MixFinal(h2);
+                    h1 += h2;
+                    h2 += h1;
+                }
                 byte[] hash = new byte[Murmur3.READ_SIZE];
                 Array.Copy(BitConverter.GetBytes(h1), 0, hash, 0, 8);
                 Array.Copy(BitConverter.GetBytes(h2), 0, hash, 8, 8);

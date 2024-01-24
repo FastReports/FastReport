@@ -4,7 +4,7 @@
 // Author: Paulo Soares (psoares@consiste.pt)
 // Modifications by Alexander Tzyganenko 
 //
-  
+
 using System;
 using System.Collections;
 using System.Text;
@@ -13,156 +13,156 @@ using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using FastReport.Utils;
 
-namespace FastReport.Barcode 
+namespace FastReport.Barcode
 {
-  /// <summary>
-  /// Specifies the error correction level used for PDF417 barcode.
-  /// </summary>
-  public enum PDF417ErrorCorrection
-  {
     /// <summary>
-    /// Indicates that correction level should be calculated automatically.
+    /// Specifies the error correction level used for PDF417 barcode.
     /// </summary>
-    Auto,
-    
-    /// <summary>
-    /// Specifies level 0.
-    /// </summary>
-    Level0,
+    public enum PDF417ErrorCorrection
+    {
+        /// <summary>
+        /// Indicates that correction level should be calculated automatically.
+        /// </summary>
+        Auto,
+
+        /// <summary>
+        /// Specifies level 0.
+        /// </summary>
+        Level0,
+
+        /// <summary>
+        /// Specifies level 1.
+        /// </summary>
+        Level1,
+
+        /// <summary>
+        /// Specifies level 2.
+        /// </summary>
+        Level2,
+
+        /// <summary>
+        /// Specifies level 3.
+        /// </summary>
+        Level3,
+
+        /// <summary>
+        /// Specifies level 4.
+        /// </summary>
+        Level4,
+
+        /// <summary>
+        /// Specifies level 5.
+        /// </summary>
+        Level5,
+
+        /// <summary>
+        /// Specifies level 6.
+        /// </summary>
+        Level6,
+
+        /// <summary>
+        /// Specifies level 7.
+        /// </summary>
+        Level7,
+
+        /// <summary>
+        /// Specifies level 8.
+        /// </summary>
+        Level8
+    }
 
     /// <summary>
-    /// Specifies level 1.
+    /// Specifies the compaction mode used for PDF417 barcode.
     /// </summary>
-    Level1,
+    public enum PDF417CompactionMode
+    {
+        /// <summary>
+        /// Indicates that compaction mode should be calculated automatically.
+        /// </summary>
+        Auto,
+
+        /// <summary>
+        /// Specifies the text compaction mode.
+        /// </summary>
+        Text,
+
+        /// <summary>
+        /// Specifies the numeric compaction mode.
+        /// </summary>
+        Numeric,
+
+        /// <summary>
+        /// Specifies the binary compaction mode.
+        /// </summary>
+        Binary
+    }
 
     /// <summary>
-    /// Specifies level 2.
+    /// Generates the 2D PDF417 barcode.
     /// </summary>
-    Level2,
+    /// <example>This example shows how to configure the BarcodeObject to display PDF417 barcode.
+    /// <code>
+    /// BarcodeObject barcode;
+    /// ...
+    /// barcode.Barcode = new BarcodePDF417();
+    /// (barcode.Barcode as BarcodePDF417).CompactionMode = PDF417CompactionMode.Text;
+    /// </code>
+    /// </example>
+    public class BarcodePDF417 : Barcode2DBase
+    {
+        #region Fields
+        private byte[] outBits;
+        private int bitColumns;
+        private int codeRows;
+        private int codeColumns;
+        private int rows;
+        private int columns;
+        private int[] codewords = new int[MAX_DATA_CODEWORDS + 2];
+        private int lenCodewords;
+        private int errorLevel;
+        private PDF417ErrorCorrection errorCorrection;
+        private PDF417CompactionMode compactionMode;
+        private byte[] bytes;
+        private float aspectRatio;
+        private Size pixelSize;
+        private int codePage;
+        private int bitPtr;
+        private int cwPtr;
+        private SegmentList segmentList;
 
-    /// <summary>
-    /// Specifies level 3.
-    /// </summary>
-    Level3,
+        private const int START_PATTERN = 0x1fea8;
+        private const int STOP_PATTERN = 0x3fa29;
+        private const int START_CODE_SIZE = 17;
+        private const int STOP_SIZE = 18;
+        private const int MOD = 929;
+        private const int ALPHA = 0x10000;
+        private const int LOWER = 0x20000;
+        private const int MIXED = 0x40000;
+        private const int PUNCTUATION = 0x80000;
+        private const int ISBYTE = 0x100000;
+        private const int BYTESHIFT = 913;
+        private const int PL = 25;
+        private const int LL = 27;
+        private const int AS = 27;
+        private const int ML = 28;
+        private const int AL = 28;
+        private const int PS = 29;
+        private const int PAL = 29;
+        private const int SPACE = 26;
+        private const int TEXT_MODE = 900;
+        private const int BYTE_MODE_6 = 924;
+        private const int BYTE_MODE = 901;
+        private const int NUMERIC_MODE = 902;
+        private const int ABSOLUTE_MAX_TEXT_SIZE = 5420;
+        private const int MAX_DATA_CODEWORDS = 926;
+        private const int MACRO_SEGMENT_ID = 928;
+        private const int MACRO_LAST_SEGMENT = 922;
 
-    /// <summary>
-    /// Specifies level 4.
-    /// </summary>
-    Level4,
+        private const string MIXED_SET = "0123456789&\r\t,:#-.$/+%*=^";
+        private const string PUNCTUATION_SET = ";<>@[\\]_`~!\r\t,:\n-.$/\"|*()?{}'";
 
-    /// <summary>
-    /// Specifies level 5.
-    /// </summary>
-    Level5,
-
-    /// <summary>
-    /// Specifies level 6.
-    /// </summary>
-    Level6,
-
-    /// <summary>
-    /// Specifies level 7.
-    /// </summary>
-    Level7,
-
-    /// <summary>
-    /// Specifies level 8.
-    /// </summary>
-    Level8
-  }
-  
-  /// <summary>
-  /// Specifies the compaction mode used for PDF417 barcode.
-  /// </summary>
-  public enum PDF417CompactionMode
-  {
-    /// <summary>
-    /// Indicates that compaction mode should be calculated automatically.
-    /// </summary>
-    Auto,
-    
-    /// <summary>
-    /// Specifies the text compaction mode.
-    /// </summary>
-    Text,
-
-    /// <summary>
-    /// Specifies the numeric compaction mode.
-    /// </summary>
-    Numeric,
-
-    /// <summary>
-    /// Specifies the binary compaction mode.
-    /// </summary>
-    Binary
-  }
-
-  /// <summary>
-  /// Generates the 2D PDF417 barcode.
-  /// </summary>
-  /// <example>This example shows how to configure the BarcodeObject to display PDF417 barcode.
-  /// <code>
-  /// BarcodeObject barcode;
-  /// ...
-  /// barcode.Barcode = new BarcodePDF417();
-  /// (barcode.Barcode as BarcodePDF417).CompactionMode = PDF417CompactionMode.Text;
-  /// </code>
-  /// </example>
-  public class BarcodePDF417 : Barcode2DBase
-  {
-    #region Fields
-    private byte[] outBits;
-    private int bitColumns;
-    private int codeRows;
-    private int codeColumns;
-    private int rows;
-    private int columns;
-    private int[] codewords = new int[MAX_DATA_CODEWORDS + 2];
-    private int lenCodewords;
-    private int errorLevel;
-    private PDF417ErrorCorrection errorCorrection;
-    private PDF417CompactionMode compactionMode;
-    private byte[] bytes;
-    private float aspectRatio;
-    private Size pixelSize;
-    private int codePage;
-    private int bitPtr;
-    private int cwPtr;
-    private SegmentList segmentList;
-
-    private const int START_PATTERN = 0x1fea8;
-    private const int STOP_PATTERN = 0x3fa29;
-    private const int START_CODE_SIZE = 17;
-    private const int STOP_SIZE = 18;
-    private const int MOD = 929;
-    private const int ALPHA = 0x10000;
-    private const int LOWER = 0x20000;
-    private const int MIXED = 0x40000;
-    private const int PUNCTUATION = 0x80000;
-    private const int ISBYTE = 0x100000;
-    private const int BYTESHIFT = 913;
-    private const int PL = 25;
-    private const int LL = 27;
-    private const int AS = 27;
-    private const int ML = 28;
-    private const int AL = 28;
-    private const int PS = 29;
-    private const int PAL = 29;
-    private const int SPACE = 26;
-    private const int TEXT_MODE = 900;
-    private const int BYTE_MODE_6 = 924;
-    private const int BYTE_MODE = 901;
-    private const int NUMERIC_MODE = 902;
-    private const int ABSOLUTE_MAX_TEXT_SIZE = 5420;
-    private const int MAX_DATA_CODEWORDS = 926;
-    private const int MACRO_SEGMENT_ID = 928;
-    private const int MACRO_LAST_SEGMENT = 922;
-
-    private const string MIXED_SET = "0123456789&\r\t,:#-.$/+%*=^";
-    private const string PUNCTUATION_SET = ";<>@[\\]_`~!\r\t,:\n-.$/\"|*()?{}'";
-
-    private static readonly int[][] CLUSTERS = new int[][]
-        {new int[]{
+        private static readonly int[][] CLUSTERS = new int[][]
+            {new int[]{
             0x1d5c0, 0x1eaf0, 0x1f57c, 0x1d4e0, 0x1ea78, 0x1f53e, 0x1a8c0, 0x1d470,
             0x1a860, 0x15040, 0x1a830, 0x15020, 0x1adc0, 0x1d6f0, 0x1eb7c, 0x1ace0,
             0x1d678, 0x1eb3e, 0x158c0, 0x1ac70, 0x15860, 0x15dc0, 0x1aef0, 0x1d77c,
@@ -518,8 +518,8 @@ namespace FastReport.Barcode
             0x1c7ea
         }};
 
-    private static readonly int[][] ERROR_LEVEL = new int[][]
-        {new int[]{
+        private static readonly int[][] ERROR_LEVEL = new int[][]
+            {new int[]{
             27, 917
         }, new int[]{
             522, 568, 723, 809
@@ -596,113 +596,113 @@ namespace FastReport.Barcode
             63, 310, 863, 251, 366, 304, 282, 738, 675, 410, 389, 244, 31, 121, 303, 263
         }};
 
-    #endregion
+        #endregion
 
-    #region Properties
-    /// <summary>
-    /// Gets or sets the barcode aspect ratio. 
-    /// </summary>
-    /// <remarks>
-    /// A ratio or 0.5 will make the barcode width twice as large as the height.
-    /// </remarks>
-    [DefaultValue(0.5f)]
-    public float AspectRatio
-    {
-      get { return aspectRatio; }
-      set { aspectRatio = value; }
-    }
+        #region Properties
+        /// <summary>
+        /// Gets or sets the barcode aspect ratio. 
+        /// </summary>
+        /// <remarks>
+        /// A ratio or 0.5 will make the barcode width twice as large as the height.
+        /// </remarks>
+        [DefaultValue(0.5f)]
+        public float AspectRatio
+        {
+            get { return aspectRatio; }
+            set { aspectRatio = value; }
+        }
 
-    /// <summary>
-    /// Gets or sets the number of barcode data columns.
-    /// </summary>
-    /// <remarks>
-    /// To calculate the necessary number of columns and rows, set the <see cref="Columns"/> 
-    /// and <see cref="Rows"/> properties to 0. In this case, the <see cref="AspectRatio"/> property
-    /// should be set to desired aspect ratio.
-    /// </remarks>
-    [DefaultValue(0)]
-    public int Columns
-    {
-      get { return columns; }
-      set { columns = value; }
-    }
+        /// <summary>
+        /// Gets or sets the number of barcode data columns.
+        /// </summary>
+        /// <remarks>
+        /// To calculate the necessary number of columns and rows, set the <see cref="Columns"/> 
+        /// and <see cref="Rows"/> properties to 0. In this case, the <see cref="AspectRatio"/> property
+        /// should be set to desired aspect ratio.
+        /// </remarks>
+        [DefaultValue(0)]
+        public int Columns
+        {
+            get { return columns; }
+            set { columns = value; }
+        }
 
-    /// <summary>
-    /// Gets or sets the number of barcode data rows.
-    /// </summary>
-    /// <remarks>
-    /// To calculate the necessary number of columns and rows, set the <see cref="Columns"/> 
-    /// and <see cref="Rows"/> properties to 0. In this case, the <see cref="AspectRatio"/> property
-    /// should be set to desired aspect ratio.
-    /// </remarks>
-    [DefaultValue(0)]
-    public int Rows
-    {
-      get { return rows; }
-      set { rows = value; }
-    }
+        /// <summary>
+        /// Gets or sets the number of barcode data rows.
+        /// </summary>
+        /// <remarks>
+        /// To calculate the necessary number of columns and rows, set the <see cref="Columns"/> 
+        /// and <see cref="Rows"/> properties to 0. In this case, the <see cref="AspectRatio"/> property
+        /// should be set to desired aspect ratio.
+        /// </remarks>
+        [DefaultValue(0)]
+        public int Rows
+        {
+            get { return rows; }
+            set { rows = value; }
+        }
 
-    /// <summary>
-    /// Gets or sets the error level correction used for the barcode.
-    /// </summary>
-    [DefaultValue(PDF417ErrorCorrection.Auto)]
-    public PDF417ErrorCorrection ErrorCorrection
-    {
-      get { return errorCorrection; }
-      set { errorCorrection = value; }
-    }
+        /// <summary>
+        /// Gets or sets the error level correction used for the barcode.
+        /// </summary>
+        [DefaultValue(PDF417ErrorCorrection.Auto)]
+        public PDF417ErrorCorrection ErrorCorrection
+        {
+            get { return errorCorrection; }
+            set { errorCorrection = value; }
+        }
 
-    /// <summary>
-    /// Gets or sets the code page used for text conversion.
-    /// </summary>
-    /// <remarks>
-    /// Use this property to encode non-ASCII characters. For example, set this 
-    /// property to <b>1251</b> to use Window CP1251.
-    /// </remarks>
-    [DefaultValue(437)]
-    public int CodePage
-    {
-      get { return codePage; }
-      set { codePage = value; }
-    }
+        /// <summary>
+        /// Gets or sets the code page used for text conversion.
+        /// </summary>
+        /// <remarks>
+        /// Use this property to encode non-ASCII characters. For example, set this 
+        /// property to <b>1251</b> to use Window CP1251.
+        /// </remarks>
+        [DefaultValue(437)]
+        public int CodePage
+        {
+            get { return codePage; }
+            set { codePage = value; }
+        }
 
-    /// <summary>
-    /// Gets or sets the compaction mode.
-    /// </summary>
-    [DefaultValue(PDF417CompactionMode.Auto)]
-    public PDF417CompactionMode CompactionMode
-    {
-      get { return compactionMode; }
-      set { compactionMode = value; }
-    }
+        /// <summary>
+        /// Gets or sets the compaction mode.
+        /// </summary>
+        [DefaultValue(PDF417CompactionMode.Auto)]
+        public PDF417CompactionMode CompactionMode
+        {
+            get { return compactionMode; }
+            set { compactionMode = value; }
+        }
 
-    /// <summary>
-    /// Gets or sets the size of the pixel.
-    /// </summary>
-    public Size PixelSize
-    {
-      get { return pixelSize; }
-      set { pixelSize = value; }
-    }
-    #endregion
+        /// <summary>
+        /// Gets or sets the size of the pixel.
+        /// </summary>
+        public Size PixelSize
+        {
+            get { return pixelSize; }
+            set { pixelSize = value; }
+        }
+        #endregion
 
-    #region Private Methods
-    private bool CheckSegmentType(Segment segment, char type)
-    {
-      if (segment == null)
-        return false;
-      return segment.type == type;
-    }
+        #region Private Methods
+        private bool CheckSegmentType(Segment segment, char type)
+        {
+            if (segment == null)
+                return false;
+            return segment.type == type;
+        }
 
-    private int GetSegmentLength(Segment segment)
-    {
-      if (segment == null)
-        return 0;
-      return segment.end - segment.start;
-    }
+        private int GetSegmentLength(Segment segment)
+        {
+            if (segment == null)
+                return 0;
+            return segment.end - segment.start;
+        }
 
-    private void OutCodeword17(int codeword)
-    {
+        private void OutCodeword17(int codeword)
+        {
             unchecked
             {
                 int bytePtr = bitPtr / 8;
@@ -713,10 +713,10 @@ namespace FastReport.Barcode
                 outBits[bytePtr] |= (byte)(codeword >> (1 + bit));
                 bitPtr += 17;
             }
-    }
+        }
 
-    private void OutCodeword18(int codeword)
-    {
+        private void OutCodeword18(int codeword)
+        {
             unchecked
             {
                 int bytePtr = bitPtr / 8;
@@ -729,874 +729,874 @@ namespace FastReport.Barcode
                     outBits[++bytePtr] |= 0x80;
                 bitPtr += 18;
             }
-    }
-
-    private void OutCodeword(int codeword)
-    {
-      OutCodeword17(codeword);
-    }
-
-    private void OutStopPattern()
-    {
-      OutCodeword18(STOP_PATTERN);
-    }
-
-    private void OutStartPattern()
-    {
-      OutCodeword17(START_PATTERN);
-    }
-
-    private void OutPaintCode()
-    {
-      int codePtr = 0;
-      bitColumns = START_CODE_SIZE * (codeColumns + 3) + STOP_SIZE;
-      int lenBits = ((bitColumns - 1) / 8 + 1) * codeRows;
-      outBits = new byte[lenBits];
-      for (int row = 0; row < codeRows; ++row)
-      {
-        bitPtr = ((bitColumns - 1) / 8 + 1) * 8 * row;
-        int rowMod = row % 3;
-        int[] cluster = CLUSTERS[rowMod];
-        OutStartPattern();
-        int edge = 0;
-        switch (rowMod)
-        {
-          case 0:
-            edge = 30 * (row / 3) + ((codeRows - 1) / 3);
-            break;
-          case 1:
-            edge = 30 * (row / 3) + errorLevel * 3 + ((codeRows - 1) % 3);
-            break;
-          default:
-            edge = 30 * (row / 3) + codeColumns - 1;
-            break;
-        }
-        OutCodeword(cluster[edge]);
-
-        for (int column = 0; column < codeColumns; ++column)
-        {
-          OutCodeword(cluster[codewords[codePtr++]]);
         }
 
-        switch (rowMod)
+        private void OutCodeword(int codeword)
         {
-          case 0:
-            edge = 30 * (row / 3) + codeColumns - 1;
-            break;
-          case 1:
-            edge = 30 * (row / 3) + ((codeRows - 1) / 3);
-            break;
-          default:
-            edge = 30 * (row / 3) + errorLevel * 3 + ((codeRows - 1) % 3);
-            break;
+            OutCodeword17(codeword);
         }
-        OutCodeword(cluster[edge]);
-        OutStopPattern();
-      }
-    }
 
-    private void CalculateErrorCorrection(int dest)
-    {
-      if (errorLevel < 0 || errorLevel > 8)
-        errorLevel = 0;
-      int[] A = ERROR_LEVEL[errorLevel];
-      int Alength = 2 << errorLevel;
-      for (int k = 0; k < Alength; ++k)
-        codewords[dest + k] = 0;
-      int lastE = Alength - 1;
-      for (int k = 0; k < lenCodewords; ++k)
-      {
-        int t1 = codewords[k] + codewords[dest];
-        for (int e = 0; e <= lastE; ++e)
+        private void OutStopPattern()
         {
-          int t2 = (t1 * A[lastE - e]) % MOD;
-          int t3 = MOD - t2;
-          codewords[dest + e] = ((e == lastE ? 0 : codewords[dest + e + 1]) + t3) % MOD;
+            OutCodeword18(STOP_PATTERN);
         }
-      }
-      for (int k = 0; k < Alength; ++k)
-        codewords[dest + k] = (MOD - codewords[dest + k]) % MOD;
-    }
 
-    private static int GetTextTypeAndValue(byte[] input, int maxLength, int idx)
-    {
-      if (idx >= maxLength)
-        return 0;
-      char c = (char)(input[idx] & 0xff);
-      if (c >= 'A' && c <= 'Z')
-        return (ALPHA + c - 'A');
-      if (c >= 'a' && c <= 'z')
-        return (LOWER + c - 'a');
-      if (c == ' ')
-        return (ALPHA + LOWER + MIXED + SPACE);
-      int ms = MIXED_SET.IndexOf(c);
-      int ps = PUNCTUATION_SET.IndexOf(c);
-      if (ms < 0 && ps < 0)
-        return (ISBYTE + c);
-      if (ms == ps)
-        return (MIXED + PUNCTUATION + ms);
-      if (ms >= 0)
-        return (MIXED + ms);
-      return (PUNCTUATION + ps);
-    }
-
-    private int GetTextTypeAndValue(int maxLength, int idx)
-    {
-      return GetTextTypeAndValue(bytes, maxLength, idx);
-    }
-
-    private void TextCompaction(byte[] input, int start, int length)
-    {
-      int[] dest = new int[ABSOLUTE_MAX_TEXT_SIZE * 2];
-      int mode = ALPHA;
-      int ptr = 0;
-      int fullBytes = 0;
-      int v = 0;
-      int k;
-      int size;
-      length += start;
-      for (k = start; k < length; ++k)
-      {
-        v = GetTextTypeAndValue(input, length, k);
-        if ((v & mode) != 0)
+        private void OutStartPattern()
         {
-          dest[ptr++] = v & 0xff;
-          continue;
+            OutCodeword17(START_PATTERN);
         }
-        if ((v & ISBYTE) != 0)
+
+        private void OutPaintCode()
         {
-          if ((ptr & 1) != 0)
-          {
-            //add a padding word
-            dest[ptr++] = PAL;
-            mode = (mode & PUNCTUATION) != 0 ? ALPHA : mode;
-          }
-          dest[ptr++] = BYTESHIFT;
-          dest[ptr++] = v & 0xff;
-          fullBytes += 2;
-          continue;
-        }
-        switch (mode)
-        {
-          case ALPHA:
-            if ((v & LOWER) != 0)
+            int codePtr = 0;
+            bitColumns = START_CODE_SIZE * (codeColumns + 3) + STOP_SIZE;
+            int lenBits = ((bitColumns - 1) / 8 + 1) * codeRows;
+            outBits = new byte[lenBits];
+            for (int row = 0; row < codeRows; ++row)
             {
-              dest[ptr++] = LL;
-              dest[ptr++] = v & 0xff;
-              mode = LOWER;
+                bitPtr = ((bitColumns - 1) / 8 + 1) * 8 * row;
+                int rowMod = row % 3;
+                int[] cluster = CLUSTERS[rowMod];
+                OutStartPattern();
+                int edge = 0;
+                switch (rowMod)
+                {
+                    case 0:
+                        edge = 30 * (row / 3) + ((codeRows - 1) / 3);
+                        break;
+                    case 1:
+                        edge = 30 * (row / 3) + errorLevel * 3 + ((codeRows - 1) % 3);
+                        break;
+                    default:
+                        edge = 30 * (row / 3) + codeColumns - 1;
+                        break;
+                }
+                OutCodeword(cluster[edge]);
+
+                for (int column = 0; column < codeColumns; ++column)
+                {
+                    OutCodeword(cluster[codewords[codePtr++]]);
+                }
+
+                switch (rowMod)
+                {
+                    case 0:
+                        edge = 30 * (row / 3) + codeColumns - 1;
+                        break;
+                    case 1:
+                        edge = 30 * (row / 3) + ((codeRows - 1) / 3);
+                        break;
+                    default:
+                        edge = 30 * (row / 3) + errorLevel * 3 + ((codeRows - 1) % 3);
+                        break;
+                }
+                OutCodeword(cluster[edge]);
+                OutStopPattern();
             }
-            else if ((v & MIXED) != 0)
+        }
+
+        private void CalculateErrorCorrection(int dest)
+        {
+            if (errorLevel < 0 || errorLevel > 8)
+                errorLevel = 0;
+            int[] A = ERROR_LEVEL[errorLevel];
+            int Alength = 2 << errorLevel;
+            for (int k = 0; k < Alength; ++k)
+                codewords[dest + k] = 0;
+            int lastE = Alength - 1;
+            for (int k = 0; k < lenCodewords; ++k)
             {
-              dest[ptr++] = ML;
-              dest[ptr++] = v & 0xff;
-              mode = MIXED;
+                int t1 = codewords[k] + codewords[dest];
+                for (int e = 0; e <= lastE; ++e)
+                {
+                    int t2 = (t1 * A[lastE - e]) % MOD;
+                    int t3 = MOD - t2;
+                    codewords[dest + e] = ((e == lastE ? 0 : codewords[dest + e + 1]) + t3) % MOD;
+                }
             }
-            else if ((GetTextTypeAndValue(input, length, k + 1) & GetTextTypeAndValue(input, length, k + 2) & PUNCTUATION) != 0)
+            for (int k = 0; k < Alength; ++k)
+                codewords[dest + k] = (MOD - codewords[dest + k]) % MOD;
+        }
+
+        private static int GetTextTypeAndValue(byte[] input, int maxLength, int idx)
+        {
+            if (idx >= maxLength)
+                return 0;
+            char c = (char)(input[idx] & 0xff);
+            if (c >= 'A' && c <= 'Z')
+                return (ALPHA + c - 'A');
+            if (c >= 'a' && c <= 'z')
+                return (LOWER + c - 'a');
+            if (c == ' ')
+                return (ALPHA + LOWER + MIXED + SPACE);
+            int ms = MIXED_SET.IndexOf(c);
+            int ps = PUNCTUATION_SET.IndexOf(c);
+            if (ms < 0 && ps < 0)
+                return (ISBYTE + c);
+            if (ms == ps)
+                return (MIXED + PUNCTUATION + ms);
+            if (ms >= 0)
+                return (MIXED + ms);
+            return (PUNCTUATION + ps);
+        }
+
+        private int GetTextTypeAndValue(int maxLength, int idx)
+        {
+            return GetTextTypeAndValue(bytes, maxLength, idx);
+        }
+
+        private void TextCompaction(byte[] input, int start, int length)
+        {
+            int[] dest = new int[ABSOLUTE_MAX_TEXT_SIZE * 2];
+            int mode = ALPHA;
+            int ptr = 0;
+            int fullBytes = 0;
+            int v = 0;
+            int k;
+            int size;
+            length += start;
+            for (k = start; k < length; ++k)
             {
-              dest[ptr++] = ML;
-              dest[ptr++] = PL;
-              dest[ptr++] = v & 0xff;
-              mode = PUNCTUATION;
+                v = GetTextTypeAndValue(input, length, k);
+                if ((v & mode) != 0)
+                {
+                    dest[ptr++] = v & 0xff;
+                    continue;
+                }
+                if ((v & ISBYTE) != 0)
+                {
+                    if ((ptr & 1) != 0)
+                    {
+                        //add a padding word
+                        dest[ptr++] = PAL;
+                        mode = (mode & PUNCTUATION) != 0 ? ALPHA : mode;
+                    }
+                    dest[ptr++] = BYTESHIFT;
+                    dest[ptr++] = v & 0xff;
+                    fullBytes += 2;
+                    continue;
+                }
+                switch (mode)
+                {
+                    case ALPHA:
+                        if ((v & LOWER) != 0)
+                        {
+                            dest[ptr++] = LL;
+                            dest[ptr++] = v & 0xff;
+                            mode = LOWER;
+                        }
+                        else if ((v & MIXED) != 0)
+                        {
+                            dest[ptr++] = ML;
+                            dest[ptr++] = v & 0xff;
+                            mode = MIXED;
+                        }
+                        else if ((GetTextTypeAndValue(input, length, k + 1) & GetTextTypeAndValue(input, length, k + 2) & PUNCTUATION) != 0)
+                        {
+                            dest[ptr++] = ML;
+                            dest[ptr++] = PL;
+                            dest[ptr++] = v & 0xff;
+                            mode = PUNCTUATION;
+                        }
+                        else
+                        {
+                            dest[ptr++] = PS;
+                            dest[ptr++] = v & 0xff;
+                        }
+                        break;
+                    case LOWER:
+                        if ((v & ALPHA) != 0)
+                        {
+                            if ((GetTextTypeAndValue(length, k + 1) & GetTextTypeAndValue(length, k + 2) & ALPHA) != 0)
+                            {
+                                dest[ptr++] = ML;
+                                dest[ptr++] = AL;
+                                mode = ALPHA;
+                            }
+                            else
+                            {
+                                dest[ptr++] = AS;
+                            }
+                            dest[ptr++] = v & 0xff;
+                        }
+                        else if ((v & MIXED) != 0)
+                        {
+                            dest[ptr++] = ML;
+                            dest[ptr++] = v & 0xff;
+                            mode = MIXED;
+                        }
+                        else if ((GetTextTypeAndValue(input, length, k + 1) & GetTextTypeAndValue(input, length, k + 2) & PUNCTUATION) != 0)
+                        {
+                            dest[ptr++] = ML;
+                            dest[ptr++] = PL;
+                            dest[ptr++] = v & 0xff;
+                            mode = PUNCTUATION;
+                        }
+                        else
+                        {
+                            dest[ptr++] = PS;
+                            dest[ptr++] = v & 0xff;
+                        }
+                        break;
+                    case MIXED:
+                        if ((v & LOWER) != 0)
+                        {
+                            dest[ptr++] = LL;
+                            dest[ptr++] = v & 0xff;
+                            mode = LOWER;
+                        }
+                        else if ((v & ALPHA) != 0)
+                        {
+                            dest[ptr++] = AL;
+                            dest[ptr++] = v & 0xff;
+                            mode = ALPHA;
+                        }
+                        else if ((GetTextTypeAndValue(input, length, k + 1) & GetTextTypeAndValue(input, length, k + 2) & PUNCTUATION) != 0)
+                        {
+                            dest[ptr++] = PL;
+                            dest[ptr++] = v & 0xff;
+                            mode = PUNCTUATION;
+                        }
+                        else
+                        {
+                            dest[ptr++] = PS;
+                            dest[ptr++] = v & 0xff;
+                        }
+                        break;
+                    case PUNCTUATION:
+                        dest[ptr++] = PAL;
+                        mode = ALPHA;
+                        --k;
+                        break;
+                }
+            }
+            if ((ptr & 1) != 0)
+                dest[ptr++] = PS;
+            size = (ptr + fullBytes) / 2;
+            if (size + cwPtr > MAX_DATA_CODEWORDS)
+            {
+                throw new ArgumentOutOfRangeException("The text is too big.");
+            }
+            length = ptr;
+            ptr = 0;
+            while (ptr < length)
+            {
+                v = dest[ptr++];
+                if (v >= 30)
+                {
+                    codewords[cwPtr++] = v;
+                    codewords[cwPtr++] = dest[ptr++];
+                }
+                else
+                    codewords[cwPtr++] = v * 30 + dest[ptr++];
+            }
+        }
+
+        private void TextCompaction(int start, int length)
+        {
+            TextCompaction(bytes, start, length);
+        }
+
+        private void BasicNumberCompaction(int start, int length)
+        {
+            BasicNumberCompaction(bytes, start, length);
+        }
+
+        private void BasicNumberCompaction(byte[] input, int start, int length)
+        {
+            int ret = cwPtr;
+            int retLast = length / 3;
+            int ni, k;
+            cwPtr += retLast + 1;
+            for (k = 0; k <= retLast; ++k)
+                codewords[ret + k] = 0;
+            codewords[ret + retLast] = 1;
+            length += start;
+            for (ni = start; ni < length; ++ni)
+            {
+                // multiply by 10
+                for (k = retLast; k >= 0; --k)
+                    codewords[ret + k] *= 10;
+                // add the digit
+                codewords[ret + retLast] += input[ni] - '0';
+                // propagate carry
+                for (k = retLast; k > 0; --k)
+                {
+                    codewords[ret + k - 1] += codewords[ret + k] / 900;
+                    codewords[ret + k] %= 900;
+                }
+            }
+        }
+
+        private void NumberCompaction(byte[] input, int start, int length)
+        {
+            int full = (length / 44) * 15;
+            int size = length % 44;
+            int k;
+            if (size == 0)
+                size = full;
+            else
+                size = full + size / 3 + 1;
+            if (size + cwPtr > MAX_DATA_CODEWORDS)
+            {
+                throw new ArgumentOutOfRangeException("The text is too big.");
+            }
+            length += start;
+            for (k = start; k < length; k += 44)
+            {
+                size = length - k < 44 ? length - k : 44;
+                BasicNumberCompaction(input, k, size);
+            }
+        }
+
+        private void NumberCompaction(int start, int length)
+        {
+            NumberCompaction(bytes, start, length);
+        }
+
+        private void ByteCompaction6(int start)
+        {
+            int length = 6;
+            int ret = cwPtr;
+            int retLast = 4;
+            int ni, k;
+            cwPtr += retLast + 1;
+            for (k = 0; k <= retLast; ++k)
+                codewords[ret + k] = 0;
+            length += start;
+            for (ni = start; ni < length; ++ni)
+            {
+                // multiply by 256
+                for (k = retLast; k >= 0; --k)
+                    codewords[ret + k] *= 256;
+                // add the digit
+                codewords[ret + retLast] += (int)bytes[ni] & 0xff;
+                // propagate carry
+                for (k = retLast; k > 0; --k)
+                {
+                    codewords[ret + k - 1] += codewords[ret + k] / 900;
+                    codewords[ret + k] %= 900;
+                }
+            }
+        }
+
+        private void ByteCompaction(int start, int length)
+        {
+            int k, j;
+            int size = (length / 6) * 5 + (length % 6);
+            if (size + cwPtr > MAX_DATA_CODEWORDS)
+            {
+                throw new ArgumentOutOfRangeException("The text is too big.");
+            }
+            length += start;
+            for (k = start; k < length; k += 6)
+            {
+                size = length - k < 44 ? length - k : 6;
+                if (size < 6)
+                {
+                    for (j = 0; j < size; ++j)
+                        codewords[cwPtr++] = (int)bytes[k + j] & 0xff;
+                }
+                else
+                {
+                    ByteCompaction6(k);
+                }
+            }
+        }
+
+        private void BreakString()
+        {
+            int textLength = bytes.Length;
+            int lastP = 0;
+            int startN = 0;
+            int nd = 0;
+            char c = (char)0;
+            int k, j;
+            bool lastTxt, txt;
+            Segment v;
+            Segment vp;
+            Segment vn;
+
+            switch (CompactionMode)
+            {
+                case PDF417CompactionMode.Text:
+                    segmentList.Add('T', 0, textLength);
+                    return;
+
+                case PDF417CompactionMode.Numeric:
+                    segmentList.Add('N', 0, textLength);
+                    return;
+
+                case PDF417CompactionMode.Binary:
+                    segmentList.Add('B', 0, textLength);
+                    return;
+            }
+
+            for (k = 0; k < textLength; ++k)
+            {
+                c = (char)(bytes[k] & 0xff);
+                if (c >= '0' && c <= '9')
+                {
+                    if (nd == 0)
+                        startN = k;
+                    ++nd;
+                    continue;
+                }
+                if (nd >= 13)
+                {
+                    if (lastP != startN)
+                    {
+                        c = (char)(bytes[lastP] & 0xff);
+                        lastTxt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
+                        for (j = lastP; j < startN; ++j)
+                        {
+                            c = (char)(bytes[j] & 0xff);
+                            txt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
+                            if (txt != lastTxt)
+                            {
+                                segmentList.Add(lastTxt ? 'T' : 'B', lastP, j);
+                                lastP = j;
+                                lastTxt = txt;
+                            }
+                        }
+                        segmentList.Add(lastTxt ? 'T' : 'B', lastP, startN);
+                    }
+                    segmentList.Add('N', startN, k);
+                    lastP = k;
+                }
+                nd = 0;
+            }
+            if (nd < 13)
+                startN = textLength;
+            if (lastP != startN)
+            {
+                c = (char)(bytes[lastP] & 0xff);
+                lastTxt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
+                for (j = lastP; j < startN; ++j)
+                {
+                    c = (char)(bytes[j] & 0xff);
+                    txt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
+                    if (txt != lastTxt)
+                    {
+                        segmentList.Add(lastTxt ? 'T' : 'B', lastP, j);
+                        lastP = j;
+                        lastTxt = txt;
+                    }
+                }
+                segmentList.Add(lastTxt ? 'T' : 'B', lastP, startN);
+            }
+            if (nd >= 13)
+                segmentList.Add('N', startN, textLength);
+            //optimize
+            //merge short binary
+            for (k = 0; k < segmentList.Size; ++k)
+            {
+                v = segmentList.Get(k);
+                vp = segmentList.Get(k - 1);
+                vn = segmentList.Get(k + 1);
+                if (CheckSegmentType(v, 'B') && GetSegmentLength(v) == 1)
+                {
+                    if (CheckSegmentType(vp, 'T') && CheckSegmentType(vn, 'T')
+                        && GetSegmentLength(vp) + GetSegmentLength(vn) >= 3)
+                    {
+                        vp.end = vn.end;
+                        segmentList.Remove(k);
+                        segmentList.Remove(k);
+                        k = -1;
+                        continue;
+                    }
+                }
+            }
+            //merge text sections
+            for (k = 0; k < segmentList.Size; ++k)
+            {
+                v = segmentList.Get(k);
+                vp = segmentList.Get(k - 1);
+                vn = segmentList.Get(k + 1);
+                if (CheckSegmentType(v, 'T') && GetSegmentLength(v) >= 5)
+                {
+                    bool redo = false;
+                    if ((CheckSegmentType(vp, 'B') && GetSegmentLength(vp) == 1) || CheckSegmentType(vp, 'T'))
+                    {
+                        redo = true;
+                        v.start = vp.start;
+                        segmentList.Remove(k - 1);
+                        --k;
+                    }
+                    if ((CheckSegmentType(vn, 'B') && GetSegmentLength(vn) == 1) || CheckSegmentType(vn, 'T'))
+                    {
+                        redo = true;
+                        v.end = vn.end;
+                        segmentList.Remove(k + 1);
+                    }
+                    if (redo)
+                    {
+                        k = -1;
+                        continue;
+                    }
+                }
+            }
+            //merge binary sections
+            for (k = 0; k < segmentList.Size; ++k)
+            {
+                v = segmentList.Get(k);
+                vp = segmentList.Get(k - 1);
+                vn = segmentList.Get(k + 1);
+                if (CheckSegmentType(v, 'B'))
+                {
+                    bool redo = false;
+                    if ((CheckSegmentType(vp, 'T') && GetSegmentLength(vp) < 5) || CheckSegmentType(vp, 'B'))
+                    {
+                        redo = true;
+                        v.start = vp.start;
+                        segmentList.Remove(k - 1);
+                        --k;
+                    }
+                    if ((CheckSegmentType(vn, 'T') && GetSegmentLength(vn) < 5) || CheckSegmentType(vn, 'B'))
+                    {
+                        redo = true;
+                        v.end = vn.end;
+                        segmentList.Remove(k + 1);
+                    }
+                    if (redo)
+                    {
+                        k = -1;
+                        continue;
+                    }
+                }
+            }
+            // check if all numbers
+            if (segmentList.Size == 1 && (v = segmentList.Get(0)).type == 'T' && GetSegmentLength(v) >= 8)
+            {
+                for (k = v.start; k < v.end; ++k)
+                {
+                    c = (char)(bytes[k] & 0xff);
+                    if (c < '0' || c > '9')
+                        break;
+                }
+                if (k == v.end)
+                    v.type = 'N';
+            }
+        }
+
+        private void Assemble()
+        {
+            int k;
+            if (segmentList.Size == 0)
+                return;
+            cwPtr = 1;
+            for (k = 0; k < segmentList.Size; ++k)
+            {
+                Segment v = segmentList.Get(k);
+                switch (v.type)
+                {
+                    case 'T':
+                        if (k != 0)
+                            codewords[cwPtr++] = TEXT_MODE;
+                        TextCompaction(v.start, GetSegmentLength(v));
+                        break;
+                    case 'N':
+                        codewords[cwPtr++] = NUMERIC_MODE;
+                        NumberCompaction(v.start, GetSegmentLength(v));
+                        break;
+                    case 'B':
+                        codewords[cwPtr++] = (GetSegmentLength(v) % 6) != 0 ? BYTE_MODE : BYTE_MODE_6;
+                        ByteCompaction(v.start, GetSegmentLength(v));
+                        break;
+                }
+            }
+        }
+
+        private static int MaxPossibleErrorLevel(int remain)
+        {
+            int level = 8;
+            int size = 512;
+            while (level > 0)
+            {
+                if (remain >= size)
+                    return level;
+                --level;
+                size >>= 1;
+            }
+            return 0;
+        }
+
+        private int GetMaxSquare()
+        {
+            if (codeColumns > 21)
+            {
+                codeColumns = 29;
+                codeRows = 32;
             }
             else
             {
-              dest[ptr++] = PS;
-              dest[ptr++] = v & 0xff;
+                codeColumns = 16;
+                codeRows = 58;
             }
-            break;
-          case LOWER:
-            if ((v & ALPHA) != 0)
+            return MAX_DATA_CODEWORDS + 2;
+        }
+
+        /** Paints the barcode. If no exception was thrown a valid barcode is available. */
+        private void PaintCode()
+        {
+            int maxErr, lenErr, tot, pad;
+
+            if (bytes == null)
+                throw new ArgumentNullException("Text cannot be null.");
+            if (bytes.Length > ABSOLUTE_MAX_TEXT_SIZE)
             {
-              if ((GetTextTypeAndValue(length, k + 1) & GetTextTypeAndValue(length, k + 2) & ALPHA) != 0)
-              {
-                dest[ptr++] = ML;
-                dest[ptr++] = AL;
-                mode = ALPHA;
-              }
-              else
-              {
-                dest[ptr++] = AS;
-              }
-              dest[ptr++] = v & 0xff;
+                throw new ArgumentOutOfRangeException("The text is too big.");
             }
-            else if ((v & MIXED) != 0)
+            segmentList = new SegmentList();
+            BreakString();
+            Assemble();
+            segmentList = null;
+            codewords[0] = lenCodewords = cwPtr;
+
+            // error correction level
+            maxErr = MaxPossibleErrorLevel(MAX_DATA_CODEWORDS + 2 - lenCodewords);
+            if (ErrorCorrection == PDF417ErrorCorrection.Auto)
             {
-              dest[ptr++] = ML;
-              dest[ptr++] = v & 0xff;
-              mode = MIXED;
+                if (lenCodewords < 41)
+                    errorLevel = 2;
+                else if (lenCodewords < 161)
+                    errorLevel = 3;
+                else if (lenCodewords < 321)
+                    errorLevel = 4;
+                else
+                    errorLevel = 5;
             }
-            else if ((GetTextTypeAndValue(input, length, k + 1) & GetTextTypeAndValue(input, length, k + 2) & PUNCTUATION) != 0)
+            else
+                errorLevel = (int)ErrorCorrection - 1;
+            if (errorLevel < 0)
+                errorLevel = 0;
+            else if (errorLevel > maxErr)
+                errorLevel = maxErr;
+
+            if (codeColumns < 1)
+                codeColumns = 1;
+            else if (codeColumns > 30)
+                codeColumns = 30;
+            if (codeRows < 3)
+                codeRows = 3;
+            else if (codeRows > 90)
+                codeRows = 90;
+            lenErr = 2 << errorLevel;
+            bool fixedColumn = rows == 0;
+            bool skipRowColAdjust = false;
+            tot = lenCodewords + lenErr;
+            if (columns != 0 && rows != 0)
             {
-              dest[ptr++] = ML;
-              dest[ptr++] = PL;
-              dest[ptr++] = v & 0xff;
-              mode = PUNCTUATION;
+                tot = codeColumns * codeRows;
+                if (tot > MAX_DATA_CODEWORDS + 2)
+                {
+                    tot = GetMaxSquare();
+                }
+                if (tot < lenCodewords + lenErr)
+                    tot = lenCodewords + lenErr;
+                else
+                    skipRowColAdjust = true;
             }
             else
             {
-              dest[ptr++] = PS;
-              dest[ptr++] = v & 0xff;
+                double c, b;
+                fixedColumn = true;
+                if (aspectRatio < 0.001)
+                    aspectRatio = 0.001f;
+                else if (aspectRatio > 1000)
+                    aspectRatio = 1000;
+                float yHeight = PixelSize.Width == 0 ? 3 : (float)PixelSize.Height / (float)PixelSize.Width;
+                b = 73 * aspectRatio - 4;
+                c = (-b + Math.Sqrt(b * b + 4 * 17 * aspectRatio * (lenCodewords + lenErr) * yHeight)) / (2 * 17 * aspectRatio);
+                codeColumns = (int)(c + 0.5);
+                if (codeColumns < 1)
+                    codeColumns = 1;
+                else if (codeColumns > 30)
+                    codeColumns = 30;
             }
-            break;
-          case MIXED:
-            if ((v & LOWER) != 0)
+
+            if (!skipRowColAdjust)
             {
-              dest[ptr++] = LL;
-              dest[ptr++] = v & 0xff;
-              mode = LOWER;
+                if (fixedColumn)
+                {
+                    codeRows = (tot - 1) / codeColumns + 1;
+                    if (codeRows < 3)
+                        codeRows = 3;
+                    else if (codeRows > 90)
+                    {
+                        codeRows = 90;
+                        codeColumns = (tot - 1) / 90 + 1;
+                    }
+                }
+                else
+                {
+                    codeColumns = (tot - 1) / codeRows + 1;
+                    if (codeColumns > 30)
+                    {
+                        codeColumns = 30;
+                        codeRows = (tot - 1) / 30 + 1;
+                    }
+                }
+                tot = codeRows * codeColumns;
             }
-            else if ((v & ALPHA) != 0)
+
+            if (tot > MAX_DATA_CODEWORDS + 2)
             {
-              dest[ptr++] = AL;
-              dest[ptr++] = v & 0xff;
-              mode = ALPHA;
+                tot = GetMaxSquare();
             }
-            else if ((GetTextTypeAndValue(input, length, k + 1) & GetTextTypeAndValue(input, length, k + 2) & PUNCTUATION) != 0)
-            {
-              dest[ptr++] = PL;
-              dest[ptr++] = v & 0xff;
-              mode = PUNCTUATION;
-            }
+            errorLevel = MaxPossibleErrorLevel(tot - lenCodewords);
+            lenErr = 2 << errorLevel;
+            pad = tot - lenErr - lenCodewords;
+
+            cwPtr = lenCodewords;
+            while (pad-- != 0)
+                codewords[cwPtr++] = TEXT_MODE;
+
+            codewords[0] = lenCodewords = cwPtr;
+            CalculateErrorCorrection(lenCodewords);
+            lenCodewords = tot;
+            OutPaintCode();
+        }
+        #endregion
+
+        #region Public Methods
+        /// <inheritdoc/>
+        public override void Assign(BarcodeBase source)
+        {
+            base.Assign(source);
+            BarcodePDF417 src = source as BarcodePDF417;
+
+            AspectRatio = src.AspectRatio;
+            Columns = src.Columns;
+            Rows = src.Rows;
+            CodePage = src.CodePage;
+            CompactionMode = src.CompactionMode;
+            ErrorCorrection = src.ErrorCorrection;
+            PixelSize = src.PixelSize;
+        }
+
+        internal override void Serialize(FastReport.Utils.FRWriter writer, string prefix, BarcodeBase diff)
+        {
+            base.Serialize(writer, prefix, diff);
+            BarcodePDF417 c = diff as BarcodePDF417;
+
+            if (c == null || AspectRatio != c.AspectRatio)
+                writer.WriteFloat(prefix + "AspectRatio", AspectRatio);
+            if (c == null || Columns != c.Columns)
+                writer.WriteInt(prefix + "Columns", Columns);
+            if (c == null || Rows != c.Rows)
+                writer.WriteInt(prefix + "Rows", Rows);
+            if (c == null || CodePage != c.CodePage)
+                writer.WriteInt(prefix + "CodePage", CodePage);
+            if (c == null || CompactionMode != c.CompactionMode)
+                writer.WriteValue(prefix + "CompactionMode", CompactionMode);
+            if (c == null || ErrorCorrection != c.ErrorCorrection)
+                writer.WriteValue(prefix + "ErrorCorrection", ErrorCorrection);
+            if (c == null || PixelSize != c.PixelSize)
+                writer.WriteValue(prefix + "PixelSize", PixelSize);
+        }
+
+        internal override void Initialize(string text, bool showText, int angle, float zoom, bool showMarker)
+        {
+            base.Initialize(text, showText, angle, zoom, showMarker);
+            if (String.IsNullOrEmpty(text))
+                bytes = new byte[0];
             else
             {
-              dest[ptr++] = PS;
-              dest[ptr++] = v & 0xff;
+                Encoding e = Encoding.GetEncoding(codePage);
+                bytes = e.GetBytes(text);
             }
-            break;
-          case PUNCTUATION:
-            dest[ptr++] = PAL;
-            mode = ALPHA;
-            --k;
-            break;
+
+            codeColumns = columns;
+            codeRows = rows;
+            PaintCode();
         }
-      }
-      if ((ptr & 1) != 0)
-        dest[ptr++] = PS;
-      size = (ptr + fullBytes) / 2;
-      if (size + cwPtr > MAX_DATA_CODEWORDS)
-      {
-        throw new ArgumentOutOfRangeException("The text is too big.");
-      }
-      length = ptr;
-      ptr = 0;
-      while (ptr < length)
-      {
-        v = dest[ptr++];
-        if (v >= 30)
+
+        internal override SizeF CalcBounds()
         {
-          codewords[cwPtr++] = v;
-          codewords[cwPtr++] = dest[ptr++];
+            int textAdd = showText ? (int)(FontHeight) : 0;
+            return new SizeF(bitColumns * PixelSize.Width, codeRows * PixelSize.Height + textAdd);
         }
-        else
-          codewords[cwPtr++] = v * 30 + dest[ptr++];
-      }
-    }
 
-    private void TextCompaction(int start, int length)
-    {
-      TextCompaction(bytes, start, length);
-    }
-
-    private void BasicNumberCompaction(int start, int length)
-    {
-      BasicNumberCompaction(bytes, start, length);
-    }
-
-    private void BasicNumberCompaction(byte[] input, int start, int length)
-    {
-      int ret = cwPtr;
-      int retLast = length / 3;
-      int ni, k;
-      cwPtr += retLast + 1;
-      for (k = 0; k <= retLast; ++k)
-        codewords[ret + k] = 0;
-      codewords[ret + retLast] = 1;
-      length += start;
-      for (ni = start; ni < length; ++ni)
-      {
-        // multiply by 10
-        for (k = retLast; k >= 0; --k)
-          codewords[ret + k] *= 10;
-        // add the digit
-        codewords[ret + retLast] += input[ni] - '0';
-        // propagate carry
-        for (k = retLast; k > 0; --k)
+        internal override void Draw2DBarcode(IGraphics g, float kx, float ky)
         {
-          codewords[ret + k - 1] += codewords[ret + k] / 900;
-          codewords[ret + k] %= 900;
-        }
-      }
-    }
+            Brush light = Brushes.White;
+            Brush dark = new SolidBrush(Color);
+            int stride = (bitColumns + 7) / 8;
 
-    private void NumberCompaction(byte[] input, int start, int length)
-    {
-      int full = (length / 44) * 15;
-      int size = length % 44;
-      int k;
-      if (size == 0)
-        size = full;
-      else
-        size = full + size / 3 + 1;
-      if (size + cwPtr > MAX_DATA_CODEWORDS)
-      {
-        throw new ArgumentOutOfRangeException("The text is too big.");
-      }
-      length += start;
-      for (k = start; k < length; k += 44)
-      {
-        size = length - k < 44 ? length - k : 44;
-        BasicNumberCompaction(input, k, size);
-      }
-    }
-
-    private void NumberCompaction(int start, int length)
-    {
-      NumberCompaction(bytes, start, length);
-    }
-
-    private void ByteCompaction6(int start)
-    {
-      int length = 6;
-      int ret = cwPtr;
-      int retLast = 4;
-      int ni, k;
-      cwPtr += retLast + 1;
-      for (k = 0; k <= retLast; ++k)
-        codewords[ret + k] = 0;
-      length += start;
-      for (ni = start; ni < length; ++ni)
-      {
-        // multiply by 256
-        for (k = retLast; k >= 0; --k)
-          codewords[ret + k] *= 256;
-        // add the digit
-        codewords[ret + retLast] += (int)bytes[ni] & 0xff;
-        // propagate carry
-        for (k = retLast; k > 0; --k)
-        {
-          codewords[ret + k - 1] += codewords[ret + k] / 900;
-          codewords[ret + k] %= 900;
-        }
-      }
-    }
-
-    private void ByteCompaction(int start, int length)
-    {
-      int k, j;
-      int size = (length / 6) * 5 + (length % 6);
-      if (size + cwPtr > MAX_DATA_CODEWORDS)
-      {
-        throw new ArgumentOutOfRangeException("The text is too big.");
-      }
-      length += start;
-      for (k = start; k < length; k += 6)
-      {
-        size = length - k < 44 ? length - k : 6;
-        if (size < 6)
-        {
-          for (j = 0; j < size; ++j)
-            codewords[cwPtr++] = (int)bytes[k + j] & 0xff;
-        }
-        else
-        {
-          ByteCompaction6(k);
-        }
-      }
-    }
-
-    private void BreakString()
-    {
-      int textLength = bytes.Length;
-      int lastP = 0;
-      int startN = 0;
-      int nd = 0;
-      char c = (char)0;
-      int k, j;
-      bool lastTxt, txt;
-      Segment v;
-      Segment vp;
-      Segment vn;
-
-      switch (CompactionMode)
-      {
-        case PDF417CompactionMode.Text:
-          segmentList.Add('T', 0, textLength);
-          return;
-
-        case PDF417CompactionMode.Numeric:
-          segmentList.Add('N', 0, textLength);
-          return;
-
-        case PDF417CompactionMode.Binary:
-          segmentList.Add('B', 0, textLength);
-          return;
-      }
-      
-      for (k = 0; k < textLength; ++k)
-      {
-        c = (char)(bytes[k] & 0xff);
-        if (c >= '0' && c <= '9')
-        {
-          if (nd == 0)
-            startN = k;
-          ++nd;
-          continue;
-        }
-        if (nd >= 13)
-        {
-          if (lastP != startN)
-          {
-            c = (char)(bytes[lastP] & 0xff);
-            lastTxt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
-            for (j = lastP; j < startN; ++j)
+            for (int k = 0; k < codeRows; ++k)
             {
-              c = (char)(bytes[j] & 0xff);
-              txt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
-              if (txt != lastTxt)
-              {
-                segmentList.Add(lastTxt ? 'T' : 'B', lastP, j);
-                lastP = j;
-                lastTxt = txt;
-              }
+                int p = k * stride;
+                for (int j = 0; j < bitColumns; ++j)
+                {
+                    int b = outBits[p + (j / 8)] & 0xff;
+                    b <<= j % 8;
+                    Brush brush = /*(b & 0x80) == 0 ? light :*/ dark;
+                    if ((b & 0x80) != 0)
+                        g.FillRectangle(brush, j * PixelSize.Width * kx, k * PixelSize.Height * ky,
+                        PixelSize.Width * kx, PixelSize.Height * ky);
+                }
             }
-            segmentList.Add(lastTxt ? 'T' : 'B', lastP, startN);
-          }
-          segmentList.Add('N', startN, k);
-          lastP = k;
+            dark.Dispose();
         }
-        nd = 0;
-      }
-      if (nd < 13)
-        startN = textLength;
-      if (lastP != startN)
-      {
-        c = (char)(bytes[lastP] & 0xff);
-        lastTxt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
-        for (j = lastP; j < startN; ++j)
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodePDF417"/> class with default settings.
+        /// </summary>
+        public BarcodePDF417() : base()
         {
-          c = (char)(bytes[j] & 0xff);
-          txt = (c >= ' ' && c < 127) || c == '\r' || c == '\n' || c == '\t';
-          if (txt != lastTxt)
-          {
-            segmentList.Add(lastTxt ? 'T' : 'B', lastP, j);
-            lastP = j;
-            lastTxt = txt;
-          }
+            outBits = null;
+            bytes = new byte[0];
+            pixelSize = new Size(2, 8);
+            aspectRatio = 0.5f;
+            codePage = 437;
         }
-        segmentList.Add(lastTxt ? 'T' : 'B', lastP, startN);
-      }
-      if (nd >= 13)
-        segmentList.Add('N', startN, textLength);
-      //optimize
-      //merge short binary
-      for (k = 0; k < segmentList.Size; ++k)
-      {
-        v = segmentList.Get(k);
-        vp = segmentList.Get(k - 1);
-        vn = segmentList.Get(k + 1);
-        if (CheckSegmentType(v, 'B') && GetSegmentLength(v) == 1)
+
+        private class Segment
         {
-          if (CheckSegmentType(vp, 'T') && CheckSegmentType(vn, 'T')
-              && GetSegmentLength(vp) + GetSegmentLength(vn) >= 3)
-          {
-            vp.end = vn.end;
-            segmentList.Remove(k);
-            segmentList.Remove(k);
-            k = -1;
-            continue;
-          }
+            public char type;
+            public int start;
+            public int end;
+
+            public Segment(char type, int start, int end)
+            {
+                this.type = type;
+                this.start = start;
+                this.end = end;
+            }
         }
-      }
-      //merge text sections
-      for (k = 0; k < segmentList.Size; ++k)
-      {
-        v = segmentList.Get(k);
-        vp = segmentList.Get(k - 1);
-        vn = segmentList.Get(k + 1);
-        if (CheckSegmentType(v, 'T') && GetSegmentLength(v) >= 5)
+
+        private class SegmentList
         {
-          bool redo = false;
-          if ((CheckSegmentType(vp, 'B') && GetSegmentLength(vp) == 1) || CheckSegmentType(vp, 'T'))
-          {
-            redo = true;
-            v.start = vp.start;
-            segmentList.Remove(k - 1);
-            --k;
-          }
-          if ((CheckSegmentType(vn, 'B') && GetSegmentLength(vn) == 1) || CheckSegmentType(vn, 'T'))
-          {
-            redo = true;
-            v.end = vn.end;
-            segmentList.Remove(k + 1);
-          }
-          if (redo)
-          {
-            k = -1;
-            continue;
-          }
+            protected ArrayList list = new ArrayList();
+
+            public void Add(char type, int start, int end)
+            {
+                list.Add(new Segment(type, start, end));
+            }
+
+            public Segment Get(int idx)
+            {
+                if (idx < 0 || idx >= list.Count)
+                    return null;
+                return (Segment)list[idx];
+            }
+
+            public void Remove(int idx)
+            {
+                if (idx < 0 || idx >= list.Count)
+                    return;
+                list.RemoveAt(idx);
+            }
+
+            public int Size
+            {
+                get
+                {
+                    return list.Count;
+                }
+            }
         }
-      }
-      //merge binary sections
-      for (k = 0; k < segmentList.Size; ++k)
-      {
-        v = segmentList.Get(k);
-        vp = segmentList.Get(k - 1);
-        vn = segmentList.Get(k + 1);
-        if (CheckSegmentType(v, 'B'))
-        {
-          bool redo = false;
-          if ((CheckSegmentType(vp, 'T') && GetSegmentLength(vp) < 5) || CheckSegmentType(vp, 'B'))
-          {
-            redo = true;
-            v.start = vp.start;
-            segmentList.Remove(k - 1);
-            --k;
-          }
-          if ((CheckSegmentType(vn, 'T') && GetSegmentLength(vn) < 5) || CheckSegmentType(vn, 'B'))
-          {
-            redo = true;
-            v.end = vn.end;
-            segmentList.Remove(k + 1);
-          }
-          if (redo)
-          {
-            k = -1;
-            continue;
-          }
-        }
-      }
-      // check if all numbers
-      if (segmentList.Size == 1 && (v = segmentList.Get(0)).type == 'T' && GetSegmentLength(v) >= 8)
-      {
-        for (k = v.start; k < v.end; ++k)
-        {
-          c = (char)(bytes[k] & 0xff);
-          if (c < '0' || c > '9')
-            break;
-        }
-        if (k == v.end)
-          v.type = 'N';
-      }
     }
-
-    private void Assemble()
-    {
-      int k;
-      if (segmentList.Size == 0)
-        return;
-      cwPtr = 1;
-      for (k = 0; k < segmentList.Size; ++k)
-      {
-        Segment v = segmentList.Get(k);
-        switch (v.type)
-        {
-          case 'T':
-            if (k != 0)
-              codewords[cwPtr++] = TEXT_MODE;
-            TextCompaction(v.start, GetSegmentLength(v));
-            break;
-          case 'N':
-            codewords[cwPtr++] = NUMERIC_MODE;
-            NumberCompaction(v.start, GetSegmentLength(v));
-            break;
-          case 'B':
-            codewords[cwPtr++] = (GetSegmentLength(v) % 6) != 0 ? BYTE_MODE : BYTE_MODE_6;
-            ByteCompaction(v.start, GetSegmentLength(v));
-            break;
-        }
-      }
-    }
-
-    private static int MaxPossibleErrorLevel(int remain)
-    {
-      int level = 8;
-      int size = 512;
-      while (level > 0)
-      {
-        if (remain >= size)
-          return level;
-        --level;
-        size >>= 1;
-      }
-      return 0;
-    }
-
-    private int GetMaxSquare()
-    {
-      if (codeColumns > 21)
-      {
-        codeColumns = 29;
-        codeRows = 32;
-      }
-      else
-      {
-        codeColumns = 16;
-        codeRows = 58;
-      }
-      return MAX_DATA_CODEWORDS + 2;
-    }
-
-    /** Paints the barcode. If no exception was thrown a valid barcode is available. */
-    private void PaintCode()
-    {
-      int maxErr, lenErr, tot, pad;
-      
-      if (bytes == null)
-        throw new ArgumentNullException("Text cannot be null.");
-      if (bytes.Length > ABSOLUTE_MAX_TEXT_SIZE)
-      {
-        throw new ArgumentOutOfRangeException("The text is too big.");
-      }
-      segmentList = new SegmentList();
-      BreakString();
-      Assemble();
-      segmentList = null;
-      codewords[0] = lenCodewords = cwPtr;
-
-      // error correction level
-      maxErr = MaxPossibleErrorLevel(MAX_DATA_CODEWORDS + 2 - lenCodewords);
-      if (ErrorCorrection == PDF417ErrorCorrection.Auto)
-      {
-        if (lenCodewords < 41)
-          errorLevel = 2;
-        else if (lenCodewords < 161)
-          errorLevel = 3;
-        else if (lenCodewords < 321)
-          errorLevel = 4;
-        else
-          errorLevel = 5;
-      }
-      else
-        errorLevel = (int)ErrorCorrection - 1;
-      if (errorLevel < 0)
-        errorLevel = 0;
-      else if (errorLevel > maxErr)
-        errorLevel = maxErr;
-
-      if (codeColumns < 1)
-        codeColumns = 1;
-      else if (codeColumns > 30)
-        codeColumns = 30;
-      if (codeRows < 3)
-        codeRows = 3;
-      else if (codeRows > 90)
-        codeRows = 90;
-      lenErr = 2 << errorLevel;
-      bool fixedColumn = rows == 0;
-      bool skipRowColAdjust = false;
-      tot = lenCodewords + lenErr;
-      if (columns != 0 && rows != 0)
-      {
-        tot = codeColumns * codeRows;
-        if (tot > MAX_DATA_CODEWORDS + 2)
-        {
-          tot = GetMaxSquare();
-        }
-        if (tot < lenCodewords + lenErr)
-          tot = lenCodewords + lenErr;
-        else
-          skipRowColAdjust = true;
-      }
-      else
-      {
-        double c, b;
-        fixedColumn = true;
-        if (aspectRatio < 0.001)
-          aspectRatio = 0.001f;
-        else if (aspectRatio > 1000)
-          aspectRatio = 1000;
-        float yHeight = PixelSize.Width == 0 ? 3 : (float)PixelSize.Height / (float)PixelSize.Width;
-        b = 73 * aspectRatio - 4;
-        c = (-b + Math.Sqrt(b * b + 4 * 17 * aspectRatio * (lenCodewords + lenErr) * yHeight)) / (2 * 17 * aspectRatio);
-        codeColumns = (int)(c + 0.5);
-        if (codeColumns < 1)
-          codeColumns = 1;
-        else if (codeColumns > 30)
-          codeColumns = 30;
-      }
-
-      if (!skipRowColAdjust)
-      {
-        if (fixedColumn)
-        {
-          codeRows = (tot - 1) / codeColumns + 1;
-          if (codeRows < 3)
-            codeRows = 3;
-          else if (codeRows > 90)
-          {
-            codeRows = 90;
-            codeColumns = (tot - 1) / 90 + 1;
-          }
-        }
-        else
-        {
-          codeColumns = (tot - 1) / codeRows + 1;
-          if (codeColumns > 30)
-          {
-            codeColumns = 30;
-            codeRows = (tot - 1) / 30 + 1;
-          }
-        }
-        tot = codeRows * codeColumns;
-      }
-
-      if (tot > MAX_DATA_CODEWORDS + 2)
-      {
-        tot = GetMaxSquare();
-      }
-      errorLevel = MaxPossibleErrorLevel(tot - lenCodewords);
-      lenErr = 2 << errorLevel;
-      pad = tot - lenErr - lenCodewords;
-
-      cwPtr = lenCodewords;
-      while (pad-- != 0)
-        codewords[cwPtr++] = TEXT_MODE;
-
-      codewords[0] = lenCodewords = cwPtr;
-      CalculateErrorCorrection(lenCodewords);
-      lenCodewords = tot;
-      OutPaintCode();
-    }
-    #endregion
-
-    #region Public Methods
-    /// <inheritdoc/>
-    public override void Assign(BarcodeBase source)
-    {
-      base.Assign(source);
-      BarcodePDF417 src = source as BarcodePDF417;
-
-      AspectRatio = src.AspectRatio;
-      Columns = src.Columns;
-      Rows = src.Rows;
-      CodePage = src.CodePage;
-      CompactionMode = src.CompactionMode;
-      ErrorCorrection = src.ErrorCorrection;
-      PixelSize = src.PixelSize;
-    }
-
-    internal override void Serialize(FastReport.Utils.FRWriter writer, string prefix, BarcodeBase diff)
-    {
-      base.Serialize(writer, prefix, diff);
-      BarcodePDF417 c = diff as BarcodePDF417;
-
-      if (c == null || AspectRatio != c.AspectRatio)
-        writer.WriteFloat(prefix + "AspectRatio", AspectRatio);
-      if (c == null || Columns != c.Columns)
-        writer.WriteInt(prefix + "Columns", Columns);
-      if (c == null || Rows != c.Rows)
-        writer.WriteInt(prefix + "Rows", Rows);
-      if (c == null || CodePage != c.CodePage)
-        writer.WriteInt(prefix + "CodePage", CodePage);
-      if (c == null || CompactionMode != c.CompactionMode)
-        writer.WriteValue(prefix + "CompactionMode", CompactionMode);
-      if (c == null || ErrorCorrection != c.ErrorCorrection)
-        writer.WriteValue(prefix + "ErrorCorrection", ErrorCorrection);
-      if (c == null || PixelSize != c.PixelSize)
-        writer.WriteValue(prefix + "PixelSize", PixelSize);
-    }
-
-    internal override void Initialize(string text, bool showText, int angle, float zoom, bool showMarker)
-    {
-      base.Initialize(text, showText, angle, zoom, showMarker);
-      if (String.IsNullOrEmpty(text))
-        bytes = new byte[0];
-      else
-      {
-        Encoding e = Encoding.GetEncoding(codePage);
-        bytes = e.GetBytes(text);
-      }
-      
-      codeColumns = columns;
-      codeRows = rows;
-      PaintCode();
-    }
-
-    internal override SizeF CalcBounds()
-    {
-      int textAdd = showText ? (int)(FontHeight) : 0;
-      return new SizeF(bitColumns * PixelSize.Width, codeRows * PixelSize.Height + textAdd);
-    }
-    
-    internal override void Draw2DBarcode(IGraphics g, float kx, float ky)
-    {
-      Brush light = Brushes.White;
-      Brush dark = new SolidBrush(Color);
-      int stride = (bitColumns + 7) / 8;
-
-      for (int k = 0; k < codeRows; ++k)
-      {
-        int p = k * stride;
-        for (int j = 0; j < bitColumns; ++j)
-        {
-          int b = outBits[p + (j / 8)] & 0xff;
-          b <<= j % 8;
-          Brush brush = /*(b & 0x80) == 0 ? light :*/ dark;
-          if ((b & 0x80) != 0)
-            g.FillRectangle(brush, j * PixelSize.Width * kx, k * PixelSize.Height * ky,
-            PixelSize.Width * kx, PixelSize.Height * ky);
-        }
-      }
-      dark.Dispose();
-    }
-    #endregion
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BarcodePDF417"/> class with default settings.
-    /// </summary>
-    public BarcodePDF417() : base()
-    {
-      outBits = null;
-      bytes = new byte[0];
-      pixelSize = new Size(2, 8);
-      aspectRatio = 0.5f;
-      codePage = 437;
-    }
-
-    private class Segment
-    {
-      public char type;
-      public int start;
-      public int end;
-
-      public Segment(char type, int start, int end)
-      {
-        this.type = type;
-        this.start = start;
-        this.end = end;
-      }
-    }
-
-    private class SegmentList
-    {
-      protected ArrayList list = new ArrayList();
-
-      public void Add(char type, int start, int end)
-      {
-        list.Add(new Segment(type, start, end));
-      }
-
-      public Segment Get(int idx)
-      {
-        if (idx < 0 || idx >= list.Count)
-          return null;
-        return (Segment)list[idx];
-      }
-
-      public void Remove(int idx)
-      {
-        if (idx < 0 || idx >= list.Count)
-          return;
-        list.RemoveAt(idx);
-      }
-
-      public int Size
-      {
-        get
-        {
-          return list.Count;
-        }
-      }
-    }
-  }
 }

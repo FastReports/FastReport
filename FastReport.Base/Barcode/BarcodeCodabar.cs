@@ -4,11 +4,11 @@ using System.Text;
 
 namespace FastReport.Barcode
 {
-  /// <summary>
-  /// Generates the Codabar barcode.
-  /// </summary>
-  public class BarcodeCodabar : LinearBarcodeBase
-  {
+    /// <summary>
+    /// Generates the Codabar barcode.
+    /// </summary>
+    public class BarcodeCodabar : LinearBarcodeBase
+    {
 #if READONLY_STRUCTS
         private readonly struct Codabar
 #else
@@ -27,7 +27,7 @@ namespace FastReport.Barcode
             }
         }
 
-    private static Codabar[] tabelle_cb = {
+        private static Codabar[] tabelle_cb = {
       new Codabar("1", "5050615"),
       new Codabar("2", "5051506"),
       new Codabar("3", "6150505"),
@@ -49,55 +49,55 @@ namespace FastReport.Barcode
       new Codabar("C", "5051516"),
       new Codabar("D", "5051615") };
 
-    /// <inheritdoc/>
-    public override bool IsNumeric
-    {
-      get { return false; }
-    }
-
-    private int FindBarItem(string c)
-    {
-      for (int i = 0; i < tabelle_cb.Length; i++)
-      {
-        if (c == tabelle_cb[i].c)
-          return i;
-      }
-      return -1;
-    }
-
-    internal override string GetPattern()
-    {
-        string result = "";
-        int index = FindBarItem("A");
-        if (index >= 0)
+        /// <inheritdoc/>
+        public override bool IsNumeric
         {
-            result = tabelle_cb[index].data + "0";
+            get { return false; }
         }
 
-        foreach (char c in text)
+        private int FindBarItem(string c)
         {
-            index = FindBarItem(c.ToString());
+            for (int i = 0; i < tabelle_cb.Length; i++)
+            {
+                if (c == tabelle_cb[i].c)
+                    return i;
+            }
+            return -1;
+        }
+
+        internal override string GetPattern()
+        {
+            string result = "";
+            int index = FindBarItem("A");
             if (index >= 0)
             {
-                result += tabelle_cb[index].data + "0";
+                result = tabelle_cb[index].data + "0";
             }
+
+            foreach (char c in text)
+            {
+                index = FindBarItem(c.ToString());
+                if (index >= 0)
+                {
+                    result += tabelle_cb[index].data + "0";
+                }
+            }
+
+            index = FindBarItem("B");
+            if (index >= 0)
+            {
+                result += tabelle_cb[index].data;
+            }
+            return result;
         }
 
-        index = FindBarItem("B");
-        if (index >= 0)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodeCodabar"/> class with default settings.
+        /// </summary>
+        public BarcodeCodabar()
         {
-            result += tabelle_cb[index].data;
+            ratioMin = 2;
+            ratioMax = 3;
         }
-        return result;
     }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BarcodeCodabar"/> class with default settings.
-    /// </summary>
-    public BarcodeCodabar()
-    {
-      ratioMin = 2;
-      ratioMax = 3;
-    }
-  }
 }

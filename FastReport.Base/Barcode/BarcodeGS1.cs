@@ -200,7 +200,7 @@ namespace FastReport.Barcode
                 data = data.Replace(prefix, "");
             }
 
-            if(data.Length > 13)
+            if (data.Length > 13)
                 data = data.Remove(13, 1);
 
             if (!long.TryParse(data, out result) || data.Length != 13 || result < 0)
@@ -393,9 +393,9 @@ namespace FastReport.Barcode
 
             // convert line of strokes to black and white modules
             string[] bars = new string[2];
-            for(int i = 0; i < EncodedData[0].Length; i++)
+            for (int i = 0; i < EncodedData[0].Length; i++)
             {
-                if(i % 2 == 0)
+                if (i % 2 == 0)
                 {
                     for (int x = 0; x < EncodedData[0][i] - '0'; x++)
                         bars[0] += "0";
@@ -416,9 +416,9 @@ namespace FastReport.Barcode
             {
                 if (bars[0][i] == '1' && bars[1][i] == '1')
                     EncodedData[1] += "0";
-                else if(bars[0][i] == '0' && bars[1][i] == '0')
+                else if (bars[0][i] == '0' && bars[1][i] == '0')
                     EncodedData[1] += "1";
-                else if(bars[0][i] != bars[1][i])
+                else if (bars[0][i] != bars[1][i])
                 {
                     EncodedData[1] += EncodedData[1][EncodedData[1].Length - 1] == '0' ? "1" : "0";
                 }
@@ -536,10 +536,10 @@ namespace FastReport.Barcode
         internal override void DoLines(string data, IGraphics g, float zoom)
         {
             DrawLineBars(EncodedData[0], g, zoom, new RectangleF(0, 0, 0, barArea.Height * 33 / 69), false);
-            DrawLineBars(EncodedData[1], g, zoom, new RectangleF(0, barArea.Height * 33 / 69 , 0, barArea.Height * 1 / 69), false, true);
-            DrawLineBars(EncodedData[2], g, zoom, new RectangleF(0, barArea.Height * 34 / 69 , 0, barArea.Height * 1 / 69), false, true);
-            DrawLineBars(EncodedData[3], g, zoom, new RectangleF(0, barArea.Height * 35 / 69 , 0, barArea.Height * 1 / 69), false, true);
-            DrawLineBars(EncodedData[4], g, zoom, new RectangleF(0, barArea.Height * 36 / 69 , 0, barArea.Height * 33 / 69), true);
+            DrawLineBars(EncodedData[1], g, zoom, new RectangleF(0, barArea.Height * 33 / 69, 0, barArea.Height * 1 / 69), false, true);
+            DrawLineBars(EncodedData[2], g, zoom, new RectangleF(0, barArea.Height * 34 / 69, 0, barArea.Height * 1 / 69), false, true);
+            DrawLineBars(EncodedData[3], g, zoom, new RectangleF(0, barArea.Height * 35 / 69, 0, barArea.Height * 1 / 69), false, true);
+            DrawLineBars(EncodedData[4], g, zoom, new RectangleF(0, barArea.Height * 36 / 69, 0, barArea.Height * 33 / 69), true);
         }
     }
 

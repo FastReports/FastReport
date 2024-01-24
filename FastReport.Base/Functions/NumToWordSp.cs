@@ -6,36 +6,36 @@ using System.Collections.Generic;
 namespace FastReport.Functions
 {
 
-  internal class NumToWordsSp : NumToWordsBase
-  {
+    internal class NumToWordsSp : NumToWordsBase
+    {
 
-      private static Dictionary<string, CurrencyInfo> currencyList;
+        private static Dictionary<string, CurrencyInfo> currencyList;
 
-      private static WordInfo thousands = new WordInfo("mil");
-      private static WordInfo millions = new WordInfo("millón", "millones");
-      private static WordInfo milliards = new WordInfo("millardo", "millardos");
-      private static WordInfo trillions = new WordInfo("billón", "billiones");
+        private static WordInfo thousands = new WordInfo("mil");
+        private static WordInfo millions = new WordInfo("millón", "millones");
+        private static WordInfo milliards = new WordInfo("millardo", "millardos");
+        private static WordInfo trillions = new WordInfo("billón", "billiones");
 
-      //if million, milliard or trillions use un instead of uno. 
-      private bool _useUn;
+        //if million, milliard or trillions use un instead of uno. 
+        private bool _useUn;
 
-      private static string[] hunds = {
+        private static string[] hunds = {
           "","cien","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"
       };
 
-      private static string[] tens =
-      {
+        private static string[] tens =
+        {
           "", "diez", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"
       };
 
-      private static string[] fixedWords =
-      {
+        private static string[] fixedWords =
+        {
             "","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","once","doce","trece","catorce","quince","dieciséis",
             "diecisiete","dieciocho","diecinueve"
       };
 
-      private static string[] fixedWords21To29 =
-      {
+        private static string[] fixedWords21To29 =
+        {
             "veintiuno","veintidós","veintitrés","veinticuatro","veinticinco","veintiséis","veintisiete","veintiocho","veintinueve"
       };
 
@@ -113,7 +113,7 @@ namespace FastReport.Functions
                 sep100_10 = "";
 
             val = val % 100;
-            if (counter == 3 || counter==4 || counter==5) _useUn = true;
+            if (counter == 3 || counter == 4 || counter == 5) _useUn = true;
             else _useUn = false;
             if (val > 20 && val < 30)
             {
@@ -172,13 +172,13 @@ namespace FastReport.Functions
         {
             currencyList = new Dictionary<string, CurrencyInfo>(2);
             currencyList.Add("EUR", new CurrencyInfo(
-                new WordInfo ("euro", "euros"),
-                new WordInfo( "céntimo", "céntimos")));
+                new WordInfo("euro", "euros"),
+                new WordInfo("céntimo", "céntimos")));
 
-            currencyList.Add("USD",new CurrencyInfo(
+            currencyList.Add("USD", new CurrencyInfo(
                 new WordInfo("dólar", "dólares"),
                 new WordInfo("céntimo", "céntimos")));
-           
+
         }
-  }
+    }
 }

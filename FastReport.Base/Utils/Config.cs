@@ -104,13 +104,13 @@ namespace FastReport.Utils
         /// </summary>
         public static string ApplicationFolder
         {
-            get 
-            { 
-                if(applicationFolder == null)
+            get
+            {
+                if (applicationFolder == null)
                     return baseDirectory;
                 return applicationFolder;
             }
-            set 
+            set
             {
                 applicationFolder = value;
             }
@@ -129,7 +129,7 @@ namespace FastReport.Utils
             get { return FFolder; }
             set { FFolder = value; }
         }
-        
+
         /// <summary>
         /// Gets or sets the path used to font.list file.
         /// </summary>
@@ -228,7 +228,7 @@ namespace FastReport.Utils
                 userSetsScriptSecurity = true;
                 if (value)
                 {
-                    if(scriptSecurityProps == null)
+                    if (scriptSecurityProps == null)
                         scriptSecurityProps = new ScriptSecurityProperties();
                 }
             }
@@ -592,7 +592,7 @@ namespace FastReport.Utils
             private static readonly string[] defaultStopList = new[]
                 {
                     "GetType",
-                    "typeof", 
+                    "typeof",
                     "TypeOf",   // VB
                     "DllImport",
                     "LoadLibrary",
@@ -609,12 +609,12 @@ namespace FastReport.Utils
             /// <summary>
             /// List of keywords that shouldn't be declared in the report script
             /// </summary>
-            public string[] StopList 
-            { 
+            public string[] StopList
+            {
                 get { return (string[])stopList.Clone(); }
                 set
                 {
-                    if(value != null)
+                    if (value != null)
                     {
                         OnStopListChanged?.Invoke(this, null);
                         stopList = value;
@@ -661,6 +661,6 @@ namespace FastReport.Utils
             CompilerSettings.ExceptionBehaviour = storage.GetEnum("ExceptionBehaviour", CompilerExceptionBehaviour.Default);
         }
 
-#endregion Private Methods
+        #endregion Private Methods
     }
 }

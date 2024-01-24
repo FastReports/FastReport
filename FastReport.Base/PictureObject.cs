@@ -45,9 +45,9 @@ namespace FastReport
     {
         #region Fields
         private Image image;
-        
+
         private int imageIndex;
-        
+
         private Color transparentColor;
         private float transparency;
         private bool tile;
@@ -502,7 +502,7 @@ namespace FastReport
             if (SizeMode == PictureBoxSizeMode.AutoSize)
                 ForceLoadImage();
         }
-        
+
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
         {
@@ -666,7 +666,7 @@ namespace FastReport
                     break;
             }
         }
-#endregion
+        #endregion
 
         #region Report Engine
 
@@ -735,7 +735,7 @@ namespace FastReport
             ShouldDisposeImage = true;
         }
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PictureObject"/> class with default settings.
@@ -746,6 +746,6 @@ namespace FastReport
             SetFlags(Flags.HasSmartTag, true);
             ResetImageIndex();
         }
-        
+
     }
 }

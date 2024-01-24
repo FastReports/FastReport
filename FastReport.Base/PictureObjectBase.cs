@@ -66,7 +66,7 @@ namespace FastReport
         Bottom_Right,
     }
 
- 
+
 
     /// <summary>
     /// the base class for all picture objects
@@ -630,7 +630,7 @@ namespace FastReport
             PointF lowerRight = new PointF(upperRight.X + lowerLeft.X - upperLeft.X,
                 upperRight.Y + lowerLeft.Y - upperLeft.Y);
             float top = Math.Min(Math.Min(upperLeft.Y, Math.Min(upperRight.Y, lowerLeft.Y)), lowerRight.Y);
-            float botom = Math.Max( Math.Max(upperLeft.Y, Math.Max(upperRight.Y, lowerLeft.Y)), lowerRight.Y);
+            float botom = Math.Max(Math.Max(upperLeft.Y, Math.Max(upperRight.Y, lowerLeft.Y)), lowerRight.Y);
             float height = botom - top;
             float offsetY = drawRect.Y - top;
 

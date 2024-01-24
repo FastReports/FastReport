@@ -151,7 +151,7 @@ namespace FastReport
             FlagUseBorder = false;
             FlagUseFill = false;
             FlagPreviewVisible = false;
-            SetFlags(Flags.CanCopy, false);    
+            SetFlags(Flags.CanCopy, false);
         }
     }
 }

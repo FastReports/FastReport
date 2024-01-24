@@ -104,13 +104,13 @@ namespace FastReport.Gauge.Radial
             {
                 if (i <= sideTicksCount / 2)
                 {
-                    if(isRightPart)
+                    if (isRightPart)
                     {
                         if (RadialUtils.IsBottom(Parent) && RadialUtils.IsLeft(Parent))
                         {
                             return false;
                         }
-                       else if (RadialUtils.IsBottom(Parent))
+                        else if (RadialUtils.IsBottom(Parent))
                             return false;
                         else if (RadialUtils.IsLeft(Parent))
                             return true;
@@ -120,7 +120,7 @@ namespace FastReport.Gauge.Radial
                     }
                     else
                     {
-                        if(RadialUtils.IsTop(Parent) && RadialUtils.IsLeft(Parent))
+                        if (RadialUtils.IsTop(Parent) && RadialUtils.IsLeft(Parent))
                         {
                             return true;
                         }
@@ -209,7 +209,7 @@ namespace FastReport.Gauge.Radial
             SizeF minTxt = RadialUtils.GetStringSize(e, Parent, Font, Parent.Minimum.ToString());
             float maxTxtOffset = maxTxt.Height > maxTxt.Width ? maxTxt.Height : maxTxt.Width;
             float minTxtOffset = minTxt.Height > minTxt.Width ? minTxt.Height : minTxt.Width;
-            majorTicksOffset = maxTxtOffset > minTxtOffset ? maxTxtOffset : minTxtOffset;       
+            majorTicksOffset = maxTxtOffset > minTxtOffset ? maxTxtOffset : minTxtOffset;
 
             PointF[] tick0 = new PointF[2];
             avrTick = new PointF(left + width / 2, top + majorTicksOffset);
@@ -318,7 +318,7 @@ namespace FastReport.Gauge.Radial
 
             tick0 = RadialUtils.RotateVector(tick0, angle, center);
 
-            g.DrawLine(pen, tick0[0].X, tick0[0].Y, tick0[1].X, tick0[1].Y);         
+            g.DrawLine(pen, tick0[0].X, tick0[0].Y, tick0[1].X, tick0[1].Y);
             string text = startValue.ToString();
             DrawText(e, text, brush, tick0[0].X, tick0[0].Y, horAlign, vertAlign);
 
@@ -329,7 +329,7 @@ namespace FastReport.Gauge.Radial
             for (int i = 0; i < sideTicksCount; i++)
             {
                 //right side
-                if(drawRight)
+                if (drawRight)
                 {
                     tick = RadialUtils.RotateVector(tick0, angle, center);
                     g.DrawLine(pen, tick[0].X, tick[0].Y, tick[1].X, tick[1].Y);
@@ -339,12 +339,12 @@ namespace FastReport.Gauge.Radial
                     {
                         if (RadialUtils.IsSemicircle(Parent) || RadialUtils.IsQuadrant(Parent))
                         {
-                            if(RadialUtils.IsLeft(Parent) && RadialUtils.IsTop(Parent))
+                            if (RadialUtils.IsLeft(Parent) && RadialUtils.IsTop(Parent))
                             {
                                 horAlign = HorAlign.Right;
                                 vertAlign = VertAlign.Middle;
                             }
-                            else if(RadialUtils.IsLeft(Parent) && RadialUtils.IsBottom(Parent))
+                            else if (RadialUtils.IsLeft(Parent) && RadialUtils.IsBottom(Parent))
                             {
                                 horAlign = HorAlign.Right;
                                 vertAlign = VertAlign.Middle;
@@ -415,8 +415,8 @@ namespace FastReport.Gauge.Radial
                     txtPoint = GetTextPoint(tick, -1 * e.ScaleX, isNegative(i, true), isRightPart);
                     DrawText(e, text, brush, txtPoint.X, txtPoint.Y, horAlign, vertAlign);
                 }
-                
-                if(drawLeft)
+
+                if (drawLeft)
                 {
                     //left side
                     angle *= -1;
@@ -507,7 +507,7 @@ namespace FastReport.Gauge.Radial
         }
 
         private void DrawMinorTicks(FRPaintEventArgs e)
-        { 
+        {
             IGraphics g = e.Graphics;
             Pen pen = e.Cache.GetPen(MinorTicks.Color, MinorTicks.Width * e.ScaleX, DashStyle.Solid);
 
@@ -521,7 +521,7 @@ namespace FastReport.Gauge.Radial
             tick0[1] = new PointF(tick0[0].X, tick0[0].Y + MinorTicks.Length);
 
             double angle = 0;
-            if (RadialUtils.IsSemicircle(Parent) || RadialUtils.IsQuadrant(Parent) )
+            if (RadialUtils.IsSemicircle(Parent) || RadialUtils.IsQuadrant(Parent))
             {
                 if (RadialUtils.IsBottom(Parent) && RadialUtils.IsLeft(Parent))
                 {
@@ -575,7 +575,7 @@ namespace FastReport.Gauge.Radial
                 angle += minorStep * RadialGauge.Radians;
             }
         }
-        
+
         #endregion // Private Methods
 
         #region Public Methods
@@ -601,7 +601,7 @@ namespace FastReport.Gauge.Radial
                 majorStep = 135f / 5;
                 minorStep = 135f / 5f / 5f;
             }
-             else if ((Parent as RadialGauge).Type == RadialGaugeType.Semicircle)
+            else if ((Parent as RadialGauge).Type == RadialGaugeType.Semicircle)
             {
                 MajorTicks.Count = 5;
                 MinorTicks.Count = 3;

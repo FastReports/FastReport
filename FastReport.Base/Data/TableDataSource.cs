@@ -156,7 +156,7 @@ namespace FastReport.Data
             }
             set
             {
-                if(!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     using (MemoryStream stream = new MemoryStream(Convert.FromBase64String(value)))
                     using (DataSet tempDs = new DataSet())

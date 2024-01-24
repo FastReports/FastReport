@@ -508,7 +508,7 @@ namespace FastReport.Export
                     }
                     ExportPageEnd(page);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
                 }
@@ -516,7 +516,7 @@ namespace FastReport.Export
                 {
                     ppage.EndGetPage(page);
                 }
-                if(page != null)
+                if (page != null)
                     page.Dispose();
             }
         }

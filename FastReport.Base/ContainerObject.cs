@@ -228,8 +228,8 @@ namespace FastReport
         {
             base.GetData();
             var objArray = Objects.ToArray();
-            foreach(ReportComponentBase obj in objArray)
-            { 
+            foreach (ReportComponentBase obj in objArray)
+            {
                 obj.GetData();
                 obj.OnAfterData();
 

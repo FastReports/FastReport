@@ -7,7 +7,7 @@ namespace FastReport.Export.Html
 {
     public partial class HTMLExport : ExportBase
     {
-        
+
         // TODO:
         private bool InlineStyles { get; set; }
 

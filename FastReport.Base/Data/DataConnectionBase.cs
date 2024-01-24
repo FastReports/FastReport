@@ -51,7 +51,7 @@ namespace FastReport.Data
                 return dataSet;
             }
         }
-        
+
         /// <summary>
         /// Gets a collection of data tables in this connection.
         /// </summary>
@@ -94,7 +94,7 @@ namespace FastReport.Data
                 if (Report != null && Report.IsRunning && !String.IsNullOrEmpty(ConnectionStringExpression))
                 {
                     string value = (string)Report.Calc(ConnectionStringExpression);
-                    if(!string.IsNullOrEmpty(value))
+                    if (!string.IsNullOrEmpty(value))
                         return value;
                 }
                 return connectionString;
@@ -370,7 +370,7 @@ namespace FastReport.Data
                 // skip queries and procedures
                 if (!String.IsNullOrEmpty(table.SelectCommand) || table is ProcedureDataSource)
                     continue;
-                
+
                 bool found = false;
                 foreach (string tableName in tableNames)
                 {
@@ -840,7 +840,7 @@ namespace FastReport.Data
                     adapter.FillSchema(table, SchemaType.Source);
                 }
 
-                foreach(Column column in dataSource.Columns)
+                foreach (Column column in dataSource.Columns)
                 {
                     if (!column.Enabled)
                         table.Columns.Remove(column.Name);
@@ -963,7 +963,7 @@ namespace FastReport.Data
         public virtual void Clone()
         {
             XmlItem item = new XmlItem();
-            using(FRWriter writer = new FRWriter(item))
+            using (FRWriter writer = new FRWriter(item))
             {
                 writer.SerializeTo = SerializeTo.Clipboard;
                 writer.BlobStore = new BlobStore(false);

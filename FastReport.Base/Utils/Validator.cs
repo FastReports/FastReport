@@ -28,7 +28,7 @@ namespace FastReport.Utils
             this.Message = message;
             this.Object = obj;
         }
-    } 
+    }
 
     /// <summary>
     /// Contains methods used for validation of report.
@@ -118,7 +118,7 @@ namespace FastReport.Utils
                                 listError.Add(new ValidationError(obj.Name, ValidationError.ErrorLevel.Warning, Res.Get("Messages,Validator,IntersectedObjects"), obj));
                             }
                         }
-                        
+
                         if (c is ReportComponentBase comp)
                             listError.AddRange(comp.Validate());
                     }
@@ -151,5 +151,5 @@ namespace FastReport.Utils
             }
             return listError.Distinct().ToList();
         }
-    } 
+    }
 }

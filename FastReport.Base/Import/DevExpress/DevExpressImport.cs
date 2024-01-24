@@ -16,31 +16,31 @@ namespace FastReport.Import.DevExpress
     {
         #region Constants
 
-        private const string TOP_MARGIN_BAND_MASK    = "DevExpress.XtraReports.UI.TopMarginBand";
+        private const string TOP_MARGIN_BAND_MASK = "DevExpress.XtraReports.UI.TopMarginBand";
         private const string BOTTOM_MARGIN_BAND_MASK = "DevExpress.XtraReports.UI.BottomMarginBand";
         private const string DETAIL_REPORT_BAND_MASK = "DevExpress.XtraReports.UI.DetailReportBand";
         private const string REPORT_HEADER_BAND_MASK = "DevExpress.XtraReports.UI.ReportHeaderBand";
         private const string REPORT_FOOTER_BAND_MASK = "DevExpress.XtraReports.UI.ReportFooterBand";
-        private const string DETAIL_BAND_MASK        = "DevExpress.XtraReports.UI.DetailBand";
-        private const string GROUP_HEADER_BAND_MASK  = "DevExpress.XtraReports.UI.GroupHeaderBand";
+        private const string DETAIL_BAND_MASK = "DevExpress.XtraReports.UI.DetailBand";
+        private const string GROUP_HEADER_BAND_MASK = "DevExpress.XtraReports.UI.GroupHeaderBand";
         private const string GROUP_FOOTER_BAND_MASK = "DevExpress.XtraReports.UI.GroupFooterBand";
 
 
-        private const string BAND_CHILD_DEFINITION   = "new DevExpress.XtraReports.UI.XRControl[]";
+        private const string BAND_CHILD_DEFINITION = "new DevExpress.XtraReports.UI.XRControl[]";
         private const string BAND_CHILDBAND_DEFINITION = "new DevExpress.XtraReports.UI.Band[]";
 
-        private const string DEV_EXPRESS_LABEL       = "DevExpress.XtraReports.UI.XRLabel";
-        private const string DEV_EXPRESS_LINE        = "DevExpress.XtraReports.UI.XRLine";
-        private const string DEV_EXPRESS_TABLE       = "DevExpress.XtraReports.UI.XRTable";
-        private const string DEV_EXPRESS_TABLE_ROW   = "DevExpress.XtraReports.UI.XRTableRow";
-        private const string DEV_EXPRESS_TABLE_CELL  = "DevExpress.XtraReports.UI.XRTableCell";
-        private const string DEV_EXPRESS_PICTURE     = "DevExpress.XtraReports.UI.XRPictureBox";
-        private const string DEV_EXPRESS_PAGE_INFO   = "DevExpress.XtraReports.UI.XRPageInfo";
-        private const string DEV_EXPRESS_SHAPE       = "DevExpress.XtraReports.UI.XRShape";
-        private const string DEV_EXPRESS_ZIP_CODE    = "DevExpress.XtraReports.UI.XRZipCode";
-        private const string DEV_EXPRESS_BAR_CODE    = "DevExpress.XtraReports.UI.XRBarCode";
-        private const string DEV_EXPRESS_RICH_TEXT   = "DevExpress.XtraReports.UI.XRRichText";
-        private const string DEV_EXPRESS_STYLE       = "DevExpress.XtraReports.UI.XRControlStyle ";
+        private const string DEV_EXPRESS_LABEL = "DevExpress.XtraReports.UI.XRLabel";
+        private const string DEV_EXPRESS_LINE = "DevExpress.XtraReports.UI.XRLine";
+        private const string DEV_EXPRESS_TABLE = "DevExpress.XtraReports.UI.XRTable";
+        private const string DEV_EXPRESS_TABLE_ROW = "DevExpress.XtraReports.UI.XRTableRow";
+        private const string DEV_EXPRESS_TABLE_CELL = "DevExpress.XtraReports.UI.XRTableCell";
+        private const string DEV_EXPRESS_PICTURE = "DevExpress.XtraReports.UI.XRPictureBox";
+        private const string DEV_EXPRESS_PAGE_INFO = "DevExpress.XtraReports.UI.XRPageInfo";
+        private const string DEV_EXPRESS_SHAPE = "DevExpress.XtraReports.UI.XRShape";
+        private const string DEV_EXPRESS_ZIP_CODE = "DevExpress.XtraReports.UI.XRZipCode";
+        private const string DEV_EXPRESS_BAR_CODE = "DevExpress.XtraReports.UI.XRBarCode";
+        private const string DEV_EXPRESS_RICH_TEXT = "DevExpress.XtraReports.UI.XRRichText";
+        private const string DEV_EXPRESS_STYLE = "DevExpress.XtraReports.UI.XRControlStyle ";
 
         #endregion // Constants
 
@@ -115,7 +115,7 @@ namespace FastReport.Import.DevExpress
                 {
                     // Trim() is not working :(
                     string band = String.Concat(bandString.Where(c => !Char.IsWhiteSpace(c)));
-                    if(band.StartsWith("this."))
+                    if (band.StartsWith("this."))
                         outsideBands.Add(band.Substring(5));
                     else
                         outsideBands.Add(band);
@@ -128,7 +128,7 @@ namespace FastReport.Import.DevExpress
         {
             string name = "";
             int start = devText.IndexOf(mask);
-            while(start!=-1)
+            while (start != -1)
             {
                 if (start == -1)
                     return string.Empty;
@@ -146,7 +146,7 @@ namespace FastReport.Import.DevExpress
         {
             string description = "";
             int start = 0;
-            while(start > -1)
+            while (start > -1)
             {
                 start = devText.IndexOf(@"// " + name, start);
                 if (devText.Substring(start, name.Length + 2 + 3).EndsWith("\r\n"))
@@ -187,13 +187,13 @@ namespace FastReport.Import.DevExpress
             if (description == null)
                 return -1;
             int start = description.ToLower().IndexOf(level);
-            if(start > -1)
+            if (start > -1)
             {
                 string value = description.Substring(start + level.Length, 1);
                 try
                 {
                     return int.Parse(value);
-                } 
+                }
                 catch
                 {
                     return -1;
@@ -207,8 +207,8 @@ namespace FastReport.Import.DevExpress
 
         private void LoadBand(BandBase band, string description)
         {
-            if(ExistValue("HeightF", description))
-            band.Height = UnitsConverter.SizeFToPixels(GetPropertyValue("HeightF", description));
+            if (ExistValue("HeightF", description))
+                band.Height = UnitsConverter.SizeFToPixels(GetPropertyValue("HeightF", description));
             else
                 band.Height = UnitsConverter.SizeFToPixels("100F");
             band.FillColor = UnitsConverter.ConvertBackColor(GetPropertyValue("BackColor", description));
@@ -274,11 +274,11 @@ namespace FastReport.Import.DevExpress
         {
             string type = string.Empty;
             int start = devText.IndexOf(name + " = new ");
-            if(start > -1)
-            {        
+            if (start > -1)
+            {
                 int end = devText.IndexOf(";", start);
                 start += name.Length + 7;
-                type = devText.Substring(start, end - start - 2);               
+                type = devText.Substring(start, end - start - 2);
             }
             return type;
         }
@@ -548,11 +548,11 @@ namespace FastReport.Import.DevExpress
                     foreach (string cellName in cellNames)
                     {
                         tableInfo.Column.Add(GetWeight(cellName));
+                    }
                 }
             }
-            }
 
-            for(int i = 0; i < rowNames.Count; i++)
+            for (int i = 0; i < rowNames.Count; i++)
             {
                 tableInfo.Row.Add(GetWeight(rowNames[i]));
             }
@@ -567,12 +567,12 @@ namespace FastReport.Import.DevExpress
             }
 
             // Create table rows.
-            for(int i = 0; i< rowNames.Count; i++)
+            for (int i = 0; i < rowNames.Count; i++)
             {
                 TableRow row = new TableRow();
                 row.Name = rowNames[i];
                 string rowDescription = GetObjectDescription(row.Name);
-                
+
                 row.Height = GetRowColumnSize(tableInfo.Row, i, table.Height);
                 List<string> cellNames = GetChildNames(DEV_EXPRESS_TABLE_CELL, rowDescription);
 
@@ -697,9 +697,9 @@ namespace FastReport.Import.DevExpress
 
         private void ApplyStyleByName(ReportComponentBase component, string styleName)
         {
-            foreach(Style subStyle in Report.Styles)
+            foreach (Style subStyle in Report.Styles)
             {
-                if(subStyle.Name == styleName)
+                if (subStyle.Name == styleName)
                 {
                     Font f = new Font("Arial", 10, FontStyle.Regular);
                     if (component is TextObject)
@@ -714,7 +714,7 @@ namespace FastReport.Import.DevExpress
 
                     string useFont = GetPropertyValue("UseFont", descr);
 
-                    if(useFont != string.Empty)
+                    if (useFont != string.Empty)
                         if (!UnitsConverter.ConvertBool(useFont))
                         {
                             (component as TextObject).Font = f;
@@ -781,7 +781,7 @@ namespace FastReport.Import.DevExpress
 
             List<string> detailReports = NamesOfDetailReportBand();
 
-            for(int i = 0; i < detailReports.Count; i++)
+            for (int i = 0; i < detailReports.Count; i++)
             {
                 string name = detailReports.Where(x => GetLevelPropValue(GetObjectDescription(x)) == i).FirstOrDefault();
 
@@ -812,7 +812,7 @@ namespace FastReport.Import.DevExpress
                 start += DETAIL_REPORT_BAND_MASK.Length + 1;
                 int end = devText.IndexOf(";", start);
                 string stringName = devText.Substring(start, end - start).Replace("}", ",");
-                if(!stringName.EndsWith(")"))
+                if (!stringName.EndsWith(")"))
                     names.Add(devText.Substring(start, end - start).Replace("}", ","));
             }
             return names;
@@ -888,7 +888,7 @@ namespace FastReport.Import.DevExpress
 
                 // Try to create header
                 GroupHeaderBand groupHeader = LoadDetailReportGroupHeaderBand(data, headerName);
-                if(groupHeader == null)
+                if (groupHeader == null)
                 {
                     curLevel++;
                     continue;
@@ -982,7 +982,7 @@ namespace FastReport.Import.DevExpress
                 return;
 
             string name = FindReportOutsideBandName(GROUP_FOOTER_BAND_MASK);
-            if(!String.IsNullOrEmpty(name))
+            if (!String.IsNullOrEmpty(name))
             {
                 GroupFooterBand groupFooter = new GroupFooterBand();
                 header.GroupFooter = groupFooter;
@@ -1025,7 +1025,7 @@ namespace FastReport.Import.DevExpress
         {
             Report = report;
             Report.Clear();
-            using(var sr = new StreamReader(content))
+            using (var sr = new StreamReader(content))
             {
                 devText = sr.ReadToEnd();
             }
@@ -1041,7 +1041,7 @@ namespace FastReport.Import.DevExpress
             if (devDoc.LastChild != null)
             {
                 LoadReportXml();
-        }
+            }
             else
             {
                 LoadReportCode();

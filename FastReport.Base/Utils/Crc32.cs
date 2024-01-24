@@ -8,7 +8,7 @@ namespace FastReport.Utils
     /// Calc the Crc32 checksum
     /// </summary>
 	internal static class Crc32
-	{
+    {
         private static readonly uint[] Table =
         {
             0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419,
@@ -107,7 +107,7 @@ namespace FastReport.Utils
             crc = Update(crc, ByteArray, 0, ByteArray.Length);
             return End(crc);
         }
-        
+
         /// <summary>
         /// Begin the checksum
         /// </summary>
@@ -143,6 +143,6 @@ namespace FastReport.Utils
         }
 
 
-	}
+    }
 
 }

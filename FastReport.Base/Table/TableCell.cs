@@ -394,7 +394,7 @@ namespace FastReport.Table
             base.GetData();
             if (Table != null && Table.IsInsideSpan(this))
                 Text = "";
-            
+
             if (Objects != null)
             {
                 for (int i = 0; i < savedOriginalObjectsCount; i++)

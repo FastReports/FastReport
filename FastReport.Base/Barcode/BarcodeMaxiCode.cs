@@ -57,7 +57,7 @@ namespace FastReport.Barcode
             int textAdd = showText ? (int)(FontHeight) : 0;
             SizeF s = new SizeF();
 
-            foreach(MaxiCodeImpl.Hexagon hex in maxiCodeImpl.hexagons)
+            foreach (MaxiCodeImpl.Hexagon hex in maxiCodeImpl.hexagons)
             {
                 for (int i = 0; i < hex.pointX.Length; i++)
                 {
@@ -95,7 +95,7 @@ namespace FastReport.Barcode
 
                 g.FillPolygon(b, points);
             }
-            
+
             foreach (MaxiCodeImpl.Ellipse circle in maxiCodeImpl.target)
             {
                 g.DrawEllipse(p,
@@ -409,7 +409,7 @@ namespace FastReport.Barcode
         int[] source;
         int[] set = new int[144];
         int[] character = new int[144];
-        bool[,] grid = new bool[33,30];
+        bool[,] grid = new bool[33, 30];
 
         /**
          * Sets the MaxiCode mode to use. Only modes 2 to 6 are supported.
@@ -690,18 +690,18 @@ namespace FastReport.Barcode
 
                         if (bit_pattern[bit] != 0)
                         {
-                            grid[i,j] = true;
+                            grid[i, j] = true;
                         }
                         else
                         {
-                            grid[i,j] = false;
+                            grid[i, j] = false;
                         }
                     }
                 }
             }
 
             // add orientation markings
-            grid[0,28] = true;  // top right filler
+            grid[0, 28] = true;  // top right filler
             grid[0, 29] = true;
             grid[9, 10] = true;  // top left marker
             grid[9, 11] = true;
@@ -1387,7 +1387,7 @@ namespace FastReport.Barcode
             {
                 for (int col = 0; col < 30; col++)
                 {
-                    if (grid[row,col])
+                    if (grid[row, col])
                     {
                         double x = (2.46 * col) + 1.23;
                         if ((row & 1) != 0)

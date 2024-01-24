@@ -82,7 +82,7 @@ namespace FastReport.Import.DevExpress
                     int blue = Convert.ToInt32(str.Substring(start, str.IndexOf(")", start) - start));
                     return Color.FromArgb(red, green, blue);
                 }
-                else if(str.Split(',').Length == 4)
+                else if (str.Split(',').Length == 4)
                 {
                     string[] colors = str.Split(',');
                     int alpha = Convert.ToInt32(colors[0]);
@@ -268,7 +268,7 @@ namespace FastReport.Import.DevExpress
         internal static ImageAlign ConvertImageAlignment(string alignment)
         {
             ImageAlign align = ImageAlign.None;
-            switch(alignment)
+            switch (alignment)
             {
                 case "TopCenter":
                     return ImageAlign.Top_Center;

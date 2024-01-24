@@ -113,7 +113,7 @@ namespace FastReport.Barcode
             string c;
             string text = base.text.Replace(".", "").Replace(" ", "");
 
-            if(CalcCheckSum)
+            if (CalcCheckSum)
             {
                 if (text.Length == 11)
                     text = CheckSumModulo10(text);
@@ -123,7 +123,7 @@ namespace FastReport.Barcode
             }
             else
             {
-                if(text.Length != 12)
+                if (text.Length != 12)
                     throw new Exception(Res.Get("Messages,BarcodeLengthMismatch"));
             }
 
@@ -149,12 +149,12 @@ namespace FastReport.Barcode
 
             base.text = text.Insert(2, ".").Insert(6, " ").Insert(10, ".");
 
-            if(!PrintCheckSum)
+            if (!PrintCheckSum)
             {
                 base.text = base.text.Substring(0, base.text.Length - 1);
             }
             else
-                base.text = base.text.Insert(14, " ");           
+                base.text = base.text.Insert(14, " ");
 
 
             return result;
@@ -226,9 +226,9 @@ namespace FastReport.Barcode
                 return data + "0";
             return data + (10 - (sum % 10)).ToString();
         }
-		
 
-        #endregion 
+
+        #endregion
         internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
         {
             base.Serialize(writer, prefix, diff);
@@ -301,7 +301,7 @@ namespace FastReport.Barcode
                 .Insert(16, " ")
                 .Insert(19, " ");
 
-       
+
 
 
             return result;

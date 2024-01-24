@@ -228,7 +228,7 @@ namespace FastReport.Barcode
             if (string.IsNullOrEmpty(digits) || digits.Length < 2)
                 return false;
 
-            if(digits.Any(char.IsLetter))
+            if (digits.Any(char.IsLetter))
                 return false;
 
             int[] mods = new int[] { 0, 9, 4, 6, 8, 2, 7, 1, 3, 5 };
@@ -292,7 +292,7 @@ namespace FastReport.Barcode
             if (string.IsNullOrEmpty(name))
                 throw new SwissQrCodeContactException(String.Format(res.Get("SwissEmptyProperty"), res.Get("SwissPropName")));
             if (!name.StartsWith("[") || !name.EndsWith("]"))
-            {               
+            {
                 if (name.Length > 70)
                     throw new SwissQrCodeContactException(String.Format(res.Get("SwissLengthMore"), res.Get("SwissPropName"), 71));
                 if (!Regex.IsMatch(name, QRSwissParameters.charsetPattern))
@@ -498,7 +498,7 @@ namespace FastReport.Barcode
         private bool IsValidIban(string iban)
         {
             //Clean IBAN
-            string ibanCleared = new string(iban.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpper(); 
+            string ibanCleared = new string(iban.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpper();
 
             //Check for general structure
             bool structurallyValid = Regex.IsMatch(ibanCleared, @"^[a-zA-Z]{2}[0-9]{2}([a-zA-Z0-9]?){16,30}$");

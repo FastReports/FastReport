@@ -110,8 +110,8 @@ namespace FastReport
             {
                 return tidBank;
             }
-            set 
-            { 
+            set
+            {
                 tidBank = value;
             }
         }
@@ -607,7 +607,7 @@ namespace FastReport
             /// </summary>
             public void Serialize(FRWriter writer, string prefix, RFIDBank c)
             {
-                if(Data != c.Data)
+                if (Data != c.Data)
                     writer.WriteStr(prefix + ".Data", Data);
                 if (DataColumn != c.DataColumn)
                     writer.WriteStr(prefix + ".DataColumn", DataColumn);

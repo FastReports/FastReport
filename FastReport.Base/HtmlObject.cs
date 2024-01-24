@@ -113,8 +113,8 @@ namespace FastReport
 
                 if (textRect.Width > 0 && textRect.Height > 0)
                 {
-                        // use simple rendering
-                        g.DrawString(text, font, textBrush, textRect, format);
+                    // use simple rendering
+                    g.DrawString(text, font, textBrush, textRect, format);
                 }
             }
         }

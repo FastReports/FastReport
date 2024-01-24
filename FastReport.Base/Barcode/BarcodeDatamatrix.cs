@@ -442,7 +442,7 @@ namespace FastReport.Barcode
 
         private static int AsciiEncodation(byte[] text, int textOffset, int textLength, byte[] data, int dataOffset, int dataLength, int symbolIndex)
         {
-            int  c;
+            int c;
             int textIndex = textOffset;
             int dataIndex = dataOffset;
             textLength += textOffset;
@@ -464,7 +464,7 @@ namespace FastReport.Barcode
                     if (dataIndex + 1 >= dataLength)
                         return -1;
                     data[dataIndex++] = UPPER_CASE_SIGN;
-                    data[dataIndex++] = (byte)(c - 128 + 1);   
+                    data[dataIndex++] = (byte)(c - 128 + 1);
                 }
                 else
                 {
@@ -481,14 +481,14 @@ namespace FastReport.Barcode
 
             if (textLength == 0)
                 return 0;
-           
+
             if (prevEnc != (int)DatamatrixEncoding.Base256)
             {
                 if (textLength < 250 && textLength + 2 > dataLength)
                     return -1;
                 if (textLength >= 250 && textLength + 3 > dataLength)
                     return -1;
-                data[dataOffset] = LATCH_B256; 
+                data[dataOffset] = LATCH_B256;
             }
 
             if (textLength < 250)
@@ -785,7 +785,7 @@ namespace FastReport.Barcode
                 data[dataOffset + dataIndex++] = LATCH_C40;
             else
                 data[dataOffset + dataIndex++] = LATCH_TEXT;
-            
+
             int[] encodedChars = new int[textLength * 4 + 10];
             int encIndex = 0;
             int last0 = 0;

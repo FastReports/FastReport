@@ -635,7 +635,7 @@ namespace FastReport.CrossView
             resultBodyWidth = CrossView.Data.DataColumnCount;
         }
 
-      
+
 
 
         public void AddData()

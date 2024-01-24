@@ -418,7 +418,7 @@ namespace FastReport.Barcode
         {
             if (HorzAlign == Alignment.Left || origRect == RectangleF.Empty)
                 return;
-            switch( HorzAlign)
+            switch (HorzAlign)
             {
                 case Alignment.Center:
                     {
