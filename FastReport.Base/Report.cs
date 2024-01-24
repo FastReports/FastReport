@@ -439,8 +439,8 @@ namespace FastReport
         public string ScriptText
         {
             get { return scriptText; }
-            set 
-            { 
+            set
+            {
                 scriptText = value;
                 scriptChanged = scriptText != codeHelper.EmptyScript();
             }
@@ -650,7 +650,8 @@ namespace FastReport
         public string[] ReferencedAssemblies
         {
             get { return referencedAssemblies; }
-            set {
+            set
+            {
                 if (value != null)
                 {
                     // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
@@ -1051,7 +1052,7 @@ namespace FastReport
             baseReport = value;
         }
 
-        private static string GetFixedSeparatedPath( string baseReport)
+        private static string GetFixedSeparatedPath(string baseReport)
         {
             return baseReport.Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar);
         }
@@ -2617,11 +2618,11 @@ namespace FastReport
                 doc.WriteHeader = false;
                 doc.ReadHeader = true;
                 doc.Load(reader);
-                
+
             }
             using (FRReader reader = new FRReader(this, doc.Root))
             {
-                
+
                 reader.DeserializeFrom = SerializeTo.Clipboard;
                 return reader.Read() as ReportComponentBase;
             }
@@ -2747,7 +2748,7 @@ namespace FastReport
             PreparedPages.Load(stream);
         }
 
-#endregion Public Methods
+        #endregion Public Methods
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Report"/> class with default settings.

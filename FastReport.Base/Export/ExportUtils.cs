@@ -157,11 +157,11 @@ namespace FastReport.Export
 
                     switch (f.CurrencySymbol)
                     {
-                        case "₽":       financeSymbol = "[$₽-419]"; break;
-                        case "$":       financeSymbol = "[$$-409]"; break;
-                        case "\u20AC":  financeSymbol = "[$€-2]"; break;
-                        case "\u00A3":  financeSymbol = "[$£-809]"; break;
-                        case "\u20B9":  financeSymbol = "[$₹-4009]"; break;
+                        case "₽": financeSymbol = "[$₽-419]"; break;
+                        case "$": financeSymbol = "[$$-409]"; break;
+                        case "\u20AC": financeSymbol = "[$€-2]"; break;
+                        case "\u00A3": financeSymbol = "[$£-809]"; break;
+                        case "\u20B9": financeSymbol = "[$₹-4009]"; break;
                     }
 
                     switch (f.CurrencyPositivePattern)
@@ -169,7 +169,7 @@ namespace FastReport.Export
                         case 0: positive_pattern = @"_-* " + financeSymbol + fm_str + "_-;"; break;       // $n 
                         case 1: positive_pattern = @"_-* " + fm_str + financeSymbol + "_-;"; break;       // n$
                         case 2: positive_pattern = @"_-* " + financeSymbol + " " + fm_str + "_-;"; break; // $ n
-                        case 3: positive_pattern = @"_-* " + fm_str + " "+ financeSymbol + "_-;"; break;  // n $
+                        case 3: positive_pattern = @"_-* " + fm_str + " " + financeSymbol + "_-;"; break;  // n $
                     }
 
                     switch (f.CurrencyNegativePattern)
@@ -259,7 +259,7 @@ namespace FastReport.Export
                     pattern += ".";
                     for (int i = 0; i < (format as PercentFormat).DecimalDigits; i++)
                         pattern += "0";
-                }                  
+                }
                 return pattern + "%";
             }
 
@@ -356,7 +356,7 @@ namespace FastReport.Export
                         Result.Append("<text:line-break />");
                     else
                     {
-                        if((i==0 && text[i] == '\r' && text[i + 1] == '\n'))
+                        if ((i == 0 && text[i] == '\r' && text[i + 1] == '\n'))
                             Result.Append($"<p style=\"margin-top:{fontSize}margin-bottom:0px\"></p>");
 
                         if (lineBreakCount == 0)
@@ -538,7 +538,7 @@ namespace FastReport.Export
             stream.WriteByte(13);
             stream.WriteByte(10);
         }
-   
+
         internal static void ZLibDeflate(Stream src, Stream dst)
         {
             dst.WriteByte(0x78);
@@ -798,7 +798,7 @@ namespace FastReport.Export
 
         static ExportUtils()
         {
-            var defaultProvider  = new NumberFormatInfo();
+            var defaultProvider = new NumberFormatInfo();
             defaultProvider.NumberGroupSeparator = string.Empty;
             defaultProvider.NumberDecimalSeparator = ".";
             _provider = NumberFormatInfo.ReadOnly(defaultProvider);

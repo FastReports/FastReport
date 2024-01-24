@@ -16,60 +16,60 @@
 using System;
 namespace FastReport.Barcode.QRCode
 {
-  
-/*  /// <summary> This class implements an array of unsigned bytes.
-  /// 
-  /// </summary>
-  /// <author>  dswitkin@google.com (Daniel Switkin)
-  /// </author>
-  /// <author>www.Redivivus.in (suraj.supekar@redivivus.in) - Ported from ZXING Java Source 
-  /// </author>*/
-  internal sealed class ByteArray
-  {
-    public bool Empty
+
+    /*  /// <summary> This class implements an array of unsigned bytes.
+      /// 
+      /// </summary>
+      /// <author>  dswitkin@google.com (Daniel Switkin)
+      /// </author>
+      /// <author>www.Redivivus.in (suraj.supekar@redivivus.in) - Ported from ZXING Java Source 
+      /// </author>*/
+    internal sealed class ByteArray
     {
-      get
-      {
-        return size_Renamed_Field == 0;
-      }
-      
-    }
-    
-    private const int INITIAL_SIZE = 32;
-    
-    private sbyte[] bytes;
-    private int size_Renamed_Field;
-    
-    public ByteArray()
-    {
-      bytes = null;
-      size_Renamed_Field = 0;
-    }
-    
-    public ByteArray(int size)
-    {
-      bytes = new sbyte[size];
-      this.size_Renamed_Field = size;
-    }
-    
-    public ByteArray(sbyte[] byteArray)
-    {
-      bytes = byteArray;
-      size_Renamed_Field = bytes.Length;
-    }
-    
-/*    /// <summary> Access an unsigned byte at location index.</summary>
-    /// <param name="index">The index in the array to access.
-    /// </param>
-    /// <returns> The unsigned value of the byte as an int.
-    /// </returns>*/
-    public int at(int index)
-    {
-        unchecked
+        public bool Empty
         {
-            return bytes[index] & 0xff;
+            get
+            {
+                return size_Renamed_Field == 0;
+            }
+
         }
-    }
+
+        private const int INITIAL_SIZE = 32;
+
+        private sbyte[] bytes;
+        private int size_Renamed_Field;
+
+        public ByteArray()
+        {
+            bytes = null;
+            size_Renamed_Field = 0;
+        }
+
+        public ByteArray(int size)
+        {
+            bytes = new sbyte[size];
+            this.size_Renamed_Field = size;
+        }
+
+        public ByteArray(sbyte[] byteArray)
+        {
+            bytes = byteArray;
+            size_Renamed_Field = bytes.Length;
+        }
+
+        /*    /// <summary> Access an unsigned byte at location index.</summary>
+            /// <param name="index">The index in the array to access.
+            /// </param>
+            /// <returns> The unsigned value of the byte as an int.
+            /// </returns>*/
+        public int at(int index)
+        {
+            unchecked
+            {
+                return bytes[index] & 0xff;
+            }
+        }
 
         public void set_Renamed(int index, int value_Renamed)
         {
@@ -78,21 +78,21 @@ namespace FastReport.Barcode.QRCode
                 bytes[index] = (sbyte)value_Renamed;
             }
         }
-    
-    public int size()
-    {
-      return size_Renamed_Field;
+
+        public int size()
+        {
+            return size_Renamed_Field;
+        }
+
+        // Copy count bytes from array source starting at offset.
+        public void set_Renamed(sbyte[] source, int offset, int count)
+        {
+            bytes = new sbyte[count];
+            size_Renamed_Field = count;
+            for (int x = 0; x < count; x++)
+            {
+                bytes[x] = source[offset + x];
+            }
+        }
     }
-    
-    // Copy count bytes from array source starting at offset.
-    public void  set_Renamed(sbyte[] source, int offset, int count)
-    {
-      bytes = new sbyte[count];
-      size_Renamed_Field = count;
-      for (int x = 0; x < count; x++)
-      {
-        bytes[x] = source[offset + x];
-      }
-    }
-  }
 }

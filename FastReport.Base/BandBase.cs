@@ -655,7 +655,7 @@ namespace FastReport
             }
             SetRunning(false);
 
-            ReportComponentCollection collection_clone = new ReportComponentCollection(); 
+            ReportComponentCollection collection_clone = new ReportComponentCollection();
             Objects.CopyTo(collection_clone);
             foreach (ReportComponentBase obj in collection_clone)
             {
@@ -757,8 +757,8 @@ namespace FastReport
                 if (AllObjects[i] is ComponentBase)
                 {
                     ComponentBase obj = AllObjects[i] as ComponentBase;
-                         if (obj.Top > maxTop && !(obj is DataFooterBand))
-                            maxTop = obj.Top;
+                    if (obj.Top > maxTop && !(obj is DataFooterBand))
+                        maxTop = obj.Top;
                 }
             }
             float breakLine = maxTop;
@@ -806,13 +806,13 @@ namespace FastReport
                         minTop = (breakTo.AllObjects[i] as ComponentBase).Top;
 
             for (int i = itemsBefore; i < breakTo.AllObjects.Count; i++)
-				if (breakTo.AllObjects[i] is ComponentBase)
-					if ((breakTo.AllObjects[i] as ComponentBase).Bottom > maxBottom && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
-                    maxBottom = (breakTo.AllObjects[i] as ComponentBase).Bottom;
+                if (breakTo.AllObjects[i] is ComponentBase)
+                    if ((breakTo.AllObjects[i] as ComponentBase).Bottom > maxBottom && breakTo.AllObjects[i] is ReportComponentBase && !(breakTo.AllObjects[i] is Table.TableCell))
+                        maxBottom = (breakTo.AllObjects[i] as ComponentBase).Bottom;
 
             for (int i = 0; i < itemsBefore; i++)
-				if (breakTo.AllObjects[i] is ComponentBase)
-					(breakTo.AllObjects[i] as ComponentBase).Top += maxBottom - minTop;
+                if (breakTo.AllObjects[i] is ComponentBase)
+                    (breakTo.AllObjects[i] as ComponentBase).Top += maxBottom - minTop;
 
             breakTo.Height += maxBottom - minTop;
 
@@ -824,6 +824,9 @@ namespace FastReport
         {
             // first we find the break line. It's a minimum Top coordinate of the object that cannot break.
             float breakLine = Height;
+            float excessiveHeight = 0;
+            float maxExcessiveHeight = 0;
+            Dictionary<RectangleF, float> excessiveHeights = new Dictionary<RectangleF, float>();
             bool breakLineFound = true;
             do
             {
@@ -843,7 +846,12 @@ namespace FastReport
                                 clone.Height = breakLine - clone.Top;
                                 // to allow access to the Report
                                 clone.Parent = breakTo;
-                                canBreak = clone.Break(null);
+                                canBreak = clone.Break(null, out excessiveHeight);
+                                if (excessiveHeight > 0)
+                                {
+                                    excessiveHeights.Add(clone.Bounds, excessiveHeight);
+                                    maxExcessiveHeight = Math.Max(maxExcessiveHeight, excessiveHeight);
+                                }
                             }
                         }
                     }
@@ -878,13 +886,21 @@ namespace FastReport
                         breakComp.Top = 0;
                         obj.Height = breakLine - obj.Top;
                         (obj as BreakableComponent).Break(breakComp);
+
                     }
                     else
                     {
+                        float currentExcessiveHeight = 0;
+                        foreach(var item in excessiveHeights)
+                        {
+                            if ((Math.Round(obj.Left, 2) <= Math.Round(item.Key.Left, 2) && Math.Round(obj.Right, 2) >= Math.Round(item.Key.Left, 2)) ||
+                             (Math.Round(obj.Left, 2) >= Math.Round(item.Key.Left, 2) && Math.Round(item.Key.Right, 2) >= Math.Round(obj.Left, 2)))
+                                currentExcessiveHeight = Math.Max(currentExcessiveHeight, item.Value);
+                        }
                         // (case: object with Anchor = bottom on a breakable band)
                         // in case of bottom anchor, do not move the object. It will be moved automatically when we decrease the band height
                         if ((obj.Anchor & AnchorStyles.Bottom) == 0)
-                            obj.Top -= breakLine;
+                            obj.Top -= (breakLine - currentExcessiveHeight);
                         obj.Parent = breakTo;
                         continue;
                     }
@@ -893,7 +909,7 @@ namespace FastReport
             }
 
             Height = breakLine;
-            breakTo.Height -= breakLine;
+            breakTo.Height -= (breakLine - maxExcessiveHeight);
             return Objects.Count > 0;
         }
 
@@ -966,7 +982,7 @@ namespace FastReport
             InvokeEvent(AfterLayoutEvent, e);
         }
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BandBase"/> class with default settings.

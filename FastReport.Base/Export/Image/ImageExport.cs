@@ -707,7 +707,7 @@ namespace FastReport.Export.Image
         /// </summary>
         public ImageExport()
         {
-            paddingNonSeparatePages = 10;
+            paddingNonSeparatePages = 0;
             fileSuffix = String.Empty;
             HasMultipleFiles = true;
             imageFormat = ImageExportFormat.Jpeg;

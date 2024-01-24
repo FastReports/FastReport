@@ -32,15 +32,15 @@ namespace FastReport.TypeConverters
         {
             string val = (string)value;
 
-                if (value is string && !val.StartsWith("System."))
-                {
-                    val = "System." + val;
+            if (value is string && !val.StartsWith("System."))
+            {
+                val = "System." + val;
 
-                    if (Type.GetType(val) != null)
-                        return Type.GetType(val);
-                    else
-                        return null;
-                }
+                if (Type.GetType(val) != null)
+                    return Type.GetType(val);
+                else
+                    return null;
+            }
 
             return base.ConvertFrom(context, culture, value);
         }

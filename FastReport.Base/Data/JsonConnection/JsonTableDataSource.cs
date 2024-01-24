@@ -366,7 +366,7 @@ namespace FastReport.Data.JsonConnection
 
         internal object GetJson(Base parentColumn, Column column)
         {
-            if(parentColumn is IJsonProviderSourceConnection)
+            if (parentColumn is IJsonProviderSourceConnection)
             {
                 return (parentColumn as IJsonProviderSourceConnection).GetJson(this);
             }

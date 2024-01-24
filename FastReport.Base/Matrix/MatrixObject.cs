@@ -318,7 +318,7 @@ namespace FastReport.Matrix
         /// </summary>
         [Category("Behavior")]
         [DefaultValue(false)]
-        public bool SplitRows 
+        public bool SplitRows
         {
             get { return splitRows; }
             set { splitRows = value; }
@@ -650,7 +650,7 @@ namespace FastReport.Matrix
             MatrixEvenStylePriority = src.MatrixEvenStylePriority;
             SplitRows = src.SplitRows;
             PrintIfEmpty = src.PrintIfEmpty;
-            data = src.Data;            
+            data = src.Data;
         }
 
         /// <inheritdoc/>

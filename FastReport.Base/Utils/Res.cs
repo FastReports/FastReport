@@ -33,7 +33,7 @@ namespace FastReport.Utils
         /// </summary>
         public static string LocaleFolder
         {
-            get 
+            get
             {
                 Report.EnsureInit();
                 string folder = Config.Root.FindItem("Language").GetProp("Folder");
@@ -56,7 +56,8 @@ namespace FastReport.Utils
 
                 return folder;
             }
-            set { 
+            set
+            {
                 Config.Root.FindItem("Language").SetProp("Folder", value);
             }
         }
@@ -66,9 +67,9 @@ namespace FastReport.Utils
         /// </summary>
         public static string LocaleName
         {
-            get 
+            get
             {
-                return FLocale.Root.GetProp("Name"); 
+                return FLocale.Root.GetProp("Name");
             }
         }
 
@@ -248,25 +249,25 @@ namespace FastReport.Utils
             CurrentCulture = CultureInfo.GetCultureInfo("en");
             FLocale = FBuiltinLocale;
         }
-    
-    internal static void LoadDefaultLocale()
-    {
-      if (!Directory.Exists(LocaleFolder))
-        return;
-        
-      if (String.IsNullOrEmpty(DefaultLocaleName))
-      {
-            // locale is set to "Auto"
-            CultureInfo currentCulture = CultureInfo.CurrentCulture;
 
-            LoadLocale(currentCulture);
-      }
-      else
-      {
-        // locale is set to specific name
-        LoadLocale(Path.Combine(LocaleFolder, DefaultLocaleName + ".frl"));
-      }
-    }
+        internal static void LoadDefaultLocale()
+        {
+            if (!Directory.Exists(LocaleFolder))
+                return;
+
+            if (String.IsNullOrEmpty(DefaultLocaleName))
+            {
+                // locale is set to "Auto"
+                CultureInfo currentCulture = CultureInfo.CurrentCulture;
+
+                LoadLocale(currentCulture);
+            }
+            else
+            {
+                // locale is set to specific name
+                LoadLocale(Path.Combine(LocaleFolder, DefaultLocaleName + ".frl"));
+            }
+        }
 
         /// <summary>
         /// Gets a string with specified ID.
@@ -291,15 +292,15 @@ namespace FastReport.Utils
         {
             string result = Get(id, FLocale);
             // if no item found, try built-in (english) locale
-            if(string.IsNullOrEmpty(result))
+            if (string.IsNullOrEmpty(result))
             {
-                if(FLocale != FBuiltinLocale)
+                if (FLocale != FBuiltinLocale)
                 {
                     result = Get(id, FBuiltinLocale);
                     if (string.IsNullOrEmpty(result))
                         result = id + " " + FBadResult;
                 }
-                else                  
+                else
                     result = id + " " + FBadResult;
             }
             return result;
@@ -365,9 +366,9 @@ namespace FastReport.Utils
             string result = Get(id);
             if (result.IndexOf(FBadResult) != -1)
                 result = id;
-            return result;  
+            return result;
         }
-    
+
         /// <summary>
         /// Tries to get builtin string with specified ID.
         /// </summary>
@@ -378,7 +379,7 @@ namespace FastReport.Utils
             string result = GetBuiltin(id);
             if (string.IsNullOrEmpty(result))
                 result = id;
-            return result;  
+            return result;
         }
 
         /// <summary>
@@ -400,73 +401,73 @@ namespace FastReport.Utils
 
         static partial void ResDesignExt();
     }
-  
-  /// <summary>
-  /// Used to access to resource IDs inside the specified branch.
-  /// </summary>
-  /// <remarks>
-  /// Using the <see cref="Res.Get(string)"/> method, you have to specify the full path to your resource.
-  /// Using this class, you can shorten the path:
-  /// <code>
-  /// // using the Res.Get method
-  /// miKeepTogether = new ToolStripMenuItem(Res.Get("ComponentMenu,HeaderBand,KeepTogether"));
-  /// miResetPageNumber = new ToolStripMenuItem(Res.Get("ComponentMenu,HeaderBand,ResetPageNumber"));
-  /// miRepeatOnEveryPage = new ToolStripMenuItem(Res.Get("ComponentMenu,HeaderBand,RepeatOnEveryPage"));
-  /// 
-  /// // using MyRes.Get method
-  /// MyRes res = new MyRes("ComponentMenu,HeaderBand");
-  /// miKeepTogether = new ToolStripMenuItem(res.Get("KeepTogether"));
-  /// miResetPageNumber = new ToolStripMenuItem(res.Get("ResetPageNumber"));
-  /// miRepeatOnEveryPage = new ToolStripMenuItem(res.Get("RepeatOnEveryPage"));
-  /// 
-  /// </code>
-  /// </remarks>
-  public class MyRes
-  {
-    private string category;
 
     /// <summary>
-    /// Gets a string with specified ID inside the main branch.
+    /// Used to access to resource IDs inside the specified branch.
     /// </summary>
-    /// <param name="id">The resource ID.</param>
-    /// <returns>The localized value.</returns>
-    public string Get(string id)
+    /// <remarks>
+    /// Using the <see cref="Res.Get(string)"/> method, you have to specify the full path to your resource.
+    /// Using this class, you can shorten the path:
+    /// <code>
+    /// // using the Res.Get method
+    /// miKeepTogether = new ToolStripMenuItem(Res.Get("ComponentMenu,HeaderBand,KeepTogether"));
+    /// miResetPageNumber = new ToolStripMenuItem(Res.Get("ComponentMenu,HeaderBand,ResetPageNumber"));
+    /// miRepeatOnEveryPage = new ToolStripMenuItem(Res.Get("ComponentMenu,HeaderBand,RepeatOnEveryPage"));
+    /// 
+    /// // using MyRes.Get method
+    /// MyRes res = new MyRes("ComponentMenu,HeaderBand");
+    /// miKeepTogether = new ToolStripMenuItem(res.Get("KeepTogether"));
+    /// miResetPageNumber = new ToolStripMenuItem(res.Get("ResetPageNumber"));
+    /// miRepeatOnEveryPage = new ToolStripMenuItem(res.Get("RepeatOnEveryPage"));
+    /// 
+    /// </code>
+    /// </remarks>
+    public class MyRes
     {
-      if (id != "")
-        return Res.Get(category + "," + id);
-      else
-        return Res.Get(category);
-    }
+        private string category;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="MyRes"/> class with spevified branch.
-    /// </summary>
-    /// <param name="category">The main resource branch.</param>
-    public MyRes(string category)
-    {
+        /// <summary>
+        /// Gets a string with specified ID inside the main branch.
+        /// </summary>
+        /// <param name="id">The resource ID.</param>
+        /// <returns>The localized value.</returns>
+        public string Get(string id)
+        {
+            if (id != "")
+                return Res.Get(category + "," + id);
+            else
+                return Res.Get(category);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MyRes"/> class with spevified branch.
+        /// </summary>
+        /// <param name="category">The main resource branch.</param>
+        public MyRes(string category)
+        {
             this.category = category;
+        }
     }
-  }
 
-  
-  /// <summary>
-  /// Localized CategoryAttribute class.
-  /// </summary>
-  public class SRCategory : CategoryAttribute
-  {
-    /// <inheritdoc/>
-    protected override string GetLocalizedString(string value)
-    {
-      return Res.TryGet("Properties,Categories," + value);
-    }
 
     /// <summary>
-    /// Initializes a new instance of the SRCategory class.
+    /// Localized CategoryAttribute class.
     /// </summary>
-    /// <param name="value">The category name.</param>
-    public SRCategory(string value)
-      : base(value)
+    public class SRCategory : CategoryAttribute
     {
+        /// <inheritdoc/>
+        protected override string GetLocalizedString(string value)
+        {
+            return Res.TryGet("Properties,Categories," + value);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the SRCategory class.
+        /// </summary>
+        /// <param name="value">The category name.</param>
+        public SRCategory(string value)
+          : base(value)
+        {
+        }
     }
-  }
 }

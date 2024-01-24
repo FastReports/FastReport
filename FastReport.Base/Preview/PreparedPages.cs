@@ -138,7 +138,7 @@ namespace FastReport.Preview
         /// <summary>
         /// Gets the XML for rendering the outline of the report
         /// </summary>
-        public XmlItem OutlineXml 
+        public XmlItem OutlineXml
         {
             get => outline.Xml;
         }
@@ -166,12 +166,12 @@ namespace FastReport.Preview
             get { return canUpload; }
             set
             {
-              if (canUpload != value)
-              {
-                canUpload = value;
-                if (value)
-                  UploadPages();
-              }
+                if (canUpload != value)
+                {
+                    canUpload = value;
+                    if (value)
+                        UploadPages();
+                }
             }
         }
 
@@ -468,10 +468,10 @@ namespace FastReport.Preview
                 // save ReportInfo
                 doc.Root.SetProp("ReportInfo.Name", Report.ReportInfo.Name);
                 doc.Root.SetProp("ReportInfo.Author", Report.ReportInfo.Author);
-                doc.Root.SetProp("ReportInfo.Description", Report.ReportInfo.Description);                
+                doc.Root.SetProp("ReportInfo.Description", Report.ReportInfo.Description);
                 doc.Root.SetProp("ReportInfo.Created", SystemFake.DateTime.Now.ToString());
                 doc.Root.SetProp("ReportInfo.Modified", SystemFake.DateTime.Now.ToString());
-                doc.Root.SetProp("ReportInfo.CreatorVersion", Report.ReportInfo.CreatorVersion);                
+                doc.Root.SetProp("ReportInfo.CreatorVersion", Report.ReportInfo.CreatorVersion);
 
                 XmlItem pages = doc.Root.Add();
                 pages.Name = "pages";

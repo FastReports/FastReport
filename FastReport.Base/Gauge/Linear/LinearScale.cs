@@ -26,7 +26,7 @@ namespace FastReport.Gauge.Linear
 
         #region Properties
 
-        
+
 
         #endregion // Properties
 

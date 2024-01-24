@@ -12,7 +12,7 @@ namespace FastReport.Barcode
     public class BarcodeIntelligentMail : LinearBarcodeBase
     {
         #region LinearBarcodeBase
-        
+
         private bool quietZone;
         const string space = "2";
 

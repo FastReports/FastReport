@@ -212,12 +212,12 @@ namespace FastReport
         /// </code>
         /// </example>          
         [Category("Appearance")]
-        [EditorAttribute("FastReport.TypeEditors.FillEditor, FastReport",typeof(UITypeEditor))]
+        [EditorAttribute("FastReport.TypeEditors.FillEditor, FastReport", typeof(UITypeEditor))]
         public virtual FillBase Fill
         {
             get
             {
-                return fill; 
+                return fill;
             }
             set
             {
@@ -827,7 +827,7 @@ namespace FastReport
                 writer.WriteStr("ExportableExpression", ExportableExpression);
             Border.Serialize(writer, "Border", c.Border);
             //if(Fill != c.Fill)
-                Fill.Serialize(writer, "Fill", c.Fill);
+            Fill.Serialize(writer, "Fill", c.Fill);
             if (Cursor != c.Cursor && !Config.WebMode)
                 writer.WriteValue("Cursor", Cursor);
             Hyperlink.Serialize(writer, c.Hyperlink);

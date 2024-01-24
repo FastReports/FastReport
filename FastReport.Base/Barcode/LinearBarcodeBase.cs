@@ -101,7 +101,7 @@ namespace FastReport.Barcode
             {
                 MakeModules();
                 pattern = GetPattern();
-                if(pattern == null)
+                if (pattern == null)
                 {
                     MyRes res = new MyRes("Messages");
                     throw new FormatException(res.Get("BarcodeManyError"));
@@ -403,7 +403,7 @@ namespace FastReport.Barcode
 
         internal override void Initialize(string text, bool showText, int angle, float zoom)
         {
-            if(trim)
+            if (trim)
                 text = text.Trim();
             base.Initialize(text, showText, angle, zoom);
         }

@@ -123,7 +123,7 @@ namespace FastReport.Barcode
             string pattern = "" + start;
 
             //data
-            foreach(char c in text)
+            foreach (char c in text)
             {
                 int i;
                 if (int.TryParse("" + c, out i))

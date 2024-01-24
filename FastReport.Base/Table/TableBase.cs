@@ -594,7 +594,7 @@ namespace FastReport.Table
 
             ResetSpanList();
         }
-        
+
         public bool IsInsideSpan(TableCell cell)
         {
             Point address = cell.Address;
@@ -1036,7 +1036,7 @@ namespace FastReport.Table
                 TableCell cellTo = breakTo[i, rowIndex];
                 cell.Height = rowHeight;
                 cell.Break(cellTo);
-                
+
                 // fix height if row is not autosized
                 if (!rowTo.AutoSize)
                 {

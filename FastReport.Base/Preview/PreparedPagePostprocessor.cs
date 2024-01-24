@@ -160,7 +160,7 @@ namespace FastReport.Preview
                         TextObject removeObj = band[j];
                         band.Remove(removeObj);
                         removeObj.Dispose();
-                        if(j > 0)
+                        if (j > 0)
                             j--;
                     }
                 }

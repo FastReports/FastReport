@@ -207,7 +207,7 @@ namespace FastReport.Export.Html
                 Append(stylePrefix).
                 Append("s").
                 Append(index.ToString()).
-                Append((singlePage || layers)? String.Empty : String.Concat("-", subindex.ToString())).
+                Append((singlePage || layers) ? String.Empty : String.Concat("-", subindex.ToString())).
                 Append(" { ").ToString();
         }
 
@@ -336,7 +336,7 @@ namespace FastReport.Export.Html
                 {
                     if (EmbedPictures)
                     {
-                        return embedPreffix + GetBase64Image(PictureStream, hash); 
+                        return embedPreffix + GetBase64Image(PictureStream, hash);
                     }
                     else
                     {

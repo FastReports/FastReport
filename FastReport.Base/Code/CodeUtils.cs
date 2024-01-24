@@ -12,7 +12,7 @@ namespace FastReport.Code
     /// </summary>
     public class FindTextArgs
     {
-        
+
         private int startIndex;
         private int endIndex;
         private string openBracket;
@@ -71,10 +71,10 @@ namespace FastReport.Code
         /// </summary>
         public string FoundText
         {
-            get { return foundText;  }
+            get { return foundText; }
             set { foundText = value; }
         }
-     
+
     }
 
     /// <summary>
@@ -209,7 +209,7 @@ namespace FastReport.Code
 
         internal static string GetOptionalParameter(System.Reflection.ParameterInfo par, Language lang)
         {
-            if(!isTypeSuffixesInitialized)
+            if (!isTypeSuffixesInitialized)
                 InitializeTypeSuffixes();
             string optionalParamString = " = ";
             if (par.DefaultValue != null)

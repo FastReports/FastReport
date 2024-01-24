@@ -50,7 +50,7 @@ namespace FastReport.Utils
             {
                 return font.GetFontStream();
             }
-            
+
             return null;
         }
 
@@ -62,7 +62,7 @@ namespace FastReport.Utils
         public bool AddFontFile(string filename)
         {
             bool success = false;
-            if(File.Exists(filename))
+            if (File.Exists(filename))
             {
                 // if (!FontFiles.ContainsValue(filename))
                 if (!_fonts.Values.OfType<FontFromFile>().Any(fontFile => fontFile._filepath == filename))
@@ -122,12 +122,12 @@ namespace FastReport.Utils
 
 #endif
 
-                        /// <summary>
-                        /// Adds a font contained in system memory to this collection.
-                        /// </summary>
-                        /// <param name="memory">The memory address of the font to add.</param>
-                        /// <param name="length">The memory length of the font to add.</param>
-                        public void AddMemoryFont(IntPtr memory, int length)
+        /// <summary>
+        /// Adds a font contained in system memory to this collection.
+        /// </summary>
+        /// <param name="memory">The memory address of the font to add.</param>
+        /// <param name="length">The memory length of the font to add.</param>
+        public void AddMemoryFont(IntPtr memory, int length)
         {
             collection.AddMemoryFont(memory, length);
             string fontName = Families[Families.Length - 1].Name;

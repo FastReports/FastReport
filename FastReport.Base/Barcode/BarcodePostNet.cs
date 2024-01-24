@@ -6,12 +6,12 @@ using System.Text.RegularExpressions;
 
 namespace FastReport.Barcode
 {
-  /// <summary>
-  /// Generates the PostNet barcode.
-  /// </summary>
-  public class BarcodePostNet : LinearBarcodeBase
-  {
-    private static string[] tabelle_PostNet = {
+    /// <summary>
+    /// Generates the PostNet barcode.
+    /// </summary>
+    public class BarcodePostNet : LinearBarcodeBase
+    {
+        private static string[] tabelle_PostNet = {
       "5151919191",    //0
       "9191915151",    //1
       "9191519151",    //2
@@ -24,18 +24,18 @@ namespace FastReport.Barcode
       "5191519191"     //9
     };
 
-    internal override string GetPattern()
-    {
-      string result = "51";
+        internal override string GetPattern()
+        {
+            string result = "51";
 
-      for (int i = 0; i < text.Length; i++)
-        result += tabelle_PostNet[CharToInt(text[i])];
+            for (int i = 0; i < text.Length; i++)
+                result += tabelle_PostNet[CharToInt(text[i])];
 
-      result += "5";
+            result += "5";
 
-      return result;
+            return result;
+        }
     }
-  }
 
     /// <summary>
     /// Generates the Japan Post 4 State Code barcode.
@@ -121,7 +121,7 @@ namespace FastReport.Barcode
 
             if (weight > 20 || Regex.IsMatch(text.Substring(0, 7), "[^0-9\\-]") ||
                 Regex.IsMatch(text.Substring(7, text.Length - 7), "[^A-Z0-9\\-]") ||
-                (encoded.IndexOf('-') < 8 && encoded.IndexOf('-') != -1 ))
+                (encoded.IndexOf('-') < 8 && encoded.IndexOf('-') != -1))
             {
                 throw new FormatException(Res.Get("Messages,BarcodeLengthMismatch"));
             }

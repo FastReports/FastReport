@@ -27,7 +27,7 @@ namespace FastReport.Gauge.Radial
             get { return gradAutoRotate; }
             set { gradAutoRotate = value; }
         }
-        
+
         #region Constructors
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace FastReport.Gauge.Radial
             PointF center = (Parent as RadialGauge).Center;
             float circleWidth = Parent.Width / 16f;
             float circleHeight = Parent.Height / 16f;
-            RectangleF pointerCircle = new RectangleF(center.X - circleWidth/2 * e.ScaleX, center.Y - circleHeight/2 * e.ScaleY, circleWidth * e.ScaleX, circleHeight * e.ScaleY);
+            RectangleF pointerCircle = new RectangleF(center.X - circleWidth / 2 * e.ScaleX, center.Y - circleHeight / 2 * e.ScaleY, circleWidth * e.ScaleX, circleHeight * e.ScaleY);
 
             //double rotateTo = (scale.AverageValue - Parent.Minimum);
             double startAngle = -135 * RadialGauge.Radians;
@@ -63,7 +63,7 @@ namespace FastReport.Gauge.Radial
                 if ((Parent as RadialGauge).Position == RadialGaugePosition.Bottom || (Parent as RadialGauge).Position == RadialGaugePosition.Top)
                 {
                     startAngle = -90 * RadialGauge.Radians;
-                    if((Parent as RadialGauge).Position == RadialGaugePosition.Bottom)
+                    if ((Parent as RadialGauge).Position == RadialGaugePosition.Bottom)
                         angle *= -1;
                 }
                 else if ((Parent as RadialGauge).Position == RadialGaugePosition.Left)
@@ -105,12 +105,12 @@ namespace FastReport.Gauge.Radial
             pointerPerpStrt = RadialUtils.RotateVector(pointerPerpStrt, startAngle, center);
             pointerPerpEnd = RadialUtils.RotateVector(pointerPerpEnd, startAngle, center);
 
-            PointF[] rotatedPointerPerpStrt = RadialUtils.RotateVector(pointerPerpStrt, angle, center); 
+            PointF[] rotatedPointerPerpStrt = RadialUtils.RotateVector(pointerPerpStrt, angle, center);
             PointF[] rotatedPointerPerpEnd = RadialUtils.RotateVector(pointerPerpEnd, angle, center);
 
             //calc brush rect
             float x = 0, y = 0, dx = 0, dy = 0;
-            if(angle / RadialGauge.Radians >= 0 && angle / RadialGauge.Radians < 45)
+            if (angle / RadialGauge.Radians >= 0 && angle / RadialGauge.Radians < 45)
             {
                 x = rotatedPointerPerpEnd[1].X;
                 y = rotatedPointerPerpEnd[0].Y - (rotatedPointerPerpEnd[0].Y - pointerCircle.Y);

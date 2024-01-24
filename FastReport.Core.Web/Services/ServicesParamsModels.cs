@@ -38,6 +38,12 @@ namespace FastReport.Web.Services
         }
     }
 
+    public sealed class CustomViewModel
+    {
+        public string TableName { get; set; }
+        public string SqlQuery { get; set; }
+    }
+
     #region GetReportServiceParams
     public class GetReportServiceParams
     {

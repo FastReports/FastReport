@@ -36,7 +36,7 @@ namespace FastReport.Utils
         /// </summary>
         public int Length
         {
-            get { return sb.Length;  }
+            get { return sb.Length; }
             set
             {
                 sb.Length = value;
@@ -73,28 +73,28 @@ namespace FastReport.Utils
         /// </summary>
         public StringBuilder StringBuilder
         {
-            get { return sb;  }
+            get { return sb; }
         }
 
         #endregion Properties
 
         #region Private Methods
 
-/*        /// <summary>
-        /// Reallocate internal array.
-        /// </summary>
-        /// <param name="addLength">Additional length.</param>
-        private void ReAlloc(int addLength)
-        {
-            if (count + addLength > capacity)
-            {
-                capacity = (capacity + addLength) > capacity * 2 ? capacity + addLength : capacity * 2;
-                //Array.Resize<char>(ref chars, capacity);
-                char[] newChars = new char[capacity];
-                Array.Copy(chars, newChars, chars.Length);
-                chars = newChars;
-            }
-        }*/
+        /*        /// <summary>
+                /// Reallocate internal array.
+                /// </summary>
+                /// <param name="addLength">Additional length.</param>
+                private void ReAlloc(int addLength)
+                {
+                    if (count + addLength > capacity)
+                    {
+                        capacity = (capacity + addLength) > capacity * 2 ? capacity + addLength : capacity * 2;
+                        //Array.Resize<char>(ref chars, capacity);
+                        char[] newChars = new char[capacity];
+                        Array.Copy(chars, newChars, chars.Length);
+                        chars = newChars;
+                    }
+                }*/
 
         /// <summary>
         /// Initialize the new array for chars.
@@ -359,7 +359,7 @@ namespace FastReport.Utils
             count = repList.Count;
             repList.Clear();
             */
-	    done = false;
+            done = false;
             return this;
         }
 
@@ -371,8 +371,8 @@ namespace FastReport.Utils
         /// <returns>Position of substring.</returns>
         public int IndexOf(string value, int startIndex)
         {
-            if (!String.IsNullOrEmpty(value) && 
-                startIndex >= 0 && 
+            if (!String.IsNullOrEmpty(value) &&
+                startIndex >= 0 &&
                 startIndex < sb.Length)
             {
                 int valueIndex = 0;
@@ -399,8 +399,8 @@ namespace FastReport.Utils
         /// <returns>True if substring is identical in position.</returns>
         public bool SubstringCompare(int startIndex, string value)
         {
-            if (!String.IsNullOrEmpty(value) && 
-                startIndex >= 0 && 
+            if (!String.IsNullOrEmpty(value) &&
+                startIndex >= 0 &&
                 startIndex < sb.Length)
             {
                 int valueIndex = 0;
@@ -430,10 +430,10 @@ namespace FastReport.Utils
             char[] result = new char[length];
             sb.CopyTo(startIndex, result, 0, length);
             return new string(result);
- /*           if (startIndex + length > count)
-                return new string(chars, startIndex, count - startIndex);
-            else
-                return new string(chars, startIndex, length);*/
+            /*           if (startIndex + length > count)
+                           return new string(chars, startIndex, count - startIndex);
+                       else
+                           return new string(chars, startIndex, length);*/
         }
 
         #endregion Public Methods
@@ -479,7 +479,7 @@ namespace FastReport.Utils
     {
         Dictionary<string, string> pool;
 
-        public FastStringWithPool(Dictionary<string, string> pool): base()
+        public FastStringWithPool(Dictionary<string, string> pool) : base()
         {
             this.pool = pool;
         }

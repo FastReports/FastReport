@@ -50,7 +50,7 @@ namespace FastReport.Utils
     {
         private readonly static object _customLoadersLocker = new object();
         private readonly static List<IImageHelperLoader> _customLoaders = new List<IImageHelperLoader>();
-        
+
         /// <summary>
         /// Register a new custom loader
         /// </summary>
@@ -63,7 +63,7 @@ namespace FastReport.Utils
                     if (loader == imageHelperLoader)
                         return;
 
-                 _customLoaders.Add(imageHelperLoader);                
+                _customLoaders.Add(imageHelperLoader);
             }
         }
         internal static Bitmap CloneBitmap(Image source)

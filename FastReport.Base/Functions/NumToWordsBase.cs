@@ -177,7 +177,7 @@ namespace FastReport.Functions
             }
             catch (Exception e)
             {
-                throw new Exception("There is an exception - "+e.ToString());
+                throw new Exception("There is an exception - " + e.ToString());
             }
         }
 

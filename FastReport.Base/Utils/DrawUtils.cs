@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace FastReport.Utils
 {
-    internal enum MonoRendering 
-    { 
-        Undefined, 
-        Pango, 
-        Cairo 
+    internal enum MonoRendering
+    {
+        Undefined,
+        Pango,
+        Cairo
     }
 
     public static partial class DrawUtils

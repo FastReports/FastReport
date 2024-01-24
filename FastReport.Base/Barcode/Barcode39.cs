@@ -3,11 +3,11 @@ using System.Text;
 
 namespace FastReport.Barcode
 {
-  /// <summary>
-  /// Generates the Code39 barcode.
-  /// </summary>
-  public class Barcode39 : LinearBarcodeBase
-  {
+    /// <summary>
+    /// Generates the Code39 barcode.
+    /// </summary>
+    public class Barcode39 : LinearBarcodeBase
+    {
 #if READONLY_STRUCTS
         private readonly struct Code39
 #else
@@ -28,7 +28,7 @@ namespace FastReport.Barcode
             }
         }
 
-    private static Code39[] tabelle_39 = {
+        private static Code39[] tabelle_39 = {
       new Code39("0", "505160605", 0),
       new Code39("1", "605150506", 1),
       new Code39("2", "506150506", 2),
@@ -75,76 +75,76 @@ namespace FastReport.Barcode
       new Code39("%", "505151515", 42)
     };
 
-    /// <inheritdoc/>
-    public override bool IsNumeric
-    {
-      get { return false; }
-    }
-
-    private int FindBarItem(string c)
-    {
-      for (int i = 0; i < tabelle_39.Length; i++)
-      {
-        if (c == tabelle_39[i].c)
-          return i;
-      }
-      
-      return -1;
-    }
-
-    internal override string GetPattern()
-    {
-      int checksum = 0;
-
-      //  Startcode
-      string result = tabelle_39[FindBarItem("*")].data + '0';
-
-      foreach (char c in text)
-      {
-        int idx = FindBarItem(c.ToString());
-        if (idx < 0)
-          continue;
-
-        result += tabelle_39[idx].data + '0';
-        checksum += tabelle_39[idx].chk;
-      }
-
-      // Calculate Checksum Data
-      if (CalcCheckSum)
-      {
-        checksum = checksum % 43;
-        foreach (Code39 i in tabelle_39)
+        /// <inheritdoc/>
+        public override bool IsNumeric
         {
-          if (checksum == i.chk)
-          {
-            result += i.data + '0';
-            break;
-          }
-        }  
-      }
+            get { return false; }
+        }
 
-      // Stopcode
-      result += tabelle_39[FindBarItem("*")].data;
+        private int FindBarItem(string c)
+        {
+            for (int i = 0; i < tabelle_39.Length; i++)
+            {
+                if (c == tabelle_39[i].c)
+                    return i;
+            }
 
-      return result;
+            return -1;
+        }
+
+        internal override string GetPattern()
+        {
+            int checksum = 0;
+
+            //  Startcode
+            string result = tabelle_39[FindBarItem("*")].data + '0';
+
+            foreach (char c in text)
+            {
+                int idx = FindBarItem(c.ToString());
+                if (idx < 0)
+                    continue;
+
+                result += tabelle_39[idx].data + '0';
+                checksum += tabelle_39[idx].chk;
+            }
+
+            // Calculate Checksum Data
+            if (CalcCheckSum)
+            {
+                checksum = checksum % 43;
+                foreach (Code39 i in tabelle_39)
+                {
+                    if (checksum == i.chk)
+                    {
+                        result += i.data + '0';
+                        break;
+                    }
+                }
+            }
+
+            // Stopcode
+            result += tabelle_39[FindBarItem("*")].data;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Barcode39"/> class with default settings.
+        /// </summary>
+        public Barcode39()
+        {
+            ratioMin = 2;
+            ratioMax = 3;
+        }
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Barcode39"/> class with default settings.
+    /// Generates the Code39 extended barcode.
     /// </summary>
-    public Barcode39()
+    public class Barcode39Extended : Barcode39
     {
-      ratioMin = 2;
-      ratioMax = 3;
-    }
-  }
-
-  /// <summary>
-  /// Generates the Code39 extended barcode.
-  /// </summary>
-  public class Barcode39Extended : Barcode39
-  {
-    private static string[] code39x = {
+        private static string[] code39x = {
       "%U", "$A", "$B", "$C", "$D", "$E", "$F", "$G",
       "$H", "$I", "$J", "$K", "$L", "$M", "$N", "$O",
       "$P", "$Q", "$R", "$S", "$T", "$U", "$V", "$W",
@@ -163,20 +163,20 @@ namespace FastReport.Barcode
       "+X", "+Y", "+Z", "%P", "%Q", "%R", "%S", "%T"
     };
 
-    internal override string GetPattern()
-    {
-      string saveText = text;
-      text = "";
+        internal override string GetPattern()
+        {
+            string saveText = text;
+            text = "";
 
-      for (int i = 0; i < saveText.Length; i++)
-      {
-        if (saveText[i] <= (char)127)
-          text += code39x[saveText[i]];
-      }
-      
-      string pattern = base.GetPattern();
-      text = saveText;
-      return pattern;
+            for (int i = 0; i < saveText.Length; i++)
+            {
+                if (saveText[i] <= (char)127)
+                    text += code39x[saveText[i]];
+            }
+
+            string pattern = base.GetPattern();
+            text = saveText;
+            return pattern;
+        }
     }
-  }
 }

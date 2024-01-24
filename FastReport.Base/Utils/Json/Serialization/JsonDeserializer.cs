@@ -87,7 +87,7 @@ namespace FastReport.Utils.Json.Serialization
                 if (isArray)
                 {
                     IList collection = Array.CreateInstance(elementType, jsonArray.Count);
-                    for(int i = 0; i < jsonArray.Count; i++)
+                    for (int i = 0; i < jsonArray.Count; i++)
                     {
                         var item = jsonArray[i];
                         var converted = CastToType(item, elementType);
@@ -101,7 +101,7 @@ namespace FastReport.Utils.Json.Serialization
                     var listType = typeof(List<>).MakeGenericType(genericTypes);
                     var collection = (IList)Activator.CreateInstance(listType);
 
-                    foreach(var item in jsonArray)
+                    foreach (var item in jsonArray)
                     {
                         var converted = CastToType(item, elementType);
                         collection.Add(converted);

@@ -54,9 +54,9 @@ namespace FastReport.Utils.Json.Serialization
                 var value = propInfo.GetGetMethod(true)
                     .Invoke(instance, BindingFlags.GetProperty, null, null, null);
 #endif
-                if(value == null)
+                if (value == null)
                 {
-                    if(property.IgnoreNullValue)
+                    if (property.IgnoreNullValue)
                         continue;
                 }
                 else
@@ -123,7 +123,7 @@ namespace FastReport.Utils.Json.Serialization
                     array.Add(jsonObject);
                 }
             }
-            else if(IsCollection(elementType))
+            else if (IsCollection(elementType))
             {
                 foreach (var item in enumerable)
                 {

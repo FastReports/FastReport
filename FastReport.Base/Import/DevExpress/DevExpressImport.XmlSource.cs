@@ -165,7 +165,7 @@ namespace FastReport.Import.DevExpress
 
         private Font LoadFontXml(string fontString)
         {
-            if(string.IsNullOrEmpty(fontString))
+            if (string.IsNullOrEmpty(fontString))
                 return new Font("Arial", 10, FontStyle.Regular);
 
             string[] fontParts = fontString.Split(',');
@@ -209,11 +209,11 @@ namespace FastReport.Import.DevExpress
 
         private void LoadObjects(XmlNode node, Base parent)
         {
-            foreach(XmlNode nodeType in node.ChildNodes)
-                if(nodeType.Name.Equals("Controls"))
-                foreach(XmlNode control in nodeType.ChildNodes)
+            foreach (XmlNode nodeType in node.ChildNodes)
+                if (nodeType.Name.Equals("Controls"))
+                    foreach (XmlNode control in nodeType.ChildNodes)
                     {
-                        switch(GetObjectType(control))
+                        switch (GetObjectType(control))
                         {
                             case "XRLabel":
                                 LoadLabel(control, parent);
@@ -256,7 +256,7 @@ namespace FastReport.Import.DevExpress
         {
             comp.Name = GetAttribute(node, "Name");
             string location = GetAttribute(node, "LocationFloat");
-            if(!string.IsNullOrEmpty(location))
+            if (!string.IsNullOrEmpty(location))
             {
                 string[] points = location.Split(',');
                 comp.Left = UnitsConverter.SizeFToPixels(points[0]);
@@ -376,7 +376,7 @@ namespace FastReport.Import.DevExpress
 
             int columnsCount = 0;
 
-            foreach(XmlNode row in rowsNode.ChildNodes)
+            foreach (XmlNode row in rowsNode.ChildNodes)
             {
                 XmlNode cells = FindChildNoteByName(row, "Cells");
 
@@ -406,7 +406,7 @@ namespace FastReport.Import.DevExpress
                 column.CreateUniqueName();
             }
 
-            for(int i = 0; i < rowsNode.ChildNodes.Count; i++)
+            for (int i = 0; i < rowsNode.ChildNodes.Count; i++)
             {
                 XmlNode rowNode = rowsNode.ChildNodes[i];
 
@@ -415,7 +415,7 @@ namespace FastReport.Import.DevExpress
                 row.Height = GetRowColumnSize(tableInfo.Row, i, table.Height);
                 XmlNode cells = FindChildNoteByName(rowNode, "Cells");
 
-                for(int j = 0; j < cells.ChildNodes.Count; j ++)
+                for (int j = 0; j < cells.ChildNodes.Count; j++)
                 {
                     XmlNode cellNode = cells.ChildNodes[j];
                     TableCell cell = new TableCell();
@@ -506,13 +506,13 @@ namespace FastReport.Import.DevExpress
             XmlNode styleNode = FindChildNoteByName(reportNode, "StyleSheet");
             if (styleNode == null)
                 return;
-            XmlNodeList styles = styleNode.ChildNodes; 
+            XmlNodeList styles = styleNode.ChildNodes;
             foreach (XmlNode styleName in styles)
             {
                 Style style = ComponentsFactory.CreateStyle(GetAttribute(styleName, "Name"), Report);
                 LoadBorder(styleName, style.Border);
                 style.TextFill = new SolidFill(UnitsConverter.ConvertColor(GetAttribute(styleName, "ForeColor")));
-                if(AttributeExist(styleName, "BackColor"))
+                if (AttributeExist(styleName, "BackColor"))
                     style.Fill = new SolidFill(UnitsConverter.ConvertBackColor(GetAttribute(styleName, "BackColor")));
                 style.Font = LoadFontXml(GetAttribute(styleName, "Font"));
             }
@@ -583,7 +583,7 @@ namespace FastReport.Import.DevExpress
                 return;
             string nodeRef = GetAttribute(node, "Ref");
             List<XmlAttribute> attributes = new List<XmlAttribute>();
-            foreach(XmlNode liNode in localizationItemsNode.ChildNodes)
+            foreach (XmlNode liNode in localizationItemsNode.ChildNodes)
             {
                 if (GetAttribute(liNode, "Component") == ($"#Ref-{nodeRef}"))
                 {
@@ -623,7 +623,7 @@ namespace FastReport.Import.DevExpress
             List<XmlNode> detailReports = GetListOfBandsByName(bandsNode, "DetailReportBand");
 
             int level = 0;
-            for(int i = 0; i < detailReports.Count; i++)
+            for (int i = 0; i < detailReports.Count; i++)
             {
                 XmlNode detail = detailReports.Where(x => GetAttribute(x, "Level") == level.ToString()).FirstOrDefault();
                 LoadDetailReport(detail);
@@ -700,7 +700,7 @@ namespace FastReport.Import.DevExpress
                 level++;
                 XmlNode header;
 
-                if(i == 0)
+                if (i == 0)
                     header = headers.Where(x => GetAttribute(x, "Level") == string.Empty).FirstOrDefault();
                 else
                     header = headers.Where(x => GetAttribute(x, "Level") == level.ToString()).FirstOrDefault();

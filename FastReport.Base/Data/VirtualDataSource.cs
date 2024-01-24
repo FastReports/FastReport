@@ -5,38 +5,38 @@ using System.Collections;
 
 namespace FastReport.Data
 {
-  internal class VirtualDataSource : DataSourceBase
-  {
-    private int virtualRowsCount;
-
-    public int VirtualRowsCount
+    internal class VirtualDataSource : DataSourceBase
     {
-      get { return virtualRowsCount; }
-      set { virtualRowsCount = value; }
-    }
+        private int virtualRowsCount;
 
-    #region Protected Methods
-    /// <inheritdoc/>
-    protected override object GetValue(Column column)
-    {
-      return null;
-    }
-    #endregion
+        public int VirtualRowsCount
+        {
+            get { return virtualRowsCount; }
+            set { virtualRowsCount = value; }
+        }
 
-    #region Public Methods
-    public override void InitSchema()
-    {
-     // do nothing
-    }
+        #region Protected Methods
+        /// <inheritdoc/>
+        protected override object GetValue(Column column)
+        {
+            return null;
+        }
+        #endregion
 
-    public override void LoadData(ArrayList rows)
-    {
-      rows.Clear();
-      for (int i = 0; i < virtualRowsCount; i++)
-      {
-        rows.Add(0);
-      }
+        #region Public Methods
+        public override void InitSchema()
+        {
+            // do nothing
+        }
+
+        public override void LoadData(ArrayList rows)
+        {
+            rows.Clear();
+            for (int i = 0; i < virtualRowsCount; i++)
+            {
+                rows.Add(0);
+            }
+        }
+        #endregion
     }
-    #endregion
-  }
 }

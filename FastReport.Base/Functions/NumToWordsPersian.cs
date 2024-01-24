@@ -29,7 +29,7 @@ namespace FastReport.Functions
       "پانصد", "ششصد", "هفتصد", "هشتصد", "نهصد"
     };
 
-        private static WordInfo thousands = new WordInfo( "هزار");
+        private static WordInfo thousands = new WordInfo("هزار");
         private static WordInfo millions = new WordInfo("میلیون");
         private static WordInfo milliards = new WordInfo("میلیارد");
         private static WordInfo trillions = new WordInfo("تریلیون");
@@ -68,7 +68,7 @@ namespace FastReport.Functions
         protected override WordInfo GetTrillions()
         {
             return trillions;
-        }   
+        }
 
         protected override CurrencyInfo GetCurrency(string currencyName)
         {

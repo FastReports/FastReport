@@ -125,7 +125,7 @@ namespace FastReport.Gauge.Simple
             Pen pen = e.Cache.GetPen(BorderColor, BorderWidth * e.ScaleY, DashStyle.Solid);
 
             width = ((Parent.Width - Parent.Border.Width) * ptrRatio) * e.ScaleX;
-            height = (float)((Parent.Height - Parent.Border.Width -  horizontalOffset * 2) * (Parent.Value - Parent.Minimum) / (Parent.Maximum - Parent.Minimum) * e.ScaleY);
+            height = (float)((Parent.Height - Parent.Border.Width - horizontalOffset * 2) * (Parent.Value - Parent.Minimum) / (Parent.Maximum - Parent.Minimum) * e.ScaleY);
             left = (Parent.AbsLeft + Parent.Border.Width / 2 + (Parent.Width - Parent.Border.Width) / 2 - (Parent.Width - Parent.Border.Width) * ptrRatio / 2) * e.ScaleX;
             top = (Parent.AbsTop + Parent.Border.Width / 2 + Parent.Height - Parent.Border.Width - horizontalOffset) * e.ScaleY - height;
 

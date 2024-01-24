@@ -33,7 +33,7 @@ namespace FastReport.Export.Html
             if (Page != null && obj != null)
             {
                 string onclick = null;
-                
+
                 if (!String.IsNullOrEmpty(ReportID))
                 {
                     if (!String.IsNullOrEmpty(obj.ClickEvent) || obj.HasClickListeners())
@@ -52,7 +52,7 @@ namespace FastReport.Export.Html
                     {
                         onclick = "text_edit";
                     }
-           
+
                 }
 
                 // we need to adjust left, top, width and height values because borders take up space in html elements
@@ -121,7 +121,7 @@ namespace FastReport.Export.Html
 
             href = GetHrefAdvMatrixButton(obj, href);
 
-            if(!String.IsNullOrEmpty(obj.Hyperlink.Value))
+            if (!String.IsNullOrEmpty(obj.Hyperlink.Value))
             {
                 string hrefStyle = String.Empty;
 
@@ -133,7 +133,7 @@ namespace FastReport.Export.Html
                         !textObject.Font.Underline ? ";text-decoration:none" : String.Empty
                         );
                 }
-            
+
                 string url = EncodeURL(obj.Hyperlink.Value);
                 if (obj.Hyperlink.Kind == HyperlinkKind.URL)
                     href = String.Format("<a {0} href=\"{1}\"" + (obj.Hyperlink.OpenLinkInNewTab ? "target=\"_blank\"" : "") + ">", hrefStyle, obj.Hyperlink.Value);
@@ -198,7 +198,7 @@ namespace FastReport.Export.Html
             if (obj is TextObject textObject && !textObject.WordWrap)
                 style.Append("overflow: hidden; text-wrap: nowrap;");
 
-                // we need to apply border width in order to position our div perfectly
+            // we need to apply border width in order to position our div perfectly
             float borderLeft;
             float borderRight;
             float borderTop;
@@ -280,16 +280,16 @@ namespace FastReport.Export.Html
                                         {
                                             top = (obj.Height - height - obj.Padding.Bottom + obj.Padding.Top) / 2;
 
-                                            if(top < 0)
+                                            if (top < 0)
                                             {
-                                                if(obj.Height > height)
-                                                top = (obj.Height - height - obj.Padding.Bottom + obj.Padding.Top) / 2;
+                                                if (obj.Height > height)
+                                                    top = (obj.Height - height - obj.Padding.Bottom + obj.Padding.Top) / 2;
                                                 else
-                                                top = (height - obj.Height - obj.Padding.Bottom + obj.Padding.Top) / 2;
+                                                    top = (height - obj.Height - obj.Padding.Bottom + obj.Padding.Top) / 2;
                                             }
                                         }
                                         else if (obj.VertAlign == VertAlign.Bottom)
-                                        {                                         
+                                        {
                                             // (float)(Math.Round(obj.Font.Size * 96 / 72) / 2
                                             // necessary to compensate for paragraph offset error in GetSpanText method below
                                             top = obj.Height - height - obj.Padding.Bottom - (float)(Math.Round(obj.Font.Size * 96 / 72) / 2);
@@ -505,7 +505,7 @@ namespace FastReport.Export.Html
                             obj.Draw(new FRPaintEventArgs(g, Zoom * zoom, Zoom * zoom, Report.GraphicCache));
                             obj.Border.Lines = oldLines;
                         }
-                        
+
                         using (Bitmap b = new Bitmap(
                         (int)(Math.Abs(Math.Round(Width * Zoom))),
                         (int)(Math.Abs(Math.Round(Height * Zoom)))
@@ -657,7 +657,7 @@ namespace FastReport.Export.Html
                         TableCell textcell = table[j, i];
 
                         textcell.Left = x;
-                        textcell.Top = y;                      
+                        textcell.Top = y;
 
                         // custom draw
                         CustomDrawEventArgs e = new CustomDrawEventArgs();
@@ -669,7 +669,7 @@ namespace FastReport.Export.Html
                         e.top = hPos + textcell.AbsTop;
                         e.width = textcell.Width;
                         e.height = textcell.Height;
-                        
+
                         OnCustomDraw(e);
                         if (e.done)
                         {
@@ -695,13 +695,13 @@ namespace FastReport.Export.Html
 
         private bool IsMemo(ReportComponentBase Obj)
         {
-            if(Obj is TextObject)
+            if (Obj is TextObject)
             {
                 TextObject aObj = Obj as TextObject;
                 return (aObj.Angle == 0) && (aObj.FontWidthRatio == 1) && (!aObj.TextOutline.Enabled) && (!aObj.Underlines);
             }
             return false;
-            
+
         }
 
         private void Watermark(FastString Page, ReportPage page, bool drawText)
@@ -804,7 +804,7 @@ namespace FastReport.Export.Html
         private void ExportHTMLPageLayeredEnd(HTMLData d)
         {
             // to do
-            if(d.page != null && d.page.Watermark.Enabled)
+            if (d.page != null && d.page.Watermark.Enabled)
             {
                 if (d.page.Watermark.ShowImageOnTop)
                     Watermark(htmlPage, d.page, false);
@@ -835,7 +835,7 @@ namespace FastReport.Export.Html
             var band = new ReportTitleBand();
             obj.SetParent(band);
 
-            if(obj is ITranslatable translatableObject)
+            if (obj is ITranslatable translatableObject)
             {
                 translatableObject.ConvertToReportObjects();
             }
@@ -923,7 +923,7 @@ namespace FastReport.Export.Html
             foreach (Base c in band.ForEachAllConvectedObjects(this))
             {
 
-                if(ExportMode == ExportType.WebPreview)
+                if (ExportMode == ExportType.WebPreview)
                     SetExportableAdvMatrix(c);
 
                 if (c is ReportComponentBase obj && obj.Exportable)
