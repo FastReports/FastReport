@@ -2451,6 +2451,7 @@ namespace FastReport
                 try
                 {
                     await CompileAsync(token).ConfigureAwait(false);
+                    isParameterChanged = false;
                     return Engine.Run(true, append, true);
                 }
                 finally

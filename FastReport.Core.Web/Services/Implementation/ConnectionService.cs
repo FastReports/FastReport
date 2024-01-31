@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -198,6 +199,7 @@ namespace FastReport.Web.Services
                                 {
                                     Table = new DataTable(),
                                     TableName = view.TableName,
+                                    Name = view.TableName,
                                     SelectCommand = view.SqlQuery
                                 };
 
@@ -245,17 +247,33 @@ namespace FastReport.Web.Services
             return true;
         }
 
-        public List<string> GetConnectionTypes()
+        public List<string> GetConnectionTypes(bool needSqlSupportInfo = false)
         {
-            var names = new List<string>();
+            var result = new List<string>();
             var objects = new List<DataConnectionInfo>();
             RegisteredObjects.DataConnections.EnumItems(objects);
 
-            foreach (var info in objects)
-                if (info.Object != null)
-                    names.Add($@"""{info.Object.FullName}"":""{Res.TryGetBuiltin(info.Text)}""");
+            foreach (var info in objects.Where(info => info.Object != null))
+            {
+                string connection;
 
-            return names;
+                if (needSqlSupportInfo)
+                {
+                    using var conn = (DataConnectionBase)Activator.CreateInstance(info.Object);
+                    connection = $"\"{info.Object.FullName}\": {GetConnectionJson(info.Text, conn.IsSqlBased)}";
+                }
+                else connection = $"\"{info.Object.FullName}\": \"{Res.TryGetBuiltin(info.Text)}\"";
+
+                result.Add(connection);
+            }
+
+            return result;
         }
+
+        private static string GetConnectionJson(string text, bool isSqlBased)
+        {
+            return $"{{\"connectionType\": \"{Res.TryGetBuiltin(text)}\", \"sqlSupport\": {isSqlBased.ToString().ToLowerInvariant()}}}";
+        }
+
     }
 }

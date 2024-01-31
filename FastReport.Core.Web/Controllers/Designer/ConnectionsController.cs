@@ -32,9 +32,11 @@ namespace FastReport.Web.Controllers
         }
 
         [HttpGet("/designer.getConnectionTypes")]
-        public static IResult GetConnectionTypes(IConnectionsService connectionsService)
+        public static IResult GetConnectionTypes([FromQuery] string needSqlSupportInfo, IConnectionsService connectionsService)
         {
-            var response = connectionsService.GetConnectionTypes();
+            var isNeedSqlSupport = bool.TryParse(needSqlSupportInfo, out var parsedBool) && parsedBool;
+
+            var response = connectionsService.GetConnectionTypes(isNeedSqlSupport);
             var content = "{" + string.Join(",", response.ToArray()) + "}";
 
             return Results.Content(content, "application/json");
