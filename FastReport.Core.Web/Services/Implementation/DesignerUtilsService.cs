@@ -1,6 +1,6 @@
 ﻿using FastReport.Utils;
 using FastReport.Utils.Json;
-
+using FastReport.Web.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,6 +17,7 @@ namespace FastReport.Web.Services
 {
     internal sealed class DesignerUtilsService : IDesignerUtilsService
     {
+        private const string IsCustomSqlAllowedKey = "custom-sql-allowed";
 
         public string GetMSChartTemplateXML(string templateName)
         {
@@ -149,6 +150,25 @@ namespace FastReport.Web.Services
 
             return sb.ToString();
         }
+
+        public string GetConfig(WebReport webReport)
+        {
+            JsonBase config;
+
+            try
+            {
+                config = JsonBase.FromString(webReport.Designer.Config);
+            }
+            catch
+            {
+                config = new JsonObject();
+            }
+
+            config[IsCustomSqlAllowedKey] = FastReportGlobal.AllowCustomSqlQueries;
+
+            return config.ToString();
+        }
+
     }
 
     static class ComponentInformationCache

@@ -34,6 +34,13 @@ namespace FastReport.Web.Services
         /// <returns>Returns a string with the report functions</returns>
         string GetFunctions(Report report);
 
+        /// <summary>
+        /// Returns the Online Designer configuration
+        /// </summary>
+        /// <param name="webReport">WebReport configuration of which is to be returned</param>
+        /// <returns>String in JSON format with configuration for Online Designer</returns>
+        string GetConfig(WebReport webReport);
+
         string DesignerObjectPreview(WebReport webReport, string reportObj);
     }
 }

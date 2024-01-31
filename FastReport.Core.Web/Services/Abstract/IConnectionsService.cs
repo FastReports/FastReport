@@ -37,6 +37,6 @@ namespace FastReport.Web.Services
         /// <summary>
         /// Returns the list of connection types
         /// </summary>
-        List<string> GetConnectionTypes();
+        List<string> GetConnectionTypes(bool needSqlSupportInfo = false);
     }
 }

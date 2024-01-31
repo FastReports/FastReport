@@ -41,12 +41,12 @@ namespace FastReport.Web.Controllers
         }
 
         [HttpGet("/designer.getConfig")]
-        public static IResult GetConfig(string reportId, IReportService reportService)
+        public static IResult GetConfig(string reportId, IReportService reportService, IDesignerUtilsService designerUtilsService)
         {
             if (!reportService.TryFindWebReport(reportId, out var webReport))
                 return Results.NotFound();
 
-            var content = webReport.Designer.Config.IsNullOrWhiteSpace() ? "{}" : webReport.Designer.Config;
+            var content = designerUtilsService.GetConfig(webReport);
 
             return Results.Content(content, "application/json");
         }
