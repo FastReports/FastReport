@@ -2382,6 +2382,7 @@
       <File Text="Working with files"/>
       <Editing Text="Editing"/>
       <Help Text="Help"/>
+      <SelectAll Text="Select all"/>
       <Default Text="Default"/>
       <Info Text="To change the keyboard shortcut, you need to double-click on the desired one, or select and press Enter."/>
       <Command Text="Command"/>
