@@ -525,6 +525,7 @@ namespace FastReport
             BeforeLayoutEvent = src.BeforeLayoutEvent;
             AfterLayoutEvent = src.AfterLayoutEvent;
             RepeatBandNTimes = src.RepeatBandNTimes;
+            IsLastRow = src.IsLastRow;
         }
 
         internal virtual void UpdateWidth()
@@ -741,7 +742,12 @@ namespace FastReport
             foreach (ReportComponentBase obj in Objects)
             {
                 if (obj.GrowToBottom)
+                {
                     obj.Height = Height - obj.Top;
+                    // reserve place for border
+                    if (IsLastRow && obj.Border.Lines.HasFlag(BorderLines.Bottom))
+                        obj.Height -= Border.BottomLine.Width;
+                }
             }
 
             OnAfterLayout(EventArgs.Empty);

@@ -6,14 +6,14 @@
         <FRCompatVersionNET>[2024.1.0]</FRCompatVersionNET>
 
         <FRCompatVersion>[2024.1.0]</FRCompatVersion>
-        <FRCompatSkiaVersion>[2024.1.4]</FRCompatSkiaVersion>
+        <FRCompatSkiaVersion>[2024.1.6]</FRCompatSkiaVersion>
 
         <FRDataVisualizationVersion>[2024.1.0]</FRDataVisualizationVersion>
-        <FRDataVisualizationSkiaVersion>[2024.1.4]</FRDataVisualizationSkiaVersion>
+        <FRDataVisualizationSkiaVersion>[2024.1.6]</FRDataVisualizationSkiaVersion>
 		
         <!-- WPF -->
-        <FRWPFVersion>2024.1.2</FRWPFVersion>
-        <FRWPFRoslynPadVersion>2024.1.2</FRWPFRoslynPadVersion>
+        <FRWPFVersion>2024.1.5</FRWPFVersion>
+        <FRWPFRoslynPadVersion>2024.1.5</FRWPFRoslynPadVersion>
         <FRFormsWPFVersion>2024.1.2</FRFormsWPFVersion>
         <FRCompatWPFVersion>2024.1.0</FRCompatWPFVersion>
         <FRDataVisualizationWPFVersion>2024.1.0</FRDataVisualizationWPFVersion>
@@ -41,9 +41,9 @@
 <!-- This group sets version used packages in Demos -->
 	<PropertyGroup>
         
-		<FRCoreVersion>2023.2.17</FRCoreVersion>
+		<FRCoreVersion>2024.1.5</FRCoreVersion>
 		
-		<FRCoreWebVersion>2023.2.17</FRCoreWebVersion>
+		<FRCoreWebVersion>2024.1.5</FRCoreWebVersion>
 		
 		<FROSVersion>2023.2.16</FROSVersion>
 		
