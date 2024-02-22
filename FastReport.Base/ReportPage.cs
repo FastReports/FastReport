@@ -1067,6 +1067,8 @@ namespace FastReport
                     pageRect.Width - (LeftMargin + RightMargin) * Units.Millimeters,
                     pageRect.Height - (TopMargin + BottomMargin) * Units.Millimeters);
             }
+            IGraphicsState state = g.Save();
+            e.Graphics.SetClip(new RectangleF(pageRect.X * e.ScaleX, pageRect.Y * e.ScaleY, pageRect.Width * e.ScaleX, pageRect.Height * e.ScaleY));
 
             Border.Draw(e, printableRect);
             if (Watermark.Enabled)
@@ -1121,6 +1123,7 @@ namespace FastReport
                 if (Watermark.ShowTextOnTop)
                     Watermark.DrawText(e, pageRect, Report, IsPrinting);
             }
+            g.Restore(state);
         }
 
         internal void InitializeComponents()

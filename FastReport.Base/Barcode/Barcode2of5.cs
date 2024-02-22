@@ -421,26 +421,52 @@ namespace FastReport.Barcode
         public override void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
             base.DrawBarcode(g, displayRect);
-            float bearerWidth = WideBarRatio * 2 * zoom;
-            using (Pen pen = new Pen(Color, bearerWidth))
+            IGraphicsState state = g.Save();
+            try
             {
-                float x0 = displayRect.Left + (displayRect.Width - barArea.Width * zoom) / 2;
-                float x01 = displayRect.Left + bearerWidth / 2 + (displayRect.Width - barArea.Width * zoom) / 2;
-                float y0 = displayRect.Top;
-                float y01 = displayRect.Top + bearerWidth / 2;
-                float x1 = displayRect.Left + displayRect.Width - (displayRect.Width - barArea.Width * zoom) / 2;
-                float x11 = displayRect.Left + displayRect.Width - bearerWidth / 2 - (displayRect.Width - barArea.Width * zoom) / 2;
-                float y1 = displayRect.Top + barArea.Bottom * zoom;
-                float y11 = displayRect.Top + barArea.Bottom * zoom - bearerWidth / 2;
-
-                g.DrawLine(pen, x0, y01 - 0.5F, x1, y01 - 0.5F);
-                g.DrawLine(pen, x0, y11, x1, y11);
-                if (this.drawVerticalBearerBars)
+                // rotate
+                g.TranslateTransform(displayRect.Left, displayRect.Top);
+                g.RotateTransform(angle);
+                switch (angle)
                 {
-                    g.DrawLine(pen, x01 - 0.5F, y0, x01 - 0.5F, y1);
-                    g.DrawLine(pen, x11, y0, x11, y1);
+                    case 90:
+                        g.TranslateTransform(0, -displayRect.Width);
+                        break;
+                    case 180:
+                        g.TranslateTransform(-displayRect.Width, -displayRect.Height);
+                        break;
+                    case 270:
+                        g.TranslateTransform(-displayRect.Height, 0);
+                        break;
+                }
+                g.TranslateTransform(barArea.Left * zoom, 0);
+
+                float bearerWidth = WideBarRatio * 2 * zoom;
+                using (Pen pen = new Pen(Color, bearerWidth))
+                {
+                    float x0 = 0;
+                    float x01 = bearerWidth / 2;
+                    float y0 = 0;
+                    float y01 = bearerWidth / 2;
+                    float x1 = barArea.Width * zoom;
+                    float x11 = barArea.Width * zoom - bearerWidth / 2;
+                    float y1 = barArea.Bottom * zoom;
+                    float y11 = barArea.Bottom * zoom - bearerWidth / 2;
+
+                    g.DrawLine(pen, x0, y01 - 0.5F, x1, y01 - 0.5F);
+                    g.DrawLine(pen, x0, y11, x1, y11);
+                    if (this.drawVerticalBearerBars)
+                    {
+                        g.DrawLine(pen, x01 - 0.5F, y0, x01 - 0.5F, y1);
+                        g.DrawLine(pen, x11, y0, x11, y1);
+                    }
                 }
             }
+            finally
+            {
+                g.Restore(state);
+            }
+            
         }
 
         #endregion
