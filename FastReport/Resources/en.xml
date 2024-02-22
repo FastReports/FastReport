@@ -1889,6 +1889,7 @@
       <AddParameter Text="Add Parameter"/>
       <Delete Text="Delete"/>
       <DuplicateName Text="Item with such name already exists."/>
+      <DuplicateParamName Text="The query contains multiple occurrences of one or more parameters ({0}). Please ensure that each use of the parameter matches your expectations and does not cause a conflict during query execution."/>
     </QueryWizard>
     <RelationEditor Text="Edit Relation">
       <ParentTable Text="Parent table:"/>

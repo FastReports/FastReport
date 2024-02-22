@@ -1187,7 +1187,7 @@ namespace FastReport.Functions
         /// Checks if the specified object is null.
         /// </summary>
         /// <param name="thisReport">The report instance.</param>
-        /// <param name="name">Either a name of DB column, or a parameter name, or a total name to check.</param>
+        /// <param name="name">Either a name of DB column, or a parameter name, or a total name to check. The name must be enclosed in double quotes, for example, [IsNull("Parameter")].</param>
         /// <returns><b>true</b> if the object's value is null.</returns>
         public static bool IsNull(Report thisReport, string name)
         {

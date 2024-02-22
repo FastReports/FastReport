@@ -345,7 +345,7 @@ namespace FastReport.Table
                         if (resultColumnIndex >= spanData.resultCellOrigin.X &&
                           resultColumnIndex <= spanData.resultCellOrigin.X + spanData.resultCell.ColSpan - 1 &&
                           resultRowIndex >= spanData.resultCellOrigin.Y &&
-                          resultRowIndex <= spanData.resultCellOrigin.Y + spanData.resultCell.RowSpan)
+                          resultRowIndex <= spanData.resultCellOrigin.Y + spanData.resultCell.RowSpan - 1)
                         {
                             needData = false;
                             break;
