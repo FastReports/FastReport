@@ -17,16 +17,6 @@ namespace FastReport
         /// <summary>
         /// Does nothing
         /// </summary>
-        /// <param name="password"></param>
-        /// <returns>password</returns>
-        private string ShowPaswordForm(string password)
-        {
-            return password;
-        }
-
-        /// <summary>
-        /// Does nothing
-        /// </summary>
         /// <param name="writer"></param>
         /// <param name="report"></param>
         partial void SerializeDesign(FRWriter writer, Report report);

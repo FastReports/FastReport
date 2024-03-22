@@ -1,0 +1,26 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <PackageLicenseUrl>https://www.fast-report.com/en/product/fast-report-avalonia/license</PackageLicenseUrl>
+    <Configurations>Debug;Release;</Configurations>
+  </PropertyGroup>
+
+  <Import Project="..\..\..\UsedPackages.version" />
+
+  <PropertyGroup>
+    <FastReportAvaloniaProj>..\..\..\..\FastReport.Avalonia\FastReport.Avalonia.csproj</FastReportAvaloniaProj>
+    <FastReportAvaloniaPackage>FastReport.Avalonia</FastReportAvaloniaPackage>
+
+    <FastReportFormsAvaloniaProj>..\..\..\..\FastReport.Forms.Avalonia\FastReport.Forms.Avalonia.csproj</FastReportFormsAvaloniaProj>
+    <FastReportFormsAvaloniaPackage>FastReport.Forms.Avalonia</FastReportFormsAvaloniaPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(FastReportAvaloniaProj)" Condition="Exists('$(FastReportAvaloniaProj)')" />
+    <PackageReference Include="$(FastReportAvaloniaPackage)" Version="$(FRAvaloniaVersion)" Condition="!Exists('$(FastReportAvaloniaProj)')" />
+
+    <ProjectReference Include="$(FastReportFormsAvaloniaProj)" Condition="Exists('$(FastReportFormsAvaloniaProj)')"/>
+    <PackageReference Include="$(FastReportFormsAvaloniaPackage)" Version="$(FRFormsAvaloniaVersion)" Condition="!Exists('$(FastReportFormsAvaloniaProj)')"/>
+  </ItemGroup>
+
+</Project>

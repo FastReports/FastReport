@@ -20,6 +20,8 @@ namespace FastReport.Utils
 #elif MONO
 #if WPF
         const string CONFIG_NAME = "FastReport.WPF.config";
+#elif AVALONIA
+        const string CONFIG_NAME = "FastReport.Avalonia.config";
 #else
         const string CONFIG_NAME = "FastReport.Mono.config";
 #endif
@@ -205,6 +207,7 @@ namespace FastReport.Utils
         /// <summary>
         /// Gets a PrivateFontCollection instance.
         /// </summary>
+        [Obsolete("Use FastReport.FontManager instead")]
         public static FRPrivateFontCollection PrivateFontCollection
         {
             get { return privateFontCollection; }
@@ -267,6 +270,7 @@ namespace FastReport.Utils
         /// </remarks>
         public static async void CompilerWarmup()
         {
+            Report.EnsureInit();
             await Task.Run(() =>
             {
                 new Report() { ScriptText = "using System; namespace FastReport { public class ReportScript {\r\n} }" }.Compile();
@@ -291,13 +295,9 @@ namespace FastReport.Utils
         internal static void Init()
         {
             FIsRunningOnMono = Type.GetType("Mono.Runtime") != null;
-#if SKIA
-            Topten.RichTextKit.FontFallback.CharacterMatcher = characterMatcher;
-#endif
-
             CheckWebMode();
 
-#if !CROSSPLATFORM
+#if !CROSSPLATFORM || AVALONIA
             if (!WebMode)
                 LoadConfig();
 #endif
@@ -535,7 +535,7 @@ namespace FastReport.Utils
             }
 
             // For CoreWin
-#if COREWIN
+#if (COREWIN || AVALONIA)
             LoadPluginsInCurrentFolder();
 #endif
         }

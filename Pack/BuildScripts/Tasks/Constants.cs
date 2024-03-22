@@ -1,5 +1,4 @@
-﻿
-namespace CakeScript;
+﻿namespace CakeScript;
 
 partial class Program
 {
@@ -19,10 +18,11 @@ partial class Program
     const string tfmNet5win7 = "net5.0-windows7.0";
     const string tfmNet6win7 = "net6.0-windows7.0";
     const string tfmNet6 = "net6.0";
+    const string tfmNet8 = "net8.0";
 
     const string tfmNet40 = "net40";
     const string tfmNet45 = "net45";
     const string tfmNet452 = "net452";
     const string tfmNet462 = "net462";
-
+    const string tfmNet472 = "net472";
 }

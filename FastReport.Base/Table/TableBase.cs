@@ -344,6 +344,9 @@ namespace FastReport.Table
                     if (!IsInsideSpan(cell) && (!IsPrinting || cell.Printable))
                     {
                         cell.SetPrinting(IsPrinting);
+#if !MONO || (WPF || AVALONIA)
+                        if (cell.IsVisible(e))
+#endif
                         proc(e, cell);
                     }
 
@@ -490,15 +493,12 @@ namespace FastReport.Table
             if (Config.RightToLeft)
             {
                 DrawTableRtl(e);
-                // !! ����������� ������ !!
-                //Border.Draw(e, new RectangleF(FLeftRtl - Width + AbsLeft, AbsTop, Width, Height));
-                Border.Draw(e, new RectangleF(AbsLeft, AbsTop, Width, Height));
             }
             else
             {
                 DrawTable(e);
-                Border.Draw(e, new RectangleF(AbsLeft, AbsTop, Width, Height));
             }
+            Border.Draw(e, new RectangleF(AbsLeft, AbsTop, Width, Height));
             DrawDesign(e);
         }
 

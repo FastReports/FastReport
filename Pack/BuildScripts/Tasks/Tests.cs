@@ -1,21 +1,5 @@
-﻿#region USING
-using System.IO;
-using Cake.Core.IO;
-using Cake.Core.Diagnostics;
-using Cake.Core.Tooling;
-using Cake.Common.IO;
-using Cake.Common.Solution.Project;
-using Path = System.IO.Path;
-
-using static CakeScript.CakeAPI;
-using static CakeScript.Startup;
-using Cake.Common.Tools.NuGet.Pack;
-using Cake.Common.Tools.MSBuild;
-using Cake.Common.Tools.DotNet.MSBuild;
-using Cake.Common.Tools.DotNet.Pack;
+﻿using static CakeScript.CakeAPI;
 using Cake.Common.Tools.DotNet.Test;
-#endregion
-
 
 namespace CakeScript;
 
@@ -48,6 +32,5 @@ partial class Program
         //dotnet build "%~dp0..\FastReport.Tests.Data.Core.sln" - c Release
         //pushd % ~dp0FastReport.Tests.Data.Core
         //dotnet test FastReport.Tests.Data.Core.sln
-
     }
 }

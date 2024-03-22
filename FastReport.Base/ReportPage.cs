@@ -85,6 +85,7 @@ namespace FastReport
         private ColumnFooterBand columnFooter;
         private PageFooterBand pageFooter;
         private OverlayBand overlay;
+        private string createPageEvent;
         private string startPageEvent;
         private string finishPageEvent;
         private string manualBuildEvent;
@@ -102,6 +103,11 @@ namespace FastReport
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// This event occurs when the report engine create new page. On this stage can be modified page properties.
+        /// </summary>
+        public event EventHandler CreatePage;
         /// <summary>
         /// This event occurs when the report engine starts this page.
         /// </summary>
@@ -659,6 +665,17 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Gets or sets a script event name that will be fired when the report engine create new page.
+        /// On this stage can be modified page properties.
+        /// </summary>
+        [Category("Build")]
+        public string CreatePageEvent
+        {
+            get { return createPageEvent; }
+            set { createPageEvent = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a script event name that will be fired when the report engine starts this page.
         /// </summary>
         [Category("Build")]
@@ -955,6 +972,7 @@ namespace FastReport
             ResetPageNumber = src.ResetPageNumber;
             ExtraDesignWidth = src.ExtraDesignWidth;
             BackPage = src.BackPage;
+            CreatePageEvent = src.CreatePageEvent;
             StartOnOddPage = src.StartOnOddPage;
             StartPageEvent = src.StartPageEvent;
             FinishPageEvent = src.FinishPageEvent;
@@ -1011,6 +1029,8 @@ namespace FastReport
                 writer.WriteBool("StartOnOddPage", StartOnOddPage);
             if (BackPage != c.BackPage)
                 writer.WriteBool("BackPage", BackPage);
+            if (CreatePageEvent != c.CreatePageEvent)
+                writer.WriteStr("CreatePageEvent", CreatePageEvent);
             if (StartPageEvent != c.StartPageEvent)
                 writer.WriteStr("StartPageEvent", StartPageEvent);
             if (FinishPageEvent != c.FinishPageEvent)
@@ -1092,7 +1112,7 @@ namespace FastReport
                         ReportComponentBase obj = c as ReportComponentBase;
                         if (!IsPrinting)
                         {
-#if !MONO
+#if !MONO || (WPF || AVALONIA)
                             if (!obj.IsVisible(e))
                                 continue;
 #endif
@@ -1161,6 +1181,16 @@ namespace FastReport
         public override void ExtractMacros()
         {
             Watermark.Text = ExtractDefaultMacros(Watermark.Text);
+        }
+
+        /// <summary>
+        /// This method fires the <b>CreatePage</b> event and the script code connected to the <b>CreatePageEvent</b>.
+        /// </summary>
+        public void OnCreatePage(EventArgs e)
+        {
+            if (CreatePage != null)
+                CreatePage(this, e);
+            InvokeEvent(CreatePageEvent, e);
         }
 
         /// <summary>

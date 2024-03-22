@@ -14,7 +14,6 @@ namespace FastReport.Utils
     public static partial class DrawUtils
     {
         private static Font FDefaultFont;
-        private static Font FDefault96Font;
         private static Font FDefaultReportFont;
         private static Font FDefaultTextObjectFont;
         private static Font FFixedFont;
@@ -57,6 +56,20 @@ namespace FastReport.Utils
             {
                 if (FDefaultFont == null)
                 {
+#if AVALONIA
+                    if (OperatingSystem.IsWindows())
+                    {
+                        FDefaultFont = new Font("Segoe UI", 8.5f);
+                    }
+                    else if (OperatingSystem.IsMacOS())
+                    {
+                        FDefaultFont = new Font("Helvetica Neue", 8.5f);
+                    }
+                    else if (OperatingSystem.IsLinux())
+                    {
+                        FDefaultFont = new Font("Liberation Sans", 8.5f);
+                    }
+#else
                     switch (System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
                     {
                         case "ja":
@@ -75,8 +88,13 @@ namespace FastReport.Utils
 #endif
                             break;
                     }
+#endif
                 }
                 return FDefaultFont;
+            }
+            set
+            {
+                FDefaultFont = value;
             }
         }
 
@@ -122,40 +140,23 @@ namespace FastReport.Utils
                 if (FFixedFont == null)
 #if WPF
                     FFixedFont = CreateFont("Consolas", 9);
+#elif AVALONIA
+                    if (OperatingSystem.IsWindows())
+                    {
+                        FFixedFont = CreateFont("Lucida Console", 9);
+                    }
+                    else if (OperatingSystem.IsMacOS())
+                    {
+                        FFixedFont = CreateFont("PT Mono", 9);
+                    }
+                    else if (OperatingSystem.IsLinux())
+                    {
+                        FFixedFont = CreateFont("Liberation Mono", 9);
+                    }
 #else
                     FFixedFont = CreateFont("Courier New", 10);
 #endif
                 return FFixedFont;
-            }
-        }
-
-        public static Font Default96Font
-        {
-            get
-            {
-                if (FDefault96Font == null)
-                {
-                    float sz = 96f / ScreenDpi;
-                    switch (System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
-                    {
-                        case "ja":
-                            FDefault96Font = CreateFont("MS UI Gothic", 9 * sz);
-                            break;
-
-                        case "zh":
-                            FDefault96Font = CreateFont("SimSun", 9 * sz);
-                            break;
-
-                        default:
-#if WPF
-                            FDefault96Font = CreateFont("Segoe UI", 8.5f * sz);
-#else
-                            FDefault96Font = CreateFont("Tahoma", 8 * sz);
-#endif
-                            break;
-                    }
-                }
-                return FDefault96Font;
             }
         }
 
@@ -167,14 +168,15 @@ namespace FastReport.Utils
         {
             Font font = new Font(familyName, emSize, style, unit, gdiCharSet, gdiVerticalFont);
 
-#if SKIA
+// skia now handles Font instantiation correctly
+/*#if SKIA
             if (font.Name != familyName)
             {
                 // font family not found in installed fonts, search in the user fonts
                 font = new Font(familyName, emSize, style, unit, gdiCharSet, gdiVerticalFont, Config.PrivateFontCollection.Collection);
             }
-#endif
-            return font;
+#endif*/
+                    return font;
         }
 
         public static SizeF MeasureString(string text)
@@ -210,17 +212,6 @@ namespace FastReport.Utils
             RectangleF rect = regions[0].GetBounds(g);
             regions[0].Dispose();
             return rect.Size;
-        }
-
-        public static void FloodFill(Bitmap bmp, int x, int y, Color color, Color replacementColor)
-        {
-            if (x < 0 || y < 0 || x >= bmp.Width || y >= bmp.Height || bmp.GetPixel(x, y) != color)
-                return;
-            bmp.SetPixel(x, y, replacementColor);
-            FloodFill(bmp, x - 1, y, color, replacementColor);
-            FloodFill(bmp, x + 1, y, color, replacementColor);
-            FloodFill(bmp, x, y - 1, color, replacementColor);
-            FloodFill(bmp, x, y + 1, color, replacementColor);
         }
 
         internal static MonoRendering GetMonoRendering(IGraphics printerGraphics)

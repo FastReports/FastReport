@@ -278,7 +278,7 @@ namespace FastReport.Export
                 Process proc = new Process();
                 proc.EnableRaisingEvents = false;
 
-#if NETCOREAPP
+#if (NETCOREAPP && !AVALONIA)
                 proc.StartInfo.FileName = "cmd";
                 proc.StartInfo.Arguments = $"/c \"{fileName}\"";
                 proc.StartInfo.CreateNoWindow = true;

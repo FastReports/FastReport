@@ -1107,6 +1107,7 @@ namespace FastReport.Barcode
             if (image == null)
                 return;
 
+            Brush dark = new SolidBrush(Color);
             int stride = (width + 7) / 8;
 
             for (int k = 0; k < height; ++k)
@@ -1117,11 +1118,12 @@ namespace FastReport.Barcode
                     int b = image[p + (j / 8)] & 0xff;
                     b <<= j % 8;
 
-                    Brush brush = (b & 0x80) == 0 ? Brushes.White : Brushes.Black;
+                    Brush brush = (b & 0x80) == 0 ? Brushes.White : dark;
                     g.FillRectangle(brush, j * PixelSize * kx, k * PixelSize * ky,
                       PixelSize * kx, PixelSize * ky);
                 }
             }
+            dark.Dispose();
         }
         #endregion
 

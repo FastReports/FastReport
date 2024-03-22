@@ -881,12 +881,16 @@ namespace FastReport
                     "System.Xml.dll",
 
                     "FastReport.Compat.dll",
-#if !CROSSPLATFORM && !WPF
+#if !CROSSPLATFORM && !(WPF || AVALONIA)
                     "System.Windows.Forms.dll",
 #endif
 
 #if WPF
                     "FastReport.Forms.WPF.dll",
+#endif
+
+#if AVALONIA
+                    "FastReport.Forms.Avalonia.dll",
 #endif
 
 #if CROSSPLATFORM || COREWIN
@@ -2012,14 +2016,28 @@ namespace FastReport
         /// </summary>
         /// <param name="stream">The stream to load from.</param>
         /// <remarks>
-        /// When you try to load the password-protected report, you will be asked
-        /// for a password. You also may specify the password in the <see cref="Password"/>
-        /// property before loading the report. In this case the report will load silently.
+        /// The stream must be seekable.
+        /// When you load a password-protected report, you should specify a password in the <see cref="Password"/> property,
+        /// otherwise you will get the <see cref="DecryptException"/>. In this case you should ask for a password and try again:
+        /// <code>
+        /// try
+        /// {
+        ///   report.Load(stream);
+        /// }
+        /// catch (DecryptException)
+        /// {
+        ///   report.Password = report.ShowPasswordForm(); // or use your own form to do this
+        ///   report.Load(stream);
+        /// }
+        /// </code>
         /// </remarks>
         public void Load(Stream stream)
         {
             string password = Password;
             Clear();
+
+            var saveStream = stream;
+            var saveStreamPos = stream.Position;
 
             using (FRReader reader = new FRReader(this))
             {
@@ -2032,10 +2050,6 @@ namespace FastReport
                 bool crypted = Crypter.IsStreamEncrypted(stream);
                 if (crypted)
                 {
-                    if (String.IsNullOrEmpty(password))
-                    {
-                        password = ShowPaswordForm(password);
-                    }
                     stream = Crypter.Decrypt(stream, password);
                     disposeList.Add(stream);
                 }
@@ -2047,7 +2061,10 @@ namespace FastReport
                 catch (Exception e)
                 {
                     if (crypted)
+                    {
+                        saveStream.Position = saveStreamPos;
                         throw new DecryptException();
+                    }
                     throw e;
                 }
                 finally

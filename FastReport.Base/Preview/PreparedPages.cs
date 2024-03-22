@@ -236,20 +236,23 @@ namespace FastReport.Preview
         /// </remarks>
         public void AddPage(ReportPage page)
         {
-            CurPage++;
-            if (CurPage >= Count || AddPageAction != AddPageAction.WriteOver)
+            if (page.Visible)
             {
-                PreparedPage preparedPage = new PreparedPage(page, this);
-                preparedPages.Add(preparedPage);
+                CurPage++;
+                if (CurPage >= Count || AddPageAction != AddPageAction.WriteOver)
+                {
+                    PreparedPage preparedPage = new PreparedPage(page, this);
+                    preparedPages.Add(preparedPage);
 
-                // upload previous page to the file cache if enabled
-                if (CanUploadToCache && Count > 1)
-                    preparedPages[Count - 2].Upload();
+                    // upload previous page to the file cache if enabled
+                    if (CanUploadToCache && Count > 1)
+                        preparedPages[Count - 2].Upload();
 
-                AddPageAction = AddPageAction.WriteOver;
-                CurPage = Count - 1;
-                Report.Engine.IncLogicalPageNumber();
-                PageAdded?.Invoke(this, EventArgs.Empty);
+                    AddPageAction = AddPageAction.WriteOver;
+                    CurPage = Count - 1;
+                    Report.Engine.IncLogicalPageNumber();
+                    PageAdded?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 

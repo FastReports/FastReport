@@ -72,12 +72,10 @@ namespace FastReport.Utils
                     return type.FullName;
                 return type.AssemblyQualifiedName;
             }
-#if true// | CROSSPLATFORM
             if (value is Font)
             {
                 return new TypeConverters.FontConverter().ConvertToInvariantString(value);
             }
-#endif
             if (value is System.Drawing.Imaging.ImageFormat)
             {
                 var imageFormat = value as System.Drawing.Imaging.ImageFormat;
@@ -131,40 +129,7 @@ namespace FastReport.Utils
                 return value.Split('\r');
             }
             if (type == typeof(Font))
-            {
-                Font font;
-
-#if FRCORE || COREWIN
-                // This patch made for "Wix Madefor Text" font
-                // We manually parse font description and create font
-
-                String[] fontNameFields = value.Split(',');
-                if (Config.PrivateFontCollection.HasFont(fontNameFields[0]))
-                {
-                    FontFamily fontFamily = new FontFamily(fontNameFields[0], Config.PrivateFontCollection.Collection);
-                    fontNameFields[1] = fontNameFields[1].Replace("pt", "");
-                    float size = float.Parse(fontNameFields[1]);
-                    if(fontNameFields.Length == 3)
-                    {
-                        fontNameFields[2] = fontNameFields[2].Replace("style=", "");
-                        FontStyle style = ((FontStyle)Enum.Parse(typeof(FontStyle), fontNameFields[2]));
-                        font = new Font(fontFamily, size, style);
-                    }
-                    else
-                    {
-                        font = new Font(fontFamily, size);
-                    }
-                }
-                else
-#endif
-                {
-                    font = new TypeConverters.FontConverter().ConvertFromInvariantString(value) as Font;
-                    font = Config.PrivateFontCollection.CheckFamily(font);
-                }
-
-                return font;
-            }
-
+                return new TypeConverters.FontConverter().ConvertFromInvariantString(value) as Font;
             if (type == typeof(Color))
                 return new ColorConverter().ConvertFromInvariantString(value);
             return TypeDescriptor.GetConverter(type).ConvertFromInvariantString(value);

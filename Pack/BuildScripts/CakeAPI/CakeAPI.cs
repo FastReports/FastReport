@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Cake.Core;
 using Cake.Core.IO;
 using Cake.Core.Diagnostics;
 using Cake.Core.Tooling;
-using Cake.Common.IO;
 using Cake.Common.Tools.NuGet;
-using Cake.Common.Tools.NuGet.Pack;
-using Cake.Common.Tools.MSBuild;
 using Cake.Common.Solution.Project;
 using Cake.Common.Xml;
 using Cake.Core.Configuration;
@@ -22,16 +16,12 @@ using Cake.Incubator.Project;
 using Cake.Incubator.GlobbingExtensions;
 using static Cake.Incubator.Project.ProjectParserExtensions;
 #endif
-using Cake.Common.Tools.DotNet.Pack;
 using Cake.Common.Tools.DotNet.Test;
 using Cake.Common.Tools.DotNet.Restore;
-using Cake.Common.Tools.DotNet;
-using Cake.Common.Tools.DotNet.MSBuild;
 using Cake.Common.Tools.NuGet.Restore;
-using Cake.Core.Annotations;
 using Cake.Common;
 using Cake.Common.Tools.SignTool;
-using Cake.Common.Tools.DotNet.Build;
+using Cake.Common.Tools.DotNet.Run;
 
 namespace CakeScript;
 
@@ -69,6 +59,18 @@ static class CakeAPI
 
     public static void MSBuild(FilePath solution, MSBuildSettings settings)
         => Context.MSBuild(solution, settings);
+
+    public static void DotNetRun(string project)
+        => Context.DotNetRun(project);
+
+    public static void DotNetRun(string project, ProcessArgumentBuilder arguments)
+        => Context.DotNetRun(project, arguments);
+
+    public static void DotNetRun(string project, ProcessArgumentBuilder arguments, DotNetRunSettings settings)
+        => Context.DotNetRun(project, arguments, settings);
+
+    public static void DotNetRun(string project, DotNetRunSettings settings)
+        => Context.DotNetRun(project, settings);
 
     public static void DotNetClean(string project)
         => Context.DotNetClean(project);

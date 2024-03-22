@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
  
-    <PropertyGroup>
-      <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
   
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <TargetFrameworks>$(TargetFrameworks);net462</TargetFrameworks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(VisualStudioVersion)' >= '16'">
-    <TargetFrameworks>$(TargetFrameworks);netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -60,7 +57,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DefineConstants>TRACE;DOTNET_4</DefineConstants>
+    <DefineConstants>TRACE;DOTNET_4;READONLY_STRUCTS</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>$(DefineConstants);DEBUG;</DefineConstants>
@@ -70,10 +67,6 @@
     <DefineConstants>$(DefineConstants);CROSSPLATFORM</DefineConstants>
   </PropertyGroup>
 
-  <!--readonly struct's feature-->
-  <PropertyGroup Condition="'$(MSBuildVersion)' >= '16'">
-    <DefineConstants>$(DefineConstants);READONLY_STRUCTS</DefineConstants>
-  </PropertyGroup>
 
   <!--Source Link-->
   <ItemGroup>
@@ -82,17 +75,6 @@
 
   <!--Import version-info of referenced packages-->
   <Import Project="..\UsedPackages.version" />
-  
-  <ItemGroup Condition="'$(TargetFrameworkIdentifier)'=='.NETStandard'">
-    <PackageReference Include="System.Security.Permissions" Version="$(SystemSecurityPermissionsVersion)" />
-    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)" />
-    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="$(SystemSecurityCryptographyPkcsVersion)" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="$(SystemTextEncodingCodePagesVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="FastReport.Compat" Version="$(FRCompatVersion)" />
-  </ItemGroup>
 
   <Import Project="..\FastReport.Base\FastReport.Base.csproj" />
 
@@ -128,6 +110,11 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\FastReport.Compat\FastReport.Compat\FastReport.Compat.csproj" />
   </ItemGroup>
 
 </Project>

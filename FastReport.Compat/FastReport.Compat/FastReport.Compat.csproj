@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;net6.0;net6.0-windows7.0</TargetFrameworks>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+
+    <WindowsFormsReplacement>true</WindowsFormsReplacement>
+    <WindowsFormsReplacement Condition="'$(TargetFramework)'=='net462' or '$(TargetFramework)'=='net6.0-windows7.0'">false</WindowsFormsReplacement>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'!='net462'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!--Explicit import Directory.Build.props (for old-style csproj)-->
+  <Import Project="..\Directory.Build.props" Condition="'$(UsingMicrosoftNETSdk)' != 'true'"/>
+  
+  <Import Project="$(SlnDir)\UsedPackages.version" />
+  <ItemGroup Condition="'$(TargetFramework)'!='net462'">
+    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(CodeAnalysisCSharpVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="$(CodeAnalysisVisualBasicVersion)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(WindowsFormsReplacement) == 'false'">
+    <Compile Remove="$(SourceCode)\WindowsForms\**" />
+    <Compile Remove="$(SourceCode)\DotNetClasses\UITypeEditor.cs"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(SourceCode)\WindowsForms\**">
+      <Link>WindowsForms/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+    <None Include="$(SourceCode)\DotNetClasses\UITypeEditor.cs">
+      <Link>DotNetClasses\UITypeEditor.cs</Link>
+    </None>
+  </ItemGroup>
+  
+</Project>
