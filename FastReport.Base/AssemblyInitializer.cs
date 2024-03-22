@@ -110,7 +110,7 @@ namespace FastReport
 #if !COMMUNITY
             RegisteredObjects.AddCategory("ReportPage,Matrix", 142, 7, "Objects,Matrix");
             RegisteredObjects.InternalAdd(typeof(MatrixObject), "ReportPage,Matrix", 142, 1);
-#if !WPF
+#if !(WPF || AVALONIA)
             RegisteredObjects.InternalAdd(typeof(CrossViewObject), "ReportPage,Matrix", 247, 2);
 #endif
 #else

@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+  </PropertyGroup>
+  
+  <Import Project="Shared.props" />
+  <Import Project="..\Avalonia.props" />
+
+  <ItemGroup>
+		<ProjectReference Include="..\..\..\..\FastReport.Avalonia\FastReport.Avalonia.csproj" />
+	</ItemGroup>  
+</Project>

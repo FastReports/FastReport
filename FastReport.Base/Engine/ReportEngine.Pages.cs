@@ -205,6 +205,7 @@ namespace FastReport.Engine
                 CurY = PreparedPages.GetLastY();
             else
             {
+                page.OnCreatePage(EventArgs.Empty);
                 PreparedPages.AddPage(page);
                 if (page.StartOnOddPage && (CurPage % 2) == 1)
                     PreparedPages.AddPage(page);
@@ -345,6 +346,7 @@ namespace FastReport.Engine
 
         private void StartPage()
         {
+            page.OnCreatePage(EventArgs.Empty);
             // apply Right to Left layout if needed 
             if (Config.RightToLeft)
             {
@@ -365,7 +367,7 @@ namespace FastReport.Engine
                 ShowBand(page.Overlay);
             ShowPageHeader();
             OnStateChanged(page, EngineState.PageStarted);
-
+           
             columnStartY = CurY;
 
             StartColumn();

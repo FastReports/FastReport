@@ -142,19 +142,19 @@ namespace FastReport.Barcode
                     pen.Width = width;
 
                     if (reversColor)
-                        pen.Color = Color.Black;
+                        pen.Color = Color;
                     else
                         pen.Color = Color.Transparent;
 
                     if (separatorLine)
                     {
                         if (data[x] != '0')
-                            pen.Color = Color.Black;
+                            pen.Color = Color;
                     }
                     else
                     {
                         if ((x % 2 != 0 && !reversColor))
-                            pen.Color = Color.Black;
+                            pen.Color = Color;
                         if ((x % 2 != 0 && reversColor))
                             pen.Color = Color.Transparent;
                     }

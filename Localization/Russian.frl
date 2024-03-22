@@ -2664,6 +2664,7 @@
       <DoNotExpandShiftReturn Text="Не расширять мягкий перенос"/>
       <DisableSectionBreak Text="Не добавлять разрывы разделов при разрывах страниц"/>
       <Bookmarks Text="Добавить закладку на каждую страницу"/>
+      <UseHeaderAndFooter Text="Использовать верхние и нижние колонтитулы страниц Word"/>
     </Docx>
     <Xaml Text="Экспорт в XAML">
       <File Text="Файл XAML"/>

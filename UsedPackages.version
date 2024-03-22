@@ -1,53 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-<!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource, FastReport.CoreWin, FastReport.WPF -->
+<!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource, FastReport .NET, FastReport.WPF -->
     <PropertyGroup>
-
-        <FRCompatVersionNET>[2024.1.0]</FRCompatVersionNET>
-
-        <FRCompatVersion>[2024.1.0]</FRCompatVersion>
-        <FRCompatSkiaVersion>[2024.1.6]</FRCompatSkiaVersion>
-
-        <FRDataVisualizationVersion>[2024.1.0]</FRDataVisualizationVersion>
-        <FRDataVisualizationSkiaVersion>[2024.1.6]</FRDataVisualizationSkiaVersion>
 		
         <!-- WPF -->
-        <FRWPFVersion>2024.1.5</FRWPFVersion>
-        <FRWPFRoslynPadVersion>2024.1.5</FRWPFRoslynPadVersion>
-        <FRFormsWPFVersion>2024.1.2</FRFormsWPFVersion>
-        <FRCompatWPFVersion>2024.1.0</FRCompatWPFVersion>
-        <FRDataVisualizationWPFVersion>2024.1.0</FRDataVisualizationWPFVersion>
+        <FRWPFVersion>2024.1.9</FRWPFVersion>
+        <FRWPFRoslynPadVersion>2024.1.9</FRWPFRoslynPadVersion>
+        <FRFormsWPFVersion>2024.1.9</FRFormsWPFVersion>
+        <FRCompatWPFVersion>2024.1.9</FRCompatWPFVersion>
 
-        <!-- Not available in Core3 -->
+        <SkiaSharpVersion>2.88.6</SkiaSharpVersion>
+        <HarfBuzzVersion>2.88.6</HarfBuzzVersion>
+
+        <!-- Avalonia -->
+        <AvaloniaUIVersion>[11.0.6,)</AvaloniaUIVersion>
+        <FRAvaloniaVersion>2024.1.9</FRAvaloniaVersion>
+
+        <CodeAnalysisCSharpVersion>[4.0.1,)</CodeAnalysisCSharpVersion>
+        <CodeAnalysisVisualBasicVersion>[4.0.1,)</CodeAnalysisVisualBasicVersion>
+
         <SystemDrawingCommonVersion>[4.7.3,)</SystemDrawingCommonVersion>
-
-        <!-- Not available in Core3 -->
-        <SystemSecurityPermissionsVersion>[4.5.0,)</SystemSecurityPermissionsVersion>
         
-        <!-- Not available in Core3 -->
         <SystemSecurityCryptographyPkcsVersion>4.7.0</SystemSecurityCryptographyPkcsVersion>
-
-        <!-- Not available in Core3 -->
-        <SystemTextEncodingCodePagesVersion>4.7.0</SystemTextEncodingCodePagesVersion>
-
-        <!-- Not available in Core3 -->
-        <MicrosoftCSharpVersion>4.7.0</MicrosoftCSharpVersion>
-
-        <!-- Not available in Core3 -->
-        <SystemReflectionEmitLightweightVersion>4.7.0</SystemReflectionEmitLightweightVersion>
 
     </PropertyGroup>
 	
 <!-- This group sets version used packages in Demos -->
 	<PropertyGroup>
         
-		<FRCoreVersion>2024.1.5</FRCoreVersion>
+		<FRCoreVersion>2024.1.9</FRCoreVersion>
 		
-		<FRCoreWebVersion>2024.1.5</FRCoreWebVersion>
+		<FRCoreWebVersion>2024.1.9</FRCoreWebVersion>
 		
-		<FROSVersion>2023.2.16</FROSVersion>
+		<FROSVersion>2024.1.7</FROSVersion>
 		
-		<FROSWebVersion>2023.2.16</FROSWebVersion>
+		<FROSWebVersion>2024.1.7</FROSWebVersion>
 		
     </PropertyGroup>
 

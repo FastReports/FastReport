@@ -203,7 +203,7 @@ namespace FastReport.Code
                 // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
                 if (s.IndexOf("System.Windows.Forms.DataVisualization") != -1)
                     s = "FastReport.DataVisualization";
-#if SKIA
+#if (SKIA && !AVALONIA)
                 if (s.IndexOf("FastReport.Compat") != -1)
                     s = "FastReport.Compat.Skia";
                 if (s.IndexOf("FastReport.DataVisualization") != -1)

@@ -2897,6 +2897,7 @@
       <DoNotExpandShiftReturn Text="Do not expand shift return"/>
       <DisableSectionBreak Text="Do not add section breaks on page breaks"/>
       <Bookmarks Text="Add bookmark to each page"/>
+      <UseHeaderAndFooter Text="Use Word page headers and footers"/>
     </Docx>
     <Xaml Text="Export to XAML">
       <File Text="XAML file"/>

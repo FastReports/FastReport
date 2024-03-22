@@ -5,7 +5,7 @@
 
     <Designer>true</Designer>
 
-    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <DefineConstants>OPENSOURCE;</DefineConstants>
     <Version>1.0.0</Version>
     <PackageLicenseFile>FastReport MIT license.md</PackageLicenseFile>

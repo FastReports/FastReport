@@ -4,6 +4,7 @@
   <PropertyGroup>
     <_FRProductType>FastReport.OpenSource</_FRProductType>
     <_FR_GraphicsEngine>GDIPlus</_FR_GraphicsEngine>
+    <_FRProductTypeWithEngine>$(_FRProductType).$(_FR_GraphicsEngine)</_FRProductTypeWithEngine>
   </PropertyGroup>
 
 </Project>
