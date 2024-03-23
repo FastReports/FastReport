@@ -268,17 +268,12 @@ namespace FastReport.Export
 
         internal static string HTMLColor(Color color)
         {
-            return ColorTranslator.ToHtml(color);
-        }
-
-        internal static string HTMLColorCode(Color color)
-        {
-            return String.Join(String.Empty, new String[] {
-                "#",
-                color.R.ToString("X2"),
-                color.G.ToString("X2"),
-                color.B.ToString("X2")
-            });
+            if (color.A < 255)
+            {
+                string alphaValue = (color.A / 255.0).ToString("0.00", INVARIANT_CULTURE);
+                return $"rgba({color.R}, {color.G}, {color.B}, {alphaValue})";
+            }
+            return $"rgb({color.R}, {color.G}, {color.B})";
         }
 
         internal static string ByteToHex(byte Byte)
