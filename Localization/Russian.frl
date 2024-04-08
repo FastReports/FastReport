@@ -2290,6 +2290,9 @@
       <ServerPort Text="Порт:"/>
       <Database Text="База данных"/>
     </Clickhouse>
+    <Postgres>
+      <EnableSystemSchemas Text="Включить системные схемы"/>
+    </Postgres>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>

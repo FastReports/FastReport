@@ -39,9 +39,7 @@ namespace FastReport.Web
         {
             for (int i = 0; i < xml.Count; i++)
             {
-                var opened = false;
-                if (top && xml.Count == 1) // open if there is only one node on top
-                    opened = true;
+                var opened = top && xml.Count == 1;
 
                 var styleShow = opened ? @"style=""display:none""" : @"style=""display:block""";
                 var styleHide = opened ? @"style=""display:block""" : @"style=""display:none""";
@@ -56,8 +54,8 @@ namespace FastReport.Web
                 string caret;
                 if (hasChildren)
                 {
-                    caret = $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-open-node"" src=""{template_resource_url("caret-right.svg", "image/svg+xml")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineOpenNode(this);"" {styleShow}>";
-                    caret += $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-close-node"" src=""{template_resource_url("caret-down.svg", "image/svg+xml")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineCloseNode(this);"" {styleHide}>";
+                    caret = $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-open-node"" src=""data:image/svg+xml;base64,{GerResourceBase64("caret-right.svg")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineOpenNode(this);"" {styleShow}>";
+                    caret += $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-close-node"" src=""data:image/svg+xml;base64,{GerResourceBase64("caret-down.svg")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineCloseNode(this);"" {styleHide}>";
                 }
                 else
                 {
@@ -66,7 +64,7 @@ namespace FastReport.Web
 
                 sb.Append($@"<div class=""{template_FR}-outline-text"">");
                 sb.Append(caret);
-                sb.Append($@"<img class=""{template_FR}-outline-file"" src=""{template_resource_url("file.svg", "image/svg+xml")}"">");
+                sb.Append($@"<img class=""{template_FR}-outline-file"" src=""data:image/svg+xml;base64,{GerResourceBase64("file.svg")}"">");
                 sb.Append($@"<a onclick=""{template_FR}.outlineGoto({page + 1}, {offset.ToString().Replace(',', '.')});"">{HttpUtility.HtmlEncode(text)}</a>");
                 sb.Append($@"</div>");
 

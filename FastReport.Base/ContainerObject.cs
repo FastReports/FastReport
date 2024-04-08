@@ -309,18 +309,15 @@ namespace FastReport
                 obj.Dock = saveDock;
             }
 
-            if ((CanGrow && maxHeight > Height) || (CanShrink && maxHeight < Height))
-                Height = maxHeight;
-
             // perform grow to bottom
             foreach (ReportComponentBase obj in Objects)
             {
-                if (obj.GrowToBottom || obj.Bottom > Height)
-                    obj.Height = Height - obj.Top;
+                if (obj.GrowToBottom || obj.Bottom > maxHeight)
+                    obj.Height = maxHeight - obj.Top;
             }
 
             OnAfterLayout(EventArgs.Empty);
-            return Height;
+            return maxHeight;
         }
 
         /// <summary>

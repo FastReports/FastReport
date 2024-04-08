@@ -310,6 +310,22 @@ namespace FastReport.Functions
         }
 
         /// <summary>
+        /// Returns "true" if a specified pattern occurs within this source string, else returns "false".
+        /// </summary>
+        /// <param name="s">The original string.</param>
+        /// <param name="value">Substring looking for.</param>
+        /// <returns>true if the pattern parameter occurs within this source string, or if value is the empty string; otherwise, false</returns>
+        public static bool Contains(string s, string value)
+        {
+            if (s != null && value != null && s.Contains(value))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Removes all occurrences of white space characters from the beginning and end of the original string.
         /// </summary>
         /// <param name="s">The original string.</param>
@@ -1257,6 +1273,7 @@ namespace FastReport.Functions
             Type str = typeof(StdFunctions);
             RegisteredObjects.InternalAddFunction(str.GetMethod("Asc"), "Text");
             RegisteredObjects.InternalAddFunction(str.GetMethod("Chr"), "Text");
+            RegisteredObjects.InternalAddFunction(str.GetMethod("Contains"), "Text");
             RegisteredObjects.InternalAddFunction(str.GetMethod("Insert"), "Text");
             RegisteredObjects.InternalAddFunction(str.GetMethod("Length"), "Text");
             RegisteredObjects.InternalAddFunction(str.GetMethod("LowerCase"), "Text");

@@ -58,10 +58,12 @@ namespace FastReport.Data
             lblServer.Text = res.Get("Server");
             lblUserName.Text = res.Get("UserName");
             lblPassword.Text = res.Get("Password");
-
             gbDatabase.Text = res.Get("Database");
             lblDatabase.Text = res.Get("DatabaseName");
             btnAdvanced.Text = Res.Get("Buttons,Advanced");
+
+            MyRes resPostgres = new MyRes("ConnectionEditors,Postgres");
+            enableSystemSchemasCb.Text = resPostgres.Get("EnableSystemSchemas");
         }
 
         protected override string GetConnectionString()

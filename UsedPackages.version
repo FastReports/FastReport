@@ -2,19 +2,16 @@
 <Project>
 <!-- This group sets version used packages in FastReport.Core, FastReport.OpenSource, FastReport .NET, FastReport.WPF -->
     <PropertyGroup>
-		
+
         <!-- WPF -->
-        <FRWPFVersion>2024.1.9</FRWPFVersion>
-        <FRWPFRoslynPadVersion>2024.1.9</FRWPFRoslynPadVersion>
-        <FRFormsWPFVersion>2024.1.9</FRFormsWPFVersion>
-        <FRCompatWPFVersion>2024.1.9</FRCompatWPFVersion>
+        <FRWPFVersion>2024.2.0</FRWPFVersion>
 
         <SkiaSharpVersion>2.88.6</SkiaSharpVersion>
         <HarfBuzzVersion>2.88.6</HarfBuzzVersion>
 
         <!-- Avalonia -->
         <AvaloniaUIVersion>[11.0.6,)</AvaloniaUIVersion>
-        <FRAvaloniaVersion>2024.1.9</FRAvaloniaVersion>
+        <FRAvaloniaVersion>2024.2.0</FRAvaloniaVersion>
 
         <CodeAnalysisCSharpVersion>[4.0.1,)</CodeAnalysisCSharpVersion>
         <CodeAnalysisVisualBasicVersion>[4.0.1,)</CodeAnalysisVisualBasicVersion>
@@ -24,18 +21,14 @@
         <SystemSecurityCryptographyPkcsVersion>4.7.0</SystemSecurityCryptographyPkcsVersion>
 
     </PropertyGroup>
-	
+
 <!-- This group sets version used packages in Demos -->
-	<PropertyGroup>
-        
-		<FRCoreVersion>2024.1.9</FRCoreVersion>
-		
-		<FRCoreWebVersion>2024.1.9</FRCoreWebVersion>
-		
-		<FROSVersion>2024.1.7</FROSVersion>
-		
-		<FROSWebVersion>2024.1.7</FROSWebVersion>
-		
+    <PropertyGroup>
+
+        <FRCoreVersion>2024.2.0</FRCoreVersion>
+
+        <FROSVersion>2024.2.0</FROSVersion>
+
     </PropertyGroup>
 
 </Project>

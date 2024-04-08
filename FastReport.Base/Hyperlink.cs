@@ -4,6 +4,7 @@ using System.IO;
 using FastReport.Utils;
 using FastReport.Data;
 using System.Drawing.Design;
+using System.Text.RegularExpressions;
 
 namespace FastReport
 {
@@ -108,7 +109,17 @@ namespace FastReport
         public string Value
         {
             get { return value; }
-            set { this.value = value; }
+            set
+            {
+                if (!Regex.IsMatch(value, "(javascript)|(<\\s*script\\s*>)", RegexOptions.IgnoreCase))
+                {
+                    this.value = value;
+                }
+                else
+                {
+                    this.value = "";
+                }
+            }
         }
 
         /// <summary>

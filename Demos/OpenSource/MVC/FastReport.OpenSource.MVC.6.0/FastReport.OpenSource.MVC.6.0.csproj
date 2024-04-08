@@ -10,7 +10,7 @@
 	<Import Project="..\..\..\..\UsedPackages.version" />
 	<ItemGroup>
 		<PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
-		<PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSWebVersion)" />
+		<PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>

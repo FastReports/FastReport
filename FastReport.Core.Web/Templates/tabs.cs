@@ -38,7 +38,7 @@ namespace FastReport.Web
 
                     if (tab.Closeable)
                         sb.Append($@"<a {closetab} class=""{template_FR}-tab-close"" title=""Close"">
-                                         <img src=""{template_resource_url("close.svg", "image/svg+xml")}"">
+                                        {GetResource("close.svg")}
                                      </a>");
 
                     sb.Append("</div>");

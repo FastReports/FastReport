@@ -2703,6 +2703,20 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Prepare page
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="isDetailPage"> Flag indicating whether the page is a detail page. </param>
+        public void PreparePage(ReportPage page, bool isDetailPage)
+        {
+            bool pageVisible = page.Visible;
+            if (isDetailPage)
+                page.Visible = true;
+            PreparePage(page);
+            page.Visible = pageVisible;
+        }
+
+        /// <summary>
         /// Exports a report. Report should be prepared using the <see cref="Prepare()"/> method.
         /// </summary>
         /// <param name="export">The export filter.</param>
