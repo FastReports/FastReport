@@ -415,7 +415,7 @@ namespace FastReport.Web
                         PreparedPages oldPreparedPages = currentReport.PreparedPages;
                         PreparedPages pages = new PreparedPages(currentReport);
                         currentReport.SetPreparedPages(pages);
-                        currentReport.PreparePage(reportPage);
+                        currentReport.PreparePage(reportPage, true);
                         Report tabReport = new Report();
                         tabReport.SetPreparedPages(currentReport.PreparedPages);
                         Tabs.Add(new ReportTab()

@@ -2491,6 +2491,9 @@
       <ServerPort Text="Server port:"/>
       <Database Text="Database"/>
     </Clickhouse>
+    <Postgres>
+      <EnableSystemSchemas Text="Enable System Schemas"/>
+    </Postgres>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>

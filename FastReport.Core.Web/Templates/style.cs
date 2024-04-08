@@ -116,13 +116,16 @@ namespace FastReport.Web
     border-radius:{Toolbar.ToolbarRoundness}px;
     background-color: #00000000;
     position: relative;
+    align-items: center;
+    display: flex;
 }}
 
 .{template_FR}-toolbar-item:hover {{
     background-color: {ColorTranslator.ToHtml(Toolbar.Color)};
 }}
 
-.{template_FR}-toolbar-item > img {{
+
+.{template_FR}-toolbar-item > svg {{
     height: calc({Toolbar.Height}px * 0.5);
     padding-top: calc({Toolbar.Height}px * 0.15);
     padding-bottom: calc({Toolbar.Height}px * 0.15);
@@ -133,10 +136,9 @@ namespace FastReport.Web
     filter:invert({Toolbar.ColorIcon});
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 5px;
 }}
 
-.{template_FR}-toolbar-item:hover > img {{
+.{template_FR}-toolbar-item:hover > svg {{
     opacity: 0.5;
 }}
 
@@ -144,7 +146,7 @@ namespace FastReport.Web
     background-color: transparent;
 }}
 
-.{template_FR}-toolbar-notbutton:hover > img {{
+.{template_FR}-toolbar-notbutton:hover > svg {{
     opacity: 1;
 }}
 
@@ -354,7 +356,7 @@ button{{
     font: {Toolbar.Exports.UserFontSettingsStyle} 12px {Toolbar.Exports.UserFontSettingsFamily};
     font-size: 11px;
     overflow: hidden;
-    background: #ffffff url(/_fr/resources.getResource?resourceName=select-arrow.svg&contentType=image%2Fsvg%2Bxml) no-repeat;
+    background: #ffffff url('data:image/svg+xml;base64,{GerResourceBase64("select-arrow.svg")}') no-repeat;
     background-position: calc(100% - 10px) center;
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
@@ -514,7 +516,7 @@ label{{
 }}
 
 .{template_FR}-container .activeButton {{
-    background: url(/_fr/resources.getResource?resourceName=button-active.svg&contentType=image%2Fsvg%2Bxml) no-repeat;
+    background: url('data:image/svg+xml;base64,{GerResourceBase64("button-active.svg")}') no-repeat;
     background-position: 0px center;
     vertical-align: middle;
 }}
@@ -587,19 +589,18 @@ label{{
     TOOLBAR NAVIGATION
 *************************/
 
-.{template_FR}-toolbar-narrow > img {{
+.{template_FR}-toolbar-narrow > svg {{
     transform: rotate({Toolbar.ToolbarNarrow}deg);
     padding-left: 0px;
     padding-right: 0px;
     height: calc({Toolbar.Height}px * 0.35);
     padding-top: 9px;
-    margin: 5px 10px 0px;
 }}
 
 .{template_FR}-toolbar-slash{{
  }}
 
-.{template_FR}-toolbar-slash > img {{
+.{template_FR}-toolbar-slash > svg {{
     margin-left: 0px;
     margin-right: 0px;
     height: calc({Toolbar.Height}px * 0.35);
@@ -647,7 +648,7 @@ label{{
     z-index: 10;
 }}
 
-.{template_FR}-spinner img {{
+.{template_FR}-spinner svg {{
     width: 90px;
     height: 90px; 
     left: calc(50%-50px);
@@ -736,7 +737,7 @@ label{{
     margin-right: 6px;
 }}
 
-.{template_FR}-tabs .{template_FR}-tab-close img{{
+.{template_FR}-tabs .{template_FR}-tab-close svg{{
     border-radius: 10px;
 }}
 
@@ -752,20 +753,20 @@ label{{
     cursor: default;
 }}
 
-.{template_FR}-tabs .{template_FR}-tab a img {{
+.{template_FR}-tabs .{template_FR}-tab a svg {{
     height: 13px;
     opacity: 0;
 }}
 
-.{template_FR}-tabs .{template_FR}-tab.active a img {{
+.{template_FR}-tabs .{template_FR}-tab.active a svg {{
     opacity: 0.5;
 }}
 
-.{template_FR}-tabs .{template_FR}-tab:hover a img {{
+.{template_FR}-tabs .{template_FR}-tab:hover a svg {{
     opacity: 0.5;
 }}
 
-.{template_FR}-tabs .{template_FR}-tab a img:hover {{
+.{template_FR}-tabs .{template_FR}-tab a svg:hover {{
     opacity: 1;
     background-color: #f1f1f1;
     cursor: pointer;
@@ -783,7 +784,7 @@ label{{
     opacity: 0.5;
 }}
 .datetimepicker > input[type=""date""]{{
-    background: url(""{template_resource_url("date-picker.svg", "image/svg+xml")}"") no-repeat;
+    background: url('data:image/svg+xml;base64,{GerResourceBase64("date-picker.svg")}') no-repeat;
     background-size: 10px;
     background-position: right 5px center;
     background-origin: content-box, content-box;
@@ -944,7 +945,7 @@ input[type=date]::-webkit-calendar-picker-indicator {{
     overflow: hidden;
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
-    background: #ffffff url(/_fr/resources.getResource?resourceName=select-arrow.svg&contentType=image%2Fsvg%2Bxml) no-repeat;
+    background: #ffffff url('data:image/svg+xml;base64,{GerResourceBase64("select-arrow.svg")}') no-repeat;
     background-position: calc(100% - 10px) center;
     margin - left: 10px;
     width: 244px;

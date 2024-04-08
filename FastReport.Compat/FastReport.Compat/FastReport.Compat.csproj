@@ -1,15 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net462;net6.0;net6.0-windows7.0</TargetFrameworks>
+    <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+  </PropertyGroup>
 
-    <WindowsFormsReplacement>true</WindowsFormsReplacement>
-    <WindowsFormsReplacement Condition="'$(TargetFramework)'=='net462' or '$(TargetFramework)'=='net6.0-windows7.0'">false</WindowsFormsReplacement>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <TargetFrameworks>$(TargetFrameworks);net6.0-windows7.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'!='net462'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <WindowsFormsReplacement>true</WindowsFormsReplacement>
+    <WindowsFormsReplacement Condition="'$(TargetFramework)'=='net462' or '$(TargetFramework)'=='net6.0-windows7.0'">false</WindowsFormsReplacement>
   </PropertyGroup>
 
   <!--Explicit import Directory.Build.props (for old-style csproj)-->
@@ -27,6 +33,10 @@
     <Compile Remove="$(SourceCode)\DotNetClasses\UITypeEditor.cs"/>
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(WindowsFormsReplacement)'=='false'">
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  
   <ItemGroup>
     <None Include="$(SourceCode)\WindowsForms\**">
       <Link>WindowsForms/%(RecursiveDir)%(Filename)%(Extension)</Link>

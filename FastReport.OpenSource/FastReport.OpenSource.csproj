@@ -4,9 +4,9 @@
     <TargetFrameworks>net6.0</TargetFrameworks>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <TargetFrameworks>$(TargetFrameworks);net462</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks);net462;net6.0-windows</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -30,8 +30,8 @@
     <AssemblyName>FastReport</AssemblyName>
     <RootNamespace>FastReport</RootNamespace>
     <Description>
-      FastReport Open Source provides a free report generator for .NET/.NET Core/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
-      FastReport is written in C# and it is compatible with .NET Standard 2.0 and higher. Extendable FastReport architecture allows creating your own objects, export filters, wizards, and DB engines.
+      FastReport Open Source provides a free report generator for .NET/.NET Framework. You can use the FastReport Open Source in MVC, Web API, console applications.
+      FastReport is written in C# and it is compatible with .NET Framework 4.6.2, .NET 6 and higher. Extendable FastReport architecture allows creating your own objects, export filters, wizards, and DB engines.
       - FastReport is a band-oriented report generator. There are 13 types of bands available: Report Title, Report Summary, Page Header, Page Footer, Column Header, Column Footer, Data Header, Data, Data Footer, Group Header, Group Footer, Child, and Overlay. In addition, sub-reports are fully supported.
       - A wide range of band types allows creating any kind of report: list, master-detail, group, multi-column, master-detail-detail and many more.
       - Wide range of available report objects: text, picture, line, shape, barcode, matrix, table, checkbox.

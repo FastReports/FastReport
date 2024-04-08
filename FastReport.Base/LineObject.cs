@@ -112,20 +112,18 @@ namespace FastReport
 
             DrawUtils.SetPenDashPatternOrStyle(DashPattern, pen, Border);
 
-            float width = Width;
-            float height = Height;
             if (!Diagonal)
             {
-                if (Math.Abs(width) > Math.Abs(height))
-                    height = 0;
+                if (Math.Abs(Width) > Math.Abs(Height))
+                    Height = 0;
                 else
-                    width = 0;
+                    Width = 0;
             }
 
             float x1 = AbsLeft * e.ScaleX;
             float y1 = AbsTop * e.ScaleY;
-            float x2 = (AbsLeft + width) * e.ScaleX;
-            float y2 = (AbsTop + height) * e.ScaleY;
+            float x2 = (AbsLeft + Width) * e.ScaleX;
+            float y2 = (AbsTop + Height) * e.ScaleY;
 
             if (StartCap.Style == CapStyle.None && EndCap.Style == CapStyle.None)
             {

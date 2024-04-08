@@ -17,7 +17,7 @@
 	<Import Project="..\..\..\..\UsedPackages.version" />
 	<ItemGroup>
 		<PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
-		<PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSWebVersion)" />
+		<PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSVersion)" />
 	    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.1" />
 	    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
   </ItemGroup>

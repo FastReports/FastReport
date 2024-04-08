@@ -86,7 +86,7 @@ namespace FastReport.Web
 {template_modalcontainerscript}
 //DOCXEXPORT//
 var DocxButtons;
-var DocxRowHeights = '&RowHeightIs=Exactly&MatrixBased=false';
+var DocxRowHeights = '&RowHeight=Exactly';
 var DocxOnRenderMode = '&PrintFit=layers';
 var DocxWysiwyg = false;
 var DocxPrintOptimized = false;
@@ -98,12 +98,15 @@ function OnInputClickDOCX() {{
 
 function DocxRowHeightsFunc(select) {{
     const DocxRowHeightsChange = select.querySelector(`option[value='${{select.value}}']`)
-    DocxRowHeights = '&RowHeightIs=' + DocxRowHeightsChange.value + '&MatrixBased=false';
+    DocxRowHeights = '&RowHeight=' + DocxRowHeightsChange.value;
 }}
+
 function DocxOnRenderModeFunc(select) {{
-    const DocxOnRenderModeChange = select.querySelector(`option[value='${{select.value}}']`)
-    DocxOnRenderMode = '&PrintFit=' + DocxOnRenderModeChange.value;
+    const DocxOnRenderModeChange = select.querySelector(`option[value='${{select.value}}']`);
+    const matrixBasedValue = DocxOnRenderModeChange.value === ""table"" ? ""true"" : ""false"";
+    DocxOnRenderMode = '&PrintFit=' + DocxOnRenderModeChange.value + '&MatrixBased=' + matrixBasedValue;
 }}
+
 function DOCXExport() {{
     {validation}
 
