@@ -62,7 +62,7 @@ You can make a report template in several ways:
 
 FastReport Open Source can save documents in HTML, BMP, PNG, JPEG, GIF, TIFF, EMF. 
 
-**PDF** export is available as a [plugin](https://github.com/FastReports/FastReport/tree/master/Extras/OpenSource/FastReport.OpenSource.Export.PdfSimple). You can see an example of its use [here](https://github.com/FastReports/FastReport/tree/master/Demos/OpenSource/PdfExport).  If this export is not enough for you and you need a full-featured PDF export with encryption, digital signing and fonts embedding - take a look at [FastReport .NET Core](https://fast-report.com/en/product/fast-report-net/).
+**PDF** export is available as a [plugin](https://github.com/FastReports/FastReport/tree/master/Extras/OpenSource/FastReport.OpenSource.Export.PdfSimple). You can see an example of its use [here](https://github.com/FastReports/FastReport/tree/master/Demos/OpenSource/Console%20apps/PdfExport).  If this export is not enough for you and you need a full-featured PDF export with encryption, digital signing and fonts embedding - take a look at [FastReport .NET Core](https://fast-report.com/en/product/fast-report-net/).
 
 ## Report Designer Community Edition
 
