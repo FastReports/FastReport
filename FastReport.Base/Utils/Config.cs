@@ -596,7 +596,7 @@ namespace FastReport.Utils
                     "TypeOf",   // VB
                     "DllImport",
                     "LoadLibrary",
-                    "GetProcAddress",
+                    "GetProcAddress"
                 };
 
             private string[] stopList;

@@ -24,6 +24,7 @@ internal static class FileInfo {}
 internal static class FileStream {}
 internal static class FileSystemInfo {}
 internal static class Path {}
+internal static class StreamReader {}
 }
 
 namespace System.Diagnostics
@@ -190,6 +191,9 @@ Namespace System.IO
     End Class
 
     Friend Class Path
+    End Class
+
+    Friend Class StreamReader
     End Class
 End Namespace
 

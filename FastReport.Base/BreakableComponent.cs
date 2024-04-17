@@ -105,30 +105,6 @@ namespace FastReport
             return false;
         }
 
-        /// <summary>
-        /// Breaks the contents of the object.
-        /// </summary>
-        /// <param name="breakTo">Object to put the part of content to that does not fit in this object. These two 
-        /// objects must have the same type.</param>
-        /// <param name="excessiveHeight">Excessive height that should be moved to the second part.</param>
-        /// <returns><b>true</b> if there is enough space in this object to display at least one text line.</returns>
-        /// <remarks>
-        /// <para>
-        /// Do not call this method directly, it is used by the report engine. You should override it if
-        /// you are writing a new FastReport object.
-        /// </para>
-        /// <para>
-        /// This method must break the contents of the object. The part of content that fit in current object's
-        /// bounds should remain in this object, the part that does not fit should be transferred to <b>breakTo</b>
-        /// object. 
-        /// </para>
-        /// </remarks>
-        public virtual bool Break(BreakableComponent breakTo, out float excessiveHeight)
-        {
-            excessiveHeight = 0;
-            return Break(breakTo);
-        }
-
         #endregion
 
         /// <summary>

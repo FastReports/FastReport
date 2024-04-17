@@ -315,7 +315,6 @@ namespace FastReport
         private FormatBase savedFormat;
         private InlineImageCache inlineImageCache;
         private ParagraphFormat paragraphFormat;
-        private bool preserveLastLineSpace;
         #endregion
 
         #region Properties
@@ -729,8 +728,6 @@ namespace FastReport
             get { return HorzAlign == HorzAlign.Justify || Wysiwyg || LineHeight != 0 || HasHtmlTags; }
         }
 
-        internal bool PreserveLastLineSpace { get { return preserveLastLineSpace; } set { preserveLastLineSpace = value; } }
-
         /// <summary>
         /// Cache for inline images
         /// </summary>
@@ -809,8 +806,7 @@ namespace FastReport
                         width = htmlRenderer.CalcWidth();
 
                         width += Padding.Horizontal + 1;
-                        if (LineHeight == 0 || this.PreserveLastLineSpace)
-                            height += Padding.Vertical + 1;
+                        height += Padding.Vertical + 1;
 
                         return new SizeF(width, height);
                     }
@@ -832,7 +828,6 @@ namespace FastReport
                     width = renderer.CalcWidth();
 
                     width += Padding.Horizontal + 1;
-                    //if (LineHeight == 0)
                     height += Padding.Vertical + 1;
                     return new SizeF(width, height);
                 }
@@ -876,9 +871,8 @@ namespace FastReport
             return CalcSize().Height;
         }
 
-        private string BreakTextHtml(out bool endOnEnter, out float excessiveHeight)
+        private string BreakTextHtml(out bool endOnEnter)
         {
-            excessiveHeight = 0;
             endOnEnter = false;
             ForceJustify = false;
             if (String.IsNullOrEmpty(Text))
@@ -911,8 +905,6 @@ namespace FastReport
                         return null;
 
                     Text = HtmlTextRenderer.BreakHtml(Text, charactersFitted, out result, out endOnEnter);
-
-                    excessiveHeight = Height - Padding.Vertical - GetHtmlTextRenderer(g, 1, 1, textRect, format).CalcHeight();
 
                     if (HorzAlign == HorzAlign.Justify && !endOnEnter && result != "")
                     {
@@ -1135,7 +1127,6 @@ namespace FastReport
             AutoShrinkMinSize = src.AutoShrinkMinSize;
             ParagraphOffset = src.ParagraphOffset;
             inlineImageCache = src.inlineImageCache;
-            PreserveLastLineSpace = src.PreserveLastLineSpace;
             paragraphFormat.Assign(src.paragraphFormat);
             MergeMode = src.MergeMode;
         }
@@ -1198,7 +1189,7 @@ namespace FastReport
             context.cache = InlineImageCache;
             context.isPrinting = isPrinting;
             context.isDifferentTabPositions = TabPositions.Count > 0;
-            context.keepLastLineSpace = this.PreserveLastLineSpace;
+            context.keepLastLineSpace = false;
             return new HtmlTextRenderer(context);
 #else
             bool isDifferentTabPositions = TabPositions.Count > 0;
@@ -1692,14 +1683,13 @@ namespace FastReport
         }
 
         /// <inheritdoc/>
-        public override bool Break(BreakableComponent breakTo, out float excessiveHeight)
+        public override bool Break(BreakableComponent breakTo)
         {
-            excessiveHeight = 0;
             switch (TextRenderType)
             {
                 case TextRenderType.HtmlParagraph:
                     bool endOnEnter;
-                    string breakTextHtml = BreakTextHtml(out endOnEnter, out excessiveHeight);
+                    string breakTextHtml = BreakTextHtml(out endOnEnter);
                     if (breakTextHtml != null && breakTo != null)
                     {
                         (breakTo as TextObject).Text = breakTextHtml;
@@ -1713,12 +1703,6 @@ namespace FastReport
                         (breakTo as TextObject).Text = breakText;
                     return breakText != null;
             }
-        }
-        /// <inheritdoc/>
-        public override bool Break(BreakableComponent breakTo)
-        {
-            float excessiveHeight = 0;
-            return Break(breakTo, out excessiveHeight);
         }
 
         internal IEnumerable<PictureObject> GetPictureFromHtmlText(AdvancedTextRenderer renderer)
@@ -1824,7 +1808,6 @@ namespace FastReport
             highlight = new ConditionCollection();
             FlagSerializeStyle = false;
             SetFlags(Flags.HasSmartTag, true);
-            preserveLastLineSpace = false;
         }
     }
 }
