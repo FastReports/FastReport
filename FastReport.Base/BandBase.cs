@@ -830,9 +830,6 @@ namespace FastReport
         {
             // first we find the break line. It's a minimum Top coordinate of the object that cannot break.
             float breakLine = Height;
-            float excessiveHeight = 0;
-            float maxExcessiveHeight = 0;
-            Dictionary<RectangleF, float> excessiveHeights = new Dictionary<RectangleF, float>();
             bool breakLineFound = true;
             do
             {
@@ -852,12 +849,7 @@ namespace FastReport
                                 clone.Height = breakLine - clone.Top;
                                 // to allow access to the Report
                                 clone.Parent = breakTo;
-                                canBreak = clone.Break(null, out excessiveHeight);
-                                if (excessiveHeight > 0)
-                                {
-                                    excessiveHeights.Add(clone.Bounds, excessiveHeight);
-                                    maxExcessiveHeight = Math.Max(maxExcessiveHeight, excessiveHeight);
-                                }
+                                canBreak = clone.Break(null);
                             }
                         }
                     }
@@ -889,24 +881,19 @@ namespace FastReport
                         breakComp.CanGrow = true;
                         breakComp.CanShrink = false;
                         breakComp.Height -= breakLine - obj.Top;
-                        breakComp.Top = 0;
+                        breakComp.Top = 0; 
                         obj.Height = breakLine - obj.Top;
                         (obj as BreakableComponent).Break(breakComp);
-
                     }
                     else
                     {
-                        float currentExcessiveHeight = 0;
-                        foreach(var item in excessiveHeights)
-                        {
-                            if ((Math.Round(obj.Left, 2) <= Math.Round(item.Key.Left, 2) && Math.Round(obj.Right, 2) >= Math.Round(item.Key.Left, 2)) ||
-                             (Math.Round(obj.Left, 2) >= Math.Round(item.Key.Left, 2) && Math.Round(item.Key.Right, 2) >= Math.Round(obj.Left, 2)))
-                                currentExcessiveHeight = Math.Max(currentExcessiveHeight, item.Value);
-                        }
                         // (case: object with Anchor = bottom on a breakable band)
                         // in case of bottom anchor, do not move the object. It will be moved automatically when we decrease the band height
                         if ((obj.Anchor & AnchorStyles.Bottom) == 0)
-                            obj.Top -= (breakLine - currentExcessiveHeight);
+                            obj.Top -= breakLine;
+
+                        // add 0.01 to make sure we're below the breaked object. This is necessary due to rounding errors (in some rare cases)
+                        obj.Top += 0.01f;
                         obj.Parent = breakTo;
                         continue;
                     }
@@ -915,7 +902,7 @@ namespace FastReport
             }
 
             Height = breakLine;
-            breakTo.Height -= (breakLine - maxExcessiveHeight);
+            breakTo.Height -= breakLine;
             return Objects.Count > 0;
         }
 

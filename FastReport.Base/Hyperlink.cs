@@ -111,13 +111,13 @@ namespace FastReport
             get { return value; }
             set
             {
-                if (!Regex.IsMatch(value, "(javascript)|(<\\s*script\\s*>)", RegexOptions.IgnoreCase))
+                if (!String.IsNullOrEmpty(value) && !Regex.IsMatch(value, "(javascript)|(<\\s*script\\s*>)", RegexOptions.IgnoreCase))
                 {
                     this.value = value;
                 }
                 else
                 {
-                    this.value = "";
+                    this.value = string.Empty;
                 }
             }
         }
