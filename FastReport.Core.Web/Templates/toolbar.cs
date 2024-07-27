@@ -52,7 +52,7 @@ namespace FastReport.Web
           + (exports.ShowHpglExport ? $@"<a target=""_blank"" href=""{ template_export_url("hpgl")}"">{localization.hpglTxt}</a>" : "")
           + (exports.ShowHTMLExport ? $@"<a id=""HtmlExport"" target=""_blank"" href=""{template_export_url("html")}"">{localization.htmlTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowHTMLExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""html"">{GetResource("settings.svg")}</button>" : "")
-          //(exports.ShowImageExport? $@"<a id=""ImageExport"" target=""_blank"" href=""{template_export_url("image")}"">{localization.imageTxt}</a>" : "") + (exports.EnableSettings && exports.ShowImageExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""image"">{GetResource("settings.svg")}</button>" : "") +
+          + (exports.ShowImageExport? $@"<a id=""ImageExport"" target=""_blank"" href=""{template_export_url("image")}"">{localization.imageTxt}</a>" : "") + (exports.EnableSettings && exports.ShowImageExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""image"">{GetResource("settings.svg")}</button>" : "")
           + (exports.ShowJsonExport ? $@"<a target=""_blank"" href=""{ template_export_url("json")}"">{localization.jsonTxt}</a>" : "")
           + (exports.ShowDxfExport ? $@"<a target=""_blank"" href=""{ template_export_url("dxf")}"">{localization.dxfTxt}</a>" : "")
           + (exports.ShowLaTeXExport ? $@"<a target=""_blank"" href=""{ template_export_url("latex")}"">{localization.latexTxt}</a>" : "")

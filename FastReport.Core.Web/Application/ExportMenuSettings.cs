@@ -275,11 +275,11 @@ namespace FastReport.Web
         /// <summary>
         /// Switches a visibility of Image export in toolbar.
         /// </summary>
-        //public bool ShowImageExport
-        //{
-        //    get => GetExport(Exports.Image);
-        //    set => SetExport(value, Exports.Image);
-        //}
+        public bool ShowImageExport
+        {
+            get => GetExport(Exports.Image);
+            set => SetExport(value, Exports.Image);
+        }
         /// <summary>
         /// Switches visibility the PPML export in toolbar.
         /// </summary>
@@ -370,7 +370,7 @@ namespace FastReport.Web
         Dxf = 131_072,
         Json = 262_144,
         LaTeX = 524_288,
-        //Image = 1_048_576,
+        Image = 1_048_576,
         Ppml = 2_097_152,
         PS = 4_194_304,
         Xaml = 8_388_608,
@@ -382,7 +382,7 @@ namespace FastReport.Web
             | Xps | Ods | Odt | XmlExcel | Csv,
 
         All = Default | PowerPoint2007 | Dbf | Mht
-            | HTML | Hpgl /*| Email*/ | Dxf | Json | LaTeX /*| Image*/
+            | HTML | Hpgl /*| Email*/ | Dxf | Json | LaTeX | Image
             | Ppml | PS | Xaml | Zpl | Excel97 | Svg,
     }
 }

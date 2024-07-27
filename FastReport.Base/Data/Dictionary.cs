@@ -739,10 +739,11 @@ namespace FastReport.Data
                         foreach (PageBase page in Report.Pages)
                         {
                             if (page is ReportPage)
-                                foreach (BandBase band in (page as ReportPage).Bands)
+                                foreach (Base band in (page as ReportPage).AllObjects)
                                 {
-                                    if (band is DataBand && (band as DataBand).DataSource != null && (my.AllObjects.Contains((band as DataBand).DataSource) || (band as DataBand).DataSource == my))
-                                        (band as DataBand).DataSource = (DataSourceBase)clone.FindByName((band as DataBand).DataSource.Name);
+                                    if (band is DataBand dataBand && dataBand.DataSource != null && (my.AllObjects.Contains(dataBand.DataSource) || dataBand.DataSource.Name == my.Name
+                                         || dataBand.DataSource == my))
+                                        dataBand.DataSource = (DataSourceBase)clone.FindByName(dataBand.DataSource.Name);
                                 }
                         }
                         my.Dispose();

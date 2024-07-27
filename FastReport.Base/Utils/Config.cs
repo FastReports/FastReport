@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FastReport.Utils
@@ -589,17 +590,22 @@ namespace FastReport.Utils
         /// </summary>
         public class ScriptSecurityProperties
         {
+            private static readonly Regex[] defaultRegexStopList = new[]
+                {
+                    new Regex("[\\s\\d\\W]GetType[\\s\\W]", RegexOptions.Compiled),
+                    new Regex("[\\s\\W]typeof[\\s\\W]", RegexOptions.Compiled),
+                    new Regex("[\\s\\W]TypeOf[\\s]", RegexOptions.Compiled),   // VB
+                };
+
             private static readonly string[] defaultStopList = new[]
                 {
-                    "GetType",
-                    "typeof",
-                    "TypeOf",   // VB
-                    "DllImport",
-                    "LoadLibrary",
-                    "GetProcAddress"
+                   "DllImport",
+                   "LoadLibrary",
+                   "GetProcAddress",
                 };
 
             private string[] stopList;
+            private Regex[] regexStopList;
 
             /// <summary>
             /// Add stubs for the most dangerous classes (in System.IO, System.Reflection etc) 
@@ -623,6 +629,22 @@ namespace FastReport.Utils
             }
 
             /// <summary>
+            /// List of keywords in regex format that shouldn't be declared in the report script
+            /// </summary>
+            public Regex[] RegexStopList
+            {
+                get { return (Regex[])regexStopList.Clone(); }
+                set
+                {
+                    if (value != null)
+                    {
+                        OnStopListChanged?.Invoke(this, null);
+                        regexStopList = value;
+                    }
+                }
+            }
+
+            /// <summary>
             /// Throws when <see cref="StopList"/> has changed
             /// </summary>
             public event EventHandler OnStopListChanged;
@@ -634,6 +656,7 @@ namespace FastReport.Utils
 
             internal ScriptSecurityProperties(string[] stopList)
             {
+                regexStopList = defaultRegexStopList;
                 this.stopList = stopList;
             }
 
@@ -642,6 +665,7 @@ namespace FastReport.Utils
             /// </summary>
             public void SetDefaultStopList()
             {
+                RegexStopList = defaultRegexStopList;
                 StopList = defaultStopList;
             }
 

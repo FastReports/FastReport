@@ -4,6 +4,7 @@ using FastReport.Web.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 
@@ -26,6 +27,12 @@ namespace FastReport.Web
         #endregion
 
         #region Static Methods
+
+        internal static bool ShouldExportUseZipFormat(IEnumerable<KeyValuePair<string, string>> exportParams, string exportFormat) 
+            => ShouldUseZipFormat(exportParams, ExportsFromFormat(exportFormat));
+        
+        internal static bool ShouldExportUseZipFormat(IEnumerable<KeyValuePair<string, string>> exportParams, Exports export) 
+            => ShouldUseZipFormat(exportParams, export);
 
         internal static string MapPath(string path)
         {
@@ -86,7 +93,33 @@ namespace FastReport.Web
                 }
             return isPng;
         }
-#endregion
+        #endregion
+
+        #region PrivateMethods
+
+        private static bool ShouldUseZipFormat(IEnumerable<KeyValuePair<string, string>> exportParams,
+            Exports exportType)
+        {
+            var exportParamsList = exportParams.ToList();
+
+            var separateFilesParam = exportParamsList.Any(pair => pair is { Key: "SeparateFiles", Value: "true" });
+            var embedPicturesParam = exportParamsList.Any(pair => pair is { Key: "EmbedPictures", Value: "true" });
+
+            return (exportType == Exports.Image && (separateFilesParam || !exportParamsList.Any())) ||
+                   (exportType == Exports.HTML && !embedPicturesParam);
+        }
+
+        private static Exports ExportsFromFormat(string exportFormat)
+        {
+            return exportFormat switch
+            {
+                "image" => Exports.Image,
+                "html" => Exports.HTML,
+                _ => Exports.Text
+            };
+        }
+
+        #endregion
     }
 
 #if DESIGNER

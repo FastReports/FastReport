@@ -54,6 +54,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             FastReportGlobal.InternalEmailExportOptions = options.EmailExportOptions;
             FastReportGlobal.AllowCustomSqlQueries = options.AllowCustomSqlQueries;
+            FastReportGlobal.EnableIntellisense = options.EnableOnlineDesignerIntelliSense;
+            FastReportGlobal.IntelliSenseAssemblies = options.IntelliSenseAssemblies;
 
             services.TryAddSingleton<IResourceLoader, InternalResourceLoader>();
             services.TryAddSingleton<IDesignerUtilsService, DesignerUtilsService>();

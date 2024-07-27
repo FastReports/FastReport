@@ -75,7 +75,7 @@ namespace FastReport
         /// <inheritdoc/>
         public virtual bool CanContain(Base child)
         {
-            return (child is ReportComponentBase);
+            return (child is ReportComponentBase) && (child is not SubreportObject);
         }
 
         /// <inheritdoc/>

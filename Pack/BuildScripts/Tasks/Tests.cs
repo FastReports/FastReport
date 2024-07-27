@@ -1,5 +1,4 @@
-﻿using static CakeScript.CakeAPI;
-using Cake.Common.Tools.DotNet.Test;
+﻿using Cake.Common.Tools.DotNet.Test;
 
 namespace CakeScript;
 

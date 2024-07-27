@@ -28,6 +28,23 @@ namespace FastReport.Web
         /// </para>
         /// </summary>
         public bool AllowCustomSqlQueries { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether Intellisense is enabled.
+        /// When set to true, Intellisense feature will be enabled in the application.
+        /// </summary>
+        /// <remarks>
+        /// WARNING: Enabling Intellisense requires returning class information from the assembly.
+        /// </remarks>
+        public bool EnableOnlineDesignerIntelliSense { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets the list of assemblies needed for IntelliSense highlighting.
+        /// </summary>
+        /// <remarks>
+        /// The assemblies listed here will be used to provide class information for IntelliSense highlighting.
+        /// </remarks>
+        public List<string> IntelliSenseAssemblies { get; set; } = new();
 #else
         /// <summary>
         /// Used to access .NET libraries to compile the report script

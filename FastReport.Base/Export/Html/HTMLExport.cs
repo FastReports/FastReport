@@ -716,7 +716,7 @@ namespace FastReport.Export.Html
                             }
                         }
                     }
-                    if (format == HTMLExportFormat.HTML && !embedPictures)
+                    if (format == HTMLExportFormat.HTML && !embedPictures && !saveStreams)
                         pictures = false;
                 }
                 else

@@ -415,7 +415,9 @@ namespace FastReport.Export.Image
                 string targetFileName;
                 if (saveStreams)
                 {
-                    targetFileName = Path.ChangeExtension(documentTitle + suffix, imageExtensionFormat);
+                    targetFileName = string.IsNullOrEmpty(suffix)
+                        ? Path.ChangeExtension(documentTitle, imageExtensionFormat) 
+                        : Path.ChangeExtension(documentTitle + $" ({suffix})", imageExtensionFormat);
                     stream = new MemoryStream();
                 }
                 else
@@ -511,8 +513,8 @@ namespace FastReport.Export.Image
             {
                 imageExtensionFormat = ImageFormat.ToString();
                 separateFiles = true;
-                documentTitle = (!String.IsNullOrEmpty(Report.ReportInfo.Name) ?
-                    Report.ReportInfo.Name : "");
+                documentTitle = !String.IsNullOrEmpty(Report.ReportInfo.Name) ?
+                    Report.ReportInfo.Name : Path.GetFileNameWithoutExtension(Report.FileName);
             }
             if (!SeparateFiles && !IsMultiFrameTiff)
             {

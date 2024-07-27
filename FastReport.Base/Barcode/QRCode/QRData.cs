@@ -32,30 +32,50 @@ namespace FastReport.Barcode.QRCode
 
         public static QRData Parse(string data)
         {
-            if (data.StartsWith("BEGIN:VCARD"))
-                return new QRvCard(data);
-            else if (data.StartsWith("MATMSG:"))
-                return new QREmailMessage(data);
-            else if (data.StartsWith("geo:"))
-                return new QRGeo(data);
-            else if (data.StartsWith("SMSTO:"))
-                return new QRSMS(data);
-            else if (data.StartsWith("tel:"))
-                return new QRCall(data);
-            else if (data.StartsWith("BEGIN:VEVENT"))
-                return new QREvent(data);
-            else if (data.StartsWith("WIFI:"))
-                return new QRWifi(data);
-            else if (Uri.IsWellFormedUriString(data, UriKind.Absolute))
-                return new QRURI(data);
-            else if (Regex.IsMatch(data, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
-                return new QREmailAddress(data);
-            else if (data.StartsWith("SPC"))
-                return new QRSwiss(data);
-            else if (data.StartsWith("ST"))
-                return new QRSberBank(data);
-            else
-                return new QRText(data);
+            if(!string.IsNullOrEmpty(data))
+            {
+                if (QRvCard.TryParse(data, out QRData qrVCard))  // check for prefix "BEGIN:VCARD"
+                    return qrVCard;
+
+                else if (QREmailMessage.TryParse(data, out QRData qrEmailMessage)) // check for prefix "MATMSG:"
+                    return qrEmailMessage;
+
+                else if (QRGeo.TryParse(data, out QRData qrGeo)) // check for prefix "geo:"
+                    return qrGeo;
+
+                else if (QRSMS.TryParse(data, out QRData qrSMS)) // check for prefix "SMSTO:"
+                    return qrSMS;
+
+                else if (QRCall.TryParse(data, out QRData qrCall)) // check for prefix "tel:"
+                    return qrCall;
+
+                else if (QREvent.TryParse(data, out QRData qrEvent)) // check for prefix "BEGIN:VEVENT"
+                    return qrEvent;
+
+                else if (QRWifi.TryParse(data, out QRData qrWifi)) // check for prefix "WIFI:"
+                    return qrWifi;
+
+                else if (QREmailAddress.TryParse(data, out QRData qrEmailAddress)) // check by Regex
+                    return qrEmailAddress;
+
+                else if (QRSwiss.TryParse(data, out QRData qrSwiss)) // check for prefix "SPC"
+                    return qrSwiss;
+
+                else if (QRSberBank.TryParse(data, out QRData qrSber)) // check for prefix "ST"
+                    return qrSber;
+
+                else if (QRURI.TryParse(data, out QRData qrURI)) // check by Uri: Uri.IsWellFormedUriString(data, UriKind.Absolute)
+                    return qrURI;
+            }
+
+            // if we cant properly recognize the QR-code format, then we try to return QR with plain text either empty QR
+            QRText.TryParse(data, out QRData qrText);
+                return qrText;
+
+        }
+        protected static bool TryParse(string data, out QRData qrData)
+        {
+            throw new NotImplementedException("You should override this method in inheritance classes");
         }
     }
 
@@ -63,6 +83,18 @@ namespace FastReport.Barcode.QRCode
     {
         public QRText() : base() { }
         public QRText(string data) : base(data) { }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (!string.IsNullOrEmpty(data))
+            {
+                qrData = new QRText(data);
+                return true;
+            }
+
+            qrData = new QRText("");
+            return false;
+        }
     }
 
     class QRvCard : QRData
@@ -181,18 +213,64 @@ namespace FastReport.Barcode.QRCode
                 }
             }
         }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("BEGIN:VCARD"))
+            {
+                try
+                {
+                    qrData = new QRvCard(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+                }
+            }
+            qrData = null;
+            return false;
+        }
     }
 
     class QRURI : QRData
     {
         public QRURI() : base() { }
         public QRURI(string data) : base(data) { }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (Uri.IsWellFormedUriString(data, UriKind.Absolute))
+            {
+                qrData = new QRURI(data);
+                return true;
+            }
+            qrData = null;
+            return false;
+        }
     }
 
     class QREmailAddress : QRData
     {
         public QREmailAddress() : base() { }
         public QREmailAddress(string data) : base(data) { }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (Regex.IsMatch(data, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+            {
+                try
+                {
+                    qrData = new QREmailAddress(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            qrData = null;
+            return false;
+        }
     }
 
     class QREmailMessage : QRData
@@ -217,6 +295,23 @@ namespace FastReport.Barcode.QRCode
             msg_to = s[1];
             msg_sub = s[2];
             msg_body = s[3].Remove(s[3].Length - 2, 2);
+        }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("MATMSG:"))
+            {
+                try
+                {
+                    qrData = new QREmailMessage(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+                }
+            }
+            qrData = null;
+            return false;
         }
     }
 
@@ -533,7 +628,26 @@ namespace FastReport.Barcode.QRCode
 
             return data;
         }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("ST"))
+            {
+                try
+                {
+                    qrData = new QRSberBank(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            qrData = null;
+            return false;
+        }
     }
+
     class QRGeo : QRData
     {
         public string latitude;
@@ -556,6 +670,24 @@ namespace FastReport.Barcode.QRCode
             latitude = s[1];
             longitude = s[2];
             meters = s[3];
+        }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("geo:"))
+            {
+                try
+                {
+                    qrData = new QRGeo(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+            qrData = null;
+            return false;
         }
     }
 
@@ -580,6 +712,23 @@ namespace FastReport.Barcode.QRCode
             sms_to = s[1];
             sms_text = s[2];
         }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("SMSTO:"))
+            {
+                try
+                {
+                    qrData = new QRSMS(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+                }
+            }
+            qrData = null;
+            return false;
+        }
     }
 
     class QRCall : QRData
@@ -598,6 +747,24 @@ namespace FastReport.Barcode.QRCode
         public override void Unpack(string data)
         {
             tel = data.Remove(0, 4);
+        }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("tel:"))
+            {
+                try
+                {
+                    qrData = new QRCall(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            qrData = null;
+            return false;
         }
     }
 
@@ -667,6 +834,24 @@ namespace FastReport.Barcode.QRCode
                                  int.Parse(To.Substring(11, 2)),
                                  int.Parse(To.Substring(13, 2)));
         }
+
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("BEGIN:VEVENT"))
+            {
+                try
+                {
+                    qrData = new QREvent(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            qrData = null;
+            return false;
+        }
     }
 
     class QRWifi : QRData
@@ -696,8 +881,25 @@ namespace FastReport.Barcode.QRCode
             password = s[3];
             hidden = s[4] == "true;" ? true : false;
         }
-    }
 
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("WIFI:"))
+            {
+                try
+                {
+                    qrData = new QRWifi(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            qrData = null;
+            return false;
+        }
+    }
 
     class QRSwiss : QRData
     {
@@ -1007,5 +1209,22 @@ namespace FastReport.Barcode.QRCode
             return SwissQrCodePayload;
         }
 
+        public static new bool TryParse(string data, out QRData qrData)
+        {
+            if (data.StartsWith("SPC"))
+            {
+                try
+                {
+                    qrData = new QRSwiss(data);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            qrData = null;
+            return false;
+        }
     }
 }

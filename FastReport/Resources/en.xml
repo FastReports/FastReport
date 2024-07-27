@@ -202,7 +202,9 @@
     <Matrix Text="Matrix"/>
     <MatrixObject Text="Matrix"/>
     <AdvMatrixObject Text="Advanced Matrix"/>
-    <SubreportObject Text="Subreport"/>
+    <SubreportObject Text="Subreport">
+      <FromAnotherReport Text="Load a page from another report..."/>
+    </SubreportObject>
     <ContainerObject Text="Container"/>
     <BarcodeObject Text="Barcode">
       <TwoD Text="Two-dimensional"/>
@@ -793,7 +795,9 @@
       <ReportItems Text="Report items:"/>
       <Games Text="Games:"/>
     </AddNewItem>
-	  <OpenPage Text="Choose page"/>
+    <OpenPage Text="Choose page">
+      <MergeDictionaries Text="Merge dictionaries"/>
+    </OpenPage>
     <AdvancedConnectionProperties Text="Advanced Properties"/>
     <AskPassword Text="Password">
       <Password Text="This report is password protected.&#13;&#10;&#13;&#10;Please enter the password:"/>
@@ -1190,6 +1194,7 @@
       <LoginPrompt Text="Login prompt"/>
       <Test Text="Test connection"/>
       <TestSuccesful Text="Test connection succeeded."/>
+      <ConnectionFailed Text="Connection to DB Failed."/>
     </Connection>
     <CustomLabel Text="Custom Label">
       <Name Text="Name:"/>
@@ -2407,6 +2412,9 @@
       <OnlyUrlException Text="There must be a link in the connection!"/>
       <ErrorUrlException Text="The specified path does not contain the file you are looking for!"/>
     </Common>
+	<Linter>
+	  <DBProviderNotFound Text="The LINTER data provider could not be found. It may not be installed."/>
+	</Linter>
     <Excel>
       <FieldNames Text="Column names in the first row"/>
     </Excel>
@@ -3147,11 +3155,13 @@
       <ClientInfoDialog Text="Authorization in S3"/>
       <AccessKeyId Text="Access key id:"/>
       <SecretAccessKey Text="Secret access key:"/>
-      <Region Text="Region:"/>
+      <Region Text="Bucket fetch region:"/>
       <Host Text="Host:"/>
       <Bucket Text="Bucket:"/>
       <FileName Text="File name:"/>
       <MissingBuckets Text="Missing buckets"/>
+      <UploadRegion Text="Upload region:"/>
+      <RequestStyle Text="Request style:"/>
     </S3>
   </Cloud>
   <Messaging>

@@ -222,10 +222,10 @@ namespace FastReport.Format
         public PercentFormat()
         {
             UseLocale = true;
-            DecimalDigits = 2;
-            DecimalSeparator = ".";
-            GroupSeparator = ",";
-            PercentSymbol = "%";
+            DecimalDigits = CultureInfo.CurrentCulture.NumberFormat.PercentDecimalDigits;
+            DecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.PercentDecimalSeparator;
+            GroupSeparator = CultureInfo.CurrentCulture.NumberFormat.PercentGroupSeparator;
+            PercentSymbol = CultureInfo.CurrentCulture.NumberFormat.PercentSymbol;
         }
     }
 }

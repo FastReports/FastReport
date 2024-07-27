@@ -1688,6 +1688,30 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Sets the parameter's expression.
+        /// </summary>
+        /// <param name="complexName">The name of the parameter.</param>
+        /// <param name="expression">Epression to set. It must be a valid FR expression.</param>
+        /// <remarks>
+        /// This method is used to create an expression for a parameter.
+        /// If the specified parameter does not exist, it will be created with the specified expression.
+        /// <br>
+        /// <b>Expression must be a valid FR expression to avoid exceptions.</b>
+        /// </br>
+        /// </remarks>
+        public void SetParameterExpression(string complexName, string expression)
+        {
+            Parameter par = GetParameter(complexName) ?? DataHelper.CreateParameter(Dictionary, complexName);
+
+            if (par != null)
+            {
+                par.Expression = expression;
+            }
+
+            isParameterChanged = true;
+        }
+
+        /// <summary>
         /// Gets a value of the system variable with specified name.
         /// </summary>
         /// <param name="complexName">Name of a variable.</param>

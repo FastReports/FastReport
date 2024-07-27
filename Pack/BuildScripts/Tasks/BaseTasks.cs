@@ -1,5 +1,4 @@
 ﻿using static CakeScript.Startup;
-using static CakeScript.CakeAPI;
 
 namespace CakeScript;
 
@@ -16,7 +15,7 @@ partial class Program
     readonly string solutionFilename = Argument("solution-filename", "FastReport.Net.sln");
     readonly string version = Argument("vers", "1.0.0.0");
     string outdir = Argument("out-dir", "");
-    readonly string pluginsRelativePath = Path.Combine("Extras", "Core", "FastReport.Data");
+    static readonly string pluginsRelativePath = Path.Combine("Extras", "Core", "FastReport.Data");
     readonly bool NuGetSpecialDirectorySort = Argument("nugetSpecialDirectorySort", false);
 
     readonly string[] Plugins_Core = new[]

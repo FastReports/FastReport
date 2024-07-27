@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using FastReport.Utils;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace FastReport.Export.Html
 {
@@ -20,8 +21,17 @@ namespace FastReport.Export.Html
                 FFontDesc.Append("text-decoration:line-through;");
             FFontDesc.Append("font-family:").Append(font.Name).Append(";");
             FFontDesc.Append("font-size:").Append(Px(font.Size * 96 / 72));
+
             if (LineHeight > 0)
+            {
                 FFontDesc.Append("line-height:").Append(Px(LineHeight)).Append(";");
+            }
+            else
+            {
+                float lineSpace = font.FontFamily.GetLineSpacing(font.Style);
+                float height = font.FontFamily.GetEmHeight(font.Style);
+                FFontDesc.Append($"line-height: {Math.Round(lineSpace / height, 2).ToString(CultureInfo.InvariantCulture)};");
+            }
         }
 
         private void HTMLPadding(FastString PaddingDesc, Padding padding, float ParagraphOffset)
@@ -228,6 +238,11 @@ namespace FastReport.Export.Html
         private string HTMLGetStylesFooter()
         {
             return "--></style>";
+        }
+
+        private string HTMLGetTagsStub()
+        {
+            return "p { margin-block-start: initial; margin-block-end: initial; }";
         }
 
         private string HTMLGetAncor(string ancorName)

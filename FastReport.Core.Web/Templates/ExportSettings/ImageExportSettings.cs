@@ -8,8 +8,8 @@ using FastReport.Web.Application.Localizations;
 
 namespace FastReport.Web
 {
-     partial class WebReport
-     {
+    partial class WebReport
+    {
 
         internal string template_ImageExportSettings()
         {
@@ -50,8 +50,19 @@ namespace FastReport.Web
                     <p style=""display:block;margin-left:0.1rem;margin:0;padding:0;"" name =""ImageEnableOrNot""><input value=""90"" class=""fr-webreport-popup-content-export-parameters-input"" type=""number"" min=""1"" max=""100"" step=""1"" id=""ImageResolutionX"">X</p>
                     <p style=""display:none;margin-left:0.1rem;margin:0;padding:0;"" name =""ImageEnableOrNot""><input  value=""90"" class=""fr-webreport-popup-content-export-parameters-input"" type=""number"" min=""1"" max=""100"" step=""1"" id=""ImageResolutionY"">Y</p>
                     <div style=""display:flex;""name =""ImageEnableOrNot"" class=""fr-webreport-popup-content-export-parameters-slider"">
-                    <input type=""range"" min=""1"" max=""100"" value=""90"" name = ""SliderRange"" onchange = ""Slider()"">
-                    <p>{localizationImage.JpegQuality} <span name=""SliderValue"">90</span></p>
+                    <p>{localizationImage.JpegQuality}</p>
+                    <select class=""custom-select"" onchange=""JpegQualityFunc(this)"" id=""formatSelect"">
+                        <option value=""10"">10</option>
+                        <option value=""20"">20</option>
+                        <option value=""30"">30</option>
+                        <option value=""40"">40</option>
+                        <option value=""50"">50</option>
+                        <option value=""60"">60</option>
+                        <option value=""70"">70</option>
+                        <option value=""80"">80</option>
+                        <option value=""90"" selected>90</option>
+                        <option value=""100"">100</option>
+                    </select>
          </div>   
     </div>
     <div class=""fr-webreport-popup-content-export-parameters-col"">
@@ -84,6 +95,12 @@ function Slider() {{
     }}
     SliderOutputImage = SliderRange[0].value;
 }}
+
+function JpegQualityFunc(select){{
+    const JpegQuality = select.querySelector(`option[value='${{select.value}}']`)
+    SliderOutputImage = JpegQuality.value
+}}
+
 //IMAGE//
 var ImageButtons;
 var ImageResolutionX = '&ResolutionX=90';
@@ -151,12 +168,12 @@ function IMAGEExport() {{
     else {{ ImageOnSeparateFilesClick = false; }};
 
     ImageButtons = ('&MultiFrameTiff=' + ImageOnMultiFrameTiffClick + '&MonochromeTiff=' + ImageOnMonochromeTiffClick + '&SeparateFiles=' + ImageOnSeparateFilesClick);
-    window.location.href = ImageExport.href.replace('image', ImageOnImageFormat.replace('&ImageFormat=', '').toLowerCase()) + ImageOnImageFormat + ImageButtons + PageSelector + ImageQuality + ImageResolutionX + ImageResolutionY;
+    window.location.href = ImageExport.href + ImageOnImageFormat + ImageButtons + PageSelector + ImageQuality + ImageResolutionX + ImageResolutionY;
 }}
-</script>"; 
+</script>";
 
         }
-       
+
     }
 
 }

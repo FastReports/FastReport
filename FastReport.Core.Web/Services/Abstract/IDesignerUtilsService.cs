@@ -41,6 +41,26 @@ namespace FastReport.Web.Services
         /// <returns>String in JSON format with configuration for Online Designer</returns>
         string GetConfig(WebReport webReport);
 
+        /// <summary>
+        /// Retrieves a designer object preview.
+        /// </summary>
+        /// <param name="webReport">The WebReport object.</param>
+        /// <param name="reportObj">The report object.</param>
+        /// <returns>Returns a string representing the designer object preview.</returns>
         string DesignerObjectPreview(WebReport webReport, string reportObj);
+
+        /// <summary>
+        /// Gets class details in JSON format.
+        /// </summary>
+        /// <param name="className">The name of the class.</param>
+        /// <returns>Returns class details in JSON format.</returns>
+        string GetClassDetailsJson(string className);
+
+        /// <summary>
+        /// Gets namespaces information in JSON format.
+        /// </summary>
+        /// <param name="namespaces">The collection of namespaces.</param>
+        /// <returns>Returns namespaces information in JSON format.</returns>
+        string GetNamespacesInfoJson(IReadOnlyCollection<string> namespaces);
     }
 }

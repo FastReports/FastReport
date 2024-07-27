@@ -745,7 +745,7 @@ namespace FastReport
                 {
                     obj.Height = Height - obj.Top;
                     // reserve place for border
-                    if (IsLastRow && obj.Border.Lines.HasFlag(BorderLines.Bottom))
+                    if ((!(Parent is GroupHeaderBand parent) || (parent.isLastRow && parent.DataBand == this)) && Child == null && IsLastRow && obj.Border.Lines.HasFlag(BorderLines.Bottom))
                         obj.Height -= Border.BottomLine.Width;
                 }
             }

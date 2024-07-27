@@ -441,10 +441,9 @@ namespace FastReport.Engine
 
         internal bool Run(bool runDialogs, bool append, bool resetDataState, ReportPage page)
         {
-            RunPhase1(resetDataState);
-
             try
             {
+                RunPhase1(resetDataState);
                 if (runDialogs && !RunDialogs())
                     return false;
                 RunPhase2(append, page);

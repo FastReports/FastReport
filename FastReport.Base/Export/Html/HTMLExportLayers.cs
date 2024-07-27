@@ -20,8 +20,10 @@ namespace FastReport.Export.Html
             if (prevStyleListIndex < cssStyles.Count)
             {
                 styles.AppendLine(HTMLGetStylesHeader());
+                styles.Append(HTMLGetTagsStub());
                 for (int i = prevStyleListIndex; i < cssStyles.Count; i++)
                     styles.Append(HTMLGetStyleHeader(i, PageNumber)).Append(cssStyles[i]).AppendLine("}");
+
                 styles.AppendLine(HTMLGetStylesFooter());
             }
         }

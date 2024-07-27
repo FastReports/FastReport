@@ -1,8 +1,5 @@
-﻿#region USING
-using Path = System.IO.Path;
-using static CakeScript.CakeAPI;
+﻿using Path = System.IO.Path;
 using static CakeScript.Startup;
-#endregion
 
 
 namespace CakeScript;
