@@ -226,10 +226,10 @@ namespace FastReport.Format
         public CurrencyFormat()
         {
             UseLocale = true;
-            DecimalDigits = 2;
-            DecimalSeparator = ".";
-            GroupSeparator = ",";
-            CurrencySymbol = "$";
+            DecimalDigits = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalDigits;
+            DecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            GroupSeparator = CultureInfo.CurrentCulture.NumberFormat.CurrencyGroupSeparator;
+            CurrencySymbol = CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
         }
     }
 }

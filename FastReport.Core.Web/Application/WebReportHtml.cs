@@ -1,13 +1,8 @@
 ﻿using FastReport.Export.Html;
-using FastReport.Preview;
-using FastReport.Table;
-using System;
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Collections.Generic;
-using System.Linq;
-using System.Globalization;
+
 #if !OPENSOURCE
 using FastReport.AdvMatrix;
 #endif
@@ -16,55 +11,27 @@ namespace FastReport.Web
 {
     public partial class WebReport
     {
-
         #region Internal Methods
 
-        internal void ExportReport(Stream stream, string exportFormat, IEnumerable<KeyValuePair<string, string>> exportParameters)
+        internal void ExportReport(Stream stream, string exportFormat,
+            IEnumerable<KeyValuePair<string, string>> exportParameters)
         {
             var exportInfo = ExportsHelper.GetInfoFromExt(exportFormat);
             ExportReport(stream, exportInfo, exportParameters);
         }
 
-        internal void ExportReport(Stream stream, ExportsHelper.ExportInfo exportInfo, IEnumerable<KeyValuePair<string, string>> exportParameters)
+        internal void ExportReport(Stream stream, ExportsHelper.ExportInfo exportInfo,
+            IEnumerable<KeyValuePair<string, string>> exportParameters)
         {
-            using (var export = exportInfo.CreateExport())
-            {
-                if (exportInfo.HaveSettings && exportParameters.Any())
-                {
-                    var availableProperties = exportInfo.Properties;
+            using var export = ReportExporter.CreateExport(exportInfo, exportParameters);
 
-                    if (availableProperties != null)
-                        foreach (var exportParameter in exportParameters)
-                        {
-                            var existProp = availableProperties
-                                .Where(prop => prop.Name == exportParameter.Key)
-                                .FirstOrDefault();
-                            if (existProp != null)
-                            {
-                                string propValue = exportParameter.Value;
-                                object propValueConverted;
-                                if (existProp.PropertyType.IsEnum)
-                                    propValueConverted = Enum.Parse(existProp.PropertyType, propValue);
-                                else
-                                    propValueConverted = Convert.ChangeType(propValue, existProp.PropertyType, CultureInfo.InvariantCulture);
+            var strategy = ExportStrategyFactory.GetExportStrategy(exportInfo, export);
 
-                                System.Diagnostics.Debug.WriteLine($"Export setting: {existProp}: {propValueConverted}");
-                                existProp.SetMethod.Invoke(export, new[] { propValueConverted });
-                            }
-                        }
-                }
+            var exporter = new ReportExporter(strategy);
+            exporter.ExportReport(stream, Report, export);
 
-                if (exportInfo.Export == Exports.Prepared)
-                    Report.SavePrepared(stream);
-                else if (export != null)
-                    export.Export(Report, stream);
-                else
-                    throw new UnsupportedExportException();
-
-                stream.Position = 0;
-            }
+            stream.Position = 0;
         }
-
 
         #endregion
 
@@ -115,7 +82,7 @@ namespace FastReport.Web
                         for (int j = 0; j < allObjects.Count; j++)
                         {
                             ReportComponentBase c = allObjects[j] as ReportComponentBase;
-                            if (c.Bookmark == bookmark)
+                            if (c?.Bookmark == bookmark)
                             {
                                 pageN = i;
                                 break;

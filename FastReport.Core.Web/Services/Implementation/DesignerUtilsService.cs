@@ -1,23 +1,28 @@
-﻿using FastReport.Utils;
-using FastReport.Utils.Json;
-using FastReport.Web.Infrastructure;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.Net;
+using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Xml.Linq;
+using System.Text.Json;
+using FastReport.Export.Html;
+using FastReport.Utils;
+using FastReport.Utils.Json;
+using FastReport.Web.Infrastructure;
+using FastReport.Web.Services.Helpers;
 
 namespace FastReport.Web.Services
 {
     internal sealed class DesignerUtilsService : IDesignerUtilsService
     {
         private const string IsCustomSqlAllowedKey = "custom-sql-allowed";
+        private const string EnableIntellisenseKey = "intellisense-enabled";
+
+        private static readonly JsonSerializerOptions JsonSerializerOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         public string GetMSChartTemplateXML(string templateName)
         {
@@ -42,14 +47,12 @@ namespace FastReport.Web.Services
                 RegisteredObjects.Functions.EnumItems(list);
                 FunctionInfo rootFunctions = null;
 
-                foreach (FunctionInfo item in list)
-                {
+                foreach (var item in list)
                     if (item.Name == "Functions")
                     {
                         rootFunctions = item;
                         break;
                     }
-                }
 
                 xml.Root.Name = "ReportFunctions";
                 if (rootFunctions != null)
@@ -59,7 +62,7 @@ namespace FastReport.Web.Services
                 {
                     xml.Save(stream);
                     stream.Position = 0;
-                    byte[] buff = new byte[stream.Length];
+                    var buff = new byte[stream.Length];
                     stream.Read(buff, 0, buff.Length);
 
                     return Encoding.UTF8.GetString(buff);
@@ -69,10 +72,11 @@ namespace FastReport.Web.Services
 
         public string GetPropertiesJSON(string componentName)
         {
-            if (ComponentInformationCache.ComponentPropertiesCache.TryGetValue(componentName, out string componentPropertiesJson))
+            if (ComponentInformationCache.ComponentPropertiesCache.TryGetValue(componentName,
+                    out var componentPropertiesJson))
                 return componentPropertiesJson;
 
-            var prefixes = new string[]
+            var prefixes = new[]
             {
                 "", "SVG.", "MSChart.", "Dialog.", "AdvMatrix.", "Table.", "Barcode.", "Map.", "CrossView.", "Matrix.",
                 "Gauge.Simple.", "Gauge.Radial.", "Gauge.Linear.", "Gauge.Simple.Progress."
@@ -120,7 +124,7 @@ namespace FastReport.Web.Services
 
             componentPropertiesJson = jsonObject.ToString();
 
-            ComponentInformationCache.ComponentPropertiesCache.Add(componentName, componentPropertiesJson);
+            ComponentInformationCache.ComponentPropertiesCache.TryAdd(componentName, componentPropertiesJson);
 
             return componentPropertiesJson;
         }
@@ -133,7 +137,7 @@ namespace FastReport.Web.Services
                 var obj = report.Xml(reportObj);
                 //obj.SetReport(report);
 
-                using (var html = new Export.Html.HTMLExport(true))
+                using (var html = new HTMLExport(true))
                 {
                     html.StylePrefix = obj.Name.Trim();
                     html.SetReport(report);
@@ -165,15 +169,29 @@ namespace FastReport.Web.Services
             }
 
             config[IsCustomSqlAllowedKey] = FastReportGlobal.AllowCustomSqlQueries;
+            config[EnableIntellisenseKey] = FastReportGlobal.EnableIntellisense;
 
             return config.ToString();
         }
 
+        public string GetNamespacesInfoJson(IReadOnlyCollection<string> namespaces)
+        {
+            var result = IntelliSenseHelper.GetNamespacesInfo(namespaces);
+
+            return JsonSerializer.Serialize(result, JsonSerializerOptions);
+        }
+
+        public string GetClassDetailsJson(string className)
+        {
+            var classInfo = IntelliSenseHelper.GetClassDetails(className);
+
+            return JsonSerializer.Serialize(classInfo, JsonSerializerOptions);
+        }
     }
 
-    static class ComponentInformationCache
+    internal static class ComponentInformationCache
     {
-        internal static readonly Dictionary<string, string> ComponentPropertiesCache = new Dictionary<string, string>();
+        internal static readonly Dictionary<string, string> ComponentPropertiesCache = new();
         internal static readonly Assembly Assembly = typeof(Report).Assembly;
     }
 }

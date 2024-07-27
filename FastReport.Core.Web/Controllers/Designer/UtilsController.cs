@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using FastReport.Web.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
+using System.Collections.Generic;
 
 namespace FastReport.Web.Controllers
 {
@@ -87,7 +88,30 @@ namespace FastReport.Web.Controllers
 
                 return Results.BadRequest(content); 
             }
+        }
 
+        [HttpGet("/designer.getClassDetails")]
+        public static IResult GetClassDetails(string className, IDesignerUtilsService designerUtilsService)
+        {
+            if (!FastReportGlobal.EnableIntellisense)
+                return Results.BadRequest();
+
+            var result = designerUtilsService.GetClassDetailsJson(className);
+
+            return result is null ? 
+                Results.NotFound() : 
+                Results.Content(result, "application/json");
+        }
+
+        [HttpPost("/designer.getNamespacesInfo")]
+        public static IResult GetNamespacesInfo([FromBody] IReadOnlyCollection<string> namespaces, IDesignerUtilsService designerUtilsService)
+        {
+            if (!FastReportGlobal.EnableIntellisense)
+                return Results.BadRequest();
+
+            var result = designerUtilsService.GetNamespacesInfoJson(namespaces);
+
+            return Results.Content(result, "application/json");
         }
     }
 }

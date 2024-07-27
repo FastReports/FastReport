@@ -1170,6 +1170,8 @@ namespace FastReport
         {
 #if true
             HtmlTextRenderer.RendererContext context;
+            context.angle = angle;
+            context.widthRatio = FontWidthRatio;
             context.text = text;
             context.g = g;
             context.font = font.FontFamily;

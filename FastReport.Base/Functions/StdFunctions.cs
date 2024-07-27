@@ -1222,6 +1222,25 @@ namespace FastReport.Functions
             }
             return value == null || value == DBNull.Value;
         }
+
+        /// <summary>
+        /// Calculates <b>expression</b> value and returns it if not null, either returns <b>defaultValue</b>
+        /// </summary>
+        /// <param name="expression">Expression to be tested, it will be returns if calculated value of this expression is not null</param>
+        /// <param name="defaultValue">Returns if expression is null</param>
+        /// <returns><b>Expression</b> value if it is not null, or <b>defaultValue</b></returns>
+        public static object IfNull(object expression, object defaultValue)
+        {
+            if (expression != null)
+            {
+                return expression;
+            }
+            else
+            {
+                return defaultValue;
+            }
+        }
+
         #endregion
 
         internal static void Register()
@@ -1392,6 +1411,7 @@ namespace FastReport.Functions
             RegisteredObjects.InternalAddFunction(misc.GetMethod("IIf"), "ProgramFlow");
             RegisteredObjects.InternalAddFunction(misc.GetMethod("Switch"), "ProgramFlow");
             RegisteredObjects.InternalAddFunction(misc.GetMethod("IsNull"), "ProgramFlow");
+            RegisteredObjects.InternalAddFunction(misc.GetMethod("IfNull"), "ProgramFlow");
             #endregion
 
         }

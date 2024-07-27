@@ -11,18 +11,16 @@ namespace FastReport.Web.Services
     internal sealed class ExportService : IExportsService
     {
 
-        public byte[] ExportReport(WebReport webReport, KeyValuePair<string, string>[] exportParams, string exportFormat, out string filename) 
+        public byte[] ExportReport(WebReport webReport, KeyValuePair<string, string>[] exportParams, string exportFormat, out string filename)
         {
-            using (MemoryStream exportStream = new MemoryStream())
-            {
-                webReport.ExportReport(exportStream, exportFormat, exportParams);
+            using var exportStream = new MemoryStream();
+            webReport.ExportReport(exportStream, exportFormat, exportParams);
 
-                filename = webReport.GetCurrentTabName();
-                if (filename.IsNullOrWhiteSpace())
-                    filename = "report";
+            filename = webReport.GetCurrentTabName();
+            if (filename.IsNullOrWhiteSpace())
+                filename = "report";
 
-                return exportStream.ToArray();
-            }
+            return exportStream.ToArray();
         }
 
 #if !OPENSOURCE

@@ -78,13 +78,16 @@ namespace FastReport.Web
                     return false;
             }
 
+            foreach (Regex pattern in Config.ScriptSecurityProps.RegexStopList)
+            {
+                if (pattern.IsMatch(reportScript))
+                    return false;
+            }
+
             foreach (string pattern in Config.ScriptSecurityProps.StopList)
             {
                 if (reportScript.IndexOf(pattern) != -1)
                     return false;
-
-                //regex = new Regex(pattern);
-                //if (regex.IsMatch(reportScript))
             }
 
             return true;

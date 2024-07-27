@@ -174,9 +174,9 @@ namespace FastReport.Format
         public NumberFormat()
         {
             UseLocale = true;
-            DecimalDigits = 2;
-            DecimalSeparator = ".";
-            GroupSeparator = ",";
+            DecimalDigits = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalDigits;
+            DecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            GroupSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator;
         }
     }
 }

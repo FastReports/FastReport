@@ -268,7 +268,12 @@ namespace FastReport.Export
 
         internal static string HTMLColor(Color color)
         {
-            return ColorTranslator.ToHtml(color);
+            if (color.A < 255)
+            {
+                string alphaValue = (color.A / 255.0).ToString("0.00", INVARIANT_CULTURE);
+                return $"rgba({color.R}, {color.G}, {color.B}, {alphaValue})";
+            }
+            return $"rgb({color.R}, {color.G}, {color.B})";
         }
 
         internal static string HTMLColorCode(Color color)
@@ -310,6 +315,9 @@ namespace FastReport.Export
 
         internal static FastString HtmlString(string text, TextRenderType textRenderType, CRLF crlf, bool excel2007, string fontSize = "13px;")
         {
+            if (crlf == CRLF.html)
+                text = text.Replace("\r\n", "\n").Replace("\r", "\n");
+
             FastString Result = new FastString(text.Length);
             int len = text.Length;
             int lineBreakCount = 0;
@@ -348,7 +356,7 @@ namespace FastReport.Export
                 }
                 else if (text[i] == '<' && textRenderType == TextRenderType.HtmlTags && crlf == CRLF.odt)
                     i += text.IndexOf('>', i) - i;
-                else if (i < text.Length - 1 && (text[i] == '\r' && text[i + 1] == '\n'))
+                else if ((i < text.Length - 1 && text[i] == '\r' && text[i + 1] == '\n') || (crlf == CRLF.html && text[i] == '\n'))
                 {
                     if (crlf == CRLF.xml)
                         Result.Append("&#10;");
@@ -356,7 +364,7 @@ namespace FastReport.Export
                         Result.Append("<text:line-break />");
                     else
                     {
-                        if ((i == 0 && text[i] == '\r' && text[i + 1] == '\n'))
+                        if (i == 0 && text[i] == '\n')
                             Result.Append($"<p style=\"margin-top:{fontSize}margin-bottom:0px\"></p>");
 
                         if (lineBreakCount == 0)
@@ -365,7 +373,9 @@ namespace FastReport.Export
                             Result.Append($"<p style=\"margin-top:0px;height:{fontSize}margin-bottom:0px\"></p>");
                         lineBreakCount++;
                     }
-                    i++;
+
+                    if (crlf != CRLF.html)
+                        i++;
                 }
                 else
                 {

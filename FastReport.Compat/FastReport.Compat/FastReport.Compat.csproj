@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
@@ -45,5 +46,12 @@
       <Link>DotNetClasses\UITypeEditor.cs</Link>
     </None>
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <Visible>false</Visible>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 </Project>

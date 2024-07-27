@@ -64,15 +64,9 @@ namespace FastReport.Web
                 new ExportInfo("json", Exports.Json, typeof(JsonExport), false),
                 new ExportInfo("dxf", Exports.Dxf, typeof(DxfExport), false),
                 new ExportInfo("email", Exports.Email, typeof(EmailExport), true),
-
+                new ExportInfo("image", Exports.Image, typeof(ImageExport), true),
 #endif
                 new ExportInfo("html", Exports.HTML, typeof(HTMLExport), true),
-                //new ExportInfo("png", Exports.Image, typeof(ImageExport), true),
-                //new ExportInfo("jpeg", Exports.Image, typeof(ImageExport), true),
-                //new ExportInfo("gif", Exports.Image, typeof(ImageExport), true),
-                //new ExportInfo("tiff", Exports.Image, typeof(ImageExport), true),
-                //new ExportInfo("bmp", Exports.Image, typeof(ImageExport), true),
-                //new ExportInfo("metafile", Exports.Image, typeof(ImageExport), true),
                 new ExportInfo("fpx", Exports.Prepared, null, false),
             };
         }

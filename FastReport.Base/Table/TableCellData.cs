@@ -7,7 +7,7 @@ namespace FastReport.Table
     /// <summary>
     /// Represents data of the table cell.
     /// </summary>
-    public class TableCellData : IDisposable
+    public partial class TableCellData : IDisposable
     {
         #region Fields
 
@@ -233,6 +233,12 @@ namespace FastReport.Table
 
         #endregion // Constructors
 
+        #region Internal Methods
+
+        internal partial bool IsTranslatedRichObject(ReportComponentBase obj);
+
+        #endregion Internal Methods
+
         #region Public Methods
 
         /// <summary>
@@ -371,6 +377,10 @@ namespace FastReport.Table
                     float height = obj.Height;
                     if (obj.CanGrow || obj.CanShrink)
                     {
+                        // 20240419: Exclude translated RichObject from calculation
+                        if (IsTranslatedRichObject(obj))
+                            continue;
+
                         float height1 = obj.CalcHeight();
                         if ((obj.CanGrow && height1 > height) || (obj.CanShrink && height1 < height))
                             height = height1;
@@ -515,6 +525,6 @@ namespace FastReport.Table
             }
         }
 
-        #endregion // Public Methods
+#endregion // Public Methods
     }
 }

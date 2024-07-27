@@ -10,12 +10,14 @@ namespace FastReport.Utils
     {
         #region Definitions
         /// <summary>
-        /// Context of HTML rendering
-        /// It is better to put this structure instead of class' private fields. 
-        /// For future optimization. Then we can avoid constructor with dozen arguments
+        /// Context for HTML rendering. <br/>
+        /// Using this structure instead of the class's private fields is recommended. <br/>
+        /// This allows for future optimizations and helps avoid constructors with numerous arguments.
         /// </summary>
         public struct RendererContext
         {
+            internal int angle;
+            internal float widthRatio;
             internal string text;
             internal IGraphics g;
             internal FontFamily font;
@@ -47,6 +49,8 @@ namespace FastReport.Utils
 
         #region Private Fields
 
+        private int angle;
+        private float widthRatio;
         private const char SOFT_ENTER = '\u2028';
         private List<RectangleFColor> backgrounds;
         private InlineImageCache cache;
@@ -134,6 +138,22 @@ namespace FastReport.Utils
             get { return (format.FormatFlags & StringFormatFlags.NoWrap) == 0; }
         }
 
+        /// <summary>
+        /// Gets the angle of rotation.
+        /// </summary>
+        public int Angle
+        {
+            get { return angle; }
+        }
+
+        /// <summary>
+        /// Gets the width ratio of the object.
+        /// </summary>
+        public float WidthRatio
+        {
+            get { return widthRatio; }
+        }
+
         #endregion Public Properties
 
         ////TODO this is a problem with dotnet, because typographic width
@@ -141,11 +161,13 @@ namespace FastReport.Utils
 
         #region Public Constructors
         /// <summary>
-        ///  Contexted version of HTML renderer
+        /// Initializes a new instance of the HTML text renderer with a specified rendering context.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The rendering context for the HTML renderer.</param>
         public HtmlTextRenderer(RendererContext context)
         {
+            this.angle = context.angle % 360;
+            this.widthRatio = context.widthRatio;
             this.text = context.text;
             this.graphics = context.g;
             this.font = context.font;
@@ -440,6 +462,21 @@ namespace FastReport.Utils
             // round x and y to an integer to avoid clipping the characters of the first line
             dRect.Inflate(displayRect.Left % 1, displayRect.Top % 1);
             graphics.SetClip(dRect, CombineMode.Intersect);
+
+            if (Angle != 0)
+            {
+                PointF center = new PointF(displayRect.Left + displayRect.Width / 2, displayRect.Top + displayRect.Height / 2);
+
+                // Translate the origin to the center of the rectangle
+                graphics.TranslateTransform(center.X, center.Y);
+
+                // Rotate the graphics by the specified angle
+                graphics.RotateTransform(Angle);
+
+                // Translate the origin back to the original position
+                graphics.TranslateTransform(-center.X, -center.Y);
+            }
+
             // reset alignment
             //StringAlignment saveAlign = FFormat.Alignment;
             //StringAlignment saveLineAlign = FFormat.LineAlignment;

@@ -722,7 +722,7 @@ namespace FastReport.Barcode
             new BarcodeItem(typeof(Barcode2of5Industrial), "2/5 Industrial", "Others"),
             new BarcodeItem(typeof(Barcode2of5Matrix), "2/5 Matrix", "Others"),
             new BarcodeItem(typeof(BarcodeDeutscheIdentcode), "Deutsche Identcode", "Post"),
-            new BarcodeItem(typeof(BarcodeDeutscheLeitcode),"Deutshe Leitcode", "Post"),
+            new BarcodeItem(typeof(BarcodeDeutscheLeitcode),"Deutsche Leitcode", "Post"),
             new BarcodeItem(typeof(BarcodeITF14), "ITF-14", "Others"),
             new BarcodeItem(typeof(BarcodeCodabar), "Codabar", "Others"),
             new BarcodeItem(typeof(Barcode128), "Code128", "Others"),

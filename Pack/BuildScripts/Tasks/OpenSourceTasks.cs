@@ -1,5 +1,4 @@
 ﻿using Path = System.IO.Path;
-using static CakeScript.CakeAPI;
 
 namespace CakeScript;
 

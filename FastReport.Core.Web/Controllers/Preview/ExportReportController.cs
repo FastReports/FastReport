@@ -34,7 +34,7 @@ namespace FastReport.Web.Controllers
             if (!IsAuthorized(request))
                 return Results.Unauthorized();
 
-            if (!reportService.TryFindWebReport(query.ReportId, out WebReport webReport))
+            if (!reportService.TryFindWebReport(query.ReportId, out var webReport))
                 return Results.NotFound();
 
             // TODO:
@@ -54,9 +54,26 @@ namespace FastReport.Web.Controllers
                 return Results.StatusCode((int)HttpStatusCode.UnsupportedMediaType);
             }
 
+            exportFormat = ChooseExportFormat(exportParams, exportFormat);
+
             return Results.File(file,
-                contentType: MediaTypeNames.Application.Octet,
-                fileDownloadName: $"{filename}.{exportFormat}");
+                MediaTypeNames.Application.Octet,
+                $"{filename}.{exportFormat}");
+        }
+
+        private static string ChooseExportFormat(KeyValuePair<string, string>[] exportParams, string exportFormat)
+        {
+            if (WebUtils.ShouldExportUseZipFormat(exportParams, exportFormat))
+                return "zip";
+
+            var imageFormat = exportParams.FirstOrDefault(x => x.Key == "ImageFormat").Value;
+
+            if (exportFormat == "image")
+                exportFormat = imageFormat.IsNullOrEmpty()
+                    ? "png"
+                    : imageFormat;
+
+            return exportFormat;
         }
 
 #if !OPENSOURCE

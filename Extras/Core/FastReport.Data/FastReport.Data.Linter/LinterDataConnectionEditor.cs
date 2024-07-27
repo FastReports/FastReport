@@ -56,17 +56,21 @@ namespace FastReport.Data.ConnectionEditors
         private void btnAdvanced_Click(object sender, EventArgs e)
         {
             if (factory == null)
-                return;
-
-            using (AdvancedConnectionPropertiesForm form = new AdvancedConnectionPropertiesForm())
             {
-                var stringBuilder = factory.CreateConnectionStringBuilder();
-                stringBuilder.BrowsableConnectionString = false;
-                form.AdvancedProperties = stringBuilder;
-
-                if (form.ShowDialog() == DialogResult.OK)
+                FRMessageBox.Error(Res.Get("ConnectionEditors,Linter,DBProviderNotFound"));
+            }
+            else
+            {
+                using (AdvancedConnectionPropertiesForm form = new AdvancedConnectionPropertiesForm())
                 {
-                    ConnectionString = form.AdvancedProperties.ToString();
+                    var stringBuilder = factory.CreateConnectionStringBuilder();
+                    stringBuilder.BrowsableConnectionString = false;
+                    form.AdvancedProperties = stringBuilder;
+
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        ConnectionString = form.AdvancedProperties.ToString();
+                    }
                 }
             }
         }

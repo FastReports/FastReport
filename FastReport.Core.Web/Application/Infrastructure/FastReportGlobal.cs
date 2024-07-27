@@ -3,6 +3,7 @@ using FastReport.Web.Cache;
 
 using Microsoft.AspNetCore.Hosting;
 using System;
+using System.Collections.Generic;
 
 namespace FastReport.Web.Infrastructure
 {
@@ -14,6 +15,8 @@ namespace FastReport.Web.Infrastructure
 #if !WASM
         internal static EmailExportOptions InternalEmailExportOptions = null;
         internal static bool AllowCustomSqlQueries = false;
+        internal static bool EnableIntellisense = false;
+        internal static List<string> IntelliSenseAssemblies = new();
 #endif
 
     }

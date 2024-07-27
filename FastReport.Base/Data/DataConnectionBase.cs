@@ -658,7 +658,7 @@ namespace FastReport.Data
         /// <remarks>Either creates a new <b>DbConnection</b> instance of type provided by the
         /// <see cref="GetConnectionType"/> method, or returns the application connection if set
         /// in the Config.DesignerSettings.ApplicationConnection.</remarks>
-        public DbConnection GetConnection()
+        public virtual DbConnection GetConnection()
         {
             Type connectionType = GetConnectionType();
             if (connectionType != null)
@@ -689,7 +689,7 @@ namespace FastReport.Data
         /// property set to <b>true</b>. Once you have entered an user name and password in
         /// this dialog, it will remeber the entered values and will not used anymore in this report session.
         /// </remarks>
-        public void OpenConnection(DbConnection connection)
+        public virtual void OpenConnection(DbConnection connection)
         {
             if (connection.State == ConnectionState.Open)
                 return;
@@ -742,7 +742,7 @@ namespace FastReport.Data
         /// Disposes a connection.
         /// </summary>
         /// <param name="connection">The connection to dispose.</param>
-        public void DisposeConnection(DbConnection connection)
+        public virtual void DisposeConnection(DbConnection connection)
         {
 
             if (ShouldNotDispose(connection))
@@ -835,7 +835,8 @@ namespace FastReport.Data
                 // read the table schema
                 using (DbDataAdapter adapter = GetAdapter(selectCommand, conn, parameters))
                 {
-                    adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ? CommandType.StoredProcedure : CommandType.Text;
+                    adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ||
+                        adapter.SelectCommand.CommandType == CommandType.StoredProcedure ? CommandType.StoredProcedure : CommandType.Text;
                     adapter.SelectCommand.CommandTimeout = CommandTimeout;
                     adapter.FillSchema(table, SchemaType.Source);
                 }
@@ -880,7 +881,8 @@ namespace FastReport.Data
                 // read the table
                 using (DbDataAdapter adapter = GetAdapter(selectCommand, conn, parameters))
                 {
-                    adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ? CommandType.StoredProcedure : CommandType.Text;
+                    adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ||
+                        adapter.SelectCommand.CommandType == CommandType.StoredProcedure ? CommandType.StoredProcedure : CommandType.Text;
                     adapter.SelectCommand.CommandTimeout = CommandTimeout;
                     table.Clear();
                     adapter.Fill(table);

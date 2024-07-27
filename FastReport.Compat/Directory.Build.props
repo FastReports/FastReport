@@ -7,7 +7,6 @@
     <Product>FastReport</Product>
     <PackageId>FastReport.Compat</PackageId>
     <Copyright>Fast Reports Inc.</Copyright>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
     <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
@@ -36,10 +35,7 @@
   <ItemGroup>
     <None Include="$(SlnDir)\Pack\frlogo192.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)LICENSE.md">
-      <Pack>True</Pack>
+      <Visible>false</Visible>
       <PackagePath></PackagePath>
     </None>
     <None Include="$(SlnDir)\Pack\$(PackageId)\**">

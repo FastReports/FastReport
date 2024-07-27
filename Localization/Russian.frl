@@ -202,7 +202,9 @@
     <Matrix Text="Матрица"/>
     <MatrixObject Text="Матрица"/>
     <AdvMatrixObject Text="Улучшенная матрица"/>
-    <SubreportObject Text="Вложенный отчет"/>
+    <SubreportObject Text="Вложенный отчет">
+      <FromAnotherReport Text="Загрузить страницу из другого отчета..."/>
+    </SubreportObject>
     <ContainerObject Text="Контейнер"/>
     <BarcodeObject Text="Штрихкод">
       <TwoD Text="Двумерные"/>
@@ -791,7 +793,9 @@
       <ReportItems Text="Элементы отчета:"/>
       <Games Text="Игры:"/>
     </AddNewItem>
-    <OpenPage Text="Выберите страницу"/>
+    <OpenPage Text="Выберите страницу">
+      <MergeDictionaries Text="Объединить словари"/>
+    </OpenPage>
     <AdvancedConnectionProperties Text="Расширенные свойства"/>
     <AskPassword Text="Пароль">
       <Password Text="Этот отчет защищен паролем.&#13;&#10;&#13;&#10;Пожалуйста, введите пароль:"/>
@@ -1188,6 +1192,7 @@
       <LoginPrompt Text="Спрашивать пароль при подключении"/>
       <Test Text="Тест"/>
       <TestSuccesful Text="Тест подключения успешно завершен."/>
+      <ConnectionFailed Text="Не удалось подключиться к БД."/>
     </Connection>
     <CustomLabel Text="Этикетка">
       <Name Text="Название:"/>
@@ -2206,6 +2211,9 @@
       <OnlyUrlException Text="В подключении должна быть ссылка!"/>
       <ErrorUrlException Text="По указанному пути отсутствует искомый файл!"/>
     </Common>
+	<Linter>
+	  <DBProviderNotFound Text="Не удалось найти поставщика данных ЛИНТЕР. Возможно он не установлен."/>
+	</Linter>
     <Excel>
       <FieldNames Text="Имена столбцов в первой строке"/>
     </Excel>
@@ -2907,11 +2915,13 @@
       <ClientInfoDialog Text="Авторизация в S3"/>
       <AccessKeyId Text="Идентификатор ключа доступа:"/>
       <SecretAccessKey Text="Секретный ключ доступа:"/>
-      <Region Text="Регион:"/>
+      <Region Text="Регион извлечения бакетов:"/>
       <Host Text="Хост:"/>
       <Bucket Text="Бакет:"/>
       <FileName Text="Имя файла:"/>
       <MissingBuckets Text="Бакеты отсутствуют"/>
+      <UploadRegion Text="Регион загрузки:"/>
+      <RequestStyle Text="Стиль запроса:"/>
     </S3>
   </Cloud>
   <Messaging>

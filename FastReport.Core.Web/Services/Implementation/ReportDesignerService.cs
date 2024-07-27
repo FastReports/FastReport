@@ -240,12 +240,16 @@ namespace FastReport.Web.Services
 
         public async Task<string> DesignerMakePreviewAsync(WebReport webReport, string receivedReportString)
         {
-            var previewReport = new WebReport();
-            previewReport.Report = webReport.Report;
+            var previewReport = new WebReport
+            {
+                Debug = webReport.Debug,
+                Report = webReport.Report,
+                LocalizationFile = webReport.LocalizationFile,
+                Toolbar = webReport.Toolbar
+            };
+
             //previewReport.Prop.Assign(webReport.Prop);
             //previewReport.CurrentTab = CurrentTab.Clone();
-            previewReport.LocalizationFile = webReport.LocalizationFile;
-            previewReport.Toolbar = webReport.Toolbar;
             //previewReport.Width = "880px";
             //previewReport.Height = "770px";
             //previewReport.Toolbar.EnableFit = true;

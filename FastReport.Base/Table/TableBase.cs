@@ -454,8 +454,6 @@ namespace FastReport.Table
 
         }
 
-
-
         #endregion
 
         #region Public Methods
