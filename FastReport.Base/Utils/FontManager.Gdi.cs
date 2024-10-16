@@ -2,6 +2,7 @@
 #if !SKIA && !FRCORE && (!MONO || WPF)
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 
@@ -19,14 +20,43 @@ namespace FastReport
             bool success = false;
             if (File.Exists(filename))
             {
-                PrivateFontCollection.AddFontFile(filename);
-                success = true;
+
+                bool isInstalled = CheckFontIsInstalled(filename);
+
+                if (!isInstalled)
+                {
+                    PrivateFontCollection.AddFontFile(filename);
+
+                    success = true;
+                }
             }
             else
             {
                 Debug.WriteLine($"Font file '{filename}' not found");
             }
             return success;
+        }
+
+        /// <summary>
+        /// Checks whether the font from the specified file is installed in the system.
+        /// </summary>
+        /// <param name="filename">The path to the font file.</param>
+        /// <returns>Returns true if the font is installed on the system, otherwise false.</returns>
+        public static bool CheckFontIsInstalled(string filename)
+        {
+            PrivateFontCollection tempFontCollection = new PrivateFontCollection();
+            tempFontCollection.AddFontFile(filename);
+            string fontName = tempFontCollection.Families[0].Name;
+
+
+            InstalledFontCollection installedFonts = new InstalledFontCollection();
+            FontFamily[] fontFamilies = installedFonts.Families;
+
+            // Checking if a font named FontName is installed in the system
+            // Array.Exists checks if an element in the array exists that satisfies the condition
+           bool isInstalled = Array.Exists(fontFamilies, family => family.Name.Equals(fontName, StringComparison.OrdinalIgnoreCase));
+
+            return isInstalled;
         }
 
         /// <summary>

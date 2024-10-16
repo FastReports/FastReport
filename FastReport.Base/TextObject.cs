@@ -1624,6 +1624,11 @@ namespace FastReport
         {
             base.GetData();
 
+            GetDataShared();
+        }
+
+        private void GetDataShared()
+        {
             // process expressions
             if (AllowExpressions)
             {

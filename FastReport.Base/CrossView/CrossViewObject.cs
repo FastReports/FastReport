@@ -443,8 +443,12 @@ namespace FastReport.CrossView
         /// <inheritdoc/>
         public override void GetData()
         {
-
             base.GetData();
+            GetDataShared();
+        }
+
+        private void GetDataShared()
+        {
             if (Data.SourceAssigned)
             {
 

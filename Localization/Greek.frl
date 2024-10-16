@@ -2247,8 +2247,8 @@
     <Ods Text="Εξαγωγή για Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Eξαγωγή σε μορφή Excel 2007">
-      <File Text="Aρχείο Excel 2007"/>
+    <Xlsx Text="Eξαγωγή σε μορφή Microsoft Excel">
+      <File Text="Aρχείο Microsoft Excel"/>
       <FontScale Text="Κλίμακα Γραμ/σειρών:"/>
       <PrintScaling Text="Εκτύπωση υπό Κλίμακα"/>
       <NoScaling Text="Όχι Κλίμακα"/>
@@ -2259,11 +2259,11 @@
     <Xls Text="Εξαγωγή σε Excel 97">
       <File Text="Αρχείο Excel 97"/>
     </Xls>
-    <Pptx Text="Εξαγωγή σε μορφή PowerPoint 2007">
-      <File Text="Αρχείο PowerPoint 2007"/>
+    <Pptx Text="Εξαγωγή σε μορφή Microsoft PowerPoint">
+      <File Text="Αρχείο Microsoft PowerPoint"/>
     </Pptx>
-    <Docx Text="Εξαγωγή Εγγράφου για MS Word 2007">
-      <File Text="Αρχείο MS Word 2007"/>
+    <Docx Text="Εξαγωγή Εγγράφου για Microsoft Word">
+      <File Text="Αρχείο Microsoft Word"/>
       <RowHeight Text="Το ύψος γραμμής είναι"/>
       <Exactly Text="Ακριβώς"/>
       <Minimum Text="Ελάχιστο"/>

@@ -158,12 +158,7 @@ namespace FastReport
             get { return imageLocation; }
             set
             {
-                if (!String.IsNullOrEmpty(Config.ReportSettings.ImageLocationRoot))
-                    imageLocation = value.Replace(Config.ReportSettings.ImageLocationRoot, "");
-                else
-                    imageLocation = value;
-                LoadImage();
-                ResetImageIndex();
+                SetImageLocation(value, true); // or IsDesigning
             }
         }
 
@@ -897,6 +892,23 @@ namespace FastReport
             }
 
             return expressions.ToArray();
+        }
+
+        internal void SetImageLocation(string value, bool forceUpdate)
+        {
+            if (!String.IsNullOrEmpty(Config.ReportSettings.ImageLocationRoot))
+                imageLocation = value.Replace(Config.ReportSettings.ImageLocationRoot, "");
+            else
+                imageLocation = value;
+
+            if (forceUpdate)
+                UpdateImageLocation();
+        }
+
+        internal void UpdateImageLocation()
+        {
+            LoadImage();
+            ResetImageIndex();
         }
     }
 }

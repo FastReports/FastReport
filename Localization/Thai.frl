@@ -1361,10 +1361,10 @@
     <Xml Text="ส่งออกเป็น XML"/>
     <Odt Text="ส่งออกเป็น Open Office Writer"/>
     <Ods Text="ส่งออกไป Open Office Calc"/>
-    <Xlsx Text="ส่งออกไป Excel 2007"/>
-    <Pptx Text="ส่งออกไป PowerPoint 2007"/>
-    <Docx Text="ส่งออกไป Word 2007">
-      <File Text="Word 2007 file"/>
+    <Xlsx Text="ส่งออกไป Microsoft Excel"/>
+    <Pptx Text="ส่งออกไป Microsoft PowerPoint"/>
+    <Docx Text="ส่งออกไป Microsoft Word">
+      <File Text="Microsoft Word file"/>
     </Docx>
     <Xps Text="ส่งออกเป็น XPS"/>
     <Pdf Text="ส่งออกไป PDF">

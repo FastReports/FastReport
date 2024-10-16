@@ -401,6 +401,11 @@ namespace FastReport
         public override void GetData()
         {
             base.GetData();
+            GetDataShared();
+        }
+
+        private void GetDataShared()
+        {
             if (TIDBank.DataColumn.Contains("[") && TIDBank.DataColumn.Contains("]"))
                 TIDBank.Data = Report.Calc(TIDBank.DataColumn).ToString();
 

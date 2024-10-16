@@ -392,6 +392,11 @@ namespace FastReport.Table
         public override void GetData()
         {
             base.GetData();
+            GetDataShared();
+        }
+
+        private void GetDataShared()
+        {
             if (Table != null && Table.IsInsideSpan(this))
                 Text = "";
 

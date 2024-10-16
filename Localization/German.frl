@@ -2734,8 +2734,8 @@
     <Ods Text="Export im OpenOffice Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Export im Excel 2007 Format">
-      <File Text="Excel 2007-Datei"/>
+    <Xlsx Text="Export im Microsoft Excel Format">
+      <File Text="Microsoft Excel-Datei"/>
       <FontScale Text="Schriftart- Skalierung"/>
       <PrintScaling Text="Druckskalierung"/>
       <NoScaling Text="Keine Skalierung"/>
@@ -2765,11 +2765,11 @@
       <File Text="Excel 97 Format"/>
       <HideGridLines Text="Rasterlinie ausblenden"/>
     </Xls>
-    <Pptx Text="Export im PowerPoint 2007">
-      <File Text="PowerPoint 2007-Datei"/>
+    <Pptx Text="Export im Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint-Datei"/>
     </Pptx>
-    <Docx Text="Export im Microsoft Word 2007">
-      <File Text="Microsoft Word 2007-Datei"/>
+    <Docx Text="Export im Microsoft Word">
+      <File Text="Microsoft Word-Datei"/>
       <RowHeight Text="Höhe der Tabellenzeilen"/>
       <Exactly Text="Exakt"/>
       <Minimum Text="Minimum"/>

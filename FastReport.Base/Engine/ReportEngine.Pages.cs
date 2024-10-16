@@ -124,6 +124,49 @@ namespace FastReport.Engine
 
         private bool StartFirstPage()
         {
+            var previousPage = StartFirstPageShared();
+
+            // show report title and page header
+            if (previousPage)
+                ShowBand(page.ReportTitle);
+            else
+            {
+                if (page.Overlay != null)
+                    ShowBand(page.Overlay);
+                if (page.TitleBeforeHeader)
+                {
+                    ShowBand(page.ReportTitle);
+                    ShowPageHeader();
+                }
+                else
+                {
+                    ShowPageHeader();
+                    ShowBand(page.ReportTitle);
+                }
+            }
+
+            // show column header
+            columnStartY = CurY;
+            ShowBand(page.ColumnHeader);
+
+            // calculate CurX before starting column event depending on Right to Left or Left to Right layout
+            if (Config.RightToLeft)
+            {
+                CurX = page.Columns.Positions[page.Columns.Positions.Count - 1] * Units.Millimeters;
+            }
+            else
+            {
+                CurX = page.Columns.Positions[0] * Units.Millimeters;
+            }
+
+            // start column event
+            OnStateChanged(page, EngineState.ColumnStarted);
+            ShowProgress();
+            return previousPage;
+        }
+
+        private bool StartFirstPageShared()
+        {
             page.InitializeComponents();
 
             CurX = 0;
@@ -221,42 +264,6 @@ namespace FastReport.Engine
             OutlineRoot();
             AddPageOutline();
 
-            // show report title and page header
-            if (previousPage)
-                ShowBand(page.ReportTitle);
-            else
-            {
-                if (page.Overlay != null)
-                    ShowBand(page.Overlay);
-                if (page.TitleBeforeHeader)
-                {
-                    ShowBand(page.ReportTitle);
-                    ShowPageHeader();
-                }
-                else
-                {
-                    ShowPageHeader();
-                    ShowBand(page.ReportTitle);
-                }
-            }
-
-            // show column header
-            columnStartY = CurY;
-            ShowBand(page.ColumnHeader);
-
-            // calculate CurX before starting column event depending on Right to Left or Left to Right layout
-            if (Config.RightToLeft)
-            {
-                CurX = page.Columns.Positions[page.Columns.Positions.Count - 1] * Units.Millimeters;
-            }
-            else
-            {
-                CurX = page.Columns.Positions[0] * Units.Millimeters;
-            }
-
-            // start column event
-            OnStateChanged(page, EngineState.ColumnStarted);
-            ShowProgress();
             return previousPage;
         }
 

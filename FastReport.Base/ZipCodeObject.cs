@@ -338,6 +338,11 @@ namespace FastReport
         public override void GetData()
         {
             base.GetData();
+            GetDataShared();
+        }
+
+        private void GetDataShared()
+        {
             if (!String.IsNullOrEmpty(DataColumn))
             {
                 object value = Report.GetColumnValue(DataColumn);

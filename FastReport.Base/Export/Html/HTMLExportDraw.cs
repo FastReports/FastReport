@@ -196,6 +196,7 @@ namespace FastReport.Export.Html
         {
             if (singlePage && pageBreaks)
             {
+                string paperProps = "size: portrait; ";
                 sb.AppendLine("<style type=\"text/css\" media=\"print\"><!--");
                 sb.Append("div.").Append(pageStyleName)
                     .Append(" { break-after: always; page-break-inside: avoid; ");
@@ -204,8 +205,12 @@ namespace FastReport.Export.Html
                     sb.Append("width:").Append(Px(maxHeight * Zoom).Replace(";", " !important;"))
                           .Append("transform: rotate(90deg); -webkit-transform: rotate(90deg)");
                 }
+                else if(d.page.Landscape)
+                {
+                    paperProps = "size: landscape; ";
+                }
 
-                sb.AppendLine("}")
+                sb.AppendLine("}").Append(" @page { " + paperProps + "margin: 0; }")
                       .AppendLine("--></style>");
             }
         }

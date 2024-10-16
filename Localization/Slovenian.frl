@@ -1878,14 +1878,14 @@
     <Ods Text="Izvozi v Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Izvozi v Excel 2007">
-      <File Text="Excel 2007 datoteka"/>
+    <Xlsx Text="Izvozi v Microsoft Excel">
+      <File Text="Microsoft Excel datoteka"/>
     </Xlsx>
-    <Pptx Text="Izvozi v PowerPoint 2007">
-      <File Text="PowerPoint 2007 datoteka"/>
+    <Pptx Text="Izvozi v Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint datoteka"/>
     </Pptx>
-    <Docx Text="Izvozi v Microsoft Word 2007">
-      <File Text="Microsoft Word 2007 datoteka"/>
+    <Docx Text="Izvozi v Microsoft Word">
+      <File Text="Microsoft Word datoteka"/>
     </Docx>
     <Xps Text="Izvozi v XPS">
       <File Text="Microsoft XPS datoteka"/>

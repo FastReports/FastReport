@@ -1487,11 +1487,11 @@
     <Ods Text="Експорт в OpenOffice Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Експорт в Excel 2007">
-      <File Text="Excel 2007 формат"/>
+    <Xlsx Text="Експорт в Microsoft Excel">
+      <File Text="Microsoft Excel формат"/>
     </Xlsx>
-    <Pptx Text="Експорт в PowerPoint 2007">
-      <File Text="PowerPoint 2007 формат"/>
+    <Pptx Text="Експорт в Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint формат"/>
     </Pptx>
     <Pdf Text="Експорт в PDF">
       <File Text="PDF формат"/>

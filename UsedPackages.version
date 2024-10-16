@@ -4,14 +4,14 @@
     <PropertyGroup>
 
         <!-- WPF -->
-        <FRWPFVersion>2024.2.0</FRWPFVersion>
+        <FRWPFVersion>2025.1.0</FRWPFVersion>
 
         <SkiaSharpVersion>2.88.6</SkiaSharpVersion>
         <HarfBuzzVersion>2.88.6</HarfBuzzVersion>
 
         <!-- Avalonia -->
         <AvaloniaUIVersion>[11.0.6,)</AvaloniaUIVersion>
-        <FRAvaloniaVersion>2024.2.0</FRAvaloniaVersion>
+        <FRAvaloniaVersion>2025.1.0</FRAvaloniaVersion>
 
         <CodeAnalysisCSharpVersion>[4.0.1,)</CodeAnalysisCSharpVersion>
         <CodeAnalysisVisualBasicVersion>[4.0.1,)</CodeAnalysisVisualBasicVersion>
@@ -25,9 +25,9 @@
 <!-- This group sets version used packages in Demos -->
     <PropertyGroup>
 
-        <FRCoreVersion>2024.2.0</FRCoreVersion>
+        <FRCoreVersion>2025.1.0</FRCoreVersion>
 
-        <FROSVersion>2024.2.0</FROSVersion>
+        <FROSVersion>2025.1.0</FROSVersion>
 
     </PropertyGroup>
 

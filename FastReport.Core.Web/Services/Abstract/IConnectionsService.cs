@@ -35,8 +35,33 @@ namespace FastReport.Web.Services
         string GetConnectionTables(string connectionType, string connectionString, List<CustomViewModel> customConnections);
 
         /// <summary>
+        /// Updates a table within a web report based on the provided parameters.
+        /// </summary>
+        /// <param name="webReport">The WebReport object containing the table to be updated.</param>
+        /// <param name="parameters">The parameters specifying the table name, SQL query, and update parameters.</param>
+        /// <returns>A string representation of the updated table.</returns>
+        string GetUpdatedTableByReportId(WebReport webReport, UpdateTableParams parameters);
+
+        /// <summary>
+        /// Updates a table within a database using the provided connection string and parameters.
+        /// </summary>
+        /// <param name="connectionString">The connection string to the database.</param>
+        /// <param name="connectionType">The type of connection.</param>
+        /// <param name="parameters">The parameters specifying the table name, SQL query, and update parameters.</param>
+        /// <returns>A string representation of the updated table.</returns>
+        string GetUpdatedTableByConnectionString(string connectionString, string connectionType, UpdateTableParams parameters);
+
+        /// <summary>
         /// Returns the list of connection types
         /// </summary>
-        List<string> GetConnectionTypes(bool needSqlSupportInfo = false);
+        Dictionary<string, object> GetConnectionTypes(bool needSqlSupportInfo = false);
+
+        /// <summary>
+        /// Returns the list of parameter types by connection type.
+        /// </summary>
+        /// <param name="connectionType">The type of connection.</param>
+        /// <param name="errorMsg">Error message.</param>
+        /// <returns></returns>
+        Dictionary<string, int> GetParameterTypes(string connectionType, out string errorMsg);
     }
 }

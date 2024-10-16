@@ -1854,14 +1854,14 @@
     <Ods Text="Արտահանել որպես Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Արտահանել որպես Excel 2007">
-      <File Text="Excel 2007 ֆայլ"/>
+    <Xlsx Text="Արտահանել որպես Microsoft Excel">
+      <File Text="Microsoft Excel ֆայլ"/>
     </Xlsx>
-    <Pptx Text="Արտահանել որպես PowerPoint 2007">
-      <File Text="PowerPoint 2007 ֆայլ"/>
+    <Pptx Text="Արտահանել որպես Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint ֆայլ"/>
     </Pptx>
-    <Docx Text="Արտահանել որպես Microsoft Word 2007">
-      <File Text="Microsoft Word 2007 ֆայլ"/>
+    <Docx Text="Արտահանել որպես Microsoft Word">
+      <File Text="Microsoft Word ֆայլ"/>
     </Docx>
     <Xps Text="Արտահանել որպես XPS">
       <File Text="Microsoft XPS ֆայլ"/>

@@ -46,7 +46,7 @@ namespace FastReport.Utils
     /// Internal calss for image processing
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public static class ImageHelper
+    public static partial class ImageHelper
     {
         private readonly static object _customLoadersLocker = new object();
         private readonly static List<IImageHelperLoader> _customLoaders = new List<IImageHelperLoader>();

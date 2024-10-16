@@ -796,7 +796,8 @@
       <Games Text="Games:"/>
     </AddNewItem>
     <OpenPage Text="Choose page">
-      <MergeDictionaries Text="Merge dictionaries"/>
+      <MergeDataSource Text="Merge data sources"/>
+      <AddAsLink Text="Add as link"/>
     </OpenPage>
     <AdvancedConnectionProperties Text="Advanced Properties"/>
     <AskPassword Text="Password">
@@ -1846,6 +1847,8 @@
       <PagesOnSheet2 Text="2 pages"/>
       <PagesOnSheet4 Text="4 pages"/>
       <PagesOnSheet8 Text="8 pages"/>
+      <Scale Text="Scale (%):"/>
+      <AutoPaperSize Text="Auto paper size"/>
       <Print Text="Print"/>
       <Error Text="Invalid page range."/>
       <CmdCommand Text="Command" />
@@ -2862,8 +2865,8 @@
     <Ods Text="Export to Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Export to Excel 2007">
-      <File Text="Excel 2007 file"/>
+    <Xlsx Text="Export to Excel">
+      <File Text="Microsoft Excel file"/>
       <FontScale Text="Font Scale:" />
       <PrintScaling Text="Print Scaling" />
       <NoScaling Text="No Scaling" />
@@ -2888,19 +2891,21 @@
       <Other Text="Other"/>
       <ShowGridlines Text="Show gridlines"/>
       <UngroupSheets Text="Ungroup sheets"/>
+      <MergePagesIntoSingleSheet Text="Merge all the report pages into one sheet"/>
       <UseLocaleFormating Text="Use locale formatting of data"/>
       <CurrencyToAccounting Text="Convert currency to accounting format"/>
       <GeneralToText Text="Convert general to text format"/>
+      <UseCustomFormat Text="Use custom format"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
       <HideGridLines Text="Hide gridlines"/>
     </Xls>
-    <Pptx Text="Export to PowerPoint 2007">
-      <File Text="PowerPoint 2007 file"/>
+    <Pptx Text="Export to PowerPoint">
+      <File Text="Microsoft PowerPoint file"/>
     </Pptx>
-    <Docx Text="Export to Microsoft Word 2007">
-      <File Text="Microsoft Word 2007 file"/>
+    <Docx Text="Export to Microsoft Word">
+      <File Text="Microsoft Word file"/>
       <RowHeight Text="Row height is"/>
       <SaveRowHeight Text="Save row height"/>
       <Exactly Text="Exactly"/>

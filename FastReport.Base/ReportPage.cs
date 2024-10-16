@@ -5,6 +5,9 @@ using System.ComponentModel;
 using FastReport.Utils;
 using System.Drawing.Design;
 using System.Drawing.Printing;
+using System.IO;
+using System.Xml;
+using FastReport.Data;
 
 namespace FastReport
 {
@@ -47,6 +50,128 @@ namespace FastReport
     /// </example>
     public partial class ReportPage : PageBase, IParent
     {
+        [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
+        public class PageLink
+        {
+            string reportPath;
+            string pageName;
+            bool saveNames;
+            bool isInherit;
+            ReportPage page;
+
+            /// <summary>
+            /// Get or set path to report file.
+            /// </summary>
+            public string ReportPath 
+            { 
+                get 
+                {
+                    return reportPath;
+                }
+                set
+                {
+                    reportPath = value;
+                    if (value != reportPath && !string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(pageName))
+                    {
+                        page.LoadExternalPage(this, page.Report, page.Name);
+                    }
+                }
+            }
+
+            [Browsable(false)]
+            public bool IsInherit
+            {
+                get
+                {
+                    return isInherit;
+                }
+                internal set
+                {
+                    isInherit = value;
+                }
+            }
+
+
+            /// <summary>
+            /// Get or set name of linked page.
+            /// </summary>
+            public string PageName 
+            {
+                get
+                {
+                    return pageName;
+                }
+                set
+                {
+                    pageName = value;
+                    if (value != pageName && !string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(reportPath))
+                    {
+                        page.LoadExternalPage(this, page.Report, page.Name);
+                    }
+                }
+            }
+
+
+            /// <summary>
+            /// Gets or sets a value indicating whether need save original name of objects.
+            /// </summary>
+            public bool SaveNames
+            {
+                get
+                {
+                    return saveNames;
+                }
+                set
+                {
+                    if (value != saveNames)
+                    {
+                        saveNames = value;
+                        page.LoadExternalPage(this, page.Report, page.Name);
+                    }
+                }
+            }
+
+            public void Deserialize(FRReader reader, string prefix)
+            {
+                reportPath = reader.ReadStr(prefix + ".ReportPath");
+                pageName = reader.ReadStr(prefix + ".PageName");
+                saveNames = reader.ReadBool(prefix + ".SaveName");
+                isInherit = reader.ReadBool(prefix + ".IsInherit");
+            }
+
+            /// <inheritdoc/>
+            public void Serialize(FRWriter writer, string prefix, PageLink c)
+            {
+                if (ReportPath != c.ReportPath)
+                    writer.WriteStr(prefix + ".ReportPath", ReportPath);
+                if (PageName != c.PageName)
+                    writer.WriteStr(prefix + ".PageName", PageName);
+                if (SaveNames != c.SaveNames)
+                    writer.WriteBool(prefix + ".SaveName", SaveNames);
+                if (IsInherit != c.IsInherit)
+                    writer.WriteBool(prefix + ".IsInherit", IsInherit);
+            }
+
+            internal PageLink Clone()
+            {
+                var result = new PageLink(page);
+                result.reportPath = ReportPath;
+                result.pageName = PageName;
+                result.saveNames = SaveNames;
+                result.IsInherit = IsInherit;
+                return result;
+            }
+
+            public PageLink(ReportPage page)
+            {
+                saveNames = false;
+                reportPath = "";
+                pageName = "";
+                isInherit = false;
+                this.page = page;
+            }
+        }
+
         #region Constants
 
         private const float MAX_PAPER_SIZE_MM = 2000000000;
@@ -93,6 +218,7 @@ namespace FastReport
         private int otherPagesSource;
         private int lastPageSource;
         private Duplex duplex;
+        private PageLink pageLink;
 
         private bool unlimitedHeight;
         private bool printOnRollPaper;
@@ -784,6 +910,15 @@ namespace FastReport
         {
             get { return !String.IsNullOrEmpty(manualBuildEvent) || ManualBuild != null; }
         }
+
+        /// <summary>
+        /// Get or set a link to the page.
+        /// </summary>
+        public PageLink LinkToPage 
+        {
+            get { return pageLink; }
+            set { pageLink = value; }
+        }
         #endregion
 
         #region Private Methods
@@ -982,13 +1117,21 @@ namespace FastReport
             UnlimitedWidth = src.UnlimitedWidth;
             UnlimitedHeightValue = src.UnlimitedHeightValue;
             UnlimitedWidthValue = src.UnlimitedWidthValue;
+            LinkToPage = src.LinkToPage.Clone();
         }
 
         /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
         {
             ReportPage c = writer.DiffObject as ReportPage;
+            bool saveChild = writer.SaveChildren;
+            if (!string.IsNullOrEmpty(this.LinkToPage.ReportPath) && writer.SaveExternalPages)
+            {
+                if (writer.SaveChildren && writer.SerializeTo == SerializeTo.Report)
+                    writer.SaveChildren = false;
+            }
             base.Serialize(writer);
+
             if (ExportAlias != c.ExportAlias)
                 writer.WriteStr("ExportAlias", ExportAlias);
             if (Landscape != c.Landscape)
@@ -1055,6 +1198,102 @@ namespace FastReport
                 writer.WriteFloat("OtherPageSource", OtherPagesSource);
             if (Duplex.ToString() != c.Duplex.ToString())
                 writer.WriteStr("Duplex", Duplex.ToString());
+            if (writer.SerializeTo != SerializeTo.SourcePages)
+                LinkToPage.Serialize(writer, nameof(LinkToPage), c.LinkToPage);
+
+            if (writer.SerializeTo == SerializeTo.Report && writer.SaveExternalPages && !string.IsNullOrEmpty(LinkToPage.PageName)
+                && !string.IsNullOrEmpty(LinkToPage.ReportPath) && File.Exists(LinkToPage.ReportPath))
+            {
+                using (Report report = new Report())
+                {
+                    report.Load(LinkToPage.ReportPath);
+                    foreach (PageBase item in report.Pages)
+                    {
+                        if (item is ReportPage page && item.Name == LinkToPage.PageName)
+                        {
+                            var temp = page.LinkToPage;
+                            bool isAncestor = page.IsAncestor;
+                            page.AssignAll(this, true, true);
+                            page.SetAncestor(isAncestor);
+                            page.SetReport(report);
+                            page.Parent = report;
+                            page.LinkToPage = temp;
+                            if (!LinkToPage.SaveNames)
+                            {
+                                if (!string.IsNullOrEmpty(page.Alias))
+                                    page.Name = page.Alias;
+                                foreach (Base obj in page.AllObjects)
+                                {
+                                    if (!string.IsNullOrEmpty(obj.Alias))
+                                    {
+                                        obj.SetReport(report);
+                                        obj.SetName(obj.Alias);
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    report.Save(LinkToPage.ReportPath);
+                }
+            }
+            writer.SaveChildren = saveChild;
+        }
+
+        /// <inheritdoc/>
+        public override void Deserialize(FRReader reader)
+        {
+            LinkToPage.Deserialize(reader, nameof(LinkToPage));
+            var page = LinkToPage;
+
+            if ((reader.DeserializeFrom == SerializeTo.Report || page.IsInherit) && !string.IsNullOrEmpty(LinkToPage.PageName)
+                && !string.IsNullOrEmpty(page.ReportPath) && File.Exists(page.ReportPath))
+                LoadExternalPage(page, reader.Report, reader.ReadStr("Name"));
+  
+            base.Deserialize(reader);
+        }
+
+        private void LoadExternalPage(PageLink page, Report parent, string pageName)
+        {
+            try
+            {
+                using (Report report = new Report())
+                {
+                    report.Load(page.ReportPath);
+                    page.IsInherit = report.IsAncestor;
+                    foreach (PageBase item in report.Pages)
+                    {
+                        if (item is ReportPage && item.Name == page.PageName)
+                        {
+                            AssignAll(item, true, true);
+                            SetAncestor(false);
+                            LinkToPage = page;
+                            if (!LinkToPage.SaveNames)
+                            {
+                                Alias = Name;
+                                Name = pageName;
+                                Parent = parent;
+                                SetReport(parent);
+                                foreach (Base obj in AllObjects)
+                                {
+                                    obj.Alias = obj.Name;
+                                    obj.SetReport(parent);
+                                    obj.CreateUniqueName();
+                                }
+                            }
+                            break;
+                        }
+                        else 
+                        {
+                            Clear();
+                        }
+                    }
+                }
+            }
+            catch
+            {
+               Clear();
+            }
         }
 
         /// <inheritdoc/>
@@ -1271,6 +1510,7 @@ namespace FastReport
             unlimitedHeight = false;
             printOnRollPaper = false;
             unlimitedWidth = false;
+            pageLink = new PageLink(this);
             unlimitedHeightValue = MAX_PAPER_SIZE_MM * Units.Millimeters;
             unlimitedWidthValue = MAX_PAPER_SIZE_MM * Units.Millimeters;
         }

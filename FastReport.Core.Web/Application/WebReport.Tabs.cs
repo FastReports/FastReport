@@ -48,6 +48,12 @@ namespace FastReport.Web
         /// </summary>
         public bool SplitReportPagesInTabs { get; set; } = false;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the report name is displayed in the tab.
+        /// If set to <c>true</c>, the tab will display the report name. If <c>false</c>, it will display report parameters.
+        /// Default value: false.
+        /// </summary>
+        public bool ShowReportNameInTab { get; set; } = false;
 
         /// <summary>
         /// List of report tabs
@@ -122,19 +128,17 @@ namespace FastReport.Web
 
         internal string GetTabName(int i)
         {
-
-            if (String.IsNullOrEmpty(Tabs[i].Name))
+            if (string.IsNullOrEmpty(Tabs[i].Name) || ShowReportNameInTab)
             {
-                string s = Tabs[i].Report.ReportInfo.Name;
-                if (String.IsNullOrEmpty(s))
+                var s = Tabs[i].Report.ReportInfo.Name;
+                if (string.IsNullOrEmpty(s))
                     s = Path.GetFileNameWithoutExtension(Tabs[i].Report.FileName);
-                if (String.IsNullOrEmpty(s))
+                if (string.IsNullOrEmpty(s))
                     s = (i + 1).ToString();
                 return s;
-
             }
-            else
-                return Tabs[i].Name;
+
+            return Tabs[i].Name;
         }
 
 

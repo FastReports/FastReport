@@ -11,8 +11,8 @@ namespace FastReport.Engine
         {
             #region Fields
 
-            private GroupHeaderBand band;
-            private List<GroupTreeItem> items;
+            private readonly GroupHeaderBand band;
+            private readonly List<GroupTreeItem> items;
             private int rowNo;
             private int rowCount;
 
@@ -164,7 +164,7 @@ namespace FastReport.Engine
                 EndKeep();
         }
 
-        private void InitGroupItem(GroupHeaderBand header, GroupTreeItem curItem)
+        private static void InitGroupItem(GroupHeaderBand header, GroupTreeItem curItem)
         {
             while (header != null)
             {
@@ -179,7 +179,7 @@ namespace FastReport.Engine
             }
         }
 
-        private void CheckGroupItem(GroupHeaderBand header, GroupTreeItem curItem)
+        private static void CheckGroupItem(GroupHeaderBand header, GroupTreeItem curItem)
         {
             while (header != null)
             {

@@ -44,6 +44,22 @@ namespace FastReport.Web.Services
         public string SqlQuery { get; set; }
     }
 
+    public class UpdateTableParams
+    {
+        public string ConnectionString { get; set; }
+        public string SqlQuery { get; set; }
+        public List<ParameterModel> Parameters { get; set; }
+        public string TableName { get; set; }
+    }
+
+    public sealed class ParameterModel
+    {
+        public string Name { get; set; }
+        public int DataType { get; set; }
+        public string Value { get; set; }
+        public string Expression { get; set; }
+    }
+
     #region GetReportServiceParams
     public class GetReportServiceParams
     {

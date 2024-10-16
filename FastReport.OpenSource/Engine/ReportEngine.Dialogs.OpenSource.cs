@@ -1,4 +1,5 @@
 using FastReport.Dialog;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FastReport.Engine
@@ -11,6 +12,11 @@ namespace FastReport.Engine
         private bool RunDialogs()
         {
             return true;
+        }
+
+        private Task<bool> RunDialogsAsync()
+        {
+            return Task.FromResult(true);
         }
 
         #endregion Private Methods

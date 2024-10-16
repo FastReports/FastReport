@@ -1476,11 +1476,11 @@
     <Ods Text="صدور به Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="صدور به Excel 2007">
-      <File Text="فایل Excel 2007"/>
+    <Xlsx Text="صدور به  Microsoft Excel">
+      <File Text="فایل Microsoft Excel"/>
     </Xlsx>
-    <Pptx Text="صدور به PowerPoint 2007">
-      <File Text="فایل PowerPoint 2007"/>
+    <Pptx Text="صدور به Microsoft PowerPoint">
+      <File Text="فایل Microsoft PowerPoint"/>
     </Pptx>
     <Pdf Text="صدور به PDF">
       <File Text="Adobe Acrobat"/>

@@ -258,7 +258,7 @@ namespace FastReport.Utils
                 curRoot = curItem;
                 GetProps();
 
-                if (report != null && report.IsAncestor)
+                if (report != null && (report.IsAncestor || report.HasPageLinks))
                     result = report.FindObject(ReadStr("Name"));
                 if (result == null && curItem.Name != "inherited")
                 {

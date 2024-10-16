@@ -13,8 +13,6 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using FastReport.Data;
 using FastReport.Engine;
@@ -25,7 +23,7 @@ using HMACSHA1 = FastReport.Utils.DetravHMACSHA1;
 
 namespace FastReport.Code
 {
-    partial class AssemblyDescriptor : IDisposable
+    partial class AssemblyDescriptor
     {
         private static readonly ConcurrentDictionary<string, Assembly> FAssemblyCache;
         private readonly StringBuilder scriptText;
@@ -36,9 +34,6 @@ namespace FastReport.Code
         private const string shaKey = "FastReportCode";
         private readonly static object compileLocker;
         private readonly string currentFolder;
-#if ASYNC
-        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1);
-#endif
 
         public Assembly Assembly { get; private set; }
 
@@ -168,27 +163,6 @@ namespace FastReport.Code
                     assemblies.Add(aLocation);
             }
         }
-
-#if ASYNC
-        private static async ValueTask AddFastReportAssemblies(StringCollection assemblies, CancellationToken token)
-        {
-            foreach (Assembly assembly in RegisteredObjects.Assemblies)
-            {
-                string aLocation = assembly.Location;
-#if CROSSPLATFORM || COREWIN
-                if (aLocation == "")
-                {
-                    // try fix SFA in FastReport.Compat
-                    string fixedReference = await CodeDomProvider.TryFixReferenceInSingeFileAppAsync(assembly, token);
-                    if (!string.IsNullOrEmpty(fixedReference))
-                        aLocation = fixedReference;
-                }
-#endif
-                if (!ContainsAssembly(assemblies, aLocation))
-                    assemblies.Add(aLocation);
-            }
-        }
-#endif
 
         private void AddReferencedAssemblies(StringCollection assemblies, string defaultPath)
         {
@@ -414,27 +388,6 @@ namespace FastReport.Code
             }
         }
 
-#if ASYNC
-        public async Task CompileAsync(CancellationToken token = default)
-        {
-            if (needCompile)
-            {
-                await semaphoreSlim.WaitAsync(token);
-
-                if (needCompile)
-                {
-                    try
-                    {
-                        await InternalCompileAsync(token);
-                    }
-                    finally
-                    {
-                        semaphoreSlim.Release();
-                    }
-                }
-            }
-        }
-#endif
 
         private void InternalCompile()
         {
@@ -460,39 +413,6 @@ namespace FastReport.Code
                 throw new CompilerException(errors);
         }
 
-#if ASYNC
-        private async Task InternalCompileAsync(CancellationToken cancellationToken)
-        {
-            CompilerParameters cp = await GetCompilerParametersAsync(cancellationToken);
-
-            if (Config.WebMode &&
-                Config.EnableScriptSecurity &&
-                Config.ScriptSecurityProps.AddStubClasses)
-                AddStubClasses();
-
-            string errors = string.Empty;
-            CompilerResults cr = await InternalCompileAsync(cp, cancellationToken);
-            bool success = CheckCompileResult(cr);
-            for (int i = 0; !success && i < Config.CompilerSettings.RecompileCount; i++)
-            {
-                cr = await TryRecompileAsync(cp, cr, cancellationToken);
-                success = CheckCompileResult(cr);
-            }
-
-            if (cr != null)
-                HandleCompileErrors(cr, out errors);
-
-            if (!success && errors != string.Empty)
-                throw new CompilerException(errors);
-        }
-
-        private static bool CheckCompileResult(CompilerResults result)
-        {
-            // if result == null => was found in cache
-            return result == null || result.Errors.Count == 0;
-        }
-#endif
-
         private CompilerParameters GetCompilerParameters()
         {
             // configure compiler options
@@ -507,21 +427,6 @@ namespace FastReport.Code
             return cp;
         }
 
-#if ASYNC
-        private async Task<CompilerParameters> GetCompilerParametersAsync(CancellationToken ct)
-        {
-            // configure compiler options
-            CompilerParameters cp = new CompilerParameters();
-            await AddFastReportAssemblies(cp.ReferencedAssemblies, ct);   // 2
-            AddReferencedAssemblies(cp.ReferencedAssemblies, currentFolder);    // 9
-            ReviewReferencedAssemblies(cp.ReferencedAssemblies);
-            cp.GenerateInMemory = true;
-            // sometimes the system temp folder is not accessible...
-            if (Config.TempFolder != null)
-                cp.TempFiles = new TempFileCollection(Config.TempFolder, false);
-            return cp;
-        }
-#endif
 
         private string GetAssemblyHash(CompilerParameters cp)
         {
@@ -587,51 +492,6 @@ namespace FastReport.Code
                 return true;
             }
         }
-
-#if ASYNC && (CROSSPLATFORM || COREWIN)
-        /// <summary>
-        /// Returns true, if compilation is successful
-        /// </summary>
-        private async ValueTask<CompilerResults> InternalCompileAsync(CompilerParameters cp, CancellationToken cancellationToken)
-        {
-            CompilerResults cr;
-            // find assembly in cache
-            string assemblyHash = GetAssemblyHash(cp);
-            Assembly cachedAssembly;
-            if (FAssemblyCache.TryGetValue(assemblyHash, out cachedAssembly))
-            {
-                Assembly = cachedAssembly;
-                var reportScript = Assembly.CreateInstance("FastReport.ReportScript");
-                InitInstance(reportScript);
-                cr = null;
-                return cr;    // return true;
-            }
-
-            // compile report scripts
-            using (CodeDomProvider provider = Report.CodeHelper.GetCodeProvider())
-            {
-                string script = scriptText.ToString();
-                ScriptSecurityEventArgs ssea = new ScriptSecurityEventArgs(Report, script, Report.ReferencedAssemblies);
-                Config.OnScriptCompile(ssea);
-
-                provider.BeforeEmitCompilation += Config.OnBeforeScriptCompilation;
-
-                cr = await provider.CompileAssemblyFromSourceAsync(cp, script, Config.CompilerSettings.CultureInfo, cancellationToken);
-                Assembly = null;
-                Instance = null;
-
-                if (cr.Errors.Count != 0)   // Compile errors
-                    return cr;  // return false;
-
-                FAssemblyCache.TryAdd(assemblyHash, cr.CompiledAssembly);
-
-                Assembly = cr.CompiledAssembly;
-                var reportScript = Assembly.CreateInstance("FastReport.ReportScript");
-                InitInstance(reportScript);
-                return cr;
-            }
-        }
-#endif
 
 
         private string ReplaceExpression(string error, TextObjectBase text)
@@ -811,53 +671,6 @@ namespace FastReport.Code
             return false;
         }
 
-#if ASYNC
-        /// <summary>
-        /// Returns true if recompilation is successful
-        /// </summary>
-        private async Task<CompilerResults> TryRecompileAsync(CompilerParameters cp, CompilerResults oldResult, CancellationToken ct)
-        {
-            List<string> additionalAssemblies = new List<string>(4);
-
-            foreach (CompilerError ce in oldResult.Errors)
-            {
-                if (ce.ErrorNumber == "CS0012") // missing reference on assembly
-                {
-                    // try to add reference
-                    try
-                    {
-                        // in .Net Core compiler will return other quotes
-#if CROSSPLATFORM || COREWIN
-                        const string quotes = "\'";
-#else
-                        const string quotes = "\"";
-#endif
-                        const string pattern = quotes + @"(\S{1,}),";
-                        Regex regex = new Regex(pattern, RegexOptions.Compiled);
-                        string assemblyName = regex.Match(ce.ErrorText).Groups[1].Value;   // Groups[1] include string without quotes and , symbols
-                        if (!additionalAssemblies.Contains(assemblyName))
-                            additionalAssemblies.Add(assemblyName);
-                        continue;
-                    }
-                    catch { }
-                }
-            }
-
-            if (additionalAssemblies.Count > 0)  // need recompile
-            {
-                // try to load missing assemblies
-                foreach (string assemblyName in additionalAssemblies)
-                {
-                    AddReferencedAssembly(cp.ReferencedAssemblies, currentFolder, assemblyName);
-                }
-
-                return await InternalCompileAsync(cp, ct);
-            }
-
-            return oldResult;
-        }
-#endif
-
         public void InitInstance(object instance)
         {
             this.Instance = instance;
@@ -900,12 +713,6 @@ namespace FastReport.Code
             }
         }
 
-        public void Dispose()
-        {
-#if ASYNC
-            semaphoreSlim.Dispose();
-#endif
-        }
 
         public AssemblyDescriptor(Report report, string scriptText)
         {

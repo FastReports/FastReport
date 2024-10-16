@@ -26,8 +26,6 @@ namespace FastReport.Web
 
     public partial class WebReport
     {
-        private string localizationFile;
-
 #if DIALOGS
         internal Dialog Dialog { get; }
 #endif
@@ -55,19 +53,12 @@ namespace FastReport.Web
             set => Tabs[CurrentTabIndex].Report = value;
         }
 
-        /// <summary>
-        /// Gets or sets the WebReport's locale
-        /// </summary>
-        public string LocalizationFile
-        {
-            get => localizationFile;
-            set
-            {
-                localizationFile = value;
-                string path = WebUtils.MapPath(localizationFile);
-                Res.LoadLocale(path);
-            }
-        }
+#if WASM
+        [Obsolete("Doesn't support in Wasm. Please, use SetLocalization(Stream) instead", true)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LocalizationFile { get; set; }
+#endif
+
 
         internal IWebRes Res { get; } = new WebRes();
 
@@ -222,9 +213,9 @@ namespace FastReport.Web
 
         public WebReport()
         {
+#if !WASM
             string path = WebUtils.MapPath(LocalizationFile);
             Res.LoadLocale(path);
-#if !WASM
             WebReportCache.Instance?.Add(this);
 #endif
 #if DIALOGS
@@ -237,6 +228,14 @@ namespace FastReport.Web
             ScriptSecurity = new ScriptSecurity(new ScriptChecker());
         }
 
+        /// <summary>
+        /// Sets WebReport localization using <see cref="Stream"/>
+        /// </summary>
+        /// <param name="stream">Stream with localization in `*.frl` format</param>
+        public void SetLocalization(Stream stream)
+        {
+            Res.LoadLocale(stream);
+        }
 
         public void LoadPrepared(string filename)
         {

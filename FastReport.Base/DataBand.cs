@@ -15,7 +15,7 @@ namespace FastReport
     /// <see cref="Filter"/> property if you want to filter data rows. The <see cref="Sort"/>
     /// property can be used to sort data rows.
     /// </remarks>
-    public partial class DataBand : BandBase
+    public partial class DataBand : BandBase, IContainDataSource
     {
         #region Fields
         private DataHeaderBand header;
@@ -350,6 +350,14 @@ namespace FastReport
         private void DataSource_Disposed(object sender, EventArgs e)
         {
             dataSource = null;
+        }
+
+        void IContainDataSource.UpdateDataSourceRef(DataSourceBase newRefDatasource)
+        {
+            if (newRefDatasource != null && (newRefDatasource.Name == DataSource?.Name || newRefDatasource == DataSource))
+            {
+                DataSource = newRefDatasource;
+            }
         }
         #endregion
 
