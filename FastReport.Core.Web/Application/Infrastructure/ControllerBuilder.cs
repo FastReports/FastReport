@@ -255,7 +255,7 @@ namespace FastReport.Web.Infrastructure
                 {
                     Debug.Assert(result.GetType() != typeof(IActionResult));
 
-                    string content = System.Text.Json.JsonSerializer.Serialize(result);
+                    string content = JsonSerializer.Serialize(result);
                     var contentResult = Results.Content(content, "text/json");
                     return contentResult.ExecuteAsync(httpContext);
                 }

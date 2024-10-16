@@ -237,7 +237,7 @@ namespace FastReport.Data
         /// </summary>
         /// <param name="view">The DataView to register.</param>
         /// <param name="referenceName">The name of the data object.</param>
-        /// <param name="enabled">Determines wheter to enable the object or not.</param>
+        /// <param name="enabled">Determines whether to enable the object or not.</param>
         /// <remarks>
         /// This method is for internal use only.
         /// </remarks>
@@ -650,10 +650,13 @@ namespace FastReport.Data
         {
             writer.ItemName = ClassName;
             ObjectCollection childObjects = ChildObjects;
-            foreach (Base c in childObjects)
+            if (writer.SaveChildren)
             {
-                if (c is Parameter || c is Total || c is CubeSourceBase || (c is DataComponentBase && (c as DataComponentBase).Enabled))
-                    writer.Write(c);
+                foreach (Base c in childObjects)
+                {
+                    if (c is Parameter || c is Total || c is CubeSourceBase || (c is DataComponentBase && (c as DataComponentBase).Enabled))
+                        writer.Write(c);
+                }
             }
         }
 
@@ -721,6 +724,16 @@ namespace FastReport.Data
         /// <param name="source">Another dictionary to merge the data from.</param>
         public void Merge(Dictionary source)
         {
+            Merge(source, false);
+        }
+
+        /// <summary>
+        /// Merges this dictionary with another <b>Dictionary</b>.
+        /// </summary>
+        /// <param name="source">Another dictionary to merge the data from.</param>
+        /// <param name="mergeOnlyDataSource">Determines whether to disable the merge of the totals and parameters.</param>
+        public void Merge(Dictionary source, bool mergeOnlyDataSource)
+        {
             // Report object is needed to handle save/load of dictionary correctly.
             // Some dictionary objects (such as relations) may contain references to other objects.
             // In order to clone them correctly, we need a parent Report object, because
@@ -733,18 +746,27 @@ namespace FastReport.Data
 
                 foreach (Base c in clone.ChildObjects)
                 {
+                    if ((c is Total || c is Parameter) && mergeOnlyDataSource)
+                        continue;
+                   
                     Base my = FindByName(c.Name);
                     if (my != null)
                     {
-                        foreach (PageBase page in Report.Pages)
+                        if (c is DataSourceBase dataSourceBase)
                         {
-                            if (page is ReportPage)
-                                foreach (Base band in (page as ReportPage).AllObjects)
+                            foreach (PageBase page in Report.Pages)
+                            {
+                                if (page is ReportPage)
                                 {
-                                    if (band is DataBand dataBand && dataBand.DataSource != null && (my.AllObjects.Contains(dataBand.DataSource) || dataBand.DataSource.Name == my.Name
-                                         || dataBand.DataSource == my))
-                                        dataBand.DataSource = (DataSourceBase)clone.FindByName(dataBand.DataSource.Name);
+                                    foreach (Base obj in (page as ReportPage).AllObjects)
+                                    {
+                                        if (obj is IContainDataSource dataObj)
+                                        {
+                                            dataObj.UpdateDataSourceRef(dataSourceBase);
+                                        }
+                                    }
                                 }
+                            }
                         }
                         my.Dispose();
                     }
@@ -755,7 +777,7 @@ namespace FastReport.Data
                 ReRegisterData();
             }
         }
-        #endregion
+#endregion
 
         #region IParent Members
         /// <inheritdoc/>

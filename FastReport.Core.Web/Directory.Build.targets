@@ -3,9 +3,9 @@
 
 <Target Name="CleanObjAndBin">
     <!-- Remove obj folder -->
-    <RemoveDir Directories="$(MSBuildProjectDirectory)\$(BaseIntermediateOutputPath)" />
+    <RemoveDir ContinueOnError="WarnAndContinue" Directories="$(MSBuildProjectDirectory)\$(BaseIntermediateOutputPath)" />
     <!-- Remove bin folder -->
-    <RemoveDir Directories="$(MSBuildProjectDirectory)\$(BaseOutputPath)" />
+    <RemoveDir ContinueOnError="WarnAndContinue" Directories="$(MSBuildProjectDirectory)\$(BaseOutputPath)" />
 </Target>
 
 </Project>

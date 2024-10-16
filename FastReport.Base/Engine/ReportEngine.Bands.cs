@@ -21,10 +21,15 @@ namespace FastReport.Engine
                 {
                     band.GetData();
                 }
-                TranslateObjects(band);
-                RenderInnerSubreports(band);
-                band.CalcHeight();
+                PrepareBandShared(band);
             }
+        }
+
+        private void PrepareBandShared(BandBase band)
+        {
+            TranslateObjects(band);
+            RenderInnerSubreports(band);
+            band.CalcHeight();
         }
 
         private float CalcHeight(BandBase band)

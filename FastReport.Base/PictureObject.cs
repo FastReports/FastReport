@@ -666,7 +666,7 @@ namespace FastReport
                     break;
             }
         }
-        #endregion
+#endregion
 
         #region Report Engine
 
@@ -691,6 +691,7 @@ namespace FastReport
         public override void GetData()
         {
             base.GetData();
+
             if (!String.IsNullOrEmpty(DataColumn))
             {
                 // reset the image
@@ -701,15 +702,22 @@ namespace FastReport
                 if (data is byte[])
                 {
                     SetImageData((byte[])data);
+                    return;
                 }
                 else if (data is Image)
                 {
                     Image = data as Image;
+                    return;
                 }
-                else if (data is string)
+                else if (data is string dataStr)
                 {
-                    ImageLocation = data.ToString();
+                    SetImageLocation(dataStr, true);
                 }
+            }
+            else
+            {
+                // no other data received
+                UpdateImageLocation();
             }
         }
 

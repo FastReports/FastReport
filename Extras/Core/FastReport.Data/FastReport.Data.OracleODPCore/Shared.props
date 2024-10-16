@@ -8,7 +8,7 @@
   <Import Project="..\Connections.props" />
   
   <ItemGroup>
-    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="[2.18.3,)" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="[2.19.240,)" />
   </ItemGroup>
 
   <ItemGroup>

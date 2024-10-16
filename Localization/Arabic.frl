@@ -1960,8 +1960,8 @@
     <Ods Text="Open Office Calc  تصدير إلى ">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="تصدير إلى Excel 2007">
-      <File Text="ملف Excel 2007"/>
+    <Xlsx Text="تصدير إلى Microsoft Excel">
+      <File Text="ملف Microsoft Excel"/>
       <FontScale Text="تحجيم الخط:"/>
       <PrintScaling Text="تج"/>
       <NoScaling Text="بدون تحجيم"/>
@@ -1972,11 +1972,11 @@
     <Xls Text="تصدير إلى إكسل 97">
       <File Text="ملف إكسل 97"/>
     </Xls>
-    <Pptx Text="تصدير إلى ملف PowerPoint 2007">
-      <File Text="ملف PowerPoint 2007"/>
+    <Pptx Text="تصدير إلى ملف PowerPoint">
+      <File Text="ملف Microsoft PowerPoint"/>
     </Pptx>
-    <Docx Text="تصدير إلى ملف Microsot Word 2007">
-      <File Text="ملف Micorosoft Word 2007"/>
+    <Docx Text="تصدير إلى ملف Microsot Word">
+      <File Text="ملف Micorosoft Word"/>
       <RowHeight Text="إرتفاع السطر هو"/>
       <Exactly Text="بالضبط"/>
       <Minimum Text="الحد الأدنى"/>

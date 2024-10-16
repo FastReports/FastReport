@@ -2110,7 +2110,7 @@ namespace FastReport.Utils
 
         private bool serialized;
 
-        private object locker;
+        private readonly object locker;
 
         #endregion Private Fields
 

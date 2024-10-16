@@ -8,7 +8,7 @@ namespace FastReport.Functions
     internal abstract class NumToWordsBase
     {
         #region Private Methods
-        private string Str(decimal value, WordInfo senior, WordInfo junior)
+        private string Str(decimal value, WordInfo senior, WordInfo junior, bool dicimalPartToWord)
         {
             bool minus = false;
             if (value < 0)
@@ -34,8 +34,20 @@ namespace FastReport.Functions
 
             if (junior != null)
             {
-                r.Append(GetDecimalSeparator() + remainder.ToString("00 "));
-                r.Append(Case(remainder, junior));
+                string decimalPart;
+
+                if (dicimalPartToWord)
+                {
+                    decimalPart = Str(remainder, junior, null, false).ToLower();
+                }
+                else
+                {
+                    decimalPart = remainder.ToString("00 ");
+                }
+
+                r.Append(GetDecimalSeparator() + decimalPart);
+                if (!dicimalPartToWord)
+                    r.Append(Case(remainder, junior));
             }
 
             r[0] = char.ToUpper(r[0]);
@@ -160,12 +172,12 @@ namespace FastReport.Functions
         #endregion
 
         #region Public Methods
-        public string ConvertCurrency(decimal value, string currencyName)
+        public string ConvertCurrency(decimal value, string currencyName, bool decimalPartToWord)
         {
             try
             {
                 CurrencyInfo currency = GetCurrency(currencyName);
-                return Str(value, currency.senior, currency.junior);
+                return Str(value, currency.senior, currency.junior, decimalPartToWord);
             }
             catch (KeyNotFoundException e)
             {
@@ -181,18 +193,18 @@ namespace FastReport.Functions
             }
         }
 
-        public string ConvertNumber(decimal value, bool male, string one, string two, string many)
+        public string ConvertNumber(decimal value, bool male, string one, string two, string many, bool decimalPartToWord)
         {
-            return Str(value, new WordInfo(male, one, two, many), null);
+            return Str(value, new WordInfo(male, one, two, many), null, decimalPartToWord);
         }
 
         public string ConvertNumber(decimal value, bool male,
           string seniorOne, string seniorTwo, string seniorMany,
-          string juniorOne, string juniorTwo, string juniorMany)
+          string juniorOne, string juniorTwo, string juniorMany, bool decimalPartToWord)
         {
             return Str(value,
               new WordInfo(male, seniorOne, seniorTwo, seniorMany),
-              new WordInfo(male, juniorOne, juniorTwo, juniorMany));
+              new WordInfo(male, juniorOne, juniorTwo, juniorMany), decimalPartToWord);
         }
         #endregion
     }

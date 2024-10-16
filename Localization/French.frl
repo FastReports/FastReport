@@ -1923,17 +1923,17 @@
     <Ods Text="Export vers OpenOffice Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Exporter vers Excel 2007">
-      <File Text="Fichier Excel 2007"/>
+    <Xlsx Text="Exporter vers Microsoft Excel">
+      <File Text="Fichier Microsoft Excel"/>
     </Xlsx>
     <Xls Text="Exporter vers Excel 97">
       <File Text="Fichier Excel 97"/>
     </Xls>
-    <Pptx Text="Exporter vers PowerPoint 2007">
-      <File Text="Fichier PowerPoint 2007"/>
+    <Pptx Text="Exporter vers Microsoft PowerPoint">
+      <File Text="Fichier Microsoft PowerPoint"/>
     </Pptx>
-    <Docx Text="Exporter vers Word 2007">
-      <File Text="Fichier Word 2007"/>
+    <Docx Text="Exporter vers Microsoft Word">
+      <File Text="Fichier Microsoft Word"/>
       <RowHeight Text="La taille de la ligne est"/>
       <Exactly Text="Exactement"/>
       <Minimum Text="Minimum"/>

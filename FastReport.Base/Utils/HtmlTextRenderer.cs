@@ -576,6 +576,36 @@ namespace FastReport.Utils
             if (dict == null)
                 return;
             string tStr;
+
+            // If "font-style" contains "italic" or "oblique", apply the Italic style to the text.
+            if (dict.TryGetValue("font-style", out tStr))
+            {
+                if (tStr.Contains("italic") || tStr.Contains("oblique"))
+                    style.FontStyle |= FontStyle.Italic;
+            }
+
+            // If "font-weight" contains "bold", apply the Bold style to the text.
+            if (dict.TryGetValue("font-weight", out tStr))
+            {
+                if (tStr.Contains("bold"))
+                    style.FontStyle |= FontStyle.Bold;
+            }
+
+            // If "text-decoration" contains both "underline" and "line-through", apply both styles to the text.
+            // Otherwise, check and apply each style individually.
+            if (dict.TryGetValue("text-decoration", out tStr))
+            {
+                if (tStr.Contains("underline") && tStr.Contains("line-through"))
+                    style.FontStyle |= FontStyle.Underline | FontStyle.Strikeout;
+                else
+                {
+                    if (tStr.Contains("underline"))
+                        style.FontStyle |= FontStyle.Underline;
+                    if (tStr.Contains("line-through"))
+                        style.FontStyle |= FontStyle.Strikeout;
+                }
+            }
+
             if (dict.TryGetValue("font-size", out tStr))
             {
                 if (EndsWith(tStr, "px"))
@@ -3066,6 +3096,26 @@ namespace FastReport.Utils
                     if (color.A > 0) sb.Append(String.Format(CultureInfo, "color:rgba({0},{1},{2},{3});", color.R, color.G, color.B, ((float)color.A) / 255f));
                     if (font != null) { sb.Append("font-family:"); sb.Append(font.Name); sb.Append(";"); }
                     if (fontsize > 0) { sb.Append("font-size:"); sb.Append(fontsize.ToString(CultureInfo)); sb.Append("pt;"); }
+
+                    //if ((fontStyle & FontStyle.Italic) == FontStyle.Italic) { sb.Append("font-style:italic;"); }
+                    //if ((fontStyle & FontStyle.Bold) == FontStyle.Bold) { sb.Append("font-weight:bold;"); }
+
+                    //bool underline = (fontStyle & FontStyle.Underline) == FontStyle.Underline;
+                    //bool strikeout = (fontStyle & FontStyle.Strikeout) == FontStyle.Strikeout;
+
+                    //if (underline && strikeout)
+                    //{
+                    //    sb.Append("text-decoration:underline line-through;");
+                    //}
+                    //else if (underline)
+                    //{
+                    //    sb.Append("text-decoration: underline;");
+                    //}
+                    //else if (strikeout)
+                    //{
+                    //    sb.Append("text-decoration:line-through;");
+                    //}
+
                     sb.Append("\">");
                 }
             }

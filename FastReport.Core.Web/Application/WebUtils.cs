@@ -34,6 +34,7 @@ namespace FastReport.Web
         internal static bool ShouldExportUseZipFormat(IEnumerable<KeyValuePair<string, string>> exportParams, Exports export) 
             => ShouldUseZipFormat(exportParams, export);
 
+#if !WASM
         internal static string MapPath(string path)
         {
             if (path.IsNullOrWhiteSpace())
@@ -41,11 +42,9 @@ namespace FastReport.Web
 
             if (Path.IsPathRooted(path))
                 return path;
-#if !WASM
             return Path.Combine(FastReportGlobal.HostingEnvironment.ContentRootPath, path);
-#endif
-            return string.Empty;
         }
+#endif
 
         internal static string ToUrl(params string[] segments)
         {
@@ -85,7 +84,7 @@ namespace FastReport.Web
         {
             byte[] pngHeader = new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 };
             bool isPng = true;
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 8 && image.Length > 7; i++)
                 if (image[i] != pngHeader[i])
                 {
                     isPng = false;

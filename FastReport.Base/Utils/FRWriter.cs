@@ -74,6 +74,7 @@ namespace FastReport.Utils
         //private StringBuilder FText;
         private object diffObject;
         private bool saveChildren;
+        private bool saveExternalPages;
         private bool writeHeader;
         private BlobStore blobStore;
         private SerializeTo serializeTo;
@@ -122,6 +123,15 @@ namespace FastReport.Utils
         {
             get { return saveChildren; }
             set { saveChildren = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that determines whether is necessary to serialize external pages.
+        /// </summary>
+        public bool SaveExternalPages
+        {
+            get { return saveExternalPages; }
+            set { saveExternalPages = value; }
         }
 
         /// <summary>

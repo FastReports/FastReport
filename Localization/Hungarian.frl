@@ -1658,14 +1658,14 @@
     <Ods Text="Exportál Open Office Calc-ba">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Exportál Excel 2007-be">
-      <File Text="Excel 2007 fájl"/>
+    <Xlsx Text="Exportál Microsoft Excel">
+      <File Text="Microsoft Excel fájl"/>
     </Xlsx>
-    <Pptx Text="Exportál PowerPoint 2007-be">
-      <File Text="PowerPoint 2007 fájl"/>
+    <Pptx Text="Exportál Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint fájl"/>
     </Pptx>
-    <Docx Text="Exportál Microsoft Word 2007-be">
-      <File Text="Microsoft Word 2007 fájl"/>
+    <Docx Text="Exportál Microsoft Word">
+      <File Text="Microsoft Word fájl"/>
     </Docx>
     <Xps Text="Exportál XPS-be">
       <File Text="Microsoft XPS fájl"/>

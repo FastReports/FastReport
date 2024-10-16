@@ -1488,11 +1488,11 @@
     <Ods Text="Exporteer naar Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Exporteer naar Excel 2007">
-      <File Text="Excel 2007 bestand"/>
+    <Xlsx Text="Exporteer naar Microsoft Excel">
+      <File Text="Microsoft Excel bestand"/>
     </Xlsx>
-    <Pptx Text="Exporteer naar PowerPoint 2007">
-      <File Text="PowerPoint 2007 bestand"/>
+    <Pptx Text="Exporteer naar PowerPoint">
+      <File Text="Microsoft PowerPoint bestand"/>
     </Pptx>
     <Pdf Text="Exporteer naar PDF">
       <File Text="Adobe Acrobat"/>

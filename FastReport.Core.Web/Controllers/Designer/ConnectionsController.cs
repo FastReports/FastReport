@@ -24,8 +24,8 @@ namespace FastReport.Web.Controllers
             public string ConnectionString { get; set; }
         }
 
-        public sealed class ConnectionTablesRequestModel 
-        { 
+        public sealed class ConnectionTablesRequestModel
+        {
             public ConnectionsParams ConnectionsParams { get; set; }
 
             public List<CustomViewModel> CustomViews { get; set; }
@@ -37,9 +37,8 @@ namespace FastReport.Web.Controllers
             var isNeedSqlSupport = bool.TryParse(needSqlSupportInfo, out var parsedBool) && parsedBool;
 
             var response = connectionsService.GetConnectionTypes(isNeedSqlSupport);
-            var content = "{" + string.Join(",", response.ToArray()) + "}";
 
-            return Results.Content(content, "application/json");
+            return Results.Json(response);
         }
 
         [Obsolete]
@@ -82,6 +81,54 @@ namespace FastReport.Web.Controllers
             return isError
                 ? Results.Content(response, "text/plain")
                 : Results.Content(response, "application/xml");
+        }
+
+
+        [HttpPost("/designer.updateConnectionTable")]
+        public static IResult UpdateConnectionTable([FromQuery] string reportId,
+            [FromQuery] string connectionType,
+            [FromBody] UpdateTableParams parameters,
+            IReportService reportService,
+            IConnectionsService connectionsService,
+            HttpRequest request)
+        {
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
+            try
+            {
+                string response;
+
+                if (parameters.ConnectionString.IsNullOrWhiteSpace())
+                {
+                    if (!reportService.TryFindWebReport(reportId, out var webReport))
+                        return Results.NotFound();
+
+                    response = connectionsService.GetUpdatedTableByReportId(webReport, parameters);
+                }
+                else
+                {
+                    response = connectionsService.GetUpdatedTableByConnectionString(parameters.ConnectionString,
+                        connectionType, parameters);
+                }
+
+                return Results.Content(response, "application/xml");
+            }
+            catch (Exception ex)
+            {
+                return Results.BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/designer.getParameterTypes")]
+        public static IResult GetParameterTypes([FromQuery] string connectionType,
+            IConnectionsService connectionsService)
+        {
+            var response = connectionsService.GetParameterTypes(connectionType, out string error);
+
+            return string.IsNullOrEmpty(error) ?
+                Results.Json(response)
+                : Results.BadRequest(error);
         }
 
         [HttpGet("/designer.getConnectionStringProperties")]

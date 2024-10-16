@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using FastReport.Utils;
+using System.Threading;
 
 namespace FastReport.Web.Controllers
 {
@@ -14,9 +15,10 @@ namespace FastReport.Web.Controllers
         private const string INVALID_REPORT_MESSAGE = "Error loading report: The report structure is invalid.";
 
         [HttpPost("/preview.getReport")]
-        public static IResult GetReport([FromQuery] string reportId,
+        public static async Task<IResult> GetReport([FromQuery] string reportId,
             IReportService reportService,
-            HttpRequest request)
+            HttpRequest request,
+            CancellationToken cancellationToken)
         {
             if (!IsAuthorized(request))
                 return Results.Unauthorized();
@@ -28,7 +30,7 @@ namespace FastReport.Web.Controllers
 
             try
             {
-                string render = reportService.GetReport(webReport, query);
+                string render = await reportService.GetReportAsync(webReport, query, cancellationToken);
 
                 if (render.IsNullOrEmpty())
                     return Results.Ok();

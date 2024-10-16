@@ -91,7 +91,7 @@ namespace FastReport.Matrix
     /// matrix.Data.Rows[0].TemplateTotalCell.Text = "Grand Total";
     /// </code>
     /// </example>
-    public partial class MatrixObject : TableBase
+    public partial class MatrixObject : TableBase, IContainDataSource
     {
         #region Fields
         private bool autoSize;
@@ -616,6 +616,14 @@ namespace FastReport.Matrix
             if (match is bool && (bool)match == true)
                 Helper.AddDataRow();
         }
+
+        void IContainDataSource.UpdateDataSourceRef(DataSourceBase newRefDatasource)
+        {
+            if (newRefDatasource != null && (newRefDatasource.Name == DataSource.Name || newRefDatasource == DataSource))
+            {
+                DataSource = newRefDatasource;
+            }
+        }
         #endregion
 
         #region Protected Methods
@@ -774,7 +782,11 @@ namespace FastReport.Matrix
         public override void GetData()
         {
             base.GetData();
+            GetDataShared();
+        }
 
+        private void GetDataShared()
+        {
             if (!IsOnFooter)
             {
                 Helper.StartPrint();

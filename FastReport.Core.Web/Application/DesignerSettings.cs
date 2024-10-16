@@ -19,7 +19,7 @@ namespace FastReport.Web
         public bool ScriptCode { get; set; } = false;
 
         /// <summary>
-        /// Gets or sets the text of configuration of Online Designer
+        /// Gets or sets the json of configuration of Online Designer
         /// </summary>
         public string Config { get; set; } = "";
 

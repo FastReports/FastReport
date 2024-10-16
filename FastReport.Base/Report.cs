@@ -18,8 +18,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FastReport
@@ -909,6 +907,21 @@ namespace FastReport
             get { return codeHelper; }
         }
 
+        internal bool HasPageLinks
+        {
+            get
+            {
+                foreach(var page in Pages)
+                {
+                    if(page is ReportPage reportPage && reportPage.LinkToPage.IsInherit)
+                        return true;
+                }
+
+                return false;
+            }
+        }
+
+
         public IGraphics MeasureGraphics
         {
             get
@@ -1306,36 +1319,6 @@ namespace FastReport
             }
         }
 
-#if ASYNC
-        internal async Task CompileAsync(CancellationToken token)
-        {
-            FillDataSourceCache();
-
-#if REFLECTION_EMIT_COMPILER
-            if (Config.CompilerSettings.ReflectionEmitCompiler)
-            {
-                SetIsCompileNeeded();
-                if (!IsCompileNeeded)
-                    return;
-            }
-#endif
-
-            if (needCompile)
-            {
-                AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
-                assemblies.Clear();
-                assemblies.Add(descriptor);
-                descriptor.AddObjects();
-                descriptor.AddExpressions();
-                descriptor.AddFunctions();
-                await descriptor.CompileAsync(token);
-            }
-            else
-            {
-                InternalInit();
-            }
-        }
-#endif
 
         /// <summary>
         /// Initializes the report's fields.
@@ -1642,6 +1625,10 @@ namespace FastReport
                 if (par.DataType.Name == "Double" && par.Value.GetType() == typeof(int))
                 {
                     return (double)(int)par.Value;
+                }
+                if (par.Value.GetType() != par.DataType)
+                {
+                    return ConvertToColumnDataType(par.Value, par.DataType, Report.ConvertNulls);
                 }
                 return par.Value;
             }
@@ -2001,6 +1988,42 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Saves the report to a stream.
+        /// </summary>
+        /// <param name="stream">The stream to save to.</param>
+        /// <param name="savePageLinks">Enables saving linked pages to original files.</param>
+        public void Save(Stream stream, bool savePageLinks)
+        {
+            using (FRWriter writer = new FRWriter())
+            {
+                writer.SaveExternalPages = savePageLinks;
+
+                if (IsAncestor)
+                    writer.GetDiff += new DiffEventHandler(GetDiff);
+                writer.Write(this);
+
+                List<Stream> disposeList = new List<Stream>();
+
+                if (Compressed)
+                {
+                    stream = Compressor.Compress(stream);
+                    disposeList.Add(stream);
+                }
+                if (!String.IsNullOrEmpty(Password))
+                {
+                    stream = Crypter.Encrypt(stream, Password);
+                    disposeList.Insert(0, stream);
+                }
+                writer.Save(stream);
+
+                foreach (Stream s in disposeList)
+                {
+                    s.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
         /// Saves the report to a file.
         /// </summary>
         /// <param name="fileName">The name of the file to save to.</param>
@@ -2010,6 +2033,20 @@ namespace FastReport
             using (FileStream f = new FileStream(fileName, FileMode.Create))
             {
                 Save(f);
+            }
+        }
+
+        /// <summary>
+        /// Saves the report to a file.
+        /// </summary>
+        /// <param name="fileName">The name of the file to save to.</param>
+        /// <param name="savePageLinks">Enables saving linked pages to original files.</param>
+        public void Save(string fileName, bool savePageLinks)
+        {
+            FileName = fileName;
+            using (FileStream f = new FileStream(fileName, FileMode.Create))
+            {
+                Save(f, savePageLinks);
             }
         }
 
@@ -2162,7 +2199,29 @@ namespace FastReport
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                Save(stream);
+                Save(stream, false);
+
+                if (Compressed || !String.IsNullOrEmpty(Password))
+                {
+                    return Convert.ToBase64String(stream.ToArray());
+                }
+                else
+                {
+                    return Encoding.UTF8.GetString(stream.ToArray());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Saves the report to a string.
+        /// </summary>
+        /// <returns>The string that contains a stream.</returns>
+        /// <param name="savePageLinks">Enables saving linked pages to original files.</param>
+        public string SaveToString(bool savePageLinks)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Save(stream, savePageLinks);
 
                 if (Compressed || !String.IsNullOrEmpty(Password))
                 {
@@ -2461,60 +2520,13 @@ namespace FastReport
             return Prepare(false);
         }
 
-#if ASYNC
-        /// <summary>
-        /// Prepares the report asynchronously.
-        /// </summary>
-        /// <param name="token">Cancellation token</param>
-        /// <returns><b>true</b> if report was prepared succesfully.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)] // TODO
-        public Task<bool> PrepareAsync(CancellationToken token = default)
-        {
-            return PrepareAsync(false, token);
-        }
-
-        private async Task<bool> PrepareAsync(bool append, CancellationToken token = default)
-        {
-            SetRunning(true);
-            try
-            {
-                if (PreparedPages == null || !append)
-                {
-                    ClearPreparedPages();
-
-                    SetPreparedPages(new Preview.PreparedPages(this));
-                }
-                engine = new ReportEngine(this);
-
-                if (!Config.WebMode)
-                    StartPerformanceCounter();
-
-                try
-                {
-                    await CompileAsync(token).ConfigureAwait(false);
-                    isParameterChanged = false;
-                    return Engine.Run(true, append, true);
-                }
-                finally
-                {
-                    if (!Config.WebMode)
-                        StopPerformanceCounter();
-                }
-            }
-            finally
-            {
-                SetRunning(false);
-            }
-        }
-
-#endif
 
         /// <summary>
         /// Prepares the report.
         /// </summary>
         /// <param name="append">Specifies whether the new report should be added to a
         /// report that was prepared before.</param>
-        /// <returns><b>true</b> if report was prepared succesfully.</returns>
+        /// <returns><b>true</b> if report was prepared successfully.</returns>
         /// <remarks>
         /// Use this method to merge prepared reports.
         /// </remarks>
@@ -2529,6 +2541,31 @@ namespace FastReport
         /// </code>
         /// </example>
         public bool Prepare(bool append)
+        {
+            return Prepare(append, true);
+        }
+
+        /// <summary>
+        /// Prepares the report.
+        /// </summary>
+        /// <param name="append">Specifies whether the new report should be added to a
+        /// report that was prepared before.</param>
+        /// <param name="resetDataState">Specifies whether the reset data state.</param>
+        /// <returns><b>true</b> if report was prepared successfully.</returns>
+        /// <remarks>
+        /// Use this method to merge prepared reports.
+        /// </remarks>
+        /// <example>This example shows how to merge two reports and preview the result:
+        /// <code>
+        /// Report report = new Report();
+        /// report.Load("report1.frx");
+        /// report.Prepare();
+        /// report.Load("report2.frx");
+        /// report.Prepare(true);
+        /// report.ShowPrepared();
+        /// </code>
+        /// </example>
+        public bool Prepare(bool append, bool resetDataState)
         {
             SetRunning(true);
             try
@@ -2548,7 +2585,7 @@ namespace FastReport
                 {
                     Compile();
                     isParameterChanged = false;
-                    return Engine.Run(true, append, true);
+                    return Engine.Run(true, append, resetDataState);
                 }
                 finally
                 {

@@ -223,25 +223,25 @@ namespace FastReport.Export
                 switch (f.NumberNegativePattern)
                 {
                     case 0: negative_pattern = "(" + fm_str + ")"; break; // (n)
-                    case 1: negative_pattern = "-" + fm_str; break;       // -n
+                 // case 1: negative_pattern = "-" + fm_str; break;       // -n
                     case 2: negative_pattern = "- " + fm_str; break;      // - n
                     case 3: negative_pattern = fm_str + "-"; break;       // n-
                     case 4: negative_pattern = fm_str + " -"; break;      // n -
                 }
-
-                return positive_pattern + ";" + negative_pattern;
+                string semicolon = !String.IsNullOrEmpty(negative_pattern) ? ";" : "";
+                return positive_pattern + semicolon + negative_pattern;
             }
             else if (format is DateFormat)
             {
-                string parentalCase = CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ru" ? "[$-FC19]" : "";
+                string parentalCase = CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ru" ? "[$-419]" : "";
                 switch ((format as DateFormat).Format)
                 {
                     case "d": return DateTimeFormatInfo.CurrentInfo.ShortDatePattern + ";@";
-                    case "D": return "[$-F800]" + DateTimeFormatInfo.CurrentInfo.LongDatePattern.Replace("tt", "AM/PM") + ";@";
+                    case "D": return "[$-F800]" + "dddd, mmmm dd, yyyy";
                     case "f": return parentalCase + (DateTimeFormatInfo.CurrentInfo.LongDatePattern + " " + DateTimeFormatInfo.CurrentInfo.ShortTimePattern).Replace("tt", "AM/PM") + ";@";
                     case "F": return parentalCase + DateTimeFormatInfo.CurrentInfo.FullDateTimePattern.Replace("tt", "AM/PM") + ";@";
-                    case "MMMM yyyy": return (format as DateFormat).Format + ";@";
-                    default: return parentalCase + (format as DateFormat).Format.Replace("tt", "AM/PM") + ";@";
+                    case "MMMM yyyy": return parentalCase + DateTimeFormatInfo.CurrentInfo.YearMonthPattern + ";@";
+                    default: return (format as DateFormat).Format.Replace("tt", "AM/PM") + ";@";
                 }
             }
             else if (format is PercentFormat)

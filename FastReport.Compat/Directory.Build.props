@@ -13,7 +13,8 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Common compatible types for FastReport .Net, Core and Mono</Description>
-    <PackageIcon>frlogo192.png</PackageIcon>
+    <PackageIconFileName>frlogo192.png</PackageIconFileName>
+    <PackageIcon>$(PackageIconFileName)</PackageIcon>
     <PackageIconUrl />
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
@@ -33,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(SlnDir)\Pack\frlogo192.png">
+    <None Include="$(SlnDir)\Pack\$(PackageIconFileName)">
       <Pack>True</Pack>
       <Visible>false</Visible>
       <PackagePath></PackagePath>

@@ -1760,14 +1760,14 @@
     <Ods Text="Exportar a Open Office Calc">
       <File Text="OpenOffice Calc..."/>
     </Ods>
-    <Xlsx Text="Exportar a Excel 2007">
-      <File Text="Archivo Excel 2007..."/>
+    <Xlsx Text="Exportar a Microsoft Excel">
+      <File Text="Archivo Microsoft Excel"/>
     </Xlsx>
-    <Pptx Text="Exportar a PowerPoint 2007">
-      <File Text="Archivo PowerPoint 2007"/>
+    <Pptx Text="Exportar a Microsoft PowerPoint">
+      <File Text="Archivo Microsoft PowerPoint"/>
     </Pptx>
-    <Docx Text="Exportar a Microsoft Word 2007">
-      <File Text="Archivo Microsoft Word 2007"/>
+    <Docx Text="Exportar a Microsoft Word">
+      <File Text="Archivo Microsoft Word"/>
     </Docx>
     <Xps Text="Exportar a XPS">
       <File Text="Microsoft XPS file"/>

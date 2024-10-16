@@ -13,6 +13,24 @@ namespace FastReport.Web
 
     public partial class WebReport
     {
+        private string localizationFile;
+
+
+        /// <summary>
+        /// Gets or sets the WebReport's locale
+        /// </summary>
+        public string LocalizationFile
+        {
+            get => localizationFile;
+            set
+            {
+                localizationFile = value;
+                string path = WebUtils.MapPath(localizationFile);
+                Res.LoadLocale(path);
+            }
+        }
+
+
         internal static IResourceLoader ResourceLoader { get; set; }
 
 

@@ -993,6 +993,28 @@ namespace FastReport
             }
         }
 
+        internal void AssignAll(Base source, bool assignName, bool assignAncestor)
+        {
+            Clear();
+            Assign(source);
+            if (assignName)
+                SetName(source.Name);
+
+            if (assignAncestor)
+                SetAncestor(source.IsAncestor);
+
+            foreach (Base child in source.ChildObjects)
+            {
+                Base myChild = Activator.CreateInstance(child.GetType()) as Base;
+                myChild.SetReport(Report);
+                myChild.AssignAll(child, assignName, assignAncestor);
+                myChild.SetReport(null);
+                myChild.Parent = this;
+                if (assignAncestor)
+                    myChild.SetAncestor(child.IsAncestor);
+            }
+        }
+
         /// <summary>
         /// Gets a value indicating whether the object has the specified parent in its parent hierarchy.
         /// </summary>

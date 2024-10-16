@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Language Name="ru" Author="Alexander Tsyganenko &lt;tz@fast-report.com&gt;;Alexander Fediashov &lt;fediachov@fast-report.com&gt;">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} шрифт не может быть изменён, встроен или передан любым способом без первоначального получения разрешения от правообладателя."/>
@@ -197,8 +197,8 @@
     </Shapes>
     <PictureObject Text="Рисунок"/>
     <SVGObject Text="SVG изображение"/>
-    <TableObject Text="Таблица"/>
     <RFIDLabel Text="RFID-метка"/>
+    <TableObject Text="Таблица"/>
     <Matrix Text="Матрица"/>
     <MatrixObject Text="Матрица"/>
     <AdvMatrixObject Text="Улучшенная матрица"/>
@@ -794,7 +794,8 @@
       <Games Text="Игры:"/>
     </AddNewItem>
     <OpenPage Text="Выберите страницу">
-      <MergeDictionaries Text="Объединить словари"/>
+      <MergeDataSource Text="Объединить источники данных"/>
+      <AddAsLink Text="Добавить как ссылку"/>
     </OpenPage>
     <AdvancedConnectionProperties Text="Расширенные свойства"/>
     <AskPassword Text="Пароль">
@@ -1661,6 +1662,8 @@
       <PagesOnSheet2 Text="2 страницы"/>
       <PagesOnSheet4 Text="4 страницы"/>
       <PagesOnSheet8 Text="8 страниц"/>
+      <Scale Text="Масштаб (%):"/>
+      <AutoPaperSize Text="Авто. формат бумаги"/>
       <Print Text="Печать"/>
       <Error Text="Диапазон страниц задан неверно."/>
       <CmdCommand Text="Команда"/>
@@ -1797,7 +1800,7 @@
       <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
       <ApplyLastFormat Text="Применять последний формат к новым объектам"/>
     </ReportPageOptions>
-      <RFIDLabelEditor Text="Редактор RFID-меток">
+    <RFIDLabelEditor Text="Редактор RFID-меток">
       <ReservedBank Text="Зарезервированный банк данных"/>
       <AccessPassword Text="Пароль доступа"/>
       <AccessPassWriteMode Text="Режим доступа к паролю доступа"/>
@@ -1812,7 +1815,7 @@
       <EPC Text="Электронный код продукта"/>
       <EPCBankMode Text="Режим доступа к ЭКП"/>
       <UseAdjust Text="Использовать выравнивание битов"/>
-      <RewriteEPC Text="Перезаписать банк ЭКП" />
+      <RewriteEPC Text="Перезаписать банк ЭКП"/>
       <UserBank Text="Банк пользователя"/>
       <UserData Text="Пользовательские данные"/>
       <UserBankMode Text="Режим доступа к пользовательским данным"/>
@@ -2037,7 +2040,6 @@
         <AlternativeProcedure Text="Альтернативная процедура"/>
       </Swiss>
       <SberbankQr Text="Сбербанк QR">
-        <Enable Text="True"/>
         <Name Text="Наименование получателя"/>
         <PersonalAcc Text="Номер счета получателя платежа "/>
         <BankName Text="Наименование банка получателя платежа"/>
@@ -2189,8 +2191,8 @@
       <Help Text="Помощь"/>
       <SelectAll Text="Выбрать все"/>
       <Default Text="По умолчанию"/>
-      <Command Text="Команда"/>
       <Info Text="Для изменения сочетания клавиш необходимо два раза кликнуть на нужный, либо выбрать и нажать Enter."/>
+      <Command Text="Команда"/>
       <Shortcut Text="Сочетание клавиш"/>
     </ShortcutsList>
     <ShortcutEditor Text="Редактор сочетаний клавиш">
@@ -2211,9 +2213,9 @@
       <OnlyUrlException Text="В подключении должна быть ссылка!"/>
       <ErrorUrlException Text="По указанному пути отсутствует искомый файл!"/>
     </Common>
-	<Linter>
-	  <DBProviderNotFound Text="Не удалось найти поставщика данных ЛИНТЕР. Возможно он не установлен."/>
-	</Linter>
+    <Linter>
+      <DBProviderNotFound Text="Не удалось найти поставщика данных ЛИНТЕР. Возможно он не установлен."/>
+    </Linter>
     <Excel>
       <FieldNames Text="Имена столбцов в первой строке"/>
     </Excel>
@@ -2629,8 +2631,8 @@
     <Ods Text="Экспорт в OpenOffice Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Экспорт в Excel 2007">
-      <File Text="Excel 2007 формат"/>
+    <Xlsx Text="Экспорт в Excel">
+      <File Text="Microsoft Excel формат"/>
       <FontScale Text="Масштаб шрифта:"/>
       <PrintScaling Text="Масштабирование при печати"/>
       <NoScaling Text="Фактический размер"/>
@@ -2655,19 +2657,21 @@
       <Other Text="Другие"/>
       <ShowGridlines Text="Показать линии сетки"/>
       <UngroupSheets Text="Разгруппировать листы"/>
+      <MergePagesIntoSingleSheet Text="Объединить все страницы отчета в один лист"/>
       <UseLocaleFormating Text="Использовать региональный формат данных"/>
       <CurrencyToAccounting Text="Преобразовывать денежный формат в финансовый"/>
       <GeneralToText Text="Преобразовывать общий формат в текстовый"/>
+      <UseCustomFormat Text="Преобразовывать в пользовательский формат"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>
       <HideGridLines Text="Скрыть линии сетки"/>
     </Xls>
-    <Pptx Text="Экспорт в PowerPoint 2007">
-      <File Text="PowerPoint 2007 формат"/>
+    <Pptx Text="Экспорт в PowerPoint">
+      <File Text="Microsoft PowerPoint формат"/>
     </Pptx>
-    <Docx Text="Экспорт в Microsoft Word 2007">
-      <File Text="Microsoft Word 2007 формат"/>
+    <Docx Text="Экспорт в Microsoft Word">
+      <File Text="Microsoft Word формат"/>
       <RowHeight Text="Высота строк таблицы"/>
       <SaveRowHeight Text="Сохранить высоту строки"/>
       <Exactly Text="Точно"/>

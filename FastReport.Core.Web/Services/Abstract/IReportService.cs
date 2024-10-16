@@ -16,14 +16,6 @@ namespace FastReport.Web.Services
     public interface IReportService
     {
         /// <summary>
-        /// Returns a report for Preview on the Web
-        /// </summary>
-        /// <param name="webReport">Report a preview of which you want to create</param>
-        /// <param name="params">Report preview creation options</param>
-        /// <returns>Returns the HTML string of the report preview</returns>
-        string GetReport(WebReport webReport, GetReportServiceParams @params);
-
-        /// <summary>
         /// Asynchronously returns a report for Preview on the Web
         /// </summary>
         /// <param name="webReport">Report a preview of which you want to create</param>

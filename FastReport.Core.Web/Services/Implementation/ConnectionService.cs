@@ -8,7 +8,6 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -16,20 +15,22 @@ namespace FastReport.Web.Services
 {
     internal sealed class ConnectionService : IConnectionsService
     {
-
-        public string GetConnectionStringPropertiesJSON(string connectionType, string connectionString, out bool isError)
+        private static Type GetConnectionType(string connectionType)
         {
             var objects = new List<DataConnectionInfo>();
             RegisteredObjects.DataConnections.EnumItems(objects);
-            Type connType = null;
 
             foreach (var info in objects)
-                if (info.Object != null &&
-                    info.Object.FullName == connectionType)
+                if (info.Object != null && info.Object.FullName == connectionType)
                 {
-                    connType = info.Object;
-                    break;
+                    return info.Object;
                 }
+            return null;
+        }
+
+        public string GetConnectionStringPropertiesJSON(string connectionType, string connectionString, out bool isError)
+        {
+            Type connType = GetConnectionType(connectionType);
 
             if (connType == null)
             {
@@ -67,8 +68,8 @@ namespace FastReport.Web.Services
                         try
                         {
                             object owner = conn;
-                            if (conn is ICustomTypeDescriptor)
-                                owner = ((ICustomTypeDescriptor)conn).GetPropertyOwner(pd);
+                            if (conn is ICustomTypeDescriptor customTypeDescriptor)
+                                owner = customTypeDescriptor.GetPropertyOwner(pd);
                             value = pd.GetValue(owner);
                         }
                         catch { }
@@ -95,17 +96,7 @@ namespace FastReport.Web.Services
 
         public string CreateConnectionStringJSON(string connectionType, IFormCollection form, out bool isError)
         {
-            var objects = new List<DataConnectionInfo>();
-            RegisteredObjects.DataConnections.EnumItems(objects);
-            Type connType = null;
-
-            foreach (var info in objects)
-                if (info.Object != null &&
-                    info.Object.FullName == connectionType)
-                {
-                    connType = info.Object;
-                    break;
-                }
+            Type connType = GetConnectionType(connectionType);
 
             if (connType == null)
             {
@@ -141,8 +132,8 @@ namespace FastReport.Web.Services
                             object value = typeConverter.ConvertFromString(propertyValue);
 
                             object owner = conn;
-                            if (conn is ICustomTypeDescriptor)
-                                owner = ((ICustomTypeDescriptor)conn).GetPropertyOwner(pd);
+                            if (conn is ICustomTypeDescriptor customTypeDescriptor)
+                                owner = customTypeDescriptor.GetPropertyOwner(pd);
                             pd.SetValue(owner, value);
                         }
                         catch (Exception ex)
@@ -166,73 +157,138 @@ namespace FastReport.Web.Services
         public string GetConnectionTables(string connectionType, string connectionString, List<CustomViewModel> customViews)
         {
             if (!IsConnectionStringValid(connectionString, out var errorMsg))
-            {
                 throw new Exception(errorMsg);
-            }
 
-            var objects = new List<DataConnectionInfo>();
-            RegisteredObjects.DataConnections.EnumItems(objects);
-            Type connType = null;
-
-            foreach (var info in objects)
-                if (info.Object != null &&
-                    info.Object.FullName == connectionType)
-                {
-                    connType = info.Object;
-                    break;
-                }
-
-            if (connType != null)
+            try
             {
-                try
+                using var conn = CreateConnection(connectionType);
+
+                conn.ConnectionString = connectionString;
+
+                if (FastReportGlobal.AllowCustomSqlQueries)
                 {
-                    using (DataConnectionBase conn = (DataConnectionBase)Activator.CreateInstance(connType))
-                    using (var writer = new FRWriter())
+                    foreach (var view in customViews)
                     {
-                        conn.ConnectionString = connectionString;
-
-                        if (FastReportGlobal.AllowCustomSqlQueries)
+                        var source = new TableDataSource
                         {
-                            foreach (var view in customViews)
-                            {
-                                var source = new TableDataSource
-                                {
-                                    Table = new DataTable(),
-                                    TableName = view.TableName,
-                                    Name = view.TableName,
-                                    SelectCommand = view.SqlQuery
-                                };
+                            Table = new DataTable(),
+                            TableName = view.TableName,
+                            Name = view.TableName,
+                            SelectCommand = view.SqlQuery
+                        };
 
-                                conn.Tables.Add(source);
-                                conn.DataSet.Tables.Add(source.Table);
-                            }
-                        }
-
-                        conn.CreateAllTables(true);
-                        foreach (TableDataSource c in conn.Tables)
-                            c.Enabled = true;
-
-                        writer.SaveChildren = true;
-                        writer.WriteHeader = false;
-                        writer.Write(conn);
-
-                        using (var ms = new MemoryStream())
-                        {
-                            writer.Save(ms);
-                            ms.Position = 0;
-
-                            return Encoding.UTF8.GetString(ms.ToArray());
-                        }
+                        conn.Tables.Add(source);
+                        conn.DataSet.Tables.Add(source.Table);
                     }
                 }
-                catch 
-                {
-                    throw new Exception("Error in creating tables. Please verify your connection string.");
-                }
+
+                conn.CreateAllTables(true);
+
+                foreach (TableDataSource c in conn.Tables)
+                    c.Enabled = true;
+
+                return SerializeToString(conn);
             }
+            catch 
+            {
+                throw new Exception("Error in creating tables. Please verify your connection string.");
+            }
+        }
 
-            throw new Exception("Connection type not found");
+        public string GetUpdatedTableByReportId(WebReport webReport, UpdateTableParams parameters)
+        {
+            var dataSource = webReport.Report.GetDataSource(parameters.TableName) as TableDataSource
+                             ?? throw new Exception("Table not found");
 
+            try
+            {
+                foreach (var parameter in parameters.Parameters)
+                {
+                    ApplyParameterToDataSource(dataSource, parameter);
+                }
+
+                dataSource.SelectCommand = parameters.SqlQuery;
+                dataSource.RefreshTable();
+
+                return SerializeToString(dataSource);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in creating tables. Please verify your parameters.", ex);
+            }
+        }
+
+        public string GetUpdatedTableByConnectionString(string connectionString, string connectionType,
+            UpdateTableParams parameters)
+        {
+            if (!IsConnectionStringValid(connectionString, out var errorMsg))
+                throw new ArgumentException(errorMsg);
+
+            try
+            {
+                using var conn = CreateConnection(connectionType);
+                conn.ConnectionString = connectionString;
+                conn.CreateAllTables(true);
+
+                var dataSource = conn.Tables.Cast<TableDataSource>()
+                                     .FirstOrDefault(table => string.Equals(table.TableName, parameters.TableName))
+                                 ?? throw new ArgumentException("Table not found");
+
+                foreach (var parameter in parameters.Parameters)
+                {
+                    ApplyParameterToDataSource(dataSource, parameter);
+                }
+
+                dataSource.SelectCommand = parameters.SqlQuery;
+                dataSource.RefreshTable();
+
+                return SerializeToString(dataSource);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating table in the database.", ex);
+            }
+        }
+
+        private static CommandParameter CreateParameter(ParameterModel parameterParams)
+        {
+            return new CommandParameter
+            {
+                Name = parameterParams.Name ?? string.Empty,
+                Value = parameterParams.Value ?? string.Empty,
+                DataType = parameterParams.DataType,
+                Expression = parameterParams.Expression ?? string.Empty
+            };
+        }
+
+        private static DataConnectionBase CreateConnection(string connectionType)
+        {
+            var connType = GetConnectionType(connectionType);
+
+            return connType == null
+                ? throw new ArgumentException("Connection type not found")
+                : (DataConnectionBase)Activator.CreateInstance(connType);
+        }
+
+        private static string SerializeToString(IFRSerializable serializable)
+        {
+            using var writer = new FRWriter();
+            writer.SaveChildren = true;
+            writer.WriteHeader = false;
+            writer.Write(serializable);
+
+            using var ms = new MemoryStream();
+            writer.Save(ms);
+            ms.Position = 0;
+
+            using var reader = new StreamReader(ms, Encoding.UTF8);
+            return reader.ReadToEnd();
+        }
+
+        private static void ApplyParameterToDataSource(TableDataSource dataSource, ParameterModel parameterModel)
+        {
+            var parameter = CreateParameter(parameterModel);
+            dataSource.Parameters.Add(parameter);
         }
 
         private static bool IsConnectionStringValid(string connectionString, out string errorMsg)
@@ -247,26 +303,62 @@ namespace FastReport.Web.Services
             return true;
         }
 
-        public List<string> GetConnectionTypes(bool needSqlSupportInfo = false)
+        public Dictionary<string, object> GetConnectionTypes(bool needSqlSupportInfo = false)
         {
-            var result = new List<string>();
+            var result = new Dictionary<string, object>();
             var objects = new List<DataConnectionInfo>();
             RegisteredObjects.DataConnections.EnumItems(objects);
 
             foreach (var info in objects.Where(info => info.Object != null))
             {
-                string connection;
-
                 if (needSqlSupportInfo)
                 {
                     using var conn = (DataConnectionBase)Activator.CreateInstance(info.Object);
-                    connection = $"\"{info.Object.FullName}\": {GetConnectionJson(info.Text, conn.IsSqlBased)}";
+                    result.Add(info.Object.FullName, GetConnectionJson(info.Text, conn.IsSqlBased));
                 }
-                else connection = $"\"{info.Object.FullName}\": \"{Res.TryGetBuiltin(info.Text)}\"";
-
-                result.Add(connection);
+                else
+                    result.Add(info.Object.FullName, Res.TryGetBuiltin(info.Text));
             }
 
+            return result;
+        }
+
+        public Dictionary<string, int> GetParameterTypes(string connectionType, out string errorMsg)
+        {
+            var result = new Dictionary<string, int>();
+            Type connType = GetConnectionType(connectionType);
+
+            if (connType == null)
+            {
+                errorMsg = "Connection type not found";
+                return result;
+            }
+
+            try
+            {
+                using (var conn = (DataConnectionBase)Activator.CreateInstance(connType))
+                {
+                    Array values;
+
+                    var paramType = conn.GetParameterType();
+                    if (paramType != null)
+                        values = Enum.GetValues(paramType);
+                    else 
+                        values = Enum.GetValues<DbType>();
+
+                    foreach (var par in values) 
+                    {
+                        result.Add(par.ToString(), (int)par);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMsg = ex.ToString();
+                return result;
+            }
+
+            errorMsg = "";
             return result;
         }
 

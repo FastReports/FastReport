@@ -21,7 +21,8 @@ namespace FastReport.Web.Services
             _cache = webReportCache;
         }
 
-        public string GetReport(WebReport webReport, GetReportServiceParams @params)
+
+        public async Task<string> GetReportAsync(WebReport webReport, GetReportServiceParams @params, CancellationToken cancellationToken = default)
         {
 #if DIALOGS
             webReport.Dialogs(@params.DialogParams);
@@ -31,13 +32,16 @@ namespace FastReport.Web.Services
 
             if (webReport.Mode == WebReportMode.Dialog)
             {
-                webReport.Report.PreparePhase1();
+                await webReport.Report.PreparePhase1Async(cancellationToken);
             }
             else
 #endif
             if (!webReport.ReportPrepared && @params.SkipPrepare != "yes" || @params.ForceRefresh == "yes")
             {
-                webReport.Report.Prepare();
+                // don't reset the data state if we run the dialog page or refresh a report.
+                // This is necessary to keep data filtering settings alive
+                var resetDataState = @params.ForceRefresh != "yes" && string.IsNullOrEmpty(@params.DialogParams.DialogN);
+                await webReport.Report.PrepareAsync(false, resetDataState, cancellationToken);
 
                 webReport.SplitReportPagesByTabs();
             }
@@ -52,11 +56,6 @@ namespace FastReport.Web.Services
             bool renderBodyBool = @params.RenderBody == "yes";
 
             return webReport.Render(renderBodyBool).ToString();
-        }
-
-        public Task<string> GetReportAsync(WebReport webReport, GetReportServiceParams @params, CancellationToken cancellationToken = default)
-        {
-            return Task.FromResult(GetReport(webReport, @params));
         }
 
         public async Task<string> InvokeCustomElementAction(WebReport webReport, string elementId, string inputValue)

@@ -349,6 +349,11 @@ namespace FastReport.Table
         {
             base.GetData();
 
+            GetDataShared();
+        }
+
+        private void GetDataShared()
+        {
             if (!IsManualBuild)
             {
                 for (int y = 0; y < Rows.Count; y++)

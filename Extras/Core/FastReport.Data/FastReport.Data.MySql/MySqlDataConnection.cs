@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using MySqlConnector;
 using System.Data;
+using System.Globalization;
 
 namespace FastReport.Data
 {
@@ -64,7 +65,7 @@ namespace FastReport.Data
         {
             MySqlDataAdapter adapter = new MySqlDataAdapter(selectCommand, connection as MySqlConnection);
             foreach (CommandParameter p in parameters)
-            { 
+            {
                 MySqlParameter parameter = adapter.SelectCommand.Parameters.Add(p.Name, (MySqlDbType)p.DataType, p.Size);
 
                 if (p.Value is Variant value)
@@ -83,7 +84,7 @@ namespace FastReport.Data
 
         private object VariantToClrType(Variant value, MySqlDbType type)
         {
-            if (value.ToString() == "")
+            if (value.ToString() == "" && type != MySqlDbType.Null)
                 return null;
 
             switch (type)
@@ -116,19 +117,16 @@ namespace FastReport.Data
                         return val;
                     }
                 case MySqlDbType.DateTime:
+                case MySqlDbType.Timestamp:
                 case MySqlDbType.Date:
+                case MySqlDbType.Newdate:
+                case MySqlDbType.Time:
                     {
                         DateTime val = DateTime.Now;
                         DateTime.TryParse(value.ToString(), out val);
                         return val;
                     }
-                case MySqlDbType.Time:
-                case MySqlDbType.Timestamp:
-                    {
-                        TimeSpan val = TimeSpan.Zero;
-                        TimeSpan.TryParse(value.ToString(), out val);
-                        return val;
-                    }
+                case MySqlDbType.NewDecimal:
                 case MySqlDbType.Decimal:
                     {
                         decimal val = 0;
@@ -142,13 +140,13 @@ namespace FastReport.Data
                         return val;
                     }
                 case MySqlDbType.Int24:
-                case MySqlDbType.UInt24:
                 case MySqlDbType.Int32:
                     {
                         int val = 0;
                         int.TryParse(value.ToString(), out val);
                         return val;
                     }
+                case MySqlDbType.UInt24:
                 case MySqlDbType.UInt32:
                     {
                         uint val = 0;
@@ -174,12 +172,41 @@ namespace FastReport.Data
                         return val;
                     }
                 case MySqlDbType.Byte:
+                    {
+                        sbyte val = 0;
+                        sbyte.TryParse(value.ToString(), out val);
+                        return val;
+                    }
                 case MySqlDbType.UByte:
                     {
                         byte val = 0;
                         byte.TryParse(value.ToString(), out val);
                         return val;
                     }
+                case MySqlDbType.Blob:
+                case MySqlDbType.TinyBlob:
+                case MySqlDbType.MediumBlob:
+                case MySqlDbType.LongBlob:
+                case MySqlDbType.Binary:
+                case MySqlDbType.VarBinary:
+                    {
+                        string val = value.ToString();
+                        if (val.Length % 2 != 0)
+                        {
+                            throw new ArgumentException(String.Format(CultureInfo.InvariantCulture, "The binary key cannot have an odd number of digits: {0}", val));
+                        }
+
+                        byte[] data = new byte[val.Length / 2];
+                        for (int index = 0; index < data.Length; index++)
+                        {
+                            string byteValue = val.Substring(index * 2, 2);
+                            data[index] = byte.Parse(byteValue, NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+                        }
+
+                        return data;
+                    }
+                case MySqlDbType.Null:
+                    return DBNull.Value;
                 default:
                     return value.ToString();
             }

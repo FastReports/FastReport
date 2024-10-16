@@ -205,4 +205,7 @@ partial class Program
         var additionDir = GetDirNameByProject(project);
         return Path.Combine(outdir, additionDir);
     }
+
+
+    partial void UseNugetLocalization(NuGetPackSettings settings, ProductType productType);
 }

@@ -42,18 +42,20 @@ partial class Program
         var nuGetPackSettings = new NuGetPackSettings
         {
             Id = projName,
-            Authors = new[] { "Fast Reports Inc." },
-            Owners = new[] { "Fast Reports Inc." },
-            Description = "FastReport.Localization includes localization files for FastReport .NET, FastReport.Core, FastReport.WPF, FastReport.Mono and FastReport.OpenSource",
+            Authors = ["Fast Reports Inc."],
+            Owners = ["Fast Reports Inc."],
+            Description = "FastReport.Localization includes localization files for FastReport .NET, FastReport.Core, FastReport.WPF, FastReport.Avalonia, FastReport.Mono and FastReport.OpenSource",
             ProjectUrl = new Uri("https://www.fast-report.com/en/product/fast-report-net"),
             Icon = FRLOGO192PNG,
             License = new NuSpecLicense { Type = "file", Value = MIT_LICENSE },
-            Tags = new[] { "fastreport", "localization" , "frl"},
+            Tags = ["fastreport", "localization", "frl"],
             Version = version,
             BasePath = tempDir,
             OutputDirectory = GetOutdir(projName),
             Files = packFiles,
         };
+
+        UseNugetLocalization(nuGetPackSettings, ProductType.Localization);
 
         // pack
         NuGetPack(nuGetPackSettings);

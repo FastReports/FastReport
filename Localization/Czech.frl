@@ -1577,14 +1577,14 @@
     <Ods Text="Exportování jako Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Exportovat do Excelu 2007">
-      <File Text="Excel 2007"/>
+    <Xlsx Text="Exportovat do Microsoft Excelu">
+      <File Text="Microsoft Excel"/>
     </Xlsx>
-    <Pptx Text="Exportovat do PowerPoint 2007">
-      <File Text="PowerPoint 2007"/>
+    <Pptx Text="Exportovat do Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint"/>
     </Pptx>
-    <Docx Text="Exportovat do Microsoft Word 2007">
-      <File Text="Microsoft Word 2007"/>
+    <Docx Text="Exportovat do Microsoft Word">
+      <File Text="Microsoft Word"/>
     </Docx>
     <Xps Text="Expot do XPS dokumentu">
       <File Text="Microsoft XPS dokument"/>

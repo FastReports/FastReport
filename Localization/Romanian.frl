@@ -1498,14 +1498,14 @@
     <Ods Text="Exporta in Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Exporta in Excel 2007">
-      <File Text="Fisier Excel 2007"/>
+    <Xlsx Text="Exporta in Microsoft Excel">
+      <File Text="Fisier Microsoft Excel"/>
     </Xlsx>
-    <Pptx Text="Exporta in PowerPoint 2007">
-      <File Text="Fiseir PowerPoint 2007"/>
+    <Pptx Text="Exporta in Microsoft PowerPoint">
+      <File Text="Fiseir Microsoft PowerPoint"/>
     </Pptx>
-    <Docx Text="Exporta in Microsoft Word 2007">
-      <File Text="Fisier Microsoft Word 2007"/>
+    <Docx Text="Exporta in Microsoft Word">
+      <File Text="Fisier Microsoft Word"/>
     </Docx>
     <Xps Text="Exporta in XPS">
       <File Text="Fisier Microsoft XPS"/>

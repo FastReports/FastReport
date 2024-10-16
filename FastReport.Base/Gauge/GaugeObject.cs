@@ -221,7 +221,11 @@ namespace FastReport.Gauge
         public override void GetData()
         {
             base.GetData();
+            GetDataShared();
+        }
 
+        private void GetDataShared()
+        {
             if (!String.IsNullOrEmpty(Expression))
             {
                 object val = Report.Calc(Expression);

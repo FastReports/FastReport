@@ -78,6 +78,7 @@ namespace FastReport.Web.Services
 
             var buffer = new byte[resourceStream.Length];
             resourceStream.Read(buffer, 0, buffer.Length);
+            
             cache2[name] = buffer;
             return buffer;
         }
@@ -93,7 +94,7 @@ namespace FastReport.Web.Services
                 return null;
 
             var buffer = new byte[resourceStream.Length];
-            await resourceStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
+            await resourceStream.ReadAsync(buffer, cancellationToken);
             cache2[name] = buffer;
             return buffer;
         }

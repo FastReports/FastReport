@@ -1475,11 +1475,11 @@
     <Ods Text="Izvoz u Open Office Calc">
       <File Text="OpenOffice Calc"/>
     </Ods>
-    <Xlsx Text="Izvoz u Excel 2007">
-      <File Text="Excel 2007 datoteka"/>
+    <Xlsx Text="Izvoz u Microsoft Excel">
+      <File Text="Microsoft Excel datoteka"/>
     </Xlsx>
-    <Pptx Text="Izvoz u PowerPoint 2007">
-      <File Text="PowerPoint 2007 datoteka"/>
+    <Pptx Text="Izvoz u Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint datoteka"/>
     </Pptx>
     <Pdf Text="Izvoz u PDF">
       <File Text="Adobe Acrobat"/>

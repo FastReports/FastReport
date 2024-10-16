@@ -207,7 +207,7 @@ namespace FastReport.Data
             }
         }
 
-        private string PrepareSelectCommand(string selectCommand, string tableName, DbConnection connection)
+        protected string PrepareSelectCommand(string selectCommand, string tableName, DbConnection connection)
         {
             if (String.IsNullOrEmpty(selectCommand))
             {
@@ -216,7 +216,7 @@ namespace FastReport.Data
             return selectCommand;
         }
 
-        private TableDataSource FindTableDataSource(DataTable table)
+        protected TableDataSource FindTableDataSource(DataTable table)
         {
             foreach (TableDataSource c in Tables)
             {
