@@ -19,7 +19,7 @@ namespace FastReport.Export.Html
                 FFontDesc.Append("text-decoration:underline;");
             else if ((font.Style & FontStyle.Strikeout) > 0)
                 FFontDesc.Append("text-decoration:line-through;");
-            FFontDesc.Append("font-family:").Append(font.Name).Append(";");
+            FFontDesc.Append("font-family:").Append($"\'{font.Name}\'").Append(";");
             FFontDesc.Append("font-size:").Append(Px(font.Size * 96 / 72));
 
             if (LineHeight > 0)
