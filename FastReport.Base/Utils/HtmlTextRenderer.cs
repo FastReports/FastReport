@@ -3094,7 +3094,7 @@ namespace FastReport.Utils
                     sb.Append("<span style=\"");
                     if (backgroundColor.A > 0) sb.Append(String.Format(CultureInfo, "background-color:rgba({0},{1},{2},{3});", backgroundColor.R, backgroundColor.G, backgroundColor.B, ((float)backgroundColor.A) / 255f));
                     if (color.A > 0) sb.Append(String.Format(CultureInfo, "color:rgba({0},{1},{2},{3});", color.R, color.G, color.B, ((float)color.A) / 255f));
-                    if (font != null) { sb.Append("font-family:"); sb.Append($"\"{font.Name}\""); sb.Append(";"); }
+                    if (font != null) { sb.Append("font-family:"); sb.Append($"\'{font.Name}\'"); sb.Append(";"); }
                     if (fontsize > 0) { sb.Append("font-size:"); sb.Append(fontsize.ToString(CultureInfo)); sb.Append("pt;"); }
 
                     //if ((fontStyle & FontStyle.Italic) == FontStyle.Italic) { sb.Append("font-style:italic;"); }
