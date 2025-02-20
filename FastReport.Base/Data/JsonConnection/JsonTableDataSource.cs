@@ -189,6 +189,10 @@ namespace FastReport.Data.JsonConnection
                 {
                     if (!String.IsNullOrEmpty(column.PropName))
                     {
+                        if((parentColumn as JsonTableDataSource).RowCount == 0) {
+                            return null;
+                        }
+
                         var obj = (parentColumn as JsonTableDataSource).Json[(parentColumn as JsonTableDataSource).CurrentIndex];
 
                         return (obj as JsonBase)[column.PropName];
