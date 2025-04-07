@@ -24,10 +24,7 @@ namespace FastReport.Web.Cache
         public WebReportDistributedCache(IDistributedCache cache, CacheOptions cacheOptions)
         {
             _cache = cache;
-            _cacheEntryOptions = new DistributedCacheEntryOptions()
-            {
-                SlidingExpiration = cacheOptions.CacheDuration
-            };
+            _cacheEntryOptions = GetOptions(cacheOptions);
         }
 
         public void Add(WebReport webReport)
@@ -38,12 +35,16 @@ namespace FastReport.Web.Cache
                 return;
             }
 
-            _cache.Set(webReport.ID, WebReportToBytes(webReport), _cacheEntryOptions);
+            if (webReport.CacheOptions != null)
+                _cache.Set(webReport.ID, WebReportToBytes(webReport), GetOptions(webReport.CacheOptions));
+            else
+                _cache.Set(webReport.ID, WebReportToBytes(webReport), _cacheEntryOptions);
         }
 
-        public void Touch(string id)
+        public bool Touch(string id)
         {
             _cache.Refresh(id);
+            return true;
         }
 
         public WebReport Find(string id)
@@ -62,6 +63,16 @@ namespace FastReport.Web.Cache
         public void Dispose()
         {
             
+        }
+
+        private static DistributedCacheEntryOptions GetOptions(WebReportCacheOptions cacheOptions)
+        {
+            return new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = cacheOptions.CacheDuration,
+                AbsoluteExpirationRelativeToNow = cacheOptions.AbsoluteExpirationDuration,
+                AbsoluteExpiration = cacheOptions.AbsoluteExpiration,
+            };
         }
 
         private static byte[] WebReportToBytes(WebReport value)

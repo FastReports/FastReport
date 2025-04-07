@@ -62,13 +62,12 @@ namespace FastReport.Data
                 if ((SqlDbType)p.DataType == SqlDbType.UniqueIdentifier && (value is Variant || value is String))
                     value = new Guid(value.ToString());
 
-                if (value is Variant && ((Variant)value).Type == typeof(string))
+                if (value is Variant v && v.Type == typeof(string))
                 {
-                    if (VariantToClrType((Variant)value, (SqlDbType)p.DataType) != null)
-                        parameter.Value = VariantToClrType((Variant)value, (SqlDbType)p.DataType);
+                    value = VariantToClrType(v, (SqlDbType)p.DataType);
                 }
-                else
-                    parameter.Value = value;
+
+                parameter.Value = value ?? DBNull.Value;
             }
             return adapter;
         }

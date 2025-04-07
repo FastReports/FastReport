@@ -703,6 +703,41 @@ namespace FastReport.Table
                 }
             }
         }
+
+        internal void EmulateFill()
+        {
+            if (Fill.IsTransparent)
+                return;
+
+            Image image = new Bitmap((int)Width, (int)Height);
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                g.Clear(Color.Transparent);
+                g.TranslateTransform(-AbsLeft, -AbsTop);
+                BorderLines oldLines = Border.Lines;
+                Border.Lines = BorderLines.None;
+                Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache));
+                Border.Lines = oldLines;
+
+                for (int y = 0; y < RowCount; y++)
+                {
+                    for (int x = 0; x < ColumnCount; x++)
+                    {
+                        TableCell cell = this[x, y];
+                        if (cell.Fill is SolidFill && cell.FillColor == Color.Transparent)
+                        {
+                            Image cellImage = ImageHelper.CutImage((Bitmap)image, cell.Bounds);
+                            cell.Fill = new TextureFill(ImageHelper.ToByteArray(cellImage, cellImage.GetImageFormat()))
+                            {
+                                WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp,
+                                PreserveAspectRatio = false,
+                            };
+                        }
+                    }
+                }
+            }
+            image.Dispose();
+        }
         #endregion
 
         #region IParent Members

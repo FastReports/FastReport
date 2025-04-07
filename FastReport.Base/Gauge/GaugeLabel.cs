@@ -11,7 +11,7 @@ namespace FastReport.Gauge
 #if !DEBUG
     [DesignTimeVisible(false)]
 #endif
-    public class GaugeLabel : Component
+    public class GaugeLabel
     {
         #region Private Fields
         private string text;

@@ -354,6 +354,10 @@ namespace FastReport.Utils
             return root;
         }
 
+        /// <summary>
+        /// Remove an object from the collection by its category and object name.
+        /// </summary>
+        /// <param name="complexName">A comma-separated string with the category and object name to be removed.</param>
         internal void Remove(string complexName)
         {
             string[] itemNames = complexName.Split(',');
@@ -377,6 +381,102 @@ namespace FastReport.Utils
                     }
                 }
                 root = item;
+            }
+        }
+
+        /// <summary>
+        /// Remove an object or category from the collection by its name and path.
+        /// If a category is specified, all nested objects within that category are removed.
+        /// </summary>
+        /// <param name="objPath">The path to the category (or categories) to remove, in a comma-separated format.</param>
+        /// <param name="objName">The name of the object or category to remove.</param>
+        /// <param name="flags">Flags to distinguish objects with the same name (optional).</param>
+        /// <returns>A list of the removed objects. This list will contain all objects that were deleted, including those from nested categories.</returns>
+        internal List<ObjectInfo> Remove(string objName, string objPath, int flags = 0)
+        {
+            string[] itemNames = objPath.Split(',');
+
+            ObjectInfo root = this;
+
+            // search for the location of an object or category
+            foreach (string itemName in itemNames)
+            {
+                ObjectInfo item = null;
+
+                for (int i = 0; i < root.Items.Count; i++)
+                {
+                    var rootItem = root.Items[i];
+
+                    if (rootItem.Name == itemName)
+                    {
+                        item = rootItem;
+                        break;
+                    }
+                }
+                root = item;
+            }
+
+            // list of deleted objects from FObjects to remove them from FTypes later
+            var deletedItems = new List<ObjectInfo>();
+
+            for (int i = 0; i < root?.Items.Count; i++)
+            {
+                var rootItem = root.Items[i];
+
+                // if the item is a category and matches the name, remove it and all its contents
+                if (rootItem.Name == objName && rootItem.Items.Count > 0)
+                {
+                    CollectAllItems(rootItem, deletedItems); // collect all items within the category
+                    root.Items.RemoveAt(i); // remove the category
+                    break;
+                }
+
+                // check if the object has a "Flags" property
+                var flagsProperty = rootItem.GetType().GetProperty("Flags");
+
+                bool flagsMatch = true; // by default, flags match (used when flag comparison is not required)
+
+                if (flagsProperty != null)
+                {
+                    // if the property exists, get its value
+                    var flagsValue = flagsProperty.GetValue(rootItem);
+
+                    // check if the value of the property is an integer
+                    if (flagsValue is int flagsInt)
+                    {
+                        // if the passed flag is 0, the flag check is ignored
+                        // otherwise, check if the value of "Flags" matches the passed flag
+                        flagsMatch = flags == 0 || flagsInt == flags;
+                    }
+                }
+
+                // if the element is an object (or an empty category) and matches the name (and flags, if specified), remove it
+                if (!string.IsNullOrEmpty(rootItem.Text) && rootItem.Text.Contains(objName) && flagsMatch)
+                {
+                    // if the current item is an object (and not a category), add it to deletedItems
+                    if (rootItem.Object != null)
+                        deletedItems.Add(rootItem);
+                    root.Items.RemoveAt(i); // remove the object
+                    break;
+                }
+            }
+            return deletedItems;
+        }
+
+        /// <summary>
+        /// Recursively collect all nested objects from the specified parent object and adds them to the provided list.
+        /// </summary>
+        /// <param name="parent">The parent object to collect items from.</param>
+        /// <param name="items">The list to store collected objects.</param>
+        private static void CollectAllItems(ObjectInfo parent, List<ObjectInfo> items)
+        {
+            foreach (var item in parent.Items)
+            {
+                items.Add(item);
+                if (item.Items.Count > 0) // recursively collect nested items
+                {
+                    CollectAllItems(item, items);
+                }
             }
         }
 
@@ -488,9 +588,43 @@ namespace FastReport.Utils
             FTypes[type.Name] = type;
         }
 
-        private static void RemoveRegisteredType(Type type)
+        /// <summary>
+        /// Recursively check if the specified type exists within the collection of objects.
+        /// </summary>
+        /// <param name="items">The collection of objects to search through.</param>
+        /// <param name="type">The name of the type to find.</param>
+        /// <returns>
+        /// Return <c>true</c> if the specified type is found; otherwise, <c>false</c>.
+        /// </returns>
+        private static bool ContainsTypeRecursive(IEnumerable<ObjectInfo> items, string type)
         {
-            FTypes.Remove(type.Name);
+            foreach (var item in items)
+            {
+                if (item.Object?.Name == type)
+                    return true;
+
+                // recursive search in nested items
+                if (item.Items.Count > 0 && ContainsTypeRecursive(item.Items, type))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Remove the specified type from the collection of registered types 
+        /// if it does not exist in the hierarchy of objects.
+        /// </summary>
+        /// <param name="type">The name of the type to remove.</param>
+        private static void RemoveRegisteredType(string type)
+        {
+            // check for the existence of the type in FObjects
+            bool objectExistsInFObjects = ContainsTypeRecursive(FObjects.Items, type);
+
+            // remove the type from FTypes if it does not exist in FObjects
+            if (!objectExistsInFObjects)
+            {
+                FTypes.Remove(type);
+            }
         }
 
         private static ObjectInfo InternalAdd(Type obj, string category, Bitmap image, int imageIndex, string text)
@@ -900,12 +1034,29 @@ namespace FastReport.Utils
             PrivateAddFunction(function, "Functions," + category + ",");
         }
 
-
+        /// <summary>
+        /// Remove an object from the collection of objects based on its type and category.
+        /// </summary>
+        /// <param name="obj">The type of the object to be removed.</param>
+        /// <param name="category">The category associated with the object type for removal.</param>
         public static void Remove(Type obj, string category)
         {
             FObjects.Remove(category + "," + obj.Name);
             if (obj != null)
-                RemoveRegisteredType(obj);
+                RemoveRegisteredType(obj.Name);
+        }
+
+        /// <summary>
+        /// Remove an object or a category from the collection of objects based on its name and path.
+        /// </summary>
+        /// <param name="objectName">The name of the object or category to be removed.</param>
+        /// <param name="objectPath">The path to the object or category.</param>
+        /// <param name="flags">Flags used to identify the specific object to be removed, if multiple objects have the same name.</param>
+        public static void Remove(string objectName, string objectPath, int flags = 0)
+        {
+            var deletedItems = FObjects.Remove(objectName, objectPath, flags);
+            foreach (var item in deletedItems)
+                RemoveRegisteredType(item.Object?.Name);
         }
 
         internal static Type FindType(string typeName)

@@ -21,6 +21,7 @@ namespace Microsoft.AspNetCore.Builder
         public static IApplicationBuilder UseFastReport(this IApplicationBuilder app, Action<FastReportOptions> setupAction = null)
         {
             var options = SetupFastReport(setupAction, app.ApplicationServices);
+            FastReportGlobal.FastReportOptions = options;
 
             ControllerBuilder.InitializeControllers();
 
@@ -35,7 +36,7 @@ namespace Microsoft.AspNetCore.Builder
             setupAction?.Invoke(options);
 
             FastReport.Utils.Config.WebMode = true;
-
+            
             // because WebReport..ctor adds WebReport instances to WebReportCache without DI
             WebReportCache.Instance = serviceProvider.GetService<IWebReportCache>();
 

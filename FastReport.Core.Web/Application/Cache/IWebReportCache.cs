@@ -9,7 +9,7 @@ namespace FastReport.Web.Cache
     {
         void Add(WebReport webReport);
 
-        void Touch(string id);
+        bool Touch(string id);
 
         WebReport Find(string id);
 

@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Language Name="th" Author="Thammapat.c &lt;thammapat.c@accsa.co.th&gt;;Thammapat Chatjiraroj &lt;thammapat@gmail.com&gt;">
+<Language Name="th" Author="Thammapat.c &lt;thammapat.c@accsa.co.th&gt;;Thammapat Chatjiraroj &lt;thammapat@gmail.com&gt;;Thammapat Chatjiraroj &lt;thammapat.c@accsa.co.th&gt;">
+  <Fonts>
+    <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0 }ห้ามดัดแปลง ฝัง หรือแลกเปลี่ยนแบบอักษรในลักษณะใดๆ เว้นแต่จะได้รับอนุญาตจากเจ้าของตามกฎหมายเสียก่อน"/>
+    <FontMayNotBeSubsettedPriorToEmbedding Text="{0} font may not be subsetted prior to embedding."/>
+  </Fonts>
   <Buttons>
     <Ok Text="&amp;ตกลง"/>
     <Cancel Text="&amp;ยกเลิก"/>
@@ -15,51 +19,114 @@
   <Messages>
     <AccessingData Text="กำลังดึงข้อมูล..."/>
     <Attention Text="ความสนใจ"/>
+    <BarcodeFewError Text="จำนวนตัวเลขน้อยกว่าขั้นต่ำที่กำหนด"/>
+    <BarcodeManyError Text="จำนวนตัวเลขมากกว่าที่กำหนดไว้"/>
+    <BarcodeLengthMismatch Text="จำนวนตัวอักษรไม่ตรงกัน"/>
     <CantFindObject Text="ไม่พบ object"/>
     <CantLoadReport Text="ไม่สามารถโหลดรายงาน {0}"/>
     <CantSaveReport Text="ไม่สามารถบันทึกรายงานได้ ไฟล์ดังกล่าวอาจป้องกันการเขียนทับ"/>
+    <ChangePicture Text="คุณต้องการแทนที่รูปภาพปัจจุบันหรือไม่?"/>
     <ClassError Text="ไม่พบส่วน Main ใน report class, ReportScript"/>
     <Confirmation Text="ยืนยัน"/>
     <DataNotInitialized Text="ยังไม่ได้เปิดใช้แหล่งข้อมูล"/>
     <DecompressError Text="ไม่สามารถขยายไฟล์"/>
     <DecryptError Text="ถอดรหัสผิดพลาด: รหัสผ่านไม่ถูกต้อง"/>
     <DelegateError Text="{0} delegate ต้องมีการผ่านค่า 2 ตัว: 'sender' และ 'e'"/>
+    <CompilerError Text="รายงานสคริปต์ไม่ถูกต้อง"/>
     <DeleteAncestor Text="ไม่สามารถลบ {0} เนื่องจากมันถูกประกาศไว้ในรายงานที่เป็นต้นแบบ"/>
     <DuplicateName Text="Object ที่มีชื่อ {0} มีอยู่แล้ว"/>
+    <GroupHeaderHasNoGroupCondition Text="{0} ไม่มีเงื่อนไขกลุ่ม"/>
     <DuplicateStyle Text="พบรูปแบบที่มีชื่อดังกล่าวอยู่แล้ว"/>
+    <EmptyDataEntryField Text="กรอกข้อมูลให้ครบถ้วน"/>
     <Error Text="ผิดพลาด"/>
     <EventError Text="ไม่สามารถสร้างตัวจัดการเหตุการณ์เนื่องมาจากข้อผิดพลาดในซอร์สโค้ด"/>
     <ExportingPage Text="กำลังส่งออกหน้า {0} ถึง {1}"/>
     <GeneratingPage Text="กำลังสร้างหน้า {0}"/>
     <GeneratingPageFirstPass Text="ส่วนแรก: กำลังสร้างหน้า {0}"/>
-    <Information Text="แจ้งให้ทราบ"/>
+    <Information Text="ข้อมูล"/>
     <MatrixError Text="{0}: Matrix object ต้องมีอย่างน้อย 1 คอลัมน์, 1 แถว และ 1 ค่า"/>
     <MatrixValueError Text="จำนวนของค่าที่แตกต่างกันของ MatrixData.Cells.Count (จะต้องมี {0})"/>
+    <MatrixLayoutError Text="ไม่สามารถจัดเค้าโครงเมทริกซ์ที่ถูกวางไว้บนแบนด์เดียวกันด้วยค่า Layout.Left เดียวกันได้"/>
     <ParentError Text="Object ที่มี type เป็น {0} ไม่สามารถใส่ object ที่มี type {1} ได้"/>
     <ParentError1 Text="Object ที่มี type เป็น {0} ไม่สามารถใส่ object อื่นได้"/>
     <Performance Text="จัดทำ {0} มิลลิวินาที"/>
     <PreparingData Text="กำลังเตรียมข้อมูล..."/>
+    <LoadingReport Text="กำลังโหลดรายงาน..."/>
     <PrintingPage Text="กำลังพิมพ์หน้า {0}"/>
     <RenameAncestor Text="ไม่สามารถเปลี่ยนชื่อ {0} ได้ เนื่องจากมันถูกประกาศไว้ในรายงานที่เป็นต้นแบบ"/>
     <SaveChanges Text="มีการแก้ไข ต้องการบันทึก {0} ใช่หรือไม่"/>
-    <SaveChangesToPreviewPage Text="บันทึกการเปลี่ยนแปลงไปยังหน้าดูก่อนพิมพ์ ?"/>
+    <SaveChangesToPreviewPage Text="บันทึกการเปลี่ยนแปลง ?"/>
     <SQLError Text="คำสั่ง SQL ผิดพลาด"/>
     <TableIsNull Text="Table ยังไม่ถูกเชื่อมต่อกับข้อมูล ให้ลงทะเบียนข้อมูลโดยเรียกใช้เมธอด Report.RegisterData"/>
     <TableManualBuildError Text="คุณสามารถใช้เมธอด TableObject.PrintRow, PrintColumn ภายใน event ManualBuild เท่านั้น"/>
     <Warning Text="คำเตือน"/>
     <WarningSaveRDL Text="รูปแบบ RDL มีข้อจำกัด! ตัวกรองนี้จะบันทึกแม่แบบของมุมมองเท่านั้น! แหล่งข้อมูลและ Barcode, Rich Text, CheckBox และ Zip Code จะไม่ถูกบันทึก! บางส่วนของคุณสมบัติก็จะไม่ถูกบันทึกด้วย! คุณอาจสูญเสียบางสิ่งบางอย่างในแม่แบบของคุณ ดำเนินการบันทึกต่อไปใช่หรือไม่ ?"/>
+    <WarningMatrixOnRepeatedBand Text="ไม่แนะนำให้ใส่ {0} ลงใน {1} เนื่องจาก {0} ในกรณีนี้จะถูกสร้างขึ้นทุกครั้งที่มีการพิมพ์ band ซึ่งจะทำให้เกิดปัญหาหน่วยความจำได้"/>
     <WrongFileFormat Text="ไม่สามารถโหลดไฟล์ เนื่องจากไม่ทราบรูปแบบ"/>
+    <WrongListAndLabelFile Text="ไม่สามารถโหลดไฟล์ได้ ไฟล์ไม่ถูกต้อง หรือไม่ได้เป็น List, Label"/>
+    <WrongCrystalReportsFile Text="ไม่สามารถโหลดไฟล์ได้ ไฟล์ไม่ถูกต้องหรือไม่ใช่รายงาน Crystal Reports"/>
     <InvalidBarcode1 Text="รหัสแท่งบาร์โค้ดต้องเริ่มต้นด้วย '&amp;A;', '&amp;B;' or '&amp;C;' ตามลำดับ"/>
     <InvalidBarcode2 Text="อักษรหรือข้อความที่ป้อนไม่ถูกต้อง"/>
     <ErrorInExpression Text="พบข้อผิดพลาดในการแสดงผล"/>
     <ErrorInHighlightCondition Text="พบข้อผิดพลาดในเงื่อนไขที่ใช้เน้นข้อความ"/>
+    <FileNameEmpty Text="กรุณาระบุชื่อไฟล์ที่ถูกต้อง."/>
+    <SaveToAnotherFile Text="คุณต้องการบันทึกลงในไฟล์อื่นหรือไม่?"/>
+    <RemoveFromRecentFiles Text="ลบชื่อไฟล์ออกจากรายการไฟล์ล่าสุด?"/>
+    <ImageLoadException Text="รูปภาพเสียหายหรือไม่ได้ติดตั้งปลั๊กอินที่รองรับรูปแบบนี้"/>
+    <FRXPageError Text="เกิดข้อผิดพลาดบนหน้า FRX การเปลี่ยนแปลงทั้งหมดถูกยกเลิกแล้ว"/>
+    <Validator>
+      <DuplicateName Text="ชื่อนี้ถูกใช้ไปแล้ว"/>
+      <IntersectedObjects Text="Object นี้ทับกับ object อื่น"/>
+      <IncorrectSize Text="Object จะต้องมีขนาดมากกว่าศูนย์"/>
+      <UnnamedObject Text="Object ยังไม่มีชื่อ"/>
+      <OutOfBounds Text="Object ออกไปนอกขอบเขตของ parent"/>
+    </Validator>
+    <Swiss>
+      <SwissNullIban Text="Iban ต้องไม่เป็น null"/>
+      <SwissNullCreditor Text="Creditor ต้องไม่เป็น null"/>
+      <SwissNullReference Text="Reference ต้องไม่เป็น null"/>
+      <SwissNullCurrency Text="Currency ต้องไม่เป็น null"/>
+      <SwissAmountLength Text="จำนวน (รวมทศนิยม) ต้องน้อยกว่า 13 ตำแหน่ง"/>
+      <SwissQRIban Text="หากใช้ QR-IBAN คุณจะต้องเลือก QRR เป็นประเภทอ้างอิง!"/>
+      <SwissNonQRIban Text="หากไม่ใช้ QR-IBAN คุณจะต้องเลือก SCOR หรือ NON เป็นประเภทอ้างอิง!"/>
+      <SwissAltProcedureLength Text="Alternative procedure information block 1 must be shorter than 101 chars"/>
+      <SwissUnstructBillLength Text="ข้อความที่ไม่มีโครงสร้างและข้อมูลใบแจ้งหนี้ต้องมีความยาวรวมกันไม่เกิน 141 ตัวอักษร"/>
+      <SwissRefTypeNon Text="อนุญาตให้อ้างอิงได้เฉพาะเมื่อ Type ไม่เท่ากับ NON"/>
+      <SwissRefTypeNotNon Text="การอ้างอิงไม่สามารถว่างเปล่าได้หาก Type เป็น QRR หรือ SCOR"/>
+      <SwissRefTextTypeNon Text="คุณต้องตั้งค่า ReferenceTextType เมื่อใช้ reference text"/>
+      <SwissRefQRLength Text="QR-references ต้องมีความยาวไม่เกิน 28 อักขระ"/>
+      <SwissRefQRNotOnlyDigits Text="QR-reference ต้องเป็นตัวเลขเท่านั้น"/>
+      <SwissRefQRCheckSum Text="QR-references ไม่ถูกต้อง. พบข้อผิดพลาดในการตรวจสอบ Checksum"/>
+      <SwissRefISOLength Text="Creditor references (ISO 11649) จะต้องสั้นกว่า 26 อักขระ"/>
+      <SwissEmptyProperty Text="{0} ต้องไม่ว่างเปล่า"/>
+      <SwissLengthMore Text="{0} จะต้องสั้นกว่า {1} ตัวอักษร"/>
+      <SwissPatternError Text="{0} จะต้องตรงกับรูปแบบต่อไปนี้:"/>
+      <SwissAddressLine2Error Text="ต้องระบุบรรทัดที่อยู่ 2 สำหรับที่อยู่แบบรวม (ที่อยู่ตามบรรทัดที่อยู่)"/>
+      <SwissCountryTwoLetters Text="ข้อมูลประเทศต้องใช้รหัสประเทศสองตัวอักษร ตาม  ISO 3166-1 แต่อันนี้ไม่ใช่"/>
+      <SwissIbanNotValid Text="รหัส IBAN ที่ป้อนไม่ถูกต้อง"/>
+      <SwissQRIbanNotValid Text="รหัส QR-IBAN ที่ป้อนไม่ถูกต้อง"/>
+      <SwissQRStartNotValid Text="IBAN จะต้องเริ่มต้นด้วย CH หรือ LI"/>
+      <SwissPropName Text="ชื่อ"/>
+      <SwissPropStreet Text="ถนน"/>
+      <SwissPropHouseNumber Text="บ้านเลขที่"/>
+      <SwissPropZipCode Text="รหัสไปรษณีย์"/>
+      <SwissPropCity Text="เมือง"/>
+      <SwissPropUnstructuredMessage Text="ข้อความ"/>
+      <SwissPropBillInformation Text="ข้อมูลใบแจ้งหนี้"/>
+    </Swiss>
   </Messages>
   <Misc>
+    <Bytes Text="bytes"/>
+    <KB Text="KB"/>
+    <MB Text="MB"/>
+    <GB Text="GB"/>
+    <TB Text="TB"/>
     <ShortUnitsMm Text="มม."/>
     <ShortUnitsCm Text="ซม."/>
     <ShortUnitsIn Text="นิ้ว"/>
+    <ShortUnitsHi Text="hi"/>
     <Sample Text="ตัวอย่าง"/>
-    <None Text="ไม่มีรายการ"/>
+    <None Text="ไม่เลือกรายการ"/>
     <PageN Text="หน้า {0}"/>
     <PageNofM Text="หน้า {0} ของ {1}"/>
     <ofM Text="/ {0}"/>
@@ -69,18 +136,49 @@
     <ReportPage Text="หน้า"/>
     <DialogPage Text="ฟอร์ม"/>
     <XmlDataConnection Text="แหล่งข้อมูล XML"/>
+    <CsvDataConnection Text="แหล่งข้อมูล CSV"/>
     <OleDbDataConnection Text="การเชื่อมต่อ OLE DB"/>
     <MsAccessDataConnection Text="การเชื่อมต่อ MS Access"/>
     <MsSqlDataConnection Text="การเชื่อมต่อ MS SQL"/>
     <OdbcDataConnection Text="การเชื่อมต่อ ODBC"/>
     <FirebirdDataConnection Text="การเชื่อมต่อ Firebird"/>
+    <ExcelDataConnection Text="การเชื่อมต่อ Excel"/>
+    <CassandraDataConnection Text="การเชื่อมต่อ Cassandra"/>
+    <LinterDataConnection Text="การเชื่อมต่อ LINTER"/>
     <VistaDBDataConnection Text="การเชื่อมต่อ VistaDB"/>
     <PostgresDataConnection Text="การเชื่อมต่อ Postgres"/>
     <MySqlDataConnection Text="การเชื่อมต่อ MySQL"/>
     <OracleDataConnection Text="การเชื่อมต่อ Oracle"/>
     <SQLiteDataConnection Text="การเชื่อมต่อ SQLite"/>
     <SqlCeDataConnection Text="การเชื่อมต่อ SQL CE"/>
+    <SharePointDataConnection Text="การเชื่อมต่อ SharePoint "/>
+    <GoogleBigQueryDataConnection Text="การเชื่อมต่อ Google Big Query"/>
+    <JsonDataConnection Text="แหล่งข้อมูล JSON"/>
+    <JsonDataSourceConnection Text="JSON (JavaScript Object Notation)"/>
+    <ESDataSourceConnection Text="การเชื่อมต่อ ElasticSearch"/>
+    <CouchbaseDataConnection Text="Couchbase server"/>
+    <MongoDBDataConnection Text="การเชื่อมต่อ MongoDB"/>
+    <NosDbDataConnection Text="การเชื่อมต่อ NosDb"/>
+    <RavenDBDataConnection Text="การเชื่อมต่อ RavenDB"/>
+    <SqlAnywhereDataConnection Text="การเชื่อมต่อ SqlAnywhere"/>
+    <ClickHouseDataConnection Text="การเชื่อมต่อ ClickHouse"/>
+    <Bands Text="Bands">
+      <ReportTitle Text="Report Title"/>
+      <ReportSummary Text="Report Summary"/>
+      <PageHeader Text="Page Header"/>
+      <PageFooter Text="Page Footer"/>
+      <ColumnHeader Text="Column Header"/>
+      <ColumnFooter Text="Column Footer"/>
+      <DataHeader Text="Header"/>
+      <DataFooter Text="Footer"/>
+      <Data Text="Data"/>
+      <GroupHeader Text="Group Header"/>
+      <GroupFooter Text="Group Footer"/>
+      <Child Text="Child"/>
+      <Overlay Text="Overlay"/>
+    </Bands>
     <TextObject Text="ข้อความ"/>
+    <HtmlObject Text="HTML"/>
     <Shapes Text="รูปทรง">
       <Line Text="เส้นตรง"/>
       <DiagonalLine Text="เส้นเฉียง"/>
@@ -88,19 +186,149 @@
       <RoundRectangle Text="สี่เหลี่ยมขอบมน"/>
       <Ellipse Text="วงรี"/>
       <Triangle Text="สามเหลี่ยม"/>
-      <Diamond Text="สี่เหลี่ยมทะแยง"/>
+      <Diamond Text="เหลี่ยมทรงเพชร"/>
+      <Bezier Text="Bézier Сurve"/>
+      <Polyline Text="ลากเส้นจากจุด"/>
+      <Polygon Text="รูปหลายเหลี่ยม"/>
+      <Pentagon Text="ห้าเหลี่ยม"/>
+      <Hexagon Text="หกเหลี่ยม"/>
+      <Heptagon Text="เจ็ดเหลี่ยม"/>
+      <Octagon Text="แปดเหลี่ยม"/>
     </Shapes>
     <PictureObject Text="รูปภาพ"/>
+    <SVGObject Text="SVG Document"/>
+    <RFIDLabel Text="ป้าย RFID"/>
     <TableObject Text="ตาราง"/>
     <Matrix Text="ตาราง Matrix"/>
     <MatrixObject Text="ตาราง Matrix"/>
-    <SubreportObject Text="รายงานย่อย"/>
-    <BarcodeObject Text="รหัสแท่ง"/>
-    <RichObject Text="ข้อความที่จัดรูปแบบ"/>
+    <AdvMatrixObject Text="Advanced Matrix"/>
+    <SubreportObject Text="รายงานย่อย">
+      <FromAnotherReport Text="โหลดหน้าจากรายงานอื่น..."/>
+    </SubreportObject>
+    <ContainerObject Text="Container"/>
+    <BarcodeObject Text="บาร์โค้ด">
+      <TwoD Text="2 มิติ"/>
+      <EANUPC Text="EAN/UPC"/>
+      <Post Text="Post"/>
+      <GS1 Text="GS1"/>
+      <Others Text="Others"/>
+    </BarcodeObject>
+    <RichObject Text="Rich Text"/>
     <MSChartObject Text="แผนภูมิ MS Chart"/>
+    <TeeChartObject Text="Steema TeeChart"/>
     <ZipCodeObject Text="รหัสไปรษณีย์"/>
     <CellularTextObject Text="อักษรตามช่อง"/>
-    <CheckBoxObject Text="กล่องกาเครื่องหมาย"/>
+    <CheckBoxObject Text="CheckBox"/>
+    <OtherDialogControls Text="Other controls (ที่ไม่ใช่เว็บ)"/>
+    <ButtonControl Text="Button"/>
+    <CheckBoxControl Text="CheckBox"/>
+    <CheckedListBoxControl Text="CheckedListBox"/>
+    <ComboBoxControl Text="ComboBox"/>
+    <GridControl Text="Grid"/>
+    <DataSelectorControl Text="DataSelector"/>
+    <DateTimePickerControl Text="DateTimePicker"/>
+    <GroupBoxControl Text="GroupBox"/>
+    <LabelControl Text="Label"/>
+    <ListBoxControl Text="ListBox"/>
+    <ListViewControl Text="ListView"/>
+    <MaskedTextBoxControl Text="MaskedTextBox"/>
+    <MonthCalendarControl Text="MonthCalendar"/>
+    <NumericUpDownControl Text="NumericUpDown"/>
+    <PanelControl Text="Panel"/>
+    <PictureBoxControl Text="PictureBox"/>
+    <RadioButtonControl Text="RadioButton"/>
+    <RichTextBoxControl Text="RichTextBox"/>
+    <TextBoxControl Text="TextBox"/>
+    <TreeViewControl Text="TreeView"/>
+    <MapObject Text="Map"/>
+    <SparklineObject Text="Sparkline"/>
+    <Gauge Text="Gauge">
+      <Linear Text="Linear Gauge"/>
+      <Simple Text="Simple Gauge"/>
+      <Radial Text="Radial Gauge"/>
+      <SimpleProgress Text="Simple Progress Gauge"/>
+      <GaugeForms Text="Edit Gauge">
+        <LinearGauge Text="Linear Gauge Editor"/>
+        <SimpleGauge Text="Simple Gauge Editor"/>
+        <SimpleProgressGauge Text="Simple Progress Gauge Editor"/>
+        <RadialGauge Text="Radial Gauge Editor"/>
+        <PageGeneral Text="ทั่วไป">
+          <Expression Text="นิพจน์..."/>
+          <Border Text="เส้นขอบ..."/>
+          <Fill Text="เติมสี..."/>
+          <LinearInverdted Text="พลิกกลับ:"/>
+          <Type Text="ประเภท:"/>
+          <Position Text="ตำแหน่ง:"/>
+        </PageGeneral>
+        <PageScale Text="มาตราส่วน">
+          <TabTicks Text="Ticks">
+            <MajorTicks Text="Major Ticks">
+              <Width Text="กว้าง:"/>
+              <Color Text="สี:"/>
+            </MajorTicks>
+            <MinorTicks Text="Minor Ticks">
+              <Width Text="กว้าง:"/>
+              <Color Text="สี:"/>
+            </MinorTicks>
+          </TabTicks>
+          <TabText Text="ข้อความ">
+            <Font Text="แบบอักษร:"/>
+            <TextFill Text="Text Fill"/>
+          </TabText>
+          <Subscales Text="Subscales">
+            <FirstSubscale Text="First subscale">
+              <Enabled Text="เปิดใช้งาน:"/>
+              <ShowCaption Text="แสดงคำอธิบาย:"/>
+            </FirstSubscale>
+            <SecondSubscale Text="Second subscale">
+              <Enabled Text="เปิดใช้งาน:"/>
+              <ShowCaption Text="แสดงคำอธิบาย:"/>
+            </SecondSubscale>
+          </Subscales>
+        </PageScale>
+        <PagePointer Text="Pointer">
+          <BorderColor Text="สีเส้นขอบ:"/>
+          <PointerFill Text="Pointer Fill"/>
+          <LabelPointerType Text="ประเภท:"/>
+        </PagePointer>
+        <PageLabel Text="Label">
+          <LabelColor Text="สี Label"/>
+          <Font Text="แบบอักษร:"/>
+          <Text Text="ข้อความ:"/>
+          <Decimals Text="ทศนิยม:"/>
+        </PageLabel>
+      </GaugeForms>
+    </Gauge>
+    <CrossViewObject Text="CrossView"/>
+    <DigitalSignatureObject Text="ลายเซ็นดิจิตอล"/>
+    <FastBI Text="FastReport Business Graphics">
+      <Bubble Text="Bubble chart"/>
+      <TreeMap Text="TreeMap chart"/>
+      <Sunburst Text="Sunburst chart"/>
+      <Icicle Text="Icicle chart"/>
+      <Gantt Text="Gantt chart"/>
+      <Data Text="ข้อมูล">
+        <ValueColumn Text="Value column"/>
+        <RootText Text="Root text"/>
+        <DataSource Text="Data source"/>
+        <MaxDepth Text="Max depth"/>
+        <TextColumns Text="Text columns"/>
+        <Add Text="เพิ่ม"/>
+        <Delete Text="ลบ"/>
+        <Edit Text="แก้ไข"/>
+      </Data>
+      <Appearance Text="รูปลักษณ์">
+        <Palette Text="จานสี"/>
+        <StartAngle Text="มุมเริ่มต้น"/>
+        <TextDirection Text="ทิศทางข้อความ"/>
+        <LayoutMode Text="โหมดเค้าโครง"/>
+        <IcicleDirection Text="ทิศทาง"/>
+        <SunburstForm Text="Sunburst editor form"/>
+        <IcicleForm Text="Icicle editor form"/>
+        <BubbleForm Text="Bubble editor form"/>
+        <TreeMapForm Text="TreeMap editor form"/>
+      </Appearance>
+    </FastBI>
   </Objects>
   <Functions>
     <Math Text="คณิตศาสตร์"/>
@@ -112,28 +340,135 @@
   </Functions>
   <FileFilters>
     <Report Text="รายงาน (*.frx)|*.frx"/>
-    <PreparedReport Text="รายงานที่มีข้อมูลแบบเบ็ดเสร็จ (*.fpx)|*.fpx"/>
+    <PreparedReport Text="Prepared Report (*.fpx)|*.fpx"/>
     <Style Text="รูปแบบของรายงาน (*.frs)|*.frs"/>
+    <Dictionary Text="Dictionary (*.frd)|*.frd"/>
+    <Localization Text="Localization file (*.frl)|*.frl"/>
+    <XsdFile Text="XML schema definition file (*.xsd)|*.xsd"/>
+    <XmlFile Text="XML file (*.xml)|*.xml"/>
+    <MdbFile Text="MS Access database (*.mdb)|*.mdb"/>
+    <AccdbFile Text="MS Access 2007 database (*.accdb)|*.accdb"/>
+    <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
+    <RtfFile Text="Rich Text file (*.rtf)|*.rtf"/>
+    <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
+    <AllImages Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.svg"/>
+    <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
+    <PrnFile Text="Printer file (*.prn)|*.prn"/>
+    <BmpFile Text="Bitmap image (*.bmp)|*.bmp"/>
+    <PngFile Text="PNG image (*.png)|*.png"/>
+    <JpegFile Text="JPG image (*.jpg)|*.jpg"/>
+    <GifFile Text="GIF image (*.gif)|*.gif"/>
+    <TiffFile Text="TIFF image (*.tiff)|*.tiff"/>
+    <MetafileFile Text="Windows metafile (*.emf)|*.emf"/>
+    <HtmlFile Text="HTML file (*.html)|*.html"/>
+    <MhtFile Text="Web-archive file (*.mht)|*.mht"/>
+    <OdtFile Text="Open Office Writer file (*.odt)|*.odt"/>
+    <XodtFile Text="My Office Text file (*.xodt)|*.xodt"/>
+    <OdsFile Text="Open Office Calc file (*.ods)|*.ods"/>
+    <XodsFile Text="My Office Table file (*.xods)|*.xods"/>
+    <PdfFile Text="Adobe Acrobat file (*.pdf)|*.pdf"/>
+    <TxtFile Text="Text file (*.txt)|*.txt"/>
+    <CsvFile Text="Comma Separated Values (*.csv)|*.csv"/>
+    <DbfFile Text="dBase table file (*.dbf)|*.dbf"/>
+    <XlsFile Text="MS Excel file (*.xls)|*.xls"/>
+    <CsFile Text="C# file (*.cs)|*.cs"/>
+    <VbFile Text="VB.Net file (*.vb)|*.vb"/>
+    <FdbFile Text="Firebird database (*.fdb)|*.fdb"/>
+    <Vdb3File Text="VistaDB database (*.vdb*)|*.vdb*"/>
+    <XlsxFile Text="MS Excel book (*.xlsx)|*.xlsx"/>
+    <PptxFile Text="MS PowerPoint presentation (*.pptx)|*.pptx"/>
+    <XamlFile Text="XAML document (*.xaml)|*.xaml"/>
+    <SvgFile Text="SVG document (*.svg)|*.svg"/>
+    <PpmlFile Text="PPML document (*.ppml)|*.ppml"/>
+    <PSFile Text="PostScript document (*.ps)|*.ps"/>
+    <DocxFile Text="MS Word document (*.docx)|*.docx"/>
+    <SdfFile Text="SQL CE database (*.sdf)|*.sdf"/>
+    <XpsFile Text="XPS file (*.xps)|*.xps"/>
+    <RdlFiles Text="RDL files (*.rdl;*.rdlc)|*.rdl;*.rdlc"/>
+    <RdlFile Text="RDL file (*.rdl)|*.rdl"/>
+    <StimulSoftFile Text="StimulSoft file (*.mrt)|*.mrt"/>
+    <JasperReportsFile Text="JasperReports file (*.jrxml)|*.jrxml"/>
+    <RdlcFile Text="RDLC file (*.rdlc)|*.rdlc"/>
+    <RptFile Text="Crystal Reports file (*.rpt)|*.rpt"/>
+    <ShpFile Text="ESRI shapefile (*.shp)|*.shp"/>
+    <OsmFile Text="OpenStreetMap file(*.osm)|*.osm"/>
+    <Fr3File Text="FastReport VCL report (*.fr3)|*.fr3"/>
+    <ListAndLabelFiles Text="List and Label files|*.rpt;*.crd;*.srt;*.inv;*.lab;*.let"/>
+    <DevExpressFiles Text="DevExpress files (*.repx)|*.repx"/>
+    <JsonFile Text="JSON file (*.json,*.txt)|*.json;*.txt"/>
+    <LaTeXFile Text="TeX file (*.tex)|*.tex"/>
+    <ZplFile Text="ZPL file (*.zpl)|*.zpl"/>
+    <DxfFile Text="DXF file (*.dxf)|*.dxf"/>
+    <HpglFile Text="Hpgl (plt) file (*.plt)|*.plt"/>
+    <AllFiles Text="All files (*.*)|*.*"/>
   </FileFilters>
   <Formats>
-    <Custom1 Text="เบอร์โทร;(000) 000-0000"/>
+    <Date1 Text="d"/>
+    <Date2 Text="D"/>
+    <Date3 Text="f"/>
+    <Date4 Text="F"/>
+    <Date5 Text="MM/dd/yy"/>
+    <Date6 Text="MMMM dd, yyyy"/>
+    <Date7 Text="MMMM yyyy"/>
+    <Time1 Text="t"/>
+    <Time2 Text="T"/>
+    <Time3 Text="hh:mm tt"/>
+    <Time4 Text="HH:mm"/>
+    <Time5 Text="mm:ss"/>
+    <BooleanF1 Text="False"/>
+    <BooleanF2 Text="No"/>
+    <BooleanF3 Text="Off"/>
+    <BooleanF4 Text=" "/>
+    <BooleanT1 Text="True"/>
+    <BooleanT2 Text="Yes"/>
+    <BooleanT3 Text="On"/>
+    <BooleanT4 Text="X"/>
+    <Custom1 Text="Phone;(000) 000-0000"/>
     <Custom2 Text="เบอร์โทรระหว่างประเทศ;+0(000) 000-0000"/>
     <Custom3 Text="เลขประกันสังคม;000-00-0000"/>
     <Custom4 Text="รหัสไปรษณีย์;00000"/>
     <Custom5 Text="รหัสไปรษณีย์ยาว;00000-0000"/>
   </Formats>
   <Designer>
+    <Ribbon>
+      <File Text="ไฟล์"/>
+      <Recent Text="รายการที่ใช้ล่าสุด"/>
+      <Home Text="หน้าแรก"/>
+      <Clipboard Text="Clipboard"/>
+      <Text Text="ข้อความ"/>
+      <BorderAndFill Text="เส้นขอบและเติมสี"/>
+      <Format Text="รูปแบบ"/>
+      <Styles Text="สไตล์"/>
+      <Editing Text="การแก้ไข"/>
+      <Report Text="รายงาน"/>
+      <Data Text="ข้อมูล"/>
+      <Pages Text="Pages"/>
+      <Bands Text="Bands"/>
+      <Layout Text="เค้าโครง"/>
+      <Alignment Text="จัดตำแหน่ง"/>
+      <Size Text="ขนาด"/>
+      <Spacing Text="ระยะห่าง"/>
+      <View Text="มุมมอง"/>
+      <Panels Text="แผง"/>
+    </Ribbon>
     <Menu>
       <File Text="ไฟล์">
         <New Text="ใหม่..."/>
         <Open Text="เปิด..."/>
+        <OpenPage Text="เปิด page..."/>
+        <OpenViaCloud Text="เปิดจากคลาวด์..."/>
+        <RecentFiles Text="ไฟล์ที่ใช้บ่อย"/>
         <Close Text="ปิด"/>
         <Save Text="บันทึก"/>
         <SaveAs Text="บันทึกเป็น..."/>
+        <SaveWithRandomData Text="บันทึกด้วยข้อมูลแบบสุ่ม..."/>
         <SaveAll Text="บันทึกทั้งหมด"/>
+        <SaveToCloud Text="บันทึกไปยังคลาวด์..."/>
         <PageSetup Text="ตั้งค่าหน้ากระดาษ..."/>
         <PrinterSetup Text="ตั้งค่าเครื่องพิมพ์..."/>
         <Preview Text="ดูก่อนพิมพ์..."/>
+        <PreviewCloud Text="โปรดรอ..."/>
+        <Preview1 Text="ตัวอย่าง"/>
         <SelectLanguage Text="เปลี่ยนภาษา..."/>
         <Exit Text="ออกจากโปรแกรม"/>
       </File>
@@ -144,7 +479,9 @@
         <Copy Text="คัดลอก"/>
         <Paste Text="วาง"/>
         <Delete Text="ลบ"/>
-        <DeletePage Text="ลบหน้ารายงาน"/>
+        <NewPage Text="Page ใหม่"/>
+        <CopyPage Text="สำเนา Page"/>
+        <DeletePage Text="ลบ Page"/>
         <SelectAll Text="เลือกทั้งหมด"/>
         <Group Text="จัดกลุ่ม"/>
         <Ungroup Text="แยกกลุ่ม"/>
@@ -167,30 +504,43 @@
         <Bands Text="กำหนด Bands..."/>
         <Styles Text="รูปแบบรายงาน..."/>
         <GroupExpert Text="ตัวช่วยสร้าง Group..."/>
+        <Validate Text="ตรวจสอบรายงาน"/>
         <Options Text="ตัวเลือก..."/>
       </Report>
       <Data Text="ข้อมูล">
         <ShowData Text="แสดงหน้าต่างข้อมูล"/>
         <Add Text="เพิ่มแหล่งข้อมูล..."/>
         <Choose Text="เลือกข้อมูลของรายงาน..."/>
+        <Upload Text="อัพโหลดแหล่งข้อมูลสู่คลาวด์..."/>
       </Data>
       <Window Text="หน้าต่าง">
         <CloseAll Text="ปิดทั้งหมด"/>
       </Window>
       <Help Text="ช่วยเหลือ">
-        <Contents Text="เนื้อหาสำหรับความช่วยเหลือ..."/>
+        <Contents Text="ความช่วยเหลือ..."/>
+        <Account Text="บัญชี..."/>
         <About Text="เกี่ยวกับ..."/>
       </Help>
     </Menu>
     <ToolWindow>
       <AutoHide Text="แสดง-ซ่อนอัตโนมัติ"/>
       <Close Text="ปิด"/>
+      <DockToTop Text="Dock {0} to top"/>
+      <DockToBottom Text="Dock {0} to bottom"/>
+      <DockToOtherSide Text="Dock {0} to other side"/>
       <Properties Text="คุณสมบัติ">
+        <Categorized Text="หมวดหมู่"/>
+        <Alphabetical Text="ตามลำดับตัวอักษร"/>
         <PropertiesTab Text="คุณสมบัติ"/>
         <EventsTab Text="เหตุการณ์"/>
+        <Filter Text="คุณสมบัติเฉพาะของวัตถุ"/>
         <NObjectsSelected Text="{0} รายการที่เลือก"/>
       </Properties>
-      <ReportTree Text="โครงสร้างรายงาน"/>
+      <ReportTree Text="โครงสร้างรายงาน">
+        <Sync Text="ซิงค์กับวัตถุที่เลือก"/>
+      </ReportTree>
+      <CollapseAll Text="ยุบทั้งหมด"/>
+      <ExpandAll Text="ขยายทั้งหมด"/>
       <Dictionary Text="ข้อมูล">
         <DataSources Text="แหล่งข้อมูล"/>
         <Parameters Text="ตัวแปรที่กำหนดเอง"/>
@@ -203,19 +553,33 @@
         <Save Text="บันทึก Dictionary..."/>
         <Merge Text="รวม Dictionary..."/>
         <NewDataSource Text="สร้างแหล่งข้อมูลใหม่..."/>
+        <SortDataSources Text="จัดเรียงแหล่งข้อมูล"/>
+        <UploadDataSource Text="อัปโหลดแหล่งข้อมูลไปคลาวด์..."/>
+        <UploadChangesDataSource Text="อัปเดทการเชื่อมต่อบนคลาวด์"/>
+        <SortDataFields Text="จัดเรียง Data Fields"/>
+        <CopyDataSource Text="คัดลอกแหล่งข้อมูล"/>
         <NewRelation Text="สร้าง Relation ใหม่..."/>
         <NewParameter Text="สร้างตัวแปรที่กำหนดเอง"/>
         <NewTotal Text="สร้างสูตรผลรวมใหม่..."/>
         <NewCalculatedColumn Text="สร้างคอลัมน์ จากสูตรคำนวณ"/>
         <Rename Text="เปลี่ยนชื่อ"/>
         <Edit Text="แก้ไข..."/>
+        <Copy Text="คัดลอก"/>
         <Delete Text="ลบ"/>
         <DeleteAlias Text="ลบชื่อเสมือน"/>
         <View Text="ดูข้อมูล..."/>
+        <ViewJson Text="ดูข้อมูล Json..."/>
         <DuplicateName Text="พบรายการที่มีชื่อดังกล่าวอยู่แล้ว"/>
         <NRows Text="{0} แถว"/>
+        <RowMofNRows Text="แถว {0} จาก {1}"/>
+        <RowsKtoLofNRows Text="แถว {0} - {1} จาก {2}"/>
+        <CubeSources Text="Cube Sources"/>
       </Dictionary>
       <Messages Text="ข้อความจากโปรแกรม">
+        <Errors Text="ข้อผิดพลาด: {0}"/>
+        <Warnings Text="คำเตือน: {0}"/>
+        <Refresh Text="รีเฟรช"/>
+        <Close Text="ปิด"/>
         <Description Text="คำอธิบาย"/>
         <Line Text="บรรทัด"/>
         <Column Text="คอลัมน์"/>
@@ -231,9 +595,11 @@
         <Save Text="บันทึกรายงาน (Ctrl+S)"/>
         <SaveAll Text="บันทึกทั้งหมด (Ctrl+Shift+S)"/>
         <Preview Text="ดูก่อนพิมพ์ (Ctrl+P)"/>
-        <NewPage Text="เพิ่มหน้าใหม่"/>
-        <NewDialog Text="เพิ่มกรอบโต้ตอบใหม่"/>
-        <DeletePage Text="ลบหน้ารายงาน"/>
+        <PreviewCloud Text="Web preview"/>
+        <NewPage Text="เพิ่ม Page ใหม่"/>
+        <CopyPage Text="สำเนา Page ปัจจุบันเป็นอันใหม่"/>
+        <NewDialog Text="เพิ่ม Dialog ใหม่"/>
+        <DeletePage Text="ลบ Page"/>
         <PageSetup Text="ตั้งค่าหน้ากระดาษ"/>
         <Cut Text="ตัด (Ctrl+X)"/>
         <Copy Text="คัดลอก (Ctrl+C)"/>
@@ -315,6 +681,13 @@
         <PageWidth Text="ความกว้างหน้ากระดาษ"/>
         <WholePage Text="ทั้งหน้า"/>
       </Zoom>
+      <Polygon Text="รูปหลายเหลี่ยม">
+        <MoveScale Text="โหมดเคลื่อนย้าย"/>
+        <Pointer Text="เลือกจุดตำแหน่งภายในเส้นหลายเหลี่ยม"/>
+        <AddPoint Text="เพิ่มจุดตำแหน่ง"/>
+        <Bezier Text="เพิ่มเส้นโค้ง เบซีเย"/>
+        <RemovePoint Text="ลบจุดตำแหน่ง"/>
+      </Polygon>
     </Toolbar>
     <Workspace>
       <Code Text="รหัสคำสั่ง"/>
@@ -350,6 +723,7 @@
       <EditReport Text="แก้ไข ตั้งค่ารายงาน"/>
       <SelectData Text="เลือก ข้อมูล"/>
       <EditData Text="แก้ไข ข้อมูล"/>
+      <FRXChange Text="FRX changed"/>
     </UndoRedo>
     <StartPage Text="หน้าแรก"/>
     <Untitled Text="รายงานที่ไม่มีชื่อ.frx"/>
@@ -360,35 +734,70 @@
       <Other Text="เลือกสีอื่น..."/>
       <Transparency Text="ความโปร่งใส:"/>
     </ColorSelector>
+    <Welcome>
+      <Button Text="เปิดหน้าต่างต้อนรับ..."/>
+      <Title Text="ยินดีต้อนรับสู่ FastReport"/>
+      <Show Text="แสดงเมื่อเข้าโปรแกรม"/>
+      <Open Text="เปิดรายการที่ใช้บ่อย"/>
+      <New Text="สร้างรายการใหม่"/>
+      <Account Text="บัญชี"/>
+    </Welcome>
   </Designer>
   <Preview Text="ตัวอย่างก่อนพิมพ์">
+    <DesignText Text="ออกแบบ"/>
+    <Design Text="ออกแบบรายงาน"/>
     <PrintText Text="&amp;พิมพ์"/>
     <Print Text="พิมพ์ (Ctrl+P)"/>
-    <Open Text="เปิด"/>
-    <Save Text="บันทึก"/>
+    <OpenText Text="เปิด"/>
+    <Open Text="เปิดไฟล์"/>
+    <OpenLocal Text="เปิด..."/>
+    <OpenViaCloud Text="เปิดจากคลาวด์..."/>
+    <Save Text="บันทึกไฟล์"/>
     <SaveText Text="&amp;บันทึก"/>
+    <SaveNative Text="รายงานที่มีข้อมูลแบบเบ็ดเสร็จ"/>
+    <SaveLocal Text="บันทึก..."/>
+    <SaveToCloud Text="บันทึกไปยังคลาวด์..."/>
+    <Search Text="ค้นหา"/>
     <Email Text="ส่งเมล์"/>
     <Find Text="ค้นหาข้อความ (Ctlr+F)"/>
     <Outline Text="โครงร่างข้อมูล"/>
     <PageSetup Text="ตั้งค่าหน้ากระดาษ"/>
-    <Edit Text="แก้ไขหน้า"/>
+    <Edit Text="แก้ไข Page"/>
+    <CopyPage Text="คัดลอก Page"/>
+    <DeletePage Text="ลบ Page"/>
     <Watermark Text="ลายน้ำ"/>
     <First Text="หน้าแรก"/>
     <Prior Text="ก่อนหน้า"/>
     <Next Text="ต่อไป"/>
     <Last Text="หน้าสุดท้าย"/>
-    <SaveNative Text="รายงานที่มีข้อมูลแบบเบ็ดเสร็จ"/>
+    <FtpText Text="บันทึกไป FTP"/>
+    <DropboxText Text="บันทึกไป Dropbox"/>
+    <GoogleDriveText Text="บันทึกไป Google Drive"/>
+    <SkyDriveText Text="บันทึกไป OneDrive"/>
+    <Uploading Text="กำลังอัปโหลด"/>
+    <UploadDone Text="อัปโหลดเสร็จแล้ว"/>
   </Preview>
   <Forms>
     <About Text="เกี่ยวกับ">
       <Version Text="เวอร์ชั่น"/>
-      <Visit Text="เยี่ยมชมเว็บไซต์สำหรับข้อมูลอื่น ๆ"/>
+      <Visit Text="ดูเว็บไซต์สำหรับข้อมูลอื่น ๆ"/>
     </About>
+    <AddLayer Text="เพิ่ม Layer">
+      <Source Text="Select source:"/>
+      <Shapefile Text="Map file (*.shp, *.osm)"/>
+      <Embed Text="ฝังไฟล์ไว้ในรายงาน"/>
+      <Empty Text="layer ว่างเปล่า พร้อมข้อมูลภูมิสารสนเทศที่มากับแอป"/>
+    </AddLayer>
     <AddNewItem Text="เพิ่มรายการใหม่">
       <Add Text="เพิ่ม"/>
       <Reports Text="แม่แบบที่เตรียมไว้"/>
       <ReportItems Text="ส่วนประกอบ"/>
+      <Games Text="เกมส์:"/>
     </AddNewItem>
+    <OpenPage Text="เลือก page">
+      <MergeDataSource Text="ผสานรวมแหล่งข้อมูล"/>
+      <AddAsLink Text="เพิ่มเป็นลิงค์"/>
+    </OpenPage>
     <AdvancedConnectionProperties Text="คุณสมบัติขั้นสูง"/>
     <AskPassword Text="รหัสผ่าน">
       <Password Text="รายงานนี้มีการป้องกันด้วยรหัสผ่าน&#13;&#10;&#13;&#10;กรุณาป้อนรหัสผ่าน:"/>
@@ -400,6 +809,7 @@
     <BaseReportWizard>
       <SelectDataSourcePage Text="เลือกแหล่งข้อมูล"/>
       <SelectDataSource Text="เลือกแหล่งข้อมูลตามรายการนี้ หรือสร้างแหล่งข้อมูลใหม่:"/>
+      <OpenDataDictionary Text="Open data dictionary file..."/>
       <CreateNewDatasource Text="สร้างแหล่งข้อมูลใหม่..."/>
       <SelectColumnsPage Text="เลือกคอลัมน์ของข้อมูล"/>
       <SelectColumns Text="เลือกคอลัมน์ของข้อมูล ที่ต้องการแสดงในรายงาน"/>
@@ -415,6 +825,46 @@
       <Color Text="สี:"/>
       <Hint Text="เลือกลักษณะและรูปแบบต่าง ๆ สำหรับเส้นขอบที่จะใช้"/>
     </Border>
+    <CISWizardForm Text="ตัวช่วยสร้าง Visualization of control (identification) signs">
+      <CIS Text="Сontrol (identification) sign"/>
+      <ProductGroup Text="Product group:"/>
+      <Data Text="Encoded data:"/>
+      <TypeBarcodes Text="Type of barcodes:"/>
+      <LeftMargin Text="ระยะขอบซ้าย"/>
+      <MethodСirculation Text="Method of release of products into circulation:"/>
+      <Country Text="ประเทศ:"/>
+      <ID Text="ID:"/>
+      <Size Text="ขนาด:"/>
+      <PageProps Text="Page properties"/>
+      <Landscape Text="แนวนอน"/>
+      <MarginTop Text="บน:"/>
+      <MarginLeft Text="ซ้าย:"/>
+      <Margins Text="ระยะขอบ:"/>
+      <Paper Text="ชนิดกระดาษ:"/>
+      <PageWidth Text="Page width:"/>
+      <PageHeight Text="Page height:"/>
+      <CountColumns Text="Count columns:"/>
+      <CountRows Text="Count rows:"/>
+      <HorizontalPadding Text="ระยะขอบแนวนอน:"/>
+      <VerticalPadding Text="ระยะขอบแนวตั้ง:"/>
+      <Border Text="Borders of sign"/>
+      <TransportPack Text="Tobacco, Transport packaging"/>
+      <Pack Text="Tobacco, Pack"/>
+      <Block Text="Tobacco, Block"/>
+      <Legprom Text="Light industry"/>
+      <Perfumes Text="Perfumes and eau de toilette"/>
+      <Footwear Text="Footwear"/>
+      <Fur Text="Fur coats"/>
+      <Photo Text="Photo"/>
+      <Tires Text="Tires"/>
+      <Medicines Text="Medicines"/>
+      <Dairy Text="Dairy products"/>
+      <Water Text="Packaged water"/>
+      <ImportProd Text="Import of products into the customs territory"/>
+      <ManufactureProd Text="Manufacture of products on the territory"/>
+      <Sample Text="ตัวอย่าง"/>
+      <Warning Text="Sings do not fit on the page!"/>
+    </CISWizardForm>
     <ChartEditor Text="ปรับแต่งแผนภูมิ">
       <Chart Text="แผนภูมิ"/>
       <Add Text="เพิ่ม..."/>
@@ -449,6 +899,8 @@
           <DataColumn Text="คอลัมน์ของข้อมูล:"/>
           <ColorColumn Text="สีคอลัมน์:"/>
           <SeriesSort Text="จัดเรียงชุดข้อมูล:"/>
+          <AlignXValues Text="Align X values"/>
+          <ForceAutoSeries Text="Force"/>
         </Data>
         <Appearance Text="รูปลักษณ์">
           <Template Text="แม่แบบ:"/>
@@ -456,6 +908,16 @@
           <Save Text="บันทึก..."/>
           <SeriesPalette Text="แม่แบบชุดข้อมูล:"/>
           <BorderSkin Text="แบบเส้น:"/>
+          <Templates>
+            <Custom Text="กำหนดเอง"/>
+            <Blue Text="Blue"/>
+            <Gray Text="Gray"/>
+            <Green Text="Green"/>
+            <Pink Text="Pink"/>
+            <Sand Text="Sand"/>
+            <Steel Text="Steel"/>
+            <Light Text="Light"/>
+          </Templates>
         </Appearance>
         <ChartArea Text="พื้นที่แผนภูมิ">
           <Area Text="พื้นที่:"/>
@@ -468,6 +930,7 @@
           <WallWidth Text="พื้นหลังกว้าง:"/>
           <AxisDepth Text="ความลึกของแกน:"/>
           <LightStyle Text="รูปแบบแสง:"/>
+          <ClusteredSeries Text="Clustered series"/>
         </ThreeD>
         <Axes Text="แกน">
           <Axis Text="แกน:"/>
@@ -482,6 +945,7 @@
             <Reversed Text="กลับด้าน"/>
             <Interval Text="ช่วง"/>
             <Interlaced Text="ใช้เทคนิคแสดงภาพแบบ Interlaced"/>
+            <InterlacedColor Text="Interlaced color:"/>
           </General>
           <Labels Text="ป้ายกำกับ">
             <Enabled Text="ใช้งาน"/>
@@ -500,10 +964,14 @@
             <GridLine Text="แสดง:"/>
             <Enabled Text="ใช้งาน"/>
           </Grid>
-          <Ticks>
-            <Enabled Text="ใช้งาน"/>
+          <Ticks Text="Ticks">
+            <Ticks Text="Ticks:"/>
+            <Enabled Text="Enabled"/>
+            <TickStyle Text="Tick style:"/>
+            <TickSize Text="Tick size:"/>
           </Ticks>
-          <Strips>
+          <Strips Text="Strips">
+            <Strip Text="Strip"/>
             <Interval Text="ระยะห่าง">
               <Start Text="เริ่มต้น:"/>
               <Width Text="กว้าง:"/>
@@ -584,12 +1052,16 @@
           <GroupFunction Text="ฟังก์ชั่นในการจัดกลุ่ม:"/>
           <CollectData Text="รวบรวมข้อมูล:">
             <None Text="ไม่มี"/>
+            <TopN Text="TopN"/>
+            <BottomN Text="BottomN"/>
             <LessThan Text="น้อยกว่าค่า"/>
             <LessThanPercent Text="น้อยกว่าเปอร์เซนต์"/>
             <GreaterThan Text="มากกว่าค่า"/>
             <GreaterThanPercent Text="มากกว่าเปอร์เซนต์"/>
           </CollectData>
           <Value Text="ค่า:"/>
+          <CollectedText Text="Collected text:"/>
+          <CollectedColor Text="Collected color:"/>
           <Explode Text="เลือก:">
             <None Text="ไม่มี"/>
             <Biggest Text="ค่าที่ใหญ่ที่สุด"/>
@@ -607,7 +1079,10 @@
           <DoughnutRadius Text="รัศมีของวงกลม (%):"/>
           <AreaDrawingStyle Text="รูปแบบการวาดในพื้นที่:"/>
           <Markers Text="สัญลักษณ์ระบุตำแหน่ง:"/>
+          <PriceUpColor Text="Price up color:"/>
+          <ReversalAmount Text="Reversal amount:"/>
           <BoxSize Text="ขนาดกล่อง:"/>
+          <NumberOfLinesInBreak Text="Lines in break:"/>
           <LabelsPlacement Text="การวางป้ายชื่อ:"/>
           <PointsGap Text="ช่องว่างระหว่างจุด:"/>
           <MinPointHeight Text="ค่าน้อยสุดของความสูงของจุด:"/>
@@ -615,6 +1090,7 @@
           <ThreeDDrawingStyle Text="แสดงผลแบบ 3 มิติ:"/>
           <ThreeDRotation Text="การหมุนแบบ 3 มิติ:"/>
           <FunnelStyle Text="รูปแบบกรวย:"/>
+          <LineTension Text="Line tension:"/>
           <NoSettings Text="ไม่มีการกำหนดค่าสำหรับชุดข้อมูลนี้"/>
         </Appearance>
         <FillBorder Text="สี &amp;&amp; เส้นขอบ">
@@ -645,14 +1121,69 @@
         <PyramidFunnel Text="ปิรามิด &amp; กรวย"/>
         <Range Text="ช่วง"/>
       </Categories>
+      <Series>
+        <Bar Text="Bar"/>
+        <StackedBar Text="Stacked Bar"/>
+        <StackedBar100 Text="100% Stacked Bar"/>
+        <Column Text="Column"/>
+        <StackedColumn Text="Stacked Column"/>
+        <StackedColumn100 Text="100% Stacked Column"/>
+        <Area Text="Area"/>
+        <SplineArea Text="Spline Area"/>
+        <StackedArea Text="Stacked Area"/>
+        <StackedArea100 Text="100% Stacked Area"/>
+        <Line Text="Line"/>
+        <FastLine Text="Fast Line"/>
+        <StepLine Text="Step Line"/>
+        <Spline Text="Spline"/>
+        <Bubble Text="Bubble"/>
+        <Point Text="Point"/>
+        <FastPoint Text="Fast Point"/>
+        <Pie Text="Pie"/>
+        <Doughnut Text="Doughnut"/>
+        <Polar Text="Polar"/>
+        <Radar Text="Radar"/>
+        <Stock Text="Stock"/>
+        <Candlestick Text="Candlestick"/>
+        <Kagi Text="Kagi"/>
+        <Renko Text="Renko"/>
+        <PointAndFigure Text="Point &amp; Figure"/>
+        <ThreeLineBreak Text="Three Line Break"/>
+        <Pyramid Text="Pyramid"/>
+        <Funnel Text="Funnel"/>
+        <Range Text="Range"/>
+        <SplineRange Text="Spline Range"/>
+        <RangeColumn Text="Range Column"/>
+        <RangeBar Text="Range Bar"/>
+      </Series>
     </ChartGallery>
+    <CloudDataSourceForm>
+      <TypeConnection Text="Type"/>
+      <NameConnection Text="Name"/>
+      <StatusConnection Text="สถานะ"/>
+      <StatusConnected Text="เชื่อมต่อแล้ว"/>
+      <StatusError Text="ข้อผิดพลาด"/>
+      <StatusUpdating Text="กำลังอัพเดท"/>
+      <Caption Text="เลือกการเชื่อมต่อ"/>
+      <SelectSources Text="เลือกแหล่งข้อมูลสำหรับรายงานของคุณจากระบบคลาวด์"/>
+      <SelectUpload Text="เลือกการเชื่อมต่อที่พร้อมใช้งานเพื่ออัพโหลดไปยังคลาวด์"/>
+      <NotFoundSources Text="ไม่มีการเชื่อมต่อข้อมูลที่ใช้ได้"/>
+      <PluginNotAdded Text="Impossible to unload data source. Probably the plugin, corresponding to the connection, is not added"/>
+    </CloudDataSourceForm>
     <CodePageOptions Text="หน้าพิมพ์รหัสคำสั่ง">
+      <EnableCodeCompletion Text="เปิดใช้ตัวช่วยพิมพ์โค้ด"/>
       <EnableVirtualSpace Text="ใช้ช่องว่างเสมือน"/>
       <UseSpaces Text="ใช้การเว้นวรรคสำหรับการ tabs"/>
       <AllowOutlining Text="แนวเส้นของกลุ่มรหัสคำสั่งเดียวกัน"/>
       <LineNumbers Text="แสดงเลขบรรทัด"/>
       <TabSize Text="ขนาดของระยะ Tab:"/>
+      <DefaultScriptLanguage Text="ภาษาสคริปต์เริ่มต้น:"/>
+      <CSharp Text="C#"/>
+      <VBNet Text="Visual Basic .NET"/>
     </CodePageOptions>
+    <FRXPageOptions Text="FRX page">
+      <Enable Text="ใช้งาน"/>
+    </FRXPageOptions>
     <ConfigureBands Text="กำหนดค่า Bands">
       <Add Text="เพิ่ม"/>
       <Delete Text="ลบ"/>
@@ -663,6 +1194,7 @@
       <LoginPrompt Text="ต้องลงชื่อเข้าใช้ก่อน"/>
       <Test Text="ทดสอบการเชื่อมต่อ"/>
       <TestSuccesful Text="ทดสอบการเชื่อมต่อสำเร็จ"/>
+      <ConnectionFailed Text="การเชื่อมต่อกับฐานข้อมูลล้มเหลว"/>
     </Connection>
     <CustomLabel Text="ปรับแต่งป้ายชื่อ">
       <Name Text="ชื่อ:"/>
@@ -690,6 +1222,13 @@
       <Filter Text="ตัวกรอง"/>
       <Expression Text="นิพจน์การกรอง:"/>
     </DataBandEditor>
+    <DataBandColumnEditor Text="ตัวแก้ไขคอลัมน์ Data Band">
+      <Columns Text="คอลัมน์"/>
+      <Count Text="นับได้"/>
+      <Layout Text="เค้าโครง"/>
+      <MinRowCount Text="จำนวนแถวขั้นต่ำ"/>
+      <Width Text="กว้าง"/>
+    </DataBandColumnEditor>
     <DataWizard Text="ตัวช่วยข้อมูล">
       <Page1 Text="เลือกฐานข้อมูล"/>
       <WhichData Text="คุณจะให้รายงานเชื่อมต่อกับฐานข้อมูลด้วยการเชื่อมต่อชนิดใด ?"/>
@@ -697,25 +1236,54 @@
       <NewConnection Text="การเชื่อมต่อใหม่..."/>
       <EditConnection Text="แก้ไขการเชื่อมต่อ..."/>
       <ConnectionName Text="กำหนดชื่อของการเชื่อมต่อ:"/>
-      <ConnectionString Text="รหัสการเชื่อมต่อ"/>
+      <ConnectionString Text="ข้อความที่กำหนดการเชื่อมต่อกับแหล่งข้อมูล"/>
       <Page2 Text="เลือกตาราง"/>
       <WhichTables Text="ตารางข้อมูลใดที่คุณต้องการแสดงในรายงาน ?"/>
-      <Wait Text="กำลังดึงข้อมูล"/>
+      <Wait Text="กำลังดึงข้อมูลจากฐานข้อมูล"/>
       <AddQuery Text="เพิ่มคำสั่ง SQL..."/>
+      <CloudDataSources Text="เลือกการเชื่อมต่อจากคลาวด์"/>
+      <Tables Text="ตาราง"/>
+      <Procedures Text="Procedures"/>
+      <Queries Text="คิวรี"/>
+      <MessageBox>
+        <SuccessText Text="แหล่งข้อมูลถูกอัพโหลดเข้าเซิร์ฟเวอร์สำเร็จแล้ว!"/>
+        <SuccessCaption Text="อัปโหลดสำเร็จ"/>
+        <SuccessUpdateText Text="แหล่งข้อมูลได้รับการอัพเดตสำเร็จแล้ว!"/>
+        <SuccessUpdateCaption Text="อัปเดตสำเร็จแล้ว"/>
+        <ErrorText Text="เกิดข้อผิดพลาดขณะอัพโหลดข้อมูล"/>
+        <ErrorCaption Text="ข้อผิดพลาด"/>
+        <ErrorInvalidID Text="รหัสของแหล่งข้อมูลบนคลาวด์ไม่ถูกต้อง อาจเป็นไปได้ว่าแหล่งข้อมูลไม่มีอยู่บนเซิร์ฟเวอร์ ตรวจสอบข้อมูลแล้วลองอีกครั้ง"/>
+        <Error404 Text="แหล่งข้อมูลที่เลือกไม่ปรากฏใน subscription ของคุณ ตรวจสอบข้อมูลแล้วลองอีกครั้ง"/>
+      </MessageBox>
+      <ChangeParameters Text="การเปลี่ยนแปลง procedure parameters"/>
     </DataWizard>
-    <DialogPageOptions Text="กรอบโต้ตอบ"/>
+    <DialogPageOptions Text="Dialog"/>
     <Exception Text="ความผิดพลาดที่ไม่คาดคิด">
       <Hint Text="รายงานของคุณพบข้อผิดพลาดต่อไปนี้:"/>
       <Stack Text="ข้อผิดพลาดในจุดที่พบ:"/>
       <Copy Text="สำเนาไปยังคลิปบอร์ด"/>
     </Exception>
     <ExpressionEditor Text="แก้ไขนิพจน์"/>
+    <ExpressionsEditor Text="ตัวแก้ไขนิพจน์">
+      <Expressions Text="นิพจน์"/>
+      <Add Text="เพิ่ม"/>
+      <Delete Text="ลบ"/>
+      <Edit Text="แก้ไข"/>
+    </ExpressionsEditor>
     <Fill Text="ปรับแต่งการระบายสี">
       <Solid Text="สีเดียว"/>
       <LinearGradient Text="ไล่เฉดสี"/>
       <PathGradient Text="ไล่เฉดสีตามรูปทรง"/>
       <Hatch Text="ลวดลาย"/>
       <Glass Text="กระจกเงา"/>
+      <Texture Text="พื้นผิว"/>
+      <ChooseImage Text="เลือกภาพ"/>
+      <PreserveAspectRatio Text="รักษาอัตราส่วนภาพ"/>
+      <ImageSize Text="ขนาดภาพ"/>
+      <ImageWidth Text="กว้าง"/>
+      <ImageHeight Text="สูง"/>
+      <WrapMode Text="Wrap Mode"/>
+      <ImageOffset Text="การชดเชยภาพ"/>
       <Colors Text="เลือกสี"/>
       <Color Text="สี"/>
       <StartColor Text="เริ่มต้น"/>
@@ -756,6 +1324,19 @@
       <FalseText Text="ข้อความที่ใช้แสดงค่าเท็จ:"/>
       <TrueText Text="ข้อความที่ใช้แสดงค่าจริง:"/>
     </FormatEditor>
+    <FontsPageOptions Text="การตั้งค่าแบบอักษร">
+      <FormName Text="ตั้งค่าแบบอักษร"/>
+      <Fonts Text="แบบอักษร"/>
+      <Font Text="แบบอักษร"/>
+      <SettingsFor Text="แสดงการตั้งค่าสำหรับ"/>
+      <FormElement Text="แสดงรายการ"/>
+      <DefaultButton Text="ใช้ค่าเริ่มต้น"/>
+      <Size Text="ขนาด"/>
+      <Italic Text="เอียง"/>
+      <Bold Text="หนา"/>
+      <Sample Text="ตัวอย่าง"/>
+      <CancelButton Text="ยกเลิก"/>
+    </FontsPageOptions>
     <GridControlColumnsEditor Text="แก้ไขคอลัมน์">
       <Columns Text="คอลัมน์"/>
       <Properties Text="คุณสมบัติ"/>
@@ -792,6 +1373,7 @@
       <Visible Text="มองเห็นได้"/>
     </HighlightEditor>
     <HyperlinkEditor Text="ตัวแก้ไขเชื่อมโยงหลายมิติ">
+      <Url Text="URL"/>
       <PageNumber Text="เลขหน้า"/>
       <Bookmark Text="ตัวคั่นหน้า"/>
       <Report Text="รายงาน"/>
@@ -818,6 +1400,7 @@
       <HintReportPage Text="ระบุหน้าที่จะให้สร้างและเปิดในแท็บย่อย"/>
       <HintCustom Text="คุณต้องสร้างการเชื่อมโยงเหตุการณ์ &quot;Click&quot; ให้ทำงานตามที่คุณต้องการ"/>
       <ModifyAppearance Text="เปลี่ยนลักษณะให้ดูเหมือนตัวเชื่อมโยงหลายมิติ"/>
+      <OpenLinkInNewTab Text="เปิดลิงก์ในแท็บใหม่"/>
     </HyperlinkEditor>
     <LabelWizard Text="ตัวช่วยสร้างป้ายชื่อ">
       <Hint Text="เลือกตัวอย่างป้ายชื่อจากรายการ หรือกดปุ่ม &quot;ป้ายชื่อที่กำหนดเอง&quot; ตามขนาดที่ต้องการ"/>
@@ -833,6 +1416,139 @@
       <Custom Text="กำหนดเอง"/>
       <Delete Text="ลบ"/>
     </LabelWizard>
+    <ListViewForm>
+      <CaptionSaveMode Text="บันทึกไปยังคลาวด์"/>
+      <CaptionOpenMode Text="เปิดจากคลาวด์"/>
+      <Select Text="เลือก"/>
+      <Save Text="บันทึก"/>
+      <Cancel Text="ยกเลิก"/>
+      <Search Text="ค้นหา..."/>
+      <FileNameHeader Text="ชื่อ"/>
+      <DateModHeader Text="วันที่แก้ไข"/>
+      <FileSizeHeader Text="ขนาด"/>
+      <FileTypeHeader Text="ประเภท"/>
+      <CreateFolder Text="สร้างโฟลเดอร์"/>
+      <CopyPath Text="คัดลอกพาธ"/>
+      <Rename Text="เปลี่ยนชื่อ"/>
+      <Delete Text="ลบ"/>
+      <Open Text="เปิด"/>
+      <AuthError Text="เกิดข้อผิดพลาดขณะตรวจสอบสิทธิ"/>
+      <AuthErrorCaption Text="ไม่ได้รับอนุญาต"/>
+      <OnLoadName Text="กรอกชื่อใหม่"/>
+      <NonExistingSelectedReport Text="ไม่พบรายงานที่มีชื่อนี้!"/>
+      <ReportWasModified Text="รายงานได้รับการแก้ไขแล้ว คุณแน่ใจหรือไม่ว่าต้องการเขียนทับไฟล์นี้?"/>
+      <ReportWasModifiedCaption Text="รายงานได้รับการปรับปรุงแล้ว"/>
+      <ReportWasNotFound Text="รายงานถูกลบไปแล้ว คุณต้องการบันทึกไฟล์หรือไม่?"/>
+      <ReportWasNotFoundCaption Text="รายงานถูกลบไปแล้ว"/>
+      <ConfirmDelete Text="ลบ {0} ?"/>
+      <RootFolderTemplates Text="เทมเพลต"/>
+      <RootFolderReports Text="รายงาน"/>
+      <EnterFolderName>
+        <OnLoadRename Text="กรอกชื่อใหม่"/>
+        <OnLoadFolderName Text="ป้อนชื่อโฟลเดอร์"/>
+        <CreateDirectory Text="สร้างโฟลเดอร์"/>
+        <Rename Text="เปลี่ยนชื่อ"/>
+        <Confirm Text="ตกลง"/>
+        <Cancel Text="ยกเลิก"/>
+        <EmptyName Text="ชื่อไม่สามารถว่างเปล่าได้!"/>
+        <ForbiddenName Text="ชื่อไฟล์ไม่สามารถมีอักขระพิเศษ ต่อไปนี้:"/>
+      </EnterFolderName>
+      <ErrorMessageBox>
+        <ErrorInApiOrServer Text="เกิดข้อผิดพลาดขณะเชื่อมต่อกับเซิร์ฟเวอร์ที่เลือก คุณอาจระบุเซิร์ฟเวอร์หรือรหัส API ที่ไม่ถูกต้อง"/>
+        <ErrorInSubscriptions Text="ไม่พบ subscriptions ในบัญชีของคุณ"/>
+        <ErrorInSubscriptions402 Text="subscriptions ที่ระบุหมดอายุแล้ว โปรดอัปเดตก่อน"/>
+        <CaptionSubscriptions Text="Subscriptions error"/>
+        <CaptionSubscriptions402 Text="Subscription หมดอายุแล้ว"/>
+        <Caption Text="ข้อผิดพลาดการเชื่อมต่อเซิร์ฟเวอร์"/>
+        <InvalidPath Text="ไม่พบพาธ '{0}' ตรวจสอบคำสะกดและลองอีกครั้ง"/>
+        <CaptionNoPath Text="พาธไม่ถูกต้อง"/>
+        <Error404 Text="ไฟล์ที่เลือกไม่มีอยู่บนเซิร์ฟเวอร์ ตรวจสอบว่าข้อมูลถูกต้องแล้วลองอีกครั้ง"/>
+        <Error404Caption Text="ไม่พบไฟล์"/>
+      </ErrorMessageBox>
+    </ListViewForm>
+    <MapEditor Text="แก้ไขแผนที่">
+      <Map Text="แผนที่"/>
+      <Layer Text="Layer"/>
+      <Add Text="เพิ่ม..."/>
+      <Delete Text="ลบ"/>
+      <Hint Text="คลิกรายการเพื่อกำหนดค่า:"/>
+      <Common>
+        <FillColor Text="เติมสี:"/>
+        <TextColor Text="สีข้อความ:"/>
+        <BorderColor Text="สีเส้นขอบ:"/>
+        <BorderStyle Text="รูปแบบเส้นขอบ:"/>
+        <BorderWidth Text="เส้นขอบหนา:"/>
+        <Text Text="ข้อความ:"/>
+        <Font Text="แบบอักษร:"/>
+        <Dock Text="Dock:"/>
+        <Format Text="รูปแบบ:"/>
+        <Visible Text="มองเห็นได้"/>
+        <NumberOfRanges Text="จำนวนช่วง:"/>
+        <Start Text="เริ่มต้น:"/>
+        <End Text="สิ้นสุด:"/>
+        <Auto Text="อัตโนมัติ"/>
+      </Common>
+      <MapEditorControl>
+        <General Text="ทั่วไป">
+          <Mercator Text="Mercator projection"/>
+        </General>
+        <ColorScale Text="มาตราส่วนสี">
+          <HideIfNoData Text="ซ่อนถ้าไม่มีข้อมูล"/>
+          <Border Text="เส้นขอบ..."/>
+          <Fill Text="เติมสี..."/>
+          <General Text="ทั่วไป"/>
+          <Title Text="หัวเรื่อง"/>
+          <Values Text="ค่าต่าง ๆ"/>
+          <NoDataText Text="ไม่มีข้อมูล ให้ระบุว่า:"/>
+          <NoData Text="ไม่มีข้อมูล"/>
+        </ColorScale>
+      </MapEditorControl>
+      <LayerEditorControl>
+        <Data Text="ข้อมูล">
+          <DataSource Text="แหล่งข้อมูล:"/>
+          <Filter Text="ตัวกรอง:"/>
+          <SpatialData Text="Spatial data:"/>
+          <Column Text="คอลัมน์:"/>
+          <Value Text="ค่า:"/>
+          <Latitude Text="ละติจูด:"/>
+          <Longitude Text="ลองติจูด:"/>
+          <Label Text="Label:"/>
+          <AnalyticalData Text="ข้อมูลวิเคราะห์:"/>
+          <Function Text="Function:"/>
+          <ZoomPolygon Text="Zoom the polygon:"/>
+        </Data>
+        <Appearance Text="รูปลักษณ์">
+          <Palette Text="จานสี:"/>
+        </Appearance>
+        <ColorScale Text="มาตราส่วนสี">
+          <StartColor Text="สีเริ่มต้น:"/>
+          <MiddleColor Text="สีกลาง:"/>
+          <EndColor Text="สีสุดท้าย:"/>
+          <Color Text="สี:"/>
+        </ColorScale>
+        <SizeRanges Text="Size ranges">
+          <StartSize Text="Start size:"/>
+          <EndSize Text="End size:"/>
+          <Size Text="ขนาด:"/>
+        </SizeRanges>
+        <Labels Text="Labels">
+          <LabelKind Text="ประเภท Label:"/>
+          <None Text="None"/>
+          <Name Text="ชื่อ"/>
+          <Value Text="ค่า"/>
+          <NameAndValue Text="ชื่อและค่า"/>
+          <LabelColumn Text="Label column:"/>
+          <VisibleAtZoom Text="Visible at zoom:"/>
+        </Labels>
+      </LayerEditorControl>
+    </MapEditor>
+    <OutlineEditor Text="ตัวแก้ไข Outline">
+      <Enabled Text="เปิดใช้งาน"/>
+      <Style Text="สไตล์:"/>
+      <Width Text="กว้าง:"/>
+      <Color Text="สี:"/>
+      <DrawBehind Text="Draw behind"/>
+    </OutlineEditor>
     <PageSetup Text="ตั้งค่าหน้ากระดาษ">
       <Paper Text="&amp;ขนาดกระดาษ"/>
       <Custom Text="กำหนดเอง"/>
@@ -850,6 +1566,7 @@
       <Source Text="ถาดกระดาษ"/>
       <FirstPage Text="หน้าแรก:"/>
       <OtherPages Text="หน้าอื่น ๆ:"/>
+      <LastPage Text="หน้าสุดท้าย:"/>
       <Columns Text="คอลัมน์"/>
       <Count Text="จำนวน:"/>
       <ColumnWidth Text="กว้าง:"/>
@@ -861,23 +1578,52 @@
       <DupVertical Text="แนวตั้ง"/>
       <DupHorizontal Text="แนวนอน"/>
       <EditWatermark Text="แก้ไข&amp;ลายน้ำ..."/>
+      <ExtraWidth Text="Extra design width"/>
+      <UnlimitedHeight Text="ไม่จำกัดความสูง"/>
+      <UnlimitedWidth Text="ไม่จำกัดความกว้าง"/>
     </PageSetup>
     <PictureEditor Text="แก้ไขรูปภาพ">
       <Picture Text="รูปภาพ"/>
       <Load Text="โหลด"/>
       <Paste Text="วาง"/>
       <Clear Text="เอาออก"/>
+      <Edit Text="แก้ไข"/>
+      <DataColumn Text="Data column"/>
       <FileName Text="ชื่อไฟล์"/>
       <Url Text="ลิงค์เชื่อมโยง"/>
       <FileHint1 Text="ชื่อไฟล์:"/>
       <FileHint2 Text="หมายเหตุ: ไฟล์นี้จะต้องส่งไปพร้อมกับรายงานด้วย"/>
       <UrlHint Text="ระบุลิงค์เชื่อมโยง:"/>
     </PictureEditor>
+    <PictureEditorAdvanced Text="ตัวแก้ไขรูปภาพ">
+      <Reset Text="Reset"/>
+      <Resize Text="ปรับขนาด"/>
+      <Crop Text="ครอบตัด"/>
+      <Color Text="สี"/>
+      <Change Text="เปลี่ยน:"/>
+      <Percentage Text="เปอร์เซ็นต์"/>
+      <Pixels Text="พิกเซล"/>
+      <Horizontal Text="แนวนอน:"/>
+      <Vertical Text="แนวตั้ง:"/>
+      <AspectRatio Text="รักษาอัตราส่วนภาพ"/>
+      <Grayscale Text="โทนสีเทา"/>
+      <Monochrome Text="ขาวดำ"/>
+      <MinX Text="Min. X:"/>
+      <MinY Text="Min. Y:"/>
+    </PictureEditorAdvanced>
     <PluginsOptions Text="ส่วนเสริม">
       <Hint Text="รายการของส่วนเสริมที่ติดตั้งไว้:"/>
       <Add Text="เ&amp;พิ่ม"/>
       <Remove Text="&amp;ลบ"/>
       <Note Text="หมายเหตุ: การเปลี่ยนแปลงจะมีผลหลังจากเปิดโปรแกรมในครั้งต่อไป"/>
+      <Fonts Text="แบบอักษร"/>
+      <ExportsEditor Text="ส่งออกเมนู"/>
+      <Version Text="เวอร์ชั่น"/>
+      <Path Text="จัดเก็บไว้ที่:"/>
+      <Date Text="วันที่สร้าง:"/>
+      <CompanyName Text="บริษัท:"/>
+      <Description Text="คำอธิบาย:"/>
+      <Size Text="ขนาด:"/>
     </PluginsOptions>
     <PreviewPageSetup>
       <Apply Text="ให้มีผลทุกหน้า"/>
@@ -917,13 +1663,40 @@
       <PagesOnSheet2 Text="2 หน้า"/>
       <PagesOnSheet4 Text="4 หน้า"/>
       <PagesOnSheet8 Text="8 หน้า"/>
+      <Scale Text="มาตราส่วน (%):"/>
+      <AutoPaperSize Text="ขนาดกระดาษอัตโนมัติ"/>
       <Print Text="&amp;พิมพ์"/>
       <Error Text="ระบุหน้าที่พิมพ์ไม่ถูกต้อง"/>
+      <CmdCommand Text="คำสั่ง"/>
+      <CmdDescription Text="แทนที่ 'report1.fpx report2.fpx ... report.fpx' ด้วยรายงานของคุณเองและคัดลอกคำสั่งต่อไปนี้:"/>
     </PrinterSetup>
     <QueryBuilder Text="ตัวช่วยสร้าง Query">
       <Designer Text="มุมมองออกแบบ"/>
-      <Sql Text="คำสั่ง SQL"/>
       <Result Text="ผลลัพธ์"/>
+      <Run Text="Run SQL"/>
+      <Name Text="ชื่อ"/>
+      <Alias Text="Alias"/>
+      <Filter Text="ตัวกรอง"/>
+      <Group Text="Group"/>
+      <Order Text="Order"/>
+      <Func Text="Func"/>
+      <Joins Text="Join"/>
+      <Condition Text="เงื่อนไข"/>
+      <Delete Text="ลบ"/>
+      <InputAlias Text="Set an alias for the table:"/>
+      <Where>
+        <Equal Text="Equal"/>
+        <NotEqual Text="Not equal"/>
+        <GtOrEqual Text="Greater than or equal"/>
+        <Gt Text="Greater than"/>
+        <LtOrEqual Text="Less than or equal"/>
+        <Lt Text="Less than"/>
+        <Like Text="Like"/>
+        <NotLike Text="Not like"/>
+      </Where>
+      <Hint Text="ลากตารางมาตรงนี้"/>
+      <QueryIsCorrupted Text="ไม่สามารถแก้ไข SQL query โดยใช้ Query Builder ได้ ถ้าทำต่อ SQL query อาจเสียหายบางส่วนหรือทั้งหมด ต้องการทำต่อหรือไม่?"/>
+      <QueryIsCorruptedTitle Text="คำเตือน!"/>
     </QueryBuilder>
     <QueryWizard Text="ตัวช่วยสร้าง Query">
       <Page1 Text="ตั้งชื่อ"/>
@@ -939,6 +1712,8 @@
       <AddColumn Text="เพิ่มคอลัมน์ที่เป็นสูตรคำนวณ"/>
       <AddParameter Text="เพิ่มตัวแปร"/>
       <Delete Text="ลบ"/>
+      <DuplicateName Text="รายการที่กำหนดชื่อไว้ ซ้ำกับที่มีอยู่แล้ว"/>
+      <DuplicateParamName Text="query มีพารามิเตอร์ ({0}) หนึ่งตัวหรือมากกว่าหลายครั้ง โปรดตรวจสอบให้แน่ใจว่าการใช้งานพารามิเตอร์แต่ละครั้งตรงตามความคาดหวังของคุณ และไม่ทำให้เกิดข้อขัดแย้งระหว่าง run คำสั่ง query"/>
     </QueryWizard>
     <RelationEditor Text="แก้ไข Relation">
       <ParentTable Text="ตารางหลัก"/>
@@ -973,6 +1748,7 @@
       <Note Text="หมายเหตุ: เมื่อคุณเปลี่ยนภาษาสคริปต์ รหัสคำสั่งที่มีอยู่จะถูกลบทิ้ง!"/>
       <RefAssemblies Text="อ้างอิง assemblies:"/>
       <Add Text="เ&amp;พิ่ม..."/>
+      <Remove Text="ลบ"/>
       <Password Text="รหัสผ่าน:"/>
       <RetypePassword Text="พิมพ์รหัสผ่านซ้ำ:"/>
       <Inherited Text="รายงานนี้สืบทอดมาจากรายงานต้นแบบ:"/>
@@ -992,6 +1768,8 @@
       <QualityRegular Text="ทั่วไป"/>
       <QualityClearType Text="ClearType (ชัดเจนและราบเรียบ)"/>
       <QualityAntiAlias Text="AntiAlias (ขอบเรียบ)"/>
+      <QualitySingleBPP Text="SingleBPP"/>
+      <QualitySingleBPPGridFit Text="SingleBPPGridFit"/>
       <PasswordError Text="รหัสผ่านไม่ตรงกัน กรุณาลองใหม่"/>
       <Recipients Text="อีเมล์ผู้รับ (ตัวอย่าง john@url.com):"/>
       <Subject Text="เรื่อง:"/>
@@ -1015,14 +1793,50 @@
       <Structure Text="โครงสร้าง"/>
       <Classic Text="ธรรมดา"/>
       <EditAfterInsert Text="แก้ไขหลังการแทรก"/>
+      <EventBandIndicator Text="Show indicator on bands with events"/>
+      <EventObjectIndicator Text="Show indicator on objects with events"/>
+      <EnableBacklightIntersectingObjects Text="Backlight intersecting objects"/>
+      <ObjectsAppearance Text="Objects appearance"/>
+      <EnableBacklight Text="Backlight active band"/>
+      <SimplifyDBFields Text="Simplified display of DB fields"/>
+      <ApplyLastFormat Text="Apply last format to new objects"/>
     </ReportPageOptions>
+    <RFIDLabelEditor Text="ตัวแก้ไข RFID Label">
+      <ReservedBank Text="Reserved bank"/>
+      <AccessPassword Text="Access password"/>
+      <AccessPassWriteMode Text="Access password access mode"/>
+      <KillPassword Text="Kill password"/>
+      <KillPassWriteMode Text="Kill password access mode"/>
+      <DataFormat Text="Data format"/>
+      <TIDBank Text="Tag ID bank"/>
+      <TID Text="Tag ID"/>
+      <EPCBank Text="EPC bank"/>
+      <EPCBankFullName Text="Electronic product code (EPC) bank"/>
+      <EPCFormat Text="EPC format"/>
+      <EPC Text="EPC data"/>
+      <EPCBankMode Text="EPC bank access mode"/>
+      <UseAdjust Text="Use adjust bits"/>
+      <RewriteEPC Text="Rewrite EPC bank"/>
+      <UserBank Text="User bank"/>
+      <UserData Text="User data"/>
+      <UserBankMode Text="User bank access mode"/>
+      <StartPermalock Text="Start section of permalock"/>
+      <CountPermalock Text="Count of permalock sections"/>
+      <Other Text="Other"/>
+      <AdaptiveAntenna Text="Adaptive antenna"/>
+      <ReadPower Text="Read power"/>
+      <WritePower Text="Write power"/>
+      <ErrorHandleMode Text="Error handle mode"/>
+      <DataColumn Text="Data column"/>
+    </RFIDLabelEditor>
     <RichTextEditor Text="ตัวปรับแต่งข้อความ">
       <Open Text="เปิด"/>
       <Save Text="บันทึก"/>
       <Subscript Text="ตัวห้อย"/>
       <Superscript Text="ตัวยก"/>
       <Bullets Text="หัวข้อย่อย"/>
-      <Confirm Text="ข้อความถูกแก้ไข ต้องการจัดเก็บหรือไม่ ?"/>
+      <ConfirmChanges Text="ข้อความมีการเปลี่ยนแปลง บันทึกหรือไม่ ?"/>
+      <Invoke Text="Double click เพื่อเลือก RTF file"/>
     </RichTextEditor>
     <SearchReplace Text="ค้นหาและแทนที่">
       <Find Text="คำที่ใช้ค้น:"/>
@@ -1040,6 +1854,7 @@
       <Hint Text="เลือกแหล่งข้อมูลที่จะใช้ในรายงานนี้"/>
       <AvailableDs Text="แหล่งข้อมูลที่ใช้ได้:"/>
       <SelectedDs Text="แหล่งข้อมูลที่เลือก:"/>
+      <ProjectDs Text="Project datasets"/>
       <OtherDs Text="แหล่งข้อมูลอื่น"/>
     </SelectDataSource>
     <SelectLanguage Text="เลือกภาษา">
@@ -1061,9 +1876,21 @@
       <Tabular Text="ตาราง"/>
       <Columnar Text="คอลัมน์"/>
       <StylePage Text="เลือกรูปแบบ"/>
-      <Styles Text="เลือกรูปแบบรายงาน"/>
+      <Styles Text="เลือกรูปแบบรายงาน">
+        <Standard Text="Standard"/>
+        <Gray Text="Gray"/>
+        <Green Text="Green"/>
+        <Sand Text="Sand"/>
+        <Blue Text="Blue"/>
+        <Title Text="Title"/>
+        <Header Text="Header"/>
+        <Group Text="Group"/>
+        <Data Text="Data"/>
+        <Footer Text="Footer"/>
+        <EvenRows Text="EvenRows"/>
+      </Styles>
     </StandardReportWizard>
-    <StringCollectionEditor Text="แก้ไข String Collection"/>
+    <StringCollectionEditor Text="Edit String Collection"/>
     <Style Text="ปรับแต่งรูปแบบรายงาน">
       <Styles Text="รูปแบบที่กำหนดไว้แล้ว"/>
       <Add Text="เพิ่ม"/>
@@ -1080,7 +1907,15 @@
     </Style>
     <TextEditor Text="แก้ไขข้อความ">
       <WordWrap Text="ตัดข้อความอัตโนมัติ"/>
+      <ConfirmChanges Text="ข้อความมีการเปลี่ยนแปลง บันทึกหรือไม่?"/>
     </TextEditor>
+    <JsonEditor Text="ตัวแก้ไข Json">
+      <Readonly Text="(อ่านอย่างเดียว)"/>
+      <Open Text="เปิดไฟล์"/>
+      <Save Text="บันทึกไฟล์"/>
+      <FormatJson Text="รูปแบบ JSON"/>
+      <Filter Text="json files (*.json)|*.json|txt files (*.txt)|*.txt|All files (*.*)|*.*"/>
+    </JsonEditor>
     <TotalEditor Text="ปรับแต่งฟังก์ชั่นผลรวม">
       <TotalName Text="ชื่อสูตร:"/>
       <Total Text="ผลรวม"/>
@@ -1098,10 +1933,28 @@
       <Max Text="Max (หาค่าสูงสุด)"/>
       <Avg Text="Average (หาค่าเฉลี่ย)"/>
       <Count Text="Count (นับจำนวน)"/>
+      <CountDistinct Text="นับเฉพาะที่ไม่ซ้ำ"/>
       <Custom Text="Custom (กำหนดเอง)"/>
     </TotalEditor>
     <UIOptions Text="ส่วนติดต่อผู้ใช้งาน">
       <Appearance Text="รูปลักษณ์:"/>
+      <IconPack Text="ชุดไอคอน:">
+        <Pack1 Text="Classic"/>
+        <Pack2 Text="Visual Studio"/>
+      </IconPack>
+      <Ribbon Text="ใช้รูปแบบใหม่ Ribbon"/>
+      <Welcome Text="แสดงหน้าต่างต้อนรับเมื่อเริ่มต้นใช้งาน"/>
+      <RightToLeft Text="อินเทอร์เฟซผู้ใช้จากขวาไปซ้าย:">
+        <Auto Text="อัตโนมัติ"/>
+        <No Text="ไม่"/>
+        <Yes Text="ใช่"/>
+      </RightToLeft>
+      <DisableHotkeys Text="ปิดใช้งานปุ่มลัด"/>
+      <ShowProgress Text="แสดงหน้าต่างความคืบหน้า"/>
+      <UseCompactMenu Text="ใช้เมนูแบบกะทัดรัด"/>
+      <Restart Text="* จำเป็นต้องรีสตาร์ท"/>
+      <Reset Text="รีเซ็ตการตั้งค่า"/>
+      <Shortcut Text="แป้นพิมพ์ลัด"/>
     </UIOptions>
     <WatermarkEditor Text="ลายน้ำ">
       <Enabled Text="ใช้งาน"/>
@@ -1129,6 +1982,237 @@
       <PictureOnTop Text="รูปภาพอยู่บน"/>
       <ApplyToAll Text="ให้มีผลกับทุกหน้า"/>
     </WatermarkEditor>
+    <BarcodeEditor Text="ตัวแก้ไข Barcode">
+      <Text Text="ข้อความ"/>
+      <vCard Text="vCard"/>
+      <URI Text="URI"/>
+      <EmailAddress Text="ที่อยู่อีเมล์"/>
+      <EmailMessage Text="ข้อความ E-mail"/>
+      <Geolocation Text="ตำแหน่งทางภูมิศาสตร์"/>
+      <SMS Text="SMS"/>
+      <Call Text="Call"/>
+      <Event Text="Event"/>
+      <Wifi Text="Wi-Fi"/>
+      <FirstName Text="ชื่อ"/>
+      <LastName Text="นามสกุล"/>
+      <Title Text="ตำแหน่ง"/>
+      <Company Text="บริษัท"/>
+      <Website Text="เว็บไซต์"/>
+      <EmailPersonal Text="อีเมล์(ส่วนตัว)"/>
+      <EmailBusiness Text="อีเมล์(ธุรกิจ)"/>
+      <PhonePersonal Text="โทรศัพท์ (ส่วนตัว)"/>
+      <PhoneMobile Text="มือถือ"/>
+      <PhoneBusiness Text="โทรศัพท์ (ธุรกิจ)"/>
+      <Street Text="ถนน"/>
+      <ZipCode Text="รหัสไปรษณีย์"/>
+      <City Text="เมือง"/>
+      <Country Text="ประเทศ"/>
+      <Email Text="อีเมล์"/>
+      <Subject Text="เรื่อง"/>
+      <Latitude Text="ละติจูด"/>
+      <Longitude Text="ลองติจูด"/>
+      <Height Text="สูง"/>
+      <PhoneNumber Text="เบอร์โทร"/>
+      <Description Text="ข้อความ"/>
+      <From Text="จาก"/>
+      <To Text="ถึง"/>
+      <Encryption Text="การเข้ารหัส"/>
+      <NetworkName Text="ชื่อเครือข่าย"/>
+      <Password Text="รหัสผ่าน"/>
+      <WifiHidden Text="เครือข่าย Wi-Fi ถูกซ่อนอยู่"/>
+      <Save Text="บันทึก"/>
+      <Cancel Text="ยกเลิก"/>
+      <Swiss Text="Swiss QR">
+        <Iban Text="IBAN"/>
+        <IbanType Text="ประเภท"/>
+        <Amount Text="จำนวนเงิน"/>
+        <Currency Text="สกุลเงิน"/>
+        <Creditor Text="Creditor"/>
+        <Name Text="ชื่อ"/>
+        <StreetNr Text="ถนน / หมายเลข:"/>
+        <ZipCityCountry Text="รหัสไปรษณีย์ / เมือง / ประเทศ:"/>
+        <Debitor Text="Debitor"/>
+        <AdditionalInformation Text="ข้อมูลเพิ่มเติม"/>
+        <Reference Text="อ้างอิง"/>
+        <Type Text="ประเภท"/>
+        <TextType Text="ประเภทข้อความ"/>
+        <Message Text="ข้อความ"/>
+        <BillInformation Text="ข้อมูลของบิล"/>
+        <AlternativeProcedure Text="Alternative procedure"/>
+      </Swiss>
+      <SberbankQr Text="Sberbank QR">
+        <Name Text="ชื่อผู้รับผลประโยชน์"/>
+        <PersonalAcc Text="หมายเลขบัญชีผู้รับเงิน"/>
+        <BankName Text="ชื่อธนาคารผู้รับเงิน"/>
+        <BIC Text="BIC"/>
+        <CorrespAcc Text="บัญชีผู้ติดต่อ"/>
+        <Sum Text="จำนวนเงินที่ต้องชำระ"/>
+        <Purpose Text="จุดประสงค์การชำระเงิน"/>
+        <PayeeINN Text="Payee INN"/>
+        <PayerINN Text="Payer INN"/>
+        <DrawerStatus Text="Drafter status"/>
+        <KPP Text="Payee KPP"/>
+        <CBC Text="CBC"/>
+        <OKTMO Text="OKTMO"/>
+        <PayReason Text="ฐานภาษีสำหรับการชำระเงิน"/>
+        <TaxPeriod Text="Tax period"/>
+        <DocNo Text="เลขที่เอกสาร"/>
+        <DocDate Text="วันที่เอกสาร"/>
+        <TaxPaytKind Text="ประเภทการจ่ายชำระ"/>
+        <LastName Text="นามสกุลผู้ชำระเงิน"/>
+        <FirstName Text="ชื่อผู้ชำระเงิน"/>
+        <MiddleName Text="ชื่อกลางผู้ชำระเงิน"/>
+        <PayerAdress Text="ที่อยู่ผู้ชำระเงิน"/>
+        <PersonalAccount Text="บัญชีส่วนตัวของผู้รับเงิน"/>
+        <DocIdx Text="Index of payment document"/>
+        <PensAcc Text="หมายเลขบัญชีในระบบ PFR [กองทุนบำเหน็จบำนาญแห่งสหพันธรัฐรัสเซีย] - SNILS [หมายเลขกรมธรรม์ประกันภัยส่วนบุคคล]"/>
+        <Contract Text="เลขที่สัญญา"/>
+        <PersAcc Text="Account number in the organization &#13;&#10;		    (metering device accounting system)"/>
+        <Flat Text="เลขที่ห้องชุด"/>
+        <Phone Text="เบอร์โทรศัพท์"/>
+        <PayerIdType Text="ประเภทเอกสารระบุตัวตนของผู้รับเงิน"/>
+        <PayerIdNum Text="เลขที่เอกสารประจำตัวผู้รับเงิน"/>
+        <ChildFio Text="ชื่อ-นามสกุลของบุตร"/>
+        <BirthDate Text="วันเกิด"/>
+        <PaymTerm Text="วันที่เรียกเก็บเงิน/วันครบกำหนดชำระ"/>
+        <PaymPeriod Text="ระยะเวลาการชำระเงิน"/>
+        <Category Text="ประเภทการชำระเงิน"/>
+        <ServiceName Text="ชื่อบริการ / ชื่ออุปกรณ์วัด"/>
+        <CounterId Text="รหัสอุปกรณ์วัด"/>
+        <CounterVal Text="การอ่านค่าอุปกรณ์วัด"/>
+        <QuittId Text="ใบแจ้งเตือน, ใบเสร็จรับเงิน, รหัสใบกำกับสินค้า"/>
+        <QuittDate Text="ใบแจ้งยอด/ใบเสร็จรับเงิน/ใบกำกับสินค้า/วันที่ดำเนินการ&#10;(สำหรับ GIBDD [สำนักงานตรวจสอบความปลอดภัยการจราจรของรัฐ])"/>
+        <InstNum Text="เบอร์โทรอื่น ๆ (การแพทย์, การศึกษา)"/>
+        <ClassNum Text="กลุ่มอนุบาล/ชั้นประถมศึกษา"/>
+        <SpecFio Text="ชื่อ-นามสกุลของผู้เชี่ยวชาญการให้บริการ (ครู)"/>
+        <AddAmount Text="ยอดเงินประกัน/ค่าบริการเสริม/ค่าปรับ"/>
+        <RuleId Text="หมายเลขพระราชบัญญัติ (สำหรับ GIBDD)"/>
+        <ExecId Text="รหัสการดำเนินการบังคับใช้"/>
+        <RegType Text="รหัสประเภทการชำระเงิน&#10;(ตัวอย่างเช่น สำหรับการชำระเงิน Rosreestr)"/>
+        <UIN Text="รหัสโอนเงิน"/>
+        <TechCode Text="รหัสเทคนิคที่แนะนำให้กรอกโดยผู้ให้บริการ&#10;สามารถนำไปใช้โดยองค์กรผู้รับในระบบประมวลผลข้อมูล"/>
+        <ObligatoryProps Text="รายละเอียดที่ต้องระบุ"/>
+        <AdditionalProps Text="รายละเอียดเพิ่มเติม"/>
+        <AnotherProps Text="รายละเอียดอื่นๆ"/>
+        <NotEnterDate Text="ไม่ต้องกรอกวันที่"/>
+        <Error Text="ไม่ได้กรอกรายละเอียดธนาคารที่จำเป็นทั้งหมด"/>
+        <Warning Text="ข้อมูลไม่ถูกต้องในฟิลด์:"/>
+      </SberbankQr>
+    </BarcodeEditor>
+    <SavingPageOptions Text="การบันทึก">
+      <EnableAutoSave Text="เปิดใช้งานการบันทึกอัตโนมัติทุกๆ (นาที)"/>
+    </SavingPageOptions>
+    <LoadAutoSave Text="การกู้คืนการบันทึกอัตโนมัติ">
+      <Message Text="FastReport ตรวจพบการปิดโปรแกรมที่ไม่ถูกต้อง คุณต้องการกู้คืนรายงานที่ไม่ได้บันทึกหรือไม่"/>
+      <Restore Text="คืนค่า"/>
+    </LoadAutoSave>
+    <FastM1nesweeper Text="Fast M1nesweeper">
+      <Welcome Text="Create a new Fast M1nesweeper report game"/>
+      <Settings Text="การตั้งค่า"/>
+      <Difficulty Text="ยาก"/>
+      <Custom Text="กำหนดเอง"/>
+      <Easy Text="ง่าย"/>
+      <Medium Text="ปานกลาง"/>
+      <Hard Text="แข็ง"/>
+      <Master Text="ผู้เชี่ยวชาญ"/>
+      <Bombs Text="ระเบิด"/>
+      <Columns Text="คอลัมน์"/>
+      <Rows Text="แถว"/>
+    </FastM1nesweeper>
+    <AccountWindow Text="บัญชี">
+      <AuthServer Text="https://id.fast-report.com"/>
+      <WebBrowser Text="การตรวจสอบผู้ใช้"/>
+      <Title Text="บัญชีผู้ใช้"/>
+      <SignIn Text="เข้าใช้ระบบ"/>
+      <NoAccount Text="ยังไม่มีบัญชี ?"/>
+      <Create Text="สร้างใหม่เลย !"/>
+      <Intro Text="ลงชื่อเข้าใช้บัญชี Fast Reports ID ของคุณ บัญชีของคุณจะถูกใช้เพื่อซิงโครไนซ์การตั้งค่าระหว่างอุปกรณ์และสำหรับบริการปรับแต่งส่วนบุคคลอื่นๆ"/>
+      <Testing Text="ฟีเจอร์นี้ยังอยู่ในเวอร์ชันเบต้า!"/>
+      <Expires Text="หมดอายุวันที่ {0}"/>
+      <Profile Text="ประวัติโดยย่อ"/>
+      <SignOut Text="ออกจากระบบ"/>
+      <Message Text="บัญชีของคุณใช้เพื่อซิงค์การตั้งค่าระหว่างอุปกรณ์และสำหรับบริการส่วนบุคคลอื่น ๆ"/>
+      <SessionExpired Text="เซสชั่นหมดอายุแล้ว ลงชื่อเข้าใช้ใหม่อีกครั้ง!"/>
+    </AccountWindow>
+    <ServerWindow Text="Server">
+      <Server Text="Server"/>
+      <Caption Text="Server"/>
+      <ApiKeyword Text="Api key"/>
+      <comboBoxServer Text="FastReport Cloud"/>
+      <DefaultServerHost Text="https://fastreport.cloud"/>
+      <comboBoxCustom Text="Custom server"/>
+    </ServerWindow>
+    <AdvMatrixHeaderEditor Text="ตัวแก้ไข Header">
+      <General Text="ทั่วไป">
+        <ItemType Text="Item type:"/>
+        <Simple Text="Simple"/>
+        <Group Text="Group"/>
+        <DisplayText Text="แสดงข้อความ:"/>
+      </General>
+      <Sort Text="เรียงลำดับ">
+        <SortOrder Text="ลำดับการจัดเรียง:"/>
+        <SortBy Text="เรียงตาม:"/>
+        <ItemValue Text="Item value"/>
+        <TotalValue Text="Total value:"/>
+        <InteractiveSortBy Text="เรียงลำดับแบบให้ผู้ใช้กดเอง โดย:"/>
+        <SortOrderToggledBy Text="เรียงลำดับสลับตาม:"/>
+        <Auto Text="อัตโนมัติ"/>
+      </Sort>
+      <Filter Text="ตัวกรอง">
+        <Filter Text="ตัวกรอง:"/>
+      </Filter>
+      <TopN Text="Top N">
+        <Count Text="Display Top N values:"/>
+        <AdditionalItems Text="รายการเพิ่มเติม:"/>
+        <TopNTotal Text="Top N total"/>
+        <Others Text="Others"/>
+        <OthersTotal Text="Others total"/>
+        <Create Text="สร้างรายการเพิ่มเติมในเทมเพลตเมทริกซ์เพื่อการปรับแต่งที่ดียิ่งขึ้น"/>
+      </TopN>
+      <Visibility Text="การมองเห็น">
+        <Visible Text="มองเห็นได้"/>
+        <VisibleExpression Text="การมองเห็นถูกกำหนดโดยนิพจน์:"/>
+        <VisibleToggledBy Text="Visible toggled by:"/>
+      </Visibility>
+      <Other Text="อื่น ๆ">
+        <Stepped Text="Stepped layout"/>
+        <Merge Text="Merge with single subitem"/>
+        <PageBreak Text="Page break"/>
+        <ColSpan Text="ช่วงคอลัมน์ที่ยืดออก (0 สำหรับอัตโนมัติ):"/>
+        <RowSpan Text="ช่วงแถวที่ยืด (0 สำหรับอัตโนมัติ):"/>
+      </Other>
+    </AdvMatrixHeaderEditor>
+    <ShortcutsList Text="รายการแป้นพิมพ์ลัด">
+      <Cut Text="ตัด"/>
+      <Copy Text="คัดลอก"/>
+      <Redo Text="Redo"/>
+      <Undo Text="Undo"/>
+      <Paste Text="วาง"/>
+      <NewPage Text="สร้าง page ใหม่"/>
+      <Find Text="ค้นหา"/>
+      <Replace Text="แทนที่"/>
+      <Contents Text="แสดงเนื้อหาช่วยเหลือ"/>
+      <Open Text="เปิด"/>
+      <Save Text="บันทึก"/>
+      <SaveAs Text="บันทึกเป็น"/>
+      <SaveAll Text="บันทึกทั้งหมด"/>
+      <Preview Text="ดูตัวอย่างก่อนพิมพ์"/>
+      <Bold Text="กำหนดตัวหนา"/>
+      <Italic Text="กำหนดตัวเอียง"/>
+      <Underline Text="กำหนดให้ขีดเส้นใต้"/>
+      <File Text="การทำงานกับไฟล์"/>
+      <Editing Text="การแก้ไข"/>
+      <Help Text="ช่วยเหลือ"/>
+      <SelectAll Text="เลือกทั้งหมด"/>
+      <Default Text="ค่าเริ่มต้น"/>
+      <Info Text="หากต้องการเปลี่ยนแป้นพิมพ์ลัด คุณต้องดับเบิลคลิกบนแป้นพิมพ์ลัดที่ต้องการ หรือเลือกแล้วกด Enter"/>
+      <Command Text="คำสั่ง"/>
+      <Shortcut Text="แป้นพิมพ์ลัด"/>
+    </ShortcutsList>
+    <ShortcutEditor Text="ตัวแก้ไขแป้นพิมพ์ลัด">
+      <NeedInputShortcut Text="ตั้งค่าแป้นพิมพ์ลัด:"/>
+      <UnsupportedShortcut Text="ไม่รองรับแป้นพิมพ์ลัดที่กำหนด"/>
+    </ShortcutEditor>
   </Forms>
   <ConnectionEditors>
     <Common>
@@ -1139,12 +2223,26 @@
       <Database Text="เชื่อมต่อไปยังฐานข้อมูล"/>
       <DatabaseName Text="ชื่อฐานข้อมูล:"/>
       <DatabaseFile Text="ไฟล์ฐานข้อมูล:"/>
+      <DataSource Text="แหล่งข้อมูล"/>
+      <OnlyUrlException Text="ไม่พบลิงค์ในการเชื่อมต่อ!"/>
+      <ErrorUrlException Text="เส้นทางที่ระบุไม่มีไฟล์ที่คุณกำลังมองหา!"/>
     </Common>
+    <Linter>
+      <DBProviderNotFound Text="ไม่พบผู้ให้บริการข้อมูล LINTER มันอาจจะไม่ได้ติดตั้ง"/>
+    </Linter>
+    <Excel>
+      <FieldNames Text="ชื่อคอลัมน์ในแถวแรก"/>
+    </Excel>
     <MsSql>
       <UseWindows Text="ใช้การตรวจสอบสิทธิ์เดียวกับ Windows"/>
       <UseSql Text="ใช้การตรวจสอบสิทธิ์โดย SQL Server"/>
       <SavePassword Text="บันทึกรหัสผ่านไว้"/>
     </MsSql>
+    <Cassandra>
+      <ContactPoints Text="ContactPoints(;):"/>
+      <Port Text="Port:"/>
+      <Keyspace Text="Keyspace:"/>
+    </Cassandra>
     <OleDb>
       <ConnectionString Text="รหัสการเชื่อมต่อ:"/>
       <Build Text="สร้าง..."/>
@@ -1159,6 +2257,66 @@
       <Xsd Text="ไฟล์สคีมา:"/>
       <Xml Text="ไฟล์ข้อมูล:"/>
     </Xml>
+    <Access>
+      <Provider Text="Provider:"/>
+    </Access>
+    <Xlsx Text="เลือกไฟล์ .xlsx:"/>
+    <Csv>
+      <ConfigureDatabase Text="กำหนดค่าฐานข้อมูล"/>
+      <SelectFile Text="เลือกไฟล์ .csv (ตำแหน่งของไฟล์หรือ url):"/>
+      <Codepage Text="การเข้ารหัสตัวอักษร:"/>
+      <Separator Text="ตัวคั่น:"/>
+      <FieldNames Text="ชื่อฟิลด์ในบรรทัดแรก"/>
+      <RemoveQuotes Text="ลบเครื่องหมายคำพูดออก"/>
+      <ConvertTypes Text="ลองแปลงชนิดฟิลด์"/>
+      <NumberFormat Text="รูปแบบตัวเลข:"/>
+      <CurrencyFormat Text="รูปแบบสกุลเงิน:"/>
+      <DateTimeFormat Text="รูปแบบวันที่/เวลา:"/>
+      <FilePreview Text="ดูตัวอย่างไฟล์:"/>
+      <DataPreview Text="ดูตัวอย่างข้อมูล:"/>
+      <Codepages>
+        <Default Text="ค่าเริ่มต้นตามเครื่อง"/>
+        <ASCII Text="ASCII"/>
+        <UTF8 Text="UTF8"/>
+        <UTF7 Text="UTF7"/>
+        <UTF32 Text="UTF32"/>
+        <Unicode Text="Unicode"/>
+        <BigEndianUnicode Text="Big Endian Unicode"/>
+      </Codepages>
+      <Separators>
+        <Semicolon Text=";"/>
+        <Comma Text=","/>
+        <Space Text="Space"/>
+        <Tab Text="Tab"/>
+        <Other Text="Other"/>
+      </Separators>
+    </Csv>
+    <Json>
+      <Path Text="ตำแหน่งที่เก็บไฟล์หรือ URL:"/>
+      <Settings Text="การตั้งค่าการเชื่อมต่อ"/>
+      <Encoding Text="การเข้ารหัส"/>
+      <Input Text="Json หรือ URL"/>
+      <Schema Text="Json Schema"/>
+      <RequestHeaders Text="Request Headers"/>
+      <HeaderKey Text="Header"/>
+      <HeaderVal Text="Value"/>
+      <ConfirmChanges Text="Json ถูกปรับเปลี่ยน ต้องการสร้าง schema ใหม่หรือไม่?"/>
+      <SimpleStructure Text="Simple structure"/>
+    </Json>
+    <MongoDB>
+      <Scheme Text="Scheme:"/>
+      <Host Text="Host:"/>
+      <Port Text="Port:"/>
+      <UseSsl Text="ใช้ SSL"/>
+    </MongoDB>
+    <Clickhouse>
+      <Server Text="Server"/>
+      <ServerPort Text="Server port:"/>
+      <Database Text="Database"/>
+    </Clickhouse>
+    <Postgres>
+      <EnableSystemSchemas Text="Enable System Schemas"/>
+    </Postgres>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -1169,6 +2327,7 @@
       <CanShrink Text="ย่อขนาดได้"/>
       <GrowToBottom Text="ขยายไปด้านล่าง"/>
       <Hyperlink Text="เชื่อมโยงหลายมิติ..."/>
+      <Style Text="รูปแบบ"/>
     </ReportComponent>
     <BreakableComponent>
       <CanBreak Text="แยกเนื้อหาขึ้นหน้าใหม่ได้"/>
@@ -1179,9 +2338,10 @@
       <PrintOnBottom Text="ให้พิมพ์ที่หน้าสุดท้าย"/>
     </Band>
     <DataBand>
-      <AddDetailDataBand Text="เพิ่ม Band ที่เป็นรายละเอียดข้อมูล"/>
+      <AddDetailDataBand Text="เพิ่มรายละเอียด Data Band"/>
       <KeepTogether Text="ให้อยู่ในหน้าเดียวกัน"/>
       <KeepDetail Text="ให้พิมพ์ทุกแถวใน band ในหน้าเดียวกัน"/>
+      <ColumnsEditor Text="ตัวแก้ไขคอลัมน์"/>
     </DataBand>
     <HeaderBand>
       <RepeatOnEveryPage Text="แสดงทุกหน้า"/>
@@ -1192,6 +2352,7 @@
     </GroupHeaderBand>
     <ChildBand>
       <FillUnusedSpace Text="เติมพื้นที่ในส่วนที่ไม่ได้ใช้"/>
+      <CompleteToNRows Text="กรอกข้อมูลให้ครบถึง N แถว:"/>
     </ChildBand>
     <PictureObject>
       <SizeMode Text="ขนาดรูปภาพ"/>
@@ -1207,6 +2368,7 @@
       <AutoWidth Text="กว้างอัตโนมัติ"/>
       <WordWrap Text="ตัดข้อความ"/>
       <AllowExpressions Text="ใช้นิพจน์เงื่อนไขได้"/>
+      <HideZeros Text="ไม่แสดงค่าศูนย์"/>
     </TextObject>
     <SubreportObject>
       <PrintOnParent Text="พิมพ์ ณ ตำแหน่งที่อยู่ใน band"/>
@@ -1226,8 +2388,14 @@
     <TableCell>
       <Merge Text="ผสานเซลล์"/>
       <Split Text="แยกเซลล์"/>
+      <RemoveRow Text="ลบเส้นทั้งหมดออก"/>
+      <RemoveColumn Text="ลบคอลัมน์ทั้งหมด"/>
+      <Insert Text="แทรก"/>
+      <Remove Text="ลบ"/>
+      <Styles Text="รูปแบบ"/>
     </TableCell>
     <MatrixObject>
+      <CellsSideBySide Text="เซลล์ข้างเคียง"/>
       <ShowTitle Text="แสดงหัวเรื่อง"/>
       <Style Text="รูปแบบเมทริกซ์"/>
     </MatrixObject>
@@ -1235,11 +2403,63 @@
       <Totals Text="ผลรวม"/>
       <Function Text="ฟังก์ชั่น"/>
       <SuppressTotals Text="ซ่อนผลรวม"/>
+      <TotalsFirst Text="Totals First"/>
       <Percent Text="เปอร์เซนต์"/>
       <PercentColumnTotal Text="% ของผลรวมคอลัมน์"/>
       <PercentRowTotal Text="% ของผลรวมแถว"/>
       <PercentGrandTotal Text="% ของผลรวมทั้งสิ้น"/>
     </MatrixCell>
+    <AdvMatrixObject>
+      <Style Text="รูปแบบ"/>
+      <Swap Text="สลับคอลัมน์และแถว"/>
+    </AdvMatrixObject>
+    <AdvMatrixCell>
+      <Function Text="ชุดคำสั่ง">
+        <Sum Text="Sum"/>
+        <Min Text="Min"/>
+        <Max Text="Max"/>
+        <Avg Text="Average"/>
+        <Count Text="Count"/>
+        <CountDistinct Text="Count distinct values"/>
+        <StDev Text="Standard deviation (StDev)"/>
+        <StDevP Text="Standard deviation of a population (StDevP)"/>
+        <Var Text="Variance (Var)"/>
+        <VarP Text="Variance of a population (VarP)"/>
+        <First Text="First value"/>
+        <Last Text="Last value"/>
+        <ValuesList Text="Values list"/>
+      </Function>
+      <Percent Text="เปอร์เซ็นต์">
+        <None Text="ไม่ใช้"/>
+        <PercentOfColumnTotal Text="% of Column Total"/>
+        <PercentOfRowTotal Text="% of Row Total"/>
+        <PercentOfGrandTotal Text="% of Grand Total"/>
+        <PercentOfPreviousColumn Text="% of Previous Column"/>
+        <PercentOfPreviousRow Text="% of Previous Row"/>
+      </Percent>
+      <Insert Text="แทรก">
+        <Chart Text="Sparkline"/>
+        <Gauge Text="Progress gauge"/>
+      </Insert>
+      <AggregateFunctions Text="ฟังก์ชั่นผลรวม"/>
+      <SpecialFunctions Text="ฟังก์ชั่นพิเศษ"/>
+      <Properties Text="คุณสมบัติ"/>
+    </AdvMatrixCell>
+    <AdvMatrixHeader>
+      <CollapseButton Text="ปุ่มยุบ"/>
+      <SortButton Text="ปุ่มเรียง"/>
+      <AddTotal Text="เพิ่มผลรวม"/>
+      <Insert Text="แทรกรายการใหม่">
+        <After Text="หลังจก"/>
+        <Before Text="ก่อนหน้า"/>
+        <Parent Text="Parent item"/>
+        <Child Text="Child item"/>
+      </Insert>
+      <Delete Text="ลบ">
+        <ThisItem Text="รายการที่เลือก"/>
+        <ItemTree Text="Item tree"/>
+      </Delete>
+    </AdvMatrixHeader>
     <GridControl>
       <EditColumns Text="แก้ไขคอลัมน์..."/>
     </GridControl>
@@ -1285,6 +2505,16 @@
       <BlueOrange Text="น้ำเงิน + ส้ม"/>
       <OrangeWhite Text="ส้ม + ขาว"/>
     </Matrix>
+    <AdvMatrix>
+      <NewItems Text="ลากข้อมูลมาที่นี่เพื่อสร้างคอลัมน์ แถว และเซลล์"/>
+    </AdvMatrix>
+    <Map>
+      <Hint Text="ดับเบิลคลิกเพื่อเพิ่มเลเยอร์"/>
+    </Map>
+    <CrossView>
+      <SetSource Text="กำหนดแหล่งข้อมูล FastCube"/>
+      <FillData Text="กำลังเติม matrix..."/>
+    </CrossView>
   </ComponentsMisc>
   <Wizards>
     <BlankReport Text="รายงานเปล่า"/>
@@ -1294,6 +2524,8 @@
     <NewDataSource Text="แหล่งข้อมูลใหม่"/>
     <NewPage Text="หน้ารายงานใหม่"/>
     <NewDialog Text="กรอบโต้ตอบใหม่"/>
+    <CISWizard Text="Visualization wizard of control (identification) signs"/>
+    <FastM1nesweeper Text="Fast M1nesweeper"/>
   </Wizards>
   <Export>
     <Misc>
@@ -1302,29 +2534,64 @@
       <AnalyzeObjects Text="วิเคราะห์วัตถุ"/>
       <SavePage Text="บันทึกหน้าของรายงาน"/>
       <Wysiwyg Text="Wysiwyg (เห็นอย่างไรได้อย่างนั้น)"/>
+      <UseFileStream Text="Use file stream"/>
       <PageBreaks Text="ตัวแบ่งหน้า"/>
       <OpenAfterExport Text="เปิดไฟล์หลังจากส่งออก"/>
       <Pictures Text="รูปภาพ"/>
       <Options Text="ตัวเลือก"/>
-      <None Text="ไม่ใช้"/>
+      <None Text="ไม่ใช่"/>
       <Metafile Text="Metafile"/>
       <SaveFile Text="บันทึกไฟล์"/>
       <TableBased Text="เป็นตาราง"/>
       <LayerBased Text="แยกเป็นชั้นงาน"/>
+      <ParagraphBased Text="ย่อหน้า"/>
+      <Seamless Text="ทำให้รอยต่อระหว่างตารางน้อยลง"/>
+      <ToMultipleFiles Text="ส่งออกเป็นไฟล์หลายไฟล์"/>
+      <PrintOptimized Text="เพิ่มประสิทธิภาพการพิมพ์"/>
+      <ExportAllTabs Text="ส่งออกแท็บทั้งหมด"/>
+      <SplitPages Text="การแบ่งหน้า"/>
+      <Localization Text="Locale export"/>
+      <UseDesigerLocale Text="Use designer locale"/>
     </Misc>
+    <Editor Text="ส่งออก Menu Editor">
+      <ExportsMenu Text="เมนูการส่งออก"/>
+      <DefaultMenu Text="เมนูเริ่มต้น"/>
+    </Editor>
+    <ExportGroups>
+      <Office Text="Office"/>
+      <XML Text="XML"/>
+      <Web Text="Web"/>
+      <Image Text="Images"/>
+      <DataBase Text="Data Base"/>
+      <Print Text="Print"/>
+      <Other Text="Other"/>
+      <Cloud Text="Storage"/>
+      <Messengers Text="Messengers"/>
+    </ExportGroups>
     <Image Text="ส่งออกเป็นรูปภาพ">
       <File Text="Image file (รูปภาพ)"/>
       <ImageFormat Text="รูปแบบ:"/>
+      <ImageParceFormatException Text="ไม่สามารถแปลงบิตแมปเป็นรูปแบบที่เลือกได้"/>
       <Resolution Text="ความละเอียด:"/>
       <Quality Text="คุณภาพ Jpeg:"/>
       <SeparateFiles Text="แยก 1 ไฟล์ต่อ 1 หน้า"/>
-      <MultiFrame Text="TIFF แบบเฟรม"/>
+      <MultiFrame Text="TIFF แบบหลายเฟรม"/>
       <Monochrome Text="TIFF ขาวดำ"/>
+      <Bmp Text="Bitmap image"/>
+      <Png Text="PNG image"/>
+      <Jpeg Text="JPG image"/>
+      <Gif Text="GIF image"/>
+      <Tiff Text="TIFF image"/>
+      <Metafile Text="Windows metafile"/>
     </Image>
     <RichText Text="ส่งออกไป Rich Text">
       <File Text="Rich Text file (ข้อความที่จัดรูปแบบ)"/>
+      <RTFObjectAs Text="RTF object as"/>
+      <Picture Text="รูปภาพ"/>
+      <EmbeddedRTF Text="RTF แบบฝัง"/>
     </RichText>
     <Text Text="ส่งออกไป  Text/Matrix Printer">
+      <File Text="Text File/Matrix Printer"/>
       <EmptyLines Text="บรรทัดว่าง"/>
       <DataOnly Text="ข้อมูลเท่านั้น"/>
       <Frames Text="วาดกรอบ"/>
@@ -1334,6 +2601,7 @@
       <Codepage Text="การเข้ารหัส"/>
       <Default Text="ค่าปริยาย"/>
       <Unicode Text="รหัสอักษรสากล"/>
+      <OEM Text="OEM"/>
       <ScaleX Text="แกน X:"/>
       <ScaleY Text="แกน Y:"/>
       <AutoScale Text="มาตราส่วนอัตโนมัติ"/>
@@ -1342,7 +2610,7 @@
       <PageWidth Text="ความกว้างของหน้า:"/>
       <PageHeight Text="ความสูงของหน้า:"/>
       <DataLoss Text="เป็นไปได้ว่าข้อมูลบางส่วนสูญหายไป&#13;&#10;กรุณาปรับเพิ่มมาตราส่วน แกน X/Y"/>
-      <ScaleMessage Text="คำนวณขนาดที่เหมาะสม"/>
+      <ScaleMessage Text="กำลังคำนวณขนาดที่เหมาะสม"/>
       <Scale Text="มาตราส่วน"/>
     </Text>
     <Csv Text="ส่งออกเป็น CSV">
@@ -1350,30 +2618,116 @@
       <Separator Text="ตัวคั่น"/>
       <Codepage Text="การเข้ารหัส"/>
       <Default Text="ค่าปริยาย"/>
+      <Unicode Text="รหัสอักษรสากล"/>
+      <OEM Text="OEM"/>
       <DataOnly Text="ข้อมูลเท่านั้น"/>
+      <NoQuotes Text="ปิดใช้งานเครื่องหมายคำพูด"/>
+      <EscapeQuotes Text="หลีกเลี่ยงเครื่องหมายคำพูด"/>
     </Csv>
     <Dbf Text="ส่งออกเป็น DBF">
+      <File Text="ตารางข้อมูล DBF"/>
       <Codepage Text="การเข้ารหัส"/>
       <Default Text="ค่าปริยาย"/>
+      <OEM Text="OEM"/>
       <DataOnly Text="ข้อมูลเท่านั้น"/>
+      <ExportType Text="ส่งออกประเภทข้อมูล"/>
       <FieldNames Text="ชื่อฟิลด์ (เช่น ฟิลด์A;ฟิลด์B):"/>
     </Dbf>
-    <Xml Text="ส่งออกเป็น XML"/>
-    <Odt Text="ส่งออกเป็น Open Office Writer"/>
-    <Ods Text="ส่งออกไป Open Office Calc"/>
-    <Xlsx Text="ส่งออกไป Microsoft Excel"/>
-    <Pptx Text="ส่งออกไป Microsoft PowerPoint"/>
+    <Xml Text="ส่งออกเป็น XML">
+      <File Text="XML (ตาราง Excel)"/>
+    </Xml>
+    <Odf>
+      <Compliance Text="ODF Compliance:  "/>
+    </Odf>
+    <Odt Text="ส่งออกเป็น Open Office Writer">
+      <File Text="OpenOffice Writer"/>
+    </Odt>
+    <Ods Text="ส่งออกไป Open Office Calc">
+      <File Text="OpenOffice Calc"/>
+    </Ods>
+    <Xlsx Text="ส่งออกไป Microsoft Excel">
+      <File Text="Microsoft Excel file"/>
+      <FontScale Text="มาตราส่วนของตัวอักษร:"/>
+      <PrintScaling Text="การปรับขนาดการพิมพ์"/>
+      <NoScaling Text="ไม่มีการปรับขนาด"/>
+      <FitSheetOnOnePage Text="ปรับแผ่นงานให้พอดีกับหนึ่งหน้า"/>
+      <FitAllColumsOnOnePage Text="ปรับให้คอลัมน์ทั้งหมดพอดีกับขนาดกระดาษในหน้าเดียว"/>
+      <FitAllRowsOnOnePage Text="ปรับให้แถวทั้งหมดพิมพ์ได้พอดีในหน้าเดียว"/>
+      <GroupOnSeparateSheet Text="จัด Group ในแต่ละแผ่นแยกกัน"/>
+      <ForEachGroup Text="Group ทั้งหมด"/>
+      <PictureProperties Text="คุณสมบัติของรูปภาพ"/>
+      <MoveAndModify Text="ย้ายและปรับเปลี่ยนไปพร้อมกับเซลล์"/>
+      <MoveOnly Text="ย้ายแต่ไม่ปรับขนาด"/>
+      <Unchangeable Text="ห้ามย้ายหรือปรับขนาด"/>
+      <ScaleInPercent Text="ตั้งค่ามาตราส่วนเป็นเปอร์เซ็นต์:"/>
+      <PinnedCells Text="ให้ตรึงเซลล์ไว้"/>
+      <WithoutPinning Text="ไม่ต้อง"/>
+      <FirstColumn Text="คอลัมน์แรก"/>
+      <FirstLine Text="บรรทัดแรก"/>
+      <OtherPinning Text="การตรึงอื่น ๆ"/>
+      <Columns Text="คอลัมน์:"/>
+      <Rows Text="แถว:"/>
+      <Basic Text="พื้นฐาน"/>
+      <Other Text="อื่น ๆ"/>
+      <ShowGridlines Text="แสดงเส้นกริด"/>
+      <UngroupSheets Text="ไม่รวมกลุ่มแผ่นงาน"/>
+      <MergePagesIntoSingleSheet Text="รวมหน้ารายงานทั้งหมดไว้ในแผ่นงานเดียว"/>
+      <UseLocaleFormating Text="ใช้การจัดรูปแบบตำแหน่งข้อมูล"/>
+      <CurrencyToAccounting Text="แปลงรูปแบบ currency เป็น accounting"/>
+      <GeneralToText Text="แปลงรูปแบบทั่วไปเป็นข้อความ"/>
+      <UseCustomFormat Text="ใช้รูปแบบที่กำหนดเอง"/>
+    </Xlsx>
+    <Xls Text="ส่งออกเป็น Excel 97">
+      <File Text="Excel 97 file"/>
+      <HideGridLines Text="ไม่แสดงเส้นกริด"/>
+    </Xls>
+    <Pptx Text="ส่งออกไป Microsoft PowerPoint">
+      <File Text="Microsoft PowerPoint file"/>
+    </Pptx>
     <Docx Text="ส่งออกไป Microsoft Word">
       <File Text="Microsoft Word file"/>
+      <RowHeight Text="ความสูงของ Row คือ"/>
+      <SaveRowHeight Text="บันทึกความสูงของ row"/>
+      <Exactly Text="อย่างแน่นอน"/>
+      <Minimum Text="ขั้นต่ำ"/>
+      <DoNotExpandShiftReturn Text="Do not expand shift return"/>
+      <DisableSectionBreak Text="อย่าเพิ่ม section breaks ใน page breaks"/>
+      <Bookmarks Text="เพิ่มบุ๊คมาร์คให้แต่ละหน้า"/>
+      <UseHeaderAndFooter Text="ใช้ page headers และ footers ของ Word"/>
     </Docx>
-    <Xps Text="ส่งออกเป็น XPS"/>
+    <Xaml Text="ส่งออกไป XAML">
+      <File Text="XAML file"/>
+      <IsScrolled Text="เพิ่ม scroll bar"/>
+    </Xaml>
+    <Svg Text="ส่งออกไป SVG">
+      <File Text="SVG file"/>
+      <EmbPic Text="ฝังรูปภาพไปในรายงาน"/>
+    </Svg>
+    <Ppml Text="ส่งออกไป  PPML">
+      <File Text="PPML file"/>
+    </Ppml>
+    <PS Text="ส่งออกไป PostScript">
+      <File Text="PostScript file"/>
+      <PagesInDiffFiles Text="1 หน้าต่อ 1 ไฟล์"/>
+      <SaveImagesSeparately Text="บันทึกภาพแยกกัน"/>
+    </PS>
+    <Xps Text="ส่งออกเป็น XPS">
+      <File Text="Microsoft XPS file"/>
+    </Xps>
     <Pdf Text="ส่งออกไป PDF">
       <File Text="PDF file"/>
       <Export Text="ส่งออก"/>
-      <Compressed Text="ย่อไฟล์ให้เล็ก"/>
+      <PDFCompliance Text="ใช้ข้อปฏิบัติตาม PDF:"/>
       <EmbeddedFonts Text="แนบฟ้อนท์ไปด้วย"/>
       <Background Text="สีพื้นหลังตามเอกสาร"/>
-      <PrintOptimized Text="คุณภาพงานพิมพ์"/>
+      <TextInCurves Text="ตัวอักษรตามเส้นโค้ง"/>
+      <Images Text="รูปภาพ"/>
+      <ColorSpace Text="Color Space:  "/>
+      <OriginalResolution Text="ความละเอียดดั้งเดิม"/>
+      <PrintOptimized Text="เพิ่มคุณภาพงานพิมพ์"/>
+      <JpegCompression Text="การบีบอัดไฟล์ JPEG"/>
+      <JpegQuality Text="คุณภาพ JPEG:"/>
+      <InteractiveForms Text="แบบฟอร์มที่กรอกข้อมูลได้"/>
       <Information Text="ข้อมูลเอกสาร"/>
       <DocumentInformation Text="ข้อมูลของเอกสารนี้"/>
       <Title Text="ชื่อเรื่อง"/>
@@ -1393,14 +2747,45 @@
       <AddOrModifyTextAnnotations Text="เพิ่มหรือแก้ไขคำอธิบายประกอบข้อความ"/>
       <Viewer Text="ตัวเปิดเอกสาร"/>
       <ViewerPreferences Text="ตั้งค่าโปรแกรมที่ใช้เปิดเอกสาร"/>
+      <ShowPrintDialog Text="แสดงหน้าตัวเลือกการพิมพ์"/>
       <HideToolbar Text="ซ่อนแถบเครื่องมือ"/>
       <HideMenubar Text="ซ่อนแถบเมนู"/>
       <HideWindowUserInterface Text="ซ่อนส่วนติดต่อผู้ใช้งาน"/>
       <FitWindow Text="เปิดเต็มหน้าจอ"/>
       <CenterWindow Text="จัดให้กึ่งกลางหน้าต่าง"/>
       <PrintScaling Text="ใช้การปรับขนาดการพิมพ์"/>
-      <PrintAfterOpenOfDocument Text="สั่งพิมพ์หลังจากเปิดเอกสาร"/>
       <Outline Text="แสดงโครงร่างเอกสาร"/>
+      <InitialZoom Text="ซูมเริ่มต้น:"/>
+      <ActualSize Text="ขนาดจริง"/>
+      <FitPage Text="พอดีกับหน้า"/>
+      <FitWidth Text="พอดีกับความกว้าง"/>
+      <Default Text="ค่าเริ่มต้น"/>
+      <VectorGraphics Text="กราฟิกแบบ Vector">
+        <GradientQuality Text="คุณภาพการไล่ระดับ"/>
+        <ExportAsImage Text="ส่งออกเป็นรูปภาพ"/>
+        <LowQuality Text="คุณภาพต่ำ"/>
+        <MediumQuality Text="คุณภาพปานกลาง"/>
+        <HighQuality Text="คุณภาพสูง"/>
+        <GradientInterpolation Text="Gradient Interpolation:"/>
+        <Curves Text="เส้นโค้ง"/>
+        <CurvesInterpolation Text="Curves Interpolation:"/>
+        <TextInterpolation Text="Text Interpolation:"/>
+        <Disabled Text="ปิดไว้"/>
+        <SvgAsPicture Text="Svg as Picture"/>
+      </VectorGraphics>
+      <DigitalSignature Text="ลายเซ็นดิจิตอล">
+        <SignInformation Text="ข้อมูลการลงนาม"/>
+        <SignDocument Text="ลงนามในเอกสาร"/>
+        <Location Text="ที่ตั้ง"/>
+        <Reason Text="เหตุผล"/>
+        <ContactInfo Text="ข้อมูลการติดต่อ"/>
+        <CertificateInformation Text="ข้อมูลใบรับรอง"/>
+        <CertificatePath Text="ตำแหน่งที่เก็บใบรับรอง"/>
+        <CertificatePassword Text="รหัสผ่านใบรับรอง"/>
+        <CertificateSavePassword Text="จัดเก็บรหัสผ่าน"/>
+        <CertificateSavePasswordWarning Text="คำเตือน!!! การบันทึกรหัสผ่านไว้ทำให้ความปลอดภัยลดลง!"/>
+        <ClickToChangeThePassword Text="คลิกเพื่อเปลี่ยนรหัสผ่าน"/>
+      </DigitalSignature>
     </Pdf>
     <Html Text="ส่งออกไป HTML">
       <File Text="HTML file (ไฟล์เว็บ)"/>
@@ -1410,7 +2795,11 @@
       <SubFolder Text="สร้างโฟลเดอร์ย่อย"/>
       <Navigator Text="แสดงแถบนำทาง"/>
       <Layers Text="ใช้เลเยอร์"/>
+      <HighQualitySVG Text="SVG คุณภาพสูง"/>
+      <EmbPic Text="รูปภาพแบบฝัง"/>
       <Total Text="จำนวนหน้า"/>
+      <NotRotateLandscapePage Text="อย่าเปลี่ยนเป็นแนวนอนเมื่อพิมพ์"/>
+      <UsePageBreaks Text="ใช้ตัวแบ่งหน้า"/>
       <First Text="&lt;&lt;"/>
       <Last Text="&gt;&gt;"/>
       <Prev Text="&lt;"/>
@@ -1419,11 +2808,27 @@
     <Mht Text="ส่งออกไป MHT (ไฟล์เว็บแบบเบ็ดเสร็จ)">
       <File Text="MHT file (ไฟล์เว็บแบบเบ็ดเสร็จ)"/>
     </Mht>
+    <Json Text="ส่งออกไป Json">
+      <File Text="Json file"/>
+    </Json>
+    <LaTeX Text="ส่งออกไป LaTeX">
+      <File Text="LaTeX file"/>
+    </LaTeX>
+    <Zpl Text="ส่งออกไป ZPL">
+      <File Text="ZPL file"/>
+      <PrinterSettings Text="การตั้งค่าเครื่องพิมพ์"/>
+      <Density Text="ความหนาแน่น"/>
+      <FontScale Text="มาตราส่วนของตัวอักษร"/>
+      <BarcodeScale Text="มาตราส่วนของ Barcode"/>
+      <PrintAsBitmap Text="พิมพ์เป็นรูปภาพ"/>
+      <Version Text="เวอร์ชั่นของ ZPL"/>
+    </Zpl>
     <Email Text="ส่งอีเมล์">
       <Email Text="ผู้รับ"/>
       <Account Text="ผู้ส่ง"/>
       <Address Text="อีเมล์:"/>
       <CC Text="สำเนาถึง:"/>
+      <CCTooltip Text="คุณสามารถป้อนที่อยู่อีเมล์หลายอันได้โดยคั่นด้วยเครื่องหมายอัฒภาค &#10;ตัวอย่างเช่น: name1@url.com; name2@url.com"/>
       <Subject Text="เรื่อง:"/>
       <Message Text="ข้อความ:"/>
       <Attachment Text="แนบเป็นไฟล์:"/>
@@ -1438,19 +2843,173 @@
       <HostError Text="ยังไม่ได้ระบุ SMTP เซอร์ฟเวอร์"/>
       <SendingEmail Text="กำลังส่งเมล์ - {0} Kb"/>
       <EnableSSL Text="ใ&amp;ช้งาน SSL"/>
+      <NameAttachmentFile Text="ชื่อไฟล์แนบ:"/>
+      <SuccessfulEmailSending Text="อีเมลได้ถูกส่งเรียบร้อยแล้ว"/>
+      <ErrorEmailSending Text="อีเมล์ยังไม่ได้ถูกส่ง"/>
     </Email>
+    <Dxf Text="ส่งออกไป DXF">
+      <File Text="DXF file"/>
+      <FillMode Text="Fill mode:"/>
+      <FillModeBorder Text="เส้นขอบ"/>
+      <FillModeSolid Text="สีทึบ"/>
+      <BarcodesGap Text="ช่องว่างระหว่างแท่งบาร์โค้ด (มม.):"/>
+    </Dxf>
+    <Hpgl Text="ส่งออกไป Hpgl (plt)">
+      <File Text="Hpgl (plt) file"/>
+      <FillMode Text="Fill mode:"/>
+      <FillModeSolid Text="Solid"/>
+      <FillModeBorder Text="เส้นขอบ"/>
+    </Hpgl>
   </Export>
+  <Cloud>
+    <CloudStorage Text="บันทึกไปยัง Cloud">
+      <File Text="ไฟล์"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="ประเภทไฟล์:"/>
+      <Settings Text="การตั้งค่า..."/>
+      <Server Text="Server:"/>
+      <Username Text="Username:"/>
+      <Password Text="Password:"/>
+      <PortError Text="พอร์ตต้องเป็นตัวเลข"/>
+    </CloudStorage>
+    <Ftp Text="บันทึกไปยัง FTP">
+      <Name Text="FTP"/>
+      <FtpServer Text="FTP Server:"/>
+      <FtpUsername Text="Username:"/>
+      <FtpPassword Text="Password:"/>
+      <ServerConnectionFiledError Text="การเชื่อมต่อกับเซิร์ฟเวอร์ที่ระบุล้มเหลว"/>
+      <ServerNotFoundError Text="ไม่พบเซิร์ฟเวอร์ที่ระบุ"/>
+      <AccessDeniedError Text="การเข้าถึงถูกปฏิเสธ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"/>
+      <SaveSuccess Text="บันทึกสำเร็จแล้ว"/>
+    </Ftp>
+    <Box Text="บันทึกไปยัง Box">
+      <Name Text="Box"/>
+      <ClientInfoDialog Text="Client Info"/>
+      <ClientId Text="Client ID:"/>
+      <ClientSecret Text="Client Secret:"/>
+    </Box>
+    <Dropbox Text="บันทึกไปยัง Dropbox">
+      <Name Text="Dropbox"/>
+      <ApplicationInfoDialog Text="Application Info"/>
+      <AccessToken Text="Access Token:"/>
+      <File Text="ไฟล์"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="ประเภทไฟล์:"/>
+      <Settings Text="การตั้งค่า..."/>
+      <Save Text="บันทึก"/>
+      <Server Text="Server:"/>
+      <Username Text="รหัสผู้ใช้:"/>
+      <Password Text="รหัสผ่าน:"/>
+      <PortError Text="พอร์ตต้องเป็นตัวเลข"/>
+    </Dropbox>
+    <FastCloud Text="บันทึกไปยัง  FastReport Cloud">
+      <Name Text=" FastReport Cloud"/>
+      <UserDetails Text="รายละเอียดของผู้ใช้"/>
+      <Email Text="อีเมล์:"/>
+      <UserPassword Text="รหัสผ่าน:"/>
+    </FastCloud>
+    <GoogleDrive Text="บันทึกไปยัง Google Drive">
+      <Name Text="GoogleDrive"/>
+      <ClientInfoDialog Text="Client Info"/>
+      <ClientId Text="Client ID:"/>
+      <ClientSecret Text="Client Secret:"/>
+    </GoogleDrive>
+    <SkyDrive Text="บันทึกไปยัง OneDrive">
+      <Name Text="OneDrive"/>
+      <ClientInfoDialog Text="Client Info"/>
+      <ClientId Text="Client ID:"/>
+      <ClientSecret Text="Client Secret:"/>
+      <File Text="ไฟล์"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="ประเภทไฟล์:"/>
+      <Settings Text="การตั้งค่า..."/>
+      <Server Text="Server:"/>
+      <Username Text="รหัสผู้ใช้:"/>
+      <Password Text="รหัสผ่าน:"/>
+      <PortError Text="พอร์ตต้องเป็นตัวเลข"/>
+    </SkyDrive>
+    <S3 Text="บันทึกไปยัง S3">
+      <Name Text="Simple Storage Service"/>
+      <ClientInfoDialog Text="Authorization in S3"/>
+      <AccessKeyId Text="Access key id:"/>
+      <SecretAccessKey Text="Secret access key:"/>
+      <Region Text="Bucket fetch region:"/>
+      <Host Text="โฮสต์:"/>
+      <Bucket Text="Bucket:"/>
+      <FileName Text="ชื่อไฟล์:"/>
+      <MissingBuckets Text="Missing buckets"/>
+      <UploadRegion Text="Upload region:"/>
+      <RequestStyle Text="Request style:"/>
+    </S3>
+  </Cloud>
+  <Messaging>
+    <MessengerForm Text="ส่งรายงาน">
+      <File Text="ไฟล์"/>
+      <Proxy Text="Proxy"/>
+      <FileType Text="ประเภทไฟล์:"/>
+      <Settings Text="การตั้งค่า..."/>
+      <Server Text="ชื่อ Server:"/>
+      <Username Text="รหัสผู้ใช้:"/>
+      <Password Text="รหัสผ่าน:"/>
+      <PortError Text="พอร์ตต้องเป็นตัวเลข"/>
+    </MessengerForm>
+    <Xmpp Text="ส่งรายงานทาง XMPP">
+      <Name Text="XMPP"/>
+      <JidFrom Text="Jabber ID:"/>
+      <Password Text="รหัสผ่าน:"/>
+      <JidTo Text="ส่งไปยัง JID:"/>
+      <CloudWarning Text="โปรดทราบ! ไฟล์จะถูกอัพโหลดไปยัง FastReport Cloud ผู้ใช้จะได้รับลิงก์เพื่อใช้ดาวน์โหลดไฟล์"/>
+      <Errors>
+        <InvalidJidOrPassword Text="Jabber ID หรือ รหัสผ่านไม่ถูกต้อง"/>
+        <UnableToUploadFile Text="ไม่สามารถอัพโหลดไฟล์ขึ้นคลาวด์ได้!"/>
+      </Errors>
+    </Xmpp>
+    <Telegram Text="ส่งรายงานทาง Telegram">
+      <Name Text="Telegram"/>
+      <SenderPhone Text="เบอร์โทรศัพท์ผู้ส่ง"/>
+      <Password Text="รหัสผ่านของ Telegram"/>
+      <CodeToAuthenticate Text="รหัสสำหรับยืนยันตัวตน"/>
+      <RecipientPhone Text="หมายเลขโทรศัพท์ของผู้รับ"/>
+      <SignOut Text="ออกจากระบบ"/>
+      <Errors>
+        <InvalidSenderPhoneOrPassword Text="เบอร์โทร หรือ รหัสผ่านของผู้ส่งไม่ถูกต้อง"/>
+        <UnableToUploadFile Text="ไม่สามารถอัพโหลดไฟล์ขึ้นคลาวด์ได้!"/>
+      </Errors>
+    </Telegram>
+  </Messaging>
   <Web>
     <Print Text="พิมพ์"/>
+    <PrintFromBrowser Text="สั่งพิมพ์จากเว็บ"/>
+    <PrintFromAcrobat Text="สั่งพิมพ์ด้วย Adobe Reader"/>
+    <FitWidth Text="พอดีกับความกว้าง"/>
+    <FitPage Text="พอดีหน้ากระดาษ"/>
     <Export Text="ส่งออก"/>
     <Zoom Text="ย่อ/ขยาย"/>
     <Refresh Text="ดึงข้อมูลใหม่อีกครั้ง"/>
+    <First Text="ไปหน้าแรก"/>
+    <Prev Text="ไปหน้าก่อนนี้"/>
+    <Next Text="ไปหน้าต่อไป"/>
+    <Last Text="ไปหน้าสุดท้าย"/>
+    <Search Text="ค้นหา"/>
+    <SearchPlaceholder Text="ป้อนข้อมูล"/>
+    <MatchCase Text="ตรงกัน"/>
+    <WholeWord Text="ทั้งคำ"/>
+    <SearchNext Text="ค้นหาต่อไป"/>
+    <SearchPrev Text="ค้นหาก่อนหน้า"/>
+    <SearchNotFound Text="ไม่พบ"/>
+    <EnterPage Text="กรอกเลขหน้าเพื่อไปหน้านั้นเลย"/>
+    <TotalPages Text="หน้าทั้งหมด (อ่านอย่างเดียว)"/>
+    <Back Text="ถอยหลัง"/>
+    <ScriptSecurity>
+      <ForbiddenType Text="กรุณาอย่าใช้ Type {typeName}"/>
+      <ForbiddenMethod Text="กรุณาอย่าใช้ method {methodName}"/>
+    </ScriptSecurity>
   </Web>
   <Properties>
     <Categories>
       <Appearance Text="รูปลักษณ์"/>
       <Behavior Text="บริบท"/>
-      <Build Text="ขณะประมวลผล"/>
+      <Build Text="Build"/>
       <Data Text="ข้อมูล"/>
       <Design Text="ออกแบบ"/>
       <Designer Text="โหมดออกแบบ"/>
@@ -1458,7 +3017,7 @@
       <Engine Text="ตัวประมวลผล"/>
       <Events Text="เหตุการณ์"/>
       <Hierarchy Text="ลำดับชั้น"/>
-      <Layout Text="จัดวาง"/>
+      <Layout Text="เค้าโครง"/>
       <Misc Text="อื่น ๆ"/>
       <Navigation Text="การนำทาง"/>
       <Paper Text="กระดาษ"/>
@@ -1466,6 +3025,7 @@
       <Print Text="พิมพ์"/>
       <Report Text="รายงาน"/>
       <Script Text="สคริปต์"/>
+      <Spatial Text="เชิงพื้นที่"/>
       <Toolbars Text="แถบปุ่มเครื่องมือ"/>
       <UI Text="ส่วนติดต่อผู้ใช้งาน"/>
     </Categories>

@@ -4,20 +4,28 @@ using FastReport.Web.Cache;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Net.Http;
-using System.Text;
 
 namespace FastReport.Web
 {
     public sealed class WebReportOptions
     {
 #if !WASM
+        /// <summary>
+        /// Contains settings that define how reports are cached, including storage duration and caching strategy.
+        /// </summary>
         public CacheOptions CacheOptions { get; set; } = new CacheOptions();
 
         /// <summary>
         /// SMTP server settings for sending the report by e-mail
         /// </summary>
         public EmailExportOptions EmailExportOptions { get; set; } = null;
+
+        /// <summary>
+        /// Provides options related to the Online Report Designer configuration and behavior.
+        /// </summary>
+        public DesignerOptions Designer { get; set; } = new DesignerOptions();
 
         /// <summary>
         /// Gets or sets a value indicating whether custom SQL queries can be executed.
@@ -27,7 +35,8 @@ namespace FastReport.Web
         /// WARNING: Enabling this option may pose security risks. 
         /// </para>
         /// </summary>
-        public bool AllowCustomSqlQueries { get; set; } = false;
+        [Obsolete("Please, use Designer.AllowCustomSqlQueries")]
+        public bool AllowCustomSqlQueries { get => Designer.AllowCustomSqlQueries; set => Designer.AllowCustomSqlQueries = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether Intellisense is enabled.
@@ -36,7 +45,8 @@ namespace FastReport.Web
         /// <remarks>
         /// WARNING: Enabling Intellisense requires returning class information from the assembly.
         /// </remarks>
-        public bool EnableOnlineDesignerIntelliSense { get; set; } = false;
+        [Obsolete("Please, use Designer.EnableIntelliSense")]
+        public bool EnableOnlineDesignerIntelliSense { get => Designer.EnableIntelliSense; set => Designer.EnableIntelliSense = value; }
 
         /// <summary>
         /// Gets or sets the list of assemblies needed for IntelliSense highlighting.
@@ -44,7 +54,8 @@ namespace FastReport.Web
         /// <remarks>
         /// The assemblies listed here will be used to provide class information for IntelliSense highlighting.
         /// </remarks>
-        public List<string> IntelliSenseAssemblies { get; set; } = new();
+        [Obsolete("Please, use Designer.IntelliSenseAssemblies")]
+        public List<string> IntelliSenseAssemblies { get => Designer.IntelliSenseAssemblies; set => Designer.IntelliSenseAssemblies = value; }
 #else
         /// <summary>
         /// Used to access .NET libraries to compile the report script

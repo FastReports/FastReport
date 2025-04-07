@@ -94,7 +94,41 @@ namespace FastReport.Web
 
 
 {(Toolbar.ShowPrint ? $"{toolbarPrintItem}" : "")}
-
+{(Toolbar.ShowSearchButton ? $@"<div class=""fr-toolbar-item fr-toolbar-pointer {template_FR}-toolbar-item {template_FR}-pointer"" title=""{localization.searchTxt}"" onclick=""{template_FR}.toggleSearchForm();"">
+            {GetResource("magnifier-search.svg")}
+        </div>
+        <div class=""{template_FR}-toolbar-search-form"" id=""{template_FR}-toolbar-search-form"">
+            <div id=""close-search-form-button"" onclick=""{template_FR}.toggleSearchForm();""><img src=""data:image/svg+xml;base64,{GerResourceBase64("close.svg")}"" /></div>
+            <div class=""{template_FR}-toolbar-dropdown-content-searchbox"" >
+                <input type=""text"" id=""fr-search-text"" placeholder=""{localization.searchPlaceholder}"" name=""SearchText"" oninput=""{template_FR}.onEnterSearchText();"" />
+                <input hidden onclick=""{template_FR}.clearSearchText();"" id=""clear-searchbox"" type=""image"" src=""data:image/svg+xml;base64,{GerResourceBase64("clear_searchbox.svg")}"" />
+            </div>
+            <div class=""search-navigation-info-block"">
+                <p id=""fr-WebRepot-text-info"">
+                    
+                </p>
+                <div style=""margin-left:auto;"">
+                    <button disabled title=""{localization.searchPrev}"" onclick=""{template_FR}.search(true);"" id=""fr-search-prev"">
+                        {GetResource("angle-left.svg")}
+                    </button>
+                    <button disabled title=""{localization.searchNext}"" onclick=""{template_FR}.search(false);"" id=""fr-search-next"">
+                        {GetResource("angle-right.svg")}
+                    </button>
+                </div>
+            </div>
+            <div>
+                <label>
+                    <input disabled type=""checkbox"" id=""fr-match-case"" name=""MatchCase"" />
+                    {localization.matchCase}
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input disabled type=""checkbox"" id=""fr-whole-word"" name=""WholeWord"" />
+                    {localization.wholeWord}
+                </label>
+            </div>
+        </div>" : "")}
 {(Toolbar.ShowZoomButton ? $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"" title=""{localization.zoomTxt}"">
         {GetResource("magnifier.svg")}
         <div class=""fr-toolbar-item-dropdown-content {template_FR}-toolbar-dropdown-content"">

@@ -11,7 +11,7 @@ namespace FastReport.Gauge
 #if !DEBUG
     [DesignTimeVisible(false)]
 #endif
-    public class GaugeScale : Component
+    public class GaugeScale
     {
         #region Fields
 
@@ -138,7 +138,7 @@ namespace FastReport.Gauge
     /// Represents a scale ticks.
     /// </summary>
     [ToolboxItem(false)]
-    public class ScaleTicks : Component
+    public class ScaleTicks
     {
         #region Fields
 

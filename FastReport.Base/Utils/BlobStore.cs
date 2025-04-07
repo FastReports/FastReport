@@ -85,7 +85,7 @@ namespace FastReport.Utils
             // avoid memory fragmentation when loading large amount of big blobs
             for (int i = 0; i < rootItem.Count; i++)
             {
-                AddOrUpdate(Convert.FromBase64String(rootItem[i].GetProp("Stream", false)),
+                AddOrUpdate(Convert.FromBase64String(rootItem[i].GetProp("Stream")),
                   rootItem[i].GetProp("Source"));
                 rootItem[i].ClearProps();
             }

@@ -77,7 +77,7 @@ namespace FastReport.Web.Controllers
 
             try
             {
-                var reportObj = await reportDesignerService.GetPOSTReportAsync(request.Body);
+                var reportObj = await reportDesignerService.GetPOSTReportStringAsync(request.Body);
                 var response = designerUtilsService.DesignerObjectPreview(webReport, reportObj);
 
                 return Results.Content(response, MediaTypeNames.Text.Html);
@@ -91,9 +91,10 @@ namespace FastReport.Web.Controllers
         }
 
         [HttpGet("/designer.getClassDetails")]
-        public static IResult GetClassDetails(string className, IDesignerUtilsService designerUtilsService)
+        public static IResult GetClassDetails(string className, IDesignerUtilsService designerUtilsService,
+            [FromServices] DesignerOptions designerOptions)
         {
-            if (!FastReportGlobal.EnableIntellisense)
+            if (!designerOptions.EnableIntelliSense)
                 return Results.BadRequest();
 
             var result = designerUtilsService.GetClassDetailsJson(className);
@@ -104,9 +105,10 @@ namespace FastReport.Web.Controllers
         }
 
         [HttpPost("/designer.getNamespacesInfo")]
-        public static IResult GetNamespacesInfo([FromBody] IReadOnlyCollection<string> namespaces, IDesignerUtilsService designerUtilsService)
+        public static IResult GetNamespacesInfo([FromBody] IReadOnlyCollection<string> namespaces, IDesignerUtilsService designerUtilsService,
+            [FromServices] DesignerOptions designerOptions)
         {
-            if (!FastReportGlobal.EnableIntellisense)
+            if (!designerOptions.EnableIntelliSense)
                 return Results.BadRequest();
 
             var result = designerUtilsService.GetNamespacesInfoJson(namespaces);

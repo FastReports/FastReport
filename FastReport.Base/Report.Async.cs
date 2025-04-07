@@ -1,7 +1,8 @@
 using FastReport.Code;
+using FastReport.Data;
 using FastReport.Engine;
 using FastReport.Utils;
-
+using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,30 +17,32 @@ namespace FastReport
         internal async Task CompileAsync(CancellationToken token)
         {
             FillDataSourceCache();
+            await CodeProvider.CompileAsync(token);
+        }
 
-#if REFLECTION_EMIT_COMPILER
-            if (Config.CompilerSettings.ReflectionEmitCompiler)
-            {
-                SetIsCompileNeeded();
-                if (!IsCompileNeeded)
-                    return;
-            }
-#endif
+        public Task<object> CalcAsync(string expression, CancellationToken token)
+        {
+            return CalcAsync(expression, 0, token);
+        }
 
-            if (needCompile)
+        public async Task<object> CalcAsync(string expression, Variant value, CancellationToken token)
+        {
+            if (TryCalc(expression, value, out var result))
+                return result;
+
+            return await CalcExpressionAsync(expression, value, token);
+        }
+
+        protected virtual async Task<object> CalcExpressionAsync(string expression, Variant value, CancellationToken token)
+        {
+            var expressionToLower = expression.ToLower();
+
+            if (expressionToLower == "true" || expressionToLower == "false")
             {
-                AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
-                assemblies.Clear();
-                assemblies.Add(descriptor);
-                descriptor.AddObjects();
-                descriptor.AddExpressions();
-                descriptor.AddFunctions();
-                await descriptor.CompileAsync(token);
+                expression = expressionToLower;
             }
-            else
-            {
-                InternalInit();
-            }
+
+            return await CodeProvider.CalcExpressionAsync(expression, value, token);
         }
 
         /// <summary>

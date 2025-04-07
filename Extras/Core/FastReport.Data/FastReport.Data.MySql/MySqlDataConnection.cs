@@ -7,6 +7,18 @@ using System.Globalization;
 
 namespace FastReport.Data
 {
+    /// <summary>
+    /// Represents a connection to MySQL database.
+    /// </summary>
+    /// <example>This example shows how to add a new connection to the report.
+    /// <code>
+    /// Report report1;
+    /// MySqlDataConnection conn = new MySqlDataConnection();
+    /// conn.ConnectionString = "your_connection_string";
+    /// report1.Dictionary.Connections.Add(conn);
+    /// conn.CreateAllTables();
+    /// </code>
+    /// </example>
     public partial class MySqlDataConnection : DataConnectionBase
     {
         private void GetDBObjectNames(string name, List<string> list)
@@ -32,6 +44,7 @@ namespace FastReport.Data
             }
         }
 
+        /// <inheritdoc/>
         public override string[] GetTableNames()
         {
             List<string> list = new List<string>();
@@ -40,11 +53,13 @@ namespace FastReport.Data
             return list.ToArray();
         }
 
+        /// <inheritdoc/>
         public override string QuoteIdentifier(string value, DbConnection connection)
         {
             return "`" + value + "`";
         }
 
+        /// <inheritdoc/>
         protected override string GetConnectionStringWithLoginInfo(string userName, string password)
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder(ConnectionString);
@@ -55,11 +70,13 @@ namespace FastReport.Data
             return builder.ToString();
         }
 
+        /// <inheritdoc/>
         public override Type GetConnectionType()
         {
             return typeof(MySqlConnection);
         }
 
+        /// <inheritdoc/>
         public override DbDataAdapter GetAdapter(string selectCommand, DbConnection connection,
           CommandParameterCollection parameters)
         {
@@ -81,7 +98,13 @@ namespace FastReport.Data
             }
             return adapter;
         }
-
+        
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(MySqlDbType);
+        }
+        
         private object VariantToClrType(Variant value, MySqlDbType type)
         {
             if (value.ToString() == "" && type != MySqlDbType.Null)
@@ -210,6 +233,100 @@ namespace FastReport.Data
                 default:
                     return value.ToString();
             }
+        }
+
+        /// <inheritdoc/>
+        public override string[] GetProcedureNames()
+        {
+            List<string> list = new List<string>();
+            DataTable schema = null;
+            DbConnection conn = GetConnection();
+
+            if (conn != null)
+            {
+                try
+                {
+                    OpenConnection(conn);
+                    schema = conn.GetSchema("Procedures");
+
+                    foreach (DataRow row in schema.Rows)
+                    {
+                        if (row["ROUTINE_SCHEMA"].ToString() == "sys")
+                            continue;
+
+                        list.Add(row["SPECIFIC_NAME"].ToString());
+                    }
+                }
+                finally
+                {
+                    DisposeConnection(conn);
+                }
+            }
+
+            return list.ToArray();
+        }
+
+        /// <inheritdoc/>
+        public override TableDataSource CreateProcedure(string tableName)
+        {
+            ProcedureDataSource table = new ProcedureDataSource();
+            table.Enabled = true;
+            table.SelectCommand = tableName;
+            DbConnection conn = GetConnection();
+            try
+            {
+                OpenConnection(conn);
+                var mySQLcommand = conn.CreateCommand();
+                mySQLcommand.CommandText = $"select * from INFORMATION_SCHEMA.PARAMETERS where SPECIFIC_NAME = '{tableName}'";
+                var reader =  mySQLcommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int modeColIndex = reader.GetOrdinal("PARAMETER_MODE");
+                    int nameColIndex = reader.GetOrdinal("PARAMETER_NAME");
+                    if (reader.IsDBNull(modeColIndex) || reader.IsDBNull(nameColIndex))
+                        continue;
+
+                    string parameterMode = reader.GetString(modeColIndex);
+                    string parameterName = reader.GetString(nameColIndex);
+                    string parameterType = reader.GetString(reader.GetOrdinal("DATA_TYPE"));
+
+                    ParameterDirection direction = ParameterDirection.Input;
+                    switch (parameterMode.ToString())
+                    {
+                        case "IN":
+                            table.Enabled = false;
+                            break;
+                        case "INOUT":
+                            direction = ParameterDirection.InputOutput;
+                            table.Enabled = false;
+                            break;
+                        case "OUT":
+                            direction= ParameterDirection.Output;
+                            break;
+                    }
+
+                    table.Parameters.Add(new ProcedureParameter()
+                    {
+                        Name = parameterName,
+                        Direction = direction,
+                        DataType = (int)Enum.Parse(typeof(MySqlDbType), parameterType, true)
+                    });
+
+                }
+                reader.Close();
+            }
+            finally
+            {
+                DisposeConnection(conn);
+            }
+
+            return table;
+        }
+
+        public MySqlDataConnection() : base()
+        {
+            CanContainProcedures = true;
         }
     }
 }

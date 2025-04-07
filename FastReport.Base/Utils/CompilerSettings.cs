@@ -11,6 +11,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Globalization;
+using FastReport.Code;
 
 namespace FastReport.Utils
 {
@@ -82,10 +83,20 @@ namespace FastReport.Utils
 
 
 #if REFLECTION_EMIT_COMPILER
+        private bool _reflectionEmitCompiler = false;
+        
         /// <summary>
         /// Enables faster compiler if the report script hasn't been changed
         /// </summary>
-        public bool ReflectionEmitCompiler { get; set; } = false;
+        public bool ReflectionEmitCompiler
+        {
+            get => _reflectionEmitCompiler;
+            set 
+            { 
+                _reflectionEmitCompiler = value;
+                CodeProvider.DefaultProvider = value ? typeof(FastReport.Code.ReflectionEmit.ReflectionEmitCodeProvider) : null;
+            }
+        }
 #endif
 
 #if CROSSPLATFORM || COREWIN
@@ -112,7 +123,7 @@ namespace FastReport.Utils
         }
 #endif
 
-        #endregion Properties
+#endregion Properties
 
         #region Constructors
 

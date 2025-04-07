@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.Emit;
 using System.Globalization;
+using System.Collections.Concurrent;
 #if NETCOREAPP
 using System.Runtime.Loader;
 #endif
@@ -22,7 +23,7 @@ namespace FastReport.Code.CodeDom.Compiler
 {
     public abstract class CodeDomProvider : IDisposable
     {
-        static readonly Dictionary<string, MetadataReference> cache = new Dictionary<string, MetadataReference>();
+        private static readonly ConcurrentDictionary<string, MetadataReference> cache = new ConcurrentDictionary<string, MetadataReference>();
 
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace FastReport.Code.CodeDom.Compiler
         /// <summary>
         /// If these assemblies were not found when 'trimmed', then skip them
         /// </summary>
-        private static readonly string[] SkippedAssemblies = new string[] {
+        private static readonly HashSet<string> SkippedAssemblies = new HashSet<string> {
                     "System",
 
                     "System.Core",
@@ -245,8 +246,8 @@ namespace FastReport.Code.CodeDom.Compiler
 
         public MetadataReference GetReference(string refDll)
         {
-            if (cache.ContainsKey(refDll))
-                return cache[refDll];
+            if (cache.TryGetValue(refDll, out var metadataReference))
+                return metadataReference;
 
             MetadataReference result;
             string reference = GetCorrectAssemblyName(refDll);
@@ -360,8 +361,8 @@ namespace FastReport.Code.CodeDom.Compiler
         {
             DebugMessage($"GetReferenceAsync: {refDll}");
 
-            if (cache.ContainsKey(refDll))
-                return cache[refDll];
+            if (cache.TryGetValue(refDll, out var metadataReference))
+                return metadataReference;
 
             MetadataReference result;
             string reference = GetCorrectAssemblyName(refDll);
@@ -479,17 +480,14 @@ namespace FastReport.Code.CodeDom.Compiler
                 return AssemblyLoadResolver.LoadManagedLibrary(assembly);
             }
 
-            if (ResolveMetadataReference == null)
-                return null;
-
-            return ResolveMetadataReference(assembly);
+            return ResolveMetadataReference?.Invoke(assembly);
         }
 
-        private static async ValueTask<MetadataReference> UserResolveMetadataReferenceAsync(AssemblyName assembly, CancellationToken ct)
+        private static async ValueTask<MetadataReference> UserResolveMetadataReferenceAsync(AssemblyName assemblyName, CancellationToken ct)
         {
             if (AssemblyLoadResolver != null)
             {
-                return await AssemblyLoadResolver.LoadManagedLibraryAsync(assembly, ct);
+                return await AssemblyLoadResolver.LoadManagedLibraryAsync(assemblyName, ct);
             }
 
             return null;
@@ -584,7 +582,7 @@ namespace FastReport.Code.CodeDom.Compiler
             {
                 result = GetMetadataReferenceInSingleFileApp(assembly);
             }
-            catch (NotImplementedException)
+            catch
             {
                 DebugMessage("Not implemented assembly load from SFA");
                 // try load from external source
@@ -608,12 +606,13 @@ namespace FastReport.Code.CodeDom.Compiler
 
 #endif
 
-        public static string TryFixReferenceInSingeFileApp(Assembly assembly)
+        public static string TryFixAssemblyReference(Assembly assembly)
         {
+            string assemblyName = null;
 #if NETCOREAPP
             try
             {
-                string assemblyName = assembly.GetName().Name;
+                assemblyName = assembly.GetName().Name;
                 if (!cache.ContainsKey(assemblyName))
                 {
                     MetadataReference metadataReference = GetMetadataReferenceSpecialized(assembly);
@@ -625,16 +624,20 @@ namespace FastReport.Code.CodeDom.Compiler
             {
                 DebugMessage(ex.ToString());
             }
+
+            // sometimes we don't know the assembly's location, but it's not a SFA
+            // in this case just return the assemblyName to handle it during compilation
 #endif
-            return null;
+            return assemblyName;
         }
 
-        public static async ValueTask<string> TryFixReferenceInSingeFileAppAsync(Assembly assembly, CancellationToken ct)
+        public static async ValueTask<string> TryFixAssemblyReferenceAsync(Assembly assembly, CancellationToken ct)
         {
+            string assemblyName = null;
 #if NETCOREAPP
             try
             {
-                string assemblyName = assembly.GetName().Name;
+                assemblyName = assembly.GetName().Name;
                 if (!cache.ContainsKey(assemblyName))
                 {
                     MetadataReference metadataReference = await GetMetadataReferenceSpecializedAsync(assembly, ct);
@@ -646,14 +649,17 @@ namespace FastReport.Code.CodeDom.Compiler
             {
                 DebugMessage(ex.ToString());
             }
+
+            // sometimes we don't know the assembly's location, but it's not a SFA
+            // in this case just return the assemblyName to handle it during compilation
 #endif
-            return null;
+            return assemblyName;
         }
 
 
         private static void AddToCache(string refDll, MetadataReference metadata)
         {
-            cache[refDll] = metadata;
+            cache.TryAdd(refDll, metadata);
         }
 
         private static string GetCorrectAssemblyName(string reference)
@@ -663,7 +669,7 @@ namespace FastReport.Code.CodeDom.Compiler
             return assemblyName;
         }
 
-        // backward compabilty
+        // backward compatibility
         public CompilerResults CompileAssemblyFromSource(CompilerParameters cp, string code)
         {
             return CompileAssemblyFromSource(cp, code, null);

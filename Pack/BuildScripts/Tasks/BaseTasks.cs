@@ -6,20 +6,21 @@ partial class Program
 {
     bool IsDemo = true;
     bool IsRelease = false;
-    bool IsProfessional = false;
     bool IsDebug = false;
     bool IsTest = false;
 
     string config = Argument("config", "Debug");
     string solutionDirectory = Argument("solution-directory", "");
+    string fastReportNetDirPath = "fastreport_net";
+    readonly string solutionDirectoryRelative = Argument("solution-directory-relative", "");
     readonly string solutionFilename = Argument("solution-filename", "FastReport.Net.sln");
     readonly string version = Argument("vers", "1.0.0.0");
     string outdir = Argument("out-dir", "");
     static readonly string pluginsRelativePath = Path.Combine("Extras", "Core", "FastReport.Data");
     readonly bool NuGetSpecialDirectorySort = Argument("nugetSpecialDirectorySort", false);
 
-    readonly string[] Plugins_Core = new[]
-    {
+    readonly string[] Plugins_Core =
+    [
       "Postgres",
       "MsSql",
       "MySql",
@@ -34,7 +35,7 @@ partial class Program
       "Excel",
       "Cassandra",
       "Odbc",
-    };
+    ];
 
     enum ProductType
     {
@@ -48,11 +49,15 @@ partial class Program
         Wasm,
         Connector,
         Localization,
+        FastScript,
+        FastScriptPlugin,
     }
 
     internal string SolutionFile => Path.Combine(solutionDirectory, solutionFilename);
 
     string PackDir => Path.Combine(solutionDirectory, "Pack");
+
+    string OutDir => string.IsNullOrWhiteSpace(outdir) ? Path.Combine(solutionDirectory, "fr_nuget") : outdir;
 
     internal string PluginsDir => Path.Combine(solutionDirectory, pluginsRelativePath);
 
@@ -66,7 +71,6 @@ partial class Program
         IsDebug = config.ToLower() == "debug";
         IsDemo = config.ToLower() == "demo";
         IsRelease = config.ToLower() == "release";
-        IsProfessional = config.ToLower() == "professional";
         IsTest = config.ToLower() == "test";
 
         Information($"CONFIG: {config}");
@@ -78,16 +82,21 @@ partial class Program
     {
         if (String.IsNullOrWhiteSpace(solutionDirectory))
         {
-            var dir = Directory.GetCurrentDirectory();
+            var dir = AppContext.BaseDirectory;
+            var fileToFind = string.IsNullOrEmpty(solutionDirectoryRelative)
+                ? solutionFilename
+                : Path.Combine(solutionDirectoryRelative, solutionFilename);
 
             try
             {
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < 9; i++)
                 {
-                    var find_path = Path.Combine(dir, solutionFilename);
+                    var find_path = Path.Combine(dir, fileToFind);
                     if (File.Exists(find_path))
                     {
-                        solutionDirectory = dir;
+                        solutionDirectory = string.IsNullOrEmpty(solutionDirectoryRelative)
+                            ? dir
+                            : Path.Combine(dir, solutionDirectoryRelative);
                         break;
                     }
                     dir = Path.GetDirectoryName(dir);
@@ -110,19 +119,14 @@ partial class Program
     [DependsOn(nameof(Prepare))]
     public void PrepareNuget()
     {
-        if (String.IsNullOrWhiteSpace(outdir))
-        {
-            outdir = Path.Combine(solutionDirectory, "fr_nuget");
-        }
-        else if (!Path.IsPathRooted(outdir))
+        if (!string.IsNullOrWhiteSpace(outdir) && !Path.IsPathRooted(outdir))
         {
             outdir = Path.Combine(solutionDirectory, outdir);
         }
 
-        if (!Directory.Exists(outdir))
-            Directory.CreateDirectory(outdir);
+        CreateDirectoryIfNotExists(OutDir);
 
-        Information($"outdir: {outdir}");
+        Information($"outdir: {OutDir}");
     }
 
     [DependsOn(nameof(Prepare))]
@@ -173,6 +177,12 @@ partial class Program
         return config.ToLower();
     }
 
+    public void CreateDirectoryIfNotExists(string path)
+    {
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+    }
+
 
     private string GetDirNameByProject(string project)
     {
@@ -180,6 +190,7 @@ partial class Program
         const string NET_STD_DIR = "net";
         const string NET_ENT_DIR = "net_ent";
         const string MONO_DIR = "mono";
+        const string FASTSCRIPT_DIR = "fastscript";
 
         if (IsDemo)
             return DEMO_DIR;
@@ -198,6 +209,7 @@ partial class Program
             //"FastReport.Web.Skia" => NET_STD_DIR,
             "FastReport.Blazor.Wasm" => NET_ENT_DIR,
             "FastReport.Mono" => MONO_DIR,
+            "FastScript" => FASTSCRIPT_DIR,
             _ => NET_STD_DIR,
             //_ => throw new NotImplementedException($"Unknown project {project}")
         };
@@ -206,7 +218,7 @@ partial class Program
     internal string GetOutdir(string projectOrPath)
     {
         if (!NuGetSpecialDirectorySort)
-            return outdir;
+            return OutDir;
 
         string project;
         var firstExtSymbol = Path.GetExtension(projectOrPath)[1];   // ".csproj" or ".**"
@@ -217,7 +229,7 @@ partial class Program
             project = Path.GetFileNameWithoutExtension(projectOrPath);
 
         var additionDir = GetDirNameByProject(project);
-        return Path.Combine(outdir, additionDir);
+        return Path.Combine(OutDir, additionDir);
     }
 
 

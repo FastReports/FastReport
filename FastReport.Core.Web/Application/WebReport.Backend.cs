@@ -30,6 +30,12 @@ namespace FastReport.Web
             }
         }
 
+        /// <summary>
+        /// Specifies individual cache settings for the current WebReport. 
+        /// These settings have the highest priority over other cache configurations.
+        /// Default value: null.
+        /// /// </summary>
+        public WebReportCacheOptions? CacheOptions { get; set; }
 
         internal static IResourceLoader ResourceLoader { get; set; }
 
@@ -65,6 +71,7 @@ namespace FastReport.Web
                     throw new Exception($"Unknown mode: {Mode}");
             }
         }
+
 
         /// <summary>
         /// Force report to be removed from internal cache

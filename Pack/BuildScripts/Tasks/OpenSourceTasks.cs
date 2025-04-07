@@ -52,7 +52,7 @@ partial class Program
             Configuration = config,
             NoBuild = true,
             NoRestore = true,
-            OutputDirectory = outdir,
+            OutputDirectory = OutDir,
             IncludeSymbols = true,
             SymbolPackageFormat = "snupkg"
         };
@@ -82,7 +82,7 @@ partial class Program
         {
             Configuration = config,
             NoRestore = true,
-            OutputDirectory = outdir
+            OutputDirectory = OutDir
         };
 
         string pluginsDirPath = PluginsDir;

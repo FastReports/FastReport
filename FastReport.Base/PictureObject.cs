@@ -435,7 +435,7 @@ namespace FastReport
                 g.Restore(state);
                 g.ResetClip();
 #if !SKIA
-                path.Dispose();
+                path.Dispose(); 
 #else
                 path = null;
 #endif    
@@ -449,7 +449,7 @@ namespace FastReport
 
         protected override void DrawImageInternal2(IGraphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft)
         {
-            Image image = transparentImage != null ? transparentImage.Clone() as Image : Image.Clone() as Image;
+            Image image = transparentImage != null ? transparentImage : Image;
             if (image == null)
                 return;
             if (Grayscale)
@@ -468,7 +468,6 @@ namespace FastReport
             //graphics.DrawImage(image, new PointF[] { upperLeft, upperRight, lowerLeft });
 
             DrawImage3Points(graphics, image, upperLeft, upperRight, lowerLeft);
-            image.Dispose();
         }
 
         // This is analogue of graphics.DrawImage(image, PointF[] points) method. 
@@ -524,7 +523,11 @@ namespace FastReport
             if (writer.SerializeTo != SerializeTo.SourcePages)
             {
                 if (writer.SerializeTo == SerializeTo.Preview ||
-                  (String.IsNullOrEmpty(ImageLocation) && String.IsNullOrEmpty(DataColumn)))
+                    (String.IsNullOrEmpty(ImageLocation) && String.IsNullOrEmpty(DataColumn)) ||
+
+                    // Next condition should work when serializing to Undo and only when designing the prepared page.
+                    (writer.SerializeTo == SerializeTo.Undo && IsDesigningInPreviewPageDesigner())
+                   )
                 {
                     if (writer.BlobStore != null)
                     {
@@ -612,6 +615,9 @@ namespace FastReport
         {
             if (Image != null && ShouldDisposeImage)
                 Image.Dispose();
+            if (grayscaleBitmap != null)
+                grayscaleBitmap.Dispose();
+            grayscaleBitmap = null;
             Image = null;
         }
 

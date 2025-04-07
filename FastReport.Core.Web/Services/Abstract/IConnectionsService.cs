@@ -35,6 +35,12 @@ namespace FastReport.Web.Services
         string GetConnectionTables(string connectionType, string connectionString, List<CustomViewModel> customConnections);
 
         /// <summary>
+        /// Returns the list of connected tables by connection type and connection string
+        /// </summary>
+        /// <returns>Returns JSON with connected tables</returns>
+        string GetConnectionTables(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customConnections);
+
+        /// <summary>
         /// Updates a table within a web report based on the provided parameters.
         /// </summary>
         /// <param name="webReport">The WebReport object containing the table to be updated.</param>
@@ -45,11 +51,12 @@ namespace FastReport.Web.Services
         /// <summary>
         /// Updates a table within a database using the provided connection string and parameters.
         /// </summary>
+        /// <param name="webReport">The WebReport object containing the table to be updated.</param>
         /// <param name="connectionString">The connection string to the database.</param>
         /// <param name="connectionType">The type of connection.</param>
         /// <param name="parameters">The parameters specifying the table name, SQL query, and update parameters.</param>
         /// <returns>A string representation of the updated table.</returns>
-        string GetUpdatedTableByConnectionString(string connectionString, string connectionType, UpdateTableParams parameters);
+        string GetUpdatedTableByConnectionString(WebReport webReport, string connectionString, string connectionType, UpdateTableParams parameters);
 
         /// <summary>
         /// Returns the list of connection types
@@ -63,5 +70,7 @@ namespace FastReport.Web.Services
         /// <param name="errorMsg">Error message.</param>
         /// <returns></returns>
         Dictionary<string, int> GetParameterTypes(string connectionType, out string errorMsg);
+
+        void CreateConnection(WebReport webReport, string connectionType, CreateConnectionParams @params);
     }
 }

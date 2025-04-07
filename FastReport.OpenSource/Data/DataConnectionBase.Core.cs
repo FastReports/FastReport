@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Common;
+using FastReport.Utils;
 
 namespace FastReport.Data
 {
@@ -7,12 +8,20 @@ namespace FastReport.Data
     {
         #region Private Methods
 
-        /// <summary>
-        /// Does nothing
-        /// </summary>
-        /// <param name="tableNames"></param>
-        partial void FilterTables(List<string> tableNames);
-
+        private void FilterTables(List<string> tableNames)
+        {
+            // filter tables
+            for (int i = 0; i < tableNames.Count; i++)
+            {
+                Config.FilterConnectionTablesEventArgs e = new Config.FilterConnectionTablesEventArgs(this, tableNames[i]);
+                Config.OnFilterConnectionTables(this, e);
+                if (e.Skip)
+                {
+                    tableNames.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
 
         /// <summary>
         /// Does nothing

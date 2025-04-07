@@ -13,9 +13,9 @@ namespace FastReport.Web.Controllers
 
         internal sealed class TextEditParams
         {
-            public string ReportId { get; set; }
+            public string ReportId { get; init; }
 
-            public string Click { get; set; }
+            public string Click { get; init; }
         }
 
 

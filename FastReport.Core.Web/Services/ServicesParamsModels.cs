@@ -31,7 +31,7 @@ namespace FastReport.Web.Services
                 Host = request.Host.Host,
                 Port = request.Host.Port,
                 RequestBody = request.Body,
-                Cookies = request.Cookies
+                Cookies = request.Cookies,
             };
 
             return @params;
@@ -42,6 +42,13 @@ namespace FastReport.Web.Services
     {
         public string TableName { get; set; }
         public string SqlQuery { get; set; }
+        public List<ParameterModel> Parameters { get; set; }
+    }
+
+    public sealed class CreateConnectionParams 
+    {
+        public string Connection { get; set; }
+        public string ConnectionName {  get; set; } 
     }
 
     public class UpdateTableParams
@@ -57,6 +64,7 @@ namespace FastReport.Web.Services
         public string Name { get; set; }
         public int DataType { get; set; }
         public string Value { get; set; }
+        public int Size { get; set; }
         public string Expression { get; set; }
     }
 
@@ -67,6 +75,7 @@ namespace FastReport.Web.Services
         public DialogParams DialogParams { get; set; }
         public ReportTabParams ReportTabParams { get; set; }
         public ReportPageParams ReportPageParams { get; set; }
+        public ReportSearchParams ReportSearchParams { get; set; }
         public string RenderBody { get; set; }
         public string SkipPrepare { get; set; }
         public string ForceRefresh { get; set; }
@@ -83,6 +92,7 @@ namespace FastReport.Web.Services
 
             reportServiceParams.Zoom = request.Query["zoom"].ToString();
 
+            reportServiceParams.ReportSearchParams = new ReportSearchParams();
             reportServiceParams.DialogParams = new DialogParams();
 
             reportServiceParams.ReportPageParams = new ReportPageParams
@@ -111,6 +121,9 @@ namespace FastReport.Web.Services
                 reportServiceParams.ClickParams.Text = request.Form["text"].ToString();
 
             reportServiceParams.DialogParams.ParseRequest(request);
+
+            reportServiceParams.ReportSearchParams.ParseRequest(request);
+
             return reportServiceParams;
         }
     }
@@ -152,6 +165,22 @@ namespace FastReport.Web.Services
         public string Bookmark { get; set; }
         public string DetailedReport { get; set; }
         public string DetailedPage { get; set; }
+    }
+
+    public class ReportSearchParams
+    {
+        public string SearchText { get; set; }
+        public string Backward { get; set; }
+        public string MatchCase { get; set; }
+        public string WholeWord { get; set; }
+
+        public void ParseRequest(HttpRequest request)
+        {
+            SearchText = request.Query["searchText"].ToString();
+            Backward = request.Query["backward"].ToString();
+            MatchCase = request.Query["matchCase"].ToString();
+            WholeWord = request.Query["wholeWord"].ToString();
+        }
     }
     #endregion
 }

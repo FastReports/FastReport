@@ -16,6 +16,8 @@ namespace FastReport.Engine
 
         private async Task RunReportPagesAsync(ReportPage page, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             OnStateChanged(Report, EngineState.ReportStarted);
 
             if (page == null)
@@ -24,6 +26,24 @@ namespace FastReport.Engine
                 await RunReportPageAsync(page, cancellationToken);
 
             OnStateChanged(Report, EngineState.ReportFinished);
+        }
+
+        private async Task<float> GetBandHeightWithChildrenAsync(BandBase band, CancellationToken cancellationToken)
+        {
+            float result = 0;
+
+            while (band != null)
+            {
+                if (CanPrint(band))
+                    result += (band.CanGrow || band.CanShrink) ? await CalcHeightAsync(band, cancellationToken) : band.Height;
+                else if (FinalPass && !String.IsNullOrEmpty(band.VisibleExpression) && band.VisibleExpression.Contains("TotalPages"))
+                    result += (band.CanGrow || band.CanShrink) ? await CalcHeightAsync(band, cancellationToken) : band.Height;
+                band = band.Child;
+                if (band != null && ((band as ChildBand).FillUnusedSpace || (band as ChildBand).CompleteToNRows != 0))
+                    break;
+            }
+
+            return result;
         }
 
         #endregion Private Methods
@@ -65,6 +85,19 @@ namespace FastReport.Engine
                 PrepareToSecondPass();
                 await RunReportPagesAsync(page, cancellationToken);
             }
+        }
+
+        internal Task<float> GetPageFooterHeightAsync(CancellationToken token) => GetBandHeightWithChildrenAsync(page.PageFooter, token);
+
+        internal Task<float> GetColumnFooterHeightAsync(CancellationToken token) => GetBandHeightWithChildrenAsync(page.ColumnFooter, token);
+
+        internal async Task<float> GetFreeSpaceAsync(CancellationToken token)
+        {
+            float pageHeight = PageHeight;
+            pageHeight -= await GetPageFooterHeightAsync(token);
+            pageHeight -= await GetColumnFooterHeightAsync(token);
+            pageHeight -= GetFootersHeight();
+            return Converter.DecreasePrecision(pageHeight - CurY, 2);
         }
 
         #endregion Internal Methods

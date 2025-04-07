@@ -250,7 +250,7 @@ namespace FastReport.Utils
             StyleDescriptor style = new StyleDescriptor(Font.Style, BrushColor, BaseLine.Normal);
             if (HtmlTags)
                 text = text.Replace("<br>", "\r\n").Replace("<br/>", "\r\n").Replace("<br />", "\r\n");
-            string[] lines = text.Split('\n');
+            string[] lines = text.Split('\n', '\v');
             int originalCharIndex = 0;
 
             foreach (string line in lines)
@@ -2067,6 +2067,7 @@ namespace FastReport.Utils
         public static void Draw(string text, IGraphics g, Font font, Brush brush, Pen outlinePen,
           RectangleF rect, StringFormat format, int angle, float widthRatio)
         {
+            text = text.Replace('\v', '\n');
             IGraphicsState state = g.Save();
             g.SetClip(rect, CombineMode.Intersect);
             g.TranslateTransform(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2);

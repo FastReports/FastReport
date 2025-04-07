@@ -6,10 +6,7 @@ namespace FastReport.Data
 {
     public partial class MySqlDataConnection
     {
-        public override Type GetParameterType()
-        {
-            return typeof(MySqlDbType);
-        }
+
 
         public override string GetConnectionId()
         {

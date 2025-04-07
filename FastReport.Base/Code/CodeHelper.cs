@@ -3,11 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-#if NETSTANDARD || NETCOREAPP
-using FastReport.Code.CodeDom.Compiler;
-#else
-using System.CodeDom.Compiler;
-#endif
 using FastReport.Data;
 using FastReport.Engine;
 using FastReport.Utils;
@@ -74,7 +69,6 @@ namespace FastReport.Code
 
         #region Public Methods
         public abstract string EmptyScript();
-        public abstract CodeDomProvider GetCodeProvider();
         public abstract int GetPositionToInsertOwnItems(string scriptText);
         public abstract string AddField(Type type, string name);
         public abstract string BeginCalcExpression();

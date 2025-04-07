@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace FastReport.Preview
 {
-    internal partial class PreparedPage : Component
+    internal partial class PreparedPage : IDisposable
     {
         #region Fields
 
@@ -493,11 +493,9 @@ namespace FastReport.Preview
             return false;
         }
 
-        protected override void Dispose(bool disposing)
+        public void Dispose()
         {
-            if (disposing)
-                xmlItem.Dispose();
-            base.Dispose(disposing);
+            xmlItem.Dispose();
         }
 
         #endregion Public Methods

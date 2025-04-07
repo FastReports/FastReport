@@ -48,12 +48,7 @@ namespace FastReport.Utils.Json.Serialization
                 var propInfo = property.Info;
                 var propName = property.Name;
 
-#if COREWIN || CROSSPLATFORM || MONO // .Net 4.5 or greater
                 var value = propInfo.GetValue(instance);
-#else
-                var value = propInfo.GetGetMethod(true)
-                    .Invoke(instance, BindingFlags.GetProperty, null, null, null);
-#endif
                 if (value == null)
                 {
                     if (property.IgnoreNullValue)

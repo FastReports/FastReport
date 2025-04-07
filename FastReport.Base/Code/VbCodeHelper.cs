@@ -3,13 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-#if NETSTANDARD || NETCOREAPP
-using FastReport.Code.CodeDom.Compiler;
-using FastReport.Code.VisualBasic;
-#else
-using System.CodeDom.Compiler;
-using Microsoft.VisualBasic;
-#endif
 using FastReport.Utils;
 using FastReport.Data;
 
@@ -328,10 +321,6 @@ End Namespace
             return result;
         }
 
-        public override CodeDomProvider GetCodeProvider()
-        {
-            return new VBCodeProvider();
-        }
         #endregion
 
         public VbCodeHelper(Report report) : base(report)

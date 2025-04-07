@@ -17,6 +17,7 @@ namespace FastReport.Gauge.Simple.Progress
         /// <summary>
         /// Gets or sets the number of fractional digits
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Decimals
         {
             get { return decimals; }
@@ -33,6 +34,7 @@ namespace FastReport.Gauge.Simple.Progress
 
         /// <inheritdoc />
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override string Text
         {
             get { return base.Text; }

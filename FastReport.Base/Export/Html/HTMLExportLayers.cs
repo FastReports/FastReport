@@ -276,7 +276,11 @@ namespace FastReport.Export.Html
                                     else
                                     {
                                         top = renderer.Paragraphs[0].Lines[0].Top - obj.AbsTop;
+                                        float lineHeight = height;
                                         height = renderer.CalcHeight();
+                                        //  if height == 0 then text can't be printed with paddings, so we use the line height, which calculates the height of the text
+                                        if (height == 0)
+                                            height = lineHeight;
 
                                         if (obj.VertAlign == VertAlign.Center)
                                         {
@@ -726,9 +730,11 @@ namespace FastReport.Export.Html
                         page.Watermark.DrawText(new FRPaintEventArgs(g, 1f, 1f, Report.GraphicCache),
                             new RectangleF(0, 0, pictureWatermark.Width, pictureWatermark.Height), Report, true);
                     else
+                    {
                         page.Watermark.DrawImage(new FRPaintEventArgs(g, 1f, 1f, Report.GraphicCache),
                             new RectangleF(0, 0, pictureWatermark.Width, pictureWatermark.Height), Report, true);
-                    pictureWatermark.Transparency = page.Watermark.ImageTransparency;
+                        pictureWatermark.Transparency = page.Watermark.ImageTransparency;
+                    }
                     LayerBack(Page, pictureWatermark, null);
                     LayerPicture(Page, pictureWatermark, null);
                 }
@@ -791,7 +797,15 @@ namespace FastReport.Export.Html
                 }
                 else
                 {
-                    // to-do for picture background
+                    using (TextObject backPage = new TextObject())
+                    {
+                        backPage.Fill = reportPage.Fill;
+                        backPage.Height = reportPage.Height;
+                        backPage.Width = reportPage.Width;
+                        string pic = GetLayerPicture(backPage, out float Width, out float Height);
+                        htmlPage.Append("background: url('")
+                         .Append(pic).Append("') no-repeat !important;-webkit-print-color-adjust:exact;");
+                    }
                 }
                 htmlPage.Append("\">");
 
@@ -870,15 +884,15 @@ namespace FastReport.Export.Html
                     using (TextObject tableback = new TextObject())
                     {
                         tableback.Border = table.Border;
-                        tableback.Fill = table.Fill;
                         tableback.FillColor = table.FillColor;
+                        tableback.Fill = table.Fill;
                         tableback.Left = table.AbsLeft;
                         tableback.Top = table.AbsTop;
                         float tableWidth = 0;
                         float tableHeight = 0;
 
                         for (int i = 0; i < table.ColumnCount; i++)
-                            tableWidth += table[i, 0].Width;
+                            tableWidth += table.Columns[i].Width;
                         for (int i = 0; i < table.RowCount; i++)
                             tableHeight += table.Rows[i].Height;
                         tableback.Width = (tableWidth < table.Width) ? tableWidth : table.Width;

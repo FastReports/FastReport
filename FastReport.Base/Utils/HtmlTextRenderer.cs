@@ -616,7 +616,13 @@ namespace FastReport.Utils
                     try { style.Size *= Single.Parse(tStr.Substring(0, tStr.Length - 2), CultureInfo); } catch { }
             }
             if (dict.TryGetValue("font-family", out tStr))
+            {
+                // checks if there are single quotation marks in the font name
+                if (tStr.Contains("'"))
+                    tStr = tStr.Replace("'", ""); // Removes all single quotes
                 style.Font = new FontFamily(tStr);
+            }
+   
             if (dict.TryGetValue("color", out tStr))
             {
                 if (StartsWith(tStr, "#"))
@@ -896,7 +902,7 @@ namespace FastReport.Utils
                             currentWord.Clear();
                             paragraph.Lines.Add(line);
                             break;
-
+                        case '\v':
                         case '\n':
                             if (word != null)
                             {
@@ -3065,6 +3071,11 @@ namespace FastReport.Utils
                 float fontsize = size / DrawUtils.ScreenDpiFX;
                 if (close)
                 {
+                    switch (baseLine)
+                    {
+                        case BaseLine.Subscript: sb.Append("</sub>"); break;
+                        case BaseLine.Superscript: sb.Append("</sup>"); break;
+                    }
                     sb.Append("</span>");
 
                     if ((fontStyle & FontStyle.Strikeout) == FontStyle.Strikeout) sb.Append("</strike>");
@@ -3072,20 +3083,9 @@ namespace FastReport.Utils
                     if ((fontStyle & FontStyle.Italic) == FontStyle.Italic) sb.Append("</i>");
                     if ((fontStyle & FontStyle.Bold) == FontStyle.Bold) sb.Append("</b>");
 
-                    switch (baseLine)
-                    {
-                        case BaseLine.Subscript: sb.Append("</sub>"); break;
-                        case BaseLine.Superscript: sb.Append("</sup>"); break;
-                    }
                 }
                 else
                 {
-                    switch (baseLine)
-                    {
-                        case BaseLine.Subscript: sb.Append("<sub>"); break;
-                        case BaseLine.Superscript: sb.Append("<sup>"); break;
-                    }
-
                     if ((fontStyle & FontStyle.Bold) == FontStyle.Bold) sb.Append("<b>");
                     if ((fontStyle & FontStyle.Italic) == FontStyle.Italic) sb.Append("<i>");
                     if ((fontStyle & FontStyle.Underline) == FontStyle.Underline) sb.Append("<u>");
@@ -3094,7 +3094,7 @@ namespace FastReport.Utils
                     sb.Append("<span style=\"");
                     if (backgroundColor.A > 0) sb.Append(String.Format(CultureInfo, "background-color:rgba({0},{1},{2},{3});", backgroundColor.R, backgroundColor.G, backgroundColor.B, ((float)backgroundColor.A) / 255f));
                     if (color.A > 0) sb.Append(String.Format(CultureInfo, "color:rgba({0},{1},{2},{3});", color.R, color.G, color.B, ((float)color.A) / 255f));
-                    if (font != null) { sb.Append("font-family:"); sb.Append(font.Name); sb.Append(";"); }
+                    if (font != null) { sb.Append("font-family:"); sb.Append("\'"+font.Name+"\'"); sb.Append(";"); }
                     if (fontsize > 0) { sb.Append("font-size:"); sb.Append(fontsize.ToString(CultureInfo)); sb.Append("pt;"); }
 
                     //if ((fontStyle & FontStyle.Italic) == FontStyle.Italic) { sb.Append("font-style:italic;"); }
@@ -3117,6 +3117,11 @@ namespace FastReport.Utils
                     //}
 
                     sb.Append("\">");
+                    switch (baseLine)
+                    {
+                        case BaseLine.Subscript: sb.Append("<sub>"); break;
+                        case BaseLine.Superscript: sb.Append("<sup>"); break;
+                    }
                 }
             }
 

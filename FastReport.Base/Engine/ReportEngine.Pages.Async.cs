@@ -11,6 +11,8 @@ namespace FastReport.Engine
 
         private async Task RunReportPageAsync(ReportPage page, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             this.page = page;
             InitReprint();
             pageNameForRecalc = null;
@@ -58,14 +60,23 @@ namespace FastReport.Engine
             {
                 ReportPage page = Report.Pages[i] as ReportPage;
 
-                // Calc and apply visible expression if needed.
-                if (page != null && !String.IsNullOrEmpty(page.VisibleExpression))
+                if (page != null)
                 {
-                    page.Visible = page.CalcVisibleExpression(page.VisibleExpression);
-                }
+                    // Calc and apply visible expression if needed.
+                    if (!String.IsNullOrEmpty(page.VisibleExpression))
+                    {
+                        page.Visible = page.CalcVisibleExpression(page.VisibleExpression);
+                    }
 
-                if (page != null && page.Visible && page.Subreport == null)
-                    await RunReportPageAsync(page, cancellationToken);
+                    // Apply printable expression if needed.
+                    if (!String.IsNullOrEmpty(page.PrintableExpression))
+                    {
+                        page.Printable = page.CalcVisibleExpression(page.PrintableExpression);
+                    }
+
+                    if (page.Visible && page.Subreport == null)
+                        await RunReportPageAsync(page, cancellationToken);
+                }
                 if (Report.Aborted)
                     break;
             }
@@ -73,6 +84,8 @@ namespace FastReport.Engine
 
         private async Task RunBandsAsync(BandCollection bands, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             for (int i = 0; i < bands.Count; i++)
             {
                 BandBase band = bands[i];

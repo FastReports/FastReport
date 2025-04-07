@@ -22,7 +22,7 @@ namespace FastReport.Web
 #if DIALOGS
             if (Mode == WebReportMode.Dialog)
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder(4096);
 
                 Dialog.ProcessDialogs(sb);
 
@@ -58,12 +58,6 @@ namespace FastReport.Web
                 html.Layers = Layers; //html.Layers = Layers;
                 html.PageNumbers = SinglePage ? "" : (CurrentPageIndex + 1).ToString(); //html.PageNumbers = SinglePage ? "" : (Prop.CurrentPage + 1).ToString();
 
-                //if (Prop.AutoWidth)
-                //    html.WidthUnits = HtmlSizeUnits.Percent;
-                //if (Prop.AutoHeight)
-                //    html.HeightUnits = HtmlSizeUnits.Percent;
-
-                //html.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, controller.RouteBasePath, ID, "picture") + "/"; //html.WebImagePrefix = String.Concat(context.Response.ApplyAppPathModifier(WebUtils.HandlerFileName), "?", WebUtils.PicsPrefix);
                 html.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={ID}&pictureId=");
                 html.SinglePage = SinglePage; //html.SinglePage = SinglePage;
                 html.CurPage = CurrentPageIndex; //html.CurPage = CurrentPage;
@@ -88,6 +82,12 @@ namespace FastReport.Web
                 //    "px;padding-top:" + paddingTop +
                 //    "px;padding-bottom:" + paddingBottom + "px\">");
 
+                // important container, it cuts off elements that are outside of the report page bounds
+                int pageWidth = (int)Math.Ceiling(GetReportPageWidthInPixels() * html.Zoom);
+                int pageHeight = (int)Math.Ceiling(GetReportPageHeightInPixels() * html.Zoom);
+                ReportMaxWidth = pageWidth;
+                sb.Append($@"<div style=""width:{pageWidth}px;height:{pageHeight}px;overflow:hidden;display:inline-block;"">");
+
                 if (html.Count > 0)
                 {
                     if (SinglePage)
@@ -100,15 +100,6 @@ namespace FastReport.Web
                         DoHtmlPage(sb, html, 0);
                     }
                 }
-
-                //sb.Append("</div>");
-                //sb.Append("</div>");
-
-                // important container, it cuts off elements that are outside of the report page bounds
-                int pageWidth = (int)Math.Ceiling(GetReportPageWidthInPixels() * html.Zoom);
-                int pageHeight = (int)Math.Ceiling(GetReportPageHeightInPixels() * html.Zoom);
-                ReportMaxWidth = pageWidth;
-                sb.Insert(0, $@"<div style=""width:{pageWidth}px;height:{pageHeight}px;overflow:hidden;display:inline-block;"">");
                 sb.Append("</div>");
             }
 

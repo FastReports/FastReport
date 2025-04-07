@@ -297,7 +297,8 @@ namespace FastReport.Table
             base.Assign(source);
         }
 
-        internal TableCellData CellData(int col)
+        /// <inheritdoc/>
+        public TableCellData CellData(int col)
         {
             while (col >= cells.Count)
             {

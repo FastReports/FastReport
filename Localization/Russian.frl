@@ -162,6 +162,7 @@
     <RavenDBDataConnection Text="Подключение к RavenDB"/>
     <SqlAnywhereDataConnection Text="Подключение к SqlAnywhere"/>
     <ClickHouseDataConnection Text="Подключение к ClickHouse"/>
+    <IgniteDataConnection Text="Подключение к Apache Ignite"/>
     <Bands Text="Бэнды">
       <ReportTitle Text="Заголовок отчета"/>
       <ReportSummary Text="Подвал отчета"/>
@@ -564,6 +565,7 @@
         <NewCalculatedColumn Text="Новое вычисляемое поле..."/>
         <Rename Text="Переименовать"/>
         <Edit Text="Редактировать"/>
+        <Copy Text="Копировать"/>
         <Delete Text="Удалить"/>
         <DeleteAlias Text="Удалить псевдоним"/>
         <View Text="Показать данные..."/>
@@ -2303,6 +2305,9 @@
     <Postgres>
       <EnableSystemSchemas Text="Включить системные схемы"/>
     </Postgres>
+    <Ignite>
+      <Endpoints Text="Конечные точки:"/>
+    </Ignite>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2544,6 +2549,7 @@
       <DefaultMenu Text="По умолчанию"/>
     </Editor>
     <ExportGroups>
+      <Prepared Text="Подготовленный отчет"/>
       <Office Text="Офис"/>
       <XML Text="XML"/>
       <Web Text="Веб"/>
@@ -2624,6 +2630,8 @@
     </Xml>
     <Odf>
       <Compliance Text="Стандарт ODF:  "/>
+      <TranslateRich Text="Транслировать RichObject"/>
+      <ParagraphBased Text="По параграфам"/>
     </Odf>
     <Odt Text="Экспорт в  OpenOffice Writer">
       <File Text="OpenOffice Writer"/>
@@ -2662,6 +2670,7 @@
       <CurrencyToAccounting Text="Преобразовывать денежный формат в финансовый"/>
       <GeneralToText Text="Преобразовывать общий формат в текстовый"/>
       <UseCustomFormat Text="Преобразовывать в пользовательский формат"/>
+	  <ShrinkToFit Text="Автоподбор ширины"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>
@@ -2978,6 +2987,13 @@
     <Last Text="На последнюю страницу"/>
     <EnterPage Text="Введите номер страницы для перехода"/>
     <TotalPages Text="Всего страниц (не редактируется)"/>
+	<Search Text="Поиск"/>
+    <SearchPlaceholder Text="Введите текст"/>
+    <MatchCase Text="Учитывать регистр"/>
+    <WholeWord Text="Только слово целиком"/>
+    <SearchNext Text="Искать следующее"/>
+    <SearchPrev Text="Искать предыдущее"/>
+    <SearchNotFound Text="Не найдено"/>
     <Back Text="Назад"/>
     <ScriptSecurity>
       <ForbiddenType Text="Пожалуйста, не используйте тип {typeName}"/>

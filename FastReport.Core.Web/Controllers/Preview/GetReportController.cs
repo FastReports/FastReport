@@ -30,6 +30,10 @@ namespace FastReport.Web.Controllers
 
             try
             {
+#if !OPENSOURCE
+                if (!reportService.SearchText(webReport, query.ReportSearchParams))
+                    return Results.NotFound();
+#endif
                 string render = await reportService.GetReportAsync(webReport, query, cancellationToken);
 
                 if (render.IsNullOrEmpty())

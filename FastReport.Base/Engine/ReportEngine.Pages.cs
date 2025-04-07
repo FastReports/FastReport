@@ -75,14 +75,23 @@ namespace FastReport.Engine
             {
                 ReportPage page = Report.Pages[i] as ReportPage;
 
-                // Calc and apply visible expression if needed.
-                if (page != null && !String.IsNullOrEmpty(page.VisibleExpression))
+                if (page != null)
                 {
-                    page.Visible = page.CalcVisibleExpression(page.VisibleExpression);
-                }
+                    // Calc and apply visible expression if needed.
+                    if (!String.IsNullOrEmpty(page.VisibleExpression))
+                    {
+                        page.Visible = page.CalcVisibleExpression(page.VisibleExpression);
+                    }
 
-                if (page != null && page.Visible && page.Subreport == null)
-                    RunReportPage(page);
+                    // Calc and apply printable expression if needed.
+                    if (!String.IsNullOrEmpty(page.PrintableExpression))
+                    {
+                        page.Printable = page.CalcVisibleExpression(page.PrintableExpression);
+                    }
+
+                    if (page.Visible && page.Subreport == null)
+                        RunReportPage(page);
+                }
                 if (Report.Aborted)
                     break;
             }

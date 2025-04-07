@@ -8,11 +8,24 @@ using System.Threading.Tasks;
 using FastReport.Web.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
+using System.Threading;
 
 namespace FastReport.Web.Controllers
 {
     static partial class Controllers
     {
+        [HttpPost("/designer.createReport")]
+        public static async Task<IResult> CreateReport(HttpRequest request,
+            IReportDesignerService reportDesignerService,
+            CancellationToken cancellationToken)
+        {
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
+            var webReportId = await reportDesignerService.CreateReport(request.Body, cancellationToken);
+            return Results.Ok(webReportId);
+        }
+
         [HttpGet("/designer.getReport")]
         public static IResult GetReport(string reportId,
             HttpRequest request, 
@@ -31,7 +44,8 @@ namespace FastReport.Web.Controllers
         }
 
         [HttpPost("/designer.saveReport")]
-        public static async Task<IResult> SaveReport(string reportId,  HttpRequest request, IReportService reportService, IReportDesignerService reportDesignerService)
+        public static async Task<IResult> SaveReport(string reportId, HttpRequest request, IReportService reportService,
+            IReportDesignerService reportDesignerService)
         {
             if (!IsAuthorized(request))
                 return Results.Unauthorized();
@@ -54,7 +68,7 @@ namespace FastReport.Web.Controllers
         }
 
         [HttpPost("/designer.previewReport")]
-        public static async Task<IResult> GetPreviewReport(string reportId, HttpRequest request, IReportService reportService, IReportDesignerService reportDesignerService)
+        public static async Task<IResult> GetPreviewReport(string reportId, HttpRequest request, IReportService reportService, IReportDesignerService reportDesignerService, CancellationToken cancellationToken)
         {
             if (!IsAuthorized(request))
                 return Results.Unauthorized();
@@ -62,12 +76,10 @@ namespace FastReport.Web.Controllers
             if (!reportService.TryFindWebReport(reportId, out var webReport))
                 return Results.NotFound();
 
-            var receivedReportString = await reportDesignerService.GetPOSTReportAsync(request.Body);
             string response;
-
             try
             {
-                response = await reportDesignerService.DesignerMakePreviewAsync(webReport, receivedReportString);
+                response = await reportDesignerService.DesignerMakePreviewAsync(webReport, request.Body, cancellationToken);
             }
             catch (Exception ex)
             {

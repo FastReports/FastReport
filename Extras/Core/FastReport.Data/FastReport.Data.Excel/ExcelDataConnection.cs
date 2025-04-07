@@ -197,22 +197,20 @@ namespace FastReport.Data
                 return typeof(string);
             }
 
-            switch (cell.DataType)
-            {
-                case CellValues.Date:
-                    return typeof(DateTime);
-                case CellValues.Boolean:
-                    return typeof(bool);
-                case CellValues.Number:
-                    return typeof(decimal);
-                case CellValues.InlineString:
-                case CellValues.SharedString:
-                case CellValues.String:
-                    return typeof(string);
-                case CellValues.Error:
-                default:
-                    return typeof(string);
-            }
+            if (cell.DataType == CellValues.Date)
+                return typeof(DateTime);
+            else if (cell.DataType == CellValues.Boolean)
+                return typeof(bool);
+            else if (cell.DataType == CellValues.Number)
+                return typeof(decimal);
+            else if (cell.DataType == CellValues.InlineString ||
+                     cell.DataType == CellValues.SharedString ||
+                     cell.DataType == CellValues.String)
+                return typeof(string);
+            else if (cell.DataType == CellValues.Error)
+                return typeof(string);
+            else
+                return typeof(string);
         }
 
         /// <summary>

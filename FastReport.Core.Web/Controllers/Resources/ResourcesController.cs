@@ -13,7 +13,7 @@ namespace FastReport.Web.Controllers
     {
         internal sealed class GetResourceParams
         {
-            public string ResourceName { get; set; }
+            public string ResourceName { get; init; }
 
             public string ContentType { get; set; }
         }

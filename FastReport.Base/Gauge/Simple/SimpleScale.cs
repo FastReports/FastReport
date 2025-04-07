@@ -308,7 +308,7 @@ namespace FastReport.Gauge.Simple
     /// Represent the subscale of simple scale.
     /// </summary>
     [ToolboxItem(false)]
-    public class SimpleSubScale : Component
+    public class SimpleSubScale
     {
         #region Fields
 

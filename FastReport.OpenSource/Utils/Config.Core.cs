@@ -1,8 +1,71 @@
-﻿namespace FastReport.Utils
+﻿using FastReport.Data;
+
+namespace FastReport.Utils
 {
     static partial class Config
     {
         #region Public Properties
+
+        /// <summary>
+        /// Provides data for the FilterConnectionTables event.
+        /// </summary>
+        public class FilterConnectionTablesEventArgs
+        {
+
+            /// <summary>
+            /// Gets the Connection object.
+            /// </summary>
+            public DataConnectionBase Connection { get; }
+
+            /// <summary>
+            /// Gets the table name.
+            /// </summary>
+            public string TableName { get; }
+
+            /// <summary>
+            /// Gets or sets a value that indicates whether this table should be skipped.
+            /// </summary>
+            public bool Skip { get; set; }
+
+            internal FilterConnectionTablesEventArgs(DataConnectionBase connection, string tableName)
+            {
+                this.Connection = connection;
+                this.TableName = tableName;
+            }
+        }
+
+        /// <summary>
+        /// Occurs when getting available table names from the connection.
+        /// </summary>
+        /// <remarks>
+        /// Use this handler to filter the list of tables returned by the connection object.
+        /// </remarks>
+        /// <example>
+        /// This example demonstrates how to hide the table with "Table 1" name from the Data Wizard.
+        /// <code>
+        /// Config.FilterConnectionTables += FilterConnectionTables;
+        ///
+        /// private void FilterConnectionTables(object sender, FilterConnectionTablesEventArgs e)
+        /// {
+        ///   if (e.TableName == "Table 1")
+        ///     e.Skip = true;
+        /// }
+        /// </code>
+        /// </example>
+        public static event FilterConnectionTablesEventHandler FilterConnectionTables;
+
+        /// <summary>
+        /// Represents the method that will handle the FilterConnectionTables event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
+        public delegate void FilterConnectionTablesEventHandler(object sender, FilterConnectionTablesEventArgs e);
+
+        internal static void OnFilterConnectionTables(object sender, FilterConnectionTablesEventArgs e)
+        {
+            if (FilterConnectionTables != null)
+                FilterConnectionTables(sender, e);
+        }
 
         /// <summary>
         /// Gets a value indicating that the ASP.NET hosting permission level is set to full trust.

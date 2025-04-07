@@ -38,6 +38,8 @@ namespace FastReport.Engine
 
         private async Task RunDataBandAsync(DataBand dataBand, int rowCount, bool keepFirstRow, bool keepLastRow, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             if (dataBand.IsHierarchical)
             {
                 await ShowHierarchyAsync(dataBand, rowCount, cancellationToken);
@@ -168,7 +170,7 @@ namespace FastReport.Engine
                 if (dataBand.ResetPageNumber && (dataBand.FirstRowStartsNewPage || dataBand.RowNo > 1))
                     ResetLogicalPageNumber();
                 if (dataBand.Footer != null && dataBand.CanBreak)
-                    if (dataBand.Footer.KeepWithData && dataBand.Footer.Height + dataBand.Height > FreeSpace)
+                    if (dataBand.Footer.KeepWithData && dataBand.Footer.Height + dataBand.Height > await GetFreeSpaceAsync(cancellationToken))
                     {
                         dataBand.AddLastToFooter(dataBand.Footer);
                     }

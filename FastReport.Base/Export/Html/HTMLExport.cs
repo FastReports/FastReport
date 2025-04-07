@@ -1,6 +1,7 @@
 using FastReport.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -9,9 +10,18 @@ using System.Text;
 namespace FastReport.Export.Html
 {
     /// <summary>
+    /// For internal use only.
+    /// </summary>
+    public interface IHTMLBaseExport 
+    {
+        public bool Layers { get; }
+        public bool EnableVectorObjects  { get; }
+    }
+
+    /// <summary>
     /// Represents the HTML export filter.
     /// </summary>
-    public partial class HTMLExport : ExportBase
+    public partial class HTMLExport : ExportBase, IHTMLBaseExport
     {
         /// <summary>
         /// Draw any custom controls
@@ -152,8 +162,8 @@ namespace FastReport.Export.Html
         private HTMLData d;
         private IGraphics htmlMeasureGraphics;
         private float maxWidth, maxHeight;
-        private readonly FastString css = new FastString();
-        private readonly FastString htmlPage = new FastString();
+        private readonly FastString css = new FastString(4096);
+        private readonly FastString htmlPage = new FastString(4096);
         private float leftMargin, topMargin;
         private bool enableMargins = false;
         private ExportType exportMode;
@@ -241,6 +251,7 @@ namespace FastReport.Export.Html
         /// <summary>
         /// For internal use only.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public List<HTMLPageData> PreparedPages
         {
             get { return pages; }
@@ -458,8 +469,7 @@ namespace FastReport.Export.Html
             {
                 if (!layers)
                 {
-                    pages[CurrentPage].CSSText = Page.ToString();
-                    Page.Clear();
+                    pages[CurrentPage].CSSText = Page.StringBuilder;
                 }
                 pages[CurrentPage].PageNumber = PageNumber;
             }
@@ -513,13 +523,11 @@ namespace FastReport.Export.Html
 
             if (Page != null)
             {
-                pages[d.CurrentPage].PageText = Page.ToString();
-                Page.Clear();
+                pages[d.CurrentPage].PageText = Page.StringBuilder;
             }
             if (CSS != null)
             {
-                pages[d.CurrentPage].CSSText = CSS.ToString();
-                CSS.Clear();
+                pages[d.CurrentPage].CSSText = CSS.StringBuilder;
             }
             pages[d.CurrentPage].PageEvent.Set();
         }
@@ -1038,6 +1046,14 @@ namespace FastReport.Export.Html
             this.webPreview = webPreview;
             if (webPreview)
                 exportMode = ExportType.WebPreview;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (pages != null)
+                foreach (var page in pages)
+                    page.Dispose();
         }
     }
 

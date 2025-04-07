@@ -23,6 +23,14 @@ namespace FastReport.Web.Services
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
+        private readonly DesignerOptions _designerOptions;
+        private readonly IntelliSenseHelper _intelliSenseHelper;
+
+        public DesignerUtilsService(DesignerOptions designerOptions)
+        {
+            _designerOptions = designerOptions;
+            _intelliSenseHelper = new IntelliSenseHelper(designerOptions.IntelliSenseAssemblies);
+        }
 
         public string GetMSChartTemplateXML(string templateName)
         {
@@ -168,22 +176,22 @@ namespace FastReport.Web.Services
                 config = new JsonObject();
             }
 
-            config[IsCustomSqlAllowedKey] = FastReportGlobal.AllowCustomSqlQueries;
-            config[EnableIntellisenseKey] = FastReportGlobal.EnableIntellisense;
+            config[IsCustomSqlAllowedKey] = _designerOptions.AllowCustomSqlQueries;
+            config[EnableIntellisenseKey] = _designerOptions.EnableIntelliSense;
 
             return config.ToString();
         }
 
         public string GetNamespacesInfoJson(IReadOnlyCollection<string> namespaces)
         {
-            var result = IntelliSenseHelper.GetNamespacesInfo(namespaces);
+            var result = _intelliSenseHelper.GetNamespacesInfo(namespaces);
 
             return JsonSerializer.Serialize(result, JsonSerializerOptions);
         }
 
         public string GetClassDetailsJson(string className)
         {
-            var classInfo = IntelliSenseHelper.GetClassDetails(className);
+            var classInfo = _intelliSenseHelper.GetClassDetails(className);
 
             return JsonSerializer.Serialize(classInfo, JsonSerializerOptions);
         }

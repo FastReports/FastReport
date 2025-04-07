@@ -25,6 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
         private static void AddFastReportWebServices(IServiceCollection services, WebReportOptions options)
         {
             services.TryAddSingleton(options.CacheOptions);
+            services.TryAddSingleton(options.Designer);
             if (options.CacheOptions.UseLegacyWebReportCache)
             {
                 services.TryAddSingleton<IWebReportCache, WebReportLegacyCache>();
@@ -53,9 +54,6 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             FastReportGlobal.InternalEmailExportOptions = options.EmailExportOptions;
-            FastReportGlobal.AllowCustomSqlQueries = options.AllowCustomSqlQueries;
-            FastReportGlobal.EnableIntellisense = options.EnableOnlineDesignerIntelliSense;
-            FastReportGlobal.IntelliSenseAssemblies = options.IntelliSenseAssemblies;
 
             services.TryAddSingleton<IResourceLoader, InternalResourceLoader>();
             services.TryAddSingleton<IDesignerUtilsService, DesignerUtilsService>();

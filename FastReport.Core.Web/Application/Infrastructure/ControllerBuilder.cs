@@ -23,7 +23,7 @@ namespace FastReport.Web.Infrastructure
     {
         private static ControllerExecutor _executor;
 
-        private static readonly JsonSerializerOptions _serializerOptions = new() { PropertyNameCaseInsensitive = true };
+        private static readonly JsonSerializerOptions _serializerOptions = new() { PropertyNameCaseInsensitive = true,  NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString };
 
         public static MethodInfo[] GetControllerMethods()
         {

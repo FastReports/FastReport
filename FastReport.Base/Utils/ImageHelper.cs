@@ -84,6 +84,23 @@ namespace FastReport.Utils
             //      return source.Clone() as Bitmap;
         }
 
+        internal static Bitmap CutImage(Bitmap src, RectangleF rect)
+        {
+            Bitmap bmp = new Bitmap(src.Width, src.Height); 
+            Graphics g = Graphics.FromImage(bmp);
+            g.DrawImage(src, 0, 0, rect, GraphicsUnit.Pixel);
+            return bmp;
+        }
+
+        internal static byte[] ToByteArray(Image image, ImageFormat format)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, format);
+                return ms.ToArray();
+            }
+        }
+
         internal static void Save(Image image, Stream stream)
         {
             Save(image, stream, image.GetImageFormat());
