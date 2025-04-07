@@ -14,9 +14,6 @@ namespace FastReport.Web.Infrastructure
 
 #if !WASM
         internal static EmailExportOptions InternalEmailExportOptions = null;
-        internal static bool AllowCustomSqlQueries = false;
-        internal static bool EnableIntellisense = false;
-        internal static List<string> IntelliSenseAssemblies = new();
 #endif
 
     }

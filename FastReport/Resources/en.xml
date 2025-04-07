@@ -162,6 +162,7 @@
     <RavenDBDataConnection Text="RavenDB connection"/>
     <SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
     <ClickHouseDataConnection Text="ClickHouse connection"/>
+    <IgniteDataConnection Text="Apache Ignite connection"/>
     <Bands Text="Bands">
       <ReportTitle Text="Report Title"/>
       <ReportSummary Text="Report Summary"/>
@@ -565,6 +566,7 @@
         <NewCalculatedColumn Text="New Calculated Column..."/>
         <Rename Text="Rename"/>
         <Edit Text="Edit..."/>
+        <Copy Text="Copy"/>
         <Delete Text="Delete"/>
         <DeleteAlias Text="Delete Alias"/>
         <View Text="View Data..."/>
@@ -2505,6 +2507,9 @@
     <Postgres>
       <EnableSystemSchemas Text="Enable System Schemas"/>
     </Postgres>
+    <Ignite>
+      <Endpoints Text="Endpoints:"/>
+    </Ignite>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>
@@ -2778,6 +2783,7 @@
       <DefaultMenu Text="Default Menu"/>
     </Editor>
     <ExportGroups>
+      <Prepared Text="Prepared"/>
       <Office Text="Office"/>
       <XML Text="XML"/>
       <Web Text="Web"/>
@@ -2858,6 +2864,8 @@
     </Xml>
     <Odf>
       <Compliance Text="ODF Compliance:  "/>
+      <TranslateRich Text="Translate RichObject"/>
+      <ParagraphBased Text="Paragraphs mode"/>
     </Odf>
     <Odt Text="Export to Open Office Writer">
       <File Text="OpenOffice Writer"/>
@@ -2896,6 +2904,7 @@
       <CurrencyToAccounting Text="Convert currency to accounting format"/>
       <GeneralToText Text="Convert general to text format"/>
       <UseCustomFormat Text="Use custom format"/>
+	  <ShrinkToFit Text="Shrink to fit" />
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
@@ -3217,6 +3226,13 @@
     <Prev Text="Go to previous page"/>
     <Next Text="Go to next page"/>
     <Last Text="Go to last page"/>
+    <Search Text="Search"/>
+    <SearchPlaceholder Text="Enter the text"/>
+    <MatchCase Text="Match case"/>
+    <WholeWord Text="Whole word"/>
+    <SearchNext Text="Search next"/>
+    <SearchPrev Text="Search prev"/>
+    <SearchNotFound Text="Not found"/>
     <EnterPage Text="Enter the page number to jump"/>
     <TotalPages Text="Total pages (read only)"/>
     <Back Text="Back"/>

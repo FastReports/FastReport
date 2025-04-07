@@ -835,7 +835,7 @@ namespace FastReport
                 {
                     if (FontWidthRatio != 1)
                         width /= FontWidthRatio;
-                    SizeF size = g.MeasureString(Text, font, new SizeF(width, 100000));
+                    SizeF size = g.MeasureString(Text.Replace('\v', '\n'), font, new SizeF(width, 100000));
                     size.Width += Padding.Horizontal + 1;
                     size.Height += Padding.Vertical + 1;
                     return size;
@@ -1279,6 +1279,7 @@ namespace FastReport
                                 // use simple rendering
                                 if (Angle == 0 && FontWidthRatio == 1)
                                 {
+                                    text = text.Replace('\v', '\n');
                                     if (outlinePen == null)
                                     {
                                         if (WordWrap)
@@ -1624,11 +1625,6 @@ namespace FastReport
         {
             base.GetData();
 
-            GetDataShared();
-        }
-
-        private void GetDataShared()
-        {
             // process expressions
             if (AllowExpressions)
             {

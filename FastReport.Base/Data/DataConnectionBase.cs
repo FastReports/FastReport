@@ -416,7 +416,7 @@ namespace FastReport.Data
                     }
                     else
                         table.Name = fixedTableName;
-
+                    
                     table.TableName = tableName;
                     table.Connection = this;
 
@@ -445,6 +445,8 @@ namespace FastReport.Data
         /// </summary>
         public virtual void CreateAllProcedures()
         {
+            if (!CanContainProcedures)
+                return;
             List<string> procedureNames = new List<string>();
             procedureNames.AddRange(GetProcedureNames());
             FilterTables(procedureNames);
@@ -600,7 +602,7 @@ namespace FastReport.Data
         }
 
         /// <summary>
-        /// Gets an array of table names available in the database.
+        /// Gets an array of subroutine names available in the database.
         /// </summary>
         /// <returns>An array of strings.</returns>
         public virtual string[] GetProcedureNames()
@@ -843,7 +845,8 @@ namespace FastReport.Data
 
                 foreach (Column column in dataSource.Columns)
                 {
-                    if (!column.Enabled)
+                    // Deleting only disabled columns that exist in the table.
+                    if (!column.Enabled && table.Columns.Contains(column.Name))
                         table.Columns.Remove(column.Name);
                 }
             }
@@ -1033,6 +1036,8 @@ namespace FastReport.Data
             return new string[] { ConnectionStringExpression };
         }
 
+        partial void SetMaskConnectionStringPassword();
+
         partial void SetConnectionStringBrowsableAttribute();
 
         #endregion
@@ -1050,6 +1055,7 @@ namespace FastReport.Data
             commandTimeout = 30;
             SetFlags(Flags.CanEdit, true);
             SetConnectionStringBrowsableAttribute();
+            SetMaskConnectionStringPassword();
         }
 
         partial void SerializeDesignExt(FRWriter writer);

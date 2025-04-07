@@ -44,7 +44,7 @@ namespace FastReport.Web.Controllers
         [Obsolete]
         [HttpGet("/designer.getConnectionTables")]
         public static IResult GetConnectionTables([FromQuery] ConnectionsParams query,
-            IConnectionsService connectionsService)
+            IConnectionsService connectionsService, IReportService reportService)
         {
             var request = new ConnectionTablesRequestModel
             {
@@ -52,15 +52,20 @@ namespace FastReport.Web.Controllers
                 CustomViews = new()
             };
 
-            return GetConnectionTables(request, connectionsService);
+            return GetConnectionTables("", request, connectionsService, reportService);
         }
 
         [HttpPost("/designer.getConnectionTables")]
-        public static IResult GetConnectionTables([FromBody] ConnectionTablesRequestModel request, IConnectionsService connectionsService)
+        public static IResult GetConnectionTables([FromQuery] string reportId, [FromBody] ConnectionTablesRequestModel request,
+            IConnectionsService connectionsService, IReportService reportService)
         {
             try
             {
-                var response = connectionsService.GetConnectionTables(request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews);
+                string response;
+                if (!reportService.TryFindWebReport(reportId, out var webReport))
+                    response = connectionsService.GetConnectionTables(request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews);
+                else
+                    response = connectionsService.GetConnectionTables(webReport, request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews);
 
                 return Results.Content(response, "application/xml");
             }
@@ -83,11 +88,10 @@ namespace FastReport.Web.Controllers
                 : Results.Content(response, "application/xml");
         }
 
-
-        [HttpPost("/designer.updateConnectionTable")]
-        public static IResult UpdateConnectionTable([FromQuery] string reportId,
+        [HttpPost("/designer.createConnection")]
+        public static IResult CreateConnection([FromQuery] string reportId,
             [FromQuery] string connectionType,
-            [FromBody] UpdateTableParams parameters,
+            [FromBody] CreateConnectionParams parameters,
             IReportService reportService,
             IConnectionsService connectionsService,
             HttpRequest request)
@@ -97,18 +101,43 @@ namespace FastReport.Web.Controllers
 
             try
             {
+                if (!reportService.TryFindWebReport(reportId, out var webReport))
+                    return Results.NotFound();
+
+                connectionsService.CreateConnection(webReport, connectionType, parameters);
+
+                return Results.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Results.BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("/designer.updateConnectionTable")]
+        public static IResult UpdateConnectionTable([FromQuery] string reportId,
+        [FromQuery] string connectionType,
+        [FromBody] UpdateTableParams parameters,
+        IReportService reportService,
+        IConnectionsService connectionsService,
+        HttpRequest request)
+        {
+            if (!IsAuthorized(request))
+                return Results.Unauthorized();
+
+            try
+            {
                 string response;
+                if (!reportService.TryFindWebReport(reportId, out var webReport))
+                    return Results.NotFound();
 
                 if (parameters.ConnectionString.IsNullOrWhiteSpace())
                 {
-                    if (!reportService.TryFindWebReport(reportId, out var webReport))
-                        return Results.NotFound();
-
                     response = connectionsService.GetUpdatedTableByReportId(webReport, parameters);
                 }
                 else
                 {
-                    response = connectionsService.GetUpdatedTableByConnectionString(parameters.ConnectionString,
+                    response = connectionsService.GetUpdatedTableByConnectionString(webReport, parameters.ConnectionString,
                         connectionType, parameters);
                 }
 

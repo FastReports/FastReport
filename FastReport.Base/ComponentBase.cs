@@ -529,7 +529,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Caclulates visible expression value.
+        /// Calculate visible expression value.
         /// </summary>
         /// <param name="expression">The expression to calculate.</param>
         /// <returns>The result of calculation.</returns>

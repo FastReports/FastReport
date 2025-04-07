@@ -372,8 +372,47 @@ namespace FastReport.Web
 
             CurrentPageIndex = value;
         }
+#if !OPENSOURCE
+        /// <summary>
+        /// Forced transition to the report page containing the required text.
+        /// </summary>
+        public bool ReportSearch(string searchText, bool backward, bool matchCase, bool wholeWord)
+        {
+            if (string.IsNullOrEmpty(searchText))
+                return true;
 
-        #endregion
+            int indexPage = CurrentPageIndex;
+            if (backward)
+                indexPage--;
+            else
+                indexPage++;
+
+            for (; indexPage < TotalPages && indexPage >= 0;)
+            {
+                ReportPage page = CurrentTab.Report.PreparedPages.GetPage(indexPage);
+                ObjectCollection pageObjects = page.AllObjects;
+                for (int objNo = 0; objNo < pageObjects.Count; objNo++)
+                {
+                    ISearchable obj = pageObjects[objNo] as ISearchable;
+                    if (obj != null)
+                    {
+                        CharacterRange[] ranges = obj.SearchText(searchText, matchCase, wholeWord);
+                        if (ranges != null)
+                        {
+                            GotoPage(indexPage);
+                            return true;
+                        }
+                    }
+                }
+                if (backward)
+                    indexPage--;
+                else
+                    indexPage++;
+            }
+            return false;
+        }
+#endif
+#endregion
 
         #region Script Security
 

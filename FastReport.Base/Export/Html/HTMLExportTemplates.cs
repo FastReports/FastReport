@@ -11,11 +11,11 @@ namespace FastReport.Export.Html
     public class HtmlTemplates
     {
         #region private fields
-        private string pageTemplateTitle;
-        private string pageTemplateFooter;
-        private string navigatorTemplate;
-        private string outlineTemplate;
-        private string indexTemplate;
+        private readonly string pageTemplateTitle;
+        private readonly string pageTemplateFooter;
+        private readonly string navigatorTemplate;
+        private readonly string outlineTemplate;
+        private readonly string indexTemplate;
         private FastString capacitor;
         #endregion
 
@@ -42,7 +42,6 @@ namespace FastReport.Export.Html
         public string PageTemplateTitle
         {
             get { return pageTemplateTitle; }
-            set { pageTemplateTitle = value; }
         }
 
         /// <summary>
@@ -51,7 +50,6 @@ namespace FastReport.Export.Html
         public string PageTemplateFooter
         {
             get { return pageTemplateFooter; }
-            set { pageTemplateFooter = value; }
         }
 
         /// <summary>
@@ -60,7 +58,6 @@ namespace FastReport.Export.Html
         public string NavigatorTemplate
         {
             get { return navigatorTemplate; }
-            set { navigatorTemplate = value; }
         }
         /// <summary>
         /// OutlineTemplate
@@ -68,7 +65,6 @@ namespace FastReport.Export.Html
         public string OutlineTemplate
         {
             get { return outlineTemplate; }
-            set { outlineTemplate = value; }
         }
 
         /// <summary>
@@ -77,7 +73,6 @@ namespace FastReport.Export.Html
         public string IndexTemplate
         {
             get { return indexTemplate; }
-            set { indexTemplate = value; }
         }
         #endregion
 

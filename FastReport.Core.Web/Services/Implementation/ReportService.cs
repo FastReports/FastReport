@@ -62,17 +62,13 @@ namespace FastReport.Web.Services
         {
             var element = webReport.Toolbar.Elements.FirstOrDefault(e =>
             {
-                switch (e)
+                return e switch
                 {
-                    case ToolbarButton button:
-                        return button.ID.ToString() == elementId;
-                    case ToolbarInput input:
-                        return input.ID.ToString() == elementId;
-                    case ToolbarSelect select:
-                        return select.Items.Any(i => i.ID.ToString() == elementId);
-                    default:
-                        return false;
-                }
+                    ToolbarButton button => button.ID.ToString() == elementId,
+                    ToolbarInput input => input.ID.ToString() == elementId,
+                    ToolbarSelect select => select.Items.Any(i => i.ID.ToString() == elementId),
+                    _ => false,
+                };
             });
 
             switch (element)
@@ -106,9 +102,16 @@ namespace FastReport.Web.Services
             return webReport != null;
         }
 
-        public void Touch(string reportId)
+        public bool Touch(string reportId)
         {
-            _cache.Touch(reportId);
+            return _cache.Touch(reportId);
         }
+
+#if !OPENSOURCE
+        public bool SearchText(WebReport webReport, ReportSearchParams @params)
+        {
+           return webReport.ReportSearch(@params.SearchText, @params.Backward == "true", @params.MatchCase == "true", @params.WholeWord == "true");
+        }
+#endif
     }
 }

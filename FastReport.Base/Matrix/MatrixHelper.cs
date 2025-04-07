@@ -844,20 +844,21 @@ namespace FastReport.Matrix
                             cellValues[cellIndex] = value;
                             templateCell.Text = templateCell.FormatValue(value);
                             templateCell.SaveState();
+                            
                             if (String.IsNullOrEmpty(templateCell.Hyperlink.Expression) &&
-                              (templateCell.Hyperlink.Kind == HyperlinkKind.DetailReport ||
-                              templateCell.Hyperlink.Kind == HyperlinkKind.DetailPage ||
-                              templateCell.Hyperlink.Kind == HyperlinkKind.Custom))
+                                (templateCell.Hyperlink.Kind == HyperlinkKind.DetailReport ||
+                                templateCell.Hyperlink.Kind == HyperlinkKind.DetailPage ||
+                                templateCell.Hyperlink.Kind == HyperlinkKind.Custom))
                             {
                                 string hyperlinkValue = "";
                                 string separator = templateCell.Hyperlink.ValuesSeparator;
                                 foreach (object obj in Matrix.ColumnValues)
                                 {
-                                    hyperlinkValue += obj.ToString() + separator;
+                                    hyperlinkValue += (obj?.ToString() ?? "") + separator;
                                 }
                                 foreach (object obj in Matrix.RowValues)
                                 {
-                                    hyperlinkValue += obj.ToString() + separator;
+                                    hyperlinkValue += (obj?.ToString() ?? "") + separator;
                                 }
                                 templateCell.Hyperlink.Value = hyperlinkValue.Substring(0, hyperlinkValue.Length - separator.Length);
                             }
@@ -866,7 +867,9 @@ namespace FastReport.Matrix
                               Matrix.RowIndex : Matrix.ColumnIndex;
                             if ((evenStyleIndex + 1) % 2 == 0)
                                 templateCell.ApplyEvenStyle();
+
                             templateCell.GetData();
+
                             resultCell.RunTimeAssign(templateCell, true);
                             templateCell.RestoreState();
                         }

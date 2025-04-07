@@ -13,6 +13,8 @@ namespace FastReport.Engine
         {
             if (band.Visible)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 if (getData)
                 {
                     await band.GetDataAsync(cancellationToken);
@@ -41,6 +43,8 @@ namespace FastReport.Engine
 
         private async Task AddToOutputBandAsync(BandBase band, bool getData, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             band.SaveState();
 
             try
@@ -67,9 +71,12 @@ namespace FastReport.Engine
 
         private async Task ShowBandToPreparedPagesAsync(BandBase band, bool getData, CancellationToken cancellationToken)
         {
+            bool bandCanStartNewPage = true;
+            bandCanStartNewPage = BandCanStartNewPage(band);
+
             // handle "StartNewPage". Skip if it's the first row, avoid empty first page.
-            if ((band.StartNewPage && !(band.Parent is PageHeaderBand || band.Parent is PageFooterBand)) && band.FlagUseStartNewPage && (band.RowNo != 1 || band.FirstRowStartsNewPage) &&
-                !band.Repeated)
+            if (band.StartNewPage && band.FlagUseStartNewPage && bandCanStartNewPage &&
+                (band.RowNo != 1 || band.FirstRowStartsNewPage) && !band.Repeated)
             {
                 EndColumn();
             }
@@ -112,6 +119,8 @@ namespace FastReport.Engine
 
         private async Task ShowBandAsync(BandBase band, bool getData, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             if (band == null)
                 return;
 
@@ -162,6 +171,8 @@ namespace FastReport.Engine
 
         internal async Task AddToPreparedPagesAsync(BandBase band, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             bool isReportSummary = band is ReportSummaryBand;
 
             // check if band is service band (e.g. page header/footer/overlay).
@@ -176,14 +187,14 @@ namespace FastReport.Engine
 
             // check if we have enough space for a band.
             bool checkFreeSpace = !isPageBand && !isColumnBand && band.FlagCheckFreeSpace;
-            if (checkFreeSpace && FreeSpace < band.Height)
+            if (checkFreeSpace && await GetFreeSpaceAsync(cancellationToken) < band.Height)
             {
                 // we don't have enough space. What should we do?
                 // - if band can break, break it
                 // - if band cannot break, check the band height:
                 //   - it's the first row of a band and is bigger than page: break it immediately.
                 //   - in other case, add a new page/column and tell the band that it must break next time.
-                if (band.CanBreak || band.FlagMustBreak || (band.AbsRowNo == 1 && band.Height > PageHeight - PageFooterHeight))
+                if (band.CanBreak || band.FlagMustBreak || (band.AbsRowNo == 1 && band.Height > PageHeight - await GetPageFooterHeightAsync(cancellationToken)))
                 {
                     // since we don't show the column footer band in the EndLastPage, do it here.
                     if (isReportSummary)
@@ -227,7 +238,7 @@ namespace FastReport.Engine
                 {
                     bandHeight = 0;
                 }
-                while (FreeSpace - bandHeight - band.Child.Height >= 0)
+                while (await GetFreeSpaceAsync(cancellationToken) - bandHeight - band.Child.Height >= 0)
                 {
                     float saveCurY = CurY;
                     await ShowBandAsync(band.Child, cancellationToken);
@@ -242,7 +253,7 @@ namespace FastReport.Engine
             // adjust the band location
             if (band is PageFooterBand && !UnlimitedHeight)
             {
-                CurY = PageHeight - GetBandHeightWithChildren(band);
+                CurY = PageHeight - await GetBandHeightWithChildrenAsync(band, cancellationToken);
             }
             if (!isPageBand)
             {
@@ -250,7 +261,7 @@ namespace FastReport.Engine
             }
             if (band.PrintOnBottom)
             {
-                CurY = PageHeight - PageFooterHeight - ColumnFooterHeight;
+                CurY = PageHeight - await GetPageFooterHeightAsync(cancellationToken) - ColumnFooterHeight;
                 // if PrintOnBottom is applied to a band like DataFooter, print it with all its child bands
                 // if PrintOnBottom is applied to a child band, print this band only.
                 if (band is ChildBand)
@@ -259,7 +270,7 @@ namespace FastReport.Engine
                 }
                 else
                 {
-                    CurY -= GetBandHeightWithChildren(band);
+                    CurY -= await GetBandHeightWithChildrenAsync(band, cancellationToken);
                 }
             }
             band.Top = CurY;

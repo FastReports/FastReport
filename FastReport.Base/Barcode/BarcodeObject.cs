@@ -755,6 +755,7 @@ namespace FastReport.Barcode
             new BarcodeItem(typeof(BarcodeGS1Limited), "GS1 DataBar Limited", "GS1"),
             new BarcodeItem(typeof(BarcodeGS1Stacked), "GS1 DataBar Stacked", "GS1"),
             new BarcodeItem(typeof(BarcodeGS1StackedOmnidirectional), "GS1 DataBar Stacked Omnidirectional", "GS1"),
+            new BarcodeItem(typeof(BarcodeGS1Datamatrix), "GS1 Datamatrix", "GS1"),
             new BarcodeItem(typeof(BarcodePharmacode), "Pharmacode", "Others"),
             new BarcodeItem(typeof(BarcodeIntelligentMail), "Intelligent Mail (USPS)", "Post"),
             new BarcodeItem(typeof(BarcodeMaxiCode), "MaxiCode", "2D")

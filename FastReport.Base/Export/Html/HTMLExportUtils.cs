@@ -135,13 +135,11 @@ namespace FastReport.Export.Html
     /// <summary>
     /// For internal use only.
     /// </summary>
-    public class HTMLPageData
+    public sealed class HTMLPageData : IDisposable
     {
-        private string cssText;
-        private string pageText;
-        private List<Stream> pictures;
-        private List<string> guids;
-        private ManualResetEvent pageEvent;
+        private readonly List<Stream> pictures;
+        private readonly List<string> guids;
+        private readonly ManualResetEvent pageEvent;
         private int pageNumber;
         private float width;
         private float height;
@@ -167,20 +165,12 @@ namespace FastReport.Export.Html
         /// <summary>
         /// For internal use only.
         /// </summary>
-        public string CSSText
-        {
-            get { return cssText; }
-            set { cssText = value; }
-        }
+        public StringBuilder CSSText { get; internal set; }
 
         /// <summary>
         /// For internal use only.
         /// </summary>
-        public string PageText
-        {
-            get { return pageText; }
-            set { pageText = value; }
-        }
+        public StringBuilder PageText { get; internal set; }
 
         /// <summary>
         /// For internal use only.
@@ -201,6 +191,7 @@ namespace FastReport.Export.Html
         /// <summary>
         /// For internal use only.
         /// </summary>
+        [Obsolete]
         public ManualResetEvent PageEvent
         {
             get { return pageEvent; }
@@ -213,6 +204,16 @@ namespace FastReport.Export.Html
         {
             get { return pageNumber; }
             set { pageNumber = value; }
+        }
+
+        /// <summary>
+        /// For internal use only.
+        /// </summary>
+        public void Dispose()
+        {
+            pageEvent.Dispose();
+            PageText = null;
+            CSSText = null;
         }
 
         /// <summary>

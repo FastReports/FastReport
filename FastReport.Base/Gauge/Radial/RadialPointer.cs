@@ -22,6 +22,7 @@ namespace FastReport.Gauge.Radial
         /// Gets or sets the value, indicating that gradient should be rotated automatically
         /// </summary>
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool GradientAutoRotate
         {
             get { return gradAutoRotate; }

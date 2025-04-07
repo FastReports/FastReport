@@ -7,6 +7,7 @@ using FastReport.Json;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Text;
+using FastReport.JsonClassGenerator;
 
 namespace FastReport.Data
 {
@@ -161,8 +162,20 @@ namespace FastReport.Data
             return result;
         }
 
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(JsonConnectionType);
+        }
+
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(JsonTypeEnum);
+        }
+
         #endregion
-        
+
         DataTable ToDataTable(IList data)
         {
             DataTable table = new DataTable();

@@ -371,7 +371,12 @@ namespace FastReport.Utils
         }
 
 
-        internal static void OnScriptCompile(ScriptSecurityEventArgs e)
+        /// <summary>
+        /// Invokes ScriptCompile event.
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        /// <exception cref="CompilerException"></exception>
+        public static void OnScriptCompile(ScriptSecurityEventArgs e)
         {
             if (ScriptCompile != null)
             {
@@ -421,6 +426,8 @@ namespace FastReport.Utils
             return systemTempFolder;
         }
 
+        static partial void SaveMaskConnectionStringPassword();
+
         static partial void SaveConnectionStringVisible();
 
         private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
@@ -432,6 +439,7 @@ namespace FastReport.Utils
             SaveCompilerSettings();
             SaveAuthServiceUser();
             SaveConnectionStringVisible();
+            SaveMaskConnectionStringPassword();
 #if !COMMUNITY
             SaveExportOptions();
 #endif
@@ -459,6 +467,8 @@ namespace FastReport.Utils
                 }
             }
         }
+
+        static partial void RestoreMaskConnectionStringPassword();
 
         static partial void RestoreConnectionStringVisible();
 
@@ -501,6 +511,7 @@ namespace FastReport.Utils
                 RestoreCompilerSettings();
                 Res.LoadDefaultLocale();
                 RestoreAuthServiceUser();
+                RestoreMaskConnectionStringPassword();
                 RestoreConnectionStringVisible();
                 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             }

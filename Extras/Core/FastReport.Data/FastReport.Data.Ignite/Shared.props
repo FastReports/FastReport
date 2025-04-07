@@ -1,0 +1,21 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>FastReport.Data.Ignite</Product>
+    <AssemblyName>FastReport.Data.Ignite</AssemblyName>
+
+  </PropertyGroup>
+
+  <Import Project="..\Connections.props" />
+
+	<ItemGroup>
+		<PackageReference Include="Apache.Ignite" Version="[2.17.0,)" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

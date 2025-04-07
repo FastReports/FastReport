@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.ComponentModel;
+using FastReport.Utils;
 
 namespace FastReport.Barcode
 {
@@ -230,9 +231,25 @@ namespace FastReport.Barcode
     }
 
     /// <summary>
+    /// Specifies the GS1 concatenation.
+    /// </summary>
+    public enum GS1Concatenation
+    {
+        /// <summary>
+        /// Specifies the FNC1 symbol.
+        /// </summary>
+        FNC1 = 232,
+
+        /// <summary>
+        /// Specifies the GS symbol.
+        /// </summary>
+        GS = 29
+    }
+
+    /// <summary>
     /// Generates the 2D Data Matrix barcode.
     /// </summary>
-    public sealed class BarcodeDatamatrix : Barcode2DBase
+    public class BarcodeDatamatrix : Barcode2DBase
     {
         #region Fields
         private const byte LATCH_B256 = (byte)231;
@@ -350,7 +367,7 @@ namespace FastReport.Barcode
         /// Gets or sets the value AutoEncode.
         /// </summary>
         [DefaultValue(true)]
-        public bool AutoEncode
+        public virtual bool AutoEncode
         {
             get { return autoEncode; }
             set { autoEncode = value; }
@@ -945,28 +962,19 @@ namespace FastReport.Barcode
             return v;
         }
 
-        private string ReplaceControlCodes(string text)
+        internal virtual string ReplaceControlCodes(string text)
         {
             if (AutoEncode)
             {
                 if (text.StartsWith("&1;"))
-                    text = ((char)232).ToString() + text.Remove(0, 3);
-                text = text.Replace("&1;", ((char)0x1d).ToString());
+                    text = ((char)GS1Concatenation.FNC1).ToString() + text.Remove(0, 3);
+                text = text.Replace("&1;", ((char)GS1Concatenation.GS).ToString());
             }
             return text;
         }
 
-        private void Generate(string text)
+        internal virtual void Generate(string text)
         {
-            if (text.StartsWith("("))
-            {
-                string gsText = GS1Helper.ParseGS1(text);
-                if (!string.IsNullOrEmpty(gsText))
-                {
-                    text = gsText;
-                }
-            }
-
             text = ReplaceControlCodes(text);
             byte[] t = System.Text.Encoding.GetEncoding(CodePage).GetBytes(text);
             Generate(t, 0, t.Length);
@@ -1136,7 +1144,7 @@ namespace FastReport.Barcode
             PixelSize = 3;
             AutoEncode = true;
 #if CROSSPLATFORM || COREWIN
-      System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 #endif
         }
 
@@ -1496,6 +1504,93 @@ namespace FastReport.Barcode
                         wd[nd + n] = ecc[p++];
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Generates the GS1 Data Matrix barcode.
+    /// </summary>
+    public class BarcodeGS1Datamatrix : BarcodeDatamatrix
+    {
+        private GS1Concatenation gs1Concatenation;
+        private bool validateGS1;
+
+        /// <summary>
+        /// Gets or sets the value GS1 concatenation.
+        /// </summary>
+        public GS1Concatenation GS1ConcatenationSymbol
+        {
+            get { return gs1Concatenation; }
+            set { gs1Concatenation = value; }
+        }
+
+        /// <summary>
+        /// Disable or enable GS1 data validation. If this option is disabled, the barcode may contain standard data for Datamatrix.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool ValidateGS1
+        {
+            get { return validateGS1; }
+            set { validateGS1 = value; }
+        }
+
+        /// <inheritdoc/>
+        [Browsable(false)]
+        public override bool AutoEncode
+        {
+            get { return base.AutoEncode; }
+            set { base.AutoEncode = value; }
+        }
+
+        internal override void Generate(string text)
+        {
+            string gsText = GS1Helper.ParseGS1(text);
+            if (!string.IsNullOrEmpty(gsText) || !ValidateGS1)
+                base.Generate(gsText);
+            else
+                throw new Exception("Invalid date.");
+        }
+
+        internal override string ReplaceControlCodes(string text)
+        {
+            if (text.StartsWith("&1;"))
+                text = ((char)GS1Concatenation.FNC1).ToString() + text.Remove(0, 3);
+            text = text.Replace("&1;", ((char)GS1ConcatenationSymbol).ToString());
+
+            return text;
+        }
+
+        /// <inheritdoc/>
+        public override void Assign(BarcodeBase source)
+        {
+            base.Assign(source);
+            BarcodeGS1Datamatrix src = source as BarcodeGS1Datamatrix;
+            GS1ConcatenationSymbol = src.GS1ConcatenationSymbol;
+            ValidateGS1 = src.ValidateGS1;
+        }
+
+        internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
+        {
+            base.Serialize(writer, prefix, diff);
+            BarcodeGS1Datamatrix c = diff as BarcodeGS1Datamatrix;
+
+            if (c == null || GS1ConcatenationSymbol != c.GS1ConcatenationSymbol)
+                writer.WriteValue(prefix + "GS1Concatenation", GS1ConcatenationSymbol);
+            if (c == null || ValidateGS1 != c.ValidateGS1)
+                writer.WriteValue(prefix + "ValidateGS1", ValidateGS1);
+        }
+
+        /// <inheritdoc/>
+        public override string GetDefaultValue()
+        {
+            return "(02)00000123456789";
+        }
+
+        public BarcodeGS1Datamatrix()
+        {
+            GS1ConcatenationSymbol = GS1Concatenation.GS;
+            AutoEncode = true;
+            ValidateGS1 = true;
         }
     }
 }

@@ -28,6 +28,7 @@ namespace FastReport.Gauge.Linear
         /// Gets o sets the height of gauge pointer.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Height
         {
             get { return height; }
@@ -38,6 +39,7 @@ namespace FastReport.Gauge.Linear
         /// Gets or sets the width of a pointer.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Width
         {
             get { return width; }

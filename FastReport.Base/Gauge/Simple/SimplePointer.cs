@@ -30,6 +30,7 @@ namespace FastReport.Gauge.Simple
         /// Gets o sets the Left offset of gauge pointer.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal float Left
         {
             get { return left; }
@@ -40,6 +41,7 @@ namespace FastReport.Gauge.Simple
         /// Gets o sets the Top offset of gauge pointer.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal float Top
         {
             get { return top; }
@@ -50,6 +52,7 @@ namespace FastReport.Gauge.Simple
         /// Gets o sets the height of gauge pointer.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Height
         {
             get { return height; }
@@ -60,6 +63,7 @@ namespace FastReport.Gauge.Simple
         /// Gets or sets the width of a pointer.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Width
         {
             get { return width; }
@@ -70,6 +74,7 @@ namespace FastReport.Gauge.Simple
         /// Gets or sets the pointer ratio.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float PointerRatio
         {
             get { return ptrRatio; }
@@ -80,6 +85,7 @@ namespace FastReport.Gauge.Simple
         /// Gets or sets the pointer horizontal offset (cm).
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float HorizontalOffset
         {
             get { return horizontalOffset; }

@@ -20,15 +20,17 @@ namespace FastReport.Web.Services
         /// Asynchronously returns a report preview string for Online Designer
         /// </summary>
         /// <param name="webReport">WebReport preview of which you want to return</param>
-        /// <param name="receivedReportString">Report string from Online Designer</param>
+        /// /// <param name="requestBody">Request body with report</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns></returns>
-        Task<string> DesignerMakePreviewAsync(WebReport webReport, string receivedReportString);
+        Task<string> DesignerMakePreviewAsync(WebReport webReport, Stream requestBody, CancellationToken cancellationToken);
 
         /// <summary>
         /// A method for saving the report
         /// </summary>
         /// <param name="webReport">Report to be saved</param>
         /// <param name="params">Parameters for saving the report</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Returns the object with the response</returns>
         Task<SaveReportResponseModel> SaveReportAsync(WebReport webReport, SaveReportServiceParams @params, CancellationToken cancellationToken = default);
 
@@ -43,8 +45,17 @@ namespace FastReport.Web.Services
         /// Asynchronously returns a string with the report
         /// </summary>
         /// <param name="requestBody">Request body with report</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>String with the report</returns>
-        Task<string> GetPOSTReportAsync(Stream requestBody, CancellationToken cancellationToken = default);
+        Task<string> GetPOSTReportStringAsync(Stream requestBody, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Asynchronously creates a report with provided report stream
+        /// </summary>
+        /// <param name="requestBody">Request body with report</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
+        /// <returns>WebReport Id</returns>
+        Task<string> CreateReport(Stream requestBody, CancellationToken cancellationToken = default);
     }
 }
 #endif

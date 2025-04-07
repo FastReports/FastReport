@@ -112,7 +112,7 @@ namespace FastReport.Utils
             get
             {
                 if (properties == null)
-                    properties = new XmlProperty[0];
+                    properties = Array.Empty<XmlProperty>();
                 return properties;
             }
             set
@@ -242,7 +242,7 @@ namespace FastReport.Utils
         /// </remarks>
         public XmlItem FindItem(string name)
         {
-            XmlItem result = null;
+            XmlItem result;
             int i = Find(name);
             if (i == -1)
             {
@@ -275,11 +275,6 @@ namespace FastReport.Utils
         /// </remarks>
         public string GetProp(string key)
         {
-            return GetProp(key, true);
-        }
-
-        internal string GetProp(string key, bool convertFromXml)
-        {
             if (properties == null || properties.Length == 0)
                 return "";
 
@@ -298,7 +293,7 @@ namespace FastReport.Utils
             if (properties == null || properties.Length == 0)
                 return;
 
-            sb.Append(" ");
+            sb.Append(' ');
             foreach (XmlProperty kv in properties)
             {
                 //if (string.IsNullOrWhiteSpace(kv.Key))
@@ -918,7 +913,7 @@ namespace FastReport.Utils
         private bool autoIndent;
         private bool isWriteHeader;
         //private Stream FStream;
-        private TextWriter writer;
+        private readonly TextWriter writer;
 
         public bool AutoIndent
         {
@@ -937,10 +932,22 @@ namespace FastReport.Utils
             if (!autoIndent)
                 writer.Write(s);
             else
-                writer.Write(s + "\r\n");
+                writer.WriteLine(s);
         }
 
-        private string Dup(int num)
+        private void WriteLn(StringBuilder sb)
+        {
+#if NETCOREAPP
+            if (!autoIndent)
+                writer.Write(sb);
+            else
+                writer.WriteLine(sb);
+#else
+            WriteLn(sb.ToString());
+#endif
+        }
+
+        private static string Dup(int num)
         {
             string s = "";
             return s.PadLeft(num);
@@ -950,11 +957,10 @@ namespace FastReport.Utils
         {
             FastString sb = new FastString();
 
-
             // start
             if (autoIndent)
                 sb.Append(Dup(level));
-            sb.Append("<");
+            sb.Append('<');
             sb.Append(item.Name);
 
             // text
@@ -965,7 +971,7 @@ namespace FastReport.Utils
             if (item.Count == 0 && item.Value == "")
                 sb.Append("/>");
             else
-                sb.Append(">");
+                sb.Append('>');
 
             // value
             if (item.Count == 0 && item.Value != "")
@@ -973,9 +979,9 @@ namespace FastReport.Utils
                 sb.Append(Converter.ToXml(item.Value, false));
                 sb.Append("</");
                 sb.Append(item.Name);
-                sb.Append(">");
+                sb.Append('>');
             }
-            WriteLn(sb.ToString());
+            WriteLn(sb.StringBuilder);
         }
 
         private void DoWrite(XmlItem rootItem, int level)

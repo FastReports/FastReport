@@ -11,7 +11,7 @@ namespace FastReport.Gauge
 #if !DEBUG
     [DesignTimeVisible(false)]
 #endif
-    public class GaugePointer : Component
+    public class GaugePointer
     {
         #region Fields
 

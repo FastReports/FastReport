@@ -1,14 +1,22 @@
 using System.Threading.Tasks;
 using System.Threading;
+using System;
 
 namespace FastReport
 {
     public abstract partial class ReportComponentBase
     {
-        public virtual Task GetDataAsync(CancellationToken cancellationToken)
+        public virtual async Task GetDataAsync(CancellationToken cancellationToken)
         {
-            GetDataShared();
-            return Task.CompletedTask;
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Hyperlink.Calculate();
+
+            if (!String.IsNullOrEmpty(Bookmark))
+            {
+                object value = await Report.CalcAsync(Bookmark, cancellationToken);
+                Bookmark = value == null ? "" : value.ToString();
+            }
         }
     }
 }

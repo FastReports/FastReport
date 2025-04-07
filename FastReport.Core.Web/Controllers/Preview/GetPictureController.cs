@@ -10,9 +10,9 @@ namespace FastReport.Web.Controllers
     {
         internal sealed class GetPictureParams
         {
-            public string ReportId { get; set; }
+            public string ReportId { get; init; }
 
-            public string PictureId { get; set; }
+            public string PictureId { get; init; }
         }
 
 

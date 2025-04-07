@@ -8,7 +8,6 @@ namespace FastReport.Web
 {
     public class ToolbarSettings
     {
-
         public static ToolbarSettings Default => new ToolbarSettings();
 
         public bool Show { get; set; } = true;
@@ -44,6 +43,7 @@ namespace FastReport.Web
         public bool ShowLastButton { get; set; } = true;
         public bool ShowRefreshButton { get; set; } = true;
         public bool ShowZoomButton { get; set; } = true;
+        public bool ShowSearchButton { get; set; } = true;
 
         /// <summary>
         /// Show Print menu
@@ -107,6 +107,11 @@ namespace FastReport.Web
         /// <para>Example syntax : new Font("Arial", 14 , FontStyle.Bold)</para>
         /// </summary>
         public Font FontSettings { get; set; } = null;
+        /// <summary>
+        /// Use to change search highlight,
+        /// Default value Color.Yellow
+        /// </summary>
+        public Color SearchHighlight {  get; set; } = Color.Yellow;
 
         public int Height { get; set; } = 40;
 

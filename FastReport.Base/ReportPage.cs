@@ -1299,7 +1299,7 @@ namespace FastReport
         /// <inheritdoc/>
         public override void Draw(FRPaintEventArgs e)
         {
-            if (IsDesigning)
+            if (IsDesigning || (!Printable && IsPrinting))
                 return;
 
             IGraphics g = e.Graphics;
@@ -1409,6 +1409,7 @@ namespace FastReport
         public override string[] GetExpressions()
         {
             List<string> expressions = new List<string>();
+            expressions.AddRange(base.GetExpressions());
 
             if (!String.IsNullOrEmpty(OutlineExpression))
                 expressions.Add(OutlineExpression);

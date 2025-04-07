@@ -31,11 +31,22 @@ namespace FastReport.Web.Services
         /// <returns>WebReport</returns>
         bool TryFindWebReport(string reportId, out WebReport webReport);
 
+#if !OPENSOURCE
         /// <summary>
-        /// Touch report
+        /// Forced transition to the report page containing the required text
         /// </summary>
-        /// <param name="reportId">Report ID</param>
-        void Touch(string reportId);
+        /// <param name="webReport">The report that is being searched for</param>
+        /// <param name="params">Search зarameters</param>
+        /// <returns>Returns a flag that determines whether the text you are looking for has been found</returns>
+        bool SearchText(WebReport webReport, ReportSearchParams @params);
+#endif
+
+        /// <summary>
+        /// Touches the report to reset its sliding expiration in the cache.
+        /// </summary>
+        /// <param name="reportId">The unique identifier of the report.</param>
+        /// <returns><c>true</c> if a report with the provided ID was found; otherwise, <c>false</c>.</returns>
+        bool Touch(string reportId);
 
         /// <summary>
         /// Returns the report after clicking on an element with id = elementId

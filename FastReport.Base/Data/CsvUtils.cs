@@ -155,7 +155,13 @@ namespace FastReport.Data
                 maxLines = int.MaxValue;
 
             // read lines
-            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(builder.Codepage)))
+            Encoding encoding;
+#if !NETFRAMEWORK
+            encoding = CodePagesEncodingProvider.Instance.GetEncoding(builder.Codepage);
+#else
+            encoding = Encoding.GetEncoding(builder.Codepage);
+#endif
+            using (StreamReader reader = new StreamReader(response.GetResponseStream(), encoding))
             {
                 for (int i = 0; i < maxLines; i++)
                 {

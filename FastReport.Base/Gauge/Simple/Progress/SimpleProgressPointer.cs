@@ -33,6 +33,7 @@ namespace FastReport.Gauge.Simple.Progress
         /// <summary>
         /// Gets or sets the pointer type
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public SimpleProgressPointerType Type
         {
             get { return type; }
@@ -42,6 +43,7 @@ namespace FastReport.Gauge.Simple.Progress
         /// <summary>
         /// Gets or sets the small pointer width ratio
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public float SmallPointerWidthRatio
         {
             get { return smallPointerWidthRatio; }

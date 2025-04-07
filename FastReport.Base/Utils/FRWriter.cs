@@ -67,8 +67,8 @@ namespace FastReport.Utils
     public class FRWriter : IDisposable
     {
         #region Fields
-        private XmlDocument doc;
-        private XmlItem root;
+        private readonly XmlDocument doc;
+        private readonly XmlItem root;
         private XmlItem curItem;
         private XmlItem curRoot;
         //private StringBuilder FText;
@@ -78,7 +78,7 @@ namespace FastReport.Utils
         private bool writeHeader;
         private BlobStore blobStore;
         private SerializeTo serializeTo;
-        private Hashtable diffObjects;
+        private readonly Hashtable diffObjects;
         #endregion
 
         #region Properties
@@ -228,7 +228,7 @@ namespace FastReport.Utils
                     try
                     {
                         Type objType = obj.GetType();
-                        if (!diffObjects.Contains(objType))
+                        if (!diffObjects.ContainsKey(objType))
                             diffObjects[objType] = Activator.CreateInstance(objType);
                         diffObject = diffObjects[objType];
                     }

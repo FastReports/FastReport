@@ -315,6 +315,7 @@ namespace FastReport.Export
 
         internal static FastString HtmlString(string text, TextRenderType textRenderType, CRLF crlf, bool excel2007, string fontSize = "13px;")
         {
+            text = text.Replace('\v', '\n');
             if (crlf == CRLF.html)
                 text = text.Replace("\r\n", "\n").Replace("\r", "\n");
 
@@ -399,15 +400,15 @@ namespace FastReport.Export
                     }
                     else if (text[i] == '\\')
                         Result.Append("&#92;");
-                    else if (text[i] == '~' && !excel2007)
+                    else if (text[i] == '~' && !excel2007 && crlf != CRLF.odt)
                         Result.Append("&tilde;");
-                    else if (text[i] == '€' && !excel2007)
+                    else if (text[i] == '€' && !excel2007 && crlf != CRLF.odt)
                         Result.Append("&euro;");
-                    else if (text[i] == '‹' && !excel2007)
+                    else if (text[i] == '‹' && !excel2007 && crlf != CRLF.odt)
                         Result.Append("&lsaquo;");
-                    else if (text[i] == '›' && !excel2007)
+                    else if (text[i] == '›' && !excel2007 && crlf != CRLF.odt)
                         Result.Append("&rsaquo;");
-                    else if (text[i] == 'ˆ' && !excel2007)
+                    else if (text[i] == 'ˆ' && !excel2007 && crlf != CRLF.odt)
                         Result.Append("&circ;");
                     else if (text[i] == '&' && textRenderType == TextRenderType.Default)
                         Result.Append("&amp;");

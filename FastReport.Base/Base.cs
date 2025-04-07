@@ -161,7 +161,7 @@ namespace FastReport
     /// Represents the root class of the FastReport object's hierarchy.
     /// </summary>
     [ToolboxItem(false)]
-    public abstract partial class Base : Component, IFRSerializable
+    public abstract partial class Base : IDisposable, IFRSerializable
     {
         #region Fields
         private string name;
@@ -482,6 +482,11 @@ namespace FastReport
             get { return alias; }
             set { alias = value; }
         }
+
+        /// <summary>
+        /// Adds an event handler to listen to the Disposed event on the component.
+        /// </summary>
+        public event EventHandler Disposed;
         #endregion
 
         #region Private Methods
@@ -608,18 +613,25 @@ namespace FastReport
         }
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
                 Clear();
                 Parent = null;
+                Disposed?.Invoke(this, EventArgs.Empty);
             }
-            base.Dispose(disposing);
         }
         #endregion
 
         #region Public Methods
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         /// <summary>
         /// Set object's flags.
         /// </summary>
@@ -1221,6 +1233,14 @@ namespace FastReport
             restrictions = new Restrictions();
             SetFlags(Flags.CanMove | Flags.CanResize | Flags.CanDelete | Flags.CanEdit | Flags.CanChangeOrder |
              Flags.CanChangeParent | Flags.CanCopy | Flags.CanDraw | Flags.CanShowChildrenInReportTree, true);
+        }
+
+        /// <summary>
+        /// Public destructor.
+        /// </summary>
+        ~Base()
+        {
+            Dispose(false);
         }
     }
 }

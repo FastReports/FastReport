@@ -13,9 +13,9 @@ namespace FastReport.Web.Controllers
 
         internal sealed class PrintReportParams
         {
-            public string ReportId { get; set; }
+            public string ReportId { get; init; }
 
-            public string PrintMode { get; set; }
+            public string PrintMode { get; init; }
         }
 
 

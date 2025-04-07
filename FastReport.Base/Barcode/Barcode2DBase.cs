@@ -48,7 +48,13 @@ namespace FastReport.Barcode
                     float fontZoom = fontHeight / (int)g.MeasureString(data, Font).Height * ky;
                     using (Font drawFont = new Font(Font.FontFamily, Font.Size * fontZoom, Font.Style))
                     {
-                        g.DrawString(data, drawFont, Brushes.Black, new RectangleF(0, height - fontHeight * ky, width, fontHeight * ky));
+                        using (StringFormat format = (StringFormat)StringFormat.GenericDefault.Clone())
+                        {
+#if !SKIA
+                            format.FormatFlags |= StringFormatFlags.NoWrap;
+#endif
+                            g.DrawString(data, drawFont, Brushes.Black, new RectangleF(0, height - fontHeight * ky, width, fontHeight * ky), format);
+                        }
                     }
                 }
             }

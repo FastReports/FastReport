@@ -15,7 +15,7 @@ namespace FastReport.Web.Cache
 
         private readonly IMemoryCache _cache;
 
-        private readonly MemoryCacheEntryOptions _memoryCacheEntryOptions;
+        private readonly MemoryCacheEntryOptions _memoryCacheEntryDefaultOptions;
 
         public WebReportMemoryCache(IMemoryCache cache, CacheOptions cacheOptions)
         {
@@ -25,11 +25,8 @@ namespace FastReport.Web.Cache
             {
                 EvictionCallback = EvictionCallback
             };
-            _memoryCacheEntryOptions = new MemoryCacheEntryOptions
-            {
-                SlidingExpiration = cacheOptions.CacheDuration,
-            };
-            _memoryCacheEntryOptions.PostEvictionCallbacks.Add(callback);
+            _memoryCacheEntryDefaultOptions = GetOptions(cacheOptions);
+            _memoryCacheEntryDefaultOptions.PostEvictionCallbacks.Add(callback);
         }
 
         public void Add(WebReport webReport)
@@ -40,7 +37,10 @@ namespace FastReport.Web.Cache
                 return;
             }
 
-            _cache.Set(webReport.ID, webReport, _memoryCacheEntryOptions);
+            if (webReport.CacheOptions != null)
+                _cache.Set(webReport.ID, webReport, GetOptions(webReport.CacheOptions));
+            else
+                _cache.Set(webReport.ID, webReport, _memoryCacheEntryDefaultOptions);
         }
 
         private static void EvictionCallback(object key, object value, EvictionReason reason, object state)
@@ -50,9 +50,9 @@ namespace FastReport.Web.Cache
             //GC.Collect();
         }
 
-        public void Touch(string id)
+        public bool Touch(string id)
         {
-            _cache.TryGetValue(id, out _);
+            return _cache.TryGetValue(id, out _);
         }
 
         public WebReport Find(string id)
@@ -65,6 +65,15 @@ namespace FastReport.Web.Cache
             _cache.Remove(webReport.ID);
         }
 
+        private static MemoryCacheEntryOptions GetOptions(WebReportCacheOptions cacheOptions)
+        {
+            return new MemoryCacheEntryOptions
+            {
+                SlidingExpiration = cacheOptions.CacheDuration,
+                AbsoluteExpirationRelativeToNow = cacheOptions.AbsoluteExpirationDuration,
+                AbsoluteExpiration = cacheOptions.AbsoluteExpiration,
+            };
+        }
 
         public void Dispose()
         {

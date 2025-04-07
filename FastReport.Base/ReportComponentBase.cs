@@ -1005,11 +1005,6 @@ namespace FastReport
         /// </remarks>
         public virtual void GetData()
         {
-            GetDataShared();
-        }
-
-        private void GetDataShared()
-        {
             Hyperlink.Calculate();
 
             if (!String.IsNullOrEmpty(Bookmark))

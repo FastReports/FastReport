@@ -209,9 +209,10 @@ namespace FastReport
     /// </code>
     /// </example>
 
-    public partial class Report : Base, IParent, ISupportInitialize
+    public partial class Report : Base, IParent, ISupportInitialize, IComponent
     {
         #region Fields
+        private ISite _site;
 
         private PageCollection pages;
         private Dictionary dictionary;
@@ -239,7 +240,8 @@ namespace FastReport
         private GraphicCache graphicCache;
         private string[] referencedAssemblies;
         private Hashtable cachedDataItems;
-        private AssemblyCollection assemblies;
+        private CodeProvider _codeProvider;
+        private bool _needCompile;
         private FastReport.Preview.PreparedPages preparedPages;
         private ReportEngine engine;
         private bool aborted;
@@ -248,8 +250,6 @@ namespace FastReport
         private bool storeInResources;
         private PermissionSet scriptRestrictions;
         private ReportOperation operation;
-        private bool needCompile;
-        private bool scriptChanged = false;
         private bool needRefresh;
         private bool isParameterChanged = false;
         private bool initializing;
@@ -261,6 +261,24 @@ namespace FastReport
         #endregion Fields
 
         #region Properties
+        /// <summary>
+        /// Gets or sets the site of the <see cref='System.ComponentModel.Component'/>.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public virtual ISite Site
+        {
+            get => _site;
+            set => _site = value;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref='System.ComponentModel.Component'/>
+        /// is currently in design mode.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected bool DesignMode => _site?.DesignMode ?? false;
 
         /// <summary>
         /// Occurs when calc execution is started.
@@ -440,7 +458,6 @@ namespace FastReport
             set
             {
                 scriptText = value;
-                scriptChanged = scriptText != codeHelper.EmptyScript();
             }
         }
 
@@ -467,7 +484,6 @@ namespace FastReport
                 if (needClear)
                 {
                     scriptText = codeHelper.EmptyScript();
-                    scriptChanged = false;
                 }
             }
         }
@@ -721,6 +737,7 @@ namespace FastReport
         /// </remarks>
         [Browsable(false)]
         [Localizable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ReportResourceString
         {
             get
@@ -859,6 +876,7 @@ namespace FastReport
         /// Gets or sets the Tag object of the report.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object Tag
         {
             get { return tag; }
@@ -953,6 +971,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets the flag for refresh.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool NeedRefresh
         {
             get { return needRefresh; }
@@ -973,6 +992,15 @@ namespace FastReport
 
                 return allObjects;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the code provider used for report code compilation.
+        /// </summary>
+        public CodeProvider CodeProvider
+        {
+            get => _codeProvider ??= CodeProvider.GetCodeProvider(this);
+            set => _codeProvider = value;
         }
 
         #endregion Properties
@@ -1099,7 +1127,6 @@ namespace FastReport
             }
             // not property, only field!
             scriptText = codeHelper.EmptyScript();
-            scriptChanged = false;
             BaseReport = "";
             BaseReportAbsolutePath = "";
             DoublePass = false;
@@ -1116,21 +1143,23 @@ namespace FastReport
             referencedAssemblies = DefaultAssemblies;
             StartReportEvent = "";
             FinishReportEvent = "";
-#if REFLECTION_EMIT_COMPILER
-            _cachedParsedExpressions.Clear();
-#endif
-            needCompile = true;
+            _needCompile = true;
+            CodeProvider.Clear();
         }
 
         #endregion Private Methods
 
         #region Protected Methods
-
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
+                lock (this)
+                {
+                    _site?.Container?.Remove(this);
+                }
+
                 if (graphicCache != null)
                     graphicCache.Dispose();
                 graphicCache = null;
@@ -1290,35 +1319,15 @@ namespace FastReport
         {
             FillDataSourceCache();
 
-#if REFLECTION_EMIT_COMPILER
-            if (Config.CompilerSettings.ReflectionEmitCompiler)
+            if (_needCompile)
             {
-                SetIsCompileNeeded();
-                if (!IsCompileNeeded)
-                    return;
-            }
-#endif
-
-            if (needCompile)
-            {
-                Debug.WriteLine("Compile...");
-
-                using (AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText))
-                {
-                    assemblies.Clear();
-                    assemblies.Add(descriptor);
-                    descriptor.AddObjects();
-                    descriptor.AddExpressions();
-                    descriptor.AddFunctions();
-                    descriptor.Compile();
-                }
+                CodeProvider.Compile();
             }
             else
             {
-                InternalInit();
+                CodeProvider.InternalInit();
             }
         }
-
 
         /// <summary>
         /// Initializes the report's fields.
@@ -1328,12 +1337,8 @@ namespace FastReport
         /// </remarks>
         protected void InternalInit()
         {
-            needCompile = false;
-
-            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, CodeHelper.EmptyScript());
-            assemblies.Clear();
-            assemblies.Add(descriptor);
-            descriptor.InitInstance(this);
+            _needCompile = false;
+            CodeProvider.InternalInit();
         }
 
         /// <summary>
@@ -1351,22 +1356,7 @@ namespace FastReport
         /// </remarks>
         public void GenerateReportAssembly(string fileName)
         {
-            // create the class name
-            string className = "";
-            const string punctuation = " ~`!@#$%^&*()-=+[]{},.<>/?;:'\"\\|";
-            foreach (char c in Path.GetFileNameWithoutExtension(fileName))
-            {
-                if (!punctuation.Contains(c.ToString()))
-                    className += c;
-            }
-
-            AssemblyDescriptor descriptor = new AssemblyDescriptor(this, ScriptText);
-            descriptor.AddObjects();
-            descriptor.AddExpressions();
-            descriptor.AddFunctions();
-
-            string reportClassText = descriptor.GenerateReportClass(className);
-            File.WriteAllText(fileName, reportClassText, Encoding.UTF8);
+            CodeProvider.GenerateReportAssembly(fileName);
         }
 
         /// <summary>
@@ -1398,10 +1388,23 @@ namespace FastReport
         /// </remarks>
         public object Calc(string expression, Variant value)
         {
+            if (TryCalc(expression, value, out var result))
+                return result;
+
+            return CalcExpression(expression, value);
+        }
+
+        /// <summary>
+        /// Tries to calculate an expression fast way.
+        /// </summary>
+        private bool TryCalc(string expression, Variant value, out object result)
+        {
+            result = null;
+            
             if (!IsRunning)
-                return null;
+                return true;
             if (String.IsNullOrEmpty(expression) || String.IsNullOrEmpty(expression.Trim()))
-                return null;
+                return true;
 
             string expr = expression;
             if (expr.StartsWith("[") && expr.EndsWith("]"))
@@ -1425,11 +1428,13 @@ namespace FastReport
                     val = e.CalculatedObject;
                 }
 
-                return val;
+                result = val;
+                return true;
             }
             else if (cachedObject is Parameter)
             {
-                return (cachedObject as Parameter).Value;
+                result = (cachedObject as Parameter).Value;
+                return true;
             }
             else if (cachedObject is Total)
             {
@@ -1439,11 +1444,11 @@ namespace FastReport
 
                 (cachedObject as Total).ExecuteTotal(val);
 
-                return val;
+                result = val;
+                return true;
             }
 
-            // calculate the expression
-            return CalcExpression(expression, value);
+            return false;
         }
 
         private object ConvertToColumnDataType(object val, Type dataType, bool convertNulls)
@@ -1486,35 +1491,14 @@ namespace FastReport
         /// </remarks>
         protected virtual object CalcExpression(string expression, Variant value)
         {
-            if (expression.ToLower() == "true" || expression.ToLower() == "false")
+            var expressionToLower = expression.ToLower();
+
+            if (expressionToLower == "true" || expressionToLower == "false")
             {
-                expression = expression.ToLower();
+                expression = expressionToLower;
             }
 
-            // try to calculate the expression
-            foreach (AssemblyDescriptor d in assemblies)
-            {
-                if (d.ContainsExpression(expression))
-                    return d.CalcExpression(expression, value);
-            }
-
-#if REFLECTION_EMIT_COMPILER
-            if (Config.CompilerSettings.ReflectionEmitCompiler)
-                if (TryReflectionEmit(expression, value, out object returnValue))
-                    return returnValue;
-#endif
-
-            // expression not found. Probably it was added after the start of the report.
-            // Compile new assembly containing this expression.
-            using (AssemblyDescriptor descriptor = new AssemblyDescriptor(this, CodeHelper.EmptyScript()))
-            {
-                assemblies.Add(descriptor);
-                descriptor.AddObjects();
-                descriptor.AddSingleExpression(expression);
-                descriptor.AddFunctions();
-                descriptor.Compile();
-                return descriptor.CalcExpression(expression, value);
-            }
+            return CodeProvider.CalcExpression(expression, value);
         }
 
         /// <summary>
@@ -1524,9 +1508,7 @@ namespace FastReport
         /// <param name="parms">The method parameters.</param>
         public object InvokeMethod(string name, object[] parms)
         {
-            if (assemblies.Count > 0)
-                return assemblies[0].InvokeMethod(name, parms);
-            return null;
+            return CodeProvider.InvokeMethod(name, parms);
         }
 
         private Column GetColumn(string complexName)
@@ -1626,7 +1608,7 @@ namespace FastReport
                 {
                     return (double)(int)par.Value;
                 }
-                if (par.Value.GetType() != par.DataType)
+                if (par.Value?.GetType() != par.DataType)
                 {
                     return ConvertToColumnDataType(par.Value, par.DataType, Report.ConvertNulls);
                 }
@@ -1960,31 +1942,7 @@ namespace FastReport
         /// <param name="stream">The stream to save to.</param>
         public void Save(Stream stream)
         {
-            using (FRWriter writer = new FRWriter())
-            {
-                if (IsAncestor)
-                    writer.GetDiff += new DiffEventHandler(GetDiff);
-                writer.Write(this);
-
-                List<Stream> disposeList = new List<Stream>();
-
-                if (Compressed)
-                {
-                    stream = Compressor.Compress(stream);
-                    disposeList.Add(stream);
-                }
-                if (!String.IsNullOrEmpty(Password))
-                {
-                    stream = Crypter.Encrypt(stream, Password);
-                    disposeList.Insert(0, stream);
-                }
-                writer.Save(stream);
-
-                foreach (Stream s in disposeList)
-                {
-                    s.Dispose();
-                }
-            }
+            Save(stream, false);
         }
 
         /// <summary>
@@ -2854,7 +2812,6 @@ namespace FastReport
             styles = new StyleCollection();
             Dictionary = new Dictionary();
             graphicCache = new GraphicCache();
-            assemblies = new AssemblyCollection();
             cachedDataItems = new Hashtable(StringComparer.InvariantCultureIgnoreCase); // needed for case insensitivity
             storeInResources = true;
             fileName = "";

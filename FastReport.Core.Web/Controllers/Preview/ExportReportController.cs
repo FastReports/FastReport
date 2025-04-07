@@ -19,9 +19,9 @@ namespace FastReport.Web.Controllers
     {
         internal sealed class ExportReportParams
         {
-            public string ReportId { get; set; }
+            public string ReportId { get; init; }
 
-            public string ExportFormat { get; set; }
+            public string ExportFormat { get; init; }
         }
 
         //[Authorize]

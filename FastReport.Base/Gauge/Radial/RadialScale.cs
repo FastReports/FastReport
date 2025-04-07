@@ -58,6 +58,7 @@ namespace FastReport.Gauge.Radial
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal double StepValue
         {
             get { return stepValue; }
@@ -65,12 +66,14 @@ namespace FastReport.Gauge.Radial
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal double AverageValue
         {
             get { return avrValue; }
             set { avrValue = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal float MajorStep
         {
             get { return majorStep; }

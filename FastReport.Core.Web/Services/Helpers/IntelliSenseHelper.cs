@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using FastReport.Web.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,8 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace FastReport.Web.Services.Helpers
 {
-    
-    internal static class IntelliSenseHelper
+    internal class IntelliSenseHelper
     {
         private static readonly Regex GenericTypeExtractorRegex = new(@"`\d+");
 
@@ -21,17 +19,23 @@ namespace FastReport.Web.Services.Helpers
         private static readonly ConcurrentDictionary<string, List<TypeInfo>> CachedNamespaceInfo = new();
         private static readonly ConcurrentDictionary<string, ClassDetails> CachedClassDetails = new();
 
+        private readonly List<string> _userIntelliSenseAssemblies;
         private static readonly List<string> IntelliSenseAssemblies = new()
         {
             "FastReport.SkiaDrawing", "FastReport.DataVisualization", "FastReport.Compat", "FastReport", "System.Private.CoreLib"
         };
 
-        public static ClassDetails GetClassDetails(string className)
+        public IntelliSenseHelper(List<string> intelliSenseAssemblies)
+        {
+            _userIntelliSenseAssemblies = intelliSenseAssemblies;
+        }
+
+        public ClassDetails GetClassDetails(string className)
         {
             return CachedClassDetails.GetOrAdd(className, _ => FetchClassDetails(className));
         }
 
-        public static Dictionary<string, List<TypeInfo>> GetNamespacesInfo(IReadOnlyCollection<string> namespaces)
+        public Dictionary<string, List<TypeInfo>> GetNamespacesInfo(IReadOnlyCollection<string> namespaces)
         {
             var result = new Dictionary<string, List<TypeInfo>>();
 
@@ -41,7 +45,7 @@ namespace FastReport.Web.Services.Helpers
             return result;
         }
 
-        private static ClassDetails FetchClassDetails(string className)
+        private ClassDetails FetchClassDetails(string className)
         {
             var type = FindTypeByName(className);
             if (type == null) return null;
@@ -103,9 +107,9 @@ namespace FastReport.Web.Services.Helpers
                 }).ToList();
         }
 
-        private static Type FindTypeByName(string typeName)
+        private Type FindTypeByName(string typeName)
         {
-            var assemblies = FilterAssembliesByNames(FastReportGlobal.IntelliSenseAssemblies)
+            var assemblies = FilterAssembliesByNames(_userIntelliSenseAssemblies)
                 .Concat(FilterAssembliesByNames(IntelliSenseAssemblies));
 
             var type = assemblies
@@ -115,7 +119,7 @@ namespace FastReport.Web.Services.Helpers
             return type;
         }
 
-        private static IEnumerable<Assembly> FilterAssembliesByNames(IEnumerable<string> assemblyNames)
+        private static IEnumerable<Assembly> FilterAssembliesByNames(ICollection<string> assemblyNames)
         {
             return AppDomain.CurrentDomain.GetAssemblies()
                 .Where(assembly =>
@@ -133,9 +137,9 @@ namespace FastReport.Web.Services.Helpers
             return type.IsInterface ? "interface" : "unknown";
         }
 
-        private static List<TypeInfo> GetNamespaceInfo(string namespaceName)
+        private List<TypeInfo> GetNamespaceInfo(string namespaceName)
         {
-            var availableAssemblies = FastReportGlobal.IntelliSenseAssemblies.Concat(IntelliSenseAssemblies);
+            var availableAssemblies = _userIntelliSenseAssemblies.Concat(IntelliSenseAssemblies).ToArray();
             var assemblies = FilterAssembliesByNames(availableAssemblies).ToList();
 
             var typesInNamespace = assemblies

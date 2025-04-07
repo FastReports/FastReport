@@ -24,6 +24,7 @@
     <Using Include="Cake.Common.Tools.NuGet.Pack" />
     <Using Include="Cake.Common.IO" />
     <Using Include="Cake.Common.Tools.DotNet" />
+    <Using Include="System.Runtime.Versioning"/>
     <Using Include="CakeScript.CakeAPI" Static="true" />
   </ItemGroup>
 

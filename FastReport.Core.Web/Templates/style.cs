@@ -154,6 +154,127 @@ namespace FastReport.Web
     width: calc({Toolbar.Height}px * 0.5);
 }}
 
+/****************
+    SEARCH FORM
+*****************/
+.{template_FR}-toolbar-dropdown-content-searchbox {{
+    float: none;
+    background-color: white;
+    text-decoration: none;
+    text-align: left;
+    height: auto;
+    user-select: none;
+    border: 1px solid #000;
+    border-radius: 6px; 
+}}
+
+.{template_FR}-toolbar-search-form > div > label > input {{
+    margin-bottom: 12px;
+    border-radius: 3px;
+}}
+
+.{template_FR}-toolbar-search-form > div > label:has(:disabled) {{
+    color: #CACACA;
+}}
+
+.{template_FR}-toolbar-search-form {{
+    font-size: 14px;
+    display: none;
+    position: fixed;
+    width: 390px;
+    z-index: 4;
+    left: calc(50% - 195);
+    top: 100px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+    background-color: #EFEFEF;
+}}
+
+.search-navigation-info-block {{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 12px 0px 6px 0px;
+}}
+
+#fr-search-next > svg, #fr-search-prev > svg {{
+    vertical-align: middle;
+    height: 12px;
+}}
+
+#fr-search-next, #fr-search-prev {{
+    background-color: white;
+    border: none;
+}}
+
+#fr-search-next:disabled > svg, #fr-search-prev:disabled > svg {{
+    filter: invert(99%) sepia(5%) saturate(91%) hue-rotate(66deg) brightness(114%) contrast(86%);
+}}
+
+#fr-search-next:hover:enabled, #fr-search-prev:hover:enabled {{
+    /*   background-color: #d9d9d9; */
+}}
+
+#fr-search-next:active:enabled, #fr-search-prev:active:enabled {{
+    background-color: #4A4A4A;
+}}
+
+#fr-search-next:active:enabled > svg, #fr-search-prev:active:enabled > svg {{
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(241deg) brightness(103%) contrast(103%);
+}}
+
+#fr-search-prev{{
+    margin-right: -5px;
+    border-radius: 3px 0px 0px 3px;
+}}
+
+#fr-search-next {{
+    border-radius: 0px 3px 3px 0px;
+}}
+
+#fr-search-text {{
+    min-height: 25px;
+    width: 90%;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    border-radius: 6px;
+}}
+
+#clear-searchbox {{
+    width: 20px; 
+    height: 20px; 
+    border: none;
+    vertical-align: middle;
+}}
+
+#close-search-form-button {{
+    font-size: 10px;
+    text-align: right;
+    padding: 6px 0px 0px 0px;
+}}
+
+#fr-WebRepot-text-info {{
+    width: 90%;
+}}
+
+#close-search-form-button > img {{
+    height: 20px;
+    width: 20px;
+    filter: invert(36%) sepia(0%) saturate(0%) hue-rotate(85deg) brightness(100%) contrast(91%);
+}}
+
+#{template_FR}-toolbar-search-form.open {{
+    display: block;
+}}
+
+.search-highlight{{
+    background-color: {ColorTranslator.ToHtml(Toolbar.SearchHighlight)};
+}}
+
 /**********************
     TOOLBAR DROPDOWN
 ***********************/

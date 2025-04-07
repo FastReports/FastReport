@@ -607,6 +607,9 @@ namespace FastReport.Data
             }
             catch
             {
+#if DEBUG
+                throw;
+#endif
             }
             LoadData();
 
