@@ -14,6 +14,16 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Does nothing
+        /// </summary>
+        /// <param name="e">Draw event arguments.</param>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        public void DrawCrossHair(FRPaintEventArgs e, float x, float y)
+        {
+        }
+
+        /// <summary>
         /// Copies event handlers from another similar object.
         /// </summary>
         /// <param name="source">The object to copy handlers from.</param>

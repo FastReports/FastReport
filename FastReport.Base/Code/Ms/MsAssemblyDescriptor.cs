@@ -156,7 +156,11 @@ namespace FastReport.Code.Ms
             }
 
             // See if the required assembly is present locally
-            string path = Path.Combine(defaultPath, relativeReference + ".dll");
+            string path = Path.Combine(defaultPath, relativeReference);
+            if (File.Exists(path))
+                return path;
+
+            path = Path.Combine(defaultPath, relativeReference + ".dll");
             if (File.Exists(path))
                 return path;
 

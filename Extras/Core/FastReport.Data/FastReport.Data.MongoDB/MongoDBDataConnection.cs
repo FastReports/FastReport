@@ -110,6 +110,13 @@ namespace FastReport.Data
             List<string> list = new List<string>();
 
             MongoClient client = new MongoClient(ConnectionString);
+            
+            if (String.IsNullOrEmpty(dbName))
+            {
+                var mongoUrl = new MongoUrl(ConnectionString);
+                dbName = mongoUrl.DatabaseName;
+            }
+
             IMongoDatabase db = client.GetDatabase(dbName);
             IAsyncCursor<BsonDocument> collections = db.ListCollections();
             foreach (var item in collections.ToList<BsonDocument>())

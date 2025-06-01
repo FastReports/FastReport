@@ -2446,6 +2446,14 @@
     <Xml>
       <Xsd Text="Schema file or URL:"/>
       <Xml Text="Data file or URL:"/>
+      <Codepage Text="Codepage:"/>
+	  <Codepages>
+		<Default Text="Default"/>
+        <ASCII Text="ASCII"/>
+        <UTF8 Text="UTF8"/>
+	    <Unicode Text="Unicode"/>
+	    <ISO-8859-1  Text="ISO-8859-1"/>
+	  </Codepages>
     </Xml>
     <Access>
       <Provider Text="Provider:"/>

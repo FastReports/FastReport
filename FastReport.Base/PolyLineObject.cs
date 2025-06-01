@@ -198,8 +198,7 @@ namespace FastReport
                         x += pointsCollection[0].X;
                         y += pointsCollection[0].Y;
                     }
-                    g.DrawLine(Pens.Black, x * e.ScaleX - 6, y * e.ScaleY, x * e.ScaleX + 6, y * e.ScaleY);
-                    g.DrawLine(Pens.Black, x * e.ScaleX, y * e.ScaleY - 6, x * e.ScaleX, y * e.ScaleY + 6);
+                    DrawCrossHair(e, x, y);
                     break;
 
                 default:

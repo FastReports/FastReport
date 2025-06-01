@@ -2244,6 +2244,14 @@
     <Xml>
       <Xsd Text="Файл схемы или URL:"/>
       <Xml Text="Файл данных или URL:"/>
+	  <Codepage Text="Кодировка:"/>
+      <Codepages>
+		<Default Text="По умолчанию"/>
+		<ASCII Text="ASCII"/>
+		<UTF8 Text="UTF8"/>
+		<Unicode Text="Юникод"/>
+		<ISO-8859-1  Text="ISO-8859-1"/>
+	  </Codepages>
     </Xml>
     <Access>
       <Provider Text="Поставщик:"/>
