@@ -16,4 +16,6 @@ partial class Program
 
     const string tfmNet462 = "net462";
     const string tfmNet472 = "net472";
+
+    const string OPEN_SOURCE_REPO = "github.com/FastReports/FastReport";
 }

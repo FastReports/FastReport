@@ -1,5 +1,6 @@
 ﻿#if DESIGNER
 using FastReport.Utils;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
@@ -16,10 +17,12 @@ namespace FastReport.Web.Services
     internal sealed class ReportDesignerService : IReportDesignerService
     {
         private readonly DesignerOptions _designerOptions;
+        private readonly IServiceProvider _serviceProvider;
 
-        public ReportDesignerService(DesignerOptions designerOptions)
+        public ReportDesignerService(DesignerOptions designerOptions, IServiceProvider serviceProvider)
         {
             _designerOptions = designerOptions;
+            _serviceProvider = serviceProvider;
         }
 
         public async Task<string> GetPOSTReportStringAsync(Stream requestBody, CancellationToken cancellationToken = default)
@@ -491,7 +494,16 @@ namespace FastReport.Web.Services
             var reportStream = await GetPOSTReportAsync(requestBody, cancellationToken);
             webReport.Report.Load(reportStream);
 
-            _designerOptions.OnWebReportCreated?.Invoke(webReport);
+            if (_designerOptions.OnWebReportCreatedAsync != null)
+            {
+                using var scope = _serviceProvider.CreateScope();
+                await _designerOptions.OnWebReportCreatedAsync(webReport, scope.ServiceProvider, cancellationToken);
+            }
+            else if (_designerOptions.OnWebReportCreated != null)
+            {
+                using var scope = _serviceProvider.CreateScope();
+                _designerOptions.OnWebReportCreated.Invoke(webReport, scope.ServiceProvider);
+            }
             return webReport.ID;
         }
 

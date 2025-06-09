@@ -50,6 +50,23 @@ namespace FastReport.Data
         }
 
         /// <summary>
+        /// Gets or sets the codepage of .xml file.
+        /// </summary>
+        public int Codepage
+        {
+            get
+            {
+                object codepage;
+                if (TryGetValue("Codepage", out codepage))
+                {
+                    return int.Parse((string)codepage);
+                }
+                return Encoding.Default.CodePage;
+            }
+            set { base["Codepage"] = value; }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="XmlConnectionStringBuilder"/> class with default settings.
         /// </summary>
         public XmlConnectionStringBuilder()

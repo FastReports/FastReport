@@ -7,6 +7,7 @@ using FastReport.Utils;
 using System.Data.Common;
 using System.Net;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace FastReport.Data
 {
@@ -59,6 +60,25 @@ namespace FastReport.Data
             {
                 XmlConnectionStringBuilder builder = new XmlConnectionStringBuilder(ConnectionString);
                 builder.XmlFile = value;
+                ConnectionString = builder.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the codepage of the .xml file.
+        /// </summary>
+        [Category("Data")]
+        public int Codepage
+        {
+            get
+            {
+                XmlConnectionStringBuilder builder = new XmlConnectionStringBuilder(ConnectionString);
+                return builder.Codepage;
+            }
+            set
+            {
+                XmlConnectionStringBuilder builder = new XmlConnectionStringBuilder(ConnectionString);
+                builder.Codepage = value;
                 ConnectionString = builder.ToString();
             }
         }
@@ -146,7 +166,19 @@ namespace FastReport.Data
                 {
                     if (Config.ForbidLocalData)
                         throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-                    dataset.ReadXml(XmlFile);
+
+                    if (Codepage != 1251)
+                    {
+                        //Adding the ability to decode a file from a computer in the selected encoding.
+                        using (var reader = new StreamReader(XmlFile, Encoding.GetEncoding(Codepage))) 
+                        {
+                            dataset.ReadXml(reader);
+                        }
+                    }
+                    else
+                    {
+                        dataset.ReadXml(XmlFile);
+                    }  
                 }
                 else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
                 {
@@ -166,7 +198,33 @@ namespace FastReport.Data
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(XmlFile);
             using (var response = req.GetResponse() as HttpWebResponse)
             {
-                var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+                string charset = null;
+                Encoding encoding;
+                if (Codepage != 1251)
+                {
+                    encoding = Encoding.GetEncoding(Codepage);
+                }
+                else
+                {
+                    // Extracting the charset from the Content-Type header, if specified.
+                    var contentType = response.ContentType;
+                    if (!string.IsNullOrEmpty(contentType))
+                    {
+                        var match = Regex.Match(contentType, @"charset=([\w-]+)", RegexOptions.IgnoreCase);
+                        if (match.Success && match.Groups.Count > 1)
+                            charset = match.Groups[1].Value;
+                    }
+
+                    // Defining the encoding. If omitted or there is an error, we use UTF—8 by default.
+                    try
+                    {
+                        encoding = string.IsNullOrWhiteSpace(charset) ? Encoding.UTF8 : Encoding.GetEncoding(charset);
+                    }
+                    catch
+                    {
+                        encoding = Encoding.UTF8;
+                    }
+                }
 
                 using (var responseStream = response.GetResponseStream())
                 using (var reader = new System.IO.StreamReader(responseStream, encoding))

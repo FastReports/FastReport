@@ -355,6 +355,8 @@ namespace FastReport
             set
             {
                 useAdjustForEPC = value;
+                if (value)
+                    rewriteEPCbank = false;
             }
         }
 
@@ -370,6 +372,8 @@ namespace FastReport
             set
             {
                 rewriteEPCbank = value;
+                if (value)
+                    useAdjustForEPC = false;
             }
         }
 

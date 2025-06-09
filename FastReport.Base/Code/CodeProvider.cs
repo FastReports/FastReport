@@ -63,7 +63,7 @@ namespace FastReport.Code
                 descriptor.AddObjects();
                 descriptor.AddExpressions();
                 descriptor.AddFunctions();
-                await descriptor.CompileAsync();
+                await descriptor.CompileAsync(token);
             }
         }
 

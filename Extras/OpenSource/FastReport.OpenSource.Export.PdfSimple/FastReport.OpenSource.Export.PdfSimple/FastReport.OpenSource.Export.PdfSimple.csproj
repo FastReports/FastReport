@@ -15,7 +15,7 @@
     <Copyright>Fast Reports Inc.</Copyright>
     <Company>Fast Reports Inc.</Company>
     <PackageLicenseUrl>https://github.com/FastReports/FastReport/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <PackageProjectUrl>https://www.fast-report.com/products/fast-report-net</PackageProjectUrl>
     <Authors>Fast Reports Inc.</Authors>
     <Product>FastReport</Product>
     <PackageId>FastReport.OpenSource.Export.PdfSimple</PackageId>

@@ -45,7 +45,7 @@ partial class Program
             Authors = ["Fast Reports Inc."],
             Owners = ["Fast Reports Inc."],
             Description = "FastReport.Localization includes localization files for FastReport .NET, FastReport.Core, FastReport.WPF, FastReport.Avalonia, FastReport.Mono and FastReport.OpenSource",
-            ProjectUrl = new Uri("https://www.fast-report.com/en/product/fast-report-net"),
+            ProjectUrl = new Uri("https://www.fast-report.com/products/fast-report-net"),
             Icon = FRLOGO192PNG,
             License = new NuSpecLicense { Type = "file", Value = MIT_LICENSE },
             Tags = ["fastreport", "localization", "frl"],

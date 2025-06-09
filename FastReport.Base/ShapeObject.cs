@@ -188,6 +188,8 @@ namespace FastReport
                     break;
             }
 
+            DrawDesign(e);
+
             if (!(Fill is SolidFill))
                 brush.Dispose();
             if (report != null && report.SmoothGraphics)

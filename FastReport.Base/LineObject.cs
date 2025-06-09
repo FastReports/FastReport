@@ -93,11 +93,10 @@ namespace FastReport
         public override void Draw(FRPaintEventArgs e)
         {
             IGraphics g = e.Graphics;
-            // draw marker when inserting a line
+            // draw crosshair when inserting a line
             if (Width == 0 && Height == 0)
             {
-                g.DrawLine(Pens.Black, AbsLeft * e.ScaleX - 6, AbsTop * e.ScaleY, AbsLeft * e.ScaleX + 6, AbsTop * e.ScaleY);
-                g.DrawLine(Pens.Black, AbsLeft * e.ScaleX, AbsTop * e.ScaleY - 6, AbsLeft * e.ScaleX, AbsTop * e.ScaleY + 6);
+                DrawCrossHair(e, AbsLeft, AbsTop);
                 return;
             }
 
@@ -112,18 +111,21 @@ namespace FastReport
 
             DrawUtils.SetPenDashPatternOrStyle(DashPattern, pen, Border);
 
+            float width = Width;
+            float height = Height;
+            
             if (!Diagonal)
             {
                 if (Math.Abs(Width) > Math.Abs(Height))
-                    Height = 0;
+                    height = 0;
                 else
-                    Width = 0;
+                    width = 0;
             }
 
             float x1 = AbsLeft * e.ScaleX;
             float y1 = AbsTop * e.ScaleY;
-            float x2 = (AbsLeft + Width) * e.ScaleX;
-            float y2 = (AbsTop + Height) * e.ScaleY;
+            float x2 = (AbsLeft + width) * e.ScaleX;
+            float y2 = (AbsTop + height) * e.ScaleY;
 
             if (StartCap.Style == CapStyle.None && EndCap.Style == CapStyle.None)
             {
