@@ -9,6 +9,8 @@ using System.Net;
 using FastReport.Utils;
 using System.Globalization;
 using System.Collections;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Data
 {
@@ -221,6 +223,17 @@ namespace FastReport.Data
         protected override DataSet CreateDataSet()
         {
             DataSet dataset = base.CreateDataSet();
+            return CreateDataSetShared(dataset);
+        }
+
+        protected override async Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
+        {
+            DataSet dataset = await base.CreateDataSetAsync(cancellationToken);
+            return CreateDataSetShared(dataset);
+        }
+
+        private DataSet CreateDataSetShared(DataSet dataset)
+        {
             CsvConnectionStringBuilder builder = new CsvConnectionStringBuilder(ConnectionString);
             RelatedPathCheck(builder);
             List<string> rawLines = CsvUtils.ReadLines(builder);
@@ -269,10 +282,22 @@ namespace FastReport.Data
             // do nothing
         }
 
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            // do nothing
+            return Task.CompletedTask;
+        }
+
         /// <inheritdoc/>
         public override void FillTableData(DataTable table, string selectCommand, CommandParameterCollection parameters)
         {
             // do nothing
+        }
+
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            // do nothing
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -282,6 +307,19 @@ namespace FastReport.Data
             {
                 source.Table = DataSet.Tables[0];
                 base.CreateTable(source);
+            }
+            else
+            {
+                source.Table = null;
+            }
+        }
+
+        public override async Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
+        {
+            if (DataSet.Tables.Count == 1)
+            {
+                source.Table = DataSet.Tables[0];
+                await base.CreateTableAsync(source, cancellationToken);
             }
             else
             {
@@ -310,6 +348,11 @@ namespace FastReport.Data
                 result[i] = DataSet.Tables[i].TableName;
             }
             return result;
+        }
+
+        public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            return Task.FromResult(GetTableNames());
         }
         #endregion Public Methods
     }

@@ -297,8 +297,12 @@ namespace FastReport.Export.Html
                                         else if (obj.VertAlign == VertAlign.Bottom)
                                         {
                                             // (float)(Math.Round(obj.Font.Size * 96 / 72) / 2
-                                            // necessary to compensate for paragraph offset error in GetSpanText method below
-                                            top = obj.Height - height - obj.Padding.Bottom - (float)(Math.Round(obj.Font.Size * 96 / 72) / 2);
+                                            // necessary to compensate for paragraph offset error in GetSpanText method below.
+                                            // top margin should be positive when VertAlign == VertAlign.Bottom.
+                                            top = Math.Max(obj.Height - height - obj.Padding.Bottom - (float)(Math.Round(obj.Font.Size * 96 / 72) / 4), 0);
+
+                                            if (top < 31)
+                                                top = obj.Height - height - obj.Padding.Bottom;
                                         }
                                     }
                                 }

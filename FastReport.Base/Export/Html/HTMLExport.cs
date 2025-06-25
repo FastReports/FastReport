@@ -576,16 +576,16 @@ namespace FastReport.Export.Html
             }
         }
 
-        private void DoPageStart(Stream stream, string documentTitle, bool print)
+        private void DoPageStart(Stream stream, string documentTitle)
         {
             ExportUtils.Write(stream, String.Format(templates.PageTemplateTitle, documentTitle));
-            if (print)
-                ExportUtils.WriteLn(stream, PRINT_JS);
             ExportUtils.WriteLn(stream, BODY_BEGIN);
         }
 
-        private void DoPageEnd(Stream stream)
+        private void DoPageEnd(Stream stream, bool print)
         {
+            if (print)
+                ExportUtils.WriteLn(stream, PRINT_JS);
             ExportUtils.WriteLn(stream, BODY_END);
             ExportUtils.Write(stream, templates.PageTemplateFooter);
         }
@@ -652,7 +652,7 @@ namespace FastReport.Export.Html
 
         private void FinishMHT()
         {
-            DoPageEnd(mimeStream);
+            DoPageEnd(mimeStream, print);
             WriteMHTHeader(Stream, FileName);
             WriteMimePart(mimeStream, "text/html", "utf-8", "index.html");
             for (int i = 0; i < picsArchive.Count; i++)
@@ -766,7 +766,7 @@ namespace FastReport.Export.Html
                         if (saveStreams)
                         {
                             MemoryStream pageStream = new MemoryStream();
-                            DoPageStart(pageStream, documentTitle, print);
+                            DoPageStart(pageStream, documentTitle);
                             GeneratedUpdate(singlePageFileName, pageStream);
                         }
                         else
@@ -774,7 +774,7 @@ namespace FastReport.Export.Html
                             using (Stream pageStream = new FileStream(singlePageFileName,
                                 FileMode.Create))
                             {
-                                DoPageStart(pageStream, documentTitle, print);
+                                DoPageStart(pageStream, documentTitle);
                             }
                         }
                     }
@@ -785,7 +785,7 @@ namespace FastReport.Export.Html
                         {
                             GeneratedUpdate(singlePageFileName, new MemoryStream());
                         }
-                        DoPageStart((format == HTMLExportFormat.HTML) ? Stream : mimeStream, documentTitle, print);
+                        DoPageStart((format == HTMLExportFormat.HTML) ? Stream : mimeStream, documentTitle);
                     }
                 }
             }
@@ -915,7 +915,7 @@ namespace FastReport.Export.Html
                             //{
                             using (Stream pageStream = new FileStream(singlePageFileName, FileMode.Append))
                             {
-                                DoPageEnd(pageStream);
+                                DoPageEnd(pageStream, print);
                             }
                             //} // Commented because saveStreams is always false!!
                         }
@@ -925,7 +925,6 @@ namespace FastReport.Export.Html
                         {
                             ExportHTMLNavigator(outStream);
                         }
-
                         //GeneratedFiles.Add(FTargetIndexPath + FOutlineFileName);
                         //using (FileStream OutStream = new FileStream(FTargetIndexPath + FOutlineFileName, FileMode.Create))
                         //    ExportHTMLOutline(OutStream);
@@ -942,14 +941,14 @@ namespace FastReport.Export.Html
                         if (!String.IsNullOrEmpty(singlePageFileName))
                         {
                             int fileIndex = GeneratedFiles.IndexOf(singlePageFileName);
-                            DoPageEnd(GeneratedStreams[fileIndex]);
+                            DoPageEnd(GeneratedStreams[fileIndex], print && singlePage);
                         }
                     }
                     else
                     {
                         if (!singlePage)
                         {
-                            DoPageStart(Stream, documentTitle, false);
+                            DoPageStart(Stream, documentTitle);
                             int pageCounter = 0;
                             foreach (string genFile in GeneratedFiles)
                             {
@@ -963,7 +962,7 @@ namespace FastReport.Export.Html
                                 }
                             }
                         }
-                        DoPageEnd(Stream);
+                        DoPageEnd(Stream, print && singlePage);
                     }
                 }
             }

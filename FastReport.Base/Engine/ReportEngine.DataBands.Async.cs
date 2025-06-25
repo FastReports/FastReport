@@ -16,7 +16,7 @@ namespace FastReport.Engine
             if (page.Columns.Count > 1 && Report.Engine.UnlimitedHeight)
                 dataBand.Columns.Count = page.Columns.Count;
 
-            dataBand.InitDataSource();
+            await dataBand.InitDataSourceAsync(cancellationToken);
             dataBand.DataSource.First();
 
             int rowCount = dataBand.DataSource.RowCount;
@@ -59,7 +59,7 @@ namespace FastReport.Engine
             for (int i = 0; i < rowCount; i++)
             {
                 bool isLastRow = i == rowCount - 1;
-                if (!dataBand.IsDetailEmpty())
+                if (!await dataBand.IsDetailEmptyAsync(cancellationToken))
                 {
                     dataBand.RowNo++;
                     dataBand.AbsRowNo++;

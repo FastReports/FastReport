@@ -1972,10 +1972,11 @@
       <SnapToGrid Text="Snap to grid"/>
       <DottedGrid Text="Dotted grid"/>
       <Size Text="Snap size:"/>
-      <Markers Text="Object markers"/>
+      <AltSize Text="Snap size (Alt):"/>
+      <Markers Text="Object markers:"/>
       <Rectangle Text="Rectangle"/>
       <Corners Text="Corners"/>
-      <BandView Text="Band view"/>
+      <BandView Text="Band view:"/>
       <Structure Text="Structure"/>
       <Classic Text="Classic"/>
       <EditAfterInsert Text="Edit after insert"/>
@@ -1986,6 +1987,7 @@
       <EnableBacklight Text="Backlight active band"/>
       <SimplifyDBFields Text="Simplified display of DB fields"/>
       <ApplyLastFormat Text="Apply last format to new objects"/>
+      <ExtendedLocationTooltip Text="Extended location tooltip"/>
     </ReportPageOptions>
     <RFIDLabelEditor Text="RFID Label editor">
       <ReservedBank Text="Reserved bank"/>
@@ -2014,6 +2016,7 @@
       <WritePower Text="Write power"/>
       <ErrorHandleMode Text="Error handle mode"/>
       <DataColumn Text="Data column"/>
+      <CountByte Text="Count byte"/>
     </RFIDLabelEditor>
     <RichTextEditor Text="RichText Editor">
       <Open Text="Open"/>
@@ -2446,6 +2449,14 @@
     <Xml>
       <Xsd Text="Schema file or URL:"/>
       <Xml Text="Data file or URL:"/>
+      <Codepage Text="Codepage:"/>
+	  <Codepages>
+		<Default Text="Default"/>
+        <ASCII Text="ASCII"/>
+        <UTF8 Text="UTF8"/>
+	    <Unicode Text="Unicode"/>
+	    <ISO-8859-1  Text="ISO-8859-1"/>
+	  </Codepages>
     </Xml>
     <Access>
       <Provider Text="Provider:"/>

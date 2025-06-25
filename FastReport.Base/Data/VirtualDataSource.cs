@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace FastReport.Data
 {
-    internal class VirtualDataSource : DataSourceBase
+    internal partial class VirtualDataSource : DataSourceBase
     {
         private int virtualRowsCount;
 

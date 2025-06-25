@@ -13,6 +13,8 @@ using Newtonsoft.Json.Linq;
 using Raven.Client.Documents.Operations.Indexes;
 using Raven.Client.Documents.Operations;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data
 {
@@ -155,123 +157,131 @@ namespace FastReport.Data
                 {
                     DataTable table = new DataTable(name);
 
-                    #region Local Functions
-                    void AddColumn(string colName, Type colType)
-                    {
-                        try
-                        {
-
-                            DataColumn column = new DataColumn();
-                            column.ColumnName = colName;
-                            column.DataType = colType ?? typeof(string);
-                            table.Columns.Add(column);
-                        }
-                        catch (Exception ex)
-                        {
-
-                        }
-                    }
-
-                    Type GetSimpleType(Type columnType)
-                    {
-                        try
-                        {
-                            if (columnType == typeof(LazyStringValue))
-                                columnType = typeof(string);
-                            else if (columnType == typeof(LazyNumberValue))
-                            {
-
-                            }
-                            return columnType;
-                        }
-                        catch (Exception ex)
-                        {
-
-                        }
-                        return typeof(string);
-                    }
-                    #endregion
-
                     // get all rows of the table
                     BlittableJsonReaderObject[] objects = session.Advanced.LoadStartingWith<BlittableJsonReaderObject>(name, null, 0, Int32.MaxValue);
-                    if (objects.Count() > 0)
-                    {
-                        //create table columns
-                        var properties = objects[0].GetPropertyNames();
-                        foreach (var prop in properties)
-                        {
-                            try
-                            {
-                                var item = objects[0][prop];
-                                Type columnType = item?.GetType() ?? typeof(string);
-                                //columns
-                                if (columnType != typeof(BlittableJsonReaderObject))
-                                {
-                                    columnType = GetSimpleType(columnType);
-                                    AddColumn(prop, columnType);
-                                }
-                                //subcolumns
-                                else if (columnType == typeof(BlittableJsonReaderArray))
-                                {
-
-                                }
-                                else
-                                {
-                                    var complexItem = (item as BlittableJsonReaderObject);
-                                    var subproperties = complexItem.GetPropertyNames();
-                                    foreach (var subprop in subproperties)
-                                    {
-                                        var subitem = complexItem[subprop];
-                                        columnType = GetSimpleType(subprop.GetType() ?? typeof(string));
-                                        AddColumn($"{prop}.{subprop}", columnType);
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-
-                            }
-                        }
-                        // add table rows
-                        foreach (var obj in objects)
-                        {
-                            DataRow row = table.NewRow();
-                            // add row cells
-                            for (int i = 0; i < table.Columns.Count; i++)
-                            {
-                                if (table.Columns[i].ColumnName.Contains("."))
-                                {
-                                    string[] parts = table.Columns[i].ColumnName.Split(".".ToCharArray());
-                                    var value = obj[parts[0]];
-
-                                    if (value is BlittableJsonReaderObject)
-                                    {
-                                        var subvalue = (value as BlittableJsonReaderObject)[parts[1]];
-                                        row[i] = subvalue;
-                                    }
-                                }
-                                else
-                                {
-                                    var value = obj[table.Columns[i].ColumnName];
-                                    row[i] = value;
-                                }
-                            }
-                            table.Rows.Add(row);
-                        }
-                        dataset.Tables.Add(table);
-                    }
+                    CreateDataSetShared(dataset, table, objects);
                 }
 
             }
             store.Dispose();
             return dataset;
             //using end }
+        }
+
+        protected override async Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
+        {
+            DataSet dataset = await base.CreateDataSetAsync(cancellationToken);
+
+            IDocumentStore store = this.Certificate == null ? new DocumentStore()
+            {
+                Urls = new string[] { Host },
+                Database = DatabaseName
+            }
+            : new DocumentStore()
+            {
+                Urls = new string[] { Host },
+                Database = DatabaseName,
+                Certificate = this.Certificate
+            };
+
+            //using strt  {
+            store.Initialize();
+            using (var session = store.OpenAsyncSession())
+            {
+                var operation = new GetCollectionStatisticsOperation();
+                var ress = await store.Maintenance.SendAsync(operation, cancellationToken);
+                List<string> entityNames = ress.Collections.Select(c => c.Key).ToList();
+                foreach (string name in entityNames)
+                {
+                    DataTable table = new DataTable(name);
+
+                    // get all rows of the table
+                    BlittableJsonReaderObject[] objects = (await session.Advanced
+                        .LoadStartingWithAsync<BlittableJsonReaderObject>(name, null, 0, Int32.MaxValue, token: cancellationToken))
+                        .ToArray();
+                    CreateDataSetShared(dataset, table, objects);
+                }
+
+            }
+            store.Dispose();
+            return dataset;
+            //using end }
+        }
+
+        private static void CreateDataSetShared(DataSet dataset, DataTable table, BlittableJsonReaderObject[] objects)
+        {
+            if (objects.Length > 0)
+            {
+                //create table columns
+                var properties = objects[0].GetPropertyNames();
+                foreach (var prop in properties)
+                {
+                    try
+                    {
+                        var item = objects[0][prop];
+                        Type columnType = item?.GetType() ?? typeof(string);
+                        //columns
+                        if (columnType != typeof(BlittableJsonReaderObject))
+                        {
+                            columnType = GetSimpleType(columnType);
+                            AddColumn(table, prop, columnType);
+                        }
+                        //subcolumns
+                        else if (columnType == typeof(BlittableJsonReaderArray))
+                        {
+
+                        }
+                        else
+                        {
+                            var complexItem = (item as BlittableJsonReaderObject);
+                            var subproperties = complexItem.GetPropertyNames();
+                            foreach (var subprop in subproperties)
+                            {
+                                var subitem = complexItem[subprop];
+                                columnType = GetSimpleType(subprop.GetType() ?? typeof(string));
+                                AddColumn(table, $"{prop}.{subprop}", columnType);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+                // add table rows
+                foreach (var obj in objects)
+                {
+                    DataRow row = table.NewRow();
+                    // add row cells
+                    for (int i = 0; i < table.Columns.Count; i++)
+                    {
+                        if (table.Columns[i].ColumnName.Contains('.'))
+                        {
+                            string[] parts = table.Columns[i].ColumnName.Split('.');
+                            var value = obj[parts[0]];
+
+                            if (value is BlittableJsonReaderObject)
+                            {
+                                var subvalue = (value as BlittableJsonReaderObject)[parts[1]];
+                                row[i] = subvalue;
+                            }
+                        }
+                        else
+                        {
+                            var value = obj[table.Columns[i].ColumnName];
+                            row[i] = value;
+                        }
+                    }
+                    table.Rows.Add(row);
+                }
+                dataset.Tables.Add(table);
+            }
 
         }
 
-#endregion Protected Methods
+        #endregion Protected Methods
 
-#region Public Methods
+        #region Public Methods
 
         /// <inheritdoc/>
         public override void CreateTable(TableDataSource source)
@@ -279,6 +289,20 @@ namespace FastReport.Data
             if (DataSet.Tables.Contains(source.TableName))
             {
                 source.Table = DataSet.Tables[source.TableName];
+                base.CreateTable(source);
+            }
+            else
+            {
+                source.Table = null;
+            }
+        }
+
+        public override async Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken)
+        {
+            var dataSet = await GetDataSetAsync(cancellationToken);
+            if (dataSet.Tables.Contains(source.TableName))
+            {
+                source.Table = dataSet.Tables[source.TableName];
                 base.CreateTable(source);
             }
             else
@@ -298,12 +322,58 @@ namespace FastReport.Data
             return result;
         }
 
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken)
+        {
+            var dataSet = await GetDataSetAsync(cancellationToken);
+            string[] result = new string[dataSet.Tables.Count];
+            for (int i = 0; i < dataSet.Tables.Count; i++)
+            {
+                result[i] = dataSet.Tables[i].TableName;
+            }
+            return result;
+        }
+
         /// <inheritdoc/>
         public override string QuoteIdentifier(string value, DbConnection connection)
         {
             return value;
         }
 
-#endregion Public Methods
+        #endregion Public Methods
+
+        static void AddColumn(DataTable table, string colName, Type colType)
+        {
+            try
+            {
+
+                DataColumn column = new DataColumn();
+                column.ColumnName = colName;
+                column.DataType = colType ?? typeof(string);
+                table.Columns.Add(column);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        static Type GetSimpleType(Type columnType)
+        {
+            try
+            {
+                if (columnType == typeof(LazyStringValue))
+                    columnType = typeof(string);
+                else if (columnType == typeof(LazyNumberValue))
+                {
+
+                }
+                return columnType;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return typeof(string);
+        }
     }
 }

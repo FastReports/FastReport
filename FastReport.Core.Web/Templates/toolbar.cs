@@ -16,10 +16,17 @@ namespace FastReport.Web
                 )
                 return "";
 
+            // disable export and print buttons in dialog mode
+#if DIALOGS
+            var disableExport = Mode == WebReportMode.Dialog ? "hidden" : "";
+#else
+            var disableExport = "";
+#endif
+
             var showRefreshButton = Toolbar.ShowRefreshButton && !Report.IsLoadPrepared;
             var localization = new ToolbarLocalization(Res);
             var exports = Toolbar.Exports;
-            var toolbarExportItem = $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item"" title=""{localization.saveTxt}"">
+            var toolbarExportItem = $@"<div {disableExport} class=""fr-toolbar-item {template_FR}-toolbar-item"" title=""{localization.saveTxt}"">
         {GetResource("save.svg")}
         <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">"
           + (exports.ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">{localization.preparedTxt}</a>" : "")
@@ -63,7 +70,7 @@ namespace FastReport.Web
 #endif
              + "</div></div>"
             ;
-            var toolbarPrintItem = $@" <div class=""fr-toolbar-item {template_FR}-toolbar-item"" title=""{localization.printTxt}"">
+            var toolbarPrintItem = $@" <div {disableExport} class=""fr-toolbar-item {template_FR}-toolbar-item"" title=""{localization.printTxt}"">
         {GetResource("print.svg")}
         <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">
             " +

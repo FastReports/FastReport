@@ -21,17 +21,12 @@ namespace FastReport.Web.Cache
         {
             _cache = cache;
 
-            var callback = new PostEvictionCallbackRegistration
-            {
-                EvictionCallback = EvictionCallback
-            };
             _memoryCacheEntryDefaultOptions = GetOptions(cacheOptions);
-            _memoryCacheEntryDefaultOptions.PostEvictionCallbacks.Add(callback);
         }
 
         public void Add(WebReport webReport)
         {
-            if(_cache.TryGetValue(webReport.ID, out _))
+            if (_cache.TryGetValue(webReport.ID, out _))
             {
                 Debug.WriteLine($"WebReport with '{webReport.ID}' id was added before, but someone is trying to rewrite it");
                 return;
@@ -62,16 +57,26 @@ namespace FastReport.Web.Cache
 
         public void Remove(WebReport webReport)
         {
-            _cache.Remove(webReport.ID);
+            Remove(webReport.ID);
+        }
+
+        public void Remove(string id)
+        {
+            _cache.Remove(id);
         }
 
         private static MemoryCacheEntryOptions GetOptions(WebReportCacheOptions cacheOptions)
         {
+            var callback = new PostEvictionCallbackRegistration
+            {
+                EvictionCallback = EvictionCallback
+            };
             return new MemoryCacheEntryOptions
             {
                 SlidingExpiration = cacheOptions.CacheDuration,
                 AbsoluteExpirationRelativeToNow = cacheOptions.AbsoluteExpirationDuration,
                 AbsoluteExpiration = cacheOptions.AbsoluteExpiration,
+                PostEvictionCallbacks = { callback },
             };
         }
 

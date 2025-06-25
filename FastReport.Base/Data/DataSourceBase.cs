@@ -13,7 +13,7 @@ namespace FastReport.Data
     /// </summary>
     [TypeConverter(typeof(FastReport.TypeConverters.DataSourceConverter))]
     [Editor("FastReport.TypeEditors.DataSourceEditor, FastReport", typeof(UITypeEditor))]
-    public abstract class DataSourceBase : Column
+    public abstract partial class DataSourceBase : Column
     {
         #region Fields
         private ArrayList internalRows;
@@ -613,6 +613,11 @@ namespace FastReport.Data
             }
             LoadData();
 
+            InitShared(relation, filter, sort, useAllParentRows);
+        }
+
+        private void InitShared(Relation relation, string filter, SortCollection sort, bool useAllParentRows)
+        {
             // fill rows, emulate relation
             rows.Clear();
             if (relation != null && relation.Enabled)
@@ -677,6 +682,7 @@ namespace FastReport.Data
             FShowAccessDataMessage = false;
             First();
         }
+
 
         /// <summary>
         /// Initializes the data source if it is not initialized yet.
@@ -770,13 +776,13 @@ namespace FastReport.Data
             SetFlags(Flags.HasGlobalName, true);
         }
 
-        private class RowComparer : IComparer
+        private partial class RowComparer : IComparer
         {
-            private Report report;
-            private DataSourceBase dataSource;
-            private string[] expressions;
-            private bool[] descending;
-            private Column[] columns;
+            private readonly Report report;
+            private readonly DataSourceBase dataSource;
+            private readonly string[] expressions;
+            private readonly bool[] descending;
+            private readonly Column[] columns;
 
             public int Compare(object x, object y)
             {
@@ -838,7 +844,7 @@ namespace FastReport.Data
 
         private class Indices : IComparable
         {
-            private object[] values;
+            private readonly object[] values;
 
             public int CompareTo(object obj)
             {

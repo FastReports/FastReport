@@ -5,6 +5,8 @@ using System.Collections;
 using System.Reflection;
 using System.ComponentModel;
 using FastReport.Utils;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Data
 {
@@ -15,7 +17,7 @@ namespace FastReport.Data
     /// Do not use this class directly. To register a business object, use the
     /// <b>Report.RegisterData</b> method.
     /// </remarks>
-    public class BusinessObjectDataSource : DataSourceBase
+    public partial class BusinessObjectDataSource : DataSourceBase
     {
         #region Fields
         #endregion

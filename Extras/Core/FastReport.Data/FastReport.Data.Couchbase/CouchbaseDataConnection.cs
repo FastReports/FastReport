@@ -8,6 +8,8 @@ using Couchbase.Configuration.Client;
 using Couchbase.Authentication;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data
 {
@@ -136,6 +138,45 @@ namespace FastReport.Data
                 var jsstring = json.ToString();
                 JsonData = jsstring;
                 return base.CreateDataSet();
+            }
+        }
+
+        protected override async Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
+        {
+            using (var cluster = new Cluster(new ClientConfiguration
+            {
+                Servers = new List<Uri> { new Uri(Host) }
+            }))
+            {
+                var authenticator = new PasswordAuthenticator(Username, Password);
+                cluster.Authenticate(authenticator);
+                var bucket = await cluster.OpenBucketAsync(DatabaseName);
+                List<string> entityNames = (await cluster.QueryAsync<JObject>("select distinct `type` from `beer-sample`"))
+                    .Rows.Select(v => v.GetValue("type").ToString()).ToList();
+
+                StringBuilder json = new StringBuilder();
+                json.Append("{\n");
+                foreach (string name in entityNames)
+                {
+                    json.Append("\"").Append(name).Append("\":\n[");
+                    DataTable table = new DataTable(name);
+
+                    // get all rows of the table
+                    var objects = (await cluster.QueryAsync<JObject>($"select * from `{DatabaseName}` where type = \"{name}\"")).Rows.ToList();
+                    foreach (var jobj in objects)
+                    {
+                        json.Append(jobj.GetValue(DatabaseName).ToString());
+                        if (jobj != objects.Last())
+                            json.Append(",");
+                    }
+                    json.Append("]\n");
+                    if (name != entityNames.Last())
+                        json.Append(",");
+                }
+                json.Append("}");
+                var jsstring = json.ToString();
+                JsonData = jsstring;
+                return await base.CreateDataSetAsync(cancellationToken);
             }
         }
 

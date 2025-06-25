@@ -6,6 +6,8 @@ using System.Data;
 using MongoDB.Bson;
 using FastReport.Data;
 using MongoDB.Driver.Core.Configuration;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Data
 {
@@ -14,7 +16,7 @@ namespace FastReport.Data
         public static string dbName = "";
 
         #region Private Methods
-        private void ExecuteFillDataTable(BsonDocument doc, DataTable dt, DataRow dr, string parent)
+        private static void ExecuteFillDataTable(BsonDocument doc, DataTable dt, DataRow dr, string parent)
         {
             List<KeyValuePair<string, BsonArray>> arrays = new List<KeyValuePair<string, BsonArray>>();
             foreach (string key in doc.Names)
@@ -49,18 +51,8 @@ namespace FastReport.Data
         /// <inheritdoc/>
         protected DataTable CreateDataTable(DataTable table, bool allRows)
         {
-            MongoClient client = new MongoClient(ConnectionString);
-            IMongoDatabase db = null;
-            if (dbName != string.Empty)
-            {
-                db = client.GetDatabase(dbName);
-            }
-            else
-            {
-                MongoUrlBuilder builder = new MongoUrlBuilder(ConnectionString);
-                db = client.GetDatabase(builder.DatabaseName);
-            }
-            
+            IMongoDatabase db = CreateDataTableShared();
+
             var collection = db.GetCollection<BsonDocument>(table.TableName);
             if (!allRows)
             {
@@ -82,6 +74,50 @@ namespace FastReport.Data
                 }
             }          
             return table;
+        }
+
+        protected async Task<DataTable> CreateDataTableAsync(DataTable table, bool allRows, CancellationToken token)
+        {
+            IMongoDatabase db = CreateDataTableShared();
+
+            var collection = db.GetCollection<BsonDocument>(table.TableName);
+            if (!allRows)
+            {
+                var documents = (await collection.FindAsync(new BsonDocument(), cancellationToken: token)).FirstOrDefault();
+                if (documents != null)
+                {
+                    DataRow dr = table.NewRow();
+                    ExecuteFillDataTable(documents, table, dr, string.Empty);
+                }
+            }
+            else
+            {
+                var documents = (await collection.FindAsync(new BsonDocument(), cancellationToken: token)).ToList();
+                foreach (var obj in documents)
+                {
+                    DataRow dr = table.NewRow();
+                    ExecuteFillDataTable(obj, table, dr, string.Empty);
+                    table.Rows.Add(dr);
+                }
+            }
+            return table;
+        }
+
+        private IMongoDatabase CreateDataTableShared()
+        {
+            MongoClient client = new MongoClient(ConnectionString);
+            IMongoDatabase db;
+            if (dbName != string.Empty)
+            {
+                db = client.GetDatabase(dbName);
+            }
+            else
+            {
+                MongoUrlBuilder builder = new MongoUrlBuilder(ConnectionString);
+                db = client.GetDatabase(builder.DatabaseName);
+            }
+
+            return db;
         }
 
         protected override string GetConnectionStringWithLoginInfo(string userName, string password)
@@ -110,6 +146,13 @@ namespace FastReport.Data
             List<string> list = new List<string>();
 
             MongoClient client = new MongoClient(ConnectionString);
+            
+            if (String.IsNullOrEmpty(dbName))
+            {
+                var mongoUrl = new MongoUrl(ConnectionString);
+                dbName = mongoUrl.DatabaseName;
+            }
+
             IMongoDatabase db = client.GetDatabase(dbName);
             IAsyncCursor<BsonDocument> collections = db.ListCollections();
             foreach (var item in collections.ToList<BsonDocument>())
@@ -117,6 +160,33 @@ namespace FastReport.Data
                 list.Add(item[0].ToString());
             }
             return list.ToArray();
+        }
+
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken)
+        {
+            List<string> list = new List<string>();
+
+            IMongoDatabase db = GetTableNamesShared();
+            IAsyncCursor<BsonDocument> collections = await db.ListCollectionsAsync(cancellationToken: cancellationToken);
+            foreach (var item in await collections.ToListAsync<BsonDocument>(cancellationToken))
+            {
+                list.Add(item[0].ToString());
+            }
+            return list.ToArray();
+        }
+
+        private IMongoDatabase GetTableNamesShared()
+        {
+            MongoClient client = new MongoClient(ConnectionString);
+
+            if (String.IsNullOrEmpty(dbName))
+            {
+                var mongoUrl = new MongoUrl(ConnectionString);
+                dbName = mongoUrl.DatabaseName;
+            }
+
+            IMongoDatabase db = client.GetDatabase(dbName);
+            return db;
         }
 
         public override string QuoteIdentifier(string value, DbConnection connection)
@@ -131,11 +201,21 @@ namespace FastReport.Data
             CreateDataTable(table, false);
         }
 
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            return CreateDataTableAsync(table, false, cancellationToken);
+        }
+
         /// <inheritdoc/>
         public override void FillTableData(DataTable table, string selectCommand,
      CommandParameterCollection parameters)
         {
             CreateDataTable(table, true);
+        }
+
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            return CreateDataTableAsync(table, true, cancellationToken);
         }
         #endregion
     }

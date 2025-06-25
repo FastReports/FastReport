@@ -113,6 +113,7 @@ namespace FastReport.Web
 
 .{template_FR}-toolbar-item {{
     height: {Toolbar.Height}px;
+    border: none;
     border-radius:{Toolbar.ToolbarRoundness}px;
     background-color: #00000000;
     position: relative;
@@ -120,10 +121,13 @@ namespace FastReport.Web
     display: flex;
 }}
 
-.{template_FR}-toolbar-item:hover {{
+.{template_FR}-toolbar-item:hover:not([hidden]) {{
     background-color: {ColorTranslator.ToHtml(Toolbar.Color)};
 }}
 
+.{template_FR}-toolbar-item[hidden] > svg {{
+    filter: invert(99%) sepia(5%) saturate(91%) hue-rotate(66deg) brightness(114%) contrast(86%);
+}}
 
 .{template_FR}-toolbar-item > svg {{
     height: calc({Toolbar.Height}px * 0.5);
@@ -138,7 +142,7 @@ namespace FastReport.Web
     margin-right: 10px;
 }}
 
-.{template_FR}-toolbar-item:hover > svg {{
+.{template_FR}-toolbar-item:hover:not([hidden]) > svg {{
     opacity: 0.5;
 }}
 
@@ -291,7 +295,7 @@ namespace FastReport.Web
     border-radius: {Toolbar.DropDownListBorder};
 }}
 
-.{template_FR}-toolbar-item:hover > .{template_FR}-toolbar-dropdown-content {{
+.{template_FR}-toolbar-item:hover:not([hidden]) > .{template_FR}-toolbar-dropdown-content {{
     display: block;
 }}
 

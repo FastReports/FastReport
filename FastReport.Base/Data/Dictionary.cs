@@ -601,7 +601,7 @@ namespace FastReport.Data
                 else if (c is DataSourceBase)
                 {
                     // check complete match or match without case sensitivity
-                    if (alias == (c as DataSourceBase).FullName || alias.ToLower() == (c as DataSourceBase).FullName.ToLower())
+                    if (alias == (c as DataSourceBase).Alias || alias.ToLower() == (c as DataSourceBase).Alias.ToLower())
                         return c as DataSourceBase;
                 }
             }

@@ -6,6 +6,8 @@ using System.Text;
 using System.Data.Common;
 using System.Data;
 using FastReport.Data;
+using System.Threading;
+using System.Threading.Tasks;
 #if FRCORE
 using System.Linq;
 using Microsoft.Data.Sqlite;
@@ -19,17 +21,18 @@ namespace FastReport.Data
     {
         private void GetDBObjectNames(string name, List<string> list)
         {
-            DataTable schema = null;
-            DbConnection connection = GetConnection();
-            try
-            {
-                OpenConnection(connection);
-                schema = connection.GetSchema(name);
-            }
-            finally
-            {
-              DisposeConnection(connection);
-            }
+            var schema = GetSchema(name);
+            GetDBObjectNamesShared(list, schema);
+        }
+
+        private async Task GetDBObjectNamesAsync(string name, List<string> list, CancellationToken cancellationToken)
+        {
+            var schema = await GetSchemaAsync(name, cancellationToken);
+            GetDBObjectNamesShared(list, schema);
+        }
+
+        private static void GetDBObjectNamesShared(List<string> list, DataTable schema)
+        {
             foreach (DataRow row in schema.Rows)
             {
                 list.Add(row["TABLE_NAME"].ToString());
@@ -41,6 +44,14 @@ namespace FastReport.Data
             List<string> list = new List<string>();
             GetDBObjectNames("Tables", list);
             GetDBObjectNames("Views", list);
+            return list.ToArray();
+        }
+
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken)
+        {
+            List<string> list = new List<string>();
+            await GetDBObjectNamesAsync("Tables", list, cancellationToken);
+            await GetDBObjectNamesAsync("Views", list, cancellationToken);
             return list.ToArray();
         }
 

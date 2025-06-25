@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Linq;
 using FastReport.Data.ConnectionEditors;
-using Raven.Client;
 using Raven.Client.Documents;
-using System.Net;
-using System.ComponentModel;
-//using Raven.Json.Linq;
-//using Raven.Imports.Newtonsoft.Json.Linq;
 using Raven.Client.Documents.Session;
 
 namespace FastReport.Data

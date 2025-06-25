@@ -143,7 +143,7 @@ namespace FastReport.Engine
             if (dataSource != null)
             {
                 // init the datasource - set group conditions to sort data rows
-                groupBand.InitDataSource();
+                await groupBand.InitDataSourceAsync(cancellationToken);
 
                 // show the group tree
                 await ShowGroupTreeAsync(MakeGroupTree(groupBand), cancellationToken);

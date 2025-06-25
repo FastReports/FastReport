@@ -4,6 +4,8 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using Oracle.ManagedDataAccess.Client;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Data
 {
@@ -24,6 +26,29 @@ namespace FastReport.Data
                 DisposeConnection(connection);
             }
 
+            GetDBObjectNamesShared(columnName, list, ignoreShema, schema);
+        }
+
+        private async Task GetDBObjectNamesAsync(string name, string columnName, List<string> list, bool ignoreShema = false, CancellationToken cancellationToken = default)
+        {
+            DataTable schema = null;
+            DbConnection connection = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(connection, cancellationToken);
+                OracleConnectionStringBuilder builder = new OracleConnectionStringBuilder(connection.ConnectionString);
+                schema = await connection.GetSchemaAsync(name, new string[] { builder.UserID.ToUpper(), null }, cancellationToken);
+            }
+            finally
+            {
+                await DisposeConnectionAsync(connection);
+            }
+
+            GetDBObjectNamesShared(columnName, list, ignoreShema, schema);
+        }
+
+        private static void GetDBObjectNamesShared(string columnName, List<string> list, bool ignoreShema, DataTable schema)
+        {
             foreach (DataRow row in schema.Rows)
             {
                 string tableName = row[columnName].ToString();
@@ -40,6 +65,14 @@ namespace FastReport.Data
             List<string> list = new List<string>();
             GetDBObjectNames("Tables", "TABLE_NAME", list);
             GetDBObjectNames("Views", "VIEW_NAME", list);
+            return list.ToArray();
+        }
+
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            List<string> list = new List<string>();
+            await GetDBObjectNamesAsync("Tables", "TABLE_NAME", list, cancellationToken: cancellationToken);
+            await GetDBObjectNamesAsync("Views", "VIEW_NAME", list, cancellationToken: cancellationToken);
             return list.ToArray();
         }
 
@@ -102,6 +135,13 @@ namespace FastReport.Data
             return list.ToArray();
         }
 
+        public override async Task<string[]> GetProcedureNamesAsync(CancellationToken cancellationToken = default)
+        {
+            List<string> list = new List<string>();
+            await GetDBObjectNamesAsync("Procedures", "OBJECT_NAME", list, true, cancellationToken);
+            return list.ToArray();
+        }
+
         private DataTable GetSchema(string selectCommand)
         {
             var connection = GetConnection();
@@ -124,6 +164,28 @@ namespace FastReport.Data
             return null;
         }
 
+        private async Task<DataTable> GetSchemaAsync(string selectCommand, CancellationToken cancellationToken = default)
+        {
+            var connection = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(connection, cancellationToken);
+
+                var dataset = new DataSet();
+                var adapter = new OracleDataAdapter(selectCommand, connection as OracleConnection);
+                adapter.Fill(dataset);
+
+                if (dataset.Tables.Count > 0)
+                    return dataset.Tables[0];
+            }
+            finally
+            {
+                await DisposeConnectionAsync(connection);
+            }
+
+            return null;
+        }
+
         public override TableDataSource CreateProcedure(string tableName)
         {
             ProcedureDataSource table = new ProcedureDataSource();
@@ -134,36 +196,7 @@ namespace FastReport.Data
             {
                 OpenConnection(conn);
                 var schemaParameters = GetSchema($"SELECT * FROM SYS.ALL_ARGUMENTS WHERE OBJECT_NAME='{tableName}'");
-                foreach (DataRow row in schemaParameters.Rows)
-                {
-                    ParameterDirection direction = ParameterDirection.Input;
-                    switch (row["IN_OUT"].ToString())
-                    {
-                        case "IN":
-                            direction = ParameterDirection.Input;
-                            table.Enabled = false;
-                            break;
-                        case "IN/OUT":
-                            direction = ParameterDirection.InputOutput;
-                            table.Enabled = false;
-                            break;
-                        case "OUT":
-                            direction = ParameterDirection.Output;
-                            break;
-                    }
-;
-                    if (!int.TryParse(row["DATA_PRECISION"].ToString(), out int precision))
-                        precision = 0;
-                    if (!int.TryParse(row["DATA_SCALE"].ToString(), out int scale))
-                        scale = 0;
-                    table.Parameters.Add(new ProcedureParameter()
-                    {
-                        Name = row["ARGUMENT_NAME"].ToString(),
-                        DataType = (int)MapTypes(row["DATA_TYPE"].ToString(), Convert.ToInt32(precision), Convert.ToInt32(scale)),
-                        Direction = direction,
-                        
-                    });
-                }
+                CreateProcedureShared(table, schemaParameters);
             }
             finally
             {
@@ -173,7 +206,60 @@ namespace FastReport.Data
             return table;
         }
 
-        public OracleDbType MapTypes(string dataType, int precision, int scale)
+        public override async Task<TableDataSource> CreateProcedureAsync(string tableName, CancellationToken cancellationToken = default)
+        {
+            ProcedureDataSource table = new ProcedureDataSource();
+            table.Enabled = true;
+            table.SelectCommand = tableName;
+            DbConnection conn = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(conn, cancellationToken);
+                var schemaParameters = await GetSchemaAsync($"SELECT * FROM SYS.ALL_ARGUMENTS WHERE OBJECT_NAME='{tableName}'", cancellationToken);
+                CreateProcedureShared(table, schemaParameters);
+            }
+            finally
+            {
+                await DisposeConnectionAsync(conn);
+            }
+
+            return table;
+        }
+
+        private static void CreateProcedureShared(ProcedureDataSource table, DataTable schemaParameters)
+        {
+            foreach (DataRow row in schemaParameters.Rows)
+            {
+                ParameterDirection direction = ParameterDirection.Input;
+                switch (row["IN_OUT"].ToString())
+                {
+                    case "IN":
+                        direction = ParameterDirection.Input;
+                        table.Enabled = false;
+                        break;
+                    case "IN/OUT":
+                        direction = ParameterDirection.InputOutput;
+                        table.Enabled = false;
+                        break;
+                    case "OUT":
+                        direction = ParameterDirection.Output;
+                        break;
+                }
+
+                if (!int.TryParse(row["DATA_PRECISION"].ToString(), out int precision))
+                    precision = 0;
+                if (!int.TryParse(row["DATA_SCALE"].ToString(), out int scale))
+                    scale = 0;
+                table.Parameters.Add(new ProcedureParameter()
+                {
+                    Name = row["ARGUMENT_NAME"].ToString(),
+                    DataType = (int)MapTypes(row["DATA_TYPE"].ToString(), Convert.ToInt32(precision), Convert.ToInt32(scale)),
+                    Direction = direction,
+                });
+            }
+        }
+
+        public static OracleDbType MapTypes(string dataType, int precision, int scale)
         {
             switch (dataType)
             {

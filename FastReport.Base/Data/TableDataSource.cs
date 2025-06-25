@@ -195,7 +195,7 @@ namespace FastReport.Data
         #endregion
 
         #region Private Methods
-        private Column CreateColumn(DataColumn column)
+        private static Column CreateColumn(DataColumn column)
         {
             Column c = new Column();
             c.Name = column.ColumnName;
@@ -270,6 +270,11 @@ namespace FastReport.Data
             else
                 table = Reference as DataTable;
 
+            InitSchemaShared();
+        }
+
+        private void InitSchemaShared()
+        {
             if (Columns.Count == 0)
                 CreateColumns();
 
@@ -292,6 +297,11 @@ namespace FastReport.Data
                 TryToLoadData();
             }
 
+            LoadDataShared(rows);
+        }
+
+        private void LoadDataShared(ArrayList rows)
+        {
             if (Table == null)
                 throw new DataTableException(Alias);
 

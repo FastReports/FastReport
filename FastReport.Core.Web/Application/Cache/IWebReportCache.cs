@@ -15,5 +15,6 @@ namespace FastReport.Web.Cache
 
         void Remove(WebReport webReport);
 
+        void Remove(string webReportId);
     }
 }

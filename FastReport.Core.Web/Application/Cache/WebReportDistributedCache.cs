@@ -56,9 +56,13 @@ namespace FastReport.Web.Cache
 
         public void Remove(WebReport webReport)
         {
-            _cache.Remove(webReport.ID);
+            Remove(webReport.ID);
         }
 
+        public void Remove(string webReportId)
+        {
+            _cache.Remove(webReportId);
+        }
 
         public void Dispose()
         {

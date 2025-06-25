@@ -4,6 +4,8 @@ using System.Data.Common;
 using MySqlConnector;
 using System.Data;
 using System.Globalization;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Data
 {
@@ -37,6 +39,30 @@ namespace FastReport.Data
             {
                 DisposeConnection(connection);
             }
+            GetDBObjectNamesShared(list, schema, databaseName);
+        }
+
+        private async Task GetDBObjectNamesAsync(string name, List<string> list, CancellationToken cancellationToken)
+        {
+            DataTable schema = null;
+            string databaseName = "";
+            DbConnection connection = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(connection, cancellationToken);
+                MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder(ConnectionString);
+                schema = await connection.GetSchemaAsync(name, cancellationToken);
+                databaseName = builder.Database;
+            }
+            finally
+            {
+                await DisposeConnectionAsync(connection);
+            }
+            GetDBObjectNamesShared(list, schema, databaseName);
+        }
+
+        private static void GetDBObjectNamesShared(List<string> list, DataTable schema, string databaseName)
+        {
             foreach (DataRow row in schema.Rows)
             {
                 if (String.IsNullOrEmpty(databaseName) || String.Compare(row["TABLE_SCHEMA"].ToString(), databaseName) == 0)
@@ -50,6 +76,15 @@ namespace FastReport.Data
             List<string> list = new List<string>();
             GetDBObjectNames("Tables", list);
             GetDBObjectNames("Views", list);
+            return list.ToArray();
+        }
+
+        /// <inheritdoc/>
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            List<string> list = new List<string>();
+            await GetDBObjectNamesAsync("Tables", list, cancellationToken);
+            await GetDBObjectNamesAsync("Views", list, cancellationToken);
             return list.ToArray();
         }
 
@@ -105,7 +140,7 @@ namespace FastReport.Data
             return typeof(MySqlDbType);
         }
         
-        private object VariantToClrType(Variant value, MySqlDbType type)
+        private static object VariantToClrType(Variant value, MySqlDbType type)
         {
             if (value.ToString() == "" && type != MySqlDbType.Null)
                 return null;
@@ -114,29 +149,25 @@ namespace FastReport.Data
             {
                 case MySqlDbType.Int64:
                     {
-                        long val = 0;
-                        long.TryParse(value.ToString(), out val);
+                        long.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.UInt64:
                     {
-                        ulong val = 0;
-                        ulong.TryParse(value.ToString(), out val);
+                        ulong.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.Bit:
                 case MySqlDbType.Bool:
                     {
-                        bool val = false;
-                        bool.TryParse(value.ToString(), out val);
+                        bool.TryParse(value.ToString(), out var val);
                         if (value.ToString() == "1")
                             val = true;
                         return val;
                     }
                 case MySqlDbType.Double:
                     {
-                        double val = 0;
-                        double.TryParse(value.ToString(), out val);
+                        double.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.DateTime:
@@ -145,65 +176,55 @@ namespace FastReport.Data
                 case MySqlDbType.Newdate:
                 case MySqlDbType.Time:
                     {
-                        DateTime val = DateTime.Now;
-                        DateTime.TryParse(value.ToString(), out val);
+                        DateTime.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.NewDecimal:
                 case MySqlDbType.Decimal:
                     {
-                        decimal val = 0;
-                        decimal.TryParse(value.ToString(), out val);
+                        decimal.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.Float:
                     {
-                        float val = 0;
-                        float.TryParse(value.ToString(), out val);
+                        float.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.Int24:
                 case MySqlDbType.Int32:
                     {
-                        int val = 0;
-                        int.TryParse(value.ToString(), out val);
+                        int.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.UInt24:
                 case MySqlDbType.UInt32:
                     {
-                        uint val = 0;
-                        uint.TryParse(value.ToString(), out val);
+                        uint.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.Guid:
                     {
-                        Guid val = Guid.Empty;
-                        Guid.TryParse(value.ToString(), out val);
+                        Guid.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.Int16:
                     {
-                        short val = 0;
-                        short.TryParse(value.ToString(), out val);
+                        short.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.UInt16:
                     {
-                        ushort val = 0;
-                        ushort.TryParse(value.ToString(), out val);
+                        ushort.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.Byte:
                     {
-                        sbyte val = 0;
-                        sbyte.TryParse(value.ToString(), out val);
+                        sbyte.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.UByte:
                     {
-                        byte val = 0;
-                        byte.TryParse(value.ToString(), out val);
+                        byte.TryParse(value.ToString(), out var val);
                         return val;
                     }
                 case MySqlDbType.Blob:
@@ -239,27 +260,29 @@ namespace FastReport.Data
         public override string[] GetProcedureNames()
         {
             List<string> list = new List<string>();
-            DataTable schema = null;
-            DbConnection conn = GetConnection();
 
-            if (conn != null)
+            DataTable schema = GetSchema("Procedures");
+            return GetProcedureNamesShared(list, schema);
+        }
+
+        public override async Task<string[]> GetProcedureNamesAsync(CancellationToken cancellationToken)
+        {
+            List<string> list = new List<string>();
+
+            DataTable schema = await GetSchemaAsync("Procedures", cancellationToken);
+            return GetProcedureNamesShared(list, schema);
+        }
+
+        private static string[] GetProcedureNamesShared(List<string> list, DataTable schema)
+        {
+            if (schema != null)
             {
-                try
+                foreach (DataRow row in schema.Rows)
                 {
-                    OpenConnection(conn);
-                    schema = conn.GetSchema("Procedures");
+                    if (row["ROUTINE_SCHEMA"].ToString() == "sys")
+                        continue;
 
-                    foreach (DataRow row in schema.Rows)
-                    {
-                        if (row["ROUTINE_SCHEMA"].ToString() == "sys")
-                            continue;
-
-                        list.Add(row["SPECIFIC_NAME"].ToString());
-                    }
-                }
-                finally
-                {
-                    DisposeConnection(conn);
+                    list.Add(row["SPECIFIC_NAME"].ToString());
                 }
             }
 
@@ -319,6 +342,63 @@ namespace FastReport.Data
             finally
             {
                 DisposeConnection(conn);
+            }
+
+            return table;
+        }
+
+        public override async Task<TableDataSource> CreateProcedureAsync(string tableName, CancellationToken cancellationToken = default)
+        {
+            ProcedureDataSource table = new ProcedureDataSource();
+            table.Enabled = true;
+            table.SelectCommand = tableName;
+            DbConnection conn = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(conn, cancellationToken);
+                var mySQLcommand = conn.CreateCommand();
+                mySQLcommand.CommandText = $"select * from INFORMATION_SCHEMA.PARAMETERS where SPECIFIC_NAME = '{tableName}'";
+                var reader = await mySQLcommand.ExecuteReaderAsync(cancellationToken);
+
+                while (await reader.ReadAsync(cancellationToken))
+                {
+                    int modeColIndex = reader.GetOrdinal("PARAMETER_MODE");
+                    int nameColIndex = reader.GetOrdinal("PARAMETER_NAME");
+                    if (reader.IsDBNull(modeColIndex) || reader.IsDBNull(nameColIndex))
+                        continue;
+
+                    string parameterMode = reader.GetString(modeColIndex);
+                    string parameterName = reader.GetString(nameColIndex);
+                    string parameterType = reader.GetString(reader.GetOrdinal("DATA_TYPE"));
+
+                    ParameterDirection direction = ParameterDirection.Input;
+                    switch (parameterMode.ToString())
+                    {
+                        case "IN":
+                            table.Enabled = false;
+                            break;
+                        case "INOUT":
+                            direction = ParameterDirection.InputOutput;
+                            table.Enabled = false;
+                            break;
+                        case "OUT":
+                            direction = ParameterDirection.Output;
+                            break;
+                    }
+
+                    table.Parameters.Add(new ProcedureParameter()
+                    {
+                        Name = parameterName,
+                        Direction = direction,
+                        DataType = (int)Enum.Parse(typeof(MySqlDbType), parameterType, true)
+                    });
+
+                }
+                reader.Close();
+            }
+            finally
+            {
+                await DisposeConnectionAsync(conn);
             }
 
             return table;

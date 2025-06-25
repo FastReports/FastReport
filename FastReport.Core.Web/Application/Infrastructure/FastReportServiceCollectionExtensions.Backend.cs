@@ -4,6 +4,7 @@ using FastReport.Web.Cache;
 using FastReport.Web.Infrastructure;
 using FastReport.Web.Services;
 
+using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -19,39 +20,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
         private static void AddServices(IServiceCollection services, WebReportOptions options)
         {
-            AddFastReportWebServices(services, options);
-        }
-
-        private static void AddFastReportWebServices(IServiceCollection services, WebReportOptions options)
-        {
-            services.TryAddSingleton(options.CacheOptions);
             services.TryAddSingleton(options.Designer);
-            if (options.CacheOptions.UseLegacyWebReportCache)
-            {
-                services.TryAddSingleton<IWebReportCache, WebReportLegacyCache>();
-            }
-            else // MemoryCache
-            {
-                // check for registered IMemoryCache
-                var memoryCacheDescriptor = GetServiceDescriptorFromCollection<IMemoryCache>(services);
-
-                if(memoryCacheDescriptor != null)
-                {
-                    services.TryAddSingleton<IWebReportCache, WebReportMemoryCache>();
-                }
-                else
-                {
-                    services.TryAddSingleton<IWebReportCache>(
-                        static serviceProvider => 
-                        {
-                            var memoryCache = serviceProvider.GetService<IMemoryCache>() 
-                                ?? WebReportCache.GetDefaultMemoryCache();
-
-                            var cacheOptions = serviceProvider.GetService<CacheOptions>();
-                            return new WebReportMemoryCache(memoryCache, cacheOptions);
-                        });
-                }
-            }
+            AddCacheServices(services, options.CacheOptions);
 
             FastReportGlobal.InternalEmailExportOptions = options.EmailExportOptions;
 
@@ -60,12 +30,53 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddSingleton<IReportService, ReportService>();
 #if DESIGNER
             services.TryAddSingleton<IReportDesignerService, ReportDesignerService>();
-#endif            
+#endif
             services.TryAddSingleton<IConnectionsService, ConnectionService>();
             services.TryAddSingleton<ITextEditService, TextEditService>();
             services.TryAddSingleton<IExportsService, ExportService>();
             services.TryAddSingleton<IPrintService, PrintService>();
         }
 
+        private static void AddCacheServices(IServiceCollection services, CacheOptions options)
+        {
+            services.TryAddSingleton(options);
+
+#if !OPENSOURCE
+            services.TryAddSingleton<IBlazorWebReportCacheAdapter, BlazorWebReportCacheAdapter>();
+
+            if (options.UseCircuitScope)
+            {
+                services.TryAddSingleton<ICircuitConnectionStore, ManagedCircuitConnectionStore>();
+                services.AddScoped<CircuitHandler, WebReportCircuitHandler>();
+            }
+#endif
+
+            if (options.UseLegacyWebReportCache)
+            {
+                services.TryAddSingleton<IWebReportCache, WebReportLegacyCache>();
+            }
+            else // MemoryCache
+            {
+                // check for registered IMemoryCache
+                var memoryCacheDescriptor = GetServiceDescriptorFromCollection<IMemoryCache>(services);
+
+                if (memoryCacheDescriptor != null)
+                {
+                    services.TryAddSingleton<IWebReportCache, WebReportMemoryCache>();
+                }
+                else
+                {
+                    services.TryAddSingleton<IWebReportCache>(
+                        static serviceProvider =>
+                        {
+                            var memoryCache = serviceProvider.GetService<IMemoryCache>()
+                                ?? WebReportCache.GetDefaultMemoryCache();
+
+                            var cacheOptions = serviceProvider.GetService<CacheOptions>();
+                            return new WebReportMemoryCache(memoryCache, cacheOptions);
+                        });
+                }
+            }
+        }
     }
 }

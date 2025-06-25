@@ -4,12 +4,12 @@ namespace CakeScript;
 
 partial class Program
 {
-    readonly string[] projects_OpenSource = new []
-    {
+    readonly string[] projects_OpenSource =
+    [
       Path.Combine("FastReport.OpenSource", "FastReport.OpenSource.csproj"),
       Path.Combine("FastReport.Core.Web", "FastReport.OpenSource.Web.csproj"),
       Path.Combine("Extras", "OpenSource", "FastReport.OpenSource.Export.PdfSimple", "FastReport.OpenSource.Export.PdfSimple", "FastReport.OpenSource.Export.PdfSimple.csproj")
-    };
+    ];
 
     //[Debug]
     [DependsOn(nameof(Prepare))]

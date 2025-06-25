@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.Common;
 using System.Globalization;
 using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data
 {
@@ -19,18 +21,20 @@ namespace FastReport.Data
 
         private void GetDBObjectNames(string name, List<string> list)
         {
-            DataTable schema = null;
-            DbConnection connection = GetConnection();
-            try
-            {
-                OpenConnection(connection);
-                schema = connection.GetSchema(name);
-            }
-            finally
-            {
-                DisposeConnection(connection);
-            }
+            DataTable schema = GetSchema(name);
 
+            GetDBObjectNamesShared(list, schema);
+        }
+
+        private async Task GetDBObjectNamesAsync(string name, List<string> list, CancellationToken cancellationToken)
+        {
+            DataTable schema = await GetSchemaAsync(name, cancellationToken);
+
+            GetDBObjectNamesShared(list, schema);
+        }
+
+        private static void GetDBObjectNamesShared(List<string> list, DataTable schema)
+        {
             foreach (DataRow row in schema.Rows)
             {
                 string schemaName = row["TABLE_SCHEMA"].ToString();
@@ -40,7 +44,7 @@ namespace FastReport.Data
             }
         }
 
-        private DataTable GetSchema(string selectCommand)
+        private DataTable ExecuteSelect(string selectCommand)
         {
             var connection = GetConnection();
             try
@@ -62,7 +66,30 @@ namespace FastReport.Data
             return null;
         }
 
-        private int MapTypes(string data_type)
+        private async Task<DataTable> ExecuteSelectAsync(string selectCommand, CancellationToken cancellationToken = default)
+        {
+            var connection = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(connection, cancellationToken);
+
+                var dataset = new DataSet();
+                var adapter = new NpgsqlDataAdapter(selectCommand, connection as NpgsqlConnection);
+                adapter.Fill(dataset);
+
+                if (dataset.Tables.Count > 0)
+                    return dataset.Tables[0];
+            }
+            finally
+            {
+                await DisposeConnectionAsync(connection);
+            }
+
+            return null;
+        }
+
+
+        private static int MapTypes(string data_type)
         {
             var parenIndex = data_type.IndexOf('(');
             if (parenIndex > -1)
@@ -212,7 +239,7 @@ namespace FastReport.Data
                       "AND pg_catalog.pg_table_is_visible(c.oid) " +
                     "ORDER BY 1,2; ";
 
-                var schema = GetSchema(selectCommand);
+                var schema = ExecuteSelect(selectCommand);
                 if (schema != null)
                 {
                     foreach (DataRow row in schema.Rows)
@@ -225,6 +252,42 @@ namespace FastReport.Data
             return list.ToArray();
         }
 
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            List<string> list = new List<string>();
+            await GetDBObjectNamesAsync("Tables", list, cancellationToken);
+            await GetDBObjectNamesAsync("Views", list, cancellationToken);
+
+            if (list.Count == 0)
+            {
+                string selectCommand =
+                    "SELECT n.nspname as \"Schema\", " +
+                    "c.relname as \"Name\", " +
+                    "CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 's' THEN 'special' WHEN 'f' THEN 'foreign table' END as \"Type\", " +
+                    "pg_catalog.pg_get_userbyid(c.relowner) as \"Owner\" " +
+                    "FROM pg_catalog.pg_class c " +
+                         "LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace " +
+                    "WHERE c.relkind IN ('r', 'v', '') " +
+                          "AND n.nspname <> 'pg_catalog' " +
+                          "AND n.nspname <> 'information_schema' " +
+                          "AND n.nspname !~'^pg_toast' " +
+                      "AND pg_catalog.pg_table_is_visible(c.oid) " +
+                    "ORDER BY 1,2; ";
+
+                var schema = await ExecuteSelectAsync(selectCommand, cancellationToken);
+                if (schema != null)
+                {
+                    foreach (DataRow row in schema.Rows)
+                    {
+                        list.Add(row["Name"].ToString());
+                    }
+                }
+            }
+
+            return list.ToArray();
+        }
+
+
         ///<inheritdoc/>
         public override string[] GetProcedureNames()
         {
@@ -236,7 +299,7 @@ namespace FastReport.Data
                 "FROM information_schema.routines\r\n" +
                 "WHERE routine_type = 'FUNCTION'";
 
-            var schema = GetSchema(selectCommand);
+            var schema = ExecuteSelect(selectCommand);
 
             if (schema != null)
             {
@@ -252,12 +315,58 @@ namespace FastReport.Data
             return list.ToArray();
         }
 
+        public override async Task<string[]> GetProcedureNamesAsync(CancellationToken cancellationToken = default)
+        {
+            List<string> list = new List<string>();
+
+            string selectCommand =
+                "SELECT routine_schema As schema_name,\r\n" +
+                "routine_name As procedure_name\r\n" +
+                "FROM information_schema.routines\r\n" +
+                "WHERE routine_type = 'FUNCTION'";
+
+            var schema = await ExecuteSelectAsync(selectCommand, cancellationToken);
+
+            if (schema != null)
+            {
+                foreach (DataRow row in schema.Rows)
+                {
+                    string schemaName = row["schema_name"].ToString();
+                    if (!EnableSystemSchemas && (schemaName == "pg_catalog" || schemaName == "information_schema"))
+                        continue;
+                    list.Add(schemaName + ".\"" + row["procedure_name"].ToString() + "\"");
+                }
+            }
+
+            return list.ToArray();
+        }
+
         ///<inheritdoc/>
         public override TableDataSource CreateProcedure(string tableName)
         {
+            CreateProcedureBeforeCommand(tableName, out ProcedureDataSource table, out string selectCommand);
+
+            var schema = ExecuteSelect(selectCommand);
+            CreateProcedureShared(table, schema);
+
+            return table;
+        }
+
+        public override async Task<TableDataSource> CreateProcedureAsync(string tableName, CancellationToken cancellationToken = default)
+        {
+            CreateProcedureBeforeCommand(tableName, out ProcedureDataSource table, out string selectCommand);
+
+            var schema = await ExecuteSelectAsync(selectCommand, cancellationToken);
+            CreateProcedureShared(table, schema);
+
+            return table;
+        }
+
+        private static void CreateProcedureBeforeCommand(string tableName, out ProcedureDataSource table, out string selectCommand)
+        {
             string schemaName = "public";
             string procName = tableName;
-            
+
             string[] parts = tableName.Split('.');
             if (parts.Length == 2)
             {
@@ -267,14 +376,12 @@ namespace FastReport.Data
 
             procName = procName.Replace("\"", "");
 
-            var table = new ProcedureDataSource()
+            table = new ProcedureDataSource()
             {
                 Enabled = true,
                 SelectCommand = tableName
             };
-
-            string selectCommand =
-                "select proc.specific_schema as procedure_schema,\r\n" +
+            selectCommand = "select proc.specific_schema as procedure_schema,\r\n" +
                 "       proc.specific_name,\r\n" +
                 "       proc.routine_name as procedure_name,\r\n" +
                 "       proc.external_language,\r\n" +
@@ -293,8 +400,10 @@ namespace FastReport.Data
                 "         specific_name,\r\n" +
                 "         procedure_name,\r\n" +
                 "         args.ordinal_position;";
+        }
 
-            var schema = GetSchema(selectCommand);
+        private static void CreateProcedureShared(ProcedureDataSource table, DataTable schema)
+        {
             if (schema != null)
             {
                 foreach (DataRow row in schema.Rows)
@@ -313,7 +422,7 @@ namespace FastReport.Data
                             break;
 
                         case "OUT":
-                            // skip completely: it's a result table's column
+                        // skip completely: it's a result table's column
                         default:
                             continue;
                     }
@@ -326,9 +435,8 @@ namespace FastReport.Data
                     });
                 }
             }
-
-            return table;
         }
+
 
         /// <inheritdoc/>
         public override string QuoteIdentifier(string value, DbConnection connection)
@@ -380,7 +488,7 @@ namespace FastReport.Data
             return adapter;
         }
 
-        private object VariantToClrType(Variant value, NpgsqlDbType type)
+        private static object VariantToClrType(Variant value, NpgsqlDbType type)
         {
             if (value.ToString() == "")
                 return null;

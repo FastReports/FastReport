@@ -19,7 +19,7 @@
     <Company>Fast Reports Inc.</Company>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageLicenseFile>FastReport MIT license.md</PackageLicenseFile>
-    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <PackageProjectUrl>https://www.fast-report.com/products/fast-report-net</PackageProjectUrl>
     <Authors>Fast Reports Inc.</Authors>
     <Product>FastReport</Product>
     <PackageId>FastReport.OpenSource</PackageId>

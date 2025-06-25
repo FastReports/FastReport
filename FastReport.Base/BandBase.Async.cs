@@ -6,6 +6,11 @@ namespace FastReport
 {
     public abstract partial class BandBase
     {
+        internal virtual Task<bool> IsEmptyAsync(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(IsEmpty());
+        }
+
         public override async Task GetDataAsync(CancellationToken cancellationToken)
         {
             await base.GetDataAsync(cancellationToken);
