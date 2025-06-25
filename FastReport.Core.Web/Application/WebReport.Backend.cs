@@ -50,6 +50,8 @@ namespace FastReport.Web
             if (Report == null)
                 throw new Exception("Report is null");
 
+            AddToCache();
+
             return Render(false);
         }
 
@@ -72,13 +74,17 @@ namespace FastReport.Web
             }
         }
 
+        private void AddToCache()
+        {
+            WebReportCache.Instance?.Add(this);
+        }
 
         /// <summary>
         /// Force report to be removed from internal cache
         /// </summary>
         public void RemoveFromCache()
         {
-            WebReportCache.Instance?.Remove(this);
+            WebReportCache.Instance?.Remove(ID);
         }
 
     }

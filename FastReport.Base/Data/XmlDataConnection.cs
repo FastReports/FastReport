@@ -7,6 +7,9 @@ using FastReport.Utils;
 using System.Data.Common;
 using System.Net;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data
 {
@@ -62,6 +65,25 @@ namespace FastReport.Data
                 ConnectionString = builder.ToString();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the codepage of the .xml file.
+        /// </summary>
+        [Category("Data")]
+        public int Codepage
+        {
+            get
+            {
+                XmlConnectionStringBuilder builder = new XmlConnectionStringBuilder(ConnectionString);
+                return builder.Codepage;
+            }
+            set
+            {
+                XmlConnectionStringBuilder builder = new XmlConnectionStringBuilder(ConnectionString);
+                builder.Codepage = value;
+                ConnectionString = builder.ToString();
+            }
+        }
         #endregion
 
         #region Protected Methods
@@ -71,6 +93,14 @@ namespace FastReport.Data
             DataSet dataset = base.CreateDataSet();
             ReadXmlSchema(dataset);
             ReadXml(dataset);
+            return dataset;
+        }
+
+        protected override async Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
+        {
+            var dataset = await base.CreateDataSetAsync(cancellationToken);
+            await ReadXmlSchemaAsync(dataset);
+            await ReadXmlAsync(dataset);
             return dataset;
         }
 
@@ -89,10 +119,25 @@ namespace FastReport.Data
             // do nothing
         }
 
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand,
+            CommandParameterCollection parameters,
+            CancellationToken cancellationToken = default)
+        {
+            // do nothing
+            return Task.CompletedTask;
+        }
+
         /// <inheritdoc/>
         public override void FillTableData(DataTable table, string selectCommand, CommandParameterCollection parameters)
         {
             // do nothing
+        }
+
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters,
+            CancellationToken cancellationToken = default)
+        {
+            // do nothing
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -106,6 +151,11 @@ namespace FastReport.Data
             return result;
         }
 
+        public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            return Task.FromResult(GetTableNames());
+        }
+
         /// <inheritdoc/>
         public override void CreateTable(TableDataSource source)
         {
@@ -116,6 +166,12 @@ namespace FastReport.Data
             }
             else
                 source.Table = null;
+        }
+
+        public override Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
+        {
+            CreateTable(source);
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -146,7 +202,19 @@ namespace FastReport.Data
                 {
                     if (Config.ForbidLocalData)
                         throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-                    dataset.ReadXml(XmlFile);
+
+                    if (Codepage != 1251)
+                    {
+                        //Adding the ability to decode a file from a computer in the selected encoding.
+                        using (var reader = new StreamReader(XmlFile, Encoding.GetEncoding(Codepage))) 
+                        {
+                            dataset.ReadXml(reader);
+                        }
+                    }
+                    else
+                    {
+                        dataset.ReadXml(XmlFile);
+                    }  
                 }
                 else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
                 {
@@ -159,19 +227,100 @@ namespace FastReport.Data
             }
         }
 
+        private async Task ReadXmlAsync(DataSet dataset)
+        {
+            try
+            {
+                // fix for datafile in current folder
+                if (File.Exists(XmlFile))
+                    XmlFile = Path.GetFullPath(XmlFile);
+
+                Uri uri = new Uri(XmlFile);
+
+                if (uri.IsFile)
+                {
+                    if (Config.ForbidLocalData)
+                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+
+                    if (Codepage != 1251)
+                    {
+                        //Adding the ability to decode a file from a computer in the selected encoding.
+                        using (var reader = new StreamReader(XmlFile, Encoding.GetEncoding(Codepage))) 
+                        {
+                            dataset.ReadXml(reader);
+                        }
+                    }
+                    else
+                    {
+                        dataset.ReadXml(XmlFile);
+                    }  
+                }
+                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+                {
+                    await LoadXmlFromUrlAsync(dataset);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        
         private void LoadXmlFromUrl(DataSet dataset)
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(XmlFile);
+            HttpWebRequest req = WebRequest.CreateHttp(XmlFile);
             using (var response = req.GetResponse() as HttpWebResponse)
             {
-                var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
-
-                using (var responseStream = response.GetResponseStream())
-                using (var reader = new System.IO.StreamReader(responseStream, encoding))
-                    dataset.ReadXml(reader, XmlReadMode.Auto);
+                LoadXmlFromUrlShared(dataset, response);
             }
+        }
+        
+        private async Task LoadXmlFromUrlAsync(DataSet dataset)
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+            HttpWebRequest req = WebRequest.CreateHttp(XmlFile);
+            using (var response = await req.GetResponseAsync() as HttpWebResponse)
+            {
+                LoadXmlFromUrlShared(dataset, response);
+            }
+        }
+
+        private void LoadXmlFromUrlShared(DataSet dataset, HttpWebResponse response)
+        {
+            string charset = null;
+            Encoding encoding;
+            if (Codepage != 1251)
+            {
+                encoding = Encoding.GetEncoding(Codepage);
+            }
+            else
+            {
+                // Extracting the charset from the Content-Type header, if specified.
+                var contentType = response.ContentType;
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    var match = Regex.Match(contentType, @"charset=([\w-]+)", RegexOptions.IgnoreCase);
+                    if (match.Success && match.Groups.Count > 1)
+                        charset = match.Groups[1].Value;
+                }
+
+                // Defining the encoding. If omitted or there is an error, we use UTF�8 by default.
+                try
+                {
+                    encoding = string.IsNullOrWhiteSpace(charset) ? Encoding.UTF8 : Encoding.GetEncoding(charset);
+                }
+                catch
+                {
+                    encoding = Encoding.UTF8;
+                }
+            }
+
+            using (var responseStream = response.GetResponseStream())
+            using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                dataset.ReadXml(reader, XmlReadMode.Auto);
         }
 
         private void ReadXmlSchema(DataSet dataset)
@@ -199,6 +348,32 @@ namespace FastReport.Data
                 throw e;
             }
         }
+        
+        private async Task ReadXmlSchemaAsync(DataSet dataset)
+        {
+            if (String.IsNullOrEmpty(XsdFile))
+                return;
+
+            try
+            {
+                Uri uri = new Uri(XsdFile);
+
+                if (uri.IsFile)
+                {
+                    if (Config.ForbidLocalData)
+                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+                    dataset.ReadXmlSchema(XsdFile);
+                }
+                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+                {
+                    await LoadXmlSchemaFromUrlAsync(dataset);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         private void LoadXmlSchemaFromUrl(DataSet dataset)
         {
@@ -206,6 +381,21 @@ namespace FastReport.Data
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(XsdFile);
             using (var response = req.GetResponse() as HttpWebResponse)
+            {
+                var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+
+                using (var responseStream = response.GetResponseStream())
+                using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                    dataset.ReadXmlSchema(reader);
+            }
+        }
+        
+        private async Task LoadXmlSchemaFromUrlAsync(DataSet dataset)
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+            HttpWebRequest req = WebRequest.CreateHttp(XsdFile);
+            using (var response = await req.GetResponseAsync() as HttpWebResponse)
             {
                 var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
 

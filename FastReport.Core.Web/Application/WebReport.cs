@@ -216,7 +216,6 @@ namespace FastReport.Web
 #if !WASM
             string path = WebUtils.MapPath(LocalizationFile);
             Res.LoadLocale(path);
-            WebReportCache.Instance?.Add(this);
 #endif
 #if DIALOGS
             Dialog = new Dialog(this);

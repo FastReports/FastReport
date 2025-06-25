@@ -5,6 +5,8 @@ using System.Data.Common;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data.ElasticSearch
 {
@@ -75,6 +77,59 @@ namespace FastReport.Data.ElasticSearch
             }
         }
 
+        public override async Task CreateAllTablesAsync(bool initSchema, CancellationToken cancellationToken)
+        {
+            if (connectionCollection == null)
+                await InitConnectionAsync(cancellationToken);
+
+            bool found = false;
+            foreach (Base b in Tables)
+            {
+                if (b is JsonTableDataSource jsonTableDataSource)
+                {
+                    jsonTableDataSource.UpdateSchema = true;
+                    await jsonTableDataSource.InitSchemaAsync(cancellationToken);
+                    found = true;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < connectionCollection.Count; i++)
+            {
+
+                if (!found)
+                {
+                    JsonTableDataSource jsonDataSource = new JsonTableDataSource();
+
+                    string fixedTableName = tableNames[i].Replace(".", "_").Replace("[", "").Replace("]", "").Replace("\"", "");
+                    jsonDataSource.TableName = fixedTableName;
+
+                    if (Report != null)
+                    {
+                        jsonDataSource.Name = Report.Dictionary.CreateUniqueName(fixedTableName);
+                        jsonDataSource.Alias = Report.Dictionary.CreateUniqueAlias(jsonDataSource.Alias);
+                    }
+                    else
+                        jsonDataSource.Name = fixedTableName;
+
+                    jsonDataSource.Parent = connectionCollection[i];
+                    await jsonDataSource.InitSchemaAsync(cancellationToken);
+                    jsonDataSource.Enabled = false;
+                    Tables.Add(jsonDataSource);
+                }
+            }
+
+            // init table schema
+            if (initSchema)
+            {
+                foreach (TableDataSource table in Tables)
+                {
+                    await table.InitSchemaAsync(cancellationToken);
+                }
+            }
+        }
+
+
         public override string QuoteIdentifier(string value, DbConnection connection)
         {
             return value;
@@ -85,9 +140,22 @@ namespace FastReport.Data.ElasticSearch
         {
 
         }
+
+        public override Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
+        {
+            CreateTable(source);
+            return Task.CompletedTask;
+        }
+
         /// <inheritdoc/>
         public override void FillTableData(DataTable table, string selectCommand, CommandParameterCollection parameters)
         {
+        }
+
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            FillTableData(table, selectCommand, parameters);
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -95,10 +163,16 @@ namespace FastReport.Data.ElasticSearch
         {
         }
 
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            FillTableSchema(table, selectCommand, parameters);
+            return Task.CompletedTask;
+        }
+
         public override string[] GetTableNames()
         {
             string respoce;
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create($"{sourceConnectionStringBuilder.EndPoint}/_alias");
+            HttpWebRequest req = WebRequest.CreateHttp($"{sourceConnectionStringBuilder.EndPoint}/_alias");
             req.Method = "GET";
             foreach (var header in sourceConnectionStringBuilder.Headers)
             {
@@ -121,14 +195,38 @@ namespace FastReport.Data.ElasticSearch
             return Names.ToArray();
         }
 
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            string respoce;
+            HttpWebRequest req = WebRequest.CreateHttp($"{sourceConnectionStringBuilder.EndPoint}/_alias");
+            req.Method = "GET";
+            foreach (var header in sourceConnectionStringBuilder.Headers)
+            {
+                req.Headers.Add(header.Key, header.Value);
+            }
+
+            using (var response = await req.GetResponseAsync() as HttpWebResponse)
+            {
+                var encoding = Encoding.GetEncoding(response.CharacterSet);
+
+                using (var responseStream = response.GetResponseStream())
+                using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                    respoce = await reader.ReadToEndAsync();
+            }
+            List<string> Names = new List<string>();
+
+            foreach (string name in JsonBase.FromString(respoce).Keys)
+                Names.Add(name);
+
+            return Names.ToArray();
+        }
         #endregion
 
         #region Private Methods
         private int GetRecCount(string teableName)
         {
             string responce;
-            HttpWebRequest req;
-            req = (HttpWebRequest)WebRequest.Create($"{sourceConnectionStringBuilder.EndPoint}/{teableName}/_count");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create($"{sourceConnectionStringBuilder.EndPoint}/{teableName}/_count");
             req.Method = "GET";
             foreach (var header in sourceConnectionStringBuilder.Headers)
             {
@@ -146,6 +244,29 @@ namespace FastReport.Data.ElasticSearch
 
             int countRec = 0;
             int.TryParse(JsonBase.FromString(responce)["count"].ToString(), out countRec);
+            return countRec;
+        }
+
+        private async Task<int> GetRecCountAsync(string teableName, CancellationToken cancellationToken)
+        {
+            string responce;
+            HttpWebRequest req = WebRequest.CreateHttp($"{sourceConnectionStringBuilder.EndPoint}/{teableName}/_count");
+            req.Method = "GET";
+            foreach (var header in sourceConnectionStringBuilder.Headers)
+            {
+                req.Headers.Add(header.Key, header.Value);
+            }
+
+            using (var response = await req.GetResponseAsync() as HttpWebResponse)
+            {
+                var encoding = Encoding.GetEncoding(response.CharacterSet);
+
+                using (var responseStream = response.GetResponseStream())
+                using (var reader = new System.IO.StreamReader(responseStream, encoding))
+                    responce = await reader.ReadToEndAsync();
+            }
+
+            int.TryParse(JsonBase.FromString(responce)["count"].ToString(), out int countRec);
             return countRec;
         }
 
@@ -167,6 +288,29 @@ namespace FastReport.Data.ElasticSearch
                     $"Json={sourceConnectionStringBuilder.EndPoint}/{tableName}/_search?size={countRec};JsonShema=;Encoding=utf-8;";
                 connectionStringBuilder.Headers = sourceConnectionStringBuilder.Headers;
                 jsonData = new JsonDataSourceConnection()
+                {
+                    ConnectionString = connectionStringBuilder.ToString()
+                };
+                connectionCollection.Add(jsonData);
+            }
+        }
+
+        private async Task InitConnectionAsync(CancellationToken cancellationToken)
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+            connectionCollection = new List<JsonDataSourceConnection>();
+            sourceConnectionStringBuilder = new ESDataSourceConnectionStringBuilder(ConnectionString);
+            tableNames = await GetTableNamesAsync(cancellationToken);
+
+            foreach (var tableName in tableNames)
+            {
+                var countRec = await GetRecCountAsync(tableName, cancellationToken);
+                JsonDataSourceConnectionStringBuilder connectionStringBuilder = new JsonDataSourceConnectionStringBuilder();
+                connectionStringBuilder.ConnectionString =
+                    $"Json={sourceConnectionStringBuilder.EndPoint}/{tableName}/_search?size={countRec};JsonShema=;Encoding=utf-8;";
+                connectionStringBuilder.Headers = sourceConnectionStringBuilder.Headers;
+                var jsonData = new JsonDataSourceConnection()
                 {
                     ConnectionString = connectionStringBuilder.ToString()
                 };

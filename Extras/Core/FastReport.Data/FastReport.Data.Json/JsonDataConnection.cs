@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Text;
 using FastReport.JsonClassGenerator;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data
 {
@@ -34,17 +36,35 @@ namespace FastReport.Data
         {
             get
             {
-                System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 if (string.IsNullOrEmpty(jsonData))
+                {
+                    System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                     using (WebClient webClient = new WebClient())
                     {
                         webClient.Encoding = dataEncoding;
                         jsonData = webClient.DownloadString(Json);
                     }
+                }
+
                 return jsonData;
             }
             set { jsonData = value; }
         }
+
+        public async Task<string> GetJsonData(CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrEmpty(jsonData))
+            {
+                System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Encoding = dataEncoding;
+                    jsonData = await webClient.DownloadStringTaskAsync(Json);
+                }
+            }
+            return jsonData;
+        }
+
         /// <summary>
         /// Gets or sets the path to json. It can be a path to local file or URL.
         /// </summary>
@@ -82,15 +102,33 @@ namespace FastReport.Data
         {
             DataSet dataset = base.CreateDataSet();
 
-            if (string.IsNullOrWhiteSpace(JsonData))
+            CreateDataSetShared(dataset);
+
+            return dataset;
+        }
+
+        protected override async Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
+        {
+            DataSet dataset = await base.CreateDataSetAsync(cancellationToken);
+
+            await GetJsonData(cancellationToken);
+            CreateDataSetShared(dataset);
+
+            return dataset;
+        }
+
+        private void CreateDataSetShared(DataSet dataset)
+        {
+            if (string.IsNullOrWhiteSpace(jsonData))
                 throw new Exception("Data is empty.");
 
-            if (JsonData.Trim().StartsWith("["))
-                JsonData = "{\"Data\":" + JsonData + "}";
-            
-            var type = JsonCompiler.Compile(JsonData);
+            if (jsonData.Trim().StartsWith("["))
+                jsonData = "{\"Data\":" + jsonData + "}";
+
+
+            var type = JsonCompiler.Compile(jsonData);
             var properties = type.GetProperties();
-            var obj = JsonConvert.DeserializeObject(JsonData, type);
+            var obj = JsonConvert.DeserializeObject(jsonData, type);
 
             foreach (var prop in properties)
             {
@@ -102,8 +140,6 @@ namespace FastReport.Data
                     dataset.Tables.Add(dataTable);
                 }
             }
-
-            return dataset;
         }
 
         /// <inheritdoc/>
@@ -121,10 +157,22 @@ namespace FastReport.Data
             // do nothing
         }
 
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            // do nothing
+            return Task.CompletedTask;
+        }
+
         /// <inheritdoc/>
         public override void FillTableData(DataTable table, string selectCommand, CommandParameterCollection parameters)
         {
             // do nothing
+        }
+
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            // do nothing
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -134,6 +182,17 @@ namespace FastReport.Data
             {
                 source.Table = DataSet.Tables[source.TableName];
                 base.CreateTable(source);
+            }
+            else
+                source.Table = null;
+        }
+
+        public override async Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
+        {
+            if (DataSet.Tables.Contains(source.TableName))
+            {
+                source.Table = DataSet.Tables[source.TableName];
+                await base.CreateTableAsync(source, cancellationToken);
             }
             else
                 source.Table = null;
@@ -160,6 +219,11 @@ namespace FastReport.Data
                 result[i] = DataSet.Tables[i].TableName;
             }
             return result;
+        }
+
+        public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            return Task.FromResult(GetTableNames());
         }
 
         /// <inheritdoc/>

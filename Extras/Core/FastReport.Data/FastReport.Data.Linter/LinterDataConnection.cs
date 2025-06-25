@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data
 {
@@ -26,6 +28,31 @@ namespace FastReport.Data
                 DisposeConnection(connection);
             }
 
+            GetDBObjectNames(name, columnName, list, schema);
+        }
+
+        private async Task GetDBObjectNamesAsync(string name, string columnName, List<string> list, CancellationToken cancellationToken)
+        {
+            DataTable schema = null;
+            DbConnection connection = GetConnection();
+            connection.ConnectionString = ConnectionString;
+            try
+            {
+                await OpenConnectionAsync(connection, cancellationToken);
+                DbConnectionStringBuilder builder = factory.CreateConnectionStringBuilder();
+                builder.ConnectionString = ConnectionString;
+                schema = await connection.GetSchemaAsync(name, new string[] { (string)builder["UserID"] }, cancellationToken);
+            }
+            finally
+            {
+                await DisposeConnectionAsync(connection);
+            }
+
+            GetDBObjectNames(name, columnName, list, schema);
+        }
+
+        private static void GetDBObjectNames(string name, string columnName, List<string> list, DataTable schema)
+        {
             foreach (DataRow row in schema.Rows)
             {
                 string tableName = row[columnName].ToString();
@@ -42,6 +69,14 @@ namespace FastReport.Data
             List<string> list = new List<string>();
             GetDBObjectNames("Tables", "TABLE_NAME", list);
             GetDBObjectNames("Views", "TABLE_NAME", list);
+            return list.ToArray();
+        }
+
+        public override async Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken)
+        {
+            List<string> list = new List<string>();
+            await GetDBObjectNamesAsync("Tables", "TABLE_NAME", list, cancellationToken);
+            await GetDBObjectNamesAsync("Views", "TABLE_NAME", list, cancellationToken);
             return list.ToArray();
         }
 

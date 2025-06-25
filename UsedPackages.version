@@ -6,11 +6,11 @@
         <!-- WPF -->
         <FRWPFVersion>2025.2.0</FRWPFVersion>
 
-        <SkiaSharpVersion>2.88.9</SkiaSharpVersion>
-        <HarfBuzzVersion>2.88.9</HarfBuzzVersion>
+        <SkiaSharpVersion>[2.88.9,)</SkiaSharpVersion>
+        <HarfBuzzVersion>[2.88.9,)</HarfBuzzVersion>
 
         <!-- Avalonia -->
-        <AvaloniaUIVersion>[11.0.6,)</AvaloniaUIVersion>
+        <AvaloniaUIVersion>[11.1.0,)</AvaloniaUIVersion>
         <FRAvaloniaVersion>2025.2.0</FRAvaloniaVersion>
 
         <CodeAnalysisCSharpVersion>[4.0.1,)</CodeAnalysisCSharpVersion>

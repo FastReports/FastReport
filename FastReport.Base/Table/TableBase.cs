@@ -333,24 +333,30 @@ namespace FastReport.Table
             {
                 float left = 0;
                 float height = Rows[y].Height;
-
-                for (int x = 0; x < Columns.Count; x++)
+                TableRow row = Rows[y];
+                if (!IsPrinting || row.Printable)
                 {
-                    TableCell cell = this[x, y];
-                    float width = Columns[x].Width;
-
-                    cell.Left = left;
-                    cell.Top = top;
-                    if (!IsInsideSpan(cell) && (!IsPrinting || cell.Printable))
+                    for (int x = 0; x < Columns.Count; x++)
                     {
-                        cell.SetPrinting(IsPrinting);
+                        TableCell cell = this[x, y];
+                        float width = Columns[x].Width;
+                        TableColumn column = Columns[x];
+                        if (!IsPrinting || column.Printable)
+                        {
+                            cell.Left = left;
+                            cell.Top = top;
+                            if (!IsInsideSpan(cell) && (!IsPrinting || cell.Printable))
+                            {
+                                cell.SetPrinting(IsPrinting);
 #if !MONO || (WPF || AVALONIA)
-                        if (cell.IsVisible(e))
+                                if (cell.IsVisible(e))
 #endif
-                        proc(e, cell);
-                    }
+                                    proc(e, cell);
+                            }
 
-                    left += width;
+                            left += width;
+                        }
+                    }
                 }
                 top += height;
             }
@@ -364,55 +370,61 @@ namespace FastReport.Table
             {
                 float left = 0;
                 float height = Rows[y].Height;
-
-                //bool thereIsColSpan = false;
-                //for (int i = Columns.Count - 1; i >= 0; i--)
-                //{
-                //    TableCell cell = this[i, y];
-                //    if (cell.ColSpan > 1)
-                //    {
-                //        thereIsColSpan = true;
-                //    }
-                //}
-
-                for (int x = Columns.Count - 1; x >= 0; x--)
+                TableRow row = Rows[y];
+                if (!IsPrinting || row.Printable)
                 {
-                    TableCell cell = this[x, y];
-
-                    bool thereIsColSpan = false;
-                    if (cell.ColSpan > 1)
-                    {
-                        thereIsColSpan = true;
-                    }
-
-                    float width = Columns[x].Width;
-
-                    //if (thereIsColSpan)
+                    //bool thereIsColSpan = false;
+                    //for (int i = Columns.Count - 1; i >= 0; i--)
                     //{
-                    //    width *= cell.ColSpan - 1;
-                    //    left -= width;
+                    //    TableCell cell = this[i, y];
+                    //    if (cell.ColSpan > 1)
+                    //    {
+                    //        thereIsColSpan = true;
+                    //    }
                     //}
 
-                    if (!IsInsideSpan(cell) && (!IsPrinting || cell.Printable))
+                    for (int x = Columns.Count - 1; x >= 0; x--)
                     {
-                        cell.Left = left;
-                        cell.Top = top;
-                        cell.SetPrinting(IsPrinting);
-                        proc(e, cell);
+                        TableCell cell = this[x, y];
+                        TableColumn column = Columns[x];
+                        if (!IsPrinting || column.Printable)
+                        {
+                            bool thereIsColSpan = false;
+                            if (cell.ColSpan > 1)
+                            {
+                                thereIsColSpan = true;
+                            }
 
-                        if (thereIsColSpan)
-                            width *= cell.ColSpan;
+                            float width = Columns[x].Width;
 
-                        left += width;
+                            //if (thereIsColSpan)
+                            //{
+                            //    width *= cell.ColSpan - 1;
+                            //    left -= width;
+                            //}
+
+                            if (!IsInsideSpan(cell) && (!IsPrinting || cell.Printable))
+                            {
+                                cell.Left = left;
+                                cell.Top = top;
+                                cell.SetPrinting(IsPrinting);
+                                proc(e, cell);
+
+                                if (thereIsColSpan)
+                                    width *= cell.ColSpan;
+
+                                left += width;
+                            }
+                        }
+
+                        //if (!thereIsColSpan)
+                        //    left += width;
+                        //else
+                        //    left -= width;
+
                     }
-
-                    //if (!thereIsColSpan)
-                    //    left += width;
-                    //else
-                    //    left -= width;
                 }
-
-                top += height;
+                    top += height;
             }
         }
 

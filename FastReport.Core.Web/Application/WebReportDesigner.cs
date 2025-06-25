@@ -138,7 +138,7 @@ namespace FastReport.Web
             return new HtmlString($@"
 <iframe src=""{Designer.Path}?uuid={ID}{ReportDesignerService.GetARRAffinity()}{designerLocale}"" style=""border:none;"" width=""{Width}"" height=""{Height}"">
     <p style=""color:red"">ERROR: Browser does not support IFRAME!</p>
-</iframe >
+</iframe>
 ");
             // TODO: add fit script
         }

@@ -190,7 +190,7 @@ namespace FastReport.Web.Services
                 }
 
                 conn.CreateAllTables(true);
-                if(conn.CanContainProcedures)
+                if (conn.CanContainProcedures)
                     conn.CreateAllProcedures();
 
                 foreach (TableDataSource c in conn.Tables)
@@ -259,33 +259,39 @@ namespace FastReport.Web.Services
                     }
                 }
 
-                conn.CreateAllTables(true);
-                if (conn.CanContainProcedures)
-                    conn.CreateAllProcedures();
-
-                foreach (TableDataSource c in conn.Tables)
+                using (Report rep = new Report())
                 {
-                    if (c is ProcedureDataSource proc)
-                    {
-                        bool needFillShema = true;
-                        foreach (CommandParameter p in proc.Parameters)
-                        {
-                            if (p.Direction != ParameterDirection.Output)
-                                needFillShema = false;
-                        }
-                        if (needFillShema)
-                        {
-                            try
-                            {
-                                proc.InitSchema();
-                            }
-                            catch { }
-                        }
-                    }
-                    c.Enabled = true;
-                }
+                    rep.Dictionary.Connections.Add(conn);
+                    rep.Dictionary.Merge(webReport.Report.Dictionary);
 
-                return SerializeToString(conn);
+                    conn.CreateAllTables(true);
+                    if (conn.CanContainProcedures)
+                        conn.CreateAllProcedures();
+
+                    foreach (TableDataSource c in conn.Tables)
+                    {
+                        if (c is ProcedureDataSource proc)
+                        {
+                            bool needFillShema = true;
+                            foreach (CommandParameter p in proc.Parameters)
+                            {
+                                if (p.Direction != ParameterDirection.Output)
+                                    needFillShema = false;
+                            }
+                            if (needFillShema)
+                            {
+                                try
+                                {
+                                    proc.InitSchema();
+                                }
+                                catch { }
+                            }
+                        }
+                        c.Enabled = true;
+                    }
+
+                    return SerializeToString(conn);
+                }
             }
             catch (Exception ex)
             {

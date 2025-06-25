@@ -6,6 +6,8 @@ using System.Data;
 using DocumentFormat.OpenXml.Spreadsheet;
 using FastReport.Utils;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Data
 {
@@ -60,6 +62,11 @@ namespace FastReport.Data
             return document.GetSheetNames().ToArray();
         }
 
+        public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            return Task.FromResult(GetTableNames());
+        }
+
         /// <inheritdoc/>
         public override string QuoteIdentifier(string value, DbConnection connection)
         {
@@ -69,18 +76,7 @@ namespace FastReport.Data
         /// <inheritdoc/>
         public override void CreateAllTables(bool initSchema)
         {
-            if (document == null)
-                InitConnection();
-
-            bool found = false;
-            foreach (Base b in Tables)
-            {
-                if (b.Parent is ExcelDataConnection)
-                {
-                    found = true;
-                    break;
-                }
-            }
+            bool found = CreateAllTablesShared();
 
             if (!found)
             {
@@ -107,6 +103,54 @@ namespace FastReport.Data
             }
         }
 
+        public override async Task CreateAllTablesAsync(bool initSchema, CancellationToken cancellationToken)
+        {
+            bool found = CreateAllTablesShared();
+
+            if (!found)
+            {
+                foreach (string name in await GetTableNamesAsync(cancellationToken))
+                {
+                    TableDataSource dataTable = new TableDataSource();
+                    string fixedTableName = name.Replace(".", "_").Replace("[", "").Replace("]", "").Replace("\"", "");
+                    dataTable.TableName = fixedTableName;
+
+                    if (Report != null)
+                    {
+                        dataTable.Name = Report.Dictionary.CreateUniqueName(fixedTableName);
+                        dataTable.Alias = Report.Dictionary.CreateUniqueAlias(dataTable.Alias);
+                    }
+                    else
+                        dataTable.Name = fixedTableName;
+
+                    dataTable.Parent = this;
+                    dataTable.Enabled = false;
+
+                    await CreateTableAsync(dataTable, cancellationToken);
+                    Tables.Add(dataTable);
+                }
+            }
+        }
+
+        private bool CreateAllTablesShared()
+        {
+            if (document == null)
+                InitConnection();
+
+            bool found = false;
+            foreach (Base b in Tables)
+            {
+                if (b.Parent is ExcelDataConnection)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            return found;
+        }
+
+
         /// <inheritdoc/>
         public override void CreateTable(TableDataSource source)
         {
@@ -116,6 +160,16 @@ namespace FastReport.Data
             document.SelectWorksheet(source.TableName);
 
             base.CreateTable(source);
+        }
+
+        public override Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken)
+        {
+            if (document == null)
+                InitConnection();
+
+            document.SelectWorksheet(source.TableName);
+
+            return base.CreateTableAsync(source, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -132,6 +186,12 @@ namespace FastReport.Data
                     columnName = IndexToName(i - 1);
                 table.Columns.Add(columnName, GetTypeColumn(i));
             }
+        }
+
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            FillTableSchema(table, selectCommand, parameters);
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -179,6 +239,12 @@ namespace FastReport.Data
             }
         }
 
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken)
+        {
+            FillTableData(table, selectCommand, parameters);
+            return Task.CompletedTask;
+        }
+
 
         /// <summary>
         /// Get type of data in column.
@@ -218,7 +284,7 @@ namespace FastReport.Data
         /// </summary>
         /// <param name="index"></param>
         /// <returns>Column name</returns>
-        private string IndexToName(int index)
+        private static string IndexToName(int index)
         {
 
             bool firstSymbol = false;

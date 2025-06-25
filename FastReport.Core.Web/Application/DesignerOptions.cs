@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Threading.Tasks;
+using System.Threading;
 
 #nullable enable
 
@@ -36,8 +38,14 @@ namespace FastReport.Web
 
         /// <summary>
         /// Callback that is invoked after a new <see cref="WebReport"/> is created from the Online Designer.
-        /// This allows the user to customize or configure the report before it is rendered or processed further.
+        /// Allows customizing or configuring the report before it is rendered or processed further.
         /// </summary>
-        public Action<WebReport>? OnWebReportCreated { get; set; }
+        public Action<WebReport, IServiceProvider>? OnWebReportCreated { get; set; }
+
+        /// <summary>
+        /// Asynchronous callback that is invoked after a new <see cref="WebReport"/> is created from the Online Designer.
+        /// Allows customizing or configuring the report before it is rendered or processed further.
+        /// </summary>
+        public Func<WebReport, IServiceProvider, CancellationToken, Task>? OnWebReportCreatedAsync { get; set; }
     }
 }

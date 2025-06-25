@@ -142,7 +142,12 @@ namespace FastReport.Web.Cache
 
         public void Remove(WebReport webReport)
         {
-            var cacheItem = FindPrivate(webReport.ID);
+            Remove(webReport.ID);
+        }
+
+        public void Remove(string webReportId)
+        {
+            var cacheItem = FindPrivate(webReportId);
             cache.Remove(cacheItem);
             cacheItem.Dispose();
         }

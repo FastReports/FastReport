@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data
 {
@@ -42,6 +44,11 @@ namespace FastReport.Data
                 _tableMapping[simpleName] = fullName;
                 return simpleName;
             }).ToArray();
+        }
+
+        public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(GetTableNames());
         }
 
         /// <summary>
@@ -105,6 +112,12 @@ namespace FastReport.Data
             base.CreateAllTables(initSchema);
         }
 
+        public override Task CreateAllTablesAsync(bool initSchema, CancellationToken cancellationToken = default)
+        {
+            CreateAllTables(initSchema);
+            return Task.CompletedTask;
+        }
+
         /// <inheritdoc/>
         public override void CreateTable(TableDataSource source)
         {
@@ -112,6 +125,12 @@ namespace FastReport.Data
                 InitConnection();
 
             base.CreateTable(source);
+        }
+
+        public override Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
+        {
+            CreateTable(source);
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -280,6 +299,12 @@ namespace FastReport.Data
             }
         }
 
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            FillTableSchema(table, selectCommand, parameters);
+            return Task.CompletedTask;
+        }
+
         /// <inheritdoc/>
         public override void FillTableData(DataTable table, string selectCommand, CommandParameterCollection parameters)
         {
@@ -374,6 +399,12 @@ namespace FastReport.Data
                     }
                 }
             }
+        }
+
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            FillTableData(table, selectCommand, parameters);
+            return Task.CompletedTask;
         }
 
         public IgniteDataConnection()

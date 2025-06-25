@@ -117,6 +117,17 @@ static class CakeAPI
     public static void DeleteDirectory(DirectoryPath path, DeleteDirectorySettings settings)
         => Context.DeleteDirectory(path, settings);
 
+    public static void DeleteFilesAndDirs(string patternOrPath)
+    {
+        var files = GetFiles(patternOrPath);
+        foreach (var file in files)
+            Context.DeleteFile(file);
+
+        var dirs = Context.GetDirectories(patternOrPath);
+        foreach (var dir in dirs)
+            Context.DeleteDirectory(dir, new DeleteDirectorySettings { Recursive = true, Force = true });
+    }
+
 #if INCUBATOR
     public static CustomProjectParserResult ParseProject(FilePath project, string configuration)
         => Context.ParseProject(project, configuration);
@@ -160,6 +171,8 @@ static class CakeAPI
     public static int StartProcess(FilePath fileName, ProcessSettings settings)
         => Context.StartProcess(fileName, settings);
 
+    public static int StartProcess(FilePath fileName, string arguments)
+        => Context.StartProcess(fileName, arguments);
 
     public static void Sign(string assembly, SignToolSignSettings settings)
         => Context.Sign(assembly, settings);

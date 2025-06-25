@@ -14,7 +14,7 @@ namespace FastReport.Data
     /// If you want to use data from <b>DataView</b> object, call the 
     /// <see cref="FastReport.Report.RegisterData(DataView, string)"/> method of the <b>Report</b>.
     /// </remarks>
-    public class ViewDataSource : DataSourceBase
+    public partial class ViewDataSource : DataSourceBase
     {
         #region Properties
         /// <summary>

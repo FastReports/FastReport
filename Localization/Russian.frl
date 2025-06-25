@@ -1777,7 +1777,7 @@
       <Message Text="Текст письма:"/>
     </ReportOptions>
     <ReportPageOptions Text="Страница отчета">
-      <Units Text="Единицы измерения"/>
+      <Units Text="Единицы измерения:"/>
       <Millimeters Text="Миллиметры"/>
       <Centimeters Text="Сантиметры"/>
       <Inches Text="Дюймы"/>
@@ -1787,10 +1787,11 @@
       <SnapToGrid Text="Выравнивать по сетке"/>
       <DottedGrid Text="Точечная сетка"/>
       <Size Text="Шаг сетки:"/>
-      <Markers Text="Маркеры объекта"/>
+      <AltSize Text="Шаг сетки (Alt):"/>
+      <Markers Text="Маркеры объекта:"/>
       <Rectangle Text="Прямоугольник"/>
       <Corners Text="Уголки"/>
-      <BandView Text="Вид бэндов"/>
+      <BandView Text="Вид бэндов:"/>
       <Structure Text="Структура"/>
       <Classic Text="Классический"/>
       <EditAfterInsert Text="Редактировать объект после вставки"/>
@@ -1801,6 +1802,7 @@
       <EnableBacklight Text="Подсвечивать активный бэнд"/>
       <SimplifyDBFields Text="Упрощенное отображение имен полей БД"/>
       <ApplyLastFormat Text="Применять последний формат к новым объектам"/>
+      <ExtendedLocationTooltip Text="Расширенная информация о позиции объекта"/>
     </ReportPageOptions>
     <RFIDLabelEditor Text="Редактор RFID-меток">
       <ReservedBank Text="Зарезервированный банк данных"/>
@@ -1829,6 +1831,7 @@
       <WritePower Text="Мощность записи"/>
       <ErrorHandleMode Text="Режим обработки ошибок"/>
       <DataColumn Text="Столбец данных"/>
+      <CountByte Text="Количество байт"/>
     </RFIDLabelEditor>
     <RichTextEditor Text="Редактор текста">
       <Open Text="Открыть файл"/>
@@ -2244,6 +2247,14 @@
     <Xml>
       <Xsd Text="Файл схемы или URL:"/>
       <Xml Text="Файл данных или URL:"/>
+	  <Codepage Text="Кодировка:"/>
+      <Codepages>
+		<Default Text="По умолчанию"/>
+		<ASCII Text="ASCII"/>
+		<UTF8 Text="UTF8"/>
+		<Unicode Text="Юникод"/>
+		<ISO-8859-1  Text="ISO-8859-1"/>
+	  </Codepages>
     </Xml>
     <Access>
       <Provider Text="Поставщик:"/>
