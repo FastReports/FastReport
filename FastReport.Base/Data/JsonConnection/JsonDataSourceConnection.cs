@@ -5,6 +5,8 @@ using System.Data.Common;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FastReport.Data.JsonConnection
@@ -84,10 +86,10 @@ namespace FastReport.Data.JsonConnection
             bool found = false;
             foreach (Base b in Tables)
             {
-                if (b is JsonTableDataSource)
+                if (b is JsonTableDataSource jsonTableDataSource)
                 {
-                    (b as JsonTableDataSource).UpdateSchema = true;
-                    (b as JsonTableDataSource).InitSchema();
+                    jsonTableDataSource.UpdateSchema = true;
+                    jsonTableDataSource.InitSchema();
                     found = true;
                     break;
                 }
@@ -124,6 +126,51 @@ namespace FastReport.Data.JsonConnection
         }
 
         /// <inheritdoc/>
+        public override async Task CreateAllTablesAsync(bool initSchema, CancellationToken cancellationToken = default)
+        {
+            bool found = false;
+            foreach (Base b in Tables)
+            {
+                if (b is JsonTableDataSource jsonTableDataSource)
+                {
+                    jsonTableDataSource.UpdateSchema = true;
+                    await jsonTableDataSource.InitSchemaAsync(cancellationToken);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                JsonTableDataSource jsonDataSource = new JsonTableDataSource();
+
+                string fixedTableName = TABLE_NAME;
+                jsonDataSource.TableName = fixedTableName;
+
+                if (Report != null)
+                {
+                    jsonDataSource.Name = Report.Dictionary.CreateUniqueName(fixedTableName);
+                    jsonDataSource.Alias = Report.Dictionary.CreateUniqueAlias(jsonDataSource.Alias);
+                }
+                else
+                    jsonDataSource.Name = fixedTableName;
+
+                jsonDataSource.Parent = this;
+                jsonDataSource.InitSchema();
+                jsonDataSource.Enabled = true;
+            }
+
+            // init table schema
+            if (initSchema)
+            {
+                foreach (TableDataSource table in Tables)
+                {
+                    await table.InitSchemaAsync(cancellationToken);
+                }
+            }
+        }
+
+        /// <inheritdoc/>
         public override void CreateRelations()
         {
         }
@@ -132,6 +179,12 @@ namespace FastReport.Data.JsonConnection
         public override void CreateTable(TableDataSource source)
         {
             //throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public override Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
+        {
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -146,14 +199,32 @@ namespace FastReport.Data.JsonConnection
         }
 
         /// <inheritdoc/>
+        public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
         public override void FillTableSchema(DataTable table, string selectCommand, CommandParameterCollection parameters)
         {
+        }
+
+        /// <inheritdoc/>
+        public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
+        {
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public override string[] GetTableNames()
         {
             return new string[] { TABLE_NAME };
+        }
+
+        /// <inheritdoc/>
+        public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
+        {
+            return Task.FromResult(GetTableNames());
         }
 
         /// <inheritdoc/>
@@ -176,6 +247,12 @@ namespace FastReport.Data.JsonConnection
         protected override DataSet CreateDataSet()
         {
             throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        protected override Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(CreateDataSet());
         }
 
         /// <inheritdoc/>

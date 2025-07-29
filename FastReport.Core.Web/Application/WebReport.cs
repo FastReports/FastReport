@@ -45,6 +45,11 @@ namespace FastReport.Web
         public bool Inline { get; set; } = true;
 
         /// <summary>
+        /// Disable or enable the box-shadow style for the report page.
+        /// </summary>
+        public bool PageBorderVisible { get; set; } = true;
+
+        /// <summary>
         /// Current report
         /// </summary>
         public Report Report

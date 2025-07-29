@@ -54,7 +54,7 @@ namespace FastReport.Utils
             int n = band.Objects.Count;
             for (int i = 0; i < n; i++)
             {
-                var bounds = band.Objects[i].Bounds;
+                var bounds = band.Objects[i].GetExtendedSize();
                 if (bounds.Width < 0 || bounds.Height < 0)
                     NormalizeBounds(ref bounds);
 
@@ -63,7 +63,7 @@ namespace FastReport.Utils
 
                 for (int j = 0; j < n; j++)
                 {
-                    var bounds1 = band.Objects[j].Bounds;
+                    var bounds1 = band.Objects[j].GetExtendedSize();
                     if (bounds1.Width < 0 || bounds1.Height < 0)
                         NormalizeBounds(ref bounds1);
 

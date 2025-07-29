@@ -187,6 +187,63 @@ namespace FastReport
         }
 
         /// <inheritdoc/>
+        public override bool IsHaveToConvert(object sender)
+        {
+            return StartCap.Style != CapStyle.None || EndCap.Style != CapStyle.None;
+        }
+
+
+        internal override RectangleF GetExtendedSize()
+        {
+            var bounds = CreatePath().GetBounds();
+            if (Parent is ComponentBase parent)
+            {
+                bounds.X -= parent.AbsLeft;
+                bounds.Y -= parent.AbsTop;
+            }
+            return bounds;
+        }
+
+        internal GraphicsPath CreatePath()
+        {
+            float scale = Border.Width;
+            float angle = (float)Math.Abs(Math.Atan2(AbsRight - AbsLeft, AbsBottom - AbsTop) / Math.PI * 180);
+            GraphicsPath fullPath = new GraphicsPath();
+            if (StartCap.Style != CapStyle.None)
+            {
+                GraphicsPath path;
+                StartCap.GetCustomCapPath(out path, out float t);
+                using (System.Drawing.Drawing2D.Matrix transform = new())
+                {
+                    transform.Translate(AbsLeft, AbsTop);
+                    transform.Rotate(180 - angle);
+                    transform.Scale(scale, scale);
+                    path.Transform(transform);
+                    fullPath.AddPath(path, true);
+                }
+
+                path.Dispose();
+            }
+            fullPath.AddLine(AbsLeft, AbsTop, AbsRight, AbsBottom);
+            if (EndCap.Style != CapStyle.None)
+            {
+                GraphicsPath path;
+                EndCap.GetCustomCapPath(out path, out float _);
+                using (System.Drawing.Drawing2D.Matrix transform = new())
+                {
+                    transform.Translate(AbsRight, AbsBottom);
+                    transform.Rotate(-angle);
+                    transform.Scale(scale, scale);
+                    path.Transform(transform);
+                    fullPath.AddPath(path, true);
+                }
+                path.Dispose();
+            }
+
+            return fullPath;
+        }
+
+        /// <inheritdoc/>
         public override List<ValidationError> Validate()
         {
             List<ValidationError> listError = new List<ValidationError>();

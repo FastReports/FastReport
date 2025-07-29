@@ -98,6 +98,11 @@ namespace FastReport.Engine
             }
         }
 
+        private Task ShowPageHeaderAsync(CancellationToken cancellationToken)
+        {
+            return ShowBandAsync(page.PageHeader, cancellationToken);
+        }
+
         private async Task<bool> StartFirstPageAsync(CancellationToken cancellationToken)
         {
             var previousPage = StartFirstPageShared();
@@ -112,11 +117,11 @@ namespace FastReport.Engine
                 if (page.TitleBeforeHeader)
                 {
                     await ShowBandAsync(page.ReportTitle, cancellationToken);
-                    ShowPageHeader();
+                    await ShowPageHeaderAsync(cancellationToken);
                 }
                 else
                 {
-                    ShowPageHeader();
+                    await ShowPageHeaderAsync(cancellationToken);
                     await ShowBandAsync(page.ReportTitle, cancellationToken);
                 }
             }

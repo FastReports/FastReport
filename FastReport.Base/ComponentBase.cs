@@ -563,5 +563,15 @@ namespace FastReport
         }
 
         #endregion Report Engine
+
+        #region Internal Methods
+
+        /// <summary>
+        /// Return the increased size with the tips. It is used only by the validator, but not in the engine.
+        /// </summary>
+        /// <returns></returns>
+        internal virtual RectangleF GetExtendedSize() => Bounds;
+
+        #endregion
     }
 }
