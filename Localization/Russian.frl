@@ -3036,4 +3036,67 @@
       <UI Text="Интерфейс"/>
     </Categories>
   </Properties>
+  <SystemWindowsForms>
+    <Buttons>
+      <OK Text="ОК"/>
+      <Cancel Text="Отмена"/>
+      <Yes Text="Да"/>
+      <No Text="Нет"/>
+    </Buttons>
+    <Collection Text="Редактор коллекции {0}">
+      <Members Text="Элементы:"/>
+      <AllProperties Text="Свойства:"/>
+      <Properties Text="Свойства {0}:"/>
+      <Add Text="Добавить"/>
+      <Remove Text="Удалить"/>
+    </Collection>
+    <Color Text="Цвет">
+      <Color Text="Цвет"/>
+      <H Text="H:"/>
+      <S Text="S:"/>
+      <V Text="V:"/>
+      <R Text="R:"/>
+      <G Text="G:"/>
+      <B Text="B:"/>
+      <Define Text="Определить цвет &gt;&gt;"/>
+      <Add Text="Добавить в набор"/>
+      <Base Text="Основные цвета:"/>
+      <User Text="Дополнительные цвета:"/>
+    </Color>
+    <Colors>
+      <Custom Text="Прочие"/>
+      <Web Text="Интернет"/>
+      <System Text="Системные"/>
+      <Other Text="Прочие..."/>
+    </Colors>
+    <Dock>
+      <None Text="Нет"/>
+    </Dock>
+    <Font Text="Шрифт">
+      <Style Text="Начертание:"/>
+      <Example Text="Образец"/>
+      <Font Text="Шрифт:"/>
+      <Effects Text="Эффекты"/>
+      <Strikethrough Text="Зачеркнутый"/>
+      <Underlined Text="Подчеркнутый"/>
+      <Size Text="Размер:"/>
+      <Regular Text="Обычный"/>
+      <Bold Text="Полужирный"/>
+      <Italic Text="Наклонный"/>
+      <BoldItalic Text="Полужирный наклонный"/>
+    </Font>
+    <Image Text="Открыть файл изображения">
+      <All Text="Все файлы изображений"/>
+    </Image>
+    <Property>
+      <Alphabetic Text="По алфавиту"/>
+      <Categorized Text="По категориям"/>
+      <Misc Text="Разное"/>
+      <Window Text="Окно свойств"/>
+      <Error Text="Недопустимое значение свойства"/>
+    </Property>
+    <StringCollection Text="Редактор коллекции строк">
+      <Hint Text="Введите строки в коллекцию (одну на строку):"/>
+    </StringCollection>
+  </SystemWindowsForms>
 </Language>

@@ -3277,4 +3277,67 @@
       <UI Text="UI"/>
     </Categories>
   </Properties>
+  <SystemWindowsForms>
+    <Buttons>
+      <OK Text="OK"/>
+      <Cancel Text="Cancel"/>
+      <Yes Text="Yes"/>
+      <No Text="No"/>
+    </Buttons>
+    <Collection Text="{0} collection editor">
+      <Members Text="Members:"/>
+      <AllProperties Text="Properties:"/>
+      <Properties Text="{0} properties:"/>
+      <Add Text="Add"/>
+      <Remove Text="Remove"/>
+    </Collection>
+    <Color Text="Color">
+      <Color Text="Color"/>
+      <H Text="H:"/>
+      <S Text="S:"/>
+      <V Text="V:"/>
+      <R Text="R:"/>
+      <G Text="G:"/>
+      <B Text="B:"/>
+      <Define Text="Define custom colors &gt;&gt;"/>
+      <Add Text="Add to custom colors"/>
+      <Base Text="Base colors:"/>
+      <User Text="User colors:"/>
+    </Color>
+    <Colors>
+      <Custom Text="Custom"/>
+      <Web Text="Web"/>
+      <System Text="System"/>
+      <Other Text="Other"/>
+    </Colors>
+    <Dock>
+      <None Text="None"/>
+    </Dock>
+    <Font Text="Font">
+      <Style Text="Font style:"/>
+      <Example Text="Example"/>
+      <Font Text="Font:"/>
+      <Effects Text="Effects"/>
+      <Strikethrough Text="Strikethrough"/>
+      <Underlined Text="Underlined"/>
+      <Size Text="Size:"/>
+      <Regular Text="Regular"/>
+      <Bold Text="Bold"/>
+      <Italic Text="Italic"/>
+      <BoldItalic Text="Bold Italic"/>
+    </Font>
+    <Image Text="Open image file">
+      <All Text="All image files"/>
+    </Image>
+    <Property>
+      <Alphabetic Text="Alphabetic"/>
+      <Categorized Text="Categorized"/>
+      <Misc Text="Misc"/>
+      <Window Text="Properties window"/>
+      <Error Text="'{0}' is not a valid value for '{1}'"/>
+    </Property>
+    <StringCollection Text="String collection editor">
+      <Hint Text="Enter the strings in the collection (one per line):"/>
+    </StringCollection>
+  </SystemWindowsForms>
 </Language>

@@ -523,11 +523,11 @@ namespace FastReport.Export.Html
 
             if (Page != null)
             {
-                pages[d.CurrentPage].PageText = Page.StringBuilder;
+                pages[d.CurrentPage].PageText = new StringBuilder(Page.StringBuilder.ToString());
             }
             if (CSS != null)
             {
-                pages[d.CurrentPage].CSSText = CSS.StringBuilder;
+                pages[d.CurrentPage].CSSText = new StringBuilder(CSS.StringBuilder.ToString());
             }
             pages[d.CurrentPage].PageEvent.Set();
         }

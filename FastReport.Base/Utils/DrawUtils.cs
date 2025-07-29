@@ -84,7 +84,7 @@ namespace FastReport.Utils
 #if WPF
                             FDefaultFont = CreateFont("Segoe UI", 8.5f);
 #else
-                            FDefaultFont = CreateFont("Tahoma", 8);
+                            FDefaultFont = CreateFont("Tahoma", 8.25f);
 #endif
                             break;
                     }

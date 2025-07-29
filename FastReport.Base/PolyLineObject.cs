@@ -301,6 +301,21 @@ namespace FastReport
         /// </summary>
         public void RecalculateBounds()
         {
+            //using (GraphicsPath path = GetPath(null, -center.X, -center.Y, Width, Height, 1, 1))
+            //{
+            //    // convert beziers to lines to get a tight bounding box
+            //    path.Flatten();
+            //    var bounds = path.GetBounds();
+
+            //    base.Left += bounds.Left + center.X;
+            //    base.Top += bounds.Top + center.Y;
+            //    base.Height = bounds.Height;
+            //    base.Width = bounds.Width;
+            //    center.X = -bounds.Left;
+            //    center.Y = -bounds.Top;
+            //}
+
+            //return;
             if (pointsCollection.Count > 0)
             {
                 // init
@@ -463,7 +478,11 @@ namespace FastReport
 
         private float RecalculateBounds_Solve(float p_0, float p_1, float p_2, float p_3, float deltaSqrt)
         {
-            return (p_0 - 2 * p_1 + p_2 + deltaSqrt) / (p_0 - 3 * p_1 + 3 * p_2 - p_3);
+            float a = p_0 - 3 * p_1 + 3 * p_2 - p_3;
+            // a == 0, t = -c/b
+            if (Math.Abs(a) < 1e-4)
+                return (p_0 - p_1) / (2 * p_0 - 4 * p_1 + 2 * p_2);
+            return (p_0 - 2 * p_1 + p_2 + deltaSqrt) / a;
         }
 
         private float RecalculateBounds_Value(float p_0, float p_1, float p_2, float p_3, float t)

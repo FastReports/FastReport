@@ -42,9 +42,6 @@ namespace FastReport.Gauge.Simple
         public override void Draw(FRPaintEventArgs e)
         {
             base.Draw(e);
-            Scale.Draw(e);
-            Pointer.Draw(e);
-            Border.Draw(e, new RectangleF(AbsLeft, AbsTop, Width, Height));
             IGraphics g = e.Graphics;
 
             if (Report != null && Report.SmoothGraphics)

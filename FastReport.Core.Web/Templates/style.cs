@@ -40,7 +40,7 @@ namespace FastReport.Web
 }}
 
 .{template_FR}-spinner[style*=""display:none""] ~ .{template_FR}-toolbar ~ .{template_FR}-body {{
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: {(PageBorderVisible ? "0px 2px 4px rgba(0, 0, 0, 0.25)" : "none")};
 }}
 
 .fr-form-header {{
@@ -63,7 +63,7 @@ namespace FastReport.Web
     width: fit-content;
     border-radius: 12px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: {(PageBorderVisible ? "0px 4px 4px 0px rgba(0, 0, 0, 0.25)" : "none")};
 }}
 
 /***********

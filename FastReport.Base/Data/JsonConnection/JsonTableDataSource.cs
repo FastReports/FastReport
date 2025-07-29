@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FastReport.Data.JsonConnection
 {
@@ -160,6 +162,12 @@ namespace FastReport.Data.JsonConnection
             UpdateSchema = false;
         }
 
+        public override Task InitSchemaAsync(CancellationToken cancellationToken = default)
+        {
+            InitSchema();
+            return Task.CompletedTask;
+        }
+
         /// <inheritdoc/>
         public override void LoadData(ArrayList rows)
         {
@@ -174,6 +182,12 @@ namespace FastReport.Data.JsonConnection
                     rows.Add(i);
                 }
             }
+        }
+
+        public override Task LoadDataAsync(ArrayList rows, CancellationToken cancellationToken)
+        {
+            LoadData(rows);
+            return Task.CompletedTask;
         }
 
         #endregion Public Methods

@@ -255,6 +255,12 @@ namespace FastReport.Gauge.Radial
         {
             IGraphics g = e.Graphics;
 
+            if (Report != null && Report.SmoothGraphics)
+            {
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+            }
+
             float x = (AbsLeft + Border.Width / 2) * e.ScaleX;
             float y = (AbsTop + Border.Width / 2) * e.ScaleY;
             float dx = (Width - Border.Width) * e.ScaleX - 1;
@@ -415,11 +421,6 @@ namespace FastReport.Gauge.Radial
             DrawMarkers(e);
             if (!(Fill is SolidFill))
                 brush.Dispose();
-            if (Report != null && Report.SmoothGraphics)
-            {
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-            }
         }
 
         /// <inheritdoc/>

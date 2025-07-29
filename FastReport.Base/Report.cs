@@ -264,8 +264,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets the site of the <see cref='System.ComponentModel.Component'/>.
         /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual ISite Site
         {
             get => _site;
@@ -276,8 +275,7 @@ namespace FastReport
         /// Gets a value indicating whether the <see cref='System.ComponentModel.Component'/>
         /// is currently in design mode.
         /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         protected bool DesignMode => _site?.DesignMode ?? false;
 
         /// <summary>
@@ -400,11 +398,12 @@ namespace FastReport
         /// <summary>
         /// Gets a value indicating whether Report is prepared
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsPrepared
         {
             get { return !isParameterChanged && PreparedPages != null && PreparedPages.Count != 0; }
         }
+
         /// <summary>
         /// Gets or sets the absolute path to the parent report.
         /// </summary>
@@ -544,6 +543,7 @@ namespace FastReport
         /// <summary>
         /// Returns a bool value depending on the .frx or .fpx report was loaded
         /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsLoadPrepared
         {
             get => isLoadPrepared;
@@ -681,8 +681,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets a script event name that will be fired when the report starts.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [SRCategory("Build")]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string StartReportEvent
         {
             get { return startReportEvent; }
@@ -692,8 +691,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets a script event name that will be fired when the report is finished.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [SRCategory("Build")]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string FinishReportEvent
         {
             get { return finishReportEvent; }
@@ -737,7 +735,7 @@ namespace FastReport
         /// </remarks>
         [Browsable(false)]
         [Localizable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ReportResourceString
         {
             get
@@ -866,7 +864,7 @@ namespace FastReport
         /// <summary>
         /// Gets the report operation that is currently performed.
         /// </summary>
-        [Browsable(false)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ReportOperation Operation
         {
             get { return operation; }
@@ -875,8 +873,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets the Tag object of the report.
         /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object Tag
         {
             get { return tag; }
@@ -939,7 +936,7 @@ namespace FastReport
             }
         }
 
-
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IGraphics MeasureGraphics
         {
             get
@@ -957,6 +954,7 @@ namespace FastReport
             }
         }
 
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string GetReportName
         {
             get
@@ -971,7 +969,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets the flag for refresh.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool NeedRefresh
         {
             get { return needRefresh; }
@@ -997,6 +995,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets the code provider used for report code compilation.
         /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public CodeProvider CodeProvider
         {
             get => _codeProvider ??= CodeProvider.GetCodeProvider(this);
