@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.IO;
 using FastReport.Table;
@@ -30,7 +30,7 @@ namespace FastReport.Export.Html
 
 
         private void Layer(FastString Page, ReportComponentBase obj,
-            float Left, float Top, float Width, float Height, FastString Text, string classTag, FastString addstyletag)
+            float Left, float Top, float Width, float Height, FastString Text, string classTag, FastString addstyletag, bool borderNone = false)
         {
             if (Page != null && obj != null)
             {
@@ -76,6 +76,9 @@ namespace FastReport.Export.Html
                     Append("top:").Append(Px((topMargin + Top) * Zoom - borderTop / 2f)).
                     Append("width:").Append(Px(Width * Zoom - borderRight / 2f - borderLeft / 2f)).
                     Append("height:").Append(Px(Height * Zoom - borderBottom / 2f - borderTop / 2f));
+
+                if (borderNone)
+                    Page.Append("border:none;");
 
                 if (addstyletag != null)
                     Page.Append(addstyletag);
@@ -623,7 +626,7 @@ namespace FastReport.Export.Html
             Layer(Page, obj, x, y, obj.Width, obj.Height, text, null, addstyle);
         }
 
-        private void LayerBack(FastString Page, ReportComponentBase obj, FastString text)
+        private void LayerBack(FastString Page, ReportComponentBase obj, FastString text, bool borderNone = false)
         {
             if (obj.Border.Shadow)
             {
@@ -648,7 +651,12 @@ namespace FastReport.Export.Html
             if (!(obj is PolyLineObject))
             {
                 if (obj.Fill is SolidFill)
-                    Layer(Page, obj, obj.AbsLeft, hPos + obj.AbsTop, obj.Width, obj.Height, text, GetStyle(obj), null);
+                    if (borderNone)
+                    {
+                        Layer(Page, obj, obj.AbsLeft, hPos + obj.AbsTop, obj.Width, obj.Height, text, GetStyle(obj), null, borderNone);
+                    }
+                    else
+                        Layer(Page, obj, obj.AbsLeft, hPos + obj.AbsTop, obj.Width, obj.Height, text, GetStyle(obj), null);
                 else
                     LayerPicture(Page, obj, text);
             }
@@ -932,7 +940,7 @@ namespace FastReport.Export.Html
             }
             else
             {
-                LayerBack(htmlPage, obj, null);
+                LayerBack(htmlPage, obj, null, true);
                 LayerPicture(htmlPage, obj, null);
             }
         }
