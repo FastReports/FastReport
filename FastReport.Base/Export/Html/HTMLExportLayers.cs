@@ -114,7 +114,7 @@ namespace FastReport.Export.Html
         private string EncodeURL(string value)
         {
 #if CROSSPLATFORM || COREWIN
-            return System.Net.WebUtility.UrlEncode(value);
+            return Uri.EscapeDataString(value);
 #else
             return ExportUtils.HtmlURL(value);
 #endif

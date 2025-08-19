@@ -721,34 +721,55 @@ namespace FastReport.Table
             if (Fill.IsTransparent)
                 return;
 
-            Image image = new Bitmap((int)Width, (int)Height);
-            using (Graphics g = Graphics.FromImage(image))
+            Bitmap image = null;
+            Color fillColor = Color.Empty;
+            
+            if (Fill is SolidFill solidFill)
             {
-                g.Clear(Color.Transparent);
-                g.TranslateTransform(-AbsLeft, -AbsTop);
-                BorderLines oldLines = Border.Lines;
-                Border.Lines = BorderLines.None;
-                Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache));
-                Border.Lines = oldLines;
+                fillColor = solidFill.Color;
+            }
+            else
+            {
+                image = new Bitmap((int)Width, (int)Height);
 
-                for (int y = 0; y < RowCount; y++)
+                using (Graphics g = Graphics.FromImage(image))
                 {
-                    for (int x = 0; x < ColumnCount; x++)
+                    g.Clear(Color.Transparent);
+                    g.TranslateTransform(-AbsLeft, -AbsTop);
+                    BorderLines oldLines = Border.Lines;
+                    Border.Lines = BorderLines.None;
+                    Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache));
+                    Border.Lines = oldLines;
+                }
+            }
+
+            for (int y = 0; y < RowCount; y++)
+            {
+                for (int x = 0; x < ColumnCount; x++)
+                {
+                    TableCell cell = this[x, y];
+                    if (cell.Fill is SolidFill cellSolidFill && cellSolidFill.Color == Color.Transparent)
                     {
-                        TableCell cell = this[x, y];
-                        if (cell.Fill is SolidFill && cell.FillColor == Color.Transparent)
+                        if (image == null)
                         {
-                            Image cellImage = ImageHelper.CutImage((Bitmap)image, cell.Bounds);
-                            cell.Fill = new TextureFill(ImageHelper.ToByteArray(cellImage, cellImage.GetImageFormat()))
+                            cellSolidFill.Color = fillColor;
+                        }
+                        else
+                        {
+                            using (var cellImage = ImageHelper.CutImage(image, cell.Bounds))
                             {
-                                WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp,
-                                PreserveAspectRatio = false,
-                            };
+                                cell.Fill = new TextureFill(ImageHelper.ToByteArray(cellImage, cellImage.GetImageFormat()))
+                                {
+                                    WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp,
+                                    PreserveAspectRatio = false,
+                                };
+                            }
                         }
                     }
                 }
             }
-            image.Dispose();
+
+            image?.Dispose();
         }
         #endregion
 

@@ -359,8 +359,20 @@ var {template_FR} = {{
         sessionStorage.setItem('fastreport-outline-tree', JSON.stringify(tree));
     }},
 
-    outlineGoto: function (page, offset) {{
-        this.goto(page);
+    outlineGoto: function (page, offset, singelPage = {SinglePage.ToString().ToLower()}) {{
+        if (singelPage) {{
+            const rect =  document.getElementById(""PageN"" + page).getBoundingClientRect();
+            var topOfElement = window.scrollY + rect.top + offset;    
+            window.scroll({{top: topOfElement, behavior: 'smooth' }});
+        }}
+        else{{
+            var that = this;
+            this.goto(page, {{
+                onSuccess: function (xhr) {{
+                    that.outlineGoto(1, offset, true); 
+                }}
+            }});
+        }}
     }},
 
     load: function () {{
@@ -424,8 +436,8 @@ var {template_FR} = {{
         }});
     }},
 
-    goto: function (page) {{
-        this._reload('&skipPrepare=yes&goto=' + page);
+    goto: function (page, options) {{
+        this._reload('&skipPrepare=yes&goto=' + page, null, options);
     }},
 
     click: function (el, kind, value) {{
@@ -482,8 +494,9 @@ var {template_FR} = {{
         this._reload('&skipPrepare=yes&closetab=' + tab);
     }},
 
-    _reload: function (params, form) {{
+    _reload: function (params, form, options = {{}}) {{
         var that = this;
+        var onSuccess = options.onSuccess;
         var searchForm = document.getElementById('{template_FR}-toolbar-search-form');
         var needRestoreSearch = false;
 
@@ -494,6 +507,9 @@ var {template_FR} = {{
 
         this._reloadBase(params, form, {{
              onSuccess: function (xhr) {{
+                if (typeof onSuccess === 'function') {{
+                    onSuccess(xhr);
+                }}
                 if(needRestoreSearch)
                     that.restoreSearchFormState(true, true);
             }}

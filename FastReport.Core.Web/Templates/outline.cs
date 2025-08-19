@@ -92,7 +92,7 @@ namespace FastReport.Web
                 page = int.Parse(s);
                 s = node.GetProp("Offset");
                 if (!s.IsNullOrWhiteSpace())
-                    offset = (float)Converter.FromString(typeof(float), s) /* * PDF_DIVIDER*/;
+                    offset = (float)Converter.FromString(typeof(float), s) * Zoom /* * PDF_DIVIDER*/;
             }
 
             return (text, page, offset);

@@ -24,7 +24,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
                 }
                 else
                 {
-                    this[key] = new PdfString(value);
+                    this[key] = new PdfString(value, true);
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
                 }
                 else
                 {
-                    this[key] = new PdfString(value);
+                    this[key] = new PdfString(value,  true);
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
                 }
                 else
                 {
-                    this[key] = new PdfString(value);
+                    this[key] = new PdfString(value, true);
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace FastReport.Export.PdfSimple.PdfObjects
                 }
                 else
                 {
-                    this[key] = new PdfString(value);
+                    this[key] = new PdfString(value, true);
                 }
             }
         }

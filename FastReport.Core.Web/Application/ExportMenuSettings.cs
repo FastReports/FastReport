@@ -61,7 +61,7 @@ namespace FastReport.Web
 
         internal string FixedContainerTags
         {
-            get => PinnedSettingsPosition ? "position : fixed; top: 40%; left: 40%; transform: translate(-50%, -50%);" : "";
+            get => PinnedSettingsPosition ? "position : fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);" : "";
         }
 
         internal string UserFontSettingsFamily
