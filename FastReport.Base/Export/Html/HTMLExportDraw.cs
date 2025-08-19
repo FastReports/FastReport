@@ -253,7 +253,7 @@ namespace FastReport.Export.Html
         private string HTMLGetAncor(string ancorName)
         {
             FastString ancor = new FastString();
-            return ancor.Append("<a name=\"PageN").Append(ancorName).Append("\" style=\"padding:0;margin:0;font-size:1px;\"></a>").ToString();
+            return ancor.Append("<a name=\"PageN").Append(ancorName).Append("\" id=\"PageN").Append(ancorName).Append("\" style=\"padding:0;margin:0;font-size:1px;\"></a>").ToString();
         }
 
         private string HTMLGetImageTag(string file)

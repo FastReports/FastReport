@@ -86,10 +86,13 @@ namespace FastReport.Utils
 
         internal static Bitmap CutImage(Bitmap src, RectangleF rect)
         {
-            Bitmap bmp = new Bitmap(src.Width, src.Height); 
-            Graphics g = Graphics.FromImage(bmp);
-            g.DrawImage(src, 0, 0, rect, GraphicsUnit.Pixel);
-            return bmp;
+            var bitmap = new Bitmap((int)rect.Width, (int)rect.Height);
+            using (var g = Graphics.FromImage(bitmap))
+            {
+                g.DrawImage(src, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                    rect, GraphicsUnit.Pixel);
+            }
+            return bitmap;
         }
 
         internal static byte[] ToByteArray(Image image, ImageFormat format)

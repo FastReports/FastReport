@@ -35,7 +35,7 @@ namespace FastReport.Web
     overflow: auto;
     width: 100%;
     display: flex;
-    flex-direction: {Toolbar.RowOrColumn};
+    flex-direction: column;
     align-items: flex-start;
 }}
 
