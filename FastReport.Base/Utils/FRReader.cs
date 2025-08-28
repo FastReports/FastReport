@@ -24,6 +24,7 @@ namespace FastReport.Utils
         private BlobStore blobStore;
         private bool readChildren;
         private SerializeTo deserializeFrom;
+        public static  List<ValidationError> validationErrors = new List<ValidationError>();
         #endregion
 
         #region Properties
@@ -271,10 +272,13 @@ namespace FastReport.Utils
                     }
                     else
                     {
-                        if (!Config.WebMode)
-                            MessageBox.Show(Res.Get("Messages,CantFindObject") + " " + curItem.Name);
-                        else
-                            throw new ClassException(curItem.Name);
+                        if (curItem.Name != "MSChartSeries")
+                        {
+                            if (!Config.WebMode)
+                                validationErrors.Add(new ValidationError(curItem.Name, ValidationError.ErrorLevel.Error, Res.Get("Messages,Validator,UnsupportedObjectError"), null));
+                            else
+                                throw new ClassException(curItem.Name);
+                        }
                     }
                 }
                 if (result != null)

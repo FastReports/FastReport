@@ -80,6 +80,7 @@
       <IncorrectSize Text="Объект должен иметь размеры больше нулевых."/>
       <UnnamedObject Text="Объект не имеет имени."/>
       <OutOfBounds Text="Объект выходит за границы родительского элемента."/>
+      <UnsupportedObjectError Text="Объект не поддерживается в редакции Community"/>
     </Validator>
     <Swiss>
       <SwissNullIban Text="IBAN не должен быть null"/>
@@ -1573,6 +1574,7 @@
       <ColumnWidth Text="Ширина:"/>
       <Positions Text="Позиции:"/>
       <Other Text="Прочее"/>
+      <Auto Text="Авто"/>
       <Duplex Text="Двусторонняя печать:"/>
       <DupDefault Text="По умолчанию"/>
       <DupSimplex Text="Нет"/>
@@ -1665,7 +1667,7 @@
       <PagesOnSheet4 Text="4 страницы"/>
       <PagesOnSheet8 Text="8 страниц"/>
       <Scale Text="Масштаб (%):"/>
-      <AutoPaperSize Text="Авто. формат бумаги"/>
+      <AutoPaperSize Text="Авторазмер бумаги"/>
       <Print Text="Печать"/>
       <Error Text="Диапазон страниц задан неверно."/>
       <CmdCommand Text="Команда"/>
