@@ -80,6 +80,7 @@
       <IncorrectSize Text="Object must have sizes more than zero."/>
       <UnnamedObject Text="Object hasn't name."/>
       <OutOfBounds Text="Object out beyond boundaries of parent."/>
+      <UnsupportedObjectError Text="The object is not supported in the Community edition"/>
     </Validator>
     <Swiss>
       <SwissNullIban Text="Iban must not be null"/>
@@ -1758,6 +1759,7 @@
       <ColumnWidth Text="Width:"/>
       <Positions Text="Positions:"/>
       <Other Text="Other"/>
+      <Auto Text="Auto"/>
       <Duplex Text="Duplex:"/>
       <DupDefault Text="Default"/>
       <DupSimplex Text="Simplex"/>
