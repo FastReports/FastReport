@@ -2684,6 +2684,7 @@
       <GeneralToText Text="Преобразовывать общий формат в текстовый"/>
       <UseCustomFormat Text="Преобразовывать в пользовательский формат"/>
 	  <ShrinkToFit Text="Автоподбор ширины"/>
+	  <ExportFormulas Text="Экспортировать формулы"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>
