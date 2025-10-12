@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using FastReport.Utils;
 
 namespace FastReport.Barcode
 {
@@ -27,6 +29,9 @@ namespace FastReport.Barcode
             }
         }
 
+        /// <inheritdoc/>
+        public enum CodabarChar { A, B, C, D };
+
         private static Codabar[] tabelle_cb = {
       new Codabar("1", "5050615"),
       new Codabar("2", "5051506"),
@@ -49,6 +54,22 @@ namespace FastReport.Barcode
       new Codabar("C", "5051516"),
       new Codabar("D", "5051615") };
 
+        /// <summary>
+        /// Specifies start character (A, B, C or D).
+        /// </summary>
+        /// <inheritdoc/>
+        [Category("Barcode")]
+        [DefaultValue(CodabarChar.A)]
+        public CodabarChar StartChar { get; set; } = CodabarChar.A;
+
+        /// <summary>
+        /// Specifies stop character (A, B, C or D)
+        /// </summary>
+        /// <inheritdoc/>
+        [Category("Barcode")]
+        [DefaultValue(CodabarChar.B)]
+        public CodabarChar StopChar { get; set; } = CodabarChar.B;
+
         /// <inheritdoc/>
         public override bool IsNumeric
         {
@@ -68,7 +89,7 @@ namespace FastReport.Barcode
         internal override string GetPattern()
         {
             string result = "";
-            int index = FindBarItem("A");
+            int index = FindBarItem(StartChar.ToString());
             if (index >= 0)
             {
                 result = tabelle_cb[index].data + "0";
@@ -83,12 +104,33 @@ namespace FastReport.Barcode
                 }
             }
 
-            index = FindBarItem("B");
+            index = FindBarItem(StopChar.ToString());
             if (index >= 0)
             {
                 result += tabelle_cb[index].data;
             }
             return result;
+        }
+
+        /// <inheritdoc/>
+        public override void Assign(BarcodeBase source)
+        {
+            base.Assign(source);
+            StartChar = (source as BarcodeCodabar).StartChar;
+            StopChar = (source as BarcodeCodabar).StopChar;
+        }
+
+        /// <inheritdoc/>
+        internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
+        {
+            base.Serialize(writer, prefix, diff);
+            BarcodeCodabar c = diff as BarcodeCodabar;
+
+            if (c == null || StartChar != c.StartChar)
+                writer.WriteStr(prefix + "StartChar", StartChar.ToString());
+
+            if (c == null || StopChar != c.StopChar)
+                writer.WriteStr(prefix + "StopChar", StopChar.ToString());
         }
 
         /// <summary>

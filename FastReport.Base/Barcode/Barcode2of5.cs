@@ -1,4 +1,4 @@
-using FastReport.Utils;
+﻿using FastReport.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,6 +27,12 @@ namespace FastReport.Barcode
         internal override string GetPattern()
         {
             string text = base.text;
+
+            if (IsBarcodeRussianPost)
+            {
+                text = text.Substring(2);
+            }
+
             string result = "5050";   //Startcode
             string c;
 

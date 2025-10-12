@@ -35,6 +35,7 @@ partial class Program
       "Excel",
       "Cassandra",
       "Odbc",
+      "Ignite",
     ];
 
     enum ProductType

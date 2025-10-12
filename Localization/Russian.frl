@@ -2104,6 +2104,13 @@
         <Error Text="Не все необходимые банковские реквизиты заполнены."/>
         <Warning Text="Некорректные данные в полях:"/>
       </SberbankQr>
+      <BarcodeRussianPost>
+        <Index Text="Индекс предприятия связи места приема"/>
+        <MonthNumber Text="Порядковый номер месяца печати штрихкодового идентификатора"/>
+        <MailNumber Text="Номер почтового отправления"/>
+        <CheckDigit Text="Контрольный разряд рассчитывается автоматически на основе данных из полей выше"/>
+        <Error Text="Не все поля заполнены корректно."/>
+     </BarcodeRussianPost>
     </BarcodeEditor>
     <SavingPageOptions Text="Сохранение">
       <EnableAutoSave Text="Включить автосохранение каждые (минут)"/>
@@ -2703,6 +2710,8 @@
       <DisableSectionBreak Text="Не добавлять разрывы разделов при разрывах страниц"/>
       <Bookmarks Text="Добавить закладку на каждую страницу"/>
       <UseHeaderAndFooter Text="Использовать верхние и нижние колонтитулы страниц Word"/>
+      <ImageQuality Text="Качество изображения"/>
+      <StandardQuality Text="Стандартное качество"/>
     </Docx>
     <Xaml Text="Экспорт в XAML">
       <File Text="Файл XAML"/>

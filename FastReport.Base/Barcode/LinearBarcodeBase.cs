@@ -1,4 +1,4 @@
-using FastReport.Utils;
+﻿using FastReport.Utils;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -109,6 +109,14 @@ namespace FastReport.Barcode
                 return pattern;
             }
         }
+
+        internal bool IsBarcodeRussianPost
+        {
+            get
+            {
+                return text.Length == 15 && text.StartsWith("RP", StringComparison.OrdinalIgnoreCase);
+            }
+        }
         #endregion
 
         #region Private Methods
@@ -192,7 +200,12 @@ namespace FastReport.Barcode
             }
         }
 
-        internal string CheckSumModulo10(string data)
+        /// <summary>
+        /// Calculates the modulo 10 checksum and appends it to the data.
+        /// </summary>
+        /// <param name="data">A string of numeric data.</param>
+        /// <returns>The string with the appended checksum.</returns>
+        public static string CheckSumModulo10(string data)
         {
             int sum = 0;
             int fak = data.Length;
@@ -411,7 +424,12 @@ namespace FastReport.Barcode
         internal override SizeF CalcBounds()
         {
             float barWidth = GetWidth(Code);
-            float extra1 = 0;
+            if (IsBarcodeRussianPost)
+            {
+                barWidth += 21.15f; // Increase the width of the object
+            }
+
+            float extra1 = IsBarcodeRussianPost ? 18 : 0; // Left margin 6 mm
             float extra2 = 0;
 
             if (showText)
@@ -439,20 +457,29 @@ namespace FastReport.Barcode
                 extra2 = this.extra2;
 
             drawArea = new RectangleF(0, 0, barWidth + extra1 + extra2, 0);
-            barArea = new RectangleF(extra1, 0, barWidth, 0);
+            float barTopOffset = IsBarcodeRussianPost ? 9 : 0; // The indentation at the top of the barcode
+            barArea = new RectangleF(extra1, barTopOffset, barWidth, 0);
 
-            return new SizeF(drawArea.Width * 1.25f, 0);
+            float width = drawArea.Width * 1.25f;
+            float height = IsBarcodeRussianPost ? 56.7f : 0; // The height of the object at the AutoSize
+            return new SizeF(width, height);
         }
 
         /// <inheritdoc/>
         public override void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
             float originalWidth = CalcBounds().Width / 1.25f;
+
+            if (IsBarcodeRussianPost)
+            {
+                originalWidth -= 3f; // Increasing the barcode width to meet the specification
+            }
+
             float width = angle == 90 || angle == 270 ? displayRect.Height : displayRect.Width;
             float height = angle == 90 || angle == 270 ? displayRect.Width : displayRect.Height;
             zoom = width / originalWidth;
             barArea.Height = height / zoom;
-            if (showText)
+            if (showText && !IsBarcodeRussianPost)
             {
                 barArea.Height -= FontHeight;
                 if (textUp)
@@ -479,15 +506,89 @@ namespace FastReport.Barcode
                         break;
                 }
 
+                if (IsBarcodeRussianPost)
+                {
+                    g.DrawRectangle(new Pen(Color.Black, 1f), drawArea.X, drawArea.Y, displayRect.Width, displayRect.Height);
+                    DrawTopLabel(g, zoom);
+                    barArea.Height -= 18; // Reducing the height of the barcode itself
+                }
+
                 g.TranslateTransform(barArea.Left * zoom, 0);
                 DoLines(pattern, g, zoom);
-                if (showText)
-                    DrawText(g, text);
 
+                if (IsBarcodeRussianPost)
+                {
+                    DrawBottomLabel(g, zoom, barArea, drawArea);
+                }
+                else if (showText)
+                {
+                    DrawText(g, text);
+                }
             }
             finally
             {
                 g.Restore(state);
+            }
+        }
+
+        /// <summary>
+        /// Draws a top label for the barcode, adjusting its size and position based on the zoom level.
+        /// </summary>
+        private static void DrawTopLabel(IGraphics g, float zoom)
+        {
+            string label = "ПОЧТА РОССИИ";
+            float labelHeight = 1.3f * Units.Millimeters * zoom;
+
+            // Ensure the font size is valid (greater than 0) to avoid exceptions when creating the font
+            float labelFontSize = labelHeight > 0 ? labelHeight : 0.1f;
+            Font labelFont = new Font("Arial", labelFontSize, FontStyle.Regular);
+
+            g.DrawString(label, labelFont, Brushes.Black, 16.5f * zoom, 2f * zoom);
+            labelFont.Dispose();
+        }
+
+        /// <summary>
+        /// Draws the bottom label text below the barcode, splitting it into parts and applying specific formatting. <br/>
+        /// Adjusts positioning and spacing based on the zoom level and barcode area dimensions.
+        /// </summary>
+        private void DrawBottomLabel(IGraphics g, float zoom, RectangleF barArea, RectangleF drawArea)
+        {
+            string text = base.text;
+
+            text = CheckSumModulo10(text.Substring(2));
+
+            float fontSize = 1.8f * Units.Millimeters * zoom;
+
+            using (Font regularFont = new Font("Arial", fontSize > 0 ? fontSize : 0.1f, FontStyle.Regular))
+            using (Font boldFont = new Font("Arial", fontSize > 0 ? fontSize : 0.1f, FontStyle.Bold))
+            {
+                // Split the processed text into parts for separate rendering
+                string[] parts = new string[]
+                {
+                    text.Substring(0, 6),
+                    text.Substring(6, 2),
+                    text.Substring(8, 5),
+                    text.Substring(13, 1)
+                };
+
+                // Calculate the total width of all text parts, including spacing between them
+                float totalWidth = 0;
+                foreach (var part in parts)
+                {
+                    SizeF partSize = g.MeasureString(part, regularFont);
+                    totalWidth += partSize.Width + 2f; // Add fixed spacing between parts
+                }
+
+                float currentX = (barArea.Left - 17) * zoom; // Offset by 17 to move text closer to the left edge
+                float textY = (barArea.Bottom - 1) * zoom; // Offset by 1 to move text closer to the barcode
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    SizeF partSize = g.MeasureString(parts[i], regularFont);
+                    Font partFont = (i == 2) ? boldFont : regularFont;
+                    g.DrawString(parts[i], partFont, Brushes.Black, currentX, textY);
+                    currentX += partSize.Width + (7f * zoom); // Add spacing (7 units scaled by zoom) between parts
+                }
             }
         }
 
