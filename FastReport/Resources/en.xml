@@ -2293,6 +2293,13 @@
         <Error Text="Not all the required banking details are filled in."/>
         <Warning Text="Incorrect data in the fields:"/>
       </SberbankQr>
+      <BarcodeRussianPost>
+        <Index Text="Index of the communication enterprise at the receiving location"/>
+        <MonthNumber Text="Sequential number of the month of printing of the barcode identifier"/>
+        <MailNumber Text="Postal item number"/>
+        <CheckDigit Text="The check digit is calculated automatically based on the data from the fields above"/>
+        <Error Text="Not all fields are filled in correctly."/>
+     </BarcodeRussianPost>
     </BarcodeEditor>
     <SavingPageOptions Text="Saving">
       <EnableAutoSave Text="Enable auto save every (minutes)"/>
@@ -2937,6 +2944,8 @@
       <DisableSectionBreak Text="Do not add section breaks on page breaks"/>
       <Bookmarks Text="Add bookmark to each page"/>
       <UseHeaderAndFooter Text="Use Word page headers and footers"/>
+      <ImageQuality Text="Image quality"/>
+      <StandardQuality Text="Standard quality"/>
     </Docx>
     <Xaml Text="Export to XAML">
       <File Text="XAML file"/>

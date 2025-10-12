@@ -90,6 +90,14 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Gets the raw image data as a byte array. 
+        /// </summary>
+        internal byte[] ImageData
+        {
+            get { return imageData; }
+        }
+
+        /// <summary>
         /// Gets or sets the extension of image.
         /// </summary>
         [Category("Data")]

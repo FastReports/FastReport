@@ -681,7 +681,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets a script event name that will be fired when the report starts.
         /// </summary>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string StartReportEvent
         {
             get { return startReportEvent; }
@@ -691,7 +691,7 @@ namespace FastReport
         /// <summary>
         /// Gets or sets a script event name that will be fired when the report is finished.
         /// </summary>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string FinishReportEvent
         {
             get { return finishReportEvent; }
