@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
  
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <TargetFrameworks>$(TargetFrameworks);net462;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks);net462;net10.0-windows</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -69,9 +69,6 @@
 
 
   <!--Source Link-->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-  </ItemGroup>
 
   <!--Import version-info of referenced packages-->
   <Import Project="..\UsedPackages.version" />
