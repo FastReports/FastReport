@@ -9,6 +9,7 @@ namespace Demo.SPA.Angular
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddSingleton<DataSetService>();
             // Add services to the container.
+            builder.Services.AddFastReport();
 
             builder.Services.AddControllersWithViews();
 

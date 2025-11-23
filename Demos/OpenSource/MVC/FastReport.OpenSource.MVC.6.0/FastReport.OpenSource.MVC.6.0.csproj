@@ -8,12 +8,13 @@
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 	<Import Project="..\..\..\..\UsedPackages.version" />
+
 	<ItemGroup>
-		<PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
-		<PackageReference Include="FastReport.OpenSource.Web" Version="$(FROSVersion)" />
+		<Compile Include="..\..\_Shared\DataSetService.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include ="..\..\_Shared\DataSetService.cs" />
+	  <ProjectReference Include="..\..\..\..\FastReport.Core.Web\FastReport.OpenSource.Web.csproj" />
+	  <ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
 	</ItemGroup>
 </Project>

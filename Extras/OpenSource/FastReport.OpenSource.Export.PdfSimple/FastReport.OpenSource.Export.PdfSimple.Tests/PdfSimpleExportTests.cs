@@ -1,4 +1,6 @@
 ﻿using FastReport.Export.PdfSimple;
+using FastReport.Export.PdfSimple.PdfObjects;
+using System;
 using System.IO;
 using System.Text;
 using Xunit;
@@ -71,10 +73,10 @@ namespace FastReport.Tests.OpenSource.Export.PdfSimple
             }
 
 #pragma warning disable xUnit2009 // Do not use boolean check to check for substrings
-            Assert.True(pdf.Contains("/Title (" + StringToPdfUnicode(export.Title) + ")"));
-            Assert.True(pdf.Contains("/Subject (" + StringToPdfUnicode(export.Subject) + ")"));
-            Assert.True(pdf.Contains("/Keywords (" + StringToPdfUnicode(export.Keywords) + ")"));
-            Assert.True(pdf.Contains("/Author (" + StringToPdfUnicode(export.Author) + ")"));
+            Assert.True(pdf.Contains("/Title <" + WriteHex(export.Title) + ">"));
+            Assert.True(pdf.Contains("/Subject <" + WriteHex(export.Subject) + ">"));
+            Assert.True(pdf.Contains("/Keywords <" + WriteHex(export.Keywords) + ">"));
+            Assert.True(pdf.Contains("/Author <" + WriteHex(export.Author) + ">"));
 #pragma warning restore xUnit2009 // Do not use boolean check to check for substrings
         }
 
@@ -128,18 +130,33 @@ namespace FastReport.Tests.OpenSource.Export.PdfSimple
         }
 
 
-        private string StringToPdfUnicode(string s)
+        private string WriteHex(string text)
         {
-            StringBuilder sb = new StringBuilder();
+            var oResult = new StringBuilder();
+            if (String.IsNullOrEmpty(text))
+                return "";
+            char[] chars = StringToPdfUnicode(text);
+            foreach (char c in chars)
+            {
+                oResult.Append(((byte)c).ToString("X2"));
+            }
+            return oResult.ToString();
+        }
 
-            Append(sb, (char)254);
-            Append(sb, (char)255);
+        private char[] StringToPdfUnicode(string s)
+        {
+            char[] result = new char[s.Length * 2 + 2];
+            result[0] = (char)254;
+            result[1] = (char)255;
+            int i = 2;
+
             foreach (char c in s)
             {
-                Append(sb, (char)(c >> 8));
-                Append(sb, (char)(c & 0xFF));
+                result[i] = (char)(c >> 8);
+                result[i + 1] = (char)(c & 0xFF);
+                i += 2;
             }
-            return sb.ToString();
+            return result;
         }
 
         private void Append(StringBuilder sb, char c)
