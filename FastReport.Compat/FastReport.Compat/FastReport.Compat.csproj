@@ -20,18 +20,18 @@
   </PropertyGroup>
 
   <!--Explicit import Directory.Build.props (for old-style csproj)-->
-  <Import Project="..\Directory.Build.props" Condition="'$(UsingMicrosoftNETSdk)' != 'true'"/>
+  <Import Project="..\Directory.Build.props" Condition="'$(UsingMicrosoftNETSdk)' != 'true'" />
   
   <Import Project="$(SlnDir)\UsedPackages.version" />
   <ItemGroup Condition="'$(TargetFramework)'!='net462'">
-    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)"/>
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(CodeAnalysisCSharpVersion)" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="$(CodeAnalysisVisualBasicVersion)" />
   </ItemGroup>
 
   <ItemGroup Condition="$(WindowsFormsReplacement) == 'false'">
     <Compile Remove="$(SourceCode)\WindowsForms\**" />
-    <Compile Remove="$(SourceCode)\DotNetClasses\UITypeEditor.cs"/>
+    <Compile Remove="$(SourceCode)\DotNetClasses\UITypeEditor.cs" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(WindowsFormsReplacement)'=='false'">

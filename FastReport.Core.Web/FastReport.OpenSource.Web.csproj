@@ -51,7 +51,7 @@
   <Import Project="..\UsedPackages.version" />
   <ItemGroup>
     <!--For buildScript only (it can't implicitly restore System.Drawing.Common)-->
-    <PackageReference Include="System.Drawing.Common" Version="$(SystemDrawingCommonVersion)" PrivateAssets="All" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <!--Source Link-->
