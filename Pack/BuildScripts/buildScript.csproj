@@ -2,18 +2,18 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Common" Version="4.0.0" />
-    <PackageReference Include="Cake.Core" Version="4.0.0" />
+    <PackageReference Include="Cake.Common" Version="6.0.0" />
+    <PackageReference Include="Cake.Core" Version="6.0.0" />
     <PackageReference Include="Cake.FileHelpers" Version="7.0.0" />
-    <PackageReference Include="Cake.Incubator" Version="8.0.0" />
+    <PackageReference Include="Cake.Incubator" Version="10.0.0" />
     
     <!--For repo mirroring-->
-    <PackageReference Include="Octokit" Version="10.0.0" />
+    <PackageReference Include="Octokit" Version="14.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +24,7 @@
     <Using Include="Cake.Common.Tools.NuGet.Pack" />
     <Using Include="Cake.Common.IO" />
     <Using Include="Cake.Common.Tools.DotNet" />
-    <Using Include="System.Runtime.Versioning"/>
+    <Using Include="System.Runtime.Versioning" />
     <Using Include="CakeScript.CakeAPI" Static="true" />
   </ItemGroup>
 
