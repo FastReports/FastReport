@@ -56,7 +56,7 @@ namespace FastReport.Data
             {
                 SqlParameter parameter = adapter.SelectCommand.Parameters.Add(p.Name, (SqlDbType)p.DataType, p.Size);
                 object value = p.Value;
-                parameter.Direction = p.Direction;
+                parameter.Direction = ((p.Direction == 0) ? ParameterDirection.Input : p.Direction);
 
                 if ((SqlDbType)p.DataType == SqlDbType.UniqueIdentifier && (value is Variant || value is String))
                     value = new Guid(value.ToString());
