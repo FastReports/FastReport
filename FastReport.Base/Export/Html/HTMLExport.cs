@@ -168,6 +168,8 @@ namespace FastReport.Export.Html
         private bool enableMargins = false;
         private ExportType exportMode;
         private bool enableVectorObjects = true;
+        private bool showPageBorders;
+        private bool centerAndWrapPages;
 
         /// <summary>
         /// hash:base64Image
@@ -445,6 +447,33 @@ namespace FastReport.Export.Html
             set { notRotateLandscapePage = value; }
         }
 
+        /// <summary>
+        /// Enable or disable the display of page borders in HTML export. It also includes page margins.
+        /// </summary>
+        public bool ShowPageBorders
+        {
+            get { return showPageBorders; }
+            set {
+                if (value) 
+                {
+                    enableMargins = true;
+                }
+                showPageBorders = value; 
+            }
+        }
+
+        /// <summary>
+        /// Enabling or disabling page centering and wrapping in HTML export
+        /// </summary>
+        public bool CenterAndWrapPages
+        {
+            get { return centerAndWrapPages; }
+            set
+            {
+                centerAndWrapPages = value;
+            }
+        }
+
         #endregion Public properties
 
         #region Private methods
@@ -464,7 +493,7 @@ namespace FastReport.Export.Html
         }
 
         private void ExportHTMLPageStart(FastString Page, int PageNumber, int CurrentPage)
-        {
+        {            
             if (webMode)
             {
                 if (!layers)
@@ -482,6 +511,10 @@ namespace FastReport.Export.Html
 
         private void ExportHTMLPageFinal(FastString CSS, FastString Page, HTMLData d, float MaxWidth, float MaxHeight)
         {
+            if (CenterAndWrapPages && (pagesCount == Count || !singlePage))
+            {
+                Page.AppendLine("</div>");
+            }
             if (!webMode)
             {
                 if (!singlePage)
@@ -609,6 +642,20 @@ namespace FastReport.Export.Html
                         documentTitle, (singlePage ? "0" : "1"),
                         prefix, res.Get("First"), res.Get("Prev"),
                         res.Get("Next"), res.Get("Last"), res.Get("Total")));
+        }
+
+        private void DoCentringAndWraping(FastString sb)
+        {
+            if (pagesCount == 1 || !singlePage)
+            {
+                sb.AppendLine("<div class=\"frpage-container\"");
+                if (CenterAndWrapPages)
+                {
+                    // added centering and wrapping
+                    sb.AppendLine("style=\"display: flex;justify-content: center;align-items: flex-start;flex-wrap: wrap\"");
+                }
+                sb.AppendLine(">");
+            }
         }
 
         private void Init()
@@ -983,6 +1030,8 @@ namespace FastReport.Export.Html
             writer.WriteBool("SinglePage", SinglePage);
             writer.WriteBool("NotRotateLandscapePage", NotRotateLandscapePage);
             writer.WriteBool("HighQualitySVG", HighQualitySVG);
+            writer.WriteBool("ShowPageBorders", ShowPageBorders);
+            writer.WriteBool("CenterAndWrapPages", CenterAndWrapPages);
         }
 
         /// <summary>
@@ -1034,6 +1083,8 @@ namespace FastReport.Export.Html
             embeddedImages = new Dictionary<string, string>();
             notRotateLandscapePage = false;
             highQualitySVG = false;
+            showPageBorders = false;
+            centerAndWrapPages = false;
         }
 
 

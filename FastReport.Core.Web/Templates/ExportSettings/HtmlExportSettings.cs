@@ -52,17 +52,23 @@ namespace FastReport.Web
                 <button id=""HTMLSinglePage"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
                     {localizationHtml.SinglePage}
                 </button>
-            </div>
-            <div class=""fr-webreport-popup-content-export-parameters-col"">
                 <button id=""HTMLSubFolder"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
                     {localizationHtml.SubFolder}
                 </button>
+            </div>
+            <div class=""fr-webreport-popup-content-export-parameters-col"">
                 <button id=""HTMLNavigator"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
                     {localizationHtml.Navigator}
                 </button>
-            <button id=""HTMLEmbeddingPictures"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
-                {localizationHtml.EmbPic}
-            </button>
+                <button id=""HTMLEmbeddingPictures"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"">
+                    {localizationHtml.EmbPic}
+                </button>
+                <button id=""HTMLShowPageBorder"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
+                    {localizationHtml.ShowPageBorders}
+                </button>
+                <button id=""HTMLCenterAndWrapPages"" type=""button"" class=""fr-webreport-popup-content-export-parameters-button"">
+                   {localizationHtml.CenterAndWrapPages}
+                </button>
             </div>
         </div>
     </div>
@@ -105,6 +111,16 @@ function HTMLExport() {{
     }}
     else {{ HTMLSubFolder = false; }};
 
+    if (document.getElementById('HTMLShowPageBorder').classList.contains('activeButton')) {{
+        HTMLShowPageBorder = new Boolean(true);
+    }}
+    else {{ HTMLShowPageBorder = false; }};
+
+    if (document.getElementById('HTMLCenterAndWrapPages').classList.contains('activeButton')) {{
+        HTMLCenterAndWrapPages = new Boolean(true);
+    }}
+    else {{ HTMLCenterAndWrapPages = false; }};
+
     if (document.getElementById('HTMLNavigator').classList.contains('activeButton')) {{
         HTMLNavigator = new Boolean(true);
     }}
@@ -124,7 +140,8 @@ function HTMLExport() {{
         HTMLEmbeddingPictures = new Boolean(true);
     }}
     else {{ HTMLEmbeddingPictures = false; }};
-    HTMLButtons = ('&Navigator=' + HTMLNavigator + '&Wysiwyg=' + HTMLWysiwyg + '&Pictures=' + HTMLPictures + '&SinglePage=' + HTMLSinglePage + '&Layers=' + HTMLLayers + PageSelector + '&SubFolder=' + HTMLSubFolder + '&EmbedPictures=' + HTMLEmbeddingPictures);
+    HTMLButtons = ('&Navigator=' + HTMLNavigator + '&Wysiwyg=' + HTMLWysiwyg + '&Pictures=' + HTMLPictures + '&SinglePage=' + HTMLSinglePage + '&Layers=' + HTMLLayers + PageSelector + '&SubFolder=' + HTMLSubFolder + '&EmbedPictures=' + HTMLEmbeddingPictures
+    + '&ShowPageBorders=' + HTMLShowPageBorder + '&CenterAndWrapPages=' + HTMLCenterAndWrapPages);
 
     window.location.href = HtmlExport.href + HTMLButtons + PageSelector;
 }}
