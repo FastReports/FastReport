@@ -451,8 +451,8 @@ namespace FastReport.Export.Html
         /// </summary>
         public int ImageDpi
         {
-            get => (int)(96 * imageDpi);
-            set => imageDpi = value / 96f;
+            get { return (int)(96 * imageDpi); }
+            set { imageDpi = value / 96f; }
         }
 
         #endregion Public properties
