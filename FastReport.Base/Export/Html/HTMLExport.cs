@@ -168,6 +168,7 @@ namespace FastReport.Export.Html
         private bool enableMargins = false;
         private ExportType exportMode;
         private bool enableVectorObjects = true;
+        private float imageDpi = 1.0f;
 
         /// <summary>
         /// hash:base64Image
@@ -443,6 +444,15 @@ namespace FastReport.Export.Html
         {
             get { return notRotateLandscapePage; }
             set { notRotateLandscapePage = value; }
+        }
+        
+        /// <summary>
+        /// Gets or sets the DPI for exported images.
+        /// </summary>
+        public int ImageDpi
+        {
+            get => (int)(96 * imageDpi);
+            set => imageDpi = value / 96f;
         }
 
         #endregion Public properties

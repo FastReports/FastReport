@@ -486,12 +486,14 @@ namespace FastReport.Export.Html
 
                     int zoom = highQualitySVG ? 3 : 1;
 
-                    using (System.Drawing.Image image =
+                    using (Bitmap image =
                         new Bitmap(
-                            (int)(Math.Abs(Math.Round(Width * Zoom * zoom))),
-                            (int)(Math.Abs(Math.Round(Height * Zoom * zoom)))
+                            (int)(Math.Abs(Math.Round(Width * Zoom * zoom * imageDpi))),
+                            (int)(Math.Abs(Math.Round(Height * Zoom * zoom * imageDpi)))
                             ))
                     {
+                        float targetDpi = 96 * imageDpi;
+                        image.SetResolution(targetDpi, targetDpi);
                         using (Graphics g = Graphics.FromImage(image))
                         {
                             var needClear = obj is TextObjectBase
@@ -511,27 +513,27 @@ namespace FastReport.Export.Html
 
                             float dx = 0;
                             float dy = 0;
-                            g.TranslateTransform((-Left - dx) * Zoom * zoom, (-Top - dy) * Zoom * zoom);
+                            g.TranslateTransform((-Left - dx) * Zoom * zoom * imageDpi, (-Top - dy) * Zoom * zoom * imageDpi);
 
                             BorderLines oldLines = obj.Border.Lines;
                             obj.Border.Lines = BorderLines.None;
-                            obj.Draw(new FRPaintEventArgs(g, Zoom * zoom, Zoom * zoom, Report.GraphicCache));
+                            obj.Draw(new FRPaintEventArgs(g, Zoom * zoom * imageDpi, Zoom * zoom * imageDpi, Report.GraphicCache));
                             obj.Border.Lines = oldLines;
                         }
 
                         using (Bitmap b = new Bitmap(
-                        (int)(Math.Abs(Math.Round(Width * Zoom))),
-                        (int)(Math.Abs(Math.Round(Height * Zoom)))
+                        (int)(Math.Abs(Math.Round(Width * Zoom * imageDpi))),
+                        (int)(Math.Abs(Math.Round(Height * Zoom * imageDpi)))
                         ))
                         {
                             using (Graphics gr = Graphics.FromImage(b))
                             {
                                 gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                                gr.DrawImage(image, 0, 0, (int)Math.Abs(Width) * Zoom, (int)Math.Abs(Height) * Zoom);
+                                gr.DrawImage(image, 0, 0, (int)Math.Abs(Width) * Zoom * imageDpi, (int)Math.Abs(Height) * Zoom * imageDpi);
                             }
 
                             if (FPictureFormat == System.Drawing.Imaging.ImageFormat.Jpeg)
-                                ExportUtils.SaveJpeg(b, PictureStream, 95);
+                                ExportUtils.SaveJpeg(b, PictureStream, 100);
                             else
                                 b.Save(PictureStream, FPictureFormat);
                         }
@@ -595,7 +597,7 @@ namespace FastReport.Export.Html
                     (obj as TextObject).Text = old_text;
 
                 FastString picStyleBuilder = new FastString("background: url('")
-                    .Append(pic).Append("') no-repeat !important;-webkit-print-color-adjust:exact;");
+                    .Append(pic).Append("') no-repeat !important;background-size:contain !important;-webkit-print-color-adjust:exact;");
 
                 string style = GetStyle(obj, picStyleBuilder.ToString());
 
@@ -619,7 +621,7 @@ namespace FastReport.Export.Html
 
             addstyle.Append("position:absolute;");
 
-            addstyle.Append("background: url('" + GetLayerPicture(obj, out Width, out Height) + "');no-repeat !important;-webkit-print-color-adjust:exact;");
+            addstyle.Append("background: url('" + GetLayerPicture(obj, out Width, out Height) + "');no-repeat !important;background-size:contain !important;-webkit-print-color-adjust:exact;");
 
             float x = obj.Width > 0 ? obj.AbsLeft : (obj.AbsLeft + obj.Width);
             float y = obj.Height > 0 ? hPos + obj.AbsTop : (hPos + obj.AbsTop + obj.Height);
@@ -816,7 +818,7 @@ namespace FastReport.Export.Html
                         backPage.Width = reportPage.Width;
                         string pic = GetLayerPicture(backPage, out float Width, out float Height);
                         htmlPage.Append("background: url('")
-                         .Append(pic).Append("') no-repeat !important;-webkit-print-color-adjust:exact;");
+                         .Append(pic).Append("') no-repeat !important;background-size:contain !important;-webkit-print-color-adjust:exact;");
                     }
                 }
                 htmlPage.Append("\">");
