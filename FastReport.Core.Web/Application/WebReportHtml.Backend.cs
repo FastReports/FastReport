@@ -61,6 +61,7 @@ namespace FastReport.Web
                 html.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={ID}&pictureId=");
                 html.SinglePage = SinglePage; //html.SinglePage = SinglePage;
                 html.CurPage = CurrentPageIndex; //html.CurPage = CurrentPage;
+                html.CenterAndWrapPages = EnableMultiPagePreview;
                 html.Export(Report, (Stream)null);
 
                 //sb.Append("<div class=\"frbody\" style =\"");
@@ -84,9 +85,7 @@ namespace FastReport.Web
 
                 // important container, it cuts off elements that are outside of the report page bounds
                 int pageWidth = (int)Math.Ceiling(GetReportPageWidthInPixels() * html.Zoom);
-                int pageHeight = (int)Math.Ceiling(GetReportPageHeightInPixels() * html.Zoom);
                 ReportMaxWidth = pageWidth;
-                sb.Append($@"<div style=""width:{pageWidth}px;height:{pageHeight}px;overflow:hidden;display:inline-block;"">");
 
                 if (html.Count > 0)
                 {
@@ -100,7 +99,6 @@ namespace FastReport.Web
                         DoHtmlPage(sb, html, 0);
                     }
                 }
-                sb.Append("</div>");
             }
 
             return sb;

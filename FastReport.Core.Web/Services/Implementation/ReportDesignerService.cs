@@ -470,12 +470,18 @@ namespace FastReport.Web.Services
                     string connectionString = item1.GetProp("ConnectionString");
                     if (!String.IsNullOrEmpty(connectionString))
                     {
-                        var item2 = dictionary2.FindItem(item1.Name);
-                        var newConnectionString = item2.GetProp("ConnectionString");
-
-                        if (item2 != null && newConnectionString.IsNullOrEmpty())
+                        var items = dictionary2.GetItems(item1.Name);
+                        foreach (var item2 in items)
                         {
-                            item2.SetProp("ConnectionString", connectionString);
+                            if (item2.GetProp("Name") == item1.GetProp("Name"))
+                            {
+                                var newConnectionString = item2.GetProp("ConnectionString");
+
+                                if (item2 != null && newConnectionString.IsNullOrEmpty())
+                                {
+                                    item2.SetProp("ConnectionString", connectionString);
+                                }
+                            }
                         }
                     }
                 }

@@ -119,6 +119,11 @@ namespace FastReport.Web
         public bool Pictures { get; set; } = true;
         public bool EmbedPictures { get; set; } = false;
 
+        /// <summary>
+        /// Enabling or disabling page centering and wrapping. It also includes page margins. Does not enable SinglePage, enable it if necessary
+        /// </summary>
+        public bool EnableMultiPagePreview { get; set; } = false;
+
         #region ToolbarSettings
 
         /// <summary>
