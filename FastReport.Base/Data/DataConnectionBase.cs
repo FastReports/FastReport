@@ -834,14 +834,22 @@ namespace FastReport.Data
             // prepare select command
             if (!(dataSource is ProcedureDataSource))
                 selectCommand = PrepareSelectCommand(selectCommand, table.TableName, conn);
-
-            // read the table schema
-            using (DbDataAdapter adapter = GetAdapter(selectCommand, conn, parameters))
+            try
             {
-                adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ||
-                    adapter.SelectCommand.CommandType == CommandType.StoredProcedure ? CommandType.StoredProcedure : CommandType.Text;
-                adapter.SelectCommand.CommandTimeout = CommandTimeout;
-                adapter.FillSchema(table, SchemaType.Source);
+                // read the table schema
+                using (DbDataAdapter adapter = GetAdapter(selectCommand, conn, parameters))
+                {
+                    adapter.SelectCommand.CommandType = dataSource is ProcedureDataSource ||
+                        adapter.SelectCommand.CommandType == CommandType.StoredProcedure ? CommandType.StoredProcedure : CommandType.Text;
+                    adapter.SelectCommand.CommandTimeout = CommandTimeout;
+                    adapter.FillSchema(table, SchemaType.Source);
+                }
+            }
+            catch (DbException ex)
+            {
+                string message = BdErrorMessage(ex, selectCommand);
+
+                throw new Exception(message, ex); 
             }
 
             foreach (Column column in dataSource.Columns)

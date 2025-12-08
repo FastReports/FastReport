@@ -3059,6 +3059,8 @@
       <Total Text="Total"/>
       <NotRotateLandscapePage Text="Don't rotate landscape pages when printing"/>
       <UsePageBreaks Text="Use page breaks"/>
+      <CenterAndWrapPages Text="Enable centered alignment and multipage view mode"/>
+      <ShowPageBorder Text="Enable the display of page borders"/>
       <First Text="&lt;&lt;"/>
       <Last Text="&gt;&gt;"/>
       <Prev Text="&lt;"/>

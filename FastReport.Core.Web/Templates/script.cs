@@ -788,6 +788,10 @@ showPopup: function (message, isSuccess) {{
         var onSend = options.onSend;
         var onFinally = options.onFinally;
 
+        if(options.method == 'POST' && options.form == null){{
+            form = {{ }};
+        }}
+            
         var that = this;
         var xhr = new XMLHttpRequest();
         xhr.__form = form;

@@ -232,6 +232,23 @@ namespace FastReport.Utils
         }
 
         /// <summary>
+        /// Returns nodes with specified name.
+        /// </summary>
+        /// <param name="name">The name of nodes to return.</param>
+        /// <returns></returns>
+        public List<XmlItem> GetItems(string name)
+        {
+            var result = new List<XmlItem>();
+            for (int i = 0; i < Count; i++)
+            {
+                if (String.Compare(Items[i].Name, name, true) == 0)
+                    result.Add(Items[i]);
+            }
+            
+            return result;
+        }
+
+        /// <summary>
         /// Finds the node with specified name.
         /// </summary>
         /// <param name="name">The name of node to find.</param>

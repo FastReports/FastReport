@@ -37,10 +37,16 @@ namespace FastReport.Web
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
 }}
 
 .{template_FR}-spinner[style*=""display:none""] ~ .{template_FR}-toolbar ~ .{template_FR}-body {{
-  box-shadow: {(PageBorderVisible ? "0px 2px 4px rgba(0, 0, 0, 0.25)" : "none")};
+    box-shadow: {(!EnableMultiPagePreview || !SinglePage ? "0px 2px 4px rgba(0, 0, 0, 0.25)" : "none")};
+}}
+
+.frpage-container [class^=""frpage""] {{
+    box-shadow:  {(EnableMultiPagePreview && PageBorderVisible ? "0px 2px 4px rgba(0, 0, 0, 0.25)" : "none")};
+    margin: {(EnableMultiPagePreview ? "10px" : "")};
 }}
 
 .fr-form-header {{
@@ -63,7 +69,7 @@ namespace FastReport.Web
     width: fit-content;
     border-radius: 12px;
     background: #FFF;
-    box-shadow: {(PageBorderVisible ? "0px 4px 4px 0px rgba(0, 0, 0, 0.25)" : "none")};
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }}
 
 /***********
@@ -348,6 +354,11 @@ namespace FastReport.Web
 	display: none;
 }}
 
+.content-modalcontainer
+{{
+    width: 100%;
+}}
+
 .modalcontainer-overlay--visible {{
     opacity: 1;
 	visibility: visible;
@@ -359,11 +370,11 @@ namespace FastReport.Web
     display: flex;
     width: fit-content;
     height: fit-content;
-    witdh: auto;
     min-width: 348px;
     height: auto;
     margin-top: 4rem;
-    margin-left: 4rem;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0px 9px 50px 9px;
     z-index: 4;
     border-radius: 30px 30px 12px 12px;

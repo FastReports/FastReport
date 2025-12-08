@@ -246,14 +246,16 @@ namespace FastReport.Web.Services
                             SelectCommand = view.SqlQuery
                         };
 
-                        if (HasDuplicateParamName(view.Parameters))
-                            throw new Exception("Duplicate parameters");
-
-                        foreach (var parameter in view.Parameters)
+                        if (view.Parameters != null)
                         {
-                            ApplyParameterToDataSource(source, parameter, webReport);
-                        }
+                            if (HasDuplicateParamName(view.Parameters))
+                                throw new Exception("Duplicate parameters");
 
+                            foreach (var parameter in view.Parameters)
+                            {
+                                ApplyParameterToDataSource(source, parameter, webReport);
+                            }
+                        }
                         conn.Tables.Add(source);
                         conn.DataSet.Tables.Add(source.Table);
                     }

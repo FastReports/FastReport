@@ -42,12 +42,15 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddSingleton(options);
 
 #if !OPENSOURCE
-            services.TryAddSingleton<IBlazorWebReportCacheAdapter, BlazorWebReportCacheAdapter>();
-
             if (options.UseCircuitScope)
             {
+                services.TryAddScoped<IBlazorWebReportCacheAdapter, CircuitEnabledWebReportCacheAdapter>();
                 services.TryAddSingleton<ICircuitConnectionStore, ManagedCircuitConnectionStore>();
                 services.AddScoped<CircuitHandler, WebReportCircuitHandler>();
+            }
+            else
+            {
+                services.TryAddSingleton<IBlazorWebReportCacheAdapter, BlazorWebReportCacheAdapter>();
             }
 #endif
 
