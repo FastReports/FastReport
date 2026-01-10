@@ -754,6 +754,33 @@ namespace FastReport.Data
             }
         }
 
+        /// <summary>
+        /// Returns the DB error message with SQL context if the exception provides a position.
+        /// </summary>
+        /// <param name="ex">Database exception.</param>
+        /// <param name="sql">SQL query that caused the error.</param>
+        /// <returns>Error message string with context.</returns>
+        public override string BdErrorMessage(DbException ex, string sql)
+        {
+            string message = ex.Message;
+            var posProp = ex.GetType().GetProperty("Position");
+
+            if (posProp != null)
+            {
+                int position = Convert.ToInt32(posProp.GetValue(ex));
+                if (position > 0 && position <= sql.Length)
+                {
+                    int contextSize = 25;
+                    int start = Math.Max(0, position - contextSize);
+                    int end = Math.Min(sql.Length, position + contextSize);
+                    string context = sql.Substring(start, end - start);
+                    message += $"\nContext: {context}";
+                }
+            }
+
+            return message;
+        }
+
         public PostgresDataConnection()
         {
             CanContainProcedures = true;

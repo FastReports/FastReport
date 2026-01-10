@@ -314,6 +314,17 @@ namespace FastReport.Data
             }
         }
 
+        /// <summary>
+        /// Returns the database error message for the given exception and SQL.
+        /// Can be overridden in derived classes to provide DB-specific details.
+        /// </summary>
+        /// <param name="ex">Database exception.</param>
+        /// <param name="sql">SQL query that caused the error.</param>
+        /// <returns>Error message string.</returns>
+        public virtual string BdErrorMessage(DbException ex, string sql)
+        {
+            return ex.Message;
+        }
         #endregion
 
     }

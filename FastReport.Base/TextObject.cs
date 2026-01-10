@@ -242,7 +242,12 @@ namespace FastReport
         /// <summary>
         /// AutoShrink decreases the <b>FontWidthRatio</b> property of the <b>TextObject</b>.
         /// </summary>
-        FontWidth
+        FontWidth,
+
+        /// <summary>
+        /// AutoShrink decreases the <b>Font.Size</b> property of the <b>TextObject</b> to fit multiline text.
+        /// </summary>
+        FitText
     }
 
     /// <summary>
@@ -1024,6 +1029,13 @@ namespace FastReport
                 float ratio = Converter.DecreasePrecision((Width - 1) / CalcWidth(), 2) - 0.01f;
                 if (ratio < 1)
                     FontWidthRatio = Math.Max(ratio, AutoShrinkMinSize);
+            }
+            else if (AutoShrink == AutoShrinkMode.FitText)
+            {
+                while (CalcHeight() > Height - 1 && Font.Size > AutoShrinkMinSize && Font.Size > 1)
+                {
+                    Font = new Font(Font.FontFamily, Font.Size - 1, Font.Style);
+                }
             }
         }
 

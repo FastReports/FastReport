@@ -761,6 +761,8 @@ namespace FastReport.Export.Html
             css.Clear();
             htmlPage.Clear();
 
+            DoCentringAndWraping(htmlPage);
+
             ReportPage reportPage = d.page;
 
             if (reportPage != null)
@@ -799,6 +801,14 @@ namespace FastReport.Export.Html
                     .Append(" width:").Append(Px(maxWidth * Zoom + 3))
                     .Append(" height:").Append(Px(maxHeight * Zoom));
 
+                if (ShowPageBorders)
+                {
+                    htmlPage
+                    .Append("border: 1px solid #ddd;")
+                    .Append("box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);")
+                    .Append("margin: 15px;");
+                }
+                
                 if (reportPage.Fill is SolidFill)
                 {
                     SolidFill fill = reportPage.Fill as SolidFill;
