@@ -245,3 +245,5 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 *.bak
+package-lock.json
+Demos/OpenSource/SPA/FastReport.OpenSource.Angular/ClientApp/.angular/

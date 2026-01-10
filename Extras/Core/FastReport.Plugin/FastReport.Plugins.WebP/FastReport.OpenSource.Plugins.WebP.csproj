@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>$(NetFrameworkMinimum);net6.0</TargetFrameworks>
+		<TargetFrameworks>$(NetFrameworkMinimum);net10.0</TargetFrameworks>
 		<PackageLicenseUrl>https://www.fast-report.com/products/fast-report-net/license</PackageLicenseUrl>
 		<Description>
 			Represents a plugin to extend PictureObject supports formats, for FastReport.OpenSource.

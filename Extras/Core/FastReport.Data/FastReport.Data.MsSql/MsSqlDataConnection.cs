@@ -1,9 +1,8 @@
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 
 namespace FastReport.Data
 {
@@ -57,7 +56,7 @@ namespace FastReport.Data
             {
                 SqlParameter parameter = adapter.SelectCommand.Parameters.Add(p.Name, (SqlDbType)p.DataType, p.Size);
                 object value = p.Value;
-                parameter.Direction = p.Direction;
+                parameter.Direction = ((p.Direction == 0) ? ParameterDirection.Input : p.Direction);
 
                 if ((SqlDbType)p.DataType == SqlDbType.UniqueIdentifier && (value is Variant || value is String))
                     value = new Guid(value.ToString());

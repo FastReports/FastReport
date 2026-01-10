@@ -11,6 +11,7 @@ namespace Demo.MVC.Net6
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<DataSetService>();
+            builder.Services.AddFastReport();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
