@@ -164,6 +164,7 @@
     <SqlAnywhereDataConnection Text="SqlAnywhere connection"/>
     <ClickHouseDataConnection Text="ClickHouse connection"/>
     <IgniteDataConnection Text="Apache Ignite connection"/>
+    <GoogleSheetsDataConnection Text="Google Sheets connection"/>
     <Bands Text="Bands">
       <ReportTitle Text="Report Title"/>
       <ReportSummary Text="Report Summary"/>
@@ -2530,6 +2531,40 @@
     <Ignite>
       <Endpoints Text="Endpoints:"/>
     </Ignite>
+    <GoogleSheets>
+      <Errors>
+        <ApiKeyRequiredError Text="API key is required"/>
+        <AuthFailedOrCancelled Text="Google Sheets authentication was canceled or failed"/>
+        <CredentialsNotProvidedError Text="Google Sheets connection credentials were not provided. Please set the 'Credentials' property"/>
+        <GetTableNamesError Text="Failed to retrieve table names from Google Sheets: {0}"/>
+        <InvalidSpreadsheetUrlOrIdError Text="The input is not a valid Google Sheets URL or spreadsheet ID"/>
+        <LoadDataError Text="Failed to load data for table '{0}': {1}"/>
+        <LoadSchemaError Text="Failed to load schema for table '{0}': {1}"/>
+        <OAuthFlowError Text="An error occurred during the Google Sheets OAuth flow: {0}"/>
+        <OAuthJsonFileNotFound Text="OAuth credentials JSON file not found (path: {0})"/>
+        <OAuthJsonInvalidFormat Text="Invalid format of OAuth credentials file: {0}"/>
+        <OAuthJsonMissingKeys Text="JSON file is missing 'client_id' or 'client_secret' in the 'installed' section"/>
+        <OAuthNotConfigured Text="Google Sheets credentials are not configured for OAuth 2.0"/>
+        <RangeRequiredError Text="A sheet name or range is required"/>
+        <SpreadsheetIdRequiredError Text="Spreadsheet ID is required"/>
+        <SpreadsheetUrlOrIdCannotBeEmptyError Text="Spreadsheet URL or ID cannot be empty"/>
+        <TestConnectionNoDataError Text="Google Sheets connection test failed"/>
+      </Errors>
+      <ConfigureDatabase Text="Select database file"/>
+      <SelectSpreadsheetId Text="Select SpreadsheetId or URL address:"/>
+      <FieldNames Text="Column headings from the first row"/>
+      <IncludeHidden Text="Add hidden sheets"/>
+      <SignIn Text="Sign in"/>
+      <ProgressLabelText Text="The browser tab is open&#13;&#10;Please complete the authorization process"/>
+      <SignInGoogle Text="Google Sheets Authorization">
+        <Caption Text="Authentication method"/>
+        <ClientId Text="Client ID"/>
+        <ClientSecret Text="Client secret"/>
+        <PathToFile Text="Path to .json file"/>
+        <ApiKey Text="API key"/>
+        <CheckPathToJson Text="Connect using .the json file"/>
+      </SignInGoogle>
+    </GoogleSheets>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>

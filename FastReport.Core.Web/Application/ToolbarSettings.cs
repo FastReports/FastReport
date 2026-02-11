@@ -112,6 +112,21 @@ namespace FastReport.Web
         /// Default value Color.Yellow
         /// </summary>
         public Color SearchHighlight {  get; set; } = Color.Yellow;
+        /// <summary>
+        /// Use to change search form top margin,
+        /// Default value 100px
+        /// </summary>
+        public string SearchFormTop { get; set; } = "100px";
+        /// <summary>
+        /// Use to change search form left margin,
+        /// Default value calc(50% - 195)
+        /// </summary>
+        public string SearchFormLeft { get; set; } = "calc(50% - 195px)";
+        /// <summary>
+        /// Used to change the scroll offset after focusing on the text you are looking for.
+        /// Default value 0 px
+        /// </summary>
+        public int SearchScrollOffsetTop { get; set; } = 0;
 
         public int Height { get; set; } = 40;
 

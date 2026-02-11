@@ -1348,6 +1348,22 @@ namespace System.Windows.Forms
 
     public sealed class SelectionRange
     {
+        public DateTime End { get; set; } = DateTime.MinValue.Date;
+        public DateTime Start { get; set; } = DateTime.MaxValue.Date;
+
+        public SelectionRange(DateTime lower, DateTime upper)
+        {
+            if (lower < upper)
+            {
+                Start = lower.Date;
+                End = upper.Date;
+            }
+            else
+            {
+                Start = upper.Date;
+                End = lower.Date;
+            }
+        }
     }
 
     public class MonthCalendar : Control
@@ -1367,7 +1383,15 @@ namespace System.Windows.Forms
         public DateTime[] BoldedDates;
         public DateTime[] MonthlyBoldedDates;
         public DateTime SelectionEnd;
-        public SelectionRange SelectionRange;
+        public SelectionRange SelectionRange
+        {
+            get => new SelectionRange(SelectionStart, SelectionEnd);
+            set  
+            { 
+                SelectionStart = value.Start;
+                SelectionEnd = value.End; 
+            }
+        }
         public DateTime SelectionStart = DateTime.Now;                                      //
     }
 

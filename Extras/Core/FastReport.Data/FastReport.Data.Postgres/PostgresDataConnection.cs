@@ -441,6 +441,9 @@ namespace FastReport.Data
         /// <inheritdoc/>
         public override string QuoteIdentifier(string value, DbConnection connection)
         {
+            // keep in mind already quoted values, for ex. public."TableName"
+            if (!value.EndsWith("\""))
+                value = "\"" + value + "\"";
             return value;
         }
 

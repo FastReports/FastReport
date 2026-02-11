@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.Compat", "FastRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReport.OpenSource.Data.Ignite", "Extras\Core\FastReport.Data\FastReport.Data.Ignite\FastReport.OpenSource.Data.Ignite.csproj", "{46BE71B1-66A6-CB31-A340-410047E732AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReport.OpenSource.Data.GoogleSheets", "Extras\Core\FastReport.Data\FastReport.Data.GoogleSheets\FastReport.OpenSource.Data.GoogleSheets.csproj", "{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Academic|Any CPU = Academic|Any CPU
@@ -218,6 +220,12 @@ Global
 		{46BE71B1-66A6-CB31-A340-410047E732AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46BE71B1-66A6-CB31-A340-410047E732AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46BE71B1-66A6-CB31-A340-410047E732AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9}.Academic|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9}.Academic|Any CPU.Build.0 = Release|Any CPU
+		{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -246,6 +254,7 @@ Global
 		{28005ED3-3E5B-443F-A054-C74A45BE3C4C} = {A1827297-EAD4-413D-BA8D-811F5FF6125D}
 		{7C97A904-620B-49A5-9000-41452DA11BB3} = {898AF8DC-11C3-4640-B60C-5D8CBF2F29CF}
 		{46BE71B1-66A6-CB31-A340-410047E732AC} = {898AF8DC-11C3-4640-B60C-5D8CBF2F29CF}
+		{6B1C8BF3-D72B-A8A3-6BA6-FD52758632C9} = {898AF8DC-11C3-4640-B60C-5D8CBF2F29CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFBB1F5B-F03E-4BCB-AFEE-A45A2C4D5BB8}

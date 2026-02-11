@@ -880,11 +880,11 @@ namespace FastReport
             set { tag = value; }
         }
 
-        private string[] DefaultAssemblies
+        private static string[] DefaultAssemblies
         {
             get
             {
-                return new string[] {
+                    return new string[] {
                     "System.dll",
 
                     "System.Drawing.dll",
@@ -894,7 +894,7 @@ namespace FastReport
                     "System.Xml.dll",
 
                     "FastReport.Compat.dll",
-#if !CROSSPLATFORM && !(WPF || AVALONIA)
+#if !(WPF || AVALONIA)
                     "System.Windows.Forms.dll",
 #endif
 

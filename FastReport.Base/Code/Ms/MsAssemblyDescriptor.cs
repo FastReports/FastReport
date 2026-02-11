@@ -87,15 +87,24 @@ namespace FastReport.Code.Ms
 
 #if CROSSPLATFORM
                 if (s == "System.Windows.Forms.dll")
-                    s = "FastReport.Compat";
+                {
+                    // Here we check which assembly a Windows Forms type belongs to.
+                    // If it's from the System.Windows.Forms assembly, we leave it as is.
+                    // If it's from the FastReport.Compat assembly, we replace reference.
+                    var assemblyWithWinForms = typeof(System.Windows.Forms.Form).Assembly.GetName()?.Name ?? "System.Windows.Forms";
+                    if (assemblyWithWinForms != "System.Windows.Forms")
+                    {
+                        s = assemblyWithWinForms;
+                    }
+                }
 #endif
                 // fix for old reports with "System.Windows.Forms.DataVisualization" in referenced assemblies 
-                if (s.IndexOf("System.Windows.Forms.DataVisualization") != -1)
+                if (s.Contains("System.Windows.Forms.DataVisualization"))
                     s = "FastReport.DataVisualization";
 #if (SKIA && !AVALONIA)
-                if (s.IndexOf("FastReport.Compat") != -1)
+                if (s.Contains("FastReport.Compat"))
                     s = "FastReport.Compat.Skia";
-                if (s.IndexOf("FastReport.DataVisualization") != -1)
+                if (s.Contains("FastReport.DataVisualization"))
                     s = "FastReport.DataVisualization.Skia";
 #endif
 

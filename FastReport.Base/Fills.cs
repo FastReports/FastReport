@@ -1116,7 +1116,7 @@ namespace FastReport
         {
             ResetImageIndex();
             SetImageData(null);
-            Stream dummy = ResourceLoader.GetStream("FastReport", "icon16.ico");
+            Stream dummy = ResourceLoader.GetStream("FastReport", "app.ico");
             using (MemoryStream ms = new MemoryStream())
             {
                 const int BUFFER_SIZE = 4 * 1024;

@@ -193,8 +193,8 @@ namespace FastReport.Web
     position: fixed;
     width: 390px;
     z-index: 4;
-    left: calc(50% - 195);
-    top: 100px;
+    left: {Toolbar.SearchFormLeft};
+    top: {Toolbar.SearchFormTop};
     padding: 0px 10px 0px 10px;
     border-radius: 12px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);

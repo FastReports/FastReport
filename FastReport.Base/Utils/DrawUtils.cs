@@ -50,6 +50,31 @@ namespace FastReport.Utils
             }
         }
 
+        private static float _uiScale = 1;
+        
+        /// <summary>
+        /// Gets or sets a value that determines additional scale factor applied to FR forms.
+        /// Used if you change the <see cref="DefaultFont"/> property.
+        /// </summary>
+        public static float UIScale
+        {
+            get => _uiScale;
+            set
+            {
+                _uiScale = Math.Min(Math.Max(1f, value), 1.5f); // valid range is 1..1,5
+#if (WPF || AVALONIA)
+                System.Windows.Forms.SWFGlobals.UIScale = _uiScale;
+#endif
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets default font used in FR UI.
+        /// </summary>
+        /// <remarks>
+        /// FR UI is optimized for "Tahoma 8.25pt" metrics. If you use larger font, set <see cref="UIScale"/>
+        /// property to scale forms.
+        /// </remarks>
         public static Font DefaultFont
         {
             get
@@ -94,7 +119,14 @@ namespace FastReport.Utils
             }
             set
             {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+                
                 FDefaultFont = value;
+#if (WPF || AVALONIA)
+                System.Windows.Forms.SWFGlobals.DefaultFontName = value.Name;
+                System.Windows.Forms.SWFGlobals.DefaultFontSize = value.Size;
+#endif
             }
         }
 

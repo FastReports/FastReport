@@ -102,6 +102,7 @@ namespace FastReport.Data
         {
             DataSet dataset = base.CreateDataSet();
 
+            _ = JsonData;
             CreateDataSetShared(dataset);
 
             return dataset;

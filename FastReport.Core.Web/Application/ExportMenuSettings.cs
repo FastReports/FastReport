@@ -34,6 +34,11 @@ namespace FastReport.Web
         public bool EnableSettings { get; set; } = false;
 
         /// <summary>
+        /// Used to disable opening a new tab when starting an export.
+        /// </summary>
+        public bool ExportInNewTab { get; set; } = true;
+
+        /// <summary>
         /// If enabled, the container with the settings will be fixed on the screen and will be in the foreground.
         /// </summary>
         /// <remarks>

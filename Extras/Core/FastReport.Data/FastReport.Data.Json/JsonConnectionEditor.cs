@@ -21,6 +21,7 @@ namespace FastReport.Data.ConnectionEditors
         {
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
+                dialog.Filter = Res.Get("Forms,JsonEditor,Filter");
                 if (dialog.ShowDialog() == DialogResult.OK)
                     tbJsonPath.Text = dialog.FileName;
             }

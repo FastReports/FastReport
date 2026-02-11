@@ -10,6 +10,9 @@ namespace FastReport.Web
             var localization = new ToolbarLocalization(Res);
             return $@"
 'use strict';
+class Searcher {{
+    static ScrollOffsetTop = {Toolbar.SearchScrollOffsetTop};       
+}}
 
 var {template_FR} = {{
 
@@ -70,6 +73,8 @@ var {template_FR} = {{
         }},
 
         getSearchRanges: function (text, matchCase, wholeWord) {{
+            var curScrollY = window.scrollY;
+            var curScrollX = window.scrollX;
             var sel = window.getSelection();
             var ranges = []
             var container = document.getElementsByClassName('{template_FR}-body')[0];
@@ -80,6 +85,7 @@ var {template_FR} = {{
                     ranges.push(sel.getRangeAt(sel.rangeCount - 1));
                 }}
             }}
+            window.scrollTo(curScrollX, curScrollY);
             return ranges
         }},
 
@@ -212,13 +218,16 @@ var {template_FR} = {{
             newNode.className = 'search-highlight';
             range.surroundContents(newNode);
             const rect = newNode.getBoundingClientRect();
-            const vWidth = window.innerWidth || doc.documentElement.clientWidth;
-            const vHeight = window.innerHeight || doc.documentElement.clientHeight;
+            const vWidth = (window.innerWidth || document.documentElement.clientWidth) - rect.width;
+            const vHeight = (window.innerHeight || document.documentElement.clientHeight) - rect.height;
+            var topOfElement = window.scrollY;
+            var leftOfElement = window.screenX;
 
-            // Check if the element is out of bounds
-            if (rect.right < 0 || rect.bottom < 0 || rect.left > vWidth || rect.top > vHeight) {{
-                newNode.scrollIntoView();
-            }}
+            if (rect.bottom < rect.height || rect.top > vHeight) 
+                topOfElement = topOfElement + rect.top - Searcher.ScrollOffsetTop;    
+            if (rect.right < rect.width || rect.left > vWidth)
+                leftOfElement = leftOfElement + rect.left;
+            window.scroll({{top: topOfElement, left: leftOfElement, behavior: 'smooth' }});
         }},
 
         clearHighlight: function (range) {{

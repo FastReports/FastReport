@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>$(NetFrameworkMinimum);net6.0</TargetFrameworks>
+		<Crossplatform>true</Crossplatform>
+	</PropertyGroup>
+
+	<Import Project="Shared.props" />
+
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="8.0.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\FastReport.OpenSource\FastReport.OpenSource.csproj" />
+	</ItemGroup>
+</Project>
