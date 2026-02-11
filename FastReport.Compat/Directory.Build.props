@@ -1,12 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <SlnDir>$(MSBuildThisFileDirectory)..</SlnDir>
     <Authors>Fast Reports Inc.</Authors>
+    <Company>Fast Reports Inc.</Company>
     <Product>FastReport</Product>
     <PackageId>FastReport.Compat</PackageId>
-    <Copyright>Fast Reports Inc.</Copyright>
+    <Copyright>Copyright © Fast Reports Inc. 2007-2026</Copyright>
     <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
     <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>

@@ -1,8 +1,8 @@
-﻿<Project>
+<Project>
   <PropertyGroup>
     <RootNamespace>FastReport.Data</RootNamespace>
 
-    <Copyright>Fast Reports Inc.</Copyright>
+    <Copyright>Copyright © Fast Reports Inc. 2007-2026</Copyright>
     <Company>Fast Reports Inc.</Company>
     <Authors>Fast Reports Inc.</Authors>
 
@@ -13,6 +13,11 @@
     <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
     <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
 
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'!='Debug'">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(Crossplatform)=='true'">

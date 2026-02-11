@@ -26,49 +26,50 @@ namespace FastReport.Web
             var showRefreshButton = Toolbar.ShowRefreshButton && !Report.IsLoadPrepared;
             var localization = new ToolbarLocalization(Res);
             var exports = Toolbar.Exports;
+            var target = $"target=\"{(!exports.ExportInNewTab ? "_self" : "_blank")}\"";
             var toolbarExportItem = $@"<div {disableExport} class=""fr-toolbar-item {template_FR}-toolbar-item"" title=""{localization.saveTxt}"">
         {GetResource("save.svg")}
         <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">"
-          + (exports.ShowPreparedReport ? $@"<a target=""_blank"" href=""{template_export_url("fpx")}"">{localization.preparedTxt}</a>" : "")
+          + (exports.ShowPreparedReport ? $@"<a {target} href=""{template_export_url("fpx")}"">{localization.preparedTxt}</a>" : "")
 #if !OPENSOURCE
-          + (exports.ShowPdfExport ? $@"<a id=""PdfExport"" target=""_blank"" href=""{template_export_url("pdf")}"">{localization.pdfTxt}</a>":"")
+          + (exports.ShowPdfExport ? $@"<a id=""PdfExport"" {target} href=""{template_export_url("pdf")}"">{localization.pdfTxt}</a>":"")
           + (exports.EnableSettings  && exports.ShowPdfExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""pdf"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowExcel2007Export ? $@"<a id=""XlsxExport"" target =""_blank"" href=""{template_export_url("xlsx")}"">{localization.excel2007Txt}</a>" : "")
+          + (exports.ShowExcel2007Export ? $@"<a id=""XlsxExport"" {target} href=""{template_export_url("xlsx")}"">{localization.excel2007Txt}</a>" : "")
           + (exports.EnableSettings && exports.ShowExcel2007Export ? $@"<button class=""fr-webreport-settings-btn"" data-path=""xlsx"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowWord2007Export ? $@"<a id=""DocxExport"" target=""_blank"" href=""{template_export_url("docx")}"">{localization.word2007Txt}</a>" : "")
+          + (exports.ShowWord2007Export ? $@"<a id=""DocxExport"" {target} href=""{template_export_url("docx")}"">{localization.word2007Txt}</a>" : "")
           + (exports.EnableSettings && exports.ShowWord2007Export ? $@"<button class=""fr-webreport-settings-btn"" data-path=""docx"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowPowerPoint2007Export ? $@"<a id=""PptxExport"" target=""_blank"" href=""{template_export_url("pptx")}"">{localization.powerPoint2007Txt}</a>" : "")
+          + (exports.ShowPowerPoint2007Export ? $@"<a id=""PptxExport"" {target} href=""{template_export_url("pptx")}"">{localization.powerPoint2007Txt}</a>" : "")
           + (exports.EnableSettings && exports.ShowPowerPoint2007Export ? $@"<button class=""fr-webreport-settings-btn"" data-path=""pptx"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowTextExport ? $@"<a target=""_blank"" href=""{template_export_url("txt")}"">{localization.textTxt}</a>" : "")
-          + (exports.ShowRtfExport ? $@"<a id=""RtfExport"" target=""_blank"" href=""{template_export_url("rtf")}"">{localization.rtfTxt}</a>" : "")
+          + (exports.ShowTextExport ? $@"<a {target} href=""{template_export_url("txt")}"">{localization.textTxt}</a>" : "")
+          + (exports.ShowRtfExport ? $@"<a id=""RtfExport"" {target} href=""{template_export_url("rtf")}"">{localization.rtfTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowRtfExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""rtf"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowXpsExport ? $@"<a target=""_blank"" href=""{template_export_url("xps")}"">{localization.xpsTxt}</a>" : "")
-          + (exports.ShowOdsExport ? $@"<a id=""OdsExport"" target=""_blank"" href=""{template_export_url("ods")}"">{localization.odsTxt}</a>" : "")
+          + (exports.ShowXpsExport ? $@"<a {target} href=""{template_export_url("xps")}"">{localization.xpsTxt}</a>" : "")
+          + (exports.ShowOdsExport ? $@"<a id=""OdsExport"" {target} href=""{template_export_url("ods")}"">{localization.odsTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowOdsExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""ods"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowOdtExport ? $@"<a id=""OdtExport"" target=""_blank"" href=""{template_export_url("odt")}"">{localization.odtTxt}</a>" : "")
+          + (exports.ShowOdtExport ? $@"<a id=""OdtExport"" {target} href=""{template_export_url("odt")}"">{localization.odtTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowOdtExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""odt"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowXmlExcelExport ? $@"<a id=""XmlExport"" target=""_blank"" href=""{template_export_url("xml")}"">{localization.xmlTxt}</a>" : "")
+          + (exports.ShowXmlExcelExport ? $@"<a id=""XmlExport"" {target} href=""{template_export_url("xml")}"">{localization.xmlTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowXmlExcelExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""xml"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowDbfExport ? $@"<a target=""_blank"" href=""{template_export_url("dbf")}"">{localization.dbfTxt}</a>" : "")
-          + (exports.ShowCsvExport ? $@"<a target=""_blank"" href=""{template_export_url("csv")}"">{localization.csvTxt}</a>" : "")
-          + (exports.ShowSvgExport ? $@"<a id=""SvgExport"" target=""_blank"" href=""{template_export_url("svg")}"">{localization.svgTxt}</a>" : "")
+          + (exports.ShowDbfExport ? $@"<a {target} href=""{template_export_url("dbf")}"">{localization.dbfTxt}</a>" : "")
+          + (exports.ShowCsvExport ? $@"<a {target} href=""{template_export_url("csv")}"">{localization.csvTxt}</a>" : "")
+          + (exports.ShowSvgExport ? $@"<a id=""SvgExport"" {target} href=""{template_export_url("svg")}"">{localization.svgTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowSvgExport? $@"<button class=""fr-webreport-settings-btn"" data-path=""svg"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowMhtExport ? $@"<a target=""_blank"" href=""{template_export_url("mht")}"">{localization.mhtTxt}</a>" : "")
-          + (exports.ShowExcel97Export ? $@"<a target=""_blank"" href=""{ template_export_url("xls")}"">{localization.excel97Txt}</a>" : "")
-          + (exports.ShowEmailExport ? $@"<a id=""EmailExport"" target=""_blank"" onclick=""{template_FR}.showEmailExportModal();"">{localization.emailTxt}</a>" : "")
-          + (exports.ShowHpglExport ? $@"<a target=""_blank"" href=""{ template_export_url("hpgl")}"">{localization.hpglTxt}</a>" : "")
-          + (exports.ShowHTMLExport ? $@"<a id=""HtmlExport"" target=""_blank"" href=""{template_export_url("html")}"">{localization.htmlTxt}</a>" : "")
+          + (exports.ShowMhtExport ? $@"<a {target} href=""{template_export_url("mht")}"">{localization.mhtTxt}</a>" : "")
+          + (exports.ShowExcel97Export ? $@"<a {target} href=""{ template_export_url("xls")}"">{localization.excel97Txt}</a>" : "")
+          + (exports.ShowEmailExport ? $@"<a id=""EmailExport"" {target} onclick=""{template_FR}.showEmailExportModal();"">{localization.emailTxt}</a>" : "")
+          + (exports.ShowHpglExport ? $@"<a {target} href=""{ template_export_url("hpgl")}"">{localization.hpglTxt}</a>" : "")
+          + (exports.ShowHTMLExport ? $@"<a id=""HtmlExport"" {target} href=""{template_export_url("html")}"">{localization.htmlTxt}</a>" : "")
           + (exports.EnableSettings && exports.ShowHTMLExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""html"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowImageExport? $@"<a id=""ImageExport"" target=""_blank"" href=""{template_export_url("image")}"">{localization.imageTxt}</a>" : "") + (exports.EnableSettings && exports.ShowImageExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""image"">{GetResource("settings.svg")}</button>" : "")
-          + (exports.ShowJsonExport ? $@"<a target=""_blank"" href=""{ template_export_url("json")}"">{localization.jsonTxt}</a>" : "")
-          + (exports.ShowDxfExport ? $@"<a target=""_blank"" href=""{ template_export_url("dxf")}"">{localization.dxfTxt}</a>" : "")
-          + (exports.ShowLaTeXExport ? $@"<a target=""_blank"" href=""{ template_export_url("latex")}"">{localization.latexTxt}</a>" : "")
-          + (exports.ShowPpmlExport ? $@"<a target=""_blank"" href=""{ template_export_url("ppml")}"">{localization.ppmlTxt}</a>" : "")
-          + (exports.ShowPSExport ? $@"<a target=""_blank"" href=""{ template_export_url("ps")}"">{localization.psTxt}</a>" : "") 
-          + (exports.ShowXamlExport ? $@"<a target=""_blank"" href=""{ template_export_url("xaml")}"">{localization.xamlTxt}</a>" : "") 
-          + (exports.ShowZplExport ? $@"<a target=""_blank"" href=""{ template_export_url("zpl")}"">{localization.zplTxt}</a>" : "")
+          + (exports.ShowImageExport? $@"<a id=""ImageExport"" {target} href=""{template_export_url("image")}"">{localization.imageTxt}</a>" : "") + (exports.EnableSettings && exports.ShowImageExport ? $@"<button class=""fr-webreport-settings-btn"" data-path=""image"">{GetResource("settings.svg")}</button>" : "")
+          + (exports.ShowJsonExport ? $@"<a {target} href=""{ template_export_url("json")}"">{localization.jsonTxt}</a>" : "")
+          + (exports.ShowDxfExport ? $@"<a {target} href=""{ template_export_url("dxf")}"">{localization.dxfTxt}</a>" : "")
+          + (exports.ShowLaTeXExport ? $@"<a {target} href=""{ template_export_url("latex")}"">{localization.latexTxt}</a>" : "")
+          + (exports.ShowPpmlExport ? $@"<a {target} href=""{ template_export_url("ppml")}"">{localization.ppmlTxt}</a>" : "")
+          + (exports.ShowPSExport ? $@"<a {target} href=""{ template_export_url("ps")}"">{localization.psTxt}</a>" : "") 
+          + (exports.ShowXamlExport ? $@"<a {target} href=""{ template_export_url("xaml")}"">{localization.xamlTxt}</a>" : "") 
+          + (exports.ShowZplExport ? $@"<a {target} href=""{ template_export_url("zpl")}"">{localization.zplTxt}</a>" : "")
 #endif
-             + "</div></div>"
+             + " </div></div>"
             ;
             var toolbarPrintItem = $@" <div {disableExport} class=""fr-toolbar-item {template_FR}-toolbar-item"" title=""{localization.printTxt}"">
         {GetResource("print.svg")}

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Language Name="ru" Author="Alexander Tsyganenko &lt;tz@fast-report.com&gt;;Alexander Fediashov &lt;fediachov@fast-report.com&gt;">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} шрифт не может быть изменён, встроен или передан любым способом без первоначального получения разрешения от правообладателя."/>
@@ -164,6 +164,7 @@
     <SqlAnywhereDataConnection Text="Подключение к SqlAnywhere"/>
     <ClickHouseDataConnection Text="Подключение к ClickHouse"/>
     <IgniteDataConnection Text="Подключение к Apache Ignite"/>
+    <GoogleSheetsDataConnection Text="Подключение к Google Sheets"/>
     <Bands Text="Бэнды">
       <ReportTitle Text="Заголовок отчета"/>
       <ReportSummary Text="Подвал отчета"/>
@@ -2328,6 +2329,41 @@
     <Ignite>
       <Endpoints Text="Конечные точки:"/>
     </Ignite>
+    <GoogleSheets>
+      <Errors>
+        <ApiKeyRequiredError Text="Необходимо указать API-ключ"/>
+        <AuthFailedOrCancelled Text="Аутентификация в Google Таблицах была отменена или не удалась"/>
+        <CredentialsNotProvidedError Text="Не заданы учётные данные для подключения к Google Таблицам. Установите свойство Credentials"/>
+        <GetTableNamesError Text="Не удалось получить имена таблиц из Google Таблиц: {0}"/>
+        <InvalidSpreadsheetUrlOrIdError Text="Указан недопустимый URL или ID таблицы"/>
+        <LoadDataError Text="Не удалось загрузить данные для таблицы '{0}': {1}"/>
+        <LoadSchemaError Text="Не удалось загрузить схему для таблицы '{0}': {1}"/>
+        <OAuthFlowError Text="Произошла ошибка во время процесса аутентификации OAuth в Google Таблицах: {0}"/>
+        <OAuthJsonFileNotFound Text="Файл JSON с учётными данными OAuth (путь: {0}) не найден"/>
+        <OAuthJsonInvalidFormat Text="Недопустимый формат файла учётных данных OAuth: {0}"/>
+        <OAuthJsonMissingKeys Text="JSON-файл не содержит 'client_id' или 'client_secret' в разделе 'installed'"/>
+        <OAuthNotConfigured Text="Учётные данные Google Таблиц не настроены для аутентификации OAuth 2.0"/>
+        <RangeRequiredError Text="Необходимо указать имя листа или диапазон"/>
+        <SpreadsheetIdRequiredError Text="Необходимо указать ID таблицы"/>
+        <SpreadsheetUrlOrIdCannotBeEmptyError Text="URL или ID таблицы не могут быть пустыми"/>
+        <TestConnectionNoDataError Text="Проверка подключения к Google Таблицам не удалась"/>
+      </Errors>
+      <ConfigureDatabase Text="Настройка базы данных"/>
+      <SelectSpreadsheetId Text="Идентификатор таблицы или URL адрес:"/>
+      <FieldNames Text="Заголовки столбцов из первой строки"/>
+      <IncludeHidden Text="Добавлять скрытые листы"/>
+      <SignIn Text="Вход"/>
+      <ProgressLabelText Text="Открыта вкладка браузера&#13;&#10;Пожалуйста, завершите процесс авторизации"/>
+      <SignInGoogle Text="Авторизация Google Sheets">
+        <Caption Text="Способ аутентификации"/>
+        <ClientId Text="Идентификатор клиента"/>
+        <ClientSecret Text="Секрет клиента"/>
+        <PathToFile Text="Путь к .json-файлу"/>
+        <ApiKey Text="API ключ"/>
+        <CheckPathToJson Text="Подключение с помощью .json-файла"/>
+        <NullData Text="Введите данные для подключения"/>
+      </SignInGoogle>
+    </GoogleSheets>
   </ConnectionEditors>
   <ComponentMenu>
     <Component>

@@ -144,7 +144,7 @@ namespace FastReport
         #region Draw images
         public void DrawImage(Image image, float x, float y)
         {
-            this.graphics.DrawImage(image, x, y);
+            this.graphics.DrawImage(image, x, y, image.Width, image.Height);
         }
 
         public void DrawImage(Image image, RectangleF destRect, RectangleF srcRect, GraphicsUnit unit)
