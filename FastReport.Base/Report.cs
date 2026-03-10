@@ -1146,6 +1146,12 @@ namespace FastReport
             CodeProvider.Clear();
         }
 
+        private void ResetPreparedPages()
+        {
+            DisposePreparedPages();
+            SetPreparedPages(new Preview.PreparedPages(this));
+        }
+
         #endregion Private Methods
 
         #region Protected Methods
@@ -1169,8 +1175,9 @@ namespace FastReport
                     measureBitmap.Dispose();
                 measureBitmap = null;
                 DisposeDesign();
-                if (PreparedPages != null)
-                    PreparedPages.Dispose();
+                if (preparedPages != null)
+                    preparedPages.Dispose();
+                preparedPages = null;
             }
             base.Dispose(disposing);
         }
@@ -2529,9 +2536,7 @@ namespace FastReport
             {
                 if (PreparedPages == null || !append)
                 {
-                    ClearPreparedPages();
-
-                    SetPreparedPages(new Preview.PreparedPages(this));
+                    ResetPreparedPages();
                 }
                 engine = new ReportEngine(this);
 
@@ -2566,8 +2571,7 @@ namespace FastReport
             SetRunning(true);
             try
             {
-                ClearPreparedPages();
-                SetPreparedPages(new Preview.PreparedPages(this));
+                ResetPreparedPages();
                 engine = new ReportEngine(this);
 
                 if (!Config.WebMode)

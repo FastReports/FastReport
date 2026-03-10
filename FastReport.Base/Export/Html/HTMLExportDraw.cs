@@ -256,10 +256,12 @@ namespace FastReport.Export.Html
             return ancor.Append("<a name=\"PageN").Append(ancorName).Append("\" id=\"PageN").Append(ancorName).Append("\" style=\"padding:0;margin:0;font-size:1px;\"></a>").ToString();
         }
 
-        private string HTMLGetImageTag(string file)
+        private string HTMLGetImageTag(string file, string styles, bool isSvg)
         {
-            return "<img src=\"" + file + "\" alt=\"\"/>";
-        }
+            if(isSvg)
+                return $"<div style=\"background: url({file}) no-repeat {styles};\" />";
+            return $"<img src=\"{file}\" style=\"{styles}\" alt=\"/>";
+        } 
 
         private string HTMLGetImage(int PageNumber, int CurrentPage, int ImageNumber, string hash, bool Base,
             System.Drawing.Image Metafile, MemoryStream PictureStream, bool isSvg)

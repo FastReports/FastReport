@@ -8,7 +8,7 @@
     <Product>FastReport</Product>
     <PackageId>FastReport.Compat</PackageId>
     <Copyright>Copyright © Fast Reports Inc. 2007-2026</Copyright>
-    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <PackageProjectUrl>https://www.fast-report.com/products/fast-report-net</PackageProjectUrl>
     <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
     <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>

@@ -444,13 +444,12 @@ namespace FastReport.Web.Services
                 // paste old script
                 var scriptItem1 = xml1.FindItem(nameof(Report.ScriptText));
                 var scriptText = webReport.Report.ScriptText;
-                if (scriptItem1 != null && String.IsNullOrEmpty(scriptItem1.Value))
+                if (scriptItem1 != null && !String.IsNullOrEmpty(scriptItem1.Value))
                 {
                     var scriptItem2 = xml2.Root.FindItem(nameof(Report.ScriptText));
                     if (scriptItem2 != null)
                     {
                         scriptItem2.Value = scriptItem1.Value;
-                        scriptItem2.Dispose();
                     }
                     else
                     {
