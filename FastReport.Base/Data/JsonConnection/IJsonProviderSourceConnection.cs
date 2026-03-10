@@ -1,3 +1,5 @@
+using FastReport.Utils.Json;
+
 namespace FastReport.Data.JsonConnection
 {
     /// <summary>
@@ -6,10 +8,25 @@ namespace FastReport.Data.JsonConnection
     public interface IJsonProviderSourceConnection
     {
         /// <summary>
-        /// Returns JsonBase object from connection source specific by tableDataSource
+        /// Returns JsonBase object from connection source by specified tableDataSource
         /// </summary>
         /// <param name="tableDataSource"></param>
         /// <returns></returns>
         JsonBase GetJson(TableDataSource tableDataSource);
+
+        /// <summary>
+        /// Returns JsonBase object (schema part) from connection source by specified tableDataSource
+        /// </summary>
+        /// <param name="tableDataSource"></param>
+        /// <returns></returns>
+        JsonSchema GetJsonSchema(TableDataSource tableDataSource);
+
+
+        /// <summary>
+        /// Return information about simple sturcture by specified tableDataSource
+        /// </summary>
+        /// <param name="tableDataSource"></param>
+        /// <returns></returns>
+        bool IsJsonSimpleStructure(TableDataSource tableDataSource);
     }
 }

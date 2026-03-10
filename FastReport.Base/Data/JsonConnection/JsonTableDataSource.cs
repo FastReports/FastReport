@@ -151,12 +151,13 @@ namespace FastReport.Data.JsonConnection
         {
             if (Columns.Count == 0 || UpdateSchema && !StoreData)
             {
-
-                if (Connection is JsonDataSourceConnection)
+                if (Connection is IJsonProviderSourceConnection)
                 {
-                    JsonDataSourceConnection con = Connection as JsonDataSourceConnection;
+                    IJsonProviderSourceConnection con = Connection as IJsonProviderSourceConnection;
 
-                    InitSchema(this, con.JsonSchema, con.SimpleStructure);
+                    var schema = con.GetJsonSchema(this);
+                    if (schema != null)
+                        InitSchema(this, schema, con.IsJsonSimpleStructure(this));
                 }
             }
             UpdateSchema = false;

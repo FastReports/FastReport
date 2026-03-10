@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FastReport.Utils.Json
 {
-    internal class JsonSchema
+    public class JsonSchema
     {
         #region Private Fields
 

@@ -8,10 +8,10 @@ namespace FastReport
     {
         #region Private Methods
 
-        private void ClearPreparedPages()
+        private void DisposePreparedPages()
         {
             if (preparedPages != null)
-                preparedPages.Clear();
+                preparedPages.Dispose();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using FastReport.Data.JsonConnection;
+using FastReport.Utils.Json;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -284,7 +285,7 @@ namespace FastReport.Data.ElasticSearch
             {
                 countRec = GetRecCount(tableName);
                 JsonDataSourceConnectionStringBuilder connectionStringBuilder = new JsonDataSourceConnectionStringBuilder();
-                connectionStringBuilder.ConnectionString = 
+                connectionStringBuilder.ConnectionString =
                     $"Json={sourceConnectionStringBuilder.EndPoint}/{tableName}/_search?size={countRec};JsonShema=;Encoding=utf-8;";
                 connectionStringBuilder.Headers = sourceConnectionStringBuilder.Headers;
                 jsonData = new JsonDataSourceConnection()
@@ -342,6 +343,16 @@ namespace FastReport.Data.ElasticSearch
             connectionStringBuilder.Headers = sourceConnectionStringBuilder.Headers;
 
             return (new JsonDataSourceConnection() { ConnectionString = connectionStringBuilder.ToString() }).GetJson(tableDataSource);
+        }
+
+        public JsonSchema GetJsonSchema(TableDataSource tableDataSource)
+        {
+            return null;
+        }
+
+        public bool IsJsonSimpleStructure(TableDataSource tableDataSource)
+        {
+            return false;
         }
         #endregion
     }

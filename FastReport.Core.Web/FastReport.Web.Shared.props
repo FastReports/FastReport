@@ -12,7 +12,7 @@
 
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>frlogo192.png</PackageIcon>
-    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <PackageProjectUrl>https://www.fast-report.com/products/fast-report-net</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
     <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
 

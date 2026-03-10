@@ -67,9 +67,7 @@ namespace FastReport
             {
                 if (PreparedPages == null || !append)
                 {
-                    ClearPreparedPages();
-
-                    SetPreparedPages(new Preview.PreparedPages(this));
+                    ResetPreparedPages();
                 }
                 engine = new ReportEngine(this);
 

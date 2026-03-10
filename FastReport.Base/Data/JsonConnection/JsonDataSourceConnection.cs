@@ -239,6 +239,18 @@ namespace FastReport.Data.JsonConnection
             return Json;
         }
 
+        /// <inheritdoc/>
+        public JsonSchema GetJsonSchema(TableDataSource tableDataSource)
+        {
+            return JsonSchema;
+        }
+
+        /// <inheritdoc/>
+        public bool IsJsonSimpleStructure(TableDataSource tableDataSource)
+        {
+            return SimpleStructure;
+        }
+
         #endregion Public Methods
 
         #region Protected Methods
