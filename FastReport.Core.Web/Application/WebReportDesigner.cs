@@ -1,13 +1,14 @@
 ﻿#if DESIGNER
+using FastReport.Web.Services;
 using Microsoft.AspNetCore.Html;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using FastReport.Web.Services;
 
 namespace FastReport.Web
 {
@@ -66,6 +67,11 @@ namespace FastReport.Web
         [Obsolete("DesignerSaveMethod is obsolete, please use Designer.SaveMethod instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Func<string, string, string, string> DesignerSaveMethod { get => Designer.SaveMethod; set => Designer.SaveMethod = value; }
+
+        /// <summary>
+        /// Synchronization during preparation/rendering of the report.
+        /// </summary>
+        public SemaphoreSlim PreviewLock => previewLock;
 
         /// <summary>
         /// Report name without extension
@@ -131,6 +137,9 @@ namespace FastReport.Web
         #endregion
 
         #region Private Methods
+
+        private readonly SemaphoreSlim previewLock = new SemaphoreSlim(1, 1);
+
         HtmlString RenderDesigner()
         {
             //string designerPath = WebUtils.GetAppRoot(DesignerPath);
