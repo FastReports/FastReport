@@ -1,12 +1,9 @@
 ﻿#if DESIGNER
 using FastReport.Web.Services;
-
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Net;
 using System.Threading.Tasks;
-using FastReport.Web.Infrastructure;
-using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
 using System.Threading;
 
@@ -76,6 +73,9 @@ namespace FastReport.Web.Controllers
             if (!reportService.TryFindWebReport(reportId, out var webReport))
                 return Results.NotFound();
 
+            if (!await webReport.PreviewLock.WaitAsync(0, cancellationToken))
+                return Results.StatusCode(429); 
+
             string response;
             try
             {
@@ -84,6 +84,10 @@ namespace FastReport.Web.Controllers
             catch (Exception ex)
             {
                 return Results.BadRequest(ex.Message);
+            }
+            finally
+            {
+                webReport.PreviewLock.Release();
             }
 
             return Results.Content(response, MediaTypeNames.Text.Html);

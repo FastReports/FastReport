@@ -269,6 +269,11 @@ namespace FastReport.Web
             {
                 tab.Report.Dispose();
             }
+
+#if !WASM
+            previewLock.Dispose();
+#endif
+
             Res.Dispose();
         }
 
