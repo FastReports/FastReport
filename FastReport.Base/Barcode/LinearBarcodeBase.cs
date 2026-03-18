@@ -34,6 +34,8 @@ namespace FastReport.Barcode
         private float[] modules;
         private bool calcCheckSum;
         private bool trim;
+        private bool fitDevicePixels;
+        private float oneBarWidth;
         internal RectangleF drawArea;
         internal RectangleF barArea;
         internal bool textUp;
@@ -93,6 +95,37 @@ namespace FastReport.Barcode
         {
             get { return trim; }
             set { trim = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating that bars must fit device pixels when rendering/printing.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool FitDevicePixels
+        {
+            get { return fitDevicePixels; }
+            set { fitDevicePixels = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets narrow bar width.
+        /// </summary>
+        /// <remarks>
+        /// This property value is measured in the screen pixels. Use <see cref="Units"/> class to
+        /// convert a value to desired units.
+        /// </remarks>
+        [DefaultValue(1.25f)]
+        [TypeConverter("FastReport.TypeConverters.HighPrecisionUnitsConverter, FastReport")]
+        public float OneBarWidth
+        {
+            get { return oneBarWidth; }
+            set 
+            { 
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException(nameof(value), "Value must be greater than 0");
+
+                oneBarWidth = value; 
+            }
         }
 
         internal string Code
@@ -399,6 +432,8 @@ namespace FastReport.Barcode
             WideBarRatio = src.WideBarRatio;
             CalcCheckSum = src.CalcCheckSum;
             Trim = src.Trim;
+            FitDevicePixels = src.FitDevicePixels;
+            OneBarWidth = src.OneBarWidth;
         }
 
         internal override void Serialize(FRWriter writer, string prefix, BarcodeBase diff)
@@ -412,6 +447,10 @@ namespace FastReport.Barcode
                 writer.WriteBool(prefix + "CalcCheckSum", CalcCheckSum);
             if (c == null || Trim != c.Trim)
                 writer.WriteBool(prefix + "Trim", Trim);
+            if (c == null || FitDevicePixels != c.FitDevicePixels)
+                writer.WriteBool(prefix + "FitDevicePixels", FitDevicePixels);
+            if (c == null || OneBarWidth != c.OneBarWidth)
+                writer.WriteValue(prefix + "OneBarWidth", OneBarWidth);
         }
 
         internal override void Initialize(string text, bool showText, int angle, float zoom)
@@ -460,7 +499,7 @@ namespace FastReport.Barcode
             float barTopOffset = IsBarcodeRussianPost ? 9 : 0; // The indentation at the top of the barcode
             barArea = new RectangleF(extra1, barTopOffset, barWidth, 0);
 
-            float width = drawArea.Width * 1.25f;
+            float width = drawArea.Width * OneBarWidth;
             float height = IsBarcodeRussianPost ? 56.7f : 0; // The height of the object at the AutoSize
             return new SizeF(width, height);
         }
@@ -468,7 +507,7 @@ namespace FastReport.Barcode
         /// <inheritdoc/>
         public override void DrawBarcode(IGraphics g, RectangleF displayRect)
         {
-            float originalWidth = CalcBounds().Width / 1.25f;
+            float originalWidth = CalcBounds().Width / OneBarWidth;
 
             if (IsBarcodeRussianPost)
             {
@@ -478,6 +517,18 @@ namespace FastReport.Barcode
             float width = angle == 90 || angle == 270 ? displayRect.Height : displayRect.Width;
             float height = angle == 90 || angle == 270 ? displayRect.Width : displayRect.Height;
             zoom = width / originalWidth;
+
+            if (FitDevicePixels)
+            {
+                var devicePx = g.Transform.Elements[0] * zoom;
+
+                if (devicePx < 1)
+                    devicePx = 1;
+
+                // fix the zoom to fit to device pixels
+                zoom *= (int)devicePx / devicePx;
+            }
+
             barArea.Height = height / zoom;
             if (showText && !IsBarcodeRussianPost)
             {
@@ -636,6 +687,7 @@ namespace FastReport.Barcode
             WideBarRatio = 2;
             calcCheckSum = true;
             trim = true;
+            oneBarWidth = 1.25f;
         }
     }
 }
