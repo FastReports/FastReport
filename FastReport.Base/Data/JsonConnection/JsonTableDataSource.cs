@@ -272,7 +272,7 @@ namespace FastReport.Data.JsonConnection
                         else if (kv.Value.Type == "array")
                         {
                             Column c = new JsonTableDataSource();
-                            c.Name = kv.Key;
+                            c.Name = table.Report?.Dictionary?.CreateUniqueName(kv.Key) ?? kv.Key;
                             c.Alias = kv.Key;
                             c.PropName = kv.Key;
                             c.DataType = kv.Value.DataType;

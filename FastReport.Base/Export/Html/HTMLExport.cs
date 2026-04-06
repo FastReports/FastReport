@@ -218,6 +218,18 @@ namespace FastReport.Export.Html
         /// <summary>
         /// For internal use only.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string PrintScriptSrc { get; set; }
+
+        /// <summary>
+        /// For internal use only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DisableInlineScript { get; set; }
+
+        /// <summary>
+        /// For internal use only.
+        /// </summary>
         public string StylePrefix
         {
             get { return stylePrefix; }
@@ -618,7 +630,13 @@ namespace FastReport.Export.Html
         private void DoPageEnd(Stream stream, bool print)
         {
             if (print)
-                ExportUtils.WriteLn(stream, PRINT_JS);
+            {
+                if (string.IsNullOrEmpty(PrintScriptSrc))
+                    ExportUtils.WriteLn(stream, PRINT_JS);
+                else
+                    ExportUtils.WriteLn(stream, $@"<script type=""module"" src=""{PrintScriptSrc}""></script>");
+            }
+            
             ExportUtils.WriteLn(stream, BODY_END);
             ExportUtils.Write(stream, templates.PageTemplateFooter);
         }

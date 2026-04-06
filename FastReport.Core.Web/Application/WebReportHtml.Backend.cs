@@ -47,7 +47,9 @@ namespace FastReport.Web
                 html.Init_WebMode();
                 html.Pictures = Pictures; //html.Pictures = Prop.Pictures;
                 html.EmbedPictures = EmbedPictures; //html.EmbedPictures = EmbedPictures;
-                html.OnClickTemplate = "fr{0}.click(this,'{1}','{2}')";
+                html.DisableInlineScript = true;
+                html.OnClickTemplate = CreateOnClickEvent(ScriptName, "click", "this", "{0}", "{1}");// $"{ScriptName}.click(this,'{{0}}','{{1}}')";
+                //html.OnClickTemplate = "fr{0}.click(this,'{1}','{2}')";
                 html.ReportID = ID; //html.ReportID = Prop.ControlID;
                 html.EnableMargins = EnableMargins; //html.EnableMargins = Prop.EnableMargins;
 

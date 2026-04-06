@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
 
     <PackageId>FastReport.OpenSource.Web</PackageId>
@@ -17,13 +17,38 @@
     <!--See https://devblogs.microsoft.com/dotnet/producing-packages-with-source-link/#deterministic-builds -->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <StaticWebAssetBasePath>_content/FastReport.Web</StaticWebAssetBasePath>
+    <RootNamespace>FastReport.Web</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <Authors>Fast Reports Inc.</Authors>
+    <Company>Fast Reports Inc.</Company>
+    <Copyright>Fast Reports Inc.</Copyright>
+
+    <LangVersion>9.0</LangVersion>
+
+    <WebBaseDir>..\FastReport.Web.Base</WebBaseDir>
+
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIcon>frlogo192.png</PackageIcon>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageTags>reporting, reports, pdf, html, mvc, core</PackageTags>
+
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <TargetFrameworks>$(TargetFrameworks);net6.0-windows</TargetFrameworks>
   </PropertyGroup>
+    <PropertyGroup Condition="$(Dialogs) == 'true'">
+        <DefineConstants>$(DefineConstants);DIALOGS</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Designer) == 'true'">
+        <DefineConstants>$(DefineConstants);DESIGNER</DefineConstants>
+    </PropertyGroup>
 
-  <Import Project="FastReport.Web.Shared.props" />
+  <Import Project="FastReport.Web.Shared.targets" />
 
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>../FastReport.OpenSource.snk</AssemblyOriginatorKeyFile>
@@ -61,5 +86,44 @@
 
   <ItemGroup>
     <Compile Remove="Application\Dialog\**" />
+  </ItemGroup>
+  <ItemGroup>
+  <Compile Include="$(WebBaseDir)\*.cs">
+    <Link>Application\%(Filename)%(Extension)</Link>
+  </Compile>
+    <Content Include="$(WebBaseDir)\**\*.js;$(WebBaseDir)\**\*.css" Exclude="$(WebBaseDir)\postcss.config.js" CopyToOutputDirectory="Never">
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
+    <Content Include="$(ProjectDir)\wwwroot\*.js;$(ProjectDir)\wwwroot\*.css" CopyToOutputDirectory="Always">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+	  <None Include="$(WebBaseDir)\postcss.config.js;$(WebBaseDir)\**\*.json;$(WebBaseDir)\rollup.config.mjs" CopyToOutputDirectory="Never">
+		  <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="$(WebBaseDir)\node_modules\**" />
+    <None Remove="$(WebBaseDir)\node_modules\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\*.svg" >
+      <LogicalName>$(AssemblyName).Resources.%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Pack\frlogo192.png">
+      <Pack>True</Pack>
+      <Visible>false</Visible>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+    <None Remove="obj\**"/>
+    <Content Remove="obj\**" />
   </ItemGroup>
 </Project>

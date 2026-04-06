@@ -12,6 +12,14 @@ namespace FastReport.Web
 
     }
 
+    internal static class JSEvents
+    {
+        internal const string CLICK = "click";
+        internal const string INPUT = "input";
+        internal const string CHANGE = "change";
+    }
+
+
 #if DIALOGS
     public partial class Dialog
     {

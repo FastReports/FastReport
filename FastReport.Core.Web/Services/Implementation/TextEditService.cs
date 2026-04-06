@@ -28,7 +28,7 @@ namespace FastReport.Web.Services
                                 webReport.Res.Root("Buttons");
                                 string okText = webReport.Res.Get("Ok");
                                 string cancelText = webReport.Res.Get("Cancel");
-                                result = Template_textedit_form(textObject.Text, okText, cancelText);
+                                result = Template_textedit_form(webReport, textObject.Text, okText, cancelText);
                             });
 
                         return result;
@@ -39,7 +39,7 @@ namespace FastReport.Web.Services
             return null;
         }
 
-        private static string Template_textedit_form(string text, string okText, string cancelText) => $@"
+        private static string Template_textedit_form(WebReport webReport, string text, string okText, string cancelText) => $@"
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,8 +67,8 @@ button {{
 <body>
     <textarea autofocus>{HttpUtility.HtmlEncode(text)}</textarea>
     <br>
-    <button onclick=""window.close();"">{HttpUtility.HtmlEncode(cancelText)}</button>
-    <button onclick=""window.postMessage('submit', '*');"">{HttpUtility.HtmlEncode(okText)}</button>
+    <button {WebReport.CreateOnClickEvent("window", "close")}>{HttpUtility.HtmlEncode(cancelText)}</button>
+    <button {WebReport.CreateOnClickEvent("window", "postMessage", "submit", "*")}>{HttpUtility.HtmlEncode(okText)}</button>
 </body>
 </html>
 ";

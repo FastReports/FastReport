@@ -13,7 +13,7 @@ namespace FastReport.Web
             {
                 StringBuilder sb = new StringBuilder(64);
 
-                sb.Append($@"<div class=""{template_FR}-tabs"">");
+                sb.Append($@"<div class=""fr-tabs"">");
 
                 for (int i = 0; i < Tabs.Count; i++)
                 {
@@ -30,14 +30,14 @@ namespace FastReport.Web
 
                     var tab = Tabs[i];
                     var active = i == CurrentTabIndex ? "active" : "";
-                    var settab = i == CurrentTabIndex ? "" : $@"onclick=""{template_FR}.settab('{i}');""";
-                    var closetab = $@"onclick=""{template_FR}.closetab('{i}');""";
+                    var settab = i == CurrentTabIndex ? "" : CreateOnClickEvent(ScriptName, "settab", i.ToString());
+                    var closetab = CreateOnClickEvent(ScriptName, "closetab", i.ToString());
 
-                    sb.Append($@"<div class=""{template_FR}-tab {active}"">");
-                    sb.Append($@"<a {settab} class=""{template_FR}-tab-title"">{GetTabName(i)}</a>");
+                    sb.Append($@"<div class=""fr-tab {active}"">");
+                    sb.Append($@"<a {settab} class=""fr-tab-title"">{GetTabName(i)}</a>");
 
                     if (tab.Closeable)
-                        sb.Append($@"<a {closetab} class=""{template_FR}-tab-close"" title=""Close"">
+                        sb.Append($@"<a {closetab} class=""fr-tab-close"" title=""Close"">
                                         {GetResource("close.svg")}
                                      </a>");
 

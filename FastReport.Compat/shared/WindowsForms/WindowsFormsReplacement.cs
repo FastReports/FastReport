@@ -1386,12 +1386,13 @@ namespace System.Windows.Forms
         public SelectionRange SelectionRange
         {
             get => new SelectionRange(SelectionStart, SelectionEnd);
-            set  
-            { 
+            set
+            {
                 SelectionStart = value.Start;
-                SelectionEnd = value.End; 
+                SelectionEnd = value.End;
             }
         }
+
         public DateTime SelectionStart = DateTime.Now;                                      //
     }
 

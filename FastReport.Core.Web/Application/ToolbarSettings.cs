@@ -178,21 +178,21 @@ namespace FastReport.Web
             {
                 if (Sticky)
                 {
-                    string tags = "position: sticky; position: -webkit-sticky; ";
+                    string tags = "--sticky-toolbar-position: sticky;  --sticky-toolbar-position-webkit: -webkit-sticky; ";
                     if(TopOrBottom == -1)
                     {
                         if (Position == Positions.Left || Position == Positions.Right) 
                         {
                             if (ContentPosition == ContentPositions.Right)
-                                tags += "bottom: 10px; left: 10px; right: 10px;";
+                                tags += "--sticky-toolbar-bottom: 10px; --sticky-toolbar-left: 10px; --sticky-toolbar-right: 10px;";
                             else if (ContentPosition == ContentPositions.Center)
-                                tags += "top: 10px; bottom: 10px; left: 10px; right: 10px;";
+                                tags += " --sticky-toolbar-top: 10px; --sticky-toolbar-bottom: 10px; --sticky-toolbar-left: 10px; --sticky-toolbar-right: 10px;";
                         }
                         else
-                            tags += "top: 10px; left: 10px; right: 10px;";
+                            tags += " --sticky-toolbar-top: 10px; --sticky-toolbar-left: 10px; --sticky-toolbar-right: 10px;";
                     }
                     else
-                        tags += "bottom: 10px; left: 10px; right: 10px;";
+                        tags += "--sticky-toolbar-bottom: 10px; --sticky-toolbar-left: 10px; --sticky-toolbar-right: 10px;";
                     return tags;
                 }
                 else
@@ -208,21 +208,21 @@ namespace FastReport.Web
                 {
                     int paddingVertical = Height + 10;
                     float paddingHorizontal = Height * 1.55f + 10;
-                    string tags = "position: sticky; position: -webkit-sticky; ";
+                    string tags = "--sticky-toolbar-tabs-position: sticky; --sticky-toolbar-tabs-position-webkit: -webkit-sticky; ";
                     if (TopOrBottom == -1)
                     {
                         if (Position == Positions.Left || Position == Positions.Right)
                         {
                             if (ContentPosition == ContentPositions.Right)
-                                tags += $@"bottom: {paddingVertical}px; left: {paddingHorizontal}px; right: {paddingHorizontal}px;";
+                                tags += $@"--sticky-toolbar-tabs-bottom: {paddingVertical}px; --sticky-toolbar-tabs-left: {paddingHorizontal}px; --sticky-toolbar-tabs-right: {paddingHorizontal}px;";
                             else if (ContentPosition == ContentPositions.Center)
-                                tags += $@"top: {paddingVertical}px; bottom: {paddingVertical}px; left: {paddingHorizontal}px; right: {paddingHorizontal}px;";
+                                tags += $@" --sticky-toolbar-tabs-top: {paddingVertical}px; --sticky-toolbar-tabs-bottom: {paddingVertical}px; --sticky-toolbar-tabs-left: {paddingHorizontal}px; --sticky-toolbar-tabs-right: {paddingHorizontal}px;";
                         }
                         else
-                            tags += $@"top: {paddingVertical}px; left: 10px; right: 10px;";
+                            tags += $@" --sticky-toolbar-tabs-top: {paddingVertical}px; --sticky-toolbar-tabs-left: 10px; --sticky-toolbar-tabs-right: 10px;";
                     }
                     else
-                        tags += $@"bottom: {paddingVertical}px; left: 10px; right: 10px;";
+                        tags += $@"--sticky-toolbar-tabs-bottom: {paddingVertical}px; --sticky-toolbar-tabs-left: 10px; --sticky-toolbar-tabs-right: 10px;";
                     return tags;
                 }
                 else
@@ -230,7 +230,7 @@ namespace FastReport.Web
             }
         }
 
-        internal string ModalContainerPosition => Sticky ? "position: fixed;" : "";
+        internal string ModalContainerPosition => Sticky ? "fixed;" : "static";
 
         internal string DropDownListPosition => Position == Positions.Bottom ? "bottom: 100%" : "";
 
@@ -376,13 +376,13 @@ namespace FastReport.Web
                 switch (Position)
                 {
                     case Positions.Left:
-                        return "left:" + Height + "px;" + "text-align:left;" + "top:8px;";
+                        return "--toolbar-dropdownmenu-position-left:" + Height + "px;" + " --toolbar-dropdownmenu-text-align:left;" + "--toolbar-dropdownmenu-position-top:8px;";
                     case Positions.Right:
-                        return "right:" + Height + "px;" + "text-align:right;" + "top:8px;";
+                        return "--toolbar-dropdownmenu-position-right:" + Height + "px;" + " --toolbar-dropdownmenu-text-align:right;" + "--toolbar-dropdownmenu-position-top:8px;";
                     case Positions.Bottom:
-                        return "bottom:" + Height + "px;";
+                        return "--toolbar-dropdownmenu-position-bottom:" + Height + "px;";
                     default:
-                        return "top:" + Height + "px;";
+                        return $@"--toolbar-dropdownmenu-position-top: {Height}px;";
                 }
             }
         }
@@ -393,13 +393,13 @@ namespace FastReport.Web
                 switch (Position)
                 {
                     case Positions.Left:
-                        return "179px";
+                        return "--toolbar-tab-position: 179px;";
                     case Positions.Right:
-                        return "179px";
+                        return "--toolbar-tab-position: 179px;";
                     case Positions.Bottom:
-                        return "order:1;";
+                        return "--toolbar-tab-order:1;";
                     default:
-                        return "auto";
+                        return "--toolbar-tab-position: auto;";
                 }
             }
         }

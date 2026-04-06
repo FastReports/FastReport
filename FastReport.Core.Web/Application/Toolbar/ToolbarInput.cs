@@ -39,7 +39,7 @@ namespace FastReport.Web.Toolbar
                 : $"{template_FR}.customMethodInvoke('{ID}', this.value)";
 
             return
-                $@"<div class=""fr-toolbar-item fr-toolbar-notbutton {template_FR}-toolbar-item {template_FR}-toolbar-notbutton {ElementClasses}"" style = ""{ElementCustomStyle}"">
+                $@"<div class=""fr-toolbar-item fr-toolbar-notbutton fr-toolbar-item fr-toolbar-notbutton {ElementClasses}"" style = ""{ElementCustomStyle}"">
                         <input style=""{InputCustomStyle}"" type=""{InputType}"" value=""{InputDefaultValue}"" title=""{Title}"" onchange=""{action}"">
                       </div>";
         }

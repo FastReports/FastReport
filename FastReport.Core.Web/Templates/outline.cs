@@ -22,16 +22,13 @@ namespace FastReport.Web
             BuildOutline(outline, Report.PreparedPages.OutlineXml, true);
 
             return $@"
-<div class=""{template_FR}-outline"">
-    <div class=""{template_FR}-outline-inner"">
+<div class=""fr-outline"">
+    <div class=""fr-outline-inner"">
         {outline}
     </div>
 </div>
 
-<script>
-    (function(){{{ResourceLoader.GetContent("split.min.js")}}}).call({template_FR});
-    {template_FR}.outline();
-</script>
+<script src=""/_content/FastReport.Web/js/split.min.js""></script>
 ";
         }
 
@@ -49,29 +46,29 @@ namespace FastReport.Web
                 var (text, page, offset) = ReadOutlineNode(node);
                 var nodeId = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{ID}{page}{offset}{sb.Length}{GetCurrentTabName()}"));
 
-                sb.Append($@"<div class=""{template_FR}-outline-node"">");
-                
+                sb.Append($@"<div class=""fr-outline-node"">");
+
                 string caret;
                 if (hasChildren)
                 {
-                    caret = $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-open-node"" src=""data:image/svg+xml;base64,{GerResourceBase64("caret-right.svg")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineOpenNode(this);"" {styleShow}>";
-                    caret += $@"<img class=""{template_FR}-outline-caret {template_FR}-js-outline-close-node"" src=""data:image/svg+xml;base64,{GerResourceBase64("caret-down.svg")}"" data-fr-outline-node-id=""{nodeId}"" onclick=""{template_FR}.outlineCloseNode(this);"" {styleHide}>";
+                    caret = $@"<img class=""fr-outline-caret fr-js-outline-open-node"" src=""data:image/svg+xml;base64,{GerResourceBase64("caret-right.svg")}"" data-fr-outline-node-id=""{nodeId}"" {CreateOnClickEvent(ScriptName, "outlineOpenNode", "this")} {styleShow}>";
+                    caret += $@"<img class=""fr-outline-caret fr-js-outline-close-node"" src=""data:image/svg+xml;base64,{GerResourceBase64("caret-down.svg")}"" data-fr-outline-node-id=""{nodeId}"" {CreateOnClickEvent(ScriptName, "outlineCloseNode", "this")} {styleHide}>";
                 }
                 else
                 {
-                    caret = $@"<div class=""{template_FR}-outline-caret-blank""></div>";
+                    caret = $@"<div class=""fr-outline-caret-blank""></div>";
                 }
 
-                sb.Append($@"<div class=""{template_FR}-outline-text"">");
+                sb.Append($@"<div class=""fr-outline-text"">");
                 sb.Append(caret);
-                sb.Append($@"<img class=""{template_FR}-outline-file"" src=""data:image/svg+xml;base64,{GerResourceBase64("file.svg")}"">");
-                sb.Append($@"<a onclick=""{template_FR}.outlineGoto({page + 1}, {offset.ToString().Replace(',', '.')});"">{HttpUtility.HtmlEncode(text)}</a>");
+                sb.Append($@"<img class=""fr-outline-file"" src=""data:image/svg+xml;base64,{GerResourceBase64("file.svg")}"">");
+                sb.Append($@"<a  {CreateOnClickEvent(ScriptName, "outlineGoto", (page + 1).ToString(), offset.ToString().Replace(',', '.'), SinglePage.ToString().ToLower())}>{HttpUtility.HtmlEncode(text)}</a>");
                 sb.Append($@"</div>");
 
                 if (hasChildren)
                 {
                     sb.Append($@"<div style=""width:100%""></div>"); // line break
-                    sb.Append($@"<div class=""{template_FR}-outline-children"" {styleHide}>");
+                    sb.Append($@"<div class=""fr-outline-children"" {styleHide}>");
                     BuildOutline(sb, node, false);
                     sb.Append("</div>");
                 }
