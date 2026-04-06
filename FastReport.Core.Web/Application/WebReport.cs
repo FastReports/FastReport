@@ -219,6 +219,51 @@ namespace FastReport.Web
             }
         }
 
+        internal string GetStyleVars()
+        {
+            return $@"
+            --wbreport-width: {(Width.IsNullOrWhiteSpace() ? "auto" : Width)};
+            --wbreport-height: {(Height.IsNullOrWhiteSpace() ? "auto" : Height)};
+            --wbreport-inline-style: {InlineStyle};
+            --toolbar-vertical-pos: {Toolbar.Vertical};
+            --toolbar-content-pos: {Toolbar.Content};
+            --multi-page-border: {(EnableMultiPagePreview && PageBorderVisible ? "0px 2px 4px rgba(0, 0, 0, 0.25)" : "none")};
+            --multi-page-margin: {(EnableMultiPagePreview ? "10px" : "")};
+            --page-border: {(!EnableMultiPagePreview || !SinglePage ? "0px 2px 4px rgba(0, 0, 0, 0.25)" : "none")};
+            --user-font: {Toolbar.UserFontSettings};
+            --toolbar-color: {ColorTranslator.ToHtml(Toolbar.Color)};
+            --toolbar-direction: {Toolbar.RowOrColumn};
+            --toolbar-position: {Toolbar.TopOrBottom} ;
+            --toolbar-content-align: {Toolbar.Content};
+            --toolbar-roundness: {Toolbar.ToolbarRoundness}px;
+            --toolbar-height: {Toolbar.Height}px;
+            --toolbar-icon-color: {Toolbar.ColorIcon};
+            --searchform-margin-left: {Toolbar.SearchFormLeft};
+            --searchform-margin-top: {Toolbar.SearchFormTop};
+            --search-highlight-color: {ColorTranslator.ToHtml(Toolbar.SearchHighlight)};
+            --toolbar-dropdownmenu-color: {ColorTranslator.ToHtml(Toolbar.DropDownMenuColor)};
+            --toolbar-dropdownmenu-text-color: {ColorTranslator.ToHtml(Toolbar.DropDownMenuTextColor)};
+            --toolbar-dropdownlist-border: {Toolbar.DropDownListBorder};
+            --modal-container-position: {Toolbar.ModalContainerPosition};
+            --toolbar-user-font-style: {Toolbar.Exports.UserFontSettingsStyle};
+            --toolbar-user-font-family: {Toolbar.Exports.UserFontSettingsFamily};
+            --exports-button-color: {ColorTranslator.ToHtml(Toolbar.Exports.Color)};
+            --select-arrow-icon: #ffffff url(../Resources/select-arrow.svg) no-repeat;
+            --exports-font-color: {ColorTranslator.ToHtml(Toolbar.Exports.FontColor)};
+            --toolbar-narrow: {Toolbar.ToolbarNarrow};
+            --button-active-icon: url(../Resources/button-active.svg) no-repeat;
+            --report-max-width: {ReportMaxWidth}px;
+            --transparency-icon: {Toolbar.TransparencyIcon};
+            --toolbar-height: {Toolbar.VerticalToolbarHeight};
+            {Toolbar.TabsPositionSettings}
+            {Toolbar.StickyToolbarTabsTags}
+            {Toolbar.Exports.FixedContainerPosition}
+            {Toolbar.Exports.FixedContainerTags}
+            {Toolbar.StickyToolbarTags}
+            {Toolbar.DropDownMenuPosition}
+            ";
+        }
+
         #endregion
 
         public WebReport()

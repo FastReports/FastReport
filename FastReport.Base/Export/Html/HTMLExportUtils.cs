@@ -114,6 +114,13 @@ namespace FastReport.Export.Html
             sb.Clear();
         }
 
+        private string ClickEvent(string func, string parametrs)
+        {
+            if (DisableInlineScript)
+                return OnClickTemplate.Replace("{0}", func).Replace("{1}", parametrs);
+            return  $"onclick=\"{String.Format(OnClickTemplate, ReportID, func, parametrs)}\"";
+        }
+
         private void WriteMHTHeader(Stream Stream, string FileName)
         {
             FastString sb = new FastString(256);

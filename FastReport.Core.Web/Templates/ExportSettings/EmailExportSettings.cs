@@ -15,14 +15,14 @@ namespace FastReport.Web
 
             return $@"
 <div class=""modalcontainer modalcontainer--3"" data-target=""email"">
-    <div class=""fr-webreport-popup-content-export-parameters"">
-        <div class=""fr-webreport-popup-content-title"">
+    <div class=""fr-popup-content-export-parameters"">
+        <div class=""fr-popup-content-title"">
             {localizationEmail.Title}
         </div>
     </div>        
 
 <div class=""fr-email-export-form"">
-    <div class=""fr-webreport-popup-content-export-parameters"">
+    <div class=""fr-popup-content-export-parameters"">
         <label style=""margin-bottom: 15px;"">{localizationEmail.Email}</label>
 
         <div class=""fr-email-export-field"">
@@ -77,58 +77,13 @@ namespace FastReport.Web
         </div>
     </div>
 </div>
-
-    <div class=""fr-webreport-popup-content-buttons"">
-        <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
-        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""EMAILExport()"" id=""okButton"">OK</button>
+ {(false ? @"<script type=""module"" src=""./_content/FastReport.Web/js/ExportScripts/email-export.js""></script>" : "")}
+    <div class=""fr-popup-content-buttons"">
+        <button class=""fr-popup-content-btn-submit fr-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
+        <button class=""fr-popup-content-btn-submit"" {CreateOnClickEvent("frActions", "EMAILExport", ScriptName, localizationEmail.SuccessMessage, localizationEmail.FailureMessage)} id=""okButton"">OK</button>
     </div>
-</div>
-
-<script>
-{template_modalcontainerscript}
-//EMAILEXPORT//
-var EmailExportInputs;
-var RecieverAddress;
-var Subject;
-var Message;
-var SenderAddress;
-var Host;
-
-function OnPageSelectorClickEmail() {{
-    {template_pscustom}
-}}
-
-function EMAILExport() {{
-    var url = `/_fr/preview.sendEmail?reportId={ID}`;
-
-    var formData = new FormData();
-    formData.append(""Address"", document.getElementById(""Email"").value);
-    formData.append(""Subject"", document.getElementById(""Subject"").value);
-    formData.append(""MessageBody"", document.getElementById(""Message"").value);
-    formData.append(""ExportFormat"", document.getElementById(""ExportFormat"").value);
-    formData.append(""NameAttachmentFile"", document.getElementById(""NameAttachmentFile"").value);
-
-    fetch(url, {{
-        method: 'POST',
-        body: formData
-    }})
-    .then(response => {{
-        if (response.ok) {{
-            {template_FR}.showPopup(`{localizationEmail.SuccessMessage}`, true);
-        }} else {{
-            {template_FR}.showPopup(`{localizationEmail.FailureMessage}`, false);
-        }}
-    }})
-    .catch(error => {{
-        {template_FR}.showPopup(`{localizationEmail.FailureMessage}`, false);
-    }});
-}}
-
-</script>";
-
+</div>";
         }
-
     }
-
 }
 #endif

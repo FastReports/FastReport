@@ -93,9 +93,7 @@ namespace FastReport.Export.Html
                         obj.AbsLeft.ToString("#0"),
                         obj.AbsTop.ToString("#0"));
 
-                    Page.Append(" onclick=\"")
-                        .AppendFormat(OnClickTemplate, ReportID, onclick, eventParam)
-                        .Append("\"");
+                    Page.Append(" " + ClickEvent(onclick, eventParam));
                 }
 
                 Page.Append(">");
@@ -148,8 +146,8 @@ namespace FastReport.Export.Html
                         EncodeURL(obj.Name), // object name for security reasons
                         EncodeURL(obj.Hyperlink.ReportParameter),
                         EncodeURL(obj.Hyperlink.Value));
-                    string onClick = String.Format(OnClickTemplate, ReportID, "detailed_report", url);
-                    href = String.Format("<a {0} onclick=\"{1}\">", hrefStyle, onClick);
+                    string onClick = ClickEvent("detailed_report", url);
+                    href = String.Format("<a {0} {1}>", hrefStyle, onClick);
                 }
                 else if (obj.Hyperlink.Kind == HyperlinkKind.DetailPage)
                 {
@@ -157,8 +155,8 @@ namespace FastReport.Export.Html
                         EncodeURL(obj.Name),
                         EncodeURL(obj.Hyperlink.ReportParameter),
                         EncodeURL(obj.Hyperlink.Value));
-                    string onClick = String.Format(OnClickTemplate, ReportID, "detailed_page", url);
-                    href = String.Format("<a {0} onclick=\"{1}\">", hrefStyle, onClick);
+                    string onClick = ClickEvent("detailed_page", url);
+                    href = String.Format("<a {0} {1}>", hrefStyle, onClick);
                 }
                 else if (SinglePage)
                 {
@@ -171,12 +169,12 @@ namespace FastReport.Export.Html
                 {
                     string onClick = String.Empty;
                     if (obj.Hyperlink.Kind == HyperlinkKind.Bookmark)
-                        onClick = String.Format(OnClickTemplate, ReportID, "bookmark", url);
+                        onClick = ClickEvent("bookmark", url);
                     else if (obj.Hyperlink.Kind == HyperlinkKind.PageNumber)
-                        onClick = String.Format(OnClickTemplate, ReportID, "goto", url);
+                        onClick = ClickEvent("goto", url);
 
                     if (onClick != String.Empty)
-                        href = String.Format("<a {0} onclick=\"{1}\">", hrefStyle, onClick);
+                        href = String.Format("<a {0} {1}>", hrefStyle, onClick);
                 }
             }
             return href;

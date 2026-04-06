@@ -8,23 +8,18 @@ namespace FastReport.Web
         {
             if (!renderBody)
                 return $@"
-<div class=""{template_FR}-body"" style=""min-height:250px;min-width:250px;"">
-    <script>
-        setTimeout(function () {{
-            {template_FR}.load();
-        }}, 100);
-    </script>
-</div>
-";
-
+<div class=""fr-report-body"">
+    <script type=""module"" class=""webreport-script"" data-config='{GetScriptProps()}' src=""/_content/FastReport.Web/js/webreport-script.bundle.min.js"" defer></script>
+</div>";
+                    
             return $@"
-<div class=""{template_FR}-body"">
-
+<div class=""fr-report-body"">
     {template_outline()}
 
-    <div class=""{template_FR}-report"">
+    <div class=""fr-report"">
         {ReportBody()}
     </div>
+ <script type=""module"" class=""webreport-script"" data-config='{GetScriptProps()}' src=""/_content/FastReport.Web/js/webreport-script.bundle.min.js"" defer></script>   
 ";
         }
     }

@@ -29,9 +29,9 @@ namespace FastReport.Web.Toolbar
             var sb = new StringBuilder();
 
             sb.Append(
-                $@"<div class=""fr-toolbar-item {template_FR}-toolbar-item {ElementClasses}"" style = ""{ElementCustomStyle}"">
-                            <img src=""{Image.RenderedImage}"" title=""{Title}"" class=""{template_FR}-toolbar-image"">
-                         <div class=""fr-toolbar-dropdown-content {template_FR}-toolbar-dropdown-content"">");
+                $@"<div class=""fr-toolbar-item fr-toolbar-item {ElementClasses}"" style = ""{ElementCustomStyle}"">
+                            <img src=""{Image.RenderedImage}"" title=""{Title}"" class=""fr-toolbar-image"">
+                         <div class=""fr-toolbar-dropdown-content fr-toolbar-dropdown-content"">");
 
             foreach (var item in Items.Where(item => item.Enabled))
                 sb.Append(item.Render(template_FR));

@@ -8,8 +8,8 @@ using FastReport.Web.Application.Localizations;
 
 namespace FastReport.Web
 {
-     partial class WebReport
-     {
+    partial class WebReport
+    {
 
         internal string template_PptxExportSettings()
         {
@@ -18,61 +18,41 @@ namespace FastReport.Web
 
             return $@"
 <div class=""modalcontainer modalcontainer--s"" data-target=""pptx"">
-	 <div class=""fr-webreport-popup-content-export-parameters"">
-        <div class=""fr-webreport-popup-content-title"">
+	 <div class=""fr-popup-content-export-parameters"">
+        <div class=""fr-popup-content-title"">
             {localizationPptx.Title}
         </div>
-        {(Report.PreparedPages.Count != 1 ? $@"<label class=""fr-webreport-popup-content-export-parameters-page-range-title"">{localizationPageSelector.PageRange}</label>
-        <div class=""fr-webreport-popup-content-export-parameters-row"">
-            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button activeButton"" name=""OnAllClick"" onclick=""OnAllClick()"">
+        {(Report.PreparedPages.Count != 1 ? $@"<label class=""fr-popup-content-export-parameters-page-range-title"">{localizationPageSelector.PageRange}</label>
+        <div class=""fr-popup-content-export-parameters-row"">
+            <button type=""button"" class=""fr-popup-content-export-parameters-button activeButton"" name=""OnAllClick"" {CreateOnClickEvent("frActions", "OnAllClick")}>
                 {localizationPageSelector.All}
             </button>
         </div>
-        <div class=""fr-webreport-popup-content-export-parameters-row"">
-            <button type=""button"" class=""fr-webreport-popup-content-export-parameters-button"" name=""OnFirstClick"" onclick=""OnFirstClick()"">
+        <div class=""fr-popup-content-export-parameters-row"">
+            <button type=""button"" class=""fr-popup-content-export-parameters-button"" name=""OnFirstClick"" {CreateOnClickEvent("frActions", "OnFirstClick")}>
                 {localizationPageSelector.First}
             </button>
-            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" id=""PageSelector"" onchange=""OnInputClickPPTX()""type=""text"" class=""fr-webreport-popup-content-export-parameters-input""pattern=""[0-9,-\s]""placeholder=""2 or 10-20""value="""" > 
+            <input name =""PageSelectorInput"" style=""margin-top: 2px;"" id=""PageSelector"" {CreateEvent(JSEvents.CHANGE, "frActions", "OnPageSelectorChange")} type=""text"" class=""fr-popup-content-export-parameters-input"" pattern=""\d+(\s*-\s*\d+)?"" placeholder=""2 or 10-20""value="""" > 
 </div>" : "")}
     </div>
-    <div class=""fr-webreport-popup-content-export-parameters"">
-        <div class=""fr-webreport-popup-content-export-parameters-col"">
+    <div class=""fr-popup-content-export-parameters"">
+        <div class=""fr-popup-content-export-parameters-col"">
             <label style=""font-size:12px;"">{localizationPptx.Pictures}</label>
-            <div class=""fr-webreport-popup-content-export-parameters-col"">
-            <select class=""custom-select"" onchange=""PptxImageFormatFunc(this)"">
+            <div class=""fr-popup-content-export-parameters-col"">
+            <select class=""custom-select"" {CreateEvent(JSEvents.CHANGE, "frActions", "PptxImageFormatFunc", "this")}>
                 <option value=""Png"">PNG</option>
                 <option value=""Jpeg"" selected>JPEG</option>
             </select>
             </div>
         </div>
     </div>
-    <div class=""fr-webreport-popup-content-buttons"">
-        <button class=""fr-webreport-popup-content-btn-submit fr-webreport-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
-        <button class=""fr-webreport-popup-content-btn-submit"" onclick=""PPTXExport()"" id=""okButton"">OK</button>
+ {(false ? @"<script type=""module"" src=""./_content/FastReport.Web/js/ExportScripts/pptx-export.js""></script>" : "")}
+    <div class=""fr-popup-content-buttons"">
+        <button class=""fr-popup-content-btn-submit fr-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
+        <button class=""fr-popup-content-btn-submit"" {CreateOnClickEvent("frActions", "PPTXExport")} id=""okButton"">OK</button>
     </div>
   </div
-</div>
-<script>
-   {template_modalcontainerscript}
-//PPTXEXPORT//
-var PptxImageFormat = '&ImageFormat=Jpeg';
-
-function OnInputClickPPTX() {{
-   {template_pscustom}
-}}
-function PptxImageFormatFunc(select) {{
-    const PptxImageFormatChage = select.querySelector(`option[value='${{select.value}}']`)
-    PptxImageFormat = '&ImageFormat=' + PptxImageFormatChage.value;
-}}
-
-function PPTXExport() {{
-    {validation}
-    window.location.href = PptxExport.href + PptxImageFormat //+PageSelector;
-}}
-</script>"; 
-
+</div>";
         }
-       
     }
-
 }

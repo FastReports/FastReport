@@ -39,7 +39,6 @@ namespace FastReport.Web
 
         internal static IResourceLoader ResourceLoader { get; set; }
 
-
         public HtmlString RenderSync()
         {
             return Task.Run(() => Render()).Result;

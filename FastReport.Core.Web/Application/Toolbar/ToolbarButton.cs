@@ -25,8 +25,8 @@ namespace FastReport.Web.Toolbar
                 ? scriptButton.Script
                 : $"{template_FR}.customMethodInvoke('{ID}', this.value)";
 
-            return $@"<div class=""fr-toolbar-item fr-toolbar-pointer {template_FR}-toolbar-item {template_FR}-pointer {ElementClasses}"" style=""{ElementCustomStyle}"" onclick=""{action}"">
-                    <img src=""{Image.RenderedImage}"" title=""{Title}"" class=""{template_FR}-toolbar-image"">
+            return $@"<div class=""fr-toolbar-item fr-toolbar-pointer fr-toolbar-item fr-pointer {ElementClasses}"" style=""{ElementCustomStyle}"" onclick=""{action}"">
+                    <img src=""{Image.RenderedImage}"" title=""{Title}"" class=""fr-toolbar-image"">
                     </div>";
         }
     }

@@ -918,6 +918,44 @@ namespace FastReport.Functions
         }
 
         /// <summary>
+        /// Converts a currency value to a Chinese financial (大写) string representation.
+        /// </summary>
+        /// <param name="value">The currency value to convert.</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsCn(object value)
+        {
+            return ToWordsCn(value, "CNY");
+        }
+
+        /// <summary>
+        /// Converts a currency value to a Chinese financial (大写) string representation, using the specified currency.
+        /// </summary>
+        /// <param name="value">The currency value to convert.</param>
+        /// <param name="currencyName">The 3-digit ISO name of the currency, for example "EUR".</param>
+        /// <returns>The string representation of the specified value.</returns>
+        public static string ToWordsCn(object value, string currencyName)
+        {
+            var result = new NumToWordsCn().ConvertCurrency(Convert.ToDecimal(value), currencyName, true);
+
+            // "整" means "without pennies/cents", "whole amount" and is added at the end of the amount when the fractional part = 0
+            if (!result.EndsWith("整"))
+            {
+                // In financial practices of China when the amount is < 1, the currency is not specified with "零" (zero)
+                result = result.Replace("零元", "") // CNY
+                               .Replace("零美元", "") // USD
+                               .Replace("零欧元", ""); // EUR
+            }
+
+            // The base class adds a space after the minus sign (负), but spaces are not used in the Chinese notation
+            if (result.StartsWith("负 "))
+            {
+                result = $"负{result.Substring(2)}";
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Converts a currency value to a russian string representation of that value.
         /// </summary>
         /// <param name="value">The currency value to convert.</param>
@@ -1813,6 +1851,8 @@ namespace FastReport.Functions
             RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string), typeof(bool) }), "Conversion,ToWords");
             RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string), typeof(string) }), "Conversion,ToWords");
             RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWords", new Type[] { typeof(object), typeof(string), typeof(string), typeof(bool) }), "Conversion,ToWords");
+            RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWordsCn", new Type[] { typeof(object) }), "Conversion,ToWordsCn");
+            RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWordsCn", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsCn");
             RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object) }), "Conversion,ToWordsIn");
             RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object), typeof(bool) }), "Conversion,ToWordsIn");
             RegisteredObjects.InternalAddFunction(myConv.GetMethod("ToWordsIn", new Type[] { typeof(object), typeof(string) }), "Conversion,ToWordsIn");

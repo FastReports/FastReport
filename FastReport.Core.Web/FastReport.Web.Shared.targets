@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Target Name="BuildFrontendDev" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Debug'">
+		<Exec Command="npm install"  WorkingDirectory="../FastReport.Web.Base" />
+		<Exec Command='npx postcss wwwroot/styles.css -o "$(ProjectDir)\wwwroot\css\styles.min.css" --environment development'
+			  WorkingDirectory="../FastReport.Web.Base"/>
+		<Exec Command='npx rollup -c --environment development --output-path "$(ProjectDir)"'
+			  WorkingDirectory="../FastReport.Web.Base"
+			  EnvironmentVariables="PROJECT_DIR=$(ProjectDir)"/>
+	</Target>
+	<Target Name="BuildFrontendProd" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' != 'Debug' and !$(DefineConstants.Contains('OPENSOURCE'))">
+		<Exec Command="npm install"  WorkingDirectory="../FastReport.Web.Base" Condition="!Exists('node_modules')" />
+		<Exec Command='npx postcss wwwroot/styles.css -o "$(ProjectDir)\wwwroot\css\styles.min.css" --environment prod'
+			  WorkingDirectory="../FastReport.Web.Base"/>
+		<Exec Command='npx rollup -c --environment prod --output-path "$(ProjectDir)"'
+		  WorkingDirectory="../FastReport.Web.Base"
+		  EnvironmentVariables="PROJECT_DIR=$(ProjectDir)"/>
+	</Target>
+  <Target Name="BuildFrontendOpenSource" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' != 'Debug' and $(DefineConstants.Contains('OPENSOURCE'))">
+    <Exec Command="npm install"  WorkingDirectory="../FastReport.Web.Base" Condition="!Exists('node_modules')" />
+    <Exec Command='npx postcss wwwroot/styles.css -o "$(ProjectDir)\wwwroot\css\styles.min.css" --environment prod'
+			  WorkingDirectory="../FastReport.Web.Base"/>
+    <Exec Command='npx rollup -c --environment opensource --output-path "$(ProjectDir)"'
+		  WorkingDirectory="../FastReport.Web.Base"
+		  EnvironmentVariables="PROJECT_DIR=$(ProjectDir)"/>
+  </Target>
+</Project>
