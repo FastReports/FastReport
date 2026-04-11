@@ -5,10 +5,17 @@ Author: [Emrah KONDUR](https://github.com/ekondur)
 var builder = new ReportBuilder();
 
 var report = builder.Report(list)
+.Landscape()
+.PaperSize(210, 297)
+.Margins(15, 20, 15, 20)
 .ReportTitle(title => title
     .Text("Person Report - [MonthName(Month([Date]))]")
     .HorzAlign(HorzAlign.Center)
  )
+.PageHeader(header => header
+    .Text("Employee Directory")
+    .HorzAlign(HorzAlign.Center)
+)
 .GroupHeader(header => header
     .Condition(con => con.LastName)
     .SortOrder(SortOrder.Descending)
@@ -26,6 +33,13 @@ var report = builder.Report(list)
     data.Column(col => col.IsActive).Title("Active").Width(10);
     data.Column(col => col.Level).HorzAlign(HorzAlign.Center);
 })
+.PageFooter(footer => footer
+    .Text("Page [Page#] of [TotalPages#]")
+    .HorzAlign(HorzAlign.Right)
+)
+.ReportSummary(summary => summary
+    .Text("Report completed")
+)
 .Prepare();
 ```
 

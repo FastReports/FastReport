@@ -7,7 +7,7 @@ using System.Linq;
 namespace FastReport.ReportBuilder
 {
     /// <summary>
-    /// Get instance for report builder
+    /// Creates fluent report builders.
     /// </summary>
     public class ReportBuilder
     {
@@ -15,8 +15,8 @@ namespace FastReport.ReportBuilder
         /// Build a report
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="data">The records that will be registered as the report data source.</param>
+        /// <returns>A typed report builder for the supplied data.</returns>
         public ReportBuilder<T> Report<T>(IEnumerable<T> data) where T : class
         {
             return new ReportBuilder<T>(data);
@@ -24,16 +24,56 @@ namespace FastReport.ReportBuilder
     }
 
     /// <summary>
-    /// 
+    /// Provides extension methods that materialize configured report builders into FastReport reports.
     /// </summary>
     public static class ReportBuilderExtension
     {
+        private static void ConfigurePage(ReportPage page, ReportDefinition definition)
+        {
+            page.Landscape = definition.Landscape;
+            page.LeftMargin = definition.LeftMargin;
+            page.TopMargin = definition.TopMargin;
+            page.RightMargin = definition.RightMargin;
+            page.BottomMargin = definition.BottomMargin;
+
+            if (definition.PaperWidth.HasValue)
+            {
+                page.PaperWidth = definition.PaperWidth.Value;
+            }
+
+            if (definition.PaperHeight.HasValue)
+            {
+                page.PaperHeight = definition.PaperHeight.Value;
+            }
+        }
+
+        private static void ConfigureTextBand(BandBase band, TextBandDefinition definition, ReportDefinition reportDefinition, ReportPage page)
+        {
+            band.CreateUniqueName();
+            band.Height = Units.Centimeters * definition.Height;
+            band.Visible = definition.Visible;
+
+            float bandWidth = (page.PaperWidth - page.LeftMargin - page.RightMargin) / 10 * Units.Centimeters;
+
+            var textObject = new TextObject();
+            textObject.Parent = band;
+            textObject.CreateUniqueName();
+            textObject.Bounds = new RectangleF(0, 0, bandWidth, band.Height);
+            textObject.Font = definition.Font;
+            textObject.Text = definition.Text;
+            textObject.TextColor = definition.TextColor;
+            textObject.FillColor = definition.FillColor;
+            textObject.VertAlign = definition.VertAlign ?? reportDefinition.VertAlign;
+            textObject.HorzAlign = definition.HorzAlign ?? reportDefinition.HorzAlign;
+            textObject.Border.Lines = BorderLines.All;
+        }
+
         /// <summary>
         /// Prepare report when finished
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="reportBuilder"></param>
-        /// <returns></returns>
+        /// <param name="reportBuilder">The configured report builder instance.</param>
+        /// <returns>A prepared <see cref="Report"/> ready for previewing or exporting.</returns>
         public static Report Prepare<T>(this ReportBuilder<T> reportBuilder)
         {
             var report = new Report();
@@ -44,21 +84,46 @@ namespace FastReport.ReportBuilder
             ReportPage page = new ReportPage();
             report.Pages.Add(page);
             page.CreateUniqueName();
+            ConfigurePage(page, reportBuilder._report);
 
             page.ReportTitle = new ReportTitleBand();
-            page.ReportTitle.Height = Units.Centimeters * 1;
+            page.ReportTitle.Height = Units.Centimeters * reportBuilder._reportTitle.Height;
             page.ReportTitle.CreateUniqueName();
             page.ReportTitle.Visible = reportBuilder._reportTitle.Visible;
+
+            float titleBandWidth = (page.PaperWidth - page.LeftMargin - page.RightMargin) / 10 * Units.Centimeters;
 
             TextObject titleText = new TextObject();
             titleText.Parent = page.ReportTitle;
             titleText.CreateUniqueName();
-            titleText.Bounds = new RectangleF(Units.Centimeters * 5, 0, Units.Centimeters * 10, Units.Centimeters * 1);
+            titleText.Bounds = new RectangleF(0, 0, titleBandWidth, page.ReportTitle.Height);
             titleText.Font = reportBuilder._reportTitle.Font;
             titleText.Text = reportBuilder._reportTitle.Text;
             titleText.TextColor = reportBuilder._reportTitle.TextColor;
             titleText.FillColor = reportBuilder._reportTitle.FillColor;
-            titleText.HorzAlign = HorzAlign.Center;
+            titleText.VertAlign = reportBuilder._reportTitle.VertAlign ?? reportBuilder._report.VertAlign;
+            titleText.HorzAlign = reportBuilder._reportTitle.HorzAlign ?? reportBuilder._report.HorzAlign;
+
+            if (reportBuilder._pageHeader.Visible)
+            {
+                page.PageHeader = new PageHeaderBand();
+                page.PageHeader.Parent = page;
+                ConfigureTextBand(page.PageHeader, reportBuilder._pageHeader, reportBuilder._report, page);
+            }
+
+            if (reportBuilder._pageFooter.Visible)
+            {
+                page.PageFooter = new PageFooterBand();
+                page.PageFooter.Parent = page;
+                ConfigureTextBand(page.PageFooter, reportBuilder._pageFooter, reportBuilder._report, page);
+            }
+
+            if (reportBuilder._reportSummary.Visible)
+            {
+                page.ReportSummary = new ReportSummaryBand();
+                page.ReportSummary.Parent = page;
+                ConfigureTextBand(page.ReportSummary, reportBuilder._reportSummary, reportBuilder._report, page);
+            }
 
             DataBand dataBand = new DataBand();
             dataBand.Parent = page;
@@ -113,8 +178,8 @@ namespace FastReport.ReportBuilder
                     TextObject headerText = new TextObject();
                     headerText.CreateUniqueName();
                     headerText.Bounds = new RectangleF(leftCm, 0f * Units.Centimeters, cellWidth * Units.Centimeters * size, 0.1f * Units.Centimeters);
-                    headerText.VertAlign = reportBuilder._reportTitle.VertAlign ?? reportBuilder._report.VertAlign;
-                    headerText.HorzAlign = reportBuilder._reportTitle.HorzAlign ?? reportBuilder._report.HorzAlign;
+                    headerText.VertAlign = reportBuilder._report.VertAlign;
+                    headerText.HorzAlign = reportBuilder._report.HorzAlign;
                     headerText.Font = reportBuilder._dataHeader.Font;
                     headerText.TextColor = reportBuilder._dataHeader.TextColor;
                     headerText.FillColor = reportBuilder._dataHeader.FillColor;

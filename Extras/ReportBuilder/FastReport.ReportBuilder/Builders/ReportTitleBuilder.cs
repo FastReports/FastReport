@@ -1,124 +1,41 @@
-﻿using FastReport;
 using System.Drawing;
 
 namespace FastReport.ReportBuilder
 {
     /// <summary>
-    /// 
+    /// Configures the report title band.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class ReportTitleBuilder<T>
+    /// <typeparam name="T">The report row type.</typeparam>
+    public class ReportTitleBuilder<T> : TextBandBuilderBase<ReportTitleBuilder<T>, T>
     {
-        private readonly ReportBuilder<T> _report;
-
         /// <summary>
-        /// 
+        /// Initializes a report title builder.
         /// </summary>
-        /// <param name="report"></param>
+        /// <param name="report">The owning report builder.</param>
         public ReportTitleBuilder(ReportBuilder<T> report)
+            : base(report, report._reportTitle)
         {
-            _report = report;
         }
 
         /// <summary>
-        /// Report title text (or add an expression)
+        /// Sets the report title font family and size using the default bold title style.
         /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> Text(string text)
-        {
-            _report._reportTitle.Text = text;
-            _report._reportTitle.Visible = true;
-            return this;
-        }
-
-        /// <summary>
-        /// Set report title font family name, size, style
-        /// </summary>
-        /// <param name="familyName"></param>
-        /// <param name="emSize"></param>
-        /// <param name="style"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> Font(string familyName, float emSize, FontStyle style)
-        {
-            _report._reportTitle.Font = new Font(familyName, emSize, style);
-            return this;
-        }
-
-        /// <summary>
-        /// Set report title font family name, size
-        /// </summary>
-        /// <param name="familyName"></param>
-        /// <param name="emSize"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> Font(string familyName, float emSize)
+        /// <param name="familyName">The font family name.</param>
+        /// <param name="emSize">The font size in points.</param>
+        /// <returns>The current title builder.</returns>
+        public new ReportTitleBuilder<T> Font(string familyName, float emSize)
         {
             return Font(familyName, emSize, FontStyle.Regular | FontStyle.Bold);
         }
 
         /// <summary>
-        /// Set report title font family name
+        /// Sets the report title font family using the default bold title size and style.
         /// </summary>
-        /// <param name="familyName"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> Font(string familyName)
+        /// <param name="familyName">The font family name.</param>
+        /// <returns>The current title builder.</returns>
+        public new ReportTitleBuilder<T> Font(string familyName)
         {
             return Font(familyName, 14, FontStyle.Regular | FontStyle.Bold);
-        }
-
-        /// <summary>
-        /// Set report title visibility
-        /// </summary>
-        /// <param name="visible"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> Visible(bool visible)
-        {
-            _report._reportTitle.Visible = visible;
-            return this;
-        }
-
-        /// <summary>
-        /// Set report title text color
-        /// </summary>
-        /// <param name="color"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> TextColor(Color color)
-        {
-            _report._reportTitle.TextColor = color;
-            return this;
-        }
-
-        /// <summary>
-        /// Set report title background color
-        /// </summary>
-        /// <param name="color"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> FillColor(Color color)
-        {
-            _report._reportTitle.FillColor = color;
-            return this;
-        }
-
-        /// <summary>
-        /// Align report title content vertical top, bottom, center
-        /// </summary>
-        /// <param name="vertAlign"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> VertAlign(VertAlign vertAlign)
-        {
-            _report._reportTitle.VertAlign = vertAlign;
-            return this;
-        }
-
-        /// <summary>
-        /// Align report title content horizontal left, right, center, justify
-        /// </summary>
-        /// <param name="horzAlign"></param>
-        /// <returns></returns>
-        public ReportTitleBuilder<T> HorzAlign(HorzAlign horzAlign)
-        {
-            _report._reportTitle.HorzAlign = horzAlign;
-            return this;
         }
     }
 }

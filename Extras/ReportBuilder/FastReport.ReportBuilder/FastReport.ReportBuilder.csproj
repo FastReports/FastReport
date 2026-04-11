@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>Fast Reports Inc.</Company>
     <Authors>Emrah KONDUR</Authors>
@@ -26,8 +26,8 @@
   
   <Import Project="..\..\..\UsedPackages.version" />
   <ItemGroup>
-    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />   
+    <PackageReference Include="FastReport.OpenSource" Version="2025.2.12" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />   
   </ItemGroup>
 
   <ItemGroup>

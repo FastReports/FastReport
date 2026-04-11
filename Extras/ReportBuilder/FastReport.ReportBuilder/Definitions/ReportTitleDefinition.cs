@@ -1,15 +1,19 @@
-﻿using System.Drawing;
+using System.Drawing;
 
 namespace FastReport.ReportBuilder
 {
-    public class ReportTitleDefinition
+    /// <summary>
+    /// Stores presentation settings for the report title band.
+    /// </summary>
+    public class ReportTitleDefinition : TextBandDefinition
     {
-        public string Text { get; set; }
-        public Font Font { get; set; } = new Font("Times New Roman", 14, FontStyle.Bold | FontStyle.Regular);
-        public bool Visible { get; set; }
-        public Color TextColor { get; set; } = Color.Black;
-        public Color FillColor { get; set; }
-        public VertAlign? VertAlign { get; set; }
-        public HorzAlign? HorzAlign { get; set; }
+        /// <summary>
+        /// Initializes a new report title definition with title-specific defaults.
+        /// </summary>
+        public ReportTitleDefinition()
+        {
+            Font = new Font("Times New Roman", 14, FontStyle.Bold | FontStyle.Regular);
+            Height = 1.0f;
+        }
     }
 }
