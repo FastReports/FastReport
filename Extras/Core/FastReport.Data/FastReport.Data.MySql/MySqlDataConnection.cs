@@ -133,13 +133,13 @@ namespace FastReport.Data
             }
             return adapter;
         }
-        
+
         /// <inheritdoc/>
         public override Type GetParameterType()
         {
             return typeof(MySqlDbType);
         }
-        
+
         private static object VariantToClrType(Variant value, MySqlDbType type)
         {
             if (value.ToString() == "" && type != MySqlDbType.Null)
@@ -333,7 +333,7 @@ namespace FastReport.Data
                     {
                         Name = parameterName,
                         Direction = direction,
-                        DataType = (int)Enum.Parse(typeof(MySqlDbType), parameterType, true)
+                        DataType = (int)MapMySqlType(parameterType)
                     });
 
                 }
@@ -390,7 +390,7 @@ namespace FastReport.Data
                     {
                         Name = parameterName,
                         Direction = direction,
-                        DataType = (int)Enum.Parse(typeof(MySqlDbType), parameterType, true)
+                        DataType = (int)MapMySqlType(parameterType)
                     });
 
                 }
@@ -402,6 +402,33 @@ namespace FastReport.Data
             }
 
             return table;
+        }
+
+        private MySqlDbType MapMySqlType(string type)
+        {
+            MySqlDbType dbType;
+            if (Enum.TryParse(type, true, out dbType))
+                return dbType;
+
+            switch (type.ToLower())
+            {
+                case "tinyint":
+                    return MySqlDbType.Byte;
+                case "smallint":
+                    return MySqlDbType.Int16;
+                case "int":
+                case "integer":
+                    return MySqlDbType.Int32;
+                case "bigint":
+                    return MySqlDbType.Int64;
+                case "mediumint":
+                    return MySqlDbType.Int24;
+                case "numeric":
+                    return MySqlDbType.NewDecimal;
+                case "char":
+                    return MySqlDbType.String;
+            }
+            throw new Exception(string.Format("Unsupported procedure type: ", type));
         }
 
         public MySqlDataConnection() : base()

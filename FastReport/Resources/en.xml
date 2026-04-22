@@ -67,7 +67,8 @@
     <WrongCrystalReportsFile Text="Cannot load the file. File is invalid or not a Crystal Reports report."/>
     <InvalidBarcode1 Text="Barcode must start with '&amp;A;', '&amp;B;' or '&amp;C;' sequences"/>
     <InvalidBarcode2 Text="Invalid character in input code"/>
-    <ErrorInExpression Text="Error in expression"/>
+	<InvalidBarcodeGS1DatabarES Text="Invalid data for barcode generation"/>
+	<ErrorInExpression Text="Error in expression"/>
     <ErrorInHighlightCondition Text="Error in highlight condition"/>
     <FileNameEmpty Text="Please specify the correct file name."/>
     <SaveToAnotherFile Text="Would you like to save to another file?"/>
