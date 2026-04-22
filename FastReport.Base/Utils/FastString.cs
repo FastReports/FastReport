@@ -367,7 +367,7 @@ namespace FastReport.Utils
         /// Index of substring.
         /// </summary>
         /// <param name="value">Substring for search.</param>
-        /// <param name="startIndex">Sarting position for search.</param>
+        /// <param name="startIndex">Starting position for search.</param>
         /// <returns>Position of substring.</returns>
         public int IndexOf(string value, int startIndex)
         {
@@ -382,7 +382,7 @@ namespace FastReport.Utils
                     {
                         valueIndex++;
                         if (valueIndex == value.Length)
-                            return i;
+                            return i - value.Length + 1;
                     }
                     else
                         valueIndex = 0;

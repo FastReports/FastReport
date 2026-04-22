@@ -238,14 +238,20 @@ namespace FastReport.Web
             if (!detailed_page.IsNullOrWhiteSpace())
             {
                 string[] detailParams = WebUtility.UrlDecode(detailed_page).Split(',');
-                if (detailParams.Length == 3)
+                if (detailParams.Length >= 3)
                 {
                     if (!String.IsNullOrEmpty(detailParams[0]) &&
                         !String.IsNullOrEmpty(detailParams[1]) &&
                         !String.IsNullOrEmpty(detailParams[2])
                         )
                     {
-                        DoDetailedPage(detailParams[0], detailParams[1], detailParams[2]);
+                        string param = detailParams[2];
+                        for(int i = 3; i < detailParams.Length; i++)
+                        {
+                            param += "," + detailParams[i];
+                        }
+
+                        DoDetailedPage(detailParams[0], detailParams[1], param);
                     }
                 }
                 return;
@@ -387,6 +393,9 @@ namespace FastReport.Web
                     if (reportPage != null)
                     {
                         Data.Parameter param = currentReport.Parameters.FindByName(paramName);
+                        Data.Parameter param2 = new Data.Parameter();
+                        // save the initial value to eliminate side effects
+                        param2.AssignAll(param);
                         if (param != null && param.ChildObjects.Count > 0)
                         {
                             string[] paramValues = paramValue.Split(obj.Hyperlink.ValuesSeparator[0]);
@@ -396,6 +405,8 @@ namespace FastReport.Web
                                 foreach (Data.Parameter childParam in param.ChildObjects)
                                 {
                                     childParam.Value = paramValues[i++];
+                                    if (!string.IsNullOrEmpty(childParam.AsString))
+                                        childParam.Expression = "";
                                     if (i >= paramValues.Length)
                                         break;
                                 }
@@ -404,9 +415,10 @@ namespace FastReport.Web
                         else
                             currentReport.SetParameterValue(paramName, paramValue);
                         PreparedPages oldPreparedPages = currentReport.PreparedPages;
-                        PreparedPages pages = new PreparedPages(currentReport);
+                        PreparedPages pages = new PreparedPages(currentReport);                       
                         currentReport.SetPreparedPages(pages);
                         currentReport.PreparePage(reportPage, true);
+                        param.AssignAll(param2);
                         Report tabReport = new Report();
                         tabReport.SetPreparedPages(currentReport.PreparedPages);
                         Tabs.Add(new ReportTab()

@@ -67,6 +67,7 @@
     <WrongCrystalReportsFile Text="Невозможно прочитать файл. Файл поврежден или не является отчетом Crystal Reports."/>
     <InvalidBarcode1 Text="Код должен начинаться с последовательности '&amp;A;', '&amp;B;' или '&amp;C;'"/>
     <InvalidBarcode2 Text="Недопустимый символ в коде"/>
+	<InvalidBarcodeGS1DatabarES Text="Некорректные данные для генерации штрихкода"/>
     <ErrorInExpression Text="Ошибка в выражении"/>
     <ErrorInHighlightCondition Text="Ошибка в условном выделении"/>
     <FileNameEmpty Text="Пожалуйста, укажите имя файла."/>

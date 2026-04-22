@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Fast Reports Inc.</Company>
+    <Authors>Emrah KONDUR</Authors>
+    <Description>Building a FastReport without designer easy way!</Description>
+    <Copyright>Fast Reports Inc.</Copyright>
+    <PackageId>FastReport.ReportBuilder</PackageId>
+    <PackageIconUrl>https://www.fast-report.com/download/images/frlogo-big.png</PackageIconUrl>
+    <PackageProjectUrl>https://www.fast-report.com/en/product/fast-report-net</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageTags>reporting, builder, reports, fluent, helper</PackageTags>
+    <PackageReleaseNotes>Big Bang!</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>2021.1.0</Version>
+    <RepositoryUrl>https://github.com/FastReports/FastReport</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+  
+  <Import Project="..\..\..\UsedPackages.version" />
+  <ItemGroup>
+    <PackageReference Include="FastReport.OpenSource" Version="$(FROSVersion)" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />   
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
