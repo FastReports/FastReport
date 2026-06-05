@@ -43,8 +43,10 @@ namespace FastReport.Web
         public bool ShowLastButton { get; set; } = true;
         public bool ShowRefreshButton { get; set; } = true;
         public bool ShowZoomButton { get; set; } = true;
-        public bool ShowSearchButton { get; set; } = true;
 
+#if !OPENSOURCE
+        public bool ShowSearchButton { get; set; } = true;
+#endif
         /// <summary>
         /// Show Print menu
         /// </summary>

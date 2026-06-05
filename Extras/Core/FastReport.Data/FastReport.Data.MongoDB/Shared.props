@@ -11,16 +11,27 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-    <PackageReference Include="MongoDB.Bson" Version="[2.20.0,)" />
-    <PackageReference Include="MongoDB.Driver" Version="[2.20.0,)" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="[2.20.0,)" />
+  <ItemGroup Condition="'$(TargetFramework)'=='net6.0'">
+    <PackageReference Include="MongoDB.Bson" Version="3.5.2" />
+    <PackageReference Include="MongoDB.Driver" Version="3.5.2" />
   </ItemGroup>
 
-<ItemGroup Condition="'$(TargetFramework)' != 'net462'">
-  <PackageReference Include="MongoDB.Bson" Version="3.5.2" />
-  <PackageReference Include="MongoDB.Driver" Version="3.5.2" />
-</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net6.0-windows7.0'">
+    <PackageReference Include="MongoDB.Bson" Version="3.5.2" />
+    <PackageReference Include="MongoDB.Driver" Version="3.5.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net462'">
+    <PackageReference Include="MongoDB.Bson" Version="2.20.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.20.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net472'">
+    <PackageReference Include="MongoDB.Bson" Version="2.20.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.20.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="$(MSBuildThisFileFullPath)">

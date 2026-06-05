@@ -809,7 +809,7 @@ label {
     z-index: 10;
 }
 
-.fr-report-spinner svg, fr-report-spinner-img {
+.fr-report-spinner svg, .fr-report-spinner img {
     width: 90px;
     height: 90px;
     left: max(calc(50% - 50px), 25px);

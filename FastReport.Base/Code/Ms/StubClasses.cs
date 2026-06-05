@@ -12,6 +12,7 @@ internal static class Activator {}
 internal static class AppContext {}
 internal static class AppDomain {}
 internal static class Environment {}
+internal struct IntPtr {}
 }
 
 namespace System.IO
@@ -25,6 +26,7 @@ internal static class FileStream {}
 internal static class FileSystemInfo {}
 internal static class Path {}
 internal static class StreamReader {}
+internal static class StreamWriter {}
 }
 
 namespace System.Diagnostics
@@ -151,6 +153,15 @@ namespace FastReport.Utils
 {
 internal static class Config {}
 }
+
+namespace System.Runtime.InteropServices
+{
+internal static class Marshal {}
+internal static class MemoryMarshal {}
+internal static class NativeMemory {}
+internal static class NativeLibrary {}
+internal static class DllImportAttribute {}
+}
 ";
 
             const string stubClassesVBNet = @"
@@ -194,6 +205,9 @@ Namespace System.IO
     End Class
 
     Friend Class StreamReader
+    End Class
+
+    Friend Class StreamWriter
     End Class
 End Namespace
 
@@ -469,6 +483,23 @@ End Namespace
 
 Namespace FastReport.Utils
     Friend Class Config
+    End Class
+End Namespace
+
+Namespace System.Runtime.InteropServices
+    Friend Class Marshal
+    End Class
+
+    Friend Class MemoryMarshal
+    End Class
+
+    Friend Class NativeMemory
+    End Class
+
+    Friend Class NativeLibrary
+    End Class
+
+    Friend Class DllImportAttribute
     End Class
 End Namespace
 ";

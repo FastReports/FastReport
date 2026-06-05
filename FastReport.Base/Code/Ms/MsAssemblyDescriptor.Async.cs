@@ -59,17 +59,13 @@ namespace FastReport.Code.Ms
             }
         }
 
-
         private async Task InternalCompileAsync(CancellationToken cancellationToken)
         {
+            CheckScriptSecurity();
+
             CompilerParameters cp = await GetCompilerParametersAsync(cancellationToken);
-
-            if (Config.WebMode &&
-                Config.EnableScriptSecurity &&
-                Config.ScriptSecurityProps.AddStubClasses)
-                AddStubClasses();
-
             CompilerResults cr = await InternalCompileAsync(cp, cancellationToken);
+
             bool success = CheckCompileResult(cr);
             for (int i = 0; !success && i < Config.CompilerSettings.RecompileCount; i++)
             {

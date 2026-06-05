@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FastReport.Web.Services
 {
@@ -30,15 +31,14 @@ namespace FastReport.Web.Services
         /// <summary>
         /// Returns the list of connected tables by connection type and connection string
         /// </summary>
-        /// <param name="isError">Returns a bool variable which means whether the error is returned or not</param>
         /// <returns>Returns JSON with connected tables</returns>
-        string GetConnectionTables(string connectionType, string connectionString, List<CustomViewModel> customConnections);
+        Task<string> GetConnectionTablesAsync(string connectionType, string connectionString, List<CustomViewModel> customConnections, bool skipSchemaInit);
 
         /// <summary>
         /// Returns the list of connected tables by connection type and connection string
         /// </summary>
         /// <returns>Returns JSON with connected tables</returns>
-        string GetConnectionTables(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customConnections);
+        Task<string> GetConnectionTablesAsync(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customConnections, bool skipSchemaInit);
 
         /// <summary>
         /// Updates a table within a web report based on the provided parameters.

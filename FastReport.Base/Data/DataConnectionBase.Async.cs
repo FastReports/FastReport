@@ -80,7 +80,7 @@ namespace FastReport.Data
                 bool found = false;
                 foreach (TableDataSource table in Tables)
                 {
-                    if (String.Compare(table.TableName, procName, true) == 0)
+                    if (table is ProcedureDataSource && String.Compare(table.TableName, procName, true) == 0)
                     {
                         found = true;
                         break;

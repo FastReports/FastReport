@@ -78,7 +78,8 @@ namespace FastReport.Web
                     return false;
             }
 
-            foreach (Regex pattern in Config.ScriptSecurityProps.RegexStopList)
+            // now done in AssemblyDescriptor
+            /*foreach (Regex pattern in Config.ScriptSecurityProps.RegexStopList)
             {
                 if (pattern.IsMatch(reportScript))
                     return false;
@@ -88,7 +89,7 @@ namespace FastReport.Web
             {
                 if (reportScript.IndexOf(pattern, StringComparison.Ordinal) != -1)
                     return false;
-            }
+            }*/
 
             return true;
         }

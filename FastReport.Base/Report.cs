@@ -2545,12 +2545,12 @@ namespace FastReport
 
                 try
                 {
-                    Compile();
-                    isParameterChanged = false;
+                    Compile();   
                     return Engine.Run(true, append, resetDataState);
                 }
                 finally
                 {
+                    isParameterChanged = false;
                     if (!Config.WebMode)
                         StopPerformanceCounter();
                 }

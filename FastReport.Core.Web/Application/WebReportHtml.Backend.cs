@@ -418,7 +418,17 @@ namespace FastReport.Web
                         PreparedPages pages = new PreparedPages(currentReport);                       
                         currentReport.SetPreparedPages(pages);
                         currentReport.PreparePage(reportPage, true);
-                        param.AssignAll(param2);
+ 
+                        foreach (Data.Parameter childParam in param2.ChildObjects)
+                        {
+                            var p = param.FindObject(childParam.Name) as Data.Parameter;
+                            if (p != null)
+                            {
+                                p.Value = childParam.Value;
+                                p.Expression = childParam.Expression;
+                            }
+                        }
+
                         Report tabReport = new Report();
                         tabReport.SetPreparedPages(currentReport.PreparedPages);
                         Tabs.Add(new ReportTab()

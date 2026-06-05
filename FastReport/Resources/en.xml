@@ -3298,8 +3298,9 @@
     <TotalPages Text="Total pages (read only)"/>
     <Back Text="Back"/>
 	<ScriptSecurity>
-	    <ForbiddenType Text="Please, don't use the type {typeName}"/>
-		<ForbiddenMethod Text="Please, don't use the method {methodName}"/>
+      <ForbiddenType Text="Please, don't use the type {typeName}"/>
+      <ForbiddenMethod Text="Please, don't use the method {methodName}"/>
+      <ForbiddenText Text="Please, don't use {0}"/>
 	</ScriptSecurity>
   </Web>
   <Properties>

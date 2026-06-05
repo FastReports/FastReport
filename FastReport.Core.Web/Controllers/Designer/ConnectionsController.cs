@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using FastReport.Web.Infrastructure;
 using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
 namespace FastReport.Web.Controllers
 {
@@ -43,7 +44,7 @@ namespace FastReport.Web.Controllers
 
         [Obsolete]
         [HttpGet("/designer.getConnectionTables")]
-        public static IResult GetConnectionTables([FromQuery] ConnectionsParams query,
+        public static async Task<IResult> GetConnectionTables([FromQuery] ConnectionsParams query,
             IConnectionsService connectionsService, IReportService reportService)
         {
             var request = new ConnectionTablesRequestModel
@@ -52,20 +53,21 @@ namespace FastReport.Web.Controllers
                 CustomViews = new()
             };
 
-            return GetConnectionTables("", request, connectionsService, reportService);
+            return await GetConnectionTables("", request, connectionsService, reportService);
         }
 
         [HttpPost("/designer.getConnectionTables")]
-        public static IResult GetConnectionTables([FromQuery] string reportId, [FromBody] ConnectionTablesRequestModel request,
-            IConnectionsService connectionsService, IReportService reportService)
+        public static async Task<IResult> GetConnectionTables([FromQuery] string reportId, [FromBody] ConnectionTablesRequestModel request,
+            IConnectionsService connectionsService, IReportService reportService, [FromQuery] string skipSchemaInit = "false")
         {
+            bool.TryParse(skipSchemaInit, out bool skipSchema);
             try
             {
                 string response;
                 if (!reportService.TryFindWebReport(reportId, out var webReport))
-                    response = connectionsService.GetConnectionTables(request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews);
+                    response = await connectionsService.GetConnectionTablesAsync(request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews, skipSchema);
                 else
-                    response = connectionsService.GetConnectionTables(webReport, request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews);
+                    response = await connectionsService.GetConnectionTablesAsync(webReport, request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews, skipSchema);
 
                 return Results.Content(response, "application/xml");
             }

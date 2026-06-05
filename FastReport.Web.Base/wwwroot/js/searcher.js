@@ -7,12 +7,12 @@
     }
 
     toggleSearchForm() {
-        var form = document.getElementById(`fr-toolbar-search-form`);
+        const form = document.getElementById(`fr-toolbar-search-form`);
         form.classList.toggle(`open`);
         if (!form.classList.contains(`open`)) {
-            var searchText = sessionStorage.getItem(`fastreport-search-text`);
-            var matchCase = sessionStorage.getItem(`fastreport-search-match-case`) === `true`;
-            var wholeWord = sessionStorage.getItem(`fastreport-search-whole-word`) === `true`;
+            const searchText = sessionStorage.getItem(`fastreport-search-text`);
+            const matchCase = sessionStorage.getItem(`fastreport-search-match-case`) === `true`;
+            const wholeWord = sessionStorage.getItem(`fastreport-search-whole-word`) === `true`;
             this.findNext(
                 sessionStorage.getItem(`fastreport-search-index`),
                 searchText,
@@ -63,13 +63,13 @@
     };
 
     getSearchRanges(text, matchCase, wholeWord) {
-        var curScrollY = window.scrollY;
-        var curScrollX = window.scrollX;
-        var sel = window.getSelection();
-        var ranges = []
-        var container = document.getElementsByClassName(`fr-report-body`)[0];
+        const curScrollY = window.scrollY;
+        const curScrollX = window.scrollX;
+        const sel = globalThis.getSelection();
+        const ranges = []
+        const container = document.getElementsByClassName(`fr-report-body`)[0];
         // find all occurrences in a page
-        while (window.find(text, matchCase, false, false, wholeWord, false, false)) {
+        while (globalThis.find(text, matchCase, false, false, wholeWord, false, false)) {
             // filter out search results outside of a specific element
             if (container.contains(sel.anchorNode)) {
                 ranges.push(sel.getRangeAt(sel.rangeCount - 1));
@@ -80,136 +80,179 @@
     };
 
     findNext(index, text, matchCase, wholeWord, removeHighlight) {
-        var container = this.Webreport._findContainer();
-        // selection object
-        var sel = window.getSelection();
+        const container = this.Webreport._findContainer();
+        const sel = globalThis.getSelection();
 
-        sel.collapse(container, 0)
-        var ranges = this.getSearchRanges(text, matchCase, wholeWord);
+        sel.collapse(container, 0);
+        let ranges = this.getSearchRanges(text, matchCase, wholeWord, container);
         sel.collapse(container, 0);
 
-        if (ranges.length == 0) {
-            return false;
+        if (ranges.length === 0) return false;
+
+        const targetRanges = this._getTargetRanges(ranges, index, removeHighlight);
+        if (targetRanges.length === 0) return false;
+
+        const range = targetRanges[0];
+        this._processRange(range, removeHighlight);
+
+        return true;
+    }
+
+    _getTargetRanges(ranges, index, removeHighlight) {
+        if (removeHighlight) {
+            return ranges.filter(r => r.startContainer.parentElement.classList.contains('search-highlight'));
         }
-        else if ((index < ranges.length && index >= 0) || removeHighlight) {
-            if (!removeHighlight) {
-                ranges.sort((a, b) => {
-                    return a.startContainer.parentElement.getBoundingClientRect().top - b.startContainer.parentElement.getBoundingClientRect().top
-                });
-                ranges = [ranges[index]];
-            }
-            else {
-                ranges = ranges.filter((r) => r.startContainer.parentElement.classList.contains(`search-highlight`));
-            }
 
-            for (var i = 0; i < ranges.length; i++) {
-                var range = ranges[i]
-                if (range.startContainer == range.endContainer) {
-                    // Range includes just one node
-                    if (removeHighlight)
-                        this.clearHighlight(range)
-                    else
-                        this.highlight(range)
-                    return true
-                } else {
-                    // More complex case: range includes multiple nodes
-                    // Get all the text nodes in the range
-                    var textNodes = this.getTextNodesInRange(
-                        range.commonAncestorContainer,
-                        range.startContainer,
-                        range.endContainer)
-
-                    var startOffset = range.startOffset
-                    var endOffset = range.endOffset
-                    for (var j = 0; j < textNodes.length; j++) {
-                        var node = textNodes[j]
-                        range.setStart(node, j == 0 ? startOffset : 0)
-                        range.setEnd(node, j == textNodes.length - 1 ?
-                            endOffset : node.nodeValue.length)
-                        if (removeHighlight)
-                            this.clearHighlight(range);
-                        else
-                            this.highlight(range);
-                    }
-                }
-                return true;
-            }
-
+        if (index >= 0 && index < ranges.length) {
+            const sortedRanges = [...ranges].sort((a, b) => {
+                return a.startContainer.parentElement.getBoundingClientRect().top -
+                    b.startContainer.parentElement.getBoundingClientRect().top;
+            });
+            return [sortedRanges[index]];
         }
-        return false;
-    };
+
+        return [];
+    }
+
+    _processRange(range, removeHighlight) {
+        if (range.startContainer === range.endContainer) {
+            this._applyHighlight(range, removeHighlight);
+            return;
+        }
+
+        const textNodes = this.getTextNodesInRange(
+            range.commonAncestorContainer,
+            range.startContainer,
+            range.endContainer
+        );
+
+        const startOffset = range.startOffset;
+        const endOffset = range.endOffset;
+
+        for (let j = 0; j < textNodes.length; j++) {
+            const node = textNodes[j];
+            const isFirst = j === 0;
+            const isLast = j === textNodes.length - 1;
+
+            range.setStart(node, isFirst ? startOffset : 0);
+            range.setEnd(node, isLast ? endOffset : node.nodeValue.length);
+
+            this._applyHighlight(range, removeHighlight);
+        }
+    }
+
+    _applyHighlight(range, removeHighlight) {
+        if (removeHighlight) {
+            this.clearHighlight(range);
+        } else {
+            this.highlight(range);
+        }
+    }
 
     search(backward, searchNotFoundText) {
-        var searchText = document.getElementById(`fr-search-text`).value;
-        var lastSearchText = sessionStorage.getItem(`fastreport-search-text`);
-        var index = sessionStorage.getItem(`fastreport-search-index`);
-        var matchCase = document.getElementById(`fr-match-case`).checked;
-        var wholeWord = document.getElementById(`fr-whole-word`).checked;
+        const searchText = document.getElementById('fr-search-text').value;
+        const lastSearchText = sessionStorage.getItem('fastreport-search-text');
+        let index = this._getStoredIndex();
+        const matchCase = document.getElementById(`fr-match-case`).checked;
+        const wholeWord = document.getElementById(`fr-whole-word`).checked;
         document.getElementById(`fr-searchform-text-info`).innerText = ``;
-        if (!index)
-            index = -1
 
-        if (lastSearchText) {
-            this.findNext(index, lastSearchText, sessionStorage.getItem(`fastreport-search-match-case`) === `true`, sessionStorage.getItem(`fastreport-search-whole-word`) === `true`, true)
-        }
+        this._clearPreviousHighlights(lastSearchText);
 
-        if (backward)
-            index--
-        else
-            index++
-
-        if (lastSearchText != searchText)
-            index = 0;
+        index = this._calculateNewIndex(index, backward, lastSearchText, searchText);
 
         if (!this.findNext(index, searchText, matchCase, wholeWord, false)) {
-            var that = this;
-            var container = this.Webreport._findContainer();
-            // search on next pages
-            this.Webreport.client.fetch({
-                method: `POST`,
-                url: `${this.Webreport.route_base_path}/preview.getReport?reportId=${this.Webreport.ID}&skipPrepare=yes&renderBody=yes&backward=` + backward + `&searchText=` + searchText + `&matchCase=` + matchCase + `&wholeWord=` + wholeWord,
-                onSend() {
-                    that.Webreport._activateSpinner();
-                },
-                onSuccess(xhr) {
-                    container.outerHTML = xhr.responseText;
-                    that.Webreport.initialize();
-                    // get new container
-                    container = that.Webreport._findContainer();
-                    var sel = window.getSelection();
-                    sel.collapse(container, 0);
-                    index = backward ? that.getSearchRanges(searchText, matchCase, wholeWord).length - 1 : 0;
-                    sessionStorage.setItem(`fastreport-search-index`, index);
-                    document.getElementById(`fr-toolbar-search-form`).classList.toggle(`open`);
-                    document.getElementById(`fr-search-text`).value = searchText;
-                    that.onEnterSearchText();
-                    if (!that.findNext(index, searchText, matchCase, wholeWord, false))
-                        document.getElementById(`fr-searchform-text-info`).innerText = searchNotFoundText;
-                },
-                onError(xhr) {
-                    that.Webreport._deactivateSpinner();
-                    index = backward ? 0 : index - 1;
-                    sessionStorage.setItem(`fastreport-search-index`, index);
-                    that.findNext(index, searchText, matchCase, wholeWord, false)
-                    document.getElementById(`fr-searchform-text-info`).innerText = searchNotFoundText;
-                }
-            });
+            this._handleNotFound(searchText, backward, matchCase, wholeWord, index, searchNotFoundText);
         }
-        sessionStorage.setItem(`fastreport-search-index`, index);
-        sessionStorage.setItem(`fastreport-search-text`, searchText);
-        sessionStorage.setItem(`fastreport-search-match-case`, matchCase);
-        sessionStorage.setItem(`fastreport-search-whole-word`, wholeWord);
-    };
+
+        this._storeSearchState(index, searchText, matchCase, wholeWord);
+    }
+
+    _getStoredIndex() {
+        const index = sessionStorage.getItem('fastreport-search-index');
+        return index ? Number.parseInt(index) : -1;
+    }
+
+    _clearPreviousHighlights(lastSearchText) {
+        if (lastSearchText) {
+            this.findNext(
+                -1,
+                lastSearchText,
+                sessionStorage.getItem('fastreport-search-match-case') === 'true',
+                sessionStorage.getItem('fastreport-search-whole-word') === 'true',
+                true
+            );
+        }
+    }
+
+    _calculateNewIndex(currentIndex, backward, lastSearchText, searchText) {
+        let newIndex = currentIndex;
+
+        if (backward) {
+            newIndex--;
+        } else {
+            newIndex++;
+        }
+
+        if (lastSearchText !== searchText) {
+            newIndex = 0;
+        }
+
+        return newIndex;
+    }
+
+    _handleNotFound(searchText, backward, matchCase, wholeWord, currentIndex, searchNotFoundText) {
+        const that = this;
+        let container = this.Webreport._findContainer();
+        // search on next pages
+        this.Webreport.client.fetch({
+            method: `POST`,
+            url: `${this.Webreport.route_base_path}/preview.getReport?reportId=${this.Webreport.ID}&skipPrepare=yes&renderBody=yes&backward=` + backward + `&searchText=` + searchText + `&matchCase=` + matchCase + `&wholeWord=` + wholeWord,
+            onSend() {
+                that.Webreport._activateSpinner();
+            },
+            onSuccess(xhr) {
+                container.outerHTML = xhr.responseText;
+                that.Webreport.initialize();
+                // get new container
+                container = that.Webreport._findContainer();
+                const sel = globalThis.getSelection();
+                sel.collapse(container, 0);
+                const index = backward ? that.getSearchRanges(searchText, matchCase, wholeWord).length - 1 : 0;
+                sessionStorage.setItem(`fastreport-search-index`, index);
+                document.getElementById(`fr-toolbar-search-form`).classList.toggle(`open`);
+                document.getElementById(`fr-search-text`).value = searchText;
+                that.onEnterSearchText();
+                if (!that.findNext(index, searchText, matchCase, wholeWord, false))
+                    document.getElementById(`fr-searchform-text-info`).innerText = searchNotFoundText;
+            },
+            onError(xhr) {
+                that.Webreport._deactivateSpinner();
+                const index = backward ? 0 : currentIndex - 1;
+                sessionStorage.setItem(`fastreport-search-index`, index);
+                that.findNext(index, searchText, matchCase, wholeWord, false)
+                document.getElementById(`fr-searchform-text-info`).innerText = searchNotFoundText;
+            }
+        });
+
+    }
+
+    _storeSearchState(index, searchText, matchCase, wholeWord) {
+        sessionStorage.setItem('fastreport-search-index', index);
+        sessionStorage.setItem('fastreport-search-text', searchText);
+        sessionStorage.setItem('fastreport-search-match-case', matchCase);
+        sessionStorage.setItem('fastreport-search-whole-word', wholeWord);
+    }
 
     highlight(range) {
-        var newNode = document.createElement(`span`);
+        const newNode = document.createElement(`span`);
         newNode.className = `search-highlight`;
         range.surroundContents(newNode);
         const rect = newNode.getBoundingClientRect();
         const vWidth = (window.innerWidth || document.documentElement.clientWidth) - rect.width;
         const vHeight = (window.innerHeight || document.documentElement.clientHeight) - rect.height;
-        var topOfElement = window.scrollY;
-        var leftOfElement = window.screenX;
+        let topOfElement = window.scrollY;
+        let leftOfElement = window.screenX;
 
         if (rect.bottom < rect.height || rect.top > vHeight)
             topOfElement = topOfElement + rect.top - Searcher.ScrollOffsetTop;
@@ -219,7 +262,7 @@
     };
 
     clearHighlight(range) {
-        var selection = document.getSelection()
+        const selection = document.getSelection()
         selection.removeAllRanges()
         selection.addRange(range)
         const selParent = selection.anchorNode?.parentElement;
@@ -227,15 +270,15 @@
         if (selectedElem.tagName === `SPAN` && selectedElem.classList.contains(`search-highlight`)) {
             selectedElem.previousSibling.nodeValue += selectedElem.innerText;
             selectedElem.previousSibling.nodeValue += selectedElem.nextSibling.nodeValue;
-            selectedElem.parentNode.removeChild(selectedElem.nextSibling);
-            selectedElem.parentNode.removeChild(selectedElem);
+            selectedElem.nextSibling.remove();
+            selectedElem.remove();
         }
     };
 
     getTextNodesInRange(rootNode, firstNode, lastNode) {
-        var nodes = []
-        var startNode = null, endNode = lastNode
-        var walker = document.createTreeWalker(
+        const nodes = []
+        let startNode = null, endNode = lastNode
+        const walker = document.createTreeWalker(
             rootNode,
             // search for text nodes
             NodeFilter.SHOW_TEXT,

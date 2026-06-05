@@ -38,7 +38,7 @@ namespace FastReport.Data
 		
 		/// <inheritdoc/>
         public override void TestConnection()
-        {
+        {           
             MongoClient client = new MongoClient(ConnectionString);
 #if NET462
             var databases = client.ListDatabases();//.GetDatabase(dbName);

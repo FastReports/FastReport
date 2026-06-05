@@ -620,17 +620,14 @@ namespace FastReport.Utils
         {
             private static readonly Regex[] defaultRegexStopList = new[]
                 {
+                    new Regex("[\\s\\d\\W]Assembly[\\s\\W]", RegexOptions.Compiled),
                     new Regex("[\\s\\d\\W]GetType[\\s\\W]", RegexOptions.Compiled),
+                    new Regex("[\\s\\d\\W]GetTypes[\\s\\W]", RegexOptions.Compiled),
                     new Regex("[\\s\\W]typeof[\\s\\W]", RegexOptions.Compiled),
                     new Regex("[\\s\\W]TypeOf[\\s]", RegexOptions.Compiled),   // VB
                 };
 
-            private static readonly string[] defaultStopList = new[]
-                {
-                   "DllImport",
-                   "LoadLibrary",
-                   "GetProcAddress",
-                };
+            private static readonly string[] defaultStopList = Array.Empty<string>();
 
             private string[] stopList;
             private Regex[] regexStopList;
