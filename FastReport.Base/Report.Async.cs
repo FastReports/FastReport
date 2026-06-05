@@ -77,11 +77,11 @@ namespace FastReport
                 try
                 {
                     await CompileAsync(token).ConfigureAwait(false);
-                    isParameterChanged = false;
                     return await Engine.RunAsync(true, append, resetDataState, token);
                 }
                 finally
                 {
+                    isParameterChanged = false;
                     if (!Config.WebMode)
                         StopPerformanceCounter();
                 }

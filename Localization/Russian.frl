@@ -3060,6 +3060,7 @@
     <ScriptSecurity>
       <ForbiddenType Text="Пожалуйста, не используйте тип {typeName}"/>
       <ForbiddenMethod Text="Пожалуйста, не используйте метод {methodName}"/>
+      <ForbiddenText Text="Пожалуйста, не используйте {0}"/>
     </ScriptSecurity>
   </Web>
   <Properties>

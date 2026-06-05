@@ -31,6 +31,7 @@ export default defineConfig([
                 preventAssignment: true,
                 values: {
                     '__EXPORT_SETTINGS__': !isOpenSource ? './ExportScripts/export-settings.js' : './ExportScripts/export-settings-open-source.js',
+                    '__SEARCHER__': !isOpenSource ? 'import { Searcher as search } from \'./searcher.js\'; ' : '',
                 }
             }),
             nodeResolve({ browser: true }),

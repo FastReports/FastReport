@@ -192,17 +192,23 @@ namespace FastReport.Code.Ms
             }
         }
 
-        private void InternalCompile()
+        protected override void CheckScriptSecurity()
         {
-            CompilerParameters cp = GetCompilerParameters();
+            base.CheckScriptSecurity();
 
             if (Config.WebMode &&
                 Config.EnableScriptSecurity &&
                 Config.ScriptSecurityProps.AddStubClasses)
-                AddStubClasses();
+                    AddStubClasses();
+        }
 
-            CompilerResults cr;
-            bool exception = !TryInternalCompile(cp, out cr);
+        private void InternalCompile()
+        {
+            CheckScriptSecurity();
+
+            CompilerParameters cp = GetCompilerParameters();
+            bool exception = !TryInternalCompile(cp, out var cr);
+
             for (int i = 0; exception && i < Config.CompilerSettings.RecompileCount; i++)
             {
                 exception = !TryRecompile(cp, ref cr);

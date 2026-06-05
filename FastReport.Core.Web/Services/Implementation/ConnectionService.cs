@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace FastReport.Web.Services
 {
@@ -161,7 +162,7 @@ namespace FastReport.Web.Services
             }
         }
 
-        public string GetConnectionTables(string connectionType, string connectionString, List<CustomViewModel> customViews)
+        public async Task<string> GetConnectionTablesAsync(string connectionType, string connectionString, List<CustomViewModel> customViews, bool skipSchemaInit)
         {
             if (!IsConnectionStringValid(connectionString, out var errorMsg))
                 throw new Exception(errorMsg);
@@ -191,13 +192,13 @@ namespace FastReport.Web.Services
                         }
                     }
 
-                    conn.CreateAllTables(true);
+                    await conn.CreateAllTablesAsync(!skipSchemaInit);
                     if (conn.CanContainProcedures)
-                        conn.CreateAllProcedures();
+                        await conn.CreateAllProceduresAsync();
 
                     foreach (TableDataSource c in conn.Tables)
                     {
-                        if (c is ProcedureDataSource proc)
+                        if (c is ProcedureDataSource proc && !skipSchemaInit)
                         {
                             bool needFillShema = true;
                             foreach (CommandParameter p in proc.Parameters)
@@ -209,7 +210,7 @@ namespace FastReport.Web.Services
                             {
                                 try
                                 {
-                                    proc.InitSchema();
+                                    await proc.InitSchemaAsync();
                                 }
                                 catch { }
                             }
@@ -226,7 +227,7 @@ namespace FastReport.Web.Services
             }
         }
 
-        public string GetConnectionTables(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customViews)
+        public async Task<string> GetConnectionTablesAsync(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customViews, bool skipSchemaInit)
         {
             if (!IsConnectionStringValid(connectionString, out var errorMsg))
                 throw new Exception(errorMsg);
@@ -269,13 +270,13 @@ namespace FastReport.Web.Services
                     rep.Dictionary.Connections.Add(conn);
                     rep.Dictionary.Merge(webReport.Report.Dictionary);
 
-                    conn.CreateAllTables(true);
+                    await conn.CreateAllTablesAsync(!skipSchemaInit);
                     if (conn.CanContainProcedures)
-                        conn.CreateAllProcedures();
+                        await conn.CreateAllProceduresAsync();
 
                     foreach (TableDataSource c in conn.Tables)
                     {
-                        if (c is ProcedureDataSource proc)
+                        if (c is ProcedureDataSource proc && !skipSchemaInit)
                         {
                             bool needFillShema = true;
                             foreach (CommandParameter p in proc.Parameters)
@@ -287,7 +288,7 @@ namespace FastReport.Web.Services
                             {
                                 try
                                 {
-                                    proc.InitSchema();
+                                    await proc.InitSchemaAsync();
                                 }
                                 catch { }
                             }

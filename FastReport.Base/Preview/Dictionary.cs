@@ -9,7 +9,6 @@ namespace FastReport.Preview
     internal class Dictionary
     {
         private SortedList<string, DictionaryItem> names;
-        //private SortedDictionary<string, DictionaryItem> FNames;    
         private Hashtable baseNames;
         private PreparedPages preparedPages;
 
@@ -59,20 +58,13 @@ namespace FastReport.Preview
             DictionaryItem item;
             if (names.TryGetValue(name, out item))
             {
-                //                return item.CloneObject(name);
                 if (item.OriginalComponent != null)
                     item.OriginalComponent.SetReport(this.preparedPages.Report);
                 Base result = item.CloneObject(name);
-                //result.SetReport(this);
                 return result;
             }
             else
                 return null;
-
-            //int i = FNames.IndexOfKey(name);
-            //if (i == -1)
-            //  return null;
-            //return FNames.Values[i].CloneObject(name);
         }
 
         public Base GetOriginalObject(string name)
@@ -82,11 +74,6 @@ namespace FastReport.Preview
                 return item.OriginalComponent;
             else
                 return null;
-
-            //  int i = FNames.IndexOfKey(name);
-            //if (i == -1)
-            //  return null;
-            //return FNames.Values[i].OriginalComponent;
         }
 
         public void Clear()
@@ -104,34 +91,19 @@ namespace FastReport.Preview
                 xi.Name = pair.Key;
                 xi.ClearProps();
                 xi.SetProp("name", pair.Value.SourceName);
-                //xi.Text = String.Concat("name=\"", pair.Value.SourceName, "\"");
             }
-
-            //for (int i = 0; i < FNames.Count; i++)
-            //{
-            //  XmlItem xi = rootItem.Add();
-            //  xi.Name = FNames.Keys[i];
-            //  xi.Text = "name=\"" + FNames.Values[i].SourceName + "\"";
-            //}
         }
 
         public void Load(XmlItem rootItem)
         {
             Clear();
+            var finder = new SourceNameFinder(preparedPages.SourcePages);
+
             for (int i = 0; i < rootItem.Count; i++)
             {
                 // rootItem[i].Name is 's1', rootItem[i].Text is 'name="Page0.Shape1"'
                 string sourceName = rootItem[i].GetProp("name");
-                // split to Page0, Shape1
-                string[] objName = sourceName.Split('.');
-                // get page number
-                int pageN = int.Parse(objName[0].Substring(4));
-                // get the object
-                Base obj = null;
-                if (objName.Length == 2)
-                    obj = preparedPages.SourcePages[pageN].FindObject(objName[1]);
-                else
-                    obj = preparedPages.SourcePages[pageN];
+                var obj = finder.FindObject(sourceName);
 
                 // add s1, Page0.Shape1, object
                 string name = rootItem[i].Name;
@@ -144,8 +116,42 @@ namespace FastReport.Preview
         {
             this.preparedPages = preparedPages;
             names = new SortedList<string, DictionaryItem>();
-            //FNames = new SortedDictionary<string, DictionaryItem>(); 
             baseNames = new Hashtable();
+        }
+
+        private class SourceNameFinder
+        {
+            private Dictionary<string, Base> sourceObjects;
+
+            public Base FindObject(string sourceName)
+            {
+                // source name is like "Page0.Shape1" or "Page0"
+                if (sourceObjects.TryGetValue(sourceName, out var obj))
+                    return obj;
+                // not found.
+                return null;
+            }
+
+            public SourceNameFinder(SourcePages sourcePages)
+            {
+                sourceObjects = new Dictionary<string, Base>();
+
+                // collect names in report template pages to speed up search.
+                for (int i = 0; i < sourcePages.Count; i++)
+                {
+                    var page = sourcePages[i];
+                    var pageName = $"Page{i}";
+                    // add page object
+                    sourceObjects.Add(pageName, page);
+                    // add all page objects
+                    foreach (Base obj in page.AllObjects)
+                    {
+                        var objName = pageName + "." + obj.Name;
+                        if (!sourceObjects.ContainsKey(objName))
+                            sourceObjects.Add(objName, obj);
+                    }
+                }
+            }
         }
 
         private sealed class DictionaryItem

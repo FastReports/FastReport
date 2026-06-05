@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -210,7 +211,8 @@ namespace FastReport.Code
         protected string ReplaceExpression(string error, TextObjectBase text)
         {
             string result = text.Text;
-            string[] parts = error.Split('\"');
+            char quota = error.Contains("\"") ? '\"' : '\''; // net fw and net core use different symbols
+            string[] parts = error.Split(quota);
 
             if (parts.Length == 3)
             {
@@ -335,6 +337,40 @@ namespace FastReport.Code
             InsertItem(Report.CodeHelper.GenerateInitializeMethod(), "");
             return Report.CodeHelper.ReplaceClassName(ScriptText.ToString(), className);
         }
+
+        /// <summary>
+        /// Performs checking script security.
+        /// </summary>
+        /// <exception cref="CompilerException">Throws if security problem found.</exception>
+        protected virtual void CheckScriptSecurity()
+        {
+            if (Config.WebMode &&
+                Config.EnableScriptSecurity)
+            {
+                var script = ScriptText.ToString();
+                var errors = new List<CompilerException.Info>();
+                const string res = "Web,ScriptSecurity,ForbiddenText";
+
+                foreach (Regex pattern in Config.ScriptSecurityProps.RegexStopList)
+                {
+                    foreach (Match match in pattern.Matches(script))
+                    {
+                        errors.Add(new CompilerException.Info(0, 0, null, String.Format(Res.Get(res), match.Value)));
+                    }
+                }
+
+                foreach (string pattern in Config.ScriptSecurityProps.StopList)
+                {
+                    if (script.IndexOf(pattern, StringComparison.Ordinal) != -1)
+                        errors.Add(new CompilerException.Info(0, 0, null, String.Format(Res.Get(res), pattern)));
+                }
+
+                if (errors.Count > 0)
+                    throw new CompilerException($"{Res.Get("Messages,Error")}", errors.ToArray());
+            }
+        }
+
+
 
         /// <summary>
         /// Compiles an assembly.

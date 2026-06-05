@@ -101,8 +101,9 @@ namespace FastReport.Web
 {(exports.Show ? $"{toolbarExportItem}" : "")}
 
 
-{(Toolbar.ShowPrint ? $"{toolbarPrintItem}" : "")}
-{(Toolbar.ShowSearchButton ? $@"<div class=""fr-toolbar-item fr-toolbar-pointer fr-toolbar-item fr-pointer"" title=""{localization.searchTxt}"" {CreateOnClickEvent($"{ScriptName}.Searcher", "toggleSearchForm")}>
+{(Toolbar.ShowPrint ? $"{toolbarPrintItem}" : "")}" +
+#if !OPENSOURCE
+$@"{(Toolbar.ShowSearchButton ? $@"<div class=""fr-toolbar-item fr-toolbar-pointer fr-toolbar-item fr-pointer"" title=""{localization.searchTxt}"" {CreateOnClickEvent($"{ScriptName}.Searcher", "toggleSearchForm")}>
             {GetResource("magnifier-search.svg")}
         </div>
         <div class=""fr-toolbar-search-form"" id=""fr-toolbar-search-form"">
@@ -136,8 +137,9 @@ namespace FastReport.Web
                     {localization.wholeWord}
                 </label>
             </div>
-        </div>" : "")}
-{(Toolbar.ShowZoomButton ? $@"<div class=""fr-toolbar-item fr-toolbar-item"" title=""{localization.zoomTxt}"">
+        </div>" : "")}" +
+#endif
+$@"{(Toolbar.ShowZoomButton ? $@"<div class=""fr-toolbar-item fr-toolbar-item"" title=""{localization.zoomTxt}"">
         {GetResource("magnifier.svg")}
         <div class=""fr-toolbar-item-dropdown-content fr-toolbar-dropdown-content"">
             <a {CreateOnClickEvent($"{ScriptName}", "zoom", "300")}>{(currentZoom == 300 ? selectedZoom1 : selectedZoom2)}300%</div></a>

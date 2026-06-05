@@ -2,21 +2,21 @@
 export class HttpClient {
     _fetchQueue = []
 
-     fetch(options) {
-        var method = options.method;
-        var url = options.url;
-        var form = options.form;
-        var onSuccess = options.onSuccess;
-        var onError = options.onError;
-        var onSend = options.onSend;
-        var onFinally = options.onFinally;
+    fetch(options) {
+        const method = options.method;
+        const url = options.url;
+        let form = options.form;
+        const onSuccess = options.onSuccess;
+        const onError = options.onError;
+        const onSend = options.onSend;
+        const onFinally = options.onFinally;
 
         if (options.method == `POST` && options.form == null) {
             form = {};
         }
 
-        var that = this;
-        var xhr = new XMLHttpRequest();
+        const that = this;
+        const xhr = new XMLHttpRequest();
         xhr.__form = form;
         xhr.__onSend = onSend;
         xhr.open(method, url, true);
@@ -44,7 +44,7 @@ export class HttpClient {
         this._fetchQueue.push(xhr);
 
         if (this._fetchQueue.length == 1) {
-            var f = this._fetchQueue[0];
+            const f = this._fetchQueue[0];
             if (typeof f.__onSend === `function`) {
                 f.__onSend(f);
             }
@@ -56,7 +56,7 @@ export class HttpClient {
         this._fetchQueue.shift();
 
         if (this._fetchQueue.length) {
-            var f = this._fetchQueue[0];
+            const f = this._fetchQueue[0];
             if (typeof f.__onSend === `function`) {
                 f.__onSend(f);
             }

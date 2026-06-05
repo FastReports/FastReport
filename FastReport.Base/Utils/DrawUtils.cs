@@ -245,7 +245,7 @@ namespace FastReport.Utils
             regions[0].Dispose();
             return rect.Size;
         }
-
+#if !TRANSPORT
         internal static MonoRendering GetMonoRendering(IGraphics printerGraphics)
         {
             if (FMonoRendering == MonoRendering.Undefined)
@@ -292,5 +292,6 @@ namespace FastReport.Utils
                 pen.DashStyle = border.DashStyle;
             }
         }
+#endif    
     }
 }

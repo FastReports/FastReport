@@ -1686,7 +1686,20 @@ namespace FastReport
                 }
                 catch (Exception e)
                 {
-                    throw new Exception(Name + ": " + Res.Get("Messages,ErrorInHighlightCondition") + ": " + condition.Expression, e.InnerException);
+                    switch (Config.CompilerSettings.ExceptionBehaviour)
+                    {
+                        case CompilerExceptionBehaviour.ReplaceExpressionWithExceptionMessage:
+                            var message = e.InnerException == null ? e.Message : e.InnerException.Message;
+                            Text = $"{Res.Get("Messages,ErrorInHighlightCondition")}: {condition.Expression} {message}";
+                            break;
+
+                        case CompilerExceptionBehaviour.ReplaceExpressionWithPlaceholder:
+                            Text = Config.CompilerSettings.Placeholder;
+                            break;
+
+                        default:
+                            throw new Exception(Name + ": " + Res.Get("Messages,ErrorInHighlightCondition") + ": " + condition.Expression, e.InnerException);
+                    }
                 }
             }
 

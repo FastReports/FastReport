@@ -40,7 +40,6 @@ namespace FastReport.Web.Services
             result.Append(requestString).
                 Replace("&gt;", ">").
                 Replace("&lt;", "<").
-                Replace("&quot;", "\"").
                 Replace("&amp;#10;", "&#10;").
                 Replace("&amp;#13;", "&#13;").
                 Replace("&amp;quot;", "&quot;").
