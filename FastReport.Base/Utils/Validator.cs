@@ -8,20 +8,44 @@ using System.Threading.Tasks;
 namespace FastReport.Utils
 {
 
+    /// <summary>
+    /// Represents the validation data.
+    /// </summary>
     public struct ValidationError
     {
+        /// <summary>
+        /// Represents erro level.
+        /// </summary>
         public enum ErrorLevel
         {
+            /// <summary>
+            /// Warning.
+            /// </summary>
             Warning,
+            /// <summary>
+            /// Error.
+            /// </summary>
             Error
         }
 
-        public string Name;
-        public ErrorLevel Level;
-        public string Message;
-        public ReportComponentBase Object;
+        /// <summary>
+        /// The error name.
+        /// </summary>
+        public readonly string Name;
+        /// <summary>
+        /// The error level.
+        /// </summary>
+        public readonly ErrorLevel Level;
+        /// <summary>
+        /// The message.
+        /// </summary>
+        public readonly string Message;
+        /// <summary>
+        /// The report object.
+        /// </summary>
+        public readonly ReportComponentBase Object;
 
-        public ValidationError(string name, ErrorLevel level, string message, ReportComponentBase obj)
+        internal ValidationError(string name, ErrorLevel level, string message, ReportComponentBase obj)
         {
             this.Name = name;
             this.Level = level;

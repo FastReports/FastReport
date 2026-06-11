@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using FastReport.Utils;
+using System.ComponentModel;
 
 namespace FastReport.Barcode
 {
@@ -29,8 +26,28 @@ namespace FastReport.Barcode
             }
         }
 
-        /// <inheritdoc/>
-        public enum CodabarChar { A, B, C, D };
+        /// <summary>
+        /// Represents Codabar char.
+        /// </summary>
+        public enum CodabarChar 
+        { 
+            /// <summary>
+            /// A
+            /// </summary>
+            A, 
+            /// <summary>
+            /// B
+            /// </summary>
+            B, 
+            /// <summary>
+            /// C
+            /// </summary>
+            C, 
+            /// <summary>
+            /// D
+            /// </summary>
+            D 
+        };
 
         private static Codabar[] tabelle_cb = {
       new Codabar("1", "5050615"),

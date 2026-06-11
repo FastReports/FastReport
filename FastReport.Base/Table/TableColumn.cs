@@ -212,7 +212,7 @@ namespace FastReport.Table
                 writer.WriteBool("AutoSize", AutoSize);
         }
 
-        public void SetIndex(int value)
+        internal void SetIndex(int value)
         {
             index = value;
         }

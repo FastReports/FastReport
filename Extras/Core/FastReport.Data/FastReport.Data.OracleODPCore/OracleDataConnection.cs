@@ -142,7 +142,7 @@ namespace FastReport.Data
             return list.ToArray();
         }
 
-        private DataTable GetSchema(string selectCommand)
+        private new DataTable GetSchema(string selectCommand)
         {
             var connection = GetConnection();
             try
@@ -164,7 +164,7 @@ namespace FastReport.Data
             return null;
         }
 
-        private async Task<DataTable> GetSchemaAsync(string selectCommand, CancellationToken cancellationToken = default)
+        private new async Task<DataTable> GetSchemaAsync(string selectCommand, CancellationToken cancellationToken = default)
         {
             var connection = GetConnection();
             try

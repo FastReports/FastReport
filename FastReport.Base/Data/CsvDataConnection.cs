@@ -226,6 +226,7 @@ namespace FastReport.Data
             return CreateDataSetShared(dataset);
         }
 
+        /// <inheritdoc/>
         protected override async Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
         {
             DataSet dataset = await base.CreateDataSetAsync(cancellationToken);
@@ -282,6 +283,7 @@ namespace FastReport.Data
             // do nothing
         }
 
+        /// <inheritdoc/>
         public override Task FillTableSchemaAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
         {
             // do nothing
@@ -294,6 +296,7 @@ namespace FastReport.Data
             // do nothing
         }
 
+        /// <inheritdoc/>
         public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters, CancellationToken cancellationToken = default)
         {
             // do nothing
@@ -314,6 +317,7 @@ namespace FastReport.Data
             }
         }
 
+        /// <inheritdoc/>
         public override async Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
         {
             if (DataSet.Tables.Count == 1)
@@ -350,6 +354,7 @@ namespace FastReport.Data
             return result;
         }
 
+        /// <inheritdoc/>
         public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(GetTableNames());

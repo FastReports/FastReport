@@ -96,6 +96,7 @@ namespace FastReport.Data
             return dataset;
         }
 
+        /// <inheritdoc/>
         protected override async Task<DataSet> CreateDataSetAsync(CancellationToken cancellationToken)
         {
             var dataset = await base.CreateDataSetAsync(cancellationToken);
@@ -119,6 +120,7 @@ namespace FastReport.Data
             // do nothing
         }
 
+        /// <inheritdoc/>
         public override Task FillTableSchemaAsync(DataTable table, string selectCommand,
             CommandParameterCollection parameters,
             CancellationToken cancellationToken = default)
@@ -133,6 +135,7 @@ namespace FastReport.Data
             // do nothing
         }
 
+        /// <inheritdoc/>
         public override Task FillTableDataAsync(DataTable table, string selectCommand, CommandParameterCollection parameters,
             CancellationToken cancellationToken = default)
         {
@@ -151,6 +154,7 @@ namespace FastReport.Data
             return result;
         }
 
+        /// <inheritdoc/>
         public override Task<string[]> GetTableNamesAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(GetTableNames());
@@ -168,6 +172,7 @@ namespace FastReport.Data
                 source.Table = null;
         }
 
+        /// <inheritdoc/>
         public override Task CreateTableAsync(TableDataSource source, CancellationToken cancellationToken = default)
         {
             CreateTable(source);
@@ -190,87 +195,75 @@ namespace FastReport.Data
         #region private methods
         private void ReadXml(DataSet dataset)
         {
-            try
+            // fix for datafile in current folder
+            if (File.Exists(XmlFile))
+                XmlFile = Path.GetFullPath(XmlFile);
+
+            Uri uri = new Uri(XmlFile);
+
+            if (uri.IsFile)
             {
-                // fix for datafile in current folder
-                if (File.Exists(XmlFile))
-                    XmlFile = Path.GetFullPath(XmlFile);
+                if (Config.ForbidLocalData)
+                    throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
 
-                Uri uri = new Uri(XmlFile);
-
-                if (uri.IsFile)
+                if (Codepage != 1251)
                 {
-                    if (Config.ForbidLocalData)
-                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-
-                    if (Codepage != 1251)
+                    //Adding the ability to decode a file from a computer in the selected encoding.
+                    using (var reader = new StreamReader(XmlFile, Encoding.GetEncoding(Codepage)))
                     {
-                        //Adding the ability to decode a file from a computer in the selected encoding.
-                        using (var reader = new StreamReader(XmlFile, Encoding.GetEncoding(Codepage))) 
-                        {
-                            dataset.ReadXml(reader);
-                        }
+                        dataset.ReadXml(reader);
                     }
-                    else
-                    {
-                        dataset.ReadXml(XmlFile);
-                    }  
                 }
-                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+                else
                 {
-                    LoadXmlFromUrl(dataset);
+                    dataset.ReadXml(XmlFile);
                 }
             }
-            catch (Exception e)
+            else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
             {
-                throw e;
+                LoadXmlFromUrl(dataset);
             }
         }
 
         private async Task ReadXmlAsync(DataSet dataset)
         {
-            try
+            // fix for datafile in current folder
+            if (File.Exists(XmlFile))
+                XmlFile = Path.GetFullPath(XmlFile);
+
+            Uri uri = new Uri(XmlFile);
+
+            if (uri.IsFile)
             {
-                // fix for datafile in current folder
-                if (File.Exists(XmlFile))
-                    XmlFile = Path.GetFullPath(XmlFile);
+                if (Config.ForbidLocalData)
+                    throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
 
-                Uri uri = new Uri(XmlFile);
-
-                if (uri.IsFile)
+                if (Codepage != 1251)
                 {
-                    if (Config.ForbidLocalData)
-                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-
-                    if (Codepage != 1251)
+                    //Adding the ability to decode a file from a computer in the selected encoding.
+                    using (var reader = new StreamReader(XmlFile, Encoding.GetEncoding(Codepage)))
                     {
-                        //Adding the ability to decode a file from a computer in the selected encoding.
-                        using (var reader = new StreamReader(XmlFile, Encoding.GetEncoding(Codepage))) 
-                        {
-                            dataset.ReadXml(reader);
-                        }
+                        dataset.ReadXml(reader);
                     }
-                    else
-                    {
-                        dataset.ReadXml(XmlFile);
-                    }  
                 }
-                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+                else
                 {
-                    await LoadXmlFromUrlAsync(dataset);
+                    dataset.ReadXml(XmlFile);
                 }
             }
-            catch (Exception e)
+            else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
             {
-                throw e;
+                await LoadXmlFromUrlAsync(dataset);
             }
         }
-        
+
         private void LoadXmlFromUrl(DataSet dataset)
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014 // alternative is async only
             HttpWebRequest req = WebRequest.CreateHttp(XmlFile);
+#pragma warning restore SYSLIB0014
             using (var response = req.GetResponse() as HttpWebResponse)
             {
                 LoadXmlFromUrlShared(dataset, response);
@@ -281,7 +274,9 @@ namespace FastReport.Data
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014
             HttpWebRequest req = WebRequest.CreateHttp(XmlFile);
+#pragma warning restore SYSLIB0014
             using (var response = await req.GetResponseAsync() as HttpWebResponse)
             {
                 LoadXmlFromUrlShared(dataset, response);
@@ -328,50 +323,36 @@ namespace FastReport.Data
             if (String.IsNullOrEmpty(XsdFile))
                 return;
 
-            try
-            {
-                Uri uri = new Uri(XsdFile);
+            Uri uri = new Uri(XsdFile);
 
-                if (uri.IsFile)
-                {
-                    if (Config.ForbidLocalData)
-                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-                    dataset.ReadXmlSchema(XsdFile);
-                }
-                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
-                {
-                    LoadXmlSchemaFromUrl(dataset);
-                }
-            }
-            catch (Exception e)
+            if (uri.IsFile)
             {
-                throw e;
+                if (Config.ForbidLocalData)
+                    throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+                dataset.ReadXmlSchema(XsdFile);
+            }
+            else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+            {
+                LoadXmlSchemaFromUrl(dataset);
             }
         }
-        
+
         private async Task ReadXmlSchemaAsync(DataSet dataset)
         {
             if (String.IsNullOrEmpty(XsdFile))
                 return;
 
-            try
-            {
-                Uri uri = new Uri(XsdFile);
+            Uri uri = new Uri(XsdFile);
 
-                if (uri.IsFile)
-                {
-                    if (Config.ForbidLocalData)
-                        throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
-                    dataset.ReadXmlSchema(XsdFile);
-                }
-                else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
-                {
-                    await LoadXmlSchemaFromUrlAsync(dataset);
-                }
-            }
-            catch (Exception e)
+            if (uri.IsFile)
             {
-                throw e;
+                if (Config.ForbidLocalData)
+                    throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+                dataset.ReadXmlSchema(XsdFile);
+            }
+            else if (uri.OriginalString.StartsWith("http") || uri.OriginalString.StartsWith("ftp"))
+            {
+                await LoadXmlSchemaFromUrlAsync(dataset);
             }
         }
 
@@ -379,7 +360,9 @@ namespace FastReport.Data
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014 // alternative is async only
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(XsdFile);
+#pragma warning restore SYSLIB0014
             using (var response = req.GetResponse() as HttpWebResponse)
             {
                 var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
@@ -394,7 +377,9 @@ namespace FastReport.Data
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014
             HttpWebRequest req = WebRequest.CreateHttp(XsdFile);
+#pragma warning restore SYSLIB0014
             using (var response = await req.GetResponseAsync() as HttpWebResponse)
             {
                 var encoding = response.CharacterSet.Equals(String.Empty) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);

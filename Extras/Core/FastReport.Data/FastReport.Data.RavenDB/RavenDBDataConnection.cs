@@ -243,9 +243,8 @@ namespace FastReport.Data
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-
                     }
                 }
                 // add table rows
@@ -351,9 +350,8 @@ namespace FastReport.Data
                 column.DataType = colType ?? typeof(string);
                 table.Columns.Add(column);
             }
-            catch (Exception ex)
+            catch
             {
-
             }
         }
 
@@ -369,9 +367,8 @@ namespace FastReport.Data
                 }
                 return columnType;
             }
-            catch (Exception ex)
+            catch
             {
-
             }
             return typeof(string);
         }

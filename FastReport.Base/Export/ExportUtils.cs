@@ -56,6 +56,13 @@ namespace FastReport.Export
 
 
         private static readonly NumberFormatInfo _provider;
+        
+        /// <summary>
+        /// Converts float value to string.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="digits">Number of digits.</param>
+        /// <returns>The result.</returns>
         public static string FloatToString(double value, int digits = 2)
         {
             return Convert.ToString(Math.Round(value, digits), _provider);
@@ -452,6 +459,13 @@ namespace FastReport.Export
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Converts plain text to a html-friendly form.
+        /// </summary>
+        /// <param name="text">Text to convert.</param>
+        /// <param name="textRenderType">Render type.</param>
+        /// <param name="fontSize">Font size (default is 13px)</param>
+        /// <returns>Converted string.</returns>
         public static FastString HtmlString(string text, TextRenderType textRenderType, string fontSize = "13px;")
         {
             return HtmlString(text, textRenderType, CRLF.html, false, fontSize);
@@ -705,8 +719,8 @@ namespace FastReport.Export
         {
             FastString sb = new FastString();
             sb.AppendFormat("{0:R}", datetime);
-            int hours = TimeZone.CurrentTimeZone.GetUtcOffset(datetime).Hours;
-            int minutes = TimeZone.CurrentTimeZone.GetUtcOffset(datetime).Minutes;
+            int hours = TimeZoneInfo.Local.GetUtcOffset(datetime).Hours;
+            int minutes = TimeZoneInfo.Local.GetUtcOffset(datetime).Minutes;
             if (hours == 0 && minutes == 0)
                 return sb.ToString();
             else

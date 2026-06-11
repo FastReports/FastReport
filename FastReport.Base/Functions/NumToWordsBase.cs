@@ -179,7 +179,7 @@ namespace FastReport.Functions
                 CurrencyInfo currency = GetCurrency(currencyName);
                 return Str(value, currency.senior, currency.junior, decimalPartToWord);
             }
-            catch (KeyNotFoundException e)
+            catch (KeyNotFoundException)
             {
                 throw new Exception($"Currency \"{currencyName}\" is not defined in the \"{GetType().Name}\" converter.");
             }

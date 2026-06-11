@@ -74,6 +74,9 @@ namespace FastReport.Barcode
         #endregion
     }
 
+    /// <summary>
+    /// Represents Swiss QR code additional information.
+    /// </summary>
     public class AdditionalInformation
     {
         private string unstructuredMessage, billInformation, trailer;
@@ -97,52 +100,75 @@ namespace FastReport.Barcode
             this.trailer = "EPD";
         }
 
+        /// <summary>
+        /// Creates an additional information object.
+        /// </summary>
+        /// <param name="addInfo">Text containing an information.</param>
         public AdditionalInformation(string addInfo)
         {
             string[] data = addInfo.Split('\r');
             this.trailer = data[1].Trim();
             this.unstructuredMessage = data[0].Trim();
             this.billInformation = data[2].Trim();
-
         }
 
+        /// <summary>
+        /// Gets or sets unstructured message.
+        /// </summary>
         public string UnstructureMessage
         {
             get { return !string.IsNullOrEmpty(unstructuredMessage) ? unstructuredMessage.Replace("\n", "") : null; }
             set { this.unstructuredMessage = value; }
         }
 
+        /// <summary>
+        /// Gets or sets bill information.
+        /// </summary>
         public string BillInformation
         {
             get { return !string.IsNullOrEmpty(billInformation) ? billInformation.Replace("\n", "") : null; }
             set { this.billInformation = value; }
         }
 
+        /// <summary>
+        /// Gets a trailer.
+        /// </summary>
         public string Trailer
         {
             get { return trailer; }
         }
     }
 
+    /// <summary>
+    /// Represents Swiss QR code reference information.
+    /// </summary>
     public class Reference
     {
         private ReferenceType referenceType;
         private string reference;
         private ReferenceTextType? referenceTextType;
 
-
+        /// <summary>
+        /// Gets or sets reference type.
+        /// </summary>
         public ReferenceType RefType
         {
             get { return referenceType; }
             set { referenceType = value; }
         }
 
+        /// <summary>
+        /// Gets or sets reference text.
+        /// </summary>
         public string ReferenceText
         {
             get { return !string.IsNullOrEmpty(reference) ? reference.Replace("\n", "") : null; }
             set { reference = value; }
         }
 
+        /// <summary>
+        /// Gets or sets reference text type.
+        /// </summary>
         public ReferenceTextType? _ReferenceTextType
         {
             get { return referenceTextType; }
@@ -187,7 +213,10 @@ namespace FastReport.Barcode
             this.reference = reference;
         }
 
-
+        /// <summary>
+        /// Creates a reference object which must be passed to the SwissQrCode instance
+        /// </summary>
+        /// <param name="reference">Reference text.</param>
         public Reference(string reference)
         {
             string[] data = reference.Split('\r');
@@ -213,17 +242,36 @@ namespace FastReport.Barcode
         /// </summary>
         public enum ReferenceType
         {
+            /// <summary>
+            /// QRR
+            /// </summary>
             QRR,
+            /// <summary>
+            /// SCOR
+            /// </summary>
             SCOR,
+            /// <summary>
+            /// NON
+            /// </summary>
             NON
         }
+        
+        /// <summary>
+        /// Reference text type
+        /// </summary>
         public enum ReferenceTextType
         {
+            /// <summary>
+            /// QrReference
+            /// </summary>
             QrReference,
+            /// <summary>
+            /// CreditorReferenceIso11649
+            /// </summary>
             CreditorReferenceIso11649
         }
 
-        public bool ChecksumMod10(string digits)
+        internal bool ChecksumMod10(string digits)
         {
             if (string.IsNullOrEmpty(digits) || digits.Length < 2)
                 return false;
@@ -244,6 +292,9 @@ namespace FastReport.Barcode
         }
     }
 
+    /// <summary>
+    /// Represents Swiss QR code contact information.
+    /// </summary>
     public class Contact
     {
         private List<string> twoLetterCodes;
@@ -251,11 +302,34 @@ namespace FastReport.Barcode
         private string name, streetOrAddressline1, houseNumberOrAddressline2, zipCode, city, country;
         private AddressType adrType;
 
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
         public string Name { get { return name; } set { name = value; } }
+
+        /// <summary>
+        /// Gets or sets the street.
+        /// </summary>
         public string StreetOrAddressline { get { return streetOrAddressline1; } set { streetOrAddressline1 = value; } }
+
+        /// <summary>
+        /// Gets or sets the house.
+        /// </summary>
         public string HouseNumberOrAddressline { get { return houseNumberOrAddressline2; } set { houseNumberOrAddressline2 = value; } }
+
+        /// <summary>
+        /// Gets or sets the zip code.
+        /// </summary>
         public string ZipCode { get { return zipCode; } set { zipCode = value; } }
+
+        /// <summary>
+        /// Gets or sets the city.
+        /// </summary>
         public string City { get { return city; } set { city = value; } }
+
+        /// <summary>
+        /// Gets or sets the country.
+        /// </summary>
         public string Country { get { return country; } set { country = value; } }
 
         /// <summary>
@@ -389,6 +463,10 @@ namespace FastReport.Barcode
             return codesList;
         }
 
+        /// <summary>
+        /// Creates contact instance with contact data provided.
+        /// </summary>
+        /// <param name="contact">Contact data.</param>
         public Contact(string contact)
         {
             string[] data = contact.Split('\r');
@@ -404,6 +482,7 @@ namespace FastReport.Barcode
             country = data[6].Trim();
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             string contactData = ""; //AdrTp
@@ -421,36 +500,58 @@ namespace FastReport.Barcode
             return contactData;
         }
 
+        /// <summary>
+        /// Represents address type.
+        /// </summary>
         public enum AddressType
         {
+            /// <summary>
+            /// Structured Address
+            /// </summary>
             StructuredAddress,
+            /// <summary>
+            /// Combined Address
+            /// </summary>
             CombinedAddress
         }
 
+        /// <summary>
+        /// Represents Swiss QR code contact exception.
+        /// </summary>
         public class SwissQrCodeContactException : SwissQrCodeException
         {
-            public SwissQrCodeContactException()
+            internal SwissQrCodeContactException()
             {
             }
 
-            public SwissQrCodeContactException(string message)
+            internal SwissQrCodeContactException(string message)
                 : base(message)
             {
             }
 
-            public SwissQrCodeContactException(string message, SwissQrCodeException inner)
+            internal SwissQrCodeContactException(string message, SwissQrCodeException inner)
                 : base(message, inner)
             {
             }
         }
     }
 
+    /// <summary>
+    /// Represents IBAN data for Swiss QR code.
+    /// </summary>
     public class Iban
     {
         private string iban;
         private IbanType ibanType;
 
+        /// <summary>
+        /// Gets or sets IBAN type.
+        /// </summary>
         public IbanType TypeIban { get { return ibanType; } set { ibanType = value; } }
+        
+        /// <summary>
+        /// Gets or sets IBAN.
+        /// </summary>
         public string _Iban { get { return iban; } set { iban = value; } }
 
         /// <summary>
@@ -471,16 +572,24 @@ namespace FastReport.Barcode
             this.ibanType = ibanType;
         }
 
+        /// <summary>
+        /// Determines if this is QRIBAN.
+        /// </summary>
         public bool IsQrIban
         {
             get { return ibanType == IbanType.QrIban; }
         }
 
+        /// <summary>
+        /// Creates IBAN object with provided data.
+        /// </summary>
+        /// <param name="iban">The data.</param>
         public Iban(string iban)
         {
             this.iban = iban;
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (iban.StartsWith("[") && iban.EndsWith("]"))
@@ -489,9 +598,18 @@ namespace FastReport.Barcode
                 return new string(iban.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpper();
         }
 
+        /// <summary>
+        /// Represents IBAN
+        /// </summary>
         public enum IbanType
         {
+            /// <summary>
+            /// IBAN
+            /// </summary>
             Iban,
+            /// <summary>
+            /// QRIBAN
+            /// </summary>
             QrIban
         }
 
@@ -533,11 +651,40 @@ namespace FastReport.Barcode
         }
     }
 
+    /// <summary>
+    /// Represents currency.
+    /// </summary>
     public enum Currency
     {
+        /// <summary>
+        /// CHF
+        /// </summary>
         CHF = 756,
+        /// <summary>
+        /// EUR
+        /// </summary>
         EUR = 978
     }
 
+
+    /// <summary>
+    /// The exception that is thrown when there is an error in Swiss QR code.
+    /// </summary>
+    public class SwissQrCodeException : Exception
+    {
+        internal SwissQrCodeException()
+        {
+        }
+
+        internal SwissQrCodeException(string message)
+            : base(message)
+        {
+        }
+
+        internal SwissQrCodeException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
 }
 

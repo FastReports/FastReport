@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using FastReport.Utils;
 
+#if FRCORE || FROPENSOURCE
+#pragma warning disable CS1574 // missing cref members in XML comments
+#endif
+
 namespace FastReport.Format
 {
     /// <summary>

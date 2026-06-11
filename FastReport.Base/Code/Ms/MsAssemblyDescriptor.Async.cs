@@ -3,6 +3,7 @@ using System;
 using FastReport.Code.CodeDom.Compiler;
 #else
 using System.CodeDom.Compiler;
+#pragma warning disable CS1998
 #endif
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -18,7 +19,6 @@ namespace FastReport.Code.Ms
     partial class MsAssemblyDescriptor : IDisposable
     {
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1);
-
 
         private static async Task AddFastReportAssemblies(StringCollection assemblies, CancellationToken token)
         {

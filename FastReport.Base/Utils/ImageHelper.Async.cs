@@ -12,7 +12,9 @@ namespace FastReport.Utils
 {
     public static partial class ImageHelper
     {
+#pragma warning disable CS1998
         internal static async Task<byte[]> LoadAsync(string fileName, CancellationToken cancellationToken)
+#pragma warning restore CS1998
         {
             if (!String.IsNullOrEmpty(fileName))
 #if NETCOREAPP

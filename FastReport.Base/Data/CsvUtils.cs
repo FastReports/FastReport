@@ -113,7 +113,9 @@ namespace FastReport.Data
                     {
                         if (Config.ForbidLocalData)
                             throw new Exception(Res.Get("ConnectionEditors,Common,OnlyUrlException"));
+#pragma warning disable SYSLIB0014 // alternative is async only
                         request = (FileWebRequest)WebRequest.Create(uri);
+#pragma warning restore SYSLIB0014
                         request.Timeout = 5000;
                         response = (FileWebResponse)request.GetResponse();
                     }
@@ -121,13 +123,17 @@ namespace FastReport.Data
 
                 else if (uri.OriginalString.StartsWith("http"))
                 {
+#pragma warning disable SYSLIB0014 // alternative is async only
                     request = (HttpWebRequest)WebRequest.Create(uri);
+#pragma warning restore SYSLIB0014
                     request.Timeout = 5000;
                     response = (HttpWebResponse)request.GetResponse();
                 }
                 else if (uri.OriginalString.StartsWith("ftp"))
                 {
+#pragma warning disable SYSLIB0014 // alternative is async only
                     request = (FtpWebRequest)WebRequest.Create(uri);
+#pragma warning restore SYSLIB0014
                     request.Timeout = 5000;
                     response = (FtpWebResponse)request.GetResponse();
                 }
@@ -137,14 +143,14 @@ namespace FastReport.Data
                 }
             }
 
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
-                throw ex;
+                throw;
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
 
             if (response == null)

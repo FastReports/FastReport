@@ -115,7 +115,7 @@ namespace FastReport
         #region Public Methods
 
         /// <summary>
-        /// Pars json text string and return a new JsonBase Object
+        /// Parses json text string and returns a new JsonBase Object
         /// </summary>
         /// <param name="jsonText"></param>
         /// <returns></returns>
@@ -137,6 +137,7 @@ namespace FastReport
             return false;
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

@@ -480,7 +480,9 @@ namespace FastReport.Code.CodeDom.Compiler
                 return AssemblyLoadResolver.LoadManagedLibrary(assembly);
             }
 
+#pragma warning disable CS0618
             return ResolveMetadataReference?.Invoke(assembly);
+#pragma warning restore CS0618
         }
 
         private static async ValueTask<MetadataReference> UserResolveMetadataReferenceAsync(AssemblyName assemblyName, CancellationToken ct)

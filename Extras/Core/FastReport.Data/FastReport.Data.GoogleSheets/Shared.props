@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<Product>FastReport.Data.GoogleSheets</Product>
 		<AssemblyName>FastReport.Data.GoogleSheets</AssemblyName>
+        <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);MSB3042</MSBuildWarningsAsMessages>
 	</PropertyGroup>
 
 	<Import Project="..\Connections.props" />

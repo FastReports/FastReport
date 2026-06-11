@@ -11,6 +11,7 @@ namespace FastReport
             return Task.FromResult(IsEmpty());
         }
 
+        /// <inheritdoc/>
         public override async Task GetDataAsync(CancellationToken cancellationToken)
         {
             await base.GetDataAsync(cancellationToken);

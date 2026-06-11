@@ -19,7 +19,7 @@ namespace FastReport.Data
         private ArrayList internalRows;
         private ArrayList rows;
         private int currentRowNo;
-        protected object currentRow;
+        private protected object currentRow;
         private Hashtable additionalFilter;
         private bool forceLoadData;
         private Hashtable columnIndices;

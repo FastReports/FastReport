@@ -308,7 +308,9 @@ namespace FastReport.Data.JsonConnection
 
                     ServicePointManager.Expect100Continue = true;
                     ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014 // alternative is async only
                     var req = WebRequest.Create(jsonText);
+#pragma warning restore SYSLIB0014
                     req.Timeout = CommandTimeout * 1000;
 
                     foreach (var header in builder.Headers)

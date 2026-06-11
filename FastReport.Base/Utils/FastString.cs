@@ -475,7 +475,7 @@ namespace FastReport.Utils
         #endregion Constructors
     }
 
-    public class FastStringWithPool : FastString
+    internal class FastStringWithPool : FastString
     {
         Dictionary<string, string> pool;
 

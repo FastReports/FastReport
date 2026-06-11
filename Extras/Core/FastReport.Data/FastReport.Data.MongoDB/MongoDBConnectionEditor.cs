@@ -78,7 +78,7 @@ namespace FastReport.Data
             {
                 builder.Username = tbUserName.Text;
                 builder.Password = tbPassword.Text;
-                builder.UseSsl = cbUseSsl.Checked;
+                builder.UseTls = cbUseSsl.Checked; // builder.UseSsl is deprecated and is effectively using tls
             }
             MongoDBDataConnection.dbName = builder.DatabaseName = tbDatabase.Text;
 #if NET45

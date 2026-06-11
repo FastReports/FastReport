@@ -177,6 +177,7 @@ namespace FastReport
             skipFirstLineIndent = p.skipFirstLineIndent;
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             ParagraphFormat format = obj as ParagraphFormat;
@@ -187,6 +188,7 @@ namespace FastReport
                    skipFirstLineIndent == format.skipFirstLineIndent;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked
@@ -1541,12 +1543,14 @@ namespace FastReport
             }
         }
 
+        /// <inheritdoc/>
         public override void InitializeComponent()
         {
             base.InitializeComponent();
             TextFill.InitializeComponent();
         }
 
+        /// <inheritdoc/>
         public override void FinalizeComponent()
         {
             base.FinalizeComponent();

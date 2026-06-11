@@ -1586,6 +1586,9 @@ namespace FastReport.Barcode
             return "(02)00000123456789";
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="BarcodeGS1Datamatrix"/> class.
+        /// </summary>
         public BarcodeGS1Datamatrix()
         {
             GS1ConcatenationSymbol = GS1Concatenation.GS;

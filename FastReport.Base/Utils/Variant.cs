@@ -604,7 +604,6 @@ namespace FastReport
         /// as-is. Otherwise, attempts to convert the value of this instance
         /// to an equivalent 8-bit signed integer.
         /// </summary>
-        [CLSCompliant(false)]
         public sbyte ToSByte()
         {
             if (_value == null || _value.ToString() == "") return 0;
@@ -631,7 +630,6 @@ namespace FastReport
         /// culture-specific formatting information.
         /// </summary>
         /// <param name="formatProvider">The culture-specific formatting information.</param>
-        [CLSCompliant(false)]
         public sbyte ToSByte(IFormatProvider formatProvider)
         {
             return (sbyte)ToType(typeof(sbyte), false, formatProvider);
@@ -641,7 +639,6 @@ namespace FastReport
         /// as-is. Otherwise, attempts to convert the value of this instance
         /// to an equivalent 16-bit unsigned integer.
         /// </summary>
-        [CLSCompliant(false)]
         public ushort ToUInt16()
         {
             if (_value == null || _value.ToString() == "") return 0;
@@ -668,7 +665,6 @@ namespace FastReport
         /// culture-specific formatting information.
         /// </summary>
         /// <param name="formatProvider">The culture-specific formatting information.</param>
-        [CLSCompliant(false)]
         public ushort ToUInt16(IFormatProvider formatProvider)
         {
             return (ushort)ToType(typeof(ushort), false, formatProvider);
@@ -678,7 +674,6 @@ namespace FastReport
         /// as-is. Otherwise, attempts to convert the value of this instance
         /// to an equivalent 32-bit unsigned integer.
         /// </summary>
-        [CLSCompliant(false)]
         public uint ToUInt32()
         {
             if (_value == null || _value.ToString() == "") return 0;
@@ -705,7 +700,6 @@ namespace FastReport
         /// culture-specific formatting information.
         /// </summary>
         /// <param name="formatProvider">The culture-specific formatting information.</param>
-        [CLSCompliant(false)]
         public uint ToUInt32(IFormatProvider formatProvider)
         {
             return (uint)ToType(typeof(uint), false, formatProvider);
@@ -715,7 +709,6 @@ namespace FastReport
         /// as-is. Otherwise, attempts to convert the value of this instance
         /// to an equivalent 64-bit unsigned integer.
         /// </summary>
-        [CLSCompliant(false)]
         public ulong ToUInt64()
         {
             if (_value == null || _value.ToString() == "") return 0;
@@ -742,7 +735,6 @@ namespace FastReport
         /// culture-specific formatting information.
         /// </summary>
         /// <param name="formatProvider">The culture-specific formatting information.</param>
-        [CLSCompliant(false)]
         public ulong ToUInt64(IFormatProvider formatProvider)
         {
             return (ulong)ToType(typeof(ulong), false, formatProvider);
@@ -1783,6 +1775,11 @@ namespace FastReport
             return true;
         }
 
+        /// <summary>
+        /// Compares this value to other value.
+        /// </summary>
+        /// <param name="other">Other value.</param>
+        /// <returns>0 if values are equal, 1 if this value is greater than other, -1 otherwise.</returns>
         public int CompareTo(object other)
         {
             if (this > other) return 1;
@@ -1825,13 +1822,11 @@ namespace FastReport
         }
 
         ///
-        [CLSCompliant(false)]
         public static implicit operator sbyte(Variant v)
         {
             return v.ToSByte();
         }
         ///
-        [CLSCompliant(false)]
         public static implicit operator Variant(sbyte v)
         {
             return new Variant(v);
@@ -1849,13 +1844,11 @@ namespace FastReport
         }
 
         ///
-        [CLSCompliant(false)]
         public static implicit operator ushort(Variant v)
         {
             return v.ToUInt16();
         }
         ///
-        [CLSCompliant(false)]
         public static implicit operator Variant(ushort v)
         {
             return new Variant(v);
@@ -1873,13 +1866,11 @@ namespace FastReport
         }
 
         ///
-        [CLSCompliant(false)]
         public static implicit operator uint(Variant v)
         {
             return v.ToUInt32();
         }
         ///
-        [CLSCompliant(false)]
         public static implicit operator Variant(uint v)
         {
             return new Variant(v);
@@ -1897,13 +1888,11 @@ namespace FastReport
         }
 
         ///
-        [CLSCompliant(false)]
         public static implicit operator ulong(Variant v)
         {
             return v.ToUInt64();
         }
         ///
-        [CLSCompliant(false)]
         public static implicit operator Variant(ulong v)
         {
             return new Variant(v);

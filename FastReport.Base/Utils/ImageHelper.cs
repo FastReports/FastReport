@@ -261,7 +261,9 @@ namespace FastReport.Utils
             if (!String.IsNullOrEmpty(url))
             {
                 System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014 // alternative is async only
                 using (WebClient web = new WebClient())
+#pragma warning restore SYSLIB0014
                 {
                     return web.DownloadData(url);
                 }
@@ -432,6 +434,9 @@ namespace FastReport.Utils
         }
     }
 
+    /// <summary>
+    /// Represents image extension methods.
+    /// </summary>
     public static class ImageExtension
     {
         /// <summary>

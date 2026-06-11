@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FastReport.Utils
 {
@@ -239,14 +238,12 @@ namespace FastReport.Utils
     /// Implementation of Murmur3 Hash by Adam Horvath 
     /// http://blog.teamleadnet.com/2012/08/murmurhash3-ultra-fast-hash-algorithm.html
     /// </summary>
-    [CLSCompliantAttribute(true)]
     public class Murmur3
     {
         // 128 bit output, 64 bit platform version
         /// <summary>
         /// READ_SIZE
         /// </summary>
-        [CLSCompliantAttribute(false)]
         public static ulong READ_SIZE = 16;
         private const ulong C1 = 0x87c37b91114253d5L;
         private const ulong C2 = 0x4cf5ad432745937fL;

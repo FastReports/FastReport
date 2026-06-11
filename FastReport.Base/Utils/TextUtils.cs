@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace FastReport.Utils
 {
+    /// <summary>
+    /// Contains text utility methods.
+    /// </summary>
     public class TextUtils 
     {
         private static Hashtable delimiters = InitDelimiters(@";.,:'""{}[]()?!@#$%^&*-+=|\/<>".ToCharArray());
@@ -23,6 +20,13 @@ namespace FastReport.Utils
             return delimiters;
         }
 
+        /// <summary>
+        /// Determines if substring of the text with given start and len parameters is a whole word.
+        /// </summary>
+        /// <param name="str">The text.</param>
+        /// <param name="start">Start position.</param>
+        /// <param name="len">Length.</param>
+        /// <returns>true if substring is a whole word.</returns>
         public static bool IsWholeWord(string str, int start, int len)
         {
             bool isDelim = start == 0 || start > 0 && (IsDelimiter(str, start - 1) || IsDelimiter(str, start));

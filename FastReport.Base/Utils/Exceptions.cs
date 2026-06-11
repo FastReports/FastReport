@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+#if FRCORE || FROPENSOURCE
+#pragma warning disable CS1574 // missing cref members in XML comments
+#endif
+
 namespace FastReport.Utils
 {
     /// <summary>
@@ -22,26 +26,6 @@ namespace FastReport.Utils
     {
         internal AncestorException(string name)
           : base(String.Format(Res.Get("Messages,RenameAncestor"), name))
-        {
-        }
-    }
-
-    /// <summary>
-    /// The exception that is thrown when the user tried to rename an object that is introduced in the ancestor report.
-    /// </summary>
-    public class SwissQrCodeException : Exception
-    {
-        internal SwissQrCodeException()
-        {
-        }
-
-        internal SwissQrCodeException(string message)
-            : base(message)
-        {
-        }
-
-        internal SwissQrCodeException(string message, Exception inner)
-            : base(message, inner)
         {
         }
     }

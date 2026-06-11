@@ -706,6 +706,7 @@ namespace FastReport.Data
                             return PhysicalAddress.None;
                         }
                     }
+#pragma warning disable CS0618
                 case NpgsqlDbType.TsQuery:
                     {
                         try
@@ -728,7 +729,8 @@ namespace FastReport.Data
                             return null;
                         }
                     }
-                 case NpgsqlDbType.Bytea:
+#pragma warning restore CS0618
+                case NpgsqlDbType.Bytea:
                     {
                         string val = value.ToString();
                         if (val.Length % 2 != 0)

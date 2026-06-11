@@ -21,7 +21,7 @@ namespace FastReport
         }
 
         /// <summary>
-        /// Returned true if Color = Transparent
+        /// Returns true if Color = Transparent
         /// </summary>
         public abstract bool IsTransparent
         {
@@ -74,14 +74,34 @@ namespace FastReport
                 writer.WriteStr(prefix, Name);
         }
 
+        /// <summary>
+        /// Desrializes the fill.
+        /// </summary>
+        /// <param name="reader">Reader object.</param>
+        /// <param name="prefix">Name of the fill property.</param>
+        /// <remarks>
+        /// This method is for internal use only.
+        /// </remarks>
         public virtual void Deserialize(FRReader reader, string prefix)
         {
         }
 
+        /// <summary>
+        /// Performs a finalization after the report is finished.
+        /// </summary>
+        /// <remarks>
+        /// This method is for internal use only.
+        /// </remarks>
         public virtual void FinalizeComponent()
         {
         }
 
+        /// <summary>
+        /// Initializes the object before running a report.
+        /// </summary>
+        /// <remarks>
+        /// This method is for internal use only.
+        /// </remarks>
         public virtual void InitializeComponent()
         {
         }
@@ -118,6 +138,7 @@ namespace FastReport
             set { color = value; }
         }
 
+        /// <inheritdoc/>
         public override bool IsTransparent
         {
             get { return color.A == 0; }
@@ -215,6 +236,7 @@ namespace FastReport
             set { endColor = value; }
         }
 
+        /// <inheritdoc/>
         public override bool IsTransparent
         {
             get { return startColor.A == 0 && endColor.A == 0; }
@@ -419,6 +441,7 @@ namespace FastReport
             set { style = value; }
         }
 
+        /// <inheritdoc/>
         public override bool IsTransparent
         {
             get { return centerColor.A == 0 && edgeColor.A == 0; }
@@ -536,6 +559,7 @@ namespace FastReport
             set { style = value; }
         }
 
+        /// <inheritdoc/>
         public override bool IsTransparent
         {
             get { return foreColor.A == 0 && backColor.A == 0; }
@@ -644,6 +668,7 @@ namespace FastReport
             set { hatch = value; }
         }
 
+        /// <inheritdoc/>
         public override bool IsTransparent
         {
             get { return color.A == 0; }
@@ -866,6 +891,7 @@ namespace FastReport
             set { imageOffsetY = value; }
         }
 
+        /// <inheritdoc/>
         public override bool IsTransparent
         {
             get { return false; }

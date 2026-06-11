@@ -601,8 +601,11 @@ namespace FastReport
             }
         }
 
+        /// <summary>
+        /// Determines if this component requires report script compilation.
+        /// </summary>
         [Browsable(false)]
-        protected internal virtual bool IsCompilationNeeded => false;
+        public virtual bool IsCompilationNeeded => false;
 
         /// <summary>
         /// Gets or sets an object's cursor shape.

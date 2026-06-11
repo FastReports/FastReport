@@ -246,6 +246,9 @@ namespace FastReport
                 writer.WriteFloat(prefix + ".Width", Width);
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="BorderLine"/> class.
+        /// </summary>
         public BorderLine()
         {
             color = Color.Black;

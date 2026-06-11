@@ -79,6 +79,7 @@ namespace FastReport.Barcode
             ratioMax = 3;
         }
     }
+
     /// <summary>
     /// Generates the "Deutsche Identcode" barcode.
     /// </summary>
@@ -94,7 +95,7 @@ namespace FastReport.Barcode
 
         #endregion
 
-        private string CheckSumModulo10(string data)
+        private static new string CheckSumModulo10(string data)
         {
             int sum = 0;
             int fak = data.Length;
@@ -214,7 +215,7 @@ namespace FastReport.Barcode
         [System.ComponentModel.Category("Appearance")]
         public bool PrintCheckSum { get; set; }
 
-        private string CheckSumModulo10(string data)
+        private static new string CheckSumModulo10(string data)
         {
             int sum = 0;
             int fak = data.Length;
@@ -307,12 +308,12 @@ namespace FastReport.Barcode
                 .Insert(16, " ")
                 .Insert(19, " ");
 
-
-
-
             return result;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodeDeutscheLeitcode"/> class with default settings.
+        /// </summary>
         public BarcodeDeutscheLeitcode()
         {
             ratioMin = 2.25F;
@@ -320,9 +321,8 @@ namespace FastReport.Barcode
             WideBarRatio = 3F;
             CalcCheckSum = true;
         }
-
-
     }
+
     /// <summary>
     /// Generates the "ITF-14" barcode.
     /// </summary>

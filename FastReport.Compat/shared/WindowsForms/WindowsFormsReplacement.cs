@@ -7,6 +7,7 @@ using System.Drawing;
 
 #pragma warning disable 1591 // disable missing xml comments warning
 #pragma warning disable FR0000 // Field must be texted in lowerCamelCase.
+#pragma warning disable CS0067 // event is never used
 
 namespace System.Windows.Forms
 {
@@ -1473,7 +1474,7 @@ namespace System.Windows.Forms
         public Button AcceptButton;
         public Button CancelButton;
         public FormBorderStyle FormBorderStyle;
-        public Size ClientSize;
+        public Size ClientSize { get; set; }
         public FormStartPosition StartPosition;
         public bool ShowIcon;
         public bool ShowInTaskbar;

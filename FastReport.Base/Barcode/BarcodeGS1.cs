@@ -12,7 +12,7 @@ namespace FastReport.Barcode
     /// </summary>
     public class BarcodeGS1Base : LinearBarcodeBase
     {
-        protected List<string> EncodedData { get; set; }
+        private protected List<string> EncodedData { get; set; }
 
         /// <summary>
         /// Routine to generate widths for GS1 elements for a given value.
@@ -389,7 +389,7 @@ namespace FastReport.Barcode
         /// </summary>
         protected int _segments = 4;
 
-        protected Collection<SymbolData> Symbol = new Collection<SymbolData>();
+        private protected Collection<SymbolData> Symbol = new Collection<SymbolData>();
 
         const int NumMode = 1;
         const int AlnuMode = 2;
@@ -691,10 +691,11 @@ namespace FastReport.Barcode
             return BinaryData;
         }
 
-        //<summary>
-        //Encodes the Databar Expanded symbol.
-        //</summary>
-        public void DatabarExpanded(char[] barcodeData)
+        /// <summary>
+        /// Encodes the Databar Expanded symbol.
+        /// </summary>
+        /// <param name="barcodeData">Barcode data.</param>
+        private void DatabarExpanded(char[] barcodeData)
         {
             BitVectorGS1 binaryData = DatabarExpBitStream(barcodeData, false, _segments);
 
@@ -822,7 +823,6 @@ namespace FastReport.Barcode
             bool latch = false;
             int column = 0;
             int columnsPerRow = _segments / 2;
-            int maxWidth = 0;
 
             int codeBlocks = ((dataCharacters + 1) / 2) + ((dataCharacters + 1) % 2);
             if (columnsPerRow > codeBlocks) // User supplied segments is large than needed to encode symbol.
@@ -1220,7 +1220,7 @@ namespace FastReport.Barcode
             return "";
         }
 
-        protected void DrawLineBars(byte[] rowData, IGraphics g, float zoom, RectangleF rect)
+        internal void DrawLineBars(byte[] rowData, IGraphics g, float zoom, RectangleF rect)
         {
             if (rowData == null || rowData.Length == 0)
                 return;

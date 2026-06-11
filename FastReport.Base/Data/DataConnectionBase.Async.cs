@@ -258,7 +258,11 @@ namespace FastReport.Data
             return Task.FromResult(CreateDataSet());
         }
 
-
+        /// <summary>
+        /// Initializes a DataSet instance.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The DataSet object.</returns>
         public async Task<DataSet> GetDataSetAsync(CancellationToken cancellationToken = default)
         {
             if (dataSet == null)
@@ -286,6 +290,12 @@ namespace FastReport.Data
             }
         }
 
+        /// <summary>
+        /// Gets schema table.
+        /// </summary>
+        /// <param name="collectionName">Name of collection.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The DataTable object with schema.</returns>
         protected async Task<DataTable> GetSchemaAsync(string collectionName, CancellationToken cancellationToken)
         {
             DbConnection conn = GetConnection();
@@ -300,6 +310,13 @@ namespace FastReport.Data
             }
         }
 
+        /// <summary>
+        /// Gets schema table.
+        /// </summary>
+        /// <param name="collectionName">Name of collection.</param>
+        /// <param name="restrictionValues">Restrictions.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The DataTable object with schema.</returns>
         protected async Task<DataTable> GetSchemaAsync(string collectionName, string[] restrictionValues, CancellationToken cancellationToken)
         {
             DbConnection conn = GetConnection();

@@ -12,7 +12,7 @@ using FastReport.Utils;
 namespace FastReport.Data
 {
     /// <summary>
-    /// The base class for all data connection components such as <see cref="MsSqlDataConnection"/>.
+    /// The base class for all data connection components such as MsSqlDataConnection/>.
     /// </summary>
     /// <example>This example shows how to add a new MS Access connection to the report.
     /// <code>
@@ -197,7 +197,7 @@ namespace FastReport.Data
             }
         }
 
-        protected string PrepareSelectCommand(string selectCommand, string tableName, DbConnection connection)
+        private string PrepareSelectCommand(string selectCommand, string tableName, DbConnection connection)
         {
             if (String.IsNullOrEmpty(selectCommand))
             {
@@ -206,7 +206,7 @@ namespace FastReport.Data
             return selectCommand;
         }
 
-        protected TableDataSource FindTableDataSource(DataTable table)
+        private TableDataSource FindTableDataSource(DataTable table)
         {
             foreach (TableDataSource c in Tables)
             {
@@ -1000,20 +1000,11 @@ namespace FastReport.Data
             }
         }
 
-        protected void CreateUniqueNames(DataConnectionBase copyTo)
-        {
-            int i = 1;
-            string s;
-            do
-            {
-                s = this.Alias + i.ToString();
-                i++;
-            }
-            while (Report.Dictionary.FindByAlias(s) != null);
-            copyTo.Alias = s;
-            copyTo.Name = s;
-        }
-
+        /// <summary>
+        /// Gets schema table.
+        /// </summary>
+        /// <param name="collectionName">Name of collection.</param>
+        /// <returns>The DataTable object with schema.</returns>
         protected DataTable GetSchema(string collectionName)
         {
             DbConnection conn = GetConnection();
@@ -1032,6 +1023,12 @@ namespace FastReport.Data
             return null;
         }
 
+        /// <summary>
+        /// Gets schema table.
+        /// </summary>
+        /// <param name="collectionName">Name of collection.</param>
+        /// <param name="restrictionValues">Restrictions.</param>
+        /// <returns>The DataTable object with schema.</returns>
         protected DataTable GetSchema(string collectionName, string[] restrictionValues)
         {
             DbConnection conn = GetConnection();
