@@ -7,6 +7,10 @@ using FastReport.Preview;
 using System.Drawing;
 using System.Linq;
 
+#if FRCORE || FROPENSOURCE
+#pragma warning disable CS1574 // missing cref members in XML comments
+#endif
+
 namespace FastReport.Export
 {
     /// <summary>
@@ -33,7 +37,7 @@ namespace FastReport.Export
         private List<FileStream> tempFiles;
         private List<Stream> generatedStreams;
         private bool exportTabs;
-        protected bool webPreview;
+        private protected bool webPreview;
 
         #region Properties
 
@@ -453,37 +457,6 @@ namespace FastReport.Export
                     }
                 }
             }
-        }
-
-        public void InstantExportStart(Report report, Stream stream)
-        {
-            SetReport(report);
-            this.stream = stream;
-            GeneratedFiles.Clear();
-            if (!String.IsNullOrEmpty(FileName))
-                GeneratedFiles.Add(FileName);
-            Start();
-        }
-
-        public void InstantExportBeginPage(ReportPage page)
-        {
-            ExportPageBegin(page);
-        }
-
-        public void InstantExportExportBand(BandBase band)
-        {
-            ExportBand(band);
-        }
-
-        public void InstantExportEndPage(ReportPage page)
-        {
-            ExportPageEnd(page);
-        }
-
-        public void InstantExportFinish()
-        {
-            Finish();
-            DeleteTempFiles();
         }
 
         /// <summary>

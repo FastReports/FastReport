@@ -509,6 +509,9 @@ namespace FastReport
             base.Draw(e);
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="RFIDLabel"/> class.
+        /// </summary>
         public RFIDLabel()
         {
             tidBank = new RFIDBank();
@@ -534,6 +537,9 @@ namespace FastReport
             //Dock = System.Windows.Forms.DockStyle.Fill;
         }
 
+        /// <summary>
+        /// Contains RFID bank data.
+        /// </summary>
 #if !FRCORE
         [TypeConverter(typeof(TypeConverters.FRExpandableObjectConverter))]
 #endif
@@ -549,7 +555,13 @@ namespace FastReport
             /// </summary>
             public enum Format
             {
+                /// <summary>
+                /// Hex
+                /// </summary>
                 Hex = 'H',
+                /// <summary>
+                /// ASCII
+                /// </summary>
                 ASCII = 'A'
             }
 
@@ -603,6 +615,9 @@ namespace FastReport
                 }
             }
 
+            /// <summary>
+            /// Initializes a new instance of <see cref="RFIDBank"/> class.
+            /// </summary>
             public RFIDBank()
             {
                 dataColumn = "";

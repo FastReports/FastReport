@@ -163,6 +163,7 @@ namespace FastReport.Data.JsonConnection
             UpdateSchema = false;
         }
 
+        /// <inheritdoc/>
         public override Task InitSchemaAsync(CancellationToken cancellationToken = default)
         {
             InitSchema();
@@ -185,6 +186,7 @@ namespace FastReport.Data.JsonConnection
             }
         }
 
+        /// <inheritdoc/>
         public override Task LoadDataAsync(ArrayList rows, CancellationToken cancellationToken)
         {
             LoadData(rows);

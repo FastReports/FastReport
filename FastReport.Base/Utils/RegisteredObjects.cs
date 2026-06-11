@@ -8,8 +8,16 @@ using FastReport.Data;
 using FastReport.Export;
 using System.Linq;
 
+#if FRCORE || FROPENSOURCE || COMMUNITY
+#pragma warning disable CS1574 // missing cref members in XML comments
+#endif
+
 namespace FastReport.Utils
 {
+    /// <summary>
+    /// Represents abstract class that stores report object's information.
+    /// </summary>
+    /// <typeparam name="T">T</typeparam>
     public abstract class BaseObjectInfo<T> where T : BaseObjectInfo<T>
     {
         /// <summary>
@@ -30,12 +38,15 @@ namespace FastReport.Utils
 
         internal abstract T FindOrCreate(string complexName);
 
-        protected BaseObjectInfo()
+        private protected BaseObjectInfo()
         {
             Items = new List<T>();
         }
     }
 
+    /// <summary>
+    /// Represents class that stores function information.
+    /// </summary>
     public class FunctionInfo : BaseObjectInfo<FunctionInfo>
     {
         #region Fields
@@ -189,6 +200,9 @@ namespace FastReport.Utils
         }
     }
 
+    /// <summary>
+    /// Represents class that stores data connection information.
+    /// </summary>
     public class DataConnectionInfo : BaseObjectInfo<DataConnectionInfo>
     {
         private string text;
@@ -215,6 +229,7 @@ namespace FastReport.Utils
             }
         }
 
+        /// <inheritdoc/>
         public override void EnumItems(ICollection<DataConnectionInfo> list)
         {
             list.Add(this);
@@ -239,7 +254,7 @@ namespace FastReport.Utils
             return item;
         }
 
-        public DataConnectionInfo()
+        internal DataConnectionInfo()
         {
         }
     }
@@ -574,6 +589,9 @@ namespace FastReport.Utils
             get;
         }
 
+        /// <summary>
+        /// Gets a list of assemblies with registered objects.
+        /// </summary>
         public static List<Assembly> Assemblies
         {
             get;
@@ -1093,6 +1111,11 @@ namespace FastReport.Utils
             return export;
         }
 
+        /// <summary>
+        /// Finds the registered export's info.
+        /// </summary>
+        /// <param name="type">The type of export to find.</param>
+        /// <returns>The export's info.</returns>
         public static ObjectInfo FindExport(Type type)
         {
             var exports = new List<ObjectInfo>();
@@ -1106,6 +1129,11 @@ namespace FastReport.Utils
             return null;
         }
 
+        /// <summary>
+        /// Finds the registered connection's info.
+        /// </summary>
+        /// <param name="type">The type of connection to find.</param>
+        /// <returns>The connection's info.</returns>
         public static DataConnectionInfo FindConnection(Type type)
         {
             if (type == null)
@@ -1171,6 +1199,12 @@ namespace FastReport.Utils
             return null;
         }
 
+        /// <summary>
+        /// Creates function's tree.
+        /// </summary>
+        /// <param name="report">The Report instance.</param>
+        /// <param name="rootItem">The function's root item.</param>
+        /// <param name="rootNode">The XML root node to create the tree in.</param>
         public static void CreateFunctionsTree(Report report, FunctionInfo rootItem, XmlItem rootNode)
         {
             foreach (FunctionInfo item in rootItem.Items)

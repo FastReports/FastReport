@@ -264,6 +264,10 @@ namespace FastReport
             }
         }
 
+        /// <summary>
+        /// Gets the table object that represents this object's contents.
+        /// </summary>
+        /// <returns>The TableObject.</returns>
         public TableObject GetTable()
         {
             return GetTable(false);

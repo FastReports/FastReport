@@ -22,20 +22,20 @@ namespace FastReport
     ///     property to do this;</description>
     ///   </item>
     ///   <item>
-    ///     <description>picture that is stored in the database BLOb field. Use the <see cref="DataColumn"/>
+    ///     <description>picture that is stored in the database BLOb field. Use the <see cref="PictureObjectBase.DataColumn"/>
     ///     property to specify the name of data column you want to show;</description>
     ///   </item>
     ///   <item>
-    ///     <description>picture that is stored in the local disk file. Use the <see cref="ImageLocation"/>
+    ///     <description>picture that is stored in the local disk file. Use the <see cref="PictureObjectBase.ImageLocation"/>
     ///     property to specify the name of the file;</description>
     ///   </item>
     ///   <item>
-    ///     <description>picture that is stored in the Web. Use the <see cref="ImageLocation"/>
+    ///     <description>picture that is stored in the Web. Use the <see cref="PictureObjectBase.ImageLocation"/>
     ///     property to specify the picture's URL.</description>
     ///   </item>
     /// </list>
-    /// <para/>Use the <see cref="SizeMode"/> property to specify a size mode. The <see cref="MaxWidth"/>
-    /// and <see cref="MaxHeight"/> properties can be used to restrict the image size if <b>SizeMode</b>
+    /// <para/>Use the <see cref="PictureObjectBase.SizeMode"/> property to specify a size mode. The <see cref="PictureObjectBase.MaxWidth"/>
+    /// and <see cref="PictureObjectBase.MaxHeight"/> properties can be used to restrict the image size if <b>SizeMode</b>
     /// is set to <b>AutoSize</b>.
     /// <para/>The <see cref="TransparentColor"/> property can be used to display an image with
     /// transparent background. Use the <see cref="Transparency"/> property if you want to display
@@ -455,6 +455,7 @@ namespace FastReport
             }
         }
 
+        /// <inheritdoc/>
         protected override void DrawImageInternal2(IGraphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft)
         {
             Image image = transparentImage != null ? transparentImage : Image;
@@ -629,6 +630,7 @@ namespace FastReport
             Image = null;
         }
 
+        /// <inheritdoc/>
         protected override void ResetImageIndex()
         {
             imageIndex = -1;

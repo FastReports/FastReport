@@ -480,7 +480,7 @@ namespace FastReport.Table
         /// using <b>PrintRow(s)</b> or <b>PrintColumn(s)</b> methods.
         /// See the <see cref="ManualBuild"/> event for more details.
         /// </remarks>
-        public void PageBreak()
+        public new void PageBreak()
         {
             if (!IsManualBuild)
                 throw new TableManualBuildException();

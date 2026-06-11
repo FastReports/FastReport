@@ -24,7 +24,7 @@ namespace FastReport.Utils
         private BlobStore blobStore;
         private bool readChildren;
         private SerializeTo deserializeFrom;
-        public static  List<ValidationError> validationErrors = new List<ValidationError>();
+        internal static List<ValidationError> validationErrors = new List<ValidationError>();
         #endregion
 
         #region Properties
@@ -81,6 +81,9 @@ namespace FastReport.Utils
             set { deserializeFrom = value; }
         }
 
+        /// <summary>
+        /// Gets a Report reference.
+        /// </summary>
         public Report Report
         {
             get { return report; }

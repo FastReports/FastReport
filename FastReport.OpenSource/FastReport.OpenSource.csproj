@@ -57,7 +57,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DefineConstants>TRACE;DOTNET_4;READONLY_STRUCTS</DefineConstants>
+    <DefineConstants>TRACE;DOTNET_4;READONLY_STRUCTS;FROPENSOURCE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>$(DefineConstants);DEBUG;</DefineConstants>

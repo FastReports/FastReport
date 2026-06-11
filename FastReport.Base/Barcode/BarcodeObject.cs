@@ -387,6 +387,9 @@ namespace FastReport.Barcode
             this.ShowText = false;
         }
 
+        /// <summary>
+        /// Updates the object't bounds based on Zoom and AutoSize properties.
+        /// </summary>
         public void UpdateAutoSize()
         {
             SetBarcodeProperties();

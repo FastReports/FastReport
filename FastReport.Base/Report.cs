@@ -20,6 +20,10 @@ using System.Security;
 using System.Text;
 using System.Windows.Forms;
 
+#if FRCORE || FROPENSOURCE
+#pragma warning disable CS1574 // missing cref members in XML comments
+#endif
+
 namespace FastReport
 {
     /// <summary>
@@ -248,7 +252,9 @@ namespace FastReport
         private Bitmap measureBitmap;
         private IGraphics measureGraphics;
         private bool storeInResources;
+#pragma warning disable SYSLIB0003
         private PermissionSet scriptRestrictions;
+#pragma warning restore SYSLIB0003
         private ReportOperation operation;
         private bool needRefresh;
         private bool isParameterChanged = false;
@@ -792,6 +798,9 @@ namespace FastReport
         /// </example>
         /// </remarks>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+#if NETCOREAPP
+        [Obsolete("Code Access Security has no effect in .NET Core")]
+#endif
         public PermissionSet ScriptRestrictions
         {
             get { return scriptRestrictions; }
@@ -936,6 +945,9 @@ namespace FastReport
             }
         }
 
+        /// <summary>
+        /// Gets measure graphics. Internal use only.
+        /// </summary>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IGraphics MeasureGraphics
         {
@@ -954,6 +966,9 @@ namespace FastReport
             }
         }
 
+        /// <summary>
+        /// Gets report name.
+        /// </summary>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string GetReportName
         {
@@ -1002,7 +1017,7 @@ namespace FastReport
             set => _codeProvider = value;
         }
 
-        #endregion Properties
+#endregion Properties
 
         #region Private Methods
 
@@ -2083,14 +2098,14 @@ namespace FastReport
                 {
                     reader.Load(stream);
                 }
-                catch (Exception e)
+                catch
                 {
                     if (crypted)
                     {
                         saveStream.Position = saveStreamPos;
                         throw new DecryptException();
                     }
-                    throw e;
+                    throw;
                 }
                 finally
                 {

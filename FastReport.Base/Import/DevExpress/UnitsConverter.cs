@@ -12,7 +12,7 @@ namespace FastReport.Import.DevExpress
     /// <summary>
     /// The DevExpress units converter.
     /// </summary>
-    public static class UnitsConverter
+    internal static class UnitsConverter
     {
         public static float Ratio = 1;
 

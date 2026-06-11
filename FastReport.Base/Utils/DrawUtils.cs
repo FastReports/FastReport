@@ -11,6 +11,9 @@ namespace FastReport.Utils
         Cairo
     }
 
+    /// <summary>
+    /// Contains properties and method related to draw operations.
+    /// </summary>
     public static partial class DrawUtils
     {
         private static Font FDefaultFont;
@@ -21,6 +24,9 @@ namespace FastReport.Utils
         private static float FDpiFX;
         private static MonoRendering FMonoRendering = MonoRendering.Undefined;
 
+        /// <summary>
+        /// Gets the primary screen dpi.
+        /// </summary>
         public static int ScreenDpi
         {
             get
@@ -31,6 +37,9 @@ namespace FastReport.Utils
             }
         }
 
+        /// <summary>
+        /// Gets the primary screen dpi ratio (96 / ScreenDpi).
+        /// </summary>
         public static float ScreenDpiFX
         {
             get
@@ -130,6 +139,12 @@ namespace FastReport.Utils
             }
         }
 
+        /// <summary>
+        /// Gets default report font (locale specific).
+        /// </summary>
+        /// <remarks>
+        /// On most locales this is Arial,10. ja,zh locales use different fonts (MS UI Gothic,9 and SimSun,9).
+        /// </remarks>
         public static Font DefaultReportFont
         {
             get
@@ -155,6 +170,9 @@ namespace FastReport.Utils
             }
         }
 
+        /// <summary>
+        /// Gets the default text object's font (Arial, 10). 
+        /// </summary>
         public static Font DefaultTextObjectFont
         {
             get
@@ -165,6 +183,9 @@ namespace FastReport.Utils
             }
         }
 
+        /// <summary>
+        /// Gets default fixed font.
+        /// </summary>
         public static Font FixedFont
         {
             get
@@ -198,24 +219,25 @@ namespace FastReport.Utils
             byte gdiCharSet = 1,
             bool gdiVerticalFont = false)
         {
-            Font font = new Font(familyName, emSize, style, unit, gdiCharSet, gdiVerticalFont);
-
-// skia now handles Font instantiation correctly
-/*#if SKIA
-            if (font.Name != familyName)
-            {
-                // font family not found in installed fonts, search in the user fonts
-                font = new Font(familyName, emSize, style, unit, gdiCharSet, gdiVerticalFont, Config.PrivateFontCollection.Collection);
-            }
-#endif*/
-                    return font;
+            return new Font(familyName, emSize, style, unit, gdiCharSet, gdiVerticalFont);
         }
 
+        /// <summary>
+        /// Measures a text.
+        /// </summary>
+        /// <param name="text">The text to measure.</param>
+        /// <returns>The size of text.</returns>
         public static SizeF MeasureString(string text)
         {
             return MeasureString(text, DefaultFont);
         }
 
+        /// <summary>
+        /// Measures a text.
+        /// </summary>
+        /// <param name="text">The text to measure.</param>
+        /// <param name="font">The font.</param>
+        /// <returns>The size of text.</returns>
         public static SizeF MeasureString(string text, Font font)
         {
             using (Bitmap bmp = new Bitmap(1, 1))
@@ -226,11 +248,28 @@ namespace FastReport.Utils
             }
         }
 
+        /// <summary>
+        /// Measures a text.
+        /// </summary>
+        /// <param name="g">The graphics context.</param>
+        /// <param name="text">The text to measure.</param>
+        /// <param name="font">The font.</param>
+        /// <param name="format">The string format.</param>
+        /// <returns>The size of text.</returns>
         public static SizeF MeasureString(Graphics g, string text, Font font, StringFormat format)
         {
             return MeasureString(g, text, font, new RectangleF(0, 0, 10000, 10000), format);
         }
 
+        /// <summary>
+        /// Measures a text.
+        /// </summary>
+        /// <param name="g">The graphics context.</param>
+        /// <param name="text">The text to measure.</param>
+        /// <param name="font">The font.</param>
+        /// <param name="layoutRect">The layout rect.</param>
+        /// <param name="format">The string format.</param>
+        /// <returns>The size of text.</returns>
         public static SizeF MeasureString(Graphics g, string text, Font font, RectangleF layoutRect, StringFormat format)
         {
             if (String.IsNullOrEmpty(text))
@@ -261,7 +300,6 @@ namespace FastReport.Utils
             }
             return FMonoRendering;
         }
-
 
         /// <summary>
         /// The method adjusts the dotted line style for the <see cref="Pen"/> in a graphical context.

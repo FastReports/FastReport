@@ -549,6 +549,10 @@ namespace FastReport.Utils
         }
 
 
+        /// <summary>
+        /// Loads the document from a reader object.
+        /// </summary>
+        /// <param name="reader">Reader object to load from.</param>
         public void Load(TextReader reader)
         {
             XmlReader rd = new XmlReader(reader);

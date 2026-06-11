@@ -20,14 +20,11 @@ namespace FastReport
     /// </remarks>
     public partial class PolyLineObject : ReportComponentBase
     {
-        #region Protected Internal Fields
+        #region Internal Fields
 
-        /// <summary>
-        /// do not set this value, internal use only
-        /// </summary>
-        protected internal PolygonSelectionMode polygonSelectionMode;
+        internal PolygonSelectionMode polygonSelectionMode = PolygonSelectionMode.MoveAndScale;
 
-        #endregion Protected Internal Fields
+        #endregion Internal Fields
 
         #region Private Fields
 
@@ -78,11 +75,8 @@ namespace FastReport
 
         /// <summary>
         /// Return points array of line
-        /// deprecated
         /// </summary>
-        [Browsable(false)]
-        [Obsolete]
-        public PointF[] PointsArray
+        internal PointF[] PointsArray
         {
             get
             {
@@ -97,11 +91,8 @@ namespace FastReport
 
         /// <summary>
         /// Return point types array. 0 - Start of line, 1 - Keep on line
-        /// deprecated
         /// </summary>
-        [Browsable(false)]
-        [Obsolete]
-        public byte[] PointTypesArray
+        internal byte[] PointTypesArray
         {
             get
             {
@@ -516,6 +507,10 @@ namespace FastReport
                 writer.WriteValue("DashPattern", DashPattern);
         }
 
+        /// <summary>
+        /// Constructs a new polyline using the points specified.
+        /// </summary>
+        /// <param name="newPoints">Array of points.</param>
         public void SetPolyLine(PointF[] newPoints)
         {
             pointsCollection.Clear();
@@ -661,9 +656,9 @@ namespace FastReport
 
         #endregion Private Methods
 
-        #region Protected Internal Enums
+        #region Internal Enums
 
-        protected internal enum PolygonSelectionMode : int
+        internal enum PolygonSelectionMode : int
         {
             MoveAndScale,
             Normal,
@@ -672,7 +667,7 @@ namespace FastReport
             Delete
         }
 
-        #endregion Protected Internal Enums
+        #endregion Internal Enums
 
         #region Public Classes
 
@@ -693,24 +688,36 @@ namespace FastReport
 
             #region Public Properties
 
+            /// <summary>
+            /// Gets or sets left curve.
+            /// </summary>
             public PolyPoint LeftCurve
             {
                 get { return left; }
                 set { left = value; }
             }
 
+            /// <summary>
+            /// Gets or sets right curve.
+            /// </summary>
             public PolyPoint RightCurve
             {
                 get { return right; }
                 set { right = value; }
             }
 
+            /// <summary>
+            /// Gets or sets X coordinate.
+            /// </summary>
             public float X
             {
                 get { return x; }
                 set { x = value; }
             }
 
+            /// <summary>
+            /// Gets or sets Y coordinate.
+            /// </summary>
             public float Y
             {
                 get { return y; }
@@ -728,10 +735,18 @@ namespace FastReport
                 invariant.NumberDecimalSeparator = ".";
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PolyPoint"/> class.
+            /// </summary>
             public PolyPoint()
             {
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PolyPoint"/> class with the location specified.
+            /// </summary>
+            /// <param name="x">X coordinate.</param>
+            /// <param name="y">Y coordinate.</param>
             public PolyPoint(float x, float y)
             {
                 this.x = x;
@@ -742,7 +757,7 @@ namespace FastReport
 
             #region Public Methods
 
-            public void Deserialize(string s)
+            internal void Deserialize(string s)
             {
                 string[] strs = s.Split('/');
                 int index = 0;
@@ -768,12 +783,12 @@ namespace FastReport
                 }
             }
 
-            public bool Near(PolyPoint p)
+            internal bool Near(PolyPoint p)
             {
                 return (p != null) && (Math.Abs(x - p.x) < 0.0001) && (Math.Abs(y - p.y) < 0.0001);
             }
 
-            public void ScaleX(float scale)
+            internal void ScaleX(float scale)
             {
                 x *= scale;
                 if (LeftCurve != null)
@@ -782,7 +797,7 @@ namespace FastReport
                     RightCurve.X *= scale;
             }
 
-            public void ScaleY(float scale)
+            internal void ScaleY(float scale)
             {
                 y *= scale;
                 if (LeftCurve != null)
@@ -791,7 +806,7 @@ namespace FastReport
                     RightCurve.Y *= scale;
             }
 
-            public void Serialize(StringBuilder sb)
+            internal void Serialize(StringBuilder sb)
             {
                 sb.Append(Round(x)).Append("/").Append(Round(y));
                 if (LeftCurve != null)
@@ -804,6 +819,7 @@ namespace FastReport
                 }
             }
 
+            /// <inheritdoc/>
             public override string ToString()
             {
                 return "(" + Round(x) + ";" + Round(y) + ")";
@@ -849,6 +865,9 @@ namespace FastReport
             #endregion Private Methods
         }
 
+        /// <summary>
+        /// Represents a collection of poly points.
+        /// </summary>
         public class PolyPointCollection : IEnumerable<PolyPoint>
         {
             #region Private Fields
@@ -859,6 +878,11 @@ namespace FastReport
 
             #region Public Indexers
 
+            /// <summary>
+            /// Gets or sets point at index specified.
+            /// </summary>
+            /// <param name="index">The 0-based index.</param>
+            /// <returns>The point.</returns>
             public PolyPoint this[int index]
             {
                 get
@@ -877,6 +901,9 @@ namespace FastReport
 
             #region Public Properties
 
+            /// <summary>
+            /// Gets the number of points in this collection.
+            /// </summary>
             public int Count
             {
                 get
@@ -885,18 +912,13 @@ namespace FastReport
                 }
             }
 
-            public bool IsReadOnly
-            {
-                get
-                {
-                    return false;
-                }
-            }
-
             #endregion Public Properties
 
             #region Public Constructors
 
+            /// <summary>
+            /// Initializes a new instance of <see cref="PolyPointCollection"/> class.
+            /// </summary>
             public PolyPointCollection()
             {
                 points = new List<PolyPoint>();
@@ -906,16 +928,27 @@ namespace FastReport
 
             #region Public Methods
 
+            /// <summary>
+            /// Adds a point.
+            /// </summary>
+            /// <param name="item">The new point.</param>
             public void Add(PolyPoint item)
             {
                 points.Add(item);
             }
 
+            /// <summary>
+            /// Clears this collection.
+            /// </summary>
             public void Clear()
             {
                 points.Clear();
             }
 
+            /// <summary>
+            /// Makes a clone of this collection.
+            /// </summary>
+            /// <returns>A new collection.</returns>
             public PolyPointCollection Clone()
             {
                 PolyPointCollection result = new PolyPointCollection();
@@ -928,6 +961,10 @@ namespace FastReport
                 return result;
             }
 
+            /// <summary>
+            /// Gets an enumerator.
+            /// </summary>
+            /// <returns>The enumerator.</returns>
             public IEnumerator<PolyPoint> GetEnumerator()
             {
                 return points.GetEnumerator();
@@ -938,11 +975,21 @@ namespace FastReport
                 return points.GetEnumerator();
             }
 
+            /// <summary>
+            /// Gets an index of specified point.
+            /// </summary>
+            /// <param name="currentPoint">A point.</param>
+            /// <returns>The index of a point.</returns>
             public int IndexOf(PolyPoint currentPoint)
             {
                 return points.IndexOf(currentPoint);
             }
 
+            /// <summary>
+            /// Inserts a new point into this collection.
+            /// </summary>
+            /// <param name="index">The index to insert before.</param>
+            /// <param name="item">The new point.</param>
             public void Insert(int index, PolyPoint item)
             {
                 int count = points.Count;
@@ -957,6 +1004,10 @@ namespace FastReport
                 points.Insert(index, item);
             }
 
+            /// <summary>
+            /// Removes a point with specified index.
+            /// </summary>
+            /// <param name="index">Index of point to remove.</param>
             public void Remove(int index)
             {
                 index = NormalizeIndex(index);

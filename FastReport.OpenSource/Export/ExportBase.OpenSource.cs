@@ -12,6 +12,9 @@ namespace FastReport.Export
         /// <param name="int0"></param>
         partial void ShowPerformance(int int0);
 
+        /// <summary>
+        /// Not applicable to this edition.
+        /// </summary>
         protected ReportPage GetOverlayPage(ReportPage page)
         {
             return page;

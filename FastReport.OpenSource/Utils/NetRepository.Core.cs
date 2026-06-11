@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 // From SyntaxParsers/NetRepository.cs
 namespace Editor.Syntax.Parsers.ReflectionRepository
 {
-    public class DescriptionHelper
+    internal class DescriptionHelper
     {
         private static Hashtable assemblies = new Hashtable();
         private static string systemAssemblyFolder = string.Empty;

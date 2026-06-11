@@ -7,6 +7,10 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 
+#if FROPENSOURCE
+#pragma warning disable CS0414 // value assigned but never used
+#endif
+
 namespace FastReport.Export.Html
 {
     /// <summary>
@@ -14,7 +18,14 @@ namespace FastReport.Export.Html
     /// </summary>
     public interface IHTMLBaseExport 
     {
+        /// <summary>
+        /// Layers mode.
+        /// </summary>
         public bool Layers { get; }
+        
+        /// <summary>
+        /// Enable vector objects.
+        /// </summary>
         public bool EnableVectorObjects  { get; }
     }
 
@@ -574,7 +585,9 @@ namespace FastReport.Export.Html
             {
                 pages[d.CurrentPage].CSSText = new StringBuilder(CSS.StringBuilder.ToString());
             }
+#pragma warning disable CS0612
             pages[d.CurrentPage].PageEvent.Set();
+#pragma warning restore CS0612
         }
 
         private void CalcPageSize(HTMLPageData page, float MaxWidth, float MaxHeight)
@@ -1116,6 +1129,7 @@ namespace FastReport.Export.Html
                 exportMode = ExportType.WebPreview;
         }
 
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

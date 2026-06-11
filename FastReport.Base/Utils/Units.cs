@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-
 namespace FastReport.Utils
 {
     /// <summary>
@@ -66,6 +63,9 @@ namespace FastReport.Utils
         public static float HundrethsOfInch = 0.96f;
     }
 
+    /// <summary>
+    /// Contains file size convenience methods.
+    /// </summary>
     public static class FileSize
     {
         /// <summary>

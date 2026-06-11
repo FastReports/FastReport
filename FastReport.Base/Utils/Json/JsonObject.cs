@@ -4,6 +4,9 @@ using System.Text;
 
 namespace FastReport.Utils.Json
 {
+    /// <summary>
+    /// Represents JSON object.
+    /// </summary>
     public class JsonObject : JsonBase, IEnumerable<KeyValuePair<string, object>>
     {
         #region Private Fields
@@ -14,6 +17,11 @@ namespace FastReport.Utils.Json
 
         #region Public Indexers
 
+        /// <summary>
+        /// Gets or sets an object with specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>The object.</returns>
         public override object this[string key]
         {
             get
@@ -33,6 +41,9 @@ namespace FastReport.Utils.Json
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets the number of keys.
+        /// </summary>
         public override int Count
         {
             get
@@ -41,6 +52,9 @@ namespace FastReport.Utils.Json
             }
         }
 
+        /// <summary>
+        /// Returns true.
+        /// </summary>
         public override bool IsObject
         {
             get
@@ -49,6 +63,9 @@ namespace FastReport.Utils.Json
             }
         }
 
+        /// <summary>
+        /// Gets the list of keys.
+        /// </summary>
         public override IEnumerable<string> Keys
         {
             get
@@ -61,16 +78,30 @@ namespace FastReport.Utils.Json
 
         #region Public Methods
 
+        /// <summary>
+        /// Determines whether the dictionary contains the specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>true if the dictionary contains a specified key.</returns>
         public override bool ContainsKey(string key)
         {
             return dict.ContainsKey(key);
         }
 
+        /// <summary>
+        /// Deletes a specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>true if the key was found and removed succesfully.</returns>
         public bool DeleteKey(string key)
         {
             return dict.Remove(key);
         }
 
+        /// <summary>
+        /// Gets enumerator for this object.
+        /// </summary>
+        /// <returns>An enumerator.</returns>
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
             return dict.GetEnumerator();
@@ -81,6 +112,11 @@ namespace FastReport.Utils.Json
             return dict.GetEnumerator();
         }
 
+        /// <summary>
+        /// Writes the content to specified string builder.
+        /// </summary>
+        /// <param name="sb">The string builder instance.</param>
+        /// <param name="indent">The indent.</param>
         public override void WriteTo(StringBuilder sb, int indent)
         {
             sb.Append('{');

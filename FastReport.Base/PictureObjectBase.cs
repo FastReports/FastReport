@@ -434,6 +434,10 @@ namespace FastReport
             DrawDesign(e);
         }
 
+        /// <summary>
+        /// Draws image.
+        /// </summary>
+        /// <param name="e">Paint event args.</param>
         public abstract void DrawImage(FRPaintEventArgs e);
 
         /// <summary>
@@ -751,6 +755,7 @@ namespace FastReport
             saveSizeMode = SizeMode;
         }
 
+        /// <inheritdoc/>
         public override void Serialize(FRWriter writer)
         {
             PictureObjectBase c = writer.DiffObject as PictureObjectBase;
@@ -812,6 +817,13 @@ namespace FastReport
 
         #region Protected Methods
 
+        /// <summary>
+        /// Draw image using 3-point method. Internal use only.
+        /// </summary>
+        /// <param name="graphics">Graphics context.</param>
+        /// <param name="upperLeft">Upper left point.</param>
+        /// <param name="upperRight">Upper right point.</param>
+        /// <param name="lowerLeft">Lower left point.</param>
         protected abstract void DrawImageInternal2(IGraphics graphics, PointF upperLeft, PointF upperRight, PointF lowerLeft);
 
         /// <summary>

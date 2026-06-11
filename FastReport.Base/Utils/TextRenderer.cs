@@ -73,96 +73,153 @@ namespace FastReport.Utils
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Gets a list of paragraphs.
+        /// </summary>
         public List<Paragraph> Paragraphs
         {
             get { return paragraphs; }
         }
 
+        /// <summary>
+        /// Gets graphics context.
+        /// </summary>
         public IGraphics Graphics
         {
             get { return graphics; }
         }
 
+        /// <summary>
+        /// Gets initial font.
+        /// </summary>
         public Font Font
         {
             get { return font; }
         }
 
+        /// <summary>
+        /// Gets brush.
+        /// </summary>
         public Brush Brush
         {
             get { return brush; }
         }
 
+        /// <summary>
+        /// Gets outline pen.
+        /// </summary>
         public Pen OutlinePen
         {
             get { return outlinePen; }
         }
 
+        /// <summary>
+        /// Gets a brush color.
+        /// </summary>
         public Color BrushColor
         {
             get { return brush is SolidBrush ? (brush as SolidBrush).Color : Color.Black; }
         }
 
+        /// <summary>
+        /// Gets display rect.
+        /// </summary>
         public RectangleF DisplayRect
         {
             get { return displayRect; }
         }
 
+        /// <summary>
+        /// Gets string format.
+        /// </summary>
         public StringFormat Format
         {
             get { return format; }
         }
 
+        /// <summary>
+        /// Gets horizontal text align.
+        /// </summary>
         public HorzAlign HorzAlign
         {
             get { return horzAlign; }
         }
 
+        /// <summary>
+        /// Gets vertical text align.
+        /// </summary>
         public VertAlign VertAlign
         {
             get { return vertAlign; }
         }
 
+        /// <summary>
+        /// Gets line height.
+        /// </summary>
         public float LineHeight
         {
             get { return lineHeight; }
         }
 
+        /// <summary>
+        /// Gets defaul font line height.
+        /// </summary>
         public float FontLineHeight
         {
             get { return fontLineHeight; }
         }
 
+        /// <summary>
+        /// Gets text angle.
+        /// </summary>
         public int Angle
         {
             get { return angle; }
         }
 
+        /// <summary>
+        /// Gets font width ratio.
+        /// </summary>
         public float WidthRatio
         {
             get { return widthRatio; }
         }
 
+        /// <summary>
+        /// Determines if horizontal justification should be forced.
+        /// </summary>
         public bool ForceJustify
         {
             get { return forceJustify; }
         }
 
+        /// <summary>
+        /// Gets wysiwyg value.
+        /// </summary>
         public bool Wysiwyg
         {
             get { return wysiwyg; }
         }
 
+        /// <summary>
+        /// Gets html tags value.
+        /// </summary>
         public bool HtmlTags
         {
             get { return htmlTags; }
         }
 
+        /// <summary>
+        /// Determines if line height was set explicitly.
+        /// </summary>
         public bool HasLineHeight
         {
             get { return hasLineHeight; }
         }
 
+        /// <summary>
+        /// Gets tab size.
+        /// </summary>
         public float TabSize
         {
             get
@@ -176,6 +233,9 @@ namespace FastReport.Utils
             }
         }
 
+        /// <summary>
+        /// Gets tab offset.
+        /// </summary>
         public float TabOffset
         {
             get
@@ -189,16 +249,25 @@ namespace FastReport.Utils
             }
         }
 
+        /// <summary>
+        /// Gets word wrap.
+        /// </summary>
         public bool WordWrap
         {
             get { return (Format.FormatFlags & StringFormatFlags.NoWrap) == 0; }
         }
 
+        /// <summary>
+        /// Gets RTL value.
+        /// </summary>
         public bool RightToLeft
         {
             get { return (Format.FormatFlags & StringFormatFlags.DirectionRightToLeft) != 0; }
         }
 
+        /// <summary>
+        /// Gets PDF mode.
+        /// </summary>
         public bool PDFMode
         {
             get { return pDFMode; }
@@ -220,8 +289,15 @@ namespace FastReport.Utils
         /// The scale for font tag
         /// </summary>
         public float FontScale { get { return fontScale; } set { fontScale = value; } }
+        
+        /// <summary>
+        /// Gets scale ratio.
+        /// </summary>
         public float Scale { get { return scale; } set { scale = value; } }
 
+        /// <summary>
+        /// Gets image cache.
+        /// </summary>
         public InlineImageCache Cache
         {
             get
@@ -305,6 +381,9 @@ namespace FastReport.Utils
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Draws a text.
+        /// </summary>
         public void Draw()
         {
             // set clipping
@@ -337,6 +416,10 @@ namespace FastReport.Utils
             Graphics.Restore(state);
         }
 
+        /// <summary>
+        /// Calculates text height.
+        /// </summary>
+        /// <returns>Text height.</returns>
         public float CalcHeight()
         {
             int charsFit = 0;
@@ -344,6 +427,12 @@ namespace FastReport.Utils
             return CalcHeight(out charsFit, out style);
         }
 
+        /// <summary>
+        /// Calculates text height.
+        /// </summary>
+        /// <param name="charsFit">Chars fitted.</param>
+        /// <param name="style">Style descriptor.</param>
+        /// <returns>Text height.</returns>
         public float CalcHeight(out int charsFit, out StyleDescriptor style)
         {
             charsFit = 0;
@@ -372,6 +461,10 @@ namespace FastReport.Utils
             return height;
         }
 
+        /// <summary>
+        /// Calculates text width.
+        /// </summary>
+        /// <returns>Text width.</returns>
         public float CalcWidth()
         {
             float width = 0;
@@ -398,11 +491,34 @@ namespace FastReport.Utils
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="AdvancedTextRenderer"/> class.
+        /// </summary>
+        /// <param name="text">The text to render.</param>
+        /// <param name="g">Graphics context.</param>
+        /// <param name="font">Default font.</param>
+        /// <param name="brush">Text brush.</param>
+        /// <param name="outlinePen">Text outline pen.</param>
+        /// <param name="rect">Display rect.</param>
+        /// <param name="format">String format.</param>
+        /// <param name="horzAlign">Horizontal text align.</param>
+        /// <param name="vertAlign">Vertical text align.</param>
+        /// <param name="lineHeight">Line height.</param>
+        /// <param name="angle">Text angle.</param>
+        /// <param name="widthRatio">Font width ratio.</param>
+        /// <param name="forceJustify">Force text justification.</param>
+        /// <param name="wysiwyg">Wysiwyg mode.</param>
+        /// <param name="htmlTags">Enable simple html tags.</param>
+        /// <param name="pdfMode">PDF mode.</param>
+        /// <param name="scale">Scale factor.</param>
+        /// <param name="fontScale">Font scale.</param>
+        /// <param name="cache">Image cache.</param>
+        /// <param name="isPrinting">Is printing.</param>
         public AdvancedTextRenderer(string text, IGraphics g, Font font, Brush brush, Pen outlinePen,
-          RectangleF rect, StringFormat format, HorzAlign horzAlign, VertAlign vertAlign,
-          float lineHeight, int angle, float widthRatio,
-          bool forceJustify, bool wysiwyg, bool htmlTags, bool pdfMode,
-          float scale, float fontScale, InlineImageCache cache, bool isPrinting = false)
+            RectangleF rect, StringFormat format, HorzAlign horzAlign, VertAlign vertAlign,
+            float lineHeight, int angle, float widthRatio,
+            bool forceJustify, bool wysiwyg, bool htmlTags, bool pdfMode,
+            float scale, float fontScale, InlineImageCache cache, bool isPrinting = false)
         {
             hasLineHeight = lineHeight != 0;
             this.cache = cache;
@@ -490,26 +606,41 @@ namespace FastReport.Utils
             #endregion
 
             #region Properties
+            /// <summary>
+            /// Gets a list of text lines.
+            /// </summary>
             public List<Line> Lines
             {
                 get { return lines; }
             }
 
+            /// <summary>
+            /// Gets the parent renderer.
+            /// </summary>
             public AdvancedTextRenderer Renderer
             {
                 get { return renderer; }
             }
 
+            /// <summary>
+            /// Determines if this is a last paragraph.
+            /// </summary>
             public bool Last
             {
                 get { return renderer.Paragraphs[renderer.Paragraphs.Count - 1] == this; }
             }
 
+            /// <summary>
+            /// Determines if this paragraph is empty.
+            /// </summary>
             public bool IsEmpty
             {
                 get { return String.IsNullOrEmpty(text); }
             }
 
+            /// <summary>
+            /// Gets the text.
+            /// </summary>
             public string Text
             {
                 get { return text; }
@@ -547,7 +678,7 @@ namespace FastReport.Utils
             #endregion
 
             #region Public Methods
-            public void WrapLines()
+            internal void WrapLines()
             {
                 string text = this.text;
                 int charsFit = 0;
@@ -630,7 +761,7 @@ namespace FastReport.Utils
                 }
             }
 
-            public StyleDescriptor WrapHtmlLines(StyleDescriptor style)
+            internal StyleDescriptor WrapHtmlLines(StyleDescriptor style)
             {
                 Line line = new Line("", this, this.originalCharIndex);
                 lines.Add(line);
@@ -1085,7 +1216,7 @@ namespace FastReport.Utils
                 return style;
             }
 
-            public void AlignLines(bool forceJustify)
+            internal void AlignLines(bool forceJustify)
             {
                 for (int i = 0; i < Lines.Count; i++)
                 {
@@ -1096,7 +1227,7 @@ namespace FastReport.Utils
                 }
             }
 
-            public void Draw()
+            internal void Draw()
             {
                 foreach (Line line in Lines)
                 {
@@ -1105,7 +1236,7 @@ namespace FastReport.Utils
             }
             #endregion
 
-            public Paragraph(string text, AdvancedTextRenderer renderer, int originalCharIndex)
+            internal Paragraph(string text, AdvancedTextRenderer renderer, int originalCharIndex)
             {
                 lines = new List<Line>();
                 this.text = text;
@@ -1135,47 +1266,74 @@ namespace FastReport.Utils
             #endregion
 
             #region Properties
+            /// <summary>
+            /// Gets a list of words in this line.
+            /// </summary>
             public List<Word> Words
             {
                 get { return words; }
             }
 
+            /// <summary>
+            /// Gets a text.
+            /// </summary>
             public string Text
             {
                 get { return text; }
             }
 
+            /// <summary>
+            /// Determines if this line has tabs.
+            /// </summary>
             public bool HasTabs
             {
                 get { return hasTabs; }
             }
 
+            /// <summary>
+            /// Gets the left coordinate.
+            /// </summary>
             public float Left
             {
                 get { return Words.Count > 0 ? Words[0].Left : 0; }
             }
 
+            /// <summary>
+            /// Gets the top coordinate.
+            /// </summary>
             public float Top
             {
                 get { return top; }
                 set { top = value; }
             }
 
+            /// <summary>
+            /// Gets the line width.
+            /// </summary>
             public float Width
             {
                 get { return width; }
             }
 
+            /// <summary>
+            /// Gets the char index in the original text.
+            /// </summary>
             public int OriginalCharIndex
             {
                 get { return originalCharIndex; }
             }
 
+            /// <summary>
+            /// Gets the renderer.
+            /// </summary>
             public AdvancedTextRenderer Renderer
             {
                 get { return paragraph.Renderer; }
             }
 
+            /// <summary>
+            /// Gets the style descriptor.
+            /// </summary>
             public StyleDescriptor Style
             {
                 get
@@ -1187,16 +1345,25 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Determines if this line is last one.
+            /// </summary>
             public bool Last
             {
                 get { return paragraph.Lines[paragraph.Lines.Count - 1] == this; }
             }
 
+            /// <summary>
+            /// Gets a list of line segments used to draw underlines.
+            /// </summary>
             public List<RectangleF> Underlines
             {
                 get { return underlines; }
             }
 
+            /// <summary>
+            /// Gets a list of line segments used to draw strikeouts.
+            /// </summary>
             public List<RectangleF> Strikeouts
             {
                 get { return strikeouts; }
@@ -1255,7 +1422,7 @@ namespace FastReport.Utils
             #endregion
 
             #region Public Methods
-            public void AlignWords(HorzAlign align)
+            internal void AlignWords(HorzAlign align)
             {
                 width = 0;
 
@@ -1329,13 +1496,13 @@ namespace FastReport.Utils
                 }
             }
 
-            public void MakeUnderlines()
+            internal void MakeUnderlines()
             {
                 PrepareUnderlines(underlines, FontStyle.Underline);
                 PrepareUnderlines(strikeouts, FontStyle.Strikeout);
             }
 
-            public void Draw()
+            internal void Draw()
             {
                 foreach (Word word in Words)
                 {
@@ -1367,6 +1534,10 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Calculates line height.
+            /// </summary>
+            /// <returns>Line height.</returns>
             public float CalcHeight()
             {
                 float height = -1;
@@ -1380,7 +1551,7 @@ namespace FastReport.Utils
             }
             #endregion
 
-            public Line(string text, Paragraph paragraph, int originalCharIndex)
+            internal Line(string text, Paragraph paragraph, int originalCharIndex)
             {
                 this.words = new List<Word>();
                 this.text = text;
@@ -1425,7 +1596,6 @@ namespace FastReport.Utils
 
             internal float CalcBaseLine()
             {
-
                 float baseline = 0;
                 foreach (Word word in Words)
                 {
@@ -1436,7 +1606,6 @@ namespace FastReport.Utils
 
             internal float CalcUnderBaseLine()
             {
-
                 float underbaseline = 0;
                 foreach (Word word in Words)
                 {
@@ -1462,17 +1631,26 @@ namespace FastReport.Utils
             #endregion
 
             #region Properties
+            /// <summary>
+            /// Gets the text.
+            /// </summary>
             public string Text
             {
                 get { return text; }
             }
 
+            /// <summary>
+            /// Gets the left coordinate.
+            /// </summary>
             public float Left
             {
                 get { return left; }
-                set { left = value; }
+                internal set { left = value; }
             }
 
+            /// <summary>
+            /// Gets the width.
+            /// </summary>
             public float Width
             {
                 get
@@ -1496,21 +1674,33 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Gets the top coordinate.
+            /// </summary>
             public float Top
             {
                 get { return line.Top; }
             }
 
+            /// <summary>
+            /// Gets the renderer.
+            /// </summary>
             public AdvancedTextRenderer Renderer
             {
                 get { return line.Renderer; }
             }
 
+            /// <summary>
+            /// Gets a list of runs.
+            /// </summary>
             public List<Run> Runs
             {
                 get { return runs; }
             }
 
+            /// <summary>
+            /// Gets the space width.
+            /// </summary>
             public float SpaceWidth
             {
                 get
@@ -1523,7 +1713,7 @@ namespace FastReport.Utils
             #endregion
 
             #region Public Methods
-            public void AdjustRuns()
+            internal void AdjustRuns()
             {
                 float left = Left;
                 foreach (Run run in Runs)
@@ -1541,12 +1731,12 @@ namespace FastReport.Utils
                 }
             }
 
-            public void SetLine(Line line)
+            internal void SetLine(Line line)
             {
                 this.line = line;
             }
 
-            public void Draw()
+            internal void Draw()
             {
                 if (Renderer.HtmlTags)
                 {
@@ -1649,7 +1839,7 @@ namespace FastReport.Utils
             }
             #endregion
 
-            public Word(string text, Line line)
+            internal Word(string text, Line line)
             {
                 this.text = text;
                 runs = new List<Run>();
@@ -1660,14 +1850,24 @@ namespace FastReport.Utils
 
 
 
-
         /// <summary>
         /// Represents character placement.
         /// </summary>
         public enum BaseLine
         {
+            /// <summary>
+            /// Normal placement.
+            /// </summary>
             Normal,
+
+            /// <summary>
+            /// Subscript.
+            /// </summary>
             Subscript,
+
+            /// <summary>
+            /// Superscript.
+            /// </summary>
             Superscript
         }
 
@@ -1686,29 +1886,45 @@ namespace FastReport.Utils
             #endregion
 
             #region Properties
+            /// <summary>
+            /// Gets or sets font style.
+            /// </summary>
             public FontStyle FontStyle
             {
                 get { return fontStyle; }
                 set { fontStyle = value; }
             }
 
+            /// <summary>
+            /// Gets or sets font.
+            /// </summary>
             public string Font
             {
                 get { return font; }
                 set { font = value; }
             }
 
+            /// <summary>
+            /// Gets or sets font size.
+            /// </summary>
             public float Size
             {
                 get { return size; }
                 set { size = value; }
             }
+            
+            /// <summary>
+            /// Gets or sets text color.
+            /// </summary>
             public Color Color
             {
                 get { return color; }
                 set { color = value; }
             }
 
+            /// <summary>
+            /// Gets or sets baseline.
+            /// </summary>
             public BaseLine BaseLine
             {
                 get { return baseLine; }
@@ -1717,6 +1933,7 @@ namespace FastReport.Utils
             #endregion
 
             #region Public Methods
+            /// <inheritdoc/>
             public override string ToString()
             {
                 string result = "";
@@ -1750,7 +1967,7 @@ namespace FastReport.Utils
             }
             #endregion
 
-            public StyleDescriptor(FontStyle fontStyle, Color color, BaseLine baseLine)
+            internal StyleDescriptor(FontStyle fontStyle, Color color, BaseLine baseLine)
             {
                 this.fontStyle = fontStyle;
                 this.color = color;
@@ -1765,40 +1982,55 @@ namespace FastReport.Utils
         public class Run
         {
             #region Fields
-            protected readonly string text;
+            private readonly string text;
             private readonly StyleDescriptor style;
-            protected readonly Word word;
+            private protected readonly Word word;
             private float left;
-            protected readonly float width;
-            protected float lineHeight;
-            protected float fontLineHeight;
+            private readonly float width;
+            private float lineHeight;
+            private float fontLineHeight;
             private float baseLine;
-            protected float underBaseLine;
-            protected float spaceWidth;
+            private protected float underBaseLine;
+            private float spaceWidth;
             #endregion
 
             #region Properties
+            /// <summary>
+            /// Gets the text.
+            /// </summary>
             public string Text
             {
                 get { return text; }
             }
 
+            /// <summary>
+            /// Gets the style descriptor.
+            /// </summary>
             public StyleDescriptor Style
             {
                 get { return style; }
             }
 
+            /// <summary>
+            /// Gets the renderer.
+            /// </summary>
             public AdvancedTextRenderer Renderer
             {
                 get { return word.Renderer; }
             }
 
+            /// <summary>
+            /// Gets the left coordinate.
+            /// </summary>
             public float Left
             {
                 get { return left; }
                 set { left = value; }
             }
 
+            /// <summary>
+            /// Gets the line height.
+            /// </summary>
             public float LineHeight
             {
                 get
@@ -1814,6 +2046,9 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Gets baseline.
+            /// </summary>
             virtual public float CurrentBaseLine
             {
                 get
@@ -1830,6 +2065,9 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Gets baseline for underline.
+            /// </summary>
             virtual public float CurrentUnderBaseLine
             {
                 get
@@ -1846,6 +2084,9 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Gets font line height.
+            /// </summary>
             public float FontLineHeight
             {
                 get
@@ -1861,6 +2102,9 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Gets top coordinate.
+            /// </summary>
             public virtual float Top
             {
                 get
@@ -1874,11 +2118,17 @@ namespace FastReport.Utils
                 }
             }
 
+            /// <summary>
+            /// Gets the width.
+            /// </summary>
             virtual public float Width
             {
                 get { return width; }
             }
 
+            /// <summary>
+            /// Gets the height.
+            /// </summary>
             virtual public float Height
             {
                 get
@@ -1887,8 +2137,9 @@ namespace FastReport.Utils
                 }
             }
 
-
-
+            /// <summary>
+            /// Gets the space width.
+            /// </summary>
             public float SpaceWidth
             {
                 get
@@ -1921,17 +2172,17 @@ namespace FastReport.Utils
             #endregion
 
             #region Public Methods
-            public Font GetFont()
+            internal Font GetFont()
             {
                 return GetFont(false);
             }
 
-            public Brush GetBrush()
+            internal Brush GetBrush()
             {
                 return new SolidBrush(Style.Color);
             }
 
-            public virtual void Draw()
+            internal virtual void Draw()
             {
                 using (Font font = GetFont(true))
                 using (Brush brush = GetBrush())
@@ -1941,7 +2192,7 @@ namespace FastReport.Utils
             }
             #endregion
 
-            public Run(string text, StyleDescriptor style, Word word)
+            internal Run(string text, StyleDescriptor style, Word word)
             {
                 baseLine = float.MinValue;
                 underBaseLine = float.MinValue;
@@ -2007,7 +2258,7 @@ namespace FastReport.Utils
 
             private Image image;
 
-            override public void Draw()
+            override internal void Draw()
             {
                 if (Image == null)
                 {
@@ -2135,7 +2386,9 @@ namespace FastReport.Utils
             {
                 if (client == null)
                 {
+#pragma warning disable SYSLIB0014 // alternative is async only
                     client = new WebClient();
+#pragma warning restore SYSLIB0014
                 }
                 return client;
             }
@@ -2552,6 +2805,9 @@ namespace FastReport.Utils
             // }
 
             // This code added to correctly implement the disposable pattern.
+            /// <summary>
+            /// Disposes this object.
+            /// </summary>
             public void Dispose()
             {
                 // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
@@ -2646,6 +2902,10 @@ namespace FastReport.Utils
         // }
 
         // This code added to correctly implement the disposable pattern.
+
+        /// <summary>
+        /// Disposes this object.
+        /// </summary>
         public void Dispose()
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.

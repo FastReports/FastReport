@@ -47,7 +47,9 @@ namespace FastReport.Table
         private bool adjustSpannedCellsWidth;
         private bool lockCorrectSpans;
         private bool serializingToPreview;
+#pragma warning disable CS0414 // not used in the Core
         private bool lockColumnRowChange;
+#pragma warning restore CS0414
         private TableLayout layout;
         private List<Rectangle> spanList;
         private TableResult resultTable;
@@ -605,6 +607,11 @@ namespace FastReport.Table
             ResetSpanList();
         }
 
+        /// <summary>
+        /// Determines if a cell is covered by a span and thus should be skipped from displaying.
+        /// </summary>
+        /// <param name="cell">The cell to check.</param>
+        /// <returns>true if the cell is inside span.</returns>
         public bool IsInsideSpan(TableCell cell)
         {
             Point address = cell.Address;

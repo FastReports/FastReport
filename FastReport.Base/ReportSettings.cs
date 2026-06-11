@@ -31,7 +31,7 @@ namespace FastReport
         private bool usePropValuesToDiscoverBO;
         private string imageLocationRoot;
 
-        /// <include file='Resources/doc.xml' path='//CodeDoc/Topics/EnvironmentSettings/DatabaseLogin/*'/>
+        /// <include file='../FastReport/Resources/doc.xml' path='//CodeDoc/Topics/EnvironmentSettings/DatabaseLogin/*'/>
         public event DatabaseLoginEventHandler DatabaseLogin;
 
         /// <summary>

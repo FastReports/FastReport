@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FastReport.Barcode
 {
+    /// <summary>
+    /// Represents bit vector for GS1 barcode.
+    /// </summary>
     public sealed class BitVectorGS1
     {
         private const int DefaultSize = 32;
@@ -168,7 +169,7 @@ namespace FastReport.Barcode
             return sb.ToString();
         }
     }
-    public class BitList
+    internal class BitList
     {
         private List<bool> bits = new List<bool>();
 
@@ -191,7 +192,7 @@ namespace FastReport.Barcode
         /// <summary>Bit count.</summary>
         public int Count => bits.Count;
     }
-    public sealed class SymbolData
+    internal sealed class SymbolData
     {
         private float height;
         private byte[] data;

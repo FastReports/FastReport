@@ -395,6 +395,10 @@ namespace FastReport
         /// </summary>
         public readonly ExportBase Export;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="ExportParametersEventArgs"/> class.
+        /// </summary>
+        /// <param name="export">The export instance.</param>
         public ExportParametersEventArgs(ExportBase export)
         {
             this.Export = export;

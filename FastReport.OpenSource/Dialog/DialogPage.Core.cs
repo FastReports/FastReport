@@ -1,6 +1,6 @@
 ﻿namespace FastReport.Dialog
 {
-    partial class DialogPage
+    partial class DialogPage : PageBase
     {
         #region Private Methods
 

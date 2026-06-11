@@ -10,6 +10,7 @@ namespace FastReport
     {
         #region Public Methods
 
+        /// <inheritdoc/>
         public override async Task LoadImageAsync(CancellationToken cancellationToken)
         {
             if (!String.IsNullOrEmpty(ImageLocation))
@@ -33,10 +34,11 @@ namespace FastReport
             }
         }
 
-#endregion
+        #endregion
 
         #region Report Engine
 
+        /// <inheritdoc/>
         public override async Task GetDataAsync(CancellationToken cancellationToken)
         {
             await base.GetDataAsync(cancellationToken);

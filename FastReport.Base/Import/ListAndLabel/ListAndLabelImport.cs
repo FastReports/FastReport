@@ -95,40 +95,39 @@ namespace FastReport.Import.ListAndLabel
             defaultTextColor = Color.FromArgb(int.Parse(defFontParts[0]), int.Parse(defFontParts[1]), int.Parse(defFontParts[2]));
             float fontsize = Convert.ToSingle(defFontParts[3].Replace('.', ','));
             defaultFont = new Font(defFontParts.Last().Trim('}'), fontsize, FontStyle.Regular);
-            return;
-            if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Default")))
-            {
+            //if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Default")))
+            //{
 
-                string fontFamily = GetValueLL("DefaultFont/FaceName");
-                float fontSize = DrawUtils.DefaultReportFont.Size;
-                try
-                {
-                    fontSize = Convert.ToSingle(GetValueLL("DefaultFont/Size"));
-                }
-                catch
-                {
-                    fontSize = DrawUtils.DefaultReportFont.Size;
-                }
-                FontStyle fontStyle = FontStyle.Regular;
-                if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Bold")))
-                {
-                    fontStyle |= FontStyle.Bold;
-                }
-                if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Italic")))
-                {
-                    fontStyle |= FontStyle.Italic;
-                }
-                if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Underline")))
-                {
-                    fontStyle |= FontStyle.Underline;
-                }
-                if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Strikeout")))
-                {
-                    fontStyle |= FontStyle.Strikeout;
-                }
-                defaultFont = new Font(fontFamily, fontSize, fontStyle);
-                defaultTextColor = Color.FromName(GetValueLL("DefaultFont/Color=LL.Color"));
-            }
+            //    string fontFamily = GetValueLL("DefaultFont/FaceName");
+            //    float fontSize = DrawUtils.DefaultReportFont.Size;
+            //    try
+            //    {
+            //        fontSize = Convert.ToSingle(GetValueLL("DefaultFont/Size"));
+            //    }
+            //    catch
+            //    {
+            //        fontSize = DrawUtils.DefaultReportFont.Size;
+            //    }
+            //    FontStyle fontStyle = FontStyle.Regular;
+            //    if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Bold")))
+            //    {
+            //        fontStyle |= FontStyle.Bold;
+            //    }
+            //    if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Italic")))
+            //    {
+            //        fontStyle |= FontStyle.Italic;
+            //    }
+            //    if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Underline")))
+            //    {
+            //        fontStyle |= FontStyle.Underline;
+            //    }
+            //    if (UnitsConverter.ConvertBool(GetValueLL("DefaultFont/Strikeout")))
+            //    {
+            //        fontStyle |= FontStyle.Strikeout;
+            //    }
+            //    defaultFont = new Font(fontFamily, fontSize, fontStyle);
+            //    defaultTextColor = Color.FromName(GetValueLL("DefaultFont/Color=LL.Color"));
+            //}
         }
 
         private List<int> GetAllObjectsLL()

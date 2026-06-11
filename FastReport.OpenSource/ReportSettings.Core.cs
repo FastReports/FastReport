@@ -7,36 +7,23 @@ namespace FastReport
     {
         #region Internal Methods
 
-        /// <summary>
-        /// Does nothing
-        /// </summary>
-        /// <param name="report"></param>
+        // does nothing
         internal void OnFinishProgress(Report report)
         {
         }
 
-        /// <summary>
-        /// Does nothing
-        /// </summary>
-        /// <param name="report"></param>
-        /// <param name="str"></param>
+        // does nothing
         internal void OnProgress(Report report, string str)
         {
         }
 
-        /// <summary>
-        /// Does nothing
-        /// </summary>
-        /// <param name="report"></param>
+        // does nothing
         internal void OnProgress(Report report, string str, int int1, int int2)
         {
 
         }
 
-        /// <summary>
-        /// Does nothing
-        /// </summary>
-        /// <param name="report"></param>
+        // does nothing
         internal void OnStartProgress(Report report)
         {
         }

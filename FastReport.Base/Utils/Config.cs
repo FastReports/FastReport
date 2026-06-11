@@ -49,8 +49,12 @@ namespace FastReport.Utils
         private static ScriptSecurityProperties scriptSecurityProps = null;
         private static bool forbidLocalData = false;
         private static bool userSetsScriptSecurity = false;
+#pragma warning disable CS0618 // don't complain about deprecated class
         private static readonly FRPrivateFontCollection privateFontCollection = new FRPrivateFontCollection();
+#pragma warning restore CS0618
+#pragma warning disable CS0649 // not used in Core
         internal static bool CleanupOnExit;
+#pragma warning restore CS0649
         private static CompilerSettings compilerSettings = new CompilerSettings();
         private static string applicationFolder;
         private static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -398,6 +402,9 @@ namespace FastReport.Utils
         }
 
 #if NETSTANDARD || NETCOREAPP
+        /// <summary>
+        /// Event fires before script compilation.
+        /// </summary>
         public static event EventHandler<Code.CodeDom.Compiler.CompilationEventArgs> BeforeEmitCompile;
 
         internal static void OnBeforeScriptCompilation(object sender, Code.CodeDom.Compiler.CompilationEventArgs e)

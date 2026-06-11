@@ -50,6 +50,9 @@ namespace FastReport
     /// </example>
     public partial class ReportPage : PageBase, IParent
     {
+        /// <summary>
+        /// Represents a link to page from another report.
+        /// </summary>
         [TypeConverter(typeof(FastReport.TypeConverters.FRExpandableObjectConverter))]
         public class PageLink
         {
@@ -78,6 +81,9 @@ namespace FastReport
                 }
             }
 
+            /// <summary>
+            /// Determines if the page is inherited.
+            /// </summary>
             [Browsable(false)]
             public bool IsInherit
             {
@@ -131,7 +137,7 @@ namespace FastReport
                 }
             }
 
-            public void Deserialize(FRReader reader, string prefix)
+            internal void Deserialize(FRReader reader, string prefix)
             {
                 reportPath = reader.ReadStr(prefix + ".ReportPath");
                 pageName = reader.ReadStr(prefix + ".PageName");
@@ -139,8 +145,7 @@ namespace FastReport
                 isInherit = reader.ReadBool(prefix + ".IsInherit");
             }
 
-            /// <inheritdoc/>
-            public void Serialize(FRWriter writer, string prefix, PageLink c)
+            internal void Serialize(FRWriter writer, string prefix, PageLink c)
             {
                 if (ReportPath != c.ReportPath)
                     writer.WriteStr(prefix + ".ReportPath", ReportPath);
@@ -162,6 +167,10 @@ namespace FastReport
                 return result;
             }
 
+            /// <summary>
+            /// Initializes a new instance of <see cref="PageLink"/> class.
+            /// </summary>
+            /// <param name="page">The report page.</param>
             public PageLink(ReportPage page)
             {
                 saveNames = false;

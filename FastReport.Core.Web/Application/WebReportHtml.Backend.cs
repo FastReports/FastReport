@@ -346,6 +346,20 @@ namespace FastReport.Web
                                                     break;
                                                 }
                                             }
+                                            else if (textcell.FindObject(objectName) is ReportComponentBase innerObj)
+                                            {
+                                                System.Drawing.RectangleF rect =
+                                                    new System.Drawing.RectangleF(table.Columns[j].AbsLeft + innerObj.Left,
+                                                    table.Rows[i].AbsTop + innerObj.Top,
+                                                    innerObj.Width,
+                                                    innerObj.Height);
+                                                if (rect.Contains(point))
+                                                {
+                                                    Click(innerObj, page, pageN);
+                                                    found = true;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         if (found)
                                             break;

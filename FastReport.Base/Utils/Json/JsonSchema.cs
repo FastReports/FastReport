@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace FastReport.Utils.Json
 {
+    /// <summary>
+    /// Contains JSON schema.
+    /// </summary>
     public class JsonSchema
     {
         #region Private Fields
@@ -16,6 +19,9 @@ namespace FastReport.Utils.Json
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets data type.
+        /// </summary>
         public Type DataType
         {
             get
@@ -33,8 +39,14 @@ namespace FastReport.Utils.Json
             }
         }
 
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
         public string Description { get { return description; } set { description = value; } }
 
+        /// <summary>
+        /// Gets or sets items.
+        /// </summary>
         public JsonSchema Items
         {
             get
@@ -47,6 +59,9 @@ namespace FastReport.Utils.Json
             }
         }
 
+        /// <summary>
+        /// Gets a dictionary of properties.
+        /// </summary>
         public Dictionary<string, JsonSchema> Properties
         {
             get
@@ -55,12 +70,20 @@ namespace FastReport.Utils.Json
             }
         }
 
+        /// <summary>
+        /// Gets or sets type string.
+        /// </summary>
         public string Type { get { return type; } set { type = value; } }
 
         #endregion Public Properties
 
         #region Public Methods
 
+        /// <summary>
+        /// Gets a schema from an object.
+        /// </summary>
+        /// <param name="json">Object.</param>
+        /// <returns>The schema instance.</returns>
         public static JsonSchema FromJson(object json)
         {
             JsonSchema result = new JsonSchema();
@@ -108,6 +131,11 @@ namespace FastReport.Utils.Json
             return result;
         }
 
+        /// <summary>
+        /// Gets a schema from JSON object.
+        /// </summary>
+        /// <param name="obj">JSON object.</param>
+        /// <returns>The schema instance.</returns>
         public static JsonSchema Load(JsonObject obj)
         {
             if (obj == null)
@@ -156,6 +184,10 @@ namespace FastReport.Utils.Json
             return result;
         }
 
+        /// <summary>
+        /// Saves the schema to a JSON object.
+        /// </summary>
+        /// <param name="obj">JSON object.</param>
         public void Save(JsonObject obj)
         {
             if (Type != null)

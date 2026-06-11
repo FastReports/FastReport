@@ -5,6 +5,10 @@ using FastReport.Format;
 using System.Windows.Forms;
 using System.Drawing.Design;
 
+#if FRCORE || FROPENSOURCE
+#pragma warning disable CS1574 // missing cref members in XML comments
+#endif
+
 namespace FastReport
 {
     /// <summary>

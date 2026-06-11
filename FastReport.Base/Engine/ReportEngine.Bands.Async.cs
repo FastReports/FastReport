@@ -109,8 +109,7 @@ namespace FastReport.Engine
             }
         }
 
-
-        public async Task ShowBandAsync(BandBase band, CancellationToken cancellationToken)
+        private async Task ShowBandAsync(BandBase band, CancellationToken cancellationToken)
         {
             if (band != null)
                 for (int i = 0; i < band.RepeatBandNTimes; i++)

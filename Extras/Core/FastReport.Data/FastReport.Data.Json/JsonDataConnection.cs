@@ -39,7 +39,9 @@ namespace FastReport.Data
                 if (string.IsNullOrEmpty(jsonData))
                 {
                     System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014 // alternatives are async
                     using (WebClient webClient = new WebClient())
+#pragma warning restore SYSLIB0014
                     {
                         webClient.Encoding = dataEncoding;
                         jsonData = webClient.DownloadString(Json);
@@ -56,7 +58,9 @@ namespace FastReport.Data
             if (string.IsNullOrEmpty(jsonData))
             {
                 System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+#pragma warning disable SYSLIB0014 // alternatives are async
                 using (WebClient webClient = new WebClient())
+#pragma warning restore SYSLIB0014
                 {
                     webClient.Encoding = dataEncoding;
                     jsonData = await webClient.DownloadStringTaskAsync(Json);
