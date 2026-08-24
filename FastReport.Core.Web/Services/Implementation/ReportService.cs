@@ -41,9 +41,11 @@ namespace FastReport.Web.Services
                 // don't reset the data state if we run the dialog page or refresh a report.
                 // This is necessary to keep data filtering settings alive
                 var resetDataState = string.IsNullOrEmpty(@params.DialogParams.DialogN) || @params.ForceRefresh != "yes";
-                await webReport.Report.PrepareAsync(false, resetDataState, cancellationToken);
-
-                webReport.SplitReportPagesByTabs();
+                if (!webReport.CurrentTab.IsDetailPage)
+                {
+                    await webReport.Report.PrepareAsync(false, resetDataState, cancellationToken);
+                    webReport.SplitReportPagesByTabs();
+                }
             }
 
             webReport.SetReportTab(@params.ReportTabParams);

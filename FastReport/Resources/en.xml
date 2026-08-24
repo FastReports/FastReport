@@ -84,37 +84,37 @@
       <UnsupportedObjectError Text="The object is not supported in the Community edition"/>
     </Validator>
     <Swiss>
-      <SwissNullIban Text="Iban must not be null"/>
-      <SwissNullCreditor Text="Creditor must not be null"/>
-      <SwissNullReference Text="Reference must not be null"/>
-      <SwissNullCurrency Text="Currency must not be null"/>
-      <SwissAmountLength Text="Amount (including decimals) must be shorter than 13 places"/>
-      <SwissQRIban Text="If QR-IBAN is used, you have to choose QRR as reference type!"/>
-      <SwissNonQRIban Text="If non QR-IBAN is used, you have to choose either SCOR or NON as reference type!"/>
-      <SwissAltProcedureLength Text="Alternative procedure information block 1 must be shorter than 101 chars"/>
-      <SwissUnstructBillLength Text="Unstructured message and bill information must be shorter than 141 chars in total/combined."/>
-      <SwissRefTypeNon Text="Reference is only allowed when Type not equals NON"/>
-      <SwissRefTypeNotNon Text="Reference cannot be empty if the Type is QRR or SCOR"/>
-      <SwissRefTextTypeNon Text="You have to set an ReferenceTextType when using the reference text"/>
-      <SwissRefQRLength Text="QR-references have to be shorter than 28 chars"/>
-      <SwissRefQRNotOnlyDigits Text="QR-reference must exist out of digits only"/>
-      <SwissRefQRCheckSum Text="QR-references is invalid. Checksum error"/>
-      <SwissRefISOLength Text="Creditor references (ISO 11649) have to be shorter than 26 chars"/>
-      <SwissEmptyProperty Text="{0} must not be empty"/>
-      <SwissLengthMore Text="{0} must be shorter than {1} chars"/>
-      <SwissPatternError Text="{0} must match the following pattern:"/>
+      <SwissNullIban Text="IBAN cannot be empty"/>
+      <SwissNullCreditor Text="Creditor cannot be empty"/>
+      <SwissNullReference Text="Reference cannot be empty"/>
+      <SwissNullCurrency Text="Currency cannot be empty"/>
+      <SwissAmountLength Text="Amount must not exceed 12 characters (including decimals)"/>
+      <SwissQRIban Text="QR-IBAN requires Reference type QRR"/>
+      <SwissNonQRIban Text="Standard IBAN allows Reference types SCOR or NON"/>
+      <SwissAltProcedureLength Text="Each alternative procedure must not exceed 100 characters"/>
+      <SwissUnstructBillLength Text="Combined length of Unstructured Message and Billing Information must not exceed 140 characters"/>
+      <SwissRefTypeNon Text="Reference must be empty when Reference type is NON"/>
+      <SwissRefTypeNotNon Text="Reference is required when Reference type is QRR or SCOR"/>
+      <SwissRefQRLength Text="QR reference must contain exactly 27 digits"/>
+      <SwissRefQRNotOnlyDigits Text="QR reference must contain only digits"/>
+      <SwissRefQRCheckSum Text="Invalid QR reference: checksum error"/>
+      <SwissRefISOLength Text="Creditor Reference (ISO 11649) must be between 5 and 25 characters"/>
+      <SwissEmptyProperty Text="Field {0} cannot be empty"/>
+      <SwissLengthMore Text="Field {0} must not exceed {1} characters"/>
+      <SwissPatternError Text="Field {0} does not match the required format:"/>
       <SwissAddressLine2Error Text="Address line 2 must be provided for combined addresses (address line-based addresses)."/>
-      <SwissCountryTwoLetters Text="Country must be a valid two letter country code as defined by ISO 3166-1, but it isn't."/>
-      <SwissIbanNotValid Text="The IBAN entered isn't valid."/>
-      <SwissQRIbanNotValid Text="The QR-IBAN entered isn't valid."/>
-      <SwissQRStartNotValid Text="The IBAN must start with CH or LI"/>
+      <SwissCountryTwoLetters Text="Country code must be a two-letter ISO 3166-1 code"/>
+      <SwissIbanNotValid Text="Invalid IBAN"/>
+      <SwissQRIbanNotValid Text="Invalid QR-IBAN"/>
+      <SwissQRStartNotValid Text="IBAN must start with CH or LI"/>
+      <SwissIbanLengthInvalid Text="IBAN must contain exactly 21 characters"/>
       <SwissPropName Text="Name"/>
       <SwissPropStreet Text="Street"/>
-      <SwissPropHouseNumber Text="House Nr"/>
-      <SwissPropZipCode Text="Zip Code"/>
+      <SwissPropHouseNumber Text="Building number"/>
+      <SwissPropZipCode Text="Postal Code"/>
       <SwissPropCity Text="City"/>
-      <SwissPropUnstructuredMessage Text="Message"/>
-      <SwissPropBillInformation Text="Bill information"/>
+      <SwissPropUnstructuredMessage Text="Unstructured message"/>
+      <SwissPropBillInformation Text="Billing information"/>
     </Swiss>
   </Messages>
   <Misc>
@@ -2215,22 +2215,22 @@
       <WifiHidden Text="Wi-Fi network is hidden"/>
       <Save Text="Save"/>
       <Cancel Text="Cancel"/>
+      <Version Text="Version"/>
       <Swiss Text="Swiss QR">
         <Iban Text="IBAN"/>
         <IbanType Text="Type"/>
         <Amount Text="Amount"/>
         <Currency Text="Currency"/>
         <Creditor Text="Creditor"/>
-        <Name Text="Name"/>
-        <StreetNr Text="Street / Nr:"/>
+        <Name Text="Name:"/>
+        <StreetNr Text="Street / Building number:"/>
         <ZipCityCountry Text="Zip / City / Country:"/>
-        <Debitor Text="Debitor"/>
+        <Debtor Text="Debtor"/>
         <AdditionalInformation Text="Additional information"/>
         <Reference Text="Reference"/>
-        <Type Text="Type"/>
-        <TextType Text="Text type"/>
-        <Message Text="Message"/>
-        <BillInformation Text="Bill Information"/>
+        <Type Text="Reference type"/>
+        <Message Text="Unstructured message"/>
+        <BillInformation Text="Billing information"/>
         <AlternativeProcedure Text="Alternative procedure"/>
       </Swiss>
       <SberbankQr Text="Sberbank QR">
@@ -2928,6 +2928,7 @@
     </Odt>
     <Ods Text="Export to Open Office Calc">
       <File Text="OpenOffice Calc"/>
+      <UseCustomFormat Text="Use custom format"/>
     </Ods>
     <Xlsx Text="Export to Excel">
       <File Text="Microsoft Excel file"/>
@@ -3001,6 +3002,7 @@
     </PS>
     <Xps Text="Export to XPS">
       <File Text="Microsoft XPS file"/>
+      <UseFullFonts Text="Use full fonts"/>
     </Xps>
     <Pdf Text="Export to PDF">
       <!-- Main -->

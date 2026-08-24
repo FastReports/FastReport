@@ -11,6 +11,7 @@ partial class Program
     const string tfmStandard21 = ".NETStandard2.1";
     const string tfmNetFramework462 = ".NETFramework4.6.2";
     const string tfmNet6win7 = "net6.0-windows7.0";
+    const string tfmNet6win = "net6.0-windows";
     const string tfmNet6 = "net6.0";
     const string tfmNet8 = "net8.0";
 

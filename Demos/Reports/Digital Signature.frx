@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates the Digital Signature object.&#13;&#10;&#13;&#10;The &quot;Digital Signature&quot; object acts as a placeholder for PDF signature. In order to use it, you need to export this report to PDF:&#13;&#10;- choose &quot;Save/Adobe Acrobat...&quot; item in the preview window;&#13;&#10;- in the &quot;Digital Signature&quot; tab check the &quot;Sign document&quot; option;&#13;&#10;- click OK to export the report.&#13;&#10;&#13;&#10;Find out more in the article https://www.fast-report.com/blogs/pdf-digital-signature" ReportInfo.Tag="https://www.fast-report.com/blogs/pdf-digital-signature" ReportInfo.Created="04/29/2019 13:05:51" ReportInfo.Modified="04/07/2023 17:42:46" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="Order Details" ReferenceName="NorthWind.Order Details" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="Quantity" DataType="System.Int16"/>
+      <Column Name="Discount" DataType="System.Single"/>
+    </TableDataSource>
+    <TableDataSource Name="Orders" ReferenceName="NorthWind.Orders" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="OrderDate" DataType="System.DateTime"/>
+      <Column Name="RequiredDate" DataType="System.DateTime"/>
+      <Column Name="ShippedDate" DataType="System.DateTime"/>
+      <Column Name="ShipVia" DataType="System.Int32"/>
+      <Column Name="Freight" DataType="System.Decimal"/>
+      <Column Name="ShipName" DataType="System.String"/>
+      <Column Name="ShipAddress" DataType="System.String"/>
+      <Column Name="ShipCity" DataType="System.String"/>
+      <Column Name="ShipRegion" DataType="System.String"/>
+      <Column Name="ShipPostalCode" DataType="System.String"/>
+      <Column Name="ShipCountry" DataType="System.String"/>
+      <Column Name="Latitude" DataType="System.Double"/>
+      <Column Name="Longitude" DataType="System.Double"/>
+    </TableDataSource>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <TableDataSource Name="Customers" ReferenceName="NorthWind.Customers" DataType="System.Int32" Enabled="true">
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="LastName" DataType="System.String"/>
+      <Column Name="FirstName" DataType="System.String"/>
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="TitleOfCourtesy" DataType="System.String"/>
+      <Column Name="BirthDate" DataType="System.DateTime"/>
+      <Column Name="HireDate" DataType="System.DateTime"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="HomePhone" DataType="System.String"/>
+      <Column Name="Extension" DataType="System.String"/>
+      <Column Name="Photo" DataType="System.Byte[]" BindableControl="Picture"/>
+      <Column Name="Notes" DataType="System.String"/>
+      <Column Name="ReportsTo" DataType="System.Int32"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Shippers" ReferenceName="NorthWind.Shippers" DataType="System.Int32" Enabled="true">
+      <Column Name="ShipperID" DataType="System.Int32"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Suppliers" ReferenceName="NorthWind.Suppliers" DataType="System.Int32" Enabled="true">
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+      <Column Name="HomePage" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="Orders" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
+    <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID" Enabled="true"/>
+    <Relation Name="SuppliersProducts" ReferenceName="NorthWind.SuppliersProducts" ParentDataSource="Suppliers" ChildDataSource="Products" ParentColumns="SupplierID" ChildColumns="SupplierID" Enabled="true"/>
+    <Relation Name="CustomersOrders" ReferenceName="NorthWind.CustomersOrders" ParentDataSource="Customers" ChildDataSource="Orders" ParentColumns="CustomerID" ChildColumns="CustomerID" Enabled="true"/>
+    <Relation Name="ShippersOrders" ReferenceName="NorthWind.ShippersOrders" ParentDataSource="Shippers" ChildDataSource="Orders" ParentColumns="ShipperID" ChildColumns="ShipVia" Enabled="true"/>
+    <Relation Name="EmployeesOrders" ReferenceName="NorthWind.EmployeesOrders" ParentDataSource="Employees" ChildDataSource="Orders" ParentColumns="EmployeeID" ChildColumns="EmployeeID" Enabled="true"/>
+    <Relation Name="ProductsOrderDetails" ReferenceName="NorthWind.ProductsOrderDetails" ParentDataSource="Products" ChildDataSource="Order Details" ParentColumns="ProductID" ChildColumns="ProductID" Enabled="true"/>
+    <Total Name="Sub-Total" Expression="[Order Details.UnitPrice] * [Order Details.Quantity]" Evaluator="Data2" ResetAfterPrint="false"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="94.5">
+      <TextObject Name="Text1" Top="47.25" Width="718.2" Height="37.8" Fill.Color="110, 145, 190" Text="PURCHASE ORDER" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <TextObject Name="Text50" Width="718.2" Height="37.8" Text="DigitalSignatureObject" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="96.5" Width="718.2" Height="321.3" Border.Lines="All" Filter="[Order Details.OrderID] == 10278">
+      <TextObject Name="Text2" Top="94.5" Width="94.5" Height="18.9" Border.Lines="Top" Text="To:" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text3" Left="94.5" Top="94.5" Width="217.35" Height="18.9" Border.Lines="Left" Text="[Order Details.Orders.ShipName]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text4" Left="94.5" Top="113.4" Width="217.35" Height="18.9" Border.Lines="Left" Text="[Order Details.Orders.ShipAddress]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text5" Left="94.5" Top="132.3" Width="217.35" Height="18.9" Border.Lines="Left" Text="[Order Details.Orders.ShipCity]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text7" Top="198.45" Width="94.5" Height="18.9" Border.Lines="Top" Text="Bill to:" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text8" Left="94.5" Top="198.45" Width="217.35" Height="47.25" Border.Lines="Left" Text="[Order Details.Orders.Shippers.CompanyName]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text9" Left="94.5" Top="245.7" Width="217.35" Height="18.9" Border.Lines="Left" Text="[Order Details.Orders.Shippers.Phone]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text12" Left="378" Top="198.45" Width="94.5" Height="18.9" Border.Lines="Top" Text="Ship to:" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text13" Left="472.5" Top="198.45" Width="245.7" Height="66.15" Border.Lines="Left" Text="[Order Details.Orders.ShipCountry]&#13;&#10;[Order Details.Orders.ShipCity]&#13;&#10;[Order Details.Orders.ShipAddress]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text17" Left="557.55" Top="18.9" Width="160.65" Height="18.9" Border.Lines="All" Text="[Order Details.OrderID]" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text29" Left="453.6" Top="18.9" Width="103.95" Height="18.9" Border.Lines="All" Text="P.O.Number" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text30" Left="453.6" Top="37.8" Width="103.95" Height="18.9" Text="Requested By:" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text31" Left="557.55" Top="37.8" Width="160.65" Height="18.9" Text="[Order Details.Orders.ShipName]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text18" Left="85.05" Top="292.95" Width="349.65" Height="28.35" Border.Lines="All" Fill.Color="LightGray" Text="Product Name" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text20" Left="519.75" Top="292.95" Width="94.5" Height="28.35" Border.Lines="All" Fill.Color="LightGray" Text="Quantity" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text26" Left="434.7" Top="292.95" Width="85.05" Height="28.35" Border.Lines="All" Fill.Color="LightGray" Text="Unit Price" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text27" Left="614.25" Top="292.95" Width="103.95" Height="28.35" Border.Lines="All" Fill.Color="LightGray" Text="Product Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text28" Top="292.95" Width="85.05" Height="28.35" Border.Lines="All" Fill.Color="LightGray" Text="Product ID" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text35" Left="453.6" Top="56.7" Width="103.95" Height="18.9" Text="Date:" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text36" Left="557.55" Top="56.7" Width="160.65" Height="18.9" Text="[Order Details.Orders.RequiredDate]" Format="Date" Format.Format="d" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text37" Left="94.5" Top="151.2" Width="217.35" Height="18.9" Border.Lines="Left" Text="[Order Details.Orders.ShipPostalCode]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text6" Left="491.4" Top="94.5" Width="226.8" Height="18.9" Border.Lines="All" Text="[Order Details.Orders.ShipName]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text38" Left="491.4" Top="113.4" Width="226.8" Height="18.9" Border.Lines="All" Text="[Order Details.Orders.ShipVia]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text39" Left="491.4" Top="132.3" Width="226.8" Height="18.9" Border.Lines="All" Text="[Order Details.Orders.Freight]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text10" Left="378" Top="94.5" Width="113.4" Height="18.9" Border.Lines="All" Text="Vendor:" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text41" Left="378" Top="113.4" Width="113.4" Height="18.9" Border.Lines="All" Text="Ship Via" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text42" Left="378" Top="132.3" Width="113.4" Height="18.9" Border.Lines="All" Text="Delivery Fees:" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text49" Left="9.45" Top="18.9" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text19" Left="66.15" Top="28.35" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+      <DataBand Name="Data2" Top="419.8" Width="718.2" Height="28.35" DataSource="Order Details" Filter="[Order Details.OrderID] == 10278">
+        <TextObject Name="Text21" Left="85.05" Width="349.65" Height="28.35" Border.Lines="All" Text="[Order Details.Products.ProductName]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text22" Left="434.7" Width="85.05" Height="28.35" Border.Lines="All" Text="[Order Details.UnitPrice]" Format="Currency" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text23" Left="519.75" Width="94.5" Height="28.35" Border.Lines="All" Text="[Order Details.Quantity]" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text24" Width="85.05" Height="28.35" Border.Lines="All" Text="[Order Details.Products.ProductID]" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text25" Left="614.25" Width="103.95" Height="28.35" Border.Lines="All" Text="[[Order Details.UnitPrice] * [Order Details.Quantity]]" Format="Currency" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="450.15" Width="718.2" Height="132.3" Border.Lines="All">
+      <TextObject Name="Text11" Left="548.1" Width="170.1" Height="18.9" Border.Lines="All" Fill.Color="110, 145, 190" Text="[Sub-Total]" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text43" Left="548.1" Top="18.9" Width="170.1" Height="18.9" Border.Lines="All" Fill.Color="110, 145, 190" Text="[[Sub-Total] * 0.21]" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text44" Left="548.1" Top="37.8" Width="170.1" Height="18.9" Border.Lines="All" Fill.Color="110, 145, 190" Text="[[Sub-Total] * 1.21]" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text45" Left="434.7" Width="113.4" Height="18.9" Border.Lines="All" Fill.Color="110, 145, 190" Text="Sub-Total" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text46" Left="434.7" Top="18.9" Width="113.4" Height="18.9" Border.Lines="All" Fill.Color="110, 145, 190" Text="Plus Tax of 21%" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text47" Left="434.7" Top="37.8" Width="113.4" Height="18.9" Border.Lines="All" Fill.Color="110, 145, 190" Text="Total" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text48" Width="434.7" Height="56.7" Border.Lines="All" Text="Note:" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text14" Top="66.15" Width="113.4" Height="56.7" Text="Authorized by:" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      <DigitalSignatureObject Name="DigitalSignature1" Left="113.4" Top="66.15" Width="359.1" Height="47.25" Border.Lines="Bottom"/>
+      <TextObject Name="Text15" Left="113.4" Top="113.4" Width="94.5" Height="18.9" Text="Signature" VertAlign="Center" Font="Segoe UI, 7pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="584.45" Width="718.2" Height="37.8">
+      <TextObject Name="Text34" Top="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

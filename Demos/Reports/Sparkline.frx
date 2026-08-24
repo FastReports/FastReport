@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates SparklineObject features." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="04/28/2023 14:21:56" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates SparklineObject features." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="03/24/2023 02:33:49" ReportInfo.CreatorVersion="1.0.0.0">
   <Dictionary>
     <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
       <Column Name="EmployeeID" DataType="System.Int32"/>
@@ -39,22 +39,21 @@
       <Column Name="Longitude" DataType="System.Double"/>
     </TableDataSource>
     <Relation Name="EmployeesOrders" ReferenceName="NorthWind.EmployeesOrders" ParentDataSource="Employees" ChildDataSource="Orders" ParentColumns="EmployeeID" ChildColumns="EmployeeID" Enabled="true"/>
-    <Parameter Name="CurrentEmployee" DataType="System.String"/>
+    <Parameter Name="CurrentEmployee" DataType="System.String" AsString=""/>
   </Dictionary>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="113.51" CanGrow="true">
-      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text1" Top="37.8" Width="718.2" Height="28.35" Text="SparklineObject" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text13" Top="75.6" Width="718.2" Height="37.8" Fill.Color="Orange" Text="SALES BY EMPLOYEE" VertAlign="Center" Font="Tahoma, 16pt"/>
+  <ReportPage Name="Page1" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="85.05" CanGrow="true">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Text="SparklineObject" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
+      <TextObject Name="Text13" Top="47.25" Width="718.2" Height="37.8" Fill.Color="110, 145, 190" Text="SALES BY EMPLOYEE" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="117.51" Width="718.2" Height="66.15" Border.Lines="All" DataSource="Employees">
-      <TextObject Name="Text2" Left="9.45" Width="330.75" Height="66.15" Text="[Employees.FirstName] [Employees.LastName]" VertAlign="Center"/>
-      <SparklineObject Name="Sparkline1" Left="510.3" Top="9.45" Width="198.45" Height="47.25" DataSource="Orders" AutoSeriesColumn="" ChartData="PENoYXJ0IEJvcmRlcmxpbmVDb2xvcj0iRGFya0dyYXkiIEJvcmRlcmxpbmVXaWR0aD0iMiI+DQogIDxTZXJpZXM+DQogICAgPFNlcmllcyBOYW1lPSJTZXJpZXMxIiBMZWdlbmQ9IkRlZmF1bHQiIFhWYWx1ZVR5cGU9IkRhdGUiIFlWYWx1ZVR5cGU9IkludDMyIiBDaGFydFR5cGU9IkZhc3RMaW5lIiBDaGFydEFyZWE9IkRlZmF1bHQiIE1hcmtlclN0eWxlPSJDaXJjbGUiIE1hcmtlclNpemU9IjEzIiBNYXJrZXJDb2xvcj0iT3JhbmdlUmVkIj4NCiAgICAgIDxQb2ludHM+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMSIgQXhpc0xhYmVsPSJBIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjMiIEF4aXNMYWJlbD0iQiIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIyIiBBeGlzTGFiZWw9IkMiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iNCIgQXhpc0xhYmVsPSJEIiAvPg0KICAgICAgPC9Qb2ludHM+DQogICAgPC9TZXJpZXM+DQogIDwvU2VyaWVzPg0KICA8TGVnZW5kcz4NCiAgICA8TGVnZW5kIE5hbWU9IkRlZmF1bHQiIEVuYWJsZWQ9IkZhbHNlIj4NCiAgICA8L0xlZ2VuZD4NCiAgPC9MZWdlbmRzPg0KICA8VGl0bGVzPg0KICAgIDxUaXRsZSBOYW1lPSJUaXRsZTEiIFZpc2libGU9IkZhbHNlIj4NCiAgICA8L1RpdGxlPg0KICA8L1RpdGxlcz4NCiAgPENoYXJ0QXJlYXM+DQogICAgPENoYXJ0QXJlYSBOYW1lPSJEZWZhdWx0Ij4NCiAgICAgIDxBeGlzWSBFbmFibGVkPSJGYWxzZSI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgIDwvQXhpc1k+DQogICAgICA8QXhpc1ggRW5hYmxlZD0iRmFsc2UiPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICA8L0F4aXNYPg0KICAgICAgPEF4aXNYMj4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgPC9BeGlzWDI+DQogICAgICA8QXhpc1kyPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICA8L0F4aXNZMj4NCiAgICA8L0NoYXJ0QXJlYT4NCiAgPC9DaGFydEFyZWFzPg0KPC9DaGFydD4=">
+    <DataBand Name="Data1" Top="87.05" Width="718.2" Height="66.15" Border.Lines="All" Border.Color="Gainsboro" BeforePrintEvent="Data1_BeforePrint" DataSource="Employees">
+      <TextObject Name="Text2" Left="9.45" Width="330.75" Height="66.15" Text="[Employees.FirstName] [Employees.LastName]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <SparklineObject Name="Sparkline1" Left="510.3" Top="9.45" Width="198.45" Height="47.25" DataSource="Orders" AutoSeriesColumn="" ChartData="PENoYXJ0IEJvcmRlcmxpbmVDb2xvcj0iRGFya0dyYXkiIEJvcmRlcmxpbmVXaWR0aD0iMiI+DQogIDxTZXJpZXM+DQogICAgPFNlcmllcyBOYW1lPSJTZXJpZXMxIiBMZWdlbmQ9IkRlZmF1bHQiIFhWYWx1ZVR5cGU9IkRhdGUiIFlWYWx1ZVR5cGU9IkludDMyIiBDaGFydFR5cGU9IkZhc3RMaW5lIiBDaGFydEFyZWE9IkRlZmF1bHQiIEZvbnQ9Ik1pY3Jvc29mdCBTYW5zIFNlcmlmLCA4cHQiIE1hcmtlclN0eWxlPSJDaXJjbGUiIE1hcmtlclNpemU9IjEzIiBNYXJrZXJDb2xvcj0iT3JhbmdlUmVkIj4NCiAgICAgIDxQb2ludHM+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMSIgQXhpc0xhYmVsPSJBIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjMiIEF4aXNMYWJlbD0iQiIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIyIiBBeGlzTGFiZWw9IkMiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iNCIgQXhpc0xhYmVsPSJEIiAvPg0KICAgICAgPC9Qb2ludHM+DQogICAgPC9TZXJpZXM+DQogIDwvU2VyaWVzPg0KICA8TGVnZW5kcz4NCiAgICA8TGVnZW5kIE5hbWU9IkRlZmF1bHQiIEVuYWJsZWQ9IkZhbHNlIiBJc1RleHRBdXRvRml0PSJGYWxzZSI+DQogICAgPC9MZWdlbmQ+DQogIDwvTGVnZW5kcz4NCiAgPFRpdGxlcz4NCiAgICA8VGl0bGUgTmFtZT0iVGl0bGUxIiBWaXNpYmxlPSJGYWxzZSI+DQogICAgPC9UaXRsZT4NCiAgPC9UaXRsZXM+DQogIDxDaGFydEFyZWFzPg0KICAgIDxDaGFydEFyZWEgTmFtZT0iRGVmYXVsdCI+DQogICAgICA8QXhpc1kgSXNMYWJlbEF1dG9GaXQ9IkZhbHNlIiBFbmFibGVkPSJGYWxzZSI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgIDwvQXhpc1k+DQogICAgICA8QXhpc1ggSXNMYWJlbEF1dG9GaXQ9IkZhbHNlIiBFbmFibGVkPSJGYWxzZSI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgIDwvQXhpc1g+DQogICAgICA8QXhpc1gyIElzTGFiZWxBdXRvRml0PSJGYWxzZSI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgIDwvQXhpc1gyPg0KICAgICAgPEF4aXNZMiBJc0xhYmVsQXV0b0ZpdD0iRmFsc2UiPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICA8L0F4aXNZMj4NCiAgICA8L0NoYXJ0QXJlYT4NCiAgPC9DaGFydEFyZWFzPg0KPC9DaGFydD4=">
         <MSChartSeries Name="Series1" Filter="[Employees.EmployeeID] == [Orders.EmployeeID]" SortBy="XValue" GroupBy="Months" GroupFunction="Count" CollectValue="1" CollectedItemColor="OrangeRed" XValue="[Orders.OrderDate]" YValue1="[Orders.OrderID]"/>
       </SparklineObject>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="187.66" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="155.2" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

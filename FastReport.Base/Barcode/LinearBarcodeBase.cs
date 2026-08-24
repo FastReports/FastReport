@@ -479,7 +479,11 @@ namespace FastReport.Barcode
                     bmp.SetResolution(96, 96);
                     using (Graphics g = Graphics.FromImage(bmp))
                     {
-                        txtWidth = g.MeasureString(text, Font, 100000).Width;
+                        float fontZoom = FontHeight / (int)g.MeasureString(text, Font).Height;
+                        using (Font drawFont = new Font(Font.FontFamily, Font.Size * fontZoom, Font.Style))
+                        {
+                            txtWidth = g.MeasureString(text, drawFont, 100000).Width;
+                        }
                     }
                 }
 
@@ -674,7 +678,7 @@ namespace FastReport.Barcode
         internal virtual void DrawText(IGraphics g, string data)
         {
             data = StripControlCodes(data);
-            DrawString(g, 0, drawArea.Width, data);
+            DrawString(g, 0, barArea.Width, data);
         }
         #endregion
 

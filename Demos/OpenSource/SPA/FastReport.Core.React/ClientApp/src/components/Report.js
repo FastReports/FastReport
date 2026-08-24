@@ -16,7 +16,7 @@ export class Report extends PureComponent {
 
                 },
                 {
-                    value: 'QR-Codes',
+                    value: 'Barcode',
                 },
                 {
                     value: 'Highlight',

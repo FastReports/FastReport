@@ -41,7 +41,6 @@ partial class Program
     }
 
 
-    [DependsOn(nameof(BuildOpenSource))]
     [DependsOn(nameof(PrepareNuget))]
     public void PackOpenSource()
     {
@@ -50,7 +49,7 @@ partial class Program
         DotNetPackSettings settings = new DotNetPackSettings
         {
             Configuration = config,
-            NoBuild = true,
+            NoBuild = false, // if we set it to 'true' then SDK won't include *.js and *.css files into packages
             NoRestore = true,
             OutputDirectory = OutDir,
             IncludeSymbols = true,

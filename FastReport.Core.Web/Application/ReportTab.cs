@@ -18,6 +18,7 @@ namespace FastReport.Web
         public int MinPageIndex { get; set; } = 0;
         public bool Closeable { get; set; } = true;
         public bool NeedParent { get; set; } = false;
+        internal bool IsDetailPage { get; set; } = false;
 
         //public ReportTab Clone()
         //{

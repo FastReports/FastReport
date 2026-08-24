@@ -719,8 +719,9 @@ namespace FastReport.Export
         {
             FastString sb = new FastString();
             sb.AppendFormat("{0:R}", datetime);
-            int hours = TimeZoneInfo.Local.GetUtcOffset(datetime).Hours;
-            int minutes = TimeZoneInfo.Local.GetUtcOffset(datetime).Minutes;
+            // note: replacing TimeZone.CurrentTimeZone (deprecated) to TimeZoneInfo.Local leads to failing export tests
+            int hours = TimeZone.CurrentTimeZone.GetUtcOffset(datetime).Hours;
+            int minutes = TimeZone.CurrentTimeZone.GetUtcOffset(datetime).Minutes;
             if (hours == 0 && minutes == 0)
                 return sb.ToString();
             else

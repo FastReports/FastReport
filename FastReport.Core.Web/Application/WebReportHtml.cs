@@ -293,7 +293,8 @@ namespace FastReport.Web
             }
             else
             {
-                _pageWidth = Report.PreparedPages.GetPageSize(CurrentPageIndex).Width;
+                if(Report.PreparedPages.Count > 0)
+                    _pageWidth = Report.PreparedPages.GetPageSize(CurrentPageIndex).Width;
             }
 
             return _pageWidth;

@@ -13,6 +13,7 @@ namespace FastReport.Engine
             BandBase cloneBand = Activator.CreateInstance(band.GetType()) as BandBase;
             cloneBand.Assign(band);
             cloneBand.SetRunning(true);
+            cloneBand.FlagBreak = true;
             cloneBand.FlagMustBreak = band.FlagMustBreak;
 
             // clone band objects:
@@ -67,6 +68,7 @@ namespace FastReport.Engine
             breakTo.BeforeLayoutEvent = "";
             breakTo.AfterPrintEvent = "";
             breakTo.AfterLayoutEvent = "";
+            breakTo.FlagBreak = true;
             // breakTo must be breaked because it will print on a new page.
             breakTo.FlagMustBreak = true;
 

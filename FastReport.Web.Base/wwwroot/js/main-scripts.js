@@ -623,20 +623,29 @@ class WebReport {
     }
 }
 
-if (window.top !== window.self) {
-    const observer = new MutationObserver((mutations) => {
-        if (document.readyState === 'complete') {
-            const webReports = document.getElementsByClassName('webreport-script');
-            if (webReports.length == 0)
-                window.Webreports = new Map();
-            WebReport.Init();
+const webReportObserver = new MutationObserver((mutations) => {
+    if (document.readyState === 'complete') {
+        for (const mutation of mutations) {
+            // Check added node
+            if (mutation.type === 'childList' && mutation.addedNodes.length) {
+                for (const node of mutation.addedNodes) {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        const webReports = node.getElementsByClassName('webreport-script');
+                        if (webReports) {
+                            if (webReports.length == 0)
+                                window.Webreports = new Map();
+                            WebReport.Init(); 
+                        }
+                    }
+                }
+            }
         }
-    });
+    }
+});
 
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-    });
-}
+webReportObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+});
 
 WebReport.Init();

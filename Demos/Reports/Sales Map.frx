@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/18/2023 15:42:04" ReportInfo.Modified="03/26/2023 03:05:27" ReportInfo.CreatorVersion="1.0.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using FastReport.Map;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    private Dictionary&lt;string,string&gt; states = new Dictionary&lt;string,string&gt;();
+    
+    private void Child1_BeforePrint(object sender, EventArgs e)
+    {
+      // extract state names from the map layer
+      foreach (ShapeBase shape in Layer1.Shapes)
+      {
+        var abbrev = shape.SpatialData.GetValue(&quot;ABBREV&quot;);
+        var name = shape.SpatialData.GetValue(&quot;NAME&quot;);
+        states[abbrev] = name;
+      }
+    }
+
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="Order Details" ReferenceName="NorthWind.Order Details" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="Quantity" DataType="System.Int16"/>
+      <Column Name="Discount" DataType="System.Single"/>
+      <Column Name="Price" DataType="System.Decimal" PropName="Column" Calculated="true" Expression="[Order Details.Quantity]*[Order Details.UnitPrice]*(decimal)(1 - [Order Details.Discount])"/>
+    </TableDataSource>
+    <TableDataSource Name="Orders" ReferenceName="NorthWind.Orders" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="OrderDate" DataType="System.DateTime"/>
+      <Column Name="RequiredDate" DataType="System.DateTime"/>
+      <Column Name="ShippedDate" DataType="System.DateTime"/>
+      <Column Name="ShipVia" DataType="System.Int32"/>
+      <Column Name="Freight" DataType="System.Decimal"/>
+      <Column Name="ShipName" DataType="System.String"/>
+      <Column Name="ShipAddress" DataType="System.String"/>
+      <Column Name="ShipCity" DataType="System.String"/>
+      <Column Name="ShipRegion" DataType="System.String"/>
+      <Column Name="ShipPostalCode" DataType="System.String"/>
+      <Column Name="ShipCountry" DataType="System.String"/>
+      <Column Name="Latitude" DataType="System.Double"/>
+      <Column Name="Longitude" DataType="System.Double"/>
+    </TableDataSource>
+    <TableDataSource Name="Customers" ReferenceName="NorthWind.Customers" DataType="System.Int32" Enabled="true">
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="Orders" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
+    <Relation Name="CustomersOrders" ReferenceName="NorthWind.CustomersOrders" ParentDataSource="Customers" ChildDataSource="Orders" ParentColumns="CustomerID" ChildColumns="CustomerID" Enabled="true"/>
+    <Relation Name="ProductsOrderDetails" ReferenceName="NorthWind.ProductsOrderDetails" ParentDataSource="Products" ChildDataSource="Order Details" ParentColumns="ProductID" ChildColumns="ProductID" Enabled="true"/>
+    <Parameter Name="SelectedRegion" DataType="System.String" AsString="MT"/>
+    <Total Name="OrderTotal" Expression="[Order Details.Price]" Evaluator="Data2" PrintOn="DataFooter1"/>
+    <Total Name="GrandTotal" Expression="[Order Details.Price]" Evaluator="Data2" PrintOn="DataFooter2"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" Watermark.Font="Segoe UI, 60pt" UnlimitedHeight="true" UnlimitedWidth="true" LastPageSource="15" FirstPageSource="15">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6">
+      <TextObject Name="Text1" Left="189" Width="529.2" Height="56.7" Text="SALES IN THE USA" VertAlign="Center" Font="Segoe UI, 24pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text18" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text19" Left="56.7" Top="9.45" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+      <ChildBand Name="Child1" Top="77.6" Width="718.2" Height="604.8" BeforePrintEvent="Child1_BeforePrint">
+        <MapObject Name="Map1" Top="37.8" Width="718.2" Height="548.1" Fill.Color="White" Hyperlink.Kind="DetailPage" Hyperlink.DetailPageName="Page2" Hyperlink.ReportParameter="SelectedRegion" ColorScale.TitleFont="Segoe UI, 9pt" ColorScale.Font="Segoe UI, 9pt">
+          <MapLayer Name="Layer1" Shapefile="..\Maps\usa1.shp" Type="Polygon" DataSource="Order Details" Filter="[Order Details.Orders.ShipCountry] == &quot;USA&quot;" SpatialColumn="ABBREV" SpatialValue="[Order Details.Orders.ShipRegion]" AnalyticalValue="[Order Details.Price]" LabelColumn="NAME" LabelKind="NameAndValue" LabelFormat="C" BoxAsString="-125.463921613118,19.8932814128116,-66.9698486328125,49.3717346191406" DefaultShapeStyle.BorderColor="WhiteSmoke" DefaultShapeStyle.Font="Segoe UI, 9pt" ColorRanges.StartColor="LightBlue" ColorRanges.MiddleColor="Khaki" ColorRanges.EndColor="DarkSalmon" ColorRanges.ShowInColorScale="true" ColorRanges.RangesAsString="Transparent;NaN;NaN&#13;&#10;Transparent;NaN;NaN&#13;&#10;Transparent;NaN;NaN&#13;&#10;Transparent;NaN;NaN&#13;&#10;Transparent;NaN;NaN" SizeRanges.StartSize="4" SizeRanges.EndSize="20" SizeRanges.RangesAsString=""/>
+        </MapObject>
+        <TextObject Name="Text31" Width="670.95" Height="28.35" Text="Use the left mouse button to pan, mouse wheel to zoom the map. Click map area to show details." Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+      </ChildBand>
+    </ReportTitleBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Visible="false" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="56.7">
+      <TextObject Name="Text30" Width="529.2" Height="37.8" Text="SALES IN [states[[SelectedRegion]]]" Font="Segoe UI, 20pt, style=Bold" TextFill.Color="DimGray"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="58.7" Width="718.2" Height="56.7" Fill.Color="WhiteSmoke" DataSource="Orders" Filter="[Orders.ShipRegion] == [SelectedRegion]">
+      <TextObject Name="Text20" Top="28.35" Width="94.5" Height="18.9" Text="[Orders.OrderID]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text21" Left="94.5" Top="28.35" Width="94.5" Height="18.9" Text="[Orders.OrderDate]" Format="Date" Format.Format="d" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text22" Left="189" Top="28.35" Width="226.8" Height="18.9" Text="[Orders.Customers.CompanyName]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text2" Top="9.45" Width="94.5" Height="18.9" Text="Order ID" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text3" Left="94.5" Top="9.45" Width="94.5" Height="18.9" Text="Order date" Font="Segoe UI, 9pt, style=Bold"/>
+      <TextObject Name="Text4" Left="189" Top="9.45" Width="226.8" Height="18.9" Text="Company name" Font="Segoe UI, 9pt, style=Bold"/>
+      <DataBand Name="Data2" Top="147.75" Width="718.2" Height="18.9" DataSource="Order Details">
+        <TextObject Name="Text23" Left="18.9" Width="245.7" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Products.ProductName]" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text24" Left="264.6" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.UnitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text25" Left="359.1" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Quantity]" HorzAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text26" Left="453.6" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Discount]" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text27" Left="548.1" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Price]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+        <DataHeaderBand Name="DataHeader1" Top="117.4" Width="718.2" Height="28.35">
+          <TextObject Name="Text5" Left="18.9" Top="9.45" Width="245.7" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Product name" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text6" Left="264.6" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Unit price" HorzAlign="Right" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text7" Left="359.1" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Quantity" HorzAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text8" Left="453.6" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Discount" HorzAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text9" Left="548.1" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Price" HorzAlign="Right" Font="Segoe UI, 9pt, style=Bold"/>
+        </DataHeaderBand>
+        <DataFooterBand Name="DataFooter1" Top="168.65" Width="718.2" Height="37.8">
+          <TextObject Name="Text28" Left="453.6" Width="189" Height="18.9" Text="Subtotal: [OrderTotal]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Segoe UI, 9pt, style=Bold"/>
+        </DataFooterBand>
+      </DataBand>
+      <DataFooterBand Name="DataFooter2" Top="208.45" Width="718.2" Height="37.8" Border.Color="Gainsboro" Border.Style="Double">
+        <TextObject Name="Text29" Width="642.6" Height="28.35" Border.Lines="Top" Border.Color="Gainsboro" Border.Style="Double" Text="Grand total: [GrandTotal]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      </DataFooterBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="248.25" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

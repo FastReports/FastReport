@@ -202,6 +202,15 @@ namespace FastReport.Engine
             if (textObj == null || textObj.ProcessAt == ProcessAt.Default)
                 return;
 
+            // are we in the band break state?
+            if (textObj.Band?.FlagBreak == true)
+            {
+                // get the original text object
+                textObj = textObj.Report.FindObject(textObj.OriginalComponent?.Name) as TextObject;
+                if (textObj == null) 
+                    return;
+            }
+
             objectsToProcess.Add(new ProcessInfo(textObj, item));
         }
 

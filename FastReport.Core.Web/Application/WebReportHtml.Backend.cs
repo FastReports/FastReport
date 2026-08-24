@@ -378,6 +378,8 @@ namespace FastReport.Web
                                     break;
                                 }
                             }
+                            if (found)
+                                break;
                         }
                         page.Dispose();
                         pageN++;
@@ -450,7 +452,8 @@ namespace FastReport.Web
                             Name = paramValue,
                             Report = tabReport,
                             Closeable = true,
-                            NeedParent = true
+                            NeedParent = true,
+                            IsDetailPage = true
                         });
 
                         int prevTab = CurrentTabIndex;

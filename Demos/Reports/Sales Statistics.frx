@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/18/2023 15:42:04" ReportInfo.Modified="12/05/2023 02:32:59" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="Order Details" ReferenceName="NorthWind.Order Details" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="Quantity" DataType="System.Int16"/>
+      <Column Name="Discount" DataType="System.Single"/>
+      <Column Name="Price" DataType="System.Decimal" PropName="Column" Calculated="true" Expression="[Order Details.Quantity]*[Order Details.UnitPrice]*(decimal)(1 - [Order Details.Discount])"/>
+    </TableDataSource>
+    <TableDataSource Name="Orders" ReferenceName="NorthWind.Orders" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="OrderDate" DataType="System.DateTime"/>
+      <Column Name="RequiredDate" DataType="System.DateTime"/>
+      <Column Name="ShippedDate" DataType="System.DateTime"/>
+      <Column Name="ShipVia" DataType="System.Int32"/>
+      <Column Name="Freight" DataType="System.Decimal"/>
+      <Column Name="ShipName" DataType="System.String"/>
+      <Column Name="ShipAddress" DataType="System.String"/>
+      <Column Name="ShipCity" DataType="System.String"/>
+      <Column Name="ShipRegion" DataType="System.String"/>
+      <Column Name="ShipPostalCode" DataType="System.String"/>
+      <Column Name="ShipCountry" DataType="System.String"/>
+      <Column Name="Latitude" DataType="System.Double"/>
+      <Column Name="Longitude" DataType="System.Double"/>
+    </TableDataSource>
+    <TableDataSource Name="Customers" ReferenceName="NorthWind.Customers" DataType="System.Int32" Enabled="true">
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="LastName" DataType="System.String"/>
+      <Column Name="FirstName" DataType="System.String"/>
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="TitleOfCourtesy" DataType="System.String"/>
+      <Column Name="BirthDate" DataType="System.DateTime"/>
+      <Column Name="HireDate" DataType="System.DateTime"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="HomePhone" DataType="System.String"/>
+      <Column Name="Extension" DataType="System.String"/>
+      <Column Name="Photo" DataType="System.Byte[]" BindableControl="Picture"/>
+      <Column Name="Notes" DataType="System.String"/>
+      <Column Name="ReportsTo" DataType="System.Int32"/>
+      <Column Name="Column" Alias="FullName" DataType="System.String" Calculated="true" Expression="[Employees.FirstName] + &quot; &quot; + [Employees.LastName]"/>
+    </TableDataSource>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="Orders" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
+    <Relation Name="CustomersOrders" ReferenceName="NorthWind.CustomersOrders" ParentDataSource="Customers" ChildDataSource="Orders" ParentColumns="CustomerID" ChildColumns="CustomerID" Enabled="true"/>
+    <Relation Name="ProductsOrderDetails" ReferenceName="NorthWind.ProductsOrderDetails" ParentDataSource="Products" ChildDataSource="Order Details" ParentColumns="ProductID" ChildColumns="ProductID" Enabled="true"/>
+    <Relation Name="EmployeesOrders" ReferenceName="NorthWind.EmployeesOrders" ParentDataSource="Employees" ChildDataSource="Orders" ParentColumns="EmployeeID" ChildColumns="EmployeeID" Enabled="true"/>
+    <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID" Enabled="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Segoe UI, 60pt" ExtraDesignWidth="true" UnlimitedHeight="true" UnlimitedWidth="true" LastPageSource="15" FirstPageSource="15">
+    <ReportTitleBand Name="ReportTitle1" Width="756" Height="812.7">
+      <MSChartObject Name="MSChart2" Left="453.6" Top="396.9" Width="529.2" Height="415.8" DataSource="Order Details" ChartData="PENoYXJ0IFBhbGV0dGU9Ik5vbmUiIEJhY2tDb2xvcj0iVHJhbnNwYXJlbnQiIFNpemU9IjU3NiwgNDY0IiBCb3JkZXJsaW5lQ29sb3I9IkdhaW5zYm9ybyI+DQogIDxTZXJpZXM+DQogICAgPFNlcmllcyBOYW1lPSJTZXJpZXMxIiBMZWdlbmQ9IkRlZmF1bHQiIFhWYWx1ZVR5cGU9IlN0cmluZyIgWVZhbHVlVHlwZT0iRG91YmxlIiBQYWxldHRlPSJTZWFHcmVlbiIgQ2hhcnRUeXBlPSJEb3VnaG51dCIgQ2hhcnRBcmVhPSJEZWZhdWx0IiBMYWJlbD0iI1ZBTFhcbiAjVkFMWXtDfSIgQm9yZGVyRGFzaFN0eWxlPSJOb3RTZXQiIEZvbnQ9IlNlZ29lIFVJLCA5cHQiIEN1c3RvbVByb3BlcnRpZXM9IlBpZUxpbmVDb2xvcj0tOTg2ODk1MSwgUGllTGFiZWxTdHlsZT1PdXRzaWRlLCBQaWVEcmF3aW5nU3R5bGU9Q29uY2F2ZSI+DQogICAgICA8UG9pbnRzPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjEiIEF4aXNMYWJlbD0iQSIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIzIiBBeGlzTGFiZWw9IkIiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMiIgQXhpc0xhYmVsPSJDIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjQiIEF4aXNMYWJlbD0iRCIgLz4NCiAgICAgIDwvUG9pbnRzPg0KICAgIDwvU2VyaWVzPg0KICA8L1Nlcmllcz4NCiAgPExlZ2VuZHM+DQogICAgPExlZ2VuZCBOYW1lPSJEZWZhdWx0IiBFbmFibGVkPSJGYWxzZSIgSXNUZXh0QXV0b0ZpdD0iRmFsc2UiIEJhY2tDb2xvcj0iVHJhbnNwYXJlbnQiPg0KICAgIDwvTGVnZW5kPg0KICA8L0xlZ2VuZHM+DQogIDxUaXRsZXM+DQogICAgPFRpdGxlIE5hbWU9IlRpdGxlMSIgVmlzaWJsZT0iRmFsc2UiIElzRG9ja2VkSW5zaWRlQ2hhcnRBcmVhPSJGYWxzZSIgQm9yZGVyQ29sb3I9IlRyYW5zcGFyZW50IiBGb250PSJTZWdvZSBVSSwgMjBwdCIgRm9yZUNvbG9yPSJEaW1HcmF5IiBBbGlnbm1lbnQ9IlRvcENlbnRlciI+DQogICAgPC9UaXRsZT4NCiAgPC9UaXRsZXM+DQogIDxDaGFydEFyZWFzPg0KICAgIDxDaGFydEFyZWEgQmFja0NvbG9yPSJUcmFuc3BhcmVudCIgQmFja1NlY29uZGFyeUNvbG9yPSJUcmFuc3BhcmVudCIgU2hhZG93Q29sb3I9IlRyYW5zcGFyZW50IiBCb3JkZXJDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIE5hbWU9IkRlZmF1bHQiPg0KICAgICAgPEF4aXNZIElzTGFiZWxBdXRvRml0PSJGYWxzZSIgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgICAgPExhYmVsU3R5bGUgRm9udD0iVGFob21hLCA4cHQiIC8+DQogICAgICA8L0F4aXNZPg0KICAgICAgPEF4aXNYIElzTGFiZWxBdXRvRml0PSJGYWxzZSIgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgICAgPExhYmVsU3R5bGUgRm9udD0iVGFob21hLCA4cHQiIC8+DQogICAgICA8L0F4aXNYPg0KICAgICAgPEF4aXNYMiBJc0xhYmVsQXV0b0ZpdD0iRmFsc2UiPg0KICAgICAgPC9BeGlzWDI+DQogICAgICA8QXhpc1kyIElzTGFiZWxBdXRvRml0PSJGYWxzZSI+DQogICAgICA8L0F4aXNZMj4NCiAgICA8L0NoYXJ0QXJlYT4NCiAgPC9DaGFydEFyZWFzPg0KPC9DaGFydD4=">
+        <MSChartSeries Name="Series2" SortBy="YValue" GroupBy="XValue" XValue="[Order Details.Products.Categories.CategoryName]" YValue1="[Order Details.Price]"/>
+      </MSChartObject>
+      <TextObject Name="Text1" Left="37.8" Top="198.45" Width="378" Height="56.7" Text="SALES STATISTICS" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 24pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text18" Left="151.2" Top="132.3" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text19" Left="207.9" Top="141.75" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+      <TextObject Name="Text20" Left="453.6" Width="529.2" Height="37.8" Text="Sales by employee" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 20pt" TextFill.Color="DimGray"/>
+      <TextObject Name="Text22" Left="453.6" Top="406.35" Width="529.2" Height="37.8" Text="Sales by product category" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 20pt" TextFill.Color="DimGray"/>
+      <MSChartObject Name="MSChart1" Left="453.6" Width="529.2" Height="415.8" DataSource="Order Details" ChartData="PENoYXJ0IFBhbGV0dGU9IlNlYUdyZWVuIiBCYWNrQ29sb3I9IlRyYW5zcGFyZW50IiBTaXplPSIwLCAwIiBCb3JkZXJsaW5lQ29sb3I9IkdhaW5zYm9ybyI+DQogIDxTZXJpZXM+DQogICAgPFNlcmllcyBOYW1lPSJTZXJpZXMxIiBMZWdlbmQ9IkRlZmF1bHQiIFhWYWx1ZVR5cGU9IlN0cmluZyIgWVZhbHVlVHlwZT0iRG91YmxlIiBDaGFydFR5cGU9IkRvdWdobnV0IiBDaGFydEFyZWE9IkRlZmF1bHQiIExhYmVsPSIjVkFMWFxuICNWQUxZe0N9IiBCb3JkZXJEYXNoU3R5bGU9Ik5vdFNldCIgRm9udD0iU2Vnb2UgVUksIDlwdCIgQ3VzdG9tUHJvcGVydGllcz0iUGllTGluZUNvbG9yPS05ODY4OTUxLCBQaWVMYWJlbFN0eWxlPU91dHNpZGUsIFBpZURyYXdpbmdTdHlsZT1Db25jYXZlIj4NCiAgICAgIDxQb2ludHM+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMSIgQXhpc0xhYmVsPSJBIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjMiIEF4aXNMYWJlbD0iQiIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIyIiBBeGlzTGFiZWw9IkMiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iNCIgQXhpc0xhYmVsPSJEIiAvPg0KICAgICAgPC9Qb2ludHM+DQogICAgPC9TZXJpZXM+DQogIDwvU2VyaWVzPg0KICA8TGVnZW5kcz4NCiAgICA8TGVnZW5kIE5hbWU9IkRlZmF1bHQiIEVuYWJsZWQ9IkZhbHNlIiBJc1RleHRBdXRvRml0PSJGYWxzZSIgQmFja0NvbG9yPSJUcmFuc3BhcmVudCI+DQogICAgPC9MZWdlbmQ+DQogIDwvTGVnZW5kcz4NCiAgPFRpdGxlcz4NCiAgICA8VGl0bGUgTmFtZT0iVGl0bGUxIiBWaXNpYmxlPSJGYWxzZSIgSXNEb2NrZWRJbnNpZGVDaGFydEFyZWE9IkZhbHNlIiBCb3JkZXJDb2xvcj0iVHJhbnNwYXJlbnQiIEZvbnQ9IlNlZ29lIFVJLCAyMHB0IiBGb3JlQ29sb3I9IkRpbUdyYXkiIEFsaWdubWVudD0iVG9wQ2VudGVyIj4NCiAgICA8L1RpdGxlPg0KICA8L1RpdGxlcz4NCiAgPENoYXJ0QXJlYXM+DQogICAgPENoYXJ0QXJlYSBCYWNrQ29sb3I9IlRyYW5zcGFyZW50IiBCYWNrU2Vjb25kYXJ5Q29sb3I9IlRyYW5zcGFyZW50IiBTaGFkb3dDb2xvcj0iVHJhbnNwYXJlbnQiIEJvcmRlckNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgTmFtZT0iRGVmYXVsdCI+DQogICAgICA8QXhpc1kgSXNMYWJlbEF1dG9GaXQ9IkZhbHNlIiBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0Ij4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgICA8TGFiZWxTdHlsZSBGb250PSJUYWhvbWEsIDhwdCIgLz4NCiAgICAgIDwvQXhpc1k+DQogICAgICA8QXhpc1ggSXNMYWJlbEF1dG9GaXQ9IkZhbHNlIiBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0Ij4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgICA8TGFiZWxTdHlsZSBGb250PSJUYWhvbWEsIDhwdCIgLz4NCiAgICAgIDwvQXhpc1g+DQogICAgICA8QXhpc1gyIElzTGFiZWxBdXRvRml0PSJGYWxzZSI+DQogICAgICA8L0F4aXNYMj4NCiAgICAgIDxBeGlzWTIgSXNMYWJlbEF1dG9GaXQ9IkZhbHNlIj4NCiAgICAgIDwvQXhpc1kyPg0KICAgIDwvQ2hhcnRBcmVhPg0KICA8L0NoYXJ0QXJlYXM+DQo8L0NoYXJ0Pg==">
+        <MSChartSeries Name="Series1" SortOrder="Descending" SortBy="YValue" GroupBy="XValue" XValue="[Order Details.Orders.Employees.FullName]" YValue1="[Order Details.Price]"/>
+      </MSChartObject>
+      <MSChartObject Name="MSChart3" Top="434.7" Width="453.6" Height="340.2" DataSource="Order Details" ChartData="PENoYXJ0IFBhbGV0dGVDdXN0b21Db2xvcnM9IjExOSwgMTcwLCAxNzQiIFBhbGV0dGU9Ik5vbmUiIFNpemU9IjAsIDAiIEJvcmRlcmxpbmVDb2xvcj0iR2FpbnNib3JvIj4NCiAgPFNlcmllcz4NCiAgICA8U2VyaWVzIE5hbWU9IlNlcmllczEiIExlZ2VuZD0iRGVmYXVsdCIgWFZhbHVlVHlwZT0iU3RyaW5nIiBZVmFsdWVUeXBlPSJEb3VibGUiIENoYXJ0VHlwZT0iQmFyIiBDaGFydEFyZWE9IkRlZmF1bHQiIExhYmVsPSIgI1ZBTFg6ICNWQUxZe0N9ICIgRm9udD0iU2Vnb2UgVUksIDlwdCI+DQogICAgICA8UG9pbnRzPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjEiIEF4aXNMYWJlbD0iQSIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIzIiBBeGlzTGFiZWw9IkIiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMiIgQXhpc0xhYmVsPSJDIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjQiIEF4aXNMYWJlbD0iRCIgLz4NCiAgICAgIDwvUG9pbnRzPg0KICAgIDwvU2VyaWVzPg0KICA8L1Nlcmllcz4NCiAgPExlZ2VuZHM+DQogICAgPExlZ2VuZCBOYW1lPSJEZWZhdWx0IiBFbmFibGVkPSJGYWxzZSIgSXNUZXh0QXV0b0ZpdD0iRmFsc2UiIExlZ2VuZFN0eWxlPSJSb3ciPg0KICAgIDwvTGVnZW5kPg0KICA8L0xlZ2VuZHM+DQogIDxUaXRsZXM+DQogICAgPFRpdGxlIE5hbWU9IlRpdGxlMSIgVmlzaWJsZT0iRmFsc2UiIEZvbnQ9IlNlZ29lIFVJLCAyMHB0IiBGb3JlQ29sb3I9IkRpbUdyYXkiPg0KICAgIDwvVGl0bGU+DQogIDwvVGl0bGVzPg0KICA8Q2hhcnRBcmVhcz4NCiAgICA8Q2hhcnRBcmVhIE5hbWU9IkRlZmF1bHQiPg0KICAgICAgPEF4aXNZIElzTGFiZWxBdXRvRml0PSJGYWxzZSIgRW5hYmxlZD0iRmFsc2UiPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIEVuYWJsZWQ9IkZhbHNlIiAvPg0KICAgICAgPC9BeGlzWT4NCiAgICAgIDxBeGlzWCBJc0xhYmVsQXV0b0ZpdD0iRmFsc2UiIElzUmV2ZXJzZWQ9IlRydWUiIEVuYWJsZWQ9IkZhbHNlIj4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiBFbmFibGVkPSJGYWxzZSIgLz4NCiAgICAgIDwvQXhpc1g+DQogICAgICA8QXhpc1gyIElzTGFiZWxBdXRvRml0PSJGYWxzZSIgSXNSZXZlcnNlZD0iVHJ1ZSI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgIDwvQXhpc1gyPg0KICAgICAgPEF4aXNZMiBJc0xhYmVsQXV0b0ZpdD0iRmFsc2UiPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICA8L0F4aXNZMj4NCiAgICA8L0NoYXJ0QXJlYT4NCiAgPC9DaGFydEFyZWFzPg0KPC9DaGFydD4=">
+        <MSChartSeries Name="Series3" SortBy="YValue" GroupBy="XValue" Collect="TopN" CollectValue="10" CollectedItemText="Others" CollectedItemColor="CadetBlue" XValue="[Order Details.Orders.Customers.Country]" YValue1="[Order Details.Price]"/>
+      </MSChartObject>
+      <LineObject Name="Line1" Left="453.6" Height="812.7" Border.Color="Gainsboro"/>
+      <LineObject Name="Line2" Top="396.9" Width="982.8" Border.Color="Gainsboro"/>
+      <TextObject Name="Text21" Top="406.35" Width="453.6" Height="37.8" Text="Sales by country (Top10)" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 20pt" TextFill.Color="DimGray"/>
+    </ReportTitleBand>
+  </ReportPage>
+</Report>

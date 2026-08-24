@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="03/29/2023 23:25:43" ReportInfo.CreatorVersion="1.0.0.0">
+  <Styles>
+    <Style Name="EvenRows" Fill.Color="Honeydew" Font="Segoe UI, 10pt" ApplyBorder="false" ApplyTextFill="false" ApplyFont="false"/>
+  </Styles>
+  <Dictionary>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <TableDataSource Name="Customers" ReferenceName="NorthWind.Customers" DataType="System.Int32" Enabled="true">
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="LastName" DataType="System.String"/>
+      <Column Name="FirstName" DataType="System.String"/>
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="TitleOfCourtesy" DataType="System.String"/>
+      <Column Name="BirthDate" DataType="System.DateTime"/>
+      <Column Name="HireDate" DataType="System.DateTime"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="HomePhone" DataType="System.String"/>
+      <Column Name="Extension" DataType="System.String"/>
+      <Column Name="Photo" DataType="System.Byte[]" BindableControl="Picture"/>
+      <Column Name="Notes" DataType="System.String"/>
+      <Column Name="ReportsTo" DataType="System.Int32"/>
+    </TableDataSource>
+    <TableDataSource Name="Order Details" ReferenceName="NorthWind.Order Details" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="Quantity" DataType="System.Int16"/>
+      <Column Name="Discount" DataType="System.Single"/>
+      <Column Name="Column" Alias="Price" DataType="System.Decimal" Calculated="true" Expression="[Order Details.Quantity]*[Order Details.UnitPrice]*(decimal)(1 - [Order Details.Discount])"/>
+    </TableDataSource>
+    <TableDataSource Name="Orders" ReferenceName="NorthWind.Orders" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="OrderDate" DataType="System.DateTime"/>
+      <Column Name="RequiredDate" DataType="System.DateTime"/>
+      <Column Name="ShippedDate" DataType="System.DateTime"/>
+      <Column Name="ShipVia" DataType="System.Int32"/>
+      <Column Name="Freight" DataType="System.Decimal"/>
+      <Column Name="ShipName" DataType="System.String"/>
+      <Column Name="ShipAddress" DataType="System.String"/>
+      <Column Name="ShipCity" DataType="System.String"/>
+      <Column Name="ShipRegion" DataType="System.String"/>
+      <Column Name="ShipPostalCode" DataType="System.String"/>
+      <Column Name="ShipCountry" DataType="System.String"/>
+      <Column Name="Latitude" DataType="System.Double"/>
+      <Column Name="Longitude" DataType="System.Double"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Shippers" ReferenceName="NorthWind.Shippers" DataType="System.Int32" Enabled="true">
+      <Column Name="ShipperID" DataType="System.Int32"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Suppliers" ReferenceName="NorthWind.Suppliers" DataType="System.Int32" Enabled="true">
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+      <Column Name="HomePage" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="SuppliersProducts" ReferenceName="NorthWind.SuppliersProducts" ParentDataSource="Suppliers" ChildDataSource="Products" ParentColumns="SupplierID" ChildColumns="SupplierID" Enabled="true"/>
+    <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID" Enabled="true"/>
+    <Relation Name="EmployeesOrders" ReferenceName="NorthWind.EmployeesOrders" ParentDataSource="Employees" ChildDataSource="Orders" ParentColumns="EmployeeID" ChildColumns="EmployeeID" Enabled="true"/>
+    <Relation Name="ShippersOrders" ReferenceName="NorthWind.ShippersOrders" ParentDataSource="Shippers" ChildDataSource="Orders" ParentColumns="ShipperID" ChildColumns="ShipVia" Enabled="true"/>
+    <Relation Name="CustomersOrders" ReferenceName="NorthWind.CustomersOrders" ParentDataSource="Customers" ChildDataSource="Orders" ParentColumns="CustomerID" ChildColumns="CustomerID" Enabled="true"/>
+    <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="Orders" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
+    <Relation Name="ProductsOrderDetails" ReferenceName="NorthWind.ProductsOrderDetails" ParentDataSource="Products" ChildDataSource="Order Details" ParentColumns="ProductID" ChildColumns="ProductID" Enabled="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" Watermark.Font="Segoe UI, 60pt" UnlimitedHeight="true" UnlimitedWidth="true" LastPageSource="1" FirstPageSource="1">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="66.15" CanGrow="true">
+      <TextObject Name="Text29" Left="189" Width="529.2" Height="56.7" Text="SALES ANALYSIS" VertAlign="Center" Font="Segoe UI, 24pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text30" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text31" Left="56.7" Top="9.45" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="68.15" Width="1047.06" Height="183.33">
+      <AdvMatrixObject Name="AdvMatrix1" Left="9.45" Top="47.25" Width="793.8" Height="132.3" DataSource="Order Details" Style="Blue">
+        <Columns>
+          <Descriptor DisplayText="Employees">
+            <Descriptor Expression="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName]" SortByTotal="Sum([Order Details.Quantity]*[Order Details.UnitPrice]*(decimal)(1 - [Order Details.Discount]))"/>
+          </Descriptor>
+          <Descriptor DisplayText="Top 5 customers">
+            <Descriptor Expression="[Order Details.Orders.Customers.CompanyName]" Sort="Descending" SortByTotal="Sum([Order Details.Quantity]*[Order Details.UnitPrice]*(decimal)(1 - [Order Details.Discount]))" Visible="false" VisibleToggledBy="CollapseButton3" TopN.Count="5" TopN.Total.Name="TotalItem1" TopN.Others.Name="OthersItem1" TopN.OthersTotal.Name="OthersTotalItem1"/>
+            <Descriptor Name="TotalItem1" DisplayText="Total" Visible="false"/>
+            <Descriptor Name="OthersItem1" Visible="false" VisibleToggledBy="CollapseButton2"/>
+            <Descriptor Name="OthersTotalItem1" DisplayText="Others ([AdvMatrix1.ItemCount])"/>
+          </Descriptor>
+          <Descriptor DisplayText="Total"/>
+        </Columns>
+        <Rows>
+          <Descriptor Expression="[Order Details.Products.Categories.CategoryName]" DisplayText="[Order Details.Products.Categories.CategoryName] ([AdvMatrix1.ItemCount])" SortToggledBy="SortButton2" Stepped="true">
+            <Descriptor Expression="[Order Details.Products.ProductName]" DisplayText="[AdvMatrix1.RowNo]. [Order Details.Products.ProductName]" Visible="false" VisibleToggledBy="CollapseButton1"/>
+          </Descriptor>
+          <Descriptor DisplayText="Total"/>
+        </Rows>
+        <TableColumn Name="Column1" Width="149.58"/>
+        <TableColumn Name="Column2" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column5" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column6" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column7" Width="94.77" AutoSize="true"/>
+        <TableRow Name="Row1" Height="28.35">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="112, 146, 190" Text="Categories/Products" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="112, 146, 190" Text="Employees" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill.Color="173, 152, 130" Text="Top 5 customers" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White" ColSpan="4">
+            <MatrixCollapseButton Name="CollapseButton3" Width="16" Height="28.35" Dock="Left" Border.Lines="None" Border.Color="White" SymbolSize="8" Symbol="Pointer"/>
+          </TableCell>
+          <TableCell Name="Cell10" Fill.Color="173, 152, 130" Font="Segoe UI, 10pt"/>
+          <TableCell Name="Cell17" Fill.Color="173, 152, 130" Font="Segoe UI, 10pt"/>
+          <TableCell Name="Cell18" Fill.Color="173, 152, 130" Font="Segoe UI, 10pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Border.Color="White" Fill.Color="112, 146, 190" Text="Total" Padding="2, 1, 16, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White" RowSpan="2">
+            <MatrixSortButton Name="SortButton3" Left="78.77" Width="16" Height="56.7" Dock="Right" Border.Color="White" SymbolSize="7" InactiveSortColor="DarkGray"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row2" Height="28.35">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="112, 146, 190" Text="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName]" Padding="4, 1, 4, 1" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="173, 152, 130" Text="[Order Details.Orders.Customers.CompanyName]" Padding="4, 1, 4, 1" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="White" Fill.Color="173, 152, 130" Text="Total" Padding="4, 1, 4, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell20" Border.Lines="All" Border.Color="White" Fill.Color="173, 152, 130" Padding="4, 1, 4, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill.Color="173, 152, 130" Text="Others ([AdvMatrix1.ItemCount])" Padding="16, 1, 4, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White">
+            <MatrixCollapseButton Name="CollapseButton2" Width="16" Height="28.35" Dock="Left" Border.Lines="None" Border.Color="White" SymbolSize="8" Symbol="Pointer"/>
+          </TableCell>
+          <TableCell Name="Cell22" Font="Segoe UI, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="28.35" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="112, 146, 190" Text="[Order Details.Products.Categories.CategoryName]" Padding="16, 1, 16, 1" AllowExpressions="false" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White">
+            <MatrixCollapseButton Name="CollapseButton1" Width="16" Height="28.35" Dock="Left" Border.Lines="None" Border.Color="White" SymbolSize="8" Symbol="Pointer" ShowCollapseExpandMenu="true"/>
+            <MatrixSortButton Name="SortButton1" Left="133.58" Width="16" Height="28.35" Dock="Right" Border.Color="White" SymbolSize="7" InactiveSortColor="DarkGray"/>
+          </TableCell>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell24" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row4" AutoSize="true">
+          <TableCell Name="Cell13" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Order Details.Products.ProductName]" Padding="20, 1, 2, 1" AllowExpressions="false" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell14" Border.Lines="Bottom" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell15" Border.Lines="Bottom" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell16" Border.Lines="Bottom" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell26" Border.Lines="Bottom" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell27" Border.Lines="Bottom" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell28" Border.Lines="Bottom" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="28.35">
+          <TableCell Name="Cell29" Border.Lines="All" Border.Color="White" Fill.Color="112, 146, 190" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell30" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell31" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell32" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell33" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell34" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell35" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+        </TableRow>
+      </AdvMatrixObject>
+      <TextObject Name="Text13" Left="9.45" Top="9.45" Width="151.2" Height="28.35" Border.Lines="All" Border.Color="White" Fill.Color="112, 146, 190" Text="Sort Category:" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+      <MatrixSortButton Name="SortButton2" Left="141.75" Top="9.45" Width="18.9" Height="28.35" Border.Color="White" SymbolSize="7" Sort="Ascending" AllowInactiveSort="false" InactiveSortColor="DarkGray"/>
+      <ChildBand Name="Child1" Top="253.48" Width="1047.06" Height="37.8"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="293.28" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

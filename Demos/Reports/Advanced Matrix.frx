@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the following AdvMatrixObject features:&#13;&#10;- adjacent column groups;&#13;&#10;- TopN group;&#13;&#10;- collapse/expand header elements;&#13;&#10;- interactive sort;&#13;&#10;- stepped layout of row groups;&#13;&#10;- change sort order of Category element by external sort button;&#13;&#10;- use of matrix ItemCount property to display number of items inside the collapsible elements." ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="10/31/2021 23:01:21" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates the following AdvMatrixObject features:&#13;&#10;- adjacent column groups;&#13;&#10;- TopN group;&#13;&#10;- collapse/expand header elements;&#13;&#10;- interactive sort;&#13;&#10;- stepped layout of row groups;&#13;&#10;- change sort order of Category element by external sort button;&#13;&#10;- use of matrix ItemCount property to display number of items inside the collapsible elements.&#13;&#10;&#13;&#10;Learn more in the documentation https://www.fast-report.com/public_download/docs/FRNet/online/en/UserManual/en-US/DataBand/AdvMatrix.html" ReportInfo.Created="05/15/2008 00:47:48" ReportInfo.Modified="04/07/2023 01:05:16" ReportInfo.CreatorVersion="1.0.0.0">
   <Styles>
-    <Style Name="EvenRows" Fill.Color="Honeydew" Font="Arial, 10pt" ApplyBorder="false" ApplyTextFill="false" ApplyFont="false"/>
+    <Style Name="EvenRows" Fill.Color="Honeydew" Font="Segoe UI, 9pt" ApplyBorder="false" ApplyTextFill="false" ApplyFont="false"/>
   </Styles>
   <Dictionary>
     <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
@@ -108,13 +108,12 @@
     <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="Orders" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
     <Relation Name="ProductsOrderDetails" ReferenceName="NorthWind.ProductsOrderDetails" ParentDataSource="Products" ChildDataSource="Order Details" ParentColumns="ProductID" ChildColumns="ProductID" Enabled="true"/>
   </Dictionary>
-  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" FirstPageSource="1" OtherPagesSource="1" LastPageSource="1" Watermark.Font="Arial, 60pt" UnlimitedHeight="true" UnlimitedWidth="true">
-    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="66.15" CanGrow="true">
-      <TextObject Name="Text1" Top="37.8" Width="1048.95" Height="28.35" Text="PRODUCT SALES BY EMPLOYEES AND CUSTOMERS" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text11" Width="1047.06" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" Watermark.Font="Segoe UI, 60pt" UnlimitedHeight="true" UnlimitedWidth="true" LastPageSource="1" FirstPageSource="1">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="47.25" CanGrow="true">
+      <TextObject Name="Text14" Width="718.2" Height="37.8" Text="AdvMatrixObject" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="68.15" Width="1047.06" Height="158.94">
-      <AdvMatrixObject Name="AdvMatrix1" Left="13.23" Top="51.03" Width="773.01" Height="94.5" DataSource="Order Details" Style="Blue">
+    <DataBand Name="Data1" Top="49.25" Width="1047.06" Height="179.55">
+      <AdvMatrixObject Name="AdvMatrix1" Left="9.45" Top="47.25" Width="793.8" Height="132.3" DataSource="Order Details" Style="Blue">
         <Columns>
           <Descriptor DisplayText="Employees">
             <Descriptor Expression="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName]" SortByTotal="Sum([Order Details.Quantity]*[Order Details.UnitPrice]*(decimal)(1 - [Order Details.Discount]))"/>
@@ -133,72 +132,73 @@
           </Descriptor>
           <Descriptor DisplayText="Total"/>
         </Rows>
-        <TableColumn Name="Column1" Width="130.41"/>
-        <TableColumn Name="Column2" Width="109.62" AutoSize="true"/>
-        <TableColumn Name="Column3" Width="109.62" AutoSize="true"/>
-        <TableColumn Name="Column4" Width="109.62" AutoSize="true"/>
-        <TableColumn Name="Column5" Width="109.62" AutoSize="true"/>
-        <TableColumn Name="Column6" Width="109.62" AutoSize="true"/>
-        <TableColumn Name="Column7" Width="94.5" AutoSize="true"/>
-        <TableRow Name="Row1">
-          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" RowSpan="2"/>
-          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Employees" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Top 5 customers" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" ColSpan="4">
-            <MatrixCollapseButton Name="CollapseButton3" Width="16" Height="18.9" Dock="Left" SymbolSize="5"/>
+        <TableColumn Name="Column1" Width="140.13"/>
+        <TableColumn Name="Column2" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column5" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column6" Width="109.89" AutoSize="true"/>
+        <TableColumn Name="Column7" Width="104.22" AutoSize="true"/>
+        <TableRow Name="Row1" Height="28.35">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="Employees" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Top 5 customers" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White" ColSpan="4">
+            <MatrixCollapseButton Name="CollapseButton3" Width="16" Height="28.35" Dock="Left" Border.Color="White" SymbolSize="5"/>
           </TableCell>
-          <TableCell Name="Cell10" Font="Arial, 10pt"/>
-          <TableCell Name="Cell17" Font="Arial, 10pt"/>
-          <TableCell Name="Cell18" Font="Arial, 10pt"/>
-          <TableCell Name="Cell19" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell10" Fill.Color="170, 150, 130" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell17" Fill.Color="170, 150, 130" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell18" Fill.Color="170, 150, 130" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell19" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White" RowSpan="2"/>
         </TableRow>
-        <TableRow Name="Row2">
-          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="LightBlue" Text="[Order Details.Orders.Customers.CompanyName]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell11" Border.Lines="All" Border.Color="White" Fill.Color="LightBlue" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell20" Border.Lines="All" Border.Color="White" Fill.Color="LightBlue" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill.Color="LightBlue" Text="Others ([AdvMatrix1.ItemCount])" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt">
-            <MatrixCollapseButton Name="CollapseButton2" Width="16" Height="18.9" Dock="Left" SymbolSize="5"/>
+        <TableRow Name="Row2" Height="28.35">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="110, 140, 190" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="[Order Details.Orders.Employees.FirstName] + &quot; &quot; + [Order Details.Orders.Employees.LastName]" Padding="4, 1, 4, 1" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="[Order Details.Orders.Customers.CompanyName]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell20" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Others ([AdvMatrix1.ItemCount])" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White">
+            <MatrixCollapseButton Name="CollapseButton2" Width="16" Height="28.35" Dock="Left" Border.Color="White" SymbolSize="5"/>
           </TableCell>
-          <TableCell Name="Cell22" Font="Arial, 10pt"/>
+          <TableCell Name="Cell22" Fill.Color="110, 140, 190" Font="Segoe UI, 9pt" TextFill.Color="White"/>
         </TableRow>
-        <TableRow Name="Row3" AutoSize="true">
-          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[Order Details.Products.Categories.CategoryName]" Padding="16, 1, 16, 1" AllowExpressions="false" VertAlign="Center" Font="Tahoma, 8pt">
-            <MatrixCollapseButton Name="CollapseButton1" Width="16" Height="18.9" Dock="Left" Border.Lines="None" SymbolSize="7" Symbol="Arrow" ShowCollapseExpandMenu="true"/>
-            <MatrixSortButton Name="SortButton1" Left="114.41" Width="16" Height="18.9" Dock="Right" SymbolSize="7"/>
+        <TableRow Name="Row3" Height="28.35" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="[Order Details.Products.Categories.CategoryName]" Padding="16, 1, 16, 1" AllowExpressions="false" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White">
+            <MatrixCollapseButton Name="CollapseButton1" Width="16" Height="28.35" Dock="Left" Border.Lines="None" Border.Color="White" SymbolSize="8" Symbol="Pointer" ShowCollapseExpandMenu="true"/>
+            <MatrixSortButton Name="SortButton1" Left="124.13" Width="16" Height="28.35" Dock="Right" Border.Color="White" SymbolSize="7" InactiveSortColor="DarkGray"/>
           </TableCell>
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell24" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell24" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
         </TableRow>
         <TableRow Name="Row4" AutoSize="true">
-          <TableCell Name="Cell13" Border.Lines="All" Border.Color="White" Fill.Color="LightBlue" Text="[Order Details.Products.ProductName]" Padding="20, 1, 2, 1" AllowExpressions="false" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell14" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell15" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell16" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell26" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell27" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell28" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell13" Border.Lines="All" Border.Color="White" Fill.Color="Gainsboro" Text="[Order Details.Products.ProductName]" Padding="20, 1, 2, 1" AllowExpressions="false" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell16" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell26" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell27" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell28" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="White" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
         </TableRow>
-        <TableRow Name="Row5">
-          <TableCell Name="Cell29" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Total" Padding="16, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell30" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell31" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell32" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell33" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell34" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell35" Border.Lines="All" Border.Color="White" Fill.Color="186, 211, 254" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator=" " Format.CurrencySymbol="$" Format.PositivePattern="0" Format.NegativePattern="5" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        <TableRow Name="Row5" Height="28.35">
+          <TableCell Name="Cell29" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell30" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell31" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell32" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell33" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell34" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell35" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Sum([Order Details.Price])]" AllowExpressions="false" Format="Currency" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
         </TableRow>
       </AdvMatrixObject>
-      <TextObject Name="Text13" Left="13.23" Top="11.34" Width="132.3" Height="18.9" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="Sort Category:" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-      <MatrixSortButton Name="SortButton2" Left="125.75" Top="11.34" Width="16" Height="18.9" SymbolSize="7" Sort="Ascending"/>
-      <ChildBand Name="Child1" Top="229.09" Width="1047.06" Height="37.8"/>
+      <TextObject Name="Text13" Left="9.45" Top="9.45" Width="141.75" Height="28.35" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Sort Category:" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+      <MatrixSortButton Name="SortButton2" Left="132.3" Top="9.45" Width="18.9" Height="28.35" Border.Color="White" SymbolSize="7" Sort="Ascending"/>
+      <TextObject Name="Text15" Left="160.65" Top="9.45" Width="718.2" Height="28.35" Text="PRODUCT SALES BY EMPLOYEES AND CUSTOMERS" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
+      <ChildBand Name="Child1" Top="230.8" Width="1047.06" Height="37.8"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="268.89" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="270.6" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>
