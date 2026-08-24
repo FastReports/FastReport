@@ -42,7 +42,7 @@ namespace FastReport.Web.Controllers
 
         [HttpPost("/designer.saveReport")]
         public static async Task<IResult> SaveReport(string reportId, HttpRequest request, IReportService reportService,
-            IReportDesignerService reportDesignerService)
+            IReportDesignerService reportDesignerService, CancellationToken cancellationToken)
         {
             if (!IsAuthorized(request))
                 return Results.Unauthorized();
@@ -52,7 +52,7 @@ namespace FastReport.Web.Controllers
 
             const string contentType = "text/html";
             var saveReportParams = SaveReportServiceParams.ParseRequest(request);
-            var result = await reportDesignerService.SaveReportAsync(webReport, saveReportParams);
+            var result = await reportDesignerService.SaveReportAsync(webReport, saveReportParams, cancellationToken);
 
             if (webReport.Designer.SaveMethod == null)
             {

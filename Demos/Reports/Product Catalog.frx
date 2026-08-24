@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="01/17/2008 03:55:42" ReportInfo.Modified="03/29/2023 23:24:26" ReportInfo.CreatorVersion="1.0.0.0">
+  <Styles>
+    <Style Name="EvenRows" Font="Segoe UI, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="CategoryName" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Picture" DataType="System.Byte[]" BindableControl="Picture"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID" Enabled="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="340.2" CanGrow="true">
+      <TextObject Name="Text20" Left="189" Top="226.8" Width="340.2" Height="56.7" Text="PRODUCT CATALOG" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 24pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text21" Left="283.5" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text19" Left="340.2" Top="9.45" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="342.2" Width="718.2" Height="28.35" DataSource="Categories">
+      <TextObject Name="Text31" Left="189" Width="264.6" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Border.Style="Dot" Cursor="Hand" Hyperlink.Kind="Bookmark" Hyperlink.Expression="[Categories.CategoryName]" Text="[Categories.CategoryName]" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text32" Left="453.6" Width="75.6" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Border.Style="Dot" Cursor="Hand" Hyperlink.Kind="Bookmark" Hyperlink.Expression="[Categories.CategoryName]" Text="[Engine.GetBookmarkPage([Categories.CategoryName])]" HorzAlign="Right" Font="Segoe UI, 9pt"/>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Watermark.Font="Segoe UI, 60pt">
+    <DataBand Name="Data3" Width="718.2" Height="113.4" Bookmark="[Categories.CategoryName]" DataSource="Categories" KeepDetail="true">
+      <PolygonObject Name="Polygon2" Width="576.45" Height="113.4" Border.Color="Transparent" Fill.Color="WhiteSmoke" PolyPoints_v2="0/0|576.4502/0|576.4502/94.5|56.7/94.5|37.8/113.4|18.9/94.5|0/94.5" CenterX="0" CenterY="0"/>
+      <TextObject Name="Text15" Left="9.45" Top="9.45" Width="491.4" Height="47.25" Border.Color="Gainsboro" Text="[Categories.CategoryName]" VertAlign="Bottom" Font="Segoe UI, 24pt" TextFill.Color="DimGray"/>
+      <PictureObject Name="Picture2" Left="576.45" Width="141.75" Height="94.5" Border.Color="White" DataColumn="Categories.Picture"/>
+      <TextObject Name="Text16" Left="9.45" Top="56.7" Width="491.4" Height="28.35" Text="[Categories.Description]" Padding="8, 0, 2, 0" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+      <DataBand Name="Data4" Top="145.75" Width="718.2" Height="18.9" Border.Lines="Top" Border.Color="WhiteSmoke" DataSource="Products">
+        <TextObject Name="Text17" Width="245.7" Height="18.9" Text="[Products.ProductName]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text18" Left="396.9" Width="113.4" Height="18.9" Text="[Products.UnitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text22" Left="510.3" Width="113.4" Height="18.9" Text="[Products.UnitsInStock]" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <CheckBoxObject Name="CheckBox2" Left="661.5" Width="18.9" Height="18.9" DataColumn="Products.Discontinued"/>
+        <TextObject Name="Text29" Left="245.7" Width="151.2" Height="18.9" Text="[Products.QuantityPerUnit]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        <DataHeaderBand Name="DataHeader2" Top="115.4" Width="718.2" Height="28.35">
+          <TextObject Name="Text23" Width="245.7" Height="28.35" Text="Product name" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text24" Left="396.9" Width="113.4" Height="28.35" Text="Unit price" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text25" Left="510.3" Width="113.4" Height="28.35" Text="Units in stock" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text26" Left="623.7" Width="94.5" Height="28.35" Text="Discontinued" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text30" Left="245.7" Width="151.2" Height="28.35" Text="Quantity per unit" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+        </DataHeaderBand>
+        <DataFooterBand Name="DataFooter2" Top="166.65" Width="718.2" Height="16"/>
+        <Sort>
+          <Sort Expression="[Products.ProductName]"/>
+        </Sort>
+      </DataBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter2" Top="184.65" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text27" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text28" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="03/29/2023 23:26:32" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="Employees" ReferenceName="NorthWind.Employees" DataType="System.Int32" Enabled="true">
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="LastName" DataType="System.String"/>
+      <Column Name="FirstName" DataType="System.String"/>
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="TitleOfCourtesy" DataType="System.String"/>
+      <Column Name="BirthDate" DataType="System.DateTime"/>
+      <Column Name="HireDate" DataType="System.DateTime"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="HomePhone" DataType="System.String"/>
+      <Column Name="Extension" DataType="System.String"/>
+      <Column Name="Photo" DataType="System.Byte[]" BindableControl="Picture"/>
+      <Column Name="Notes" DataType="System.String"/>
+      <Column Name="ReportsTo" DataType="System.Int32"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" Watermark.Enabled="true" Watermark.Text="CONFIDENTIAL" Watermark.Font="Segoe UI, 60pt" LastPageSource="15" FirstPageSource="15">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6" CanGrow="true">
+      <TextObject Name="Text1" Left="189" Width="529.2" Height="56.7" Text="EMPLOYEES" VertAlign="Center" Font="Segoe UI, 24pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text18" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text19" Left="56.7" Top="9.45" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="77.6" Width="718.2" Height="207.9" Border.Color="Gainsboro" CanGrow="true" DataSource="Employees">
+      <TextObject Name="Text3" Top="66.15" Width="94.5" Height="18.9" Text="Birth date:" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text4" Left="103.95" Top="66.15" Width="217.35" Height="18.9" Text="[Employees.BirthDate]" Format="Date" Format.Format="D" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text5" Top="103.95" Width="94.5" Height="18.9" Text="Address:" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text6" Left="103.95" Top="103.95" Width="217.35" Height="18.9" CanGrow="true" Text="[Employees.Address]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text7" Top="122.85" Width="94.5" Height="18.9" Text="Phone:" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text8" Left="103.95" Top="122.85" Width="217.35" Height="18.9" Text="[Employees.HomePhone]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text9" Left="103.95" Top="151.2" Width="425.25" Height="56.7" CanGrow="true" CanShrink="true" Text="[Employees.Notes]" Padding="2, 0, 2, 10" HorzAlign="Justify" Font="Segoe UI, 9pt"/>
+      <PictureObject Name="Picture1" Left="548.1" Width="151.2" Height="189" CanGrow="true" CanShrink="true" DataColumn="Employees.Photo"/>
+      <TextObject Name="Text13" Left="103.95" Top="47.25" Width="217.35" Height="18.9" Text="[Employees.HireDate]" Format="Date" Format.Format="d" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text14" Left="103.95" Top="85.05" Width="217.35" Height="18.9" Text="[Employees.City]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text15" Top="47.25" Width="94.5" Height="18.9" Text="Hire date:" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text16" Top="85.05" Width="94.5" Height="18.9" Text="City:" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text17" Top="151.2" Width="94.5" Height="18.9" Text="Notes:" HorzAlign="Right" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text2" Width="529.2" Height="37.8" Border.Color="Maroon" Fill.Color="WhiteSmoke" Text="[Employees.FirstName] [Employees.LastName]" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="DimGray"/>
+      <ChildBand Name="Child1" Top="287.5" Width="718.2" Height="18.9"/>
+      <Sort>
+        <Sort Expression="[Employees.FirstName]"/>
+        <Sort Expression="[Employees.LastName]"/>
+      </Sort>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="308.4" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke" CanGrow="true">
+      <TextObject Name="Text10" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

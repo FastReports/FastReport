@@ -674,7 +674,7 @@ namespace FastReport.Barcode
                     parameters.AdditionalInformation = _qr._AdditionalInformation;
                     parameters.Amount = _qr.Amount;
                     parameters.Currency = _qr._Currency;
-                    parameters.Debitor = _qr.Debitor;
+                    parameters.Debtor = _qr.Debtor;
                     QRSwiss swissQR = new QRSwiss(parameters);
 
                     Text = swissQR.Pack();

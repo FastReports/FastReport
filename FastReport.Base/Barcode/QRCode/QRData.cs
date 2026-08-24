@@ -97,6 +97,28 @@ namespace FastReport.Barcode.QRCode
         }
     }
 
+    /// <summary>
+    /// vCard format version
+    /// </summary>
+    public enum QRvCardVersion
+    {
+        /// <summary>
+        /// vCard 2.1 - Legacy format based on RFC 2425 and IMC-vCard-2.1 specification.
+        /// </summary>
+        V2_1,
+        /// <summary>
+        /// vCard 3.0 - Standard format defined in RFC 2426.
+        /// Uses TYPE parameter syntax (e.g., TEL;TYPE=CELL:).
+        /// </summary>
+        V3_0,
+        /// <summary>
+        /// vCard 4.0 - Latest format defined in RFC 6350.
+        /// Uses lowercase TYPE parameters (e.g., TEL;TYPE=cell:).
+        /// Requires 5 components in N field.
+        /// </summary>
+        V4_0
+    }
+
     class QRvCard : QRData
     {
         public string firstName;
@@ -116,41 +138,133 @@ namespace FastReport.Barcode.QRCode
         public string email_home_internet;
         public string email_work_internet;
 
+        public QRvCardVersion Version { get; set; } = QRvCardVersion.V2_1;
+
         public QRvCard() : base() { }
 
         public QRvCard(string data) : base(data) { }
 
         public override string Pack()
         {
-            StringBuilder data = new StringBuilder("BEGIN:VCARD\nVERSION:2.1\n");
+            StringBuilder data = new StringBuilder();
 
-            if ((firstName != null && firstName != "") ||
-                (lastName != null && lastName != ""))
+            data.Append(Append("BEGIN:", "VCARD"));
+
+            switch (Version)
             {
-                data.Append("FN:" + firstName + " " + lastName + "\n");
-                data.Append("N:" + lastName + ";" + firstName + "\n");
+                case QRvCardVersion.V2_1: data.Append(Append("VERSION:", "2.1")); break;
+                case QRvCardVersion.V3_0: data.Append(Append("VERSION:", "3.0")); break;
+                case QRvCardVersion.V4_0: data.Append(Append("VERSION:", "4.0")); break;
             }
 
-            data.Append(Append("TITLE:", title));
-            data.Append(Append("ORG:", org));
-            data.Append(Append("URL:", url));
-            data.Append(Append("TEL;CELL:", tel_cell));
-            data.Append(Append("TEL;WORK;VOICE:", tel_work_voice));
-            data.Append(Append("TEL;HOME;VOICE:", tel_home_voice));
-            data.Append(Append("EMAIL;HOME;INTERNET:", email_home_internet));
-            data.Append(Append("EMAIL;WORK;INTERNET:", email_work_internet));
-
-            if ((street != null && street != "") ||
-                (zipCode != null && zipCode != "") ||
-                (city != null && city != "") ||
-                (country != null && country != ""))
+            if (!string.IsNullOrEmpty(firstName) || !string.IsNullOrEmpty(lastName))
             {
-                data.Append("ADR:;;" + street + ";" + city + ";;" + zipCode + ";" + country + "\n");
+                data.Append(Append("FN:", (EscapeVCardText(firstName) + " " + EscapeVCardText(lastName)).Trim()));
+
+                if (Version == QRvCardVersion.V4_0)
+                    data.Append(Append("N:", EscapeVCardText(lastName) + ";" + EscapeVCardText(firstName) + ";;;")); // RFC 6350, section 6.2.2
+                else
+                    data.Append(Append("N:", EscapeVCardText(lastName) + ";" + EscapeVCardText(firstName))); // v2.1, v3.0
+            }
+
+            data.Append(Append("TITLE:", EscapeVCardText(title)));
+            data.Append(Append("ORG:", EscapeVCardText(org)));
+            data.Append(Append("URL:", EscapeVCardText(url)));
+
+            AppendTel(data, "CELL", tel_cell);
+            AppendTel(data, "WORK,VOICE", tel_work_voice);
+            AppendTel(data, "HOME,VOICE", tel_home_voice);
+
+            AppendEmail(data, "HOME", email_home_internet);
+            AppendEmail(data, "WORK", email_work_internet);
+
+            if (!string.IsNullOrEmpty(street) || !string.IsNullOrEmpty(zipCode) ||
+                !string.IsNullOrEmpty(city) || !string.IsNullOrEmpty(country))
+            {
+                data.Append(Append("ADR:", ";;" + EscapeVCardText(street) + ";" + EscapeVCardText(city) + ";;" + EscapeVCardText(zipCode) + ";" + EscapeVCardText(country)));
             }
 
             data.Append("END:VCARD");
 
             return data.ToString();
+        }
+
+        /// <summary>
+        /// Appends a telephone number property to the vCard data with version-specific syntax.
+        /// </summary>
+        /// <param name="data">The StringBuilder to append the formatted TEL property to.</param>
+        /// <param name="type">The telephone type identifier.</param>
+        /// <param name="value">The telephone number value to be escaped and appended.</param>
+        private void AppendTel(StringBuilder data, string type, string value)
+        {
+            if (string.IsNullOrEmpty(value)) return;
+
+            // "TEL;CELL:"       // v2.1
+            // "TEL;TYPE=CELL:"  // v3.0
+            // "TEL;TYPE=cell:"  // v4.0
+
+            // "TEL;WORK;VOICE:"      // v2.1
+            // "TEL;TYPE=WORK,VOICE:" // v3.0
+            // "TEL;TYPE=work,voice:" // v4.0
+
+            // "TEL;HOME;VOICE:"      // v2.1
+            // "TEL;TYPE=HOME,VOICE:" // v3.0
+            // "TEL;TYPE=home,voice:" // v4.0
+
+            string key = "TEL;";
+            switch (Version)
+            {
+                case QRvCardVersion.V2_1:
+                    key += type.Replace(",", ";");
+                    break;
+                case QRvCardVersion.V3_0:
+                    key += "TYPE=" + type;
+                    break;
+                case QRvCardVersion.V4_0:
+                    key += "TYPE=" + type.ToLowerInvariant();
+                    break;
+                default:
+                    return;
+            }
+
+            data.Append(Append(key + ":", EscapeVCardText(value)));
+        }
+
+        /// <summary>
+        /// Appends an email address property to the vCard data with version-specific syntax.
+        /// </summary>
+        /// <param name="data">The StringBuilder to append the formatted EMAIL property to.</param>
+        /// <param name="type">The email type identifier.</param>
+        /// <param name="value">The email address value to be escaped and appended.</param>
+        private void AppendEmail(StringBuilder data, string type, string value)
+        {
+            if (string.IsNullOrEmpty(value)) return;
+
+            // "EMAIL;HOME;INTERNET:"      // v2.1
+            // "EMAIL;TYPE=HOME,INTERNET:" // v3.0
+            // "EMAIL;TYPE=home:"          // v4.0
+
+            // "EMAIL;WORK;INTERNET:"      // v2.1
+            // "EMAIL;TYPE=WORK,INTERNET:" // v3.0
+            // "EMAIL;TYPE=work:"          // v4.0
+
+            string key = "EMAIL;";
+            switch (Version)
+            {
+                case QRvCardVersion.V2_1:
+                    key += type + ";INTERNET";
+                    break;
+                case QRvCardVersion.V3_0:
+                    key += "TYPE=" + type + ",INTERNET";
+                    break;
+                case QRvCardVersion.V4_0:
+                    key += "TYPE=" + type.ToLowerInvariant();
+                    break;
+                default:
+                    return;
+            }
+
+            data.Append(Append(key + ":", EscapeVCardText(value)));
         }
 
         private string Append(string name, string data)
@@ -161,54 +275,161 @@ namespace FastReport.Barcode.QRCode
             return "";
         }
 
+        /// <summary>
+        /// Escapes special characters in a text value.
+        /// </summary>
+        /// <param name="text">The text value to escape.</param>
+        /// <returns>The escaped text safe for inclusion in vCard properties.</returns>
+        private static string EscapeVCardText(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+
+            text = text.Replace(@"\", @"\\");
+            text = text.Replace(",", @"\,");
+            text = text.Replace(";", @"\;");
+            text = text.Replace("\n", "\\n");
+
+            return text;
+        }
+
+        /// <summary>
+        /// Unescapes special characters in a vCard text value.
+        /// </summary>
+        /// <param name="text">The escaped text value from a vCard property.</param>
+        /// <returns>The unescaped text with original special characters restored.</returns>
+        private static string UnescapeVCardText(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+
+            text = text.Replace("\\n", "\n");
+            text = text.Replace("\\N", "\n");
+            text = text.Replace(@"\;", ";");
+            text = text.Replace(@"\,", ",");
+
+            text = text.Replace(@"\\", @"\");
+
+            return text;
+        }
+
+        /// <summary>
+        /// Splits a structured vCard value (N or ADR) by unescaped semicolons.
+        /// Unlike the standard String.Split, this method respects escape sequences:
+        /// an escaped semicolon (\;) is treated as part of the component value, not as a separator.
+        /// </summary>
+        /// <param name="value">The structured vCard value to split.</param>
+        /// <returns>An array of components split by unescaped semicolons.</returns>
+        private static string[] SplitVCardStructuredValue(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return new string[] { "" };
+
+            var result = new List<string>();
+            var current = new StringBuilder();
+            bool escaped = false;
+
+            foreach (char c in value)
+            {
+                if (escaped)
+                {
+                    // escaped character - append as-is
+                    current.Append(c);
+                    escaped = false;
+                }
+                else if (c == '\\')
+                {
+                    // escape sequence start
+                    escaped = true;
+                    current.Append(c);
+                }
+                else if (c == ';')
+                {
+                    // unescaped semicolon - component separator
+                    result.Add(current.ToString());
+                    current.Clear();
+                }
+                else
+                {
+                    current.Append(c);
+                }
+            }
+
+            result.Add(current.ToString());
+            return result.ToArray();
+        }
+
         public override void Unpack(string data)
         {
-            string[] lines = data.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            // RFC 6350 section 3.2 (line unfolding)
+            data = Regex.Replace(data, @"\r?\n[ \t]", "");
+
+            string[] lines = data.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string line in lines)
             {
                 string[] s = line.Split(new string[] { ":" }, 2, StringSplitOptions.None);
+                if (s.Length < 2) continue;
 
-                switch (s[0])
+                string key = s[0].ToUpperInvariant();
+
+                switch (key)
                 {
                     case "FN":
-                        fn_card = s[1];
+                        fn_card = UnescapeVCardText(s[1]);
                         break;
                     case "N":
-                        string[] n = s[1].Split(new string[] { ";" }, StringSplitOptions.None);
-                        lastName = n[0];
-                        firstName = n[1];
+                        string[] n = SplitVCardStructuredValue(s[1]);
+                        lastName = n.Length > 0 ? UnescapeVCardText(n[0]) : "";
+                        firstName = n.Length > 1 ? UnescapeVCardText(n[1]) : "";
                         break;
                     case "TITLE":
-                        title = s[1];
+                        title = UnescapeVCardText(s[1]);
                         break;
                     case "ORG":
-                        org = s[1];
+                        org = UnescapeVCardText(s[1]);
                         break;
                     case "URL":
-                        url = s[1];
+                        url = UnescapeVCardText(s[1]);
                         break;
-                    case "TEL;CELL":
-                        tel_cell = s[1];
+                    case "TEL;CELL":         // v2.1
+                    case "TEL;TYPE=CELL":    // v3.0
+                    // case "TEL;TYPE=cell": // v4.0
+                        tel_cell = UnescapeVCardText(s[1]);
                         break;
-                    case "TEL;WORK;VOICE":
-                        tel_work_voice = s[1];
+                    case "TEL;WORK;VOICE":         // v2.1
+                    case "TEL;TYPE=WORK,VOICE":    // v3.0
+                    // case "TEL;TYPE=work,voice": // v4.0
+                        tel_work_voice = UnescapeVCardText(s[1]);
                         break;
-                    case "TEL;HOME;VOICE":
-                        tel_home_voice = s[1];
+                    case "TEL;HOME;VOICE":         // v2.1
+                    case "TEL;TYPE=HOME,VOICE":    // v3.0
+                    // case "TEL;TYPE=home,voice": // v4.0
+                        tel_home_voice = UnescapeVCardText(s[1]);
                         break;
-                    case "EMAIL;HOME;INTERNET":
-                        email_home_internet = s[1];
+                    case "EMAIL;HOME;INTERNET":      // v2.1
+                    case "EMAIL;TYPE=HOME,INTERNET": // v3.0
+                    case "EMAIL;TYPE=HOME":          // v4.0
+                        email_home_internet = UnescapeVCardText(s[1]);
                         break;
-                    case "EMAIL;WORK;INTERNET":
-                        email_work_internet = s[1];
+                    case "EMAIL;WORK;INTERNET":      // v2.1
+                    case "EMAIL;TYPE=WORK,INTERNET": // v3.0
+                    case "EMAIL;TYPE=WORK":          // v4.0
+                        email_work_internet = UnescapeVCardText(s[1]);
                         break;
                     case "ADR":
-                        string[] adr = s[1].Split(new string[] { ";" }, StringSplitOptions.None);
-                        street = adr[2];
-                        city = adr[3];
-                        zipCode = adr[5];
-                        country = adr[6];
+                        string[] adr = SplitVCardStructuredValue(s[1]);
+                        street = adr.Length > 2 ? UnescapeVCardText(adr[2]) : "";
+                        city = adr.Length > 3 ? UnescapeVCardText(adr[3]) : "";
+                        zipCode = adr.Length > 5 ? UnescapeVCardText(adr[5]) : "";
+                        country = adr.Length > 6 ? UnescapeVCardText(adr[6]) : "";
+                        break;
+                    case "VERSION":
+                        Version = s[1].Trim() switch
+                        {
+                            "2.1" => QRvCardVersion.V2_1,
+                            "3.0" => QRvCardVersion.V3_0,
+                            "4.0" => QRvCardVersion.V4_0,
+                            _ => QRvCardVersion.V2_1
+                        };
                         break;
                 }
             }
@@ -907,7 +1128,7 @@ namespace FastReport.Barcode.QRCode
         private string alternativeProcedure1, alternativeProcedure2;
         private Iban iban;
         private string amount;
-        private Contact creditor, ultimateCreditor, debitor;
+        private Contact creditor, ultimateCreditor, debtor;
         private string currency;
         private Reference reference;
         private AdditionalInformation additionalInformation;
@@ -915,7 +1136,7 @@ namespace FastReport.Barcode.QRCode
 
         public Iban _Iban { get { return iban; } set { iban = value; } }
         public Contact Creditor { get { return creditor; } set { creditor = value; } }
-        public Contact Debitor { get { return debitor; } set { debitor = value; } }
+        public Contact Debtor { get { return debtor; } set { debtor = value; } }
         public string Amount { get { return amount; } }
         public string _Currency { get { return currency; } set { currency = value; } }
         public Reference _Reference { get { return reference; } set { reference = value; } }
@@ -973,10 +1194,6 @@ namespace FastReport.Barcode.QRCode
                     }
 
                     parameters.Amount = roundedAmount.ToString("0.00", CultureInfo.InvariantCulture);
-
-                    // in theory, this check is no longer needed
-                    // if (parameters.Amount.Length > 12)
-                    //    throw new SwissQrCodeException(res.Get("SwissAmountLength"));
                 }
             this.amount = parameters.Amount;
 
@@ -994,7 +1211,7 @@ namespace FastReport.Barcode.QRCode
                     break;
             }
             this.currency = parameters.Currency;
-            this.debitor = parameters.Debitor;
+            this.debtor = parameters.Debtor;
 
             if (iban.IsQrIban && parameters.Reference.RefType != Reference.ReferenceType.QRR)
                 throw new SwissQrCodeException(res.Get("SwissQRIban"));
@@ -1075,7 +1292,7 @@ namespace FastReport.Barcode.QRCode
                 {
                     infoString += datas[i] + '\r';
                 }
-                this.debitor = new Contact(infoString);
+                this.debtor = new Contact(infoString);
             }
             counter += 7;
 
@@ -1089,23 +1306,6 @@ namespace FastReport.Barcode.QRCode
                 iban.TypeIban = Iban.IbanType.QrIban;
             else
                 iban.TypeIban = Iban.IbanType.Iban;
-            if (!String.IsNullOrEmpty(reference.ReferenceText))
-            {
-                if (reference.ReferenceText.StartsWith("[") && reference.ReferenceText.EndsWith("]"))
-                {
-                    if (reference.RefType == Reference.ReferenceType.QRR)
-                        reference._ReferenceTextType = Reference.ReferenceTextType.QrReference;
-                    else
-                        reference._ReferenceTextType = Reference.ReferenceTextType.CreditorReferenceIso11649;
-                }
-                else
-                {
-                    if (reference.ChecksumMod10(reference.ReferenceText))
-                        reference._ReferenceTextType = Reference.ReferenceTextType.QrReference;
-                    else if (Regex.IsMatch(reference.ReferenceText, "^[a-zA-Z0-9 ]+$"))
-                        reference._ReferenceTextType = Reference.ReferenceTextType.CreditorReferenceIso11649;
-                }
-            }
 
             if (!iban._Iban.StartsWith("[") || !iban._Iban.EndsWith("]"))
                 iban = new Iban(iban._Iban, iban.TypeIban);
@@ -1144,7 +1344,6 @@ namespace FastReport.Barcode.QRCode
             //CdtrInf "logical" element
             SwissQrCodePayload += iban.ToString() + br; //IBAN
 
-
             //Cdtr "logical" element
             SwissQrCodePayload += creditor.ToString();
 
@@ -1156,7 +1355,6 @@ namespace FastReport.Barcode.QRCode
                 SwissQrCodePayload += br;
             }
 
-
             //CcyAmtDate "logical" element
             if (amount != null)
                 SwissQrCodePayload += amount;
@@ -1167,14 +1365,13 @@ namespace FastReport.Barcode.QRCode
             SwissQrCodePayload += currency + br; //Ccy
 
             //UltmtDbtr "logical" element
-            if (debitor != null)
-                SwissQrCodePayload += debitor.ToString();
+            if (debtor != null)
+                SwissQrCodePayload += debtor.ToString();
             else
                 for (int i = 0; i < 7; i++)
                 {
                     SwissQrCodePayload += br;
                 }
-
 
             //RmtInf "logical" element
             SwissQrCodePayload += reference.RefType.ToString() + br; //Tp
@@ -1189,7 +1386,6 @@ namespace FastReport.Barcode.QRCode
             {
                 SwissQrCodePayload += string.Empty + br; //Ref
             }
-
 
             //AddInf "logical" element
             SwissQrCodePayload += (!string.IsNullOrEmpty(additionalInformation.UnstructureMessage) ? additionalInformation.UnstructureMessage : string.Empty) + br; //Ustrd

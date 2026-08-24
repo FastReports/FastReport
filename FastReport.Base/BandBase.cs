@@ -32,6 +32,7 @@ namespace FastReport
         private bool updatingLayout;
         private bool flagUseStartNewPage;
         private bool flagCheckFreeSpace;
+        private bool flagBreak;
         private bool flagMustBreak;
         private int savedOriginalObjectsCount;
         private float reprintOffset;
@@ -347,6 +348,12 @@ namespace FastReport
             }
         }
 
+        internal bool FlagBreak
+        {
+            get { return flagBreak; }
+            set { flagBreak = value; }
+        }
+        
         internal bool FlagMustBreak
         {
             get { return flagMustBreak; }

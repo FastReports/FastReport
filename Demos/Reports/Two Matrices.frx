@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print two Matrix objects side-by-side. To do this:&#13;&#10;- put two Matrix objects on the same band, side-by-side." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="09/18/2015 10:47:10" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to print two Matrix objects side-by-side. To do this:&#13;&#10;- put two Matrix objects on the same band, side-by-side." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="03/18/2024 12:32:06" ReportInfo.CreatorVersion="1.0.0.0">
   <Dictionary>
     <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
       <Column Name="Name" DataType="System.String"/>
@@ -9,13 +9,12 @@
       <Column Name="Revenue" DataType="System.Decimal"/>
     </TableDataSource>
   </Dictionary>
-  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9">
-    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="75.6" CanGrow="true">
-      <TextObject Name="Text1" Top="37.8" Width="1048.95" Height="28.35" Text="REVENUE AND ITEMS SOLD BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text11" Width="1047.06" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="37.8" CanGrow="true">
+      <TextObject Name="Text1" Width="1048.95" Height="37.8" Text="REVENUE AND ITEMS SOLD BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="79.6" Width="1047.06" Height="102.23">
-      <MatrixObject Name="Matrix1" Left="9.45" Top="7.73" Width="245.7" Height="85.05" FixedRows="2" FixedColumns="1" Layout="DownThenAcross" AutoSize="false" DataSource="MatrixDemo" ShowTitle="true" Style="Orange">
+    <DataBand Name="Data1" Top="39.8" Width="1047.06" Height="102.23">
+      <MatrixObject Name="Matrix1" Left="9.45" Top="7.73" Width="283.5" Height="85.05" FixedRows="2" FixedColumns="1" Layout="DownThenAcross" AutoSize="false" DataSource="MatrixDemo" ShowTitle="true" Style="Orange">
         <MatrixColumns>
           <Header Expression="[MatrixDemo.Year]"/>
         </MatrixColumns>
@@ -25,31 +24,31 @@
         <MatrixCells>
           <Cell Expression="[MatrixDemo.Revenue]"/>
         </MatrixCells>
-        <TableColumn Name="Column1" Width="94.5"/>
-        <TableColumn Name="Column2" Width="75.6"/>
-        <TableColumn Name="Column3" Width="75.6"/>
+        <TableColumn Name="Column1" Width="103.95"/>
+        <TableColumn Name="Column2" Width="85.05"/>
+        <TableColumn Name="Column3" Width="94.5"/>
         <TableRow Name="Row1">
-          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" HorzAlign="Center" VertAlign="Center"/>
-          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Revenue" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 10pt, style=Bold" ColSpan="2"/>
-          <TableCell Name="Cell7"/>
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Revenue" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 10pt, style=Bold" TextFill.Color="White" ColSpan="2"/>
+          <TableCell Name="Cell7" Fill.Color="200, 160, 120" Font="Segoe UI, 9pt" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row2" Height="28.35">
-          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Employee" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Employee" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row4">
-          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[Name]" AllowExpressions="false" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="[Name]" AllowExpressions="false" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
         </TableRow>
         <TableRow Name="Row11">
-          <TableCell Name="Cell28" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell29" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell30" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell28" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell29" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell30" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
         </TableRow>
       </MatrixObject>
-      <MatrixObject Name="Matrix3" Left="255.15" Top="7.73" Width="76.6" Height="85.05" FixedRows="2" FixedColumns="1" Layout="DownThenAcross" AutoSize="false" DataSource="MatrixDemo" ShowTitle="true" Style="Orange">
+      <MatrixObject Name="Matrix3" Left="292.95" Top="7.73" Width="95.5" Height="85.05" FixedRows="2" FixedColumns="1" Layout="DownThenAcross" AutoSize="false" DataSource="MatrixDemo" ShowTitle="true" Style="Orange">
         <MatrixColumns>
           <Header Expression="[MatrixDemo.Year]"/>
         </MatrixColumns>
@@ -60,32 +59,32 @@
           <Cell Expression="[MatrixDemo.ItemsSold]"/>
         </MatrixCells>
         <TableColumn Name="Column7" Visible="false" Width="1"/>
-        <TableColumn Name="Column8" Width="37.8"/>
-        <TableColumn Name="Column9" Width="37.8"/>
+        <TableColumn Name="Column8" Width="47.25"/>
+        <TableColumn Name="Column9" Width="47.25"/>
         <TableRow Name="Row8">
-          <TableCell Name="Cell19" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" HorzAlign="Center" VertAlign="Center"/>
-          <TableCell Name="Cell20" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Items sold" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 10pt, style=Bold" ColSpan="2"/>
-          <TableCell Name="Cell21"/>
+          <TableCell Name="Cell19" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 10pt"/>
+          <TableCell Name="Cell20" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="Items sold" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 10pt, style=Bold" TextFill.Color="White" ColSpan="2"/>
+          <TableCell Name="Cell21" Fill.Color="110, 145, 190" Font="Segoe UI, 10pt" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row9" Height="28.35">
-          <TableCell Name="Cell22" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Employee" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell24" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Employee" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell24" Border.Lines="All" Border.Color="White" Fill.Color="110, 145, 190" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row10">
-          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[Name]" AllowExpressions="false" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell26" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[ItemsSold]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell27" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[Name]" AllowExpressions="false" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell26" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[ItemsSold]" AllowExpressions="false" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell27" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
         </TableRow>
         <TableRow Name="Row12">
-          <TableCell Name="Cell31" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell32" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell33" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell31" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TableCell Name="Cell32" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
         </TableRow>
       </MatrixObject>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="185.83" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="144.03" Width="1047.06" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

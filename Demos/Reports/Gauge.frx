@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates the Gauge object features." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="04/28/2023 14:33:58" ReportInfo.CreatorVersion="1.0.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates the Gauge object features." ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="04/07/2023 15:13:45" ReportInfo.CreatorVersion="1.0.0.0">
   <Dictionary>
     <TableDataSource Name="Order Details" ReferenceName="NorthWind.Order Details" DataType="System.Int32" Enabled="true">
       <Column Name="OrderID" DataType="System.Int32"/>
@@ -10,31 +10,30 @@
     </TableDataSource>
     <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="null" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
   </Dictionary>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="91.6" CanGrow="true">
-      <TextObject Name="Text29" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" Text="[Report.ReportInfo.Description]" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text30" Top="47.25" Width="718.2" Height="37.8" Text="Gauges" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+  <ReportPage Name="Page1" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8" CanGrow="true">
+      <TextObject Name="Text30" Width="718.2" Height="37.8" Text="Gauges" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="96.09" Width="718.2" Height="642.6" CanGrow="true" DataSource="Order Details" MaxRows="8">
-      <LinearGauge Name="LinearGauge1" Left="37.8" Top="94.5" Border.Lines="All" Value="15" Expression="[Order Details.Quantity]" Scale.Font="Arial, 12pt, style=Bold" Scale.MajorTicks.Width="3" Scale.MajorTicks.Color="Purple" Scale.MinorTicks.Width="2" Scale.MinorTicks.Color="Blue" Pointer.Height="26.9136" Pointer.Width="9.688895" Label.Font="Arial, 8pt"/>
-      <TextObject Name="Text5" Left="9.45" Top="47.25" Width="103.95" Height="28.35" Text="Quantity:" Font="Arial, 16pt"/>
-      <TextObject Name="Text3" Left="113.4" Top="47.25" Width="245.7" Height="28.35" Text="[Order Details.Quantity]" Font="Arial, 16pt"/>
-      <SimpleGauge Name="SimpleGauge1" Left="378" Top="94.5" Border.Lines="All" Value="15" Expression="[Order Details.Quantity]" Scale.Font="Arial, 8pt, style=Bold" Scale.MajorTicks.Width="3" Scale.MajorTicks.Color="Purple" Scale.MinorTicks.Width="2" Scale.MinorTicks.Color="Blue" Pointer.Height="5.31152" Pointer.Width="35.1906" Label.Font="Arial, 8pt"/>
-      <TextObject Name="Text12" Left="9.45" Width="699.3" Height="37.8" Fill.Color="Orange" Text="LINEAR GAUGE AND SIMPLE GAUGE" VertAlign="Center" Font="Tahoma, 16pt"/>
-      <RadialGauge Name="RadialGauge1" Left="113.4" Top="472.5" Expression="[Order Details.Quantity]" Scale.MajorTicks.Length="11.214" Scale.MinorTicks.Length="5.607" Label.Font="Arial, 8pt"/>
-      <SimpleProgressGauge Name="SimpleProgressGauge1" Left="37.8" Top="283.5" Expression="[Order Details.Quantity]" Pointer.Height="66.394" Pointer.Width="201.1845" Label.Text="75%" Label.Font="Arial, 8pt"/>
-      <SimpleProgressGauge Name="SimpleProgressGauge2" Left="378" Top="283.5" Expression="[Order Details.Quantity]" Pointer.Height="66.394" Pointer.Width="26.8246" Pointer.Type="Small" Label.Text="75%" Label.Font="Arial, 8pt"/>
-      <TextObject Name="Text33" Left="9.45" Top="189" Width="699.3" Height="37.8" Fill.Color="Orange" Text="SIMPLE PROGRESS GAUGE" VertAlign="Center" Font="Tahoma, 16pt"/>
-      <TextObject Name="Text35" Left="9.45" Top="378" Width="699.3" Height="37.8" Fill.Color="Orange" Text="RADIAL GAUGE" VertAlign="Center" Font="Tahoma, 16pt"/>
-      <TextObject Name="Text36" Left="9.45" Top="236.25" Width="103.95" Height="28.35" Text="Quantity:" Font="Arial, 16pt"/>
-      <TextObject Name="Text37" Left="113.4" Top="236.25" Width="245.7" Height="28.35" Text="[Order Details.Quantity]" Font="Arial, 16pt"/>
-      <TextObject Name="Text38" Left="9.45" Top="425.25" Width="103.95" Height="28.35" Text="Quantity:" Font="Arial, 16pt"/>
-      <TextObject Name="Text39" Left="113.4" Top="425.25" Width="245.7" Height="28.35" Text="[Order Details.Quantity]" Font="Arial, 16pt"/>
-      <RadialGauge Name="RadialGauge2" Left="453.6" Top="472.5" Expression="[Order Details.Quantity]" Scale.MajorTicks.Length="11.214" Scale.MinorTicks.Length="5.607" Label.Text="Quantity" Label.Font="Arial, 8pt"/>
+    <DataBand Name="Data1" Top="39.8" Width="718.2" Height="642.6" CanGrow="true" MaxRows="8">
+      <LinearGauge Name="LinearGauge1" Left="37.8" Top="103.95" Border.Lines="All" Value="15" Expression="[Order Details.Quantity]" Scale.Font="Segoe UI, 9pt" Scale.MajorTicks.Width="3" Scale.MajorTicks.Color="160, 120, 160" Scale.MinorTicks.Width="2" Scale.MinorTicks.Color="110, 145, 190" Pointer.Fill.Color="200, 160, 120" Pointer.BorderColor="Transparent" Pointer.Height="60.48" Pointer.Width="21.7728" Label.Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text5" Left="9.45" Top="56.7" Width="103.95" Height="28.35" Text="Quantity:" Font="Segoe UI, 16pt"/>
+      <TextObject Name="Text3" Left="113.4" Top="56.7" Width="245.7" Height="28.35" Text="[Order Details.Quantity]" Font="Segoe UI, 16pt"/>
+      <SimpleGauge Name="SimpleGauge1" Left="378" Top="103.95" Border.Lines="All" Value="15" Expression="[Order Details.Quantity]" Scale.Font="Segoe UI, 9pt" Scale.MajorTicks.Width="3" Scale.MajorTicks.Color="160, 120, 160" Scale.MinorTicks.Width="2" Scale.MinorTicks.Color="110, 145, 190" Pointer.Fill.Color="200, 160, 120" Pointer.BorderColor="Transparent" Pointer.Height="11.936" Pointer.Width="79.08" Label.Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text12" Left="9.45" Top="9.45" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="LINEAR GAUGE AND SIMPLE GAUGE" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <RadialGauge Name="RadialGauge1" Left="113.4" Top="481.95" Border.Lines="All" Border.Color="Transparent" Expression="[Order Details.Quantity]" Scale.Font="Segoe UI, 8pt" Scale.MajorTicks.Length="25.2" Scale.MajorTicks.Color="160, 120, 160" Scale.MinorTicks.Length="12.6" Scale.MinorTicks.Color="110, 145, 190" Pointer.Fill.Color="160, 120, 120" Pointer.BorderColor="Transparent" Label.Font="Segoe UI, 9pt" Type="Semicircle" Position="Top"/>
+      <SimpleProgressGauge Name="SimpleProgressGauge1" Left="37.8" Top="292.95" Expression="[Order Details.Quantity]" Scale.Font="Segoe UI, 8pt" Pointer.Fill.Color="200, 160, 120" Pointer.Height="149.2" Pointer.Width="452.1" Label.Text="75%" Label.Font="Segoe UI, 9pt"/>
+      <SimpleProgressGauge Name="SimpleProgressGauge2" Left="378" Top="292.95" Expression="[Order Details.Quantity]" Scale.Font="Segoe UI, 8pt" Pointer.Fill.Color="200, 160, 120" Pointer.Height="149.2" Pointer.Width="60.28" Pointer.Type="Small" Label.Text="75%" Label.Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text33" Left="9.45" Top="198.45" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="SIMPLE PROGRESS GAUGE" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <TextObject Name="Text35" Left="9.45" Top="387.45" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="RADIAL GAUGE" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <TextObject Name="Text36" Left="9.45" Top="245.7" Width="103.95" Height="28.35" Text="Quantity:" Font="Segoe UI, 16pt"/>
+      <TextObject Name="Text37" Left="113.4" Top="245.7" Width="245.7" Height="28.35" Text="[Order Details.Quantity]" Font="Segoe UI, 16pt"/>
+      <TextObject Name="Text38" Left="9.45" Top="434.7" Width="103.95" Height="28.35" Text="Quantity:" Font="Segoe UI, 16pt"/>
+      <TextObject Name="Text39" Left="113.4" Top="434.7" Width="245.7" Height="28.35" Text="[Order Details.Quantity]" Font="Segoe UI, 16pt"/>
+      <RadialGauge Name="RadialGauge2" Left="453.6" Top="481.95" Border.Color="Gainsboro" Expression="[Order Details.Quantity]" Scale.Font="Segoe UI, 8pt" Scale.MajorTicks.Length="25.2" Scale.MajorTicks.Color="160, 120, 160" Scale.MinorTicks.Length="12.6" Scale.MinorTicks.Color="110, 145, 190" Pointer.Fill.Color="160, 120, 120" Pointer.BorderColor="Transparent" Label.Text="Quantity" Label.Font="Segoe UI, 9pt"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="743.19" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text31" Left="9.45" Top="-2.9" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
-      <TextObject Name="Text10" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+    <PageFooterBand Name="PageFooter1" Top="684.4" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text10" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

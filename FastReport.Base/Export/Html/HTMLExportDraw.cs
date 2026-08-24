@@ -260,7 +260,7 @@ namespace FastReport.Export.Html
         {
             if(isSvg)
                 return $"<div style=\"background: url({file}) no-repeat {styles};\" />";
-            return $"<img src=\"{file}\" style=\"{styles}\" alt=\"/>";
+            return $"<img src=\"{file}\" style=\"{styles}\" alt=\"\"/>";
         } 
 
         private string HTMLGetImage(int PageNumber, int CurrentPage, int ImageNumber, string hash, bool Base,

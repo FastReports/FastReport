@@ -52,6 +52,7 @@ partial class Program
         Localization,
         FastScript,
         FastScriptPlugin,
+        HTMLPlugin,
     }
 
     internal string SolutionFile => Path.Combine(solutionDirectory, solutionFilename);

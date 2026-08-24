@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to create an interactive report that will display the detailed report when you click an item in the preview window. To create such a report:&#13;&#10;- define clickable items. Select the report object that you want to make clickable, go Properties window and setup its &quot;Hyperlink&quot; property:&#13;&#10;- set &quot;Expression&quot; property to [Categories.CategoryName];&#13;&#10;- set &quot;Kind&quot; property to &quot;DetailReport&quot;;&#13;&#10;- set &quot;DetailReportName&quot; property to the file name of the external report;&#13;&#10;- set &quot;ReportParameter&quot; property to the name of external report's parameter that will be set to hyperlink's value.&#13;&#10;- the external report should filter its data according to the parameter's value. You can do this in the data band editor: just set the filter expression." ReportInfo.Created="01/17/2008 03:55:42" ReportInfo.Modified="02/25/2020 11:36:11" ReportInfo.CreatorVersion="2020.1.22.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to create an interactive report that will display the detailed report when you click an item in the preview window. To create such a report:&#13;&#10;- define clickable items. Select the report object that you want to make clickable, go Properties window and setup its &quot;Hyperlink&quot; property:&#13;&#10;- set &quot;Expression&quot; property to [Categories.CategoryName];&#13;&#10;- set &quot;Kind&quot; property to &quot;DetailReport&quot;;&#13;&#10;- set &quot;DetailReportName&quot; property to the file name of the external report;&#13;&#10;- set &quot;ReportParameter&quot; property to the name of external report's parameter that will be set to hyperlink's value.&#13;&#10;- the external report should filter its data according to the parameter's value. You can do this in the data band editor: just set the filter expression.&#13;&#10;&#13;&#10;Learn how to build this report on the Fast Reports Academy channel http://fast.report/bbc6a" ReportInfo.Created="01/17/2008 03:55:42" ReportInfo.Modified="04/07/2023 02:22:16" ReportInfo.CreatorVersion="1.0.0.0">
   <Styles>
     <Style Name="EvenRows" Font="Arial, 10pt"/>
   </Styles>
@@ -12,18 +12,16 @@
     </TableDataSource>
   </Dictionary>
   <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="122.85" CanGrow="true">
-      <TextObject Name="Text3" Top="66.15" Width="718.2" Height="37.8" Text="CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text1" Top="103.95" Width="236.25" Height="18.9" Text="Click the category to see its products." Font="Tahoma, 8pt"/>
-      <TextObject Name="Text11" Top="28.35" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text5" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/bbc6a" Hyperlink.OpenLinkInNewTab="true" Text="Learn how to build this report on the Fast Reports Academy channel" VertAlign="Center" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
+      <TextObject Name="Text3" Width="718.2" Height="37.8" Text="CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
+      <TextObject Name="Text1" Top="37.8" Width="236.25" Height="18.9" Text="Click the category to see its products." Font="Segoe UI, 9pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="126.85" Width="340.2" Height="94.5" DataSource="Categories" Columns.Count="2" Columns.Width="340.2" KeepDetail="true">
-      <TextObject Name="Text2" Left="141.75" Width="189" Height="28.35" Cursor="Hand" Hyperlink.Kind="DetailReport" Hyperlink.Expression="[Categories.CategoryName]" Hyperlink.DetailReportName="Interactive Report - Details.frx" Hyperlink.ReportParameter="CategoryName" Text="[Categories.CategoryName]" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <DataBand Name="Data1" Top="68.15" Width="340.2" Height="94.5" DataSource="Categories" Columns.Count="2" Columns.Width="340.2" KeepDetail="true">
+      <TextObject Name="Text2" Left="141.75" Width="189" Height="28.35" Cursor="Hand" Hyperlink.Kind="DetailReport" Hyperlink.Expression="[Categories.CategoryName]" Hyperlink.DetailReportName="Interactive Report - Details.frx" Hyperlink.ReportParameter="CategoryName" Text="[Categories.CategoryName]" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
       <PictureObject Name="Picture1" Width="132.3" Height="85.05" Border.Lines="All" Border.Color="Gainsboro" Border.Width="2" Cursor="Hand" Hyperlink.Kind="DetailReport" Hyperlink.Expression="[Categories.CategoryName]" Hyperlink.DetailReportName="Interactive Report - Details.frx" Hyperlink.ReportParameter="CategoryName" DataColumn="Categories.Picture" SizeMode="StretchImage"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="225.35" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="164.65" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

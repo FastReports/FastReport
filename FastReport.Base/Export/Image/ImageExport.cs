@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -67,6 +67,7 @@ namespace FastReport.Export.Image
         private System.Drawing.Image image;
         private Graphics g;
         private int height;
+        private int heightK;
         private int width;
         private int widthK;
         private string fileSuffix;
@@ -231,6 +232,7 @@ namespace FastReport.Export.Image
         private System.Drawing.Image CreateImage(int width, int height, string suffix)
         {
             widthK = width;
+            heightK = height;
             if (ImageFormat == ImageExportFormat.Metafile)
                 return CreateMetafile(suffix);
             return new Bitmap(width, height);
@@ -566,12 +568,12 @@ namespace FastReport.Export.Image
 
             state = g.Save();
 
-            g.FillRegion(Brushes.Transparent, new Region(new RectangleF(0, curOriginY, width, height)));
-            if (bigImage != null && curOriginY + height * 2 > bigImage.Height)
-                page.Fill.Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache), new RectangleF(0, curOriginY, widthK, bigImage.Height - curOriginY));
+            //g.FillRectangle(Brushes.Transparent, 0, curOriginY, width, height);
+
+            if (bigImage != null && curOriginY + height * 2 > heightK)
+                page.Fill.Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache), new RectangleF(0, curOriginY, widthK, heightK - curOriginY));
             else
                 page.Fill.Draw(new FRPaintEventArgs(g, 1, 1, Report.GraphicCache), new RectangleF(0, curOriginY, widthK, height + paddingNonSeparatePages * 2));
-
 
             if (image == bigImage)
             {
@@ -581,7 +583,6 @@ namespace FastReport.Export.Image
                 else
                     g.TranslateTransform(widthK / 2 - width / 2 + page.LeftMargin * Units.Millimeters * zoomX,
                     curOriginY + paddingNonSeparatePages + page.TopMargin * Units.Millimeters * zoomY);
-
             }
             else
                 g.TranslateTransform(page.LeftMargin * Units.Millimeters * zoomX, page.TopMargin * Units.Millimeters * zoomY);

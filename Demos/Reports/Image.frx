@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates PictureObject features." ReportInfo.Created="06/16/2009 21:04:52" ReportInfo.Modified="02/25/2020 14:45:24" ReportInfo.CreatorVersion="2020.1.22.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates PictureObject features.&#13;&#10;&#13;&#10;Learn about various report objects on the Fast Reports Academy channel http://fast.report/a0a24" ReportInfo.Tag="http://fast.report/a0a24" ReportInfo.Created="06/16/2009 21:04:52" ReportInfo.Modified="04/07/2023 01:07:43" ReportInfo.CreatorVersion="1.0.0.0">
   <Dictionary>
     <TableDataSource Name="Categories" ReferenceName="NorthWind.Categories" DataType="System.Int32" Enabled="true">
       <Column Name="CategoryID" DataType="System.Int32"/>
@@ -27,36 +27,34 @@
       <Column Name="ReportsTo" DataType="System.Int32"/>
     </TableDataSource>
   </Dictionary>
-  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="122.85" CanGrow="true">
-      <TextObject Name="Text29" Top="28.35" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" Text="[Report.ReportInfo.Description]" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text30" Top="75.6" Width="718.2" Height="28.35" Text="PictureObject" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text32" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/a0a24" CanGrow="true" Text="Learn about various report objects on the Fast Reports Academy channel" Padding="4, 4, 4, 4" VertAlign="Center" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
+  <ReportPage Name="Page1" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8" CanGrow="true">
+      <TextObject Name="Text30" Width="718.2" Height="37.8" Text="PictureObject" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="126.85" Width="718.2" Height="756">
-      <TextObject Name="Text2" Top="510.3" Width="708.75" Height="207.9" Fill.Color="Orange" HorzAlign="Center" Font="Arial, 10pt"/>
-      <PictureObject Name="Picture1" Left="179.55" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture"/>
-      <PictureObject Name="Picture2" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" SizeMode="Normal"/>
-      <PictureObject Name="Picture3" Left="359.1" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" SizeMode="StretchImage"/>
-      <PictureObject Name="Picture4" Left="538.65" Top="47.25" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" SizeMode="CenterImage"/>
-      <PictureObject Name="Picture5" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture"/>
-      <PictureObject Name="Picture6" Left="179.55" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" Angle="90"/>
-      <PictureObject Name="Picture7" Left="359.1" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" Angle="180"/>
-      <PictureObject Name="Picture8" Left="538.65" Top="292.95" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Categories.Picture" Angle="270"/>
-      <PictureObject Name="Picture9" Left="179.55" Top="529.2" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Employees.Photo" Transparency="0.5"/>
-      <TextObject Name="Text12" Width="708.75" Height="37.8" Fill.Color="Orange" Text="SIZE MODES" VertAlign="Center" Font="Tahoma, 16pt"/>
-      <TextObject Name="Text1" Left="179.55" Top="198.45" Width="170.1" Height="18.9" Text="Zoom" HorzAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text13" Top="198.45" Width="170.1" Height="18.9" Text="Normal" HorzAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text14" Left="359.1" Top="198.45" Width="170.1" Height="18.9" Text="Stretch" HorzAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text15" Left="538.65" Top="198.45" Width="170.1" Height="18.9" Text="Center" HorzAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text16" Top="245.7" Width="708.75" Height="37.8" Fill.Color="Orange" Text="ROTATION" VertAlign="Center" Font="Tahoma, 16pt"/>
-      <TextObject Name="Text17" Top="472.5" Width="708.75" Height="37.8" Fill.Color="Orange" Text="TRANSPARENCY" VertAlign="Center" Font="Tahoma, 16pt"/>
-      <PictureObject Name="Picture10" Left="359.1" Top="529.2" Width="170.1" Height="151.2" Border.Lines="All" DataColumn="Employees.Photo" TransparentColor="White"/>
-      <TextObject Name="Text18" Left="179.55" Top="680.4" Width="170.1" Height="18.9" Text="Transparency = 0,5" HorzAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text19" Left="359.1" Top="680.4" Width="170.1" Height="18.9" Text="TransparentColor = White" HorzAlign="Center" Font="Arial, 10pt"/>
+    <DataBand Name="Data1" Top="39.8" Width="718.2" Height="756">
+      <TextObject Name="Text2" Left="9.45" Top="519.75" Width="699.3" Height="207.9" Fill.Color="110, 145, 190" HorzAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+      <PictureObject Name="Picture1" Left="189" Top="66.15" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture"/>
+      <PictureObject Name="Picture2" Left="9.45" Top="66.15" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture" SizeMode="Normal"/>
+      <PictureObject Name="Picture3" Left="368.55" Top="66.15" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture" SizeMode="StretchImage"/>
+      <PictureObject Name="Picture4" Left="548.1" Top="66.15" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture" SizeMode="CenterImage"/>
+      <PictureObject Name="Picture5" Left="9.45" Top="311.85" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture"/>
+      <PictureObject Name="Picture6" Left="189" Top="311.85" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture" Angle="90"/>
+      <PictureObject Name="Picture7" Left="368.55" Top="311.85" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture" Angle="180"/>
+      <PictureObject Name="Picture8" Left="548.1" Top="311.85" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Categories.Picture" Angle="270"/>
+      <PictureObject Name="Picture9" Left="189" Top="538.65" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Employees.Photo" Transparency="0.5"/>
+      <TextObject Name="Text12" Left="9.45" Top="9.45" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="SIZE MODES" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <TextObject Name="Text1" Left="189" Top="217.35" Width="160.65" Height="18.9" Text="Zoom" HorzAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text13" Left="9.45" Top="217.35" Width="160.65" Height="18.9" Text="Normal" HorzAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text14" Left="368.55" Top="217.35" Width="160.65" Height="18.9" Text="Stretch" HorzAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text15" Left="548.1" Top="217.35" Width="160.65" Height="18.9" Text="Center" HorzAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text16" Left="9.45" Top="255.15" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="ROTATION" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <TextObject Name="Text17" Left="9.45" Top="481.95" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="TRANSPARENCY" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <PictureObject Name="Picture10" Left="368.55" Top="538.65" Width="160.65" Height="151.2" Border.Lines="All" Border.Color="LightGray" DataColumn="Employees.Photo" TransparentColor="White"/>
+      <TextObject Name="Text18" Left="189" Top="689.85" Width="160.65" Height="18.9" Text="Transparency = 0,5" HorzAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text19" Left="368.55" Top="689.85" Width="160.65" Height="18.9" Text="TransparentColor = White" HorzAlign="Center" Font="Segoe UI, 9pt"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="886.85" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="797.8" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

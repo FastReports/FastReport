@@ -4,6 +4,8 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Data
 {
@@ -242,6 +244,32 @@ namespace FastReport.Data
                 DisposeConnection(conn);
             }
 
+            GetProcedureNamesShared(list, schema);
+            return list.ToArray();
+        }
+
+        ///<inheritdoc/>
+        public override async Task<string[]> GetProcedureNamesAsync(CancellationToken cancellationToken)
+        {
+            List<string> list = new List<string>();
+            DataTable schema = null;
+            DbConnection conn = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(conn, cancellationToken);
+                schema = await conn.GetSchemaAsync("Procedures", cancellationToken);
+            }
+            finally
+            {
+                await DisposeConnectionAsync(conn);
+            }
+
+            GetProcedureNamesShared(list, schema);
+            return list.ToArray();
+        }
+
+        private static void GetProcedureNamesShared(List<string> list, DataTable schema)
+        {
             foreach (DataRow row in schema.Rows)
             {
                 string tableName = row["SPECIFIC_NAME"].ToString();
@@ -255,7 +283,6 @@ namespace FastReport.Data
                     list.Add(schemaName + ".\"" + tableName + "\"");
 
             }
-            return list.ToArray();
         }
 
         ///<inheritdoc/>
@@ -269,30 +296,7 @@ namespace FastReport.Data
             {
                 OpenConnection(conn);
                 var schemaParameters = conn.GetSchema("ProcedureParameters", new string[] { null, null, tableName });
-                foreach (DataRow row in schemaParameters.Rows)
-                {
-                    ParameterDirection direction = ParameterDirection.Input;
-                    switch (row["PARAMETER_MODE"].ToString())
-                    {
-                        case "IN":
-                            direction = ParameterDirection.Input;
-                            table.Enabled = false;
-                            break;
-                        case "INOUT":
-                            direction = ParameterDirection.InputOutput;
-                            table.Enabled = false;
-                            break;
-                        case "OUT":
-                            direction = ParameterDirection.Output;
-                            break;
-                    }
-                    table.Parameters.Add(new ProcedureParameter()
-                    {
-                        Name = row["PARAMETER_NAME"].ToString(),
-                        DataType = (int)(SqlDbType)Enum.Parse(typeof(SqlDbType), row["DATA_TYPE"].ToString(), true),
-                        Direction = direction
-                    });
-                }
+                CreateProcedureShared(table, schemaParameters);
             }
             finally
             {
@@ -300,6 +304,55 @@ namespace FastReport.Data
             }
 
             return table;
+        }
+
+        ///<inheritdoc/>
+        public override async Task<TableDataSource> CreateProcedureAsync(string tableName, CancellationToken cancellationToken = default)
+        {
+            ProcedureDataSource table = new ProcedureDataSource();
+            table.Enabled = true;
+            table.SelectCommand = tableName;
+            DbConnection conn = GetConnection();
+            try
+            {
+                await OpenConnectionAsync(conn, cancellationToken);
+                var schemaParameters = await conn.GetSchemaAsync("ProcedureParameters", new string[] { null, null, tableName }, cancellationToken);
+                CreateProcedureShared(table, schemaParameters);
+            }
+            finally
+            {
+                await DisposeConnectionAsync(conn);
+            }
+
+            return table;
+        }
+
+        private static void CreateProcedureShared(ProcedureDataSource table, DataTable schemaParameters)
+        {
+            foreach (DataRow row in schemaParameters.Rows)
+            {
+                ParameterDirection direction = ParameterDirection.Input;
+                switch (row["PARAMETER_MODE"].ToString())
+                {
+                    case "IN":
+                        direction = ParameterDirection.Input;
+                        table.Enabled = false;
+                        break;
+                    case "INOUT":
+                        direction = ParameterDirection.InputOutput;
+                        table.Enabled = false;
+                        break;
+                    case "OUT":
+                        direction = ParameterDirection.Output;
+                        break;
+                }
+                table.Parameters.Add(new ProcedureParameter()
+                {
+                    Name = row["PARAMETER_NAME"].ToString(),
+                    DataType = (int)(SqlDbType)Enum.Parse(typeof(SqlDbType), row["DATA_TYPE"].ToString(), true),
+                    Direction = direction
+                });
+            }
         }
 
         public MsSqlDataConnection() : base()

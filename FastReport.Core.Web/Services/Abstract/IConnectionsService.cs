@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FastReport.Web.Services
@@ -32,13 +34,13 @@ namespace FastReport.Web.Services
         /// Returns the list of connected tables by connection type and connection string
         /// </summary>
         /// <returns>Returns JSON with connected tables</returns>
-        Task<string> GetConnectionTablesAsync(string connectionType, string connectionString, List<CustomViewModel> customConnections, bool skipSchemaInit);
+        Task<string> GetConnectionTablesAsync(string connectionType, string connectionString, List<CustomViewModel> customConnections, bool skipSchemaInit, CancellationToken cancellationToken);
 
         /// <summary>
         /// Returns the list of connected tables by connection type and connection string
         /// </summary>
         /// <returns>Returns JSON with connected tables</returns>
-        Task<string> GetConnectionTablesAsync(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customConnections, bool skipSchemaInit);
+        Task<string> GetConnectionTablesAsync(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customConnections, bool skipSchemaInit, CancellationToken cancellationToken);
 
         /// <summary>
         /// Updates a table within a web report based on the provided parameters.

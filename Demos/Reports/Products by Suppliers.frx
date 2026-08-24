@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/17/2008 05:23:50" ReportInfo.Modified="03/29/2023 23:25:21" ReportInfo.CreatorVersion="1.0.0.0">
+  <Dictionary>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Suppliers" ReferenceName="NorthWind.Suppliers" DataType="System.Int32" Enabled="true">
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+      <Column Name="HomePage" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="SuppliersProducts" ReferenceName="NorthWind.SuppliersProducts" ParentDataSource="Suppliers" ChildDataSource="Products" ParentColumns="SupplierID" ChildColumns="SupplierID" Enabled="true"/>
+    <Total Name="TotalProducts" TotalType="Count" Evaluator="Data2" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6" CanGrow="true">
+      <TextObject Name="Text29" Left="189" Width="529.2" Height="56.7" Text="PRODUCTS BY SUPPLIERS" VertAlign="Center" Font="Segoe UI, 24pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text30" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text31" Left="56.7" Top="9.45" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="77.6" Width="718.2" Height="189" Border.Lines="All" Border.Color="Gainsboro" CanGrow="true" OutlineExpression="[Suppliers.CompanyName]" DataSource="Suppliers">
+      <SubreportObject Name="Subreport1" Left="255.15" Top="47.25" Width="444.15" Height="103.95" ReportPage="Page2" PrintOnParent="true"/>
+      <TextObject Name="Text8" Width="718.2" Height="37.8" Border.Color="Gainsboro" Fill.Color="173, 152, 130" Text="[Suppliers.CompanyName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold" TextFill.Color="White"/>
+      <TableObject Name="Table1" Top="37.8" Width="245.7" Height="151.2" Border.Lines="Left, Bottom" Border.Color="Gainsboro">
+        <TableColumn Name="Column1" Width="94.5"/>
+        <TableColumn Name="Column2" Width="151.2"/>
+        <TableRow Name="Row1">
+          <TableCell Name="Cell1" Border.Lines="Left, Right, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="Country" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell2" Border.Lines="Left, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.Country]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row2" AutoSize="true">
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="Address" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell7" Border.Lines="Left, Top, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.Address]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row3">
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="City" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell12" Border.Lines="Left, Top, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.City]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row4">
+          <TableCell Name="Cell16" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="Region" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell17" Border.Lines="Left, Top, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.Region]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row5">
+          <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="Phone" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell22" Border.Lines="Left, Top, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.Phone]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row6">
+          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="Fax" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell24" Border.Lines="Left, Top, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.Fax]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row7">
+          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="Contact name" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell26" Border.Lines="Left, Top, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.ContactName]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row8">
+          <TableCell Name="Cell27" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="Contact title" Padding="2, 1, 4, 1" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="DimGray"/>
+          <TableCell Name="Cell28" Border.Lines="Left, Top, Bottom" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Suppliers.ContactTitle]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+        </TableRow>
+      </TableObject>
+      <ChildBand Name="Child1" Top="268.6" Width="718.2" Height="18.9"/>
+      <Sort>
+        <Sort Expression="[Suppliers.CompanyName]"/>
+      </Sort>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="289.5" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text7" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text26" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Watermark.Font="Segoe UI, 60pt">
+    <DataBand Name="Data2" Top="20.9" Width="718.2" Height="18.9" DataSource="Products">
+      <TextObject Name="Text1" Left="9.45" Width="311.85" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Products.ProductName]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text2" Left="321.3" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Products.UnitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <DataHeaderBand Name="DataHeader1" Width="718.2" Height="18.9">
+        <TextObject Name="Text3" Left="9.45" Width="311.85" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Product name" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+        <TextObject Name="Text4" Left="321.3" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Unit price" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="41.8" Width="718.2" Height="18.9">
+        <TextObject Name="Text5" Left="9.45" Width="406.35" Height="18.9" Text="Total products: [TotalProducts]" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+      </DataFooterBand>
+      <Sort>
+        <Sort Expression="[Products.ProductName]"/>
+      </Sort>
+    </DataBand>
+  </ReportPage>
+</Report>

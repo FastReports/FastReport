@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/18/2023 18:03:24" ReportInfo.Modified="03/30/2023 03:34:24" ReportInfo.CreatorVersion="1.0.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    private Hashtable expandedOrders = new Hashtable();
+
+    // called when we click checkbox in the preview window
+    private void CheckBox2_Click(object sender, EventArgs e)
+    {
+      // order ID is in the checkbox Hyperlink
+      int orderID = int.Parse((sender as CheckBoxObject).Hyperlink.Value);
+      
+      // toggle expanded state
+      if (expandedOrders.ContainsKey(orderID))
+        expandedOrders.Remove(orderID);
+      else
+        expandedOrders[orderID] = 1;
+
+      // refresh the report
+      Report.Refresh();
+    }
+
+    private void Data1_BeforePrint(object sender, EventArgs e)
+    {
+      int orderID = ((Int32)Report.GetColumnValue(&quot;Order Details.OrderID&quot;));
+      bool orderDetailsVisible = expandedOrders.ContainsKey(orderID);
+      
+      // set check state
+      CheckBox2.Checked = !orderDetailsVisible;
+      
+      // set order details visibility
+      Data2.Visible = orderDetailsVisible;
+      Data2.Header.Visible = orderDetailsVisible;
+      Data2.Footer.Visible = orderDetailsVisible;
+    }
+
+    // dialog form checkbox handler
+    private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+    {
+      CheckedListBox1.Enabled = CheckBox1.Checked;
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="Customers" ReferenceName="NorthWind.Customers" DataType="System.Int32" Enabled="true">
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="CompanyName" DataType="System.String"/>
+      <Column Name="ContactName" DataType="System.String"/>
+      <Column Name="ContactTitle" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="City" DataType="System.String"/>
+      <Column Name="Region" DataType="System.String"/>
+      <Column Name="PostalCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="Phone" DataType="System.String"/>
+      <Column Name="Fax" DataType="System.String"/>
+    </TableDataSource>
+    <TableDataSource Name="Order Details" ReferenceName="NorthWind.Order Details" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="Quantity" DataType="System.Int16"/>
+      <Column Name="Discount" DataType="System.Single"/>
+      <Column Name="Column" Alias="Price" DataType="System.Decimal" Calculated="true" Expression="[Order Details.Quantity]*[Order Details.UnitPrice]*(decimal)(1 - [Order Details.Discount])"/>
+    </TableDataSource>
+    <TableDataSource Name="Orders" ReferenceName="NorthWind.Orders" DataType="System.Int32" Enabled="true">
+      <Column Name="OrderID" DataType="System.Int32"/>
+      <Column Name="CustomerID" DataType="System.String"/>
+      <Column Name="EmployeeID" DataType="System.Int32"/>
+      <Column Name="OrderDate" DataType="System.DateTime"/>
+      <Column Name="RequiredDate" DataType="System.DateTime"/>
+      <Column Name="ShippedDate" DataType="System.DateTime"/>
+      <Column Name="ShipVia" DataType="System.Int32"/>
+      <Column Name="Freight" DataType="System.Decimal"/>
+      <Column Name="ShipName" DataType="System.String"/>
+      <Column Name="ShipAddress" DataType="System.String"/>
+      <Column Name="ShipCity" DataType="System.String"/>
+      <Column Name="ShipRegion" DataType="System.String"/>
+      <Column Name="ShipPostalCode" DataType="System.String"/>
+      <Column Name="ShipCountry" DataType="System.String"/>
+      <Column Name="Latitude" DataType="System.Double"/>
+      <Column Name="Longitude" DataType="System.Double"/>
+    </TableDataSource>
+    <TableDataSource Name="Products" ReferenceName="NorthWind.Products" DataType="System.Int32" Enabled="true">
+      <Column Name="ProductID" DataType="System.Int32"/>
+      <Column Name="ProductName" DataType="System.String"/>
+      <Column Name="SupplierID" DataType="System.Int32"/>
+      <Column Name="CategoryID" DataType="System.Int32"/>
+      <Column Name="QuantityPerUnit" DataType="System.String"/>
+      <Column Name="UnitPrice" DataType="System.Decimal"/>
+      <Column Name="UnitsInStock" DataType="System.Int16"/>
+      <Column Name="UnitsOnOrder" DataType="System.Int16"/>
+      <Column Name="ReorderLevel" DataType="System.Int16"/>
+      <Column Name="Discontinued" DataType="System.Boolean" BindableControl="CheckBox"/>
+      <Column Name="EAN13" DataType="System.String"/>
+    </TableDataSource>
+    <Relation Name="CustomersOrders" ReferenceName="NorthWind.CustomersOrders" ParentDataSource="Customers" ChildDataSource="Orders" ParentColumns="CustomerID" ChildColumns="CustomerID" Enabled="true"/>
+    <Relation Name="OrdersOrderDetails" ReferenceName="NorthWind.OrdersOrderDetails" ParentDataSource="Orders" ChildDataSource="Order Details" ParentColumns="OrderID" ChildColumns="OrderID" Enabled="true"/>
+    <Relation Name="ProductsOrderDetails" ReferenceName="NorthWind.ProductsOrderDetails" ParentDataSource="Products" ChildDataSource="Order Details" ParentColumns="ProductID" ChildColumns="ProductID" Enabled="true"/>
+    <Total Name="OrderTotal" Expression="[Order Details.Price]" Evaluator="Data2" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="75.6">
+      <TextObject Name="Text1" Left="189" Width="264.6" Height="56.7" Text="ORDERS" VertAlign="Center" Font="Segoe UI, 24pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text18" Width="56.7" Height="56.7" Text="Ṅ" VertAlign="Center" Font="Segoe UI, 36pt, style=Bold" TextFill.Color="DimGray"/>
+      <TextObject Name="Text19" Left="56.7" Top="9.45" Width="94.5" Height="37.8" Border.Lines="Left" Text="NORTHWIND&#13;&#10;TRADERS" Padding="10, 0, 2, 0" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="DimGray"/>
+      <TextObject Name="Text25" Left="491.4" Top="9.45" Width="226.8" Height="18.9" Text="Begin date: [beginDate.Value]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text26" Left="491.4" Top="28.35" Width="226.8" Height="18.9" Text="End date: [endDate.Value]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Segoe UI, 9pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="107.95" Width="718.2" Height="18.9" BeforePrintEvent="Data1_BeforePrint" DataSource="Orders" Filter="[Orders.OrderDate] &gt; beginDate.Value &amp;&amp; [Orders.OrderDate] &lt; endDate.Value">
+      <TextObject Name="Text22" Left="56.7" Width="94.5" Height="18.9" Text="[Orders.OrderID]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text23" Left="245.7" Width="245.7" Height="18.9" Text="[Orders.Customers.CompanyName]" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text24" Left="151.2" Width="94.5" Height="18.9" Text="[Orders.OrderDate]" Format="Date" Format.Format="d" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <CheckBoxObject Name="CheckBox2" Left="37.8" Top="3.78" Width="11.34" Height="11.34" Border.Lines="All" Border.Color="Gainsboro" Border.Width="0.5" Cursor="Hand" Hyperlink.Kind="Custom" Hyperlink.Expression="[Orders.OrderID]" ClickEvent="CheckBox2_Click" CheckedSymbol="Plus" UncheckedSymbol="Minus"/>
+      <ChildBand Name="Child1" Top="128.85" Width="718.2" Height="18.9" PrintIfDatabandEmpty="true">
+        <TextObject Name="Text27" Left="56.7" Width="434.7" Height="18.9" Text="No orders found" Font="Segoe UI, 9pt"/>
+      </ChildBand>
+      <DataHeaderBand Name="DataHeader1" Top="77.6" Width="718.2" Height="28.35">
+        <TextObject Name="Text2" Left="56.7" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Order ID" Font="Segoe UI, 9pt, style=Bold"/>
+        <TextObject Name="Text3" Left="245.7" Width="245.7" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Company name" Font="Segoe UI, 9pt, style=Bold"/>
+        <TextObject Name="Text4" Left="151.2" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Order date" Font="Segoe UI, 9pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataBand Name="Data2" Top="180.1" Width="718.2" Height="18.9" DataSource="Order Details">
+        <TextObject Name="Text28" Left="94.5" Width="245.7" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Products.ProductName]" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text29" Left="340.2" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.UnitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text30" Left="434.7" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Quantity]" HorzAlign="Center" Font="Segoe UI, 9pt"/>
+        <TextObject Name="Text31" Left="529.2" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Discount]" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text32" Left="623.7" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="[Order Details.Price]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Segoe UI, 9pt" Trimming="EllipsisCharacter"/>
+        <DataHeaderBand Name="DataHeader2" Top="149.75" Width="718.2" Height="28.35" KeepWithData="true">
+          <TextObject Name="Text5" Left="94.5" Top="9.45" Width="245.7" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Product name" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text6" Left="340.2" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Unit price" HorzAlign="Right" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text7" Left="434.7" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Quantity" HorzAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text8" Left="529.2" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Discount" HorzAlign="Center" Font="Segoe UI, 9pt, style=Bold"/>
+          <TextObject Name="Text9" Left="623.7" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Border.Color="Gainsboro" Text="Price" HorzAlign="Right" Font="Segoe UI, 9pt, style=Bold"/>
+        </DataHeaderBand>
+        <DataFooterBand Name="DataFooter1" Top="201" Width="718.2" Height="37.8">
+          <TextObject Name="Text33" Left="529.2" Top="9.45" Width="189" Height="18.9" Text="Order total: [OrderTotal]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Segoe UI, 9pt, style=Bold"/>
+        </DataFooterBand>
+      </DataBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="240.8" Width="718.2" Height="18.9"/>
+  </ReportPage>
+  <DialogPage Name="Form1" AcceptButton="btnOk" CancelButton="btnCancel" AutoScaleDimensions="192, 192" ClientSize="592, 640">
+    <ButtonControl Name="btnOk" Left="260" Top="574" Width="150" Height="46" Anchor="Bottom, Right" Font="Segoe UI, 8.5pt" TabIndex="0" Text="OK" DialogResult="OK"/>
+    <ButtonControl Name="btnCancel" Left="422" Top="574" Width="150" Height="46" Anchor="Bottom, Right" Font="Segoe UI, 8.5pt" TabIndex="0" Text="Cancel" DialogResult="Cancel"/>
+    <DateTimePickerControl Name="beginDate" Left="168" Top="96" Width="400" Height="50" Font="Segoe UI, 8.5pt" TabIndex="0" Text="DateTimePicker" Format="Short" Value="2014-01-01"/>
+    <LabelControl Name="Label1" Left="24" Top="32" Width="404" Height="30" Font="Segoe UI, 8.5pt" TabIndex="0" Text="Search for orders placed between dates:"/>
+    <LabelControl Name="Label2" Left="24" Top="104" Width="65" Height="30" Font="Segoe UI, 8.5pt" TabIndex="0" Text="Begin:"/>
+    <DateTimePickerControl Name="endDate" Left="168" Top="164" Width="400" Height="50" Font="Segoe UI, 8.5pt" TabIndex="0" Text="DateTimePicker" Format="Short" Value="2014-02-01"/>
+    <LabelControl Name="Label3" Left="24" Top="172" Width="47" Height="30" Font="Segoe UI, 8.5pt" TabIndex="0" Text="End:"/>
+    <CheckedListBoxControl Name="CheckedListBox1" Left="24" Top="300" Width="544" Height="244" Enabled="false" Font="Segoe UI, 8.5pt" TabIndex="0" Text="CheckedListBox" DataColumn="Orders.Customers.CompanyName"/>
+    <CheckBoxControl Name="CheckBox1" Left="24" Top="244" Width="335" Font="Segoe UI, 8.5pt" TabIndex="0" Text="Search for specific customers:" DetailControl="CheckedListBox1" CheckedChangedEvent="CheckBox1_CheckedChanged"/>
+  </DialogPage>
+</Report>

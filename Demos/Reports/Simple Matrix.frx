@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates the use of the Matrix object. To create a matrix:&#13;&#10;- put a new Matrix object to the page;&#13;&#10;- switch to the &quot;Data Dictionary&quot; window, select the data column and drag it to the Matrix object;&#13;&#10;- you can reorder matrix items with mouse (click the cell and move it to the new position);&#13;&#10;- use cell and matrix context menu to edit items.&#13;&#10;A matrix object must have at least one column or row and one cell. It must be connected to a datasource through the DataSource property (it will be done automatically when you drag and drop data onto it from the Data Dictionary)." ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="01/21/2019 12:49:04" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="This report demonstrates the MatrixObject features.&#13;&#10;&#13;&#10;Learn more in the documentation https://www.fast-report.com/public_download/docs/FRNet/online/en/UserManual/en-US/DataBand/MatrixReports.html" ReportInfo.Created="05/16/2008 01:44:40" ReportInfo.Modified="03/18/2024 12:30:38" ReportInfo.CreatorVersion="1.0.0.0">
   <Dictionary>
     <TableDataSource Name="MatrixDemo" ReferenceName="NorthWind.MatrixDemo" DataType="System.Int32" Enabled="true">
       <Column Name="Name" DataType="System.String"/>
@@ -9,13 +9,12 @@
       <Column Name="Revenue" DataType="System.Decimal"/>
     </TableDataSource>
   </Dictionary>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
-      <TextObject Name="Text1" Top="37.8" Width="718.2" Height="28.35" Text="REVENUE BY EMPLOYEE" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Watermark.Font="Segoe UI, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8" CanGrow="true">
+      <TextObject Name="Text30" Width="718.2" Height="37.8" Text="MatrixObject" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="70.15" Width="718.2" Height="87.52">
-      <MatrixObject Name="Matrix1" Left="9.45" Top="11.92" Width="245.7" Height="66.15" FixedRows="1" FixedColumns="1" AutoSize="false" DataSource="MatrixDemo" Style="Orange">
+    <DataBand Name="Data1" Top="39.8" Width="718.2" Height="141.75">
+      <MatrixObject Name="Matrix2" Left="9.45" Top="66.15" Width="321.3" Height="66.15" FixedRows="1" FixedColumns="1" AutoSize="false" DataSource="MatrixDemo" Style="GrayOrange">
         <MatrixColumns>
           <Header Expression="[MatrixDemo.Year]"/>
         </MatrixColumns>
@@ -25,28 +24,76 @@
         <MatrixCells>
           <Cell Expression="[MatrixDemo.Revenue]"/>
         </MatrixCells>
-        <TableColumn Name="Column1" Width="94.5"/>
-        <TableColumn Name="Column2" Width="75.6"/>
-        <TableColumn Name="Column3" Width="75.6"/>
-        <TableRow Name="Row1" Height="28.35">
-          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Employee" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell7" Border.Lines="All" Border.Color="White" Fill="Glass" Fill.Color="Gold" Fill.Blend="0.35" Fill.Hatch="true" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+        <TableColumn Name="Column5" Width="122.85"/>
+        <TableColumn Name="Column6" Width="94.5"/>
+        <TableColumn Name="Column7" Width="103.95"/>
+        <TableRow Name="Row8" Height="28.35">
+          <TableCell Name="Cell17" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Employee" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell18" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell19" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
         </TableRow>
-        <TableRow Name="Row2">
-          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="[Name]" AllowExpressions="false" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+        <TableRow Name="Row9">
+          <TableCell Name="Cell20" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="[Name]" AllowExpressions="false" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell22" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
         </TableRow>
         <TableRow Name="Row4">
-          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="255, 218, 70" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="255, 235, 155" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold"/>
+          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell24" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
         </TableRow>
       </MatrixObject>
+      <TextObject Name="Text12" Left="9.45" Top="9.45" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="SIMPLE MATRIX" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <ChildBand Name="Child2" Top="183.55" Width="718.2" Height="153.89">
+        <MatrixObject Name="Matrix1" Left="9.45" Top="75.6" Width="321.3" Height="78.29" FixedRows="1" FixedColumns="2" AutoSize="false" DataSource="MatrixDemo" Style="Orange">
+          <MatrixColumns>
+            <Header Expression="[MatrixDemo.Name]"/>
+          </MatrixColumns>
+          <MatrixRows>
+            <Header Expression="[MatrixDemo.Year]"/>
+            <Header Expression="[MatrixDemo.Month]"/>
+          </MatrixRows>
+          <MatrixCells>
+            <Cell Expression="[MatrixDemo.Revenue]"/>
+          </MatrixCells>
+          <TableColumn Name="Column1" Width="56.7"/>
+          <TableColumn Name="Column2" Width="56.7"/>
+          <TableColumn Name="Column3" Width="103.95"/>
+          <TableColumn Name="Column4" Width="103.95"/>
+          <TableRow Name="Row1" Height="26.66">
+            <TableCell Name="Cell1" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Year" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+            <TableCell Name="Cell2" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Month" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+            <TableCell Name="Cell7" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="[Name]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+            <TableCell Name="Cell10" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+          </TableRow>
+          <TableRow Name="Row2" Height="17.21">
+            <TableCell Name="Cell3" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="[Year]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White" RowSpan="2"/>
+            <TableCell Name="Cell4" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="[Month]" AllowExpressions="false" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+            <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Text="[Revenue]" AllowExpressions="false" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt">
+              <Highlight>
+                <Condition Expression="Value &gt; 3000" Fill.Color="160, 120, 120" TextFill.Color="White" Font="Segoe UI, 10pt" ApplyFill="true"/>
+              </Highlight>
+            </TableCell>
+            <TableCell Name="Cell11" Border.Lines="All" Border.Color="White" Fill.Color="WhiteSmoke" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          </TableRow>
+          <TableRow Name="Row5" Height="17.21">
+            <TableCell Name="Cell5" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Font="Segoe UI, 10pt"/>
+            <TableCell Name="Cell6" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+            <TableCell Name="Cell9" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+            <TableCell Name="Cell12" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          </TableRow>
+          <TableRow Name="Row7" Height="17.21">
+            <TableCell Name="Cell13" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White" ColSpan="2"/>
+            <TableCell Name="Cell14" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Font="Segoe UI, 10pt"/>
+            <TableCell Name="Cell15" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+            <TableCell Name="Cell16" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+          </TableRow>
+        </MatrixObject>
+        <TextObject Name="Text13" Left="9.45" Top="18.9" Width="699.3" Height="37.8" Fill.Color="110, 145, 190" Text="COMPLEX ROWS, HIGHLIGHT (&gt; 3000)" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      </ChildBand>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="161.67" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="339.44" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text31" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

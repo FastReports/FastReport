@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FastReport.Web.Services
@@ -162,7 +163,7 @@ namespace FastReport.Web.Services
             }
         }
 
-        public async Task<string> GetConnectionTablesAsync(string connectionType, string connectionString, List<CustomViewModel> customViews, bool skipSchemaInit)
+        public async Task<string> GetConnectionTablesAsync(string connectionType, string connectionString, List<CustomViewModel> customViews, bool skipSchemaInit, CancellationToken cancellationToken)
         {
             if (!IsConnectionStringValid(connectionString, out var errorMsg))
                 throw new Exception(errorMsg);
@@ -192,9 +193,9 @@ namespace FastReport.Web.Services
                         }
                     }
 
-                    await conn.CreateAllTablesAsync(!skipSchemaInit);
+                    await conn.CreateAllTablesAsync(!skipSchemaInit, cancellationToken);
                     if (conn.CanContainProcedures)
-                        await conn.CreateAllProceduresAsync();
+                        await conn.CreateAllProceduresAsync(cancellationToken);
 
                     foreach (TableDataSource c in conn.Tables)
                     {
@@ -210,7 +211,7 @@ namespace FastReport.Web.Services
                             {
                                 try
                                 {
-                                    await proc.InitSchemaAsync();
+                                    await proc.InitSchemaAsync(cancellationToken);
                                 }
                                 catch { }
                             }
@@ -227,7 +228,7 @@ namespace FastReport.Web.Services
             }
         }
 
-        public async Task<string> GetConnectionTablesAsync(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customViews, bool skipSchemaInit)
+        public async Task<string> GetConnectionTablesAsync(WebReport webReport, string connectionType, string connectionString, List<CustomViewModel> customViews, bool skipSchemaInit, CancellationToken cancellationToken)
         {
             if (!IsConnectionStringValid(connectionString, out var errorMsg))
                 throw new Exception(errorMsg);
@@ -270,9 +271,9 @@ namespace FastReport.Web.Services
                     rep.Dictionary.Connections.Add(conn);
                     rep.Dictionary.Merge(webReport.Report.Dictionary);
 
-                    await conn.CreateAllTablesAsync(!skipSchemaInit);
+                    await conn.CreateAllTablesAsync(!skipSchemaInit, cancellationToken);
                     if (conn.CanContainProcedures)
-                        await conn.CreateAllProceduresAsync();
+                        await conn.CreateAllProceduresAsync(cancellationToken);
 
                     foreach (TableDataSource c in conn.Tables)
                     {
@@ -288,7 +289,7 @@ namespace FastReport.Web.Services
                             {
                                 try
                                 {
-                                    await proc.InitSchemaAsync();
+                                    await proc.InitSchemaAsync(cancellationToken);
                                 }
                                 catch { }
                             }

@@ -13,6 +13,7 @@ using System.Text.Encodings.Web;
 using FastReport.Web.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace FastReport.Web.Controllers
 {
@@ -44,8 +45,11 @@ namespace FastReport.Web.Controllers
 
         [Obsolete]
         [HttpGet("/designer.getConnectionTables")]
-        public static async Task<IResult> GetConnectionTables([FromQuery] ConnectionsParams query,
-            IConnectionsService connectionsService, IReportService reportService)
+        public static async Task<IResult> GetConnectionTables(
+            [FromQuery] ConnectionsParams query,
+            IConnectionsService connectionsService,
+            IReportService reportService,
+            CancellationToken cancellationToken)
         {
             var request = new ConnectionTablesRequestModel
             {
@@ -53,21 +57,26 @@ namespace FastReport.Web.Controllers
                 CustomViews = new()
             };
 
-            return await GetConnectionTables("", request, connectionsService, reportService);
+            return await GetConnectionTables("", request, connectionsService, reportService, cancellationToken);
         }
 
         [HttpPost("/designer.getConnectionTables")]
-        public static async Task<IResult> GetConnectionTables([FromQuery] string reportId, [FromBody] ConnectionTablesRequestModel request,
-            IConnectionsService connectionsService, IReportService reportService, [FromQuery] string skipSchemaInit = "false")
+        public static async Task<IResult> GetConnectionTables(
+            [FromQuery] string reportId,
+            [FromBody] ConnectionTablesRequestModel request,
+            IConnectionsService connectionsService,
+            IReportService reportService,
+            CancellationToken cancellationToken,
+            [FromQuery] string skipSchemaInit = "false")
         {
             bool.TryParse(skipSchemaInit, out bool skipSchema);
             try
             {
                 string response;
                 if (!reportService.TryFindWebReport(reportId, out var webReport))
-                    response = await connectionsService.GetConnectionTablesAsync(request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews, skipSchema);
+                    response = await connectionsService.GetConnectionTablesAsync(request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews, skipSchema, cancellationToken);
                 else
-                    response = await connectionsService.GetConnectionTablesAsync(webReport, request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews, skipSchema);
+                    response = await connectionsService.GetConnectionTablesAsync(webReport, request.ConnectionsParams.ConnectionType, request.ConnectionsParams.ConnectionString, request.CustomViews, skipSchema, cancellationToken);
 
                 return Results.Content(response, "application/xml");
             }

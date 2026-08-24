@@ -17,7 +17,7 @@ namespace FastReport.Barcode
         private Contact creditor;
         private Reference reference;
         private AdditionalInformation additionalInformation;
-        private Contact debitor;
+        private Contact debtor;
         private string amount;
         private string alternativeProcedure1;
         private string alternativeProcedure2;
@@ -53,9 +53,9 @@ namespace FastReport.Barcode
         public AdditionalInformation AdditionalInformation { get { return additionalInformation; } set { additionalInformation = value; } }
 
         /// <summary>
-        /// Debitor (payer) information
+        /// Debtor (payer) information
         /// </summary>
-        public Contact Debitor { get { return debitor; } set { debitor = value; } }
+        public Contact Debtor { get { return debtor; } set { debtor = value; } }
 
         /// <summary>
         /// Amount
@@ -82,10 +82,10 @@ namespace FastReport.Barcode
         private string unstructuredMessage, billInformation, trailer;
 
         /// <summary>
-        /// Creates an additional information object. Both parameters are optional and must be shorter than 141 chars in combination.
+        /// Creates an additional information object. Combined length of Unstructured Message and Billing Information must not exceed 140 characters.
         /// </summary>
         /// <param name="unstructuredMessage">Unstructured text message</param>
-        /// <param name="billInformation">Bill information</param>
+        /// <param name="billInformation">Billing information</param>
         public AdditionalInformation(string unstructuredMessage, string billInformation)
         {
             MyRes res = new MyRes("Messages,Swiss");
@@ -146,7 +146,6 @@ namespace FastReport.Barcode
     {
         private ReferenceType referenceType;
         private string reference;
-        private ReferenceTextType? referenceTextType;
 
         /// <summary>
         /// Gets or sets reference type.
@@ -167,26 +166,15 @@ namespace FastReport.Barcode
         }
 
         /// <summary>
-        /// Gets or sets reference text type.
-        /// </summary>
-        public ReferenceTextType? _ReferenceTextType
-        {
-            get { return referenceTextType; }
-            set { referenceTextType = value; }
-        }
-
-        /// <summary>
         /// Creates a reference object which must be passed to the SwissQrCode instance
         /// </summary>
         /// <param name="referenceType">Type of the reference (QRR, SCOR or NON)</param>
         /// <param name="reference">Reference text</param>
-        /// <param name="referenceTextType">Type of the reference text (QR-reference or Creditor Reference)</param>                
-        public Reference(ReferenceType referenceType, string reference, ReferenceTextType? referenceTextType)
+        public Reference(ReferenceType referenceType, string reference)
         {
             MyRes res = new MyRes("Messages,Swiss");
 
             this.referenceType = referenceType;
-            this.referenceTextType = referenceTextType;
 
             if (reference != null && reference.StartsWith("[") && reference.EndsWith("]"))
             {
@@ -195,19 +183,25 @@ namespace FastReport.Barcode
             }
 
             string referenceCleaned = reference is null ? null : new string(reference?.Where(c => char.IsLetterOrDigit(c)).ToArray());
+
             if (referenceType == ReferenceType.NON && referenceCleaned != null)
                 throw new SwissQrCodeException(res.Get("SwissRefTypeNon"));
             if (referenceType != ReferenceType.NON && referenceCleaned == null)
                 throw new SwissQrCodeException(res.Get("SwissRefTypeNotNon"));
-            if (referenceType != ReferenceType.NON && referenceCleaned != null && referenceTextType == null)
-                throw new SwissQrCodeException(res.Get("SwissRefTextTypeNon"));
-            if (referenceTextType == ReferenceTextType.QrReference && referenceCleaned != null && (referenceCleaned.Length > 27))
-                throw new SwissQrCodeException(res.Get("SwissRefQRLength"));
-            if (referenceTextType == ReferenceTextType.QrReference && referenceCleaned != null && !Regex.IsMatch(referenceCleaned, @"^[0-9]+$"))
-                throw new SwissQrCodeException(res.Get("SwissRefQRNotOnlyDigits"));
-            if (referenceTextType == ReferenceTextType.QrReference && referenceCleaned != null && !ChecksumMod10(referenceCleaned))
-                throw new SwissQrCodeException(res.Get("SwissRefQRCheckSum"));
-            if (referenceTextType == ReferenceTextType.CreditorReferenceIso11649 && referenceCleaned != null && (referenceCleaned.Length > 25))
+
+            if (referenceType == ReferenceType.QRR && referenceCleaned != null)
+            {
+                if (referenceCleaned.Length != 27)
+                    throw new SwissQrCodeException(res.Get("SwissRefQRLength"));
+
+                if (!Regex.IsMatch(referenceCleaned, @"^[0-9]+$"))
+                    throw new SwissQrCodeException(res.Get("SwissRefQRNotOnlyDigits"));
+
+                if (!ChecksumMod10(referenceCleaned))
+                    throw new SwissQrCodeException(res.Get("SwissRefQRCheckSum"));
+            }
+            
+            if (referenceType == ReferenceType.SCOR && referenceCleaned != null && (referenceCleaned.Length < 5 || referenceCleaned.Length > 25))
                 throw new SwissQrCodeException(res.Get("SwissRefISOLength"));
 
             this.reference = reference;
@@ -238,7 +232,7 @@ namespace FastReport.Barcode
         }
 
         /// <summary>
-        /// Reference type. When using a QR-IBAN you have to use either "QRR" or "SCOR"
+        /// Reference type. Must contain the code QRR where a QR-IBAN is used; where the IBAN is used, either the SCOR or NON code can be entered.
         /// </summary>
         public enum ReferenceType
         {
@@ -254,21 +248,6 @@ namespace FastReport.Barcode
             /// NON
             /// </summary>
             NON
-        }
-        
-        /// <summary>
-        /// Reference text type
-        /// </summary>
-        public enum ReferenceTextType
-        {
-            /// <summary>
-            /// QrReference
-            /// </summary>
-            QrReference,
-            /// <summary>
-            /// CreditorReferenceIso11649
-            /// </summary>
-            CreditorReferenceIso11649
         }
 
         internal bool ChecksumMod10(string digits)
@@ -562,12 +541,19 @@ namespace FastReport.Barcode
         public Iban(string iban, IbanType ibanType)
         {
             MyRes res = new MyRes("Messages,Swiss");
-            if (ibanType == IbanType.Iban && !IsValidIban(iban))
-                throw new SwissQrCodeException(res.Get("SwissIbanNotValid"));
-            if (ibanType == IbanType.QrIban && !IsValidQRIban(iban))
-                throw new SwissQrCodeException(res.Get("SwissQRIbanNotValid"));
-            if (!iban.StartsWith("CH", StringComparison.OrdinalIgnoreCase) && !iban.StartsWith("LI", StringComparison.OrdinalIgnoreCase))
+
+            string ibanCleared = new string(iban.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpperInvariant();
+
+            if (ibanCleared.Length != 21)
+                throw new SwissQrCodeException(res.Get("SwissIbanLengthInvalid"));
+            if (!ibanCleared.StartsWith("CH", StringComparison.OrdinalIgnoreCase) && !ibanCleared.StartsWith("LI", StringComparison.OrdinalIgnoreCase))
                 throw new SwissQrCodeException(res.Get("SwissQRStartNotValid"));
+
+            if (ibanType == IbanType.Iban && !IsValidIban(ibanCleared))
+                throw new SwissQrCodeException(res.Get("SwissIbanNotValid"));
+            if (ibanType == IbanType.QrIban && !IsValidQRIban(ibanCleared))
+                throw new SwissQrCodeException(res.Get("SwissQRIbanNotValid"));
+
             this.iban = iban;
             this.ibanType = ibanType;
         }
@@ -615,22 +601,19 @@ namespace FastReport.Barcode
 
         private bool IsValidIban(string iban)
         {
-            //Clean IBAN
-            string ibanCleared = new string(iban.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpper();
-
             //Check for general structure
-            bool structurallyValid = Regex.IsMatch(ibanCleared, @"^[a-zA-Z]{2}[0-9]{2}([a-zA-Z0-9]?){16,30}$");
+            bool structurallyValid = Regex.IsMatch(iban, @"^[a-zA-Z]{2}[0-9]{2}([a-zA-Z0-9]?){16,30}$");
 
             //Check IBAN checksum
-            char[] charSum = (ibanCleared.Substring(4) + ibanCleared.Substring(0, 4)).ToCharArray();
+            char[] charSum = (iban.Substring(4) + iban.Substring(0, 4)).ToCharArray();
             string sum = "";
 
             foreach (char c in charSum)
             {
                 sum += (char.IsLetter(c) ? (c - 55).ToString() : c.ToString());
             }
-            decimal sumDec;
-            if (!decimal.TryParse(sum, out sumDec))
+
+            if (!decimal.TryParse(sum, out decimal sumDec))
                 return false;
             bool checksumValid = (sumDec % 97) == 1;
 
@@ -640,13 +623,12 @@ namespace FastReport.Barcode
         private bool IsValidQRIban(string iban)
         {
             bool foundQrIid = false;
-            try
+
+            if (int.TryParse(iban.Substring(4, 5), out int possibleQrIid))
             {
-                string ibanCleared = new string(iban.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpper();
-                int possibleQrIid = Convert.ToInt32(ibanCleared.Substring(4, 5));
                 foundQrIid = possibleQrIid >= 30000 && possibleQrIid <= 31999;
             }
-            catch { }
+
             return IsValidIban(iban) && foundQrIid;
         }
     }

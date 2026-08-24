@@ -110,8 +110,7 @@ static class Startup
     {
         var debugTask = typeof(Program)
             .GetMethods()
-            .Where(method => method.GetCustomAttribute<DebugAttribute>() != null)
-            .FirstOrDefault();
+            .FirstOrDefault(method => method.GetCustomAttribute<DebugAttribute>() != null);
 
         return debugTask;
     }

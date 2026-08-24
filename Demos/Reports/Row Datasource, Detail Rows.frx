@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="Demonstrates how to print a Master-detail report using the Table object. In this example the Table object is used to print detail rows. It does not differ much from the &quot;Row Datasource&quot; example.&#13;&#10;See the &quot;ManualBuild&quot; event handler to see how to init the datasource to allow master-detail relation." ReportInfo.Created="01/17/2008 20:40:24" ReportInfo.Modified="01/21/2019 12:18:09" ReportInfo.CreatorVersion="2019.1.9.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Description="Demonstrates how to print a Master-detail report using the Table object. In this example the Table object is used to print detail rows. It does not differ much from the &quot;Row Datasource&quot; example.&#13;&#10;See the &quot;ManualBuild&quot; event handler to see how to init the datasource to allow master-detail relation." ReportInfo.Created="01/17/2008 20:40:24" ReportInfo.Modified="04/07/2023 14:29:14" ReportInfo.CreatorVersion="1.0.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,38 +74,37 @@ namespace FastReport
     </TableDataSource>
     <Relation Name="CategoriesProducts" ReferenceName="NorthWind.CategoriesProducts" ParentDataSource="Categories" ChildDataSource="Products" ParentColumns="CategoryID" ChildColumns="CategoryID" Enabled="true"/>
   </Dictionary>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15" CanGrow="true">
-      <TextObject Name="Text2" Top="37.8" Width="718.2" Height="28.35" Text="PRODUCTS BY CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
-      <TextObject Name="Text11" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" CanGrow="true" CanShrink="true" Text="[Report.ReportInfo.Description]&#13;&#10;" Padding="4, 4, 4, 4" Font="Tahoma, 8pt"/>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8" CanGrow="true">
+      <TextObject Name="Text2" Width="718.2" Height="37.8" Text="PRODUCTS BY CATEGORIES" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 14pt, style=Bold"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="70.15" Width="718.2" Height="132.3" DataSource="Categories">
+    <DataBand Name="Data1" Top="39.8" Width="718.2" Height="132.3" DataSource="Categories">
       <TableObject Name="Table1" Left="9.45" Top="75.6" Width="699.3" Height="56.7" FixedRows="1" ManualBuildEvent="Table1_ManualBuild">
         <TableColumn Name="Column1" Width="321.3"/>
         <TableColumn Name="Column2" Width="189"/>
         <TableColumn Name="Column3" Width="189"/>
         <TableRow Name="Row1">
-          <TableCell Name="Cell1" Border.Lines="All" Border.Color="LightGray" Fill="Glass" Fill.Color="ForestGreen" Fill.Blend="0.47" Fill.Hatch="false" Text="Product name" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
-          <TableCell Name="Cell2" Border.Lines="All" Border.Color="LightGray" Fill="Glass" Fill.Color="ForestGreen" Fill.Blend="0.47" Fill.Hatch="false" Text="Unit price" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
-          <TableCell Name="Cell3" Border.Lines="All" Border.Color="LightGray" Fill="Glass" Fill.Color="ForestGreen" Fill.Blend="0.47" Fill.Hatch="false" Text="Units in stock" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Product name" Padding="5, 0, 0, 0" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Unit price" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Units in stock" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt, style=Bold" TextFill.Color="White"/>
         </TableRow>
         <TableRow Name="Row2">
-          <TableCell Name="Cell6" Border.Lines="All" Border.Color="LightGray" Text="[Products.ProductName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell7" Border.Lines="All" Border.Color="LightGray" Text="[Products.UnitPrice]" Padding="0, 0, 5, 0" Format="Currency" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell8" Border.Lines="All" Border.Color="LightGray" Text="[Products.UnitsInStock]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Products.ProductName]" Padding="5, 0, 0, 0" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Products.UnitPrice]" Padding="0, 0, 5, 0" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="WhiteSmoke" Text="[Products.UnitsInStock]" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt"/>
         </TableRow>
         <TableRow Name="Row3">
-          <TableCell Name="Cell11" Border.Lines="All" Border.Color="LightGray" Fill.Color="ForestGreen" VertAlign="Center" Font="Tahoma, 8pt"/>
-          <TableCell Name="Cell12" Border.Lines="All" Border.Color="LightGray" Fill.Color="ForestGreen" Text="Total:" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
-          <TableCell Name="Cell13" Border.Lines="All" Border.Color="LightGray" Fill.Color="ForestGreen" Text="[Sum(Cell8)]" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+          <TableCell Name="Cell11" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" VertAlign="Center" Font="Segoe UI, 9pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="Total:" Padding="0, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
+          <TableCell Name="Cell13" Border.Lines="All" Border.Color="WhiteSmoke" Fill.Color="170, 150, 130" Text="[Sum(Cell8)]" HorzAlign="Center" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
         </TableRow>
       </TableObject>
-      <TextObject Name="Text3" Left="9.45" Top="9.45" Width="699.3" Height="37.8" Fill.Color="ForestGreen" Text="[Categories.CategoryName]" VertAlign="Center" Font="Tahoma, 16pt" TextFill.Color="White"/>
-      <TextObject Name="Text4" Left="9.45" Top="47.25" Width="699.3" Height="18.9" Fill.Color="ForestGreen" Text="[Categories.Description]" VertAlign="Center" Font="Tahoma, 8pt" TextFill.Color="White"/>
+      <TextObject Name="Text3" Left="9.45" Top="9.45" Width="699.3" Height="37.8" Fill.Color="170, 150, 130" Text="[Categories.CategoryName]" VertAlign="Center" Font="Segoe UI, 16pt" TextFill.Color="White"/>
+      <TextObject Name="Text4" Left="9.45" Top="47.25" Width="699.3" Height="18.9" Fill.Color="170, 150, 130" Text="[Categories.Description]" VertAlign="Center" Font="Segoe UI, 9pt" TextFill.Color="White"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="206.45" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
-      <TextObject Name="Text1" Left="614.25" Top="9.45" Width="94.5" Height="18.9" Text="[PageN]" HorzAlign="Right" Font="Tahoma, 8pt"/>
-      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport .NET" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    <PageFooterBand Name="PageFooter1" Top="174.1" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text1" Left="614.25" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Segoe UI, 9pt"/>
+      <TextObject Name="Text12" Left="9.45" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.fast-report.com/products/fast-report-net" Text="Generated by FastReport" VertAlign="Center" Font="Segoe UI, 9pt, style=Underline" TextFill.Color="Blue"/>
     </PageFooterBand>
   </ReportPage>
 </Report>
