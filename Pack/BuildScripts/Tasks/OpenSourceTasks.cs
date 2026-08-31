@@ -50,7 +50,7 @@ partial class Program
         {
             Configuration = config,
             NoBuild = false, // if we set it to 'true' then SDK won't include *.js and *.css files into packages
-            NoRestore = true,
+            NoRestore = false,
             OutputDirectory = OutDir,
             IncludeSymbols = true,
             SymbolPackageFormat = "snupkg"

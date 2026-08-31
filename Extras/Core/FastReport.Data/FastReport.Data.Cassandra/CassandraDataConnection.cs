@@ -97,6 +97,18 @@ namespace FastReport.Data.Cassandra
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(object);
+        }
+
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(CassandraDataConnection);
+        }
+
         public CassandraDataConnection()
         {
             IsSqlBased = false;

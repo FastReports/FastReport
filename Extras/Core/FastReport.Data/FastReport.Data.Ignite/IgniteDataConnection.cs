@@ -458,6 +458,18 @@ namespace FastReport.Data
             return _client;
         }
 
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(IgniteDataConnection);
+        }
+
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(object);
+        }
+
         /// <summary>
         /// Parses the connection string and returns the Apache Ignite client configuration.
         /// </summary>

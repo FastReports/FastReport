@@ -181,5 +181,13 @@ namespace FastReport.Data
         }
 
         #endregion Protected Methods
+
+        #region Public Methods
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(CouchbaseDataConnection);
+        }
+        #endregion
     }
 }

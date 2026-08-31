@@ -11,11 +11,6 @@ namespace FastReport.Data
 {
     public partial class MongoDBDataConnection : DataConnectionBase
     {
-       
-        public override Type GetConnectionType()
-        {
-            return typeof(MongoClient);
-        }   
 
         public override string GetConnectionId()
         {

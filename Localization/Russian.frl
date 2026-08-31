@@ -2728,8 +2728,9 @@
       <CurrencyToAccounting Text="Преобразовывать денежный формат в финансовый"/>
       <GeneralToText Text="Преобразовывать общий формат в текстовый"/>
       <UseCustomFormat Text="Преобразовывать в пользовательский формат"/>
-	  <ShrinkToFit Text="Автоподбор ширины"/>
-	  <ExportFormulas Text="Экспортировать формулы"/>
+      <ShrinkToFit Text="Автоподбор ширины"/>
+      <ExportFormulas Text="Экспортировать формулы"/>
+      <SheetTabColors Text="Цвет ярлычка листа"/>
     </Xlsx>
     <Xls Text="Экспорт в Excel 97">
       <File Text="Excel 97 формат"/>

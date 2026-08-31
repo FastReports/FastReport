@@ -82,6 +82,12 @@ namespace FastReport.ClickHouse
         {
             return "\"" + value + "\"";
         }
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(ClickHouseTypeCode);
+        }
+        /// <inheritdoc/>
         public override Type GetConnectionType()
         {
             return typeof(ClickHouseConnection);

@@ -217,6 +217,18 @@ namespace FastReport.Data
         {
             return CreateDataTableAsync(table, true, cancellationToken);
         }
+
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(MongoClient);
+        }
+
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(object);
+        }
         #endregion
     }
 }

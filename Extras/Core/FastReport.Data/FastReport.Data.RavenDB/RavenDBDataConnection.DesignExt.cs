@@ -10,11 +10,6 @@ namespace FastReport.Data
     /// </summary>
     public partial class RavenDBDataConnection : DataConnectionBase
     {
-                /// <inheritdoc/>
-        public override Type GetConnectionType()
-        {
-            return typeof(RavenDBDataConnection);
-        }
 
         /// <inheritdoc/>
         public override string GetConnectionId()
