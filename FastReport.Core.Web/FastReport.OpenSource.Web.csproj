@@ -95,7 +95,7 @@
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Content>
-    <Content Include="$(ProjectDir)\wwwroot\*.js;$(ProjectDir)\wwwroot\*.css" CopyToOutputDirectory="Always">
+    <Content Include="$(ProjectDir)\wwwroot\js\*.js;$(ProjectDir)\wwwroot\css\*.css" CopyToOutputDirectory="Always">
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
 	  <None Include="$(WebBaseDir)\postcss.config.js;$(WebBaseDir)\**\*.json;$(WebBaseDir)\rollup.config.mjs" CopyToOutputDirectory="Never">
