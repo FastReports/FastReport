@@ -12,10 +12,6 @@ namespace FastReport.ClickHouse
 {
     public partial class ClickHouseDataConnection
     {
-        public override Type GetParameterType()
-        {
-            return typeof(ClickHouseTypeCode);
-        }
         public override ConnectionEditorBase GetEditor()
         {
             return new ClickHouseConnectionEditor();

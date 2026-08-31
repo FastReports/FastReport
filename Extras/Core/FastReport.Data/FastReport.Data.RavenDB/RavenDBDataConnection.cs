@@ -338,6 +338,17 @@ namespace FastReport.Data
             return value;
         }
 
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(RavenDBDataConnection);
+        }
+
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(object);
+        }
         #endregion Public Methods
 
         static void AddColumn(DataTable table, string colName, Type colType)

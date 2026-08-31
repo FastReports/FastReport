@@ -9,12 +9,6 @@ namespace FastReport.Data
     public partial class CouchbaseDataConnection
     {
         /// <inheritdoc/>
-        public override Type GetConnectionType()
-        {
-            return typeof(CouchbaseDataConnection);
-        }
-
-        /// <inheritdoc/>
         public override string GetConnectionId()
         {
             CouchbaseConnectionStringBuilder builder = new CouchbaseConnectionStringBuilder(ConnectionString);

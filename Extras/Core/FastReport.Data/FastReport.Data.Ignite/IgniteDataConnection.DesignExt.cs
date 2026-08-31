@@ -12,12 +12,6 @@ namespace FastReport.Data
         }
 
         /// <inheritdoc/>
-        public override Type GetConnectionType()
-        {
-            return typeof(IgniteDataConnection);
-        }
-
-        /// <inheritdoc/>
         public override string GetConnectionId()
         {
             return "Ignite: " + ConnectionString;

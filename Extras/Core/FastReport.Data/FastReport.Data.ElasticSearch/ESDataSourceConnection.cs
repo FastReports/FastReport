@@ -1,5 +1,6 @@
 ﻿using FastReport.Data.JsonConnection;
 using FastReport.Utils.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -168,6 +169,12 @@ namespace FastReport.Data.ElasticSearch
         {
             FillTableSchema(table, selectCommand, parameters);
             return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(ESDataSourceConnection);
         }
 
         public override string[] GetTableNames()

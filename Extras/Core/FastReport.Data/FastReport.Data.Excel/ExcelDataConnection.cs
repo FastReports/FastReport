@@ -305,6 +305,18 @@ namespace FastReport.Data
             return result;
         }
 
+        /// <inheritdoc/>
+        public override Type GetParameterType()
+        {
+            return typeof(object);
+        }
+
+        /// <inheritdoc/>
+        public override Type GetConnectionType()
+        {
+            return typeof(ExcelDataConnection);
+        }
+
         public ExcelDataConnection()
         {
             IsSqlBased = false;

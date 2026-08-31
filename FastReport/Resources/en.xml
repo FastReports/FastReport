@@ -2963,6 +2963,7 @@
       <UseCustomFormat Text="Use custom format"/>
       <ShrinkToFit Text="Shrink to fit" />
       <ExportFormulas Text="Export formulas"/>
+      <SheetTabColors Text="Sheet tab color"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
