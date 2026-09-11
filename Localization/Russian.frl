@@ -630,6 +630,7 @@
         <Color Text="Цвет текста"/>
         <Highlight Text="Условное выделение"/>
         <Angle Text="Поворот текста"/>
+        <LineHeight Text="Межстрочный интервал"/>
       </Text>
       <Border Text="Рамка и заливка">
         <Top Text="Верхняя линия"/>

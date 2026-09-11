@@ -627,14 +627,15 @@ const webReportObserver = new MutationObserver((mutations) => {
     if (document.readyState === 'complete') {
         for (const mutation of mutations) {
             // Check added node
-            if (mutation.type === 'childList' && mutation.addedNodes.length) {
+            const container = mutation.target.getElementsByClassName(`fr-container`)[0];
+            if (mutation.type === 'childList' && mutation.addedNodes.length && (container || mutation.target.classList.contains(`fr-container`))) {
                 for (const node of mutation.addedNodes) {
                     if (node.nodeType === Node.ELEMENT_NODE) {
                         const webReports = node.getElementsByClassName('webreport-script');
                         if (webReports) {
                             if (webReports.length == 0)
                                 window.Webreports = new Map();
-                            WebReport.Init(); 
+                            WebReport.Init();
                         }
                     }
                 }

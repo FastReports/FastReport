@@ -631,6 +631,7 @@
         <Color Text="Text Color"/>
         <Highlight Text="Highlight"/>
         <Angle Text="Text Angle"/>
+        <LineHeight Text="Line Height"/>
       </Text>
       <Border Text="Border and Fill">
         <Top Text="Top Line"/>
