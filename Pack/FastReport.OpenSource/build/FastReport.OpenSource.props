@@ -7,4 +7,17 @@
     <_FRProductTypeWithEngine>$(_FRProductType).$(_FR_GraphicsEngine)</_FRProductTypeWithEngine>
   </PropertyGroup>
 
+  <!--
+    LOCAL PATCH (not upstream): FastReport's engine is built on System.Drawing.Common/GDI+
+    (see _FR_GraphicsEngine above). Since .NET 6, that package throws
+    PlatformNotSupportedException on non-Windows hosts unless this switch is enabled.
+    Every consumer of this package was silently hitting that exception on Linux with no
+    hint why. Flip the switch on by default for any .NET (Core) consumer, Windows included
+    (no-op there) - this only removes the up-front exception; it still requires libgdiplus
+    to be installed on the Linux host for GDI+ calls to actually succeed.
+  -->
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
+    <RuntimeHostConfigurationOption Include="System.Drawing.EnableUnixSupport" Value="true" Trim="false" />
+  </ItemGroup>
+
 </Project>
