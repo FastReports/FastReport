@@ -1,4 +1,4 @@
-﻿using Path = System.IO.Path;
+using Path = System.IO.Path;
 
 namespace CakeScript;
 
@@ -69,6 +69,11 @@ partial class Program
         foreach (var proj in projects_OpenSource)
         {
             DotNetPack(Path.Combine(solutionDirectory, proj), settings);
+
+            if (Path.GetFileName(proj) == "FastReport.OpenSource.Web.csproj")
+            {
+                ValidateWebPackageAssets(OutDir, "FastReport.OpenSource.Web", versionNum);
+            }
         }
     }
 

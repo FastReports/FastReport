@@ -1,4 +1,4 @@
-﻿using static CakeScript.Startup;
+using static CakeScript.Startup;
 
 namespace CakeScript;
 
@@ -53,6 +53,8 @@ partial class Program
         FastScript,
         FastScriptPlugin,
         HTMLPlugin,
+        Transport,
+        TransportPlugin,
     }
 
     internal string SolutionFile => Path.Combine(solutionDirectory, solutionFilename);
@@ -234,6 +236,33 @@ partial class Program
         return Path.Combine(OutDir, additionDir);
     }
 
+
+    private static void ValidateWebPackageAssets(string outputDirectory, string packageId, string versionNum)
+    {
+        // NuGet omits a zero revision in package filenames (2026.2.8.0 -> 2026.2.8).
+        var versionParts = versionNum.Split('-', 2);
+        var numericVersion = System.Version.Parse(versionParts[0]);
+        var packageVersion = $"{numericVersion.Major}.{numericVersion.Minor}.{Math.Max(0, numericVersion.Build)}";
+        if (numericVersion.Revision > 0)
+            packageVersion += $".{numericVersion.Revision}";
+        if (versionParts.Length > 1)
+            packageVersion += $"-{versionParts[1]}";
+        var packagePath = Path.Combine(outputDirectory, $"{packageId}.{packageVersion}.nupkg");
+        using var package = System.IO.Compression.ZipFile.OpenRead(packagePath);
+        string[] requiredAssets =
+        [
+            "staticwebassets/js/webreport-script.bundle.min.js",
+            "staticwebassets/js/printscript.min.js",
+            "staticwebassets/js/split.min.js",
+            "staticwebassets/css/styles.min.css"
+        ];
+        foreach (var asset in requiredAssets)
+        {
+            var entry = package.GetEntry(asset);
+            if (entry == null || entry.Length == 0)
+                throw new Exception($"Missing or empty frontend asset '{asset}' in '{packagePath}'.");
+        }
+    }
 
     partial void UseNugetLocalization(NuGetPackSettings settings, ProductType productType);
 }

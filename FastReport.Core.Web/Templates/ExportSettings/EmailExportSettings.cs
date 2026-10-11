@@ -1,6 +1,8 @@
 ﻿#if !OPENSOURCE
 using FastReport.Web.Application.Localizations;
+using System;
 using System.IO;
+using System.Net;
 
 namespace FastReport.Web
 {
@@ -12,6 +14,10 @@ namespace FastReport.Web
             var localizationPageSelector = new PageSelectorLocalization(Res);
             var localization = new ToolbarLocalization(Res);
             var exports = Toolbar.Exports;
+            var emailSettings = Report.EmailSettings;
+            var emailAddress = WebUtility.HtmlEncode(String.Join("; ", emailSettings.Recipients ?? Array.Empty<string>()));
+            var emailSubject = WebUtility.HtmlEncode(emailSettings.Subject);
+            var emailMessage = WebUtility.HtmlEncode(emailSettings.Message);
 
             return $@"
 <div class=""modalcontainer modalcontainer--3"" data-target=""email"">
@@ -27,17 +33,17 @@ namespace FastReport.Web
 
         <div class=""fr-email-export-field"">
             <label class=""fr-email-export-label"">{localizationEmail.Address}<span class=""fr-required-star"">*</span></label>
-            <input id=""Email"" class=""fr-email-export-input"" type=""text"" placeholder=""1 E-mail; 2 E-mail; 3 E-mail..."" required />
+            <input id=""Email"" class=""fr-email-export-input"" type=""text"" value=""{emailAddress}"" placeholder=""1 E-mail; 2 E-mail; 3 E-mail..."" required />
         </div>
 
         <div class=""fr-email-export-field"">
             <label class=""fr-email-export-label"">{localizationEmail.Subject}</label>
-            <input id=""Subject"" class=""fr-email-export-input"" />
+            <input id=""Subject"" class=""fr-email-export-input"" value=""{emailSubject}"" />
         </div>
 
         <div class=""fr-email-export-field"">
             <label class=""fr-email-export-label"">{localizationEmail.Message}</label>
-            <textarea id=""Message"" class=""fr-email-export-textarea""></textarea>
+            <textarea id=""Message"" class=""fr-email-export-textarea"">{emailMessage}</textarea>
         </div>
 
         <div class=""fr-email-export-field"">

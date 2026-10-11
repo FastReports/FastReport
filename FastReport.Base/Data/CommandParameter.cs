@@ -166,6 +166,7 @@ namespace FastReport.Data
             Value = src.Value;
             Expression = src.Expression;
             DefaultValue = src.DefaultValue;
+            Direction = src.Direction;
         }
 
         /// <inheritdoc/>
@@ -187,6 +188,7 @@ namespace FastReport.Data
         {
             Expression = "";
             DefaultValue = "";
+            Direction = ParameterDirection.Input;
             SetFlags(Flags.CanEdit | Flags.CanCopy, false);
         }
     }

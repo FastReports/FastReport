@@ -221,6 +221,7 @@ namespace FastReport
         private PageCollection pages;
         private Dictionary dictionary;
         private ReportInfo reportInfo;
+        private EmailSettings emailSettings;
         private string baseReport;
         private Report baseReportObject;
         private string baseReportAbsolutePath;
@@ -384,6 +385,16 @@ namespace FastReport
         {
             get { return reportInfo; }
             set { reportInfo = value; }
+        }
+
+        /// <summary>
+        /// Gets the email settings such as recipients, subject, message body.
+        /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [SRCategory("Email")]
+        public EmailSettings EmailSettings
+        {
+            get { return emailSettings; }
         }
 
         /// <summary>
@@ -1130,6 +1141,7 @@ namespace FastReport
         private void ClearReportProperties()
         {
             ReportInfo.Clear();
+            EmailSettings.Clear();
             Dictionary.Clear();
             if (IsDesigning)
             {
@@ -1927,6 +1939,7 @@ namespace FastReport
             if (FinishReportEvent != c.FinishReportEvent)
                 writer.WriteStr("FinishReportEvent", FinishReportEvent);
             ReportInfo.Serialize(writer, c.ReportInfo);
+            EmailSettings.Serialize(writer, c.EmailSettings);
             SerializeDesign(writer, c);
             if (Styles.Count > 0)
                 writer.Write(Styles);
@@ -2826,6 +2839,7 @@ namespace FastReport
         {
             pages = new PageCollection(this);
             reportInfo = new ReportInfo();
+            emailSettings = new EmailSettings();
             InitDesign();
             styles = new StyleCollection();
             Dictionary = new Dictionary();
