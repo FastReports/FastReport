@@ -28,6 +28,8 @@ namespace FastReport.Utils
         private static XmlDocument FBuiltinLocale;
         private const string FBadResult = "NOT LOCALIZED!";
 
+        internal static event EventHandler<LocalizationChangeEventArgs> LocaleChanged;
+
         /// <summary>
         /// Gets or set the folder that contains localization files (*.frl).
         /// </summary>
@@ -86,6 +88,7 @@ namespace FastReport.Utils
             using (Stream stream = ResourceLoader.GetStream("en.xml"))
             {
                 FLocale.Load(stream);
+                OnLocaleChanged();
                 CultureInfo enCulture;
                 try
                 {
@@ -125,6 +128,7 @@ namespace FastReport.Utils
             {
                 FLocale = new XmlDocument();
                 FLocale.Load(fileName);
+                OnLocaleChanged();
                 SetCurrentCulture();
             }
             else
@@ -143,6 +147,7 @@ namespace FastReport.Utils
             {
                 CurrentCulture = culture;
                 FLocale = FBuiltinLocale;
+                OnLocaleChanged();
                 return;
             }
 
@@ -150,6 +155,7 @@ namespace FastReport.Utils
             {
                 CurrentCulture = culture;
                 FLocale = LocalesCache[culture];
+                OnLocaleChanged();
                 return;
             }
 
@@ -161,6 +167,7 @@ namespace FastReport.Utils
                 {
                     CurrentCulture = parent;
                     FLocale = LocalesCache[parent];
+                    OnLocaleChanged();
                     return;
                 }
 
@@ -170,6 +177,7 @@ namespace FastReport.Utils
                     {
                         CurrentCulture = parent.Parent;
                         FLocale = LocalesCache[parent.Parent];
+                        OnLocaleChanged();
                         return;
                     }
             }
@@ -200,6 +208,7 @@ namespace FastReport.Utils
                 newLocale.Load(localeFile);
                 CurrentCulture = culture;
                 FLocale = newLocale;
+                OnLocaleChanged();
                 LocalesCache.Add(culture, newLocale);
             }
         }
@@ -237,7 +246,7 @@ namespace FastReport.Utils
 
             FLocale = new XmlDocument();
             FLocale.Load(stream);
-
+            OnLocaleChanged();
             SetCurrentCulture();
         }
 
@@ -308,6 +317,14 @@ namespace FastReport.Utils
 
         private static string Get(string id, XmlDocument locale)
         {
+            var item = GetXmlItem(id, locale);
+            if (item != null)
+                return item.GetProp("Text");
+            return "";
+        }
+
+        internal static XmlItem GetXmlItem(string id, XmlDocument locale)
+        {
             string[] categories = id.Split(',');
             XmlItem xi = locale.Root;
             foreach (string category in categories)
@@ -318,7 +335,13 @@ namespace FastReport.Utils
                 xi = xi[i];
             }
 
-            return xi.GetProp("Text");
+            return xi;
+        }
+
+        private static void OnLocaleChanged()
+        {
+            if (LocaleChanged != null)
+                LocaleChanged.Invoke(null, new LocalizationChangeEventArgs(FLocale, FBuiltinLocale));
         }
 
         /// <summary>
@@ -446,6 +469,29 @@ namespace FastReport.Utils
         public MyRes(string category)
         {
             this.category = category;
+        }
+    }
+
+    public class LocalizationChangeEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Get a document with new localization.
+        /// </summary>
+        public readonly XmlDocument NewLocale;
+
+        /// <summary>
+        /// Get a document with built-in localization.
+        /// </summary>
+        public readonly XmlDocument BuiltinLocale;
+
+        /// <summary>
+        /// Initializes a new instance of the LocalizationChangeEventArgs class.
+        /// </summary>
+        /// <param name="newLocale"></param>
+        public LocalizationChangeEventArgs(XmlDocument newLocale, XmlDocument builtinLocale)
+        {
+            NewLocale = newLocale;
+            BuiltinLocale = builtinLocale;
         }
     }
 

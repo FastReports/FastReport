@@ -95,9 +95,6 @@
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Content>
-    <Content Include="$(ProjectDir)\wwwroot\*.js;$(ProjectDir)\wwwroot\*.css" CopyToOutputDirectory="Always">
-      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
-    </Content>
 	  <None Include="$(WebBaseDir)\postcss.config.js;$(WebBaseDir)\**\*.json;$(WebBaseDir)\rollup.config.mjs" CopyToOutputDirectory="Never">
 		  <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
 		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -126,4 +123,20 @@
     <None Remove="obj\**"/>
     <Content Remove="obj\**" />
   </ItemGroup>
+
+  <!-- These files do not exist during evaluation on a clean checkout. Register them
+       after the frontend build, before the Razor SDK discovers static web assets. -->
+  <Target Name="IncludeOpenSourceFrontendAssets"
+          BeforeTargets="AssignTargetPaths"
+          DependsOnTargets="BuildFrontendDev;BuildFrontendOpenSource">
+    <ItemGroup>
+      <_OpenSourceFrontendAsset Include="wwwroot\js\webreport-script.bundle.min.js;wwwroot\js\printscript.min.js;wwwroot\js\split.min.js;wwwroot\css\styles.min.css" />
+    </ItemGroup>
+    <Error Condition="!Exists('%(_OpenSourceFrontendAsset.Identity)')"
+           Text="Missing generated frontend asset: %(_OpenSourceFrontendAsset.Identity)" />
+    <ItemGroup>
+      <Content Remove="@(_OpenSourceFrontendAsset)" />
+      <Content Include="@(_OpenSourceFrontendAsset)" CopyToOutputDirectory="Always" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+  </Target>
 </Project>

@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(NetFrameworkMinimum);net6.0-windows</TargetFrameworks>
+    <Version>1.0.0</Version>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Configurations>Debug;Release;Demo</Configurations>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+  <Import Project="..\Shared.props" />
+  <PropertyGroup>
+    <DefineConstants>MONO</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Demo'">
+    <Optimize>true</Optimize>
+    <DefineConstants>$(DefineConstants);Demo</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\fastreport_transports\FastReport.Transport.WPF\FastReport.Transport.WPF.csproj" />
+    <ProjectReference Include="..\..\..\..\..\FastReport.WPF\FastReport.WPF.csproj">
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\*.cs" Link="%(Filename)%(Extension)" />
+    <Compile Remove="..\ButtonWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\FastReport.Forms.WPF\FastReport.Forms.WPF.csproj" />
+  </ItemGroup>
+  <!-- disable transitive reference to System.Windows.Forms (used in AvalonEdit). PrivateAssets does not work in this case -->
+  <Target Name="ProcessSWFAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'System.Windows.Forms'">
+        <Aliases>nonmerged</Aliases>
+      </ReferencePath>
+      <ReferencePath Condition="'%(FileName)' == 'System.Windows.Forms.Primitives'">
+        <Aliases>nonmerged</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
+</Project>

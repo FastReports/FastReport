@@ -283,6 +283,19 @@ namespace FastReport
         }
 
         /// <summary>
+        /// Semantic role for PDF/UA. 
+        /// Acceptable values: H1...H6, P, Figure, Table, TR, TD, TH, Form, Link.
+        /// </summary>
+        [Category("PDF/UA")]
+        public string SemanticRole { get; set; }
+
+        /// <summary>
+        /// Alternative text (required for images, diagrams, decorative text).
+        /// </summary>
+        [Category("PDF/UA")]
+        public string AltText { get; set; }
+
+        /// <summary>
         /// Determines if the object can grow.
         /// </summary>
         /// <remarks>
@@ -689,6 +702,8 @@ namespace FastReport
             Fill = src.Fill.Clone();
             Bookmark = src.Bookmark;
             Hyperlink.Assign(src.Hyperlink);
+            SemanticRole = src.SemanticRole;
+            AltText = src.AltText;
             CanGrow = src.CanGrow;
             CanShrink = src.CanShrink;
             GrowToBottom = src.GrowToBottom;
@@ -836,6 +851,10 @@ namespace FastReport
             Hyperlink.Serialize(writer, c.Hyperlink);
             if (Bookmark != c.Bookmark)
                 writer.WriteStr("Bookmark", Bookmark);
+            if (SemanticRole != c.SemanticRole)
+                writer.WriteStr("SemanticRole", SemanticRole);
+            if (AltText != c.AltText)
+                writer.WriteStr("AltText", AltText);
             if (writer.SerializeTo != SerializeTo.Preview)
             {
                 if (CanGrow != c.CanGrow)

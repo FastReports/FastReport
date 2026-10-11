@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>$(NetFrameworkMinimum);net6.0-windows</TargetFrameworks>
+		<Version>1.0.0</Version>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+		<Configurations>Debug;Release;Demo</Configurations>
+		<PackageReleaseNotes></PackageReleaseNotes>
+	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Demo'">
+    <Optimize>true</Optimize>
+    <DefineConstants>$(DefineConstants);Demo</DefineConstants>
+  </PropertyGroup>
+  <Import Project="..\Shared.props" />
+  <ItemGroup>
+    <Compile Include="..\*.cs" Link="%(Filename)%(Extension)" />
+    <Compile Remove="..\ButtonWrapper.Mono.cs" />
+  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\..\fastreport_transports\FastReport.Transport.Forms\FastReport.Transport.WinForms.csproj" >
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>
+		<ProjectReference Include="..\..\..\..\..\FastReport\FastReport.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

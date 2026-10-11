@@ -1,0 +1,17 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>FastReport.Plugins.Transport</Product>
+    <AssemblyName>FastReport.Plugins.Transport</AssemblyName>
+    <PackageLicenseUrl>https://www.fast-report.com/products/fast-report-net/license</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <Import Project="..\Plugins.props" />
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)">
+      <Visible>true</Visible>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

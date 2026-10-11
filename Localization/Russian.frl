@@ -149,6 +149,7 @@
     <LinterDataConnection Text="Подключение к ЛИНТЕР"/>
     <VistaDBDataConnection Text="Подключение к VistaDB"/>
     <PostgresDataConnection Text="Подключение к Postgres"/>
+    <GreenplumDataConnection Text="Подключение к Greenplum"/>
     <MySqlDataConnection Text="Подключение к MySQL"/>
     <OracleDataConnection Text="Подключение к Oracle"/>
     <SQLiteDataConnection Text="Подключение к SQLite"/>
@@ -461,6 +462,7 @@
         <Open Text="Открыть..."/>
         <OpenPage Text="Открыть страницу..."/>
         <OpenViaCloud Text="Открыть из Облака..."/>
+        <OpenUsingTransport Text="Открыть с помощью Транспорта"/>
         <RecentFiles Text="Недавние файлы"/>
         <Close Text="Закрыть"/>
         <Save Text="Сохранить"/>
@@ -468,6 +470,7 @@
         <SaveWithRandomData Text="Сохранить со случайными данными..."/>
         <SaveAll Text="Сохранить все"/>
         <SaveToCloud Text="Сохранить в Облако..."/>
+        <SaveUsingTransport Text="Сохранить с помощью Транспорта"/>
         <PageSetup Text="Параметры страницы..."/>
         <PrinterSetup Text="Параметры принтера..."/>
         <Preview Text="Предварительный просмотр..."/>
@@ -757,6 +760,7 @@
     <Open Text="Открыть файл"/>
     <OpenLocal Text="Открыть..."/>
     <OpenViaCloud Text="Открыть из Облака..."/>
+    <OpenWithTransport Text="Открыть с помощью Транспорта"/>
     <Save Text="Сохранить файл"/>
     <SaveText Text="Сохранить"/>
     <SaveNative Text="Готовый отчет"/>
@@ -2107,7 +2111,7 @@
         <Error Text="Не все необходимые банковские реквизиты заполнены."/>
         <Warning Text="Некорректные данные в полях:"/>
       </SberbankQr>
-      <BarcodeRussianPost>
+      <BarcodeRussianPost Text="Почта России">
         <Index Text="Индекс предприятия связи места приема"/>
         <MonthNumber Text="Порядковый номер месяца печати штрихкодового идентификатора"/>
         <MailNumber Text="Номер почтового отправления"/>
@@ -2259,14 +2263,14 @@
     <Xml>
       <Xsd Text="Файл схемы или URL:"/>
       <Xml Text="Файл данных или URL:"/>
-	  <Codepage Text="Кодировка:"/>
+    <Codepage Text="Кодировка:"/>
       <Codepages>
-		<Default Text="По умолчанию"/>
-		<ASCII Text="ASCII"/>
-		<UTF8 Text="UTF8"/>
-		<Unicode Text="Юникод"/>
-		<ISO-8859-1  Text="ISO-8859-1"/>
-	  </Codepages>
+    <Default Text="По умолчанию"/>
+    <ASCII Text="ASCII"/>
+    <UTF8 Text="UTF8"/>
+    <Unicode Text="Юникод"/>
+    <ISO-8859-1  Text="ISO-8859-1"/>
+    </Codepages>
     </Xml>
     <Access>
       <Provider Text="Поставщик:"/>
@@ -2616,6 +2620,7 @@
       <Print Text="Печать"/>
       <Other Text="Другое"/>
       <Cloud Text="Хранилище"/>
+      <Transport Text="Транспорты"/>
       <Messengers Text="Мессенджер"/>
     </ExportGroups>
     <Image Text="Экспорт в рисунок">
@@ -2683,8 +2688,11 @@
       <ExportType Text="Экспортировать типы данных"/>
       <FieldNames Text="Имена полей (например, Field1;Field2):"/>
     </Dbf>
-    <Xml Text="Экспорт в XML">
+    <XmlExcel Text="Экспорт в XML">
       <File Text="XML (Excel) формат"/>
+    </XmlExcel>
+    <Xml Text="Экспорт в XML">
+      <File Text="XML формат"/>
     </Xml>
     <Odf>
       <Compliance Text="Стандарт ODF:  "/>
@@ -2729,6 +2737,7 @@
       <CurrencyToAccounting Text="Преобразовывать денежный формат в финансовый"/>
       <GeneralToText Text="Преобразовывать общий формат в текстовый"/>
       <UseCustomFormat Text="Преобразовывать в пользовательский формат"/>
+      <Page Text="Страница"/>
       <ShrinkToFit Text="Автоподбор ширины"/>
       <ExportFormulas Text="Экспортировать формулы"/>
       <SheetTabColors Text="Цвет ярлычка листа"/>
@@ -2791,6 +2800,7 @@
       <DocumentInformation Text="Информация о документе"/>
       <Title Text="Заголовок"/>
       <Author Text="Автор"/>
+      <DocumentLanguage Text="Язык документа"/>
       <Subject Text="Тема"/>
       <Keywords Text="Ключевые слова"/>
       <Creator Text="Создатель"/>
@@ -3053,7 +3063,7 @@
     <Last Text="На последнюю страницу"/>
     <EnterPage Text="Введите номер страницы для перехода"/>
     <TotalPages Text="Всего страниц (не редактируется)"/>
-	<Search Text="Поиск"/>
+  <Search Text="Поиск"/>
     <SearchPlaceholder Text="Введите текст"/>
     <MatchCase Text="Учитывать регистр"/>
     <WholeWord Text="Только слово целиком"/>
@@ -3155,4 +3165,82 @@
       <Hint Text="Введите строки в коллекцию (одну на строку):"/>
     </StringCollection>
   </SystemWindowsForms>
+  <Transport>
+    <CommonErrors>
+      <Unauthorize Text="Неавторизованный. Используйте метод авторизации."/>
+      <MissingProperty Text="Не установлено свойство {0}"/>
+      <OAuthTimeout Text="Авторизация не была завершена в течение {0} секунд(ы). Вышел срок ожидания."/>
+      <IncorrectNameLength Text="Максимальная длина имени загружаемого файла — 255 символов"/>
+      <UnsopportedNameChars Text="Имя содержит недопустимый символ '{0}'."/>
+      <ReservedName Text="Имя '{0}' является зарезервированным системным именем."/>
+    </CommonErrors>
+    <YandexDiskTransport>
+      <FailedOperation Text="Операция завершилась неудачей, попробуйте повторить первоначальный запрос на копирование, перемещение или удаление."/>
+    </YandexDiskTransport>
+    <TransportForm Text="Транспорт">
+      <Rename Text="Переименовать"/>
+      <CreateFolder Text="Создать папку"/>
+      <Cut Text="Вырезать"/>
+      <Copy Text="Копировать"/>
+      <Paste Text="Вставить"/>
+      <Download Text="Скачать"/>
+      <Upload Text="Загрузить"/>
+      <Delete Text="Удалить"/>
+      <FetchFiles Text="Загрузка списока файлов"/>
+      <Error Text="Ошибка"/>
+      <Warning Text="Предупреждение"/>
+      <WarningDelete Text="Внимание: Выбранные элементы будут удалены безвозвратно."/>
+      <FilesOverwritten Text="Файл будет перезаписан."/>
+      <RenameOperation Text="Переименование \n{0} в \n{1}"/>
+      <CutOperation Text="Перемещение \n{0} в \n{1}"/>
+      <CopyOperation Text="Копирование \n{0} в \n{0}]"/>
+      <DownloadOperation Text="Скачивание \n{0}"/>
+      <UploadOperation Text="Загрузка \n{0}"/>
+      <DeleteOperation Text="Удаление \n{0}"/>
+      <Refresh Text="Обновить"/>
+    </TransportForm>
+    <CreateNewForm>
+      <Save Text="Сохранить"/>
+      <FolderName Text="Новое имя:"/>
+      <FileName Text="Имя файла:"/>
+      <NotBeEmpty Text="не может быть пустым"/>
+    </CreateNewForm>
+    <QueueControl Text="Очередь задач">
+      <CancelOperation Text="Отменить операцию"/>
+      <EmptyQueue Text="Очередь пуста"/>
+    </QueueControl>
+    <ClientInfoForms>
+      <Base>
+        <ClientId Text="Идентификатор клиента:"/>
+        <ClientSecret Text="Секрет клиента:"/>
+      </Base>
+      <S3 Text="Simple Storage Service">
+        <AccessKeyId Text="Идентификатор ключа доступа:"/>
+        <SecretAccessKey Text="Секретный ключ доступа:"/>
+        <Region Text="Регион:"/>
+        <Host Text="Хост:"/>
+        <Bucket Text="Бакет:"/>
+        <RequestStyle Text="Стиль запроса:"/>
+      </S3>
+      <YandexDisk Text="Яндекс Диск">
+        <Port Text="Порт прослушивателя:"/>
+      </YandexDisk>
+      <GoogleDrive Text="Google Диск"/>
+      <OneDrive Text="OneDrive" />
+      <NextCloud Text="NextCloud файлы">
+        <Port Text="Порт прослушивателя:"/>
+        <Address Text="Адрес NextCloud:"/>
+      </NextCloud>
+    </ClientInfoForms>
+    <TransportSaveFileDialog Text="Сохранение">
+      <FileName Text="Имя файла:"/>
+      <FileType Text="Тип файла:"/>
+      <Settings Text="Настройки..."/>
+    </TransportSaveFileDialog>
+    <TransportReportDialog>
+      <OpenReport Text="Открыть отчет"/>
+      <SaveReport Text="Сохранить отчет"/>
+      <FileName Text="Имя файла:"/>
+    </TransportReportDialog>
+  </Transport>
 </Language>

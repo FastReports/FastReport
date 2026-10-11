@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> 
+﻿<?xml version="1.0" encoding="utf-8"?> 
 <Language Name="en">
   <Fonts>
     <FontMustNotBeModifiedEmbeddedOrExchanged Text="{0} font must not be modified, embedded, or exchanged in any manner without first obtaining permission of the legal owner."/>
@@ -149,6 +149,7 @@
     <LinterDataConnection Text="LINTER connection"/>
     <VistaDBDataConnection Text="VistaDB connection"/>
     <PostgresDataConnection Text="Postgres connection"/>
+    <GreenplumDataConnection Text="Greenplum connection"/>
     <MySqlDataConnection Text="MySQL connection"/>
     <OracleDataConnection Text="Oracle connection"/>
     <SQLiteDataConnection Text="SQLite connection"/>
@@ -462,6 +463,7 @@
         <Open Text="Open..."/>
         <OpenPage Text="Open page..."/>
         <OpenViaCloud Text="Open from Cloud..."/>
+        <OpenUsingTransport Text="Open using Transport"/>
         <RecentFiles Text="Recent Files"/>
         <Close Text="Close"/>
         <Save Text="Save"/>
@@ -469,6 +471,7 @@
         <SaveWithRandomData Text="Save With Random Data..."/>
         <SaveAll Text="Save All"/>
         <SaveToCloud Text="Save to Cloud..."/>
+        <SaveUsingTransport Text="Save using Transport"/>
         <PageSetup Text="Page Setup..."/>
         <PrinterSetup Text="Printer Setup..."/>
         <Preview Text="Preview..."/>
@@ -759,6 +762,7 @@
     <Open Text="Open File"/>
     <OpenLocal Text="Open..."/>
     <OpenViaCloud Text="Open from Cloud..."/>
+    <OpenWithTransport Text="Open using Transport"/>
     <Save Text="Save File"/>
     <SaveText Text="Save"/>
     <SaveNative Text="Prepared report"/>
@@ -2849,6 +2853,7 @@
       <Print Text="Print"/>
       <Other Text="Other"/>
       <Cloud Text="Storage"/>
+      <Transport Text="Transports"/>
       <Messengers Text="Messengers"/>
     </ExportGroups>
     <Image Text="Export to Image">
@@ -2916,8 +2921,11 @@
       <ExportType Text="Export types of data"/>
       <FieldNames Text="Field names (for example, Field1;Field2):"/>
     </Dbf>
-    <Xml Text="Export to XML">
+    <XmlExcel Text="Export to XML">
       <File Text="XML (Excel) table"/>
+    </XmlExcel>
+    <Xml Text="Export to XML">
+      <File Text="XML table"/>
     </Xml>
     <Odf>
       <Compliance Text="ODF Compliance:  "/>
@@ -2965,6 +2973,7 @@
       <ShrinkToFit Text="Shrink to fit" />
       <ExportFormulas Text="Export formulas"/>
       <SheetTabColors Text="Sheet tab color"/>
+      <Page Text="Page"/>
     </Xlsx>
     <Xls Text="Export to Excel 97">
       <File Text="Excel 97 file"/>
@@ -3027,6 +3036,7 @@
       <DocumentInformation Text="Document Information"/>
       <Title Text="Title"/>
       <Author Text="Author"/>
+      <DocumentLanguage Text="Document language"/>
       <Subject Text="Subject"/>
       <Keywords Text="Keywords"/>
       <Creator Text="Creator"/>
@@ -3395,4 +3405,82 @@
       <Hint Text="Enter the strings in the collection (one per line):"/>
     </StringCollection>
   </SystemWindowsForms>
+  <Transport>
+    <CommonErrors>
+      <Unauthorize Text="Неавторизованный. Используйте метод авторизации."/>
+      <MissingProperty Text="Не установлено свойство {0}"/>
+      <OAuthTimeout Text="Авторизация не была завершена в течение {0} секунд(ы). Вышел срок ожидания."/>
+      <IncorrectNameLength Text="Максимальная длина имени загружаемого файла — 255 символов"/>
+      <UnsopportedNameChars Text="Имя содержит недопустимый символ '{0}'."/>
+      <ReservedName Text="Имя '{0}' является зарезервированным системным именем."/>
+    </CommonErrors>
+    <YandexDiskTransport>
+      <FailedOperation Text="Операция завершилась неудачей, попробуйте повторить первоначальный запрос на копирование, перемещение или удаление."/>
+    </YandexDiskTransport>
+    <TransportForm Text="Транспорт">
+      <Rename Text="Переименовать"/>
+      <CreateFolder Text="Создать папку"/>
+      <Cut Text="Вырезать"/>
+      <Copy Text="Копировать"/>
+      <Paste Text="Вставить"/>
+      <Download Text="Скачать"/>
+      <Upload Text="Загрузить"/>
+      <Delete Text="Удалить"/>
+      <FetchFiles Text="Загрузка списока файлов"/>
+      <Error Text="Ошибка"/>
+      <Warning Text="Предупреждение"/>
+      <WarningDelete Text="Внимание: Выбранные элементы будут удалены безвозвратно."/>
+      <FilesOverwritten Text="Файл будет перезаписан."/>
+      <RenameOperation Text="Переименование \n{0} в \n{1}"/>
+      <CutOperation Text="Перемещение \n{0} в \n{1}"/>
+      <CopyOperation Text="Копирование \n{0} в \n{0}]"/>
+      <DownloadOperation Text="Скачивание \n{0}"/>
+      <UploadOperation Text="Загрузка \n{0}"/>
+      <DeleteOperation Text="Удаление \n{0}"/>
+      <Refresh Text="Обновить"/>
+    </TransportForm>
+    <CreateNewForm>
+      <Save Text="Сохранить"/>
+      <FolderName Text="Новое имя:"/>
+      <FileName Text="Имя файла:"/>
+      <NotBeEmpty Text="не может быть пустым"/>
+    </CreateNewForm>
+    <QueueControl Text="Очередь задач">
+      <CancelOperation Text="Отменить операцию"/>
+      <EmptyQueue Text="Очередь пуста"/>
+    </QueueControl>
+    <ClientInfoForms>
+      <Base>
+        <ClientId Text="Идентификатор клиента:"/>
+        <ClientSecret Text="Секрет клиента:"/>
+      </Base>
+      <S3 Text="Simple Storage Service">
+        <AccessKeyId Text="Идентификатор ключа доступа:"/>
+        <SecretAccessKey Text="Секретный ключ доступа:"/>
+        <Region Text="Регион:"/>
+        <Host Text="Хост:"/>
+        <Bucket Text="Бакет:"/>
+        <RequestStyle Text="Стиль запроса:"/>
+      </S3>
+      <YandexDisk Text="Яндекс Диск">
+        <Port Text="Порт прослушивателя:"/>
+      </YandexDisk>
+      <GoogleDrive Text="Google Диск"/>
+      <OneDrive Text="OneDrive" />
+      <NextCloud Text="NextCloud файлы">
+        <Port Text="Порт прослушивателя:"/>
+        <Address Text="Адрес NextCloud:"/>
+      </NextCloud>
+    </ClientInfoForms>
+    <TransportSaveFileDialog Text="Save">
+      <FileName Text="File name:"/>
+      <FileType Text="File type:"/>
+      <Settings Text="Settings..."/>
+    </TransportSaveFileDialog>
+    <TransportReportDialog>
+      <OpenReport Text="Open report"/>
+      <SaveReport Text="Save report"/>
+      <FileName Text="File name:"/>
+    </TransportReportDialog>
+  </Transport>
 </Language>

@@ -180,6 +180,13 @@ namespace FastReport.Table
             set { keepRows = value; }
         }
 
+        /// <summary>
+        /// Semantic role for PDF/UA table row.
+        /// Acceptable values: TR (default), or custom normalized role.
+        /// </summary>
+        [Category("PDF/UA")]
+        public string SemanticRole { get; set; }
+
         internal static float DefaultHeight
         {
             get { return (int)Math.Round(18 / (0.25f * Units.Centimeters)) * (0.25f * Units.Centimeters); }
@@ -293,6 +300,7 @@ namespace FastReport.Table
             AutoSize = src.AutoSize;
             KeepRows = src.KeepRows;
             CanBreak = src.CanBreak;
+            SemanticRole = src.SemanticRole;
 
             base.Assign(source);
         }
@@ -341,6 +349,8 @@ namespace FastReport.Table
                 writer.WriteBool("AutoSize", AutoSize);
             if (CanBreak != c.CanBreak)
                 writer.WriteBool("CanBreak", CanBreak);
+            if (SemanticRole != c.SemanticRole)
+                writer.WriteStr("SemanticRole", SemanticRole);
 
             if (Parent is TableResult)
             {

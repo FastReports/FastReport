@@ -63,12 +63,13 @@ namespace FastReport.Web
                 </select>
             </div>
         </div>
+    </div>
  {(false ? @"<script type=""module"" src=""./_content/FastReport.Web/js/ExportScripts/rtf-export.js""></script>" : "")}
-            <div class=""fr-popup-content-buttons"" style=""margin-bottom: -3.4rem; margin-top: 8px;"">
-                <button class=""fr-popup-content-btn-submit fr-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
-                <button class=""fr-popup-content-btn-submit"" {CreateOnClickEvent("frActions", "RTFExport")} id=""okButton"">OK</button>
-            </div>
-    </div>";
+    <div class=""fr-popup-content-buttons"">
+        <button class=""fr-popup-content-btn-submit fr-popup-content-btn-cancel"">{localizationPageSelector.LocalizedCancel}</button>
+        <button class=""fr-popup-content-btn-submit"" {CreateOnClickEvent("frActions", "RTFExport")} id=""okButton"">OK</button>
+    </div>
+</div>";
         }
     }
 }

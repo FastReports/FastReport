@@ -147,7 +147,21 @@ namespace FastReport.Barcode
         {
             get
             {
-                return text.Length == 15 && text.StartsWith("RP", StringComparison.OrdinalIgnoreCase);
+                // Russian Post barcode is supported by the Interleaved 2 of 5 barcode only
+                if (GetType() != typeof(Barcode2of5Interleaved))
+                    return false;
+
+                if (text.Length != 15 || !text.StartsWith("RP", StringComparison.OrdinalIgnoreCase))
+                    return false;
+
+                string data = text.Substring(2);
+                for (int i = 0; i < data.Length; i++)
+                {
+                    if (data[i] < '0' || data[i] > '9')
+                        return false;
+                }
+
+                return true;
             }
         }
         #endregion
@@ -608,9 +622,7 @@ namespace FastReport.Barcode
         /// </summary>
         private void DrawBottomLabel(IGraphics g, float zoom, RectangleF barArea, RectangleF drawArea)
         {
-            string text = base.text;
-
-            text = CheckSumModulo10(text.Substring(2));
+            string text = CheckSumModulo10(base.text.Substring(2));
 
             float fontSize = 1.8f * Units.Millimeters * zoom;
 

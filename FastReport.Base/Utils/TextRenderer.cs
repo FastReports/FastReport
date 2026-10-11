@@ -1513,19 +1513,21 @@ namespace FastReport.Utils
                 {
                     using (Pen pen = new Pen(Renderer.Brush, Renderer.Font.Size * 0.1f))
                     {
-                        float h = Renderer.FontLineHeight;
-                        float w = h * 0.1f; // to match .net char X offset
-                                            // invert offset in case of rtl
+                        float w = Renderer.FontLineHeight * 0.1f; // to match .net char X offset
+                        // invert offset in case of rtl
                         if (Renderer.RightToLeft)
                             w = -w;
 
                         // emulate underline & strikeout
+                        float baseLine = CalcBaseLine();
+
+                        float h = baseLine + baseLine * 0.1f;
                         foreach (RectangleF rect in Underlines)
                         {
-                            Renderer.Graphics.DrawLine(pen, rect.Left + w, rect.Top + h - w, rect.Right + w, rect.Top + h - w);
+                            Renderer.Graphics.DrawLine(pen, rect.Left + w, rect.Top + h, rect.Right + w, rect.Top + h);
                         }
 
-                        h /= 2;
+                        h = baseLine * 0.75f;
                         foreach (RectangleF rect in Strikeouts)
                         {
                             Renderer.Graphics.DrawLine(pen, rect.Left + w, rect.Top + h, rect.Right + w, rect.Top + h);
