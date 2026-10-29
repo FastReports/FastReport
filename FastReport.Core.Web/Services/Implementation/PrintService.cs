@@ -46,7 +46,7 @@ namespace FastReport.Web.Services
                 htmlExport.EnableMargins = webReport.EnableMargins;
                 htmlExport.DisableInlineScript = true;
                 htmlExport.OnClickTemplate = WebReport.CreateOnClickEvent(webReport.ScriptName, "click", "this", "{0}", "{1}");// $"{ScriptName}.click(this,'{{0}}','{{1}}')";
-                htmlExport.PrintScriptSrc = "../_content/FastReport.Web/js/printscript.min.js";
+                htmlExport.PrintScriptSrc = webReport.template_STATIC_ASSET_PATH("js/printscript.min.js");
                 //htmlExport.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RouteBasePath, controller.RouteBasePath, ID, "picture") + "/";
                 htmlExport.WebImagePrefix = WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath, $"preview.getPicture?reportId={webReport.ID}&pictureId=");
                 htmlExport.ExportMode = HTMLExport.ExportType.WebPrint;

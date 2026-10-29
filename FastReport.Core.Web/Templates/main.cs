@@ -6,6 +6,7 @@ namespace FastReport.Web
     partial class WebReport
     {
         internal string template_ROUTE_BASE_PATH => WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, FastReportGlobal.FastReportOptions.RouteBasePath);
+        internal string template_STATIC_ASSET_PATH(string assetPath) => WebUtils.ToUrl(FastReportGlobal.FastReportOptions.RoutePathBaseRoot, "_content/FastReport.Web", assetPath);
         internal string template_export_url(string exportFormat) => $"{template_ROUTE_BASE_PATH}/preview.exportReport?reportId={ID}&exportFormat={exportFormat}";
         internal string templte_email_export_url => $"{template_ROUTE_BASE_PATH}/preview.sendEmail?reportId={ID}";
         internal string template_print_url(string printMode) => $"{template_ROUTE_BASE_PATH}/preview.printReport?reportId={ID}&printMode={printMode}";
@@ -22,7 +23,7 @@ namespace FastReport.Web
 #endif
 
             return $@"
-{(!renderBody ? "<link href=\"/_content/FastReport.Web/css/styles.min.css\" rel=\"stylesheet\" />" : "")}
+{(!renderBody ? $"<link href=\"{template_STATIC_ASSET_PATH("css/styles.min.css")}\" rel=\"stylesheet\" />" : "")}
 <div id=""fr-webreport"" class=""fr-container fr-webreport"">
     <style>
         {template_style()}

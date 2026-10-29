@@ -28,7 +28,7 @@ namespace FastReport.Web
     </div>
 </div>
 
-<script src=""/_content/FastReport.Web/js/split.min.js""></script>
+<script src=""{template_STATIC_ASSET_PATH("js/split.min.js")}""></script>
 ";
         }
 

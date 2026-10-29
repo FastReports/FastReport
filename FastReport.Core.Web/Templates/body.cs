@@ -9,7 +9,7 @@ namespace FastReport.Web
             if (!renderBody)
                 return $@"
 <div class=""fr-report-body"">
-    <script type=""module"" class=""webreport-script"" data-config='{GetScriptProps()}' src=""/_content/FastReport.Web/js/webreport-script.bundle.min.js"" defer></script>
+    <script type=""module"" class=""webreport-script"" data-config='{GetScriptProps()}' src=""{template_STATIC_ASSET_PATH("js/webreport-script.bundle.min.js")}"" defer></script>
 </div>";
                     
             return $@"
@@ -19,7 +19,7 @@ namespace FastReport.Web
     <div class=""fr-report"">
         {ReportBody()}
     </div>
- <script type=""module"" class=""webreport-script"" data-config='{GetScriptProps()}' src=""/_content/FastReport.Web/js/webreport-script.bundle.min.js"" defer></script>   
+ <script type=""module"" class=""webreport-script"" data-config='{GetScriptProps()}' src=""{template_STATIC_ASSET_PATH("js/webreport-script.bundle.min.js")}"" defer></script>
 ";
         }
     }
