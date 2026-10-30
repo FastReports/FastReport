@@ -31,6 +31,7 @@ namespace FastReport.Import.StimulSoft
         private XmlNode reportNode;
         private PageUnits unitType;
         private float leftOffset;
+        private Stack<GroupHeaderBand> groupHeaderStack = new Stack<GroupHeaderBand>();
         #endregion // Fields
 
         #region Constructors
@@ -687,6 +688,8 @@ namespace FastReport.Import.StimulSoft
                 page.Columns.Width += UnitsConverter.ConvertFloat(node["ColumnGaps"].InnerText) * UnitsConverter.GetPixelsInUnit(unitType) / Units.Millimeters;
 
             page.Tag = node["Guid"].InnerText;
+            
+            groupHeaderStack.Clear();
 
             LoadBands(node, page);
             LoadChildBands(node, page);
@@ -999,6 +1002,7 @@ namespace FastReport.Import.StimulSoft
 
         private void LoadChildBands(XmlNode node, ReportPage page)
         {
+            groupHeaderStack.Clear();
             foreach (XmlNode item in SortNodeByTop(node))
             {
                 switch (RemovePrefix(item.Attributes["type"].Value))
@@ -1028,16 +1032,27 @@ namespace FastReport.Import.StimulSoft
                     case "GroupHeaderBand":
                         {
                             GroupHeaderBand band = ComponentsFactory.CreateGroupHeaderBand(page);
-                            band.Data = GetParentDataBand(ParseRectangleF(item["ClientRectangle"].InnerText), page);
-                            band.Condition = item["Condition"].InnerText;
-
+                            band.Condition = item["Condition"] != null ? item["Condition"].InnerText : "";
                             LoadBandBase(band, item);
+
+                            band.Data = GetParentDataBand(ParseRectangleF(node["ClientRectangle"].InnerText), page)
+                                        ?? page.AllObjects.OfType<DataBand>().LastOrDefault();
+
+                            if (groupHeaderStack.Count > 0)
+                            {
+                                GroupHeaderBand outer = groupHeaderStack.Peek();
+                                outer.Data = null;
+                                outer.NestedGroup = band;
+                            }
+                            groupHeaderStack.Push(band);
                             break;
                         }
                     case "GroupFooterBand":
                         {
-                            BandBase band = ComponentsFactory.CreateGroupFooterBand(GetParentGroupHeaderBand(ParseRectangleF(item["ClientRectangle"].InnerText), page));
-                            LoadBandBase(band, item);
+                            GroupHeaderBand parent = GetParentGroupHeaderBand(ParseRectangleF(item["ClientRectangle"].InnerText), page)
+                                                     ?? (groupHeaderStack.Count > 0 ? groupHeaderStack.Pop() : null);
+                            BandBase band = ComponentsFactory.CreateGroupFooterBand(parent);
+                            this.LoadBandBase(band, item);
                             break;
                         }
                     case "ChildBand":
