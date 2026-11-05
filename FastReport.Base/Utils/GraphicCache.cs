@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Xml.Linq;
 
 namespace FastReport
 {
@@ -31,6 +32,16 @@ namespace FastReport
         private Hashtable fonts;
         private Hashtable stringFormats;
 
+        private int CombineHashCode(params object[] objs)
+        {
+            int hashCode = 1903003160;
+            foreach (object obj in objs)
+            {
+                hashCode = hashCode * -1521134295 + obj.GetHashCode();
+            }
+            return hashCode;
+        }
+
         /// <summary>
         /// Gets a pen with specified settings.
         /// </summary>
@@ -53,7 +64,7 @@ namespace FastReport
         /// <returns>The <b>Pen</b> object.</returns>
         public Pen GetPen(Color color, float width, DashStyle style, LineJoin lineJoin)
         {
-            int hash = color.GetHashCode() ^ width.GetHashCode() ^ style.GetHashCode() ^ lineJoin.GetHashCode();
+            int hash = CombineHashCode(color, width, style, lineJoin);
             Pen result = pens[hash] as Pen;
             if (result == null)
             {
@@ -91,7 +102,7 @@ namespace FastReport
         /// <returns>The <b>Font</b> object.</returns>
         public Font GetFont(FontFamily name, float size, FontStyle style)
         {
-            int hash = name.GetHashCode() ^ size.GetHashCode() ^ style.GetHashCode();
+            int hash = CombineHashCode(name, size, style);
             Font result = fonts[hash] as Font;
             if (result == null)
             {
@@ -110,16 +121,16 @@ namespace FastReport
         /// <param name="flags"><b>StringFormatFlags</b> enumeration that contains formatting information.</param>
         /// <param name="firstTab">The number of spaces between the beginning of a line of text and the first tab stop.</param>
         /// <param name="tabWidth">Distance between tab stops.</param>
+        /// <param name="typographic">Use typographic string format.</param>
         /// <returns>The <b>StringFormat</b> object.</returns>
         public StringFormat GetStringFormat(StringAlignment align, StringAlignment lineAlign,
-          StringTrimming trimming, StringFormatFlags flags, float firstTab, float tabWidth)
+          StringTrimming trimming, StringFormatFlags flags, float firstTab, float tabWidth, bool typographic = false)
         {
-            int hash = align.GetHashCode() ^ (lineAlign.GetHashCode() << 2) ^ (trimming.GetHashCode() << 5) ^
-              (flags.GetHashCode() << 16) ^ (100 - firstTab).GetHashCode() ^ tabWidth.GetHashCode();
+            int hash = CombineHashCode(align, lineAlign, trimming, flags, firstTab, tabWidth, typographic);
             StringFormat result = stringFormats[hash] as StringFormat;
             if (result == null)
             {
-                result = new StringFormat();
+                result = typographic ? new StringFormat(StringFormat.GenericTypographic) : new StringFormat();
                 result.Alignment = align;
                 result.LineAlignment = lineAlign;
                 result.Trimming = trimming;
@@ -147,17 +158,17 @@ namespace FastReport
         /// <param name="firstTab">The number of spaces between the beginning of a line of text and the first tab stop.</param>
         /// <param name="tabWidth">Distance between tab stops.</param>
         /// <param name="defaultTab">Default distance between default tabs stops.</param>
+        /// <param name="typographic">Use typographic string format.</param>
         /// <returns>The <b>StringFormat</b> object.</returns>
         public StringFormat GetStringFormat(StringAlignment align, StringAlignment lineAlign,
           StringTrimming trimming, StringFormatFlags flags, float firstTab, FloatCollection tabWidth,
-          float defaultTab = 48)
+          float defaultTab = 48, bool typographic = false)
         {
-            int hash = align.GetHashCode() ^ (lineAlign.GetHashCode() << 2) ^ (trimming.GetHashCode() << 5) ^
-              (flags.GetHashCode() << 16) ^ (100 - firstTab).GetHashCode() ^ tabWidth.GetHashCode();
+            int hash = CombineHashCode(align, lineAlign, trimming, flags, firstTab, tabWidth, defaultTab, typographic);
             StringFormat result = stringFormats[hash] as StringFormat;
             if (result == null)
             {
-                result = new StringFormat();
+                result = typographic ? new StringFormat(StringFormat.GenericTypographic) : new StringFormat();
                 result.Alignment = align;
                 result.LineAlignment = lineAlign;
                 result.Trimming = trimming;

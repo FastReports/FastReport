@@ -264,7 +264,7 @@ namespace FastReport
         private string initializeDataName;
         private object tag;
         private bool isLoadPrepared = false;
-
+        private bool typographicText;
         #endregion Fields
 
         #region Properties
@@ -900,6 +900,17 @@ namespace FastReport
             set { tag = value; }
         }
 
+        /// <summary>
+        /// Determines if the text rendering should use typographic setting.
+        /// </summary>
+        [DefaultValue(false)]
+        [SRCategory("Misc")]
+        public bool TypographicText
+        {
+            get { return typographicText; }
+            set { typographicText = value; }
+        }
+
         private static string[] DefaultAssemblies
         {
             get
@@ -1171,6 +1182,7 @@ namespace FastReport
             FinishReportEvent = "";
             _needCompile = true;
             CodeProvider.Clear();
+            TypographicText = false;
         }
 
         private void ResetPreparedPages()
@@ -1928,6 +1940,8 @@ namespace FastReport
                 writer.WriteValue("TextQuality", TextQuality);
             if (SmoothGraphics != c.SmoothGraphics)
                 writer.WriteBool("SmoothGraphics", SmoothGraphics);
+            if (TypographicText != c.TypographicText)
+                writer.WriteBool("TypographicText", TypographicText);
             if (Password != c.Password)
                 writer.WriteStr("Password", Password);
             if (InitialPageNumber != c.InitialPageNumber)

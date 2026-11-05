@@ -39,6 +39,7 @@ namespace FastReport
         private string beforeLayoutEvent;
         private string afterLayoutEvent;
         private int repeatBandNTimes = 1;
+        private float minBreakHeight;
 
         #endregion
 
@@ -299,6 +300,18 @@ namespace FastReport
             set { isLastRow = value; }
         }
 
+        /// <summary>
+        /// Gets or sets minimum height of breaked object.
+        /// </summary>
+        [DefaultValue(0f)]
+        [Category("Behavior")]
+        [TypeConverter("FastReport.TypeConverters.UnitsConverter, FastReport")]
+        public float MinBreakHeight
+        {
+            get { return minBreakHeight; }
+            set { minBreakHeight = Math.Max(0, value); }
+        }
+
         internal bool HasBorder
         {
             get { return !Border.Equals(new Border()); }
@@ -533,6 +546,7 @@ namespace FastReport
             AfterLayoutEvent = src.AfterLayoutEvent;
             RepeatBandNTimes = src.RepeatBandNTimes;
             IsLastRow = src.IsLastRow;
+            MinBreakHeight = src.MinBreakHeight;
         }
 
         internal virtual void UpdateWidth()
@@ -579,6 +593,8 @@ namespace FastReport
                 writer.WriteStr("AfterLayoutEvent", AfterLayoutEvent);
             if (RepeatBandNTimes != c.RepeatBandNTimes)
                 writer.WriteInt("RepeatBandNTimes", RepeatBandNTimes);
+            if (MinBreakHeight != c.MinBreakHeight)
+                writer.WriteFloat("MinBreakHeight", MinBreakHeight);
         }
 
         internal bool IsColumnDependentBand
@@ -844,13 +860,14 @@ namespace FastReport
                     if (obj.Top < breakLine && obj.Bottom > breakLine)
                     {
                         canBreak = false;
+                        float upperHeight = breakLine - obj.Top;
                         BreakableComponent breakable = obj as BreakableComponent;
-                        if (breakable != null && breakable.CanBreak)
+                        if (breakable != null && breakable.CanBreak && upperHeight > MinBreakHeight)
                         {
                             using (BreakableComponent clone = Activator.CreateInstance(breakable.GetType()) as BreakableComponent)
                             {
                                 clone.AssignAll(breakable);
-                                clone.Height = breakLine - clone.Top;
+                                clone.Height = upperHeight;
                                 // to allow access to the Report
                                 clone.Parent = breakTo;
                                 canBreak = clone.Break(null);
@@ -878,16 +895,26 @@ namespace FastReport
                 {
                     if (obj.Top < breakLine)
                     {
-                        BreakableComponent breakComp = Activator.CreateInstance(obj.GetType()) as BreakableComponent;
-                        breakComp.AssignAll(obj);
-                        breakComp.Parent = breakTo;
+                        float upperHeight = breakLine - obj.Top;
+                        float lowerHeight = obj.Height - upperHeight;
+                        if (lowerHeight > MinBreakHeight)
+                        {
+                            BreakableComponent breakComp = Activator.CreateInstance(obj.GetType()) as BreakableComponent;
+                            breakComp.AssignAll(obj);
+                            breakComp.Parent = breakTo;
 
-                        breakComp.CanGrow = true;
-                        breakComp.CanShrink = false;
-                        breakComp.Height -= breakLine - obj.Top;
-                        breakComp.Top = 0; 
-                        obj.Height = breakLine - obj.Top;
-                        (obj as BreakableComponent).Break(breakComp);
+                            breakComp.CanGrow = true;
+                            breakComp.CanShrink = false;
+                            breakComp.Height = lowerHeight;
+                            breakComp.Top = 0;
+                            obj.Height = upperHeight;
+                            (obj as BreakableComponent).Break(breakComp);
+                        }
+                        else
+                        {
+                            obj.Height = upperHeight;
+                            // throw the tail off
+                        }
                     }
                     else
                     {
