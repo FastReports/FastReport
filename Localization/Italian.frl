@@ -129,12 +129,12 @@
     <PreparedReport Text="Report elaborato (*.fpx)|*.fpx"/>
     <Style Text="Stili report  (*.frs)|*.frs"/>
     <Dictionary Text="Dizionario (*.frd)|*.frd"/>
-    <XsdFile Text="XML schema definition file (*.xsd)|*.xsd"/>
-    <XmlFile Text="XML file (*.xml)|*.xml"/>
+    <XsdFile Text="File di definizione dello schema XML (*.xsd)|*.xsd"/>
+    <XmlFile Text="File XML (*.xml)|*.xml"/>
     <MdbFile Text=" Accesso al database MS (*.mdb)|*.mdb"/>
     <MdfFile Text="Microsoft SQL Server databases (*.mdf)|*.mdf"/>
     <RtfFile Text="Rich Text file (*.rtf)|*.rtf"/>
-    <Images Text="Image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
+    <Images Text="File immagine|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tiff;*.tif;*.ico;*.emf;*.wmf;*.webp"/>
     <Assembly Text="Assembly (*.dll,*.exe)|*.dll;*.exe"/>
     <PrnFile Text="File di stampa (*.prn)|*.prn"/>
     <BmpFile Text="BImmagine btmap  (*.bmp)|*.bmp"/>
@@ -172,8 +172,8 @@
     <BooleanT3 Text="On"/>
     <BooleanT4 Text="X"/>
     <Custom1 Text="Telefono;(000) 000-0000"/>
-    <Custom2 Text="Long phone;+0(000) 000-0000"/>
-    <Custom3 Text="Social security;000-00-0000"/>
+    <Custom2 Text="Telefono lungo;+0(000) 000-0000"/>
+    <Custom3 Text="Previdenza sociale;000-00-0000"/>
     <Custom4 Text="codice postale breve"/>
     <Custom5 Text="codice postale intero"/>
   </Formats>
@@ -202,7 +202,7 @@
         <DeletePage Text="Elimina Pagina"/>
         <SelectAll Text="Seleziona Tutto"/>
         <Group Text="Gruppo"/>
-        <Ungroup Text="Ungroup"/>
+        <Ungroup Text="Non in gruppo"/>
         <Find Text="Trova"/>
         <Replace Text="Sostituisci..."/>
       </Edit>
@@ -234,7 +234,7 @@
       </Window>
       <Help Text="Aiuto">
         <Contents Text="contenuti aiuto"/>
-        <About Text="About..."/>
+        <About Text="Informazioni..."/>
       </Help>
     </Menu>
     <ToolWindow>
@@ -291,7 +291,7 @@
         <Undo Text="Annulla (Ctrl+Z)"/>
         <Redo Text="Ripeti"/>
         <Group Text="Gruppo"/>
-        <Ungroup Text="Ungroup"/>
+        <Ungroup Text="Non in grupo"/>
       </Standard>
       <Text Text="Formato">
         <Name Text="Nome Font"/>
@@ -388,7 +388,7 @@
       <Insert Text="Inserisci {0}"/>
       <AddPage Text="Aggiungi pagina {0}"/>
       <DeletePage Text="Elimina pagina"/>
-      <Script Text="Sript modificato"/>
+      <Script Text="Script modificato"/>
       <NObjects Text="{0}"/>
       <UndoN Text="annulla {0} azione/i"/>
       <RedoN Text="Ripeti {0} azione/i"/>
@@ -474,7 +474,7 @@
       <Select Text="Seleziona il tipo di connessione"/>
       <AlwaysUse Text="Utilizza sempre questa connessione"/>
       <LoginPrompt Text="Richiedi login"/>
-      <Test Text="Test connection"/>
+      <Test Text="Test di connessione"/>
       <TestSuccesful Text="Test di connessione riuscito."/>
     </Connection>
     <CustomLabel Text="Personalizza Etichetta">
@@ -647,7 +647,7 @@
       <Paper Text="Formato carta"/>
       <Custom Text="Personalizza"/>
       <Width Text="Larghezza:"/>
-      <Height Text="ALtezza:"/>
+      <Height Text="Altezza:"/>
       <Orientation Text="Posizione:"/>
       <Portrait Text="Vericale"/>
       <Landscape Text="Orizzontale"/>
@@ -819,11 +819,11 @@
       <Classic Text="Classica"/>
       <EditAfterInsert Text="Modifica dopo l'inserimento"/>
     </ReportPageOptions>
-    <RichTextEditor Text="Editor formato ricco">
+    <RichTextEditor Text="Rich Text Editor">
       <Open Text="Apri"/>
       <Save Text="Salva"/>
-      <Subscript Text="Subscript"/>
-      <Superscript Text="Superscript"/>
+      <Subscript Text="Pedice"/>
+      <Superscript Text="Apice"/>
       <Bullets Text="Indici"/>
       <Confirm Text="Il testo è stato modificato. Salvare le modifiche?"/>
     </RichTextEditor>
@@ -915,13 +915,13 @@
       <Picture Text="Immagine"/>
       <Load Text="Carica"/>
       <Clear Text="Cancella"/>
-      <Size Text="Size"/>
+      <Size Text="Dimensione"/>
       <Normal Text="Normale"/>
       <Stretch Text="Espandi"/>
       <Zoom Text="Zoom"/>
       <Tile Text="Levigato"/>
       <Transparency Text="Trasparenza"/>
-      <Zorder Text="Z-Order"/>
+      <Zorder Text="Ordine-Z"/>
       <TextOnTop Text="Testo in alto"/>
       <PictureOnTop Text="Immagine in alto"/>
       <ApplyToAll Text="Applica a tutte le pagine"/>
@@ -984,8 +984,8 @@
       <CompleteToNRows Text="Completa fino a N righe di dati:"/>
     </ChildBand>
     <PictureObject>
-      <SizeMode Text="Size Mode"/>
-      <AutoSize Text="Auto Size"/>
+      <SizeMode Text="Modalità dimensione"/>
+      <AutoSize Text="Dimensioni automatiche"/>
       <CenterImage Text="Centro immagine"/>
       <Normal Text="Normale"/>
       <StretchImage Text="Espandi immagine"/>
@@ -1007,7 +1007,7 @@
     <TableRow>
       <InsertAbove Text="Inserisci riga sopra"/>
       <InsertBelow Text="Inserisci riga sotto"/>
-      <AutoSize Text="Auto Size"/>
+      <AutoSize Text="Dimensioni automatiche"/>
     </TableRow>
     <TableColumn>
       <InsertToLeft Text="Inserisce colonna a sinistra"/>
@@ -1031,7 +1031,7 @@
     </GridControl>
     <Barcode>
       <BarcodeType Text="Tipo Codice a barre"/>
-      <AutoSize Text="Auto Size"/>
+      <AutoSize Text="Dimensioni automatiche"/>
       <AutoEncode Text="Codifica automatica"/>
       <CalcChecksum Text="Calcola Checksum"/>
       <ShowText Text="Mostra testo"/>
@@ -1061,13 +1061,13 @@
     </Matrix>
   </ComponentsMisc>
   <Wizards>
-    <BlankReport Text="Blank Report"/>
-    <StandardReport Text="Standard Report Wizard"/>
+    <BlankReport Text="Report vuoto"/>
+    <StandardReport Text="Creazione guidata report standard"/>
     <InheritedReport Text="Report ereditato"/>
     <Label Text="Winzard Etichetta"/>
     <NewDataSource Text="Nuova Sorgente Dati"/>
     <NewPage Text="Nuova Pagina Report"/>
-    <NewDialog Text="Nuovo Dialog Form"/>
+    <NewDialog Text="Nuovo modulo di dialogo"/>
   </Wizards>
   <Export>
     <Misc>
@@ -1107,7 +1107,7 @@
       <File Text="OpenOffice Calc"/>
     </Ods>
     <Html Text="Esporta in HTML">
-      <File Text="HTML file"/>
+      <File Text="File HTML"/>
       <SinglePage Text="Pagina singola"/>
       <SubFolder Text="Sottocartella"/>
       <Navigator Text="Navigatore"/>
