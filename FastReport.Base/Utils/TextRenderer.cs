@@ -325,15 +325,19 @@ namespace FastReport.Utils
         {
             StyleDescriptor style = new StyleDescriptor(Font.Style, BrushColor, BaseLine.Normal);
             if (HtmlTags)
-                text = text.Replace("<br>", "\r\n").Replace("<br/>", "\r\n").Replace("<br />", "\r\n");
+            {
+                // keep string length intact to make textobject break algo working. Remove extra spaces later
+                text = text.Replace("<br>", "\r  \n").Replace("<br/>", "\r   \n").Replace("<br />", "\r    \n");
+            }
             string[] lines = text.Split('\n', '\v');
             int originalCharIndex = 0;
 
             foreach (string line in lines)
             {
                 string s = line;
-                if (s.Length > 0 && s[s.Length - 1] == '\r')
-                    s = s.Remove(s.Length - 1);
+                int indexOfR = s.LastIndexOf('\r');
+                if (indexOfR != -1)
+                    s = s.Substring(0, indexOfR);
 
                 Paragraph paragraph = new Paragraph(s, this, originalCharIndex);
                 paragraphs.Add(paragraph);
