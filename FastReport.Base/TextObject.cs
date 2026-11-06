@@ -760,6 +760,8 @@ namespace FastReport
             get { return mergeMode; }
             set { mergeMode = value; }
         }
+
+        internal bool TypographicText => Report?.TypographicText ?? false;
         #endregion
 
         #region Private Methods
@@ -1106,9 +1108,9 @@ namespace FastReport
                 foreach (var i in TabPositions)
                     tabPositions.Add((float)i * scale);
                 return cache.GetStringFormat(align, lineAlign, Trimming, flags, firstTabOffset * scale, tabPositions,
-                    48 * scale);
+                    48 * scale, TypographicText);
             }
-            return cache.GetStringFormat(align, lineAlign, Trimming, flags, firstTabOffset * scale, tabWidth * scale);
+            return cache.GetStringFormat(align, lineAlign, Trimming, flags, firstTabOffset * scale, tabWidth * scale, TypographicText);
         }
 
         /// <inheritdoc/>

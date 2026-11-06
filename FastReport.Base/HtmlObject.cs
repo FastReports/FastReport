@@ -41,6 +41,8 @@ namespace FastReport
             get { return rightToLeft; }
             set { rightToLeft = value; }
         }
+
+        private bool TypographicText => Report?.TypographicText ?? false;
         #endregion
 
         #region Private Methods
@@ -73,7 +75,7 @@ namespace FastReport
             if (RightToLeft)
                 flags |= StringFormatFlags.DirectionRightToLeft;
 
-            return cache.GetStringFormat(StringAlignment.Near, StringAlignment.Near, StringTrimming.None, flags, 0 * scale, 0 * scale);
+            return cache.GetStringFormat(StringAlignment.Near, StringAlignment.Near, StringTrimming.None, flags, 0 * scale, 0 * scale, TypographicText);
         }
 
         /// <inheritdoc/>
