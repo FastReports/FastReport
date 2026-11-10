@@ -3407,69 +3407,74 @@
   </SystemWindowsForms>
   <Transport>
     <CommonErrors>
-      <Unauthorize Text="Неавторизованный. Используйте метод авторизации."/>
-      <MissingProperty Text="Не установлено свойство {0}"/>
-      <OAuthTimeout Text="Авторизация не была завершена в течение {0} секунд(ы). Вышел срок ожидания."/>
-      <IncorrectNameLength Text="Максимальная длина имени загружаемого файла — 255 символов"/>
-      <UnsopportedNameChars Text="Имя содержит недопустимый символ '{0}'."/>
-      <ReservedName Text="Имя '{0}' является зарезервированным системным именем."/>
+      <Unauthorize Text="Unauthorized. Use Authorize method."/>
+      <MissingProperty Text="Missing {0} property"/>
+      <OAuthTimeout Text="The authorization was not completed within {0} seconds. The timeout has expired."/>
+      <IncorrectNameLength Text="The maximum length of the uploaded file name is 255 characters."/>
+      <UnsopportedNameChars Text="The name contains an invalid character '{0}'."/>
+      <ReservedName Text="The name '{0}' is a reserved system name."/>
+      <EmptyField Text="The '{0}' field cannot be empty." />
     </CommonErrors>
+    <S3Transport>
+    </S3Transport>
     <YandexDiskTransport>
-      <FailedOperation Text="Операция завершилась неудачей, попробуйте повторить первоначальный запрос на копирование, перемещение или удаление."/>
+      <FailedOperation Text="Operation failed, try repeating the initial copy, move, or delete request."/>
     </YandexDiskTransport>
-    <TransportForm Text="Транспорт">
-      <Rename Text="Переименовать"/>
-      <CreateFolder Text="Создать папку"/>
-      <Cut Text="Вырезать"/>
-      <Copy Text="Копировать"/>
-      <Paste Text="Вставить"/>
-      <Download Text="Скачать"/>
-      <Upload Text="Загрузить"/>
-      <Delete Text="Удалить"/>
-      <FetchFiles Text="Загрузка списока файлов"/>
-      <Error Text="Ошибка"/>
-      <Warning Text="Предупреждение"/>
-      <WarningDelete Text="Внимание: Выбранные элементы будут удалены безвозвратно."/>
-      <FilesOverwritten Text="Файл будет перезаписан."/>
-      <RenameOperation Text="Переименование \n{0} в \n{1}"/>
-      <CutOperation Text="Перемещение \n{0} в \n{1}"/>
-      <CopyOperation Text="Копирование \n{0} в \n{0}]"/>
-      <DownloadOperation Text="Скачивание \n{0}"/>
-      <UploadOperation Text="Загрузка \n{0}"/>
-      <DeleteOperation Text="Удаление \n{0}"/>
-      <Refresh Text="Обновить"/>
+    <GoogleDriveTransport>
+    </GoogleDriveTransport>
+    <TransportForm Text="Transport">
+      <CreateFolder Text="Create folder"/>
+      <Rename Text="Rename"/>
+      <Cut Text="Cut"/>
+      <Copy Text="Copy"/>
+      <Download Text="Download"/>
+      <Upload Text="Upload"/>
+      <Delete Text="Delete"/>
+      <Paste Text="Paste"/>
+      <FetchFiles Text="Upload a list of files"/>
+      <Error Text="Error"/>
+      <Warning Text="Warning"/>
+      <WarningDelete Text="Warning: The selected items will be permanently deleted."/>
+      <FilesOverwritten Text="Files will be overwritten."/>
+      <RenameOperation Text="Rename \n{0} to \n{1}"/>
+      <CutOperation Text="Moving \n{0} to \n{1}"/>
+      <CopyOperation Text="Copy \n{0} to \n{0}]"/>
+      <DownloadOperation Text="Download \n{0}"/>
+      <UploadOperation Text="Upload \n{0}"/>
+      <DeleteOperation Text="Delete \n{0}"/>
+      <Refresh Text="Refresh"/>
     </TransportForm>
     <CreateNewForm>
-      <Save Text="Сохранить"/>
-      <FolderName Text="Новое имя:"/>
-      <FileName Text="Имя файла:"/>
-      <NotBeEmpty Text="не может быть пустым"/>
+      <Save Text="Save"/>
+      <FolderName Text ="Folder name:"/>
+      <FileName Text ="File name:"/>
+      <NotBeEmpty Text="сan not be empty"/>
     </CreateNewForm>
-    <QueueControl Text="Очередь задач">
-      <CancelOperation Text="Отменить операцию"/>
-      <EmptyQueue Text="Очередь пуста"/>
+    <QueueControl Text="Task Queue">
+      <CancelOperation Text="Cancel operation"/>
+      <EmptyQueue Text="Queue is empty"/>
     </QueueControl>
     <ClientInfoForms>
       <Base>
-        <ClientId Text="Идентификатор клиента:"/>
-        <ClientSecret Text="Секрет клиента:"/>
+        <ClientId Text="Client ID:"/>
+        <ClientSecret Text="Client Secret:"/>
       </Base>
       <S3 Text="Simple Storage Service">
-        <AccessKeyId Text="Идентификатор ключа доступа:"/>
-        <SecretAccessKey Text="Секретный ключ доступа:"/>
-        <Region Text="Регион:"/>
-        <Host Text="Хост:"/>
-        <Bucket Text="Бакет:"/>
-        <RequestStyle Text="Стиль запроса:"/>
+        <AccessKeyId Text="Access key id:"/>
+        <SecretAccessKey Text="Secret access key:"/>
+        <Region Text="Region:"/>
+        <Host Text="Host:"/>
+        <Bucket Text="Bucket:"/>
+        <RequestStyle Text="Request style:"/>
       </S3>
-      <YandexDisk Text="Яндекс Диск">
-        <Port Text="Порт прослушивателя:"/>
+      <YandexDisk Text="Yandex Disk">
+        <Port Text="Listener port:"/>
       </YandexDisk>
-      <GoogleDrive Text="Google Диск"/>
+      <GoogleDrive Text="Google Drive"/>
       <OneDrive Text="OneDrive" />
-      <NextCloud Text="NextCloud файлы">
-        <Port Text="Порт прослушивателя:"/>
-        <Address Text="Адрес NextCloud:"/>
+      <NextCloud Text="NextCloud Files">
+        <Port Text="Listener port:"/>
+        <Address Text="NextCloud address:"/>
       </NextCloud>
     </ClientInfoForms>
     <TransportSaveFileDialog Text="Save">

@@ -80,6 +80,7 @@ namespace FastReport
             set
             {
                 image = value;
+                ImageHelper.FixImageOrientation(image);
                 imageData = null;
                 UpdateAutoSize();
                 UpdateTransparentImage();

@@ -577,7 +577,7 @@ namespace FastReport.Barcode
 
                 if (IsBarcodeRussianPost)
                 {
-                    g.DrawRectangle(new Pen(Color.Black, 1f), drawArea.X, drawArea.Y, displayRect.Width, displayRect.Height);
+                    g.DrawRectangle(new Pen(Color.Black, 1f), drawArea.X, drawArea.Y, displayRect.Width - 1f, displayRect.Height - 1f);
                     DrawTopLabel(g, zoom);
                     barArea.Height -= 18; // Reducing the height of the barcode itself
                 }
