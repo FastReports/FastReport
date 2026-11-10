@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Net;
 
 namespace FastReport.Utils
@@ -431,6 +432,50 @@ namespace FastReport.Utils
 
                 throw new ImageLoadException(ex);
             }
+        }
+
+        /// <summary>
+        /// Fixes the orientation of an image by applying the rotation or flip
+        /// specified by the EXIF orientation metadata (tag 274).
+        /// </summary>
+        /// <param name="workImage">The image to fix. May be null.</param>
+        public static void FixImageOrientation(Image workImage)
+        {
+#if !SKIA
+            try
+            {
+                if (workImage != null && workImage.PropertyIdList.Contains(274))
+                {
+                    RotateFlipType rotateFlipType = RotateFlipType.RotateNoneFlipNone;
+                    int orientation = workImage.GetPropertyItem(274).Value[0];
+
+                    rotateFlipType = orientation switch
+                    {
+                        2 => RotateFlipType.RotateNoneFlipX,
+                        3 => RotateFlipType.Rotate180FlipNone,
+                        4 => RotateFlipType.RotateNoneFlipY,
+                        5 => RotateFlipType.Rotate90FlipX,
+                        6 => RotateFlipType.Rotate90FlipNone,
+                        7 => RotateFlipType.Rotate90FlipY,
+                        8 => RotateFlipType.Rotate270FlipNone,
+                        _ => rotateFlipType
+                    };
+
+                    if (rotateFlipType != RotateFlipType.RotateNoneFlipNone)
+                    {
+                        workImage.RotateFlip(rotateFlipType);
+                        // reset the orientation tag to 1 (normal), otherwise the rotation would be applied again
+                        PropertyItem orientationItem = workImage.GetPropertyItem(274);
+                        orientationItem.Value[0] = 1;
+                        workImage.SetPropertyItem(orientationItem);
+                    }
+                }
+            }
+            catch
+            {
+                // do nothing
+            }
+#endif
         }
     }
 
